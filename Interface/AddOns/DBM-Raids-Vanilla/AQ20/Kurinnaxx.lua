@@ -9,8 +9,7 @@ end
 local mod	= DBM:NewMod("Kurinnaxx", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103123604")
 mod:SetCreatureID(15348)
 mod:SetEncounterID(718)
 mod:SetModelID(15742)
@@ -27,18 +26,18 @@ mod:RegisterEventsInCombat(
 
 local warnWound			= mod:NewStackAnnounce(25646, 2, nil, "Tank")
 local warnSandTrap		= mod:NewTargetNoFilterAnnounce(25656, 3)
-local warnFrenzy		= mod:NewSpellAnnounce(26527, 3)
+local warnFrenzy		= mod:NewTargetNoFilterAnnounce(26527, 3)
 
-local specWarnSandTrap	= mod:NewSpecialWarningYou(25656, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnSandTrap	= mod:NewSpecialWarningYou(25656, nil, nil, nil, 1, 2)
 local yellSandTrap		= mod:NewYell(25656)
-local specWarnWound		= mod:NewSpecialWarningStack(25646, "Tank", 5, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnWoundTaunt= mod:NewSpecialWarningTaunt(25646, "Tank", nil, nil, 1, 2, nil, nil, "tauntboss")
+local specWarnWound		= mod:NewSpecialWarningStack(25646, nil, 5, nil, nil, 1, 6)
+local specWarnWoundTaunt= mod:NewSpecialWarningTaunt(25646, nil, nil, nil, 1, 2)
 
 local timerWound		= mod:NewTargetTimer(15, 25646, nil, "Tank", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
 local timerSandTrapCD	= mod:NewCDTimer(8, 25656, nil, nil, nil, 3)
 
-function mod:OnCombatStart()
-	timerSandTrapCD:Start()
+function mod:OnCombatStart(delay)
+	timerSandTrapCD:Start(8-delay)
 end
 
 function mod:SPELL_CREATE(args)
@@ -72,7 +71,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			warnWound:Show(args.destName, amount)
 		end
 	elseif args:IsSpell(26527) then
-		warnFrenzy:Show()
+		warnFrenzy:Show(args.destName)
 	end
 end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED

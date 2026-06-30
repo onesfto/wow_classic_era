@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,normal25"
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250720212401")
 mod:SetCreatureID(28860)
 mod:SetEncounterID(1090)
 mod:SetModelID(27035)
@@ -22,10 +21,10 @@ local warnTenebron          = mod:NewAnnounce("WarningTenebron", 2, 61248)
 local warnShadron           = mod:NewAnnounce("WarningShadron", 2, 58105)
 local warnVesperon          = mod:NewAnnounce("WarningVesperon", 2, 61251)
 
-local warnFireWall			= mod:NewSpecialWarning("WarningFireWall", nil, nil, nil, 2, 2, nil, nil, nil, nil, "watchwave")
-local warnVesperonPortal	= mod:NewSpecialWarning("WarningVesperonPortal", false, nil, nil, 1, 7, nil, nil, nil, nil, "newportal")
-local warnTenebronPortal	= mod:NewSpecialWarning("WarningTenebronPortal", false, nil, nil, 1, 7, nil, nil, nil, nil, "newportal")
-local warnShadronPortal		= mod:NewSpecialWarning("WarningShadronPortal", false, nil, nil, 1, 7, nil, nil, nil, nil, "newportal")
+local warnFireWall			= mod:NewSpecialWarning("WarningFireWall", nil, nil, nil, 2, 2)
+local warnVesperonPortal	= mod:NewSpecialWarning("WarningVesperonPortal", false, nil, nil, 1, 7)
+local warnTenebronPortal	= mod:NewSpecialWarning("WarningTenebronPortal", false, nil, nil, 1, 7)
+local warnShadronPortal		= mod:NewSpecialWarning("WarningShadronPortal", false, nil, nil, 1, 7)
 
 local timerShadowFissure    = mod:NewCastTimer(5, 59128, nil, nil, nil, 3, nil, DBM_COMMON_L.DEADLY_ICON)--Cast timer until Void Blast. it's what happens when shadow fissure explodes.
 local timerWall             = mod:NewCDTimer(30, 43113, nil, nil, nil, 2)

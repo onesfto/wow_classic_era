@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,timewalker"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250703201323")
 mod:SetCreatureID(117230, 117484)--Tugar, Jormog
 mod:SetBossHPInfoToHighest()
 mod.soloChallenge = true
@@ -31,11 +30,11 @@ local warnFelShock			= mod:NewSpellAnnounce(242730, 2, nil, false)
 local warnRupture			= mod:NewSpellAnnounce(241664, 2)
 local warnScale				= mod:NewStackAnnounce(238471, 2)
 
-local specWarnSonicScream	= mod:NewSpecialWarningCast(241687, nil, nil, nil, 1, 2, nil, nil, "stopcast")
-local specWarnEarthquake	= mod:NewSpecialWarningSpell(237950, nil, nil, nil, 2, 2, nil, nil, "aesoon")
-local specWarnCharge		= mod:NewSpecialWarningYou(100, nil, nil, nil, 1, 2, nil, nil, "chargemove")--Not real spell ID, but closest match
-local specWarnFelSurge		= mod:NewSpecialWarningSpell(242496, nil, nil, nil, 1, 2, nil, nil, "stunsoon")
-local specWarnFelBurst		= mod:NewSpecialWarningSpell(242733, nil, nil, nil, 1, 2, nil, nil, "crowdcontrol")
+local specWarnSonicScream	= mod:NewSpecialWarningCast(241687, nil, nil, nil, 1, 2)
+local specWarnEarthquake	= mod:NewSpecialWarningSpell(237950, nil, nil, nil, 2, 2)
+local specWarnCharge		= mod:NewSpecialWarningYou(100, nil, nil, nil, 1, 2)--Not real spell ID, but closest match
+local specWarnFelSurge		= mod:NewSpecialWarningSpell(242496, nil, nil, nil, 1, 2)
+local specWarnFelBurst		= mod:NewSpecialWarningSpell(242733, nil, nil, nil, 1, 2)
 
 local timerEarthquakeCD		= mod:NewNextTimer(60, 237950, nil, nil, nil, 2)
 local timerFelSurgeCD		= mod:NewCDTimer(25, 242496, nil, nil, nil, 3)--25-33

@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("StratWaves", "DBM-Party-WotLK", 3)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260315034941")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250609051305")
 mod:SetZone(279)
 
 mod:RegisterEvents(

@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal25"
 
-mod:SetRevision("20260523022044")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103131702")
 mod:SetCreatureID(18831, 18832, 18834, 18835, 18836)
 mod:SetEncounterID(649, 2455)
 mod:SetModelID(18649)
@@ -29,9 +28,9 @@ local warningPWS			= mod:NewTargetNoFilterAnnounce(33147, 3, nil, false)
 local warningPoH			= mod:NewCastAnnounce(33152, 4)
 local warningHeal			= mod:NewCastAnnounce(33144, 4)
 
-local specWarnWhirlwind		= mod:NewSpecialWarningRun(33238, "Melee", nil, nil, 4, 2, nil, nil, "justrun")
-local specWarnPoH			= mod:NewSpecialWarningInterrupt(33152, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
-local specWarnHeal			= mod:NewSpecialWarningInterrupt(33144, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnWhirlwind		= mod:NewSpecialWarningRun(33238, "Melee", nil, nil, 4, 2)
+local specWarnPoH			= mod:NewSpecialWarningInterrupt(33152, "HasInterrupt", nil, nil, 1, 2)
+local specWarnHeal			= mod:NewSpecialWarningInterrupt(33144, "HasInterrupt", nil, nil, 1, 2)
 
 local timerWhirlwindCD		= mod:NewCDTimer(55, 33238, nil, nil, nil, 2)
 local timerWhirlwind		= mod:NewBuffActiveTimer(15, 33238, nil, nil, nil, 2)

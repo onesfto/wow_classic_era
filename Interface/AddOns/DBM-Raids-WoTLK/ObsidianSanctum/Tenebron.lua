@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,normal25"
 
-mod:SetRevision("20260315035355")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103133102")
 mod:SetCreatureID(30452)
 mod:SetEncounterID(1092)
 mod:SetModelID(27082)

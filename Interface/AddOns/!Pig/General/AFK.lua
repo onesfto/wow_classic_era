@@ -4,20 +4,6 @@ local Data=PD.Data
 local PlayerInfo=Data.PlayerInfo
 local Create = PD.Create
 local GeneralFun=PD.GeneralFun
-local TispTXT = L["COMMON_AFKTISPTXT"]
-function GeneralFun.GetAFKTispTXT(lytxt)
-	if lytxt then
-		if lytxt=="" or lytxt==" " then
-	        PIGA["Other"]["AFK"]["TispTXT"]=nil
-	    else
-	        PIGA["Other"]["AFK"]["TispTXT"]=lytxt
-	    end
-	end
-	if PIGA["Other"]["AFK"]["TispTXT"] and PIGA["Other"]["AFK"]["TispTXT"]==TispTXT then
-		PIGA["Other"]["AFK"]["TispTXT"]=nil
-	end
-	return PIGA["Other"]["AFK"]["TispTXT"] or TispTXT
-end
 function GeneralFun.Common_AFK()
 	local Pig_AFKData = {}
 	Pig_AFKData.cameraYawMoveSpeed=GetCVar("cameraYawMoveSpeed")
@@ -142,7 +128,7 @@ function GeneralFun.Common_AFK()
 					MoveViewLeftStart()
 					UIParent:Hide()
 					self:Show()
-					self.title:SetText(GeneralFun.GetAFKTispTXT());
+					self.title:SetText(PIGA["Other"]["AFK"]["TispTXT"]);
 					self.pxulie=1
 					weizhibiandong()
 				elseif arg1==CLEARED_AFK then

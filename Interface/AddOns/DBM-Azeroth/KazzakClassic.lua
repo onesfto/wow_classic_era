@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("KazzakClassicVanilla", "DBM-Azeroth")
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241214191036")
 if DBM:IsSeasonal("SeasonOfDiscovery") then
 	mod:SetCreatureID(230302)
 else
@@ -22,7 +21,7 @@ mod:RegisterEventsInCombat(
 local warningMark				= mod:NewTargetNoFilterAnnounce(21056, 4)
 local warningShadowBoltVolley	= mod:NewSpellAnnounce(21341, 2)
 
-local specWarnMark				= mod:NewSpecialWarningYou(21056, nil, nil, nil, 1, 2, nil, nil, "targetyou")--No Yell on purpose, outdoor chat restrictions and all
+local specWarnMark				= mod:NewSpecialWarningYou(21056, nil, nil, nil, 1, 2)--No Yell on purpose, outdoor chat restrictions and all
 
 local enrageTimer				= mod:NewBerserkTimer(180)
 

@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(451, "DBM-Party-Vanilla", DBM:IsPostCata() and 10 or 16, 236)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(10436)
 mod:SetEncounterID(479)
 mod:SetZone(329)
@@ -17,7 +16,7 @@ mod:RegisterEventsInCombat(
 local warningBansheeCurse		= mod:NewTargetNoFilterAnnounce(16867, 2, nil, "RemoveCurse")
 local warningSilence			= mod:NewTargetNoFilterAnnounce(18327, 2, nil, "RemoveMagic")
 
-local specWarnPossess			= mod:NewSpecialWarningTargetChange(17244, nil, nil, nil, 1, 2, nil, nil, "targetchange")
+local specWarnPossess			= mod:NewSpecialWarningTargetChange(17244, nil, nil, nil, 1, 2)
 
 --local timerPossessCD			= mod:NewAITimer(180, 17244, nil, nil, nil, 3, nil, DBM_COMMON_L.DAMAGE_ICON)
 

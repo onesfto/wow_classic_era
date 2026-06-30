@@ -49,16 +49,16 @@ CreateFrame("Button", nil, frame, "UIPanelCloseButtonDefaultAnchors")
 
 local scroll = CreateFrame("ScrollFrame", nil, frame, "ScrollFrameTemplate")
 scroll:SetPoint("TOPLEFT", frame, "TOPLEFT", 8, -30)
-scroll:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -24, 30)
+scroll:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -24, 5)
 
 local child = CreateFrame("Frame", nil, scroll)
 scroll:SetScrollChild(child)
 child:SetSize(scroll:GetWidth(), scroll:GetHeight())
 child:SetPoint("LEFT")
 
-local refresh = CreateFrame("Button", nil, frame)
+local refresh = CreateFrame("Button", nil, child)
 refresh:SetSize(20, 20)
-refresh:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", 8, 6)
+refresh:SetPoint("BOTTOMLEFT", child)
 refresh:SetText("REFRESH")
 refresh:Show()
 refresh:SetNormalTexture("Interface\\Buttons\\UI-RefreshButton")
@@ -106,7 +106,7 @@ titlePlayer.Keep = true
 titlePlayer:SetFontObject(GameFontNormalLarge)
 titlePlayer:SetText(PLAYER)
 titlePlayer:SetPoint("TOPLEFT", child, 7, 0)
-titlePlayer:SetWidth(120)
+titlePlayer:SetWidth(200)
 
 local titleWorld = GetTextFrame()
 titleWorld.Keep = true
@@ -127,7 +127,7 @@ titleWorld:SetWidth(worldWidth)
 titleHome:SetWidth(homeWidth)
 
 -- Update main frame width
-child:SetWidth(120 + worldWidth + homeWidth + 8)
+child:SetWidth(200 + worldWidth + homeWidth + 8)
 frame:SetWidth(child:GetWidth() + 32)
 
 local function SortLag(v1, v2)
@@ -144,9 +144,8 @@ local function Update()
 	WipeTextFrames()
 
 	for i, v in ipairs(sortLag) do
-		local fullName = v.name
-		local name = DBM:GetShortServerName(fullName) or fullName
-		local playerColor = RAID_CLASS_COLORS[DBM:GetRaidClass(fullName)]
+		local name = v.name
+		local playerColor = RAID_CLASS_COLORS[DBM:GetRaidClass(name)]
 		if playerColor then
 			name = ("|r|cff%.2x%.2x%.2x%s|r|cff%.2x%.2x%.2x"):format(playerColor.r * 255, playerColor.g * 255, playerColor.b * 255, name, 0.41 * 255, 0.8 * 255, 0.94 * 255)
 		end
@@ -156,7 +155,7 @@ local function Update()
 
 		textPlayer:SetText(name)
 		textPlayer:SetPoint("TOP", titlePlayer, "BOTTOM", 0, offset)
-		textPlayer:SetWidth(120)
+		textPlayer:SetWidth(200)
 
 		textWorld:SetText(v.worldlag or '?')
 		textWorld:SetPoint("TOP", titleWorld, "BOTTOM", 0, offset)
@@ -167,9 +166,7 @@ local function Update()
 		textHome:SetWidth(homeWidth)
 	end
 
-	local scrollHeight = scroll:GetHeight()
-	child:SetHeight(mmax(scrollHeight, 50 + #sortLag * 14))
-	scroll:UpdateScrollChildRect()
+	child:SetHeight(mmax(300, 50 + #sortLag * 14))
 end
 
 LibLatency:Register("DBM", function(homelag, worldlag, sender)
@@ -188,9 +185,6 @@ end)
 function Latency:Show()
 	if DBM.Keystones then
 		DBM.Keystones:Hide()
-	end
-	if DBM.GearCheck then
-		DBM.GearCheck:Hide()
 	end
 	DBM.Durability:Hide()
 	LibLatency:RequestLatency()

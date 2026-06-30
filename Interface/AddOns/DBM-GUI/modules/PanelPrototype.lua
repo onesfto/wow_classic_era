@@ -66,24 +66,12 @@ setmetatable(PanelPrototype, {
 	__index = DBM_GUI
 })
 
-local abilityTestContextByFrame = setmetatable({}, { __mode = "k" })
-
 function PanelPrototype:GetLastObj()
 	return self.lastobject
 end
 
 function PanelPrototype:SetLastObj(obj)
 	self.lastobject = obj
-end
-
-function PanelPrototype:SetAbilityTestContext(mod, spellKey, renameSpellId)
-	if self and self.frame then
-		abilityTestContextByFrame[self.frame] = {
-			mod = mod,
-			spellKey = spellKey,
-			renameSpellId = renameSpellId
-		}
-	end
 end
 
 function PanelPrototype:CreateCreatureModelFrame(width, height, creatureid, scale)
@@ -508,22 +496,8 @@ do
 				local isNewDropdown = frame.mytype == "dropdown2"
 				frame:SetPoint("LEFT", button, "RIGHT", isNewDropdown and 2 or -20, 2)
 				frame2:SetPoint("LEFT", frame, "RIGHT", isNewDropdown and 4 or 18, 0)
-			else--Special warning option
+			else
 				frame = self:CreateDropdown(nil, sounds, mod, modvar .. "SWSound", function(value)
-					if modvar:match("^PrivateAuraSound%d+$") then
-						local optionId = tonumber(modvar:match("^PrivateAuraSound(%d+)$"))
-						if InCombatLockdown() then
-							DBM:AddMsg(L.PrivateAuraSoundCombatLockdown, nil, true)
-							frame:SetSelectedValue(mod.Options[modvar .. "SWSound"])
-							return
-						end
-						mod.Options[modvar .. "SWSound"] = value
-						if optionId then
-							mod:RefreshPrivateAuraSound(optionId)
-						end
-						DBM:PlaySpecialWarningSound(value, true)
-						return
-					end
 					mod.Options[modvar .. "SWSound"] = value
 					DBM:PlaySpecialWarningSound(value, true)
 				end, nil, nil, button, L.BossModSWSound)
@@ -564,9 +538,9 @@ do
 					local _, contentType, contentID = strsplit(":", data)
 					if contentType == "2" then
 						local spellName, spellDesc = DBM:EJ_GetSectionInfo(tonumber(contentID))
-						GameTooltip:AddLine(spellName or CL.UNKNOWN, 255, 255, 255, false)
+						GameTooltip:AddLine(spellName or CL.UNKNOWN, 255, 255, 255, 0)
 						GameTooltip:AddLine(" ")
-						GameTooltip:AddLine(spellDesc or CL.UNKNOWN, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, true)
+						GameTooltip:AddLine(spellDesc or CL.UNKNOWN, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1)
 					end
 				end
 				GameTooltip:Show()
@@ -665,128 +639,13 @@ function PanelPrototype:CreateArea(name)
 end
 
 local function handleWAKeyHyperlink(_, link)
-	local linkType, arg1, arg2, arg3 = strsplit(":", link)
-	if linkType == "addon" and arg1 == "DBM" and arg2 == "wacopy" then
-		DBM:ShowUpdateReminder(nil, nil, DBM_CORE_L.COPY_WA_DIALOG, arg3)
+	local _, linkType, arg1, arg2 = strsplit(":", link)
+	if linkType == "DBM" and arg1 == "wacopy" then
+		DBM:ShowUpdateReminder(nil, nil, DBM_CORE_L.COPY_WA_DIALOG, arg2)
 	end
 end
 
-local function refreshCurrentViewingPanel()
-	local optionsFrame = _G["DBM_GUI_OptionsFrame"]
-	if DBM_GUI and DBM_GUI.currentViewing and optionsFrame and optionsFrame:IsShown() then
-		optionsFrame:DisplayFrame(DBM_GUI.currentViewing)
-	end
-end
-
-local function spellKeyMatchesObject(spellKey, objectSpellId)
-	if spellKey == nil or objectSpellId == nil then
-		return false
-	end
-	if spellKey == objectSpellId then
-		return true
-	end
-	if type(spellKey) == "string" then
-		local numericKey = tonumber(spellKey)
-		if numericKey and numericKey == objectSpellId then
-			return true
-		end
-		local ejId = tonumber(spellKey:match("^ej(%d+)$"))
-		if ejId and objectSpellId == -ejId then
-			return true
-		end
-		local atId = tonumber(spellKey:match("^at(%d+)$"))
-		if atId and objectSpellId == atId then
-			return true
-		end
-	elseif type(spellKey) == "number" and type(objectSpellId) == "string" then
-		local numericObjectSpell = tonumber(objectSpellId)
-		if numericObjectSpell and spellKey == numericObjectSpell then
-			return true
-		end
-	end
-	return false
-end
-
-local function getObjectSpellId(object)
-	if type(object) == "table" then
-		return object.spellId
-	end
-	return nil
-end
-
-local function findFirstTimerAndAnnounceForSpellKey(mod, spellKey, fallbackSpellKey)
-	if not mod or (spellKey == nil and fallbackSpellKey == nil) then
-		return nil, nil
-	end
-	local function matches(objectSpellId)
-		if spellKeyMatchesObject(spellKey, objectSpellId) then
-			return true
-		end
-		if fallbackSpellKey ~= nil and fallbackSpellKey ~= spellKey and spellKeyMatchesObject(fallbackSpellKey, objectSpellId) then
-			return true
-		end
-		return false
-	end
-	local timerObject
-	local timerList = mod.timers
-	if type(timerList) == "table" then
-		for _, object in ipairs(timerList) do
-			if matches(getObjectSpellId(object)) then
-				timerObject = object
-				break
-			end
-		end
-	end
-	local announceObject
-	local specAnnounceList = mod.specwarns
-	if type(specAnnounceList) == "table" then
-		for _, object in ipairs(specAnnounceList) do
-			if matches(getObjectSpellId(object)) then
-				if object.announceType ~= "blizztarget" and object.announceType ~= "blizzyou" then
-					announceObject = object
-					break
-				end
-			end
-		end
-	end
-	if not announceObject then--Didn't find preferred special announce, try to find regular one
-		local announceList = mod.announces
-		if type(announceList) == "table" then
-			for _, object in ipairs(announceList) do
-				if matches(getObjectSpellId(object)) then
-					announceObject = object
-					break
-				end
-			end
-		end
-	end
-	return timerObject, announceObject
-end
-
-local function triggerAbilityTestTimer(object)
-	if object and object.Start then
-		object:Start(5, 1)--short 5 second timer with a 1 count
-		return true
-	end
-	return false
-end
-
-local function triggerAbilityTestAnnounce(object)
-	if object and object.Show then
-		if object.announceType == "gtfo" then
-			object:Show()
-		else
-			object:Show(1)
-		end
-		if object.voiceFile and object.Play then
-			object:Play(object.voiceFile)
-		end
-		return true
-	end
-	return false
-end
-
-function PanelPrototype:CreateAbility(titleText, icon, spellID, isPrivate, renameSpellId, mod, runtimeSpellKey)
+function PanelPrototype:CreateAbility(titleText, icon, spellID, isPrivate)
 	---@class DBMPanelAbility: Frame, BackdropTemplate
 	local area = CreateFrame("Frame", "DBM_GUI_Option_" .. self:GetNewID(), self.frame, "TooltipBorderBackdropTemplate")
 	area.mytype = "ability"
@@ -803,155 +662,28 @@ function PanelPrototype:CreateAbility(titleText, icon, spellID, isPrivate, renam
 	area:SetPoint("RIGHT", self.frame)
 	local title = area:CreateFontString("$parentTitle", "BACKGROUND", "GameFontHighlightSmall")
 	local key = ""
-	if DBM.Options.ShowWAKeys and spellID then
+	if DBM.Options.ShowWAKeys and spellID and not DBM:IsPostMidnight() then
 		key = DBM_CORE_L.WEAKAURA_KEY:format(spellID)
 	end
-	-- Search/index contract (important for GUI cache correctness):
-	-- 1) Keep search payload STATIC: original title + static numeric key only.
-	-- 2) NEVER include rename text here (renames are user-defined, volatile, and reused).
-	-- 3) Rendered title may include rename suffix for display, but search/cache must not.
-	local searchText = titleText
-	if renameSpellId and renameSpellId > 5 then
-		searchText = searchText .. " " .. tostring(renameSpellId)
-	elseif spellID then
-		searchText = searchText .. " " .. tostring(spellID)
-	end
-	area.searchText = searchText
-	local function setAbilityTitle(text)
-		if icon then
-			local markup = CreateTextureMarkup(icon, 0, 0, 16, 16, 0, 0, 0, 0, 0, 0)
-			if isPrivate then--Second icon for private aura
-				local markuptwo = CreateTextureMarkup(132320, 0, 0, 18, 18, 0, 0, 0, 0, 0, 0)
-				title:SetText(markup .. ' ' .. text .. key .. " " .. markuptwo)
-			else
-				title:SetText(markup .. ' ' .. text .. key)
-			end
+	if icon then
+		local markup = CreateTextureMarkup(icon, 0, 0, 16, 16, 0, 0, 0, 0, 0, 0)
+		if isPrivate then--Second icon for private aura
+			local markuptwo = CreateTextureMarkup(132320, 0, 0, 18, 18, 0, 0, 0, 0, 0, 0)
+			title:SetText(markup .. ' ' .. titleText .. key .. " " .. markuptwo)
 		else
-			if isPrivate then--Still add icon for private aura even if no spell icon
-				local markuptwo = CreateTextureMarkup(132320, 0, 0, 18, 18, 0, 0, 0, 0, 0, 0)
-				title:SetText(text .. key .. " " .. markuptwo)
-			else
-				title:SetText(text .. key)
-			end
+			title:SetText(markup .. ' ' .. titleText .. key)
+		end
+	else
+		if isPrivate then--Still add icon for private aura even if no spell icon
+			local markuptwo = CreateTextureMarkup(132320, 0, 0, 18, 18, 0, 0, 0, 0, 0, 0)
+			title:SetText(titleText .. key .. " " .. markuptwo)
+		else
+			title:SetText(titleText .. key)
 		end
 	end
-	local function getRenameDefaultText()
-		if renameSpellId == 123456 then
-			return L.GTFOAbilityTitle
-		end
-		return DBM:GetSpellName(renameSpellId) or tostring(renameSpellId)
-	end
-	local function getRenameDisplaySuffix()
-		if not renameSpellId or renameSpellId <= 5 then
-			return ""
-		end
-		local defaultText = getRenameDefaultText()
-		local effectiveText = DBM:GetRename(renameSpellId, defaultText) or defaultText
-		if effectiveText == defaultText then
-			return ""
-		end
-		return (DBM_CORE_L.RENAME):format(effectiveText)
-	end
-	setAbilityTitle(titleText .. getRenameDisplaySuffix())
 	title:ClearAllPoints()
 	title:SetPoint("BOTTOMLEFT", area, "TOPLEFT", 20, 0)
 	title:SetFontObject(GameFontNormal)
-	local hasRenamableObjects = false
-	if mod and (runtimeSpellKey ~= nil or renameSpellId ~= nil) then
-		local timerObject, announceObject = findFirstTimerAndAnnounceForSpellKey(mod, runtimeSpellKey, renameSpellId)
-		if timerObject or announceObject then
-			hasRenamableObjects = true
-		end
-	end
-	if renameSpellId and renameSpellId > 5 and hasRenamableObjects then
-		local function autoSizeInlineButton(button, minWidth)
-			local buttonText = _G[button:GetName() .. "Text"] or button:GetFontString()
-			if not buttonText then
-				return
-			end
-			button:SetWidth(mmax(minWidth or 0, buttonText:GetStringWidth() + 20))
-		end
-
-		local renameButton = CreateFrame("Button", area:GetName() .. "Rename", area, "UIPanelButtonTemplate")
-		renameButton:SetSize(58, 18)
-		renameButton:SetText(L.RenameSpellButton or "Rename")
-		autoSizeInlineButton(renameButton, 58)
-		renameButton:SetPoint("LEFT", title, "RIGHT", 8, 0)
-
-		local resetButton = CreateFrame("Button", area:GetName() .. "RenameReset", area, "UIPanelButtonTemplate")
-		resetButton:SetSize(46, 18)
-		resetButton:SetText(L.Reset)
-		autoSizeInlineButton(resetButton, 46)
-		resetButton:SetPoint("LEFT", renameButton, "RIGHT", 4, 0)
-
-		local testButton = CreateFrame("Button", area:GetName() .. "SpellTest", area, "UIPanelButtonTemplate")
-		testButton:SetSize(42, 18)
-		testButton:SetText(L.Test or "Test")
-		autoSizeInlineButton(testButton, 42)
-		testButton:SetPoint("LEFT", resetButton, "RIGHT", 4, 0)
-
-		testButton:SetScript("OnClick", function()
-			local optionsFrame = _G["DBM_GUI_OptionsFrame"]
-			if optionsFrame and optionsFrame:IsShown() and optionsFrame.SetCollapsed then
-				optionsFrame:SetCollapsed(true)
-				if optionsFrame.ScheduleAutoUncollapse then
-					optionsFrame:ScheduleAutoUncollapse(5)
-				end
-			end
-			local context = abilityTestContextByFrame[area]
-			local timerObject, announceObject = findFirstTimerAndAnnounceForSpellKey(context and context.mod, context and context.spellKey, context and context.renameSpellId)
-			local timerTriggered = triggerAbilityTestTimer(timerObject)
-			local announceTriggered = triggerAbilityTestAnnounce(announceObject)
-			if not timerTriggered and not announceTriggered then
-				DBM:AddMsg((L.Test or "Test") .. ": no timer/announce object found for spell key " .. tostring(context and context.spellKey))
-			end
-		end)
-
-		local function getRenameOverrideValue()
-			local spellRenames = DBM.Options and type(DBM.Options.SpellRenames) == "table" and DBM.Options.SpellRenames
-			if not spellRenames then
-				return nil
-			end
-			local overrideValue = spellRenames[renameSpellId]
-			if overrideValue == nil then
-				overrideValue = spellRenames[tostring(renameSpellId)]
-			end
-			return overrideValue
-		end
-
-		local function updateRenameUI()
-			setAbilityTitle(titleText .. getRenameDisplaySuffix())
-			local overrideValue = getRenameOverrideValue()
-			local hasOverride = overrideValue ~= nil
-			if hasOverride then
-				resetButton:Enable()
-			else
-				resetButton:Disable()
-			end
-		end
-
-		renameButton:SetScript("OnClick", function()
-			local defaultText = getRenameDefaultText()
-			local overrideValue = getRenameOverrideValue()
-			local explicitClear = overrideValue == ""
-			local currentText = explicitClear and "" or (DBM:GetRename(renameSpellId, defaultText) or "")
-			DBM:ShowTextEditor((L.RenameSpellHeader or "Set custom name for %s"):format(defaultText), currentText, function(text)
-				DBM:SetRename(renameSpellId, text)
-				updateRenameUI()
-				refreshCurrentViewingPanel()
-			end)
-		end)
-
-		resetButton:SetScript("OnClick", function()
-			DBM:SetRename(renameSpellId, nil)
-			updateRenameUI()
-			refreshCurrentViewingPanel()
-		end)
-		resetButton:SetScript("OnShow", function(self)
-			updateRenameUI()
-		end)
-		updateRenameUI()
-	end
 	-- Button
 	---@class DBMPanelAbilityButton: Button
 	---@field toggle Button
@@ -999,23 +731,18 @@ function DBM_GUI:CreateNewPanel(frameName, frameType, showSub, displayName, forc
 	panel.isSeason = isSeason
 	panel:Hide()
 	if frameType == "option" then
-		frameType = DBM_GUI.Enums.Tabs.CORE
+		frameType = 1
 	elseif frameType == "RAID" then
-		frameType = DBM_GUI.Enums.Tabs.RAIDS
-	elseif frameType == "LAIR" then
-		frameType = DBM_GUI.Enums.Tabs.LAIRS
+		frameType = 2
 	elseif frameType == "PARTY" then
-		frameType = DBM_GUI.Enums.Tabs.DUNGEONS
-	elseif frameType == "SCENARIO" then
-		frameType = DBM_GUI.Enums.Tabs.SCENARIOS
+		frameType = 3
 	elseif frameType == "WORLDBOSS" then
-		frameType = DBM_GUI.Enums.Tabs.WORLD_BOSSES
+		frameType = 4
 	elseif frameType == "tools" then
-		frameType = DBM_GUI.Enums.Tabs.TOOLS
+		frameType = 6
 	else
-		frameType = DBM_GUI.Enums.Tabs.OTHER
+		frameType = 5
 	end
-	panel.tab = frameType
 	---@diagnostic disable-next-line: undefined-field
 	self.tabs[frameType]:CreateCategory(panel, self and self.frame and self.frame.ID, forceChildren)
 	PanelPrototype:SetLastObj(panel)

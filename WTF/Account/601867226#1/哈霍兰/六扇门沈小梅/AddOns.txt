@@ -189,5 +189,3 @@ DBM-SpellTimers: enabled
 TalentEmuX: enabled
 ElvUI_RatioMinimapAuras: disabled
 Krowi_WorldMapButtons: enabled
-!Swatter: disabled
-!ImprovedErrorFrame: disabled

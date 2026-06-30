@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal25"
 
-mod:SetRevision("20260523022044")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103131702")
 mod:SetCreatureID(21215)
 mod:SetEncounterID(625, 2460)
 mod:SetModelID(20514)
@@ -34,8 +33,8 @@ local warnDemon			= mod:NewTargetAnnounce(37676, 4)
 local warnMC			= mod:NewTargetNoFilterAnnounce(37749, 4)
 local warnPhase2		= mod:NewPhaseAnnounce(2, 2)
 
-local specWarnWhirl		= mod:NewSpecialWarningRun(37640, nil, nil, nil, 4, 2, nil, nil, "justrun")
-local specWarnDemon		= mod:NewSpecialWarningYou(37676, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnWhirl		= mod:NewSpecialWarningRun(37640, nil, nil, nil, 4, 2)
+local specWarnDemon		= mod:NewSpecialWarningYou(37676, nil, nil, nil, 1, 2)
 
 local timerWhirlCD		= mod:NewCDTimer(27, 37640, nil, nil, nil, 2)
 local timerWhirl		= mod:NewBuffActiveTimer(12, 37640, nil, nil, nil, 2)

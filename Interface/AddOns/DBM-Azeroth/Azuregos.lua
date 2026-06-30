@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("AzuregosVanilla", "DBM-Azeroth")
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20240719123709")
 mod:SetCreatureID(6109)--121820 TW ID, 6109 classic and SoD ID
 mod:SetEncounterID(3027)--Sod Encounter ID
 --mod:SetModelID(17887)
@@ -17,8 +16,8 @@ mod:RegisterEventsInCombat(
 
 local warningFrostBreath		= mod:NewSpellAnnounce(21099, 3)
 
-local specWarnArcaneVacuum		= mod:NewSpecialWarningSpell(21147, nil, nil, nil, 2, 5, nil, nil, "teleyou")
-local specWarnReflection		= mod:NewSpecialWarningSpell(22067, "CasterDps", nil, nil, 1, 2, nil, nil, "stilldanger")
+local specWarnArcaneVacuum		= mod:NewSpecialWarningSpell(21147, nil, nil, nil, 2, 5)
+local specWarnReflection		= mod:NewSpecialWarningSpell(22067, "CasterDps", nil, nil, 1, 2)
 
 --Timers too variable, if the max is more than double the min time, a timer for min time is more misleading than helpful
 --local timerReflectionCD		= mod:NewCDTimer(15.7, 22067, nil, "CasterDps", nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON)--15.7-33

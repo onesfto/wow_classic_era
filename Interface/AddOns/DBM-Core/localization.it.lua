@@ -11,7 +11,7 @@ end
 
 L.HOW_TO_USE_MOD					= "Benvenuto in "..L.DBM..". Scrivi /dbm help per avere una lista dei comandi supportati. Per accedere alle opzioni scrivi in chat /dbm. Carica le zone specifiche per configurare manualmente ogni settaggio di ogni boss. "..L.DBM.." prova a farlo per te controllando la tua specializzazione alla prima esecuzione, ma alcuni potrebbero volere alcune opzioni attivate."
 L.SILENT_REMINDER					= "Avviso: "..L.DBM.." è in modalità silente."
-L.NEWS_UPDATE						= "|h|c11ff1111Notizie|r|h: DBM è stato aggiornato con la funzione di rinomina delle abilità. Digita /dbm, vai alla categoria dei mod (incursioni, spedizioni, ecc.) e apri il mod in cui vuoi rinominare le abilità."
+L.NEWS_UPDATE						= "|h|c11ff1111News|r|h: This update changes mod structure around so classic and mainline now use unified (same) modules. This means that Vanilla, TBC, Wrath, and Cata modules are now installed separately using same packages as retail. Read more about it |Hgarrmission:DBM:news|h|cff3588ff[here]|r|h"--UPDATE ME
 
 --L.COPY_URL_DIALOG_NEWS					= "To read latest news, visit link below"
 
@@ -204,12 +204,11 @@ L.DBMLDB							= "AVVISO: DBM-LDB è ora incluso in DBM-Core. Anche se non danno
 --L.DBMLOOTREMINDER						= "WARNING: 3rd party mod DBM-LootReminder is installed. This addon is no longer compatible with Retail WoW client and will cause " .. L.DBM .. " to break and not be able to send pull timers. Uninstall of this addon recommended"
 L.UPDATE_REQUIRES_RELAUNCH		= "AVVISO: Questo aggiornamento "..L.DBM.." non funzionerà correttamente a meno di un riavvio del gioco. Questo aggiornamento contiene nuovi file o modifiche al file .toc che non possono essere caricate con ReloadUI. Potresti avere malfunzionamenti o errori se continui senza riavviare."
 L.OUT_OF_DATE_NAG				= "La versione di "..L.DEADLY_BOSS_MODS.." è obsoleta. E' consigliabile aggiornare per questo combattimento in modo da non perdere importanti avvisi, temporizzatori o urlare al resto del raid cose importanti."
-L.HARDCODED_FALLBACK				= L.DBM .. " ha rilevato un risultato inatteso in una mod codificata internamente. " .. L.DBM .. " userà timer e avvisi Blizzard per questo scontro."
 --L.PLATER_NP_AURAS_MSG					= L.DBM .. " includes an advanced feature to show enemy cooldown timers using icons on nameplates. This is on by default for most users, but for Plater users it is off by default in Plater options unless you enable it. To get the most out of DBM (and Plater) it's recommended you enable this feature in Plater under 'Buff Special' section. If you don't want to see this message again, you can also just entirely disable 'Cooldown icons on nameplates' option in DBM global disable or nameplate options panels"
 
 L.MOVABLE_BAR				= "Trascinami!"
 
-L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h ti ha mandato un Timer "..L.DBM..": '%2$s'\n|Haddon:DBM:cancel:%2$s:nil|h|cff3588ff[Cancella questo Timer]|r|h |Haddon:DBM:ignore:%2$s:%1$s|h|cff3588ff[Ignora timer da %1$s]|r|h"
+L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h ti ha mandato un Timer "..L.DBM..": '%2$s'\n|Hgarrmission:DBM:cancella:%2$s:nil|h|cff3588ff[Cancella questo Timer]|r|h |Hgarrmission:DBM:ignora:%2$s:%1$s|h|cff3588ff[Ignora timer da %1$s]|r|h"
 --L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h ti ha inviato un temporizzatore "..L.DBM..""
 L.PIZZA_CONFIRM_IGNORE			= "Sei sicuro di voler ignorare i Timer DMB da %s per questa sessione?"
 L.PIZZA_ERROR_USAGE				= "Uso: /dbm [broadcast] timer <time> <text>"
@@ -243,7 +242,6 @@ L.RANGERADAR_IN_RANGE_TEXTONE= "%s (%0.1fm)" -- One target
 --L.INFOFRAME_TITLE						= "DBM Info Frame"
 L.INFOFRAME_SHOW_SELF		= "Visualizza sempre la tua forza"		-- Always show your own power value even if you are below the threshold
 L.INFOFRAME_SETLINES			= "Imposta linee massime"
-L.INFOFRAME_SETSTRATA			= "Imposta livello del riquadro"
 --L.INFOFRAME_SETCOLS						= "Set max columns"
 L.INFOFRAME_LINESDEFAULT		= "Imposta per mod"
 L.INFOFRAME_LINES_TO			= "%d linee"
@@ -266,7 +264,6 @@ L.SLASHCMD_HELP							= {--AI translated (check me)
 	"/dbm key: Esegue controlli delle chiavi M+ e delle valutazioni su party/gilda e scorciatoie per i teletrasporti delle dungeon. (alias: key, keys, keystone)",
 	"/dbm lag: Esegue un controllo della latenza per tutto il raid.",
 	"/dbm durability: Esegue un controllo della durabilità per tutto il raid.",
-	"/dbm brez: Mostra il riquadro del timer di resurrezione da combattimento per il posizionamento.",--AI translated (check me)
 	"/dbm help2: Mostra comandi slash aggiuntivi"
 }
 --Less used slash commands
@@ -316,7 +313,6 @@ L.AUTO_ANNOUNCE_TEXTS.you			= "%s su di TE"
 L.AUTO_ANNOUNCE_TEXTS.target			= "%s su >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.targetsource	= ">%%s< casta %s su >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.targetcount	= "%s (%%s) su >%%s<"
-L.AUTO_ANNOUNCE_TEXTS.blizztarget	= "%s (%%s) su >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.spell			= "%s"
 --L.AUTO_ANNOUNCE_TEXTS.incoming							= "%s incoming debuff"
 --L.AUTO_ANNOUNCE_TEXTS.incomingcount						= "%s incoming debuff (%%s)"
@@ -342,7 +338,6 @@ L.AUTO_ANNOUNCE_OPTIONS.target		= "Annuncia bersagli di $spell:%s"
 --L.AUTO_ANNOUNCE_OPTIONS.targetNF							= "Announce $spell:%s targets (ignores global target filter)"
 L.AUTO_ANNOUNCE_OPTIONS.targetsource	= "Annuncia bersagli di $spell:%s (con sorgente)"
 L.AUTO_ANNOUNCE_OPTIONS.targetcount	= "Annuncia bersagli di $spell:%s (con conteggio)"
-L.AUTO_ANNOUNCE_OPTIONS.blizztarget	= "Annuncia bersagli di $spell:%s (con conteggio)"
 L.AUTO_ANNOUNCE_OPTIONS.spell		= "Mostra avvisi per $spell:%s"
 --L.AUTO_ANNOUNCE_OPTIONS.incoming							= "Announce when $spell:%s has incoming debuffs"
 --L.AUTO_ANNOUNCE_OPTIONS.incomingcount						= "Announce (with count) when $spell:%s has incoming debuffs"
@@ -380,8 +375,6 @@ L.AUTO_SPEC_WARN_TEXTS.youpos			= "%s (Posizione: %%s) su di te"
 L.AUTO_SPEC_WARN_TEXTS.soakpos			= "%s (Entra in Posizione: %%s)"
 L.AUTO_SPEC_WARN_TEXTS.target			= "%s su >%%s<"
 L.AUTO_SPEC_WARN_TEXTS.targetcount		= "%s (%%s) su >%%s< "
-L.AUTO_SPEC_WARN_TEXTS.blizztarget		= "%s (%%s) su >%%s< "
-L.AUTO_SPEC_WARN_TEXTS.blizzyou				= "%s (%%s) su di te"
 L.AUTO_SPEC_WARN_TEXTS.defensive			= "%s - difensivi"
 L.AUTO_SPEC_WARN_TEXTS.taunt				= "%s su >%%s< - tauntalo subito"
 L.AUTO_SPEC_WARN_TEXTS.close				= "%s su >%%s< vicino a te"
@@ -430,8 +423,6 @@ L.AUTO_SPEC_WARN_OPTIONS.youpos			= "Mostra avviso speciale (con posizione) quan
 L.AUTO_SPEC_WARN_OPTIONS.soakpos			= "Mostra avviso speciale (con posizione) per entrare dagli affetti da $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.target 			= "Mostra avviso speciale quando qualcuno è affetto da $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.targetcount 	= "Mostra avviso speciale (con conteggio) quando qualcuno è affetto da $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.blizztarget 	= "Mostra avviso speciale (con conteggio) quando qualcuno è affetto da $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.blizzyou		= "Mostra avviso speciale (con conteggio) quando affetto da $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.defensive 		= "Mostra avviso speciale per usare abilità difensive per $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.taunt 			= "Mostra avviso speciale per tauntare quando l'altro difensore è affetto da $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.close 			= "Mostra avviso speciale quando qualcuno vicino è affetto da $spell:%s"
@@ -469,21 +460,21 @@ L.AUTO_TIMER_TEXTS.cast			= "%s"
 --L.AUTO_TIMER_TEXTS.castcount		= "%s (%%s)"
 L.AUTO_TIMER_TEXTS.castsource	= "%s: %%s"
 L.AUTO_TIMER_TEXTS.active		= "%s terminato" -- Buff/Debuff/Eventi su boss
-L.AUTO_TIMER_TEXTS.fades		= "%s svanito" -- Buff/Debuff su giocatori
+L.AUTO_TIMER_TEXTS.fades			= "%s svanito" -- Buff/Debuff su giocatori
 L.AUTO_TIMER_TEXTS.ai			= "%s IA"
 
 L.AUTO_TIMER_TEXTS.cd			= "%s CD"
 L.AUTO_TIMER_TEXTS.cdcount		= "%s (%%s) CD"
 L.AUTO_TIMER_TEXTS.cdsource		= "%s CD: >%%s<"
-L.AUTO_TIMER_TEXTS.cdspecial	= "CD Speciale"
+L.AUTO_TIMER_TEXTS.cdspecial		= "CD Speciale"
 
-L.AUTO_TIMER_TEXTS.next			= "%s"
-L.AUTO_TIMER_TEXTS.nextcount	= "%s (%%s)"
-L.AUTO_TIMER_TEXTS.nextsource	= "%s: %%s"
+L.AUTO_TIMER_TEXTS.next			= "Prossimo %s"
+L.AUTO_TIMER_TEXTS.nextcount		= "Prossimo %s (%%s)"
+L.AUTO_TIMER_TEXTS.nextsource	= "Prossimo %s: %%s"
 L.AUTO_TIMER_TEXTS.nextspecial	= "Prossimo Speciale"
 
 L.AUTO_TIMER_TEXTS.achievement	= "%s"
-L.AUTO_TIMER_TEXTS.stage		= "Prossima Fase"
+L.AUTO_TIMER_TEXTS.stage			= "Prossima Fase"
 --L.AUTO_TIMER_TEXTS.stagecount							= "Stage %%s"--NOT BUGGED, stage is 2nd arg, spellID is ignored on purpose
 --L.AUTO_TIMER_TEXTS.stagecountcycle						= "Stage %%s (%%s)"--^^. Example: Stage 2 (3) for a fight that alternates stage 1 and stage 2, but also tracks total cycles
 --L.AUTO_TIMER_TEXTS.stagecontext						= "%s" -- OPTIONAL
@@ -588,7 +579,7 @@ L.AUTO_INFO_FRAME_OPTION_TEXT	= "Mostra riquadro informativo per $spell:%s"
 L.AUTO_INFO_FRAME_OPTION_TEXT2	= "Mostra riquadro informativo per la panoramica scontro"
 --L.AUTO_INFO_FRAME_OPTION_TEXT3			= "Show info frame for $spell:%s (when threshold of %%s is met)"
 L.AUTO_READY_CHECK_OPTION_TEXT	= "Riproduti il suono controllo gruppo al pull del boss (anche se non bersagliato)"
---L.AUTO_SPEEDCLEAR_OPTION_TEXT			= "Mostra timer per il completamento più veloce di questa zona"
+--L.AUTO_SPEEDCLEAR_OPTION_TEXT			= "Show timer for fastest clear of %s"
 --L.AUTO_PRIVATEAURA_OPTION_TEXT			= "Play DBM sound alerts for $spell:%s private auras on this fight."
 
 -- New special warnings
@@ -627,13 +618,11 @@ L.ARROW_ERROR_USAGE	= {
 
 L.SPEED_KILL_TIMER_TEXT	= "Record Vittoria"
 L.SPEED_CLEAR_TIMER_TEXT	= "Migliore Clear"
+L.COMBAT_RES_TIMER_TEXT	= "Prossima Carica CR"
 L.TIMER_RESPAWN		= "Respawn %s"
 
 L.LAG_HEADER					= L.DBM.." - Risultati Latenza"
 L.DUR_HEADER					= L.DBM.." - Risultati Stato Equipaggiamento"
-L.GEAR_HEADER					= L.DBM.. " - Controllo equipaggiamento"
-L.GEAR_MISSING_GEMS			= "Gemme mancanti"
-L.GEAR_MISSING_ENCHANTS		= "Incantamenti mancanti"
 --L.KEYSTONES_HEADER					= L.DBM.. " - Keystones"
 
 --L.OVERRIDE_ACTIVATED					= "Configuration overrides have been activated for this encounter by RL"

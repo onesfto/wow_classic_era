@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,timewalker"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250703201323")
 mod:SetCreatureID(115244, 116839)
 mod:SetBossHPInfoToHighest()
 mod.soloChallenge = true
@@ -34,15 +33,15 @@ local warnFrostPhase				= mod:NewSpellAnnounce(242394, 2)
 local warnArcanePhase				= mod:NewSpellAnnounce(242386, 2)
 
 --Frost Phase
-local specWarnRazorIce				= mod:NewSpecialWarningDodge(232661, nil, nil, nil, 1, 2, nil, nil, "watchstep")
+local specWarnRazorIce				= mod:NewSpecialWarningDodge(232661, nil, nil, nil, 1, 2)
 --Transition
-local specWarnArcaneAnnihilation	= mod:NewSpecialWarningInterrupt(234728, nil, nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnArcaneAnnihilation	= mod:NewSpecialWarningInterrupt(234728, nil, nil, nil, 1, 2)
 --Arcane Phase
-local specWarnShadowBarrage			= mod:NewSpecialWarningDodge(231443, nil, nil, nil, 2, 2, nil, nil, "watchorb")
-local specWarnDrawPower				= mod:NewSpecialWarningInterrupt(231522, nil, nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnShadowBarrage			= mod:NewSpecialWarningDodge(231443, nil, nil, nil, 2, 2)
+local specWarnDrawPower				= mod:NewSpecialWarningInterrupt(231522, nil, nil, nil, 1, 2)
 --Phase 2
-local specWarnSeeds					= mod:NewSpecialWarningRun(233248, nil, nil, nil, 4, 2, nil, nil, "runout")
-local specWarnGTFO					= mod:NewSpecialWarningGTFO(232672, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specWarnSeeds					= mod:NewSpecialWarningRun(233248, nil, nil, nil, 4, 2)
+local specWarnGTFO					= mod:NewSpecialWarningGTFO(232672, nil, nil, nil, 1, 8)
 
 --Frost Phase
 local timerRazorIceCD				= mod:NewCDTimer(25.5, 232661, nil, nil, nil, 3)--25.5-38.9 (other casts can delay it a lot)

@@ -3,8 +3,7 @@ local mod	= DBM:NewMod("Kalisthene", "DBM-Challenges", 1)
 
 mod.statTypes = "normal,heroic,mythic,challenge"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250703201323")
 mod:SetCreatureID(170654)--Guessed
 mod.soloChallenge = true
 
@@ -23,7 +22,7 @@ mod:RegisterEventsInCombat(
 )
 local warnTetheringSpear					= mod:NewSpellAnnounce(332985, 4)
 
-local specWarnAscendantBarrage				= mod:NewSpecialWarningDodge(333244, nil, nil, nil, 2, 2, nil, nil, "watchstep")
+local specWarnAscendantBarrage				= mod:NewSpecialWarningDodge(333244, nil, nil, nil, 2, 2)
 
 local timerAscendantBarrageCD				= mod:NewAITimer(23.1, 333244, nil, nil, nil, 3)
 --local berserkTimer								= mod:NewBerserkTimer(480)

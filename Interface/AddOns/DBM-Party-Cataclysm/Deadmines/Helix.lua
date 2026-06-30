@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(90, "DBM-Party-Cataclysm", 2, 63)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetCreatureID(47296, 47297)
 mod:SetEncounterID(1065, 2977, 2982)
 mod:SetZone(36, 1688)
@@ -17,7 +16,7 @@ mod:RegisterEventsInCombat(
 local warnChestBomb			= mod:NewTargetNoFilterAnnounce(88352, 4)
 local warnSpiritStrike		= mod:NewSpellAnnounce(59304, 3)
 
-local specWarnChestBomb		= mod:NewSpecialWarningMoveAway(88352, nil, nil, nil, 1, 2, nil, nil, "runout")
+local specWarnChestBomb		= mod:NewSpecialWarningMoveAway(88352, nil, nil, nil, 1, 2)
 
 local timerChestBomb		= mod:NewTargetTimer(10, 88352, nil, nil, nil, 3)
 

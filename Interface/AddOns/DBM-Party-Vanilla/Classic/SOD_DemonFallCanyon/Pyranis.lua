@@ -2,8 +2,7 @@ if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
 local mod	= DBM:NewMod("Pyranis", "DBM-Party-Vanilla", 21)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260315034941")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241229223205")
 mod:SetEncounterID(3030)
 mod:SetCreatureID(227140)
 mod:SetZone(2784)

@@ -1,11 +1,9 @@
 local mod = DBM:NewMod(547, "DBM-Party-BC", 10, 253)
 local L = mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20240428124541")
 mod:SetCreatureID(18708)
 mod:SetEncounterID(1910)
-mod:SetZone(555)
 mod:SetUsedIcons(8)
 
 if not mod:IsRetail() then
@@ -24,8 +22,8 @@ mod:RegisterEventsInCombat(
 
 local warnTouch         = mod:NewTargetAnnounce(33711, 3)
 
-local specWarnBoom		= mod:NewSpecialWarningRun(33923, nil, nil, nil, 4, 2, nil, nil, "justrun")
-local specWarnTouch		= mod:NewSpecialWarningMoveAway(33711, nil, nil, nil, 1, 2, nil, nil, "runout")
+local specWarnBoom		= mod:NewSpecialWarningRun(33923, nil, nil, nil, 4, 2)
+local specWarnTouch		= mod:NewSpecialWarningMoveAway(33711, nil, nil, nil, 1, 2)
 
 local timerBoomCast     = mod:NewCastTimer(5, 33923, nil, nil, nil, 2)
 local timerTouch        = mod:NewTargetTimer(14, 33711, nil, nil, nil, 3)

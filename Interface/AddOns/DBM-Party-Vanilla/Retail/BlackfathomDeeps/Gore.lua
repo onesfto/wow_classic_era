@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(1144, "DBM-Party-Vanilla", 1, 227)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(74988)
 mod:SetEncounterID(1670)
 mod:SetZone(48)
@@ -13,7 +12,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 149955"
 )
 
-local specWarnDevouringBlackness			= mod:NewSpecialWarningInterrupt(149955, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnDevouringBlackness			= mod:NewSpecialWarningInterrupt(149955, "HasInterrupt", nil, nil, 1, 2)
 
 local timerDevouringBlacknessCD			= mod:NewAITimer(180, 149955, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 

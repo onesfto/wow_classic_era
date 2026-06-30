@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("Mograine_and_Whitemane", "DBM-Party-Vanilla", DBM:IsPostCata() and 17 or 12)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20240316010232")
 mod:SetCreatureID(3977, 3976, 99999)--Whitemane, Mograine
 mod:SetEncounterID(450)
 mod:SetZone(189)
@@ -17,7 +16,7 @@ mod:RegisterEventsInCombat(
 
 local warnDeepSleep				= mod:NewSpellAnnounce(9256, 2)
 
-local specWarnHeal				= mod:NewSpecialWarningInterrupt(12039, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnHeal				= mod:NewSpecialWarningInterrupt(12039, "HasInterrupt", nil, nil, 1, 2)
 
 local timerDeepSleep			= mod:NewBuffFadesTimer(10, 9256, nil, nil, nil, 6)
 

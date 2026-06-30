@@ -65,12 +65,14 @@ local function del_Emoji(newText)--删除表情
 	end
 	return newText:gsub("|T.-|t", ""):gsub("|T.-|T", "") 
 end
+
 --删除聊天link信息
 local linkPattern = "|c[^|]-|H[^:]-:.-|h%[(.-)%]|h|r"
 local function del_link(newText)
 	if not newText then return "" end
 	return newText:gsub(linkPattern, "%1")
 end
+
 -- local Hitem="|"..PIGGetColorKey().."|Hitem:.-%[(.-)%]|h|r"
 -- local function del_link(newText)
 -- 	if not newText then return "" end
@@ -99,51 +101,12 @@ local function del_LinkEmojiPun(newText)
 	return del_Pun(del_Emoji(del_link(newText)))
 end
 Fun.del_LinkEmojiPun=del_LinkEmojiPun
--- local function find_NOlink(paichuinfo,Text,key)
--- 	local oldstart = 0
--- 	for _ in Text:gmatch(key) do
--- 		local start, over = Text:find(key,oldstart+1);
--- 		if start and over then table.insert(paichuinfo,{start, over}) end
--- 		oldstart = start
--- 	end
--- end
--- function Fun.gsub_NOlink(newText)--剔除Link信息
--- 	if not newText then return "" end
--- 	local paichuinfo = {}
--- 	find_NOlink(paichuinfo,newText,"(|"..PIGGetColorKey().."|Hitem:.-|h%[.-%]|h|r)")
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|Henchant:.-|h%[.-%]|h|r)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|Htrade:.-|h%[.-%]|h|r)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|Hmount:.-|h%[.-%]|h|r)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|Hjournal:.-|h%[.-%]|h|r)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|Hachievement:.-|h%[.-%]|h|r)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|Hspell:.-|h%[.-%]|h|r)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|Hquest:.-|h%[.-%]|h|r)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|HclubFinder:.-|h%[.-%]|h|r)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|HclubTicket:.-|h%[.-%]|h|r)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|Htransmogillusion:.-|h%[.-%]|h|r)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|Hworldmap:.-|h%[.-%]|h|r)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|T.-:%d|t)");
--- 	find_NOlink(paichuinfo,newText,"(|cff%w%w%w%w%w%w|T.-:%d|T)");
--- 	for i=1,EmojiNum do
--- 		find_NOlink(paichuinfo,newText,EmojiData[i][1]);
--- 	end
--- 	return paichuinfo
--- end
--- function Fun.Is_IndexContain(paichuinfo,start,over)--判断是否在编号内
--- 	local paichuinfo = paichuinfo or {}
--- 	for i=1,#paichuinfo do
--- 		if start>=paichuinfo[i][1] and over<=paichuinfo[i][2] then
--- 			return true
--- 		end
--- 	end
--- 	return false
--- end
 
 --处理特殊字符
-function Fun.PIGwenbenhua(newtxt)
+local function PIGwenbenhua(newtxt)
 	return (newtxt or ""):gsub("([%^%$%%%(%)%.%[%]%*%+%-%?])", "%%%1")
 end
-
+Fun.PIGwenbenhua=PIGwenbenhua
 --获取PIG频道
 local ChatpindaoMAX = 5
 Fun.ChatpindaoMAX=ChatpindaoMAX
@@ -410,7 +373,7 @@ function Fun.Key_fenge(str,fengefu,geshihua,daifengefu)
 	end
 	if geshihua then
 	    for ix=1,#arr do
-	    	arr[ix]=Fun.PIGwenbenhua(arr[ix])
+	    	arr[ix]=PIGwenbenhua(arr[ix])
 	    end
 	end
     return arr

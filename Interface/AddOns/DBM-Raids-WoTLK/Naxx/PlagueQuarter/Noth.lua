@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("Noth", "DBM-Raids-WoTLK", 8)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103133102")
 mod:SetCreatureID(15954)
 mod:SetEncounterID(1117)
 mod:SetModelID(16590)
@@ -21,7 +20,7 @@ local warnTeleportSoon	= mod:NewAnnounce("WarningTeleportSoon", 1, "135736")
 local warnCurse			= mod:NewSpellAnnounce(29213, 2)
 local warnBlink			= mod:NewSpellAnnounce(29208, 3)
 
-local specWarnAdds		= mod:NewSpecialWarningAdds(29212, "-Healer", nil, nil, 1, 2, nil, nil, "killmob")
+local specWarnAdds		= mod:NewSpecialWarningAdds(29212, "-Healer", nil, nil, 1, 2)
 
 local timerTeleport		= mod:NewTimer(90, "TimerTeleport", "135736", nil, nil, 6)
 local timerTeleportBack	= mod:NewTimer(70, "TimerTeleportBack", "135736", nil, nil, 6)

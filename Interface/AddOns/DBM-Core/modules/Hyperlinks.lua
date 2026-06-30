@@ -59,15 +59,14 @@ local function CreateOurFrame()
 end
 
 local function LinkHook(self, link)
-	local linkType, arg1, arg2, arg3, arg4, arg5, arg6, arg7 = strsplit(":", link)
-	if linkType ~= "addon" or arg1 ~= "DBM" then
+	local _, linkType, arg1, arg2, arg3, arg4, arg5, arg6 = strsplit(":", link)
+	if linkType ~= "DBM" then
 		return
 	end
-	arg1, arg2, arg3, arg4, arg5, arg6 = arg2, arg3, arg4, arg5, arg6, arg7
 	if arg1 == "cancel" then
-		DBT:CancelBar(link:match("addon:DBM:cancel:(.+):nil$"))
+		DBT:CancelBar(link:match("garrmission:DBM:cancel:(.+):nil$"))
 	elseif arg1 == "ignore" then
-		cancel = link:match("addon:DBM:ignore:(.+):[^%s:]+$")
+		cancel = link:match("garrmission:DBM:ignore:(.+):[^%s:]+$")
 		ignore = link:match(":([^:]+)$")
 		if not frame then
 			CreateOurFrame()
@@ -88,9 +87,11 @@ local function LinkHook(self, link)
 	end
 end
 
--- Use native addon hyperlink routing so we don't sit in generic SetItemRef execution paths.
-EventRegistry:RegisterCallback("SetItemRef", function(_, link)
-	if type(link) == "string" and not DBM:issecretvalue(link) and link:find("addon:DBM:", 1, true) then
-		LinkHook(nil, link)
+DEFAULT_CHAT_FRAME:HookScript("OnHyperlinkClick", LinkHook) -- Handles the weird case that the default chat frame is not one of the normal chat frames (3rd party chat frames or whatever causes this)
+local i = 1
+while _G["ChatFrame" .. i] do
+	if _G["ChatFrame" .. i] ~= DEFAULT_CHAT_FRAME then
+		_G["ChatFrame" .. i]:HookScript("OnHyperlinkClick", LinkHook)
 	end
-end)
+	i = i + 1
+end

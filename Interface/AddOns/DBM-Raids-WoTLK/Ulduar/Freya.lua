@@ -5,8 +5,7 @@ if not mod:IsClassic() then--on classic, it's normal10,normal25, defined in toc,
 	mod.statTypes = "normal,timewalker"
 end
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103133102")
 
 mod:SetCreatureID(32906)
 if mod:IsPostCata() then
@@ -24,7 +23,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 62437 62859",
 	"SPELL_CAST_SUCCESS 62678 62619 63571 62589 63601",
 	"SPELL_AURA_APPLIED 62861 62438 62451 62865",
-	"SPELL_AURA_REMOVED 62519 62861 62438",
+	"SPELL_AURA_REMOVED 62519 62861 62438 63571 62589",
 	"UNIT_DIED",
 	"CHAT_MSG_MONSTER_YELL"
 )
@@ -42,12 +41,12 @@ local warnSimulKill			= mod:NewAnnounce("WarnSimulKill", 1)
 local warnFury				= mod:NewTargetAnnounce(63571, 2)
 local warnRoots				= mod:NewTargetNoFilterAnnounce(62438, 2)
 
-local specWarnLifebinder	= mod:NewSpecialWarningSwitch(62869, "Dps", nil, nil, 1, 2, nil, nil, "targetchange")
-local specWarnFury			= mod:NewSpecialWarningMoveAway(63571, nil, nil, nil, 1, 2, nil, nil, "runout")
+local specWarnLifebinder	= mod:NewSpecialWarningSwitch(62869, "Dps", nil, nil, 1, 2)
+local specWarnFury			= mod:NewSpecialWarningMoveAway(63571, nil, nil, nil, 1, 2)
 local yellFury				= mod:NewYell(63571)
 local yellRoots				= mod:NewYell(62438)
-local specWarnTremor		= mod:NewSpecialWarningCast(62859, "SpellCaster", nil, 2, 1, 2, nil, nil, "stopcast")	-- Hard mode
-local specWarnBeam			= mod:NewSpecialWarningMove(62865, nil, nil, nil, 1, 2, nil, nil, "runaway")	-- Hard mode
+local specWarnTremor		= mod:NewSpecialWarningCast(62859, "SpellCaster", nil, 2, 1, 2)	-- Hard mode
+local specWarnBeam			= mod:NewSpecialWarningMove(62865, nil, nil, nil, 1, 2)	-- Hard mode
 
 local enrage 				= mod:NewBerserkTimer(600)
 local timerAlliesOfNature	= mod:NewCDTimer(25, 62678, nil, nil, nil, 1, nil, DBM_COMMON_L.DAMAGE_ICON)--No longer has CD, they spawn instant last set is dead, and not a second sooner, except first set
@@ -58,6 +57,7 @@ local timerRootsCD 			= mod:NewCDTimer(13.6, 62438, nil, nil, nil, 3)--13.6-29.6
 
 mod:AddSetIconOption("SetIconOnFury", 63571, false, 0, {7, 8})
 mod:AddSetIconOption("SetIconOnRoots", 62438, false, 0, {6, 5, 4})
+mod:AddRangeFrameOption(8, 63571)
 
 local adds = {}
 mod.vb.altIcon = true
@@ -72,6 +72,11 @@ function mod:OnCombatStart(delay)
 	timerAlliesOfNature:Start(10-delay)
 end
 
+function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
+end
 
 function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(62437, 62859) then
@@ -97,6 +102,9 @@ function mod:SPELL_CAST_SUCCESS(args)
 			specWarnFury:Show()
 			specWarnFury:Play("runout")
 			yellFury:Yell()
+			if self.Options.RangeFrame then
+				DBM.RangeCheck:Show(8)
+			end
 		else
 			warnFury:Show(args.destName)
 		end
@@ -132,6 +140,8 @@ function mod:SPELL_AURA_REMOVED(args)
 			self:RemoveIcon(args.destName)
 		end
 		self.vb.iconId = self.vb.iconId + 1
+	elseif args:IsSpellID(63571, 62589) and args:IsPlayer() and self.Options.RangeFrame then -- Nature's Fury
+		DBM.RangeCheck:Hide()
 	end
 end
 

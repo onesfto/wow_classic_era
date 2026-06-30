@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,heroic,timewalker"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetCreatureID(39698)
 mod:SetEncounterID(1039)
 mod:SetZone(645)
@@ -19,7 +18,7 @@ mod:RegisterEventsInCombat(
 local warnObsidianArmor		= mod:NewSpellAnnounce(75842, 2)
 local warnSuperheated		= mod:NewCountAnnounce(75846, 3)
 
-local specWarnSuperheated	= mod:NewSpecialWarningStack(75846, "Tank", 5, nil, nil, 1, 6, nil, nil, "stackhigh")
+local specWarnSuperheated	= mod:NewSpecialWarningStack(75846, "Tank", 5, nil, nil, 1, 6)
 
 local timerSuperheated		= mod:NewTimer(17, "TimerSuperheated", 75846, nil, nil, 5)
 

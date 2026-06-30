@@ -11,7 +11,7 @@ end
 
 L.HOW_TO_USE_MOD					= "Bienvenue sur " .. L.DBM .. ". Tapez /dbm help pour une liste des commandes supportées. Pour accédez aux options, tapez /dbm dans la fenêtre de discussion pour commencer la configuration. Chargez des zones spécifiques manuellement pour configurer tous les paramètres spécifiques aux boss selon vos envies. " .. L.DBM .. " essaie de le faire pour vous en analysant votre spécialisation au premier lancement, mais nous savons que de toute façon certaines personnes souhaitant activer d'autres options."
 L.SILENT_REMINDER 					= "Rappel : " .. L.DBM .. " est toujours en mode silencieux."
-L.NEWS_UPDATE						= "|h|c11ff1111Nouvelles|r|h: DBM a été mis à jour avec une fonctionnalité de renommage des techniques. Tapez simplement /dbm, allez dans la catégorie des modules (raids, donjons, etc.) puis ouvrez le module dans lequel vous voulez renommer des techniques."
+L.NEWS_UPDATE						= "|h|c11ff1111Nouvelles|r|h: Cette mise à jour modifie la structure des mods pour que le classique et le principal utilisent désormais des modules unifiés (identiques). Cela signifie que les modules Vanilla, TBC, Wrath et Cata sont maintenant installés séparément en utilisant les mêmes packages que le jeu de base. En savoir plus à ce sujet |Hgarrmission:DBM:news|h|cff3588ff[ici]|r|h"
 L.NEWS_UPDATE_REPEAT				= "|h|c11ff1111Nouvelles|r|h: Cette mise à jour modifie la structure des mods pour que le classique et le principal utilisent désormais des modules unifiés (identiques). Cela signifie que les modules Vanilla, TBC, Wrath et Cata sont maintenant installés séparément en utilisant les mêmes packages que le jeu de base. Vous êtes actuellement dans un raid qui a un module manquant. Ce message continuera de s'afficher (et vous n'aurez pas d'alertes fonctionnelles pour cette zone) jusqu'à ce que vous ayez installé le module de raid manquant."
 
 L.COPY_URL_DIALOG_NEWS 				= "Pour lire les dernières nouvelles, visitez le lien ci-dessous"
@@ -29,7 +29,7 @@ L.LOAD_MOD_DISABLED 		= "%s est installé mais actuellement désactivé. Ce mod 
 L.LOAD_MOD_DISABLED_PLURAL 	= "%s sont installés mais actuellement désactivés. Ces mods ne seront pas chargés à moins que vous ne les activiez."
 
 L.COPY_URL_DIALOG 			= "Copier l'URL"
-L.COPY_WA_DIALOG 			= "Copier la clé de sort"
+L.COPY_WA_DIALOG 			= "Copier la clé WA"
 
 --Post Patch 7.1
 L.TEXT_ONLY_RANGE 			= "La fenêtre de portée est limitée au texte uniquement en raison des restrictions de l'API dans cette zone."
@@ -180,21 +180,20 @@ L.WHISPER_SCENARIO_END_KILL_STATS	= "%s vient de terminer %s ! Ils ont un total 
 L.WHISPER_SCENARIO_END_WIPE		 	= "%s a subi une défaite dans %s"
 L.WHISPER_SCENARIO_END_WIPE_STATS	= "%s a subi une défaite dans %s. Ils ont un total de %d défaites dans cette difficulté."
 
-L.DUNGEONS							= "Donjons : "--prefix for dungeons version check
-L.VERSIONCHECK_HEADER				= "Module de boss - Versions"
-L.VERSIONCHECK_ENTRY				= "%s: %s (%s)"
-L.VERSIONCHECK_ENTRY_TWO			= "%s: %s (%s) & %s (%s)"--Two Boss mods
-L.VERSIONCHECK_ENTRY_NO_DBM			= "%s: " .. L.DBM .. " non installé"--Two Boss mods
-L.VERSIONCHECK_FOOTER				= "%d joueurs trouvés avec " .. L.DEADLY_BOSS_MODS .. " & %d joueurs avec BigWigs"
-L.VERSIONCHECK_OUTDATED				= "Les joueurs suivants %d ont une version périmée du bossmod: %s"
-L.YOUR_VERSION_OUTDATED	  			= "Votre version de " .. L.DEADLY_BOSS_MODS .. " est périmée. Veuillez vous rendre sur Curse, Wago, WoWInterface ou Github pour obtenir la dernière version."
-L.VOICE_PACK_OUTDATED				= "Il semble que votre paquet de voix " .. L.DBM .. " manque de sons supportés sur cette version de " .. L.DBM .. ". Certains sons d'alertes spéciales ne seront pas joués s'ils utilisent des voix non supportées par votre version. Téléchargez une nouvelle version du paquet de voix ou contactez l'auteur pour une mise à jour qui l'inclut."
-L.VOICE_MISSING						= "Vous aviez un paquet de voix sélectionné qui ne pouvait pas être trouvé. Votre sélection a été réinitialisée à 'Aucun'. Si ceci est une erreur, assurez-vous que votre paquet est correctement installé et activé."
-L.VOICE_DISABLED					= "Vous avez actuellement au moins un paquet de voix " .. L.DBM .. " installé, mais aucun n'est activé. Si vous prévoyez d'utiliser un paquet de voix, assurez-vous qu'il est sélectionné dans 'Alertes vocales'. Sinon, désinstallez les paquets de voix inutilisés pour cacher ce message."
-L.VOICE_COUNT_MISSING				= "Le compte à rebours de la voix %d est défini sur un paquet de voix qui n’a pas pu être trouvé ou qui n’est actuellement pas pris en charge. Il a été réinitialisé au paramètre par défaut : %s."
-L.BIG_WIGS							= "BigWigs" -- OPTIONAL
-L.WEAKAURA_KEY						= " (|cff308530ID :|r %s)"
-L.RENAME							= " (|cff359030Renommage :|r |cff71d5ff%s|r)"
+L.DUNGEONS					= "Donjons : "--prefix for dungeons version check
+L.VERSIONCHECK_HEADER		= "Module de boss - Versions"
+L.VERSIONCHECK_ENTRY		= "%s: %s (%s)"
+L.VERSIONCHECK_ENTRY_TWO	= "%s: %s (%s) & %s (%s)"--Two Boss mods
+L.VERSIONCHECK_ENTRY_NO_DBM	= "%s: " .. L.DBM .. " non installé"--Two Boss mods
+L.VERSIONCHECK_FOOTER		= "%d joueurs trouvés avec " .. L.DEADLY_BOSS_MODS .. " & %d joueurs avec BigWigs"
+L.VERSIONCHECK_OUTDATED		= "Les joueurs suivants %d ont une version périmée du bossmod: %s"
+L.YOUR_VERSION_OUTDATED	  	= "Votre version de " .. L.DEADLY_BOSS_MODS .. " est périmée. Veuillez vous rendre sur Curse, Wago, WoWInterface ou Github pour obtenir la dernière version."
+L.VOICE_PACK_OUTDATED		= "Il semble que votre paquet de voix " .. L.DBM .. " manque de sons supportés sur cette version de " .. L.DBM .. ". Certains sons d'alertes spéciales ne seront pas joués s'ils utilisent des voix non supportées par votre version. Téléchargez une nouvelle version du paquet de voix ou contactez l'auteur pour une mise à jour qui l'inclut."
+L.VOICE_MISSING				= "Vous aviez un paquet de voix sélectionné qui ne pouvait pas être trouvé. Votre sélection a été réinitialisée à 'Aucun'. Si ceci est une erreur, assurez-vous que votre paquet est correctement installé et activé."
+L.VOICE_DISABLED			= "Vous avez actuellement au moins un paquet de voix " .. L.DBM .. " installé, mais aucun n'est activé. Si vous prévoyez d'utiliser un paquet de voix, assurez-vous qu'il est sélectionné dans 'Alertes vocales'. Sinon, désinstallez les paquets de voix inutilisés pour cacher ce message."
+L.VOICE_COUNT_MISSING		= "Le compte à rebours de la voix %d se trouve dans un paquet qui ne pouvait pas être trouvé. Il a été réinitialisé à l'option par défaut."
+L.BIG_WIGS					= "BigWigs" -- OPTIONAL
+L.WEAKAURA_KEY				= " (|cff308530Clé WA:|r %s)"
 
 L.UPDATEREMINDER_HEADER 			= "Votre version de " .. L.DEADLY_BOSS_MODS .. " est périmée.\nLa version %s (%s) est disponible sur Curse, Wago, WoWInterface ou Github."
 L.UPDATEREMINDER_HEADER_SUBMODULE 	= "Votre module %s est périmé.\nLa version %s est disponible sur Curse, Wago, WoWInterface ou Github."
@@ -216,12 +215,10 @@ L.DBMLOOTREMINDER 					= "ATTENTION : Vous avez installé le module tiers DBM-Lo
 L.UPDATE_REQUIRES_RELAUNCH 			= "ATTENTION : Cette mise à jour de " .. L.DBM .. " ne fonctionnera pas correctement tant que vous n’aurez pas redémarré complètement le client du jeu. La mise à jour inclut des fichiers ou des modifications de fichiers .toc qui nécessitent un redémarrage pour être pris en compte."
 L.OUT_OF_DATE_NAG 					= "Votre version de " .. L.DBM .. " est périmée. Il est recommandé de la mettre à jour pour ne pas manquer des alertes, des chronomètres ou des notifications importantes pour votre raid."
 L.PLATER_NP_AURAS_MSG 				= L.DBM .. " offre une fonctionnalité avancée permettant d'afficher les temps de recharge des ennemis avec des icônes sur les plaques de nom. Cette option est activée par défaut pour la plupart des utilisateurs, mais pour les utilisateurs de Plater, elle est désactivée par défaut. Pour tirer pleinement parti de DBM et Plater, il est recommandé de l'activer dans la section 'Buff Special' des options de Plater. Si vous ne souhaitez plus voir ce message, vous pouvez désactiver complètement l'option 'Icônes de recharge sur les plaques de nom' dans les options des plaques de nom ou dans les options globales de DBM."
-L.HARDCODED_FALLBACK					= L.DBM .. " a détecté un résultat inattendu dans un module codé en dur. " .. L.DBM .. " utilisera les minuteurs et alertes Blizzard pour cette rencontre."
 
 L.MOVABLE_BAR					= "Bougez-moi !"
-L.MOVABLE_FRAMES 				= "Cadres déplaçables"
 
-L.PIZZA_SYNC_INFO				= "|Hplayer:%1$s|h[%1$s]|h vous a envoyé un délai " .. L.DBM .. ": '%2$s'\n|Haddon:DBM:cancel:%2$s:nil|h|cff3588ff[Annuler ce délais]|r|h |Haddon:DBM:ignore:%2$s:%1$s|h|cff3588ff[Ignorer les délais de %1$s]|r|h"
+L.PIZZA_SYNC_INFO				= "|Hplayer:%1$s|h[%1$s]|h vous a envoyé un délai " .. L.DBM .. ": '%2$s'\n|Hgarrmission:DBM:cancel:%2$s:nil|h|cff3588ff[Annuler ce délais]|r|h |Hgarrmission:DBM:ignore:%2$s:%1$s|h|cff3588ff[Ignorer les délais de %1$s]|r|h"
 L.PIZZA_CONFIRM_IGNORE			= "Voulez-vous réellement ignorer les délais " .. L.DBM .. " de %s durant cette session ?"
 L.PIZZA_ERROR_USAGE				= "Utilisation: /dbm [broadcast] timer <durée> <texte>"
 
@@ -254,7 +251,6 @@ L.INFOFRAME_TITLE				= "Fenêtre d'info"
 L.INFOFRAME_SHOW_SELF			= "Toujours afficher votre puissance"		-- Always show your own power value even if you are below the threshold
 L.INFOFRAME_SETLINES 			= "Maximum de lignes"
 L.INFOFRAME_SETCOLS 			= "Maximum de colonnes"
-L.INFOFRAME_SETSTRATA 			= "Strate du cadre"
 L.INFOFRAME_LINESDEFAULT 		= "Défini par le mod"
 L.INFOFRAME_LINES_TO 			= "%d lignes"
 L.INFOFRAME_COLS_TO 			= "%d colonnes"
@@ -276,7 +272,6 @@ L.SLASHCMD_HELP							= {--AI translated (check me)
 	"/dbm key: Effectue des vérifications de clé M+ et de notation sur le groupe/guilde et des raccourcis vers les téléportations de donjon. (alias : key, keys, keystone)",
 	"/dbm lag: Effectue une vérification de latence pour tout le raid.",
 	"/dbm durability: Effectue une vérification de durabilité pour tout le raid.",
-	"/dbm brez: Affiche le cadre du chronomètre de résurrection de combat pour le positionnement.",--AI translated (check me)
 	"/dbm help2: Affiche des commandes slash supplémentaires"
 }
 --Less used slash commands
@@ -327,7 +322,6 @@ L.AUTO_ANNOUNCE_TEXTS.you				= "%s sur VOUS"
 L.AUTO_ANNOUNCE_TEXTS.target			= "%s sur >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.targetsource		= ">%%s< incantation de %s sur >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.targetcount		= "%s (%%s) sur >%%s<"
-L.AUTO_ANNOUNCE_TEXTS.blizztarget		= "%s (%%s) sur %%s"
 L.AUTO_ANNOUNCE_TEXTS.spell				= "%s"
 L.AUTO_ANNOUNCE_TEXTS.incoming			= "Affaiblissement de %s imminent"
 L.AUTO_ANNOUNCE_TEXTS.incomingcount		= "Affaiblissement de %s imminent (%%s)"
@@ -339,7 +333,7 @@ L.AUTO_ANNOUNCE_TEXTS.cast				= "Incantation %s: %.1f sec"
 L.AUTO_ANNOUNCE_TEXTS.soon				= "%s imminent"
 L.AUTO_ANNOUNCE_TEXTS.sooncount			= "%s (%%s) imminent"
 L.AUTO_ANNOUNCE_TEXTS.countdown			= "%s dans %%ds"
-L.AUTO_ANNOUNCE_TEXTS.prewarn			= "%s dans %s"
+L.AUTO_ANNOUNCE_TEXTS.prewarn			= "%s de %s"
 L.AUTO_ANNOUNCE_TEXTS.bait				= "%s imminent - appâtez maintenant"
 L.AUTO_ANNOUNCE_TEXTS.stage				= "Phase %s"
 L.AUTO_ANNOUNCE_TEXTS.prestage			= "Phase %s imminente"
@@ -353,7 +347,6 @@ L.AUTO_ANNOUNCE_OPTIONS.target			= "Afficher une annonce pour les cibles de $spe
 L.AUTO_ANNOUNCE_OPTIONS.targetNF		= "Afficher une annonce pour les cibles de $spell:%s (ignore le filtre de cible global)"
 L.AUTO_ANNOUNCE_OPTIONS.targetsource	= "Afficher une annonce pour les cibles de $spell:%s (avec la source)"
 L.AUTO_ANNOUNCE_OPTIONS.targetcount		= "Afficher une annonce pour les cibles de $spell:%s (avec décompte)"
-L.AUTO_ANNOUNCE_OPTIONS.blizztarget		= "Afficher une annonce pour les cibles de $spell:%s (avec décompte)"
 L.AUTO_ANNOUNCE_OPTIONS.spell			= "Afficher une annonce pour $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.spellsource		= "Afficher une annonce pour $spell:%s (avec la source)"
 L.AUTO_ANNOUNCE_OPTIONS.incoming		= "Afficher une annonce lorsque $spell:%s a des affaiblissements imminents"
@@ -392,38 +385,36 @@ L.AUTO_SPEC_WARN_TEXTS.youposcount 		= "%s (%%s) (Position : %%s) sur vous"
 L.AUTO_SPEC_WARN_TEXTS.soakpos 			= "%s (Position d'absorption : %%s)"
 L.AUTO_SPEC_WARN_TEXTS.target			= "%s sur >%%s<"
 L.AUTO_SPEC_WARN_TEXTS.targetcount		= "%s (%%s) sur >%%s< "
-L.AUTO_SPEC_WARN_TEXTS.blizztarget		= "%s (%%s) sur >%%s< "
-L.AUTO_SPEC_WARN_TEXTS.blizzyou			= "%s (%%s) sur vous"
 L.AUTO_SPEC_WARN_TEXTS.link				= "%s lié avec >%%s<"
-L.AUTO_SPEC_WARN_TEXTS.defensive		= "%s - Défensif !"
-L.AUTO_SPEC_WARN_TEXTS.taunt		   	= "%s sur >%%s< - Provoquez maintenant !"
+L.AUTO_SPEC_WARN_TEXTS.defensive		= "%s - Défensif"
+L.AUTO_SPEC_WARN_TEXTS.taunt		   	= "%s sur >%%s< - Provoquez maintenant"
 L.AUTO_SPEC_WARN_TEXTS.close			= "%s sur >%%s< près de vous"
-L.AUTO_SPEC_WARN_TEXTS.move				= "%s - Écartez-vous !"
-L.AUTO_SPEC_WARN_TEXTS.keepmove 		= "%s - Continuez à écarter !"
-L.AUTO_SPEC_WARN_TEXTS.stopmove 		= "%s - Arrêtez de écarter !"
+L.AUTO_SPEC_WARN_TEXTS.move				= "%s - Écartez-vous"
+L.AUTO_SPEC_WARN_TEXTS.keepmove 		= "%s - Continuez à écarter"
+L.AUTO_SPEC_WARN_TEXTS.stopmove 		= "%s - Arrêtez de écarter"
 L.AUTO_SPEC_WARN_TEXTS.dodge 			= "%s - Esquivez"
-L.AUTO_SPEC_WARN_TEXTS.dodgecount 		= "%s (%%s) - Esquivez l'attaque !"
+L.AUTO_SPEC_WARN_TEXTS.dodgecount 		= "%s (%%s) - Esquivez l'attaque"
 L.AUTO_SPEC_WARN_TEXTS.dodgeloc 		= "%s - Esquivez depuis %%s"
 L.AUTO_SPEC_WARN_TEXTS.moveaway			= "%s - Écartez-vous du raid"
-L.AUTO_SPEC_WARN_TEXTS.moveawaycount	= "%s (%%s) - Écartez-vous des autres !"
-L.AUTO_SPEC_WARN_TEXTS.moveto	  		= "%s - Dirigez-vous vers >%%s< !"
-L.AUTO_SPEC_WARN_TEXTS.soak 			= "%s - Absorbez-le !"
-L.AUTO_SPEC_WARN_TEXTS.soakcount 		= "%s - Absorbez (%%s) !"
-L.AUTO_SPEC_WARN_TEXTS.jump				= "%s - Saute !"
-L.AUTO_SPEC_WARN_TEXTS.run				= "%s - Fuyez !"
-L.AUTO_SPEC_WARN_TEXTS.runcount			= "%s - Fuyez (%%s) !"
-L.AUTO_SPEC_WARN_TEXTS.cast				= "%s - Arrêtez d'incanter !"
-L.AUTO_SPEC_WARN_TEXTS.lookaway			= "%s sur %%s - Regardez ailleurs !"
-L.AUTO_SPEC_WARN_TEXTS.reflect	 		= "%s sur >%%s< - Arrêtez d'attaquer !"
+L.AUTO_SPEC_WARN_TEXTS.moveawaycount	= "%s (%%s) - Écartez-vous des autres"
+L.AUTO_SPEC_WARN_TEXTS.moveto	  		= "%s - Dirigez-vous vers >%%s<"
+L.AUTO_SPEC_WARN_TEXTS.soak 			= "%s - Absorbez-le"
+L.AUTO_SPEC_WARN_TEXTS.soakcount 		= "%s - Absorbez (%%s)"
+L.AUTO_SPEC_WARN_TEXTS.jump				= "%s - Saute"
+L.AUTO_SPEC_WARN_TEXTS.run				= "%s - Fuyez"
+L.AUTO_SPEC_WARN_TEXTS.runcount			= "%s - Fuyez (%%s)"
+L.AUTO_SPEC_WARN_TEXTS.cast				= "%s - Arrêtez d'incanter"
+L.AUTO_SPEC_WARN_TEXTS.lookaway			= "%s sur %%s - Regardez ailleurs"
+L.AUTO_SPEC_WARN_TEXTS.reflect	 		= "%s sur >%%s< - Arrêtez d'attaquer"
 L.AUTO_SPEC_WARN_TEXTS.count	   		= "%s ! (%%s)"
 L.AUTO_SPEC_WARN_TEXTS.stack			= "%s (%%d)"
-L.AUTO_SPEC_WARN_TEXTS.switch			= "%s - Changez de cible !"
-L.AUTO_SPEC_WARN_TEXTS.switchcount		= "%s - Changez de cible (%%s) !"
-L.AUTO_SPEC_WARN_TEXTS.gtfo 			= "Dégâts de %%s – Éloignez-vous !"
-L.AUTO_SPEC_WARN_TEXTS.adds 			= "Adds imminents - Changez de cibles !" --Basically a generic of switch
-L.AUTO_SPEC_WARN_TEXTS.addscount 		= "Adds imminents - Changez de cibles ! (%%s)" --Basically a generic of switch
+L.AUTO_SPEC_WARN_TEXTS.switch			= "%s - Changer de cible"
+L.AUTO_SPEC_WARN_TEXTS.switchcount		= "%s - Changer de cible (%%s)"
+L.AUTO_SPEC_WARN_TEXTS.gtfo 			= "%%s de dégâts - Éloignez-vous"
+L.AUTO_SPEC_WARN_TEXTS.adds 			= "Adds imminents - Changez de cibles" --Basically a generic of switch
+L.AUTO_SPEC_WARN_TEXTS.addscount 		= "Adds imminents - Changez de cibles (%%s)" --Basically a generic of switch
 L.AUTO_SPEC_WARN_TEXTS.addscustom 		= "Adds imminents - %%s" --Same as above, but more info, pretty much made for like 3 boss mods, such as akama
-L.AUTO_SPEC_WARN_TEXTS.targetchange 	= "Changement de cible - Passez à %%s !"
+L.AUTO_SPEC_WARN_TEXTS.targetchange 	= "Changement de cible - Passez à %%s"
 
 -- Auto-generated Special Warning Localizations
 L.AUTO_SPEC_WARN_OPTIONS.spell 			= "Afficher une annonce spéciale pour $spell:%s"
@@ -443,8 +434,6 @@ L.AUTO_SPEC_WARN_OPTIONS.youposcount 	= "Afficher une annonce spéciale (avec po
 L.AUTO_SPEC_WARN_OPTIONS.soakpos 		= "Afficher une annonce spéciale (avec position) pour aider à absorber les effets de $spell:%s sur d'autres"
 L.AUTO_SPEC_WARN_OPTIONS.target 		= "Afficher une annonce spéciale lorsque quelqu'un subit $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.targetcount 	= "Afficher une annonce spéciale (avec compte) quand quelqu'un est affecté par $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.blizztarget 	= "Afficher une annonce spéciale (avec compte) quand quelqu'un est affecté par $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.blizzyou		= "Afficher une annonce spéciale (avec compte) quand vous êtes affecté par $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.link			= "Afficher une annonce spéciale lorsque vous êtes lié à un autre joueur par $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.defensive 		= "Afficher une annonce spéciale pour utiliser les capacités défensives pour $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.taunt		   	= "Afficher une annonce spéciale de provoquer lorsque l'autre tank subit $spell:%s"
@@ -468,11 +457,11 @@ L.AUTO_SPEC_WARN_OPTIONS.lookaway		= "Afficher une annonce spéciale pour regard
 L.AUTO_SPEC_WARN_OPTIONS.reflect		= "Afficher une annonce spéciale lorsqu'il faut arrêter d'attaquer pour $spell:%s"--Spell Reflect
 L.AUTO_SPEC_WARN_OPTIONS.count		   	= "Afficher une annonce spéciale pour $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.stack			= "Afficher une annonce spéciale lorsque vous cumulez >=%d stacks de $spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.switch 		= "Afficher une annonce spéciale de changer de cible pour $spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.switch 		= "Afficher une annonce spéciale de changement de cible pour\n $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.switchcount	= "Afficher une annonce spéciale (avec compte) de changer de cible pour $spell:%s"
 L.AUTO_SPEC_WARN_OPTIONS.gtfo 			= "Afficher une annonce spéciale pour sortir de la zone des dégâts au sol"
-L.AUTO_SPEC_WARN_OPTIONS.adds 			= "Afficher une annonce spéciale pour changer de cible pour les adds imminents"
-L.AUTO_SPEC_WARN_OPTIONS.addscount 		= "Afficher une annonce spéciale (avec compte) pour changer de cible pour les adds imminents"
+L.AUTO_SPEC_WARN_OPTIONS.adds 			= "Afficher une annonce spéciale pour changer de cibles pour les adds imminents"
+L.AUTO_SPEC_WARN_OPTIONS.addscount 		= "Afficher une annonce spéciale (avec compte) pour changer de cibles pour les adds imminents"
 L.AUTO_SPEC_WARN_OPTIONS.addscustom 	= "Afficher une annonce spéciale pour les adds imminents"
 L.AUTO_SPEC_WARN_OPTIONS.targetchange 	= "Afficher une annonce spéciale pour les changements de cible prioritaires"
 
@@ -486,15 +475,15 @@ L.AUTO_TIMER_TEXTS.active		= "%s se termine" --Buff/Debuff/event on boss,
 L.AUTO_TIMER_TEXTS.fades		= "%s se dissipe" --Buff/Debuff on players,
 L.AUTO_TIMER_TEXTS.ai			= "%s AI"
 
-L.AUTO_TIMER_TEXTS.cd			= "%s"
-L.AUTO_TIMER_TEXTS.cdcount		= "%s (%%s)"
-L.AUTO_TIMER_TEXTS.cdsource		= "%s: >%%s<"
-L.AUTO_TIMER_TEXTS.cdspecial	= "Capacité spéciale"
+L.AUTO_TIMER_TEXTS.cd			= "Rech. %s"
+L.AUTO_TIMER_TEXTS.cdcount		= "Rech. %s (%%s)"
+L.AUTO_TIMER_TEXTS.cdsource		= "Rech. %s: >%%s<"
+L.AUTO_TIMER_TEXTS.cdspecial	= "Rech. de capacité spéciale"
 
-L.AUTO_TIMER_TEXTS.next			= "%s"
-L.AUTO_TIMER_TEXTS.nextcount	= "%s (%%s)"
-L.AUTO_TIMER_TEXTS.nextsource	= "%s: >%%s<"
-L.AUTO_TIMER_TEXTS.nextspecial	= "Capacité spéciale"
+L.AUTO_TIMER_TEXTS.next			= "Proch. %s"
+L.AUTO_TIMER_TEXTS.nextcount	= "Proch. %s (%%s)"
+L.AUTO_TIMER_TEXTS.nextsource	= "Proch. %s: >%%s<"
+L.AUTO_TIMER_TEXTS.nextspecial	= "Proch. capacité spéciale"
 
 L.AUTO_TIMER_TEXTS.var			= "%s"
 L.AUTO_TIMER_TEXTS.varcount		= "%s (%%s)"
@@ -521,8 +510,8 @@ L.AUTO_TIMER_TEXTS.cdpnp				= L.AUTO_TIMER_TEXTS.cd -- OPTIONAL
 L.AUTO_TIMER_TEXTS.nextpnp				= L.AUTO_TIMER_TEXTS.next -- OPTIONAL
 L.AUTO_TIMER_TEXTS.castpnp				= L.AUTO_TIMER_TEXTS.cast -- OPTIONAL
 
-L.AUTO_TIMER_OPTIONS.target				= "Afficher un chronomètre pour la durée de $spell:%s"
-L.AUTO_TIMER_OPTIONS.targetcount		= "Afficher un chronomètre (avec compte) pour la durée de $spell:%s"
+L.AUTO_TIMER_OPTIONS.target				= "Afficher un chronomètre pour d'affaiblissement de $spell:%s"
+L.AUTO_TIMER_OPTIONS.targetcount		= "Afficher un chronomètre (avec compte) pour d'affaiblissement de $spell:%s"
 L.AUTO_TIMER_OPTIONS.cast				= "Afficher un chronomètre pour d'incantation de $spell:%s"
 L.AUTO_TIMER_OPTIONS.castpnp			= "Afficher un chronomètre sur la plaque de nom uniquement pour d'incantation de $spell:%s"
 L.AUTO_TIMER_OPTIONS.castcount			= "Afficher un chronomètre (avec compte) pour d'incantation de $spell:%s"
@@ -584,18 +573,17 @@ L.AUTO_ARROW_OPTION_TEXT				= "Afficher la flèche " .. L.DBM .. " en direction 
 L.AUTO_ARROW_OPTION_TEXT2				= "Afficher la flèche " .. L.DBM .. " pour s'éloigner de la cible affectée par $spell:%s"
 L.AUTO_ARROW_OPTION_TEXT3				= "Afficher la flèche " .. L.DBM .. " pour s'éloigner vers un emplacement spécifique pour $spell:%s"
 
-L.AUTO_YELL_OPTION_TEXT.shortyell		= "Crier lorsque vous êtes affecté par $spell:%s"
-L.AUTO_YELL_OPTION_TEXT.yell			= "Crier lorsque vous êtes affecté par $spell:%s"
-L.AUTO_YELL_OPTION_TEXT.count			= "Crier (avec compte) lorsque vous êtes affecté par $spell:%s"
-L.AUTO_YELL_OPTION_TEXT.fade			= "Crier (avec compte à rebours) lorsque $spell:%s se dissipe"
-L.AUTO_YELL_OPTION_TEXT.shortfade		= "Crier (avec compte à rebours) lorsque $spell:%s se dissipe"
-L.AUTO_YELL_OPTION_TEXT.iconfade		= "Crier (avec compte à rebours et icône) lorsque $spell:%s se dissipe"
-L.AUTO_YELL_OPTION_TEXT.position		= "Crier (avec position) lorsque vous êtes affecté par $spell:%s"
-L.AUTO_YELL_OPTION_TEXT.shortposition 	= "Crier (avec position) lorsque vous êtes affecté par $spell:%s"
-L.AUTO_YELL_OPTION_TEXT.combo 			= "Crier (avec texte personnalisé) lorsque vous êtes affecté par $spell:%s et d'autres sorts en même temps"
-L.AUTO_YELL_OPTION_TEXT.repeatplayer 	= "Crier de manière répétée (avec le nom du joueur) lorsque vous êtes affecté par $spell:%s"
-L.AUTO_YELL_OPTION_TEXT.repeaticon 		= "Crier de manière répétée (avec icône) lorsque vous êtes affecté par $spell:%s"
-L.AUTO_YELL_OPTION_TEXT.icontarget		= "Icônes de cri lorsque vous êtes la cible de $spell:%s pour prévenir les autres"
+L.AUTO_YELL_OPTION_TEXT.shortyell		= "Crie lorsque vous êtes affecté par $spell:%s"
+L.AUTO_YELL_OPTION_TEXT.yell			= "Crie lorsque vous êtes affecté par $spell:%s"
+L.AUTO_YELL_OPTION_TEXT.count			= "Crie (avec compte) lorsque vous êtes affecté par $spell:%s"
+L.AUTO_YELL_OPTION_TEXT.fade			= "Crie (avec compte à rebours) lorsque $spell:%s se dissipe"
+L.AUTO_YELL_OPTION_TEXT.shortfade		= "Crie (avec compte à rebours) lorsque $spell:%s se dissipe"
+L.AUTO_YELL_OPTION_TEXT.iconfade		= "Crie (avec compte à rebours et icône) lorsque $spell:%s se dissipe"
+L.AUTO_YELL_OPTION_TEXT.position		= "Crie (avec position) lorsque vous êtes affecté par $spell:%s"
+L.AUTO_YELL_OPTION_TEXT.shortposition 	= "Crie (avec position) lorsque vous êtes affecté par $spell:%s"
+L.AUTO_YELL_OPTION_TEXT.combo 			= "Crie (avec texte personnalisé) lorsque vous êtes affecté par $spell:%s et d'autres sorts en même temps"
+L.AUTO_YELL_OPTION_TEXT.repeatplayer 	= "Crie de manière répétée (avec le nom du joueur) lorsque vous êtes affecté par $spell:%s"
+L.AUTO_YELL_OPTION_TEXT.repeaticon 		= "Crie de manière répétée (avec icône) lorsque vous êtes affecté par $spell:%s"
 
 L.AUTO_YELL_ANNOUNCE_TEXT.shortyell			= "%s" -- OPTIONAL
 L.AUTO_YELL_ANNOUNCE_TEXT.yell				= "%s sur " .. UnitName("player") .. " !"
@@ -609,38 +597,29 @@ L.AUTO_YELL_ANNOUNCE_TEXT.shortposition 	= "{rt%%1$d}%s"--Icon, Spellname -- OPT
 L.AUTO_YELL_ANNOUNCE_TEXT.combo				= "%s et %%s"--Spell name (from option, plus spellname given in arg)
 L.AUTO_YELL_ANNOUNCE_TEXT.repeatplayer		= UnitName("player")--Doesn't need translation, it's just player name spam -- OPTIONAL
 L.AUTO_YELL_ANNOUNCE_TEXT.repeaticon		= "{rt%%1$d}"--Doesn't need translation. It's just icon spam -- OPTIONAL
-L.AUTO_YELL_ANNOUNCE_TEXT.icontarget		= "{rt%%1$d}{rt%%1$d}{rt%%1$d}"--Doesn't need translation. It's just an icon repeated 3 times-- OPTIONAL
 
-L.AUTO_YELL_CUSTOM_POSITION				= "{rt%d}%s"--Doesn't need translating. Has no strings (Used in niche situations such as icon repeat yells) -- OPTIONAL
-L.AUTO_YELL_CUSTOM_FADE					= "%s disparaît"
-L.AUTO_HUD_OPTION_TEXT					= "Afficher HUD pour $spell:%s"
-L.AUTO_HUD_OPTION_TEXT_MULTI			= "Afficher HUD pour diverses activités"
-L.AUTO_NAMEPLATE_OPTION_TEXT 			= "Afficher les auras de la plaque de nom pour $spell:%s en utilisant un add-on de barre d'info compatible ou "..L.DBM
-L.AUTO_NAMEPLATE_OPTION_TEXT_FORCED 	= "Afficher les auras de la plaque de nom pour $spell:%s en utilisant uniquement "..L.DBM
-L.AUTO_RANGE_OPTION_TEXT		 		= "Afficher la fenêtre de portée (%s) pour $spell:%s"--string used for range so we can use things like "5/2" as a value for that field
-L.AUTO_RANGE_OPTION_TEXT_SHORT  		= "Afficher la fenêtre de portée (%s)"--For when a range frame is just used for more than one thing
-L.AUTO_RRANGE_OPTION_TEXT				= "Afficher la fenêtre de portée inversée (%s) pour $spell:%s"--Reverse range frame (green when players in range, red when not)
-L.AUTO_RRANGE_OPTION_TEXT_SHORT			= "Afficher la fenêtre de portée inversée (%s)"
-L.AUTO_INFO_FRAME_OPTION_TEXT			= "Afficher la fenêtre d'information pour $spell:%s" --What frame is this?
-L.AUTO_INFO_FRAME_OPTION_TEXT2 			= "Afficher la fenêtre d'information pour un aperçu de la rencontre"
-L.AUTO_INFO_FRAME_OPTION_TEXT3 			= "Afficher la fenêtre d'information pour $spell:%s (lorsque le seuil de %%s est atteint)"
-L.AUTO_READY_CHECK_OPTION_TEXT   		= "Jouer le son de l'appel lorsque le boss est engagé (même si ce dernier n'est pas la cible)"
-L.AUTO_SPEEDCLEAR_OPTION_TEXT			= "Afficher un chronomètre pour le run plus rapide de cette zone"
-L.AUTO_PRIVATEAURA_OPTION_TEXT			= "Jouer les alertes sonores des auras privées de DBM pour $spell:%s pendant cette rencontre"
-L.AUTO_PRIVATEAURA_OPTION_TARGET_TEXT	= "Jouer les alertes sonores des auras privées de DBM lorsque vous êtes ciblé par $spell:%s"
-L.AUTO_PRIVATEAURA_OPTION_GTFO_TEXT		= "Jouer les alertes sonores des auras privées de DBM lorsque vous devez vous éloigner de $spell:%s"
-L.AUTO_PRIVATEAURA_OPTION_POST_TEXT   	= "Jouer les alertes sonores des auras privées de DBM pour les effets persistants de $spell:%s."
-L.AUTO_CUSTOMTIMER_OPTION_TEXT        	= "Afficher un chronomètre pour $spell:%s"
-L.AUTO_CUSTOMALERT_OPTION_TEXT        	= "Définir une alerte sonore lorsque $spell:%s est sur le point d'être incanté"
+L.AUTO_YELL_CUSTOM_POSITION			= "{rt%d}%s"--Doesn't need translating. Has no strings (Used in niche situations such as icon repeat yells) -- OPTIONAL
+L.AUTO_YELL_CUSTOM_FADE				= "%s disparaît"
+L.AUTO_HUD_OPTION_TEXT				= "Afficher HUD pour $spell:%s"
+L.AUTO_HUD_OPTION_TEXT_MULTI		= "Afficher HUD pour diverses activités"
+L.AUTO_NAMEPLATE_OPTION_TEXT 		= "Afficher les auras de la plaque de nom pour $spell:%s en utilisant un add-on de barre d'info compatible ou "..L.DBM
+L.AUTO_NAMEPLATE_OPTION_TEXT_FORCED = "Afficher les auras de la plaque de nom pour $spell:%s en utilisant uniquement "..L.DBM
+L.AUTO_RANGE_OPTION_TEXT		 	= "Afficher la fenêtre de portée (%s) pour $spell:%s"--string used for range so we can use things like "5/2" as a value for that field
+L.AUTO_RANGE_OPTION_TEXT_SHORT  	= "Afficher la fenêtre de portée (%s)"--For when a range frame is just used for more than one thing
+L.AUTO_RRANGE_OPTION_TEXT			= "Afficher la fenêtre de portée inversée (%s) pour $spell:%s"--Reverse range frame (green when players in range, red when not)
+L.AUTO_RRANGE_OPTION_TEXT_SHORT		= "Afficher la fenêtre de portée inversée (%s)"
+L.AUTO_INFO_FRAME_OPTION_TEXT		= "Afficher la fênetre d'information pour $spell:%s" --What frame is this?
+L.AUTO_INFO_FRAME_OPTION_TEXT2 		= "Afficher la fênetre d'information pour un aperçu de l'encounter"
+L.AUTO_INFO_FRAME_OPTION_TEXT3 		= "Afficher la fênetre d'information pour $spell:%s (lorsque le seuil de %%s est atteint)"
+L.AUTO_READY_CHECK_OPTION_TEXT   	= "Jouer le son de l'appel lorsque le boss est engagé (même si ce dernier n'est pas la cible)"
+L.AUTO_SPEEDCLEAR_OPTION_TEXT		= "Afficher un chronomètre pour le run plus rapide %s"
+L.AUTO_PRIVATEAURA_OPTION_TEXT		= "Jouer des alertes sonores DBM pour les auras privées de $spell:%s dans ce combat."
 
 -- New special warnings
 L.MOVE_WARNING_BAR			= "Annonce mobile"
 L.MOVE_WARNING_MESSAGE		= "Merci d'utiliser " .. L.DEADLY_BOSS_MODS .. ""
 L.MOVE_SPECIAL_WARNING_BAR	= "Alertes spéciales mobiles"
 L.MOVE_SPECIAL_WARNING_TEXT	= "Alerte spéciale"
-
-L.MOVE_PRIVATE_AURA_TEXT 	= "<valeur secrète> vous cible avec le sort <valeur secrète>"
-L.MOVE_PRIVATE_AURA_DISABLED = "L’aperçu est désactivé car les cadres d’auras privées sont désactivés globalement dans les options."
 
 L.HUD_INVALID_TYPE			= "Type de HUD défini invalide"
 L.HUD_INVALID_TARGET		= "Pas de cible valide disponible pour le HUD"
@@ -672,15 +651,12 @@ L.ARROW_ERROR_USAGE	= {
 
 L.SPEED_KILL_TIMER_TEXT		= "Record à battre"
 L.SPEED_CLEAR_TIMER_TEXT  	= "Meilleur clear"
+L.COMBAT_RES_TIMER_TEXT		= "Prochaine charge de résurrection en combat"
 L.TIMER_RESPAWN				= "%s Réapparition"
 
 L.LAG_HEADER				= L.DBM .. " - Résultats sur la latence"
 L.DUR_HEADER 				= L.DBM .. " - Résultats de durabilité"
 L.KEYSTONES_HEADER			= L.DBM .. " - Mythiques"
-L.GEAR_HEADER				= L.DBM .. " - Résultats d'équipement"
-L.GEAR_MISSING_GEMS			= "Gemmes manquantes"
-L.GEAR_MISSING_ENCHANTS		= "Enchantements manquants"
-L.BREZ_HEADER				= "Rés. de combat"
 
 L.OVERRIDE_ACTIVATED 		= "Les remplacements de configuration ont été activés pour cette rencontre par le responsable de raid"
 
@@ -741,20 +717,10 @@ L.KEYSTONE_NAMES[505] = 'AUBE' -- The Dawnbreaker
 L.KEYSTONE_NAMES[525] = 'VANNES' -- Operation Floodgate
 L.KEYSTONE_NAMES[542] = 'DÔME' -- Eco-Dome Al'dani
 
-L.KEYSTONE_NAMES[161] = 'ORÉE' -- Skyreach
-L.KEYSTONE_NAMES[402] = 'ACADÉM' -- Algeth'ar Academy
-L.KEYSTONE_NAMES[556] = 'FOSSE' -- Pit of Saron
-L.KEYSTONE_NAMES[557] = 'FLÈCHE' -- Windrunner Spire
-L.KEYSTONE_NAMES[558] = 'TERRAS' -- Magister's Terrace
-L.KEYSTONE_NAMES[559] = 'NEXUS' -- Nexus-Point Xenas
-L.KEYSTONE_NAMES[560] = 'CAVERN' -- Maisara Caverns
-L.KEYSTONE_NAMES[583] = 'SIÈGE' -- Seat of the Triumvirate
-
-
 -- Midnight
-L.MN_TIMELINE_HEADER   = "Voulez-vous utiliser la ligne temporelle de Blizzard ou les barres de DBM ?"
-L.MN_BLIZZARD_TIMELINE = "Ligne temporelle de Blizzard"
+L.MN_TIMELINE_HEADER   = "Voulez-vous utiliser la chronologie de Blizzard ou les barres de DBM ?"
+L.MN_BLIZZARD_TIMELINE = "Chronologie de Blizzard"
 L.MN_DBM_TIMELINE      = "Barres de DBM"
-L.MN_WARNIGS_HEADER   = "Voulez-vous utiliser les avertissements de rencontre de Blizzard ou celles de DBM ?"
-L.MN_BLIZZARD_WARNINGS= "Avertissements de Blizzard"
-L.MN_DBM_WARNINGS     = "Avertissements de DBM"
+L.MN_WARNIGS_HEADER   = "Voulez-vous utiliser les alertes de rencontre de Blizzard ou celles de DBM ?"
+L.MN_BLIZZARD_WARNINGS= "Alertes de Blizzard"
+L.MN_DBM_WARNINGS     = "Alertes de DBM"

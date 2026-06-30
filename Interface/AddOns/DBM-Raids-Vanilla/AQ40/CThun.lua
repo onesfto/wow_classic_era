@@ -9,8 +9,7 @@ end
 local mod	= DBM:NewMod("CThun", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241219145742")
 mod:SetCreatureID(15589, 15727)
 mod:SetEncounterID(717)
 mod:SetHotfixNoticeRev(20200823000000)--2020, 8, 23
@@ -33,11 +32,11 @@ local warnEyeTentacle			= mod:NewAnnounce("WarnEyeTentacle", 2, 126)
 local warnClawTentacle			= mod:NewAnnounce("WarnClawTentacle2", 2, 26391, false)
 local warnGiantEyeTentacle		= mod:NewAnnounce("WarnGiantEyeTentacle", 3, 126)
 local warnGiantClawTentacle		= mod:NewAnnounce("WarnGiantClawTentacle", 3, 26391)
-local warnPhase 				= mod:NewPhaseChangeAnnounce(2, nil, nil, nil, nil, nil, 2)
+local warnPhase2				= mod:NewPhaseAnnounce(2)
 
-local specWarnDarkGlare			= mod:NewSpecialWarningDodge(26029, nil, nil, nil, 3, 2, nil, nil, "laserrun")
-local specWarnWeakened			= mod:NewSpecialWarning("SpecWarnWeakened", nil, nil, nil, 2, 2, nil, "132212", nil, nil, "targetchange")
-local specWarnEyeBeam			= mod:NewSpecialWarningYou(26134, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnDarkGlare			= mod:NewSpecialWarningDodge(26029, nil, nil, nil, 3, 2)
+local specWarnWeakened			= mod:NewSpecialWarning("SpecWarnWeakened", nil, nil, nil, 2, 2, nil, 28598)
+local specWarnEyeBeam			= mod:NewSpecialWarningYou(26134, nil, nil, nil, 1, 2)
 local yellEyeBeam				= mod:NewYell(26134)
 
 local timerDarkGlareCD			= mod:NewNextTimer(86, 26029)
@@ -46,8 +45,9 @@ local timerEyeTentacle			= mod:NewTimer(45, "TimerEyeTentacle", 126, nil, nil, 1
 local timerGiantEyeTentacle		= mod:NewTimer(60, "TimerGiantEyeTentacle", 126, nil, nil, 1)
 local timerClawTentacle			= mod:NewTimer(8, "TimerClawTentacle", 26391, nil, nil, 1) -- every 8 seconds
 local timerGiantClawTentacle	= mod:NewTimer(60, "TimerGiantClawTentacle", 26391, nil, nil, 1)
-local timerWeakened				= mod:NewTimer(45, "TimerWeakened", "132212")
+local timerWeakened				= mod:NewTimer(45, "TimerWeakened", 28598)
 
+mod:AddRangeFrameOption("10")
 mod:AddSetIconOption("SetIconOnEyeBeam", 26134, true, 0, {1})
 mod:AddInfoFrameOption(26476, true)
 
@@ -95,20 +95,25 @@ do
 	end
 end
 
-function mod:OnCombatStart()
+function mod:OnCombatStart(delay)
 	table.wipe(playersInStomach)
 	table.wipe(fleshTentacles)
 	table.wipe(diedTentacles)
 	self:SetStage(1)
-	warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(1))
-	timerClawTentacle:Start(9) -- Combatlog told me, the first Claw Tentacle spawn in 00:00:09, but need more test.
-	timerEyeTentacle:Start(45)
-	timerDarkGlareCD:Start(48)
-	self:ScheduleMethod(48, "DarkGlare")
+	timerClawTentacle:Start(9-delay) -- Combatlog told me, the first Claw Tentacle spawn in 00:00:09, but need more test.
+	timerEyeTentacle:Start(45-delay)
+	timerDarkGlareCD:Start(48-delay)
+	self:ScheduleMethod(48-delay, "DarkGlare")
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Show(10)
+	end
 end
 
 function mod:OnCombatEnd(wipe, isSecondRun)
 	table.wipe(diedTentacles)
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
 	end
@@ -215,7 +220,7 @@ function mod:UNIT_DIED(args)
 	local cid = self:GetCIDFromGUID(args.destGUID)
 	if cid == 15589 then
 		self:SetStage(2)
-		warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(2))
+		warnPhase2:Show()
 		timerDarkGlareCD:Stop()
 		timerEyeTentacle:Stop()
 		timerClawTentacle:Stop() -- Claw Tentacle never respawns in phase2

@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("WolfMasterNandos", "DBM-Party-Vanilla", 14)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260315034941")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(3927)
 mod:SetZone(33)
 

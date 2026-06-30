@@ -5,11 +5,9 @@ if mod:IsRetail() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20231014053250")
 mod:SetCreatureID(18341)
 mod:SetEncounterID(1900)
-mod:SetZone(557)
 
 if not mod:IsRetail() then
 	mod:SetModelID(19338)
@@ -23,7 +21,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 32358 38759"
 )
 
-local specWarnShell			= mod:NewSpecialWarningReflect(32358, "SpellCaster", nil, 2, 1, 2, nil, nil, "stopattack")--Casters should stop attacking, melee, doesn't do enough damage to them for them to stop
+local specWarnShell			= mod:NewSpecialWarningReflect(32358, "SpellCaster", nil, 2, 1, 2)--Casters should stop attacking, melee, doesn't do enough damage to them for them to stop
 
 local timerShell			= mod:NewBuffActiveTimer(7, 32358, nil, nil, nil, 5)
 

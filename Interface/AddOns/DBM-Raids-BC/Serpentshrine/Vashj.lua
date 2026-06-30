@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal25"
 
-mod:SetRevision("20260523022044")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103131702")
 mod:SetCreatureID(21212)
 mod:SetEncounterID(628, 2463)
 mod:SetModelID(20748)
@@ -35,10 +34,10 @@ local warnPhase3		= mod:NewPhaseAnnounce(3)
 --local warnPersuasion	= mod:NewTargetNoFilterAnnounce(38511, 4)--Pre nerf for classic TBC
 
 --local specWarnCore		= mod:NewSpecialWarning("SpecWarnCore", nil, nil, nil, 1, 8)
-local specWarnCharge	= mod:NewSpecialWarningMoveAway(38280, nil, nil, nil, 1, 2, nil, nil, "runout")
+local specWarnCharge	= mod:NewSpecialWarningMoveAway(38280, nil, nil, nil, 1, 2)
 local yellCharge		= mod:NewYell(38280)
 local specWarnElemental	= mod:NewSpecialWarning("SpecWarnElemental")--Changed from soon to a now warning. the soon warning not accurate because of 11 second variation so not useful special warning.
-local specWarnToxic		= mod:NewSpecialWarningGTFO(38575, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specWarnToxic		= mod:NewSpecialWarningGTFO(38575, nil, nil, nil, 1, 8)
 
 local timerCharge		= mod:NewTargetTimer(20, 38280, nil, nil, nil, 3)
 local timerElemental	= mod:NewTimer(22, "TimerElementalActive", 39088, nil, nil, 1)--Blizz says they are active 20 seconds per patch notes, but my logs don't match those results. 22 second up time.
@@ -47,6 +46,7 @@ local timerStrider		= mod:NewTimer(63, "TimerStrider", 475, nil, nil, 1)
 local timerNaga			= mod:NewTimer(47.5, "TimerNaga", 2120, nil, nil, 1)
 --local timerMC			= mod:NewCDTimer(21, 38511, nil, nil, nil, 3)--21-27
 
+mod:AddRangeFrameOption(10, 38280)
 mod:AddSetIconOption("ChargeIcon", 38280, false, 0, {1})
 --mod:AddSetIconOption("MCIcon", 38511, false, false, {2, 3})
 
@@ -81,6 +81,11 @@ function mod:OnCombatStart(delay)
 	--self.vb.mcIcon = 2
 end
 
+function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
+end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 38280 then
@@ -89,6 +94,9 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnCharge:Show()
 			specWarnCharge:Play("runout")
 			yellCharge:Yell()
+			if self.Options.RangeFrame then
+				DBM.RangeCheck:Show(10)
+			end
 		else
 			warnCharge:Show(args.destName)
 		end
@@ -112,6 +120,11 @@ function mod:SPELL_AURA_REMOVED(args)
 		timerCharge:Stop(args.destName)
 		if self.Options.ChargeIcon then
 			self:SetIcon(args.destName, 0)
+		end
+		if args:IsPlayer() then
+			if self.Options.RangeFrame then
+				DBM.RangeCheck:Hide()
+			end
 		end
 	elseif args.spellId == 38132 then
 		if self.Options.LootIcon then

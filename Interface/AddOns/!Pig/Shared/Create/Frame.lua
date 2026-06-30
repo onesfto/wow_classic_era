@@ -195,6 +195,12 @@ function Create.PIGSetMovableNoSave(LeftUI,MovableUI,KeyDown)
 	end)
 	MovableUI:SetClampedToScreen(true)
 end
+function PIGGetPoint(MovableUI)
+	local point, _, relativePoint, offsetX, offsetY = MovableUI:GetPoint()
+	local offsetX = floor(offsetX*100+0.5)*0.01
+	local offsetY = floor(offsetY*100+0.5)*0.01
+	return point, relativePoint, offsetX, offsetY
+end
 function Create.PIGSetMovable(LeftUI,MovableUI,KeyDown,Per,CombatLock)
 	if MovableUI and MovableUI:GetName()=="Pig_FarmUI" and Fun.is_slist() then
 		LeftUI:Hide()
@@ -216,9 +222,7 @@ function Create.PIGSetMovable(LeftUI,MovableUI,KeyDown,Per,CombatLock)
 		MovableUI:StopMovingOrSizing()
 		local uiname = MovableUI:GetName()
 		if uiname then
-			local point, _, relativePoint, offsetX, offsetY = MovableUI:GetPoint()
-			local offsetX = floor(offsetX*100+0.5)*0.01
-			local offsetY = floor(offsetY*100+0.5)*0.01
+			local point, relativePoint, offsetX, offsetY = PIGGetPoint(MovableUI)
 			if PIGA["PigLayout"]["TopBar"]["Open"] then
 				if relativePoint=="TOP" or relativePoint=="TOPLEFT" or relativePoint=="TOPRIGHT" then
 					offsetY=offsetY+PIGA["PigLayout"]["TopBar"]["Height"]

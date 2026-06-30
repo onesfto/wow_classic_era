@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(1145, "DBM-Party-Vanilla", 1, 227)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(74505)
 mod:SetEncounterID(1675)
 mod:SetZone(48)
@@ -13,7 +12,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 149913"
 )
 
-local specWarnFillet			= mod:NewSpecialWarningRun(149955, "Melee", nil, nil, 4, 2, nil, nil, "justrun")
+local specWarnFillet			= mod:NewSpecialWarningRun(149955, "Melee", nil, nil, 4, 2)
 
 local timerFilletCD				= mod:NewAITimer(180, 149955, nil, nil, nil, 2)
 

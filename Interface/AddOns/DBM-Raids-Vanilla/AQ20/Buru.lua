@@ -9,8 +9,7 @@ end
 local mod	= DBM:NewMod("Buru", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241207000042")
 mod:SetCreatureID(15370)
 mod:SetEncounterID(721)
 mod:SetModelID(15654)
@@ -26,13 +25,13 @@ mod:RegisterEventsInCombat(
 local WarnDismember				= mod:NewStackAnnounce(96, 3, nil, "Tank", 2)
 local warnPursue				= mod:NewAnnounce("WarnPursue", 3, 62374)
 
-local specWarnDismember			= mod:NewSpecialWarningStack(96, "Tank", 5, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnDismemberTaunt	= mod:NewSpecialWarningTaunt(96, "Tank", nil, nil, 1, 2, nil, nil, "tauntboss")
-local specWarnPursue			= mod:NewSpecialWarning("SpecWarnPursue", nil, nil, nil, 4, 2, nil, nil, nil, nil, "justrun")
+local specWarnDismember			= mod:NewSpecialWarningStack(96, nil, 5, nil, nil, 1, 6)
+local specWarnDismemberTaunt	= mod:NewSpecialWarningTaunt(96, nil, nil, nil, 1, 2)
+local specWarnPursue			= mod:NewSpecialWarning("SpecWarnPursue", nil, nil, nil, 4, 2)
 
 local timerDismember			= mod:NewTargetTimer(10, 96, nil, "Tank", 2, 5, nil, DBM_COMMON_L.TANK_ICON)
 
-function mod:OnCombatStart()
+function mod:OnCombatStart(delay)
 	if not self:IsTrivial() then
 		self:RegisterShortTermEvents(
 			"SPELL_AURA_APPLIED 96",

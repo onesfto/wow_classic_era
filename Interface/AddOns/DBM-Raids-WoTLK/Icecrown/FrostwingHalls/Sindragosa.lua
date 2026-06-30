@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,normal25,heroic,heroic25"
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250720212401")
 mod:SetCreatureID(36853)
 mod:SetEncounterID(not mod:IsPostCata() and 855 or 1105)
 mod:SetModelID(30362)
@@ -36,14 +35,14 @@ local warnFrostBeacon			= mod:NewTargetNoFilterAnnounce(70126, 4)
 local warnFrostBreath			= mod:NewSpellAnnounce(69649, 2, nil, "Tank|Healer")
 local warnUnchainedMagic		= mod:NewTargetAnnounce(69762, 2, nil, "SpellCaster", 2)
 
-local specWarnUnchainedMagic	= mod:NewSpecialWarningYou(69762, nil, nil, nil, 1, 2, nil, nil, "targetyou")
-local specWarnFrostBeacon		= mod:NewSpecialWarningMoveAway(70126, nil, nil, nil, 3, 2, nil, nil, "scatter")
+local specWarnUnchainedMagic	= mod:NewSpecialWarningYou(69762, nil, nil, nil, 1, 2)
+local specWarnFrostBeacon		= mod:NewSpecialWarningMoveAway(70126, nil, nil, nil, 3, 2)
 local yellFrostBeacon			= mod:NewShortPosYell(70126)
 local yellFrostBeaconFades		= mod:NewIconFadesYell(70126)
-local specWarnInstability		= mod:NewSpecialWarningStack(69766, nil, 4, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnChilledtotheBone	= mod:NewSpecialWarningStack(70106, nil, 4, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnMysticBuffet		= mod:NewSpecialWarningStack(70128, false, 5, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnBlisteringCold	= mod:NewSpecialWarningRun(70123, nil, nil, nil, 4, 2, nil, nil, "runout")
+local specWarnInstability		= mod:NewSpecialWarningStack(69766, nil, 4, nil, nil, 1, 6)
+local specWarnChilledtotheBone	= mod:NewSpecialWarningStack(70106, nil, 4, nil, nil, 1, 6)
+local specWarnMysticBuffet		= mod:NewSpecialWarningStack(70128, false, 5, nil, nil, 1, 6)
+local specWarnBlisteringCold	= mod:NewSpecialWarningRun(70123, nil, nil, nil, 4, 2)
 
 local timerNextAirphase			= mod:NewTimer(110, "TimerNextAirphase", 43810, nil, nil, 6)
 local timerNextGroundphase		= mod:NewTimer(45, "TimerNextGroundphase", 43810, nil, nil, 6)
@@ -63,21 +62,48 @@ local berserkTimer				= mod:NewBerserkTimer(600)
 mod:AddSetIconOption("SetIconOnFrostBeacon", 70126, true, 7, {1, 2, 3, 4, 5, 6})--Uses roster sorting icons, so it does NOT match BWs. Cross mod raids should disable DBM or BW
 mod:AddSetIconOption("SetIconOnUnchainedMagic", 69762, true, 0, {2, 3, 4, 5, 6, 7})--Starts at 2 so it doesn't steal frost beacon icon and the like
 mod:AddBoolOption("ClearIconsOnAir", false, nil, nil, nil, nil, 70126)
+mod:AddRangeFrameOption("10/20")
 
 local beaconTargets		= {}
 local unchainedTargets	= {}
 mod.vb.warned_P2 = false
 mod.vb.unchainedIcons = 2
+local playerUnchained = false
 local playerBeaconed = false
 mod.vb.beaconCount = 0
 
+local beaconDebuffFilter, unchainedDebuffFilter
+do
+	local beaconDebuff, unchainedDebuff = DBM:GetSpellName(70126), DBM:GetSpellName(69762)
+	beaconDebuffFilter = function(uId)
+		return DBM:UnitDebuff(uId, beaconDebuff)
+	end
+	unchainedDebuffFilter = function(uId)
+		return DBM:UnitDebuff(uId, unchainedDebuff)
+	end
+end
+
 local function warnBeaconTargets(self)
+	if self.Options.RangeFrame then
+		if not playerBeaconed then
+			DBM.RangeCheck:Show(10, beaconDebuffFilter, nil, nil, nil, 9)
+		else
+			DBM.RangeCheck:Show(10, nil, nil, nil, nil, 9)
+		end
+	end
 	warnFrostBeacon:Show(table.concat(beaconTargets, "<, >"))
 	table.wipe(beaconTargets)
 	playerBeaconed = false
 end
 
 local function warnUnchainedTargets(self)
+	if self.Options.RangeFrame then
+		if not playerUnchained then
+			DBM.RangeCheck:Show(20, unchainedDebuffFilter)
+		else
+			DBM.RangeCheck:Show(20)
+		end
+	end
 	warnUnchainedMagic:Show(table.concat(unchainedTargets, "<, >"))
 	if self.vb.phase == 2 then
 		timerUnchainedMagic:Start(80)
@@ -86,6 +112,7 @@ local function warnUnchainedTargets(self)
 	end
 	table.wipe(unchainedTargets)
 	self.vb.unchainedIcons = 2
+	playerUnchained = false
 end
 
 function mod:OnCombatStart(delay)
@@ -97,9 +124,15 @@ function mod:OnCombatStart(delay)
 	table.wipe(beaconTargets)
 	table.wipe(unchainedTargets)
 	self.vb.unchainedIcons = 2
+	playerUnchained = false
 	playerBeaconed = false
 end
 
+function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
+end
 
 function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(69649, 73061) then--Frost Breath
@@ -150,6 +183,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args.spellId == 69762 then
 		unchainedTargets[#unchainedTargets + 1] = args.destName
 		if args:IsPlayer() then
+			playerUnchained = true
 			specWarnUnchainedMagic:Show()
 			specWarnUnchainedMagic:Play("targetyou")
 		end

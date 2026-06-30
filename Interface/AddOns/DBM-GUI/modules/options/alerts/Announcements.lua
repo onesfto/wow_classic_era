@@ -12,8 +12,8 @@ local check4 = raidwarnoptions:CreateCheckButton(L.WarningIconChat, true, nil, "
 local check5, check6
 if not DBM:IsPostMidnight() then
 	check5 = raidwarnoptions:CreateCheckButton(L.WarningAlphabetical, true, nil, "WarningAlphabetical")
+	check6 = raidwarnoptions:CreateCheckButton(L.ShortTextSpellname, true, nil, "WarningShortText")
 end
-check6 = raidwarnoptions:CreateCheckButton(L.ShortTextSpellname, true, nil, "WarningShortText")
 
 -- RaidWarn Font
 local Fonts = DBM_GUI:MixinSharedMedia3("font", {
@@ -41,7 +41,7 @@ local FontDropDown = raidwarnoptions:CreateDropdown(L.FontType, Fonts, "DBM", "W
 	DBM:AddWarning(CL.MOVE_WARNING_MESSAGE)
 end)
 local isNewDropdown = FontDropDown.mytype == "dropdown2"
-FontDropDown:SetPoint("TOPLEFT", check6, "BOTTOMLEFT", isNewDropdown and 5 or 0, isNewDropdown and -15 or -10)
+FontDropDown:SetPoint("TOPLEFT", DBM:IsPostMidnight() and check4 or check6, "BOTTOMLEFT", isNewDropdown and 5 or 0, isNewDropdown and -15 or -10)
 
 -- RaidWarn Font Style
 local FontStyles = {

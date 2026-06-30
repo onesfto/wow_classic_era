@@ -97,10 +97,6 @@ local function HideHPMPTT()
 end
 ------	
 function UnitFramefun.Zishen()
-	if PIGA["UnitFrame"]["PlayerFrame"]["Plus"] then
-	end
-	if PIGA["UnitFrame"]["PlayerFrame"]["Loot"] then
-	end
 	if PIGA["UnitFrame"]["PlayerFrame"]["HPFF"] then
 		if not PlayerFrame.ziji then
 			--人物血量蓝量信息
@@ -121,43 +117,43 @@ function UnitFramefun.Zishen()
 				PlayerFrame.ziji:SetPoint("TOPLEFT", PlayerFrame, "TOPRIGHT", -21, -26);
 				PlayerFrame.ziji:SetPoint("BOTTOMLEFT", PlayerFrame, "BOTTOMRIGHT", -21, 26);
 			end
-			if not NDui and not ElvUI then
-				local function Update_TargetFrame()
-					local point, relativeTo, relativePoint, xOfs, yOfs = TargetFrame:GetPoint()
-					local xOfs=xOfs or 250
-					local yOfs=yOfs or -4
-					if PIG_MaxTocversion() then
-						if floor(xOfs+0.5)==250 and floor(yOfs+0.5)==-4 then
-							TargetFrame:ClearAllPoints();
-							TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 350, -4);
-						end
-					else
-						local data = EDIT_MODE_CLASSIC_SYSTEM_MAP
-						local oldxOfs=data[Enum.EditModeSystem.UnitFrame][Enum.EditModeUnitFrameSystemIndices.Target].anchorInfo.offsetX
-						local oldyOfs=data[Enum.EditModeSystem.UnitFrame][Enum.EditModeUnitFrameSystemIndices.Target].anchorInfo.offsetY
-						if floor(xOfs+0.5)==oldxOfs and floor(yOfs+0.5)==oldyOfs then
-							TargetFrame:ClearAllPoints();
-							TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 350, -4);
-						end
-					end
-				end
-				TargetFrame:HookScript("OnEvent", function(self,event,arg1)
-					if event=="PLAYER_ENTERING_WORLD" then
-						Update_TargetFrame()
-					end
-				end); 
-				if PIG_MaxTocversion() then
-					hooksecurefunc("UIParent_UpdateTopFramePositions", function()
-						Update_TargetFrame()
-					end)
-				else
-					hooksecurefunc(TargetFrame, "AnchorSelectionFrame", function(self)
-						if self.systemIndex == Enum.EditModeUnitFrameSystemIndices.Target then
-							Update_TargetFrame()
-						end
-					end)
-				end
-			end
+			-- if not NDui and not ElvUI then
+			-- 	local function Update_TargetFrame()
+			-- 		local point, relativePoint, xOfs, yOfs = PIGGetPoint(TargetFrame)
+			-- 		local xOfs=xOfs or 250
+			-- 		local yOfs=yOfs or -4
+			-- 		if PIG_MaxTocversion() then
+			-- 			if floor(xOfs+0.5)==250 and floor(yOfs+0.5)==-4 then
+			-- 				TargetFrame:ClearAllPoints();
+			-- 				TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 350, -4);
+			-- 			end
+			-- 		else
+			-- 			local data = EDIT_MODE_CLASSIC_SYSTEM_MAP
+			-- 			local oldxOfs=data[Enum.EditModeSystem.UnitFrame][Enum.EditModeUnitFrameSystemIndices.Target].anchorInfo.offsetX
+			-- 			local oldyOfs=data[Enum.EditModeSystem.UnitFrame][Enum.EditModeUnitFrameSystemIndices.Target].anchorInfo.offsetY
+			-- 			if floor(xOfs+0.5)==oldxOfs and floor(yOfs+0.5)==oldyOfs then
+			-- 				TargetFrame:ClearAllPoints();
+			-- 				TargetFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 350, -4);
+			-- 			end
+			-- 		end
+			-- 	end
+			-- 	TargetFrame:HookScript("OnEvent", function(self,event,arg1)
+			-- 		if event=="PLAYER_ENTERING_WORLD" then
+			-- 			Update_TargetFrame()
+			-- 		end
+			-- 	end); 
+			-- 	if PIG_MaxTocversion() then
+			-- 		hooksecurefunc("UIParent_UpdateTopFramePositions", function()
+			-- 			Update_TargetFrame()
+			-- 		end)
+			-- 	else
+			-- 		hooksecurefunc(TargetFrame, "AnchorSelectionFrame", function(self)
+			-- 			if self.systemIndex == Enum.EditModeUnitFrameSystemIndices.Target then
+			-- 				Update_TargetFrame()
+			-- 			end
+			-- 		end)
+			-- 	end
+			-- end
 			--血量
 			PlayerFrame.ziji.HP = PIGFontString(PlayerFrame.ziji,{"CENTER", PlayerFrame.ziji, "CENTER", 0, 0},"", "OUTLINE",15)
 			PlayerFrame.ziji.HP:SetTextColor(0,1,0,1);

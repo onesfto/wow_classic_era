@@ -1,10 +1,7 @@
-if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
-
 local mod	= DBM:NewMod("MorphazandHazzasSoD", "DBM-Raids-Vanilla", 8)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250119115238")
 mod:SetCreatureID(221942, 221943)--Morphaz, Hazzas
 mod:SetEncounterID(2958)
 mod:SetBossHPInfoToHighest()
@@ -34,7 +31,7 @@ local warnDreamersLament			= mod:NewCountAnnounce(446468, 3)
 local warnCorruptedBreath			= mod:NewStackAnnounce(446487, 2, nil, "Tank|Healer")
 local warnAnimateFlame				= mod:NewSpellAnnounce(446661, 3)
 
-local specWarnBackfire				= mod:NewSpecialWarningCount(446489, nil, nil, nil, 2, 2, nil, nil, "carefly")
+local specWarnBackfire				= mod:NewSpecialWarningCount(446489, nil, nil, nil, 2, 2)
 --local specWarnTheClaw				= mod:NewSpecialWarningYou(432062, nil, nil, nil, 1, 2)
 --local yellTheClaw					= mod:NewYell(432062)
 

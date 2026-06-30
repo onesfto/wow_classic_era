@@ -24,7 +24,7 @@ end
 
 local L = DBM_CORE_L
 local UnitClass, GetTime, GetPartyAssignment, UnitGroupRolesAssigned, GetRaidTargetIndex, UnitExists, UnitGetTotalAbsorbs, UnitName, UnitHealth, UnitPower, UnitPowerMax, UnitIsDeadOrGhost, UnitThreatSituation, UnitPosition, UnitIsUnit = UnitClass, GetTime, GetPartyAssignment, UnitGroupRolesAssigned, GetRaidTargetIndex, UnitExists, UnitGetTotalAbsorbs, UnitName, UnitHealth, UnitPower, UnitPowerMax, UnitIsDeadOrGhost, UnitThreatSituation, UnitPosition, UnitIsUnit
-local error, tostring, type, pairs, ipairs, select, tonumber, tsort, twipe, mfloor, mmax, mmin, mrandom, mhuge, mceil, schar, ssplit = error, tostring, type, pairs, ipairs, select, tonumber, table.sort, table.wipe, math.floor, math.max, math.min, math.random, math.huge, math.ceil, string.char, string.split
+local error, tostring, type, pairs, ipairs, select, tonumber, tsort, twipe, mfloor, mmax, mmin, mrandom, schar, ssplit = error, tostring, type, pairs, ipairs, select, tonumber, table.sort, table.wipe, math.floor, math.max, math.min, math.random, string.char, string.split
 local NORMAL_FONT_COLOR, SPELL_FAILED_OUT_OF_RANGE = NORMAL_FONT_COLOR, SPELL_FAILED_OUT_OF_RANGE
 local RAID_CLASS_COLORS = _G["CUSTOM_CLASS_COLORS"] or RAID_CLASS_COLORS-- for Phanx' Class Colors
 
@@ -40,42 +40,6 @@ elseif LOCALE_ruRU then
 	standardFont = "Fonts\\FRIZQT___CYR.TTF"
 else
 	standardFont = "Fonts\\FRIZQT__.TTF"
-end
-
-local infoFrameFontResetNotified = false
-local infoFrameStrataOptions = { "BACKGROUND", "LOW", "MEDIUM", "HIGH", "DIALOG", "FULLSCREEN", "FULLSCREEN_DIALOG", "TOOLTIP" }
-infoFrame.StrataOptions = infoFrameStrataOptions
-local validInfoFrameStrata = {}
-for _, v in ipairs(infoFrameStrataOptions) do
-	validInfoFrameStrata[v] = true
-end
-
-local function getSafeInfoFrameStrata()
-	local strata = DBM.Options.InfoFrameStrata
-	if type(strata) ~= "string" or not validInfoFrameStrata[strata] then
-		strata = DBM.DefaultOptions.InfoFrameStrata
-		DBM.Options.InfoFrameStrata = strata
-	end
-	return strata
-end
-
-local function getSafeInfoFrameFontSettings(testFontString)
-	local font = DBM.Options.InfoFrameFont == "standardFont" and standardFont or DBM.Options.InfoFrameFont
-	local size = DBM.Options.InfoFrameFontSize
-	local style = (DBM.Options.InfoFrameFontStyle and not DBM:IsNoneValue(DBM.Options.InfoFrameFontStyle)) and DBM.Options.InfoFrameFontStyle or ""
-	if not DBM:IsFontValid(font, standardFont, size, style) then
-		DBM.Options.InfoFrameFont = DBM.DefaultOptions.InfoFrameFont
-		DBM.Options.InfoFrameFontSize = DBM.DefaultOptions.InfoFrameFontSize
-		DBM.Options.InfoFrameFontStyle = DBM.DefaultOptions.InfoFrameFontStyle
-		if not infoFrameFontResetNotified then
-			DBM:AddMsg("Invalid InfoFrame font settings were detected and reset to defaults.")
-			infoFrameFontResetNotified = true
-		end
-		font = DBM.Options.InfoFrameFont == "standardFont" and standardFont or DBM.Options.InfoFrameFont
-		size = DBM.Options.InfoFrameFontSize
-		style = (DBM.Options.InfoFrameFontStyle and not DBM:IsNoneValue(DBM.Options.InfoFrameFontStyle)) and DBM.Options.InfoFrameFontStyle or ""
-	end
-	return font, size, style
 end
 
 --------------
@@ -138,15 +102,6 @@ do
 		return DBM.Options.InfoFrameCols == col
 	end
 
-	local function setStrata(arg1, strata)
-		if not isWrath then strata = arg1 end -- New dropdown code
-		infoFrame:SetStrata(strata)
-	end
-
-	local function isStrataSelected(strata)
-		return DBM.Options.InfoFrameStrata == strata
-	end
-
 	function initializeDropdown(owner, rootDescription)
 		rootDescription:CreateCheckbox(LOCK_FRAME, isLocked, toggleLocked)
 		rootDescription:CreateCheckbox(L.INFOFRAME_SHOW_SELF, isShowSelf, toggleShowSelf)
@@ -159,11 +114,6 @@ do
 		local cols = rootDescription:CreateButton(L.INFOFRAME_SETCOLS)
 		for _, v in ipairs({ 0, 1, 2, 3, 4, 5, 6 }) do
 			cols:CreateRadio(v == 0 and L.INFOFRAME_LINESDEFAULT or L.INFOFRAME_COLS_TO:format(v), isColsSelected, setCols, v)
-		end
-
-		local strata = rootDescription:CreateButton(L.INFOFRAME_SETSTRATA)
-		for _, v in ipairs(infoFrameStrataOptions) do
-			strata:CreateRadio(v, isStrataSelected, setStrata, v)
 		end
 
 		rootDescription:CreateButton(HIDE, infoFrame.Hide)
@@ -198,13 +148,6 @@ do
 				menuList = "cols",
 			}, 1)
 			UIDropDownMenu_AddButton({
-				text = L.INFOFRAME_SETSTRATA,
-				notCheckable = true,
-				hasArrow = true,
-				keepShownOnClick = true,
-				menuList = "strata",
-			}, 1)
-			UIDropDownMenu_AddButton({
 				text = HIDE,
 				notCheckable = true,
 				func = infoFrame.Hide,
@@ -229,15 +172,6 @@ do
 						checked = isColsSelected(v)
 					}, 2)
 				end
-			elseif menu == "strata" then
-				for _, v in ipairs(infoFrameStrataOptions) do
-					UIDropDownMenu_AddButton({
-						text = v,
-						func = setStrata,
-						arg1 = v,
-						checked = isStrataSelected(v)
-					}, 2)
-				end
 			end
 		end
 	end
@@ -250,7 +184,7 @@ function createFrame()
 	---@class DBMInfoFrameFrame: Frame, BackdropTemplate
 	frame = CreateFrame("Frame", "DBMInfoFrame", UIParent, "BackdropTemplate")
 	frame:Hide()
-	frame:SetFrameStrata(getSafeInfoFrameStrata())
+	frame:SetFrameStrata("DIALOG")
 	frame.backdropInfo = {
 		bgFile		= "Interface\\DialogFrame\\UI-DialogBox-Background", -- 131071
 		tile		= true,
@@ -416,20 +350,14 @@ local function updateBossHealth()
 		if type(name) ~= "string" then
 			name = localizedBossNames[cId] or ("Boss " .. cId)
 		end
-		lines[name] = bossHealth[cId] or mhuge
+		lines[name] = bossHealth[cId] or math.huge
 		bossHealthSortedLines[#bossHealthSortedLines + 1] = name
 	end
 	tsort(bossHealthSortedLines, function(e1, e2)
 		return lines[e1] > lines[e2]
 	end)
 	for name, hp in pairs(lines) do
-		local _hp = DBM_COMMON_L.UNKNOWN
-		if hp == 0 then
-			_hp = DEAD
-		elseif hp < mhuge then
-			_hp = mceil(hp) .. "%"
-		end
-		lines[name] = _hp
+		lines[name] = hp < math.huge and (math.ceil(hp) .. "%") or DBM_COMMON_L.UNKNOWN
 	end
 	updateLines(bossHealthSortedLines)
 	updateIcons()
@@ -1349,7 +1277,9 @@ function infoFrame:UpdateStyle()
 		createFrame()
 	end
 	prevLines = 0
-	local font, size, style = getSafeInfoFrameFontSettings(frame.header)
+	local font = DBM.Options.InfoFrameFont == "standardFont" and standardFont or DBM.Options.InfoFrameFont
+	local size = DBM.Options.InfoFrameFontSize
+	local style = DBM.Options.InfoFrameFontStyle == "none" and nil or DBM.Options.InfoFrameFontStyle
 	for i = 1, #frame.lines do
 		frame.lines[i]:SetFont(font, size, style)
 	end
@@ -1361,7 +1291,9 @@ function infoFrame:SetLine(lineNum, leftText, rightText, colorR, colorG, colorB,
 	end
 	lineNum = lineNum * 2 - 1
 	if not frame.lines[lineNum] then
-		local font, size, style = getSafeInfoFrameFontSettings(frame.header)
+		local font = DBM.Options.InfoFrameFont == "standardFont" and standardFont or DBM.Options.InfoFrameFont
+		local size = DBM.Options.InfoFrameFontSize
+		local style = DBM.Options.InfoFrameFontStyle == "none" and nil or DBM.Options.InfoFrameFontStyle
 		frame.lines[lineNum] = frame:CreateFontString("Line" .. lineNum, "OVERLAY", "GameFontNormal")
 		frame.lines[lineNum]:SetFont(font, size, style)
 		frame.lines[lineNum + 1] = frame:CreateFontString("Line" .. lineNum + 1, "OVERLAY", "GameFontNormal")
@@ -1405,16 +1337,6 @@ function infoFrame:SetColumns(columns)
 	modCols = columns
 	if DBM.Options.InfoFrameCols == 0 then
 		maxCols = columns
-	end
-end
-
-function infoFrame:SetStrata(strata)
-	if strata ~= nil then
-		DBM.Options.InfoFrameStrata = strata
-	end
-	local safeStrata = getSafeInfoFrameStrata()
-	if frame then
-		frame:SetFrameStrata(safeStrata)
 	end
 end
 

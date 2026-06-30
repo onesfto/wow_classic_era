@@ -1,11 +1,10 @@
 local mod	= DBM:NewMod(575, "DBM-Party-BC", 6, 261)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250609051305")
 mod:SetCreatureID(17798)
 mod:SetEncounterID(1944)
-mod:SetZone(545)
+mod:SetZone(261)
 
 local channelId
 if not mod:IsRetail() then
@@ -25,7 +24,7 @@ mod:RegisterEventsInCombat(
 
 local WarnChannel		= mod:NewSpellAnnounce(channelId, 2, 31543)
 
-local specWarnReflect	= mod:NewSpecialWarningReflect(31534, "-Melee", nil, nil, 1, 2, nil, nil, "stopattack")--CasterDps after new core
+local specWarnReflect	= mod:NewSpecialWarningReflect(31534, "-Melee", nil, nil, 1, 2)--CasterDps after new core
 
 local timerReflect		= mod:NewBuffActiveTimer(8, 31534, nil, nil, nil, 5)
 

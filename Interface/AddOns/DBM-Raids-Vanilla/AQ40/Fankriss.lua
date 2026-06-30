@@ -9,8 +9,7 @@ end
 local mod	= DBM:NewMod("Fankriss", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241219133704")
 mod:SetCreatureID(15510)
 mod:SetEncounterID(712)
 mod:SetModelID(15743)
@@ -22,21 +21,20 @@ mod:RegisterEventsInCombat(
 	"SPELL_SUMMON 518 25832 25831"
 )
 
-local warnWound				= mod:NewStackAnnounce(25646, 3, nil, "Tank", 2)
-local warnWorm				= mod:NewSpellAnnounce(25831, 3, "133973") -- Using the icon added in TBC for this spell since Era icon is default Samwise
+local warnWound			= mod:NewStackAnnounce(25646, 3, nil, "Tank", 2)
+local warnWorm			= mod:NewSpellAnnounce(25831, 3, 30732)
 
-local specWarnWound			= mod:NewSpecialWarningStack(25646, "Tank", 5, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnWoundTaunt	= mod:NewSpecialWarningTaunt(25646, "Tank", nil, nil, 1, 2, nil, nil, "tauntboss")
+local specWarnWound		= mod:NewSpecialWarningStack(25646, nil, 5, nil, nil, 1, 6)
+local specWarnWoundTaunt= mod:NewSpecialWarningTaunt(25646, nil, nil, nil, 1, 2)
 
-local timerWound			= mod:NewTargetTimer(20, 25646, nil, "Tank", 2, 5, nil, DBM_COMMON_L.TANK_ICON)
-local timerEntangle			= mod:NewTargetTimer(8, 720, nil, nil, nil, 3)
+local timerWound		= mod:NewTargetTimer(20, 25646, nil, "Tank", 2, 5, nil, DBM_COMMON_L.TANK_ICON)
 
-function mod:OnCombatStart()
+function mod:OnCombatStart(delay)
 	if not self:IsTrivial() then
 		self:RegisterShortTermEvents(
-			"SPELL_AURA_APPLIED 720 731 1121 25646",
+			"SPELL_AURA_APPLIED 25646",
 			"SPELL_AURA_APPLIED_DOSE 25646",
-			"SPELL_AURA_REMOVED 720 731 1121 25646"
+			"SPELL_AURA_REMOVED 25646"
 		)
 	end
 end
@@ -46,9 +44,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpell(720, 731, 1121) then
-		timerEntangle:Start(args.destName)
-	elseif args:IsSpell(25646) then
+	if args:IsSpell(25646) then
 		local amount = args.amount or 1
 		timerWound:Show(args.destName)
 		if amount >= 5 then
@@ -71,8 +67,6 @@ mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 function mod:SPELL_AURA_REMOVED(args)
 	if args:IsSpell(25646) then
 		timerWound:Stop(args.destName)
-	elseif args:IsSpell(720, 731, 1121) then
-		timerEntangle:Stop(args.destName)
 	end
 end
 

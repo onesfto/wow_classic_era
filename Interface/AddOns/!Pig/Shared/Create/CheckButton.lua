@@ -151,13 +151,13 @@ function Create.PIGCheckbutton(fuF,Point,Text,WH,UIName,id,mode,Single)--,nil,ni
 	end
 end
 function Create.PIGCheckSingle(fuF,butlist,datax,Point,WH)
-	for i=1,2 do
+	for i=1,#datax do
 		local tabbut = Create.PIGCheckbutton(fuF,nil,datax[i].tisp,nil,nil,nil,nil,1)
 		butlist[i]=tabbut
 		if i==1 then
 			tabbut:SetPoint(Point[1],Point[2],Point[3],Point[4],Point[5])
 		else
-			tabbut:SetPoint("LEFT",butlist[i-1].Text,"RIGHT",10,0)
+			tabbut:SetPoint("LEFT",butlist[i-1].Text,"RIGHT",Point[6] or 10,0)
 		end
 		tabbut:HookScript("OnClick", function (self)
 			for _,butx in pairs(butlist) do

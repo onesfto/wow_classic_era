@@ -7,8 +7,7 @@ else
 	mod.statTypes = "normal25"
 end
 
-mod:SetRevision("20260523022044")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103131702")
 mod:SetCreatureID(22917)
 mod:SetEncounterID(609, 2481)
 mod:SetModelID(21135)
@@ -51,11 +50,11 @@ local warnPhase4			= mod:NewPhaseAnnounce(4)
 local warnEnrage			= mod:NewSpellAnnounce(40683, 3)
 local warnCaged				= mod:NewSpellAnnounce(40695, 3)
 
-local specWarnParasite		= mod:NewSpecialWarningYou(41917, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnParasite		= mod:NewSpecialWarningYou(41917, nil, nil, nil, 1, 2)
 local yellParasiteFades		= mod:NewShortFadesYell(41917)
-local specWarnBarrage		= mod:NewSpecialWarningMoveAway(40585, nil, nil, nil, 1, 2, nil, nil, "runout")
-local specWarnShadowDemon	= mod:NewSpecialWarningSwitch(41117, "Dps", nil, nil, 3, 2, nil, nil, "killmob")
-local specWarnGTFO			= mod:NewSpecialWarningGTFO(40841, nil, nil, nil, 1, 2, nil, nil, "runaway")
+local specWarnBarrage		= mod:NewSpecialWarningMoveAway(40585, nil, nil, nil, 1, 2)
+local specWarnShadowDemon	= mod:NewSpecialWarningSwitch(41117, "Dps", nil, nil, 3, 2)
+local specWarnGTFO			= mod:NewSpecialWarningGTFO(40841, nil, nil, nil, 1, 2)
 
 local timerParasite			= mod:NewTargetTimer(10, 41917, nil, false, nil, 1, nil, DBM_COMMON_L.DAMAGE_ICON)
 local timerBarrage			= mod:NewTargetTimer(10, 40585, nil, false, nil, 3)
@@ -73,6 +72,7 @@ local timerPhase4			= mod:NewStageTimer(30)
 local timerCombatStart		= mod:NewCombatTimer(36)
 local berserkTimer			= mod:NewBerserkTimer(1500)
 
+mod:AddRangeFrameOption(6, 40932)--Spell is 5 yards, but give it 6 or good measure since 5 yard check is probably least precise one since nerfs.
 mod:AddSetIconOption("ParasiteIcon", 41917)
 
 mod.vb.flamesDown = 0
@@ -108,6 +108,9 @@ end
 
 function mod:OnCombatEnd()
 	self:UnregisterShortTermEvents()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
@@ -215,6 +218,9 @@ function mod:UNIT_DIED(args)
 		self.vb.flamesDown = self.vb.flamesDown + 1
 		if self.vb.flamesDown >= 2 then
 			self.vb.phase = 3
+			if self.Options.RangeFrame then
+				DBM.RangeCheck:Show(6)
+			end
 			timerNextBarrage:Cancel()
 			warnPhase3:Show()
 			timerNextDemon:Start(76)

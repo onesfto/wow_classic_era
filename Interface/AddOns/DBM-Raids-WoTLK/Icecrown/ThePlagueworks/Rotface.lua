@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,normal25,heroic,heroic25"
 
-mod:SetRevision("20260525233145")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103133102")
 mod:SetCreatureID(36627)
 mod:SetEncounterID(not mod:IsPostCata() and 850 or 1104)
 mod:SetModelID(31005)
@@ -31,13 +30,13 @@ local warnStickyOoze			= mod:NewSpellAnnounce(69774, 1, nil, "Tank", 2)--You kno
 local warnUnstableOoze			= mod:NewStackAnnounce(69558, 2)
 local warnVileGas				= mod:NewSpellAnnounce(72272, 3)
 
-local specWarnMutatedInfection	= mod:NewSpecialWarningYou(69674, nil, nil, nil, 1, 2, nil, nil, "movetotank")
-local specWarnStickyOoze		= mod:NewSpecialWarningMove(69774, nil, nil, nil, 1, 2, nil, nil, "runaway")
-local specWarnOozeExplosion		= mod:NewSpecialWarningDodge(69839, nil, nil, nil, 1, 2, nil, nil, "watchstep")
+local specWarnMutatedInfection	= mod:NewSpecialWarningYou(69674, nil, nil, nil, 1, 2)
+local specWarnStickyOoze		= mod:NewSpecialWarningMove(69774, nil, nil, nil, 1, 2)
+local specWarnOozeExplosion		= mod:NewSpecialWarningDodge(69839, nil, nil, nil, 1, 2)
 local specWarnSlimeSpray		= mod:NewSpecialWarningSpell(69508, false, nil, nil, 1, 2)--For people that need a bigger warning to move
-local specWarnRadiatingOoze		= mod:NewSpecialWarningSpell(69760, "-Tank", nil, nil, 1, 2, nil, nil, "runaway")
-local specWarnLittleOoze		= mod:NewSpecialWarning("SpecWarnLittleOoze", false, nil, nil, 1, 2, nil, nil, nil, nil, "keepmove")
-local specWarnVileGas			= mod:NewSpecialWarningYou(72272, nil, nil, nil, 1, 2, nil, nil, "scatter")
+local specWarnRadiatingOoze		= mod:NewSpecialWarningSpell(69760, "-Tank", nil, nil, 1, 2)
+local specWarnLittleOoze		= mod:NewSpecialWarning("SpecWarnLittleOoze", false, nil, nil, 1, 2)
+local specWarnVileGas			= mod:NewSpecialWarningYou(72272, nil, nil, nil, 1, 2)
 
 local timerStickyOoze			= mod:NewNextNPTimer(16, 69774, nil, nil, nil, 5, nil, DBM_COMMON_L.TANK_ICON)--Nameplate only timer
 local timerWallSlime			= mod:NewNextTimer(20, 69789)
@@ -46,6 +45,7 @@ local timerMutatedInfection		= mod:NewTargetTimer(12, 69674, nil, nil, nil, 5)
 local timerOozeExplosion		= mod:NewCastTimer(4, 69839, nil, nil, nil, 2)
 local timerVileGasCD			= mod:NewNextTimer(30, 72272, nil, nil, nil, 3)
 
+mod:AddRangeFrameOption(8, 72272, "Ranged")
 mod:AddSetIconOption("InfectionIcon", 69674, true, 0, {1, 2})
 
 local spamOoze = 0
@@ -66,6 +66,9 @@ function mod:OnCombatStart(delay)
 	spamOoze = 0
 	if self:IsDifficulty("heroic10", "heroic25") then
 		timerVileGasCD:Start(22-delay)
+		if self.Options.RangeFrame then
+			DBM.RangeCheck:Show(8)
+		end
 	end
 	if not self:IsTrivial() then
 		self:RegisterShortTermEvents(
@@ -79,6 +82,9 @@ end
 
 function mod:OnCombatEnd()
 	self:UnregisterShortTermEvents()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
 end
 
 function mod:SPELL_CAST_START(args)

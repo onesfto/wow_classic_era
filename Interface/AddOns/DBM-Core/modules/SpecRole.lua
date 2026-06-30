@@ -418,7 +418,6 @@ function DBMExtraGlobal:rebuildSpecTable()
 				["Physical"] = true,
 				["HasInterrupt"] = true,
 				["MagicDispeller"] = true,
-				["SpellCaster"] = true,
 			},
 			[581] = {	--Vengeance Demon Hunter
 				["Tank"] = true,
@@ -559,7 +558,7 @@ function DBMExtraGlobal:rebuildSpecTable()
 			[750] = { --Feral Druid
 				["Healer"] = false,
 				["Dps"] = true,
-				["Tank"] = DBMExtraGlobal:IsSpellKnown(57880),--uses same assumption as libspec, if Natural Reaction is rank 2 you're a tank
+				["Tank"] = DBMExtraGlobal:IsSpellKnown(57880) and true or false,--uses same assumption as libspec, if Natural Reaction is rank 2 you're a tank
 				["Melee"] = true,
 				["MeleeDps"] = true,
 				["Physical"] = true,
@@ -710,6 +709,7 @@ function DBMExtraGlobal:rebuildSpecTable()
 			},
 			["PALADIN1"] = {	--Holy Paladin
 				["Healer"] = true,
+				["Melee"] = true,--They melee when oom?
 				["Ranged"] = true,
 				["CasterDps"] = true,--Judgements, exorcism, etc
 				["ManaUser"] = true,
@@ -746,7 +746,7 @@ function DBMExtraGlobal:rebuildSpecTable()
 			},
 			["WARRIOR1"] = {	--Arms Warrior
 				["Dps"] = true,
-				["Tank"] = private.isClassic and DBMExtraGlobal:IsSpellKnown(12975) or false,
+				["Tank"] = private.isClassic and true or false,
 				["Melee"] = true,
 				["MeleeDps"] = true,
 				["Physical"] = true,
@@ -768,12 +768,11 @@ function DBMExtraGlobal:rebuildSpecTable()
 				["SpellCaster"] = true,
 				["CasterDps"] = true,
 				["RemoveCurse"] = true,
-				["RemovePoison"] = true,
 			},
 			["DRUID2"] = { --Feral Druid
 				["Healer"] = private.isClassic and true or false,
 				["Dps"] = true,
-				["Tank"] = private.isClassic and true or DBMExtraGlobal:IsSpellKnown(23922),--Only sets true if Nuturing Instinct is learned for non vanilla
+				["Tank"] = DBMExtraGlobal:IsSpellKnown(23922) and true or private.isClassic and true or false,--Only sets true if Nuturing Instinct is learned for non vanilla
 				["Melee"] = true,
 				["MeleeDps"] = true,
 				["Physical"] = true,
@@ -786,7 +785,6 @@ function DBMExtraGlobal:rebuildSpecTable()
 				["SpellCaster"] = true,
 				["RaidCooldown"] = true,--Tranquility
 				["RemoveCurse"] = true,
-				["RemovePoison"] = true,
 			},
 			["HUNTER1"] = {	--Beastmaster Hunter
 				["Dps"] = true,
@@ -820,7 +818,6 @@ function DBMExtraGlobal:rebuildSpecTable()
 				["CasterDps"] = true,--Iffy. Technically yes, but this can't be used to determine eligable target for dps only debuffs
 				["RaidCooldown"] = true,--Power Word: Barrier(Discipline) / Divine Hymn (Holy)
 				["MagicDispeller"] = true,
-				["RemoveDisease"] = true,
 				["RemoveMagic"] = true,
 			},
 			["PRIEST3"] = {	--Shadow Priest
@@ -832,7 +829,6 @@ function DBMExtraGlobal:rebuildSpecTable()
 				["CasterDps"] = true,
 				["MagicDispeller"] = true,
 				["RemoveMagic"] = true,
-				["RemoveDisease"] = true,
 			},
 			["ROGUE1"] = { --Assassination Rogue
 				["Dps"] = true,
@@ -850,8 +846,6 @@ function DBMExtraGlobal:rebuildSpecTable()
 				["CasterDps"] = true,
 				["HasInterrupt"] = true,
 				["MagicDispeller"] = true,
-				["RemovePoison"] = true,
-				["RemoveDisease"] = true,
 			},
 			["SHAMAN2"] = {	--Enhancement Shaman
 				["Dps"] = true,
@@ -863,8 +857,6 @@ function DBMExtraGlobal:rebuildSpecTable()
 				["Physical"] = true,
 				["HasInterrupt"] = true,
 				["MagicDispeller"] = true,
-				["RemovePoison"] = true,
-				["RemoveDisease"] = true,
 			},
 			["SHAMAN3"] = {	--Restoration Shaman
 				["Healer"] = true,
@@ -873,8 +865,6 @@ function DBMExtraGlobal:rebuildSpecTable()
 				["SpellCaster"] = true,
 				["HasInterrupt"] = true,
 				["MagicDispeller"] = true,
-				["RemovePoison"] = true,
-				["RemoveDisease"] = true,
 			},
 			["WARLOCK1"] = { --Affliction Warlock
 				["Dps"] = true,

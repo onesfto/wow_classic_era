@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(96, "DBM-Party-Cataclysm", 6, 64)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetCreatureID(46962)
 mod:SetEncounterID(1069)
 mod:SetZone(33)
@@ -19,7 +18,7 @@ local warnPain				= mod:NewTargetAnnounce(93581, 3)
 local warnWracking			= mod:NewSpellAnnounce(93720, 2)
 local warnArchangel			= mod:NewSpellAnnounce(93757, 4)
 
-local specWarnStayExec		= mod:NewSpecialWarningInterrupt(93468, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnStayExec		= mod:NewSpecialWarningInterrupt(93468, "HasInterrupt", nil, nil, 1, 2)
 
 local timerAsphyxiate		= mod:NewCDTimer(45, 93423, nil, nil, nil, 2)
 

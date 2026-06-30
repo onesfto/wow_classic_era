@@ -5,11 +5,9 @@ if mod:IsRetail() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20260315034941")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20231014053250")
 mod:SetCreatureID(16807)
 mod:SetEncounterID(1936)
-mod:SetZone(540)
 
 if not mod:IsRetail() then
 	mod:SetModelID(16628)

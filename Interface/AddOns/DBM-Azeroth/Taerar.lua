@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("TaerarVanilla", "DBM-Azeroth")
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250309164007")
 if DBM:IsSeasonal("SeasonOfDiscovery") then
 	mod:SetCreatureID(235197)
 	mod:SetEncounterID(3113)--Sod Encounter ID
@@ -26,7 +25,7 @@ mod:RegisterEventsInCombat(
 local warnNoxiousBreath			= mod:NewStackAnnounce(24818, 2, nil, "Tank", 2)
 --local warningBellowingRoar		= mod:NewSpellAnnounce(243661, 3)
 
-local specWarnSleepingFog		= mod:NewSpecialWarningDodge(24814, nil, nil, nil, 2, 2, nil, nil, "watchstep")
+local specWarnSleepingFog		= mod:NewSpecialWarningDodge(24814, nil, nil, nil, 2, 2)
 
 --local timerNoxiousBreathCD		= mod:NewCDTimer(19.4, 24818, nil, "Tank", nil, 5, nil, DBM_COMMON_L.TANK_ICON)--Iffy
 local timerSleepingFogCD		= mod:NewCDTimer(21.9, 24814, nil, nil, nil, 3)

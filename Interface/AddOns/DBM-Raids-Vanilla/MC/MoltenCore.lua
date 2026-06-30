@@ -2,8 +2,7 @@ if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
 local mod	= DBM:NewMod("MoltenCore", "DBM-Raids-Vanilla", 6)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103123604")
 mod:SetCreatureID(227939)
 mod:SetEncounterID(3018)
 mod:RegisterCombat("combat")
@@ -51,7 +50,7 @@ local warnBossPower		= mod:NewAnnounce("WarnBossPower", 2, 29166)
 -- only have limited data, but might be on a 35 second cooldown and happen first at about 20 second after pull
 local timerHearts		= mod:NewCDTimer(35, 460898)
 local warnHearts		= mod:NewTargetNoFilterAnnounce(460898, 4)
-local specWarnHeart		= mod:NewSpecialWarningMoveTo(460898, nil, nil, nil, 3, 2, nil, nil, "bombyou")
+local specWarnHeart		= mod:NewSpecialWarningMoveTo(460898, nil, nil, nil, 3, 2)
 local yellHeart			= mod:NewIconTargetYell(460898, nil, nil, nil, "YELL")
 local yellHeartCleared	= mod:NewYell(460898, DBM_COMMON_L.CLEAR, true, "YellHeartCleared", "YELL")
 

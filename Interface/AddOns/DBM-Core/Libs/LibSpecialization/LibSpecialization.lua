@@ -4,7 +4,7 @@ local cataWowID = 14
 local mistsWowID = 19
 if wowID ~= 1 and wowID ~= cataWowID and wowID ~= mistsWowID then return end -- Retail, Cata, Mists
 
-local LS, oldminor = LibStub:NewLibrary("LibSpecialization", 27)
+local LS, oldminor = LibStub:NewLibrary("LibSpecialization", 24)
 if not LS then return end -- No upgrade needed
 
 LS.callbackMapGroup = LS.callbackMapGroup or {}
@@ -398,45 +398,6 @@ local SendAddonMessage = C_ChatInfo.SendAddonMessage
 local IsInGroup = IsInGroup
 local CTimerNewTimer = C_Timer.NewTimer
 local next, securecallfunction = next, securecallfunction
-local RequestGroupSpecialization
-do
-	local prev = 0
-	local timer = nil
-	local InChatMessagingLockdown = C_ChatInfo.InChatMessagingLockdown or function() end
-	function RequestGroupSpecialization()
-		local specId, role, position, talentString = GetInfo()
-		if specId then
-			for _,func in next, callbackMapGroup do
-				securecallfunction(func, specId, role, position, pName, talentString) -- This allows us to show our own spec info when not grouped
-			end
-		end
-
-		if IsInGroup() then
-			if InChatMessagingLockdown() then
-				LS.frame:RegisterEvent("ADDON_RESTRICTION_STATE_CHANGED")
-				return
-			end
-
-			local t = GetTime()
-			if t-prev > throttleTimer then
-				if timer then
-					timer:Cancel()
-					timer = nil
-				end
-				prev = t
-				if IsInGroup(2) then
-					SendAddonMessage("LibSpec", "R", "INSTANCE_CHAT")
-				end
-				if IsInGroup(1) then
-					SendAddonMessage("LibSpec", "R", "RAID")
-				end
-			elseif not timer then
-				timer = CTimerNewTimer((throttleTimer+0.1)-(t-prev), RequestGroupSpecialization)
-			end
-		end
-	end
-end
-
 do
 	local currentSpecId, currentTalentString, currentRole = 0, nil, nil
 
@@ -444,37 +405,29 @@ do
 	do
 		local timerInstance = nil
 		local function SendToInstance()
-			if timerInstance then
-				timerInstance:Cancel()
-				timerInstance = nil
-			end
+			timerInstance = nil
 			if IsInGroup(2) then
 				if currentRole then -- Cataclysm Feral Druids
 					local result = SendAddonMessage("LibSpec", format("%d,,%s", currentSpecId, currentRole), "INSTANCE_CHAT")
-					if result == 3 or result == 8 or result == 9 then -- AddonMessageThrottle, ChannelThrottle, GeneralError
+					if result == 9 then
 						timerInstance = CTimerNewTimer(throttleTimer, SendToInstance)
 					end
 				else
 					local result = SendAddonMessage("LibSpec", format("%d,%s", currentSpecId, currentTalentString or ""), "INSTANCE_CHAT")
-					if result == 3 or result == 8 or result == 9 then -- AddonMessageThrottle, ChannelThrottle, GeneralError
+					if result == 9 then
 						timerInstance = CTimerNewTimer(throttleTimer, SendToInstance)
 					end
 				end
 			end
 		end
-		local prev = 0
 		function PrepareForInstance()
 			local specId, role, _, talentString = GetInfo()
 			if specId then
 				currentSpecId = specId
 				currentTalentString = talentString
 				currentRole = specId == 750 and role or nil -- Cataclysm Feral Druids
-				local t = GetTime()
-				if t-prev > throttleTimer then
-					prev = t
-					SendToInstance()
-				elseif not timerInstance then
-					timerInstance = CTimerNewTimer((throttleTimer+0.1)-(t-prev), SendToInstance)
+				if not timerInstance then
+					timerInstance = CTimerNewTimer(throttleTimer, SendToInstance)
 				end
 			end
 		end
@@ -484,37 +437,29 @@ do
 	do
 		local timerGroup = nil
 		local function SendToGroup()
-			if timerGroup then
-				timerGroup:Cancel()
-				timerGroup = nil
-			end
+			timerGroup = nil
 			if IsInGroup(1) then
 				if currentRole then -- Cataclysm Feral Druids
 					local result = SendAddonMessage("LibSpec", format("%d,,%s", currentSpecId, currentRole), "RAID") -- RAID auto downgrades to PARTY as needed
-					if result == 3 or result == 8 or result == 9 then -- AddonMessageThrottle, ChannelThrottle, GeneralError
+					if result == 9 then
 						timerGroup = CTimerNewTimer(throttleTimer, SendToGroup)
 					end
 				else
 					local result = SendAddonMessage("LibSpec", format("%d,%s", currentSpecId, currentTalentString or ""), "RAID") -- RAID auto downgrades to PARTY as needed
-					if result == 3 or result == 8 or result == 9 then -- AddonMessageThrottle, ChannelThrottle, GeneralError
+					if result == 9 then
 						timerGroup = CTimerNewTimer(throttleTimer, SendToGroup)
 					end
 				end
 			end
 		end
-		local prev = 0
 		function PrepareForGroup()
 			local specId, role, _, talentString = GetInfo()
 			if specId then
 				currentSpecId = specId
 				currentTalentString = talentString
 				currentRole = specId == 750 and role or nil -- Cataclysm Feral Druids
-				local t = GetTime()
-				if t-prev > throttleTimer then
-					prev = t
-					SendToGroup()
-				elseif not timerGroup then
-					timerGroup = CTimerNewTimer((throttleTimer+0.1)-(t-prev), SendToGroup)
+				if not timerGroup then
+					timerGroup = CTimerNewTimer(throttleTimer, SendToGroup)
 				end
 			end
 		end
@@ -523,6 +468,7 @@ do
 	local PrepareForGuild
 	do
 		local guildTimer = nil
+		local prev = 0
 		local function SendToGuild()
 			if guildTimer then
 				guildTimer:Cancel()
@@ -531,30 +477,31 @@ do
 			if IsInGuild() then
 				if currentRole then -- Cataclysm Feral Druids
 					local result = SendAddonMessage("LibSpec", format("%d,,%s", currentSpecId, currentRole), "GUILD")
-					if result == 3 or result == 8 or result == 9 then -- AddonMessageThrottle, ChannelThrottle, GeneralError
+					if result == 9 then
 						guildTimer = CTimerNewTimer(throttleTimer, SendToGuild)
 					end
 				else
 					local result = SendAddonMessage("LibSpec", format("%d,%s", currentSpecId, currentTalentString or ""), "GUILD")
-					if result == 3 or result == 8 or result == 9 then -- AddonMessageThrottle, ChannelThrottle, GeneralError
+					if result == 9 then
 						guildTimer = CTimerNewTimer(throttleTimer, SendToGuild)
 					end
 				end
 			end
 		end
-		local prev = 0
 		function PrepareForGuild()
 			local specId, role, _, talentString = GetInfo()
 			if specId then
 				currentSpecId = specId
 				currentTalentString = talentString
 				currentRole = specId == 750 and role or nil -- Cataclysm Feral Druids
-				local t = GetTime()
-				if t-prev > throttleTimer then
-					prev = t
-					SendToGuild()
-				elseif not guildTimer then
-					guildTimer = CTimerNewTimer((throttleTimer+0.1)-(t-prev), SendToGuild)
+				if not guildTimer then
+					local t = GetTime()
+					if t-prev > throttleTimer then
+						prev = t
+						SendToGuild()
+					else
+						guildTimer = CTimerNewTimer(throttleTimer-(t-prev), SendToGuild)
+					end
 				end
 			end
 		end
@@ -568,10 +515,11 @@ do
 	}
 	local tonumber, strmatch = tonumber, string.match
 	local Ambiguate = Ambiguate
+	local issecretvalue = issecretvalue or function() return false end
 	local C_ClassTalents_GetActiveConfigID = C_ClassTalents and C_ClassTalents.GetActiveConfigID
-	LS.frame:SetScript("OnEvent", function(self, event, prefix, msg, channel, sender)
+	LS.frame:SetScript("OnEvent", function(_, event, prefix, msg, channel, sender)
 		if event == "CHAT_MSG_ADDON" then
-			if prefix == "LibSpec" and approved[channel] then -- Only approved channels
+			if not issecretvalue(msg) and prefix == "LibSpec" and approved[channel] then -- Only approved channels
 				if msg == "R" then
 					if channel == "GUILD" then
 						PrepareForGuild()
@@ -607,6 +555,8 @@ do
 					end
 				end
 			end
+		elseif event == "GROUP_FORMED" then -- Join new group
+			LS.RequestGroupSpecialization()
 		elseif event == "PLAYER_TALENT_UPDATE" or event == "PLAYER_SPECIALIZATION_CHANGED" or ((event == "ACTIVE_COMBAT_CONFIG_CHANGED" or event == "TRAIT_CONFIG_UPDATED") and prefix == C_ClassTalents_GetActiveConfigID()) then
 			for _,func in next, LS.callbackMapPlayerSpecChange do
 				securecallfunction(func) -- Notify when the player has changed their spec
@@ -626,19 +576,8 @@ do
 					end
 				end
 			end
-		elseif event == "GROUP_FORMED" then -- Join new group
-			RequestGroupSpecialization()
 		elseif event == "PLAYER_LOGIN" then
-			RequestGroupSpecialization()
-			-- Calling this again will schedule a delayed request. We want to do this in case we logged into an active encounter, but InChatMessagingLockdown didn't signal this in the first check.
-			RequestGroupSpecialization()
-		elseif event == "ADDON_RESTRICTION_STATE_CHANGED" then
-			if prefix == 5 and msg == 0 then -- [prefix=restrictionType] 5=Chat restriction, [msg=state] 0=Inactive
-				self:UnregisterEvent(event)
-				RequestGroupSpecialization()
-				-- Calling this again will schedule a delayed request. We want to do this in case we requested group data a millisecond too early, and not everyone in the group was out of chat lockdown to hear our request.
-				RequestGroupSpecialization()
-			end
+			LS.RequestGroupSpecialization()
 		end
 	end)
 	LS.frame:RegisterEvent("CHAT_MSG_ADDON")
@@ -655,9 +594,34 @@ do
 end
 
 do
-	function LS.RequestGroupSpecialization()
-		-- DEPRECATED. This function was never supposed to be used as this library handles communication automatically.
-		-- Unfortunately bad devs or bad AI started overusing this function, creating a lot of transmission noise on pointless ingame events.
+	local prev = 0
+	local timer = nil
+	function LS.RequestGroupSpecialization() -- Group comms are automatic, you should never need to use this
+		local specId, role, position, talentString = GetInfo()
+		if specId then
+			for _,func in next, callbackMapGroup do
+				securecallfunction(func, specId, role, position, pName, talentString) -- This allows us to show our own spec info when not grouped
+			end
+		end
+
+		if IsInGroup() then
+			local t = GetTime()
+			if t-prev > throttleTimer then
+				if timer then
+					timer:Cancel()
+					timer = nil
+				end
+				prev = t
+				if IsInGroup(2) then
+					SendAddonMessage("LibSpec", "R", "INSTANCE_CHAT")
+				end
+				if IsInGroup(1) then
+					SendAddonMessage("LibSpec", "R", "RAID")
+				end
+			elseif not timer then
+				timer = CTimerNewTimer((throttleTimer+0.1)-(t-prev), LS.RequestGroupSpecialization)
+			end
+		end
 	end
 end
 
@@ -689,5 +653,5 @@ do
 end
 
 if IsLoggedIn() and not oldminor then -- Player is logged in and library isn't upgrading
-	RequestGroupSpecialization()
+	LS.RequestGroupSpecialization()
 end

@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(611, "DBM-Party-WotLK", 3, 279)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260315034941")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250609051305")
 mod:SetCreatureID(26529)
 mod:SetEncounterID(2002)
 mod:SetZone(279)

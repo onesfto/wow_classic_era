@@ -1,12 +1,10 @@
 local mod = DBM:NewMod(543, "DBM-Party-BC", 9, 252)
 local L = mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20231014053250")
 
 mod:SetCreatureID(18473)
 mod:SetEncounterID(1902)
-mod:SetZone(556)
 
 if not mod:IsRetail() then
 	mod:SetModelID(18636)
@@ -23,7 +21,7 @@ mod:RegisterEventsInCombat(
 
 local warnSheep					= mod:NewTargetAnnounce(38245, 3)
 
-local specWarnArcaneExplosion	= mod:NewSpecialWarningSpell(38197, nil, nil, 2, 3, 2, nil, nil, "findshelter")
+local specWarnArcaneExplosion	= mod:NewSpecialWarningSpell(38197, nil, nil, 2, 3, 2)
 
 local timerArcaneExplosion		= mod:NewCastTimer(5, 38197, nil, nil, nil, 2)
 

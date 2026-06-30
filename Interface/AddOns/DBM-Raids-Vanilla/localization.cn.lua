@@ -18,17 +18,6 @@ L = DBM:GetModLocalization("ThreeBugs")
 L:SetGeneralLocalization{
 	name = "安其拉三宝"
 }
-L:SetMiscLocalization{
-	Yauj = "亚尔基公主",
-	Vem = "维姆",
-	Kri = "克里勋爵"
-}
-L:SetWarningLocalization({
-    WarnBugDied = "%s死了（剩餘%d隻）"
-})
-L:SetOptionLocalization{
-	WarnBugDied = "提示安其拉三宝虫剩余"
-}
 
 -------------
 -- Sartura --
@@ -37,12 +26,6 @@ L = DBM:GetModLocalization("Sartura")
 
 L:SetGeneralLocalization{
 	name = "沙尔图拉"
-}
-L:SetWarningLocalization({
-    WarnGuardDied = "沙尔图拉的皇家卫兵：%d/3" -- NPC ID 15984
-})
-L:SetOptionLocalization{
-    WarnGuardDied = "提示沙尔图拉的皇家卫兵剩余"
 }
 
 --------------
@@ -64,7 +47,7 @@ L:SetGeneralLocalization{
 }
 L:SetWarningLocalization{
 	WarnFreeze	= "冰冻：%d/3",
-	WarnShatter	= "打碎：%d/2"
+	WarnShatter	= "打碎：%d/3"
 }
 L:SetOptionLocalization{
 	WarnFreeze	= "提示冰冻状态",
@@ -76,7 +59,8 @@ L:SetMiscLocalization{
 	Frozen		= "变成了坚硬的固体！",
 	Phase4 		= "开始出现裂缝！",
 	Phase5 		= "看起来就要碎裂了！",
-	FrostHits	= "冰霜命中",
+	Phase6 		= "爆炸。",
+
 	FrostHitsPerSecond = "冰霜每秒命中次数",
 	MeleeHitsPerSecond = "近战每秒命中次数"
 }
@@ -126,12 +110,14 @@ L:SetOptionLocalization{
 	WarnClawTentacle2		= "为利爪触须显示警告",
 	WarnGiantEyeTentacle	= "为巨眼触须显示警告",
 	WarnGiantClawTentacle	= "为巨钩触须显示警告",
+	WarnWeakened			= "当首领虚弱時显示警告",
 	SpecWarnWeakened		= "当首领虚弱時显示特別警告",
 	TimerEyeTentacle		= "为下一次眼球触须显示计时器",
 	TimerClawTentacle		= "为下一次利爪触须显示计时器",
 	TimerGiantEyeTentacle	= "为下一次巨眼触须显示计时器",
 	TimerGiantClawTentacle	= "为下一次巨钩触须显示计时器",
-	TimerWeakened			= "为首领虚弱時间显示计时器"
+	TimerWeakened			= "为首领虚弱時间显示计时器",
+	RangeFrame				= "显示距离框架(10码)"
 }
 L:SetMiscLocalization{
 	Stomach		= "克苏恩的胃",
@@ -251,6 +237,16 @@ L = DBM:GetModLocalization("Ossirian")
 L:SetGeneralLocalization{
 	name 		= "无疤者奥斯里安"
 }
+L:SetWarningLocalization{
+	WarnVulnerable	= "%s"
+}
+L:SetTimerLocalization{
+	TimerVulnerable	= "%s"
+}
+L:SetOptionLocalization{
+	WarnVulnerable	= "提示虛弱",
+	TimerVulnerable	= "为虛弱显示计时器"
+}
 
 ----------------
 -- AQ20 Trash --
@@ -276,9 +272,9 @@ L:SetOptionLocalization{
 	TimerAddsSpawn	= "为第一次小怪重生显示计时器"
 }
 L:SetMiscLocalization{
-	Pull 	= "入侵者闯进了孵化间！我们要不惜一切代价保护龙蛋！"
+	Phase2Emote	= "在宝珠的控制力消失的瞬间",
+	YellPull 	= "入侵者闯进了孵化间！我们要不惜一切代价保护龙蛋！"
 }
-
 -------------------
 --  Vaelastrasz  --
 -------------------
@@ -369,13 +365,13 @@ L:SetWarningLocalization{
 	WarnVulnerable	= "%s易伤"
 }
 L:SetTimerLocalization{
-	TimerBreathCD	= "%s",
-	TimerBreath		= "%s",
+	TimerBreathCD	= "%s冷却",
+	TimerBreath		= "%s施法",
 	TimerVulnCD		= "易伤切换"
 }
 L:SetOptionLocalization{
 	WarnBreath			= "为克洛玛古斯其中一个吐息显示警告",
-	WarnVulnerableNew	= "为法术易伤显示提示",
+	WarnVulnerableNew	= "为易伤显示警告",
 	TimerBreathCD		= "显示吐息冷却",
 	TimerBreath			= "显示吐息施法",
 	TimerVulnCD			= "显示易伤周期"
@@ -417,6 +413,7 @@ L:SetOptionLocalization{
 }
 L:SetMiscLocalization{
 	YellP1 		= "比赛开始！",
+	YellP2		= "干得好，我的手下。凡人的勇气开始消退了！现在，让我们看看他们如何应对黑石塔的真正主人的力量！！！",
 	YellP3		= "不可能！出现吧，我的仆人！再次为你们的主人效力！",
 	YellShaman	= "萨满祭司，让我看看你们的图腾到底是干什么用的！",
 	YellPaladin	= "圣骑士……听说你们有无数条命。让我看看到底是怎么样的吧。",
@@ -511,12 +508,6 @@ L = DBM:GetModLocalization("Majordomo")
 L:SetGeneralLocalization{
 	name = "管理者埃克索图斯"
 }
-L:SetTimerLocalization{
-	timerShieldCD		= "护盾"
-}
-L:SetOptionLocalization{
-	timerShieldCD		= "为下一次伤害/魔法反射护盾显示计时器"
-}
 
 ----------------
 --  Ragnaros  --
@@ -571,6 +562,9 @@ L = DBM:GetModLocalization("Venoxis")
 L:SetGeneralLocalization{
 	name = "高阶祭司温诺希斯"
 }
+L:SetOptionLocalization{
+	RangeFrame		= "显示范围框"
+}
 
 -------------------
 --  Jeklik  --
@@ -614,7 +608,8 @@ L:SetOptionLocalization({
 
 L:SetMiscLocalization({
 	PriestDied	= "%s死了。",
-	YellPhase2	= "西瓦尔拉，让我感受你的愤怒吧！"
+	YellPhase2	= "西瓦尔拉，让我感受你的愤怒吧！",
+	YellKill	= "哈卡再也不能束缚我了！我终于可以安息了！"
 })
 
 -------------------
@@ -698,7 +693,8 @@ L:SetOptionLocalization{
 }
 
 L:SetMiscLocalization{
-	YellP1 			= "真是走运。通常我必须离开窝才能找到食物。",
+	Breath 			= "%s深深地吸了一口气",
+	YellPull 		= "真是走运。通常我必须离开窝才能找到食物。",
 	YellP2 			= "这毫无意义的行动让我很厌烦。我会从上空把你们都烧成灰！",
 	YellP3 			= "看起来需要再给你一次教训，凡人！"
 }
@@ -728,11 +724,13 @@ L:SetGeneralLocalization({
 })
 
 L:SetWarningLocalization({
-	WarningEmbraceExpire		= "黑女巫的拥抱5秒后结束"
+	WarningEmbraceExpire		= "黑女巫的拥抱5秒后结束",
+	WarningEmbraceExpired		= "黑女巫的拥抱结束"
 })
 
 L:SetOptionLocalization({
-	WarningEmbraceExpire		= "为黑女巫的拥抱结束显示提前警报"
+	WarningEmbraceExpire		= "为黑女巫的拥抱结束显示提前警报",
+	WarningEmbraceExpired		= "为黑女巫的拥抱结束显示警报"
 })
 
 L:SetMiscLocalization({
@@ -749,6 +747,21 @@ L = DBM:GetModLocalization("MaexxnaVanilla")
 
 L:SetGeneralLocalization({
 	name 					= "迈克斯纳"
+})
+
+L:SetWarningLocalization({
+	WarningSpidersSoon		= "迈克斯纳的小蜘蛛5秒后出现",
+	WarningSpidersNow		= "迈克斯纳的小蜘蛛出现了"
+})
+
+L:SetTimerLocalization({
+	TimerSpider				= "迈克斯纳的小蜘蛛"
+})
+
+L:SetOptionLocalization({
+	WarningSpidersSoon		= "迈克斯纳的小蜘蛛显示提前警报",
+	WarningSpidersNow		= "迈克斯纳的小蜘蛛显示警报",
+	TimerSpider				= "为下一次迈克斯纳的小蜘蛛显示计时条"
 })
 
 ------------------------------
@@ -830,10 +843,7 @@ L:SetWarningLocalization({
 
 L:SetOptionLocalization({
 	WarningHealSoon			= "为3秒后可以治疗显示提前警报",
-	WarningHealNow			= "为现在治疗显示警报",
-	Sorting					= "排序",
-	Alphabetical			= "按字母",
-	Duration				= "持续时间"
+	WarningHealNow			= "为现在治疗显示警报"
 })
 
 -----------------
@@ -845,9 +855,12 @@ L:SetGeneralLocalization({
 	name 				= "帕奇维克"
 })
 
+L:SetOptionLocalization({
+})
+
 L:SetMiscLocalization({
-	Pull1 				= "帕奇维克要跟你玩！",
-	Pull2 				= "帕奇维克是克尔苏加德的战神！"
+	yell1 				= "帕奇维克要跟你玩！",
+	yell2 				= "帕奇维克是克尔苏加德的战神！"
 })
 
 -----------------
@@ -878,8 +891,11 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	Yell1P1				= "主人要吃了你！",
-	Yell2P1				= "斯塔拉格要碾碎你！"
+	Yell				= "斯塔拉格要碾碎你！",
+	Emote				= "%s超载了！",
+	Emote2				= "电磁圈超载了！",
+	Charge1 			= "负极",
+	Charge2 			= "正极"
 })
 
 L:SetOptionLocalization({
@@ -906,10 +922,18 @@ L:SetGeneralLocalization({
 })
 
 L:SetMiscLocalization({
-	Pull1 				= "仁慈无用！",
-	Pull2 				= "练习时间到此为止！都拿出真本事来！",
-	Pull3 				= "按我教导的去做！",
-	Pull4 				= "绊腿……有什么问题么？"
+	Yell1 				= "仁慈无用！",
+	Yell2 				= "练习时间到此为止！都拿出真本事来！",
+	Yell3 				= "按我教导的去做！",
+	Yell4 				= "绊腿……有什么问题么？"
+})
+
+L:SetOptionLocalization({
+	WarningShieldWallSoon		= "为盾墙结束显示提前警报"
+})
+
+L:SetWarningLocalization({
+	WarningShieldWallSoon		= "5秒后盾墙结束"
 })
 
 ----------------------------
@@ -931,13 +955,13 @@ L:SetOptionLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerWave				= "第%d/18波",
+	TimerWave				= "第%d波",
 	TimerPhase2				= "第二阶段"
 })
 
 L:SetWarningLocalization({
-	WarningWaveSoon			= "3秒后第%d波：%s",
-	WarningWaveSpawned		= "第%d波：%s出现了",
+	WarningWaveSoon			= "3秒后 第%d波: %s",
+	WarningWaveSpawned		= "第%d波: %s 出现了",
 	WarningRiderDown		= "骑兵已死亡",
 	WarningKnightDown		= "死亡骑士已死亡",
 	WarningPhase2			= "第二阶段"
@@ -964,9 +988,7 @@ L:SetGeneralLocalization({
 
 L:SetOptionLocalization({
 	WarningMarkSoon				= "为印记显示提前警报",
-	SpecialWarningMarkOnPlayer	= "当你印记叠加多于四层时显示特别警报",
-	timerMark					= "为下一个印记显示计时器（含层数）",
-	WarnHorsemanDied			= "提示天启四骑士剩余"
+	SpecialWarningMarkOnPlayer	= "当你印记叠加多于四层时显示特别警报"
 })
 
 L:SetTimerLocalization({
@@ -975,16 +997,9 @@ L:SetTimerLocalization({
 
 L:SetWarningLocalization({
 	WarningMarkSoon				= "3秒后印记%d",
-	SpecialWarningMarkOnPlayer	= "%s：%s",
-	WarnHorsemanDied 			= "%s死了（剩餘%d隻）"
+	SpecialWarningMarkOnPlayer	= "%s：%s"
 })
 
-L:SetMiscLocalization({
-	Korthazz			= "库尔塔兹领主",
-	Mograine			= "大领主莫格莱尼",
-	Blaumeux			= "女公爵布劳缪克丝",
-	Zeliek				= "瑟里耶克爵士"
-})
 -----------------
 --  Sapphiron  --
 -----------------
@@ -999,18 +1014,23 @@ L:SetOptionLocalization({
 	WarningAirPhaseNow		= "提示空中阶段",
 	WarningLanded			= "提示地上阶段",
 	TimerAir				= "为空中阶段显示计时条",
-	TimerLanding			= "为降落显示计时条"
+	TimerLanding			= "为降落显示计时条",
+	TimerIceBlast			= "为冰霜吐息显示计时条",
+	WarningDeepBreath		= "为冰霜吐息显示特别警报",
+	WarningIceblock			= "当你中了冰箱时大喊"
 })
 
 L:SetWarningLocalization({
-	WarningAirPhaseSoon		= "空中阶段即将开始",
+	WarningAirPhaseSoon		= "10秒后空中阶段",
 	WarningAirPhaseNow		= "空中阶段",
-	WarningLanded			= "萨菲隆降落了"
+	WarningLanded			= "萨菲隆降落了",
+	WarningDeepBreath		= "冰霜吐息"
 })
 
 L:SetTimerLocalization({
 	TimerAir				= "空中阶段",
-	TimerLanding			= "降落"
+	TimerLanding			= "降落",
+	TimerIceBlast			= "冰霜吐息"
 })
 
 ------------------
@@ -1025,15 +1045,17 @@ L:SetGeneralLocalization({
 
 L:SetOptionLocalization({
 	TimerPhase2			= "为第二阶段显示计时条",
-	specwarnP2Soon		= "为克尔苏加德攻击前10秒显示特别警报"
+	specwarnP2Soon		= "为克尔苏加德攻击前10秒显示特别警报",
+	warnAddsSoon		= "为寒冰皇冠卫士显示提前警报"
 })
 
 L:SetMiscLocalization({
-	YellP1 				= "仆从们，侍卫们，隶属于黑暗与寒冷的战士们！听从克尔苏加德的召唤！"
+	Yell 				= "仆从们，侍卫们，隶属于黑暗与寒冷的战士们！听从克尔苏加德的召唤！"
 })
 
 L:SetWarningLocalization({
-	specwarnP2Soon			= "10秒后克尔苏加德开始攻击"
+	specwarnP2Soon			= "10秒后克尔苏加德开始攻击",
+	warnAddsSoon			= "寒冰皇冠卫士即将出现"
 })
 
 L:SetTimerLocalization({
@@ -1248,7 +1270,6 @@ L = DBM:GetModLocalization("AtalaiDefendersSoD")
 L:SetGeneralLocalization({
 	name = "阿塔莱防御者"
 })
-
 ---------------------------
 --  Dreamscythe and Weaver  --
 ---------------------------
@@ -1257,7 +1278,6 @@ L = DBM:GetModLocalization("DreamscytheAndWeaverSoD")
 L:SetGeneralLocalization({
 	name = "德姆塞卡尔与德拉维沃尔"
 })
-
 ---------------------------
 --  Avatar of Hakkar  --
 ---------------------------
@@ -1266,7 +1286,6 @@ L = DBM:GetModLocalization("AvatarofHakkarSoD")
 L:SetGeneralLocalization({
 	name = "哈卡的化身"
 })
-
 ---------------------------
 --  Jammal'an and Ogom  --
 ---------------------------
@@ -1275,7 +1294,6 @@ L = DBM:GetModLocalization("JammalanAndOgomSoD")
 L:SetGeneralLocalization({
 	name = "迦玛兰和奥戈姆"
 })
-
 ---------------------------
 --  Morphaz and Hazzas  --
 ---------------------------
@@ -1284,7 +1302,6 @@ L = DBM:GetModLocalization("MorphazandHazzasSoD")
 L:SetGeneralLocalization({
 	name = "摩弗拉斯和哈扎斯"
 })
-
 ---------------------------
 --  Shade of Eranikus  --
 ---------------------------

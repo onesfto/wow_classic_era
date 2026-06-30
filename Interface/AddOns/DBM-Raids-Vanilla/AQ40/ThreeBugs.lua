@@ -9,8 +9,7 @@ end
 local mod	= DBM:NewMod("ThreeBugs", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241214045434")
 mod:SetCreatureID(15544, 15511, 15543)
 mod:SetEncounterID(710)
 mod:SetModelID(15657)
@@ -24,28 +23,19 @@ mod:RegisterEventsInCombat(
 	"UNIT_DIED"
 )
 
-mod:AddInfoFrameOption()
+local warnFear			= mod:NewSpellAnnounce(26580, 2)
+local warnToxicVolley	= mod:NewSpellAnnounce(25812, 2, nil, false)
+local warnHeal			= mod:NewCastAnnounce(25807, 3)
 
-local warnFear				= mod:NewSpellAnnounce(26580, 2)
-local warnToxicVolley		= mod:NewSpellAnnounce(25812, 2, nil, "RemovePoison")
-local warnHeal				= mod:NewCastAnnounce(25807, 3, nil, nil, "HasInterrupt")
-local warnBugDied			= mod:NewAnnounce("WarnBugDied", 2, "133570")
+local specWarnHeal		= mod:NewSpecialWarningInterrupt(25807, "HasInterrupt", nil, nil, 1, 2)
+local specWarnGTFO		= mod:NewSpecialWarningGTFO(25786, nil, nil, nil, 1, 8)
 
-local specWarnHeal			= mod:NewSpecialWarningInterrupt(25807, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
-local specWarnGTFO			= mod:NewSpecialWarningGTFO(25786, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+--"Toxic Volley-25812-npc:15511 = pull:11.8, 13.6, 16.8, 34.1, 14.8, 7.3, 8.3, 12.1, 15.8, 9.7, 19.6, 9.8", -- [12]
+--If users ask for a toxic volley timer, unless classic is different than retail (which i doubt), 7-34 second variable timer is not acceptable
+local timerFearCD		= mod:NewCDTimer(20.5, 26580, nil, nil, nil, 2)--Really important variable timer. Need the varation though
 
-local timerFearCD			= mod:NewVarTimer("v20.3-29.4", 26580, nil, nil, nil, 2)
-local timerToxicVolleyCD 	= mod:NewVarTimer("v8.1-35.1", 25812, nil, "RemovePoison", nil, 2, nil, DBM_COMMON_L.POISON_ICON)
-
-local bugsGuidCheck = {}
-
-mod.vb.bugsRemaining = 3
-
-function mod:OnCombatStart()
-	table.wipe(bugsGuidCheck)
-	self.vb.bugsRemaining = 3
-	timerFearCD:Start("v10.6-18.4")
-	timerToxicVolleyCD:Start("v8.1-42.6")
+function mod:OnCombatStart(delay)
+	timerFearCD:Start(10-delay)
 	if self:IsEvent() or not self:IsTrivial() then
 		self:UnscheduleMethod("UnregisterShortTermEvents")
 		self:RegisterShortTermEvents(
@@ -54,23 +44,11 @@ function mod:OnCombatStart()
 			"SPELL_PERIODIC_MISSED 25786 25989"
 		)
 	end
-	if self.Options.InfoFrame then
-		DBM.InfoFrame:Show(10, "bosshealth", {
-			[15511] = true,
-			[15543] = true,
-			[15544] = true,
-		})
-		self.bossHealthUpdateTime = 0.5
-	end
 end
 
 function mod:OnCombatEnd()
 	-- Poison cloud stays around after the boss dies
-	table.wipe(bugsGuidCheck)
 	self:ScheduleMethod(60, "UnregisterShortTermEvents")
-	if self.Options.InfoFrame then
-	DBM.InfoFrame:Hide()
-	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
@@ -79,7 +57,6 @@ function mod:SPELL_CAST_SUCCESS(args)
 		timerFearCD:Start()
 	elseif args:IsSpell(25812) then
 		warnToxicVolley:Show()
-		timerToxicVolleyCD:Start()
 	end
 end
 
@@ -114,25 +91,8 @@ do
 end
 
 function mod:UNIT_DIED(args)
-    local guid = args.destGUID
-    local cid = self:GetCIDFromGUID(guid)
-
-    if not bugsGuidCheck[guid] then
-        bugsGuidCheck[guid] = true
-
-        if cid == 15511 then -- Lord Kri
-			timerToxicVolleyCD:Stop()
-            self.vb.bugsRemaining = self.vb.bugsRemaining - 1
-            warnBugDied:Show(L.Kri, self.vb.bugsRemaining)
-
-        elseif cid == 15543 then -- Princess Yauj
-			timerFearCD:Stop()
-            self.vb.bugsRemaining = self.vb.bugsRemaining - 1
-            warnBugDied:Show(L.Yauj, self.vb.bugsRemaining)
-
-        elseif cid == 15544 then -- Vem
-            self.vb.bugsRemaining = self.vb.bugsRemaining - 1
-            warnBugDied:Show(L.Vem, self.vb.bugsRemaining)
-        end
-    end
+	local cid = self:GetCIDFromGUID(args.destGUID)
+	if cid == 15543 then
+		timerFearCD:Stop()
+	end
 end

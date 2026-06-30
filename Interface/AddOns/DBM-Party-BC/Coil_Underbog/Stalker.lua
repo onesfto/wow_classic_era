@@ -5,11 +5,9 @@ if mod:IsRetail() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20231014053250")
 mod:SetCreatureID(17882)
 mod:SetEncounterID(1948)
-mod:SetZone(546)
 
 if not mod:IsRetail() then
 	mod:SetModelID(18194)
@@ -25,7 +23,7 @@ mod:RegisterEventsInCombat(
 local warnStaticCharge		= mod:NewTargetAnnounce(31715, 3)
 local warnLevitate			= mod:NewTargetNoFilterAnnounce(31704, 2, nil, "RemoveMagic|Healer")
 
-local specWarnStaticCharge	= mod:NewSpecialWarningMoveAway(31715, nil, nil, nil, 1, 2, nil, nil, "runout")
+local specWarnStaticCharge	= mod:NewSpecialWarningMoveAway(31715, nil, nil, nil, 1, 2)
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 31704 then

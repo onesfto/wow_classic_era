@@ -5,16 +5,6 @@ local DBM_GUI = DBM_GUI
 
 local defaultFont, defaultFontSize = GameFontHighlightSmall:GetFont()
 
-local function resolveDropdownFontAsset(fontValue, fontSize, fontFlags)
-	if fontValue == "standardFont" then
-		return defaultFont
-	end
-	if DBM:IsFontValid(fontValue, defaultFont, fontSize, fontFlags) then
-		return fontValue
-	end
-	return defaultFont
-end
-
 ---@class DBMDropDownTmp: Button
 ---@field isSelectedCallbackFn function|nil
 ---@field onSelectionChangedCallback function|nil
@@ -62,19 +52,6 @@ function dropdownPrototype:RefreshLazyValues()
 		error("called RefreshLazyValues() on a static dropdown", 2)
 	end
 	self.values = self:valueGetter()
-end
-
--- Based off `MenuTemplates.AttachBasicButton`
-local function AttachBasicButton(parent, width, height)
-	local button = parent:AttachFrame("Button")
-	button:SetFrameStrata(parent:GetFrameStrata())
-
-	button:Show()
-	button:SetMouseClickEnabled(true)
-	button:SetMouseMotionEnabled(true)
-	button:SetSize(width or 16, height or 16)
-
-	return button;
 end
 
 -- values can either be a table or a function, if it's a function it gets called every time the dropdown is opened to populate the values
@@ -157,11 +134,8 @@ function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, he
 				radio = rootDescription:CreateRadio(v.text, IsSelected, SetSelected, v)
 			end
 			if v.font or v.flag then
-				local fontFlags = v.flag and v.value or ""
-				local fontSize = v.fontsize or defaultFontSize
-				local fontAsset = v.font and resolveDropdownFontAsset(v.value, fontSize, fontFlags) or defaultFont
 				radio.font = CreateFont("DBM_FONT_" .. v.text)
-				radio.font:SetFont(fontAsset, fontSize, fontFlags)
+				radio.font:SetFont(v.font and v.value or defaultFont, v.fontsize or defaultFontSize, v.flag and v.value or "")
 				-- Do **NOT** call SetFont inside of the initializer function, or it will silently exit (Thanks blizzard)
 				radio:AddInitializer(function(button)
 					button.fontString:SetFontObject(radio.font)
@@ -185,7 +159,7 @@ function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, he
 						return
 					end
 					if not button.playBtn then
-						button.playBtn = AttachBasicButton(button, 16, 16)
+						button.playBtn = MenuTemplates.AttachBasicButton(button, 16, 16)
 						button.playBtn:SetPoint("RIGHT", -5, 0)
 						local tex = button.playBtn:AttachTexture()
 						tex:SetAllPoints()
@@ -198,11 +172,9 @@ function DBM_GUI:CreateDropdown(title, values, vartype, var, callfunc, width, he
 							tex:SetVertexColor(0.8, 0.8, 0.8)
 						end)
 					end
-					if MenuTemplates.SetUtilityButtonClickHandler then
-						MenuTemplates.SetUtilityButtonClickHandler(button.playBtn, function()
-							DBM:PlaySoundFile(v.value)
-						end)
-					end
+					MenuTemplates.SetUtilityButtonClickHandler(button.playBtn, function()
+						DBM:PlaySoundFile(v.value)
+					end)
 					button.playBtn:Show()
 				end)
 			end

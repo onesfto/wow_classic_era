@@ -1,7 +1,6 @@
 local mod	= DBM:NewMod("EscortQuests", "DBM-WorldEvents", 2)
 
-mod:SetRevision("20260315034941")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetModelID(18921)
 mod:SetZone(1, 530)
 

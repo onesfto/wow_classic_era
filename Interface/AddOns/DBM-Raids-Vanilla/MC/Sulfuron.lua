@@ -12,8 +12,7 @@ end
 local mod	= DBM:NewMod("Sulfuron", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241119062628")
 mod:SetCreatureID(DBM:IsSeasonal("SeasonOfDiscovery") and 228436 or 12098)--, 11662
 mod:SetEncounterID(669)
 mod:SetModelID(13030)
@@ -32,19 +31,20 @@ mod:RegisterEventsInCombat(
 )
 
 --TODO, nameplate aura if classic API supports it enough
-local warnShadowPain	= mod:NewTargetAnnounce(19776, 2, nil, false, 2)
+--TODO, add https://www.wowhead.com/classic/spell=461043/sundering-shout in any capacity
 local warnInspire		= mod:NewTargetNoFilterAnnounce(19779, 2, nil, "Tank|Healer")
 local warnHandRagnaros	= mod:NewTargetAnnounce(19780, 2, nil, false, 2)
+local warnShadowPain	= mod:NewTargetAnnounce(19776, 2, nil, false, 2)
 local warnImmolate		= mod:NewTargetAnnounce(20294, 2, nil, false, 2)
 
-local specWarnHeal		= mod:NewSpecialWarningInterrupt(19775, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnHeal		= mod:NewSpecialWarningInterrupt(19775, "HasInterrupt", nil, nil, 1, 2)
 
-local timerHeal			= mod:NewCastNPTimer(2, 19775, nil, "HasInterrupt", 2, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 local timerInspire		= mod:NewTargetTimer(10, 19779, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON..DBM_COMMON_L.HEALER_ICON)
+local timerHeal			= mod:NewCastNPTimer(2, 19775, nil, nil, 2, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 
 local specWarnGTFO
 if DBM:IsSeasonal("SeasonOfDiscovery") then
-	specWarnGTFO		= mod:NewSpecialWarningGTFO(461103, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+	specWarnGTFO		= mod:NewSpecialWarningGTFO(461103, nil, nil, nil, 1, 8)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
@@ -80,7 +80,7 @@ end
 function mod:SPELL_CAST_START(args)
 	if args:IsSpell(19775) and args:IsSrcTypeHostile() then--Only show warning/timer for your own target.
 		timerHeal:Start(nil, args.sourceGUID)
-		if self:CheckInterruptFilter(args.sourceGUID, false, true) then
+		if self:CheckInterruptFilter(args.sourceGUID, true, true) then
 			specWarnHeal:Show(args.sourceName)
 			specWarnHeal:Play("kickcast")
 		end
@@ -88,6 +88,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_INTERRUPT(args)
+	if not self.Options.Enabled then return end
 	if type(args.extraSpellId) ~= "number" then return end
 	if args.extraSpellId == 19775 then
 		timerHeal:Stop(args.destGUID)

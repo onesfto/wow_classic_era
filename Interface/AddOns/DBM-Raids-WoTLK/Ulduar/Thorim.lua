@@ -5,8 +5,7 @@ if not mod:IsClassic() then--on classic, it's normal10,normal25, defined in toc,
 	mod.statTypes = "normal,timewalker"
 end
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250720212401")
 mod:SetCreatureID(32865)
 if mod:IsPostCata() then
 	mod:SetEncounterID(1141)
@@ -34,9 +33,9 @@ local warnLightningCharge			= mod:NewSpellAnnounce(62466, 2)
 local warningBomb					= mod:NewTargetNoFilterAnnounce(62526, 4)
 
 local yellBomb						= mod:NewYell(62526)
-local specWarnLightningShock		= mod:NewSpecialWarningMove(62017, nil, nil, nil, 1, 2, nil, nil, "runaway")
-local specWarnUnbalancingStrikeSelf	= mod:NewSpecialWarningDefensive(62130, nil, nil, nil, 1, 2, nil, nil, "defensive")
-local specWarnUnbalancingStrike		= mod:NewSpecialWarningTaunt(62130, nil, nil, nil, 1, 2, nil, nil, "tauntboss")
+local specWarnLightningShock		= mod:NewSpecialWarningMove(62017, nil, nil, nil, 1, 2)
+local specWarnUnbalancingStrikeSelf	= mod:NewSpecialWarningDefensive(62130, nil, nil, nil, 1, 2)
+local specWarnUnbalancingStrike		= mod:NewSpecialWarningTaunt(62130, nil, nil, nil, 1, 2)
 
 mod:AddBoolOption("AnnounceFails", false, "announce", nil, nil, nil, 62017)
 
@@ -47,6 +46,7 @@ local timerLightningCharge	 		= mod:NewCDTimer(16, 62466, nil, nil, nil, 3)
 local timerUnbalancingStrike		= mod:NewCDTimer(25.6, 62130, nil, "Tank", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
 local timerHardmode					= mod:NewTimer(175, "TimerHardmode", 62042)
 
+mod:AddRangeFrameOption("8")
 mod:AddSetIconOption("SetIconOnBomb", 62526, false, 0, {7})
 
 local lastcharge = {}
@@ -55,9 +55,17 @@ function mod:OnCombatStart(delay)
 	self:SetStage(1)
 	enrageTimer:Start()
 	timerHardmode:Start()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Show(8)
+	end
 	table.wipe(lastcharge)
 end
 
+function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
+end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 62042 and self:CheckBossDistance(args.sourceGUID, true, 34471) then--Within range of Vial of the Sunwell (43)

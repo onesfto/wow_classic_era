@@ -9,8 +9,7 @@ end
 local mod	= DBM:NewMod("AQ20Trash", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250122203106")
 if not mod:IsClassic() then
 	mod:SetModelID(15741)-- Qiraji Gladiator
 end
@@ -25,6 +24,7 @@ mod:RegisterEvents(
 	"SPELL_AURA_APPLIED 22997 25698 26079 1215202 1215421 2855",
 	"SPELL_PERIODIC_DAMAGE 1215421",
 	"SPELL_CAST_SUCCESS 26586",
+	"SPELL_AURA_REMOVED 22997",
 	"SPELL_SUMMON 17430 17431",
 	"SPELL_MISSED",
 	"UNIT_DIED",
@@ -33,37 +33,34 @@ mod:RegisterEvents(
 	"NAME_PLATE_UNIT_ADDED"
 )
 
+mod:AddRangeFrameOption(10, 22997)
 mod:AddNamePlateOption("ThunderclapNameplate", 8732)
 
 -- Toxic Pool, not using the new NewGtfo() thing because it uses the new event handler type that currently only supports combat-only events
 -- This is a problem out of combat often enough
-local specWarnGTFO = mod:NewSpecialWarningGTFO(1215421, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specWarnGTFO = mod:NewSpecialWarningGTFO(1215421, nil, nil, nil, 1, 8)
 
 
 --local eventsRegistered = false
 
 local warnPlague                    = mod:NewTargetAnnounce(22997, 2)
 local warnCauseInsanity             = mod:NewTargetNoFilterAnnounce(26079, 2)
-local warnAdd1						= mod:NewSpellAnnounce(17430, 2, 802, "Dps")
-local warnAdd2						= mod:NewSpellAnnounce(17431, 2, 802, "Dps")
+local warnExplosion					= mod:NewAnnounce("WarnExplosion", 3, nil, false)
+local warnAdd1						= mod:NewSpellAnnounce(17430, 1, 802)
+local warnAdd2						= mod:NewSpellAnnounce(17431, 1, 802)
 
-local specWarnPlague                = mod:NewSpecialWarningMoveAway(22997, nil, nil, nil, 1, 2, nil, nil, "runout")
+local specWarnPlague                = mod:NewSpecialWarningMoveAway(22997, nil, nil, nil, 1, 2)
+local specWarnBurst					= mod:NewSpecialWarningDodge(1215202, nil, nil, nil, 2, 2)
 local yellPlague                    = mod:NewYell(22997)
-local specWarnExplode               = mod:NewSpecialWarningRun(25698, "Melee", nil, 3, 4, 2, nil, nil, "justrun")
-local specWarnShadowFrostReflect    = mod:NewSpecialWarningReflect(19595, "SpellCaster", nil, nil, 1, 2, nil, nil, "stopattack")
-local specWarnFireArcaneReflect     = mod:NewSpecialWarningReflect(13022, "SpellCaster", nil, nil, 1, 2, nil, nil, "stopattack")
+local yellBurst						= mod:NewIconTargetYell(1215202)
+local specWarnExplode               = mod:NewSpecialWarningRun(25698, "Melee", nil, 3, 4, 2)
+local specWarnShadowFrostReflect    = mod:NewSpecialWarningReflect(19595, nil, nil, nil, 1, 2)
+local specWarnFireArcaneReflect     = mod:NewSpecialWarningReflect(13022, nil, nil, nil, 1, 2)
+local specWarnExplosion				= mod:NewSpecialWarning("SpecWarnExplosion", nil, nil, nil, 1, 8)
 
-local timerSpecWarnExplode			= mod:NewCastTimer(6, 25698, nil, nil, nil, 2) -- Duration is 7s but it expires after 6s
+local timerExplosion				= mod:NewTimer(30, "TimerExplosion")
+local timerBurst					= mod:NewNextTimer(30, 1215202)
 
-local warnExplosion, yellBurst, specWarnBurst, specWarnExplosion, timerExplosion, timerBurst
-if DBM:IsSeasonal("SeasonOfDiscovery") then
-warnExplosion				= mod:NewAnnounce("WarnExplosion", 3, nil, false)
-yellBurst					= mod:NewIconTargetYell(1215202)
-specWarnBurst				= mod:NewSpecialWarningDodge(1215202, nil, nil, nil, 2, 2)
-specWarnExplosion			= mod:NewSpecialWarning("SpecWarnExplosion", nil, nil, nil, 1, 8)
-timerExplosion				= mod:NewTimer(30, "TimerExplosion") -- Default icon looks good cause they cast Arcane Explosion
-timerBurst					= mod:NewNextTimer(30, 1215202)
-end
 
 local aq40Trash = DBM:GetModByName("AQ40Trash")
 
@@ -74,6 +71,9 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnPlague:Show()
 			specWarnPlague:Play("runout")
 			yellPlague:Yell()
+			if self.Options.RangeFrame then
+				DBM.RangeCheck:Show(10)
+			end
 		elseif UnitGUID("pet") and UnitGUID("pet") == args.destGUID then
 			specWarnPlague:Show()
 			specWarnPlague:Play("runout")
@@ -84,7 +84,6 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args:IsSpell(25698) and not self:IsTrivial() then
 		specWarnExplode:Show()
 		specWarnExplode:Play("justrun")
-		timerSpecWarnExplode:Start(nil, args.sourceGUID)
 	elseif args:IsSpell(26079) then
 		warnCauseInsanity:CombinedShow(0.75, args.destName)
 	elseif args:IsSpell(1215202) then
@@ -120,6 +119,14 @@ function mod:SPELL_DAMAGE(sourceGUID, sourceName, _, sourceRaidFlags, _, _, _, _
 		end
 	elseif spellId == 25779 then
 		aq40Trash:TrackTrashAbility(sourceGUID, "ManaBurn", sourceRaidFlags, sourceName)
+	end
+end
+
+function mod:SPELL_AURA_REMOVED(args)
+	if args:IsSpell(22997) then
+		if args:IsPlayer() and self.Options.RangeFrame then
+			DBM.RangeCheck:Hide()
+		end
 	end
 end
 
@@ -177,8 +184,4 @@ end
 
 function mod:UNIT_DIED(args)
 	aq40Trash:RemoveTrackTrashAbilityMob(args.destGUID)
-	local cid = self:GetCIDFromGUID(args.destGUID)
-	if cid == 15355 then
-		timerSpecWarnExplode:Stop(args.destGUID)
-	end
 end

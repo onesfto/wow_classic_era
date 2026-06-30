@@ -11,414 +11,25 @@ if isWrath then
 	DDM = LibStub:GetLibrary("LibDropDownMenu")
 end
 
-local select, ipairs, mfloor, mmax, mmin = select, ipairs, math.floor, math.max, math.min
-local strlower, strgsub, tsort, tconcat = string.lower, string.gsub, table.sort, table.concat
-local CreateFrame, GameFontNormal, C_Timer = CreateFrame, GameFontNormal, C_Timer
+local select, ipairs, mfloor, mmax, mmin = select, pairs, math.floor, math.max, math.min
+local CreateFrame, GameFontNormal = CreateFrame, GameFontNormal
 local DBM = DBM
 
 ---@class DBMOptionsFrame: Frame
 ---@field tabs table
----@field searchClearButton Button
----@field searchCountText FontString
 ---@field LoadAndShowFrame fun(self: DBMOptionsFrame, subFrame: Frame)
 local frame = CreateFrame("Frame", "DBM_GUI_OptionsFrame", UIParent, "NineSlicePanelTemplate")
 
 local selectedPagePerTab = {}
-local searchTextCache = {}
-local cachedSearchQuery
-local cachedSearchResults
-local normalizedSearchCache = {}
-local normalizedSearchCacheEntries = 0
-local cachedListFrame
-local cachedListScrollBar
-local cachedContainerFOV
-local cachedContainerScrollBar
-local cachedPanelContainer
-local cachedDropDown
-
-local function resetSearchResultsCache()
-	cachedSearchQuery = nil
-	cachedSearchResults = nil
-end
-
-local function cacheNormalizedSearchValue(rawText, value)
-	if normalizedSearchCacheEntries >= 256 then
-		normalizedSearchCache = {}
-		normalizedSearchCacheEntries = 0
-	end
-	if normalizedSearchCache[rawText] == nil then
-		normalizedSearchCacheEntries = normalizedSearchCacheEntries + 1
-	end
-	normalizedSearchCache[rawText] = value
-end
-
-local function GetListFrame()
-	if not cachedListFrame then
-		local listFrame = _G[frame:GetName() .. "List"]
-		if listFrame then
-			cachedListFrame = listFrame
-		end
-	end
-	return cachedListFrame
-end
-
-local function GetListScrollBar()
-	if not cachedListScrollBar then
-		local listFrame = GetListFrame()
-		if listFrame then
-			cachedListScrollBar = _G[listFrame:GetName() .. "ScrollBar"]
-		end
-	end
-	return cachedListScrollBar
-end
-
-local function GetContainerFOV()
-	if not cachedContainerFOV then
-		local fov = _G["DBM_GUI_OptionsFramePanelContainerFOV"]
-		if fov then
-			cachedContainerFOV = fov
-		end
-	end
-	return cachedContainerFOV
-end
-
-local function GetContainerScrollBar()
-	if not cachedContainerScrollBar then
-		local fov = GetContainerFOV()
-		if fov then
-			cachedContainerScrollBar = _G[fov:GetName() .. "ScrollBar"]
-		end
-	end
-	return cachedContainerScrollBar
-end
-
-local function GetPanelContainer()
-	if not cachedPanelContainer then
-		local panel = _G["DBM_GUI_OptionsFramePanelContainer"]
-		if panel then
-			cachedPanelContainer = panel
-		end
-	end
-	return cachedPanelContainer
-end
-
-local function GetDropDown()
-	if not cachedDropDown then
-		local dropdown = _G["DBM_GUI_DropDown"]
-		if dropdown then
-			cachedDropDown = dropdown
-		end
-	end
-	return cachedDropDown
-end
-
-local function truncateTextWithEllipsis(fontString, text, maxWidth)
-	text = text or ""
-	fontString:SetText(text)
-	if fontString:GetStringWidth() <= maxWidth then
-		return text
-	end
-
-	local chars = {}
-	for ch in text:gmatch("[%z\1-\127\194-\244][\128-\191]*") do
-		chars[#chars + 1] = ch
-	end
-	if #chars == 0 then
-		return text
-	end
-
-	local ellipsis = "..."
-	fontString:SetText(ellipsis)
-	if fontString:GetStringWidth() > maxWidth then
-		return ""
-	end
-
-	local best = ellipsis
-	local low, high = 1, #chars
-	while low <= high do
-		local mid = math.floor((low + high) / 2)
-		local candidate = table.concat(chars, "", 1, mid) .. ellipsis
-		fontString:SetText(candidate)
-		if fontString:GetStringWidth() <= maxWidth then
-			best = candidate
-			low = mid + 1
-		else
-			high = mid - 1
-		end
-	end
-
-	return best
-end
-
-local function normalizeSearchText(text)
-	if not text then
-		return ""
-	end
-	if DBM:issecretvalue(text) then
-		return ""
-	end
-	local okText, rawText = pcall(tostring, text)
-	if not okText or not rawText then
-		return ""
-	end
-	local cached = normalizedSearchCache[rawText]
-	if cached ~= nil then
-		return cached
-	end
-	local ok, normalized = pcall(function()
-		local value = rawText
-		value = strgsub(value, "|c%x%x%x%x%x%x%x%x", "")
-		value = strgsub(value, "|r", "")
-		value = strgsub(value, "|T.-|t", " ")
-		value = strgsub(value, "|H.-|h(.-)|h", "%1")
-		value = strgsub(value, "<.->", " ")
-		value = strgsub(value, "%s+", " ")
-		return strlower(value:match("^%s*(.-)%s*$") or "")
-	end)
-	if ok and normalized then
-		cacheNormalizedSearchValue(rawText, normalized)
-		return normalized
-	end
-	cacheNormalizedSearchValue(rawText, "")
-	return ""
-end
-
-local function safeGetText(control)
-	if not control or not control.GetText then
-		return nil
-	end
-	local ok, text = pcall(control.GetText, control)
-	if ok and not DBM:issecretvalue(text) then
-		return text
-	end
-	return nil
-end
-
-
-local function appendSearchText(parts, text)
-	local normalized = normalizeSearchText(text)
-	if normalized ~= "" then
-		parts[#parts + 1] = normalized
-	end
-end
-
-local function appendControlSearchText(parts, control)
-	if control.mytype == "ability" then
-		-- Search/index contract for ability groups:
-		-- Use only precomputed control.searchText (static original title + static ID).
-		-- Do NOT index visible title regions here, because they can include dynamic rename text.
-		-- This keeps search cache stable and prevents rename strings from becoming search keys.
-		appendSearchText(parts, control.searchText)
-		return
-	end
-	appendSearchText(parts, control.text)
-	appendSearchText(parts, safeGetText(control.textObj))
-	appendSearchText(parts, safeGetText(control))
-	if control.GetName then
-		local name = control:GetName()
-		if name then
-			local textRegion = _G[name .. "Text"]
-			appendSearchText(parts, safeGetText(textRegion))
-			local titleRegion = _G[name .. "Title"]
-			appendSearchText(parts, safeGetText(titleRegion))
-			local titleTextRegion = _G[name .. "TitleText"]
-			appendSearchText(parts, safeGetText(titleTextRegion))
-		end
-	end
-	if control.GetNumRegions and control:GetNumRegions() > 0 then
-		for _, region in ipairs({ control:GetRegions() }) do
-			if region.GetObjectType and region:GetObjectType() == "FontString" then
-				appendSearchText(parts, safeGetText(region))
-			end
-		end
-	end
-end
-
-local function collectFrameSearchText(targetFrame, parts, visited, entries)
-	if not targetFrame or visited[targetFrame] then
-		return
-	end
-	visited[targetFrame] = true
-	appendSearchText(parts, targetFrame.displayName)
-	appendSearchText(parts, targetFrame.modId)
-
-	appendControlSearchText(parts, targetFrame)
-
-	local childParts = {}
-	local childCount = targetFrame.GetNumChildren and targetFrame:GetNumChildren() or select("#", targetFrame:GetChildren())
-	if childCount == 0 then
-		return
-	end
-	for _, child in ipairs({ targetFrame:GetChildren() }) do
-		for i = #childParts, 1, -1 do
-			childParts[i] = nil
-		end
-		appendControlSearchText(childParts, child)
-		if #childParts > 0 then
-			local childText = tconcat(childParts, "\n")
-			parts[#parts + 1] = childText
-			entries[#entries + 1] = {
-				control = child,
-				text = childText
-			}
-		end
-		collectFrameSearchText(child, parts, visited, entries)
-	end
-end
-
-local function getFrameSearchData(targetFrame)
-	if searchTextCache[targetFrame] then
-		return searchTextCache[targetFrame]
-	end
-	local parts, entries = {}, {}
-	collectFrameSearchText(targetFrame, parts, {}, entries)
-	searchTextCache[targetFrame] = {
-		fullText = tconcat(parts, "\n"),
-		entries = entries
-	}
-	return searchTextCache[targetFrame]
-end
-
-function frame:InvalidateSearchCache(targetFrame)
-	if targetFrame then
-		searchTextCache[targetFrame] = nil
-	else
-		searchTextCache = {}
-	end
-	resetSearchResultsCache()
-end
-
-local function updateAbilityToggleTexture(abilityFrame)
-	local toggleButton = _G[abilityFrame:GetName() .. "Button"]
-	if toggleButton and toggleButton.toggle then
-		toggleButton.toggle:SetNormalTexture(abilityFrame.hidden and 130838 or 130821) -- "Interface\\Buttons\\UI-PlusButton-UP", "Interface\\Buttons\\UI-MinusButton-UP"
-		toggleButton.toggle:SetPushedTexture(abilityFrame.hidden and 130836 or 130820) -- "Interface\\Buttons\\UI-PlusButton-DOWN", "Interface\\Buttons\\UI-MinusButton-DOWN"
-	end
-end
-
-local function expandParentsForControl(targetFrame, control)
-	local parent = control and control:GetParent()
-	local changed = false
-	while parent and parent ~= targetFrame do
-		if parent.mytype == "ability" and parent.hidden then
-			parent.hidden = false
-			updateAbilityToggleTexture(parent)
-			changed = true
-		end
-		parent = parent:GetParent()
-	end
-	return changed
-end
-
-function frame:SetSearchQuery(query)
-	query = normalizeSearchText(query)
-	if self.searchQuery == query then
-		return
-	end
-	self.searchQuery = query
-	resetSearchResultsCache()
-	local listFrame = GetListFrame()
-	if listFrame then
-		listFrame.offset = 0
-		local scrollBar = GetListScrollBar()
-		if scrollBar and scrollBar.SetValue then
-			scrollBar:SetValue(0)
-		end
-	end
-	self:UpdateMenuFrame()
-end
-
-function frame:SetSearchStatus(searching, count)
-	if self.searchClearButton then
-		self.searchClearButton:SetShown(searching)
-	end
-	if self.searchCountText then
-		if searching then
-			count = count or 0
-			if count == 1 then
-				self.searchCountText:SetText(L.SearchMatch:format(count))
-			else
-				self.searchCountText:SetText(L.SearchMatches:format(count))
-			end
-		else
-			self.searchCountText:SetText("")
-		end
-	end
-end
-
-function frame:IsFrameSearchable(targetFrame, tabId)
-	if tabId == DBM_GUI.Enums.Tabs.CORE or tabId == DBM_GUI.Enums.Tabs.TOOLS then
-		return true
-	end
-	-- Only index frames once their UI has actually been built to avoid caching empty results
-	if targetFrame.isLoaded then
-		return true
-	end
-	if targetFrame.addonId and C_AddOns and C_AddOns.IsAddOnLoaded then
-		-- Addon is loaded but only index the frame once it has child controls
-		local childCount = targetFrame.GetNumChildren and targetFrame:GetNumChildren() or select("#", targetFrame:GetChildren())
-		return C_AddOns.IsAddOnLoaded(targetFrame.addonId) and childCount > 0
-	end
-	local childCount = targetFrame.GetNumChildren and targetFrame:GetNumChildren() or select("#", targetFrame:GetChildren())
-	return childCount > 0
-end
-
-function frame:GetSearchResults()
-	local query = self.searchQuery
-	if not query or query == "" then
-		resetSearchResultsCache()
-		return nil
-	end
-	if cachedSearchQuery == query and cachedSearchResults then
-		return cachedSearchResults
-	end
-	local results, seen = {}, {}
-	for tabId, tabData in ipairs(DBM_GUI.tabs) do
-		for _, node in ipairs(tabData.buttons) do
-			local targetFrame = node.frame
-			if targetFrame and not seen[targetFrame] and not node.hidden and self:IsFrameSearchable(targetFrame, tabId) then
-				seen[targetFrame] = true
-				local data = getFrameSearchData(targetFrame)
-				if data.fullText:find(query, 1, true) then
-					local matchedControl
-					for _, entry in ipairs(data.entries) do
-						if entry.text:find(query, 1, true) then
-							matchedControl = entry.control
-							break
-						end
-					end
-					results[#results + 1] = {
-						frame = targetFrame,
-						displayName = ("[%s] %s"):format((self.tabs[tabId] and self.tabs[tabId].name) or "?", targetFrame.displayName or "?"),
-						tab = tabId,
-						sortName = strlower(targetFrame.displayName or ""),
-						matchControl = matchedControl
-					}
-				end
-			end
-		end
-	end
-	tsort(results, function(a, b)
-		if a.tab == b.tab then
-			return a.sortName < b.sortName
-		end
-		return a.tab < b.tab
-	end)
-	cachedSearchQuery = query
-	cachedSearchResults = results
-	return results
-end
 
 function frame:UpdateMenuFrame()
-	local listFrame = GetListFrame()
+	local listFrame = _G[frame:GetName() .. "List"]
 	if not listFrame or not listFrame.buttons then
 		return
 	end
-	local searching = self.searchQuery and self.searchQuery ~= ""
-	local displayedElements = searching and self:GetSearchResults() or (self.tab and DBM_GUI.tabs[self.tab]:GetVisibleTabs() or {})
-	self:SetSearchStatus(searching, #displayedElements)
+	local displayedElements = self.tab and DBM_GUI.tabs[self.tab]:GetVisibleTabs() or {}
 	local bigList = mfloor((listFrame:GetHeight() - 8) / 18)
-	local scrollBar = GetListScrollBar()
+	local scrollBar = _G[listFrame:GetName() .. "ScrollBar"]
 	if #displayedElements > bigList then
 		scrollBar:Show()
 		scrollBar:SetMinMaxValues(0, (#displayedElements - bigList) * 18)
@@ -428,133 +39,45 @@ function frame:UpdateMenuFrame()
 	end
 	for i = 1, #listFrame.buttons do
 		local button = listFrame.buttons[i]
-		if button._dbmWasLocked then
-			button:UnlockHighlight()
-			button._dbmWasLocked = nil
-		end
+		button:UnlockHighlight()
 		local element = displayedElements[i + (listFrame.offset or 0)]
 		if not element or i > bigList then
 			button:Hide()
 			button:SetHeight(-1)
 		else
-			if searching then
-				self:DisplayButton(button, element.frame, element.displayName, true, element.matchControl)
-			else
-				self:DisplayButton(button, element.frame)
-			end
-			if (searching and DBM_GUI.currentViewing or (self.tab and self.tabs[self.tab].selection)) == element.frame then
+			self:DisplayButton(button, element.frame)
+			if (self.tab and self.tabs[self.tab].selection) == element.frame then
 				button:LockHighlight()
-				button._dbmWasLocked = true
 			end
 		end
 	end
 end
 
-function frame:DisplayButton(button, element, displayName, hideToggle, matchControl)
-	local depth = hideToggle and 1 or element.depth
-	local haschilds = not hideToggle and element.haschilds
-	local textLeft = (haschilds and 14 or 6) + 8 * depth
+function frame:DisplayButton(button, element)
 	button:Show()
 	button:SetHeight(18)
 	button.element = element
-	button.searchMatchedControl = matchControl
 	element.selectButton = button
 	button.text:ClearAllPoints()
-	button.text:SetPoint("LEFT", textLeft, 2)
-	button.text:SetPoint("RIGHT", button, "RIGHT", -6, 2)
-	button.text:SetJustifyH("LEFT")
-	if button.text.SetWordWrap then
-		button.text:SetWordWrap(false)
-	end
-	if button.text.SetNonSpaceWrap then
-		button.text:SetNonSpaceWrap(false)
-	end
-	button.text:SetWidth(button:GetWidth() - textLeft - 6)
+	button.text:SetPoint("LEFT", (element.haschilds and 14 or 6) + 8 * element.depth, 2)
 	button.toggle:ClearAllPoints()
-	button.toggle:SetPoint("LEFT", 8 * depth - 2, 1)
-	button.text:SetFontObject(haschilds and GameFontNormal or GameFontWhite)
+	button.toggle:SetPoint("LEFT", 8 * element.depth - 2, 1)
+	button.text:SetFontObject(element.haschilds and GameFontNormal or GameFontWhite)
 	button.text:SetTextScale(0.9)
-	if haschilds then
+	if element.haschilds then
 		button.toggle:SetNormalTexture(element.showSub and 130821 or 130838) -- "Interface\\Buttons\\UI-MinusButton-UP", "Interface\\Buttons\\UI-PlusButton-UP"
 		button.toggle:SetPushedTexture(element.showSub and 130820 or 130836) -- "Interface\\Buttons\\UI-MinusButton-DOWN", "Interface\\Buttons\\UI-PlusButton-DOWN"
 		button.toggle:Show()
 	else
 		button.toggle:Hide()
 	end
-	local fullDisplayName = displayName or element.displayName or ""
-	button.text:SetText(truncateTextWithEllipsis(button.text, fullDisplayName, button:GetWidth() - textLeft - 6))
+	button.text:SetText(element.displayName)
 	button.text:Show()
 end
 
-function frame:HighlightSearchControl(control)
-	if not control then
-		return
-	end
-	if not self.searchHighlightFrame then
-		---@class DBMOptionsFrameSearchHighlight: Frame, BackdropTemplate
-		local highlight = CreateFrame("Frame", nil, _G["DBM_GUI_OptionsFramePanelContainer"], "BackdropTemplate")
-		highlight.backdropInfo = {
-			bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", -- 137056
-			edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", -- 137057
-			edgeSize = 16,
-			tileEdge = true
-		}
-		highlight:ApplyBackdrop()
-		highlight:SetBackdropColor(1, 0.82, 0, 0.2)
-		highlight:SetBackdropBorderColor(1, 0.82, 0, 1)
-		highlight:SetFrameStrata("DIALOG")
-		highlight:SetFrameLevel(300)
-		highlight:Hide()
-		self.searchHighlightFrame = highlight
-		self.searchHighlightToken = 0
-	end
-	self.searchHighlightToken = self.searchHighlightToken + 1
-	local token = self.searchHighlightToken
-	self.searchHighlightFrame:ClearAllPoints()
-	self.searchHighlightFrame:SetParent(control:GetParent() or _G["DBM_GUI_OptionsFramePanelContainer"])
-	self.searchHighlightFrame:SetPoint("TOPLEFT", control, "TOPLEFT", -5, 5)
-	self.searchHighlightFrame:SetPoint("BOTTOMRIGHT", control, "BOTTOMRIGHT", 5, -5)
-	self.searchHighlightFrame:Show()
-	C_Timer.After(6, function()
-		if self.searchHighlightToken == token and self.searchHighlightFrame then
-			self.searchHighlightFrame:Hide()
-		end
-	end)
-end
-
-function frame:RevealSearchMatch(targetFrame, control)
-	if not targetFrame or not control then
-		return
-	end
-	if expandParentsForControl(targetFrame, control) then
-		self:DisplayFrame(targetFrame, true)
-	end
-	C_Timer.After(0, function()
-		local scrollBar = GetContainerScrollBar()
-		if scrollBar and scrollBar:IsShown() then
-			local panelTop = targetFrame:GetTop()
-			local controlTop = control:GetTop()
-			if panelTop and controlTop then
-				local desired = panelTop - controlTop - 40
-				if desired < 0 then
-					desired = 0
-				end
-				local _, max = scrollBar:GetMinMaxValues()
-				scrollBar:SetValue(mmin(desired, max))
-			end
-		end
-		self:HighlightSearchControl(control)
-	end)
-end
-
 function frame:ClearSelection()
-	local listFrame = GetListFrame()
-	if not listFrame or not listFrame.buttons then
-		return
-	end
-	for _, button in ipairs(listFrame.buttons) do
+	for _, button in ipairs(_G["DBM_GUI_OptionsFrameList"].buttons) do
 		button:UnlockHighlight()
-		button._dbmWasLocked = nil
 	end
 end
 
@@ -571,21 +94,19 @@ local function resize(targetFrame, hasScroll)
 			if not child.isStats then
 				local neededHeight, lastObject = 25, nil
 				for _, child2 in ipairs({ child:GetChildren() }) do
-					local child2Name = child2:GetName()
 					if child.mytype == "ability" and child2.mytype then
 						child2:SetShown(not child.hidden)
-						if child2.mytype == "spelldesc" and child2Name then
+						if child2.mytype == "spelldesc" then
 							child2:SetShown(child2.hasDesc and true or child.hidden)
-							local child2Text = _G[child2Name .. "Text"]
-							child2:SetHeight(child2Text:GetStringHeight())
+							child2:SetHeight(_G[child2:GetName() .. "Text"]:GetStringHeight())
 						end
 					end
 					if child2.mytype and child2:IsVisible() then
 						if child2.mytype == "textblock" then
-							if child2.autowidth and child2Name then
-								local child2Text = _G[child2Name .. "Text"]
-								child2Text:SetWidth(width - 30)
-								child2:SetSize(width, child2Text:GetStringHeight())
+							if child2.autowidth then
+								local text = _G[child2:GetName() .. "Text"]
+								text:SetWidth(width - 30)
+								child2:SetSize(width, text:GetStringHeight())
 							end
 							lastObject = child2
 						elseif child2.mytype == "spelldesc" then
@@ -606,21 +127,16 @@ local function resize(targetFrame, hasScroll)
 							lastObject = child2
 						elseif child2.mytype == "line" then
 							child2:SetWidth(width - 20)
-							if child2Name then
-								local child2BG = _G[child2Name .. "BG"]
-								local child2Text = _G[child2Name .. "Text"]
-								child2BG:SetWidth(width - child2Text:GetWidth() - 25)
-							end
+							_G[child2:GetName() .. "BG"]:SetWidth(width - _G[child2:GetName() .. "Text"]:GetWidth() - 25)
 							if lastObject and lastObject.myheight then
 								child2:ClearAllPoints()
 								child2:SetPoint("TOPLEFT", lastObject, "TOPLEFT", 0, -lastObject.myheight)
 							end
 							lastObject = child2
 						elseif child2.mytype == "dropdown" then
-							if not child2.width and child2Name then
+							if not child2.width then
 								local ddWidth = 120
-								local dropdownText = _G[child2Name .. "Text"]
-								local titleText = _G[child2Name .. "TitleText"]:GetText()
+								local dropdownText, titleText = _G[child2:GetName() .. "Text"], _G[child2:GetName() .. "TitleText"]:GetText()
 								if titleText ~= L.FontType and titleText ~= L.FontStyle and titleText ~= L.FontShadow then
 									for _, v in ipairs(child2.values) do
 										dropdownText:SetText(v.text)
@@ -642,10 +158,7 @@ local function resize(targetFrame, hasScroll)
 		elseif child.mytype == "line" then
 			local width = targetFrame:GetWidth() - 30 + (child.extraWidth or 0)
 			child:SetWidth(width - 20)
-			local childName = child:GetName()
-			local childBG = _G[childName .. "BG"]
-			local childText = _G[childName .. "Text"]
-			childBG:SetWidth(width - childText:GetWidth() - 25)
+			_G[child:GetName() .. "BG"]:SetWidth(width - _G[child:GetName() .. "Text"]:GetWidth() - 25)
 			frameHeight = frameHeight + 32
 		elseif child.myheight then
 			frameHeight = frameHeight + child.myheight
@@ -656,31 +169,28 @@ end
 
 local bossPreview
 function frame:DisplayFrame(targetFrame, secondResize)
-	local childCount = targetFrame.GetNumChildren and targetFrame:GetNumChildren() or select("#", targetFrame:GetChildren())
-	if childCount == 0 then
+	if select("#", targetFrame:GetChildren()) == 0 then
 		return
 	end
 	selectedPagePerTab[self.tab] = targetFrame
-	local scrollBar = GetContainerScrollBar()
+	local scrollBar = _G["DBM_GUI_OptionsFramePanelContainerFOVScrollBar"]
 	scrollBar:Show()
 	local changed = DBM_GUI.currentViewing ~= targetFrame
 	if DBM_GUI.currentViewing and changed then
 		DBM_GUI.currentViewing:Hide()
 	end
 	DBM_GUI.currentViewing = targetFrame
-	local dropDown = GetDropDown()
-	if dropDown and dropDown.IsShown and dropDown:IsShown() then
-		dropDown:Hide()
+	if _G["DBM_GUI_DropDown"] then
+		_G["DBM_GUI_DropDown"]:Hide()
 	end
-	local FOV = GetContainerFOV()
+	local FOV = _G["DBM_GUI_OptionsFramePanelContainerFOV"]
 	FOV:SetScrollChild(targetFrame)
 	FOV:Show()
 	if changed then
 		targetFrame:Show()
 	end
 	targetFrame:SetSize(FOV:GetSize())
-	local panelContainer = GetPanelContainer()
-	local mymax = resize(targetFrame, true) - panelContainer:GetHeight()
+	local mymax = resize(targetFrame, true) - _G["DBM_GUI_OptionsFramePanelContainer"]:GetHeight()
 	if mymax <= 0 then
 		mymax = 0
 	end
@@ -698,13 +208,9 @@ function frame:DisplayFrame(targetFrame, secondResize)
 	if secondResize ~= false then
 		resize(targetFrame, scrollBar:IsVisible())
 	end
-	if targetFrame.searchMatchedControl then
-		self:RevealSearchMatch(targetFrame, targetFrame.searchMatchedControl)
-		targetFrame.searchMatchedControl = nil
-	end
 	if DBM.Options.EnableModels then
 		if not bossPreview then
-			bossPreview = CreateFrame("PlayerModel", "DBM_BossPreview", panelContainer)
+			bossPreview = CreateFrame("PlayerModel", "DBM_BossPreview", _G["DBM_GUI_OptionsFramePanelContainer"])
 			bossPreview:SetPoint("BOTTOMRIGHT", "DBM_GUI_OptionsFramePanelContainer", "BOTTOMRIGHT", -5, 5)
 			bossPreview:SetSize(300, 300)
 			bossPreview:SetPortraitZoom(0.4)
@@ -766,7 +272,6 @@ local _count = 0
 function frame:ShowTab(tab)
 	self.tab = tab
 	self:UpdateMenuFrame()
-	local hasSearch = self.searchQuery and self.searchQuery ~= ""
 	if (tab == 1 and _count % 2 == 0) or (tab == 2 and _count % 2 == 1) then
 		_count = _count + 1
 		if _count == 5 then
@@ -790,9 +295,9 @@ function frame:ShowTab(tab)
 		DBM_GUI.currentViewing:Hide()
 		DBM_GUI.currentViewing = nil
 	end
-	if not hasSearch and not selectedPagePerTab[tab] and tab == DBM_GUI.Enums.Tabs.CORE then -- Core Options, default show "Core & GUI" frame
+	if not selectedPagePerTab[tab] and tab == 1 then -- Core Options, default show "Core & GUI" frame
 		self:LoadAndShowFrame(DBM_GUI.tabs[self.tab].buttons[2].frame)
-	elseif not hasSearch and not selectedPagePerTab[tab] and tab == DBM_GUI.Enums.Tabs.TOOLS then -- Tools
+	elseif not selectedPagePerTab[tab] and tab == 6 then -- Tools
 		self:LoadAndShowFrame(DBM_GUI.tabs[self.tab].buttons[1].frame)
 	end
 end

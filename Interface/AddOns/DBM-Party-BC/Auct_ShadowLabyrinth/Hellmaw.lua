@@ -1,13 +1,10 @@
 local mod = DBM:NewMod(544, "DBM-Party-BC", 10, 253)
 local L = mod:GetLocalizedStrings()
 
-mod:SetRevision("20260315034941")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20231014053250")
 
 mod:SetCreatureID(18731)
 mod:SetEncounterID(1908)
-mod:SetZone(555)
-
 mod:RegisterCombat("combat")
 
 if not mod:IsRetail() then

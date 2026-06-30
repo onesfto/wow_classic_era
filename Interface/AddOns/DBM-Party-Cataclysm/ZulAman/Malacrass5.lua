@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "heroic,timewalker"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetCreatureID(24239)
 mod:SetEncounterID(1193)
 mod:SetZone(568)
@@ -24,12 +23,12 @@ local warnSiphon			= mod:NewTargetNoFilterAnnounce(43501, 3)
 local warnSpiritBolts		= mod:NewSpellAnnounce(43383, 3)
 local warnSpiritBoltsSoon	= mod:NewSoonAnnounce(43383, 5, 2)
 
-local specWarnFireNovaTotem	= mod:NewSpecialWarningSwitch(43436, "Dps", nil, nil, 1, 2, nil, nil, "attacktotem")
-local specWarnHolyLight		= mod:NewSpecialWarningInterrupt(43451, "HasInterrupt", nil, 2, 1, 2, nil, nil, "kickcast")
-local specWarnFlashHeal		= mod:NewSpecialWarningInterrupt(43431, "HasInterrupt", nil, 2, 1, 2, nil, nil, "kickcast")
-local specWarnHealingWave	= mod:NewSpecialWarningInterrupt(43548, "HasInterrupt", nil, 2, 1, 2, nil, nil, "kickcast")
-local specWarnLifebloom		= mod:NewSpecialWarningDispel(43421, "MagicDispeller", nil, nil, 1, 2, nil, nil, "dispelboss")
-local specWarnGTFO			= mod:NewSpecialWarningGTFO(43440, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specWarnFireNovaTotem	= mod:NewSpecialWarningSwitch(43436, "Dps", nil, nil, 1, 2)
+local specWarnHolyLight		= mod:NewSpecialWarningInterrupt(43451, "HasInterrupt", nil, 2, 1, 2)
+local specWarnFlashHeal		= mod:NewSpecialWarningInterrupt(43431, "HasInterrupt", nil, 2, 1, 2)
+local specWarnHealingWave	= mod:NewSpecialWarningInterrupt(43548, "HasInterrupt", nil, 2, 1, 2)
+local specWarnLifebloom		= mod:NewSpecialWarningDispel(43421, "MagicDispeller", nil, nil, 1, 2)
+local specWarnGTFO			= mod:NewSpecialWarningGTFO(43440, nil, nil, nil, 1, 8)
 
 local timerSiphon			= mod:NewTimer(30, "TimerSiphon", 43501, nil, nil, 3)
 local timerSpiritBolts		= mod:NewBuffActiveTimer(5, 43383, nil, nil, nil, 2)

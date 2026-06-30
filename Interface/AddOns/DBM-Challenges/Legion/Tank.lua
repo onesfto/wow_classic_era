@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,timewalker"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250703201323")
 mod:SetCreatureID(117933, 117198)--Variss, Kruul
 mod:SetBossHPInfoToHighest()
 mod.soloChallenge = true
@@ -34,11 +33,11 @@ local warnNetherAberration		= mod:NewSpellAnnounce(235110, 2)
 local warnInfernal				= mod:NewSpellAnnounce(235112, 2)
 
 --Tank
-local specWarnDecay				= mod:NewSpecialWarningStack(234422, nil, 5, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnDrainLife			= mod:NewSpecialWarningInterrupt(234423, nil, nil, 2, 3, 2, nil, nil, "kickcast")
-local specWarnSmash				= mod:NewSpecialWarningDodge(234631, nil, nil, nil, 1, 2, nil, nil, "shockwave")
-local specWarnAnnihilate		= mod:NewSpecialWarningDefensive(236572, nil, nil, nil, 1, 2, nil, nil, "defensive")
-local specWarnTwistedReflection	= mod:NewSpecialWarningInterrupt(234676, nil, nil, nil, 3, 2, nil, nil, "kickcast")
+local specWarnDecay				= mod:NewSpecialWarningStack(234422, nil, 5, nil, nil, 1, 6)
+local specWarnDrainLife			= mod:NewSpecialWarningInterrupt(234423, nil, nil, 2, 3, 2)
+local specWarnSmash				= mod:NewSpecialWarningDodge(234631, nil, nil, nil, 1, 2)
+local specWarnAnnihilate		= mod:NewSpecialWarningDefensive(236572, nil, nil, nil, 1, 2)
+local specWarnTwistedReflection	= mod:NewSpecialWarningInterrupt(234676, nil, nil, nil, 3, 2)
 
 --Tank
 local timerDrainLifeCD			= mod:NewCDTimer(24.3, 234423, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON, nil, 2, 4)
@@ -62,6 +61,7 @@ function mod:OnCombatStart(delay)
 	timerHolyWardCD:Start(8)--8-16
 	timerNetherAbberationCD:Start(9.6)--9.6-12.3
 	timerInfernalCD:Start(37.5)--37-43
+	DBM:AddMsg("There is a chance some of these timers are health based and can't be completely relied upon. More data is needed")
 end
 
 function mod:SPELL_CAST_START(args)

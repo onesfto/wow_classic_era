@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,heroic,timewalker"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetCreatureID(43438)
 mod:SetEncounterID(1056)
 mod:SetZone(725)
@@ -22,7 +21,8 @@ local warnDampening					= mod:NewSpellAnnounce(82415, 2)
 local warnSubmerge					= mod:NewAnnounce("WarnSubmerge", 2, "Interface\\AddOns\\DBM-Core\\textures\\CryptFiendBurrow.blp")
 local warnEmerge					= mod:NewAnnounce("WarnEmerge", 2, "Interface\\AddOns\\DBM-Core\\textures\\CryptFiendUnBurrow.blp")
 
-local specWarnCrystalBarrage		= mod:NewSpecialWarningYou(81634, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnCrystalBarrage		= mod:NewSpecialWarningYou(81634, nil, nil, nil, 1, 2)
+local specWarnCrystalBarrageClose	= mod:NewSpecialWarningClose(81634, nil, nil, nil, 1, 2)
 
 local timerDampening				= mod:NewCDTimer(10, 82415, nil, nil, nil, 3, nil, DBM_COMMON_L.MAGIC_ICON)
 local timerSubmerge					= mod:NewTimer(80, "TimerSubmerge", "Interface\\AddOns\\DBM-Core\\textures\\CryptFiendBurrow.blp", nil, nil, 6)
@@ -30,11 +30,21 @@ local timerEmerge					= mod:NewTimer(30, "TimerEmerge", "Interface\\AddOns\\DBM-
 
 local crystalTargets = {}
 
+mod:AddBoolOption("RangeFrame")
+
 function mod:OnCombatStart(delay)
 	timerSubmerge:Start(30-delay)
 	table.wipe(crystalTargets)
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Show(5)
+	end
 end
 
+function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
+end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 86881 and not self:IsTrivial() then
@@ -42,6 +52,15 @@ function mod:SPELL_AURA_APPLIED(args)
 		if args:IsPlayer() then
 			specWarnCrystalBarrage:Show()
 			specWarnCrystalBarrage:Play("targetyou")
+		else
+			local uId = DBM:GetRaidUnitId(args.destName)
+			if uId then--May also not work right if same spellid is applied to people near the target, then will need more work.
+				local inRange = DBM.RangeCheck:GetDistance("player", uId)
+				if inRange and inRange < 6 then
+					specWarnCrystalBarrageClose:CombinedShow(0.3, args.destName)
+					specWarnCrystalBarrageClose:ScheduleVoice(0.3, "runaway")
+				end
+			end
 		end
 	end
 end
@@ -61,8 +80,14 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
 		warnSubmerge:Show()
 		timerEmerge:Start()
 		timerDampening:Cancel()
+		if self.Options.RangeFrame then
+			DBM.RangeCheck:Hide()
+		end
 	elseif spellId == 81948 then--Emerge, He casts this before borrowing.
 		warnEmerge:Show()
 		timerSubmerge:Start()
+		if self.Options.RangeFrame then
+			DBM.RangeCheck:Show(5)
+		end
 	end
 end

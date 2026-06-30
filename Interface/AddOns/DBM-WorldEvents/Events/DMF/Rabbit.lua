@@ -1,16 +1,11 @@
 local mod	= DBM:NewMod("Rabbit", "DBM-WorldEvents", 3)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260315034941")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20240315080105")
 mod:SetCreatureID(58336)
 mod:SetModelID(328)
-mod:SetZone(974)
 
 mod:RegisterCombat("combat")
-
---Rest of mod below this point is only useful pre midnight
-if DBM:IsPostMidnight() then return end
 
 mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED 114078"

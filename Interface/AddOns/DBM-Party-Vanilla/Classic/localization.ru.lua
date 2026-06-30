@@ -1257,7 +1257,12 @@ L = DBM:GetModLocalization(455)
 L:SetGeneralLocalization{
 	name 		= "Рамштайн Ненасытный"
 }
-
+L:SetTimerLocalization{
+	TimerGuards	= "Появление Караульных"
+}
+L:SetOptionLocalization{
+	TimerGuards	= "Отсчет времени до прибытия Караульных Черной Стражи после победы над боссом"
+}
 -----------------------------
 --  Baron Rivendare  --
 -----------------------------

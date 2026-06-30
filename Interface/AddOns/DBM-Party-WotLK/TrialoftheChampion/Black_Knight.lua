@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(637, "DBM-Party-WotLK", 13, 284)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250720212337")
 mod:SetCreatureID(35451)
 mod:SetEncounterID(2021)
 mod:SetUsedIcons(8)
@@ -24,8 +23,8 @@ mod:RegisterEventsInCombat(
 
 local warnMarked			= mod:NewTargetNoFilterAnnounce(67823, 3)
 
-local specWarnDesecration	= mod:NewSpecialWarningMove(67781, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
-local specWarnExplode		= mod:NewSpecialWarningRun(67751, "Melee", nil, 2, 4, 2, nil, nil, "justrun")
+local specWarnDesecration	= mod:NewSpecialWarningMove(67781, nil, nil, nil, 1, 8)
+local specWarnExplode		= mod:NewSpecialWarningRun(67751, "Melee", nil, 2, 4, 2)
 
 local timerCombatStart		= mod:NewCombatTimer(55.5)
 local timerMarked			= mod:NewTargetTimer(10, 67823, nil, nil, nil, 3)

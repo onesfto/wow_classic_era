@@ -9,8 +9,7 @@ else
 	mod.statTypes = "normal,heroic"
 end
 
-mod:SetRevision("20260525233013")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetCreatureID(40825, 40788)
 mod:SetMainBossID(40788)-- 40788 = Mindbender Ghur'sha
 mod:SetEncounterID(1046)
@@ -38,8 +37,8 @@ if (wowToc >= 100200) then
 	mod:AddTimerLine(DBM:EJ_GetSectionInfo(2194))
 	local warnFlameShock								= mod:NewTargetNoFilterAnnounce(429048, 3)
 
-	local specWarnEarthfury								= mod:NewSpecialWarningDodge(429051, nil, nil, nil, 2, 2, nil, nil, "keepmove")
-	local specWarnStormflurryTotem						= mod:NewSpecialWarningSwitchCount(429037, "-Healer", nil, nil, 1, 2, nil, nil, "attacktotem")
+	local specWarnEarthfury								= mod:NewSpecialWarningDodge(429051, nil, nil, nil, 2, 2)
+	local specWarnStormflurryTotem						= mod:NewSpecialWarningSwitchCount(429037, "-Healer", nil, nil, 1, 2)
 
 	--local specWarnGTFO								= mod:NewSpecialWarningGTFO(409058, nil, nil, nil, 1, 8)
 
@@ -51,7 +50,7 @@ if (wowToc >= 100200) then
 	mod:AddTimerLine(DBM:EJ_GetSectionInfo(2199))
 	local warnPhase2									= mod:NewPhaseAnnounce(2, 2, nil, nil, nil, nil, nil, 2)
 
-	local specWarnTerrifyingVision						= mod:NewSpecialWarningMoveTo(429172, nil, nil, nil, 2, 13, nil, nil, "breaklos")
+	local specWarnTerrifyingVision						= mod:NewSpecialWarningMoveTo(429172, nil, nil, nil, 2, 13)
 
 	local timerTerrifyingVisionCD						= mod:NewCDTimer(100, 429172, nil, nil, nil, 2)
 
@@ -65,6 +64,11 @@ if (wowToc >= 100200) then
 		timerEarthfuryCD:Start(20.3-delay)
 	end
 
+	--function mod:OnCombatEnd()
+	--	if self.Options.RangeFrame then
+	--		DBM.RangeCheck:Hide()
+	--	end
+	--end
 
 	function mod:SPELL_CAST_START(args)
 		local spellId = args.spellId
@@ -131,9 +135,9 @@ else
 	local warnMindFog			= mod:NewSpellAnnounce(76234, 3)
 	local warnAgony				= mod:NewSpellAnnounce(76339, 3)
 
-	local specWarnLavaBolt		= mod:NewSpecialWarningInterrupt(76171, nil, nil, nil, 1, 2, nil, nil, "kickcast")
-	local specWarnAbsorbMagic	= mod:NewSpecialWarningReflect(76307, "SpellCaster", nil, nil, 1, 2, nil, nil, "stopattack")
-	local specWarnEarthShards	= mod:NewSpecialWarningYou(84931, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+	local specWarnLavaBolt		= mod:NewSpecialWarningInterrupt(76171, nil, nil, nil, 1, 2)
+	local specWarnAbsorbMagic	= mod:NewSpecialWarningReflect(76307, "SpellCaster", nil, nil, 1, 2)
+	local specWarnEarthShards	= mod:NewSpecialWarningYou(84931, nil, nil, nil, 1, 2)
 	local yellEarthShards		= mod:NewShortYell(84931)
 
 	local timerMagmaSplash		= mod:NewBuffActiveTimer(10, 76170, nil, "Healer", nil, 5, nil, DBM_COMMON_L.HEALER_ICON..DBM_COMMON_L.MAGIC_ICON)

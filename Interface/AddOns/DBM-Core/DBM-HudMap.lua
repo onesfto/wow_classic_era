@@ -988,9 +988,7 @@ do
 				local font = f or standardFont
 				local size = fontSize or s or 20
 				outline = outline or m or "THICKOUTLINE"
-				if not pcall(self.text.SetFont, self.text, font, size, outline) then
-					pcall(self.text.SetFont, self.text, standardFont, 20, "THICKOUTLINE")
-				end
+				self.text:SetFont(font, size, outline)
 				self.text:SetText(text)
 			end
 			self.labelData = self.labelData or {}

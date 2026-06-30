@@ -12,8 +12,7 @@ end
 local mod	= DBM:NewMod("Jindo", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103123604")
 mod:SetCreatureID(11380)
 mod:SetEncounterID(792)
 mod:SetZone(309)
@@ -28,21 +27,16 @@ mod:RegisterEventsInCombat(
 )
 
 local warnDelusion			= mod:NewTargetNoFilterAnnounce(24306, 2, nil, "RemoveCurse")
-local warnHex				= mod:NewTargetNoFilterAnnounce(17172, 2, nil, "RemoveMagic")
+local warnHex				= mod:NewTargetNoFilterAnnounce(17172, 2, nil, "RemoveMagic|Healer")
 local warnBrainWash			= mod:NewTargetNoFilterAnnounce(24261, 4)
 local warnBanish			= mod:NewTargetNoFilterAnnounce(24466, 2)
 
-local specWarnHealingWard	= mod:NewSpecialWarningSwitch(24309, "Dps", nil, nil, 1, 2, nil, nil, "attacktotem")
-local specWarnBrainTotem	= mod:NewSpecialWarningSwitch(24262, "Dps", nil, nil, 1, 2, nil, nil, "attacktotem")
-local specWarnDelusion		= mod:NewSpecialWarningTargetChange(24306, nil, nil, nil, 1, 2, nil, nil, "targetchange")
+local specWarnHealingWard	= mod:NewSpecialWarningSwitch(24309, "Dps", nil, nil, 1, 2)
+local specWarnBrainTotem	= mod:NewSpecialWarningSwitch(24262, "Dps", nil, nil, 1, 2)
+local specWarnDelusion		= mod:NewSpecialWarningTargetChange(24306, nil, nil, nil, 1, 2)
 
-local timerHex				= mod:NewTargetTimer(5, 17172, nil, "RemoveMagic", nil, 3, nil, DBM_COMMON_L.MAGIC_ICON)
-local timerDelusion			= mod:NewTargetTimer(20, 24306, nil, "RemoveCurse", nil, 3, nil, DBM_COMMON_L.CURSE_ICON)
-local timerBrainTotemCD		= mod:NewVarTimer("v11.3-26.2", 24262, nil, "Dps", nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON)
-
-function mod:OnCombatStart()
-	timerBrainTotemCD:Start("v11.3-30.9")
-end
+local timerHex				= mod:NewTargetTimer(5, 17172, nil, "RemoveMagic|Healer", nil, 5, nil, DBM_COMMON_L.MAGIC_ICON)
+local timerDelusion			= mod:NewTargetTimer(20, 24306, nil, "RemoveCurse", nil, 5, nil, DBM_COMMON_L.CURSE_ICON)
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpell(24306) then
@@ -82,6 +76,5 @@ function mod:SPELL_SUMMON(args)
 	elseif args:IsSpell(24262) then
 		specWarnBrainTotem:Show()
 		specWarnBrainTotem:Play("attacktotem")
-		timerBrainTotemCD:Start()
 	end
 end

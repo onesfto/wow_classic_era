@@ -7,8 +7,7 @@ else
 	mod.statTypes = "normal"
 end
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20251028030133")
 mod:SetCreatureID(15956)
 mod:SetEncounterID(1107)
 mod:SetModelID(15931)
@@ -31,15 +30,15 @@ local warningLocustSoon		= mod:NewSoonAnnounce(28785, 2)
 local warningLocustFaded	= mod:NewFadesAnnounce(28785, 1)
 local warnImpale			= mod:NewTargetNoFilterAnnounce(28783, 3)
 
-local specialWarningLocust	= mod:NewSpecialWarningSpell(28785, nil, nil, nil, 2, 2, nil, nil, "aesoon")
+local specialWarningLocust	= mod:NewSpecialWarningSpell(28785, nil, nil, nil, 2, 2)
 local yellImpale			= mod:NewYell(28783)
 
-local timerLocustCD			= mod:NewVarTimer("v81.3-104.5", 28785, nil, nil, nil, 2)
-local timerLocustFade 		= mod:NewBuffActiveTimer(23, 28785, nil, nil, nil, 2)
+local timerLocustIn			= mod:NewCDTimer(80, 28785, nil, nil, nil, 6)-- 80-104
+local timerLocustFade 		= mod:NewBuffActiveTimer(23, 28785, nil, nil, nil, 6)
 
-function mod:OnCombatStart()
-	timerLocustCD:Start("v77.3-109.3")
-	warningLocustSoon:Schedule(75)
+function mod:OnCombatStart(delay)
+	timerLocustIn:Start(80 - delay)--80-100
+	warningLocustSoon:Schedule(75 - delay)
 end
 
 function mod:ImpaleTarget(targetname, uId)
@@ -54,8 +53,8 @@ function mod:SPELL_CAST_START(args)
 	if args:IsSpell(28785) then -- Locust Swarm
 		specialWarningLocust:Show()
 		specialWarningLocust:Play("aesoon")
-		timerLocustCD:Stop()
-		timerLocustFade:Start()
+		timerLocustIn:Stop()
+		timerLocustFade:Start(23)
 	elseif args:IsSpell(28783) then -- Impale
 		self:BossTargetScanner(args.sourceGUID, "ImpaleTarget", 0.1, 6)
 	end
@@ -64,7 +63,7 @@ end
 function mod:SPELL_AURA_REMOVED(args)
 	if args:IsSpell(28785) and args:IsDestTypeHostile() then--Want it removing from boss, not players, without ID we check hostility of affected unit
 		warningLocustFaded:Show()
-		timerLocustCD:Start(69.2)--More consistent
+		timerLocustIn:Start(69.2)--More consistent
 		warningLocustSoon:Schedule(54.2)
 	end
 end

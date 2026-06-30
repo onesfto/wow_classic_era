@@ -5,8 +5,7 @@ if DBM:IsRetail() then
 	mod.statTypes = "normal,heroic,challenge,timewalker"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250915043254")
 mod:SetCreatureID(56747)--56747 (Gu Cloudstrike), 56754 (Azure Serpent)
 mod:SetEncounterID(1303)
 
@@ -26,9 +25,10 @@ local warnChargingSoul			= mod:NewSpellAnnounce(110945, 3)--Phase 2
 local warnLightningBreath		= mod:NewSpellAnnounce(102573, 3)
 local warnOverchargedSoul		= mod:NewSpellAnnounce(110852, 3)--Phase 3
 
-local specWarnStaticField		= mod:NewSpecialWarningMoveAway(106923, nil, nil, nil, 1, 2, nil, nil, "runout")
+local specWarnStaticField		= mod:NewSpecialWarningMoveAway(106923, nil, nil, nil, 1, 2)
+local specWarnStaticFieldNear	= mod:NewSpecialWarningClose(106923, nil, nil, nil, 1, 2)
 local yellStaticField			= mod:NewYell(106923)
-local specWarnMagneticShroud	= mod:NewSpecialWarningSpell(107140, nil, nil, nil, 2, 2, nil, nil, "healall")
+local specWarnMagneticShroud	= mod:NewSpecialWarningSpell(107140, nil, nil, nil, 2, 2)
 
 local timerInvokeLightningCD	= mod:NewNextTimer(6, 106984)--Phase 1 ability
 local timerStaticFieldCD		= mod:NewNextTimer(8, 106923, nil, nil, nil, 3)--^^
@@ -57,6 +57,14 @@ function mod:StaticFieldTarget(targetname, uId)
 			specWarnStaticField:Show()
 			specWarnStaticField:Play("runout")
 			yellStaticField:Yell()
+		else
+			if uId then
+				local inRange = DBM.RangeCheck:GetDistance("player", uId)
+				if inRange and inRange < 6 then
+					specWarnStaticFieldNear:Show(targetname)
+					specWarnStaticFieldNear:Play("runaway")
+				end
+			end
 		end
 	end
 end

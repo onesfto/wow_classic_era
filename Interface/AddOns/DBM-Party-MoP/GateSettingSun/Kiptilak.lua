@@ -5,8 +5,7 @@ if DBM:IsRetail() then
 	mod.statTypes = "normal,heroic,challenge,timewalker"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250915043254")
 mod:SetCreatureID(56906)
 mod:SetEncounterID(1397)
 mod:SetUsedIcons(8)
@@ -23,7 +22,8 @@ local warnSabotage				= mod:NewTargetAnnounce(107268, 4)
 --local warnThrowExplosive		= mod:NewSpellAnnounce(102569, 3)--Doesn't show in chat/combat log, need transcriptor log
 --local warnWorldinFlame		= mod:NewSpellAnnounce(101591, 4)--^, triggered at 66% and 33% boss health.
 
-local specWarnSabotage			= mod:NewSpecialWarningYou(107268, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnSabotage			= mod:NewSpecialWarningYou(107268, nil, nil, nil, 1, 2)
+local specWarnSabotageNear		= mod:NewSpecialWarningClose(107268, nil, nil, nil, 1, 2)
 
 local timerSabotage				= mod:NewTargetTimer(5, 107268, nil, nil, nil, 5)
 local timerSabotageCD			= mod:NewNextTimer(12, 107268, nil, nil, nil, 3)
@@ -46,7 +46,16 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnSabotage:Show()
 			specWarnSabotage:Play("targetyou")
 		else
-			warnSabotage:Show(args.destName)
+			local uId = DBM:GetRaidUnitId(args.destName)
+			if uId then
+				local inRange = DBM.RangeCheck:GetDistance("player", uId)
+				if inRange and inRange < 10 then
+					specWarnSabotageNear:Show(args.destName)
+					specWarnSabotageNear:Play("runaway")
+				else
+					warnSabotage:Show(args.destName)
+				end
+			end
 		end
 	end
 end

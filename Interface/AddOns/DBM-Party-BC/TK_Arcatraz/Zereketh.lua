@@ -5,12 +5,10 @@ if mod:IsRetail() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20231014053250")
 
 mod:SetCreatureID(20870)
 mod:SetEncounterID(1916)
-mod:SetZone(552)
 
 if not mod:IsRetail() then
 	mod:SetModelID(19882)
@@ -27,9 +25,9 @@ mod:RegisterEventsInCombat(
 
 local warnVoid      = mod:NewSpellAnnounce(36119, 3)
 
-local specwarnNova	= mod:NewSpecialWarningSpell(39005, nil, nil, nil, 2, 2, nil, nil, "aesoon")
-local specwarnSoC	= mod:NewSpecialWarningDispel(39367, "RemoveMagic", nil, 2, 1, 2, nil, nil, "dispelnow")
-local specWarnGTFO	= mod:NewSpecialWarningGTFO(36121, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specwarnNova	= mod:NewSpecialWarningSpell(39005, nil, nil, nil, 2, 2)
+local specwarnSoC	= mod:NewSpecialWarningDispel(39367, "RemoveMagic", nil, 2, 1, 2)
+local specWarnGTFO	= mod:NewSpecialWarningGTFO(36121, nil, nil, nil, 1, 8)
 
 local timerSoC      = mod:NewTargetTimer(18, 39367, nil, "Healer", 2, 3, nil, DBM_COMMON_L.MAGIC_ICON)
 

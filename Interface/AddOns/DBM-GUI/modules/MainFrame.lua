@@ -2,7 +2,6 @@ local L		= DBM_GUI_L
 local CL	= DBM_CORE_L
 
 local isRetail = WOW_PROJECT_ID == (WOW_PROJECT_MAINLINE or 1)
-local isMop = WOW_PROJECT_ID == (WOW_PROJECT_MISTS_CLASSIC or 19)
 
 ---@class DBMGUI
 local DBM_GUI = DBM_GUI
@@ -10,10 +9,6 @@ local DBM_GUI = DBM_GUI
 local DBM = DBM
 local CreateFrame = CreateFrame
 local frame = _G["DBM_GUI_OptionsFrame"]
-local frameWrapper
-local SEARCH = SEARCH or "Search"
-local COLLAPSE_TEXT = "-"
-local EXPAND_TEXT = "+"
 table.insert(_G["UISpecialFrames"], frame:GetName())
 frame:SetFrameStrata("DIALOG")
 frame:ClearAllPoints()
@@ -25,7 +20,7 @@ end
 if DBM.Options.GUIWidth then
 	frame:SetSize(DBM.Options.GUIWidth, DBM.Options.GUIHeight)
 else
-	frame:SetSize(1000, 700)
+	frame:SetSize(850, 600)
 end
 frame:EnableMouse(true)
 frame:SetMovable(true)
@@ -34,7 +29,7 @@ frame:SetClampedToScreen(true)
 frame:SetUserPlaced(true)
 frame:RegisterForDrag("LeftButton")
 frame:SetFrameLevel(frame:GetFrameLevel() + 4)
-frame:SetResizeBounds(1000, 400, UIParent:GetWidth(), UIParent:GetHeight())
+frame:SetResizeBounds(800, 400, UIParent:GetWidth(), UIParent:GetHeight())
 frame:Hide()
 NineSliceUtil.ApplyLayoutByName(frame, "ButtonFrameTemplateNoPortrait");
 frame.firstshow = true
@@ -61,9 +56,6 @@ frame:SetScript("OnDragStop", function(self)
 	DBM.Options.GUIY = y
 end)
 frame:SetScript("OnSizeChanged", function(self)
-	if self.collapsed then
-		return
-	end
 	self:UpdateMenuFrame()
 	if DBM_GUI.currentViewing then
 		self:DisplayFrame(DBM_GUI.currentViewing, false)
@@ -71,7 +63,7 @@ frame:SetScript("OnSizeChanged", function(self)
 end)
 frame.tabs = {}
 
-local frameCloseButton = CreateFrame("Button", "$parentClosePanelButton", frame, "UIPanelCloseButtonDefaultAnchors")
+CreateFrame("Button", "$parentClosePanelButton", frame, "UIPanelCloseButtonDefaultAnchors")
 
 if not isRetail then
 	local titleBg = frame:CreateTexture("$parentTitleBga", "BACKGROUND", "_UI-Frame-TitleTileBg")
@@ -132,11 +124,6 @@ else
 	frameHeaderText:SetText(CL.DEADLY_BOSS_MODS.. " - " .. DBM.DisplayVersion.. " (" .. DBM:ShowRealDate(DBM.Revision) .. ")")
 end
 
-local frameCollapseButton = CreateFrame("Button", "$parentCollapseButton", frame, "UIPanelButtonTemplate")
-frameCollapseButton:SetSize(20, 20)
-frameCollapseButton:SetPoint("RIGHT", frameCloseButton, "LEFT", -2, 0)
-frameCollapseButton:SetText(COLLAPSE_TEXT)
-
 ---@class DBMMainFrameOkButton: Button
 local frameOkay = CreateFrame("Button", "$parentOkay", frame, "UIPanelButtonTemplate")
 frameOkay:SetSize(96, 22)
@@ -174,39 +161,6 @@ frameWebsiteButtonA:SetScript("OnMouseUp", function()
 	DBM:ShowUpdateReminder(nil, nil, CL.COPY_URL_DIALOG, "https://allmylinks.com/mysticalos")
 end)
 
-DBM_GUI.Enums = {}
-if isRetail then
-	DBM_GUI.Enums.Tabs = {
-		CORE = 1,
-		RAIDS = 2,
-		LAIRS = 3,
-		DUNGEONS = 4,
-		SCENARIOS = 5,
-		WORLD_BOSSES = 6,
-		OTHER = 7,
-		TOOLS = 8,
-	}
-elseif isMop then
-	DBM_GUI.Enums.Tabs = {
-		CORE = 1,
-		RAIDS = 2,
-		DUNGEONS = 3,
-		SCENARIOS = 4,
-		WORLD_BOSSES = 5,
-		OTHER = 6,
-		TOOLS = 7,
-	}
-else
-	DBM_GUI.Enums.Tabs = {
-		CORE = 1,
-		RAIDS = 2,
-		DUNGEONS = 3,
-		WORLD_BOSSES = 4,
-		OTHER = 5,
-		TOOLS = 6,
-	}
-end
-
 ---@class DBM_GUI_OptionsFrameDBMOptions: Frame
 local DBMOptions = CreateFrame("Frame", "$parentDBMOptions", frame)
 DBMOptions.name = L.OTabOptions
@@ -217,24 +171,10 @@ local raidOptions = CreateFrame("Frame", "$parentRaidOptions", frame)
 raidOptions.name = L.OTabRaids
 frame:CreateTab(raidOptions)
 
-if isRetail then
-	---@class DBM_GUI_OptionsFrameLairOptions: Frame
-	local lairOptions = CreateFrame("Frame", "$parentLairOptions", frame)
-	lairOptions.name = L.OTabLairs
-	frame:CreateTab(lairOptions)
-end
-
 ---@class DBM_GUI_OptionsFrameDungeonOptions: Frame
 local dungeonOptions = CreateFrame("Frame", "$parentDungeonOptions", frame)
 dungeonOptions.name = L.OTabDungeons
 frame:CreateTab(dungeonOptions)
-
-if isRetail or isMop then
-	---@class DBM_GUI_OptionsFrameScenarioOptions: Frame
-	local scenarioTab = CreateFrame("Frame", "$parentScenarioOptions", frame)
-	scenarioTab.name = L.OTabScenarios
-	frame:CreateTab(scenarioTab)
-end
 
 ---@class DBM_GUI_OptionsFrameWorldBossOptions: Frame
 local worldBossOptions = CreateFrame("Frame", "$parentWorldBossOptions", frame)
@@ -251,150 +191,8 @@ local toolsTab = CreateFrame("Frame", "$parentToolsOptions", frame)
 toolsTab.name = L.OTabTools
 frame:CreateTab(toolsTab)
 
----@class DBMOptionsFrameSearchBox: EditBox
-local frameSearchBox = CreateFrame("EditBox", "$parentSearchBox", frame, "InputBoxTemplate")
-frameSearchBox:SetSize(140, 24)
-frameSearchBox:SetAutoFocus(false)
-frameSearchBox:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -36, -39)
-local searchUpdateTimer
-frameSearchBox:SetScript("OnTextChanged", function(self)
-	if searchUpdateTimer then
-		searchUpdateTimer:Cancel()
-		searchUpdateTimer = nil
-	end
-	local ok, text = pcall(self.GetText, self)
-	if not ok or DBM:issecretvalue(text) then
-		text = ""
-	end
-	searchUpdateTimer = C_Timer.NewTimer(0.2, function()
-		frame:SetSearchQuery(text)
-		searchUpdateTimer = nil
-	end)
-end)
-frameSearchBox:SetScript("OnEnterPressed", function(self)
-	self:ClearFocus()
-end)
-frameSearchBox:SetScript("OnEscapePressed", function(self)
-	if self:GetText() ~= "" then
-		self:SetText("")
-	else
-		self:ClearFocus()
-	end
-end)
-
-local frameSearchLabel = frame:CreateFontString("$parentSearchLabel", "ARTWORK", "GameFontHighlightSmall")
-frameSearchLabel:SetPoint("RIGHT", frameSearchBox, "LEFT", -8, 0)
-frameSearchLabel:SetText(SEARCH)
-
-local frameSearchClear = CreateFrame("Button", "$parentSearchClear", frame, "UIPanelButtonTemplate")
-frameSearchClear:SetSize(24, 24)
-frameSearchClear:SetPoint("LEFT", frameSearchBox, "RIGHT", 4, 0)
-frameSearchClear:SetText("x")
-frameSearchClear:Hide()
-frameSearchClear:SetScript("OnClick", function()
-	frameSearchBox:SetText("")
-	frameSearchBox:SetFocus()
-end)
-
-local frameSearchCount = frame:CreateFontString("$parentSearchCount", "ARTWORK", "GameFontHighlightSmall")
-frameSearchCount:SetPoint("BOTTOMLEFT", frameSearchBox, "TOPLEFT", 2, 1)
-frameSearchCount:SetJustifyH("LEFT")
-frameSearchCount:SetText("")
-
-frame.searchBox = frameSearchBox
-frame.searchClearButton = frameSearchClear
-frame.searchCountText = frameSearchCount
-
-function frame:CancelAutoUncollapse()
-	if self.autoUncollapseTimer then
-		self.autoUncollapseTimer:Cancel()
-		self.autoUncollapseTimer = nil
-	end
-end
-
-function frame:ScheduleAutoUncollapse(seconds)
-	seconds = tonumber(seconds) or 10
-	if seconds < 0 then
-		seconds = 0
-	end
-	self:CancelAutoUncollapse()
-	self.autoUncollapseTimer = C_Timer.NewTimer(seconds, function()
-		self.autoUncollapseTimer = nil
-		if self:IsShown() and self.collapsed then
-			self:SetCollapsed(false)
-		end
-	end)
-end
-
-function frame:SetCollapsed(collapsed)
-	collapsed = collapsed and true or false
-	if self.collapsed == collapsed then
-		return
-	end
-	if not collapsed then
-		self:CancelAutoUncollapse()
-	end
-	self.collapsed = collapsed
-	if collapsed then
-		self._preCollapseHeight = self:GetHeight()
-		self:SetHeight(62)
-		frameWrapper:Hide()
-		frameOkay:Hide()
-		frameWebsiteButton:Hide()
-		frameWebsite:Hide()
-		frameWebsiteButtonA:Hide()
-		frameSearchBox:Hide()
-		frameSearchLabel:Hide()
-		frameSearchClear:Hide()
-		frameSearchCount:Hide()
-		frameResize:Hide()
-		for i = 1, #self.tabs do
-			local tabButton = _G[self:GetName() .. "Tab" .. i]
-			if tabButton then
-				tabButton:Hide()
-			end
-		end
-		frameCollapseButton:SetText(EXPAND_TEXT)
-	else
-		self:SetHeight(self._preCollapseHeight or DBM.Options.GUIHeight or 600)
-		frameWrapper:Show()
-		frameOkay:Show()
-		frameWebsiteButton:Show()
-		frameWebsite:Show()
-		frameWebsiteButtonA:Show()
-		frameSearchBox:Show()
-		frameSearchLabel:Show()
-		frameResize:Show()
-		for i = 1, #self.tabs do
-			local tabButton = _G[self:GetName() .. "Tab" .. i]
-			if tabButton then
-				tabButton:Show()
-			end
-		end
-		self:SetSearchStatus(self.searchQuery and self.searchQuery ~= "", 0)
-		self:UpdateMenuFrame()
-		if DBM_GUI.currentViewing then
-			self:DisplayFrame(DBM_GUI.currentViewing)
-		end
-		frameCollapseButton:SetText(COLLAPSE_TEXT)
-	end
-end
-
-frameCollapseButton:SetScript("OnClick", function()
-	frame:SetCollapsed(not frame.collapsed)
-end)
-
--- Cancel any pending debounce timer when the frame hides
-frame:HookScript("OnHide", function()
-	if searchUpdateTimer then
-		searchUpdateTimer:Cancel()
-		searchUpdateTimer = nil
-	end
-	frame:CancelAutoUncollapse()
-end)
-
 ---@class DBMGUIFrameWrapper: Frame, BackdropTemplate
-frameWrapper = CreateFrame("Frame", nil, frame, "BackdropTemplate")
+local frameWrapper = CreateFrame("Frame", nil, frame, "BackdropTemplate")
 frameWrapper:SetPoint("TOPLEFT", 15, -59)
 frameWrapper:SetPoint("BOTTOMRIGHT", -15, 40)
 frameWrapper.backdropInfo = {
@@ -432,9 +230,6 @@ frameList.offset = 0
 frameList.buttons = {}
 
 function frame:LoadAndShowFrame(subFrame)
-	if subFrame.tab and self.tab ~= subFrame.tab then
-		self:ShowTab(subFrame.tab)
-	end
 	self:ClearSelection()
 	self.tabs[self.tab].selection = subFrame
 	if not subFrame.isLoaded then
@@ -455,7 +250,6 @@ function frame:LoadAndShowFrame(subFrame)
 				if mod.id == subFrame.modId then
 					DBM_GUI:CreateBossModPanel(mod, subFrame.isTest)
 					subFrame.isLoaded = true
-					frame:InvalidateSearchCache(subFrame)
 					break
 				end
 			end
@@ -463,7 +257,6 @@ function frame:LoadAndShowFrame(subFrame)
 	end
 	if subFrame.selectButton then
 		subFrame.selectButton:LockHighlight()
-		subFrame.selectButton._dbmWasLocked = true
 	end
 	frame:DisplayFrame(subFrame)
 end
@@ -476,7 +269,6 @@ for i = 1, math.floor(UIParent:GetHeight() / 18) do
 	button.text = button:CreateFontString("$parentText", "ARTWORK", "GameFontNormalSmall")
 	button:RegisterForClicks("LeftButtonUp")
 	button:SetScript("OnClick", function(self)
-		self.element.searchMatchedControl = self.searchMatchedControl
 		frame:LoadAndShowFrame(self.element)
 	end)
 	if i == 1 then

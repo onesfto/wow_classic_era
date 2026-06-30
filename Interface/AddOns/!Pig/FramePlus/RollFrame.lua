@@ -47,20 +47,21 @@ function FramePlusfun.Roll()
 		self.maxIndex = maxIdx;
 	end
 	GroupLootContainer_CalcMaxIndex(RollFFF)
-	local function hangSetPoint(frame,i,self)
+	local function hangSetPoint(frame,duiqiui)
 		frame:ClearAllPoints();
-		frame:SetPoint("BOTTOM",self,"TOP",0,itemhangH*(i-1));
+		frame:SetPoint("BOTTOM",duiqiui,"TOP",0,0);
 	end
 	local function GroupLootContainer_Update(self)
-		local lastIdx = nil;
+		local lastIdx,PointUI = 0,nil;
 		for i=1, self.maxIndex do
 			local frame = self.rollFrames[i];
-			if ( frame ) then
-				hangSetPoint(frame,i,self)
-				lastIdx = i;
+			if frame then
+				lastIdx=lastIdx+1
+				hangSetPoint(frame,lastIdx==1 and self or PointUI)
+				PointUI = frame;
 			end
 		end
-		if ( lastIdx ) then
+		if lastIdx>0 then
 			self:Show();
 		else
 			self:Hide();
@@ -83,6 +84,7 @@ function FramePlusfun.Roll()
 		frame:Hide();
 		GroupLootContainer_Update(self);
 	end
+	local rollTypelist = {LOOT_ROLL_TYPE_PASS,LOOT_ROLL_TYPE_NEED,LOOT_ROLL_TYPE_GREED,LOOT_ROLL_TYPE_DISENCHANT}
 	local Texwidth,Texheight = 500,500
 	local zhiyeicon="interface/glues/charactercreate/ui-charactercreate-classes.blp"
 	local function Enter_Leave(uiitem)
@@ -289,7 +291,9 @@ function FramePlusfun.Roll()
 		itemhang:RegisterEvent("CANCEL_LOOT_ROLL");
 		itemhang:HookScript("OnEvent", function(self, event, arg1)
 			if ( arg1 == self.rollID ) then
-				--GroupLootContainer_RemoveFrame(RollFFF, self);
+				if self:GetID()==3 then
+					GroupLootContainer_RemoveFrame(RollFFF, self);
+				end
 				--StaticPopup_Hide("CONFIRM_LOOT_ROLL", self.rollID);
 			end
 		end)
@@ -311,7 +315,6 @@ function FramePlusfun.Roll()
 		GroupLootContainer_Update(self);
 		frame:Show();
 	end
-	local rollTypelist = {LOOT_ROLL_TYPE_PASS,LOOT_ROLL_TYPE_NEED,LOOT_ROLL_TYPE_GREED,LOOT_ROLL_TYPE_DISENCHANT}
 	local function initialize_button(frame,id,rollTime)
 		frame.rollID = id;
 		frame.rollTime = rollTime;
@@ -431,33 +434,33 @@ function FramePlusfun.Roll()
 			end
 		end
 		for i=1,#dubuglists do
-				if not RollFFF.butList[i] then add_hang(i) end
-				local itembut=RollFFF.butList[i]
-				SETbutEnableDisable(RollFFF.butList[i],false)
-				itembut.PlayersList={}
-				for i=1,#rollTypelist do
-					itembut.PlayersList[rollTypelist[i]]={}
-				end
-				itembut.Need.Count:SetText(0)
-				itembut.Greed.Count:SetText(0)
-				itembut.Pass.Count:SetText(0)
-				itembut.Timer:SetValue(i*14000);
-				local itemName,itemLink,itemQuality,itemLevel,itemMinLevel,itemType,itemSubType,itemStackCount,itemEquipLoc,itemTexture,sellPrice,classID = GetItemInfo(dubuglists[i])
-				itembut.icon.link=itemLink
-				itembut.icon.tex:SetTexture(itemTexture)
-				if classID==2 or classID==4 then
-					local effectiveILvl = GetDetailedItemLevelInfo(itemLink)
-					itembut.icon.lv:SetText(effectiveILvl);
-					local r, g, b = GetItemQualityColor(itemQuality);
-					itembut.icon.lv:SetTextColor(r, g, b, 1);
-					itembut.name:SetText(itemSubType..itemLink)
-				else
-					itembut.name:SetText(itemLink)
-				end
-				itembut.icon.Count:SetTextColor(1, 1, 1, 1)
-				itembut.icon.Count:SetText(8)
-				hangSetPoint(itembut,i,RollFFF)
-				itembut:Show()
+			if not RollFFF.butList[i] then add_hang(i) end
+			local itembut=RollFFF.butList[i]
+			SETbutEnableDisable(RollFFF.butList[i],false)
+			itembut.PlayersList={}
+			for i=1,#rollTypelist do
+				itembut.PlayersList[rollTypelist[i]]={}
+			end
+			itembut.Need.Count:SetText(0)
+			itembut.Greed.Count:SetText(0)
+			itembut.Pass.Count:SetText(0)
+			itembut.Timer:SetValue(i*14000);
+			local itemName,itemLink,itemQuality,itemLevel,itemMinLevel,itemType,itemSubType,itemStackCount,itemEquipLoc,itemTexture,sellPrice,classID = GetItemInfo(dubuglists[i])
+			itembut.icon.link=itemLink
+			itembut.icon.tex:SetTexture(itemTexture)
+			if classID==2 or classID==4 then
+				local effectiveILvl = GetDetailedItemLevelInfo(itemLink)
+				itembut.icon.lv:SetText(effectiveILvl);
+				local r, g, b = GetItemQualityColor(itemQuality);
+				itembut.icon.lv:SetTextColor(r, g, b, 1);
+				itembut.name:SetText(itemSubType..itemLink)
+			else
+				itembut.name:SetText(itemLink)
+			end
+			itembut.icon.Count:SetTextColor(1, 1, 1, 1)
+			itembut.icon.Count:SetText(8)
+			hangSetPoint(itembut,i,RollFFF)
+			itembut:Show()
 		end
 	end
 	function FramePlusfun.RollDebugUI(Scale)

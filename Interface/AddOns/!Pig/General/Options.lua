@@ -346,19 +346,19 @@ function GeneralFun.addOptions_General()
 	end);
 	fujiF.TopF.AFK.TispTXT:SetScript("OnEditFocusLost", function(self)
 	    self:SetTextColor(0.7, 0.7, 0.7, 1);
-	    self:SetText(GeneralFun.GetAFKTispTXT())
+	    self:SetText(PIGA["Other"]["AFK"]["TispTXT"])
 	end);
 	fujiF.TopF.AFK.TispTXT:SetScript("OnEscapePressed", function(self) 
 	    self:ClearFocus()
 	end);
 	fujiF.TopF.AFK.TispTXT:SetScript("OnEnterPressed", function(self)
-	    GeneralFun.GetAFKTispTXT(self:GetText())
+	    PIGA["Other"]["AFK"]["TispTXT"]=self:GetText()
 	    self:ClearFocus()
 	end);
 	fujiF.TopF.AFK.TispTXT.CZ=PIGButton(fujiF.TopF.AFK.TispTXT,{"LEFT", fujiF.TopF.AFK.TispTXT, "RIGHT", 6, 0},{120,20},RESET_TO_DEFAULT)
 	fujiF.TopF.AFK.TispTXT.CZ:SetScript("OnClick", function (self)
-		PIGA["Other"]["AFK"]["TispTXT"]=nil
-		fujiF.TopF.AFK.TispTXT:SetText(GeneralFun.GetAFKTispTXT())
+		PIGA["Other"]["AFK"]["TispTXT"]=PD.Default["Other"]["AFK"]["TispTXT"]
+		fujiF.TopF.AFK.TispTXT:SetText(PIGA["Other"]["AFK"]["TispTXT"])
 	end);
 	-------
 	fujiF.xitongF.Scale:SetChecked(GetCVarBool("useUIScale"));
@@ -372,5 +372,5 @@ function GeneralFun.addOptions_General()
 	fujiF.OtherF.PigLoad:SetChecked(PIGA["Other"]["PigLoad"]);
 	fujiF.TopF.AFK:SetChecked(PIGA["Other"]["AFK"]["Open"]);
 	fujiF.TopF.AFK.QKBut:SetChecked(PIGA["Other"]["AFK"]["QuickBut"]);
-	fujiF.TopF.AFK.TispTXT:SetText(GeneralFun.GetAFKTispTXT())
+	fujiF.TopF.AFK.TispTXT:SetText(PIGA["Other"]["AFK"]["TispTXT"])
 end

@@ -2,8 +2,7 @@ if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
 local mod	= DBM:NewMod("DestructorsWraith", "DBM-Party-Vanilla", 21)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241229223205")
 mod:SetEncounterID(3028)
 mod:SetCreatureID(228022)
 mod:SetZone(2784)
@@ -14,8 +13,8 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 462222 460401"
 )
 
-local specWarnNova		= mod:NewSpecialWarningDodge(460401, nil, nil, nil, 2, 2, nil, nil, "justrun")
-local specWarnShockwave	= mod:NewSpecialWarningDodge(462222, nil, nil, nil, 2, 2, nil, nil, "shockwave")
+local specWarnNova		= mod:NewSpecialWarningDodge(460401, nil, nil, nil, 2, 2)
+local specWarnShockwave	= mod:NewSpecialWarningDodge(462222, nil, nil, nil, 2, 2)
 
 local timerShockwave	= mod:NewCastCountTimer(2, 462222, nil, nil, nil, 5)
 local timerShockwaveCD	= mod:NewCDTimer(28, 462222, nil, nil, nil, 3)

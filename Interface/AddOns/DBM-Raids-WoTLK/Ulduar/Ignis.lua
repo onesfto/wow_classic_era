@@ -5,8 +5,7 @@ if not mod:IsClassic() then--on classic, it's normal10,normal25, defined in toc,
 	mod.statTypes = "normal,timewalker"
 end
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250408170354")
 mod:SetCreatureID(33118)
 if mod:IsPostCata() then
 	mod:SetEncounterID(1136)
@@ -30,8 +29,8 @@ mod:RegisterEventsInCombat(
 local announceSlagPot			= mod:NewTargetNoFilterAnnounce(63477, 3)
 local announceConstruct			= mod:NewCountAnnounce(62488, 2)
 
-local warnFlameJetsCast			= mod:NewSpecialWarningCast(63472, "SpellCaster", nil, nil, 1, 2, nil, nil, "stopcast")
-local warnFlameBrittle			= mod:NewSpecialWarningSwitch(62382, "Dps", nil, nil, 1, 2, nil, nil, "killmob")
+local warnFlameJetsCast			= mod:NewSpecialWarningCast(63472, "SpellCaster", nil, nil, 1, 2)
+local warnFlameBrittle			= mod:NewSpecialWarningSwitch(62382, "Dps", nil, nil, 1, 2)
 
 local timerFlameJetsCast		= mod:NewCastTimer(2.7, 63472)
 local timerActivateConstruct	= mod:NewCDCountTimer(30, 62488, nil, nil, nil, 1)

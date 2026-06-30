@@ -948,7 +948,7 @@ function PigLayoutFun.addOptions_ActionBar(openxx)
 		if self:GetChecked() then
 			PIGA["PigLayout"]["ActionBar"]["HideBarBG"]=true	
 		else
-			PIGA["PigLayout"]["ActionBar"]["HideBarBG"]=nil
+			PIGA["PigLayout"]["ActionBar"]["HideBarBG"]=false
 		end
 		ActionBar_HideBG_Main()
 	end);
@@ -959,7 +959,7 @@ function PigLayoutFun.addOptions_ActionBar(openxx)
 		if self:GetChecked() then
 			PIGA["PigLayout"]["ActionBar"]["HideBarExpBG"]=true	
 		else
-			PIGA["PigLayout"]["ActionBar"]["HideBarExpBG"]=nil
+			PIGA["PigLayout"]["ActionBar"]["HideBarExpBG"]=false
 		end
 		ActionBar_HideBG_ExpWatch()
 	end);
@@ -993,7 +993,8 @@ function PigLayoutFun.addOptions_ActionBar(openxx)
 		[2]="③底部3行+右侧2列(分离微型菜单/背包)",
 		[3]="④底部4行+右侧1列(分离微型菜单/背包)",
 		[4]="⑤底部5行(分离微型菜单/背包)",
-		[5]="⑥底部5行(左1+中3+右1)(分离微型菜单/背包)"
+		[5]="⑥底部5行(左1+中3+右1)(分离微型菜单/背包)",
+		[6]="⑦不控制动作条(分离微型菜单/背包)",
 	}
 	function fujiF.Layout:PIGDownMenu_Update_But()
 		local info = {}
@@ -1125,7 +1126,7 @@ function PigLayoutFun.addOptions_ActionBar(openxx)
 		if self:GetChecked() then
 			PIGA["PigLayout"]["MicroMenu"]["MoveTime"]=true;
 		else
-			PIGA["PigLayout"]["MicroMenu"]["MoveTime"]=nil
+			PIGA["PigLayout"]["MicroMenu"]["MoveTime"]=false
 		end
 		PIG_OptionsUI.RLUI:Show()
 	end);

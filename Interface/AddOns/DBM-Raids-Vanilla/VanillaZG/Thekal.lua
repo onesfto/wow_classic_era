@@ -12,14 +12,14 @@ end
 local mod = DBM:NewMod("Thekal", "DBM-Raids-Vanilla", catID)
 local L = mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20251223165825")
 mod:SetCreatureID(14509, 11348, 11347)
 mod:SetEncounterID(789)
 mod:SetBossHPInfoToHighest()
 mod:SetZone(309)
 
 mod:RegisterCombat("combat")
+mod:RegisterKill("yell", L.YellKill)
 
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 24208",
@@ -35,33 +35,29 @@ mod:AddInfoFrameOption()
 local warnSimulKill		= mod:NewAnnounce("WarnSimulKill", 1, 24173)
 local warnBlind			= mod:NewTargetAnnounce(21060, 2)
 local warnGouge			= mod:NewTargetAnnounce(12540, 2)
-local warnPhase 		= mod:NewPhaseChangeAnnounce(2, nil, nil, nil, nil, nil, 2)
+local warnPhase2		= mod:NewPhaseAnnounce(2)
 local warnAdds			= mod:NewSpellAnnounce(24183, 3)
 
-local specWarnHeal		= mod:NewSpecialWarningInterrupt(24208, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnHeal		= mod:NewSpecialWarningInterrupt(24208, "HasInterrupt", nil, nil, 1, 2)
 
-local timerSimulKill	= mod:NewTimer(15, "TimerSimulKill", 24173, nil, nil, 6)
+local timerSimulKill	= mod:NewTimer(15, "TimerSimulKill", 24173)
 local timerBlind		= mod:NewTargetTimer(10, 21060, nil, nil, nil, 3)
 local timerGouge		= mod:NewTargetTimer(4, 12540, nil, nil, nil, 3)
 
 
-function mod:OnCombatStart()
+function mod:OnCombatStart(delay)
 	self:SetStage(1)
-	warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(1))
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Show(10, "bosshealth", {
 			[11347] = true,
 			[11348] = true,
-			[14509] = true,
 		})
 		self.bossHealthUpdateTime = 0.5
 	end
 end
 
 function mod:OnCombatEnd()
-	if self.Options.InfoFrame then
-		DBM.InfoFrame:Hide()
-	end
+	DBM.InfoFrame:Hide()
 end
 
 function mod:SPELL_CAST_START(args)
@@ -104,8 +100,8 @@ function mod:CHAT_MSG_MONSTER_EMOTE(msg)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if self:GetStage(1) and (msg == L.YellPhase2 or msg:find(L.YellPhase2)) then
-		self:SendSync("Phase2")
+	if (msg == L.YellPhase2 or msg:find(L.YellPhase2)) and self.vb.phase < 2 then -- Bossfight (tank and spank)
+		self:SendSync("YellPhase2")
 	end
 end
 
@@ -116,13 +112,10 @@ function mod:OnSync(msg)
 			warnSimulKill:Show()
 			timerSimulKill:Start()
 		end
-	elseif msg == "Phase2" then
+	elseif msg == "YellPhase2" and self.vb.phase < 2 then
+		DBM.InfoFrame:Hide()
 		self:SetStage(2)
-		warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(2))
-		warnPhase:Play("ptwo")
+		warnPhase2:Show()
 		timerSimulKill:Stop()
-		if self.Options.InfoFrame then
-			DBM.InfoFrame:Hide()
-		end
 	end
 end

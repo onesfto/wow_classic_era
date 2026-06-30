@@ -1,3 +1,5 @@
+--NOBODY, except Keseva touches this file.
+
 ---@class DBM
 local DBM = DBM
 
@@ -34,49 +36,6 @@ elseif LOCALE_ruRU then
 	standardFont = "Fonts\\FRIZQT___CYR.TTF"
 else
 	standardFont = "Fonts\\FRIZQT__.TTF"
-end
-
-local nameplateTimerFontResetNotified = false
-local nameplateTextFontResetNotified = false
-local npTimerFont, npTimerFontSize, npTimerStyle
-local npTextFont, npTextFontSize, npTextStyle
-local npFontSettingsValidated = false
-
-function nameplateFrame:ValidateFontSettings()
-	local timerFont = DBM.Options.NPIconTimerFont == "standardFont" and standardFont or DBM.Options.NPIconTimerFont
-	local timerFontSize = DBM.Options.NPIconTimerFontSize
-	local timerStyle = (DBM.Options.NPIconTimerFontStyle and not DBM:IsNoneValue(DBM.Options.NPIconTimerFontStyle)) and DBM.Options.NPIconTimerFontStyle or ""
-	if not DBM:IsFontValid(timerFont, standardFont, timerFontSize, timerStyle) then
-		DBM.Options.NPIconTimerFont = DBM.DefaultOptions.NPIconTimerFont
-		DBM.Options.NPIconTimerFontSize = DBM.DefaultOptions.NPIconTimerFontSize
-		DBM.Options.NPIconTimerFontStyle = DBM.DefaultOptions.NPIconTimerFontStyle
-		if not nameplateTimerFontResetNotified then
-			DBM:AddMsg("Invalid Nameplate timer font settings were detected and reset to defaults.")
-			nameplateTimerFontResetNotified = true
-		end
-		timerFont = DBM.Options.NPIconTimerFont == "standardFont" and standardFont or DBM.Options.NPIconTimerFont
-		timerFontSize = DBM.Options.NPIconTimerFontSize
-		timerStyle = (DBM.Options.NPIconTimerFontStyle and not DBM:IsNoneValue(DBM.Options.NPIconTimerFontStyle)) and DBM.Options.NPIconTimerFontStyle or ""
-	end
-	npTimerFont, npTimerFontSize, npTimerStyle = timerFont, timerFontSize, timerStyle
-
-	local textFont = DBM.Options.NPIconTextFont == "standardFont" and standardFont or DBM.Options.NPIconTextFont
-	local textFontSize = DBM.Options.NPIconTextFontSize
-	local textStyle = (DBM.Options.NPIconTextFontStyle and not DBM:IsNoneValue(DBM.Options.NPIconTextFontStyle)) and DBM.Options.NPIconTextFontStyle or ""
-	if not DBM:IsFontValid(textFont, standardFont, textFontSize, textStyle) then
-		DBM.Options.NPIconTextFont = DBM.DefaultOptions.NPIconTextFont
-		DBM.Options.NPIconTextFontSize = DBM.DefaultOptions.NPIconTextFontSize
-		DBM.Options.NPIconTextFontStyle = DBM.DefaultOptions.NPIconTextFontStyle
-		if not nameplateTextFontResetNotified then
-			DBM:AddMsg("Invalid Nameplate text font settings were detected and reset to defaults.")
-			nameplateTextFontResetNotified = true
-		end
-		textFont = DBM.Options.NPIconTextFont == "standardFont" and standardFont or DBM.Options.NPIconTextFont
-		textFontSize = DBM.Options.NPIconTextFontSize
-		textStyle = (DBM.Options.NPIconTextFontStyle and not DBM:IsNoneValue(DBM.Options.NPIconTextFontStyle)) and DBM.Options.NPIconTextFontStyle or ""
-	end
-	npTextFont, npTextFontSize, npTextStyle = textFont, textFontSize, textStyle
-	npFontSettingsValidated = true
 end
 
 --------------------
@@ -126,10 +85,15 @@ do
 
 		iconFrame.__DBM_NPIconGlowFrame:SetSize(DBM.Options.NPIconSize, DBM.Options.NPIconSize)
 
-		if not npFontSettingsValidated then nameplateFrame:ValidateFontSettings() end
-		iconFrame.cooldown.timer:SetFont(npTimerFont, npTimerFontSize, npTimerStyle)
+		local timerFont = DBM.Options.NPIconTimerFont == "standardFont" and standardFont or DBM.Options.NPIconTimerFont
+		local timerFontSize = DBM.Options.NPIconTimerFontSize
+		local timerStyle = DBM.Options.NPIconTimerFontStyle == "None" and nil or DBM.Options.NPIconTimerFontStyle
+		iconFrame.cooldown.timer:SetFont(timerFont, timerFontSize, timerStyle)
 
-		iconFrame.text:SetFont(npTextFont, npTextFontSize, npTextStyle)
+		local textFont = DBM.Options.NPIconTextFont == "standardFont" and standardFont or DBM.Options.NPIconTextFont
+		local textFontSize = DBM.Options.NPIconTextFontSize
+		local textStyle = DBM.Options.NPIconTextFontStyle == "None" and nil or DBM.Options.NPIconTextFontStyle
+		iconFrame.text:SetFont(textFont, textFontSize, textStyle)
 
 		iconFrame.lastOptionsUpdateTime = GetTime()
 	end
@@ -736,7 +700,7 @@ local barsTestMode = false --this is to handle the "non-guid" test bars. just tu
 do
 	--test start
 	local testStartCallback = function(event, id, msg, timer, icon, barType, spellId, colorType, modId, keep, fade, name, guid, timerCount, isPriority)
-		if event ~= "DBM_TimerBegin" then return end
+		if event ~= "DBM_TimerStart" then return end
 		-- Supported by nameplate mod, passing to their handler
 		if SupportedNPModBars() then return end
 		--Disable cooldown icons for any timer designated as a nameplate only cooldown timer
@@ -822,10 +786,10 @@ do
 		barsTestMode = true
 		C_Timer.After (tonumber(timer) or 10, function()
 			barsTestMode = false
-			DBM:UnregisterCallback("DBM_TimerBegin", testStartCallback)
+			DBM:UnregisterCallback("DBM_TimerStart", testStartCallback)
 			DBM:UnregisterCallback("DBM_TimerStop", testEndCallback)
 		end)
-		DBM:RegisterCallback("DBM_TimerBegin", testStartCallback)
+		DBM:RegisterCallback("DBM_TimerStart", testStartCallback)
 		DBM:RegisterCallback("DBM_TimerStop", testEndCallback)
 	end
 	DBM:RegisterCallback("DBM_TestModStarted", testModeStartCallback)
@@ -1097,7 +1061,6 @@ function nameplateFrame:IsShown()
 end
 
 function nameplateFrame:UpdateIconOptions()
-	self:ValidateFontSettings()
 	lastOptionsUpdateTime = GetTime()
 	for _, frame in pairs(GetNamePlates()) do
 		local dbmAuraFrame = frame.DBMAuraFrame

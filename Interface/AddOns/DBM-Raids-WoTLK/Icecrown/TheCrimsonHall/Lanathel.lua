@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,normal25,heroic,heroic25"
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103133102")
 mod:SetCreatureID(37955)
 mod:SetEncounterID(not mod:IsPostCata() and 853 or 1103)
 mod:SetModelID(31165)
@@ -32,14 +31,14 @@ local warnBloodthirstSoon			= mod:NewSoonAnnounce(70877, 2)
 local warnBloodthirst				= mod:NewTargetNoFilterAnnounce(70877, 3, nil, false)
 local warnEssenceoftheBloodQueen	= mod:NewTargetNoFilterAnnounce(70867, 3, nil, false)
 
-local specWarnBloodBolt				= mod:NewSpecialWarningSpell(71772, nil, nil, nil, 2, 2, nil, nil, "scatter")
-local specWarnPactDarkfallen		= mod:NewSpecialWarningYou(71340, nil, nil, nil, 1, 2, nil, nil, "linegather")
-local specWarnEssenceoftheBloodQueen= mod:NewSpecialWarningYou(70867, nil, nil, nil, 1, 2, nil, nil, "targetyou")
-local specWarnBloodthirst			= mod:NewSpecialWarningYou(70877, nil, nil, nil, 3, 2, nil, nil, "frenzy")
+local specWarnBloodBolt				= mod:NewSpecialWarningSpell(71772, nil, nil, nil, 2, 2)
+local specWarnPactDarkfallen		= mod:NewSpecialWarningYou(71340, nil, nil, nil, 1, 2)
+local specWarnEssenceoftheBloodQueen= mod:NewSpecialWarningYou(70867, nil, nil, nil, 1, 2)
+local specWarnBloodthirst			= mod:NewSpecialWarningYou(70877, nil, nil, nil, 3, 2)
 local yellBloodthirst				= mod:NewYell(70877, L.YellFrenzy)
-local specWarnSwarmingShadows		= mod:NewSpecialWarningYou(71266, nil, nil, nil, 1, 2, nil, nil, "runout")
-local specWarnMindConrolled			= mod:NewSpecialWarningTarget(70923, "-Healer", nil, nil, 1, 2, nil, nil, "findmc")
-local specWarnGTFO					= mod:NewSpecialWarningGTFO(71266, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specWarnSwarmingShadows		= mod:NewSpecialWarningYou(71266, nil, nil, nil, 1, 2)
+local specWarnMindConrolled			= mod:NewSpecialWarningTarget(70923, "-Healer", nil, nil, 1, 2)
+local specWarnGTFO					= mod:NewSpecialWarningGTFO(71266, nil, nil, nil, 1, 8)
 
 local timerNextInciteTerror			= mod:NewNextTimer(100, 73070, nil, nil, nil, 6)
 local timerFirstBite				= mod:NewNextTimer(15, 70946, nil, "Dps", nil, 5)
@@ -55,6 +54,7 @@ local berserkTimer					= mod:NewBerserkTimer(320)
 mod:AddSetIconOption("BloodMirrorIcon", 71510, false, 0, {7})--red x for blood link
 mod:AddSetIconOption("SwarmingShadowsIcon2", 71266, false, 0, {4})
 mod:AddSetIconOption("SetIconOnDarkFallen2", 71340, false, 0, {1, 2, 3})
+mod:AddRangeFrameOption(8, 71446)
 
 local pactTargets = {}
 mod.vb.pactIcons = 1
@@ -73,6 +73,9 @@ function mod:OnCombatStart(delay)
 	timerNextSwarmingShadows:Start(-delay)
 	table.wipe(pactTargets)
 	self.vb.pactIcons = 1
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Show(8)
+	end
 	if self:IsDifficulty("normal10", "heroic10") then
 		timerNextInciteTerror:Start(124-delay)
 	else
@@ -80,6 +83,11 @@ function mod:OnCombatStart(delay)
 	end
 end
 
+function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
+end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 71340 then		--Pact of the Darkfallen

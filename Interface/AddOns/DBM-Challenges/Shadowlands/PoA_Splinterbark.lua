@@ -3,8 +3,7 @@ local mod	= DBM:NewMod("Splinterbark", "DBM-Challenges", 1)
 
 mod.statTypes = "normal,heroic,mythic,challenge"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250703201323")
 mod:SetCreatureID(172682)--Guessed
 mod.soloChallenge = true
 
@@ -22,7 +21,7 @@ mod:RegisterEventsInCombat(
 	"CRITERIA_COMPLETE"
 )
 
-local specWarnRage				= mod:NewSpecialWarningRun(337419, nil, nil, nil, 4, 2, nil, nil, "justrun")
+local specWarnRage				= mod:NewSpecialWarningRun(337419, nil, nil, nil, 4, 2)
 
 --local berserkTimer								= mod:NewBerserkTimer(480)
 

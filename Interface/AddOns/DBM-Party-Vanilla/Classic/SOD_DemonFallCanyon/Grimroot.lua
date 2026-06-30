@@ -2,8 +2,7 @@ if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
 local mod	= DBM:NewMod("Grimroot", "DBM-Party-Vanilla", 21)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241229223205")
 mod:SetEncounterID(3023)
 mod:SetCreatureID(226923)
 mod:SetZone(2784)
@@ -50,9 +49,9 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_REMOVED 460703"
 )
 
-local specWarnGTFO		= mod:NewSpecialWarningGTFO(460512, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
-local specWarnGloom		= mod:NewSpecialWarningInterrupt(460727, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
-local specWarnFrenzy	= mod:NewSpecialWarningDispel(460703, "RemoveEnrage", nil, nil, 1, 2, nil, nil, "trannow")
+local specWarnGTFO		= mod:NewSpecialWarningGTFO(460512, nil, nil, nil, 1, 8)
+local specWarnGloom		= mod:NewSpecialWarningInterrupt(460727, "HasInterrupt", nil, nil, 1, 2)
+local specWarnFrenzy	= mod:NewSpecialWarningDispel(460703, "RemoveEnrage", nil, nil, 1, 2)
 
 local yellTears			= mod:NewIconRepeatYell(460512)
 

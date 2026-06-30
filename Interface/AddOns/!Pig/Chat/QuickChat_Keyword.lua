@@ -10,6 +10,7 @@ local Fun=PD.Fun
 local Data=PD.Data
 local PlayerInfo=Data.PlayerInfo
 local Key_fenge=Fun.Key_fenge
+local Key_hebing=Fun.Key_hebing
 local del_LinkEmojiPun=Fun.del_LinkEmojiPun
 local ReplaceEmoji=Fun.ReplaceEmoji
 local GetRaceClassTXT=Fun.GetRaceClassTXT
@@ -476,24 +477,7 @@ function QuickChatfun.QuickBut_Keyword()
 	BlackList["IGNORE_DND"]=PIGA["Chat"]["Filter"]["IGNORE_DND"]
 	BlackList["FilterRepeat"]=PIGA["Chat"]["Filter"]["FilterRepeat"]
 	BlackList["Precise"]=PIGA["Chat"]["Filter"]["Precise"]
-	
-	local function zairuBlackFun()
-		local datax={}
-		local keyslist = PIGA["Chat"]["Filter"]["Blacks"]
-		local keyslist = keyslist:gsub("，", ",")
-		local fengelist = Key_fenge(keyslist, ",", true)
-		for i=1,#fengelist do
-			local newTxT=fengelist[i]
-			if newTxT:match("#") then
-				local newTxT_1 = Key_fenge(newTxT, "#",true)
-				table.insert(datax, newTxT_1);
-			else
-				table.insert(datax, newTxT);
-			end
-		end
-		return datax
-	end
-	BlackList["word"]=zairuBlackFun()
+	BlackList["word"]=PIGA["Chat"]["Filter"]["BlacksList"]
 
 	local function FilterBlack(self,event,arg1,arg2,arg3,arg4,arg5,arg6)
 		if self==ChatFrame2 or self==ChatFrame3 then return end
@@ -650,7 +634,6 @@ function QuickChatfun.QuickBut_Keyword()
 		end
 	end
 	QuickUI.Keyword:FilterKeysFun()
-		
 	----
 	function QuickUI.Keyword.add_uifun()
 		if _G["PIG_ChatKeyWordSet"] then return end
@@ -751,7 +734,7 @@ function QuickChatfun.QuickBut_Keyword()
 			self:SetTextColor(0.6, 0.6, 0.6, 1)
 			self:SetText("")
 			TiquF.NR.EditF.error:SetText("")
-			TiquF.NR.EditF.SAVEBUT:Hide()
+			TiquF.NR.EditF.SaveBut:Hide()
 		end);
 		TiquF.NR.EditF.E:HookScript("OnEditFocusGained", function(self)
 			self:SetTextColor(1, 1, 1, 1);
@@ -760,9 +743,9 @@ function QuickChatfun.QuickBut_Keyword()
 		TiquF.NR.EditF.E:SetScript("OnEnterPressed", function(self)
 			TiquF.NR.EditF:IsKeyExist()
 		end);
-		TiquF.NR.EditF.SAVEBUT = PIGButton(TiquF.NR.EditF,{"LEFT",TiquF.NR.EditF,"RIGHT",2,0},{60,22},ADD)
-		TiquF.NR.EditF.SAVEBUT:Hide()
-		TiquF.NR.EditF.SAVEBUT:SetScript("OnClick", function(self)
+		TiquF.NR.EditF.SaveBut = PIGButton(TiquF.NR.EditF,{"LEFT",TiquF.NR.EditF,"RIGHT",2,0},{60,22},ADD)
+		TiquF.NR.EditF.SaveBut:Hide()
+		TiquF.NR.EditF.SaveBut:SetScript("OnClick", function(self)
 			TiquF.NR.EditF:IsKeyExist()
 		end)
 		TiquF.NR.EditF.error=PIGFontString(TiquF.NR.EditF,{"BOTTOMLEFT",TiquF.NR.EditF,"TOPLEFT",4,2})
@@ -771,7 +754,7 @@ function QuickChatfun.QuickBut_Keyword()
 		TiquF.NR.EditF.tishi:SetJustifyH("LEFT");
 		TiquF.NR.EditF.tishi:SetTextColor(0, 1, 0, 1)
 		function TiquF.NR.EditF:EditBoxError()
-			self.SAVEBUT:Hide()
+			self.SaveBut:Hide()
 			self.error:SetText("")
 			local txtv = self.E:GetText():gsub(" ", ""):upper()
 			if txtv=="" then
@@ -792,7 +775,7 @@ function QuickChatfun.QuickBut_Keyword()
 					self.error:SetText("关注关键字已满，请先删除一些")
 					return
 				end
-				self.SAVEBUT:Show()	
+				self.SaveBut:Show()	
 			end
 		end
 		function TiquF.NR.EditF:IsKeyExist()
@@ -1177,7 +1160,7 @@ function QuickChatfun.QuickBut_Keyword()
 
 		--黑名单
 		BlackF.F.BlackF=PIGOptionsList_R(BlackF.F,L["CHAT_BLACK_NAME"]..L["CHAT_KEYWORD"],110)
-		local tishineiB = "|cffFF0000"..L["CHAT_KEYWORD"]..L["CHAT_BLACK_NAME"].."("..L["CHAT_BLACK_NAME"].."账号共享)|r\n|cffFFFF00"..L["CHAT_BLACK_EITB"].."|r"
+		local tishineiB = "|cffFF0000"..L["CHAT_KEYWORD"]..L["CHAT_BLACK_NAME"].."(|cffFF0000账号共享)|r\n|cffFFFF00"..L["CHAT_BLACK_EITB"].."|r"
 		BlackF.F.BlackF.tishi1 = PIGFontString(BlackF.F.BlackF,{"TOPLEFT",BlackF.F.BlackF,"TOPLEFT",10,-8},tishineiB);
 		BlackF.F.BlackF.tishi1:SetJustifyH("LEFT");
 
@@ -1203,33 +1186,34 @@ function QuickChatfun.QuickBut_Keyword()
 			Keywords=DFKeywords
 		end
 		---------
-		local function Delchongfu(TxT)
-			local TxT = TxT:gsub("，", ",")
-			local data = Key_fenge(TxT, ",")
-		    local seen = {}  
-		    for i=#data,1,-1 do
-		    	if seen[data[i]] then 
-		    		table.remove(data,i) 
-		        else
-		           	seen[data[i]] = true
-		        end
-		    end
-		    local Newtxt = ""
-		    for i=1,#data do
-		    	if i==#data then
-		    		Newtxt=Newtxt..data[i]
-		    	else
-		     		Newtxt=Newtxt..data[i].."，"
-		     	end
-		    end 
-		    return Newtxt
+		local function Ischongfu(data,key)
+			for i=1,#data do
+				if data[i]==key then
+					return true
+				end
+			end
+			return false
 		end
-		local function Save_BlackValue(fuji,peizhiV)
-			local value = fuji:GetText();
-			local value = value:gsub(" ", "")
-			local value=Delchongfu(value)
-			PIGA["Chat"]["Filter"][peizhiV]=value
-		 	BlackList["word"]=zairuBlackFun()
+		local function txtTOtbale(lytxt)
+			lytxt = lytxt:gsub("，", ",")
+			local datax={}
+			local fengelist = Key_fenge(lytxt, ",", true)
+			for i=1,#fengelist do
+				if not Ischongfu(datax, fengelist[i]) then
+					table.insert(datax, fengelist[i])
+				end
+			end
+			return datax
+		end
+		local function Save_BlackValue(textArea)
+			local value = textArea:GetText():gsub(" ", "")
+			local datax = txtTOtbale(value)
+			PIGA["Chat"]["Filter"]["BlacksList"]=datax
+		 	BlackList["word"]=datax
+		 	textArea:SetText(Key_hebing(datax))
+			textArea:ClearFocus()
+			textArea:SetTextColor(0.6, 0.6, 0.6, 1)
+			BlackF.F.BlackF.NR.SaveBut:Hide()
 		end
 		---
 		BlackF.F.BlackF.NR = PIGFrame(BlackF.F.BlackF);
@@ -1254,48 +1238,35 @@ function QuickChatfun.QuickBut_Keyword()
 		BlackF.F.BlackF.NR.textArea.tishi = PIGFontString(BlackF.F.BlackF.NR.textArea,{"TOPLEFT",BlackF.F.BlackF.NR.textArea,"TOPLEFT",2,-0},L["CHAT_KEYWORD_TI"]);
 		BlackF.F.BlackF.NR.textArea.tishi:SetTextColor(0.8, 0.8, 0.8, 0.8);
 		BlackF.F.BlackF.NR.textArea:SetScript("OnShow", function(self)
-			self:SetText(PIGA["Chat"]["Filter"]["Blacks"])
+			self:SetText(Key_hebing(PIGA["Chat"]["Filter"]["BlacksList"]))
 		end);
 		BlackF.F.BlackF.NR.textArea:SetScript("OnEscapePressed", function(self)
 			self:SetTextColor(0.6, 0.6, 0.6, 1)
-			BlackF.F.BlackF.NR.SAVEBUT:Hide()
+			BlackF.F.BlackF.NR.SaveBut:Hide()
 			self:ClearFocus()
 		end);
 		BlackF.F.BlackF.NR.textArea:SetScript("OnEditFocusGained", function(self)
 			self:SetTextColor(1, 1, 1, 1)
-			BlackF.F.BlackF.NR.SAVEBUT:Show()
-		end);
-		BlackF.F.BlackF.NR.textArea:SetScript("OnEnterPressed", function(self)
-			self:SetTextColor(0.6, 0.6, 0.6, 1)
-			Save_BlackValue(self,"Blacks")
-			BlackF.F.BlackF.NR.textArea:SetText(PIGA["Chat"]["Filter"]["Blacks"])
-			self:ClearFocus()
-			BlackF.F.BlackF.NR.SAVEBUT:Hide()
+			BlackF.F.BlackF.NR.SaveBut:Show()
 		end);
 		BlackF.F.BlackF.NR.textArea:SetScript("OnTextChanged", function(self)
-			local txtv = self:GetText()
-			if txtv=="" or txtv==" " then
-				self.tishi:Show()
-			else
-				self.tishi:Hide()
-			end
+			local txtv = self:GetText():gsub(" ", "")
+			self.tishi:SetShown(txtv=="")
 		end);
-		BlackF.F.BlackF.NR.SAVEBUT = PIGButton(BlackF.F.BlackF.NR,{"BOTTOMRIGHT",BlackF.F.BlackF.NR,"TOPRIGHT",-10,2},{60,20},SAVE)
-		BlackF.F.BlackF.NR.SAVEBUT:Hide()
-		BlackF.F.BlackF.NR.SAVEBUT:SetScript("OnClick", function(self)
+		BlackF.F.BlackF.NR.textArea:SetScript("OnEnterPressed", function(self)
+			Save_BlackValue(self)
+		end);
+		BlackF.F.BlackF.NR.SaveBut = PIGButton(BlackF.F.BlackF.NR,{"BOTTOMRIGHT",BlackF.F.BlackF.NR,"TOPRIGHT",-10,2},{60,20},SAVE)
+		BlackF.F.BlackF.NR.SaveBut:Hide()
+		BlackF.F.BlackF.NR.SaveBut:SetScript("OnClick", function(self)
 			local fujif = self:GetParent();
-			Save_BlackValue(fujif.textArea,"Blacks")
-			BlackF.F.BlackF.NR.textArea:SetText(PIGA["Chat"]["Filter"]["Blacks"])
-			fujif.textArea:ClearFocus()
-			fujif.textArea:SetTextColor(0.6, 0.6, 0.6, 1)
-			self:Hide()
+			Save_BlackValue(fujif.textArea)
 		end)
 		BlackF.F.BlackF.NR.morenkey = PIGButton(BlackF.F.BlackF.NR,{"BOTTOMRIGHT",BlackF.F.BlackF.NR,"TOPRIGHT",-10,40},{114,20},"载入预置黑名单")
 		BlackF.F.BlackF.NR.morenkey:SetScript("OnClick", function(self)
 			BlackF.F.BlackF.NR.textArea:SetText(Keywords)
 			local fujif = self:GetParent();
-			Save_BlackValue(fujif.textArea,"Blacks")
-			BlackF.F.BlackF.NR.textArea:SetText(PIGA["Chat"]["Filter"]["Blacks"])
+			Save_BlackValue(fujif.textArea)
 			PIGErrorMsg("已载入预置黑名单");
 		end)
 

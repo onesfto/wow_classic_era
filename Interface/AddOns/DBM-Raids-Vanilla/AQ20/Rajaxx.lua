@@ -9,8 +9,7 @@ end
 local mod	= DBM:NewMod("Rajaxx", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241209204814")
 mod:SetCreatureID(15341)
 mod:SetEncounterID(719)
 mod:SetZone(509)
@@ -32,7 +31,7 @@ local warnOrder			= mod:NewTargetAnnounce(25471)
 local warnCloud			= mod:NewSpellAnnounce(26550)
 local warnThundercrash	= mod:NewSpellAnnounce(25599)
 
-local specWarnOrder		= mod:NewSpecialWarningYou(25471, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnOrder		= mod:NewSpecialWarningYou(25471, nil, nil, nil, 1, 2)
 local yellOrder			= mod:NewYell(25471)
 
 local timerOrder		= mod:NewTargetTimer(10, 25471, nil, nil, nil, 3)

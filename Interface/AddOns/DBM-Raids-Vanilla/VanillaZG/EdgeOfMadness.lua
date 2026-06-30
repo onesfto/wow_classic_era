@@ -12,8 +12,7 @@ end
 local mod	= DBM:NewMod("EdgeOfMadness", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103123604")
 mod:SetCreatureID(15083)
 mod:SetEncounterID(788)
 mod:SetZone(309)
@@ -34,7 +33,7 @@ local warnFrenzy	= mod:NewSpellAnnounce(8269)
 local warnVanish	= mod:NewSpellAnnounce(24699)
 local warnCloud		= mod:NewSpellAnnounce(24683)
 
-local specWarnKite	= mod:NewSpecialWarningMove(24646, true, nil, nil, 1, 2, nil, nil, "keepmove")
+local specWarnKite	= mod:NewSpecialWarningMove(24646, true, nil, nil, 1, 2)
 
 local timerSleep	= mod:NewBuffActiveTimer(6, 24664, nil, nil, nil, 3)
 local timerCloud	= mod:NewBuffActiveTimer(15, 24683, nil, nil, nil, 3)

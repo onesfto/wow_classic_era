@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(688, "DBM-Party-MoP", 9, 316)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20231024034207")
 mod:SetCreatureID(59789)
 mod:SetEncounterID(1423)
 mod:SetZone(1004)
@@ -19,8 +18,8 @@ mod:RegisterEventsInCombat(
 local warnEvictSoul				= mod:NewTargetNoFilterAnnounce(115297, 3)
 local warnEmpowerZombie			= mod:NewSpellAnnounce(115250, 4)
 
-local specWarnFallenCrusader	= mod:NewSpecialWarningSwitch(-5863, "-Healer", nil, nil, 1, 2, nil, nil, "killmob")--Need more data, nots sure if they are meaningful enough to kill or ignore.
-local specWarnEmpoweredSpirit	= mod:NewSpecialWarningSwitch(-5869, "-Healer", nil, nil, 1, 2, nil, nil, "killmob")--These need to die before they become zombies. Cannot see a way in combat log to detect target, i'll have to watch for target scanning next time to warn that player to run away from dead crusaders.
+local specWarnFallenCrusader	= mod:NewSpecialWarningSwitch(-5863, "-Healer", nil, nil, 1, 2)--Need more data, nots sure if they are meaningful enough to kill or ignore.
+local specWarnEmpoweredSpirit	= mod:NewSpecialWarningSwitch(-5869, "-Healer", nil, nil, 1, 2)--These need to die before they become zombies. Cannot see a way in combat log to detect target, i'll have to watch for target scanning next time to warn that player to run away from dead crusaders.
 
 local timerEvictSoul			= mod:NewTargetTimer(6, 115297, nil, nil, nil, 5)
 local timerEvictSoulCD			= mod:NewCDTimer(41, 115297, nil, nil, nil, 3)

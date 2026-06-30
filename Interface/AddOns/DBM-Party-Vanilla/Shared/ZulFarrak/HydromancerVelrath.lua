@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("HydromancerVelrath", "DBM-Party-Vanilla", DBM:IsPostCata() and 15 or 20)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(7795)
 mod:SetEncounterID(593)
 mod:SetZone(209)
@@ -13,7 +12,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 12491"
 )
 
-local specWarnHealingWave			= mod:NewSpecialWarningInterrupt(12491, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnHealingWave			= mod:NewSpecialWarningInterrupt(12491, "HasInterrupt", nil, nil, 1, 2)
 
 local timerHealingWaveCD			= mod:NewAITimer(180, 12491, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 

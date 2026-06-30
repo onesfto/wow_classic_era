@@ -1,11 +1,10 @@
 local mod	= DBM:NewMod(538, "DBM-Party-BC", 11, 251)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250609051305")
 mod:SetCreatureID(17848)
 mod:SetEncounterID(1905)
-mod:SetZone(560)
+mod:SetZone(251)
 
 if not mod:IsRetail() then
 	mod:SetModelID(17386)
@@ -22,7 +21,7 @@ mod:RegisterEventsInCombat(
 local warnShot				= mod:NewTargetNoFilterAnnounce(33792)
 local warningMortalStrike	= mod:NewTargetNoFilterAnnounce(31911, 1, nil, "Tank|Healer")
 
-local specWarnWhirlwind		= mod:NewSpecialWarningRun(31909, nil, nil, nil, 4, 2, nil, nil, "justrun")
+local specWarnWhirlwind		= mod:NewSpecialWarningRun(31909, nil, nil, nil, 4, 2)
 
 local timerShot				= mod:NewTargetTimer(6, 33792, nil, nil, nil, 3)
 

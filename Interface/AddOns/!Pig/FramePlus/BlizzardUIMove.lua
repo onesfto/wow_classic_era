@@ -49,18 +49,20 @@ local function PIG_SetScale(UIname,MovingUI)
 		MovingUI:SetScale(ScaleV);
 	end
 end
-local function funxx(UIname,MovingUI)
+local function funxx(UIname,MovingUI,NotSave)
 	MovingUI:EnableMouse(true)
 	MovingUI:SetMovable(true)
 	MovingUI:SetClampedToScreen(true)
 	PIG_SetScale(UIname,MovingUI)
-	if PIGA["FramePlus"]["BlizzardUI_Move_Save"] then
+	if not NotSave and PIGA["FramePlus"]["BlizzardUI_Move_Save"] then
 		MovingUI.ignoreFramePositionManager = true;
 		MovingUI:SetAttribute("ignoreFramePositionManager", true);
-		PIG_SetPointSpecial(UIname,MovingUI)
+		PIG_SetPointSpecial(UIname,MovingUI,NotSave)
+	else
+		if PIGA["Blizzard_UI"][UIname] then PIGA["Blizzard_UI"][UIname]["Point"]=nil end
    	end
 end
-local function MovingFun_1(protection,UIname,ClickF,MovingUI)
+local function MovingFun_1(protection,UIname,ClickF,MovingUI,NotSave)
 	ClickF:RegisterForDrag("LeftButton")
     ClickF:HookScript("OnDragStart",function()
     	if protection and InCombatLockdown() then 
@@ -76,9 +78,9 @@ local function MovingFun_1(protection,UIname,ClickF,MovingUI)
 		end
         MovingUI:StopMovingOrSizing()
         MovingUI:SetUserPlaced(true)
-        if PIGA["FramePlus"]["BlizzardUI_Move_Save"] then
+        if not NotSave and PIGA["FramePlus"]["BlizzardUI_Move_Save"] then
         	PIGA["Blizzard_UI"][UIname]=PIGA["Blizzard_UI"][UIname] or {}
-        	local point, relativeTo, relativePoint, offsetX, offsetY = MovingUI:GetPoint()
+        	local point, relativePoint, offsetX, offsetY = PIGGetPoint(MovingUI)
 			if point and relativePoint and offsetX and offsetY then
 				local offsetX = floor(offsetX*100+0.5)*0.01
 				local offsetY = floor(offsetY*100+0.5)*0.01
@@ -90,11 +92,11 @@ local function MovingFun_1(protection,UIname,ClickF,MovingUI)
 	if protection and InCombatLockdown() then
 		MovingUI:RegisterEvent("PLAYER_REGEN_ENABLED")
 	else
-		funxx(UIname,MovingUI)
+		funxx(UIname,MovingUI,NotSave)
 	end
 	MovingUI:HookScript("OnEvent", function(self, event)
 		if event=="PLAYER_REGEN_ENABLED" then
-			funxx(UIname,self)
+			funxx(UIname,self,NotSave)
 		end
 	end)
 end
@@ -105,7 +107,7 @@ local function add_Movebiaoti(oldbiaoti)
 	Movebiaoti:EnableMouse(true)
 	return Movebiaoti
 end
-local function MovingFun(protection,UIname,ClickFname)
+local function MovingFun(protection,UIname,ClickFname,NotSave)
 	if PIGA["FramePlus"]["BlizzardUI_Not"][UIname] then return end
 	local MovingUI=_G[UIname]
 	if MovingUI then
@@ -140,25 +142,25 @@ local function MovingFun(protection,UIname,ClickFname)
 				    label:SetPoint('RIGHT', checkBox, 'RIGHT', 160, 1);
 				end
 			end
-			MovingFun_1(protection,UIname,MovingUI,MovingUI)
+			MovingFun_1(protection,UIname,MovingUI,MovingUI,NotSave)
 		end
 	end
 end
-local function MovingFunEvent(protection,event,UIname,ClickFname)
+local function MovingFunEvent(protection,event,UIname,ClickFname,NotSave)
 	Fun.IsAddOnLoaded(event,function()
-		MovingFun(protection,UIname,ClickFname)
+		MovingFun(protection,UIname,ClickFname,NotSave)
 	end)
 end
 function FramePlusfun.BlizzardUI_Move()
 	if not PIGA['FramePlus']['BlizzardUI_Move'] then return end
 	local BlizzardUIList=FramePlusfun.BlizzardUIList
 	for i=1,#BlizzardUIList do
-		local protection,event,ui,tuoui,uiname=unpack(BlizzardUIList[i])
+		local protection,event,ui,tuoui,uiname,NotSave=unpack(BlizzardUIList[i])
 		FramesCombatLock[ui]=protection
 		if event then
-			MovingFunEvent(protection,event,ui,tuoui)
+			MovingFunEvent(protection,event,ui,tuoui,NotSave)
 		else
-			MovingFun(protection,ui,tuoui)
+			MovingFun(protection,ui,tuoui,NotSave)
 		end
 	end
 	if PIGA["FramePlus"]["BlizzardUI_Move_Save"] then

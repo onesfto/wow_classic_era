@@ -17,61 +17,8 @@ local announcePrototype = private:GetPrototype("Announce")
 local bossModPrototype = private:GetPrototype("DBMMod")
 
 local test = private:GetPrototype("DBMTest")
-private.blizzTargetQueue = private.blizzTargetQueue or setmetatable({}, {__mode = "k"})
-local blizzTargetQueue = private.blizzTargetQueue
 
 local mt = {__index = announcePrototype}
-
----@param queue table
----@param entry table
-local function removeBlizzTargetQueueEntry(queue, entry)
-	for i = #queue.ordered, 1, -1 do
-		if queue.ordered[i] == entry then
-			table.remove(queue.ordered, i)
-			break
-		end
-	end
-end
-
----@param announceObject Announce
----@param count number?
-function DBM:QueueBlizzTargetAnnounce(announceObject, count)
-	if not announceObject or announceObject.announceType ~= "blizztarget" then return end
-	local mod = announceObject.mod
-	if not mod then return end
-	local queue = blizzTargetQueue[mod]
-	if not queue then
-		queue = {
-			ordered = {}
-		}
-		blizzTargetQueue[mod] = queue
-	end
-	local entry = {
-		announce = announceObject,
-		count = count
-	}
-	table.insert(queue.ordered, entry)
-end
-
----@param formattedTargetName string
----@return boolean
-function DBM:ConsumeBlizzTargetAnnounce(formattedTargetName)
-	for mod, queue in pairs(blizzTargetQueue) do
-		local entry
-		if #queue.ordered > 0 then
-			entry = queue.ordered[1]
-			removeBlizzTargetQueueEntry(queue, entry)
-		end
-		if #queue.ordered == 0 then
-			blizzTargetQueue[mod] = nil
-		end
-		if entry and entry.announce then
-			entry.announce:Show(entry.count, formattedTargetName)
-			return true
-		end
-	end
-	return false
-end
 
 ---@diagnostic disable: inject-field
 local frame = CreateFrame("Frame", "DBMWarning", UIParent)
@@ -198,33 +145,13 @@ font3u:SetScript("OnUpdate", function(self)
 	end
 end)
 
-local warningFontResetNotified = false
-local function getSafeWarningFontSettings(self)
-	local font = self.Options.WarningFont == "standardFont" and private.standardFont or self.Options.WarningFont
-	local size = self.Options.WarningFontSize
-	local style = (self.Options.WarningFontStyle and not DBM:IsNoneValue(self.Options.WarningFontStyle)) and self.Options.WarningFontStyle or ""
-	if not DBM:IsFontValid(font, private.standardFont, size, style) then
-		self.Options.WarningFont = self.DefaultOptions.WarningFont
-		self.Options.WarningFontSize = self.DefaultOptions.WarningFontSize
-		self.Options.WarningFontStyle = self.DefaultOptions.WarningFontStyle
-		if not warningFontResetNotified then
-			self:AddMsg("Invalid Warning font settings were detected and reset to defaults.")
-			warningFontResetNotified = true
-		end
-		font = self.Options.WarningFont == "standardFont" and private.standardFont or self.Options.WarningFont
-		size = self.Options.WarningFontSize
-		style = (self.Options.WarningFontStyle and not DBM:IsNoneValue(self.Options.WarningFontStyle)) and self.Options.WarningFontStyle or ""
-	end
-	return font, size, style
-end
-
 function DBM:UpdateWarningOptions()
 	frame:ClearAllPoints()
 	frame:SetPoint(self.Options.WarningPoint, UIParent, self.Options.WarningPoint, self.Options.WarningX, self.Options.WarningY)
-	local font, size, style = getSafeWarningFontSettings(self)
-	font1:SetFont(font, size, style)
-	font2:SetFont(font, size, style)
-	font3:SetFont(font, size, style)
+	local font = self.Options.WarningFont == "standardFont" and private.standardFont or self.Options.WarningFont
+	font1:SetFont(font, self.Options.WarningFontSize, self.Options.WarningFontStyle == "None" and nil or self.Options.WarningFontStyle)
+	font2:SetFont(font, self.Options.WarningFontSize, self.Options.WarningFontStyle == "None" and nil or self.Options.WarningFontStyle)
+	font3:SetFont(font, self.Options.WarningFontSize, self.Options.WarningFontStyle == "None" and nil or self.Options.WarningFontStyle)
 	if self.Options.WarningFontShadow then
 		font1:SetShadowOffset(1, -1)
 		font2:SetShadowOffset(1, -1)
@@ -372,18 +299,12 @@ end
 -- TODO: is there a good reason that this is a weak table?
 local cachedColorFunctions = setmetatable({}, {__mode = "kv"})
 
-local function setText(announceType, spellId, castTime, preWarnTime, customName)
+local function setText(announceType, spellId, castTime, preWarnTime, customName, alternateSpellId)
 	local spellName
-	local baseSpellName
 	if customName then
-		baseSpellName = customName
+		spellName = customName
 	else
-		baseSpellName = DBM:ParseSpellName(spellId, announceType) or CL.UNKNOWN
-	end
-	if spellId then
-		spellName = DBM:GetRename(spellId, baseSpellName)
-	else
-		spellName = baseSpellName
+		spellName = DBM:ParseSpellName(alternateSpellId or spellId, announceType) or CL.UNKNOWN
 	end
 	local text
 	if announceType == "cast" then
@@ -403,6 +324,10 @@ local function setText(announceType, spellId, castTime, preWarnTime, customName)
 	else
 		text = L.AUTO_ANNOUNCE_TEXTS[announceType]:format(spellName)
 	end
+	--Automatically register alternate spellnames when detecting their use here
+	if spellId and (customName or alternateSpellId) then
+		DBM:RegisterAltSpellName(spellId, customName or spellName)
+	end
 	return text, spellName
 end
 
@@ -410,15 +335,6 @@ function announcePrototype:SetText(customName)
 	local text, spellName = setText(self.announceType, self.spellId, self.castTime, self.preWarnTime, customName)
 	self.text = text
 	self.spellName = spellName
-	self.customName = customName
-	self.renameRevision = DBM:GetSpellRenameRevision()
-end
-
----Update icon on object and nothing else.
----<br>Does not change spellId/spellkey associated with weakauras/callbacks
----@param altSpellId string|number
-function announcePrototype:UpdateIcon(altSpellId)
-	self.icon = DBM:ParseSpellIcon(altSpellId, self.announceType, self.icon)
 end
 
 ---Not to be confused with SetText, which only sets the text of object.
@@ -432,8 +348,6 @@ function announcePrototype:UpdateKey(altSpellId)
 		local text, spellName = setText(self.announceType, self.spellId, self.castTime, self.preWarnTime)
 		self.text = text
 		self.spellName = spellName
-		self.customName = nil
-		self.renameRevision = DBM:GetSpellRenameRevision()
 	else--Just regenerating spellName not message text because it's likely a custom text object such as NewSpecialWarning
 		self.spellName = DBM:ParseSpellName(altSpellId)
 	end
@@ -458,46 +372,13 @@ end
 ---@class Announce2NumStr: Announce
 ---@field Show fun(self: Announce2NumStr, arg1: number, arg2: string|number)
 
----Used to set fallback options to blizzard encounter API for hardcoded warnings to fall back on
----@param encounterEventId number|table EncounterEventID from EncounterEvent.db2 that matches event we're targetting
----@param voice VPSound voice pack media path
----@param voiceVersion number Required voice pack verion (if not met, falls back to default special warning sounds)
----@param color warningColorType? ColorId 1-4
----@param overrideType number? Optional override type for the alert
-function announcePrototype:SetAlert(encounterEventId, voice, voiceVersion, color, overrideType)
-	if self.option and self.mod.Options[self.option] then
-		self.mod:EnableAlertOptions(self.spellId, encounterEventId, voice, voiceVersion, color, overrideType, self.option, true)
-	end
-end
 
 -- TODO: this function is an abomination, it needs to be rewritten. Also: check if these work-arounds are still necessary
 function announcePrototype:Show(...) -- todo: reduce amount of unneeded strings
-	if self.announceType == "blizztarget" then
-		local count, targetName = ...
-		if select("#", ...) < 2 or type(targetName) ~= "string" then
-			DBM:QueueBlizzTargetAnnounce(self, count)
-			return
-		end
-	end
 	if not self.option or self.mod.Options[self.option] then
 		if DBM.Options.DontShowBossAnnounces or DBM.Options.HideDBMWarnings then return end	-- don't show the announces if the spam filter option is set
 		if DBM.Options.DontShowTargetAnnouncements and (self.announceType == "target" or self.announceType == "targetcount") and not self.noFilter then return end--don't show announces that are generic target announces
-		local renameSpellKey = DBM:NormalizeSpellRenameKey(self.spellId)
-		if renameSpellKey and self.renameRevision ~= DBM:GetSpellRenameRevision() then
-			if self.announceType then
-				local text, spellName = setText(self.announceType, self.spellId, self.castTime, self.preWarnTime, self.customName)
-				self.text = text
-				self.spellName = spellName
-			else
-				self.spellName = DBM:GetRename(self.spellId, self.spellName or DBM:ParseSpellName(self.spellId) or CL.UNKNOWN)
-			end
-			self.renameRevision = DBM:GetSpellRenameRevision()
-		end
-		local argTable
-		if self.announceType ~= "blizztarget" then
-			--Don't create table out of args if it has secrets
-			argTable = {...}
-		end
+		local argTable = {...}
 		local colorCode = ("|cff%.2x%.2x%.2x"):format(self.color.r * 255, self.color.g * 255, self.color.b * 255)
 		if #self.combinedtext > 0 then
 			--Throttle spam.
@@ -518,21 +399,13 @@ function announcePrototype:Show(...) -- todo: reduce amount of unneeded strings
 			end
 		end
 		local announceCount
-		--blizztarget purposely omited from here even though it's also a count warning, we don't want to perform any extra actions on secrets
 		if self.announceType and (self.announceType == "count" or self.announceType == "targetcount" or self.announceType == "sooncount" or self.announceType == "incomingcount") then--Don't use find "count" here, it'll match countdown
 			--Stage triggers don't pass count, but they do not need to, there is a stage callback and trigger option in WA that should be used
 			if type(argTable[1]) == "number" then
 				announceCount = argTable[1]
 			end
 		end
-		local message
-		if argTable then
-			message = stringUtils.pformat(self.text, unpack(argTable))
-		else
-			--Only time argTable is nil is if it's a blizztarget announce
-			message = string.format(self.text, ...)--Use native format (no pcall frame) to avoid secret args surfacing in error handlers
-		end
-		--This might still throw errors if we don't use C_StringUtil.WrapText instead. Will test
+		local message = stringUtils.pformat(self.text, unpack(argTable))
 		local text = ("%s%s%s|r%s"):format(
 			(DBM.Options.WarningIconLeft and self.icon and textureCode:format(self.icon)) or "",
 			colorCode,
@@ -541,38 +414,35 @@ function announcePrototype:Show(...) -- todo: reduce amount of unneeded strings
 		)
 		self.combinedcount = 0
 		self.combinedtext = {}
-		--Avoid computational actions on blizz target, which is using secret passthrough
-		if self.announceType ~= "blizztarget" then
-			if not cachedColorFunctions[self.color] then
-				local color = self.color -- upvalue for the function to colorize names, accessing self in the colorize closure is not safe as the color of the announce object might change (it would also prevent the announce from being garbage-collected but announce objects are never destroyed)
-				cachedColorFunctions[color] = function(cap)
-					cap = cap:sub(2, -2)
-					local noStrip = cap:match("noStrip ")
-					if not noStrip then
-						local name = cap
-						local playerClass, playerIcon = DBM:GetRaidClass(name)
-						if playerClass ~= "UNKNOWN" then
-							cap = DBM:GetShortServerName(cap)--Only run realm strip function if class color was valid (IE it's an actual playername)
-						end
-						local playerColor = RAID_CLASS_COLORS[playerClass] or color
-						if playerColor then
-							if playerIcon > 0 and playerIcon <= 8 then
-								cap = ("|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_%d:0|t"):format(playerIcon) .. ("|r|cff%.2x%.2x%.2x%s|r|cff%.2x%.2x%.2x"):format(playerColor.r * 255, playerColor.g * 255, playerColor.b * 255, cap, color.r * 255, color.g * 255, color.b * 255)
-							else
-								cap = ("|r|cff%.2x%.2x%.2x%s|r|cff%.2x%.2x%.2x"):format(playerColor.r * 255, playerColor.g * 255, playerColor.b * 255, cap, color.r * 255, color.g * 255, color.b * 255)
-							end
-						end
-					else
-						cap = cap:sub(9)
+		if not cachedColorFunctions[self.color] then
+			local color = self.color -- upvalue for the function to colorize names, accessing self in the colorize closure is not safe as the color of the announce object might change (it would also prevent the announce from being garbage-collected but announce objects are never destroyed)
+			cachedColorFunctions[color] = function(cap)
+				cap = cap:sub(2, -2)
+				local noStrip = cap:match("noStrip ")
+				if not noStrip then
+					local name = cap
+					local playerClass, playerIcon = DBM:GetRaidClass(name)
+					if playerClass ~= "UNKNOWN" then
+						cap = DBM:GetShortServerName(cap)--Only run realm strip function if class color was valid (IE it's an actual playername)
 					end
-					return cap
+					local playerColor = RAID_CLASS_COLORS[playerClass] or color
+					if playerColor then
+						if playerIcon > 0 and playerIcon <= 8 then
+							cap = ("|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_%d:0|t"):format(playerIcon) .. ("|r|cff%.2x%.2x%.2x%s|r|cff%.2x%.2x%.2x"):format(playerColor.r * 255, playerColor.g * 255, playerColor.b * 255, cap, color.r * 255, color.g * 255, color.b * 255)
+						else
+							cap = ("|r|cff%.2x%.2x%.2x%s|r|cff%.2x%.2x%.2x"):format(playerColor.r * 255, playerColor.g * 255, playerColor.b * 255, cap, color.r * 255, color.g * 255, color.b * 255)
+						end
+					end
+				else
+					cap = cap:sub(9)
 				end
+				return cap
 			end
-			text = text:gsub(">.-<", cachedColorFunctions[self.color])
 		end
+		text = text:gsub(">.-<", cachedColorFunctions[self.color])
 		DBM:AddWarning(text, nil, self)
 		if DBM.Options.ShowWarningsInChat then
-			if not DBM.Options.WarningIconChat and self.announceType ~= "blizztarget" then
+			if not DBM.Options.WarningIconChat then
 				text = text:gsub(textureExp, "") -- textures @ chat frame can (and will) distort the font if using certain combinations of UI scale, resolution and font size TODO: is this still true as of cataclysm?
 			end
 			self.mod:AddMsg(text, nil)
@@ -590,16 +460,9 @@ function announcePrototype:Show(...) -- todo: reduce amount of unneeded strings
 		--boolean: Whether or not this warning is a special warning (higher priority). BW would call this "emphasized"
 		--announceCount: If it's a count announce, this will provide access to the number value of that count. This, along with spellId should be used instead of message text scanning for most weak auras that need to target specific count casts
 		DBM:FireEvent("DBM_Announce", message, self.icon, self.type, self.spellId, self.mod.id, false, announceCount)
-		if DBM.Options.IgnoreBlizzAPI and self.spellId and self.spellName then
-			if announceCount then
-				DBM:Debug("|cff00ff00Showing hardcoded warning for |r spellID |cff69ccf0" .. self.spellId .. "|r spellName |cff69ccf0" .. self.spellName .. " (" .. announceCount .. ")|r", 3, nil, nil, true, true)
-			else
-				DBM:Debug("|cff00ff00Showing hardcoded warning for |r spellID |cff69ccf0" .. self.spellId .. "|r spellName |cff69ccf0" .. self.spellName .. "|r", 3, nil, nil, true, true)
-			end
-		end
 		if self.sound > 0 then--0 means muted, 1 means no voice pack support, 2 means voice pack version/support
-			if self.sound > 1 and not DBM:IsNoneValue(DBM.Options.ChosenVoicePack2) and DBM.Options.VPReplacesAnnounce and not private.voiceSessionDisabled and self.sound <= private.swFilterDisabled then return end
-			if not self.option or not DBM:IsNoneValue(self.mod.Options[self.option .. "SWSound"]) then
+			if self.sound > 1 and DBM.Options.ChosenVoicePack2 ~= "None" and DBM.Options.VPReplacesAnnounce and not private.voiceSessionDisabled and self.sound <= private.swFilterDisabled then return end
+			if not self.option or self.mod.Options[self.option .. "SWSound"] ~= "None" then
 				DBM:PlaySoundFile(DBM.Options.RaidWarningSound, nil, true)--Validate true
 			end
 		end
@@ -682,7 +545,7 @@ function announcePrototype:Countdown(time, numAnnounces, ...)
 end
 
 ---@param time number|table
----@param count number
+---@param count number?
 function announcePrototype:Loop(time, count)
 	DBMScheduler:ScheduleLoop(time, self.Show, self.mod, self, count)
 end
@@ -696,7 +559,7 @@ end
 function announcePrototype:Play(name, customPath)
 	local voice = DBM.Options.ChosenVoicePack2
 	if DBM.Options.HideDBMWarnings then return end
-	if private.voiceSessionDisabled or DBM:IsNoneValue(voice) or not DBM.Options.VPReplacesAnnounce then return end
+	if private.voiceSessionDisabled or voice == "None" or not DBM.Options.VPReplacesAnnounce then return end
 	if DBM.Options.DontShowTargetAnnouncements and (self.announceType == "target" or self.announceType == "targetcount") and not self.noFilter then return end--don't show announces that are generic target announces
 	if (not DBM.Options.DontShowBossAnnounces and (not self.option or self.mod.Options[self.option])) and self.sound <= private.swFilterDisabled then
 		--Filter tank specific voice alerts for non tanks if tank filter enabled
@@ -710,7 +573,7 @@ end
 ---@param name VPSound?
 ---@param customPath? string|number
 function announcePrototype:ScheduleVoice(t, name, customPath)
-	if private.voiceSessionDisabled or DBM:IsNoneValue(DBM.Options.ChosenVoicePack2) or not DBM.Options.VPReplacesAnnounce then return end
+	if private.voiceSessionDisabled or DBM.Options.ChosenVoicePack2 == "None" or not DBM.Options.VPReplacesAnnounce then return end
 	DBMScheduler:Unschedule(self.Play, self.mod, self)--Allow ScheduleVoice to be used in same way as CombinedShow
 	local id = DBMScheduler:Schedule(t, self.Play, self.mod, self, name, customPath)
 	test:Trace(self.mod, "SetScheduleMethodName", id, self, "ScheduleVoice", name, customPath)
@@ -722,20 +585,20 @@ end
 ---@param name VPSound?
 ---@param customPath? string|number
 function announcePrototype:ScheduleVoiceOverLap(t, name, customPath)
-	if private.voiceSessionDisabled or DBM:IsNoneValue(DBM.Options.ChosenVoicePack2) or not DBM.Options.VPReplacesAnnounce then return end
+	if private.voiceSessionDisabled or DBM.Options.ChosenVoicePack2 == "None" or not DBM.Options.VPReplacesAnnounce then return end
 	local id = DBMScheduler:Schedule(t, self.Play, self.mod, self, name, customPath)
 	test:Trace(self.mod, "SetScheduleMethodName", id, self, "ScheduleVoiceOverLap", name, customPath)
 	return id
 end
 
 function announcePrototype:CancelVoice(...)
-	if private.voiceSessionDisabled or DBM:IsNoneValue(DBM.Options.ChosenVoicePack2) or not DBM.Options.VPReplacesAnnounce then return end
+	if private.voiceSessionDisabled or DBM.Options.ChosenVoicePack2 == "None" or not DBM.Options.VPReplacesAnnounce then return end
 	return DBMScheduler:Unschedule(self.Play, self.mod, self, ...)
 end
 
 ---old constructor (no auto-localize)
 ---@param text string
----@param color warningColorType?
+---@param color number? 1 = Positive Message, 2 = Normal Message, 3 - Higher Priority, 4 - Highest Priority
 ---@param icon number|string? Use number for spellId, -number for journalID, number as string for textureID
 ---@param optionDefault SpecFlags|boolean?
 ---@param optionName string|boolean? String for custom option name. Using false hides option completely
@@ -757,13 +620,6 @@ function bossModPrototype:NewAnnounce(text, color, icon, optionDefault, optionNa
 		soundOption = 0--No Sound
 	end
 	icon = DBM:ParseSpellIcon(icon)
-	local spellName
-	local renameRevision
-	if spellID then
-		local baseSpellName = waCustomName or DBM:ParseSpellName(spellID) or CL.UNKNOWN
-		spellName = DBM:GetRename(spellID, baseSpellName)
-		renameRevision = DBM:GetSpellRenameRevision()
-	end
 	---@class Announce
 	local obj = setmetatable(
 		{
@@ -776,8 +632,6 @@ function bossModPrototype:NewAnnounce(text, color, icon, optionDefault, optionNa
 			mod = self,
 			icon = icon,
 			spellId = spellID,--For WeakAuras / other callbacks
-			spellName = spellName,
-			renameRevision = renameRevision,
 		},
 		mt
 	)
@@ -799,22 +653,29 @@ local function newAnnounce(self, announceType, spellId, color, icon, optionDefau
 	if not spellId then
 		error("newAnnounce: you must provide spellId", 2)
 	end
-	local optionVersion
+	local optionVersion, alternateSpellId, alternateSpellName
 	if type(optionName) == "number" then
-		if optionName > 0 and optionName < 6 then
+		if optionName > 10 then--Being used as spell name shortening
+			if DBM.Options.WarningShortText then
+				alternateSpellId = optionName
+			end
+		else--Being used as option version
 			optionVersion = optionName
-			optionName = nil
-		else
-			error("newAnnounce: numeric optionName is only supported as optionVersion shorthand for values 1-5.", 2)
 		end
+		optionName = nil
 	end
+	--Ugly that only saves having to use 3 extra nils for Custom Name
+	--Eventually all these hacks will go away if these objects ever get rewritten
 	if type(preWarnTime) == "string" then
-		error("newAnnounce: string preWarnTime legacy short-text path is removed. Use DBM:RegisterAltSpellName in module setup.", 2)
+		if DBM.Options.WarningShortText then
+			alternateSpellName = preWarnTime
+		end
+		preWarnTime = nil
 	end
 	if soundOption and type(soundOption) == "boolean" then
 		soundOption = 0--No Sound
 	end
-	local text, spellName = setText(announceType, spellId, castTime, preWarnTime)
+	local text, spellName = setText(announceType, spellId, castTime, preWarnTime, alternateSpellName, alternateSpellId)
 	icon = DBM:ParseSpellIcon(icon or spellId)
 	---@class Announce
 	local obj = setmetatable( -- todo: fix duplicate code
@@ -831,8 +692,6 @@ local function newAnnounce(self, announceType, spellId, color, icon, optionDefau
 			type = announceType,
 			spellId = spellId,
 			spellName = spellName,
-			customName = nil,
-			renameRevision = DBM:GetSpellRenameRevision(),
 			noFilter = noFilter,
 			castTime = castTime,
 			preWarnTime = preWarnTime,
@@ -856,112 +715,98 @@ local function newAnnounce(self, announceType, spellId, color, icon, optionDefau
 	return obj
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce0
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce0
 function bossModPrototype:NewYouAnnounce(spellId, color, ...)
 	---@type Announce0
 	return newAnnounce(self, "you", spellId, color or 1, ...)
 end
 
 ---@param spellId number|string
----@param color warningColorType?
+---@param color number?
 ---@param icon number|string?
 ---@param optionDefault SpecFlags|boolean?
----@param optionName string|optionNumbers|boolean?
+---@param optionName string|number|boolean?
 ---@param castTime number?
----@param preWarnTime number?
+---@param preWarnTime number|string?
 ---@param soundOption number|boolean?
 function bossModPrototype:NewTargetNoFilterAnnounce(spellId, color, icon, optionDefault, optionName, castTime, preWarnTime, soundOption) -- spellId, color, icon, optionDefault, optionName, castTime, preWarnTime, soundOption, noFilter
 	---@type Announce1
 	return newAnnounce(self, "target", spellId, color or 3, icon, optionDefault, optionName, castTime, preWarnTime, soundOption, true)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce1
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce1
 function bossModPrototype:NewTargetAnnounce(spellId, color, ...)
 	---@type Announce1
 	return newAnnounce(self, "target", spellId, color or 3, ...)
 end
 
----Special object used for blizzard target announces using secret target pulled from ENCOUNTER_WARNING
----@param spellId number|string
----@param color warningColorType?
----@param icon number|string?
----@param optionDefault SpecFlags|boolean?
----@param optionName string|optionNumbers|boolean?
----@param castTime number?
----@param preWarnTime number?
----@param soundOption number|boolean?
-function bossModPrototype:NewBlizzTargetAnnounce(spellId, color, icon, optionDefault, optionName, castTime, preWarnTime, soundOption)
-	--Purposely not typecast, it'll be using secret target we can't validate
-	return newAnnounce(self, "blizztarget", spellId, color or 3, icon, optionDefault, optionName, castTime, preWarnTime, soundOption, true)
-end
-
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce2
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce2
 function bossModPrototype:NewTargetSourceAnnounce(spellId, color, ...)
 	---@type Announce2
 	return newAnnounce(self, "targetsource", spellId, color or 3, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce2NumStr
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce2NumStr
 function bossModPrototype:NewTargetCountAnnounce(spellId, color, ...)
 	---@type Announce2NumStr
 	return newAnnounce(self, "targetcount", spellId, color or 3, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce0
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce0
 function bossModPrototype:NewSpellAnnounce(spellId, color, ...)
 	---@type Announce0
 	return newAnnounce(self, "spell", spellId, color or 2, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce1
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce1
 function bossModPrototype:NewSpellSourceAnnounce(spellId, color, ...)
 	---@type Announce1
 	return newAnnounce(self, "spellsource", spellId, color or 2, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce0
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce0
 function bossModPrototype:NewIncomingAnnounce(spellId, color, ...)
 	---@type Announce0
 	return newAnnounce(self, "incoming", spellId, color or 2, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce1Num
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce1Num
 function bossModPrototype:NewIncomingCountAnnounce(spellId, color, ...)
 	---@type Announce1Num
 	return newAnnounce(self, "incomingcount", spellId, color or 2, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce0
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce0
 function bossModPrototype:NewEndAnnounce(spellId, color, ...)
 	---@type Announce0
 	return newAnnounce(self, "ends", spellId, color or 2, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce1
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce1
 function bossModPrototype:NewEndTargetAnnounce(spellId, color, ...)
 	---@type Announce1
 	return newAnnounce(self, "endtarget", spellId, color or 2, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce0
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce0
 function bossModPrototype:NewFadesAnnounce(spellId, color, ...)
 	---@type Announce0
 	return newAnnounce(self, "fades", spellId, color or 2, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce1Num
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce1Num
 function bossModPrototype:NewAddsLeftAnnounce(spellId, color, ...)
 	---@type Announce1Num
 	return newAnnounce(self, "addsleft", spellId, color or 3, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce1Num
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce1Num
 function bossModPrototype:NewCountAnnounce(spellId, color, ...)
 	---@type Announce1Num
 	return newAnnounce(self, "count", spellId, color or 2, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce2StrNum
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce2StrNum
 function bossModPrototype:NewStackAnnounce(spellId, color, ...)
 	---@type Announce2StrNum
 	return newAnnounce(self, "stack", spellId, color or 2, ...)
@@ -969,23 +814,23 @@ end
 
 ---@param spellId number|string
 ---@param castTime number?
----@param color warningColorType?
+---@param color number?
 ---@param icon number|string?
 ---@param optionDefault SpecFlags|boolean?
----@param optionName string|optionNumbers|boolean?
+---@param optionName string|number|boolean?
 ---@param soundOption number|boolean?
 function bossModPrototype:NewCastAnnounce(spellId, color, castTime, icon, optionDefault, optionName, _, soundOption) -- spellId, color, castTime, icon, optionDefault, optionName, noArg, soundOption
 	---@type Announce0
 	return newAnnounce(self, "cast", spellId, color or 3, icon, optionDefault, optionName, castTime, nil, soundOption)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce0
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce0
 function bossModPrototype:NewSoonAnnounce(spellId, color, ...)
 	---@type Announce0
 	return newAnnounce(self, "soon", spellId, color or 2, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce1Num
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce1Num
 function bossModPrototype:NewSoonCountAnnounce(spellId, color, ...)
 	---@type Announce1Num
 	return newAnnounce(self, "sooncount", spellId, color or 2, ...)
@@ -994,11 +839,11 @@ end
 ---This object disables sounds, it's almost always used in combation with a countdown timer. Even if not a countdown, its a text only spam not a sound spam
 ---@param spellId number|string
 ---@param castTime number?
----@param preWarnTime number?
----@param color warningColorType?
+---@param preWarnTime number|string?
+---@param color number?
 ---@param icon number|string?
 ---@param optionDefault SpecFlags|boolean?
----@param optionName string|optionNumbers|boolean?
+---@param optionName string|number|boolean?
 ---@param noFilter boolean?
 function bossModPrototype:NewCountdownAnnounce(spellId, color, icon, optionDefault, optionName, castTime, preWarnTime, _, noFilter) -- spellId, color, icon, optionDefault, optionName, castTime, preWarnTime, soundOption, noFilter
 	---@type Announce1Num
@@ -1007,41 +852,41 @@ end
 
 ---@param spellId number|string
 ---@param time number
----@param color warningColorType?
+---@param color number?
 ---@param icon number|string?
 ---@param optionDefault SpecFlags|boolean?
----@param optionName string|optionNumbers|boolean?
+---@param optionName string|number|boolean?
 ---@param soundOption number|boolean?
 function bossModPrototype:NewPreWarnAnnounce(spellId, time, color, icon, optionDefault, optionName, _, soundOption) -- spellId, time, color, icon, optionDefault, optionName, noArg, soundOption
 	---@type Announce0
 	return newAnnounce(self, "prewarn", spellId, color or 2, icon, optionDefault, optionName, nil, time, soundOption)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce0
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce0
 function bossModPrototype:NewBaitAnnounce(spellId, color, ...)
 	---@type Announce0
 	return newAnnounce(self, "bait", spellId, color or 3, ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce0
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce0
 function bossModPrototype:NewPhaseAnnounce(stage, color, icon, ...)
 	---@type Announce0
 	return newAnnounce(self, "stage", stage, color or 2, icon or "136116", ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce1
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce1
 function bossModPrototype:NewPhaseChangeAnnounce(color, icon, ...)
 	---@type Announce1
 	return newAnnounce(self, "stagechange", 0, color or 2, icon or "136116", ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce0
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce0
 function bossModPrototype:NewPrePhaseAnnounce(stage, color, icon, ...)
 	---@type Announce0
 	return newAnnounce(self, "prestage", stage, color or 2, icon or "136116", ...)
 end
 
----@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|optionNumbers|boolean?, castTime: number?, preWarnTime: number?, soundOption: number|boolean?, noFilter: boolean?): Announce1
+---@overload fun(self, spellId: number|string, color: number?, icon: number|string?, optionDefault: SpecFlags|boolean?, optionName: string|number|boolean?, castTime: number?, preWarnTime: number|string?, soundOption: number|boolean?, noFilter: boolean?): Announce1
 function bossModPrototype:NewMoveToAnnounce(spellId, color, ...)
 	---@type Announce1
 	return newAnnounce(self, "moveto", spellId, color or 3, ...)

@@ -3,8 +3,7 @@ local mod	= DBM:NewMod("Nuuminuuru", "DBM-Challenges", 1)
 
 mod.statTypes = "normal,heroic,mythic,challenge"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250703201323")
 mod:SetCreatureID(172410)
 mod.soloChallenge = true
 
@@ -19,8 +18,8 @@ mod:RegisterEventsInCombat(
 	"CRITERIA_COMPLETE"
 )
 
-local specWarnSymbioticShield			= mod:NewSpecialWarningSwitch(345441, nil, nil, nil, 1, 2, nil, nil, "killmob")
-local specWarnVolatileBurst				= mod:NewSpecialWarningSwitch(345680, nil, nil, nil, 1, 2, nil, nil, "killmob")
+local specWarnSymbioticShield			= mod:NewSpecialWarningSwitch(345441, nil, nil, nil, 1, 2)
+local specWarnVolatileBurst				= mod:NewSpecialWarningSwitch(345680, nil, nil, nil, 1, 2)
 
 local timerSymbioticShieldCD			= mod:NewCDTimer(41.4, 345441, nil, nil, nil, 1)
 local timerNewFaerieCD					= mod:NewCDTimer(30.3, 345685, nil, nil, nil, 1)--Bursting Faerie, basically volatile burst CD

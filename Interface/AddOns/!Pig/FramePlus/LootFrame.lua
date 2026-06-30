@@ -39,10 +39,21 @@ function FramePlusfun.Loot()
 				end
 			end)
 		end
+		local meilie=10
 		local function AddlootBut(i)
 			local But = CreateFrame("Button","LootButton"..i,LootFrame, "LootButtonTemplate",i);
 			But:ClearAllPoints();
-			But:SetPoint("TOPLEFT",LootFrame,"TOPLEFT",9,-(68+(i-1)*41));
+			if i==(meilie+1) then
+				But:SetPoint("LEFT",_G["LootButton"..(i-meilie)],"RIGHT",120,0);
+			elseif i==(meilie*2+1) then
+				But:SetPoint("LEFT",_G["LootButton"..(i-meilie)],"RIGHT",120,0);
+			elseif i==(meilie*3+1) then
+				But:SetPoint("LEFT",_G["LootButton"..(i-meilie)],"RIGHT",120,0);
+			elseif i==(meilie*4+1) then
+				But:SetPoint("LEFT",_G["LootButton"..(i-meilie)],"RIGHT",120,0);
+			else
+				But:SetPoint("TOP",_G["LootButton"..(i-1)],"BOTTOM",0,-4);
+			end
 			LootFrame.piglootbut[i]=But
 		end
 		local function PIG_Update_UI()
@@ -132,7 +143,6 @@ function FramePlusfun.Loot()
 		local function PIG_LootFrame_Update(self)
 			PIG_Update_UI()
 			for index=1,self.numLootItems do
-				if not _G["LootButton"..index] then AddlootBut(index) end
 				PIG_LootFrame_UpdateButton(index)
 			end
 		end
@@ -150,7 +160,13 @@ function FramePlusfun.Loot()
 				v:Hide()
 			end
 			if self.numLootItems>4 then
-				self:SetHeight(self.numLootItems*41+74)
+				local lieshu=math.ceil(self.numLootItems/meilie)
+				self:SetWidth((lieshu-1)*158+170)
+				if self.numLootItems>=meilie then
+					self:SetHeight(meilie*41+74)
+				else
+					self:SetHeight(self.numLootItems*41+74)
+				end
 				if ( GetCVar("lootUnderMouse") == "1" and self.numLootItems>6 ) then
 					local _,_,_,xpos,ypos=self:GetPoint()
 					local pignypos = ypos
@@ -164,7 +180,11 @@ function FramePlusfun.Loot()
 					self:SetPoint("TOPLEFT", nil, "BOTTOMLEFT", xpos, pignypos);
 				end
 			else
-				self:SetHeight(240)
+				self:SetSize(170,240)
+			end
+			if ( GetCVar("lootUnderMouse") == "0" ) then
+				self:ClearAllPoints();
+				self:SetPoint("CENTER", nil, "CENTER", 0, 0);
 			end
 			PIG_LootFrame_Update(self)
 		end

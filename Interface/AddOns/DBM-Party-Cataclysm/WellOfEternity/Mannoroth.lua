@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "heroic,timewalker"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetCreatureID(54969)
 mod:SetEncounterID(1274)--Definitely Review
 mod:SetReCombatTime(60)
@@ -18,7 +17,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 103888"
 )
 
-local specWarnFelStorm		= mod:NewSpecialWarningRun(103888, nil, nil, nil, 4, 2, nil, nil, "justrun")
+local specWarnFelStorm		= mod:NewSpecialWarningRun(103888, nil, nil, nil, 4, 2)
 
 local timerFelStorm			= mod:NewBuffActiveTimer(15, 103888, nil, nil, nil, 2)
 local timerFelStormCD		= mod:NewCDTimer(29, 103888, nil, nil, nil, 2)

@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "heroic,timewalker"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetCreatureID(52155)
 mod:SetEncounterID(1178)
 mod:SetUsedIcons(7, 8)
@@ -26,11 +25,11 @@ local warnBreathHethiss		= mod:NewSpellAnnounce(96509, 3)
 local warnToxicLink			= mod:NewTargetNoFilterAnnounce(96477, 4)
 local warnBlessing			= mod:NewSpellAnnounce(96512, 3)
 
-local specWarnWhisperHethiss= mod:NewSpecialWarningInterrupt(96466, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
-local specWarnToxicLink		= mod:NewSpecialWarningYou(96477, nil, nil, nil, 1, 2, nil, nil, "targetyou")
-local specWarnBloodvenom	= mod:NewSpecialWarningSpell(96842, nil, nil, nil, 2, 2, nil, nil, "runaway")
-local specWarnPoolAcridTears= mod:NewSpecialWarningMove(96521, nil, nil, nil, 1, 2, nil, nil, "watchfeet")
-local specWarnEffusion		= mod:NewSpecialWarningMove(96680, nil, nil, nil, 1, 2, nil, nil, "watchfeet")
+local specWarnWhisperHethiss= mod:NewSpecialWarningInterrupt(96466, "HasInterrupt", nil, nil, 1, 2)
+local specWarnToxicLink		= mod:NewSpecialWarningYou(96477, nil, nil, nil, 1, 2)
+local specWarnBloodvenom	= mod:NewSpecialWarningSpell(96842, nil, nil, nil, 2, 2)
+local specWarnPoolAcridTears= mod:NewSpecialWarningMove(96521, nil, nil, nil, 1, 2)
+local specWarnEffusion		= mod:NewSpecialWarningMove(96680, nil, nil, nil, 1, 2)
 
 local timerWhisperHethiss	= mod:NewTargetTimer(8, 96466, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 local timerBreathHethiss	= mod:NewNextTimer(12, 96509, nil, nil, nil, 3)

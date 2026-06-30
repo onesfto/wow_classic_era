@@ -5,8 +5,7 @@ if not mod:IsClassic() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20230311193122")
 mod:SetCreatureID(28586)
 mod:SetEncounterID(1987)
 
@@ -18,7 +17,7 @@ mod:RegisterEventsInCombat(
 
 local warningWhirlwind		= mod:NewSpellAnnounce(52027, 3)
 
-local specWarnWhirlwind		= mod:NewSpecialWarningRun(52027, "Melee", nil, nil, 4, 2, nil, nil, "runout")
+local specWarnWhirlwind		= mod:NewSpecialWarningRun(52027, "Melee", nil, nil, 4, 2)
 
 function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(52027, 52028) then

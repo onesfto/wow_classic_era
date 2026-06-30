@@ -2,8 +2,7 @@ if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
 local mod	= DBM:NewMod("Apprentice", "DBM-Party-Vanilla", 22)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250208200909")
 mod:SetEncounterID(3170, 3171, 3172)
 --mod:SetCreatureID()
 mod:SetZone(2875)
@@ -37,7 +36,7 @@ local warnFreezingField		= mod:NewCastAnnounce(1220882)
 local timerFreezingField	= mod:NewCDTimer(50, 1220882, nil, nil, nil, 2)
 local timerBlizzard			= mod:NewCDTimer(22.2, 1220862, nil, nil, nil, 3)
 
-local specWarnGTFO	= mod:NewSpecialWarningGTFO(1220862, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specWarnGTFO	= mod:NewSpecialWarningGTFO(1220862, nil, nil, nil, 1, 8)
 
 
 mod.vb.boulderCount = 0

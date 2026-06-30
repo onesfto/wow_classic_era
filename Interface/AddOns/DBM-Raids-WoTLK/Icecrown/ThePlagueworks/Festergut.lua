@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,normal25,heroic,heroic25"
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250720212401")
 mod:SetCreatureID(36626)
 mod:SetEncounterID(not mod:IsPostCata() and 849 or 1097)
 mod:SetModelID(31006)
@@ -28,15 +27,15 @@ local warnGastricBloat		= mod:NewStackAnnounce(72219, 2, nil, "Tank|Healer")
 local warnGasSpore			= mod:NewTargetNoFilterAnnounce(69279, 4)
 local warnVileGas			= mod:NewTargetAnnounce(69240, 3)
 
-local specWarnPungentBlight	= mod:NewSpecialWarningSpell(69195, nil, nil, nil, 2, 2, nil, nil, "aesoon")
-local specWarnGasSpore		= mod:NewSpecialWarningYou(69279, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnPungentBlight	= mod:NewSpecialWarningSpell(69195, nil, nil, nil, 2, 2)
+local specWarnGasSpore		= mod:NewSpecialWarningYou(69279, nil, nil, nil, 1, 2)
 local yellGasSpore			= mod:NewShortYell(69279, nil, nil, nil, "YELL")
 local yellGasSporeFades		= mod:NewShortFadesYell(69279, nil, nil, nil, "YELL")
-local specWarnVileGas		= mod:NewSpecialWarningYou(69240, nil, nil, nil, 1, 2, nil, nil, "scatter")
+local specWarnVileGas		= mod:NewSpecialWarningYou(69240, nil, nil, nil, 1, 2)
 local yellVileGas			= mod:NewYell(69240)
-local specWarnGastricBloat	= mod:NewSpecialWarningStack(72219, nil, 9, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnInhaled3		= mod:NewSpecialWarningStack(69166, "Tank", 3, nil, nil, 1, 2, nil, nil, "defensive")
-local specWarnGoo			= mod:NewSpecialWarningDodge(72297, "Melee", nil, nil, 1, 2, nil, nil, "watchstep")
+local specWarnGastricBloat	= mod:NewSpecialWarningStack(72219, nil, 9, nil, nil, 1, 6)
+local specWarnInhaled3		= mod:NewSpecialWarningStack(69166, "Tank", 3, nil, nil, 1, 2)
+local specWarnGoo			= mod:NewSpecialWarningDodge(72297, "Melee", nil, nil, 1, 2)
 
 local timerGasSpore			= mod:NewBuffFadesTimer(12, 69279, nil, nil, nil, 3)
 local timerVileGas			= mod:NewBuffFadesTimer(6, 69240, nil, "Ranged", nil, 3)
@@ -49,6 +48,7 @@ local timerGooCD			= mod:NewCDTimer(10, 72297, nil, nil, nil, 3)
 
 local berserkTimer			= mod:NewBerserkTimer(300)
 
+mod:AddRangeFrameOption(10, 69240, "Ranged")
 mod:AddSetIconOption("SetIconOnGasSpore", 69279, true, 7, {1, 2, 3})
 
 local gasSporeTargets = {}
@@ -74,11 +74,19 @@ function mod:OnCombatStart(delay)
 	table.wipe(gasSporeTargets)
 	table.wipe(vileGasTargets)
 	self.vb.gasSporeCast = 0
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Show(10)
+	end
 	if self:IsDifficulty("heroic10", "heroic25") then
 		timerGooCD:Start(15-delay)
 	end
 end
 
+function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
+end
 
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 69195 then	-- Pungent Blight

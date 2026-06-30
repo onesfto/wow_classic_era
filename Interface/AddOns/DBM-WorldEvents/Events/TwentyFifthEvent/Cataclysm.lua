@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("CataEvent", "DBM-WorldEvents", 4)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20240426175442")
 mod:SetCreatureID(52409, 41376, 43324)
 mod:SetEncounterID(2320)
 mod:SetBossHPInfoToHighest()
@@ -30,32 +29,33 @@ local warnFury					= mod:NewStackAnnounce(82524, 2, nil, "Tank|Healer")
 --Ragnaros
 local warnBurningWound			= mod:NewStackAnnounce(99399, 3, nil, "Tank|Healer")
 local warnSulfurasSmash			= mod:NewSpellAnnounce(98710, 4)--Phase 1-3 ability.
-local warnSonsLeft				= mod:NewAddsLeftAnnounce(-2637, 2, 99014)
+local warnSonsLeft				= mod:NewAddsLeftAnnounce("ej2637", 2, 99014)
 local warnBlazingHeat			= mod:NewTargetAnnounce(100460, 4)
 local warnSplittingBlow			= mod:NewAnnounce("warnSplittingBlow", 3, 98951)
 local warnEngulfingFlame		= mod:NewAnnounce("warnEngulfingFlame", 4, 99171)
 local warnLivingMeteor			= mod:NewTargetNoFilterAnnounce(99268, 4)--Phase 3 only ability
 
 --Chogal
-local specWarnFury				= mod:NewSpecialWarningStack(82524, nil, 2, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnFuryTaunt			= mod:NewSpecialWarningTaunt(82524, nil, nil, nil, 1, 2, nil, nil, "tauntboss")
-local specWarnAdherent			= mod:NewSpecialWarningSwitch(81628, "-Healer", nil, nil, 1, 2, nil, nil, "killmob")
-local specWarnDepravity			= mod:NewSpecialWarningInterrupt(81713, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
-local specWarnSickness			= mod:NewSpecialWarningMoveAway(82235, nil, nil, nil, 1, 2, nil, nil, "scatter")
+local specWarnFury				= mod:NewSpecialWarningStack(82524, nil, 2, nil, nil, 1, 6)
+local specWarnFuryTaunt			= mod:NewSpecialWarningTaunt(82524, nil, nil, nil, 1, 2)
+local specWarnAdherent			= mod:NewSpecialWarningSwitch(81628, "-Healer", nil, nil, 1, 2)
+local specWarnDepravity			= mod:NewSpecialWarningInterrupt(81713, "HasInterrupt", nil, nil, 1, 2)
+local specWarnSickness			= mod:NewSpecialWarningMoveAway(82235, nil, nil, nil, 1, 2)
 local yellSickness				= mod:NewYell(82235, nil, false)
 --Nef
-local specWarnBlastsNova		= mod:NewSpecialWarningInterrupt(80734, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnBlastsNova		= mod:NewSpecialWarningInterrupt(80734, "HasInterrupt", nil, nil, 1, 2)
 --Ragnaros
-local specWarnBurningWound		= mod:NewSpecialWarningStack(99399, nil, 4, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnBurningWoundTaunt	= mod:NewSpecialWarningTaunt(99399, nil, nil, nil, 1, 2, nil, nil, "tauntboss")
-local specWarnSplittingBlow		= mod:NewSpecialWarningSpell(98951, nil, nil, nil, 1, 2, nil, nil, "phasechange")
-local specWarnBlazingHeat		= mod:NewSpecialWarningYou(100460, nil, nil, nil, nil, nil, nil, nil, "targetyou")--Debuff on you
+local specWarnBurningWound		= mod:NewSpecialWarningStack(99399, nil, 4, nil, nil, 1, 6)
+local specWarnBurningWoundTaunt	= mod:NewSpecialWarningTaunt(99399, nil, nil, nil, 1, 2)
+local specWarnSplittingBlow		= mod:NewSpecialWarningSpell(98951, nil, nil, nil, 1, 2)
+local specWarnBlazingHeat		= mod:NewSpecialWarningYou(100460)--Debuff on you
 local yellBlazingHeat			= mod:NewYell(100460)
-local specWarnMoltenSeed		= mod:NewSpecialWarningRun(98495, nil, nil, 2, 3, 2, nil, nil, "justrun")
-local specWarnEngulfing			= mod:NewSpecialWarningDodge(99171, nil, nil, nil, 2, 2, nil, nil, "watchstep")
-local specWarnMeteor			= mod:NewSpecialWarningDodge(99268, nil, nil, nil, 1, 2, nil, nil, "targetyou")--Spawning on you
+local specWarnMoltenSeed		= mod:NewSpecialWarningRun(98495, nil, nil, 2, 3, 2)
+local specWarnEngulfing			= mod:NewSpecialWarningDodge(99171, nil, nil, nil, 2, 2)
+local specWarnMeteor			= mod:NewSpecialWarningDodge(99268, nil, nil, nil, 1, 2)--Spawning on you
+local specWarnMeteorNear		= mod:NewSpecialWarningClose(99268, nil, nil, nil, 1, 2)--Spawning near you
 local yellMeteor				= mod:NewYell(99268)
-local specWarnFixate			= mod:NewSpecialWarningRun(99849, nil, nil, nil, 4, 2, nil, nil, "justrun")--Chasing you after it spawned
+local specWarnFixate			= mod:NewSpecialWarningRun(99849, nil, nil, nil, 4, 2)--Chasing you after it spawned
 local yellFixate				= mod:NewYell(99849)
 
 local timerMoltenSeedCD			= mod:NewCDTimer(60, 98495, nil, nil, nil, 3, nil, DBM_COMMON_L.DEADLY_ICON, nil, 1, 5)--60-63
@@ -63,6 +63,7 @@ local timerFlamesCD				= mod:NewNextTimer(40, 99171, nil, nil, nil, 3, nil, nil,
 local timerLivingMeteorCD		= mod:NewNextTimer(45, 99268, nil, nil, nil, 1, nil, nil, nil, 3, 4)
 
 mod:AddInfoFrameOption(99849, true)
+mod:AddRangeFrameOption(6, 98495)
 mod:GroupSpells(99268, 99849)--Living Meteor with Fixate
 
 local meteorWarned = false
@@ -80,7 +81,16 @@ function mod:LivingMeteorTarget(targetname)
 		specWarnMeteor:Play("targetyou")
 		yellMeteor:Yell()
 	else
-		warnLivingMeteor:Show(targetname)
+		local uId = DBM:GetRaidUnitId(targetname)
+		if uId then
+			local inRange = DBM.RangeCheck:GetDistance("player", uId)
+			if inRange and inRange < 12 then
+				specWarnMeteorNear:Show(targetname)
+				specWarnMeteorNear:Play("runaway")
+			else
+				warnLivingMeteor:Show(targetname)
+			end
+		end
 	end
 end
 
@@ -98,6 +108,9 @@ end
 function mod:OnCombatEnd()
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
+	end
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
 	end
 end
 
@@ -117,6 +130,9 @@ function mod:SPELL_CAST_START(args)
 			warnSplittingBlow:Show(args.spellName, DBM_COMMON_L.MIDDLE)
 		elseif spellId == 98953 then--East
 			warnSplittingBlow:Show(args.spellName, DBM_COMMON_L.EAST)
+		end
+		if self.Options.RangeFrame then
+			DBM.RangeCheck:Hide()
 		end
 	elseif args:IsSpellID(99172, 99235, 99236) then--Another scripted spell with a ton of spellids based on location of room.
 		--North: 99172
@@ -275,6 +291,9 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 				--Seems to activate timers as if P2 just started
 				timerMoltenSeedCD:Start(21.5)
 				timerFlamesCD:Start(40)
+				if self.Options.RangeFrame then
+					DBM.RangeCheck:Show(6)
+				end
 			elseif cid == 41376 then--Nefarian
 				self.vb.phase = self.vb.phase + 1
 				self.vb.bossLeft = self.vb.bossLeft - 1
@@ -291,4 +310,7 @@ function mod:ZONE_CHANGED_NEW_AREA()
 	timerMoltenSeedCD:Stop()
 	timerFlamesCD:Stop()
 	timerLivingMeteorCD:Stop()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
 end

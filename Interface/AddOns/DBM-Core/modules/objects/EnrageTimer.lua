@@ -35,17 +35,6 @@ function enragePrototype:Schedule(t)
 	return self.owner:Schedule(t, self.Start, self)
 end
 
----Used to set fallback options to blizzard encounter API for hardcoded berserk timers to fall back on
----@param encounterEventId number|table EncounterEventID from EncounterEvent.db2 that matches event we're targetting
----@param onlyColor boolean? If true, only enable color options for this timer, not countdowns
-function enragePrototype:SetTimeline(encounterEventId, onlyColor)
-	if self.bar.option and self.owner.Options[self.bar.option] then
-		-- Berserk timer doesn't always use spellId field, so fallback to icon/default id for option registration.
-		local optionId = self.bar.spellId or self.bar.icon or 28131
-		self.owner:EnableTimelineOptions(optionId, encounterEventId, self.bar.option, onlyColor)
-	end
-end
-
 function enragePrototype:Cancel()
 	self.owner:Unschedule(self.Start, self)
 	if self.warning1 then

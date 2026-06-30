@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal25"
 
-mod:SetRevision("20260523022044")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250703142136")
 mod:SetCreatureID(24850)
 mod:SetEncounterID(724, 2488)
 mod:SetModelID(26628)
@@ -26,7 +25,7 @@ local warnBuffet		= mod:NewSpellAnnounce(45018, 3, nil, false, 2)
 local warnBreath		= mod:NewSpellAnnounce(44799, 3, nil, false)
 local warnCorrupt		= mod:NewTargetAnnounce(45029, 3)
 
-local specWarnBuffet	= mod:NewSpecialWarningStack(45018, nil, 10, nil, nil, 1, 6, nil, nil, "stackhigh")
+local specWarnBuffet	= mod:NewSpecialWarningStack(45018, nil, 10, nil, nil, 1, 6)
 local specWarnWildMagic	= mod:NewSpecialWarning("SpecWarnWildMagic")
 
 local timerNextPortal	= mod:NewNextCountTimer(25, 46021, nil, nil, nil, 5)
@@ -35,6 +34,7 @@ local timerBuffetCD		= mod:NewCDTimer(8, 45018, nil, nil, nil, 2)
 local timerPorted		= mod:NewBuffActiveTimer(60, 46021, nil, nil, nil, 6)
 local timerExhausted	= mod:NewBuffActiveTimer(60, 44867, nil, nil, nil, 6)
 
+mod:AddRangeFrameOption(10, 46021)
 mod:AddBoolOption("ShowFrame", true)
 mod:AddBoolOption("FrameLocked", false)
 mod:AddBoolOption("FrameClassColor", true, nil, function()
@@ -55,10 +55,14 @@ function mod:OnCombatStart(delay)
 	if self.Options.ShowFrame then
 		self:CreateFrame()
 	end
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Show()
+	end
 end
 
 function mod:OnCombatEnd()
 	self:DestroyFrame()
+	DBM.RangeCheck:Hide()
 end
 
 function mod:SPELL_AURA_APPLIED(args)

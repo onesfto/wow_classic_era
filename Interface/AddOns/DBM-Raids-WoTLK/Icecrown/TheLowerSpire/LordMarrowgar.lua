@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,normal25,heroic,heroic25"
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103133102")
 mod:SetCreatureID(36612)
 mod:SetEncounterID(not mod:IsPostCata() and 845 or 1101)
 mod:SetModelID(31119)
@@ -24,8 +23,8 @@ local preWarnWhirlwind   	= mod:NewSoonAnnounce(69076, 3)
 local warnBoneSpike			= mod:NewCastAnnounce(69057, 2)
 local warnImpale			= mod:NewTargetNoFilterAnnounce(72669, 3)
 
-local specWarnColdflame		= mod:NewSpecialWarningGTFO(69146, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
-local specWarnWhirlwind		= mod:NewSpecialWarningRun(69076, nil, nil, nil, 4, 2, nil, nil, "justrun")
+local specWarnColdflame		= mod:NewSpecialWarningGTFO(69146, nil, nil, nil, 1, 8)
+local specWarnWhirlwind		= mod:NewSpecialWarningRun(69076, nil, nil, nil, 4, 2)
 
 local timerBoneSpike		= mod:NewCDTimer(18, 69057, nil, nil, nil, 1, nil, DBM_COMMON_L.DAMAGE_ICON)
 local timerWhirlwindCD		= mod:NewCDTimer(90, 69076, nil, nil, nil, 2)

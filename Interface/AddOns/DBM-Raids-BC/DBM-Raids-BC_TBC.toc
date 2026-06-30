@@ -21,9 +21,9 @@
 ## X-DBM-Mod-Name-ruRU: Рейды (BC)
 ## X-DBM-Mod-Sort: 1001
 ## X-DBM-Mod-MapID: 580, 564, 534, 550, 548, 544, 565, 532, 568
-## X-DBM-Mod-MinCoreRevision: 20260522000000
+## X-DBM-Mod-MinCoreRevision: 20230521000000
 ## X-DBM-Mod-MinExpansion: 1
-## Version: r17
+## Version: r13
 
 localization.en.lua
 localization.tw.lua

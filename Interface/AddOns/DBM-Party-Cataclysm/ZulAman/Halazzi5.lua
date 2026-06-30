@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "heroic,timewalker"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetCreatureID(23577)
 mod:SetEncounterID(1192)
 mod:SetZone(568)
@@ -23,9 +22,9 @@ local warnEnrage		= mod:NewTargetAnnounce(43139, 3)
 local warnSpirit		= mod:NewAnnounce("WarnSpirit", 4, 39414)
 local warnNormal		= mod:NewAnnounce("WarnNormal", 4, 39414)
 
-local specWarnTotem		= mod:NewSpecialWarningSwitch(43302, nil, nil, nil, 1, 2, nil, nil, "attacktotem")
-local specWarnTotemWater= mod:NewSpecialWarningMove(97499, "Tank", nil, nil, 1, 2, nil, nil, "moveboss")
-local specWarnEnrage	= mod:NewSpecialWarningDispel(43139, "RemoveEnrage", nil, nil, 1, 2, nil, nil, "enrage")
+local specWarnTotem		= mod:NewSpecialWarningSwitch(43302, nil, nil, nil, 1, 2)
+local specWarnTotemWater= mod:NewSpecialWarningMove(97499, "Tank", nil, nil, 1, 2)
+local specWarnEnrage	= mod:NewSpecialWarningDispel(43139, "RemoveEnrage", nil, nil, 1, 2)
 
 local timerShock		= mod:NewTargetTimer(12, 43303, nil, "Healer", 2, 5, nil, DBM_COMMON_L.HEALER_ICON..DBM_COMMON_L.MAGIC_ICON)
 

@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(481, "DBM-Party-Vanilla", DBM:IsPostCata() and 14 or 19, 240)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(3654)
 mod:SetEncounterID(592)
 mod:SetZone(43)
@@ -18,7 +17,7 @@ mod:RegisterEventsInCombat(
 local warningNaralexsNightmare		= mod:NewTargetNoFilterAnnounce(7967, 2)
 local warningTerrify				= mod:NewTargetNoFilterAnnounce(7399, 2)
 
-local specWarnNaralexsNightmare		= mod:NewSpecialWarningInterrupt(7967, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnNaralexsNightmare		= mod:NewSpecialWarningInterrupt(7967, "HasInterrupt", nil, nil, 1, 2)
 
 local timerNaralexsNightmareCD		= mod:NewAITimer(180, 7967, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON..DBM_COMMON_L.MAGIC_ICON)
 local timerTerrifyCD				= mod:NewAITimer(180, 7399, nil, nil, nil, 3, nil, DBM_COMMON_L.MAGIC_ICON)

@@ -1,6 +1,7 @@
 
 WhisperPopDB = {
 ["listHeight"] = 320,
+["sound"] = 1,
 ["positions"] = {
 ["WhisperPopFrame"] = {
 "LEFT",
@@ -17,18 +18,17 @@ WhisperPopDB = {
 185,
 },
 },
-["sound"] = 1,
-["save"] = 1,
 ["listWidth"] = 200,
+["save"] = 1,
 ["timeFormat"] = 2,
 ["time"] = 1,
 ["buttonScale"] = 100,
 ["history"] = {
 },
-["listScale"] = 100,
+["ignoreTags"] = 1,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["ignoreTags"] = 1,
-["notifyButton"] = 1,
 ["applyFilters"] = 1,
+["notifyButton"] = 1,
+["listScale"] = 100,
 }

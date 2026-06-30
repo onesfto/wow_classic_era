@@ -399,7 +399,7 @@ local function GetPindaoList_F()
 	for i=1,#chatpindao do
 		local Namechia =_G[chatpindao[i].."_MESSAGE"]
 		if Namechia then
-			if Namechia~=CHAT_MSG_WHISPER_INFORM and Namechia~=BN_WHISPER_Name and Namechia~=RAID_WARNING and Namechia~=CHAT_MSG_EMOTE then
+			if Namechia~=BN_WHISPER_Name and Namechia~=RAID_WARNING and Namechia~=CHAT_MSG_EMOTE then
 				table.insert(chatpindaoList,{Namechia,chatpindao[i]})
 			end
 		end

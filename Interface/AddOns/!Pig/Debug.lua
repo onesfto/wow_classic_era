@@ -22,7 +22,7 @@ function PD.addOptions_Debug()
 		self.addok=true
 		fuFrame.zhuanma = PIGButton(fuFrame,{"BOTTOMRIGHT",fuFrame,"BOTTOMRIGHT",0,0},{16,16},"64")
 		fuFrame.zhuanma:SetScript("OnClick", function (self)
-			_G[Data.ExportImportUIname]:Show_HideFun()
+			_G[Data.ExportImportUIname]:Show_HideFun(true)
 		end)
 		--------------------------------
 		local UIname="PIG_AddOnMemoryCPUUI"
@@ -43,6 +43,8 @@ function PD.addOptions_Debug()
 				SetCVar("scriptErrors", "0")
 			end
 		end);
+		fuFrame.ErrCB:SetChecked(GetCVar("scriptErrors")=="1")
+
 		---
 		local taintlist = {"0","1","2","11"}
 		local taintlistmenu = {["0"]=L["DEBUG_TAINT0"],["1"]=L["DEBUG_TAINT1"],
@@ -65,6 +67,7 @@ function PD.addOptions_Debug()
 			SetCVar("taintLog", arg1)
 			PIGCloseDropDownMenus()
 		end
+		fuFrame.taintLog:PIGDownMenu_SetText(taintlistmenu[GetCVar("taintLog")])
 		--內存CPU监控
 		fuFrame.OPENJK = PIGButton(fuFrame,{"TOPLEFT",fuFrame,"TOPLEFT",20,-160},{150,24},L["DEBUG_BUTNAME"])
 		fuFrame.OPENJK:SetScript("OnClick", function (self)
@@ -310,13 +313,7 @@ function PD.addOptions_Debug()
 			print(value,arg1)
 			PIGCloseDropDownMenus()
 		end
-		-----------------
-		fuFrame:SetScript("OnShow", function()
-			if GetCVar("scriptErrors")=="1" then
-				fuFrame.ErrCB:SetChecked(true)
-			end
-			fuFrame.taintLog:PIGDownMenu_SetText(taintlistmenu[GetCVar("taintLog")])
-		end);
+
 		--屏幕网格
 		fuFrame.GridLine = PIGButton(fuFrame,{"TOPLEFT",fuFrame,"TOPLEFT",20,-380},{100,24},L["DEBUG_SHOWGRID"])
 		fuFrame.GridLine:SetScript("OnClick", function (self)
@@ -357,10 +354,10 @@ function PD.addOptions_Debug()
 		---调试配置
 		fuFrame.tiaoshipeizhi = PIGButton(fuFrame,{"TOPLEFT",fuFrame,"TOPLEFT",420,-380},{100,24},L["DEBUG_CONFIG"])
 		fuFrame.tiaoshipeizhi:SetScript("OnClick", function ()
-			StaticPopup_Show("TIAOSHIPEIZHIQIYONG",L["DEBUG_CONFIG"]);
+			StaticPopup_Show("PIG_CONFIG_DEBUG_1",L["DEBUG_CONFIG"]);
 		end)
-		StaticPopupDialogs["TIAOSHIPEIZHIQIYONG"] = {
-			text = L["CONFIG_LOADTIPS"].."\n"..L["DEBUG_CONFIGTIPS"],
+		StaticPopupDialogs["PIG_CONFIG_DEBUG_1"] = {
+			text = L["CONFIG_LOADTIPS"].."\n|cff00FFFF"..L["DEBUG_CONFIGTIPS"].."|r",
 			button1 = YES,
 			button2 = NO,
 			OnAccept = function()
@@ -384,7 +381,6 @@ function PD.addOptions_Debug()
 		PIG_Version:PIGSetMovableNoSave()
 		PIG_Version.title = PIGFontString(PIG_Version,{"TOP", PIG_Version, "TOP", 0, -4},GAME_VERSION_LABEL..INFO)
 		PIGLine(PIG_Version,"TOP",-topv)
-		--local addonspoint={130,210,290,370,460}
 		local hangWWWW,qianzhuiV=80,130
 		for i=1,#L.addnames do
 			local title = PIGFontString(PIG_Version,{"TOPLEFT", PIG_Version, "TOPLEFT", (i-1)*hangWWWW+qianzhuiV, -4-topv},L.addnames[i])

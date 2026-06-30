@@ -1,7 +1,6 @@
 local _, PD = ...;
-
+local L=PD.locale
 PD.Default = {
-	["Ver"]={},
 	["VerC"]={},
 	["Error"] = {
 		["ErrorDB"] = {},
@@ -61,6 +60,7 @@ PD.Default = {
 		["AFK"]={
 			["Open"] = false,
 			["QuickBut"]=true,
+			["TispTXT"]=L["COMMON_AFKTISPTXT"],
 		},
 	},
 	["TradePlus"] = {
@@ -191,14 +191,14 @@ PD.Default = {
 			["BlackName"]=true,
 			["FilterRepeat"]=true,
 			["IGNORE_DND"]=true,
-			["FBneiNO"]=false,
+			["FBneiNO"]=true,
 			["FilterChannel"]={
 				["CHANNEL"]=true,
 				["YELL"]=true,
 				["SAY"]=false,
 				["WHISPER"]=false,
 			},
-			["Blacks"]="",
+			["BlacksList"]={},
 			["Ignore_P"]={},
 			["Ignore_N"]={},
 			["Precise"]=false,
@@ -333,7 +333,7 @@ PD.Default = {
 	},
 	["UnitFrame"] = {
 		["PlayerFrame"] = {
-			["HPFF"] = true,	
+			["HPFF"] = false,	
 		},
 		["TargetFrame"] = {
 			["Plus"] = true,
@@ -425,6 +425,7 @@ PD.Default = {
 		["Shaman_Blue"]=true,
 	},
 	["PigLayout"]={
+		["FontMiaobian"]="NORMAL",
 		["TopBar"]={
 			["Open"] = false,
 			["AnchorPoint"]="TOP",
@@ -439,6 +440,7 @@ PD.Default = {
 			["Scale"]=1,
 			["HideBut"]={},
 			["TimerMode"]=1,
+			["TimeBGHide"]=false,
 			["daojishiTime"]=10,
 			["Countdown"]=true,
 			["CountdownAudio"]=1,
@@ -463,6 +465,7 @@ PD.Default = {
 			["Open"] = false,
 			["Scale"]=1,
 			["Interval"]=0,
+			["MoveTime"]=false,
 			["AnchorPoint"]="BOTTOMRIGHT",
 			["AnchorPointX"]=0,
 			["AnchorPointY"]=0,
@@ -470,10 +473,12 @@ PD.Default = {
 		},
 		["ActionBar"] = {
 			["HideShijiu"] = false,
+			["HideBarBG"]=false,
+			["HideBarExpBG"]=false,
 			["Scale"]=false,
 			["ScaleV"]=0.8,
 			["BarRight"] = false,
-			["Layout"] = 1,
+			["Layout"] = 0,
 			["LRInterval"]=20,
 		},
 		["ChatUI"] = {

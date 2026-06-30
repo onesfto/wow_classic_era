@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,heroic,timewalker"
 
-mod:SetRevision("20260525233013")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetCreatureID(43612)
 mod:SetEncounterID(1053)
 mod:SetZone(755)
@@ -24,10 +23,10 @@ local warnLashings				= mod:NewTargetAnnounce(82506, 3, nil, "Tank|Healer", 2)--
 local warnRepentance			= mod:NewSpellAnnounce(82320, 2)	-- kind of add phase
 local warnSoulSever				= mod:NewTargetAnnounce(82255, 4)
 
-local specWarnHeavenFury		= mod:NewSpecialWarningMove(81942, nil, nil, nil, 1, 2, nil, nil, "runaway")
-local specWarnHallowedGround 	= mod:NewSpecialWarningMove(88814, nil, nil, nil, 1, 2, nil, nil, "runaway")
-local specWarnSoulSever			= mod:NewSpecialWarningYou(82255, nil, nil, nil, 3, 2, nil, nil, "targetyou")
-local specWarnSoulSeverDps		= mod:NewSpecialWarningSwitch(82255, "Dps", nil, nil, 1, 2, nil, nil, "killmob")
+local specWarnHeavenFury		= mod:NewSpecialWarningMove(81942, nil, nil, nil, 1, 2)
+local specWarnHallowedGround 	= mod:NewSpecialWarningMove(88814, nil, nil, nil, 1, 2)
+local specWarnSoulSever			= mod:NewSpecialWarningYou(82255, nil, nil, nil, 3, 2)
+local specWarnSoulSeverDps		= mod:NewSpecialWarningSwitch(82255, "Dps", nil, nil, 1, 2)
 
 local timerPlagueAges			= mod:NewTargetTimer(9, 82622, nil, "Healer", 2, 5)
 local timerLashings				= mod:NewTargetTimer(20, 82506, nil, "Tank|Healer", 2, 5)

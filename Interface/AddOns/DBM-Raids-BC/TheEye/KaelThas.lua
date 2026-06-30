@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal25"
 
-mod:SetRevision("20260523022044")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103131702")
 mod:SetCreatureID(19622)
 mod:SetEncounterID(733, 2467)
 mod:SetModelID(20023)
@@ -41,12 +40,12 @@ local warnPyro			= mod:NewCastAnnounce(36819, 4)
 local warnPhase5		= mod:NewPhaseAnnounce(5)
 local warnGravity		= mod:NewSpellAnnounce(35966, 3)
 
-local specWarnGaze		= mod:NewSpecialWarning("SpecWarnGaze", nil, nil, nil, 4, 2, nil, nil, nil, nil, "justrun")
+local specWarnGaze		= mod:NewSpecialWarning("SpecWarnGaze", nil, nil, nil, 4, 2)
 local specWarnToy		= mod:NewSpecialWarningYou(37027, nil, nil, nil, 1, 2)
-local specWarnEgg		= mod:NewSpecialWarning("SpecWarnEgg", nil, nil, nil, 1, 2, nil, nil, nil, nil, "killmob")
+local specWarnEgg		= mod:NewSpecialWarning("SpecWarnEgg", nil, nil, nil, 1, 2)
 local specWarnShield	= mod:NewSpecialWarningSpell(36815)--No decent voice for this
-local specWarnPyro		= mod:NewSpecialWarningInterrupt(36819, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
-local specWarnVapor		= mod:NewSpecialWarningStack(35859, nil, 2, nil, nil, 1, 6, nil, nil, "stackhigh")
+local specWarnPyro		= mod:NewSpecialWarningInterrupt(36819, "HasInterrupt", nil, nil, 1, 2)
+local specWarnVapor		= mod:NewSpecialWarningStack(35859, nil, 2, nil, nil, 1, 6)
 
 local timerPhase		= mod:NewTimer(105, "TimerPhase", 28131, nil, nil, 6, nil, nil, 1, 4)
 local timerPhase1mob	= mod:NewTimer(30, "TimerPhase1mob", 28131, nil, nil, 1, nil, nil, 1, 4)
@@ -62,6 +61,7 @@ local timerGravity		= mod:NewBuffActiveTimer(32, 35941, nil, nil, nil, 6)
 mod:AddSetIconOption("MCIcon", 36797, true, 0, {8, 7, 6})
 mod:AddBoolOption("GazeIcon", false)
 --mod:AddSetIconOption("GazeIcon", 38280, false, false, {1})--Problem with no auto localized spellID to use
+mod:AddRangeFrameOption(10, 37018)
 mod:AddInfoFrameOption(36815, true)
 
 mod.vb.mcIcon = 8
@@ -88,6 +88,9 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
 	end
@@ -183,6 +186,10 @@ function mod:UNIT_DIED(args)
 		timerNextGaze:Cancel()
 	elseif cid == 20060 then
 		timerFearCD:Cancel()
+	elseif cid == 20062 then
+		if self.Options.RangeFrame then
+			DBM.RangeCheck:Hide()
+		end
 	elseif cid == 21268 then
 		warnMobDead:Show(L.Bow)
 	elseif cid == 21269 then
@@ -223,6 +230,9 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		timerPhase1mob:Start(12.5, L.Sanguinar)
 	elseif msg == L.YellCaper or msg:find(L.YellCaper) then
 		timerPhase1mob:Start(7, L.Capernian)
+		if self.Options.RangeFrame then
+			DBM.RangeCheck:Show(10)
+		end
 	elseif msg == L.YellTelo or msg:find(L.YellTelo) then
 		timerPhase1mob:Start(8.4, L.Telonicus)
 	elseif msg == L.YellPhase2 or msg:find(L.YellPhase2) then
@@ -232,6 +242,9 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		warnPhase3:Schedule(104.6)
 	elseif msg == L.YellPhase3 or msg:find(L.YellPhase3) then
 		self:SetStage(3)
+		if self.Options.RangeFrame then
+			DBM.RangeCheck:Show(10)
+		end
 		self:Schedule(10, function()
 			timerPhase:Start(173)--123 pre nerf, 183 post nerf
 		end)

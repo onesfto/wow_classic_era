@@ -1,6 +1,7 @@
 local addonName, PD = ...;
 local L=PD.locale
 local Data=PD.Data
+local Fun = PD.Fun
 ---
 local Create=PD.Create
 local PIGFrame=Create.PIGFrame
@@ -28,13 +29,13 @@ function PD.addOptions_Config()
 	local cfbutW=fujiF:GetWidth()-20
 	local DefaultF=PIGFrame(fujiF,{"TOPLEFT",fujiF,"TOPLEFT",10,-10},{cfbutW,60})
 	DefaultF:PIGSetBackdrop(0.4)
-	DefaultF.button = PIGButton(DefaultF,{"LEFT",DefaultF,"LEFT",10,0},{120,24},RESET_TO_DEFAULT)
+	DefaultF.button = PIGButton(DefaultF,{"LEFT",DefaultF,"LEFT",10,0},{120,24},DEFAULTS)
 	DefaultF.title = PIGFontString(DefaultF,{"LEFT", DefaultF.button, "RIGHT", 6, 0},L["CONFIG_ERRTIPS"])
 	DefaultF.title:SetTextColor(0, 1, 0, 1);
 	DefaultF.title:SetJustifyH("LEFT");
 	DefaultF.title:SetWidth(cfbutW-120);
 	DefaultF.button:SetScript("OnClick", function ()
-		StaticPopup_Show("PIG_CONFIG_ZAIRUQUEREN",RESET_TO_DEFAULT,nil,{"Default",RESET_TO_DEFAULT});
+		StaticPopup_Show("PIG_CONFIG_ZAIRUQUEREN",DEFAULTS,nil,{"Default",DEFAULTS});
 	end);
 	StaticPopupDialogs["PIG_CONFIG_ZAIRUQUEREN"] = {
 		text = L["CONFIG_LOADTIPS"],
@@ -54,132 +55,48 @@ function PD.addOptions_Config()
 		whileDead = true,
 		hideOnEscape = true,
 	}
-	--配置-------------------
-	local function Remove_Data(newdata,Per)--剔除数据类配置
-		if Per then
-			newdata["AutoSellBuy"]["Buy_List"]=nil
-			newdata["AutoSellBuy"]["Save_List"]=nil
-			newdata["AutoSellBuy"]["Take_List"]=nil
-			--
-			newdata["PigAction"]["ActionData"]=nil
-			newdata["QuickBut"]["ActionData"]=nil
-			newdata["QuickBut"]["EquipList"]=nil
-			newdata["QuickBut"]["TrinketList"]=nil
-			--
-			newdata["Farm"]=nil
-			-- if PIGIsAddOnLoaded("!Pig_Farm") then
-			-- 	newdata["Farm"]["Fuben_G"]=nil
-			-- 	newdata["Farm"]["Auto_KeyList"]=nil
-			-- 	newdata["Farm"]["Namelist"]=nil
-			-- 	newdata["Farm"]["Timelist"]=nil
-			-- end
-		else
-			--非必要信息
-			newdata["Ver"]=nil
-			newdata["Error"]["ErrorDB"]=nil
-			newdata["ActionBarEnabled"]=nil
-			--
-			newdata["Hardcore"]["Deaths"]["Player"]=nil
-			newdata["Hardcore"]["Deaths"]["List"]=nil
-			--信息统计
-			newdata["StatsInfo"]["Players"]=nil
-			newdata["StatsInfo"]["PlayerSH"]=nil
-			newdata["StatsInfo"]["InstancesCD"]=nil
-			newdata["StatsInfo"]["SkillData"]=nil
-			newdata["StatsInfo"]["Times"]=nil
-			newdata["StatsInfo"]["Token"]=nil
-			newdata["StatsInfo"]["Items"]=nil
-			newdata["StatsInfo"]["TradeData"]=nil
-			--邮箱
-			newdata["MailPlus"]["Coll"]=nil
-			--售卖助手
-			newdata["AutoSellBuy"]["Diuqi_List"]=nil
-			newdata["AutoSellBuy"]["Sell_List"]=nil
-			newdata["AutoSellBuy"]["Sell_Lsit_Filtra"]=nil
-			newdata["AutoSellBuy"]["Open_List"]=nil
-			newdata["AutoSellBuy"]["Fen_List"]=nil
-			newdata["AutoSellBuy"]["Xuan_List"]=nil
-			--AH
-			newdata["AHPlus"]["CacheData"]=nil
-			newdata["AHPlus"]["Coll"]=nil
-			--聊天
-			newdata["Chat"]["Channel_List"]=nil
-			--聊天记录
-			newdata["Chatjilu"]["WHISPER"]["record"]=nil
-			newdata["Chatjilu"]["PARTY"]["record"]=nil
-			newdata["Chatjilu"]["RAID"]["record"]=nil
-			newdata["Chatjilu"]["GUILD"]["record"]=nil
-			newdata["Chatjilu"]["INSTANCE_CHAT"]["record"]=nil
-			--界面扩展
-			newdata["FramePlus"]["AddonStatus"]=nil
-			--扩展
-			newdata["Tardis"]=nil
-			newdata["GDKP"]=nil
-			newdata["ConfigString"]=nil
-			-- if PIGIsAddOnLoaded("!Pig_Tardis") then
-			-- 	newdata["Tardis"]["Plane"]["InfoList"]=nil
-			-- end
-			-- if PIGIsAddOnLoaded("!Pig_GDKP") then
-			-- 	newdata["GDKP"]["PaichuList"]=nil
-			-- 	newdata["GDKP"]["ItemList"]=nil
-			-- 	newdata["GDKP"]["History"]=nil
-			-- 	newdata["GDKP"]["instanceName"]=nil
-			-- end
-		end
-	end
-	local function GetConfigNoData()--获取剔除数据后的默认配置
-		local newdata={{},{}}
-		newdata[1] = CopyTable(PD.Default)
-		Remove_Data(newdata[1])
-		--Per
-		newdata[2] = CopyTable(PD.Default_Per)
-		Remove_Data(newdata[2],true)
-		return newdata[1],newdata[2]
-	end
-	--导入配置-------------------
-	local function Load_ImportTxt_1(newV,DqCF)
-		for k,v in pairs(newV) do
-			if type(v) == "table" then
-				if type(DqCF[k]) == "table" then
-					Load_ImportTxt_1(v,DqCF[k])
-				else
-					DqCF[k]=v 
-				end
+
+	--导入/导出-------------------
+	--导入------
+	local function Load_ImportTxt1(old, new)
+		for k,v in pairs(old) do
+			if type(v)=="table" then
+				if not new[k] then new[k]=CopyTable(v) end
+				Load_ImportTxt1(v, new[k])
 			else
-				DqCF[k]=v
+				new[k]=v
 			end
 		end
 	end
-	local function LoadSameValue(tabX,tabX_Per)
-		local newtab,newtab_Per=GetConfigNoData()
-		Load_ImportTxt_1(tabX,newtab)
-		Load_ImportTxt_1(tabX_Per,newtab_Per)
-		return newtab,newtab_Per
+	local function Load_ImportTxt(config, config_Per)
+		Load_ImportTxt1(config, PIGA)
+		Load_ImportTxt1(config_Per, PIGA_Per)
 	end
-	-- DefaultF.daorubut = PIGButton(DefaultF,{"TOPLEFT",DefaultF,"TOPLEFT",10, -200},{90,24},L["CONFIG_DAORU"]..L["CONFIG_TABNAME"])
-	-- DefaultF.daorubut:SetScript("OnClick", function ()
-	-- 	_G[Data.ExportImportUIname]:daoruFun(addonName..ADDONS..L["CONFIG_TABNAME"],LoadSameValue)	
-	-- end);
+	DefaultF.daorubut = PIGButton(DefaultF,{"TOPLEFT",DefaultF,"TOPLEFT",10, -200},{90,24},L["CONFIG_DAORU"]..L["CONFIG_TABNAME"])
+	DefaultF.daorubut:SetScript("OnClick", function ()
+		Fun.Config_RU("Config",function(config, config_Per)
+			Load_ImportTxt(config, config_Per)
+		end)
+	end);
 
-	--导出配置--------------------------
-	local ConfigUIList={PlayerFrame,TargetFrame,FocusFrame,}--如果选择则导出头像位置
-	local function Get_ExtData(newdata,Per)
-		if Per then return end
+	--导出-------
+	local ConfigUIList={"PlayerFrame","TargetFrame","FocusFrame",}--如果选择则导出头像位置
+	local function Get_ExtData(newdata)--动作条开启/头像位置
 		if DefaultF.I_ActionBar:GetChecked() then
 			newdata["Config_ActionBar"] = {GetActionBarToggles()}
 		else
 			newdata["Config_ActionBar"]=nil
 		end
-		if DefaultF.I_UnitF:GetChecked() then--获取头像位置信息
-			for k,v in pairs(ConfigUIList) do
-		    	local uiname = v:GetName()
+		if DefaultF.I_UnitF and DefaultF.I_UnitF:GetChecked() then--获取头像位置信息
+			for _,name in pairs(ConfigUIList) do
+		    	local uiname = _G[name]
 		    	if uiname then
 		    		newdata["Config_Unit"]=newdata["Config_Unit"] or {}
-		    		if v:IsUserPlaced() then
-			        	local point, relativeTo, relativePoint, offsetX, offsetY = v:GetPoint()
-			       		newdata["Config_Unit"][uiname]={point, relativePoint, offsetX, offsetY}
+		    		if uiname:IsUserPlaced() then
+			        	local point, relativePoint, offsetX, offsetY = PIGGetPoint(uiname)
+			       		newdata["Config_Unit"][name]={point, relativePoint, offsetX, offsetY}
 			       	else
-			       		newdata["Config_Unit"][uiname]=nil
+			       		newdata["Config_Unit"][name]=nil
 			       	end
 			    end
 			end
@@ -188,109 +105,170 @@ function PD.addOptions_Config()
 			newdata["Config_Unit"]=nil
 		end
 	end
-	local function is_equal(value1, value2, memo)
-	    memo = memo or {}
-	    local memoKey = tostring(value1) .. ":" .. tostring(value2)
-	    if memo[memoKey] then return true end
-	    memo[memoKey] = true
-	    if type(value1) ~= type(value2) then return false end
-	    if type(value1) == "table" then
-	        if getmetatable(value1) and getmetatable(value1).__eq then
-	            return value1 == value2
-	        end
-	        local function is_array(t)
-	            local i = 0
-	            for k in pairs(t) do
-	                if type(k) ~= "number" or k <= 0 or k > #t or math.floor(k) ~= k then
-	                    return false
-	                end
-	                i = i + 1
-	            end
-	            return i == #t
-	        end
-	        if is_array(value1) and is_array(value2) then
-	            if #value1 ~= #value2 then return false end
-	            for i = 1, #value1 do
-	                if not is_equal(value1[i], value2[i], memo) then return false end
-	            end
-	            return true
-	        else
-	            for k, v in pairs(value1) do
-	                if not is_equal(v, value2[k], memo) then return false end
-	            end
-	            for k, _ in pairs(value2) do
-	                if value1[k] == nil then return false end
-	            end
-	            return true
-	        end
-	    else
-	        return value1 == value2
-	    end
-	end
-	local function Remove_RepeatValues(NewDataX, moren)
-	    for key, value in pairs(moren) do
-	        if NewDataX[key] ~= nil and is_equal(NewDataX[key], value) then
-	            NewDataX[key] = nil
-	        elseif type(NewDataX[key]) == "table" and type(value) == "table" then
-	        	if next(NewDataX[key])==nil and next(value)==nil then
-	            	NewDataX[key] = nil
-	            else
-		            Remove_RepeatValues(NewDataX[key], value)
-	            	if next(NewDataX[key])==nil and next(value)==nil then
-	                	NewDataX[key] = nil
-	                end
-		        end
-	        end
-	    end
-	end
-	local function CopyTable_Duplicates_1(old,moren,Per)
-		local NewDataX = CopyTable(old)
-		if not DefaultF.I_Data:GetChecked() then
-			Remove_Data(NewDataX,Per)
+	-- local function Remove_Data(newdata,Per)--剔除数据类配置
+	-- 	if Per then
+	-- 		newdata["AutoSellBuy"]["Buy_List"]=nil
+	-- 		newdata["AutoSellBuy"]["Save_List"]=nil
+	-- 		newdata["AutoSellBuy"]["Take_List"]=nil
+	-- 		--
+	-- 		newdata["PigAction"]["ActionData"]=nil
+	-- 		newdata["QuickBut"]["ActionData"]=nil
+	-- 		newdata["QuickBut"]["EquipList"]=nil
+	-- 		newdata["QuickBut"]["TrinketList"]=nil
+	-- 		--
+	-- 		newdata["CombatPlus"]["PetFoodList"]=nil
+	-- 		--
+	-- 		newdata["Farm"]=nil
+	-- 		-- if PIGIsAddOnLoaded("!Pig_Farm") then
+	-- 		-- 	newdata["Farm"]["Fuben_G"]=nil
+	-- 		-- 	newdata["Farm"]["Auto_KeyList"]=nil
+	-- 		-- 	newdata["Farm"]["Namelist"]=nil
+	-- 		-- 	newdata["Farm"]["Timelist"]=nil
+	-- 		-- end
+	-- 	else
+	-- 		--非必要信息
+	-- 		newdata["VerC"]=nil
+	-- 		newdata["Error"]["ErrorDB"]=nil
+	-- 		newdata["ActionBarEnabled"]=nil
+	-- 		--
+	-- 		newdata["Hardcore"]["Deaths"]["Player"]=nil
+	-- 		newdata["Hardcore"]["Deaths"]["List"]=nil
+	-- 		--信息统计
+	-- 		newdata["StatsInfo"]["Players"]=nil
+	-- 		newdata["StatsInfo"]["PlayerSH"]=nil
+	-- 		newdata["StatsInfo"]["FBCDRecords"]=nil
+	-- 		newdata["StatsInfo"]["SkillData"]=nil
+	-- 		newdata["StatsInfo"]["Times"]=nil
+	-- 		newdata["StatsInfo"]["Token"]=nil
+	-- 		newdata["StatsInfo"]["Items"]=nil
+	-- 		newdata["StatsInfo"]["TradeData"]=nil
+	-- 		newdata["StatsInfo"]["Played"]=nil
+	-- 		--邮箱
+	-- 		newdata["MailPlus"]["Coll"]=nil
+	-- 		--售卖助手
+	-- 		newdata["AutoSellBuy"]["Diuqi_List"]=nil
+	-- 		newdata["AutoSellBuy"]["Sell_List"]=nil
+	-- 		newdata["AutoSellBuy"]["Sell_Lsit_Filtra"]=nil
+	-- 		newdata["AutoSellBuy"]["Open_List"]=nil
+	-- 		newdata["AutoSellBuy"]["Fen_List"]=nil
+	-- 		newdata["AutoSellBuy"]["Xuan_List"]=nil
+	-- 		--AH
+	-- 		newdata["AHPlus"]["CacheData"]=nil
+	-- 		newdata["AHPlus"]["Coll"]=nil
+	-- 		--聊天
+	-- 		newdata["Chat"]["Channel_List"]=nil
+	-- 		newdata["Chat"]["Tiqu"]["KeysList"]=nil
+	-- 		newdata["Chat"]["Filter"]["Ignore_P"]=nil
+	-- 		newdata["Chat"]["Filter"]["Ignore_N"]=nil
+	-- 		--聊天记录
+	-- 		newdata["Chatjilu"]["WHISPER"]["record"]=nil
+	-- 		newdata["Chatjilu"]["PARTY"]["record"]=nil
+	-- 		newdata["Chatjilu"]["RAID"]["record"]=nil
+	-- 		newdata["Chatjilu"]["GUILD"]["record"]=nil
+	-- 		newdata["Chatjilu"]["INSTANCE_CHAT"]["record"]=nil
+	-- 		--界面扩展
+	-- 		newdata["FramePlus"]["AddonStatus"]=nil
+	-- 		--扩展
+	-- 		newdata["Tardis"]=nil
+	-- 		newdata["GDKP"]=nil
+	-- 		newdata["Farm"]=nil
+	-- 		newdata["ConfigString"]=nil
+	-- 		-- if PIGIsAddOnLoaded("!Pig_Tardis") then
+	-- 		-- 	newdata["Tardis"]["Plane"]["InfoList"]=nil
+	-- 		-- end
+	-- 		-- if PIGIsAddOnLoaded("!Pig_GDKP") then
+	-- 		-- 	newdata["GDKP"]["PaichuList"]=nil
+	-- 		-- 	newdata["GDKP"]["ItemList"]=nil
+	-- 		-- 	newdata["GDKP"]["History"]=nil
+	-- 		-- 	newdata["GDKP"]["instanceName"]=nil
+	-- 		-- end
+	-- 	end
+	-- end
+	local specialPaths = {
+        {false,"Chat", "QuickChat_ButHide"},
+        {false,"PigLayout", "topMenu", "HideBut"},
+        {false,"PigLayout", "topInfoL", "HideBut"},
+        {false,"PigLayout", "topInfoR", "HideBut"},
+        {false,"PigLayout", "MicroMenu", "HideBut"},
+        {false,"Pig_UI"},
+        {false,"Blizzard_UI"},
+        --
+        {true,"Pig_UI"},
+    }
+	local function GetNotnil(NewDataX,NewDataX_Per)--初始为nil的配置
+		for _, path in ipairs(specialPaths) do
+			local xieruD=path[1] and NewDataX_Per or NewDataX
+			local laiyuanD=path[1] and PIGA_Per or PIGA
+			if path[2] and path[3] and path[4] then
+				if next(laiyuanD[path[2]][path[3]][path[4]]) ~= nil then
+					xieruD[path[2]]=xieruD[path[2]] or {}
+					xieruD[path[2]][path[3]]=xieruD[path[2]][path[3]] or {}
+					xieruD[path[2]][path[3]][path[4]]=CopyTable(laiyuanD[path[2]][path[3]][path[4]])
+				end
+			elseif path[2] and path[3] then
+				if next(laiyuanD[path[2]][path[3]]) ~= nil then
+					xieruD[path[2]]=xieruD[path[2]] or {}
+					xieruD[path[2]][path[3]]=CopyTable(laiyuanD[path[2]][path[3]])
+				end
+			elseif path[2] then
+				if next(laiyuanD[path[2]]) ~= nil then
+					xieruD[path[2]]=CopyTable(laiyuanD[path[2]])
+				end
+			end
 		end
-		Get_ExtData(NewDataX,Per)
-		Remove_RepeatValues(NewDataX,moren)
-		return NewDataX
 	end
-	local function CopyTable_Duplicates()
-		local NewDataX = CopyTable_Duplicates_1(PIGA, PD.Default)
-		local NewDataX_Per = CopyTable_Duplicates_1(PIGA_Per, PD.Default_Per, true)
+	local function ExtractConfig_1(newData, Default, Local)
+	    if type(Local) ~= "table" then return end
+	    for k, v in pairs(Default) do
+	        if type(v) == "table" then
+	            if type(Local[k]) == "table" then
+	                newData[k] = {}
+	                ExtractConfig_1(newData[k], v, Local[k])
+	                if next(newData[k]) == nil then newData[k] = nil end
+	            end
+	        else
+	            if v ~= Local[k] then
+	                newData[k] = Local[k]
+	            end
+	        end
+	    end
+	end
+	local function ExtractConfig()
+		local NewDataX = {}
+		ExtractConfig_1(NewDataX,PD.Default,PIGA)
+		Get_ExtData(NewDataX)
+		local NewDataX_Per={}
+		ExtractConfig_1(NewDataX_Per,PD.Default_Per,PIGA_Per)
+		GetNotnil(NewDataX,NewDataX_Per)
+		-- for k,v in pairs(NewDataX) do
+		-- 	--print(k,v)
+		-- 	for k1,v1 in pairs(v) do
+		-- 		print(k,k1,v1)
+		-- 	end
+		-- end
+		-- for k,v in pairs(NewDataX_Per) do
+		-- 	--print(k,v)
+		-- 	for k1,v1 in pairs(v) do
+		-- 		print(k,k1,v1)
+		-- 	end
+		-- end
 		return NewDataX,NewDataX_Per
 	end
 	DefaultF.daochubut = PIGButton(DefaultF,{"TOPLEFT",DefaultF.daorubut,"BOTTOMLEFT",0, -20},{90,24},L["CONFIG_DAOCHU"]..L["CONFIG_TABNAME"])
 	DefaultF.daochubut:SetScript("OnClick", function ()
-		-- local NewDataX,NewDataX_Per =CopyTable_Duplicates()
-		-- for k,v in pairs(NewDataX) do
-		-- 	if type(v)=="table" then
-		-- 		--if k~="Pig_UI" then
-		-- 			for k1,v1 in pairs(v) do
-		-- 				if type(v1)=="table" then
-		-- 					for k2,v2 in pairs(v1) do
-		-- 						if type(v2)=="table" then
-		-- 							for k3,v4 in pairs(v2) do
-		-- 								print(k,k1,k2,v2,k3,v4)
-		-- 							end
-		-- 						else
-		-- 							print(k,k1,k2,v2)
-		-- 						end
-		-- 					end
-		-- 				else
-		-- 					print(k,k1,v1)
-		-- 				end
-		-- 			end
-		-- 		--end
-		-- 	else
-		-- 		print(k,v)
-		-- 	end
-		-- end
-		_G[Data.ExportImportUIname]:daochuFun(addonName..ADDONS..L["CONFIG_TABNAME"],CopyTable_Duplicates())
+		Fun.Config_CHU("Config",ExtractConfig())
 	end);
-	DefaultF.I_UnitF=PIGCheckbutton(DefaultF,{"LEFT",DefaultF.daochubut,"RIGHT",20, 0},{"导出包含头像位置（自身/目标/焦点）","导出信息将包含头像位置数据，虽然这并不属于插件本身配置信息"})
-	DefaultF.I_UnitF:SetChecked(true)
-	DefaultF.I_ActionBar=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_UnitF,"BOTTOMLEFT",0, -10},{"导出包含动作条启用状态","导出信息将包含各个动作条启用状态，虽然这并不属于插件本身配置信息"})
+	DefaultF.I_ActionBar=PIGCheckbutton(DefaultF,{"LEFT",DefaultF.daochubut,"RIGHT",20, 0},{"包含动作条启用状态","导出信息将包含系统各个动作条启用状态"})
 	DefaultF.I_ActionBar:SetChecked(true)
-	DefaultF.I_Chat=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_ActionBar,"BOTTOMLEFT",0, -10},{"导出包含聊天栏设置","导出信息将包含聊天栏设置，虽然这并不属于插件本身配置信息"})
-	DefaultF.I_Chat:Disable();
-	DefaultF.I_Data=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_Chat,"BOTTOMLEFT",0, -10},{"导出包含数据(离线银行，聊天记录，售卖信息等)","注意这将导致字符串长度大大增加"})
+	if PIG_MaxTocversion("old") then
+		DefaultF.I_UnitF=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_ActionBar,"BOTTOMLEFT",0, -10},{"导出包含头像位置（自身/目标/焦点）","导出信息将包含头像位置数据"})
+		DefaultF.I_UnitF:SetChecked(true)
+		DefaultF.I_Chat=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_UnitF,"BOTTOMLEFT",0, -10},{"导出包含聊天栏设置","导出信息将包含聊天栏设置"})
+		DefaultF.I_Chat:Disable();
+	else
+		DefaultF.I_EditMode=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_ActionBar,"BOTTOMLEFT",0, -10},{"导出编辑模式布局","导出当前编辑模式布局"})
+		DefaultF.I_EditMode:Disable();
+	end
+	DefaultF.I_Data=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_ActionBar,"BOTTOMLEFT",0, -110},{"导出包含数据(离线银行，聊天记录，售卖信息等)","注意这将导致字符串长度大大增加"})
 	DefaultF.I_Data:Disable();
 end

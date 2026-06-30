@@ -5,11 +5,10 @@ if mod:IsRetail() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20231223205517")
+
 mod:SetCreatureID(24723)
 mod:SetEncounterID(1897)
-mod:SetZone(585)
 
 --if not mod:IsRetail() then
 --	mod:SetModelID(22731)--Unknown, two bosses have same ID
@@ -21,7 +20,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED 44320"
 )
 
-local specWarnChannel		= mod:NewSpecialWarning("warningFelCrystal", "-Healer", nil, nil, 1, 2, nil, nil, nil, nil, "targetchange")--(-5081, "targetchange")
+local specWarnChannel		= mod:NewSpecialWarning("warningFelCrystal", "-Healer", nil, nil, 1, 2)--(-5081)
 
 local timerChannelCD		= mod:NewTimer(47, "timerFelCrystal", 44320, nil, nil, 1)--(-5081)
 

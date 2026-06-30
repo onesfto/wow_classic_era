@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(472, "DBM-Party-Vanilla", DBM:IsPostCata() and 13 or 18, 239)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(4854)
 mod:SetEncounterID(553)
 mod:SetZone(70)
@@ -19,8 +18,8 @@ local warningBloodlust				= mod:NewTargetNoFilterAnnounce(6742, 3)
 local warningReflection				= mod:NewTargetNoFilterAnnounce(9906, 4)
 local warningCrystallineSlumber		= mod:NewTargetNoFilterAnnounce(3636, 4, nil, "RemoveMagic")
 
-local specWarnChainBolt				= mod:NewSpecialWarningInterrupt(8292, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
-local specWarnLightningBolt			= mod:NewSpecialWarningInterrupt(12167, false, nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnChainBolt				= mod:NewSpecialWarningInterrupt(8292, "HasInterrupt", nil, nil, 1, 2)
+local specWarnLightningBolt			= mod:NewSpecialWarningInterrupt(12167, false, nil, nil, 1, 2)
 
 local timerChainBoltCD				= mod:NewAITimer(180, 8292, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 local timerLightningBoltCD			= mod:NewAITimer(180, 12167, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)

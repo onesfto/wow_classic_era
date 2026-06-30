@@ -9,8 +9,7 @@ end
 local mod	= DBM:NewMod("AQ40Trash", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250124041604")
 --mod:SetModelID(47785)
 mod:SetMinSyncRevision(20200710000000)--2020, 7, 10
 mod:SetZone(531) -- Important to keep to not double trigger shared IDs with AQ20
@@ -22,8 +21,8 @@ mod.isTrashModBossFightAllowed = true
 mod:RegisterEvents(
 	"ENCOUNTER_END",
 	"SPELL_AURA_APPLIED 26556 25698 26079 1215202 1215421 24573 2855",
-	"SPELL_AURA_REMOVED 26556 26079",
-	"SPELL_CAST_SUCCESS 19134 26586 26073",
+	"SPELL_AURA_REMOVED 26556",
+	"SPELL_CAST_SUCCESS 26586 26073",
 	"SPELL_CAST_START 26069 26070 26071 26072",
 	"SPELL_DAMAGE 26555 26558 26554 25779 26546 24340 8732",
 	"SPELL_PERIODIC_DAMAGE 1215421",
@@ -34,43 +33,39 @@ mod:RegisterEvents(
 	"NAME_PLATE_UNIT_ADDED"
 )
 
+
+-- Toxic Pool, not using the new NewGtfo() thing because it uses the new event handler type that currently only supports combat-only events
+-- This is a problem out of combat often enough
+local specWarnGTFO = mod:NewSpecialWarningGTFO(1215421, nil, nil, nil, 1, 8)
+
 --TODO, meteor those big guys use, maybe some other stuff
 --local specWarnPrimalRampage			= mod:NewSpecialWarningDodge(198379, "Melee", nil, nil, 1, 2)
 
 -- Anubisath Plague/Explode - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash.lua
 local warnPlague                    = mod:NewTargetNoFilterAnnounce(26556, 2)
 local warnCauseInsanity             = mod:NewTargetNoFilterAnnounce(26079, 2)
-local warnIntimidatingShout			= mod:NewSpellAnnounce(19134, 2)
+local warnExplosion					= mod:NewAnnounce("WarnExplosion", 3, nil, false)
 -- Not sure if both can happen in AQ40
-local warnAdd1						= mod:NewSpellAnnounce(17430, 1, 802, "Dps")
-local warnAdd2						= mod:NewSpellAnnounce(17431, 1, 802, "Dps")
+local warnAdd1						= mod:NewSpellAnnounce(17430, 1, 802)
+local warnAdd2						= mod:NewSpellAnnounce(17431, 1, 802)
 
+local specWarnExplosion				= mod:NewSpecialWarning("SpecWarnExplosion", nil, nil, nil, 1, 8)
 -- Anubisath Reflect - keep in sync - AQ40/AQ40Trash.lua AQ20/AQ20Trash.lua
-local specWarnShadowFrostReflect	= mod:NewSpecialWarningReflect(19595, "SpellCaster", nil, nil, 1, 2, nil, nil, "stopattack")
-local specWarnFireArcaneReflect		= mod:NewSpecialWarningReflect(13022, "SpellCaster", nil, nil, 1, 2, nil, nil, "stopattack")
-local specWarnShadowStorm			= mod:NewSpecialWarningMoveTo(26555, nil, nil, nil, 1, 2, nil, nil, "findshelter")
-local specWarnPlague                = mod:NewSpecialWarningMoveAway(26556, nil, nil, nil, 1, 2, nil, nil, "runout")
-local specWarnExplode               = mod:NewSpecialWarningRun(25698, "Melee", nil, 3, 4, 2, nil, nil, "justrun")
+local specWarnShadowFrostReflect	= mod:NewSpecialWarningReflect(19595, nil, nil, nil, 1, 2)
+local specWarnFireArcaneReflect		= mod:NewSpecialWarningReflect(13022, nil, nil, nil, 1, 2)
+local specWarnShadowStorm			= mod:NewSpecialWarningMoveTo(26555, nil, nil, nil, 1, 2)
+local specWarnPlague                = mod:NewSpecialWarningMoveAway(26556, nil, nil, nil, 1, 2)
+local specWarnExplode               = mod:NewSpecialWarningRun(25698, "Melee", nil, 3, 4, 2)
+local specWarnBurst					= mod:NewSpecialWarningDodge(1215202, nil, nil, nil, 2, 2)
 
-local timerSpecWarnExplode			= mod:NewCastTimer(6, 25698, nil, nil, nil, 2) -- Duration is 7s but it expires after 6s
-local timerCauseInsanity			= mod:NewTargetTimer(10, 26079, nil, nil, nil, 3)
+local timerExplosion				= mod:NewTimer(30, "TimerExplosion") -- Default icon looks good cause they cast Arcane Explosion
+local timerBurst					= mod:NewNextTimer(30, 1215202)
 local timerThunderClapCD			= mod:NewNextNPTimer(7, 26554, nil, nil, nil, 2)
 
 local yellPlague                    = mod:NewYell(26556)
+local yellBurst						= mod:NewIconTargetYell(1215202)
 
-local warnExplosion, yellBurst, specWarnBurst, specWarnExplosion, timerExplosion, timerBurst, specWarnGTFO
-if DBM:IsSeasonal("SeasonOfDiscovery") then
-warnExplosion				= mod:NewAnnounce("WarnExplosion", 3, nil, false)
-yellBurst					= mod:NewIconTargetYell(1215202)
-specWarnBurst				= mod:NewSpecialWarningDodge(1215202, nil, nil, nil, 2, 2)
--- Toxic Pool, not using the new NewGtfo() thing because it uses the new event handler type that currently only supports combat-only events
--- This is a problem out of combat often enough
-specWarnGTFO 				= mod:NewSpecialWarningGTFO(1215421, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
-specWarnExplosion			= mod:NewSpecialWarning("SpecWarnExplosion", nil, nil, nil, 1, 8)
-timerExplosion				= mod:NewTimer(30, "TimerExplosion") -- Default icon looks good cause they cast Arcane Explosion
-timerBurst					= mod:NewNextTimer(30, 1215202)
-end
-
+mod:AddRangeFrameOption(10, 22997)
 mod:AddSpeedClearOption("AQ40", true)
 mod:AddInfoFrameOption(nil, true)
 
@@ -109,6 +104,9 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnPlague:Show()
 			specWarnPlague:Play("runout")
 			yellPlague:Yell()
+			if self.Options.RangeFrame then
+				DBM.RangeCheck:Show(10)
+			end
 		elseif UnitGUID("pet") and UnitGUID("pet") == args.destGUID then
 			specWarnPlague:Show()
 			specWarnPlague:Play("runout")
@@ -119,10 +117,8 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args:IsSpell(25698) and not self:IsTrivial() then
 		specWarnExplode:Show()
 		specWarnExplode:Play("justrun")
-		timerSpecWarnExplode:Start(nil, args.sourceGUID)
 	elseif args:IsSpell(26079) then
 		warnCauseInsanity:CombinedShow(0.75, args.destName)
-		timerCauseInsanity:Start(args.destName)
 	elseif args:IsSpell(1215202) then
 		self:NoxiousBurst(args, specWarnBurst, yellBurst, timerBurst)
 	elseif args:IsSpell(1215421) and args:IsPlayer() and self:AntiSpam(4, "ToxicPool") then
@@ -145,14 +141,14 @@ function mod:SPELL_CAST_SUCCESS(args)
 		self:ExplodingGhost(warnExplosion, specWarnExplosion, timerExplosion)
 	elseif args:IsSpell(26073) then
 		self:TrackTrashAbility(args.sourceGUID, "FireNova", args.sourceRaidFlags, args.sourceName)
-	elseif args:IsSpell(19134) and self:AntiSpam(3) then
-		warnIntimidatingShout:Show()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpell(26079) then
-		timerCauseInsanity:Stop(args.destName)
+	if args:IsSpell(26556) then
+		if args:IsPlayer() and self.Options.RangeFrame then
+			DBM.RangeCheck:Hide()
+		end
 	end
 end
 
@@ -203,10 +199,6 @@ end
 
 function mod:UNIT_DIED(args)
 	self:RemoveTrackTrashAbilityMob(args.destGUID)
-	local cid = self:GetCIDFromGUID(args.destGUID)
-	if cid == 15277 then
-		timerSpecWarnExplode:Stop(args.destGUID)
-	end
 end
 
 do
@@ -244,15 +236,15 @@ do
 						if thisTime and thisTime > 0 then
 							if not self.Options.FastestClear3 then
 								--First clear, just show current clear time
-								DBM:AddMsg(DBM_CORE_L.RAID_DOWN:format(GetRealZoneText(531), DBM:strFromTime(thisTime)))
+								DBM:AddMsg(DBM_CORE_L.RAID_DOWN:format("AQ40", DBM:strFromTime(thisTime)))
 								self.Options.FastestClear3 = thisTime
 							elseif (self.Options.FastestClear3 > thisTime) then
 								--Update record time if this clear shorter than current saved record time and show users new time, compared to old time
-								DBM:AddMsg(DBM_CORE_L.RAID_DOWN_NR:format(GetRealZoneText(531), DBM:strFromTime(thisTime), DBM:strFromTime(self.Options.FastestClear3)))
+								DBM:AddMsg(DBM_CORE_L.RAID_DOWN_NR:format("AQ40", DBM:strFromTime(thisTime), DBM:strFromTime(self.Options.FastestClear3)))
 								self.Options.FastestClear3 = thisTime
 							else
 								--Just show this clear time, and current record time (that you did NOT beat)
-								DBM:AddMsg(DBM_CORE_L.RAID_DOWN_L:format(GetRealZoneText(531), DBM:strFromTime(thisTime), DBM:strFromTime(self.Options.FastestClear3)))
+								DBM:AddMsg(DBM_CORE_L.RAID_DOWN_L:format("AQ40", DBM:strFromTime(thisTime), DBM:strFromTime(self.Options.FastestClear3)))
 							end
 						end
 						self.vb.firstEngageTime = nil

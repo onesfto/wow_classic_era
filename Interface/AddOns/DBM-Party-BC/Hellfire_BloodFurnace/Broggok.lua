@@ -5,11 +5,10 @@ if mod:IsRetail() then
 	mod.statTypes = "normal,heroic,timewalker,duos"
 end
 
-mod:SetRevision("20260315034941")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250609053724")
 mod:SetCreatureID(17380)
 mod:SetEncounterID(1924)
-mod:SetZone(542, 2849)--Blood Furnace, Duos
+mod:SetZone(256, 2849)--Blood Furnace, Duos
 
 if not mod:IsRetail() then
 	mod:SetModelID(19372)

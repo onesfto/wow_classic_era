@@ -1,5 +1,8 @@
 local addonName, PD = ...;
 local L=PD.locale
+local Fun=PD.Fun
+local IsNDui = Fun.IsNDui
+local IsElvUI = Fun.IsElvUI
 ---
 local Create=PD.Create
 local PIGDownMenu=Create.PIGDownMenu
@@ -13,21 +16,24 @@ local PIGFontStringBG=Create.PIGFontStringBG
 ---
 local UnitFramefun={}
 PD.UnitFramefun=UnitFramefun
-
+local function SetDebuffui(caster,frameName)
+	if caster ~= "player" then return end
+	if not _G[frameName] then return end
+	 _G[frameName]:SetSize(30,30)
+end
 local function BigDebuff()
+	if IsElvUI() or IsNDui() then return end
 	if PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"] then
 		if TargetFrame_UpdateDebuffAnchor then
 			if PIG_MaxTocversion(120000) then
 				TargetFrameToT:SetPoint("BOTTOMRIGHT", TargetFrame, "BOTTOMRIGHT", -4, -12);
 				hooksecurefunc("TargetFrame_UpdateDebuffAnchor", function(self, debuffName, index)
-					local buff = _G[debuffName..index];
 					local _, _, _, _, _, _, caster = UnitDebuff(self.unit, index)
-					if caster == "player" then
-						buff:SetSize(30,30)
-					end
+					SetDebuffui(caster,debuffName..index)
 				end)
 			end
 		else
+			local maxDebuffs = TargetFrame.maxDebuffs or MAX_TARGET_DEBUFFS;
 			hooksecurefunc(TargetFrame,"UpdateAuras", function(self)
 				local debuffIndex = 1;
 				AuraUtil.ForEachAura(self.unit, AuraUtil.CreateFilterString(AuraUtil.AuraFilters.Harmful, AuraUtil.AuraFilters.IncludeNameplateOnly), maxDebuffs, function(...)
@@ -35,10 +41,7 @@ local function BigDebuff()
 					if ( debuffName ) then
 						if ( self:ShouldShowDebuffs(self.unit, caster, nameplateShowAll, casterIsPlayer) ) then
 							if ( icon ) then
-								if caster == "player" then
-									frameName = "TargetFrameDebuff"..debuffIndex;
-									_G[frameName]:SetSize(30,30)
-								end
+								SetDebuffui(caster,"TargetFrameDebuff"..debuffIndex)
 								debuffIndex = debuffIndex + 1;
 							end
 						end

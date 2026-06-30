@@ -7,8 +7,7 @@ else
 	mod.statTypes = "normal"
 end
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241222110740")
 mod:SetCreatureID(15931)
 mod:SetEncounterID(1111)
 mod:SetUsedIcons(1, 2, 3, 4)
@@ -26,11 +25,11 @@ mod:RegisterEventsInCombat(
 local warnInjection		= mod:NewTargetNoFilterAnnounce(28169, 2)
 local warnCloud			= mod:NewSpellAnnounce(28240, 2)
 
-local specWarnInjection	= mod:NewSpecialWarningYou(28169, nil, nil, nil, 1, 2, nil, nil, "runout")
+local specWarnInjection	= mod:NewSpecialWarningYou(28169, nil, nil, nil, 1, 2)
 local yellInjection		= mod:NewYell(28169, nil, false)
 
 local timerInjection	= mod:NewTargetTimer(10, 28169, nil, nil, nil, 3)
-local timerCloud		= mod:NewVarTimer("v14.5-16.6", 28240, nil, nil, nil, 5, nil, DBM_COMMON_L.TANK_ICON)
+local timerCloud		= mod:NewCDTimer(15, 28240, nil, nil, nil, 5, nil, DBM_COMMON_L.TANK_ICON)
 local enrageTimer		= mod:NewBerserkTimer(720)
 
 mod:AddSetIconOption("SetIconOnInjectionTarget", 28169, false, 0, {1, 2, 3, 4})
@@ -54,9 +53,9 @@ local function removeIcon(self, target)
 	addIcon(self)
 end
 
-function mod:OnCombatStart()
+function mod:OnCombatStart(delay)
 	table.wipe(mutateIcons)
-	enrageTimer:Start(720)
+	enrageTimer:Start(720-delay)
 end
 
 function mod:OnCombatEnd()

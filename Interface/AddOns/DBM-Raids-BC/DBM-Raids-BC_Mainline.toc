@@ -1,4 +1,4 @@
-## Interface: 120005, 120007
+## Interface: 110207, 120000, 120001
 ## X-Min-Interface: 80000
 ## Category: DBM
 
@@ -21,11 +21,11 @@
 ## X-DBM-Mod-Name-ruRU: Рейды (BC)
 ## X-DBM-Mod-Sort: 1001
 ## X-DBM-Mod-MapID: 580, 564, 534, 550, 548, 544, 565, 532
-## X-DBM-Mod-MinCoreRevision: 20260522000000
+## X-DBM-Mod-MinCoreRevision: 20230521000000
 ## X-DBM-Mod-MinExpansion: 1
 ## X-Curse-Project-ID: 1016966
 ## X-Wago-ID: E6gLA4K1
-## Version: r17
+## Version: r13
 
 localization.en.lua
 localization.tw.lua

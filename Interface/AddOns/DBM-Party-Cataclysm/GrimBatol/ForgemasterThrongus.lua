@@ -8,8 +8,7 @@ else
 	mod.statTypes = "normal,heroic"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250127195024")
 mod:SetCreatureID(40177)
 mod:SetEncounterID(1050)
 mod:SetHotfixNoticeRev(20240614000000)
@@ -36,12 +35,12 @@ if mod:IsRetail() then
 	local warnForgeSword		= mod:NewCountAnnounce(456902, 2)
 	local warnForgeMace			= mod:NewCountAnnounce(456900, 2)
 
-	local specWarnMoltenCleave	= mod:NewSpecialWarningDodge(447395, nil, nil, nil, 2, 2, nil, nil, "shockwave")
-	local specWarnMoltenFlurry	= mod:NewSpecialWarningDefensive(449444, nil, nil, nil, 2, 2, nil, nil, "defensive")
-	local specWarnMoltenSpark	= mod:NewSpecialWarningMoveAway(449474, nil, nil, nil, 1, 2, nil, nil, "runout")
+	local specWarnMoltenCleave	= mod:NewSpecialWarningDodge(447395, nil, nil, nil, 2, 2)
+	local specWarnMoltenFlurry	= mod:NewSpecialWarningDefensive(449444, nil, nil, nil, 2, 2)
+	local specWarnMoltenSpark	= mod:NewSpecialWarningMoveAway(449474, nil, nil, nil, 1, 2)
 	local yellMoltenSpark		= mod:NewShortYell(449474)
 	local yellMoltenSparkFades	= mod:NewShortFadesYell(449474)
-	local specWarnMoltenMace	= mod:NewSpecialWarningRun(449687, nil, nil, nil, 4, 2, nil, nil, "justrun")
+	local specWarnMoltenMace	= mod:NewSpecialWarningRun(449687, nil, nil, nil, 4, 2)
 	--local specWarnGTFO			= mod:NewSpecialWarningGTFO(74987, nil, nil, nil, 1, 8)
 
 	local timerForgeAxeCD		= mod:NewCDCountTimer(60, 451996, nil, nil, nil, 6)
@@ -122,9 +121,9 @@ else
 	local warnPhalanx			= mod:NewSpellAnnounce(74908, 3)
 	local warnDisorientingRoar	= mod:NewSpellAnnounce(74976, 3)
 
-	local specWarnGTFO			= mod:NewSpecialWarningGTFO(74987, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
-	local specWarnEncumbered	= mod:NewSpecialWarningRun(75007, "Tank", nil, nil, 4, 2, nil, nil, "justrun")
-	local specWarnFlamingShield	= mod:NewSpecialWarningDodge(90819, nil, nil, nil, 2, 12, nil, nil, "flamejet")
+	local specWarnGTFO			= mod:NewSpecialWarningGTFO(74987, nil, nil, nil, 1, 8)
+	local specWarnEncumbered	= mod:NewSpecialWarningRun(75007, "Tank", nil, nil, 4, 2)
+	local specWarnFlamingShield	= mod:NewSpecialWarningDodge(90819, nil, nil, nil, 2, 12)
 
 	local timerDualBlades		= mod:NewBuffActiveTimer(30, 74981, nil, nil, nil, 6)
 	local timerEncumbered		= mod:NewBuffActiveTimer(30, 75007, nil, nil, nil, 6)

@@ -5,8 +5,7 @@ if not mod:IsClassic() then--on classic, it's normal10,normal25, defined in toc,
 	mod.statTypes = "normal,timewalker"
 end
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250408165147")
 
 mod:SetCreatureID(33515)--34014--Add this (kitties) to pull detection when it can be ignored in kill
 if mod:IsPostCata() then
@@ -33,10 +32,10 @@ local warnFearSoon	 	= mod:NewSoonAnnounce(64386, 1)
 local warnCatDied 		= mod:NewAnnounce("WarnCatDied", 3, 64455)
 local warnCatDiedOne	= mod:NewAnnounce("WarnCatDiedOne", 3, 64455)
 
-local specWarnFear		= mod:NewSpecialWarningSpell(64386, nil, nil, nil, 2, 2, nil, nil, "fearsoon")
-local specWarnBlast		= mod:NewSpecialWarningInterrupt(64389, "HasInterrupt", nil, 2, 1, 2, nil, nil, "kickcast")
-local specWarnVoid 		= mod:NewSpecialWarningMove(64675, nil, nil, nil, 1, 2, nil, nil, "runaway")
-local specWarnSonic		= mod:NewSpecialWarningMoveTo(64688, nil, nil, nil, 2, 2, nil, nil, "gathershare")
+local specWarnFear		= mod:NewSpecialWarningSpell(64386, nil, nil, nil, 2, 2)
+local specWarnBlast		= mod:NewSpecialWarningInterrupt(64389, "HasInterrupt", nil, 2, 1, 2)
+local specWarnVoid 		= mod:NewSpecialWarningMove(64675, nil, nil, nil, 1, 2)
+local specWarnSonic		= mod:NewSpecialWarningMoveTo(64688, nil, nil, nil, 2, 2)
 
 local enrageTimer		= mod:NewBerserkTimer(600)
 local timerDefender 	= mod:NewTimer(35, "timerDefender", 64455, nil, nil, 1)

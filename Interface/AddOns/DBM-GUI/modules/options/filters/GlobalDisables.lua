@@ -14,39 +14,22 @@ spamSpecAnnounceFeat:CreateCheckButton(L.SpamBlockNoSpecWarnText, true, nil, "Do
 spamSpecAnnounceFeat:CreateCheckButton(L.SpamBlockNoSpecWarnFlash, true, nil, "DontShowSpecialWarningFlash")
 spamSpecAnnounceFeat:CreateCheckButton(L.SpamBlockNoSpecWarnVibrate, true, nil, "DontDoSpecialWarningVibrate")
 spamSpecAnnounceFeat:CreateCheckButton(L.SpamBlockNoSpecWarnSound, true, nil, "DontPlaySpecialWarningSound")
-
-if DBM:IsPostMidnight() then
-	local spamPrivateAuras = spamPanel:CreateArea(L.Area_Private_Aura_Features)
-	spamPrivateAuras:CreateCheckButton(L.SpamBlockNoPrivateAuraFrame, true, nil, "DontShowPrivateAuraFrame")
-	spamPrivateAuras:CreateCheckButton(L.SpamBlockNoPrivateAuraSound, true, nil, "DontPlayPrivateAuraSound")
+if not DBM:IsPostMidnight() then
+	spamSpecAnnounceFeat:CreateCheckButton(L.SpamBlockNoPrivateAuraSound, true, nil, "DontPlayPrivateAuraSound")
+--else
+	--TODO, midnights version of sound registration
 end
 
 local spamTimers = spamPanel:CreateArea(L.Area_SpamFilter_Timers)
 spamTimers:CreateCheckButton(L.SpamBlockNoShowBossTimers, true, nil, "DontShowBossTimers")
 spamTimers:CreateCheckButton(L.SpamBlockNoShowEventTimers, true, nil, "DontShowEventTimers")
 spamTimers:CreateCheckButton(L.SpamBlockNoShowUTimers, true, nil, "DontShowUserTimers")
-spamTimers:CreateCheckButton(L.SpamBlockNoCountdowns, true, nil, "DontPlayCountdowns")
-if DBM:IsPostMidnight() then
-	local NoTLButton = spamTimers:CreateCheckButton(L.SpamBlockNoTLColors, true, nil, "DontSetTimelineColors")
-	NoTLButton:SetScript("OnClick", function()
-		DBM.Options.DontSetTimelineColors = not DBM.Options.DontSetTimelineColors
-		if DBM.Options.DontSetTimelineColors then
-			--Apply user bar color to all bars by default, since blizzard applies white (or red) to all of them by default now
-			local timerStartRed, timerStartGreen, timerStartBlue = DBT:GetColorForType(0)
-			local timerEndRed, timerEndGreen, timerEndBlue = DBT:GetColorForType(0, true)
-			--https://wago.tools/db2/EncounterEvent?page=25
-			for i = 1, 850 do
-				DBM:EE_SetEventColor(i, timerStartRed, timerStartGreen, timerStartBlue, timerEndRed, timerEndGreen, timerEndBlue)
-			end
-		else
-			for i = 1, 850 do
-				DBM:EE_UnsetEventColor(i)
-			end
-		end
-	end)
-else
+if not DBM:IsPostMidnight() then
 	spamTimers:CreateCheckButton(L.SpamBlockNoShowTrashTimers, true, nil, "DontShowTrashTimers")
+	spamTimers:CreateCheckButton(L.SpamBlockNoCountdowns, true, nil, "DontPlayCountdowns")
+end
 
+if not DBM:IsPostMidnight() then
 	local spamNameplates = spamPanel:CreateArea(L.Area_SpamFilter_Nameplates)
 	local Plater = _G["Plater"]
 	local ThreatPlates = _G["TidyPlatesThreatDBM"] and _G["TidyPlatesThreat"]

@@ -16,8 +16,6 @@ local function Set_ConfigValue(cfdata,bool,count)
 		end
 	end
 end
-Fun.Set_ConfigValue=Set_ConfigValue
----
 local function Load_DefaultData(DqCF, moren, count, Per)
 	if type(moren) ~= "table" then return end
 	for k,v in pairs(moren) do
@@ -36,9 +34,12 @@ local function Load_DefaultData(DqCF, moren, count, Per)
 		end
 	end
 end
+Fun.Set_ConfigValue=Set_ConfigValue
 Fun.Load_DefaultData=Load_DefaultData
+--删除废弃配置
 local function Clear_FailureData()
 	PIGA["xxxxxx"]=nil
+	PIGA["Ver"]=nil
 	PIGA["Error"]["ErrorInfo"]=nil
 	PIGA["PigUI"]=nil
 	PIGA["PigUIPoint"]=nil
@@ -46,6 +47,7 @@ local function Clear_FailureData()
 	PIGA["BlizzardUI"]=nil
 	PIGA["Other"]["Fast_Loot"]=nil
 	PIGA["Map"]["MinimapPoint"] = nil
+
 	PIGA["Interaction"]["Autoloot"]=nil
 	PIGA["Common"]["AutoCVars"]=nil
 	PIGA["Common"]["AutoLoot"]=nil
@@ -59,6 +61,7 @@ local function Clear_FailureData()
 	PIGA["Chat"]["Tiqu"]["Keys"]=nil
 	PIGA["Chat"]["TiquKey"]=nil
 	PIGA["Chat"]["Filter"]["Blacks_P"]=nil
+	PIGA["Chat"]["Filter"]["Blacks"]=nil
 	PIGA["Chatjilu"]["jiluinfo"]=nil
 	PIGA["Chatjilu"]["tianshu"]=nil
 
@@ -96,6 +99,7 @@ local function Clear_FailureData()
 	PIGA["UnitFrame"]["PlayerFrame"]["Plus"]=nil
 	PIGA["UnitFrame"]["PlayerFrame"]["Loot"]=nil
 	PIGA["QuickFollow"]=nil
+
 	PIGA["FramePlus"]["Zhuizong"]=nil
 	PIGA["FramePlus"]["Character_xiuliG"]=nil
 	PIGA["FramePlus"]["yidongUI"]=nil
@@ -104,12 +108,17 @@ local function Clear_FailureData()
 	PIGA["FramePlus"]["Character_ItemLevel"]=nil
 	PIGA["FramePlus"]["Character_ItemColor"]=nil
 	PIGA["FramePlus"]["AddonList"]=nil
+	PIGA["FramePlus"]["AddonQuickBut"]=nil
+
 	PIGA["Tooltip"]["SpellID"]=nil
 	PIGA["QuickBut"]["Point"]=nil
 	PIGA["QuickBut"]["AutoEquip"]=nil
 	PIGA["QuickBut"]["TrinketMode"]=nil
+
+	PIGA["PigLayout"]["TopBar"]["JG"]=nil
 	--
 	PIGA_Per["PigUI"]=nil
+	PIGA_Per["AutoSellBuy"]["Diuqi_List"]=nil
 	PIGA_Per["QuickFollow"]=nil
 	PIGA_Per["Config_Unit"]=nil
 	PIGA_Per["Config_ActionBar"]=nil
@@ -121,12 +130,11 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
 	Load_DefaultData(PIGA_Per,PD.Default_Per, 0, true)
 	Clear_FailureData()
 end)
-
 --执行动作条开启配置
 local ActionBarUI = CreateFrame("Frame")        
 ActionBarUI:SetScript("OnEvent",function(self, event, arg1)
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-	if not PIGA["ActionBarEnabled"][PlayerInfo.AllName] then
+	if PIGA["Config_ActionBar"] then
 		local function SetActionBarToggle(index, value)
 			SetActionBarToggles(unpack(PIGA["Config_ActionBar"]));
 			MultiActionBar_Update();
@@ -134,13 +142,34 @@ ActionBarUI:SetScript("OnEvent",function(self, event, arg1)
 		for kw,vw in pairs(PIGA["Config_ActionBar"]) do
 			SetActionBarToggle(kw,vw)
 		end
-		PIGA["ActionBarEnabled"][PlayerInfo.AllName]=true
+		PIGA["Config_ActionBar"]=nil
 	end
 end)
-
---加载外部插件的PIG配置
+--加载导入配置/外部插件的PIG配置
 PD.ExtDB={}
 PD.ExtConfig = function()
+	if PIGA["Config_ActionBar"] then
+		ActionBarUI:RegisterEvent("PLAYER_ENTERING_WORLD");
+	end
+	if PIGA["Config_Unit"] then
+		local TopBarY = 0
+		for name,data in pairs(PIGA["Config_Unit"]) do
+			local point, relativePoint, offsetX, offsetY=unpack(data)
+			if point and relativePoint and offsetX and offsetY then
+				local uixx=_G[name]
+				uixx:SetUserPlaced(false)
+				uixx:ClearAllPoints();
+				-- if PIGA["PigLayout"]["TopBar"]["Open"] then
+				-- 	if relativePoint=="TOP" or relativePoint=="TOPLEFT" or relativePoint=="TOPRIGHT" then
+				-- 		TopBarY=PIGA["PigLayout"]["TopBar"]["Height"]
+				-- 	end
+				-- end
+				uixx:SetPoint(point, UIParent, relativePoint, offsetX, offsetY+TopBarY);
+				uixx:SetUserPlaced(true)
+			end
+		end
+		PIGA["Config_Unit"]=nil
+	end
 	-- for adname,adDB in pairs(PD.ExtDB) do
 	-- 	PigConfigFun.fuFrameBut.Text:SetText(PigConfigFun.fuFrameBut.Text:GetText().."+|cff00FFFF("..adDB.TitleName..")|r")
 	-- 	local fujiF,fujiBut =PIGOptionsList_R(RTabFrame,adDB.TitleName,100)

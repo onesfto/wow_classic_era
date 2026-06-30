@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(418, "DBM-Party-Vanilla", DBM:IsPostCata() and 4 or 7, 231)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(6229)
 mod:SetEncounterID(mod:IsClassic() and 2771 or 381)
 mod:SetZone(90)
@@ -13,7 +12,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS 10887 8374"
 )
 
-local specWarnCrowdPummel			= mod:NewSpecialWarningSpell(10887, "Melee", nil, nil, 2, 2, nil, nil, "carefly")
+local specWarnCrowdPummel			= mod:NewSpecialWarningSpell(10887, "Melee", nil, nil, 2, 2)
 
 local timerCrowdPummelCD			= mod:NewAITimer(180, 10887, nil, nil, nil, 2)
 

@@ -24,25 +24,17 @@ function PigLayoutFun.addOptions_General()
 			info.func = self.PIGDownMenu_SetValue
 			for i=1,#MiaobianList,1 do
 			    info.text, info.arg1 = MiaobianList[i], MiaobianList[i]
-			    if MiaobianList[i]=="NORMAL" and not PIGA["PigLayout"]["TopBar"]["FontMiaobian"] then
-					info.checked =true
-			    else
-			    	info.checked = MiaobianList[i]==PIGA["PigLayout"]["TopBar"]["FontMiaobian"]
-			    end
+			    info.checked = MiaobianList[i]==PIGA["PigLayout"]["FontMiaobian"]
 				self:PIGDownMenu_AddButton(info)
 			end 
 		end
 		function fujiF.FontMiaobian:PIGDownMenu_SetValue(value,arg1,arg2)
 			self:PIGDownMenu_SetText(value)
-			if value=="NORMAL" then
-				PIGA["PigLayout"]["TopBar"]["FontMiaobian"]=nil
-			else
-				PIGA["PigLayout"]["TopBar"]["FontMiaobian"]=value
-			end
+			PIGA["PigLayout"]["FontMiaobian"]=value
 			PIGCloseDropDownMenus()
 			PIG_OptionsUI.RLUI:Show()
 		end
-		fujiF.FontMiaobian:PIGDownMenu_SetText(PIGA["PigLayout"]["TopBar"]["FontMiaobian"] or "NORMAL")
+		fujiF.FontMiaobian:PIGDownMenu_SetText(PIGA["PigLayout"]["FontMiaobian"])
 
 		fujiF.UILayoutT = PIGFontString(fujiF,{"TOPLEFT",fujiF.FontMiaobianT,"BOTTOMLEFT",0,-80},"PIG桌面元素位置和缩放");
 		fujiF.UILayout=PIGDownMenu(fujiF,{"TOPLEFT",fujiF.UILayoutT,"BOTTOMLEFT",0,-10},{210})

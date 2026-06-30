@@ -5,11 +5,9 @@ if mod:IsRetail() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20231014053250")
 mod:SetCreatureID(17880)
 mod:SetEncounterID(1921)
-mod:SetZone(269)
 
 if not mod:IsRetail() then
 	mod:SetModelID(19066)
@@ -24,8 +22,8 @@ mod:RegisterEventsInCombat(
 )
 
 --TODO, actual CD timers
-local specWarnSpellReflect	= mod:NewSpecialWarningReflect(38592, "SpellCaster", nil, 2, 1, 2, nil, nil, "stopattack")
-local specWarnHasten		= mod:NewSpecialWarningDispel(31458, "MagicDispeller", nil, nil, 1, 2, nil, nil, "dispelboss")
+local specWarnSpellReflect	= mod:NewSpecialWarningReflect(38592, "SpellCaster", nil, 2, 1, 2)
+local specWarnHasten		= mod:NewSpecialWarningDispel(31458, "MagicDispeller", nil, nil, 1, 2)
 
 local timerSpellReflect		= mod:NewBuffActiveTimer(6, 38592, nil, "SpellCaster", 2, 5, nil, DBM_COMMON_L.DAMAGE_ICON)
 local timerHasten			= mod:NewTargetTimer(10, 31458, nil, "MagicDispeller|Healer|Tank", 2, 5, nil, DBM_COMMON_L.TANK_ICON)

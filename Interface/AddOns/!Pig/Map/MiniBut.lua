@@ -457,7 +457,7 @@ local function InsertButToBox(data,uiname,butx)
 			return
 		end
 	end
-	local Point1,_,Point3,Point4,Point5 =butx:GetPoint()
+	local Point1,Point3,Point4,Point5 = PIGGetPoint(butx)
 	table.insert(data,{uiname,Point1,Point3,Point4,Point5})
 end
 local function UpdateCollectBut()

@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal25"
 
-mod:SetRevision("20260523022044")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103131702")
 mod:SetCreatureID(25165, 25166)
 mod:SetEncounterID(727, 2491)
 mod:SetModelID(23334)
@@ -28,13 +27,13 @@ local warnBlow				= mod:NewTargetNoFilterAnnounce(45256, 3)
 local warnConflag			= mod:NewTargetNoFilterAnnounce(45333, 3)
 local warnNova				= mod:NewTargetNoFilterAnnounce(45329, 3)
 
-local specWarnConflag		= mod:NewSpecialWarningYou(45333, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnConflag		= mod:NewSpecialWarningYou(45333, nil, nil, nil, 1, 2)
 local yellConflag			= mod:NewYell(45333, nil, false)
-local specWarnNova			= mod:NewSpecialWarningYou(45329, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnNova			= mod:NewSpecialWarningYou(45329, nil, nil, nil, 1, 2)
 local yellNova				= mod:NewYell(45329)
-local specWarnPyro			= mod:NewSpecialWarningDispel(45230, "MagicDispeller", nil, 2, 1, 2, nil, nil, "dispelboss")
-local specWarnDarkTouch		= mod:NewSpecialWarningStack(45347, nil, 8, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnFlameTouch	= mod:NewSpecialWarningStack(45348, false, 5, nil, nil, 1, 6, nil, nil, "stackhigh")
+local specWarnPyro			= mod:NewSpecialWarningDispel(45230, "MagicDispeller", nil, 2, 1, 2)
+local specWarnDarkTouch		= mod:NewSpecialWarningStack(45347, nil, 8, nil, nil, 1, 6)
+local specWarnFlameTouch	= mod:NewSpecialWarningStack(45348, false, 5, nil, nil, 1, 6)
 
 local timerBladeCD			= mod:NewCDTimer(11.5, 45248, nil, "Melee", 2, 2)
 local timerBlowCD			= mod:NewCDTimer(20, 45256, nil, nil, nil, 3)
@@ -45,13 +44,22 @@ local timerNova				= mod:NewCastTimer(3.5, 45329, nil, false, 2)
 
 local berserkTimer			= mod:NewBerserkTimer(360)
 
+mod:AddRangeFrameOption(10, 45333)
 mod:AddSetIconOption("ConflagIcon", 45333, false, 0, {8})
 mod:AddSetIconOption("NovaIcon", 45329, false, 0, {7})
 
 function mod:OnCombatStart(delay)
 	berserkTimer:Start(-delay)
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Show()
+	end
 end
 
+function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
+end
 
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 45248 then

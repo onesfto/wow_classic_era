@@ -1,10 +1,7 @@
-if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
-
 local mod	= DBM:NewMod("ThermapluggSoD", "DBM-Raids-Vanilla", 9)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241214191036")
 mod:SetCreatureID(218538, 218970, 218972, 218974, 218537)--(red, blue, green, gray, thermaplugg)
 mod:SetEncounterID(2940)
 mod:SetBossHPInfoToHighest()
@@ -61,7 +58,7 @@ mod:AddTimerLine(SCENARIO_STAGE:format(1))
 local warningSprocketfire			= mod:NewSpellAnnounce(438683, 2, nil, false, 2)
 local warnSprocketFireDebuff		= mod:NewStackAnnounce(438710, 2, nil, "Tank|Healer")
 
-local specWarnFurnaceSurge			= mod:NewSpecialWarningRun(438713, nil, nil, nil, 4, 2, nil, nil, "justrun")
+local specWarnFurnaceSurge			= mod:NewSpecialWarningRun(438713, nil, nil, nil, 4, 2)
 
 local timerSprocketfireCD			= mod:NewCDTimer(5.2, 438683, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)--5.2-8.5
 local timerFurnaceSurgeCD			= mod:NewCDTimer(33.9, 438713, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
@@ -78,7 +75,7 @@ mod:AddTimerLine(SCENARIO_STAGE:format(3))
 local warningHazHammer				= mod:NewSpellAnnounce(438726, 2, nil, false, 2)
 local warnRadiationSickness			= mod:NewStackAnnounce(438727, 2, nil, "Tank|Healer")
 
-local specWarnToxicVentilation		= mod:NewSpecialWarningInterrupt(438732, nil, nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnToxicVentilation		= mod:NewSpecialWarningInterrupt(438732, nil, nil, nil, 1, 2)
 
 local timerHazHammerCD				= mod:NewCDTimer(5.2, 438726, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)--5.2-8.5
 local timerToxicVentilationCD		= mod:NewCDTimer(22.6, 438732, nil, nil, nil, 2)

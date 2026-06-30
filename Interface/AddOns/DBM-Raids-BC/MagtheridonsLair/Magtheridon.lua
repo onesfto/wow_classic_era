@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal25"
 
-mod:SetRevision("20260523022044")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103131702")
 mod:SetCreatureID(17257)
 mod:SetEncounterID(651, 2457)
 mod:SetModelID(18527)
@@ -24,8 +23,8 @@ local warningInfernal		= mod:NewSpellAnnounce(30511, 2)
 local warnPhase2			= mod:NewPhaseAnnounce(2)
 local warnPhase3			= mod:NewPhaseAnnounce(3)
 
-local specWarnBlastNova		= mod:NewSpecialWarningInterrupt(30616, nil, nil, nil, 3, 2, nil, nil, "kickcast")
-local specWarnHeal			= mod:NewSpecialWarningInterrupt(30528, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnBlastNova		= mod:NewSpecialWarningInterrupt(30616, nil, nil, nil, 3, 2)
+local specWarnHeal			= mod:NewSpecialWarningInterrupt(30528, "HasInterrupt", nil, nil, 1, 2)
 
 local timerHeal				= mod:NewCastTimer(2, 30528, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 local timerPhase2			= mod:NewTimer(120, "timerP2", "135566", nil, nil, 6)

@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("Grobbulus", "DBM-Raids-WoTLK", 8)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103133102")
 mod:SetCreatureID(15931)
 mod:SetEncounterID(1111)
 mod:SetUsedIcons(1, 2, 3, 4)
@@ -20,7 +19,7 @@ mod:RegisterEventsInCombat(
 local warnInjection		= mod:NewTargetNoFilterAnnounce(28169, 2)
 local warnCloud			= mod:NewSpellAnnounce(28240, 2)
 
-local specWarnInjection	= mod:NewSpecialWarningYou(28169, nil, nil, nil, 1, 2, nil, nil, "runout")
+local specWarnInjection	= mod:NewSpecialWarningYou(28169, nil, nil, nil, 1, 2)
 local yellInjection		= mod:NewYell(28169, nil, false)
 
 local timerInjection	= mod:NewTargetTimer(10, 28169, nil, nil, nil, 3)

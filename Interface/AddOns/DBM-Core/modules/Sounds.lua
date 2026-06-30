@@ -16,66 +16,28 @@ do
 		{	text	= "Pewsey",value 	= "Pewsey", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Pewsey\\", max = 10},
 		{	text	= "Bear (Child)",value = "Bear", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Bear\\", max = 10},
 		{	text	= "Moshne",	value 	= "Mosh", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Mosh\\", max = 5},
-		{	text	= "Karl (deDE)",value = "Karl", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Karl\\", max = 10},
-		{	text	= "Franziska (deDE)",value = "Franziska", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Franziska\\", max = 10},
-		{	text	= "Mateo (esES)",value = "Mateo", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Mateo\\", max = 10},
-		{	text	= "Fernanda (esES)",value = "Fernanda", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Fernanda\\", max = 10},
-		{	text	= "Juan (esMX)",value = "Juan", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Juan\\", max = 10},
-		{	text	= "Isabel (esMX)",value = "Isabel", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Isabel\\", max = 10},
-		{	text	= "Jérémy (frFR)",value = "Jeremy", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Jeremy\\", max = 10},
-		{	text	= "Élise (frFR)",value = "Elise", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Elise\\", max = 10},
-		{	text	= "도현원 (koKR)",value = "Dohyunwon", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Dohyunwon\\", max = 10},
-		{	text	= "하민지 (koKR)",value = "Haminji", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Haminji\\", max = 10},
-		{	text	= "Александр (ruRU)",value = "Alexander", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Alexander\\", max = 10},
-		{	text	= "Надежда (ruRU)",value = "Nadezhda", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Nadezhda\\", max = 10},
-		{	text	= "瑞辰 (zhCN)",value = "Ruichen", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Ruichen\\", max = 10},
-		{	text	= "纯如 (zhCN)",value = "Chunru", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Chunru\\", max = 10},
-		{	text	= "浩 (zhTW)",value = "Hao", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Hao\\", max = 10},
-		{	text	= "玲 (zhTW)",value = "Ling", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Ling\\", max = 10},
 		{	text	= "Anshlun (ptBR)",value = "Anshlun", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Anshlun\\", max = 10},
 		{	text	= "Neryssa (ptBR)",value = "Neryssa", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Neryssa\\", max = 10},
 	}
-	--Countdown audio that's been specifically edited to be a single 5/3 second count file
-	local midnightCounts = {
-		{	text	= "Corsica",value 	= "Corsica", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Corsica\\", max = 10},
-		{	text	= "Koltrane",value 	= "Kolt", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Kolt\\", max = 10},
-		{	text	= "Smooth",value 	= "Smooth", path = "Interface\\AddOns\\DBM-Core\\Sounds\\Smooth\\", max = 10},
-		{	text	= "Smooth (Reverb)",value 	= "SmoothR", path = "Interface\\AddOns\\DBM-Core\\Sounds\\SmoothReverb\\", max = 10},
-	}
 	local hasCached = false
 	local cachedTable
-	---@deprecated Use new utility functions. Midnight sounds cannot be added injectinginto DBM.Counts at all!
+	---@deprecated Use new utility functions
 	DBM.Counts = counts
 
 	function DBM:GetCountSounds()
 		if not hasCached then
-			cachedTable = {unpack(private.isRetail and midnightCounts or counts)}
+			cachedTable = {unpack(counts)}
 		end
 		return cachedTable
 	end
 
-	---comment
-	---@param text string
-	---@param value string
-	---@param path string
-	---@param max number? Max count value 1-10 for classic and 1-5 for midnight
-	---@param isMidnightCompatible boolean? Pass this ONLY if your count pack supports "fivecount.ogg" or "threecount.ogg"
-	function DBM:AddCountSound(text, value, path, max, isMidnightCompatible)
-		if isMidnightCompatible then
-			tinsert(midnightCounts, {
-				text	= text,
-				value	= value or text,
-				path	= path,
-				max		= max or 10
-			})
-		else
-			tinsert(counts, {
-				text	= text,
-				value	= value or text,
-				path	= path,
-				max		= max or 10
-			})
-		end
+	function DBM:AddCountSound(text, value, path, max)
+		tinsert(counts, {
+			text	= text,
+			value	= value or text,
+			path	= path,
+			max		= max or 10
+		})
 		hasCached = false
 	end
 end

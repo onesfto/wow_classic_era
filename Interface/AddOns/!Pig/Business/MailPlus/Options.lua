@@ -8,6 +8,7 @@ local PIGButton = Create.PIGButton
 local PIGLine=Create.PIGLine
 local PIGSlider = Create.PIGSlider
 local PIGCheckbutton=Create.PIGCheckbutton
+local PIGCheckSingle=Create.PIGCheckSingle
 local PIGCheckbutton_R=Create.PIGCheckbutton_R
 local PIGOptionsList_R=Create.PIGOptionsList_R
 local PIGFontString=Create.PIGFontString
@@ -713,7 +714,7 @@ function BusinessInfo.MailPlus_ADDUI()
 		return self:AdvanceToNextItem();
 	end
 	function OnekeyTake:AdvanceAndProcessNextItem()
-		if PIGCalculateTotalNumberOfFreeBagSlots() then
+		if PIGCalculateTotalNumberOfFreeBagSlots() and self.QuchuMode~=1 then
 			self:StopOpening();
 			return;
 		end
@@ -830,7 +831,6 @@ function BusinessInfo.MailPlus_ADDUI()
 	----
 	SendMailFrame.recipients=PIGFrame(SendMailFrame,{"LEFT",SendMailFrame,"LEFT",line_W1+15,17},{line_W2,314})
 	if ElvUI or NDui then SendMailFrame.recipients:PIGSetBackdrop(0,1) end
-
 	SendMailFrame.recipients.lianxuMode = PIGCheckbutton(SendMailFrame.recipients,{"BOTTOMLEFT",SendMailFrame.recipients,"TOPLEFT",60,34},{L["TRADEMAIL_TISP2"],L["TRADEMAIL_TISP21"]},nil,nil,nil,0)
 	SendMailFrame.recipients.lianxuMode:SetScript("OnClick", function (self)
 		if self:GetChecked() then
@@ -888,17 +888,18 @@ function BusinessInfo.MailPlus_ADDUI()
 
 	SendMailFrame.TabButList={}
 	SendMailFrame.recipients.selectID=1
+	local datax={}
 	for i=1,#SendTabs do
-		SendMailFrame.TabButList[i] = PIGCheckbutton(SendMailFrame.recipients,{"BOTTOMLEFT",SendMailFrame.recipients,"TOPLEFT",4+(i-1)*54,2},{SendTabs[i],SendTabsTisp[i]},nil,nil,nil,0)
-		SendMailFrame.TabButList[i]:HookScript("OnClick", function ()
-			SendMailFrame.recipients.selectID=i
-			SendMailFrame.recipients.xuanzelianxiren()
-		end);
-	end	
-	function SendMailFrame.recipients.xuanzelianxiren()	
-		for _,TabBut in pairs(SendMailFrame.TabButList) do
-			TabBut:SetChecked(false)
-		end
+		 datax[i]={
+			tisp={SendTabs[i],SendTabsTisp[i]},
+			click=function(id)
+				SendMailFrame.recipients.selectID=id
+				SendMailFrame.recipients.xuanzelianxiren()
+			end,
+		}
+	end
+	Create.PIGCheckSingle(SendMailFrame.recipients,SendMailFrame.TabButList,datax,{"BOTTOMLEFT",SendMailFrame.recipients,"TOPLEFT",4,2,6})
+	function SendMailFrame.recipients.xuanzelianxiren()
 		SendMailFrame.TabButList[SendMailFrame.recipients.selectID]:SetChecked(true)
 		SendMailFrame.recipients.Update_hang(SendMailFrame.recipients.Scroll)
 	end

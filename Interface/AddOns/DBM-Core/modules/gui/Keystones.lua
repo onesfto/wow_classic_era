@@ -38,46 +38,37 @@ do
 end
 
 -- [ChallengeModeID] = {MapID, TeleportID, bgImage}
-local teleportMap = {
-	[161] = {1209, 159898, 1041999}, -- Skyreach
-	[198] = {1466, 424163, 1411855}, -- Darkheart Thicket
-	[199] = {1501, 424153, 1411853}, -- Black Rook Hold
-	[200] = {1477, 393764, 1498158}, -- Halls of Valor
-	[206] = {1458, 410078, 1450574}, -- Neltharion's Lair
-	[210] = {1571, 393766, 1498156}, -- Court of Stars
-	[227] = {1651, 373262, 1537283}, -- Return to Karazhan: Lower
-	[234] = {1651, 373262, 1537283}, -- Return to Karazhan: Upper
-	[239] = {1753, 1254551, 1718213}, -- Seat of the Triumvirate
-	[249] = {1762, 1286831, 2178269}, -- King's Rest
-	[250] = {1877, 1286828, 2178273}, -- Temple of Sethraliss
-	[378] = {2287, 354465, 3759908}, -- Halls of Atonement
-	[391] = {2441, 367416, 4182022}, -- Tazavesh: Streets of Wonder
-	[392] = {2441, 367416, 4182022}, -- Tazavesh: So'leah's Gambit
-	[399] = {2521, 393256, 4742927}, -- Ruby Life Pools
-	[402] = {2526, 393273, 4742929}, -- Algeth'ar Academy
-	[499] = {2649, 445444, 5912551}, -- Priority of the Sacred Flame
-	[503] = {2660, 445417, 5912546}, -- Ara-Kara, City of Echoes
-	[505] = {2662, 445414, 5912552}, -- The Dawnbreaker
-	[525] = {2773, 1216786, 6422412}, -- Operation Floodgate
-	[542] = {2830, 1237215, 7074042}, -- Eco-Dome Al'dani
-	[556] = {658, 1254555, 608210}, -- Pit of Saron
-	[557] = {2805, 1254400, 7464937}, -- Windrunner Spire
-	[558] = {585, 1254572, 608208}, -- Magister's Terrace
-	[559] = {2915, 1254563, 7570501}, -- Nexus-Point Xenas
-	[560] = {2874, 1254559, 7478529}, -- Maisara Caverns
-	[584] = {2859, 1286801, 7478528}, -- The Blinding Vale
-	[585] = {2923, 1286804, 7479110}, -- Voidscar Arena
-	[586] = {2825, 1286807, 7478530}, -- Den Of Nalorakk
-	[587] = {2813, 1286809, 7467175}, -- Murder Row
-	[588] = {2993, 1286812, 7956179}, -- Altar of Fangs
-}
 local teleports
 local function updateTeleports()
 	isPlayerRemix = PlayerIsTimerunning and PlayerIsTimerunning()
 	if isPlayerRemix then
-		teleports = {198, 199, 200, 206, 210, 227, 234}
+		teleports = {
+			--[197] = {1456, nil, 1498157}, -- Eye of Azshara
+			[198] = {1466, 424163, 1411855}, -- Darkheart Thicket
+			[199] = {1501, 424153, 1411853}, -- Black Rook Hold
+			[200] = {1477, 393764, 1498158}, -- Halls of Valor
+			[206] = {1458, 410078, 1450574}, -- Neltharion's Lair
+			--[207] = {1493, nil, 1411858}, -- Vault of the Wardens
+			--[208] = {1492, nil, 1411856}, -- Maw of Souls
+			--[209] = {1516, nil, 1411857}, -- The Arcway
+			[210] = {1571, 393766, 1498156}, -- Court of Stars
+			[227] = {1651, 373262, 1537283}, -- Return to Karazhan: Lower
+			--[233] = {1677, nil, 1616922}, -- Cathedral of Eternal Night
+			[234] = {1651, 373262, 1537283}, -- Return to Karazhan: Upper
+			--[239] = {1753, nil, 1718213}, -- Seat of the Triumvirate
+		}
+	else
+		teleports = {
+			[378] = {2287, 354465, 3759908}, -- Halls of Atonement
+			[391] = {2441, 367416, 4182022}, -- Tazavesh: Streets of Wonder
+			[392] = {2441, 367416, 4182022}, -- Tazavesh: So'leah's Gambit
+			[499] = {2649, 445444, 5912551}, -- Priority of the Sacred Flame
+			[503] = {2660, 445417, 5912546}, -- Ara-Kara, City of Echoes
+			[505] = {2662, 445414, 5912552}, -- The Dawnbreaker
+			[525] = {2773, 1216786, 6422412}, -- Operation Floodgate
+			[542] = {2830, 1237215,7074042} -- Eco-Dome Al'dani
+		}
 	end
-	teleports = C_ChallengeMode.GetMapTable()
 end
 updateTeleports()
 
@@ -116,7 +107,7 @@ CreateFrame("Button", nil, frame, "UIPanelCloseButtonDefaultAnchors")
 
 local scroll = CreateFrame("ScrollFrame", nil, frame, "ScrollFrameTemplate")
 scroll:SetPoint("TOPLEFT", frame, "TOPLEFT", 8, -30)
-scroll:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -24, 30)
+scroll:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -24, 5)
 
 local child = CreateFrame("Frame", nil, scroll)
 scroll:SetScrollChild(child)
@@ -201,9 +192,9 @@ function frame:ShowTab(tab)
 	tabs[tab]()
 end
 
-local refresh = CreateFrame("Button", nil, frame)
+local refresh = CreateFrame("Button", nil, child)
 refresh:SetSize(20, 20)
-refresh:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", 8, 6)
+refresh:SetPoint("BOTTOMLEFT", child)
 refresh:SetText("REFRESH")
 refresh:Show()
 refresh:SetNormalTexture("Interface\\Buttons\\UI-RefreshButton")
@@ -222,22 +213,22 @@ end)
 local function TeleportTooltipOnEnter(self)
 	GameTooltip:SetOwner(self, "ANCHOR_TOP")
 	if InCombatLockdown() then
-		GameTooltip:SetText(ERR_NOT_IN_COMBAT, 1, 1, 1)
+		GameTooltip:SetText(ERR_NOT_IN_COMBAT)
 	else
 		if not DBMExtraGlobal:IsSpellKnown(self:GetAttribute('spell')) then
-			GameTooltip:SetText(SPELL_FAILED_NOT_KNOWN, 1, 1, 1)
+			GameTooltip:SetText(SPELL_FAILED_NOT_KNOWN)
 		else
 			local start, duration = DBM:GetSpellCooldown(self:GetAttribute('spell'))
 			if start > 0 and duration > 0 then
 				local remainingSec = (start + duration) - GetTime()
 				local hours, minutes = mfloor(remainingSec / 3600), mfloor(remainingSec / 60)
 				if hours > 0 then
-					GameTooltip:SetText(ITEM_COOLDOWN_TIME_HOURS:format(hours), 1, 1, 1)
+					GameTooltip:SetText(ITEM_COOLDOWN_TIME_HOURS:format(hours))
 				else
-					GameTooltip:SetText(ITEM_COOLDOWN_TIME_MIN:format(minutes), 1, 1, 1)
+					GameTooltip:SetText(ITEM_COOLDOWN_TIME_MIN:format(minutes))
 				end
 			else
-				GameTooltip:SetText(LFG_READY_CHECK_PLAYER_IS_READY:format(DBM:GetSpellName(self:GetAttribute('spell'))), 1, 1, 1)
+				GameTooltip:SetText(LFG_READY_CHECK_PLAYER_IS_READY:format(DBM:GetSpellName(self:GetAttribute('spell'))))
 			end
 		end
 	end
@@ -323,10 +314,9 @@ function PartyGuildUpdate(table)
 	titleRating:SetWidth(mmax(75, titleRating.Text:GetStringWidth() + 20))
 
 	for i, v in ipairs(sortTable) do
-		local fullName = v.name
-		local name = DBM:GetShortServerName(fullName) or fullName
-		if v.specID or playerSpecs[fullName] then
-			local _, _, _, _, _, class = GetSpecializationInfoByID(v.specID or playerSpecs[fullName])
+		local name = v.name
+		if v.specID or playerSpecs[name] then
+			local _, _, _, _, _, class = GetSpecializationInfoByID(v.specID or playerSpecs[name])
 			local playerColor = RAID_CLASS_COLORS[class]
 			if playerColor then
 				name = ("|r|cff%.2x%.2x%.2x%s|r|cff%.2x%.2x%.2x"):format(playerColor.r * 255, playerColor.g * 255, playerColor.b * 255, name, 0.41 * 255, 0.8 * 255, 0.94 * 255)
@@ -336,7 +326,7 @@ function PartyGuildUpdate(table)
 		local offset = -((i - 1) * 14) - 4
 		local textPlayer, textLevel, textDungeon, textRating = GetTextFrame(), GetTextFrame(), GetTextFrame(), GetTextFrame()
 
-		textPlayer.Text:SetText(name)
+		textPlayer.Text:SetText(name:gsub("%-.*$", "*"))
 		textPlayer:SetPoint("TOP", titlePlayer, "BOTTOM", 0, offset)
 		textPlayer:SetWidth(120)
 		textPlayer:SetAttribute("type", "macro")
@@ -349,11 +339,11 @@ function PartyGuildUpdate(table)
 		textDungeon.Text:SetText(L.KEYSTONE_NAMES[v.mapID] or (v.mapID == 0 and '-') or v.mapID or '?')
 		textDungeon:SetPoint("TOP", titleDungeon, "BOTTOM", 0, offset)
 		textDungeon:SetWidth(titleDungeon:GetWidth())
-		if v.mapID and v.mapID ~= 0 and teleportMap[v.mapID] then
+		if v.mapID and v.mapID ~= 0 and teleports[v.mapID] then
 			textDungeon:SetScript('OnEnter', TeleportTooltipOnEnter)
 			textDungeon:SetScript('OnLeave', GameTooltip_Hide)
 			textDungeon:SetAttribute('type', 'spell')
-			textDungeon:SetAttribute('spell', teleportMap[v.mapID][2])
+			textDungeon:SetAttribute('spell', teleports[v.mapID][2])
 		end
 
 		textRating.Text:SetText(v.playerRating == 0 and '-' or v.playerRating or '?')
@@ -470,41 +460,36 @@ do
 		WipeTextFrames()
 
 		local i, buttons = 1, {}
-		for _, challengeMapID in pairs(teleports) do
-			local teleport = teleportMap[challengeMapID]
-			if teleport then
-				local button = GetTextFrame()
-				buttons[#buttons + 1] = button
-				button:SetScript('OnEnter', TeleportTooltipOnEnter)
-				button:SetScript('OnLeave', GameTooltip_Hide)
-				button:SetAttribute('type', 'spell')
-				button:SetAttribute('spell', teleport[2])
-				button:SetSize(100, 50)
-				if i == 1 then
-					button:SetPoint("TOPLEFT", child, "TOPLEFT",40, -10)
-				elseif i % 2 == 0 then
-					button:SetPoint("LEFT", buttons[i - 1], "RIGHT", 25, 0)
-				else
-					button:SetPoint("TOP", buttons[i - 2], "BOTTOM", 0, -10)
-				end
-				button.Text:SetJustifyH("CENTER")
-				button.Text:SetText(GetRealZoneText(teleport[1]))
-				if not DBMExtraGlobal:IsSpellKnown(teleport[2]) then
-					button.Text:SetTextColor(1, 0, 0)
-				end
-				-- Scale down text size if it's long single words
-				while button.Text:IsTruncated() do
-					button.Text:SetTextScale(button.Text:GetTextScale() - 0.01)
-				end
-				button.Background:SetTexCoord(0, 0.68359375, 0, 0.7421875)
-				button.Background:SetTexture(teleport[3])
-				button.Background:SetDesaturation(0.75)
-				button.Background:SetAlpha(0.75)
-				button.Background:Show()
-				i = i + 1
+		for _, teleport in pairs(teleports) do
+			local button = GetTextFrame()
+			buttons[#buttons + 1] = button
+			button:SetScript('OnEnter', TeleportTooltipOnEnter)
+			button:SetScript('OnLeave', GameTooltip_Hide)
+			button:SetAttribute('type', 'spell')
+			button:SetAttribute('spell', teleport[2])
+			button:SetSize(100, 50)
+			if i == 1 then
+				button:SetPoint("TOPLEFT", child, "TOPLEFT",40, -10)
+			elseif i % 2 == 0 then
+				button:SetPoint("LEFT", buttons[i - 1], "RIGHT", 25, 0)
 			else
-				DBM:Debug("Missing keystone info for challengeMapID: " .. challengeMapID)
+				button:SetPoint("TOP", buttons[i - 2], "BOTTOM", 0, -10)
 			end
+			button.Text:SetJustifyH("CENTER")
+			button.Text:SetText(GetRealZoneText(teleport[1]))
+			if not DBMExtraGlobal:IsSpellKnown(teleport[2]) then
+				button.Text:SetTextColor(1, 0, 0)
+			end
+			-- Scale down text size if it's long single words
+			while button.Text:IsTruncated() do
+				button.Text:SetTextScale(button.Text:GetTextScale() - 0.01)
+			end
+			button.Background:SetTexCoord(0, 0.68359375, 0, 0.7421875)
+			button.Background:SetTexture(teleport[3])
+			button.Background:SetDesaturation(0.75)
+			button.Background:SetAlpha(0.75)
+			button.Background:Show()
+			i = i + 1
 		end
 		child:SetSize(300, mmax(scroll:GetHeight(), 60 * (#buttons / 2)))
 		frame:SetWidth(child:GetWidth() + 32)
@@ -514,9 +499,6 @@ end
 function Keystones:Show()
 	DBM.Durability:Hide()
 	DBM.Latency:Hide()
-	if DBM.GearCheck then
-		DBM.GearCheck:Hide()
-	end
 	if _G["DBM_GUI_OptionsFrame"] then
 		frame:SetFrameLevel(_G["DBM_GUI_OptionsFrame"]:GetFrameLevel() + 10)
 	end
@@ -528,33 +510,6 @@ end
 
 function Keystones:Hide()
 	frame:Hide()
-end
-
-local function delayedKeySlashCheck()
-	-- To note, no other addon gives a crap about intentionally deleting slash commands of other addons
-	-- We're the only ones that actually check first, even for addons that added feature long after us like EllesmereUI
-	local hasFreeSlash = false
-	local overrideSlash = DBM.Options.OverrideKeystoneSlash
-	--Don't override Details
-	if not SLASH_KEYSTONE1 or overrideSlash then
-		hasFreeSlash = true
-		SLASH_KEYSTONE1 = '/keystone'
-	end
-	--Don't override Details or EllesmereUI
-	if (not SLASH_KEYSTONE2 and not SLASH_EUIKEYS1) or overrideSlash then
-		hasFreeSlash = true
-		SLASH_KEYSTONE2 = '/keys'
-	end
-	--Don't override Details or EllesmereUI
-	if (not SLASH_KEYSTONE3 and not SLASH_EUIKEYS3) or overrideSlash then
-		hasFreeSlash = true
-		SLASH_KEYSTONE3 = '/key'
-	end
-	if hasFreeSlash then
-		SlashCmdList["KEYSTONE"] = function()
-			Keystones:Show()
-		end
-	end
 end
 
 frame:SetScript('OnEvent', function(_, event, arg1, arg2)
@@ -569,24 +524,23 @@ frame:SetScript('OnEvent', function(_, event, arg1, arg2)
 				keys = {}
 			}
 		end
-		C_Timer.After(1, function()
-			--Intentionally delay so addons after we load register their slash first
-			--Larger delay because I don't know evert addon registering slash commands on PLAYER_ENTERING_WORLD
-			delayedKeySlashCheck()
-		end)
+		-- Once we're fully logged in, check if nobody has a keystone command, and then inject ours
+		-- We can't check SLASH_KEYSTONE3 because BigWigs murders it
+		if not SLASH_KEYSTONE1 and not SLASH_KEYSTONE2 then
+			SLASH_KEYSTONE1 = '/keystone'
+			SLASH_KEYSTONE2 = '/keys'
+			SLASH_KEYSTONE3 = '/key'
+			SlashCmdList["KEYSTONE"] = function()
+				Keystones:Show()
+			end
+		end
 		UpdateKeystones()
 	elseif event == 'PLAYER_INTERACTION_MANAGER_FRAME_HIDE' then
 		if arg1 == 3 or arg1 == 49 then
 			UpdateKeystones()
-		end
-	elseif event == 'CHALLENGE_MODE_COMPLETED' then
-		if DBM.Options.ShowKeystoneOnComplete then
-			selectedTab = 1
-			Keystones:Show()
 		end
 	end
 end)
 frame:RegisterEvent('PLAYER_ENTERING_WORLD')
 frame:RegisterEvent('PLAYER_INTERACTION_MANAGER_FRAME_HIDE')
 frame:RegisterEvent('UNIT_CONNECTION')
-frame:RegisterEvent('CHALLENGE_MODE_COMPLETED')

@@ -51,24 +51,65 @@ function BusinessInfo.add_AutoSellBuyUI()
 	BusinessInfo.FastSave()
 end
 function BusinessInfo.ADDScroll(fuFrame,Title,hangName,hang_NUM,Config1)
-	local function GetConfigRef()
+	local function IsChognfu_2(old,newv)
+		local yiyang=true
+		for i=1,#old do
+			if old[i]~=newv[i] then
+				yiyang=false
+				break
+			end		
+		end
+		return yiyang
+	end
+	local function IsChognfu_1(cddatax,newv)
+		for i=1,#cddatax do
+			if IsChognfu_2(cddatax[i],newv) then
+				return true
+			end
+		end
+		return false
+	end
+	local function SaveData_1(cddatax,lydata,AppendOpen)
+		if AppendOpen then
+			for i=1,#lydata do
+				if not IsChognfu_1(cddatax,lydata[i]) then
+					table.insert(cddatax,lydata[i])
+				end
+			end
+			return cddatax
+		else
+			return lydata
+		end
+	end
+	local function GetConfigRef(lydata,AppendOpen)
 		if hangName=="Buy" or hangName=="Save" or hangName=="Take" then
 			if hangName=="Buy" and PIGA["AutoSellBuy"][hangName.."_Class"] then
-			local classId = PlayerInfo.ClassData.classId
-			PIGA["AutoSellBuy"][hangName.."_List"][classId] = PIGA["AutoSellBuy"][hangName.."_List"][classId] or {}
-			return PIGA["AutoSellBuy"][hangName.."_List"][classId]
+				local classId = PlayerInfo.ClassData.classId
+				PIGA["AutoSellBuy"][hangName.."_List"][classId] = PIGA["AutoSellBuy"][hangName.."_List"][classId] or {}
+				if lydata then
+					PIGA["AutoSellBuy"][hangName.."_List"][classId]=SaveData_1(PIGA["AutoSellBuy"][hangName.."_List"][classId],lydata,AppendOpen)
+				else
+					return PIGA["AutoSellBuy"][hangName.."_List"][classId]
+				end
 			else
-				return PIGA_Per["AutoSellBuy"][hangName.."_List"]
+				if lydata then
+					PIGA_Per["AutoSellBuy"][hangName.."_List"]=SaveData_1(PIGA_Per["AutoSellBuy"][hangName.."_List"],lydata,AppendOpen)
+				else
+					return PIGA_Per["AutoSellBuy"][hangName.."_List"]
+				end
 			end
 		else
-			return PIGA["AutoSellBuy"][hangName.."_List"]
+			if lydata then
+				PIGA["AutoSellBuy"][hangName.."_List"]=SaveData_1(PIGA["AutoSellBuy"][hangName.."_List"],lydata,AppendOpen)
+			else
+				return PIGA["AutoSellBuy"][hangName.."_List"]
+			end
 		end
 	end
 	fuFrame.GetConfigRef=GetConfigRef
+
 	local FiltraConfig0 = PIGA["AutoSellBuy"][hangName.."_Lsit_Filtra"]
-
 	local Width,hang_Height,addBag_hang_NUM = fuFrame:GetWidth()-12,24,19
-
 	local function IsItemExist(Conf,idx)
 		for ix=1,#Conf do
 			if idx==Conf[ix][1] then
@@ -165,11 +206,14 @@ function BusinessInfo.ADDScroll(fuFrame,Title,hangName,hang_NUM,Config1)
 	fuFrame.List:PIGSetBackdrop()
 	fuFrame.List.chu = PIGButton(fuFrame,{"BOTTOMLEFT",fuFrame.List,"TOPLEFT",0,4},{44,20},L["CONFIG_DAOCHU"]);
 	fuFrame.List.chu:SetScript("OnClick", function(self)
-		Fun.Config_CHU(self,GetConfigRef())
+		Fun.Config_CHU("SellBuy",GetConfigRef())
 	end)
 	fuFrame.List.ru = PIGButton(fuFrame,{"LEFT",fuFrame.List.chu,"RIGHT",4,0},{44,20},L["CONFIG_DAORU"]);
 	fuFrame.List.ru:SetScript("OnClick", function(self)
-		Fun.Config_RU(self,Config1)
+		Fun.Config_RU("SellBuy",function(lydata,Append)
+			GetConfigRef(lydata,Append)
+			fuFrame.UpdateListHang()
+		end)
 	end)
 	fuFrame.List.biaoti = PIGFontString(fuFrame.List,{"BOTTOM", fuFrame.List, "TOP", 0, 6},string.format(L["TRADESELLBUY_TITLE1"],Title))
 	fuFrame.List.addBag = PIGButton(fuFrame,{"BOTTOMRIGHT",fuFrame.List,"TOPRIGHT",0,4},{44,20},ADD);

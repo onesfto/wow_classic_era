@@ -5,8 +5,7 @@ if DBM:IsRetail() then
 	mod.statTypes = "normal,heroic,challenge,timewalker"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250915043254")
 mod:SetCreatureID(58633, 58664)--58633 is boss, 58664 is Phylactery. We register BOTH to avoid pre mature combat ending cause boss dies twice.
 mod:SetZone(1007)
 --To re-emphesize again (although it was already spelled out in comments. THE BOSS DIES TWICE, if you only register 58633 then the boss will fire EndCombat at end of phase 1.
@@ -27,7 +26,7 @@ local warnTouchGrave	= mod:NewSpellAnnounce(111606, 4)
 local warnFrigidGrasp	= mod:NewSpellAnnounce(111209, 3)
 local warnPhase2		= mod:NewPhaseAnnounce(2)
 
-local specWarnIceWave	= mod:NewSpecialWarningGTFO(120037, nil, nil, nil, 1, 6, nil, nil, "watchfeet")--The wave slowly approaches group from back wall, if you choose a bad place to stand, this will tell you to move your ass to a better spot before you die
+local specWarnIceWave	= mod:NewSpecialWarningGTFO(120037, nil, nil, nil, 1, 6)--The wave slowly approaches group from back wall, if you choose a bad place to stand, this will tell you to move your ass to a better spot before you die
 
 local timerFrigidGrasp	= mod:NewNextTimer(10.5, 111209, nil, nil, nil, 3)
 local timerBerserk		= mod:NewBerserkTimer(134)--not a physical berserk but rathor how long until icewall consumes entire room.

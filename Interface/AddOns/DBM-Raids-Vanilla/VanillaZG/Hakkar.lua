@@ -12,8 +12,7 @@ end
 local mod	= DBM:NewMod("Hakkar", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241214191036")
 mod:SetCreatureID(14834)
 mod:SetEncounterID(793)
 mod:SetHotfixNoticeRev(20200419000000)--2020, 04, 19
@@ -24,7 +23,7 @@ mod:RegisterCombat("combat")
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS 24324 24686 24687 24688 24689 24690",
 	"SPELL_AURA_APPLIED 24327 24328 24686 24687 24689 24690 468408 468012 468491",
-	"SPELL_AURA_REMOVED 24689"
+	"SPELL_AURA_REMOVED 24328 24689"
 )
 
 --TODO, get a buff check for starting initial hard mode timers
@@ -32,14 +31,16 @@ mod:RegisterEventsInCombat(
 --[[
 (ability.id = 24324 or ability.id = 24686 or ability.id = 24687 or ability.id = 24688 or ability.id = 24689 or ability.id = 24690) and type = "cast"
 --]]
-local warnSiphonSoon			= mod:NewSoonAnnounce(24324, 3)
+local warnSiphonSoon			= mod:NewSoonAnnounce(24324)
 local warnInsanity				= mod:NewTargetNoFilterAnnounce(24327, 4)
 local warnBlood					= mod:NewTargetAnnounce(24328, 2)--Not excempt from filter since it could be spammy
 local warnAspectOfMarli			= mod:NewTargetNoFilterAnnounce(24686, 2)
 local warnAspectOfThekal		= mod:NewSpellAnnounce(24689, 3, nil, "Tank|RemoveEnrage|Healer", 4)
 local warnAspectOfArlokk		= mod:NewTargetNoFilterAnnounce(24690, 3)
 
-local specWarnAspectOfThekal	= mod:NewSpecialWarningDispel(24689, "RemoveEnrage", nil, nil, 1, 6, nil, nil, "enrage")
+local specWarnBlood				= mod:NewSpecialWarningMoveAway(24328, nil, nil, nil, 1, 2)
+local yellBlood					= mod:NewYell(24328, nil, false, 2)
+local specWarnAspectOfThekal	= mod:NewSpecialWarningDispel(24689, "RemoveEnrage", nil, nil, 1, 6)
 
 local timerSiphon				= mod:NewNextTimer(90, 24324, nil, nil, nil, 2)
 local timerAspectOfMarli
@@ -55,6 +56,7 @@ local timerNextAspect, timerSilenced
 if DBM:IsSeasonal("SeasonOfDiscovery") then
 	timerNextAspect				= mod:NewNextSpecialTimer(20, 24687)
 	timerSilenced				= mod:NewBuffFadesTimer(10, 468012)
+	timerAspectOfThekal			= mod:NewBuffActiveTimer(8, 24689, nil, "Tank|RemoveEnrage|Healer", 3, 5, nil, DBM_COMMON_L.TANK_ICON..DBM_COMMON_L.ENRAGE_ICON)
 else
 	timerAspectOfMarli			= mod:NewTargetTimer(6, 24686, nil, nil, nil, 5)
 	timerAspectOfMarliCD		= mod:NewCDTimer(16, 24686, nil, nil, nil, 2)--16-20
@@ -66,8 +68,8 @@ else
 	timerAspectOfArlokk			= mod:NewTargetTimer(2, 24690, nil, nil, nil, 2)
 	timerAspectOfArlokkCD		= mod:NewNextTimer(30, 24690, nil, nil, nil, 2)--Needs more data to verify it's a next timer, rest aren't
 end
-local timerInsanity				= mod:NewTargetTimer(10, 24327, nil, nil, nil, 3)
-local timerInsanityCD			= mod:NewCDTimer(21, 24327, nil, nil, nil, 3)
+local timerInsanity				= mod:NewTargetTimer(10, 24327, nil, nil, nil, 5)
+local timerInsanityCD			= mod:NewCDTimer(20, 24327, nil, nil, nil, 3)
 
 local enrageTimer				= mod:NewBerserkTimer(585)
 
@@ -76,6 +78,7 @@ local enrageTimer				= mod:NewBerserkTimer(585)
 -- Spawn of Mar'li just randomly show up with no SPELL_SUMMON or anything, there's an emote 20 seconds later but that's too late
 -- One other aspect is also somehow missing entirely from the log, so just repeating the timer on a 20 second loop as a fallback
 
+mod:AddRangeFrameOption(10, 24328)
 
 local function IsHardMode(self)
 	-- SoD: 1832497 hp
@@ -128,11 +131,10 @@ function mod:AspectTimer(delay)
 	self:ScheduleMethod(22 - delay, "AspectTimer", 2)
 end
 
-function mod:OnCombatStart()
-	enrageTimer:Start(585)
-	warnSiphonSoon:Schedule(80)
-	timerSiphon:Start(90)
-	timerInsanityCD:Start("v20.7-22.7")
+function mod:OnCombatStart(delay)
+	enrageTimer:Start(585-delay)
+	warnSiphonSoon:Schedule(80-delay)
+	timerSiphon:Start(90-delay)
 	--Hard Mode Timers
 	--This just checks for Hakkar's health which is higher on hard mode
 	--Can't just start these on all normal mode pulls
@@ -140,16 +142,19 @@ function mod:OnCombatStart()
 		if timerNextAspect then
 			self:AspectTimer()
 		else
-			timerAspectOfMarliCD:Start(10)
-			timerAspectOfThekalCD:Start(10)
-			timerAspectOfVenoxisCD:Start(14)
-			timerAspectOfJeklikCD:Start(21)
-			timerAspectOfArlokkCD:Start(30)
+			timerAspectOfMarliCD:Start(10-delay)
+			timerAspectOfThekalCD:Start(10-delay)
+			timerAspectOfVenoxisCD:Start(14-delay)
+			timerAspectOfJeklikCD:Start(21-delay)
+			timerAspectOfArlokkCD:Start(30-delay)
 		end
 	end
 end
 
 function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
 	self:UnscheduleMethod("AspectTimer")
 end
 
@@ -177,7 +182,16 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerInsanity:Start(args.destName)
 		timerInsanityCD:Start()
 	elseif args:IsSpell(24328) then
-		warnBlood:Show(args.destName)
+		if args:IsPlayer() then
+			specWarnBlood:Show()
+			specWarnBlood:Play("runout")
+			yellBlood:Yell()
+			if self.Options.RangeFrame then
+				DBM.RangeCheck:Show(10)
+			end
+		else
+			warnBlood:Show(args.destName)
+		end
 	elseif args:IsSpell(24686) then
 		warnAspectOfMarli:Show(args.destName)
 		timerAspectOfMarli:Start(args.destName)
@@ -204,7 +218,13 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpell(24689) and args:IsDestTypeHostile() then
+	if args:IsSpell(24328) then
+		if args:IsPlayer() then
+			if self.Options.RangeFrame then
+				DBM.RangeCheck:Hide()
+			end
+		end
+	elseif args:IsSpell(24689) and args:IsDestTypeHostile() then
 		timerAspectOfThekal:Stop()
 	end
 end

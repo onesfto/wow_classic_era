@@ -110,12 +110,6 @@ local challengeModeIds = {
 	[558] = 2811, -- Magisters' Terrace
 	[559] = 2915, -- Nexus-Point Xenas
 	[560] = 2874, -- Maisara Caverns
-	[583] = 1753, -- Seat of the Triumvirate
-	[584] = 2859, -- The Blinding Vale
-	[585] = 2923, -- Voidscar Arena
-	[586] = 2825, -- Den of Nalorakk
-	[587] = 2813, -- Murder Row
-	[588] = 2993, -- Altar of Fangs
 }
 
 do
@@ -191,7 +185,7 @@ do
 			end
 		end
 		for i = 1, #keytable do
-			if mediatype ~= "sound" or (not DBM:IsNoneValue(keytable[i]) and keytable[i] ~= "NPCScan") then
+			if mediatype ~= "sound" or (keytable[i] ~= "None" and keytable[i] ~= "NPCScan") then
 				local v = hashtable[keytable[i]]
 				-- Filter duplicates
 				local insertme = true
@@ -227,55 +221,8 @@ do
 	local LibSerialize = LibStub("LibSerialize")
 	local LibDeflate = LibStub("LibDeflate")
 
-	-- Reference: Blizzard APIDocumentation (EncodingUtil enums)
-	-- Base64Variant.Standard = 0
-	-- CompressionMethod.Deflate = 0
-	-- CompressionLevel.OptimizeForSize = 2
-	local base64Variant = 0
-	local compressionMethod = 0
-	local compressionLevel = 2
+	local canWeWork = LibStub and LibStub("LibDeflate", true) and LibStub("LibSerialize", true)
 	local popupFrame
-
-	local function encodeProfile(profileData)
-		local serialized = C_EncodingUtil.SerializeCBOR(profileData)
-		if not serialized then
-			return nil
-		end
-		local compressed = C_EncodingUtil.CompressString(serialized, compressionMethod, compressionLevel)
-		if not compressed then
-			return nil
-		end
-		return C_EncodingUtil.EncodeBase64(compressed, base64Variant)
-	end
-
-	local function decodeProfile(importText)
-		local decoded = C_EncodingUtil.DecodeBase64(importText, base64Variant)
-		if decoded then
-			local decompressed = C_EncodingUtil.DecompressString(decoded, compressionMethod)
-			if decompressed then
-				local deserialized = C_EncodingUtil.DeserializeCBOR(decompressed)
-				if type(deserialized) == "table" then
-					return deserialized, false
-				end
-			end
-		end
-
-		-- Legacy fallback for pre-C_EncodingUtil profile exports
-		if LibSerialize and LibDeflate then
-			local legacyDecoded = LibDeflate:DecodeForPrint(importText)
-			if legacyDecoded then
-				local legacyDecompressed = LibDeflate:DecompressDeflate(legacyDecoded)
-				if legacyDecompressed then
-					local success, legacyDeserialized = LibSerialize:Deserialize(legacyDecompressed)
-					if success and type(legacyDeserialized) == "table" then
-						return legacyDeserialized, true
-					end
-				end
-			end
-		end
-
-		return nil, false
-	end
 
 	local function createPopupFrame()
 		---@class DBMPopupFrame: Frame, BackdropTemplate
@@ -380,98 +327,39 @@ do
 		end
 	end
 
-	function DBM_GUI:CreateExportProfile(export, exportFailureMessage)
+	function DBM_GUI:CreateExportProfile(export)
+		if not canWeWork then
+			DBM:AddMsg("Missing required libraries to export.")
+			return
+		end
 		if not popupFrame then
 			createPopupFrame()
 		end
 		popupFrame.import:Hide()
-		local encoded = encodeProfile(export)
-		if not encoded then
-			DBM:AddMsg(exportFailureMessage or "Failed to export profile")
-			return
-		end
-		popupFrame:SetText(encoded)
+		popupFrame:SetText(LibDeflate:EncodeForPrint(LibDeflate:CompressDeflate(LibSerialize:Serialize(export), {level = 9})))
 		popupFrame:Show()
 	end
 
-	function DBM_GUI:CreateImportProfile(importFunc, expectedPayloadType, expectedPayloadVersion, importFailureMessage, payloadTypeFailureMessage, payloadVersionFailureMessage)
+	function DBM_GUI:CreateImportProfile(importFunc)
+		if not canWeWork then
+			DBM:AddMsg("Missing required libraries to export.")
+			return
+		end
 		if not popupFrame then
 			createPopupFrame()
 		end
-		local failureMessage = importFailureMessage or "Failed to import profile string. The data may be invalid/corrupted or from an unsupported format."
-		local typeMismatchMessage = payloadTypeFailureMessage or failureMessage
-		local versionMismatchMessage = payloadVersionFailureMessage or failureMessage
 		function popupFrame:VerifyImport(import)
-			local function reportImportFailure()
-				DBM:AddMsg(failureMessage)
-			end
-			local deserialized, isLegacy = decodeProfile(import)
-			if type(deserialized) ~= "table" then
-				reportImportFailure()
+			local success, deserialized = LibSerialize:Deserialize(LibDeflate:DecompressDeflate(LibDeflate:DecodeForPrint(import)))
+			if not success then
+				DBM:AddMsg("Failed to deserialize")
 				return false
 			end
-			if expectedPayloadType and not isLegacy then
-				if deserialized.payloadType ~= expectedPayloadType then
-					DBM:AddMsg(typeMismatchMessage)
-					return false
-				end
-				if expectedPayloadVersion and deserialized.payloadVersion ~= expectedPayloadVersion then
-					DBM:AddMsg(versionMismatchMessage)
-					return false
-				end
-			end
-			local ok, accepted = xpcall(function()
-				return importFunc(deserialized)
-			end, function(err)
-				return tostring(err)
-			end)
-			if not ok then
-				reportImportFailure()
-				DBM:Debug("Import callback failed: " .. (accepted or "unknown error"), 2)
-				return false
-			end
-			if accepted == false then
-				return false
-			end
-			if isLegacy then
-				DBM:AddMsg(L.LegacyProfileImportNotice, nil, true)
-			end
+			importFunc(deserialized)
 			return true
 		end
 		popupFrame.import:Show()
 		popupFrame:SetText("")
 		popupFrame:Show()
-	end
-
-	function DBM_GUI:CreateExportSpellRenames(spellRenames)
-		if type(spellRenames) ~= "table" then
-			spellRenames = {}
-		end
-		self:CreateExportProfile({
-			payloadType = "SpellRenames",
-			payloadVersion = 1,
-			SpellRenames = spellRenames
-		}, L.ExportSpellRenamesFailed)
-	end
-
-	function DBM_GUI:CreateImportSpellRenames(importFunc)
-		self:CreateImportProfile(function(importTable)
-			if type(importTable) ~= "table" then
-				DBM:AddMsg(L.ImportSpellRenamesFailed)
-				return false
-			end
-			if type(importTable.SpellRenames) ~= "table" then
-				DBM:AddMsg(L.ImportSpellRenamesFailed)
-				return false
-			end
-			if importFunc then
-				local accepted = importFunc(importTable.SpellRenames, importTable)
-				if accepted == false then
-					return false
-				end
-			end
-			return true
-		end, "SpellRenames", 1, L.ImportSpellRenamesFailed, L.ImportSpellRenamesWrongType, L.ImportSpellRenamesUnsupportedVersion)
 	end
 end
 
@@ -491,18 +379,11 @@ end
 local UpdateCurrentSeason
 local firstLoad = true
 function DBM_GUI:ShowHide(forceshow)
-	local optionsFrame = _G["DBM_GUI_OptionsFrame"]
-	local wantsToShow = forceshow == true or (forceshow ~= false and not optionsFrame:IsShown())
-	if InCombatLockdown() then
-		if wantsToShow then
-			DBM:AddMsg(DBM_CORE_L.LOAD_GUI_COMBAT, nil, true)
-			return
-		end
-	end
-	if firstLoad and wantsToShow then
+	if firstLoad then
 		UpdateCurrentSeason()
 		firstLoad = false
 	end
+	local optionsFrame = _G["DBM_GUI_OptionsFrame"]
 	if forceshow == true then
 		self:UpdateModList()
 		optionsFrame:Show()
@@ -574,37 +455,6 @@ local function addOptions(mod, catpanel, v)
 end
 
 local isFirstModPanel = true
-
-local function isGTFOAbilityGroup(options)
-	if type(options) ~= "table" then
-		return false
-	end
-	for _, optionName in ipairs(options) do
-		if type(optionName) == "string" and optionName:lower():find("gtfo", 1, true) then
-			return true
-		end
-	end
-	return false
-end
-
-local function getGTFOAbilityIcon(options, groupedSpellId)
-	if type(groupedSpellId) == "number" and groupedSpellId > 5 and groupedSpellId ~= 123456 then
-		return DBM:GetSpellTexture(groupedSpellId)
-	end
-	if type(options) ~= "table" then
-		return nil
-	end
-	for _, optionName in ipairs(options) do
-		if type(optionName) == "string" then
-			local originalSpellId = tonumber(optionName:match("^SpecWarn(%-?%d+)gtfo"))
-			if originalSpellId and originalSpellId > 5 and originalSpellId ~= 123456 then
-				return DBM:GetSpellTexture(originalSpellId)
-			end
-		end
-	end
-	return nil
-end
-
 ---@param mod DBMMod
 function DBM_GUI:CreateBossModPanel(mod, isTestView)
 	local panel = isTestView and mod.testPanel or mod.panel
@@ -667,8 +517,7 @@ function DBM_GUI:CreateBossModPanel(mod, isTestView)
 			DBM_GUI_OptionsFrame:LoadAndShowFrame(mod.testPanel.frame)
 		end)
 	end
-	local modNameForHTML = mod.localization.general.name:gsub("&", "&amp;")
-	local button = panel:CreateCheckButton(L.Mod_Enabled:format("|n|cFFFFFFFF" .. modNameForHTML), true)
+	local button = panel:CreateCheckButton(L.Mod_Enabled:format("|n|cFFFFFFFF" .. mod.localization.general.name), true)
 	button:SetChecked(mod.Options.Enabled)
 	button:SetPoint("TOPLEFT", panel.frame, "TOPLEFT", 8, -14 - extraOffset)
 	button:SetScript("OnClick", function()
@@ -680,10 +529,8 @@ function DBM_GUI:CreateBossModPanel(mod, isTestView)
 			if spellID:find("^line") then
 				panel:CreateLine(options)
 			else
-				local isGTFOGroup = isGTFOAbilityGroup(options)
 				local title, desc, _, icon
 				local usedSpellID, hasPrivate
-				local renameSpellId
 				if mod.groupOptions[spellID] and mod.groupOptions[spellID].customKeys then
 					usedSpellID = mod.groupOptions[spellID].customKeys--Color coding would be done in customKeys, not here
 				end
@@ -701,7 +548,6 @@ function DBM_GUI:CreateBossModPanel(mod, isTestView)
 							local _title = DBM:GetSpellName(spellID)
 							if _title then
 								title, desc, icon = _title, tonumber(spellID), DBM:GetSpellTexture(spellID or 0)
-								renameSpellId = spellID
 							end
 						end
 					end
@@ -716,19 +562,10 @@ function DBM_GUI:CreateBossModPanel(mod, isTestView)
 				if not title then--Spell/EJ section/achievement not found - typo/removed/ptr or beta mod on live
 					title, desc, icon = spellID, L.NoDescription, 136116
 				end
-				if isGTFOGroup then
-					local gtfoIcon = getGTFOAbilityIcon(options, spellID)
-					title = L.GTFOAbilityTitle
-					desc = L.GTFOAbilityDescription
-					renameSpellId = 123456
-					usedSpellID = "|Haddon:DBM:wacopy:123456|h|cff69ccf0123456|r|h"
-					icon = gtfoIcon or icon or 136116
-				end
 				if not usedSpellID then
-					usedSpellID = "|Haddon:DBM:wacopy:"..spellID.."|h|cff69ccf0"..spellID.."|r|h"
+					usedSpellID = "|Hgarrmission:DBM:wacopy:"..spellID.."|h|cff69ccf0"..spellID.."|r|h"
 				end
-				local catpanel = panel:CreateAbility(title, icon, usedSpellID, hasPrivate, renameSpellId, mod, spellID)
-				catpanel:SetAbilityTestContext(mod, spellID, renameSpellId)
+				local catpanel = panel:CreateAbility(title, icon, usedSpellID, hasPrivate)
 				if desc then
 					catpanel:CreateSpellDesc(desc)
 				end
@@ -923,7 +760,7 @@ function DBM_GUI:CreateBossModTab(addon, panel, subtab)
 					for settingName, settingValue in pairs(table) do
 						local ending = settingName:sub(-6):lower()
 						if ending == "cvoice" or ending == "wsound" then -- CVoice or SWSound (s is ignored so we only have to sub once)
-							if type(settingValue) == "string" and not DBM:IsNoneValue(settingValue) and not DBM:ValidateSound(settingValue, true, true) then
+							if type(settingValue) == "string" and settingValue:lower() ~= "none" and not DBM:ValidateSound(settingValue, true, true) then
 								tinsert(errors, id .. "-" .. settingName)
 							end
 						end
@@ -1102,16 +939,18 @@ do
 			return
 		end
 		local seasonCategory = DBM_GUI:CreateNewPanel(L.TabCategory_CURRENT_SEASON, "PARTY")
-		local seasonCategoryTab = DBM_GUI.tabs[DBM_GUI.Enums.Tabs.DUNGEONS].buttons[#DBM_GUI.tabs[DBM_GUI.Enums.Tabs.DUNGEONS].buttons]
+		local seasonCategoryTab = DBM_GUI.tabs[3].buttons[#DBM_GUI.tabs[3].buttons]
 		local hasAnyMod = false
 		for _, challengeMap in ipairs(C_ChallengeMode.GetMapTable()) do
 			local challengeMode = challengeModeIds[challengeMap]
 			local id = challengeMode
 			--For handling zones like Warfront: Arathi - Alliance
-			local mapName = strtrim(GetRealZoneText(id) or tostring(id))
-			local splitName = mapName:match("^(.-)%s%-%s")
-			if splitName and splitName ~= "" then
-				mapName = splitName
+			local mapName = GetRealZoneText(id):trim() or id
+			for w in string.gmatch(mapName, " - ") do
+				if w:trim() ~= "" then
+					mapName = w
+					break
+				end
 			end
 			if not currentSeasons[mapName] then
 				local modId
@@ -1142,8 +981,8 @@ do
 		for _, addon in ipairs(DBM.AddOns) do
 			if not addon.panel then
 				local customName
-				--Auto truncate Raid, Dungeon, Lair, and World boss mods to only display expansion name in list
-				if addon.type == "RAID" or addon.type == "PARTY" or addon.type == "WORLDBOSS" or addon.type == "LAIR" then
+				--Auto truncate Raid, Dungeon, and World boss mods to only display expansion name in list
+				if addon.type == "RAID" or addon.type == "PARTY" or addon.type == "WORLDBOSS" then
 					customName = _G["EXPANSION_NAME" .. (tIndexOf(expansions, addon.category:upper()) or 99) - 1]
 				end
 				-- Create a Panel for "Naxxramas" "Eye of Eternity" ...

@@ -5,12 +5,10 @@ if mod:IsRetail() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20231014053250")
 
 mod:SetCreatureID(24744)
 mod:SetEncounterID(1898)
-mod:SetZone(585)
 
 --if not mod:IsRetail() then
 --	mod:SetModelID(22731)--Unknown, two bosses have same ID
@@ -23,7 +21,7 @@ mod:RegisterEventsInCombat(
 )
 
 --TODO, see if TW matters enough to rotate dps for this warning. In original BC dps took turns because killing spark applies debuff/dot
-local specWarnEnergy	= mod:NewSpecialWarning("warnEnergy", "-Healer", nil, 3, 1, 2, nil, nil, nil, nil, "killmob")--(-5085, "killmob")
+local specWarnEnergy	= mod:NewSpecialWarning("warnEnergy", "-Healer", nil, 3, 1, 2)--(-5085)
 
 --[[
 	"<11.24 20:39:02> [UNIT_SPELLCAST_SUCCEEDED] Vexallus(Omegal) [target:Summon Pure Energy::0:46154]", -- [22]

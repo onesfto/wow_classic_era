@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,normal25,heroic,heroic25"
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103133102")
 mod:SetCreatureID(39751)
 mod:SetEncounterID(not mod:IsPostCata() and 890 or 1147)
 mod:SetModelID(31761)
@@ -24,14 +23,15 @@ local warningSplitSoon		= mod:NewAnnounce("WarningSplitSoon", 2)
 local warnWhirlwind			= mod:NewSpellAnnounce(75125, 3, nil, "Tank|Healer")
 local warningWarnBrand		= mod:NewTargetAnnounce(74505, 4)
 
-local specWarnBrand			= mod:NewSpecialWarningYou(74505, nil, nil, nil, 3, 2, nil, nil, "targetyou")
-local specWarnRepellingWave	= mod:NewSpecialWarningSpell(74509, nil, nil, nil, 2, 2, nil, nil, "carefly")
+local specWarnBrand			= mod:NewSpecialWarningYou(74505, nil, nil, nil, 3, 2)
+local specWarnRepellingWave	= mod:NewSpecialWarningSpell(74509, nil, nil, nil, 2, 2)
 
 local timerWhirlwind		= mod:NewBuffActiveTimer(4, 75125, nil, "Tank|Healer", nil, 3)
 local timerRepellingWave	= mod:NewCastTimer(4, 74509, nil, nil, nil, 2)--1 second cast + 3 second stun
 local timerBrand			= mod:NewBuffActiveTimer(10, 74505, nil, nil, nil, 5)
 
 mod:AddSetIconOption("SetIconOnBrand", 74505, false, 0, {1, 2, 3, 4, 5, 6, 7, 8})
+mod:AddRangeFrameOption(12, 74505)
 
 mod.vb.warnedSplit1	= false
 mod.vb.warnedSplit2	= false
@@ -51,8 +51,16 @@ function mod:OnCombatStart(delay)
 	self.vb.warnedSplit3 = false
 	table.wipe(brandTargets)
 	self.vb.brandIcon = 8
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Show(12)
+	end
 end
 
+function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
+end
 
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 74509 then

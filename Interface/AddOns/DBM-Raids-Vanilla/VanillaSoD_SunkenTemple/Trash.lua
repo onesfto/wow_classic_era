@@ -1,10 +1,7 @@
-if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
-
 local mod	= DBM:NewMod("STTrashSoD", "DBM-Raids-Vanilla", 8)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260324053510")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103123604")
 mod:SetZone(109)
 
 mod.isTrashMod = true

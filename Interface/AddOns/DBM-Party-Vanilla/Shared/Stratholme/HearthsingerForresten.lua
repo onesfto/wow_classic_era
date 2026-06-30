@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod(443, "DBM-Party-Vanilla", DBM:IsPostCata() and 10 or 16, 236)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(10558)
 mod:SetEncounterID(473)
 mod:SetZone(329)
@@ -16,7 +15,7 @@ mod:RegisterEventsInCombat(
 
 local warningEnchantingLullaby		= mod:NewTargetNoFilterAnnounce(16798, 2)
 
-local specWarnEnchantingLullaby		= mod:NewSpecialWarningInterrupt(16798, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnEnchantingLullaby		= mod:NewSpecialWarningInterrupt(16798, "HasInterrupt", nil, nil, 1, 2)
 
 local timerEnchantingLullabyCD		= mod:NewAITimer(180, 16798, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON..DBM_COMMON_L.MAGIC_ICON)
 

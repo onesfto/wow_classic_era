@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("Ragglesnout", "DBM-Party-Vanilla", 10)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(7354)
 --mod:SetEncounterID(585)
 mod:SetZone(129)
@@ -16,7 +15,7 @@ mod:RegisterEventsInCombat(
 
 local warningDominateMind			= mod:NewTargetNoFilterAnnounce(7645, 2)
 
-local specWarnHeal					= mod:NewSpecialWarningInterrupt(12039, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnHeal					= mod:NewSpecialWarningInterrupt(12039, "HasInterrupt", nil, nil, 1, 2)
 
 local timerHealCD					= mod:NewAITimer(180, 12039, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 local timerDominateMindCD			= mod:NewAITimer(180, 7645, nil, nil, nil, 3)

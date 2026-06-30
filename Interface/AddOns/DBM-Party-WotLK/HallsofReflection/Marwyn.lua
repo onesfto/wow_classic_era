@@ -1,8 +1,7 @@
 local mod = DBM:NewMod(602, "DBM-Party-WotLK", 16, 276)
 local L = mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20210614202848")
 mod:SetCreatureID(38113)
 mod:SetEncounterID(1993)
 
@@ -16,7 +15,7 @@ mod:RegisterEventsInCombat(
 local warnWellCorruption		= mod:NewSpellAnnounce(72362, 3)
 local warnCorruptedFlesh		= mod:NewSpellAnnounce(72363, 3)
 
-local specWarnWellCorruption	= mod:NewSpecialWarningMove(72362, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specWarnWellCorruption	= mod:NewSpecialWarningMove(72362, nil, nil, nil, 1, 8)
 
 local timerWellCorruptionCD		= mod:NewCDTimer(13, 72362, nil, nil, nil, 3)
 local timerCorruptedFlesh		= mod:NewBuffActiveTimer(8, 72363, nil, nil, nil, 5)

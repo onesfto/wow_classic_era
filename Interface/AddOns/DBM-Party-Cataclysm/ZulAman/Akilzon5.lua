@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "heroic,timewalker"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241102154000")
 mod:SetCreatureID(23574)
 mod:SetEncounterID(1189)
 mod:SetUsedIcons(1, 8)
@@ -20,7 +19,7 @@ mod:RegisterEventsInCombat(
 local warnStormSoon		= mod:NewSoonAnnounce(43648, 5, 3)
 local warnPlucked		= mod:NewTargetNoFilterAnnounce(97318, 3)
 
-local specWarnStorm		= mod:NewSpecialWarningMoveTo(43648, nil, nil, nil, 2, 1, nil, nil, "gather")
+local specWarnStorm		= mod:NewSpecialWarningMoveTo(43648, nil, nil, nil, 2, 1)
 
 local timerStorm		= mod:NewCastTimer(8, 43648, nil, nil, nil, 2)
 local timerStormCD		= mod:NewCDTimer(55, 43648, nil, nil, nil, 3)
@@ -35,8 +34,16 @@ function mod:OnCombatStart(delay)
 	warnStormSoon:Schedule(43)
 	timerStormCD:Start(48)
 	berserkTimer:Start(-delay)
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Show(6)
+	end
 end
 
+function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
+end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 97318 then
@@ -55,6 +62,12 @@ function mod:SPELL_CAST_SUCCESS(args)
 		timerStorm:Start()
 		warnStormSoon:Schedule(50)
 		timerStormCD:Start()
+		if self.Options.RangeFrame then
+			DBM.RangeCheck:Hide()
+			self:Schedule(10, function()
+				DBM.RangeCheck:Show(6)
+			end)
+		end
 		if self.Options.StormIcon then
 			self:SetIcon(args.destName, 1, 8)
 		end

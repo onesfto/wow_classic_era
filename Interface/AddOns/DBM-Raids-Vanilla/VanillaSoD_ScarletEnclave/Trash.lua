@@ -5,8 +5,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,heroic,mythic"
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250521174014")
 mod:SetZone(2856)
 mod.isTrashMod = true
 mod.isTrashModBossFightAllowed = true -- ENCOUNTER_END is somewhat unreliable in this raud, see all the terrible 10min+ logs for random fights on WCL that are just trash
@@ -30,10 +29,10 @@ local flightTimer = mod:NewIntermissionTimer(0, nil, "%s", true, "FlightTimer", 
 flightTimer.startLarge = true
 
 -- Damage reflect
-local specWarnShield			= mod:NewSpecialWarningReflect(1232703, nil, nil, nil, 1, 2, nil, nil, "stopattack")
+local specWarnShield			= mod:NewSpecialWarningReflect(1232703, nil, nil, nil, 1, 2)
 
 -- Whirlwind, important for melees
-local specWarnWhirlwind			= mod:NewSpecialWarningDodge(1232678, nil, nil, 2, 1, 8, nil, nil, "whirlwind")
+local specWarnWhirlwind			= mod:NewSpecialWarningDodge(1232678, nil, nil, 2, 1, 8)
 local timerWhirlwindCast		= mod:NewCastNPTimer(6, 1232678) -- 2 sec cast, 4 sec active, just stay away the whole time
 
 -- Balnazzar kill RP, this starts a ~2.5 seconds after ENCOUNTER_END fires so don't move this to the Balnazzar mod, otherwise it gets caught by delayed stop
@@ -44,7 +43,7 @@ local timerBalnazzarRP = mod:NewIntermissionTimer(48.2, 1227435)
 --mod:NewGtfo{antiSpam = 5, spell = 1233069}
 -- Blizzard, uses old spell ID from Sapphiron
 --mod:NewGtfo{antiSpam = 5, spell = 28547}
-local specWarnGTFO	= mod:NewSpecialWarningGTFO(28547, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specWarnGTFO	= mod:NewSpecialWarningGTFO(28547, nil, nil, nil, 1, 8)
 
 function mod:ShowGtfo(spellName)
 	if self:AntiSpam(3, "GTFO", spellName) then

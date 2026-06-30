@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("Glutton", "DBM-Party-Vanilla", 10)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260315034941")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(8567)
 --mod:SetEncounterID(585)
 mod:SetZone(129)

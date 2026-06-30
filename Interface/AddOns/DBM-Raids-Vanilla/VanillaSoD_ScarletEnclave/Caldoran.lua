@@ -5,8 +5,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,heroic,mythic"
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250521200942")
 
 mod:SetZone(2856)
 mod:SetEncounterID(3189)
@@ -50,7 +49,7 @@ local warnQuietus = mod:NewCastAnnounce(1231651)
 -- Blinding Flare
 local timerFlare = mod:NewVarTimer("v29-34", 1229714)
 local timerFlareCast = mod:NewCastTimer(1229714)
-local warnFlare = mod:NewSpecialWarningSpell(1229714, nil, nil, nil, 2, 8, nil, nil, "turnaway")
+local warnFlare = mod:NewSpecialWarningSpell(1229714, nil, nil, nil, 2, 8)
 
 -- Conflagration: timer seems very random and cast often, nothing for now
 local warnConflag = mod:NewTargetNoFilterAnnounce(1229272)
@@ -71,19 +70,19 @@ local warnReclamation = mod:NewCastAnnounce(1229236)
 local warnCessation = mod:NewCastAnnounce(1230697)
 
 -- Righteous Flame: cast by adds and interruptible
-local specWarnFlame	= mod:NewSpecialWarningInterrupt(1234347, nil, nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnFlame	= mod:NewSpecialWarningInterrupt(1234347, nil, nil, nil, 1, 2)
 local castNpFlame	= mod:NewCastNPTimer(castTime(1234347), 1234347)
 
-local specWarnDevotedOffering	= mod:NewSpecialWarningInterrupt(1229114, nil, nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnDevotedOffering	= mod:NewSpecialWarningInterrupt(1229114, nil, nil, nil, 1, 2)
 local castNpDevotedOffering		= mod:NewCastNPTimer(castTime(1229114), 1229114)
 
 -- Judge Unworthy: cast by boss (rare, later phases only) and interruptible
-local specWarnJudge	= mod:NewSpecialWarningInterrupt(1234347, nil, nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnJudge	= mod:NewSpecialWarningInterrupt(1234347, nil, nil, nil, 1, 2)
 local castNpJudge	= mod:NewCastNPTimer(castTime(1234347), 1234347)
 
 -- Ghosts in last phase, they just follow a player around, no good detection except when they hit players
 local warnGhost			= mod:NewTargetNoFilterAnnounce(1222773) -- Generic "Ghost" spell with no further description or tooltip
-local specWarnGhostYou	= mod:NewSpecialWarningMove(1222773, nil, nil, nil, 1, 2, nil, nil, "runaway")
+local specWarnGhostYou	= mod:NewSpecialWarningMove(1222773, nil, nil, nil, 1, 2)
 
 local berserkTimer = mod:NewBerserkTimer(360)
 

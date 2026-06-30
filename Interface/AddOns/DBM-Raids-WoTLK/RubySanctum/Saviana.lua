@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,normal25,heroic,heroic25"
 
-mod:SetRevision("20260523022030")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103133102")
 mod:SetCreatureID(39747)
 mod:SetEncounterID(not mod:IsPostCata() and 891 or 1149)
 mod:SetModelID(31577)
@@ -22,8 +21,8 @@ mod:RegisterEventsInCombat(
 local warningWarnBeacon		= mod:NewTargetNoFilterAnnounce(74453, 4)--Will change to a target announce if possible. need to do encounter
 local warningWarnBreath		= mod:NewSpellAnnounce(74403, 3)
 
-local specWarnBeacon		= mod:NewSpecialWarningYou(74453, nil, nil, nil, 1, 2, nil, nil, "targetyou")--Target scanning may not even work since i haven't done encounter yet it's just a guess.
-local specWarnTranq			= mod:NewSpecialWarningDispel(78722, "RemoveEnrage", nil, nil, 1, 2, nil, nil, "trannow")
+local specWarnBeacon		= mod:NewSpecialWarningYou(74453, nil, nil, nil, 1, 2)--Target scanning may not even work since i haven't done encounter yet it's just a guess.
+local specWarnTranq			= mod:NewSpecialWarningDispel(78722, "RemoveEnrage", nil, nil, 1, 2)
 
 local timerBeacon			= mod:NewBuffActiveTimer(5, 74453, nil, nil, nil, 3)
 local timerConflag			= mod:NewBuffActiveTimer(5, 74456, nil, nil, nil, 3)
@@ -31,6 +30,7 @@ local timerConflagCD		= mod:NewNextTimer(50, 74452, nil, nil, nil, 3)
 local timerBreath			= mod:NewCDTimer(25, 74403, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
 local timerEnrage			= mod:NewBuffActiveTimer(10, 78722, nil, "RemoveEnrage|Tank|Healer", nil, 5, nil, DBM_COMMON_L.ENRAGE_ICON..DBM_COMMON_L.TANK_ICON)
 
+mod:AddRangeFrameOption(10, 74456)
 mod:AddSetIconOption("beaconIcon", 74453, true, 0, {8, 7, 6, 5, 4})
 
 mod:GroupSpells(74453, 74456, 74452)--Group target debuff ID with regular debuff IDs
@@ -49,8 +49,16 @@ function mod:OnCombatStart(delay)
 	timerBreath:Start(12-delay)--need more pulls to verify consistency
 	table.wipe(beaconTargets)
 	self.vb.beaconIcon = 8
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Show(10)
+	end
 end
 
+function mod:OnCombatEnd()
+	if self.Options.RangeFrame then
+		DBM.RangeCheck:Hide()
+	end
+end
 
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 74403 then

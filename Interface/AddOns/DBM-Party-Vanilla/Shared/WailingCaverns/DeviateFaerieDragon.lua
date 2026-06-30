@@ -1,8 +1,7 @@
 local mod	= DBM:NewMod("DeviateFaerie", "DBM-Party-Vanilla", DBM:IsPostCata() and 14 or 19)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103114940")
 mod:SetCreatureID(5912)
 mod:SetZone(43)
 
@@ -15,7 +14,7 @@ mod:RegisterEventsInCombat(
 
 local warningDruidSlumber			= mod:NewTargetNoFilterAnnounce(8040, 2)
 
-local specWarnDruidsSlumber			= mod:NewSpecialWarningInterrupt(8040, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnDruidsSlumber			= mod:NewSpecialWarningInterrupt(8040, "HasInterrupt", nil, nil, 1, 2)
 
 function mod:SPELL_CAST_START(args)
 	if args:IsSpell(8040) and args:IsSrcTypeHostile() then

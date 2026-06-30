@@ -9,8 +9,7 @@ end
 local mod	= DBM:NewMod("Skeram", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241214190308")
 mod:SetCreatureID(DBM:IsSeasonal("SeasonOfDiscovery") and 176525 or 15263)
 mod:SetEncounterID(709)
 if not mod:IsClassic() then
@@ -36,18 +35,18 @@ mod:RegisterEventsInCombat(
 --TODO, special warning optimizing?
 local warnMindControl	= mod:NewTargetNoFilterAnnounce(785, 4)
 local warnTeleport		= mod:NewSpellAnnounce(20449, 3)
-local warnSummon		= mod:NewSpellAnnounce(747, 3, "136056") -- 136056 Mirror image icon
-local warnSummonSoon	= mod:NewSoonAnnounce(747, 2, "136056")
-local specWarnAoE		= mod:NewSpecialWarningInterrupt(26192, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local warnSummon		= mod:NewSpellAnnounce(747, 3)
+local warnSummonSoon	= mod:NewSoonAnnounce(747, 2)
 
-local timerMindControl	= mod:NewTargetTimer(20, 785, nil, nil, nil, 3)
+local timerMindControl	= mod:NewBuffActiveTimer(20, 785, nil, nil, nil, 3)
+local specWarnAoE		= mod:NewSpecialWarningInterrupt(26192, "HasInterrupt", nil, nil, 1, 2)
 
 mod:AddSetIconOption("SetIconOnMC", 785, true, 0, {4, 5, 6, 7, 8})
 
 mod.vb.splitCount = 0
 mod.vb.MCIcon = 8
 
-function mod:OnCombatStart()
+function mod:OnCombatStart(delay)
 	self.vb.splitCount = 0
 	self.vb.MCIcon = 8
 end
@@ -64,15 +63,14 @@ function mod:SPELL_AURA_APPLIED(args)
 		self.vb.MCIcon = self.vb.MCIcon - 1
 		self:Unschedule(resetMcIcon)
 		self:Schedule(3, resetMcIcon, self)
-		timerMindControl:Start(args.destName)
-		warnMindControl:CombinedShow(0.3, args.destName)
 	end
+	warnMindControl:CombinedShow(0.3, args.destName)
+	timerMindControl:Start()
 end
 
 function mod:SPELL_AURA_REMOVED(args)
 	if args:IsSpell(785) and self.Options.SetIconOnMC then
 		self:SetIcon(args.destName, 0)
-		timerMindControl:Stop(args.destName)
 	end
 end
 

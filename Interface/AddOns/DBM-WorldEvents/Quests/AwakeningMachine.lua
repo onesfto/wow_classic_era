@@ -3,8 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal"
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250309144849")
 mod:SetZone(2710)
 
 mod:RegisterCombat("scenario", 2710)
@@ -24,10 +23,10 @@ local warnBeam						= mod:NewSpellAnnounce(462892, 3)
 local warnPurifyingFlames			= mod:NewSpellAnnounce(462802, 3)
 local warnSelfDestruct				= mod:NewSpellAnnounce(63801, 4)--Bomb spawns
 
-local specWarnAdds					= mod:NewSpecialWarningAdds(433320, nil, nil, nil, 1, 2, nil, nil, "killmob")
-local specWarnBellowingSlam			= mod:NewSpecialWarningDodge(463052, nil, nil, nil, 2, 2, nil, nil, "watchstep")
-local specWarnEarthshakingCharge	= mod:NewSpecialWarningDodge(463081, nil, nil, nil, 2, 2, nil, nil, "shockwave")
-local specWarnVolatileMagma			= mod:NewSpecialWarningMove(462983, nil, nil, nil, 1, 2, nil, nil, "turnaway")
+local specWarnAdds					= mod:NewSpecialWarningAdds(433320, nil, nil, nil, 1, 2)
+local specWarnBellowingSlam			= mod:NewSpecialWarningDodge(463052, nil, nil, nil, 2, 2)
+local specWarnEarthshakingCharge	= mod:NewSpecialWarningDodge(463081, nil, nil, nil, 2, 2)
+local specWarnVolatileMagma			= mod:NewSpecialWarningMove(462983, nil, nil, nil, 1, 2)
 
 --local timerAdds					= mod:NewAddsTimer(9.8, 433320)--Initial wave only
 local timerBellowingSlamCD			= mod:NewCDNPTimer(20.6, 463052, nil, nil, nil, 3)
@@ -78,7 +77,6 @@ end
 
 --"<52.66 12:44:32> [UPDATE_UI_WIDGET] widgetID:6187, widgetType:2, widgetSetID:1356, scriptedAnimationEffectID:0, barMin:0, widgetScale:0, glowAnimType:0, tooltipLoc:0, shownState:1, widgetSizeSetting:0, fillMinOpacity:0, text:Awakened Cache Reward, textEnabledState:3, barTextSizeType:0, layoutDirection:0, barValue:1, hasTimer:false, overrideBarText:, partitionValues:table, colorTint:6, barTextFontType:1, barMax:4, textFontType:1, barTextEnabledState:3, fillMaxOpacity:0, modelSceneLayer:0, textSizeType:0, outAnimType:0, orderIndex:1, widgetTag:, inAnimType:0, showGlowState:0, fillMotionType:0, overrideBarTextShownType:0, barValueTextType:0, tooltip:Current progress in Awakening The Machine. Every 5th wave completed provides a reward upgrade.",
 --"<71.64 12:44:51> [UPDATE_UI_WIDGET] widgetID:5573, text:Wave 6  ",
---NOTE, in midnight and beyond since unit died is no longer usable, fix this to use widget api to detect win instead if this content every returns to relevance
 function mod:UPDATE_UI_WIDGET(table)
 	local id = table.widgetID
 	if id == 5573 then

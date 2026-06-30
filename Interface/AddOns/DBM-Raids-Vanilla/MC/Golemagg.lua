@@ -12,8 +12,7 @@ end
 local mod	= DBM:NewMod("Golemagg", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103123604")
 mod:SetCreatureID(DBM:IsSeasonal("SeasonOfDiscovery") and 228435 or 11988)--, 11672
 mod:SetEncounterID(670)
 if not mod:IsClassic() then
@@ -30,10 +29,10 @@ mod:RegisterEventsInCombat(
 local specWarnFallingRocks, yellFallingRocks, timerFallingRocks
 if DBM:IsSeasonal("SeasonOfDiscovery") then
 	timerFallingRocks		= mod:NewCDTimer(25, 461463)
-	specWarnFallingRocks	= mod:NewSpecialWarningDodge(461463, nil, nil, nil, 2, 2, nil, nil, "watchstep")
+	specWarnFallingRocks	= mod:NewSpecialWarningDodge(461463, nil, nil, nil, 2, 2)
 	yellFallingRocks		= mod:NewIconRepeatYell(461463)
 end
-local warnQuake				= mod:NewSpellAnnounce(19798, 2, nil, "Melee")
+local warnQuake				= mod:NewSpellAnnounce(19798)
 
 --[=[
 Falling Rocks looks like it has the target on CAST_SUCCESS, but only exactly at that moment, it switches immediately after that event
@@ -50,9 +49,9 @@ function mod:OnCombatStart()
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpell(19798) then
+	if args:IsSpell(20553, 19798) then -- not sure if both are needed, at least SoD only has 19798
 		warnQuake:Show()
-	elseif args:IsSpell(461463) then
+	elseif args:IsSpell(461463) and DBM:IsSeasonal("SeasonOfDiscovery") then
 		specWarnFallingRocks:Show()
 		specWarnFallingRocks:Play("watchstep")
 		timerFallingRocks:Start()

@@ -1,10 +1,7 @@
-if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
-
 local mod	= DBM:NewMod("AtalaiDefendersSoD", "DBM-Raids-Vanilla", 8)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20241103123604")
 mod:SetCreatureID(221640, 218868, 221639, 221637, 221638, 223586)--Zul'Lor, Mijan, Zolo, Gasher, Loro, Hukku
 mod:SetEncounterID(2954)
 mod:SetBossHPInfoToHighest()
@@ -39,7 +36,7 @@ mod:AddSetIconOption("SetIconsOnGhosts", nil, true, 5, {1, 2, 3, 4, 5, 6})
 local warnFrailty					= mod:NewSpellAnnounce(446364, 2)
 local warnCharge					= mod:NewSpellAnnounce(446369, 2)--Charge target is in out of game combat log but very much doubt it's IN GAME combat log since success levels have target stripped in 1.15.x and later
 
-local specWarnCorruptedSlam			= mod:NewSpecialWarningDodge(446372, nil, nil, nil, 2, 2, nil, nil, "watchstep")--Corrupted Slam follows Charge
+local specWarnCorruptedSlam			= mod:NewSpecialWarningDodge(446372, nil, nil, nil, 2, 2)--Corrupted Slam follows Charge
 --local specWarnTheClaw				= mod:NewSpecialWarningYou(432062, nil, nil, nil, 1, 2)
 --local yellTheClaw					= mod:NewYell(432062)
 
@@ -51,18 +48,18 @@ local warnThorns					= mod:NewTargetNoFilterAnnounce(438294, 2)
 local warnHealingWard				= mod:NewSpellAnnounce(438335, 3)
 
 local specWarnAtalaiSerpentTotem	= mod:NewSpecialWarningSwitch(445912, "Dps", nil, nil, nil, 2)
-local specWarnThornsPurge			= mod:NewSpecialWarningDispel(438294, "MagicDispeller", nil, nil, 1, 2, nil, nil, "dispelboss")
-local specWarnThornsStopDps			= mod:NewSpecialWarningReflect(438294, "Melee", nil, nil, 1, 2, nil, nil, "stopattack")
+local specWarnThornsPurge			= mod:NewSpecialWarningDispel(438294, "MagicDispeller", nil, nil, 1, 2)
+local specWarnThornsStopDps			= mod:NewSpecialWarningReflect(438294, "Melee", nil, nil, 1, 2)
 
 local timerThorns					= mod:NewBuffActiveTimer(60, 438294)
 
 --Zolo
 local warnUnstableCask				= mod:NewSpellAnnounce(445940, 3, nil, "Healer")--Stun on the tank i believe
 
-local specWarnChainLightning		= mod:NewSpecialWarningInterrupt(446338, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
-local specWarnRenew					= mod:NewSpecialWarningInterrupt(438341, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
-local specWarnHealingWave			= mod:NewSpecialWarningInterrupt(438339, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
-local specWarnAtalaiSkeletonTotem	= mod:NewSpecialWarningSwitch(446339, "Dps", nil, nil, nil, 2, nil, nil, "attacktotem")
+local specWarnChainLightning		= mod:NewSpecialWarningInterrupt(446338, "HasInterrupt", nil, nil, 1, 2)
+local specWarnRenew					= mod:NewSpecialWarningInterrupt(438341, "HasInterrupt", nil, nil, 1, 2)
+local specWarnHealingWave			= mod:NewSpecialWarningInterrupt(438339, "HasInterrupt", nil, nil, 1, 2)
+local specWarnAtalaiSkeletonTotem	= mod:NewSpecialWarningSwitch(446339, "Dps", nil, nil, nil, 2)
 
 
 --local timerAtalaiSkeletonTotemCD	= mod:NewAITimer(8, 446339, nil, nil, nil, 3)--9-17 so disabled for now
@@ -78,7 +75,7 @@ local timerDemoShoutCD				= mod:NewCDTimer(22.8, 23511, nil, nil, nil, 2)
 --Hukku
 local warnKukkusGuardians			= mod:NewSpellAnnounce(446360, 2)
 
-local specWarnShadowBolt			= mod:NewSpecialWarningInterrupt(446361, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnShadowBolt			= mod:NewSpecialWarningInterrupt(446361, "HasInterrupt", nil, nil, 1, 2)
 
 --[[
 function mod:ClawTarget(targetname, uId)

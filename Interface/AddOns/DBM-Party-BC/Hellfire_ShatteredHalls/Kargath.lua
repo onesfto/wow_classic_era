@@ -5,11 +5,9 @@ if mod:IsRetail() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20260523021914")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20231014053250")
 mod:SetCreatureID(16808)
 mod:SetEncounterID(1938)
-mod:SetZone(540)
 
 if not mod:IsRetail() then
 	mod:SetModelID(18237)
@@ -27,7 +25,7 @@ local warnHeathenGuard			= mod:NewAnnounce("warnHeathen", 2, 134170)--(-5927)
 local warnReaverGuard			= mod:NewAnnounce("warnReaver", 2, 134170)--(-5930)
 local warnSharpShooterGuard		= mod:NewAnnounce("warnSharpShooter", 2, 134170)--(-5934)
 
-local specWarnBladeDance		= mod:NewSpecialWarningSpell(30739, nil, nil, nil, 2, 2, nil, nil, "aesoon")
+local specWarnBladeDance		= mod:NewSpecialWarningSpell(30739, nil, nil, nil, 2, 2)
 
 local timerHeathenCD			= mod:NewTimer(21, "timerHeathen", 134170, nil, nil, 1)--(-5927)
 local timerReaverCD				= mod:NewTimer(21, "timerReaver", 134170, nil, nil, 1)--(-5930)

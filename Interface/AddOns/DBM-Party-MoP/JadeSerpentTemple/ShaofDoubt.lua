@@ -5,8 +5,7 @@ if DBM:IsRetail() then
 	mod.statTypes = "normal,heroic,challenge,timewalker"
 end
 
-mod:SetRevision("20260525233013")
-mod:DisableHardcodedOptions()
+mod:SetRevision("20250915043254")
 mod:SetCreatureID(56439)
 mod:SetEncounterID(1439)
 mod:SetHotfixNoticeRev(20230103000000)
@@ -31,10 +30,10 @@ mod:RegisterEventsInCombat(
 local warnBoundsOfReality				= mod:NewSpellAnnounce(117665, 3)
 local warnTouchofNothingness			= mod:NewTargetAnnounce(106113, 3)
 
-local specWarnTouchOfNothingness		= mod:NewSpecialWarningMoveAway(106113, nil, nil, nil, 2, 2, nil, nil, "scatter")
+local specWarnTouchOfNothingness		= mod:NewSpecialWarningMoveAway(106113, nil, nil, nil, 2, 2)
 local yellTouchOfNothingness			= mod:NewYell(106113)
-local specWarnTouchOfNothingnessDispel	= mod:NewSpecialWarningDispel(106113, "RemoveMagic", nil, nil, 1, 2, nil, nil, "helpdispel")
-local specWarnShadowsOfDoubt			= mod:NewSpecialWarningGTFO(110099, nil, nil, nil, 1, 8, nil, nil, "watchfeet")--Actually used by his trash, but in a speed run, you tend to pull it all together
+local specWarnTouchOfNothingnessDispel	= mod:NewSpecialWarningDispel(106113, "RemoveMagic", nil, nil, 1, 2)
+local specWarnShadowsOfDoubt			= mod:NewSpecialWarningGTFO(110099, nil, nil, nil, 1, 8)--Actually used by his trash, but in a speed run, you tend to pull it all together
 
 local timerTouchofNothingnessCD			= mod:NewCDTimer(20.2, 106113, nil, nil, 3, 3, nil, DBM_COMMON_L.MAGIC_ICON)--15.5~20 second variations.
 local timerTouchofNothingness			= mod:NewTargetTimer(30, 106113, nil, false, 2, 5, nil, DBM_COMMON_L.MAGIC_ICON)
