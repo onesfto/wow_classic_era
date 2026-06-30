@@ -88,6 +88,8 @@ false,
 },
 ["EquipList"] = {
 },
+["TalentEquip"] = {
+},
 ["LockTrinket"] = 0,
 ["TrinketMode"] = 1,
 },

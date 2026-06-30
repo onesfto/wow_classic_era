@@ -12,6 +12,7 @@ AtlasDB = {
 ["愛雅法拉 - 孤狼"] = "Default",
 ["萌萌的露露糖 - DECOM - 벽옥맥 광산 (SoM)"] = "Default",
 ["小綾子 - 孤狼"] = "Default",
+["女王安其拉 - 哈霍兰"] = "Default",
 ["萌萌奶糖 - 野性痊癒"] = "Default",
 ["伊芙莉特 - 铁血"] = "Default",
 ["蒂琪爱尔 - 铁血"] = "Default",
@@ -39,7 +40,6 @@ AtlasDB = {
 ["猛的猎 - 孤狼"] = "Default",
 ["小露露糖 - 铁血II"] = "Default",
 ["露露糖 - 铁血II"] = "Default",
-["女王安其拉 - 哈霍兰"] = "Default",
 },
 ["profiles"] = {
 ["Default"] = {

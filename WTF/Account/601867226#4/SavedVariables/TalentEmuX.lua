@@ -1,18 +1,21 @@
 
 TalentEmuSV = {
 ["_GlobalRef"] = {
-["METHOD"] = {
-["ITEM_SET_BONUS"] = 47,
-["ITEM_SET_BONUS_GRAY"] = 47,
-},
-["EXTERNAL"] = {
-["LibStub"] = 78,
+["TOOLTIP"] = {
+["CreateFrame"] = 2,
 },
 ["UI"] = {
 ["setmetatable"] = 104,
 },
-["TOOLTIP"] = {
-["CreateFrame"] = 2,
+["EXTERNAL"] = {
+["LibStub"] = 84,
+},
+["UI-EquipmentContainer"] = {
+["ceil"] = 1,
+},
+["METHOD"] = {
+["ITEM_SET_BONUS"] = 53,
+["ITEM_SET_BONUS_GRAY"] = 53,
 },
 },
 ["set"] = {

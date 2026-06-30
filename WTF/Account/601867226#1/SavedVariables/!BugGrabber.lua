@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
 ["lastSanitation"] = 3,
-["session"] = 1747,
+["session"] = 1753,
 ["errors"] = {
 {
 ["message"] = "Interface/AddOns/RXPGuides/Targeting.lua:558: attempt to index field 'text' (a nil value)",

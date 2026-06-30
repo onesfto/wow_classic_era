@@ -2,11 +2,11 @@
 TalentEmuSV = {
 ["_GlobalRef"] = {
 ["METHOD"] = {
-["ITEM_SET_BONUS"] = 47,
-["ITEM_SET_BONUS_GRAY"] = 47,
+["ITEM_SET_BONUS"] = 53,
+["ITEM_SET_BONUS_GRAY"] = 53,
 },
 ["EXTERNAL"] = {
-["LibStub"] = 78,
+["LibStub"] = 84,
 },
 ["UI"] = {
 ["setmetatable"] = 104,

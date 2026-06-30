@@ -20,8 +20,8 @@ ElvCharacterDB = {
 "/DBM",
 "/kb",
 "/dbm",
-"/wa",
 "/WA",
+"/wa",
 },
 ["ChatHistoryLog"] = {
 },

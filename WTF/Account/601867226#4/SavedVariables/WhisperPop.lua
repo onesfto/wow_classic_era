@@ -4,15 +4,15 @@ WhisperPopDB = {
 ["listScale"] = 100,
 ["notifyButton"] = 1,
 ["applyFilters"] = 1,
-["listWidth"] = 200,
+["save"] = 1,
 ["timeFormat"] = 2,
 ["ignoreTags"] = 1,
 ["buttonScale"] = 100,
 ["history"] = {
 {
 ["received"] = 1,
-["name"] = "凤凰浴火-哈霍兰",
 ["class"] = "PALADIN",
+["name"] = "凤凰浴火-哈霍兰",
 ["messages"] = {
 "0[T1782839712]在干嘛",
 "1[T1782839722]我刚弄了下电脑",
@@ -30,8 +30,7 @@ WhisperPopDB = {
 ["time"] = 1,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["save"] = 1,
-["sound"] = 1,
+["listWidth"] = 200,
 ["positions"] = {
 ["WhisperPopFrame"] = {
 "LEFT",
@@ -48,4 +47,5 @@ WhisperPopDB = {
 185,
 },
 },
+["sound"] = 1,
 }

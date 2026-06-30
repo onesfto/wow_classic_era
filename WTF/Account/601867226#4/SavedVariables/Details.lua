@@ -94,36 +94,7 @@ _detalhes_global = {
 ["realtime_dps_shadow"] = true,
 },
 ["latest_shield_spellid_cache_access"] = 1676516434,
-["breakdown_midnight"] = {
-["players"] = {
-["height"] = 296,
-["width"] = 200,
-},
-["compare"] = {
-["height"] = 200,
-["width"] = 231,
-},
-["segments"] = {
-["height"] = 228,
-["width"] = 200,
-},
-["headers_shown"] = {
-},
-["headers_width"] = {
-},
-["spells"] = {
-["height"] = 400,
-["width"] = 464,
-},
-["targets"] = {
-["height"] = 170,
-["width"] = 300,
-},
-["spelldetails"] = {
-["height"] = 261,
-["width"] = 231,
-},
-},
+["appocalypse_mode"] = 0,
 ["current_exp_raid_encounters"] = {
 [2406] = true,
 [2402] = true,
@@ -148,22 +119,11 @@ _detalhes_global = {
 },
 },
 },
-["breakdown_general"] = {
-["font_size"] = 11,
-["font_color"] = {
-0.9,
-0.9,
-0.9,
-0.923,
-},
-["font_face"] = "DEFAULT",
-["font_outline"] = "NONE",
-["bar_texture"] = "Skyline",
-},
+["deathlog_line_height"] = 16,
 ["update_warning_timeout"] = 10,
 ["keystone_cache"] = {
 },
-["appocalypse_mode"] = 0,
+["merge_pet_abilities"] = false,
 ["raid_data"] = {
 ["mythic_raid_data"] = {
 [2088] = {
@@ -524,79 +484,10 @@ _detalhes_global = {
 },
 },
 },
-["deathlog_line_height"] = 16,
-["always_use_profile_name"] = "露露缇娅",
 ["profile_by_spec"] = {
 },
-["installed_skins_cache"] = {
-},
-["combat_id_global"] = 4840,
-["displays_by_spec"] = {
-},
-["merge_pet_abilities"] = false,
-["plugin_window_pos"] = {
-["y"] = 50.3422021434144,
-["x"] = 78.87478163477135,
-["point"] = "CENTER",
-["scale"] = 1.200000047683716,
-},
-["boss_wipe_counter"] = {
-},
-["userCustomSpells"] = {
-},
-["last_changelog_size"] = 148,
-["immersion_unit_special_icons"] = true,
-["lastUpdateWarning"] = 1723101600,
-["savedCustomSpells"] = {
-{
-3,
-"环境伤害 (坠落)",
-"Interface\\ICONS\\Spell_Magic_FeatherFall",
-},
-{
-1,
-"近战",
-"Interface\\ICONS\\INV_Sword_04",
-},
-{
-4,
-"环境伤害 (溺水)",
-"Interface\\ICONS\\Ability_Suffocate",
-},
-{
-5,
-"环境伤害 (疲劳)",
-"Interface\\ICONS\\Spell_Arcane_MindMastery",
-},
-{
-7,
-"环境伤害 (岩浆)",
-"Interface\\ICONS\\Ability_Rhyolith_Volcano",
-},
-{
-2,
-"自动射击",
-"Interface\\ICONS\\INV_Weapon_Bow_07",
-},
-{
-6,
-"环境伤害 (火烧)",
-"Interface\\ICONS\\INV_SummerFest_FireSpirit",
-},
-{
-8,
-"环境伤害 (粘液)",
-"Interface\\ICONS\\Ability_Creature_Poison_02",
-},
-},
-["npcid_pool"] = {
-},
-["death_recap"] = {
-["show_segments"] = false,
-["enabled"] = false,
-["show_life_percent"] = false,
-["relevance_time"] = 7,
-},
+["always_use_profile_name"] = "露露缇娅",
+["slashk_dnd"] = false,
 ["custom"] = {
 {
 ["source"] = false,
@@ -690,16 +581,16 @@ _detalhes_global = {
 ["script"] = "--init:\nlocal combat, instance_container, instance = ...\nlocal total, top, amount = 0, 0, 0\n\n--get the misc actor container\nlocal misc_container = combat:GetActorList ( DETAILS_ATTRIBUTE_MISC )\nlocal energy_container = combat:GetActorList ( DETAILS_ATTRIBUTE_ENERGY )\n\nlocal TBC_POTION_BUFF_IDS = {\n    [17528] = true,   -- Mighty Rage    强效怒气\n    [28494] = true,   -- Insane Strength Potion 疯狂力量药水\n    [28506] = true,   -- Potion of Heroes   英雄药水\n    [28507] = true,   -- Haste  加速\n    [28508] = true,   -- Destruction    毁灭\n    [28511] = true,   -- Fire Protection    防护火焰\n    [28512] = true,   -- Frost Protection   防护冰霜\n    [28513] = true,   -- Nature Protection  防护自然\n    [28536] = true,   -- Arcane Protection  奥术防护\n    [28537] = true,   -- Shadow Protection  防护暗影\n    [28538] = true,   -- Holy Protection    防护神圣\n    [28515] = true,   -- Ironshield 铁盾\n}\n\nlocal TBC_POTION_SPELL_IDS = {\n    [28495] = 22829,   -- Healing Potion 治疗药水\n    [28499] = 22832,   -- Restore Mana   恢复法力\n    [28517] = 22850,   -- Rejuvenation Potion    活力药水\n    [45051] = 34440,   -- \"Mad Alchemist's Potion\"   疯狂炼金师药水\n}\n\n--do the loop:\nfor _, player in ipairs ( misc_container ) do\n    \n    --only player in group\n    if (player:IsGroupPlayer()) then\n        \n        local found_potion = false\n        \n        --get the spell buff uptime container\n        local buff_uptime_container = player.buff_uptime and player.buff_uptime_spells and player.buff_uptime_spells._ActorTable\n        if (buff_uptime_container) then\n            for spellId, _ in pairs (TBC_POTION_BUFF_IDS) do\n                local potionUsed = buff_uptime_container [spellId]\n                \n                if (potionUsed) then\n                    local used = potionUsed.activedamt\n                    if (used and used > 0) then\n                        total = total + used\n                        found_potion = true\n                        if (used > top) then\n                            top = used\n                        end\n                        \n                        --add amount to the player\n                        instance_container:AddValue (player, used)\n                    end\n                end\n            end\n        end\n        \n        if (found_potion) then\n            amount = amount + 1\n        end\n    end\nend\n\nfor _, player in ipairs ( energy_container ) do\n    \n    --only player in group\n    if (player:IsGroupPlayer()) then\n        \n        local found_potion = false\n        \n        --get the spells\n        local spell_container = player.spells and player.spells._ActorTable\n        if (spell_container) then\n            for spellId, _ in pairs (TBC_POTION_SPELL_IDS) do\n                local potionUsed = spell_container [spellId]\n                \n                if (potionUsed) then\n                    local used = potionUsed.counter\n                    if (used and used > 0) then\n                        total = total + used\n                        found_potion = true\n                        if (used > top) then\n                            top = used\n                        end\n                        \n                        --add amount to the player\n                        instance_container:AddValue (player, used)\n                    end\n                end\n            end\n        end\n        \n        if (found_potion) then\n            amount = amount + 1\n        end\n    end\nend\n\n\n\n\n--return:\nreturn total, top, amount\n\n\n",
 ["target"] = false,
 ["tooltip"] = "--init:\nlocal player, combat, instance = ...\n\nlocal TBC_POTION_BUFF_IDS = {\n    [17528] = true,   -- Mighty Rage    强效怒气\n    [28494] = true,   -- Insane Strength Potion 疯狂力量药水\n    [28506] = true,   -- Potion of Heroes   英雄药水\n    [28507] = true,   -- Haste  加速\n    [28508] = true,   -- Destruction    毁灭\n    [28511] = true,   -- Fire Protection    防护火焰\n    [28512] = true,   -- Frost Protection   防护冰霜\n    [28513] = true,   -- Nature Protection  防护自然\n    [28536] = true,   -- Arcane Protection  奥术防护\n    [28537] = true,   -- Shadow Protection  防护暗影\n    [28538] = true,   -- Holy Protection    防护神圣\n    [28515] = true,   -- Ironshield 铁盾\n}\n\nlocal TBC_POTION_SPELL_IDS = {\n    [28495] = 22829,   -- Healing Potion 治疗药水\n    [28499] = 22832,   -- Restore Mana   恢复法力\n    [28517] = 22850,   -- Rejuvenation Potion    活力药水\n    [45051] = 34440,   -- \"Mad Alchemist's Potion\"   疯狂炼金师药水\n}\n\n--get the misc actor container\nlocal buff_uptime_container = player.buff_uptime and player.buff_uptime_spells and player.buff_uptime_spells._ActorTable\nif (buff_uptime_container) then\n    for spellId, _ in pairs (TBC_POTION_BUFF_IDS) do\n        local potionUsed = buff_uptime_container [spellId]\n        \n        if (potionUsed) then\n            local name, _, icon = GetSpellInfo (spellId)\n            GameCooltip:AddLine (name, potionUsed.activedamt)\n            _detalhes:AddTooltipBackgroundStatusbar()\n            GameCooltip:AddIcon (icon, 1, 1, _detalhes.tooltip.line_height, _detalhes.tooltip.line_height)\n        end\n    end\nend\n\n--get the misc actor container\nlocal spell_container = player.spells and player.spells._ActorTable\nif (spell_container) then\n    for spellId, itemID in pairs (TBC_POTION_SPELL_IDS) do\n        local potionUsed = spell_container [spellId]\n        \n        if (potionUsed) then\n            local name, _, _, _, _, _, _,_, _, icon = GetItemInfo(itemID)\n            GameCooltip:AddLine (name, potionUsed.counter)\n            _detalhes:AddTooltipBackgroundStatusbar()\n            GameCooltip:AddIcon (icon, 1, 1, _detalhes.tooltip.line_height, _detalhes.tooltip.line_height)\n        end\n    end\nend",
-["attribute"] = false,
 ["icon"] = 132801,
+["attribute"] = false,
 },
 {
 ["source"] = false,
 ["author"] = "Coshim-Benediction",
 ["percent_script"] = "local value, top, total, combat, instance = ...\nreturn string.format (\"%.1f\", value/total*100)\n\n\n",
 ["desc"] = "",
-["icon"] = 135230,
 ["attribute"] = false,
+["icon"] = 135230,
 ["name"] = "70级宝石使用",
 ["tooltip"] = "--init:\nlocal player, combat, instance = ...\n\nlocal TBC_POTION_SPELL_IDS = {\n    [9512] = 7676,  -- Restore Energy  恢复能量\n    [10058] = 8008,  -- Replenish Mana  补充法力\n    [11732] = 9421,  -- Major Healthstone   特效治疗石\n    [16666] = 12662,  -- Demonic Rune    恶魔符文\n    [23476] = 19012,  -- Major Healthstone   特效治疗石\n    [23477] = 19013,  -- Major Healthstone   特效治疗石\n    [27869] = 20520,  -- Dark Rune   黑暗符文\n    [27103] = 22044,  -- Replenish Mana  恢复法力\n    [27235] = 22103,  -- Master Healthstone  极效治疗石\n    [27236] = 22104,  -- Master Healthstone  极效治疗石\n    [27237] = 22105,  -- Master Healthstone  极效治疗石\n    [28527] = 22795,  -- Fel Blossom 野魔花\n    [28726] = 22797,  -- Nightmare Seed  梦魇草\n}\n\n--get the misc actor container\nlocal spell_container = player.spells and player.spells._ActorTable\nif (spell_container) then\n    for spellId, itemID in pairs (TBC_POTION_SPELL_IDS) do\n        local potionUsed = spell_container [spellId]\n        \n        if (potionUsed) then\n            -- local name, _, icon = GetSpellInfo (spellId)\n            local name, _, _, _, _, _, _,_, _, icon = GetItemInfo(itemID)\n            GameCooltip:AddLine (name, potionUsed.counter)\n            _detalhes:AddTooltipBackgroundStatusbar()\n            GameCooltip:AddIcon (icon, 1, 1, _detalhes.tooltip.line_height, _detalhes.tooltip.line_height)\n        end\n    end\nend",
 ["target"] = false,
@@ -712,8 +603,8 @@ _detalhes_global = {
 ["author"] = "Coshim-Benediction",
 ["percent_script"] = "local value, top, total, combat, instance = ...\nreturn string.format (\"%.1f\", value/total*100)\n\n\n",
 ["desc"] = "",
-["icon"] = 132801,
 ["attribute"] = false,
+["icon"] = 132801,
 ["name"] = "60级药水使用",
 ["tooltip"] = "--init:\nlocal player, combat, instance = ...\n\nlocal TBC_POTION_BUFF_IDS = {\n    [17540] = true, -- 强效石盾药水 强效石盾\n    [17544] = true, -- 强效冰霜防护药水 防护冰霜\n    [17543] = true, -- 强效火焰防护药水 防护火焰\n    [17546] = true, -- 强效自然防护药水 防护自然\n    [17548] = true, -- 强效暗影防护药水 防护暗影\n    [17545] = true, -- 强效神圣防护药水 防护神圣\n    [17549] = true, -- 强效奥术防护药水 奥术防护\n    [17528] = true, -- 强效怒气药水 强效怒气\n}\n\nlocal TBC_POTION_SPELL_IDS = {\n    [6615] = true, -- 自由行动药剂 自由行动\n    [17531] = true, -- 特效法力药水 恢复法力\n    [17534] = true, -- 特效治疗药水 治疗药水\n    [2379] = true, -- 迅捷药水 速度\n    [3592] = true, -- 密林药剂 治愈疾病\n    [24364] = true, -- 活力行动药水 活力自由行动\n    [6613] = true, -- 暴怒药水 暴怒\n}\n\n--get the misc actor container\nlocal buff_uptime_container = player.buff_uptime and player.buff_uptime_spells and player.buff_uptime_spells._ActorTable\nif (buff_uptime_container) then\n    for spellId, _ in pairs (TBC_POTION_BUFF_IDS) do\n        local potionUsed = buff_uptime_container [spellId]\n        \n        if (potionUsed) then\n            local name, _, icon = GetSpellInfo (spellId)\n            GameCooltip:AddLine (name, potionUsed.activedamt)\n            _detalhes:AddTooltipBackgroundStatusbar()\n            GameCooltip:AddIcon (icon, 1, 1, _detalhes.tooltip.line_height, _detalhes.tooltip.line_height)\n        end\n    end\nend\n\n--get the misc actor container\nlocal spell_container = player.spells and player.spells._ActorTable\nif (spell_container) then\n    for spellId, _ in pairs (TBC_POTION_SPELL_IDS) do\n        local potionUsed = spell_container [spellId]\n        \n        if (potionUsed) then\n            local name, _, icon = GetSpellInfo (spellId)\n            GameCooltip:AddLine (name, potionUsed.counter)\n            _detalhes:AddTooltipBackgroundStatusbar()\n            GameCooltip:AddIcon (icon, 1, 1, _detalhes.tooltip.line_height, _detalhes.tooltip.line_height)\n        end\n    end\nend",
 ["target"] = false,
@@ -798,24 +689,135 @@ _detalhes_global = {
 ["script_version"] = 19,
 },
 },
-["user_is_patreon_supporter"] = false,
-["latest_news_saw"] = "3.4.3 12579",
-["__char_profiles"] = {
-["女王安其拉-哈霍兰"] = "露露缇娅",
+["combat_id_global"] = 4842,
+["displays_by_spec"] = {
 },
+["latest_news_saw"] = "3.4.3 12579",
+["plugin_window_pos"] = {
+["y"] = 50.3422021434144,
+["x"] = 78.87478163477135,
+["point"] = "CENTER",
+["scale"] = 1.200000047683716,
+},
+["savedCustomSpells"] = {
+{
+3,
+"环境伤害 (坠落)",
+"Interface\\ICONS\\Spell_Magic_FeatherFall",
+},
+{
+1,
+"近战",
+"Interface\\ICONS\\INV_Sword_04",
+},
+{
+4,
+"环境伤害 (溺水)",
+"Interface\\ICONS\\Ability_Suffocate",
+},
+{
+5,
+"环境伤害 (疲劳)",
+"Interface\\ICONS\\Spell_Arcane_MindMastery",
+},
+{
+7,
+"环境伤害 (岩浆)",
+"Interface\\ICONS\\Ability_Rhyolith_Volcano",
+},
+{
+2,
+"自动射击",
+"Interface\\ICONS\\INV_Weapon_Bow_07",
+},
+{
+6,
+"环境伤害 (火烧)",
+"Interface\\ICONS\\INV_SummerFest_FireSpirit",
+},
+{
+8,
+"环境伤害 (粘液)",
+"Interface\\ICONS\\Ability_Creature_Poison_02",
+},
+},
+["breakdown_general"] = {
+["font_size"] = 11,
+["font_color"] = {
+0.9,
+0.9,
+0.9,
+0.923,
+},
+["font_face"] = "DEFAULT",
+["font_outline"] = "NONE",
+["bar_texture"] = "Skyline",
+},
+["last_changelog_size"] = 148,
+["immersion_unit_special_icons"] = true,
+["lastUpdateWarning"] = 1723101600,
+["boss_wipe_counter"] = {
+},
+["npcid_pool"] = {
+},
+["death_recap"] = {
+["show_segments"] = false,
+["enabled"] = false,
+["show_life_percent"] = false,
+["relevance_time"] = 7,
+},
+["details_auras"] = {
+},
+["user_is_patreon_supporter"] = false,
 ["parser_options"] = {
 ["tank_avoidance"] = false,
 ["shield_overheal"] = false,
 ["energy_overflow"] = false,
 ["energy_resources"] = false,
 },
-["details_auras"] = {
+["__char_profiles"] = {
+["女王安其拉-哈霍兰"] = "露露缇娅",
 },
+["userCustomSpells"] = {
+},
+["latest_spell_pool_access"] = 1782839618,
 ["spell_pool"] = {
+1,
+[28866] = 1,
+[29131] = 1,
 },
 ["arena_debug"] = false,
-["latest_spell_pool_access"] = 1782839618,
 ["shield_spellid_cache"] = {
+},
+["breakdown_midnight"] = {
+["players"] = {
+["height"] = 296,
+["width"] = 200,
+},
+["compare"] = {
+["height"] = 200,
+["width"] = 231,
+},
+["segments"] = {
+["height"] = 228,
+["width"] = 200,
+},
+["headers_shown"] = {
+},
+["headers_width"] = {
+},
+["spells"] = {
+["height"] = 400,
+["width"] = 464,
+},
+["targets"] = {
+["height"] = 170,
+["width"] = 300,
+},
+["spelldetails"] = {
+["height"] = 261,
+["width"] = 231,
+},
 },
 ["latest_encounter_spell_pool_access"] = 1782839618,
 ["damage_scroll_position"] = {
@@ -825,21 +827,132 @@ _detalhes_global = {
 ["scale"] = 1,
 },
 ["auto_open_news_window"] = false,
+["switchSaved"] = {
+["slots"] = 10,
+["table"] = {
+{
+["atributo"] = 1,
+["sub_atributo"] = 1,
+},
+{
+["atributo"] = 2,
+["sub_atributo"] = 1,
+},
+{
+["atributo"] = 1,
+["sub_atributo"] = 6,
+},
+{
+["atributo"] = 4,
+["sub_atributo"] = 5,
+},
+{
+["atributo"] = 4,
+["sub_atributo"] = 4,
+},
+{
+["atributo"] = 1,
+["sub_atributo"] = 3,
+},
+{
+["atributo"] = 1,
+["sub_atributo"] = 4,
+},
+{
+["atributo"] = 1,
+["sub_atributo"] = 8,
+},
+{
+["atributo"] = 5,
+["sub_atributo"] = 10,
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+["atributo"] = 1,
+["sub_atributo"] = 1,
+},
+{
+["atributo"] = 2,
+["sub_atributo"] = 1,
+},
+{
+["atributo"] = 1,
+["sub_atributo"] = 6,
+},
+{
+["atributo"] = 4,
+["sub_atributo"] = 5,
+},
+{
+["atributo"] = 4,
+["sub_atributo"] = 4,
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+},
+},
+["got_first_run"] = true,
+["transcriptor_frame"] = {
+["scale"] = 1,
+},
+["titletext_showtimer_always"] = false,
 ["frame_background_color"] = {
 0.1215,
 0.1176,
 0.1294,
 0.8,
 },
-["got_first_run"] = true,
-["boss_mods_timers"] = {
-["encounter_timers_bw"] = {
+["keystone_alts_cache"] = {
 },
-["latest_boss_mods_access"] = 1782839618,
-["encounter_timers_dbm"] = {
-},
-},
-["check_stuttering"] = false,
 ["data_wipes_exp"] = {
 ["9"] = true,
 ["14"] = false,
@@ -848,14 +961,16 @@ _detalhes_global = {
 ["11"] = false,
 ["10"] = false,
 },
-["keystone_alts_cache"] = {
-},
-["spell_category_latest_save"] = 0,
 ["all_switch_config"] = {
 ["scale"] = 1,
 ["font_size"] = 10,
 },
-["latest_npcid_pool_access"] = 1782839618,
+["createauraframe"] = {
+["y"] = 0.0001068115234375,
+["x"] = 0.00018310546875,
+["point"] = "CENTER",
+["scale"] = 1,
+},
 ["__profiles"] = {
 ["露露缇娅"] = {
 ["show_arena_role_icon"] = false,
@@ -1352,47 +1467,12 @@ false,
 ["use_realtimedps"] = false,
 ["trash_concatenate"] = false,
 ["color_by_arena_team"] = true,
-["standard_skin"] = false,
+["instances_no_libwindow"] = false,
 ["report_schema"] = 1,
 ["animation_speed"] = 33,
-["instances_no_libwindow"] = false,
 ["disable_stretch_from_toolbar"] = false,
-["realtime_dps_meter"] = {
-["enabled"] = false,
-["font_color"] = {
-1,
-1,
-1,
-1,
-},
-["arena_enabled"] = true,
-["font_shadow"] = "NONE",
-["font_size"] = 18,
-["mythic_dungeon_enabled"] = false,
-["sample_size"] = 3,
-["frame_settings"] = {
-["show_title"] = true,
-["strata"] = "LOW",
-["point"] = "TOP",
-["scale"] = 1,
-["width"] = 300,
-["y"] = -110,
-["x"] = 0,
-["backdrop_color"] = {
-0,
-0,
-0,
-0.2,
-},
-["locked"] = true,
-["height"] = 23,
-},
-["update_interval"] = 0.3,
-["text_offset"] = 2,
-["font_face"] = "Friz Quadrata TT",
-["options_frame"] = {
-},
-},
+["standard_skin"] = false,
+["disable_lock_ungroup_buttons"] = false,
 ["memory_ram"] = 64,
 ["numerical_system_symbols"] = "auto",
 ["update_speed"] = 0.9969978928565979,
@@ -1410,12 +1490,315 @@ false,
 ["font_faces"] = {
 ["menus"] = "默认",
 },
-["report_lines"] = 25,
 ["use_scroll"] = false,
 ["windows_fade_out"] = {
 "out",
 0.2,
 },
+["report_lines"] = 25,
+["segments_amount"] = 40,
+["overall_clear_pvp"] = true,
+["overall_flag"] = 16,
+["default_bg_color"] = 0.0941,
+["skin"] = "WoW Interface",
+["override_spellids"] = true,
+["minimum_combat_time"] = 5,
+["overall_clear_logout"] = false,
+["window_clamp"] = {
+-8,
+0,
+21,
+-14,
+},
+["broadcaster_enabled"] = false,
+["realtimedps_always_arena"] = false,
+["memory_threshold"] = 3,
+["cloud_capture"] = true,
+["damage_taken_everything"] = false,
+["scroll_speed"] = 2,
+["new_window_size"] = {
+["height"] = 158,
+["width"] = 310,
+},
+["chat_tab_embed"] = {
+["enabled"] = false,
+["y_offset"] = 0,
+["x_offset"] = 0,
+["tab_name"] = "",
+["single_window"] = false,
+},
+["deadlog_events"] = 32,
+["segments_auto_erase"] = 1,
+["close_shields"] = false,
+["class_coords"] = {
+["HUNTER"] = {
+0,
+0.125,
+0.125,
+0.25,
+},
+["WARRIOR"] = {
+0,
+0.125,
+0,
+0.125,
+},
+["SHAMAN"] = {
+0.125,
+0.248046875,
+0.125,
+0.25,
+},
+["MAGE"] = {
+0.125,
+0.248046875,
+0,
+0.125,
+},
+["PET"] = {
+0.125,
+0.248046875,
+0.375,
+0.5,
+},
+["DRUID"] = {
+0.37109375,
+0.494140625,
+0,
+0.125,
+},
+["MONK"] = {
+0.25,
+0.369140625,
+0.25,
+0.375,
+},
+["DEATHKNIGHT"] = {
+0.125,
+0.25,
+0.25,
+0.375,
+},
+["UNGROUPPLAYER"] = {
+0.25,
+0.375,
+0.375,
+0.5,
+},
+["ROGUE"] = {
+0.248046875,
+0.37109375,
+0,
+0.125,
+},
+["UNKNOW"] = {
+0.25,
+0.375,
+0.375,
+0.5,
+},
+["PRIEST"] = {
+0.248046875,
+0.37109375,
+0.125,
+0.25,
+},
+["PALADIN"] = {
+0,
+0.125,
+0.25,
+0.375,
+},
+["Alliance"] = {
+0.248046875,
+0.02968748,
+0.375,
+0.5,
+},
+["ENEMY"] = {
+0,
+0.125,
+0.375,
+0.5,
+},
+["DEMONHUNTER"] = {
+0.36914063,
+0.5,
+0.25,
+0.375,
+},
+["Horde"] = {
+0.37109375,
+0.494140625,
+0.375,
+0.5,
+},
+["MONSTER"] = {
+0,
+0.125,
+0.375,
+0.5,
+},
+["EVOKER"] = {
+0.50390625,
+0.625,
+0,
+0.125,
+},
+["WARLOCK"] = {
+0.37109375,
+0.494140625,
+0.125,
+0.25,
+},
+},
+["trash_auto_remove"] = false,
+["disable_alldisplays_window"] = false,
+["font_sizes"] = {
+["menus"] = 16,
+},
+["segments_boss_wipes_keep_best_performance"] = true,
+["hotcorner_topleft"] = {
+["hide"] = false,
+},
+["total_abbreviation"] = 2,
+["clear_graphic"] = true,
+["class_colors"] = {
+["HUNTER"] = {
+0.67,
+0.83,
+0.45,
+},
+["WARRIOR"] = {
+0.78,
+0.61,
+0.43,
+},
+["PALADIN"] = {
+0.96,
+0.55,
+0.73,
+},
+["MAGE"] = {
+0.41,
+0.8,
+0.94,
+},
+["ARENA_YELLOW"] = {
+1,
+1,
+0.25,
+},
+["UNGROUPPLAYER"] = {
+0.4,
+0.4,
+0.4,
+},
+["DRUID"] = {
+1,
+0.49,
+0.04,
+},
+["MONK"] = {
+0,
+1,
+0.59,
+},
+["DEATHKNIGHT"] = {
+0.77,
+0.12,
+0.23,
+},
+["PET"] = {
+0.3,
+0.4,
+0.5,
+},
+["ARENA_GREEN"] = {
+0.4,
+1,
+0.4,
+},
+["ROGUE"] = {
+1,
+0.96,
+0.41,
+},
+["UNKNOW"] = {
+0.2,
+0.2,
+0.2,
+},
+["PRIEST"] = {
+1,
+1,
+1,
+},
+["SELF"] = {
+0.89019,
+0.32156,
+0.89019,
+},
+["ENEMY"] = {
+0.94117,
+0,
+0.0196,
+1,
+},
+["WARLOCK"] = {
+0.58,
+0.51,
+0.79,
+},
+["DEMONHUNTER"] = {
+0.64,
+0.19,
+0.79,
+},
+["version"] = 1,
+["NEUTRAL"] = {
+1,
+1,
+0,
+},
+["EVOKER"] = {
+0.2,
+0.498,
+0.5764,
+},
+["SHAMAN"] = {
+0,
+0.44,
+0.87,
+},
+},
+["animation_speed_triggertravel"] = 5,
+["options_group_edit"] = true,
+["segments_amount_to_save"] = 40,
+["minimap"] = {
+["onclick_what_todo"] = 1,
+["radius"] = 160,
+["hide"] = false,
+["minimapPos"] = 186.4286794950792,
+["text_format"] = 3,
+["text_type"] = 1,
+},
+["instances_amount"] = 5,
+["max_window_size"] = {
+["height"] = 450,
+["width"] = 480,
+},
+["righttext_simple_formatting"] = {
+["enabled"] = true,
+["format_tp"] = "%s (%s)",
+["format_ts"] = "%s (%s)",
+["use_alignment"] = false,
+["alignment_space"] = 60,
+["first_run"] = true,
+["format_tsp"] = "%s (%s, %s)",
+},
+["only_pvp_frags"] = false,
+["disable_stretch_button"] = false,
 ["instances"] = {
 {
 ["__pos"] = {
@@ -1531,7 +1914,17 @@ true,
 ["textL_offset"] = 0,
 ["playername_alignment_auto"] = true,
 ["font_face_file"] = "Fonts\\ARKai_T.ttf",
-["textL_custom_text"] = "{data1}. {data3}{data2}",
+["backdrop"] = {
+["color"] = {
+1,
+1,
+1,
+1,
+},
+["size"] = 11,
+["enabled"] = false,
+["texture"] = "Details BarBorder 2",
+},
 ["textL_shadow_color"] = {
 0,
 0,
@@ -1557,14 +1950,13 @@ true,
 0,
 },
 ["textL_show_number"] = true,
-["texture_background"] = "Solid",
+["alpha"] = 0,
 ["fixed_texture_background_color"] = {
 0,
 0,
 0,
 0,
 },
-["textR_class_colors"] = false,
 ["models"] = {
 ["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
 ["lower_model"] = "World\\EXPANSION02\\DOODADS\\Coldarra\\COLDARRALOCUS.m2",
@@ -1573,31 +1965,22 @@ true,
 ["lower_alpha"] = 0.1,
 ["upper_enabled"] = false,
 },
+["textR_class_colors"] = false,
 ["textR_outline"] = true,
-["alpha"] = 0,
+["textL_custom_text"] = "{data1}. {data3}{data2}",
 ["percent_type"] = 1,
 ["textL_class_colors"] = false,
 ["textR_outline_small"] = true,
 ["no_icon"] = false,
 ["textR_bracket"] = "(",
 ["textR_outline_mode"] = "",
+["texture_background"] = "Solid",
+["texture_class_colors"] = true,
 ["textL_outline_small_color"] = {
 0,
 0,
 0,
 1,
-},
-["texture_class_colors"] = true,
-["backdrop"] = {
-["color"] = {
-1,
-1,
-1,
-1,
-},
-["size"] = 11,
-["enabled"] = false,
-["texture"] = "Details BarBorder 2",
 },
 ["fast_ps_update"] = false,
 ["show_percent"] = false,
@@ -1961,7 +2344,7 @@ false,
 ["__pos"] = {
 ["normal"] = {
 ["y"] = -281.3367614746094,
-["x"] = 885.5733642578125,
+["x"] = 885.5732421875,
 ["w"] = 282.4048156738281,
 ["h"] = 105.7273864746094,
 },
@@ -2071,7 +2454,17 @@ true,
 ["textL_offset"] = 0,
 ["playername_alignment_auto"] = true,
 ["font_face_file"] = "Fonts\\ARKai_T.ttf",
-["textL_custom_text"] = "{data1}. {data3}{data2}",
+["backdrop"] = {
+["color"] = {
+1,
+1,
+1,
+1,
+},
+["size"] = 11,
+["enabled"] = false,
+["texture"] = "Details BarBorder 2",
+},
 ["textL_shadow_color"] = {
 0,
 0,
@@ -2097,14 +2490,13 @@ true,
 0,
 },
 ["textL_show_number"] = true,
-["texture_background"] = "Solid",
+["alpha"] = 0,
 ["fixed_texture_background_color"] = {
 0,
 0,
 0,
 0,
 },
-["textR_class_colors"] = false,
 ["models"] = {
 ["upper_model"] = "Spells\\AcidBreath_SuperGreen.M2",
 ["lower_model"] = "World\\EXPANSION02\\DOODADS\\Coldarra\\COLDARRALOCUS.m2",
@@ -2113,31 +2505,22 @@ true,
 ["lower_alpha"] = 0.1,
 ["upper_enabled"] = false,
 },
+["textR_class_colors"] = false,
 ["textR_outline"] = true,
-["alpha"] = 0,
+["textL_custom_text"] = "{data1}. {data3}{data2}",
 ["percent_type"] = 1,
 ["textL_class_colors"] = false,
 ["textR_outline_small"] = true,
 ["no_icon"] = false,
 ["textR_bracket"] = "(",
 ["textR_outline_mode"] = "",
+["texture_background"] = "Solid",
+["texture_class_colors"] = true,
 ["textL_outline_small_color"] = {
 0,
 0,
 0,
 1,
-},
-["texture_class_colors"] = true,
-["backdrop"] = {
-["color"] = {
-1,
-1,
-1,
-1,
-},
-["size"] = 11,
-["enabled"] = false,
-["texture"] = "Details BarBorder 2",
 },
 ["fast_ps_update"] = false,
 ["show_percent"] = false,
@@ -2468,7 +2851,7 @@ false,
 ["posicao"] = {
 ["normal"] = {
 ["y"] = -281.3367614746094,
-["x"] = 885.5733642578125,
+["x"] = 885.5732421875,
 ["w"] = 282.4048156738281,
 ["h"] = 105.7273864746094,
 },
@@ -2498,309 +2881,6 @@ false,
 },
 },
 },
-["overall_clear_pvp"] = true,
-["overall_flag"] = 16,
-["default_bg_color"] = 0.0941,
-["skin"] = "WoW Interface",
-["override_spellids"] = true,
-["minimum_combat_time"] = 5,
-["window_clamp"] = {
--8,
-0,
-21,
--14,
-},
-["overall_clear_logout"] = false,
-["broadcaster_enabled"] = false,
-["realtimedps_always_arena"] = false,
-["memory_threshold"] = 3,
-["cloud_capture"] = true,
-["damage_taken_everything"] = false,
-["scroll_speed"] = 2,
-["new_window_size"] = {
-["height"] = 158,
-["width"] = 310,
-},
-["chat_tab_embed"] = {
-["enabled"] = false,
-["y_offset"] = 0,
-["x_offset"] = 0,
-["tab_name"] = "",
-["single_window"] = false,
-},
-["deadlog_events"] = 32,
-["segments_auto_erase"] = 1,
-["close_shields"] = false,
-["class_coords"] = {
-["HUNTER"] = {
-0,
-0.125,
-0.125,
-0.25,
-},
-["WARRIOR"] = {
-0,
-0.125,
-0,
-0.125,
-},
-["SHAMAN"] = {
-0.125,
-0.248046875,
-0.125,
-0.25,
-},
-["MAGE"] = {
-0.125,
-0.248046875,
-0,
-0.125,
-},
-["PET"] = {
-0.125,
-0.248046875,
-0.375,
-0.5,
-},
-["DRUID"] = {
-0.37109375,
-0.494140625,
-0,
-0.125,
-},
-["MONK"] = {
-0.25,
-0.369140625,
-0.25,
-0.375,
-},
-["DEATHKNIGHT"] = {
-0.125,
-0.25,
-0.25,
-0.375,
-},
-["UNGROUPPLAYER"] = {
-0.25,
-0.375,
-0.375,
-0.5,
-},
-["ROGUE"] = {
-0.248046875,
-0.37109375,
-0,
-0.125,
-},
-["UNKNOW"] = {
-0.25,
-0.375,
-0.375,
-0.5,
-},
-["PRIEST"] = {
-0.248046875,
-0.37109375,
-0.125,
-0.25,
-},
-["PALADIN"] = {
-0,
-0.125,
-0.25,
-0.375,
-},
-["Alliance"] = {
-0.248046875,
-0.02968748,
-0.375,
-0.5,
-},
-["ENEMY"] = {
-0,
-0.125,
-0.375,
-0.5,
-},
-["DEMONHUNTER"] = {
-0.36914063,
-0.5,
-0.25,
-0.375,
-},
-["Horde"] = {
-0.37109375,
-0.494140625,
-0.375,
-0.5,
-},
-["MONSTER"] = {
-0,
-0.125,
-0.375,
-0.5,
-},
-["EVOKER"] = {
-0.50390625,
-0.625,
-0,
-0.125,
-},
-["WARLOCK"] = {
-0.37109375,
-0.494140625,
-0.125,
-0.25,
-},
-},
-["trash_auto_remove"] = false,
-["disable_alldisplays_window"] = false,
-["font_sizes"] = {
-["menus"] = 16,
-},
-["segments_boss_wipes_keep_best_performance"] = true,
-["hotcorner_topleft"] = {
-["hide"] = false,
-},
-["total_abbreviation"] = 2,
-["clear_graphic"] = true,
-["class_colors"] = {
-["HUNTER"] = {
-0.67,
-0.83,
-0.45,
-},
-["WARRIOR"] = {
-0.78,
-0.61,
-0.43,
-},
-["PALADIN"] = {
-0.96,
-0.55,
-0.73,
-},
-["MAGE"] = {
-0.41,
-0.8,
-0.94,
-},
-["ARENA_YELLOW"] = {
-1,
-1,
-0.25,
-},
-["UNGROUPPLAYER"] = {
-0.4,
-0.4,
-0.4,
-},
-["DRUID"] = {
-1,
-0.49,
-0.04,
-},
-["MONK"] = {
-0,
-1,
-0.59,
-},
-["DEATHKNIGHT"] = {
-0.77,
-0.12,
-0.23,
-},
-["PET"] = {
-0.3,
-0.4,
-0.5,
-},
-["ARENA_GREEN"] = {
-0.4,
-1,
-0.4,
-},
-["ROGUE"] = {
-1,
-0.96,
-0.41,
-},
-["UNKNOW"] = {
-0.2,
-0.2,
-0.2,
-},
-["PRIEST"] = {
-1,
-1,
-1,
-},
-["SELF"] = {
-0.89019,
-0.32156,
-0.89019,
-},
-["ENEMY"] = {
-0.94117,
-0,
-0.0196,
-1,
-},
-["version"] = 1,
-["DEMONHUNTER"] = {
-0.64,
-0.19,
-0.79,
-},
-["WARLOCK"] = {
-0.58,
-0.51,
-0.79,
-},
-["NEUTRAL"] = {
-1,
-1,
-0,
-},
-["EVOKER"] = {
-0.2,
-0.498,
-0.5764,
-},
-["SHAMAN"] = {
-0,
-0.44,
-0.87,
-},
-},
-["animation_speed_triggertravel"] = 5,
-["options_group_edit"] = true,
-["segments_amount_to_save"] = 40,
-["minimap"] = {
-["onclick_what_todo"] = 1,
-["radius"] = 160,
-["hide"] = false,
-["minimapPos"] = 186.4286794950792,
-["text_format"] = 3,
-["text_type"] = 1,
-},
-["instances_amount"] = 5,
-["max_window_size"] = {
-["height"] = 450,
-["width"] = 480,
-},
-["righttext_simple_formatting"] = {
-["enabled"] = true,
-["format_tp"] = "%s (%s)",
-["format_ts"] = "%s (%s)",
-["use_alignment"] = false,
-["alignment_space"] = 60,
-["first_run"] = true,
-["format_tsp"] = "%s (%s, %s)",
-},
-["only_pvp_frags"] = false,
-["disable_stretch_button"] = false,
-["segments_amount"] = 40,
 ["time_type_original"] = 2,
 ["overall_clear_newboss"] = false,
 ["segments_panic_mode"] = false,
@@ -2813,7 +2893,42 @@ false,
 },
 ["use_battleground_server_parser"] = false,
 ["instances_segments_locked"] = false,
-["disable_lock_ungroup_buttons"] = false,
+["realtime_dps_meter"] = {
+["enabled"] = false,
+["font_color"] = {
+1,
+1,
+1,
+1,
+},
+["arena_enabled"] = true,
+["font_shadow"] = "NONE",
+["font_size"] = 18,
+["mythic_dungeon_enabled"] = false,
+["sample_size"] = 3,
+["frame_settings"] = {
+["show_title"] = true,
+["strata"] = "LOW",
+["point"] = "TOP",
+["scale"] = 1,
+["width"] = 300,
+["y"] = -110,
+["x"] = 0,
+["backdrop_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["locked"] = true,
+["height"] = 23,
+},
+["update_interval"] = 0.3,
+["text_offset"] = 2,
+["font_face"] = "Friz Quadrata TT",
+["options_frame"] = {
+},
+},
 ["force_activity_time_pvp"] = true,
 ["death_tooltip_width"] = 350,
 ["death_tooltip_texture"] = "Details Serenity",
@@ -2831,267 +2946,6 @@ false,
 },
 },
 ["immersion_special_units"] = true,
-["transcriptor_frame"] = {
-["scale"] = 1,
-},
-["titletext_showtimer_always"] = false,
-["spell_category_latest_query"] = 0,
-["switchSaved"] = {
-["slots"] = 10,
-["table"] = {
-{
-["atributo"] = 1,
-["sub_atributo"] = 1,
-},
-{
-["atributo"] = 2,
-["sub_atributo"] = 1,
-},
-{
-["atributo"] = 1,
-["sub_atributo"] = 6,
-},
-{
-["atributo"] = 4,
-["sub_atributo"] = 5,
-},
-{
-["atributo"] = 4,
-["sub_atributo"] = 4,
-},
-{
-["atributo"] = 1,
-["sub_atributo"] = 3,
-},
-{
-["atributo"] = 1,
-["sub_atributo"] = 4,
-},
-{
-["atributo"] = 1,
-["sub_atributo"] = 8,
-},
-{
-["atributo"] = 5,
-["sub_atributo"] = 10,
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-["atributo"] = 1,
-["sub_atributo"] = 1,
-},
-{
-["atributo"] = 2,
-["sub_atributo"] = 1,
-},
-{
-["atributo"] = 1,
-["sub_atributo"] = 6,
-},
-{
-["atributo"] = 4,
-["sub_atributo"] = 5,
-},
-{
-["atributo"] = 4,
-["sub_atributo"] = 4,
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-{
-},
-},
-},
-["played_class_time"] = true,
-["createauraframe"] = {
-["y"] = 0.0001068115234375,
-["x"] = 0.00018310546875,
-["point"] = "CENTER",
-["scale"] = 1,
-},
-["class_time_played"] = {
-["HUNTER"] = 1870.250999999931,
-["WARRIOR"] = 96.85899999999674,
-["PALADIN"] = 58066.45699999988,
-["MAGE"] = 11087.14800000002,
-["PRIEST"] = 656275.1189999994,
-[0] = {
-["MAGE"] = 38.77100000000792,
-["WARRIOR"] = 796.4850000000151,
-["PRIEST"] = 25171.63500000017,
-},
-["WARLOCK"] = 432.4059999999881,
-[2] = {
-["HUNTER"] = 39206.86000000002,
-["WARRIOR"] = 523.877000000095,
-["PALADIN"] = 339411.2700000007,
-["MAGE"] = 16213.83199999998,
-["PRIEST"] = 1772865.616,
-["WARLOCK"] = 785.8049999999057,
-["DRUID"] = 15093.83400000005,
-["DEATHKNIGHT"] = 18148.9579999999,
-["SHAMAN"] = 10143.61699999997,
-},
-["ROGUE"] = 27.97800000000279,
-["DRUID"] = 335.8629999999539,
-["DEATHKNIGHT"] = 25194.54899999982,
-["SHAMAN"] = 744.4520000000484,
-},
-["spellid_ignored"] = {
-},
-["aura_tracker_frame"] = {
-["scaletable"] = {
-["scale"] = 1,
-},
-["position"] = {
-},
-},
-["mythic_plus"] = {
-["mythicrun_chart_frame_ready"] = {
-},
-["merge_boss_trash"] = true,
-["mythicrun_chart_frame_minimized"] = {
-},
-["finished_run_frame"] = {
-},
-["make_overall_when_done"] = true,
-["delete_trash_after_merge"] = true,
-["boss_dedicated_segment"] = true,
-["last_mythicrun_chart"] = {
-},
-["make_overall_boss_only"] = false,
-["finished_run_panel3"] = {
-},
-["delay_to_show_graphic"] = 5,
-["always_in_combat"] = false,
-["reverse_death_log"] = false,
-["show_damage_graphic"] = true,
-["finished_run_frame_options"] = {
-["orientation"] = "horizontal",
-["grow_direction"] = "left",
-},
-["mythicrun_chart_frame"] = {
-},
-["mythicrun_time_type"] = 1,
-["autoclose_time"] = 90,
-},
-["debug_options_panel"] = {
-["position"] = {
-},
-["scaletable"] = {
-["scale"] = 1,
-},
-},
-["auto_change_to_standard"] = true,
-["run_code"] = {
-["on_groupchange"] = "\n-- this code runs when the player enter or leave a group",
-["on_zonechanged"] = "\n-- when the player changes zone, this code will run",
-["on_init"] = "\n-- code to run when Details! initializes, put here code which only will run once\n-- this also will run then the profile is changed\n\n--size of the death log tooltip in the Deaths display (default 350)\nDetails.death_tooltip_width = 350;\n\n--when in arena or battleground, details! silently switch to activity time (goes back to the old setting on leaving, default true)\nDetails.force_activity_time_pvp = true;\n\n--speed of the bar animations (default 33)\nDetails.animation_speed = 33;\n\n--threshold to trigger slow or fast speed (default 0.45)\nDetails.animation_speed_mintravel = 0.45;\n\n--call to update animations\nDetails:RefreshAnimationFunctions();\n\n--max window size, does require a /reload to work (default 480 x 450)\nDetails.max_window_size.width = 480;\nDetails.max_window_size.height = 450;\n\n--use the arena team color as the class color (default true)\nDetails.color_by_arena_team = true;\n\n--how much time the update warning is shown (default 10)\nDetails.update_warning_timeout = 10;",
-["on_specchanged"] = "\n-- run when the player changes its spec",
-["on_leavecombat"] = "\n-- this code runs when the player leave combat",
-["on_entercombat"] = "\n-- this code runs when the player enters in combat",
-},
-["tutorial"] = {
-["bookmark_tutorial"] = false,
-["main_help_button"] = 9317,
-["ATTRIBUTE_SELECT_TUTORIAL1"] = true,
-["logons"] = 9317,
-["ctrl_click_close_tutorial"] = false,
-["DISABLE_ONDEATH_PANEL"] = true,
-["STREAMER_PLUGIN_FIRSTRUN"] = true,
-["FULL_DELETE_WINDOW"] = true,
-["DETAILS_INFO_TUTORIAL1"] = true,
-["FORGE_TUTORIAL"] = true,
-["ENCOUNTER_BREAKDOWN_SPELLAURAS"] = true,
-["alert_frames"] = {
-false,
-false,
-false,
-false,
-false,
-false,
-},
-["DETAILS_INFO_TUTORIAL2"] = 10,
-["MIN_COMBAT_TIME"] = true,
-["OVERALLDATA_WARNING1"] = 60,
-["OPTIONS_PANEL_OPENED"] = true,
-["version_announce"] = 0,
-["HISTORYPANEL_TUTORIAL"] = true,
-["unlock_button"] = 4,
-["WINDOW_GROUP_MAKING1"] = true,
-["WINDOW_LOCK_UNLOCK1"] = true,
-},
-["exit_errors"] = {
-},
-["show_warning_id1"] = true,
-["realm_sync"] = true,
-["cleu_debug_panel"] = {
-["scaletable"] = {
-["scale"] = 1,
-},
-["position"] = {
-},
-},
-["item_level_pool"] = {
-["Player-5376-15FC2FF3"] = {
-["time"] = 1782840184,
-["name"] = "凤凰浴火",
-["ilvl"] = 86.3125,
-},
-["Player-5376-086AB4E5"] = {
-["time"] = 1782840212,
-["name"] = "女王安其拉",
-["ilvl"] = 82,
-},
-},
-["slash_me_used"] = false,
 ["third_party"] = {
 ["openraid_notecache"] = {
 ["showheader"] = true,
@@ -3128,6 +2982,154 @@ false,
 ["tutorial1"] = false,
 },
 },
+["boss_mods_timers"] = {
+["encounter_timers_bw"] = {
+},
+["latest_boss_mods_access"] = 1782839618,
+["encounter_timers_dbm"] = {
+},
+},
+["spell_category_latest_query"] = 0,
+["spellid_ignored"] = {
+},
+["played_class_time"] = true,
+["spell_category_latest_save"] = 0,
+["class_time_played"] = {
+["HUNTER"] = 1870.250999999931,
+["WARRIOR"] = 96.85899999999674,
+["PALADIN"] = 58066.45699999988,
+["MAGE"] = 11087.14800000002,
+["PRIEST"] = 656275.1189999994,
+[0] = {
+["MAGE"] = 38.77100000000792,
+["WARRIOR"] = 2426.226000000024,
+["PRIEST"] = 25171.63500000017,
+},
+["WARLOCK"] = 432.4059999999881,
+[2] = {
+["HUNTER"] = 39206.86000000002,
+["WARRIOR"] = 523.877000000095,
+["PALADIN"] = 339411.2700000007,
+["MAGE"] = 16213.83199999998,
+["PRIEST"] = 1772865.616,
+["WARLOCK"] = 785.8049999999057,
+["DRUID"] = 15093.83400000005,
+["DEATHKNIGHT"] = 18148.9579999999,
+["SHAMAN"] = 10143.61699999997,
+},
+["ROGUE"] = 27.97800000000279,
+["DRUID"] = 335.8629999999539,
+["DEATHKNIGHT"] = 25194.54899999982,
+["SHAMAN"] = 744.4520000000484,
+},
+["latest_npcid_pool_access"] = 1782839618,
+["tutorial"] = {
+["bookmark_tutorial"] = false,
+["main_help_button"] = 9323,
+["ATTRIBUTE_SELECT_TUTORIAL1"] = true,
+["logons"] = 9323,
+["ctrl_click_close_tutorial"] = false,
+["DISABLE_ONDEATH_PANEL"] = true,
+["STREAMER_PLUGIN_FIRSTRUN"] = true,
+["FULL_DELETE_WINDOW"] = true,
+["DETAILS_INFO_TUTORIAL1"] = true,
+["FORGE_TUTORIAL"] = true,
+["ENCOUNTER_BREAKDOWN_SPELLAURAS"] = true,
+["alert_frames"] = {
+false,
+false,
+false,
+false,
+false,
+false,
+},
+["DETAILS_INFO_TUTORIAL2"] = 10,
+["MIN_COMBAT_TIME"] = true,
+["OVERALLDATA_WARNING1"] = 60,
+["OPTIONS_PANEL_OPENED"] = true,
+["version_announce"] = 0,
+["HISTORYPANEL_TUTORIAL"] = true,
+["unlock_button"] = 4,
+["WINDOW_GROUP_MAKING1"] = true,
+["WINDOW_LOCK_UNLOCK1"] = true,
+},
+["run_code"] = {
+["on_groupchange"] = "\n-- this code runs when the player enter or leave a group",
+["on_zonechanged"] = "\n-- when the player changes zone, this code will run",
+["on_init"] = "\n-- code to run when Details! initializes, put here code which only will run once\n-- this also will run then the profile is changed\n\n--size of the death log tooltip in the Deaths display (default 350)\nDetails.death_tooltip_width = 350;\n\n--when in arena or battleground, details! silently switch to activity time (goes back to the old setting on leaving, default true)\nDetails.force_activity_time_pvp = true;\n\n--speed of the bar animations (default 33)\nDetails.animation_speed = 33;\n\n--threshold to trigger slow or fast speed (default 0.45)\nDetails.animation_speed_mintravel = 0.45;\n\n--call to update animations\nDetails:RefreshAnimationFunctions();\n\n--max window size, does require a /reload to work (default 480 x 450)\nDetails.max_window_size.width = 480;\nDetails.max_window_size.height = 450;\n\n--use the arena team color as the class color (default true)\nDetails.color_by_arena_team = true;\n\n--how much time the update warning is shown (default 10)\nDetails.update_warning_timeout = 10;",
+["on_specchanged"] = "\n-- run when the player changes its spec",
+["on_leavecombat"] = "\n-- this code runs when the player leave combat",
+["on_entercombat"] = "\n-- this code runs when the player enters in combat",
+},
+["debug_options_panel"] = {
+["position"] = {
+},
+["scaletable"] = {
+["scale"] = 1,
+},
+},
+["auto_change_to_standard"] = true,
+["mythic_plus"] = {
+["mythicrun_chart_frame_ready"] = {
+},
+["merge_boss_trash"] = true,
+["mythicrun_chart_frame_minimized"] = {
+},
+["finished_run_frame"] = {
+},
+["make_overall_when_done"] = true,
+["delete_trash_after_merge"] = true,
+["boss_dedicated_segment"] = true,
+["last_mythicrun_chart"] = {
+},
+["make_overall_boss_only"] = false,
+["finished_run_panel3"] = {
+},
+["delay_to_show_graphic"] = 5,
+["always_in_combat"] = false,
+["reverse_death_log"] = false,
+["show_damage_graphic"] = true,
+["finished_run_frame_options"] = {
+["orientation"] = "horizontal",
+["grow_direction"] = "left",
+},
+["mythicrun_chart_frame"] = {
+},
+["mythicrun_time_type"] = 1,
+["autoclose_time"] = 90,
+},
+["show_warning_id1"] = true,
+["exit_errors"] = {
+},
+["slash_me_used"] = false,
+["realm_sync"] = true,
+["cleu_debug_panel"] = {
+["scaletable"] = {
+["scale"] = 1,
+},
+["position"] = {
+},
+},
+["item_level_pool"] = {
+["Player-5376-15FC2FF3"] = {
+["time"] = 1782840879,
+["name"] = "凤凰浴火",
+["ilvl"] = 86.3125,
+},
+["Player-5376-086AB4E5"] = {
+["time"] = 1782840795,
+["name"] = "女王安其拉",
+["ilvl"] = 82,
+},
+},
+["aura_tracker_frame"] = {
+["scaletable"] = {
+["scale"] = 1,
+},
+["position"] = {
+},
+},
+["check_stuttering"] = false,
 ["last_10days_cache_cleanup"] = 1783703618,
 ["report_where"] = "RAID",
 ["deathlog_healingdone_min"] = 1,
@@ -3240,7 +3242,6 @@ false,
 ["blockspell_spark_offset"] = -1,
 ["targetcontainer_width"] = 357.8652954101563,
 ["spellcontainer_header_height"] = 20,
-["blockspell_spark_width"] = 4,
 ["genericcontainer_headers_right"] = {
 ["name"] = {
 ["enabled"] = true,
@@ -3274,6 +3275,7 @@ false,
 },
 },
 ["phasecontainer_height"] = 139.9999847412109,
+["blockspell_spark_width"] = 4,
 ["genericcontainer_right_width"] = 403.0001220703125,
 ["blockspell_color"] = {
 0.6,
@@ -3522,7 +3524,8 @@ false,
 "8 - Saving nicktag cache.",
 "9 - Saving Auto Run Code.",
 },
-["slashk_dnd"] = false,
+["installed_skins_cache"] = {
+},
 ["switch_missing_type"] = 0,
 ["switch_post_apoc"] = false,
 }

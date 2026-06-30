@@ -1,0 +1,17 @@
+
+Postal3DB = {
+["global"] = {
+["BlackBook"] = {
+["alts"] = {
+"法德迦|哈霍兰|Alliance|60|MAGE",
+},
+},
+},
+["profileKeys"] = {
+["法德迦 - 哈霍兰"] = "法德迦 - 哈霍兰",
+},
+["profiles"] = {
+["法德迦 - 哈霍兰"] = {
+},
+},
+}

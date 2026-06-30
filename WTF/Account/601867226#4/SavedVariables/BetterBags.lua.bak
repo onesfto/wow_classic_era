@@ -9,7 +9,16 @@ BetterBagsDB = {
 ["Default"] = {
 ["__profileSystemMigrated"] = true,
 ["groups"] = {
-nil,
+{
+{
+["bankType"] = 0,
+["name"] = "银行",
+["id"] = 1,
+["kind"] = 1,
+["isDefault"] = true,
+["order"] = 1,
+},
+},
 {
 ["id"] = 2,
 ["name"] = "Other",
@@ -906,11 +915,11 @@ true,
 [23053] = "物理首饰",
 [13455] = "功能饮料",
 [21200] = "防御首饰",
-[19431] = "防御首饰",
+[13445] = "属性药剂",
 [3825] = "属性药剂",
 [22691] = "物理双手",
 [10646] = "BOOM",
-[13445] = "属性药剂",
+[19431] = "防御首饰",
 [13965] = "物理首饰",
 [12662] = "红蓝",
 [20600] = "自然抗装备",
@@ -958,6 +967,7 @@ true,
 [19372] = "物理装备",
 [21691] = "自然抗装备",
 },
+["__groupsScopedByKind"] = true,
 ["itemLevelColor"] = {
 ["maxItemLevelByCharacter"] = {
 ["无畏的树树-哈霍兰"] = 92,
@@ -977,259 +987,9 @@ true,
 ["时装"] = 2,
 ["战袍"] = 2,
 },
+["__bankDefaultTabsFixed"] = true,
 ["theme"] = "elvui",
 ["firstTimeMenu"] = false,
-["categoryOptions"] = {
-["T2"] = {
-["shown"] = true,
-},
-["胸部"] = {
-["shown"] = true,
-},
-["防御首饰"] = {
-["shown"] = true,
-},
-["收藏首饰"] = {
-["shown"] = true,
-},
-["冰抗装备"] = {
-["shown"] = true,
-},
-["肩部"] = {
-["shown"] = true,
-},
-["任务"] = {
-["shown"] = true,
-},
-["消耗品"] = {
-["shown"] = true,
-},
-["合剂"] = {
-["shown"] = true,
-},
-["神器"] = {
-["shown"] = true,
-},
-["颈部"] = {
-["shown"] = true,
-},
-["抗性"] = {
-["shown"] = true,
-},
-["工具"] = {
-["shown"] = true,
-},
-["脚"] = {
-["shown"] = true,
-},
-["武器BUFF"] = {
-["shown"] = true,
-},
-["属性药剂"] = {
-["shown"] = true,
-},
-["空的空间"] = {
-["shown"] = true,
-},
-["副手"] = {
-["shown"] = true,
-},
-["物理首饰"] = {
-["shown"] = true,
-},
-["AD"] = {
-["shown"] = true,
-},
-["情人节"] = {
-["shown"] = true,
-},
-["物理装备"] = {
-["shown"] = true,
-},
-["节日"] = {
-["shown"] = true,
-},
-["特殊装备"] = {
-["shown"] = true,
-},
-["少校"] = {
-["shown"] = true,
-},
-["腰部"] = {
-["shown"] = true,
-},
-["功能饮料"] = {
-["shown"] = true,
-},
-["最近物品"] = {
-["shown"] = true,
-},
-["坐骑宠物玩具"] = {
-["shown"] = true,
-},
-["BOOM"] = {
-["shown"] = true,
-},
-["附魔"] = {
-["shown"] = true,
-},
-["副手物品"] = {
-["shown"] = true,
-},
-["T2 - 护甲"] = {
-["shown"] = true,
-},
-["T3 - 商品"] = {
-["shown"] = true,
-},
-["饰品"] = {
-["shown"] = true,
-},
-["手腕"] = {
-["shown"] = true,
-},
-["头部"] = {
-["shown"] = true,
-},
-["特殊首饰"] = {
-["shown"] = true,
-},
-["单手武器"] = {
-["shown"] = true,
-},
-["战袍"] = {
-["shown"] = true,
-},
-["防御装备"] = {
-["shown"] = true,
-},
-["弹药"] = {
-["shown"] = true,
-},
-["低等级"] = {
-["shown"] = true,
-},
-["背包"] = {
-["shown"] = true,
-},
-["钥匙"] = {
-["shown"] = true,
-},
-["属性"] = {
-["shown"] = true,
-},
-["物理单手"] = {
-["shown"] = true,
-},
-["T2.5 - 护甲"] = {
-["shown"] = true,
-},
-["自然抗装备"] = {
-["shown"] = true,
-},
-["道具"] = {
-["shown"] = true,
-},
-["单手"] = {
-["shown"] = true,
-},
-["R14"] = {
-["shown"] = true,
-},
-["T3"] = {
-["shown"] = true,
-},
-["腿部"] = {
-["shown"] = true,
-},
-["主手"] = {
-["shown"] = true,
-},
-["布"] = {
-["shown"] = true,
-},
-["手指"] = {
-["shown"] = true,
-},
-["红蓝"] = {
-["shown"] = true,
-},
-["T3 - 护甲"] = {
-["shown"] = true,
-},
-["手部"] = {
-["shown"] = true,
-},
-["背部"] = {
-["shown"] = true,
-},
-["垃圾"] = {
-["shown"] = true,
-},
-["时装"] = {
-["shown"] = true,
-},
-["物理披风"] = {
-["shown"] = true,
-},
-["T2.5"] = {
-["shown"] = true,
-},
-["其它"] = {
-["shown"] = true,
-},
-["吃喝"] = {
-["shown"] = true,
-},
-["收藏"] = {
-["shown"] = true,
-},
-["盾牌"] = {
-["shown"] = true,
-},
-["非专业消耗品"] = {
-["shown"] = true,
-},
-["远程"] = {
-["shown"] = true,
-},
-["战场"] = {
-["shown"] = true,
-},
-["材料"] = {
-["shown"] = true,
-},
-["防御披风"] = {
-["shown"] = true,
-},
-["双手"] = {
-["shown"] = true,
-},
-["火抗装备"] = {
-["shown"] = true,
-},
-["武器Buff"] = {
-["shown"] = true,
-},
-["商品"] = {
-["shown"] = true,
-},
-["奢侈品"] = {
-["shown"] = true,
-},
-["炉石"] = {
-["shown"] = true,
-},
-["物理双手"] = {
-["shown"] = true,
-},
-["配方"] = {
-["shown"] = true,
-},
-["矿"] = {
-["shown"] = true,
-},
-},
 ["customCategoryFilters"] = {
 ["T2"] = {
 ["enabled"] = {
@@ -1272,12 +1032,12 @@ true,
 },
 ["itemList"] = {
 [22666] = true,
-[22658] = true,
 [22665] = true,
+[22658] = true,
 [22699] = true,
-[22664] = true,
-[22707] = true,
 [22818] = true,
+[22707] = true,
+[22664] = true,
 },
 ["name"] = "冰抗装备",
 ["save"] = true,
@@ -1354,8 +1114,8 @@ true,
 [11445] = true,
 [12384] = true,
 [184938] = true,
-[10498] = true,
 [7005] = true,
+[10498] = true,
 },
 ["name"] = "工具",
 ["save"] = true,
@@ -1387,10 +1147,10 @@ true,
 [0] = true,
 },
 ["itemList"] = {
-[20452] = true,
-[13445] = true,
 [13810] = true,
 [3825] = true,
+[20452] = true,
+[13445] = true,
 },
 ["name"] = "属性药剂",
 ["save"] = true,
@@ -1419,12 +1179,12 @@ true,
 },
 ["itemList"] = {
 [21652] = true,
-[20633] = true,
-[20579] = true,
 [20619] = true,
-[20599] = true,
-[20600] = true,
+[20579] = true,
+[20633] = true,
 [21691] = true,
+[20600] = true,
+[20599] = true,
 },
 ["name"] = "自然抗装备",
 ["save"] = true,
@@ -1435,10 +1195,10 @@ true,
 [0] = true,
 },
 ["itemList"] = {
-[2091] = true,
 [4388] = true,
-[1322] = true,
 [5951] = true,
+[1322] = true,
+[2091] = true,
 },
 ["name"] = "道具",
 ["save"] = true,
@@ -1782,10 +1542,10 @@ true,
 [21536] = true,
 [18244] = true,
 [21308] = true,
-[20769] = true,
-[23716] = true,
-[22235] = true,
 [21309] = true,
+[18241] = true,
+[22235] = true,
+[20769] = true,
 [18242] = true,
 [18767] = true,
 [180089] = true,
@@ -1793,7 +1553,7 @@ true,
 [8529] = true,
 [21213] = true,
 [1973] = true,
-[18241] = true,
+[23716] = true,
 },
 ["name"] = "坐骑宠物玩具",
 ["save"] = true,
@@ -1843,9 +1603,9 @@ true,
 },
 ["itemList"] = {
 [13452] = true,
-[12460] = true,
 [9187] = true,
 [12451] = true,
+[12460] = true,
 },
 ["name"] = "AD",
 ["save"] = true,
@@ -1888,7 +1648,261 @@ true,
 ["save"] = true,
 },
 },
-["groupCounter"] = 2,
+["categoryOptions"] = {
+["T2"] = {
+["shown"] = true,
+},
+["胸部"] = {
+["shown"] = true,
+},
+["防御首饰"] = {
+["shown"] = true,
+},
+["收藏首饰"] = {
+["shown"] = true,
+},
+["冰抗装备"] = {
+["shown"] = true,
+},
+["肩部"] = {
+["shown"] = true,
+},
+["任务"] = {
+["shown"] = true,
+},
+["消耗品"] = {
+["shown"] = true,
+},
+["合剂"] = {
+["shown"] = true,
+},
+["神器"] = {
+["shown"] = true,
+},
+["颈部"] = {
+["shown"] = true,
+},
+["抗性"] = {
+["shown"] = true,
+},
+["工具"] = {
+["shown"] = true,
+},
+["脚"] = {
+["shown"] = true,
+},
+["武器BUFF"] = {
+["shown"] = true,
+},
+["属性药剂"] = {
+["shown"] = true,
+},
+["空的空间"] = {
+["shown"] = true,
+},
+["副手"] = {
+["shown"] = true,
+},
+["物理首饰"] = {
+["shown"] = true,
+},
+["AD"] = {
+["shown"] = true,
+},
+["情人节"] = {
+["shown"] = true,
+},
+["物理装备"] = {
+["shown"] = true,
+},
+["节日"] = {
+["shown"] = true,
+},
+["特殊装备"] = {
+["shown"] = true,
+},
+["少校"] = {
+["shown"] = true,
+},
+["腰部"] = {
+["shown"] = true,
+},
+["功能饮料"] = {
+["shown"] = true,
+},
+["最近物品"] = {
+["shown"] = true,
+},
+["坐骑宠物玩具"] = {
+["shown"] = true,
+},
+["BOOM"] = {
+["shown"] = true,
+},
+["附魔"] = {
+["shown"] = true,
+},
+["副手物品"] = {
+["shown"] = true,
+},
+["T2 - 护甲"] = {
+["shown"] = true,
+},
+["T3 - 商品"] = {
+["shown"] = true,
+},
+["饰品"] = {
+["shown"] = true,
+},
+["手腕"] = {
+["shown"] = true,
+},
+["头部"] = {
+["shown"] = true,
+},
+["特殊首饰"] = {
+["shown"] = true,
+},
+["单手武器"] = {
+["shown"] = true,
+},
+["战袍"] = {
+["shown"] = true,
+},
+["防御装备"] = {
+["shown"] = true,
+},
+["弹药"] = {
+["shown"] = true,
+},
+["背包"] = {
+["shown"] = true,
+},
+["低等级"] = {
+["shown"] = true,
+},
+["钥匙"] = {
+["shown"] = true,
+},
+["属性"] = {
+["shown"] = true,
+},
+["物理单手"] = {
+["shown"] = true,
+},
+["T2.5 - 护甲"] = {
+["shown"] = true,
+},
+["自然抗装备"] = {
+["shown"] = true,
+},
+["道具"] = {
+["shown"] = true,
+},
+["单手"] = {
+["shown"] = true,
+},
+["R14"] = {
+["shown"] = true,
+},
+["T3"] = {
+["shown"] = true,
+},
+["腿部"] = {
+["shown"] = true,
+},
+["主手"] = {
+["shown"] = true,
+},
+["布"] = {
+["shown"] = true,
+},
+["手指"] = {
+["shown"] = true,
+},
+["红蓝"] = {
+["shown"] = true,
+},
+["T3 - 护甲"] = {
+["shown"] = true,
+},
+["手部"] = {
+["shown"] = true,
+},
+["背部"] = {
+["shown"] = true,
+},
+["垃圾"] = {
+["shown"] = true,
+},
+["时装"] = {
+["shown"] = true,
+},
+["物理披风"] = {
+["shown"] = true,
+},
+["T2.5"] = {
+["shown"] = true,
+},
+["其它"] = {
+["shown"] = true,
+},
+["吃喝"] = {
+["shown"] = true,
+},
+["收藏"] = {
+["shown"] = true,
+},
+["盾牌"] = {
+["shown"] = true,
+},
+["非专业消耗品"] = {
+["shown"] = true,
+},
+["远程"] = {
+["shown"] = true,
+},
+["战场"] = {
+["shown"] = true,
+},
+["材料"] = {
+["shown"] = true,
+},
+["防御披风"] = {
+["shown"] = true,
+},
+["双手"] = {
+["shown"] = true,
+},
+["火抗装备"] = {
+["shown"] = true,
+},
+["武器Buff"] = {
+["shown"] = true,
+},
+["商品"] = {
+["shown"] = true,
+},
+["奢侈品"] = {
+["shown"] = true,
+},
+["炉石"] = {
+["shown"] = true,
+},
+["物理双手"] = {
+["shown"] = true,
+},
+["配方"] = {
+["shown"] = true,
+},
+["矿"] = {
+["shown"] = true,
+},
+},
+["groupCounter"] = {
+1,
+[0] = 2,
+},
 ["positions"] = {
 {
 ["y"] = -116.73388671875,

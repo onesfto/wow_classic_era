@@ -10,6 +10,7 @@ GFW_FeedOMatic_DB = {
 ["愛雅法拉 - 铁血II"] = "Default",
 ["愛雅法拉 - 孤狼"] = "Default",
 ["小綾子 - 孤狼"] = "Default",
+["女王安其拉 - 哈霍兰"] = "Default",
 ["萌萌奶糖 - 野性痊癒"] = "Default",
 ["伊芙莉特 - 铁血"] = "Default",
 ["蒂琪爱尔 - 铁血"] = "Default",
@@ -36,7 +37,6 @@ GFW_FeedOMatic_DB = {
 ["露露緹婭 - 碧玉矿洞II"] = "Default",
 ["露露糖 - 铁血"] = "Default",
 ["露露糖 - 铁血II"] = "Default",
-["女王安其拉 - 哈霍兰"] = "Default",
 },
 ["profiles"] = {
 ["Default"] = {

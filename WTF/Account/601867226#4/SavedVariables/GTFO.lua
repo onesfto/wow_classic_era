@@ -6,14 +6,14 @@ GTFOData = {
 },
 ["TrivialDamagePercent"] = 2,
 ["SoundChannel"] = "SFX",
+["TestMode"] = false,
+["DataCode"] = "4",
 ["Sounds"] = {
 true,
 true,
 true,
 true,
 },
-["DataCode"] = "4",
-["TestMode"] = false,
 ["Volume"] = 3,
 ["IgnoreOptions"] = {
 ["Fatigue"] = false,

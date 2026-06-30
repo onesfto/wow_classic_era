@@ -25,10 +25,10 @@ WhisperPopDB = {
 ["buttonScale"] = 100,
 ["history"] = {
 },
-["ignoreTags"] = 1,
+["applyFilters"] = 1,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["applyFilters"] = 1,
-["notifyButton"] = 1,
 ["listScale"] = 100,
+["notifyButton"] = 1,
+["ignoreTags"] = 1,
 }

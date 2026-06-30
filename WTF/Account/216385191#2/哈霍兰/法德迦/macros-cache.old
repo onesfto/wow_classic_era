@@ -1,6 +1,5 @@
 VER 3 01000000000000C2 "冰" "INV_Misc_QuestionMark"
 #showtooltip [mod] 寒冰箭(等级 1); 寒冰箭
-/use 萨菲隆的精华
 /cast [mod] 寒冰箭(等级 1); 寒冰箭
 END
 VER 3 01000000000000C3 "冰火盾" "INV_Misc_QuestionMark"
@@ -53,18 +52,14 @@ VER 3 01000000000000CC "波" "INV_Misc_QuestionMark"
 #showtooltip 冲击波
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
-/use 短暂能量护符
-/use 赞达拉英雄护符
-/use 萨菲隆的精华
+/use 燃烧
 /cast 冲击波
 END
 VER 3 01000000000000CD "火" "INV_Misc_QuestionMark"
 #showtooltip 火球术
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
-/use 短暂能量护符
-/use 赞达拉英雄护符
-/use 萨菲隆的精华
+/use 燃烧
 /cast 火球术
 END
 VER 3 01000000000000CE "火冰盾" "INV_Misc_QuestionMark"
@@ -76,9 +71,6 @@ VER 3 01000000000000CF "炎" "INV_Misc_QuestionMark"
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
 /use 燃烧
-/use 短暂能量护符
-/use 赞达拉英雄护符
-/use 萨菲隆的精华
 /cast 炎爆术
 END
 VER 3 01000000000000D0 "烧" "INV_Misc_QuestionMark"
@@ -91,18 +83,13 @@ VER 3 01000000000000D1 "焰" "INV_Misc_QuestionMark"
 #showtooltip 烈焰风暴
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
-/use 短暂能量护符
-/use 赞达拉英雄护符
-/use 萨菲隆的精华
+/use 燃烧
 /cast 烈焰风暴
 END
 VER 3 01000000000000D2 "爆" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 魔爆术(等级 1); 魔爆术
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
-/use [nomod] 短暂能量护符
-/use [nomod] 赞达拉英雄护符
-/use [nomod] 萨菲隆的精华
 /cast [mod:shift] 魔爆术(等级 1); 魔爆术
 END
 VER 3 01000000000000D3 "盾" "INV_Misc_QuestionMark"

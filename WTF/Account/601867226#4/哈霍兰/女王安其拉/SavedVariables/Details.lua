@@ -5,6 +5,960 @@ _detalhes_database = {
 ["mythic_dungeon_id"] = 0,
 ["tabela_historico"] = {
 ["tabelas"] = {
+{
+{
+["tipo"] = 2,
+["combatId"] = 1,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.004853,
+["pets"] = {
+},
+["classe"] = "WARRIOR",
+["total_without_pet"] = 432.004853,
+["avoidable_damage_taken"] = 0.004853,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 432.004853,
+["spec"] = 72,
+["colocacao"] = 1,
+["avoidable_damage_spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-086AB4E5",
+["avoidable_damage"] = {
+},
+["damage_from"] = {
+},
+["targets"] = {
+["奶牛"] = 432,
+},
+["damage_from_players"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1782842890,
+["aID"] = "5376-086AB4E5",
+["nome"] = "女王安其拉",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["奶牛"] = 432,
+},
+["n_total"] = 432,
+["n_min"] = 432,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 432,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 432,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["tipo"] = 1,
+["last_dps"] = 72.39900335171721,
+["custom"] = 0,
+["last_event"] = 1782842883,
+["damage_taken"] = 0.004853,
+["start_time"] = 1782842883,
+["delay"] = 0,
+["friendlyfire"] = {
+},
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.006073,
+["pets"] = {
+},
+["aID"] = "2442",
+["total_without_pet"] = 0.006073,
+["avoidable_damage_taken"] = 0.006073,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.006073,
+["avoidable_damage_spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5343-0-75-2442-000043FB93",
+["avoidable_damage"] = {
+},
+["damage_from"] = {
+["女王安其拉"] = true,
+},
+["targets"] = {
+},
+["damage_from_players"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["on_hold"] = false,
+["fight_component"] = true,
+["end_time"] = 1782842890,
+["nome"] = "奶牛",
+["spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["classe"] = "UNKNOW",
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 432.006073,
+["start_time"] = 1782842890,
+["delay"] = 0,
+["last_event"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 1,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 1,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 1,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["aID"] = "5376-086AB4E5",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[29131] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 1,
+["uptime"] = 5,
+["id"] = 29131,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["buff_uptime"] = 5,
+["nome"] = "女王安其拉",
+["spec"] = 72,
+["grupo"] = true,
+["buff_uptime_targets"] = {
+},
+["last_event"] = 1782842888,
+["classe"] = "WARRIOR",
+["serial"] = "Player-5376-086AB4E5",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 1,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["女王安其拉"] = "Player-5376-086AB4E5",
+},
+["tempo_start"] = 1782842883,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+["女王安其拉"] = {
+{
+132090,
+0,
+3,
+3,
+1,
+71,
+3,
+},
+{
+135328,
+0,
+5,
+4,
+1,
+71,
+5,
+},
+{
+132282,
+3,
+1,
+1,
+1,
+71,
+3,
+},
+{
+133476,
+0,
+5,
+3,
+1,
+71,
+5,
+},
+{
+132337,
+0,
+2,
+1,
+1,
+71,
+2,
+},
+{
+132155,
+0,
+1,
+3,
+1,
+71,
+3,
+},
+{
+132326,
+0,
+2,
+4,
+1,
+71,
+3,
+},
+{
+132316,
+0,
+6,
+3,
+1,
+71,
+3,
+},
+{
+132269,
+0,
+1,
+2,
+1,
+71,
+5,
+},
+{
+135275,
+0,
+3,
+1,
+1,
+71,
+2,
+},
+{
+132397,
+0,
+5,
+1,
+1,
+71,
+5,
+},
+{
+132306,
+0,
+5,
+2,
+1,
+71,
+1,
+},
+{
+135562,
+0,
+6,
+1,
+1,
+71,
+5,
+},
+{
+132355,
+0,
+7,
+2,
+1,
+71,
+1,
+},
+{
+132400,
+0,
+4,
+2,
+1,
+71,
+5,
+},
+{
+135881,
+0,
+3,
+2,
+1,
+71,
+1,
+},
+{
+136031,
+0,
+2,
+2,
+1,
+71,
+5,
+},
+{
+132312,
+0,
+4,
+3,
+1,
+71,
+2,
+},
+{
+132333,
+5,
+3,
+4,
+2,
+72,
+5,
+},
+{
+136224,
+5,
+4,
+3,
+2,
+72,
+5,
+},
+{
+132152,
+5,
+6,
+3,
+2,
+72,
+5,
+},
+{
+132292,
+5,
+1,
+3,
+2,
+72,
+5,
+},
+{
+136075,
+0,
+1,
+2,
+2,
+72,
+5,
+},
+{
+136097,
+5,
+2,
+3,
+2,
+72,
+5,
+},
+{
+136147,
+0,
+3,
+2,
+2,
+72,
+1,
+},
+{
+132366,
+0,
+2,
+2,
+2,
+72,
+5,
+},
+{
+136146,
+1,
+5,
+2,
+2,
+72,
+1,
+},
+{
+132338,
+0,
+3,
+1,
+2,
+72,
+3,
+},
+{
+136012,
+1,
+7,
+2,
+2,
+72,
+1,
+},
+{
+132340,
+0,
+5,
+1,
+2,
+72,
+5,
+},
+{
+136218,
+0,
+3,
+3,
+2,
+72,
+3,
+},
+{
+136009,
+0,
+6,
+1,
+2,
+72,
+2,
+},
+{
+135358,
+0,
+4,
+2,
+2,
+72,
+2,
+},
+{
+132307,
+0,
+5,
+4,
+2,
+72,
+2,
+},
+{
+132147,
+5,
+4,
+1,
+2,
+72,
+5,
+},
+{
+136056,
+5,
+1,
+3,
+3,
+73,
+5,
+},
+{
+135892,
+3,
+2,
+3,
+3,
+73,
+5,
+},
+{
+135995,
+0,
+2,
+4,
+3,
+73,
+5,
+},
+{
+132277,
+2,
+2,
+1,
+3,
+73,
+2,
+},
+{
+136080,
+0,
+4,
+3,
+3,
+73,
+2,
+},
+{
+132347,
+5,
+3,
+4,
+3,
+73,
+5,
+},
+{
+132110,
+0,
+3,
+2,
+3,
+73,
+3,
+},
+{
+132363,
+0,
+4,
+1,
+3,
+73,
+3,
+},
+{
+132353,
+0,
+3,
+3,
+3,
+73,
+3,
+},
+{
+134951,
+0,
+7,
+2,
+3,
+73,
+1,
+},
+{
+132357,
+0,
+5,
+3,
+3,
+73,
+2,
+},
+{
+132362,
+0,
+5,
+1,
+3,
+73,
+2,
+},
+{
+132343,
+0,
+4,
+2,
+3,
+73,
+3,
+},
+{
+132325,
+0,
+5,
+2,
+3,
+73,
+1,
+},
+{
+135871,
+1,
+3,
+1,
+3,
+73,
+1,
+},
+{
+135321,
+0,
+6,
+3,
+3,
+73,
+5,
+},
+{
+134952,
+0,
+1,
+2,
+3,
+73,
+5,
+},
+},
+},
+["totals"] = {
+432,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+432,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "东部王国",
+["data_fim"] = "02:08:10",
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "奶牛",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 145485.011,
+["overall_added"] = true,
+["CombatEndedAt"] = 145485.011,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "02:08:04",
+["end_time"] = 145485.011,
+["mapId"] = 0,
+["combat_id"] = 1,
+["timeStart"] = 1782842884,
+["playing_solo"] = true,
+["frags"] = {
+["奶牛"] = 1,
+},
+["is_challenge"] = false,
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["combat_counter"] = 261,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["女王安其拉"] = 432.004853,
+},
+},
+},
+["start_time"] = 145479.044,
+["TimeData"] = {
+},
+["timeEnd"] = 1782842890,
+},
+{
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["aID"] = "5376-086AB4E5",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[28866] = {
+["appliedamt"] = 0,
+["targets"] = {
+},
+["activedamt"] = 0,
+["uptime"] = 0,
+["id"] = 28866,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["buff_uptime"] = 0,
+["nome"] = "女王安其拉",
+["spec"] = 72,
+["grupo"] = true,
+["buff_uptime_targets"] = {
+},
+["last_event"] = 1782842677,
+["classe"] = "WARRIOR",
+["serial"] = "Player-5376-086AB4E5",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["CombatStartedAt"] = 145472.644,
+["tempo_start"] = 145239.918,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playing_solo"] = true,
+["totals"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = false,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "东部王国",
+["data_fim"] = "02:04:38",
+["timeEnd"] = 1782842678,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "未知",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 10.02900000000955,
+["CombatEndedAt"] = 145272.545,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = 0,
+["end_time"] = 145272.545,
+["mapId"] = 0,
+["overall_added"] = true,
+["frags"] = {
+},
+["is_challenge"] = false,
+["spells_cast_timeline"] = {
+},
+["raid_roster"] = {
+},
+["combat_counter"] = 260,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+},
+},
+},
+["start_time"] = 0,
+["TimeData"] = {
+},
+["playerTalents"] = {
+},
+},
 },
 },
 ["apocalypse_savedsegments"] = {
@@ -73,9 +1027,13 @@ _detalhes_database = {
 },
 ["last_coach_name"] = false,
 },
-["auto_combatlog"] = false,
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
 ["arena_data_index_selected"] = 1,
-["apocalypes_info"] = {
+["character_data"] = {
+["logons"] = 131,
 },
 ["local_instances_config"] = {
 {
@@ -130,11 +1088,11 @@ _detalhes_database = {
 },
 ["segment"] = 0,
 ["mode"] = 2,
-["attribute"] = 1,
+["attribute"] = 2,
 ["pos"] = {
 ["normal"] = {
 ["y"] = -281.3367614746094,
-["x"] = 885.5733642578125,
+["x"] = 885.5732421875,
 ["w"] = 282.4048156738281,
 ["h"] = 105.7273864746094,
 },
@@ -147,12 +1105,8 @@ _detalhes_database = {
 },
 },
 },
-["arena_data_compressed"] = {
-},
-["nick_tag_cache"] = {
-["nextreset"] = 1784135612,
-["last_version"] = 16,
-},
+["auto_combatlog"] = false,
+["combat_counter"] = 261,
 ["cached_talents"] = {
 ["Player-5376-086AB4E5"] = {
 {
@@ -656,27 +1610,16 @@ _detalhes_database = {
 ["reverse"] = false,
 },
 ["active_profile"] = "露露缇娅",
-["mythic_dungeon_currentsaved"] = {
-["dungeon_name"] = "",
-["started"] = false,
-["segment_id"] = 0,
-["ej_id"] = 0,
-["started_at"] = 0,
-["run_id"] = 0,
-["level"] = 0,
-["dungeon_zone_id"] = 0,
-["previous_boss_killed_at"] = 0,
+["last_day"] = "01",
+["arena_data_compressed"] = {
 },
-["damage_meter_sessions"] = {
+["data_harvested_for_charts"] = {
 },
-["benchmark_db"] = {
-["frame"] = {
+["nick_tag_cache"] = {
+["nextreset"] = 1784135612,
+["last_version"] = 16,
 },
-},
-["damage_meter_session_info"] = {
-},
-["SoloTablesSaved"] = {
-["Mode"] = 1,
+["apocalypes_info"] = {
 },
 ["combat_log"] = {
 ["inverse_deathlog_overalldata"] = false,
@@ -688,19 +1631,29 @@ _detalhes_database = {
 ["evoker_show_realtimedps"] = false,
 ["inverse_deathlog_mplus"] = false,
 },
-["cached_roles"] = {
-["Player-5376-086AB4E5"] = "DAMAGER",
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
 },
 ["mythic_plus_log"] = {
 },
-["announce_firsthit"] = {
-["enabled"] = true,
-["channel"] = "SELF",
+["damage_meter_sessions"] = {
 },
-["data_harvested_for_charts"] = {
+["damage_meter_session_info"] = {
 },
-["combat_counter"] = 254,
-["last_realversion"] = 172,
+["SoloTablesSaved"] = {
+["Mode"] = 1,
+},
+["cached_roles"] = {
+["Player-5376-086AB4E5"] = "DAMAGER",
+},
 ["apocalypse_hashes"] = {
 },
 ["plugin_database"] = {
@@ -708,7 +1661,7 @@ _detalhes_database = {
 ["enabled"] = true,
 ["only_my_group"] = false,
 ["animate"] = false,
-["updatespeed"] = 1,
+["disable_gouge"] = false,
 ["hide_pull_bar"] = false,
 ["author"] = "Terciob",
 ["playercolor"] = {
@@ -716,15 +1669,15 @@ _detalhes_database = {
 1,
 1,
 },
-["usefocus"] = false,
-["disable_gouge"] = false,
+["show_party_pets"] = false,
+["updatespeed"] = 1,
 ["useclasscolors"] = false,
 ["showamount"] = false,
 ["useplayercolor"] = false,
 ["absolute_mode"] = false,
 ["playSound"] = false,
 ["playSoundFile"] = "Details Threat Warning Volume 3",
-["show_party_pets"] = false,
+["usefocus"] = false,
 },
 ["DETAILS_PLUGIN_COMPARETWO_WINDOW"] = {
 ["enabled"] = true,
@@ -743,7 +1696,10 @@ _detalhes_database = {
 0.5,
 },
 ["scale"] = 1,
-["arrow_anchor_y"] = 0,
+["main_frame_size"] = {
+300,
+500.0000305175781,
+},
 ["minimap"] = {
 ["minimapPos"] = 176.8420385762061,
 ["radius"] = 160,
@@ -764,7 +1720,7 @@ _detalhes_database = {
 ["square_amount"] = 5,
 ["enabled"] = false,
 ["arrow_size"] = 10,
-["y"] = 0,
+["use_spark"] = true,
 ["row_spacement"] = 21,
 ["main_frame_color"] = {
 0,
@@ -772,14 +1728,13 @@ _detalhes_database = {
 0,
 0.2,
 },
-["row_color"] = {
-0.1,
-0.1,
-0.1,
-0.4,
-},
+["author"] = "Details! Team",
 ["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
-["use_spark"] = true,
+["font_size"] = 10,
+["y"] = 0,
+["x"] = -3.0517578125e-05,
+["font_face"] = "Friz Quadrata TT",
+["square_size"] = 32,
 ["per_second"] = {
 ["enabled"] = false,
 ["point"] = "CENTER",
@@ -791,26 +1746,22 @@ _detalhes_database = {
 ["update_speed"] = 0.05,
 ["attribute_type"] = 1,
 },
-["x"] = -3.0517578125e-05,
-["font_face"] = "Friz Quadrata TT",
-["square_size"] = 32,
-["font_size"] = 10,
-["author"] = "Details! Team",
-["main_frame_locked"] = false,
-["main_frame_size"] = {
-300,
-500.0000305175781,
+["row_color"] = {
+0.1,
+0.1,
+0.1,
+0.4,
 },
+["main_frame_locked"] = false,
+["arrow_anchor_y"] = 0,
 },
 },
 ["last_instance_time"] = 0,
-["combat_id"] = 0,
+["combat_id"] = 1,
 ["savedStyles"] = {
 },
-["last_day"] = "01",
-["character_data"] = {
-["logons"] = 125,
-},
+["on_death_menu"] = false,
+["ignore_nicktag"] = false,
 ["announce_deaths"] = {
 ["enabled"] = false,
 ["last_hits"] = 1,
@@ -821,6 +1772,135 @@ _detalhes_database = {
 {
 ["tipo"] = 2,
 ["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.012036,
+["pets"] = {
+},
+["classe"] = "WARRIOR",
+["total_without_pet"] = 432.012036,
+["avoidable_damage_taken"] = 0.007183,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 432.012036,
+["spec"] = 72,
+["avoidable_damage_spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-086AB4E5",
+["avoidable_damage"] = {
+},
+["damage_from"] = {
+},
+["targets"] = {
+["奶牛"] = 432,
+},
+["damage_from_players"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1782842890,
+["aID"] = "5376-086AB4E5",
+["nome"] = "女王安其拉",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["奶牛"] = 432,
+},
+["n_total"] = 432,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 432,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 432,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["tipo"] = 1,
+["last_dps"] = 0,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 0.012036,
+["start_time"] = 1782842880,
+["delay"] = 0,
+["friendlyfire"] = {
+},
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.009087000000000001,
+["pets"] = {
+},
+["aID"] = "2442",
+["total_without_pet"] = 0.009087000000000001,
+["avoidable_damage_taken"] = 0.003014,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.009087000000000001,
+["avoidable_damage_spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5343-0-75-2442-000043FB93",
+["avoidable_damage"] = {
+},
+["damage_from"] = {
+["女王安其拉"] = true,
+},
+["targets"] = {
+},
+["damage_from_players"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["on_hold"] = false,
+["fight_component"] = true,
+["end_time"] = 1782842890,
+["nome"] = "奶牛",
+["spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["classe"] = "UNKNOW",
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 432.009087,
+["start_time"] = 1782842887,
+["delay"] = 0,
+["last_event"] = 0,
+},
 },
 },
 {
@@ -836,6 +1916,47 @@ _detalhes_database = {
 {
 ["tipo"] = 9,
 ["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["buff_uptime"] = 5,
+["classe"] = "WARRIOR",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[28866] = {
+["refreshamt"] = 0,
+["activedamt"] = 0,
+["appliedamt"] = 0,
+["id"] = 28866,
+["uptime"] = 0,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[29131] = {
+["refreshamt"] = 0,
+["activedamt"] = 1,
+["appliedamt"] = 1,
+["id"] = 29131,
+["uptime"] = 5,
+["targets"] = {
+},
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["tipo"] = 4,
+["nome"] = "女王安其拉",
+["spec"] = 72,
+["grupo"] = true,
+["buff_uptime_targets"] = {
+},
+["last_event"] = 0,
+["pets"] = {
+},
+["serial"] = "Player-5376-086AB4E5",
+["aID"] = "5376-086AB4E5",
+},
 },
 },
 {
@@ -843,42 +1964,19 @@ _detalhes_database = {
 ["_ActorTable"] = {
 },
 },
-["raid_roster"] = {
-},
-["tempo_start"] = 142206.493,
+["boss_hp"] = 1,
+["tempo_start"] = 145239.918,
 ["last_events_tables"] = {
 },
 ["alternate_power"] = {
 },
-["totals_grupo"] = {
-0,
-0,
-{
-0,
-[0] = 0,
-["alternatepower"] = 0,
-[3] = 0,
-[6] = 0,
-},
-{
-["buff_uptime"] = 0,
-["ress"] = 0,
-["debuff_uptime"] = 0,
-["cooldowns_defensive"] = 0,
-["interrupt"] = 0,
-["dispell"] = 0,
-["cc_break"] = 0,
-["dead"] = 0,
-},
-},
 ["bossTimers"] = {
 },
-["trinketProcs"] = {
-},
+["combat_counter"] = 259,
 ["playerTalents"] = {
 },
 ["totals"] = {
-0,
+432.010926,
 0,
 {
 0,
@@ -890,64 +1988,107 @@ _detalhes_database = {
 {
 ["buff_uptime"] = 0,
 ["ress"] = 0,
-["debuff_uptime"] = 0,
 ["cooldowns_defensive"] = 0,
-["interrupt"] = 0,
 ["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
 ["cc_break"] = 0,
 ["dead"] = 0,
 },
 ["frags_total"] = 0,
 ["voidzone_damage"] = 0,
 },
-["player_last_events"] = {
+["totals_grupo"] = {
+432.004853,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
 },
-["cleu_events"] = {
-["n"] = 1,
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
 },
 ["frags_need_refresh"] = false,
+["overall_refreshed"] = true,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "东部王国",
+["data_fim"] = "02:08:10",
+["cleu_timeline"] = {
+},
+["trinketProcs"] = {
+},
 ["aura_timeline"] = {
 },
 ["compressed_charts"] = {
 },
-["data_inicio"] = 0,
-["amountCasts"] = {
-},
+["data_inicio"] = "02:08:04",
+["end_time"] = 145485.011,
 ["mapId"] = 0,
-["instance_type"] = "none",
-["zoneName"] = "东部王国",
-["boss_hp"] = 1,
-["is_challenge"] = false,
+["raid_roster"] = {
+},
 ["frags"] = {
 },
-["data_fim"] = 0,
-["cleu_timeline"] = {
+["is_challenge"] = false,
+["segments_added"] = {
+{
+["elapsed"] = 5.967000000004191,
+["type"] = 0,
+["name"] = "奶牛",
+["clock"] = "02:08:04",
 },
-["spells_cast_timeline"] = {
+{
+["elapsed"] = 145272.545,
+["type"] = 0,
+["name"] = "未知",
+["clock"] = 0,
+},
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["overall_enemy_name"] = "-- x -- x --",
+["player_last_events"] = {
 },
 ["PhaseData"] = {
 {
 1,
 1,
 },
+["damage_section"] = {
+},
 ["heal_section"] = {
 },
 ["heal"] = {
 },
-["damage_section"] = {
-},
 ["damage"] = {
 },
 },
-["start_time"] = 0,
+["start_time"] = 145479.044,
 ["TimeData"] = {
 },
-["combat_counter"] = 253,
+["spells_cast_timeline"] = {
 },
-["on_death_menu"] = false,
+},
+["last_realversion"] = 172,
 ["arena_data_headers"] = {
 },
-["ignore_nicktag"] = false,
+["benchmark_db"] = {
+["frame"] = {
+},
+},
 ["announce_cooldowns"] = {
 ["enabled"] = false,
 ["ignored_cooldowns"] = {
@@ -964,5 +2105,6 @@ _detalhes_database = {
 ["channel"] = "SELF",
 },
 ["cached_specs"] = {
+["Player-5376-086AB4E5"] = 72,
 },
 }
