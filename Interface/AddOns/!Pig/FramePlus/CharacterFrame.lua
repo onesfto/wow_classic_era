@@ -1,0 +1,2217 @@
+local addonName, addonTable = ...;
+local gsub = _G.string.gsub
+local match = _G.string.match
+local Create=addonTable.Create
+local PIGFrame=Create.PIGFrame
+local PIGLine=Create.PIGLine
+local PIGButton=Create.PIGButton
+local PIGCheckbutton=Create.PIGCheckbutton
+local PIGFontString=Create.PIGFontString
+local PIGItemListUI=Create.PIGItemListUI
+local PIGSetFont=Create.PIGSetFont
+----
+local Data=addonTable.Data
+local InvSlot=Data.InvSlot
+local EngravingSlot=Data.EngravingSlot
+local TalentData=Data.TalentData
+local FramePlusfun=addonTable.FramePlusfun
+local Fun=addonTable.Fun
+local FasongYCqingqiu=Fun.FasongYCqingqiu
+local Update_ItemButtonZLVranse=Fun.Update_ItemButtonZLVranse
+----
+local GetItemQualityColor=GetItemQualityColor or C_Item and C_Item.GetItemQualityColor
+local GetCoinTextureString= GetCoinTextureString or  C_CurrencyInfo and C_CurrencyInfo.GetCoinTextureString
+---自身角色和观察目标信息---------------
+if not InspectTalentFrameSpentPoints then InspectTalentFrameSpentPoints = CreateFrame("Frame") end
+local XWidth, XHeight =CharacterHeadSlot:GetWidth(),CharacterHeadSlot:GetHeight()
+-------
+local function _GetUnit(laiyuan)
+	if laiyuan==PaperDollFrame then
+		return "player"
+	elseif laiyuan==InspectFrame then
+		return InspectFrame.unit
+	end
+end
+local function Update_Data_ALL(laiyuan)--刷新数据
+	local LYname
+	if laiyuan==PaperDollFrame then
+		LYname="Character"
+	elseif laiyuan==InspectFrame then
+		LYname ="Inspect"
+	end
+	if not LYname then return end
+	if laiyuan==PaperDollFrame and PIGA["FramePlus"]["Character_Durability"] then
+		for inv = 1, #InvSlot["ID"] do
+			if InvSlot["Name"][InvSlot["ID"][inv]][4] then
+				local framef=_G[LYname..InvSlot["Name"][InvSlot["ID"][inv]][3].."Slot"]
+				if not framef.naijiuV then
+					framef.naijiuV = PIGFontString(framef,{"BOTTOMRIGHT", framef, "BOTTOMRIGHT", 2, 0},nil,"OUTLINE",13)
+					framef.naijiuV:SetDrawLayer("OVERLAY", 7)
+				end
+				framef.naijiuV:SetText("");
+				local current, maximum = GetInventoryItemDurability(InvSlot["ID"][inv]);
+				if maximum then
+					local naijiubaifenbi=floor(current/maximum*100);
+					framef.naijiuV:SetText(naijiubaifenbi.."%");
+					if naijiubaifenbi>79 then
+						framef.naijiuV:SetTextColor(0,1,0, 1);
+					elseif  naijiubaifenbi>59 then
+						framef.naijiuV:SetTextColor(1,215/255,0, 1);
+					elseif  naijiubaifenbi>39 then
+						framef.naijiuV:SetTextColor(1,140/255,0, 1);
+					elseif  naijiubaifenbi>19 then
+						framef.naijiuV:SetTextColor(1,69/255,0, 1);
+					else
+						framef.naijiuV:SetTextColor(1,0,0, 1);
+					end
+				end
+			end
+		end
+	end
+	for inv = 1, #InvSlot["ID"] do
+		local framef=_G[LYname..InvSlot["Name"][InvSlot["ID"][inv]][3].."Slot"]
+		Update_ItemButtonZLVranse("C", framef, _GetUnit(laiyuan), InvSlot["ID"][inv])
+	end
+	if PIGA["FramePlus"]["Character_ItemList"] then
+		if not laiyuan.ZBLsit then
+			PIGItemListUI(laiyuan)
+		end
+		if laiyuan==PaperDollFrame then
+			laiyuan.ZBLsit:Update_Player("player")
+			laiyuan.ZBLsit:Update_ItemList("player")
+		else
+			laiyuan.ZBLsit:Update_Player(InspectFrame.unit)
+			laiyuan.ZBLsit_C:Update_Player("player")
+			laiyuan.ZBLsit:Update_ItemList(InspectFrame.unit)
+			laiyuan.ZBLsit_C:Update_ItemList("player")
+		end
+	end
+end
+local function Load_addonsFun(FrameX)
+	FrameX:HookScript("OnShow", function(self,event,arg1)
+		local nameui = InspectNameText or InspectFrameTitleText
+		local namex=nameui:GetText()
+		if namex and namex~="" then
+			if PIG_MaxTocversion(20000) then
+				FasongYCqingqiu(nameui:GetText(),4)
+			end
+			if PIG_MaxTocversion(30000,true) and PIG_MaxTocversion(40000)  then
+				FasongYCqingqiu(nameui:GetText(),3)
+			end
+		end
+		if _G[Data.LongInspectUIUIname] then
+			_G[Data.LongInspectUIUIname]:Hide()
+		end
+	end)
+	FrameX:RegisterEvent("PLAYER_EQUIPMENT_CHANGED");
+	FrameX:HookScript("OnEvent", function(self,event,arg1)
+		if not self:IsVisible() then return end
+		if event=="INSPECT_READY" then
+			if self.loadTicker then self.loadTicker:Cancel() end
+			self.loadTicker=C_Timer.NewTimer(0.2,function()
+				Update_Data_ALL(self)
+			end)
+		elseif event=="PLAYER_EQUIPMENT_CHANGED" then        
+			Update_Data_ALL(self)
+		end
+	end)
+end
+function FramePlusfun.Character_ADD()
+	PaperDollFrame:HookScript("OnShow",function(self)
+		Update_Data_ALL(self)
+	end)
+	PaperDollFrame:RegisterEvent("PLAYER_EQUIPMENT_CHANGED");
+	PaperDollFrame:HookScript("OnEvent", function(self,event,arg1)
+		if event=="PLAYER_EQUIPMENT_CHANGED" or event=="PLAYER_AVG_ITEM_LEVEL_UPDATE" then
+			if self:IsVisible() then
+				Update_Data_ALL(self)
+			end
+		end
+	end);
+	--观察	
+	Fun.IsAddOnLoaded("Blizzard_InspectUI",function()
+		Load_addonsFun(InspectFrame)
+	end)
+end
+---人物界面属性==========================
+local function Character_xiuliG()--修理费用
+	if PaperDollFrame.xiuli then return end
+	PaperDollFrame.xiuli = CreateFrame("Frame",nil,PaperDollFrame);  
+	PaperDollFrame.xiuli:SetSize(110,20);
+	if PIG_MaxTocversion(40000) then
+		PaperDollFrame.xiuli:SetPoint("BOTTOMLEFT", PaperDollFrame, "BOTTOMLEFT", 22, 88);
+	elseif PIG_MaxTocversion() then
+		if ElvUI then
+			PaperDollFrame.xiuli:SetPoint("TOPLEFT", PaperDollFrame, "TOPLEFT", 8, -42);
+		else
+			PaperDollFrame.xiuli:SetPoint("BOTTOMLEFT", PaperDollFrame, "BOTTOMLEFT", 6,10);
+		end
+	else
+		PaperDollFrame.xiuli:SetPoint("BOTTOMLEFT", PaperDollFrame, "BOTTOMLEFT", 8, 8);
+	end
+	PaperDollFrame.xiuli:SetFrameLevel(10)
+	PaperDollFrame.xiuli.ICON = PaperDollFrame.xiuli:CreateTexture(nil, "OVERLAY");
+	PaperDollFrame.xiuli.ICON:SetTexture("interface/minimap/tracking/repair.blp");
+	PaperDollFrame.xiuli.ICON:SetSize(20,20);
+	PaperDollFrame.xiuli.ICON:SetPoint("LEFT", PaperDollFrame.xiuli, "LEFT", 0, 0);
+	PaperDollFrame.xiuli.G = PIGFontString(PaperDollFrame.xiuli,{"LEFT", PaperDollFrame.xiuli.ICON, "RIGHT", 0, 0},nil,nil,13)
+	local naijiubuweiID=Data.InvSlot.Name
+	local xiuliinfo = {
+		["invnum"]=0,
+		["myTicker"]=nil,
+		["repaircost"]=0,
+		["solt"]={},
+		["xuhaoID"]=1,
+	}
+	for k,v in pairs(naijiubuweiID) do
+		if v[4] then
+			table.insert(xiuliinfo.solt,k)
+		end
+	end
+	xiuliinfo.invnum=#xiuliinfo.solt
+	local function GetInventoryrepaircost(i)
+		if not PaperDollFrame:IsVisible() then if xiuliinfo.myTicker then xiuliinfo.myTicker:Cancel() end return end
+		local solt=xiuliinfo.solt[i]
+		if PIG_MaxTocversion() then 
+			PIG_TooltipUI:ClearLines();
+			local hasItem,_,repairCost = PIG_TooltipUI:SetInventoryItem("player", solt)
+			xiuliinfo.repaircost=xiuliinfo.repaircost+repairCost
+		else
+			local dataxxx = C_TooltipInfo.GetInventoryItem("player", solt)
+			if dataxxx and dataxxx.repairCost then
+				xiuliinfo.repaircost=xiuliinfo.repaircost+dataxxx.repairCost
+			end
+		end
+		if i>=xiuliinfo.invnum then
+			if xiuliinfo.repaircost>10000 then
+				local linshiG=xiuliinfo.repaircost*0.01
+				local linshiG=floor(linshiG+0.5)
+				xiuliinfo.repaircost=linshiG*100
+			end
+			PaperDollFrame.xiuli.G:SetText(GetCoinTextureString(xiuliinfo.repaircost))
+		end
+		xiuliinfo.xuhaoID=xiuliinfo.xuhaoID+1
+	end
+	PaperDollFrame:HookScript("OnShow",function (self,event)
+		if xiuliinfo.myTicker then xiuliinfo.myTicker:Cancel() end
+		xiuliinfo.repaircost=0
+		xiuliinfo.xuhaoID=1
+		xiuliinfo.myTicker = C_Timer.NewTicker(0.01, function() GetInventoryrepaircost(xiuliinfo.xuhaoID) end, xiuliinfo.invnum)
+	end)
+	PaperDollFrame:HookScript("OnHide", function(self)
+		if xiuliinfo.myTicker then xiuliinfo.myTicker:Cancel() end
+	end);
+end
+local function Character_Mingzhong()--命中说明
+	if PIG_MaxTocversion(40000,true) then return end
+	if PaperDollFrame.MingZhong then return end
+	PaperDollFrame.MingZhong = CreateFrame("Button",nil,PaperDollFrame, "UIPanelInfoButton");  
+	PaperDollFrame.MingZhong:SetSize(16,16);
+	PaperDollFrame.MingZhong:SetPoint("BOTTOMLEFT", PaperDollFrame, "BOTTOMLEFT", 315, 89);
+	PaperDollFrame.MingZhong:SetFrameLevel(6)
+	PaperDollFrame.MingZhong.texture:SetPoint("BOTTOMRIGHT", PaperDollFrame.MingZhong, "BOTTOMRIGHT", 0, 0);
+	--物理
+	PaperDollFrame.MingZhong.Wl = PIGFrame(PaperDollFrame.MingZhong);
+	PaperDollFrame.MingZhong.Wl:PIGSetBackdrop(1);
+	PaperDollFrame.MingZhong.Wl:SetWidth(200);
+	if PIG_MaxTocversion(40000) then
+		PaperDollFrame.MingZhong.Wl:SetPoint("TOPLEFT", PaperDollFrame, "TOPRIGHT",-31,-15);
+		PaperDollFrame.MingZhong.Wl:SetPoint("BOTTOMLEFT", PaperDollFrame, "BOTTOMRIGHT",0,75);
+	else
+		PaperDollFrame.MingZhong.Wl:SetPoint("TOPLEFT", PaperDollFrame, "TOPRIGHT",1,-2);
+		PaperDollFrame.MingZhong.Wl:SetPoint("BOTTOMLEFT", PaperDollFrame, "BOTTOMRIGHT",0,3);
+	end
+	PaperDollFrame.MingZhong.Wl:Hide()
+
+	PaperDollFrame.MingZhong.Wl.title1 = PIGFontString(PaperDollFrame.MingZhong.Wl,{"TOPLEFT", PaperDollFrame.MingZhong.Wl, "TOPLEFT", 4, -6},"关于物理命中");
+	local mingzhongshuomingTXT
+	if PIG_MaxTocversion(20000) then
+		mingzhongshuomingTXT=
+		"同级:基础命中率95%(5%)\n骷髅BOSS:基础命中率92%(8%)\n"..
+		"双持惩罚:基础命中率-19%\n\n"..
+		"|cffFFD700例外情况：|r\n"..
+		"|cffFF8C00当<目标的防御等级>减去<玩家武器技能>大于10,装备或天赋上所提供的命中会被无视1%。这将导致在对抗骷髅BOSS时需要额外1%的命中，即需要9%的命中而不是8%.|r\n"..
+		"武器技能和防御等级计算公式当前级别*5；60级角色对抗骷髅BOSS情况:5*63-5*60>10\n\n"..
+		"|cffFFD700种族武器专精：|r\n"..
+		"人类的剑/双手剑/锤/双手锤与兽人的斧/双手斧武器技能提高5点，会产生效果："..
+		"会使武器技能和BOSS防御等级差值不大于10，不需要额外1%命中，再加上5点武器技能本身提供的1%命中，此时你将只需要6%命中即可。但武器技能的作用还不止于此，也会大量降低你的普攻偏斜。"
+	elseif PIG_MaxTocversion(30000) then
+		mingzhongshuomingTXT=
+		"同级:基础命中率95%(5%)\n骷髅BOSS:基础命中率91.4%(9%)\n"..
+		"双持惩罚:基础命中率减去19%\n"..
+		"|cffFFD700命中等级：|r\n"..
+		"|cffFF8C00TBC1%命中≈15.8命中等级。|r\n"..
+		"9%命中：9*15.8≈143命中等级\n"..
+		"双持职业\n需要28*15.8≈443点命中等级\n"..
+		"|cffFFD700职业差异：|r\n"..
+		"猎人，武器战以及猫德这些DPS职业都只需要9%的命中，就可以保证技能和平A全部命中\n"..
+		"盗贼/狂暴战/增强萨,天赋自带5%/5%/6%的命中，双持的时候需要23%/23%/22%的命中\n"..
+		"不过狂暴战/增强萨达到9%命中之后，暴击收益更高，只需堆到9%保证技能命中后尽量堆暴击，盗贼因为天赋回能尽量堆满命中\n"..
+		"坦克:达到9%技能全命中后优先考虑生存属性"
+	elseif PIG_MaxTocversion(40000) then
+		mingzhongshuomingTXT=
+		"|cff00FF00WLK%1命中需要≈32.8命中等级|r\n"..
+		"|cffFF8C00命中率需求:|r\n"..
+		"|cff00FF00同级:5% (8*32.8≈164命中等级)|r\n"..
+		"|cff00FF00骷髅BOSS:8% (8*32.8≈263命中等级)|r\n"..
+		"|cff00FF00双持:27% (27*32.8≈919命中等级)|r\n"..
+		"|cffFF8C00职业差异：|r\n"..
+		"|cff00FF00猎人，武器战以及猫德这些DPS职业都只需要8%的命中，就可以保证技能和平A全部命中\n"..
+		"盗贼/狂暴战/增强萨,天赋自带5%/5%/6%的命中，双持的时候需要22%/22%/21%的命中\n"..
+		"不过狂暴战/增强萨达到8%命中之后，暴击收益更高，只需堆到8%保证技能命中后尽量堆暴击，盗贼因为天赋回能尽量堆满命中\n"..
+		"坦克:达到8%技能全命中后优先考虑生存属性|r"
+	end
+	PaperDollFrame.MingZhong.Wl.title2 = PIGFontString(PaperDollFrame.MingZhong.Wl,{"TOPLEFT", PaperDollFrame.MingZhong.Wl.title1, "BOTTOMLEFT", 0, 0},mingzhongshuomingTXT,nil,13);
+	PaperDollFrame.MingZhong.Wl.title2:SetWidth(192);
+	PaperDollFrame.MingZhong.Wl.title2:SetJustifyH("LEFT");
+	local tixhsss2 = "|cffFFFF00骷髅BOSS默认高玩家3级|r\n面板统计命中不包含天赋加成"
+	PaperDollFrame.MingZhong.Wl.title3 = PIGFontString(PaperDollFrame.MingZhong.Wl,{"TOPLEFT", PaperDollFrame.MingZhong.Wl.title2, "BOTTOMLEFT", 0, -6},tixhsss2,nil,13)
+	PaperDollFrame.MingZhong.Wl.title3:SetJustifyH("LEFT");
+	--法术
+	PaperDollFrame.MingZhong.Fs = PIGFrame(PaperDollFrame.MingZhong);
+	PaperDollFrame.MingZhong.Fs:PIGSetBackdrop(1);
+	PaperDollFrame.MingZhong.Fs:SetWidth(200);
+	PaperDollFrame.MingZhong.Fs:SetPoint("TOPLEFT", PaperDollFrame.MingZhong.Wl, "TOPRIGHT",1,0);
+	PaperDollFrame.MingZhong.Fs:SetPoint("BOTTOMLEFT", PaperDollFrame.MingZhong.Wl, "BOTTOMRIGHT",0,0);
+	PaperDollFrame.MingZhong.Fs:Hide()
+	PaperDollFrame.MingZhong.Fs.title1 = PIGFontString(PaperDollFrame.MingZhong.Fs,{"TOPLEFT", PaperDollFrame.MingZhong.Fs, "TOPLEFT", 6, -6},"关于法系命中(抵抗)");
+	local FSmingzhongshuomingTXT
+	if PIG_MaxTocversion(20000) then
+		FSmingzhongshuomingTXT=
+		"|cffFF8C00注意:法术命中上限是99%|r\n同级:基础命中率96%(3%)\n骷髅BOSS:基础命中率83%(16%)\n"
+	elseif PIG_MaxTocversion(30000) then
+		FSmingzhongshuomingTXT=
+		"|cffFF8C00注意:法术命中上限是99%|r\n同级:基础命中率96%(3%)\n骷髅BOSS:基础命中率83%(16%)\n"..
+		"TBC法系命中率\n1%≈12.6法系命中等级"
+	elseif PIG_MaxTocversion(40000) then
+		FSmingzhongshuomingTXT=
+		"|cff00FF00WLK1%法系命中率≈26.2法系命中等级|r\n"..
+		"|cffFF8C00命中率需求:|r\n"..
+		"|cff00FF00同级:4% (8*32.8≈164命中等级)|r\n"..
+		"|cff00FF00骷髅BOSS:17% (17*26.2≈446命中等级)|r\n"..
+		"有德国人时需要16*26.2≈420命中等级"
+	end
+	PaperDollFrame.MingZhong.Fs.title10 = PIGFontString(PaperDollFrame.MingZhong.Fs,{"TOPLEFT", PaperDollFrame.MingZhong.Fs.title1, "BOTTOMLEFT", 0, -4},FSmingzhongshuomingTXT,nil,13);
+	PaperDollFrame.MingZhong.Fs.title10:SetWidth(192);
+	PaperDollFrame.MingZhong.Fs.title10:SetJustifyH("LEFT");
+	PaperDollFrame.MingZhong.Fs.title3 = PIGFontString(PaperDollFrame.MingZhong.Fs,{"TOPLEFT", PaperDollFrame.MingZhong.Fs.title10, "BOTTOMLEFT", 0, -10},tixhsss2,nil,13);
+	PaperDollFrame.MingZhong.Fs.title3:SetJustifyH("LEFT");
+	PaperDollFrame.MingZhong:SetScript("OnEnter", function() PaperDollFrame.MingZhong.Wl:Show() PaperDollFrame.MingZhong.Fs:Show() end );
+	PaperDollFrame.MingZhong:SetScript("OnLeave", function() PaperDollFrame.MingZhong.Wl:Hide() PaperDollFrame.MingZhong.Fs:Hide() end );
+end
+---装备管理
+local PIG_EquipmentData = {};
+local anniushu=	MAX_EQUIPMENT_SETS_PER_PLAYER
+local zhuangbeixilieID=Data.InvSlot.Name
+local NumTexCoord = {
+	{0.04,0.21,0,0.32},
+	{0.326,0.43,0,0.32},
+	{0.546,0.694,0,0.32},
+	{0.80,0.95,0,0.32},
+	{0.04,0.21,0.33,0.66},
+	{0.3,0.45,0.33,0.66},
+	{0.546,0.71,0.33,0.66},
+	{0.80,0.95,0.33,0.66},
+	{0.04,0.21,0.66,0.99},
+	{0.3,0.45,0.66,0.99},
+}
+local function Equip_Save(id)
+	local wupinshujuinfo = {}
+	for inv = 1, 19 do
+		local zhutisolt = _G["Character"..zhuangbeixilieID[inv][3].."Slot"]
+		wupinshujuinfo[inv]={zhutisolt.ignored,""}
+	end
+	for inv = 1, 19 do
+		if not wupinshujuinfo[inv][1] then
+			local itemLink = GetInventoryItemLink("player", inv)
+			if itemLink then
+				wupinshujuinfo[inv][2]=itemLink
+			end
+		end
+	end
+	if PIGA_Per["QuickBut"]["EquipList"][id] then
+		PIGA_Per["QuickBut"]["EquipList"][id][2] = wupinshujuinfo
+	else
+		PIGA_Per["QuickBut"]["EquipList"][id] = {"配装"..(id-1),wupinshujuinfo}
+	end
+	PIGErrorMsg("当前装备已保存到"..(id-1).."号配装")
+end
+local function Equip_Use(id)
+	if InCombatLockdown() then PIGErrorMsg("战斗中无法切换") return end
+	local wupinshujuinfo =PIGA_Per["QuickBut"]["EquipList"][id]
+	if wupinshujuinfo and wupinshujuinfo[2] then
+		PIG_EquipmentData.hejilist={}
+		local ItemList =wupinshujuinfo[2]
+		for k,v in pairs(ItemList) do
+			if v[1] then
+			else
+				if v[2]~="" then
+					C_Item.EquipItemByName(v[2], k)
+				else
+					local itemLink = GetInventoryItemLink("player", k)
+					if itemLink then--存在取下
+						if k==17 then--是副手
+							if ItemList[16][2] then--主手存在
+								local fffffID =C_Item.GetItemInventoryTypeByID(ItemList[16][2])
+								if fffffID~=17 then--主手类型
+									table.insert(PIG_EquipmentData.hejilist,k)
+								end
+							end
+						else
+							table.insert(PIG_EquipmentData.hejilist,k)
+						end	
+					end
+				end
+			end
+		end
+		if #PIG_EquipmentData.hejilist>0 then
+			PIG_EquipmentData.konggekaishi=0
+			PIG_EquipmentData.konggelist={}
+			for bagID=0,4 do
+				local numberOfFreeSlots, bagType = PIGGetContainerNumFreeSlots(bagID)
+				if numberOfFreeSlots>0 and bagType==0 then
+					for ff=1,PIGGetContainerNumSlots(bagID) do
+						if PIGGetContainerItemID(bagID, ff) then
+						else
+							table.insert(PIG_EquipmentData.konggelist,{bagID,ff})
+							PIG_EquipmentData.konggekaishi=PIG_EquipmentData.konggekaishi+1
+							if PIG_EquipmentData.konggekaishi==#PIG_EquipmentData.hejilist then
+								break
+							end
+						end
+					end
+				end
+				if PIG_EquipmentData.konggekaishi==#PIG_EquipmentData.hejilist then
+					break
+				end
+			end
+			for inv = 1, #PIG_EquipmentData.konggelist do
+				local isLocked2 = IsInventoryItemLocked(PIG_EquipmentData.hejilist[inv])
+				if not isLocked2 then
+					PickupInventoryItem(PIG_EquipmentData.hejilist[inv])
+					PIGPickupContainerItem(PIG_EquipmentData.konggelist[inv][1], PIG_EquipmentData.konggelist[inv][2])
+				end
+			end
+			if #PIG_EquipmentData.konggelist<#PIG_EquipmentData.hejilist then
+				PIGErrorMsg("更换"..(id-1).."号配装失败(背包剩余空间不足)")
+				return
+			end
+		end
+		PIGErrorMsg("更换"..(id-1).."号配装成功")
+		for inv = 1, 19 do
+			local zhutisolt = _G["Character"..zhuangbeixilieID[inv][3].."Slot"]
+			if ItemList[inv][1] then
+				zhutisolt.ignored=true
+			else
+				zhutisolt.ignored=nil
+			end
+			PaperDollItemSlotButton_Update(zhutisolt)
+		end
+	else
+		PIGErrorMsg((id-1).."号配装尚未保存","R")
+	end
+end
+Data.EquipmentPIG={
+	["NumTexCoord"]=NumTexCoord,
+	["Equip_Save"]=Equip_Save,
+	["Equip_Use"]=Equip_Use,
+}
+local function add_AutoEquip(ManageEquip)
+	ManageEquip:Show()
+	local CONTAINER_BAG_OFFSET= 30
+	local itemTable = itemTable or {}
+	local itemDisplayTable = {}
+	local VERTICAL_FLYOUTS = { [16] = true, [17] = true, [18] = true }
+	local PDFITEMFLYOUT_MAXITEMS = 23;
+	local PDFITEMFLYOUT_ITEMS_PER_ROW = 5;
+	local PDFITEMFLYOUT_BORDERWIDTH = 3;
+	local PDFITEM_HEIGHT = 37;
+	local PDFITEM_YOFFSET = -5;
+	local PDFITEM_WIDTH = 37;
+	local PDFITEM_XOFFSET = 4;
+	local PDFITEMFLYOUT_HEIGHT = 43;
+	local PDFITEMFLYOUT_ONESLOT_LEFT_COORDS = { 0, 0.09765625, 0.5546875, 0.77734375 }
+	local PDFITEMFLYOUT_ONESLOT_LEFTWIDTH = 25;
+	local PDFITEMFLYOUT_ONEROW_HEIGHT = 54;
+	local PDFITEMFLYOUT_ONESLOT_RIGHT_COORDS = { 0.41796875, 0.51171875, 0.5546875, 0.77734375 }
+	local PDFITEMFLYOUT_ONESLOT_RIGHTWIDTH = 24;
+	local PDFITEMFLYOUT_UNIGNORESLOT_LOCATION = 0xFFFFFFFD;
+	local PDFITEMFLYOUT_FIRST_SPECIAL_LOCATION = PDFITEMFLYOUT_UNIGNORESLOT_LOCATION
+	local PDFITEMFLYOUT_ONEROW_LEFT_COORDS = { 0, 0.16796875, 0.5546875, 0.77734375 }
+	local PDFITEMFLYOUT_ONEROW_LEFT_WIDTH = 43;
+	local PDFITEMFLYOUT_ONEROW_RIGHT_COORDS = { 0.328125, 0.51171875, 0.5546875, 0.77734375 }
+	local PDFITEMFLYOUT_ONEROW_RIGHT_WIDTH = 47;
+	local PDFITEMFLYOUT_ONEROW_CENTER_COORDS = { 0.16796875, 0.328125, 0.5546875, 0.77734375 }
+	local PDFITEMFLYOUT_ONEROW_CENTER_WIDTH = 41;
+	local PDFITEMFLYOUT_IGNORESLOT_LOCATION = 0xFFFFFFFE;
+	local PDFITEMFLYOUT_PLACEINBAGS_LOCATION = 0xFFFFFFFF;
+	local EQUIPMENTMANAGER_INVENTORYSLOTS = {};
+	local EQUIPMENTMANAGER_BAGSLOTS = {};
+	local _isAtBank = false;
+	local SLOT_LOCKED = -1;
+	local SLOT_EMPTY = -2;
+	local EQUIP_ITEM = 1;
+	local UNEQUIP_ITEM = 2;
+	local SWAP_ITEM = 3;
+	for i = KEYRING_CONTAINER, NUM_BAG_SLOTS do
+		EQUIPMENTMANAGER_BAGSLOTS[i] = {};
+	end
+	---------
+	local function _createFlyoutBG (buttonAnchor)
+		local numBGs = buttonAnchor["numBGs"];
+		numBGs = numBGs + 1;
+		local texture = buttonAnchor:CreateTexture();
+		texture:SetTexture("Interface/PaperDollInfoFrame/UI-GearManager-Flyout");
+		texture:Hide()
+		buttonAnchor["bg" .. numBGs] = texture;
+		buttonAnchor["numBGs"] = numBGs;
+		return texture;
+	end
+	local function EquipmentManager_UnpackLocation (location)
+		if ( location < 0 ) then
+			return false, false, false, 0;
+		end
+		local player = (bit.band(location, ITEM_INVENTORY_LOCATION_PLAYER) ~= 0);
+		local bank = (bit.band(location, ITEM_INVENTORY_LOCATION_BANK) ~= 0);
+		local bags = (bit.band(location, ITEM_INVENTORY_LOCATION_BAGS) ~= 0);
+		if ( player ) then
+			location = location - ITEM_INVENTORY_LOCATION_PLAYER;
+		elseif ( bank ) then
+			location = location - ITEM_INVENTORY_LOCATION_BANK;
+		end
+		if ( bags ) then
+			location = location - ITEM_INVENTORY_LOCATION_BAGS;
+			local bag = bit.rshift(location, ITEM_INVENTORY_BAG_BIT_OFFSET);
+			local slot = location - bit.lshift(bag, ITEM_INVENTORY_BAG_BIT_OFFSET);	
+			
+			if ( bank ) then
+				bag = bag + ITEM_INVENTORY_BANK_BAG_OFFSET;
+			end
+			return player, bank, bags, slot, bag
+		else
+			return player, bank, bags, location
+		end
+	end
+	local function EquipmentManager_EquipItemByLocation (location, invSlot)
+		local player, bank, bags, slot, bag = EquipmentManager_UnpackLocation(location);
+		ClearCursor();	
+		if ( not bags and slot == invSlot ) then		
+			return nil;
+		end
+		local currentItemID = GetInventoryItemID("player", invSlot);
+		local action = {};
+		action.type = (currentItemID and SWAP_ITEM) or EQUIP_ITEM;
+		action.invSlot = invSlot;
+		action.player = player;
+		action.bank = bank;
+		action.bags = bags;
+		action.slot = slot;
+		action.bag = bag;
+		return action;
+	end
+	local function EquipmentManager_UpdateFreeBagSpace ()
+		local bagSlots = EQUIPMENTMANAGER_BAGSLOTS;
+		for i = BANK_CONTAINER, NUM_BAG_SLOTS + GetNumBankSlots() do
+			local _, bagType = PIGGetContainerNumFreeSlots(i);
+			local freeSlots = C_Container.GetContainerFreeSlots(i);
+			if ( freeSlots ) then
+				if (not bagSlots[i]) then
+					bagSlots[i] = {};
+				end
+				for index, flag in next, bagSlots[i] do
+					if (flag == SLOT_EMPTY) then
+						bagSlots[i][index] = nil;
+					end
+				end
+				for index, slot in ipairs(freeSlots) do
+					if ( bagSlots[i] and not bagSlots[i][slot] and bagType == 0 ) then
+						bagSlots[i][slot] = SLOT_EMPTY;
+					end
+				end
+			else
+				bagSlots[i] = nil;
+			end
+		end
+	end
+	local function EquipmentManager_EquipContainerItem (action)
+		ClearCursor();
+		PIGPickupContainerItem(action.bag, action.slot);
+		if ( not CursorHasItem() ) then
+			return false;
+		end
+		if ( not CursorCanGoInSlot(action.invSlot) ) then
+			return false;
+		elseif ( IsInventoryItemLocked(action.invSlot) ) then
+			return false;
+		end
+		PickupInventoryItem(action.invSlot);
+		EQUIPMENTMANAGER_BAGSLOTS[action.bag][action.slot] = action.invSlot;
+		EQUIPMENTMANAGER_INVENTORYSLOTS[action.invSlot] = SLOT_LOCKED;
+		return true;
+	end
+	local function EquipmentManager_EquipInventoryItem (action)
+		ClearCursor();
+		PickupInventoryItem(action.slot);
+		if ( not CursorCanGoInSlot(action.invSlot) ) then
+			return false;
+		elseif ( IsInventoryItemLocked(action.invSlot) ) then
+			return false;
+		end
+		PickupInventoryItem(action.invSlot);
+		EQUIPMENTMANAGER_INVENTORYSLOTS[action.slot] = SLOT_LOCKED;
+		EQUIPMENTMANAGER_INVENTORYSLOTS[action.invSlot] = SLOT_LOCKED;
+		return true;
+	end
+	local function EquipmentManager_PutItemInInventory (action)
+		if ( not CursorHasItem() ) then
+			return;
+		end	
+		EquipmentManager_UpdateFreeBagSpace();
+		local bagSlots = EQUIPMENTMANAGER_BAGSLOTS;
+		local firstSlot;
+		for slot, flag in next, bagSlots[0] do
+			if ( flag == SLOT_EMPTY ) then
+				firstSlot = min(firstSlot or slot, slot);
+			end
+		end
+		if ( firstSlot ) then
+			if ( action ) then
+				action.bag = 0;
+				action.slot = firstSlot;
+			end
+			bagSlots[0][firstSlot] = SLOT_LOCKED;
+			PutItemInBackpack();
+			return true;
+		end
+		for bag = 1, NUM_BAG_SLOTS do
+			if ( bagSlots[bag] ) then
+				for slot, flag in next, bagSlots[bag] do
+					if ( flag == SLOT_EMPTY ) then
+						firstSlot = min(firstSlot or slot, slot);
+					end
+				end
+				if ( firstSlot ) then
+					bagSlots[bag][firstSlot] = SLOT_LOCKED;
+					PutItemInBag(bag+CONTAINER_BAG_OFFSET);
+					if ( action ) then
+						action.bag = bag;
+						action.slot = firstSlot;
+					end
+					return true;
+				end
+			end
+		end
+		if ( _isAtBank ) then
+			for slot, flag in next, bagSlots[BANK_CONTAINER] do
+				if ( flag == SLOT_EMPTY ) then
+					firstSlot = min(firstSlot or slot, slot);
+				end
+			end
+			if ( firstSlot ) then
+				bagSlots[BANK_CONTAINER][firstSlot] = SLOT_LOCKED;
+				PickupInventoryItem(firstSlot + BANK_CONTAINER_INVENTORY_OFFSET);
+				if ( action ) then
+					action.bag = BANK_CONTAINER;
+					action.slot = firstSlot;
+				end
+				return true;
+			else
+				for bag = NUM_BAG_SLOTS + 1, NUM_BAG_SLOTS + GetNumBankSlots() do
+					if ( bagSlots[bag] ) then
+						for slot, flag in next, bagSlots[bag] do
+							if ( flag == SLOT_EMPTY ) then
+								firstSlot = min(firstSlot or slot, slot);
+							end
+						end
+						if ( firstSlot ) then
+							bagSlots[bag][firstSlot] = SLOT_LOCKED;
+							PIGPickupContainerItem(bag, firstSlot);
+							
+							if ( action ) then
+								action.bag = bag;
+								action.slot = firstSlot;
+							end
+							return true;
+						end
+					end
+				end
+			end
+		end
+		ClearCursor();
+		UIErrorsFrame:AddMessage(ERR_EQUIPMENT_MANAGER_BAGS_FULL, 1.0, 0.1, 0.1, 1.0);
+	end
+	local function EquipmentManager_RunAction (action)
+		if ( UnitAffectingCombat("player") and not INVSLOTS_EQUIPABLE_IN_COMBAT[action.invSlot] ) then
+			return true;
+		end
+		action.run = true;
+		if ( action.type == EQUIP_ITEM or action.type == SWAP_ITEM ) then
+			if ( not action.bags ) then
+				return EquipmentManager_EquipInventoryItem(action);
+			else
+				local hasItem = action.invSlot and GetInventoryItemID("player", action.invSlot);
+				local pending = EquipmentManager_EquipContainerItem(action);
+				if ( pending and not hasItem ) then
+					EQUIPMENTMANAGER_BAGSLOTS[action.bag][action.slot] = SLOT_EMPTY;
+				end
+				return pending;
+			end
+		elseif ( action.type == UNEQUIP_ITEM ) then
+			ClearCursor();
+			if ( IsInventoryItemLocked(action.invSlot) ) then
+				return;
+			else
+				PickupInventoryItem(action.invSlot);
+				return EquipmentManager_PutItemInInventory(action);
+			end
+		end
+	end
+	local function EquipmentManager_UnequipItemInSlot (invSlot)		
+		local itemID = GetInventoryItemID("player", invSlot);
+		if ( not itemID ) then
+			return nil;
+		end
+		local action = {};
+		action.type = UNEQUIP_ITEM;
+		action.invSlot = invSlot;
+		return action;
+	end
+	hooksecurefunc("PaperDollItemSlotButton_Update", function(self)
+		if ( self.ignored and self.ignoreTexture ) then
+			self.ignoreTexture:Show();
+		elseif ( self.ignoreTexture ) then
+			self.ignoreTexture:Hide();
+		end
+	end)
+	local function PaperDollFrameItemFlyoutButton_OnClick (self)
+		if ( self.location == PDFITEMFLYOUT_IGNORESLOT_LOCATION ) then
+			local slot = PaperDollFrameItemFlyout.button;
+			C_EquipmentSet.IgnoreSlotForSave(slot:GetID());
+			slot.ignored = true;
+			PaperDollItemSlotButton_Update(slot);
+			PIG_EquipmentData.PaperDollFrameItemFlyout_Show(slot);
+		elseif ( self.location == PDFITEMFLYOUT_UNIGNORESLOT_LOCATION ) then
+			local slot = PaperDollFrameItemFlyout.button;
+			C_EquipmentSet.UnignoreSlotForSave(slot:GetID());
+			slot.ignored = nil;
+			PaperDollItemSlotButton_Update(slot);
+			PIG_EquipmentData.PaperDollFrameItemFlyout_Show(slot);
+		elseif ( self.location == PDFITEMFLYOUT_PLACEINBAGS_LOCATION ) then
+			if ( UnitAffectingCombat("player") and not INVSLOTS_EQUIPABLE_IN_COMBAT[PaperDollFrameItemFlyout.button:GetID()] ) then
+				UIErrorsFrame:AddMessage(ERR_CLIENT_LOCKED_OUT, 1.0, 0.1, 0.1, 1.0);
+				return;
+			end
+			local action = EquipmentManager_UnequipItemInSlot(PaperDollFrameItemFlyout.button:GetID());
+			EquipmentManager_RunAction(action);
+		elseif ( self.location ) then
+			if ( UnitAffectingCombat("player") and not INVSLOTS_EQUIPABLE_IN_COMBAT[PaperDollFrameItemFlyout.button:GetID()] ) then
+				UIErrorsFrame:AddMessage(ERR_CLIENT_LOCKED_OUT, 1.0, 0.1, 0.1, 1.0);
+				return;
+			end
+			local action = EquipmentManager_EquipItemByLocation(self.location, self.id);
+			EquipmentManager_RunAction(action);
+		end
+		if ( PaperDollFrameItemFlyout.button.popoutButton.flyoutLocked ) then
+			PaperDollFrameItemFlyout_Hide();
+		end
+		PaperDollFrameItemFlyout:Hide()
+	end
+	local function PaperDollFrameItemFlyout_CreateButton()
+		local buttons = PaperDollFrameItemFlyout.buttons;
+		local buttonAnchor = PaperDollFrameItemFlyoutButtons;	
+		local numButtons = #buttons;
+		local button = CreateFrame("BUTTON", "PaperDollFrameItemFlyoutButtons" .. numButtons + 1, buttonAnchor, "ItemButtonTemplate");
+		button.cooldown = CreateFrame("Cooldown", nil, button, "CooldownFrameTemplate");
+		button:HookScript("OnEnter", function(self)
+			if self.UpdateTooltip then self.UpdateTooltip(); end
+			PaperDollFrameItemFlyout.FlyoutButShow=nil 
+		end);
+		button:HookScript("OnLeave", function()
+			GameTooltip:Hide();ResetCursor();
+			PaperDollFrameItemFlyout.FlyoutButShow=true
+			PaperDollFrameItemFlyout.showTimer=0.2
+		end);
+		button:HookScript("OnClick", PaperDollFrameItemFlyoutButton_OnClick);
+		local pos = numButtons/PDFITEMFLYOUT_ITEMS_PER_ROW;
+		if ( math.floor(pos) == pos ) then
+			button:SetPoint("TOPLEFT", buttonAnchor, "TOPLEFT", PDFITEMFLYOUT_BORDERWIDTH, -PDFITEMFLYOUT_BORDERWIDTH - (PDFITEM_HEIGHT - PDFITEM_YOFFSET)* pos);
+		else
+			button:SetPoint("TOPLEFT", buttons[numButtons], "TOPRIGHT", PDFITEM_XOFFSET, 0);
+		end
+		tinsert(buttons, button);
+		return button
+	end
+	local function EquipmentManager_GetItemInfoByLocation (location)
+		local player, bank, bags, slot, bag = EquipmentManager_UnpackLocation(location);
+		if ( not player and not bank and not bags ) then -- Invalid location
+			return;
+		end
+		local id, name, textureName, count, durability, maxDurability, invType, locked, start, duration, enable, setTooltip, gem1, gem2, gem3, _;
+		if ( not bags ) then -- and (player or bank) 
+			id = GetInventoryItemID("player", slot);
+			name, _, _, _, _, _, _, _, invType, textureName = GetItemInfo(id);
+			if ( textureName ) then
+				count = GetInventoryItemCount("player", slot);
+				durability, maxDurability = GetInventoryItemDurability(slot);
+				start, duration, enable = GetInventoryItemCooldown("player", slot);
+			end
+			setTooltip = function () GameTooltip:SetInventoryItem("player", slot) end;
+			gem1, gem2, gem3 = GetInventoryItemGems(slot);
+		else -- bags
+			id = PIGGetContainerItemID(bag, slot);
+			name, _, _, _, _, _, _, _, invType = GetItemInfo(id);
+			local info = C_Container.GetContainerItemInfo(bag, slot);
+			local itemID, itemLink, icon, stackCount, quality, noValue, lootable, locked=PIGGetContainerItemInfo(bag, slot)
+			textureName = icon;
+			count = stackCount;
+			start, duration, enable = PIGGetContainerItemCooldown(bag, slot);
+			durability, maxDurability = C_Container.GetContainerItemDurability(bag, slot);
+			setTooltip = function () GameTooltip:SetBagItem(bag, slot); end;
+			gem1, gem2, gem3 = C_Container.GetContainerItemGems(bag, slot);
+		end
+		return id, name, textureName, count, durability, maxDurability, invType, locked, start, duration, enable, setTooltip, gem1, gem2, gem3;
+	end
+	local function PaperDollFrameItemFlyout_DisplaySpecialButton (button, paperDollItemSlot)
+		local location = button.location;
+		if ( location == PDFITEMFLYOUT_IGNORESLOT_LOCATION ) then
+			SetItemButtonTexture(button, "Interface\\PaperDollInfoFrame\\UI-GearManager-LeaveItem-Opaque");
+			SetItemButtonCount(button, nil);
+			button.UpdateTooltip = 
+				function () 
+					GameTooltip:SetOwner(PaperDollFrameItemFlyoutButtons, "ANCHOR_RIGHT", 6, -PaperDollFrameItemFlyoutButtons:GetHeight() - 6);
+					GameTooltip:SetText(EQUIPMENT_MANAGER_IGNORE_SLOT, 1.0, 1.0, 1.0); 
+					if ( SHOW_NEWBIE_TIPS == "1" ) then
+						GameTooltip:AddLine(NEWBIE_TOOLTIP_EQUIPMENT_MANAGER_IGNORE_SLOT, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+					end
+					GameTooltip:Show();
+				end;
+			SetItemButtonTextureVertexColor(button, 1.0, 1.0, 1.0);
+			SetItemButtonNormalTextureVertexColor(button, 1.0, 1.0, 1.0);
+		elseif ( location == PDFITEMFLYOUT_UNIGNORESLOT_LOCATION ) then
+			SetItemButtonTexture(button, "Interface\\PaperDollInfoFrame\\UI-GearManager-Undo");
+			SetItemButtonCount(button, nil);
+			button.UpdateTooltip = 
+				function () 
+					GameTooltip:SetOwner(PaperDollFrameItemFlyoutButtons, "ANCHOR_RIGHT", 6, -PaperDollFrameItemFlyoutButtons:GetHeight() - 6); 
+					GameTooltip:SetText(EQUIPMENT_MANAGER_UNIGNORE_SLOT, 1.0, 1.0, 1.0); 
+					if ( SHOW_NEWBIE_TIPS == "1" ) then
+						GameTooltip:AddLine(NEWBIE_TOOLTIP_EQUIPMENT_MANAGER_UNIGNORE_SLOT, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+					end
+					GameTooltip:Show();
+				end;
+			SetItemButtonTextureVertexColor(button, 1.0, 1.0, 1.0);
+			SetItemButtonNormalTextureVertexColor(button, 1.0, 1.0, 1.0);		
+		elseif ( location == PDFITEMFLYOUT_PLACEINBAGS_LOCATION ) then
+			SetItemButtonTexture(button, "Interface\\PaperDollInfoFrame\\UI-GearManager-ItemIntoBag");
+			SetItemButtonCount(button, nil);
+			button.UpdateTooltip = 
+				function () 
+					GameTooltip:SetOwner(PaperDollFrameItemFlyoutButtons, "ANCHOR_RIGHT", 6, -PaperDollFrameItemFlyoutButtons:GetHeight() - 6);
+					GameTooltip:SetText(EQUIPMENT_MANAGER_PLACE_IN_BAGS, 1.0, 1.0, 1.0); 
+					if ( SHOW_NEWBIE_TIPS == "1" ) then
+						GameTooltip:AddLine(NEWBIE_TOOLTIP_EQUIPMENT_MANAGER_PLACE_IN_BAGS, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
+					end
+					GameTooltip:Show();
+				end;
+			SetItemButtonTextureVertexColor(button, 1.0, 1.0, 1.0);
+			SetItemButtonNormalTextureVertexColor(button, 1.0, 1.0, 1.0);	
+		end
+		if ( button:IsMouseOver() and button.UpdateTooltip ) then
+			button.UpdateTooltip();
+		end
+	end
+	local function PaperDollFrameItemFlyout_DisplayButton (button, paperDollItemSlot)
+		local location = button.location;
+		if ( not location ) then
+			return;
+		end
+		if ( location >= PDFITEMFLYOUT_FIRST_SPECIAL_LOCATION ) then
+			PaperDollFrameItemFlyout_DisplaySpecialButton(button, paperDollItemSlot);
+			return;
+		end
+		local id, name, textureName, count, durability, maxDurability, invType, locked, start, duration, enable, setTooltip = EquipmentManager_GetItemInfoByLocation(location);
+		local broken = ( maxDurability and durability == 0 );
+		if ( textureName ) then
+			SetItemButtonTexture(button, textureName);
+			SetItemButtonCount(button, count);
+			if ( broken ) then
+				SetItemButtonTextureVertexColor(button, 0.9, 0, 0);
+				SetItemButtonNormalTextureVertexColor(button, 0.9, 0, 0);
+			else
+				SetItemButtonTextureVertexColor(button, 1.0, 1.0, 1.0);
+				SetItemButtonNormalTextureVertexColor(button, 1.0, 1.0, 1.0);
+			end
+			-- CooldownFrame_SetTimer(button.cooldown, start, duration, enable);
+			button.UpdateTooltip = function () GameTooltip:SetOwner(PaperDollFrameItemFlyoutButtons, "ANCHOR_RIGHT", 6, -PaperDollFrameItemFlyoutButtons:GetHeight() - 6); setTooltip(); end;
+			if ( button:IsMouseOver() ) then
+				button.UpdateTooltip();
+			end
+		else
+			textureName = paperDollItemSlot.backgroundTextureName;
+			if ( paperDollItemSlot.checkRelic and UnitHasRelicSlot("player") ) then
+				textureName = "Interface\\Paperdoll\\UI-PaperDoll-Slot-Relic.blp";
+			end
+			SetItemButtonTexture(button, textureName);
+			SetItemButtonCount(button, 0);
+			SetItemButtonTextureVertexColor(button, 1.0, 1.0, 1.0);
+			SetItemButtonNormalTextureVertexColor(button, 1.0, 1.0, 1.0);
+			button.cooldown:Hide();
+			button.UpdateTooltip = nil;
+		end
+	end
+	function PIG_EquipmentData.PaperDollFrameItemFlyout_Show(paperDollItemSlot)
+		local id = paperDollItemSlot:GetID();
+		local flyout = PaperDollFrameItemFlyout;
+		local buttons = flyout.buttons;
+		local buttonAnchor = flyout.buttonFrame;
+		if ( flyout.button and flyout.button ~= paperDollItemSlot ) then
+			local popoutButton = flyout.button.popoutButton;
+			if ( popoutButton.flyoutLocked ) then
+				popoutButton.flyoutLocked = false;
+				PaperDollFrameItemPopoutButton_SetReversed(popoutButton, false);
+			end
+		end
+		for k in next, itemDisplayTable do
+			itemDisplayTable[k] = nil;
+		end
+		for k in next, itemTable do
+			itemTable[k] = nil;
+		end
+		GetInventoryItemsForSlot(id, itemTable);
+		for location, itemID in next, itemTable do
+			if ( location - id == ITEM_INVENTORY_LOCATION_PLAYER ) then -- Remove the currently equipped item from the list
+				itemTable[location] = nil;
+			else
+				tinsert(itemDisplayTable, location);
+			end
+		end
+		table.sort(itemDisplayTable); -- Sort by location. This ends up as: inventory, backpack, bags, bank, and bank bags.
+		local numItems = #itemDisplayTable;
+		for i = PDFITEMFLYOUT_MAXITEMS + 1, numItems do
+			itemDisplayTable[i] = nil;
+		end
+		numItems = min(numItems, PDFITEMFLYOUT_MAXITEMS);
+		if ( not paperDollItemSlot.ignored ) then
+			tinsert(itemDisplayTable, 1, PDFITEMFLYOUT_IGNORESLOT_LOCATION);
+		else
+			tinsert(itemDisplayTable, 1, PDFITEMFLYOUT_UNIGNORESLOT_LOCATION);
+		end
+		numItems = numItems + 1;
+		if ( paperDollItemSlot.hasItem ) then
+			tinsert(itemDisplayTable, 1, PDFITEMFLYOUT_PLACEINBAGS_LOCATION);
+			numItems = numItems + 1;
+		end
+		while #buttons < numItems do -- Create any buttons we need.
+			PaperDollFrameItemFlyout_CreateButton();
+		end
+		if ( numItems == 0 ) then
+			flyout:Hide();
+			return;
+		end
+		for i, button in ipairs(buttons) do
+			if ( i <= numItems ) then
+				button.id = id;
+				button.location = itemDisplayTable[i];
+				button:Show();
+				PaperDollFrameItemFlyout_DisplayButton(button, paperDollItemSlot);
+			else
+				button:Hide();
+			end
+		end
+		flyout:ClearAllPoints();
+		flyout:SetFrameLevel(paperDollItemSlot:GetFrameLevel() - 1);
+		flyout.button = paperDollItemSlot;
+		flyout:SetPoint("TOPLEFT", paperDollItemSlot, "TOPLEFT", -PDFITEMFLYOUT_BORDERWIDTH, PDFITEMFLYOUT_BORDERWIDTH);
+		local horizontalItems = min(numItems, PDFITEMFLYOUT_ITEMS_PER_ROW);
+		if ( paperDollItemSlot.verticalFlyout ) then
+			buttonAnchor:SetPoint("TOPLEFT", paperDollItemSlot.popoutButton, "BOTTOMLEFT", -3, 0);
+		else
+			buttonAnchor:SetPoint("TOPLEFT", paperDollItemSlot.popoutButton, "TOPRIGHT", 0, 3);
+		end
+		buttonAnchor:SetWidth((horizontalItems * PDFITEM_WIDTH) + ((horizontalItems - 1) * PDFITEM_XOFFSET) + PDFITEMFLYOUT_BORDERWIDTH);
+		buttonAnchor:SetHeight(PDFITEMFLYOUT_HEIGHT + (math.floor((numItems - 1)/PDFITEMFLYOUT_ITEMS_PER_ROW) * (PDFITEM_HEIGHT - PDFITEM_YOFFSET)));
+		if ( flyout.numItems ~= numItems ) then
+			local texturesUsed = 0;
+			if ( numItems == 1 ) then
+				local bgTex, lastBGTex;
+				bgTex = buttonAnchor.bg1;
+				bgTex:ClearAllPoints();
+				bgTex:SetTexCoord(unpack(PDFITEMFLYOUT_ONESLOT_LEFT_COORDS));
+				bgTex:SetWidth(PDFITEMFLYOUT_ONESLOT_LEFTWIDTH);
+				bgTex:SetHeight(PDFITEMFLYOUT_ONEROW_HEIGHT);
+				bgTex:SetPoint("TOPLEFT", -5, 4);
+				bgTex:Show();
+				texturesUsed = texturesUsed + 1;
+				lastBGTex = bgTex;
+				
+				bgTex = buttonAnchor.bg2 or _createFlyoutBG(buttonAnchor);
+				bgTex:ClearAllPoints();
+				bgTex:SetTexCoord(unpack(PDFITEMFLYOUT_ONESLOT_RIGHT_COORDS));
+				bgTex:SetWidth(PDFITEMFLYOUT_ONESLOT_RIGHTWIDTH);
+				bgTex:SetHeight(PDFITEMFLYOUT_ONEROW_HEIGHT);
+				bgTex:SetPoint("TOPLEFT", lastBGTex, "TOPRIGHT");
+				bgTex:Show();
+				texturesUsed = texturesUsed + 1;
+				lastBGTex = bgTex;
+			elseif ( numItems <= PDFITEMFLYOUT_ITEMS_PER_ROW ) then
+				local bgTex, lastBGTex;
+				bgTex = buttonAnchor.bg1;
+				bgTex:ClearAllPoints();
+				bgTex:SetTexCoord(unpack(PDFITEMFLYOUT_ONEROW_LEFT_COORDS));
+				bgTex:SetWidth(PDFITEMFLYOUT_ONEROW_LEFT_WIDTH);
+				bgTex:SetHeight(PDFITEMFLYOUT_ONEROW_HEIGHT);
+				bgTex:SetPoint("TOPLEFT", -5, 4);
+				bgTex:Show();
+				texturesUsed = texturesUsed + 1;
+				lastBGTex = bgTex;
+				for i = texturesUsed + 1, numItems - 1 do
+					bgTex = buttonAnchor["bg"..i] or _createFlyoutBG(buttonAnchor);
+					bgTex:ClearAllPoints();
+					bgTex:SetTexCoord(unpack(PDFITEMFLYOUT_ONEROW_CENTER_COORDS));
+					bgTex:SetWidth(PDFITEMFLYOUT_ONEROW_CENTER_WIDTH);
+					bgTex:SetHeight(PDFITEMFLYOUT_ONEROW_HEIGHT);
+					bgTex:SetPoint("TOPLEFT", lastBGTex, "TOPRIGHT");
+					bgTex:Show();
+					texturesUsed = texturesUsed + 1;
+					lastBGTex = bgTex;
+				end
+				bgTex = buttonAnchor["bg"..numItems] or _createFlyoutBG(buttonAnchor);
+				bgTex:ClearAllPoints();
+				bgTex:SetTexCoord(unpack(PDFITEMFLYOUT_ONEROW_RIGHT_COORDS));
+				bgTex:SetWidth(PDFITEMFLYOUT_ONEROW_RIGHT_WIDTH);
+				bgTex:SetHeight(PDFITEMFLYOUT_ONEROW_HEIGHT);
+				bgTex:SetPoint("TOPLEFT", lastBGTex, "TOPRIGHT");
+				bgTex:Show();
+				texturesUsed = texturesUsed + 1;
+			elseif ( numItems > PDFITEMFLYOUT_ITEMS_PER_ROW ) then
+				local numRows = math.ceil(numItems/PDFITEMFLYOUT_ITEMS_PER_ROW);
+				local bgTex, lastBGTex;
+				bgTex = buttonAnchor.bg1;
+				bgTex:ClearAllPoints();
+				bgTex:SetTexCoord(unpack(PDFITEMFLYOUT_MULTIROW_TOP_COORDS));
+				bgTex:SetWidth(PDFITEMFLYOUT_MULTIROW_WIDTH);
+				bgTex:SetHeight(PDFITEMFLYOUT_MULTIROW_TOP_HEIGHT);
+				bgTex:SetPoint("TOPLEFT", -5, 4);
+				bgTex:Show();
+				texturesUsed = texturesUsed + 1;
+				lastBGTex = bgTex;
+				for i = 2, numRows - 1 do -- Middle rows
+					bgTex = buttonAnchor["bg"..i] or _createFlyoutBG(buttonAnchor);
+					bgTex:ClearAllPoints();
+					bgTex:SetTexCoord(unpack(PDFITEMFLYOUT_MULTIROW_MIDDLE_COORDS));
+					bgTex:SetWidth(PDFITEMFLYOUT_MULTIROW_WIDTH);
+					bgTex:SetHeight(PDFITEMFLYOUT_MULTIROW_MIDDLE_HEIGHT);
+					bgTex:SetPoint("TOPLEFT", lastBGTex, "BOTTOMLEFT");
+					bgTex:Show();
+					texturesUsed = texturesUsed + 1;
+					lastBGTex = bgTex;
+				end
+				bgTex = buttonAnchor["bg"..numRows] or _createFlyoutBG(buttonAnchor);
+				bgTex:ClearAllPoints();
+				bgTex:SetTexCoord(unpack(PDFITEMFLYOUT_MULTIROW_BOTTOM_COORDS));
+				bgTex:SetWidth(PDFITEMFLYOUT_MULTIROW_WIDTH);
+				bgTex:SetHeight(PDFITEMFLYOUT_MULTIROW_BOTTOM_HEIGHT);
+				bgTex:SetPoint("TOPLEFT", lastBGTex, "BOTTOMLEFT");
+				bgTex:Show();
+				texturesUsed = texturesUsed + 1;
+				lastBGTex = bgTex;
+			end
+			for i = texturesUsed + 1, buttonAnchor["numBGs"] do
+				buttonAnchor["bg" .. i]:Hide();
+			end
+			flyout.numItems = numItems;
+		end
+		flyout:Show();
+	end
+	local function PIG_popoutButton_OnEnter(self)
+		if not GearManagerToggleButton.F:IsShown() then return end
+		self.popoutButton:GetNormalTexture():SetDesaturated(false)
+		PIG_EquipmentData.PaperDollFrameItemFlyout_Show(self);
+		PaperDollFrameItemFlyout.FlyoutButShow=nil
+	end
+	local function PIG_popoutButton_OnLeave(self)
+		self.popoutButton:GetNormalTexture():SetDesaturated(true)
+		PaperDollFrameItemFlyout.FlyoutButShow=true
+		PaperDollFrameItemFlyout.showTimer=0.2
+	end
+	local function PIG_popoutButton_OnUpdate(self, elapsed)
+		if not self.FlyoutButShow then return end
+		if self.FlyoutButShow then
+			if self.showTimer<= 0 then
+				self:Hide();
+				self.FlyoutButShow = nil;
+			else
+				self.showTimer = self.showTimer - elapsed;	
+			end
+		end
+	end
+	local function PIG_popoutButton_OnLoad(self)
+		local slotName = self:GetName();
+		local id, textureName, checkRelic = GetInventorySlotInfo(strsub(slotName,10));
+		self:SetID(id);
+		self.verticalFlyout = VERTICAL_FLYOUTS[id];
+		local popoutButton = self.popoutButton;
+		if ( popoutButton ) then
+			if ( self.verticalFlyout ) then
+				popoutButton:SetSize(38,16);
+				popoutButton:GetNormalTexture():SetTexCoord(0.15625, 0.84375, 0.5, 0);
+				popoutButton:GetHighlightTexture():SetTexCoord(0.15625, 0.84375, 1, 0.5);
+				popoutButton:ClearAllPoints();
+				popoutButton:SetPoint("TOP", self, "BOTTOM", 0, 4);
+			else
+				popoutButton:SetSize(16,38);
+				popoutButton:GetNormalTexture():SetTexCoord(0.15625, 0.5, 0.84375, 0.5, 0.15625, 0, 0.84375, 0);
+				popoutButton:GetHighlightTexture():SetTexCoord(0.15625, 1, 0.84375, 1, 0.15625, 0.5, 0.84375, 0.5);
+				popoutButton:ClearAllPoints();
+				popoutButton:SetPoint("LEFT", self, "RIGHT", -6, 0);
+			end
+		end
+	end
+	for inv = 1, 19 do
+		local zhutisolt = _G["Character"..zhuangbeixilieID[inv][3].."Slot"]
+		zhutisolt:HookScript("OnEnter", PIG_popoutButton_OnEnter);
+		zhutisolt:HookScript("OnLeave", PIG_popoutButton_OnLeave);
+		zhutisolt.popoutButton = CreateFrame("Button",nil,zhutisolt);
+		zhutisolt.popoutButton:SetNormalTexture("Interface/PaperDollInfoFrame/UI-GearManager-FlyoutButton")
+		zhutisolt.popoutButton:SetHighlightTexture("Interface/PaperDollInfoFrame/UI-GearManager-FlyoutButton");
+		zhutisolt.popoutButton:GetNormalTexture():SetDesaturated(true)
+		zhutisolt.popoutButton:Hide()
+		zhutisolt.popoutButton:HookScript("OnEnter", function() PIG_popoutButton_OnEnter(zhutisolt) end);
+		zhutisolt.popoutButton:HookScript("OnLeave", function() PIG_popoutButton_OnLeave(zhutisolt) end);
+		zhutisolt.ignoreTexture = zhutisolt:CreateTexture(nil,"OVERLAY");
+		zhutisolt.ignoreTexture:SetTexture("Interface/PaperDollInfoFrame/UI-GearManager-LeaveItem-Transparent");
+		zhutisolt.ignoreTexture:SetSize(40,40);
+		zhutisolt.ignoreTexture:SetPoint("CENTER", 0, 0);
+		zhutisolt.ignoreTexture:Hide()
+		PIG_popoutButton_OnLoad(zhutisolt)
+	end
+	local flyout = CreateFrame("Frame", "PaperDollFrameItemFlyout", PaperDollFrame);
+	flyout:SetSize(43,43);
+	flyout:Hide()
+	flyout:SetFrameStrata("HIGH")
+	flyout.buttons = {};
+	flyout:HookScript("OnUpdate", PIG_popoutButton_OnUpdate);
+	flyout:HookScript("OnHide", function(self)
+		PaperDollFrameItemFlyout.FlyoutButShow=true
+		PaperDollFrameItemFlyout.showTimer=0.1
+    end)
+	flyout.Highlight = flyout:CreateTexture(nil,"ARTWORK");
+	flyout.Highlight:SetTexture("Interface/PaperDollInfoFrame/UI-GearManager-ItemButton-Highlight");
+	flyout.Highlight:SetSize(50,50);
+	flyout.Highlight:SetPoint("LEFT", -4, 0);
+	flyout.Highlight:SetTexCoord(0,0.78125,0,0.78125)
+	
+	local parentButtons = CreateFrame("Frame", "PaperDollFrameItemFlyoutButtons", flyout);
+	parentButtons:SetPoint("TOPLEFT", flyout, "TOPRIGHT", 0, 0);
+	parentButtons.bg1 = parentButtons:CreateTexture(nil,"BACKGROUND");
+	parentButtons.bg1:SetTexture("Interface/PaperDollInfoFrame/UI-GearManager-Flyout");
+	parentButtons.bg1:SetPoint("LEFT", -5, 4);
+	parentButtons.numBGs = 1;
+	parentButtons:HookScript("OnEnter", function() 
+		PaperDollFrameItemFlyout.FlyoutButShow=nil 
+	end);
+	parentButtons:HookScript("OnLeave", function() 
+		PaperDollFrameItemFlyout.FlyoutButShow=true
+		PaperDollFrameItemFlyout.showTimer=0.2
+	end);
+	flyout.buttonFrame=parentButtons
+	--
+	GearManagerToggleButton=ManageEquip
+	PaperDollFrame:HookScript("OnHide", function()
+		ManageEquip.F:Hide()
+    end)
+	ManageEquip.F.EquipBut = PIGButton(ManageEquip.F,nil,nil,nil,nil,nil,nil,nil,0);
+	ManageEquip.F.EquipBut:SetSize(80,24);
+	ManageEquip.F.EquipBut:SetPoint("TOPLEFT", ManageEquip.F, "TOPLEFT", 10, -16);
+	ManageEquip.F.EquipBut:SetText(EQUIPSET_EQUIP);
+	ManageEquip.F.EquipBut:Disable();
+	ManageEquip.F.EquipBut:HookScript("OnClick", function (self)
+		Equip_Use(ManageEquip.xuanzhongID)
+	end);
+	ManageEquip.F.SaveBut = PIGButton(ManageEquip.F,nil,nil,nil,nil,nil,nil,nil,0);
+	ManageEquip.F.SaveBut:SetSize(80,24);
+	ManageEquip.F.SaveBut:SetPoint("LEFT", ManageEquip.F.EquipBut, "RIGHT", 10, 0);
+	ManageEquip.F.SaveBut:SetText(SAVE);
+	ManageEquip.F.SaveBut:Disable();
+	ManageEquip.F.SaveBut:HookScript("OnClick", function (self)
+		Equip_Save(ManageEquip.xuanzhongID)
+		ManageEquip.Update_hang()
+	end);
+	--装备
+	local list_WW,hang_Height = 176,31
+	local function save_Equipdata(self)
+		local shangjiF=self:GetParent()
+		local eeerrr=shangjiF.E:GetText()
+		if eeerrr=="" then
+			PIGA_Per["QuickBut"]["EquipList"][shangjiF:GetID()]=nil
+		else
+			if PIGA_Per["QuickBut"]["EquipList"][shangjiF:GetID()] then
+				PIGA_Per["QuickBut"]["EquipList"][shangjiF:GetID()][1]=eeerrr
+			else
+				PIGA_Per["QuickBut"]["EquipList"][shangjiF:GetID()]={eeerrr,nil}
+			end
+		end
+ 		ManageEquip.Update_hang()
+	end
+	ManageEquip.F.EquipF = PIGFrame(ManageEquip.F);
+	ManageEquip.F.EquipF:SetSize(list_WW,anniushu*hang_Height);
+	ManageEquip.F.EquipF:SetPoint("BOTTOMLEFT", ManageEquip.F, "BOTTOMLEFT", 7, 2);
+	ManageEquip.F.EquipF.ButList={}
+	for id = anniushu,1,-1  do
+		local list = CreateFrame("Button",nil,ManageEquip.F.EquipF, "TruncatedButtonTemplate",id);
+		ManageEquip.F.EquipF.ButList[id]=list 
+		list:SetSize(list_WW, hang_Height);
+		if id==anniushu then
+			list:SetPoint("BOTTOM",ManageEquip.F.EquipF,"BOTTOM",0,0);
+		else
+			list:SetPoint("BOTTOM",ManageEquip.F.EquipF.ButList[id+1],"TOP",0,0);
+		end
+		PIGLine(list,"TOP",nil,nil,nil,{0.3,0.3,0.3,0.3})
+		list.highlight = list:CreateTexture(nil, "BORDER");
+		list.highlight:SetTexture("interface/buttons/ui-listbox-highlight2.blp");
+		list.highlight:SetBlendMode("ADD")
+		list.highlight:SetPoint("LEFT", list, "LEFT", 2,0);
+		list.highlight:SetSize(list_WW-3,hang_Height);
+		list.highlight:SetAlpha(0.4);
+		list.highlight:Hide();
+		list.xuanzhong = list:CreateTexture(nil, "BORDER");
+		list.xuanzhong:SetTexture("interface/buttons/ui-listbox-highlight.blp");
+		list.xuanzhong:SetPoint("LEFT", list, "LEFT", 2,0);
+		list.xuanzhong:SetSize(list_WW-3,hang_Height);
+		list.xuanzhong:SetAlpha(0.9);
+		list.xuanzhong:Hide();
+		list:HookScript("OnEnter", function (self)
+			if not self.xuanzhong:IsShown() then
+				self.highlight:Show();
+			end
+		end);
+		list:HookScript("OnLeave", function (self)
+			self.highlight:Hide();
+		end);
+		list:HookScript("OnClick", function (self)
+			ManageEquip.F.EquipBut:Enable();
+			ManageEquip.F.SaveBut:Enable();
+			ManageEquip.xuanzhongID=self:GetID();
+			ManageEquip.Update_hang()
+		end);
+		list.xuhao = list:CreateTexture();
+		list.xuhao:SetSize(hang_Height-3,hang_Height-3);
+		list.xuhao:SetPoint("LEFT", list, "LEFT", 0,0);
+		list.xuhao:SetTexture("interface/timer/bigtimernumbers.blp");
+		list.xuhao:SetTexCoord(NumTexCoord[id][1],NumTexCoord[id][2],NumTexCoord[id][3],NumTexCoord[id][4]);
+		list.name = PIGFontString(list,{"LEFT",list.xuhao,"RIGHT",6,0},EMPTY,"OUTLINE");
+		list.name:SetTextColor(1, 0.843, 0, 1);
+		list.name:SetSize(list_WW-hang_Height,hang_Height);
+		list.name:SetJustifyH("LEFT")
+
+		list.E = CreateFrame("EditBox", nil, list, "InputBoxInstructionsTemplate");
+		list.E:SetSize(list_WW-60,hang_Height);
+		list.E:SetPoint("LEFT",list.xuhao,"RIGHT",6,0);
+		PIGSetFont(list.E, 14, "OUTLINE")
+		list.E:SetMaxLetters(8)
+		list.E:Hide()
+		list.E:HookScript("OnEscapePressed", function(self) 
+			ManageEquip.Update_hang()
+		end);
+		list.E:HookScript("OnEnterPressed", function(self)
+	 		save_Equipdata(self)
+		end);
+		list.B = CreateFrame("Button",nil,list, "TruncatedButtonTemplate");
+		list.B:SetHighlightTexture("interface/buttons/ui-common-mousehilight.blp");
+		list.B:SetSize(hang_Height-10,hang_Height-4);
+		list.B:SetPoint("RIGHT", list, "RIGHT", 0,0);
+		list.B.Texture = list.B:CreateTexture();
+		list.B.Texture:SetTexture("interface/buttons/ui-guildbutton-publicnote-up.blp");
+		list.B.Texture:SetPoint("CENTER");
+		list.B.Texture:SetSize(hang_Height-12,hang_Height-10);
+		list.B:HookScript("OnMouseDown", function (self)
+			self.Texture:SetPoint("CENTER",-1.5,-1.5);
+		end);
+		list.B:HookScript("OnMouseUp", function (self)
+			self.Texture:SetPoint("CENTER");
+		end);
+		list.B:HookScript("OnClick", function (self)
+			ManageEquip.Update_hang()
+			local shangjiF=self:GetParent()
+			shangjiF.name:Hide()
+			shangjiF.B:Hide()
+			shangjiF.E:Show()
+			shangjiF.Q:Show()
+			if shangjiF.name:GetText()==EMPTY then
+				shangjiF.E:SetText("");
+			else
+				shangjiF.E:SetText(shangjiF.name:GetText());
+			end
+		end);
+		list.Q = CreateFrame("Button",nil,list, "TruncatedButtonTemplate");
+		list.Q:SetHighlightTexture("interface/buttons/ui-common-mousehilight.blp");
+		list.Q:SetSize(hang_Height-10,hang_Height-4);
+		list.Q:SetPoint("RIGHT", list, "RIGHT", 0,0);
+		list.Q:Hide();
+		list.Q.Texture = list.Q:CreateTexture();
+		list.Q.Texture:SetTexture("interface/raidframe/readycheck-ready.blp");
+		list.Q.Texture:SetPoint("CENTER");
+		list.Q.Texture:SetSize(hang_Height-11,hang_Height-11);
+		list.Q:HookScript("OnMouseDown", function (self)
+			self.Texture:SetPoint("CENTER",-1.5,-1.5);
+		end);
+		list.Q:HookScript("OnMouseUp", function (self)
+			self.Texture:SetPoint("CENTER");
+		end);
+		list.Q:HookScript("OnClick", function (self)
+			save_Equipdata(self)
+		end);
+	end
+	ManageEquip.F.EquipF:HookScript("OnShow", function(self)
+		for inv = 1, 19 do
+			local zhutisolt = _G["Character"..zhuangbeixilieID[inv][3].."Slot"]
+			zhutisolt.popoutButton:Show()
+		end
+		ManageEquip.Update_hang()
+	end)
+	ManageEquip.F.EquipF:HookScript("OnHide", function(self)
+		for inv = 1, 19 do
+			local zhutisolt = _G["Character"..zhuangbeixilieID[inv][3].."Slot"]
+			zhutisolt.popoutButton:Hide()
+			zhutisolt.ignoreTexture:Hide()
+			zhutisolt.ignored = nil;
+		end
+		flyout:Hide()
+	end)
+	function ManageEquip.Update_hang()
+		if not ManageEquip.F:IsVisible() then return end
+		for id = 1, anniushu do
+			local hang = ManageEquip.F.EquipF.ButList[id]
+			hang.E:Hide()
+			hang.Q:Hide()
+			hang.B:Show()
+			hang.name:Show()
+			hang.name:SetTextColor(0.8, 0.8, 0.8, 0.8);
+			hang.name:SetText(EMPTY);
+			local hangitem = PIGA_Per["QuickBut"]["EquipList"][id]
+			if hangitem then
+				if hangitem[1] and hangitem[2] then
+					hang.name:SetText(hangitem[1]);
+					hang.name:SetTextColor(1, 1, 1, 1);
+				end	
+			end
+			if ManageEquip.xuanzhongID==id then
+				hang.xuanzhong:Show()
+			else
+				hang.xuanzhong:Hide()
+			end
+		end
+	end
+end
+function FramePlusfun.Character_Shuxing()
+	if not PIGA["FramePlus"]["Character_Shuxing"] then return end
+	if PIG_MaxTocversion(40000) then
+		if PaperDollFrame.pigBGF then return end
+		local CharacterFW = {384,570,0}
+		PaperDollFrame:ClearAllPoints();
+		PaperDollFrame:SetPoint("TOPLEFT", CharacterFrame,"TOPLEFT", 0, 0);
+		PaperDollFrame:SetPoint("BOTTOMLEFT", CharacterFrame,"BOTTOMLEFT", 0, 0);
+		PaperDollFrame:SetWidth(CharacterFW[2])
+		--处理系统
+		local wllist = {PaperDollFrame:GetRegions()}
+		for k,v in pairs(wllist) do
+			if not v:GetName() then v:Hide() end
+		end
+		---重设背景材质
+		PaperDollFrame.pigBGF = CreateFrame("Frame",nil,PaperDollFrame)
+		PaperDollFrame.pigBGF:SetFrameLevel(1)
+		PaperDollFrame.pigBGF:SetSize(CharacterFW[2]-33,439);
+		PaperDollFrame.pigBGF:SetPoint("TOPLEFT",PaperDollFrame,"TOPLEFT",1,-3);
+		if ElvUI or NDui then
+			PaperDollFrame.InsetL=PIGFrame(PaperDollFrame)
+			CharacterModelFrame.InsetR=PIGFrame(CharacterModelFrame)
+			if NDui then 
+				PaperDollFrame.InsetRBG=PIGFrame(PaperDollFrame)
+				PaperDollFrame.InsetRBG:PIGSetBackdrop(0.6)
+				PaperDollFrame.InsetRBG:SetSize(CharacterFW[2]-382,424.3);
+				PaperDollFrame.InsetRBG:SetPoint("TOPRIGHT",PaperDollFrame,"TOPRIGHT",-34,-15);
+			end
+			PaperDollFrame.InsetR=PIGFrame(PaperDollFrame)
+		else
+			Create.CharacterBG(PaperDollFrame.pigBGF)
+			PaperDollFrame.InsetL = CreateFrame("Frame",nil,PaperDollFrame,"InsetFrameTemplate")
+			CharacterModelFrame.InsetR = CreateFrame("Frame",nil,CharacterModelFrame,"InsetFrameTemplate")	
+			PaperDollFrame.InsetR = CreateFrame("Frame",nil,PaperDollFrame,"InsetFrameTemplate")		
+		end
+		PaperDollFrame.InsetL:SetSize(328,365);
+		PaperDollFrame.InsetL:SetPoint("TOPLEFT",PaperDollFrame,"TOPLEFT",18,-68);
+		CharacterModelFrame.InsetR:SetFrameLevel(CharacterModelFrame:GetFrameLevel())
+		CharacterModelFrame.InsetR:SetPoint("TOPLEFT",CharacterModelFrame,"TOPLEFT",-6,7);
+		CharacterModelFrame.InsetR:SetPoint("BOTTOMRIGHT",CharacterModelFrame,"BOTTOMRIGHT",6,0);
+		CharacterModelFrame:SetHeight(319);
+		PaperDollFrame.InsetR:SetSize(CharacterFW[2]-384,365);
+		PaperDollFrame.InsetR:SetPoint("TOPRIGHT",PaperDollFrame,"TOPRIGHT",-36,-68);
+		PaperDollFrame.InsetR.TabList={}
+		--创建TAB
+		local iconlist={
+			["C"]={nil,{0.1, 0.9, 0.12, 0.92}},
+			["T"]={514608,{0.01562500, 0.53125000, 0.32421875, 0.46093750}},
+			["E"]={514608,{0.07562500, 0.50125000, 0.47875000, 0.60546875}},
+			["R"]={134419,{0.06,0.94,0.07,0.94}},
+		}
+		local UIffWW=PaperDollFrame.InsetR:GetWidth()
+		local function add_SidebarTab(ly)
+			CharacterFW[3]=CharacterFW[3]+1
+			local TabBut = CreateFrame("Button",nil,PaperDollFrame.InsetR,nil,CharacterFW[3]);
+			TabBut.ly=ly
+			PaperDollFrame.InsetR.TabList[CharacterFW[3]]=TabBut
+			TabBut:SetSize(28,28);
+			if CharacterFW[3]==1 then
+				TabBut:SetPoint("BOTTOMLEFT",PaperDollFrame.InsetR,"TOPLEFT",20,-2);
+			else
+				TabBut:SetPoint("LEFT",PaperDollFrame.InsetR.TabList[CharacterFW[3]-1],"RIGHT",10,0);
+			end
+			TabBut.TabBg = TabBut:CreateTexture(nil, "BACKGROUND");
+			TabBut.TabBg:SetTexture("Interface/PaperDollInfoFrame/PaperDollSidebarTabs");
+			TabBut.TabBg:SetPoint("TOPLEFT", -12, 9);
+			TabBut.TabBg:SetPoint("BOTTOMRIGHT", 8.6, -2);
+			TabBut.TabBg:SetTexCoord(0.01562500,0.79687500,0.61328125,0.78125000)
+			TabBut.Hider = TabBut:CreateTexture(nil, "OVERLAY");
+			TabBut.Hider:SetTexture("Interface/PaperDollInfoFrame/PaperDollSidebarTabs");
+			TabBut.Hider:SetSize(34,19);
+			TabBut.Hider:SetPoint("BOTTOM", 0, 0);
+			TabBut.Hider:SetTexCoord(0.01562500,0.54687500,0.11328125,0.18750000)
+			TabBut.Icon = TabBut:CreateTexture(nil, "ARTWORK");
+			TabBut.Icon:SetPoint("TOPLEFT", 2, -2);
+			TabBut.Icon:SetPoint("BOTTOMRIGHT", -2, 1);
+			if iconlist[ly][1] then
+				TabBut.Icon:SetTexture(iconlist[ly][1]);
+			end
+			if iconlist[ly][2] then
+				TabBut.Icon:SetTexCoord(unpack(iconlist[ly][2]))
+			end
+			TabBut.Highlight = TabBut:CreateTexture(nil, "HIGHLIGHT");
+			TabBut.Highlight:SetTexture("Interface/PaperDollInfoFrame/PaperDollSidebarTabs");
+			TabBut.Highlight:SetPoint("TOPLEFT", 0, 0);
+			TabBut.Highlight:SetPoint("BOTTOMRIGHT", 0, 0);
+			TabBut.Highlight:SetTexCoord(0.01562500,0.50000000,0.19531250,0.31640625)
+			TabBut:HookScript("OnClick", function(self)
+				PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_OFF);
+				PaperDollFrame.InsetR:SetSidebarTab(self:GetID())
+			end)
+			TabBut.F = CreateFrame("Frame",nil,TabBut)
+			TabBut.F:SetAllPoints(PaperDollFrame.InsetR)
+			TabBut.F:Hide()
+			function TabBut:Show_UI() TabBut.F:Show() end
+			function TabBut:Hide_UI() TabBut.F:Hide() end
+			return TabBut
+		end
+		function PaperDollFrame.InsetR:SetSidebarTab(tabid)
+			for _,tabx in pairs(self.TabList) do
+				tabx.Hider:Show();
+				tabx.Highlight:Show();
+				tabx.TabBg:SetTexCoord(0.01562500, 0.79687500, 0.61328125, 0.78125000);
+				tabx.TabBg:SetDesaturated(true)
+				tabx.Icon:SetDesaturated(true)
+				tabx:Hide_UI()
+			end
+			self.TabList[tabid].Hider:Hide();
+			self.TabList[tabid].Highlight:Hide();
+			self.TabList[tabid].TabBg:SetTexCoord(0.01562500, 0.79687500, 0.78906250, 0.95703125);
+			self.TabList[tabid].TabBg:SetDesaturated(false)
+			self.TabList[tabid].Icon:SetDesaturated(false)
+			self.TabList[tabid]:Show_UI()
+		end
+
+		--1个人属性================
+		local shuxingF = add_SidebarTab("C").F
+		local topJU,hangH,biaotiH =-2,20,28
+		if NDui or ElvUI then
+			topJU=-6
+		end
+		shuxingF.InsetRScroll = CreateFrame("ScrollFrame",nil,shuxingF, "UIPanelScrollFrameTemplate"); 
+		shuxingF.InsetRScroll:SetPoint("TOPLEFT",shuxingF,"TOPLEFT",0,-4);
+		shuxingF.InsetRScroll:SetSize(UIffWW-15,359);
+		shuxingF.InsetRScroll.ScrollBar:SetScale(0.8)
+		shuxingF.InsetRScroll.ScrollBar:SetPoint("TOPLEFT", shuxingF.InsetRScroll,"TOPRIGHT",0, -14);
+		shuxingF.InsetRScroll.ScrollBar:SetPoint("BOTTOMLEFT", shuxingF.InsetRScroll,"BOTTOMRIGHT",0, 16);
+		if NDui then
+			local B = unpack(NDui)
+			B.ReskinScroll(shuxingF.InsetRScroll.ScrollBar)
+		elseif ElvUI then
+			local E= unpack(ElvUI)
+			local S = E:GetModule('Skins')
+			S:HandleScrollBar(shuxingF.InsetRScroll.ScrollBar)
+		end
+		shuxingF.fuji = CreateFrame("Frame", nil, shuxingF)
+		shuxingF.fuji:SetWidth(UIffWW-12)
+		shuxingF.fuji:SetHeight(30) 
+		shuxingF.InsetRScroll:SetScrollChild(shuxingF.fuji)
+		shuxingF.fuji.CategoryList={}
+		--api
+		local function add_biaoti(CF,Text)
+			local biaoti
+			if NDui or ElvUI then
+				biaoti = PIGFrame(CF)
+				biaoti:PIGSetBackdrop(0.2,0.8)
+				biaoti.Title = PIGFontString(biaoti,{"CENTER", biaoti, "CENTER", 0, 0},Text)
+				biaoti.Title:SetTextColor(1, 1, 1, 1)
+			else
+				biaoti = CreateFrame("Frame",nil,CF,"CharacterStatFrameCategoryTemplate")
+				biaoti.Title:SetText(Text)
+				biaoti.Background:ClearAllPoints();
+				biaoti.Background:SetPoint("TOPLEFT",biaoti,"TOPLEFT", 2, 4);
+				biaoti.Background:SetPoint("BOTTOMRIGHT",biaoti,"BOTTOMRIGHT", -2, -4);
+			end
+			biaoti:SetHeight(biaotiH)
+			biaoti:SetPoint("TOPLEFT",CF,"TOPLEFT", 0, 0);
+			biaoti:SetPoint("TOPRIGHT",CF,"TOPRIGHT", 0, 0);
+			return biaoti
+		end
+		local function add_biaotiBox(Text,Point)
+			local CF = PIGFrame(shuxingF.fuji,Point)
+			CF.biaoti = add_biaoti(CF,Text)
+			CF.newHeight=biaotiH
+			CF.index=0
+			CF.Butlist={}
+			CF:SetWidth(UIffWW-16)
+			CF:SetHeight(CF.newHeight)
+			return CF
+		end
+		local function add_hangBG(hang)
+			hang.Background = hang:CreateTexture(nil, "BACKGROUND");
+			hang.Background:SetAtlas("UI-Character-Info-ItemLevel-Bounce");
+			hang.Background:SetAllPoints(hang)
+			hang.Background:SetAlpha(0.6)
+		end
+		local function add_hang(CF,nameid,level,hide)
+			local hang = CreateFrame("Frame","CategoryName"..nameid,CF,"StatFrameTemplate")
+			if not hide then
+				if level then
+					hang:SetHeight(hangH+6)
+					add_hangBG(hang)
+					CF.newHeight=CF.newHeight+hangH+6
+					hang.Label=PIGFontString(hang,{"CENTER",0,0},nil,nil,17)		
+				else
+					hang:SetHeight(hangH)
+					local label = getglobal("CategoryName"..nameid.."Label");
+					local text = getglobal("CategoryName"..nameid.."StatText");
+					PIGSetFont(label, 13.4)
+					CF.newHeight=CF.newHeight+hangH
+				end
+				hang:SetWidth(UIffWW-40)
+				hang:SetPoint("TOP",CF,"TOP", 0, -(CF.index*hangH)-biaotiH);
+				hang.tooltip = tooltip
+				CF.index=CF.index+1
+				if CF.index % 2 == 0 then
+				    add_hangBG(hang)
+				end
+				CF.Butlist[CF.index]=hang
+				CF:SetHeight(CF.newHeight)
+			end
+			return hang
+		end
+		--装等
+		shuxingF.fuji.CategoryList[0]=add_biaotiBox(STAT_AVERAGE_ITEM_LEVEL,{"TOP",shuxingF.fuji,"TOP", 0, topJU})
+		add_hang(shuxingF.fuji.CategoryList[0],01,STAT_AVERAGE_ITEM_LEVEL_TOOLTIP)
+		--属性
+		CharacterAttributesFrame:ClearAllPoints();
+		local PLAYERSTAT_DROPDOWN_OPTIONS=PLAYERSTAT_DROPDOWN_OPTIONS or {
+			"PLAYERSTAT_BASE_STATS",
+			"PLAYERSTAT_MELEE_COMBAT",
+			"PLAYERSTAT_RANGED_COMBAT",
+			"PLAYERSTAT_SPELL_COMBAT",
+			"PLAYERSTAT_DEFENSES",
+		};
+		for i=1, #PLAYERSTAT_DROPDOWN_OPTIONS do
+			local text = getglobal(PLAYERSTAT_DROPDOWN_OPTIONS[i]);
+			shuxingF.fuji.CategoryList[i]=add_biaotiBox(text,{"TOP",shuxingF.fuji.CategoryList[i-1],"BOTTOM", 0, -2})
+			for ii=1,6 do
+				local namex=i..ii
+				if PIG_MaxTocversion(20000) then
+					if i==2 then
+						if ii==1 then
+							namex=namex.."DamageFrame"
+						elseif ii==3 then
+							namex=namex.."AttackPowerFrame"
+						elseif ii==4 then
+							namex=namex.."AttackFrame"
+						end
+					elseif i==3 then
+						if ii==1 then
+							namex=namex.."RangedDamageFrame"
+						elseif ii==3 then
+							namex=namex.."RangedAttackPowerFrame"
+						elseif ii==4 then
+							namex=namex.."RangedAttackFrame"
+						end
+					elseif i==5 then
+						if ii==2 then
+							namex=namex.."DefenseFrame"
+						end
+					end
+				end
+				if PLAYERSTAT_DROPDOWN_OPTIONS[i] == "PLAYERSTAT_RANGED_COMBAT" and ii==6  or PLAYERSTAT_DROPDOWN_OPTIONS[i] == "PLAYERSTAT_BASE_STATS" and ii==6 then
+					add_hang(shuxingF.fuji.CategoryList[i],namex,nil,true)
+				else
+					add_hang(shuxingF.fuji.CategoryList[i],namex)
+				end
+			end
+		end
+		---------
+		local function _Round(num)    
+		    local mult = 10^(2);
+		    return math.floor(num * mult + 0.5) / mult;
+		end
+		local function PaperDollFrame_SetStat(statFrame, statIndex)
+			local label = getglobal(statFrame:GetName().."Label");
+			local text = getglobal(statFrame:GetName().."StatText");
+			local stat;
+			local effectiveStat;
+			local posBuff;
+			local negBuff;
+			stat, effectiveStat, posBuff, negBuff = UnitStat("player", statIndex);
+			local statName = getglobal("SPELL_STAT"..statIndex.."_NAME");
+			label:SetText(statName..":");
+			local tooltipText = HIGHLIGHT_FONT_COLOR_CODE.._G["SPELL_STAT"..statIndex.."_NAME"].." ";
+			local temp, classFileName = UnitClass("player");
+			local classStatText = _G[strupper(classFileName).."_"..statFrame.stat.."_".."TOOLTIP"];
+			if ( not classStatText ) then
+				classStatText = _G["DEFAULT".."_"..statFrame.stat.."_".."TOOLTIP"];
+			end
+			if ( ( posBuff == 0 ) and ( negBuff == 0 ) ) then
+				text:SetText(effectiveStat);
+				statFrame.tooltip = tooltipText..effectiveStat..FONT_COLOR_CODE_CLOSE;
+				statFrame.tooltip2 = classStatText;
+			else 
+				tooltipText = tooltipText..effectiveStat;
+				if ( posBuff > 0 or negBuff < 0 ) then
+					tooltipText = tooltipText.." ("..(stat - posBuff - negBuff)..FONT_COLOR_CODE_CLOSE;
+				end
+				if ( posBuff > 0 ) then
+					tooltipText = tooltipText..FONT_COLOR_CODE_CLOSE..GREEN_FONT_COLOR_CODE.."+"..posBuff..FONT_COLOR_CODE_CLOSE;
+				end
+				if ( negBuff < 0 ) then
+					tooltipText = tooltipText..RED_FONT_COLOR_CODE.." "..negBuff..FONT_COLOR_CODE_CLOSE;
+				end
+				if ( posBuff > 0 or negBuff < 0 ) then
+					tooltipText = tooltipText..HIGHLIGHT_FONT_COLOR_CODE..")"..FONT_COLOR_CODE_CLOSE;
+				end
+				statFrame.tooltip = tooltipText;
+				statFrame.tooltip2= classStatText;
+				if ( negBuff < 0 ) then
+					text:SetText(RED_FONT_COLOR_CODE..effectiveStat..FONT_COLOR_CODE_CLOSE);
+				else
+					text:SetText(GREEN_FONT_COLOR_CODE..effectiveStat..FONT_COLOR_CODE_CLOSE);
+				end
+			end
+		end
+		local function PaperDollFrame_SetAttack(statFrame, statIndex, label)
+			local statName = statFrame:GetName()
+			local labelUI = getglobal(statName.."Label");
+			local textUI = getglobal(statName.."StatText");
+			labelUI:SetText(label)
+			local CatName = "CategoryName2"
+			if statIndex==1 then
+				PaperDollFrame_SetDamage("player", CatName..statIndex);
+				statFrame:SetScript("OnEnter", CharacterDamageFrame_OnEnter);
+			elseif statIndex==2 then
+				local speed, offhandSpeed = UnitAttackSpeed("player");
+				if offhandSpeed then
+					textUI:SetText(_Round(speed).."/".._Round(offhandSpeed))
+				else
+					textUI:SetText(_Round(speed))
+				end
+				statFrame:SetScript("OnEnter", function(self)
+					GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+					GameTooltip:SetText(INVTYPE_WEAPONMAINHAND, HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+					GameTooltip:AddDoubleLine(ATTACK_SPEED_COLON, format("%.2F", speed), NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+					if ( offhandSpeed ) then
+						GameTooltip:AddLine(" ");
+						GameTooltip:AddLine(INVTYPE_WEAPONOFFHAND, HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+						GameTooltip:AddDoubleLine(ATTACK_SPEED_COLON, format("%.2F", offhandSpeed), NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+					end
+					GameTooltip:Show();
+				end)
+			elseif statIndex==3 then
+				PaperDollFrame_SetAttackPower("player", "CategoryName23")
+			elseif statIndex==4 then
+				PaperDollFrame_SetAttackBothHands("player", "CategoryName24")
+				local HitModifierV=GetHitModifier()
+				textUI:SetText(HitModifierV.."%("..textUI:GetText()..")")
+			elseif statIndex==5 then
+				local CritChance=_Round(GetCritChance())
+				textUI:SetText(CritChance.."%")
+				statFrame.tooltip=ITEM_MOD_CRIT_MELEE_RATING_SHORT
+				statFrame.tooltip2=format(CHANCE_TO_CRIT, CritChance);
+			elseif statIndex==6 then
+				local expertise, offhandExpertise = GetExpertise();
+				textUI:SetText(expertise)
+				statFrame.tooltip=STAT_EXPERTISE
+				statFrame.tooltip2=format(CR_EXPERTISE_TOOLTIP, expertise,"",expertise);
+			end
+		end
+		local function PaperDollFrame_SetAttackRanged(statFrame, statIndex, label)
+			local statName = statFrame:GetName()
+			local labelUI = getglobal(statName.."Label");
+			local textUI = getglobal(statName.."StatText");
+			labelUI:SetText(label)
+			local CatName = "CategoryName3"
+			if statIndex==1 then
+				PaperDollFrame_SetRangedDamage("player", CatName..statIndex);
+				statFrame:SetScript("OnEnter", CharacterRangedDamageFrame_OnEnter);
+			elseif statIndex==2 then
+				local rangedAttackSpeed, minDamage, maxDamage, physicalBonusPos, physicalBonusNeg, percent = UnitRangedDamage("player");
+				textUI:SetText(_Round(rangedAttackSpeed))
+				statFrame:SetScript("OnEnter", function(self)
+					GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+					GameTooltip:SetText(INVTYPE_RANGED, HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+					GameTooltip:AddDoubleLine(ATTACK_SPEED_COLON, format("%.2F", rangedAttackSpeed), NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+					GameTooltip:Show();
+				end)
+			elseif statIndex==3 then
+				PaperDollFrame_SetRangedAttackPower("player", "CategoryName33")
+			elseif statIndex==4 then
+				PaperDollFrame_SetRangedAttack("player", "CategoryName34")
+				local HitModifierV=GetCombatRatingBonus(2)
+				textUI:SetText(HitModifierV.."%("..textUI:GetText()..")")
+			elseif statIndex==5 then
+				local rangedCrit = _Round(GetRangedCritChance())
+				textUI:SetText(rangedCrit.."%")
+				statFrame.tooltip=ITEM_MOD_CRIT_RANGED_RATING_SHORT
+				statFrame.tooltip2=format(CHANCE_TO_CRIT, rangedCrit);
+			elseif statIndex==6 then
+
+			end
+		end
+		local function PaperDollFrame_SetSpell(statFrame, statIndex, label, tooltip)
+			local labelUI = getglobal(statFrame:GetName().."Label");
+			local textUI = getglobal(statFrame:GetName().."StatText");
+			labelUI:SetText(label)
+			statFrame.tooltip=tooltip
+			if statIndex==1 then
+				local holySchool = 2
+			    local minCrit = GetSpellBonusDamage(holySchool);
+				local spellTishi=RESISTANCE_TYPE1..STAT_SPELLDAMAGE..": ".._Round(minCrit)
+				for i=(holySchool+1), 7 do
+					local spellCrit = GetSpellBonusDamage(i);
+					spellTishi=spellTishi.."\n".._G["RESISTANCE_TYPE"..(i-1)]..STAT_SPELLDAMAGE..": ".._Round(spellCrit)
+					minCrit = max(minCrit, spellCrit);
+				end
+				textUI:SetText(minCrit)
+				statFrame.tooltip2=spellTishi
+			elseif statIndex==2 then	
+				local SpellBonusHealingV=GetSpellBonusHealing()
+				textUI:SetText(_Round(SpellBonusHealingV))
+				statFrame.tooltip2=STAT_SPELLHEALING..": ".._Round(SpellBonusHealingV)
+			elseif statIndex==3 then
+				local SpellHitModifierV=GetSpellHitModifier() or 0.0001
+				if PIG_MaxTocversion(20000,true) then
+					SpellHitModifierV=GetSpellHitModifier()/7
+				end
+				textUI:SetText(SpellHitModifierV.."%")
+				statFrame.tooltip2=format(CR_HIT_SPELL_TOOLTIP, UnitLevel("player"),SpellHitModifierV);
+			elseif statIndex==4 then
+				local holySchool = 2
+			    local minCrit = GetSpellCritChance(holySchool);
+				local spellTishi=RESISTANCE_TYPE1..CRIT_CHANCE..": ".._Round(minCrit)
+				for i=(holySchool+1), 7 do
+					local spellCrit = GetSpellCritChance(i);
+					spellTishi=spellTishi.."\n".._G["RESISTANCE_TYPE"..(i-1)]..CRIT_CHANCE..": ".._Round(spellCrit)
+					minCrit = max(minCrit, spellCrit);
+				end
+				textUI:SetText(_Round(minCrit).."%")
+				statFrame.tooltip2=spellTishi
+			elseif statIndex==5 then
+				textUI:SetText(0)
+			elseif statIndex==6 then
+				local powerType, powerToken = UnitPowerType("player");
+				if (powerToken == "ENERGY") then
+					local basePowerRegen, castingPowerRegen = GetPowerRegen()
+					textUI:SetText(_Round(basePowerRegen*2).."/2s")
+					statFrame.tooltip2 = STAT_ENERGY_REGEN.._Round(basePowerRegen*2).."/2s";
+				else
+					local base, casting = GetManaRegen()--精神2秒回蓝
+					textUI:SetText(_Round(base*2).."/2s")
+					statFrame.tooltip2=ITEM_MOD_MANA_REGENERATION_SHORT.._Round(casting*2).."/2s\n"..BINDING_NAME_STOPCASTING.."5s"..ITEM_MOD_MANA_REGENERATION_SHORT.._Round(base*2).."/2s"
+				end
+			end
+		end
+		local function PaperDollFrame_SetDefenses(statFrame, statIndex, label, tooltip)
+			local statName = statFrame:GetName()
+			local labelUI = getglobal(statName.."Label");
+			local textUI = getglobal(statName.."StatText");
+			labelUI:SetText(label)
+			statFrame.tooltip=tooltip
+			local CatName = "CategoryName3"
+			if statIndex==2 then
+				local base, modifier = UnitDefense("player");
+				local posBuff = 0;
+				local negBuff = 0;
+				if ( modifier > 0 ) then
+					posBuff = modifier;
+				elseif ( modifier < 0 ) then
+					negBuff = modifier;
+				end
+				PaperDollFormatStat(DEFENSE, base, posBuff, negBuff, statFrame, textUI);
+				local defensePercent = 0.04 * ((base + modifier)-(UnitLevel("player")*5));
+				defensePercent = max(defensePercent, 0);
+				statFrame.tooltip2 = format(DEFAULT_STATDEFENSE_TOOLTIP, base, posBuff, defensePercent, defensePercent);
+			elseif statIndex==3 then
+				local ChanceV = _Round(GetDodgeChance())
+				textUI:SetText(ChanceV.."%")
+				statFrame.tooltip2=format(CR_DODGE_BASE_STAT_TOOLTIP,ChanceV)
+			elseif statIndex==4 then
+				local ChanceV = _Round(GetParryChance())
+				textUI:SetText(ChanceV.."%")
+				statFrame.tooltip2=format(CR_PARRY_BASE_STAT_TOOLTIP,ChanceV)
+			elseif statIndex==5 then
+				local ChanceV = _Round(GetBlockChance())
+				textUI:SetText(ChanceV.."%")
+				statFrame.tooltip2=format(CHANCE_TO_BLOCK,ChanceV)
+			elseif statIndex==6 then
+				local ChanceV = _Round(GetShieldBlock())
+				textUI:SetText(ChanceV)
+				statFrame.tooltip =format(statFrame.tooltip,ChanceV)
+				statFrame.tooltip2 = format(CR_BLOCK_TOOLTIP, GetCombatRating(5), GetCombatRatingBonus(5), GetShieldBlock());
+			end	
+		end
+		local PaperDollFrame_SetArmor=PaperDollFrame_SetArmor
+		if PIG_MaxTocversion(20000) then
+			PaperDollFrame_SetArmor= function(statFrame)
+				local base, effectiveArmor, _armor, posBuff, negBuff = UnitArmor("player");
+				local totalBufs = posBuff + negBuff;
+				local label = getglobal(statFrame:GetName().."Label");
+				label:SetText(STAT_ARMOR..":")
+				local text = getglobal(statFrame:GetName().."StatText");
+				PaperDollFormatStat(ARMOR, base, posBuff, negBuff, statFrame, text);
+				local playerLevel = UnitLevel("player");
+				local armorReduction = PaperDollFrame_GetArmorReduction(effectiveArmor, playerLevel);
+				statFrame.tooltip2 = format(ARMOR_TOOLTIP, playerLevel, armorReduction);
+			end
+		end
+		local UpdatePaperdollStats=UpdatePaperdollStats or function(name,index,id)
+			local stat1 = shuxingF.fuji.CategoryList[id].Butlist[1]
+			local stat2 = shuxingF.fuji.CategoryList[id].Butlist[2]
+			local stat3 = shuxingF.fuji.CategoryList[id].Butlist[3]
+			local stat4 = shuxingF.fuji.CategoryList[id].Butlist[4]
+			local stat5 = shuxingF.fuji.CategoryList[id].Butlist[5]
+			local stat6 = shuxingF.fuji.CategoryList[id].Butlist[6]
+			if ( index == "PLAYERSTAT_BASE_STATS" ) then
+				stat1.stat = "STRENGTH";
+				stat2.stat = "AGILITY";
+				stat3.stat = "STAMINA";
+				stat4.stat = "INTELLECT";
+				stat5.stat = "SPIRIT";
+				PaperDollFrame_SetStat(stat1, 1);
+				PaperDollFrame_SetStat(stat2, 2);
+				PaperDollFrame_SetStat(stat3, 3);
+				PaperDollFrame_SetStat(stat4, 4);
+				PaperDollFrame_SetStat(stat5, 5);
+			elseif ( index == "PLAYERSTAT_MELEE_COMBAT" ) then
+				PaperDollFrame_SetAttack(stat1, 1, DAMAGE_COLON);
+				PaperDollFrame_SetAttack(stat2, 2, SPEED..":");
+				PaperDollFrame_SetAttack(stat3, 3, ATTACK_POWER_COLON);
+				PaperDollFrame_SetAttack(stat4, 4, STAT_HIT_CHANCE..":");
+				PaperDollFrame_SetAttack(stat5, 5, CRIT_CHANCE..":");
+				PaperDollFrame_SetAttack(stat6, 6, STAT_EXPERTISE..":");
+			elseif ( index == "PLAYERSTAT_RANGED_COMBAT" ) then
+				PaperDollFrame_SetAttackRanged(stat1, 1, DAMAGE_COLON);
+				PaperDollFrame_SetAttackRanged(stat2, 2, SPEED..":");
+				PaperDollFrame_SetAttackRanged(stat3, 3, ATTACK_POWER_COLON);
+				PaperDollFrame_SetAttackRanged(stat4, 4, STAT_HIT_CHANCE..":");
+				PaperDollFrame_SetAttackRanged(stat5, 5, CRIT_CHANCE..":");
+			elseif ( index == "PLAYERSTAT_SPELL_COMBAT" ) then
+				PaperDollFrame_SetSpell(stat1,1,BONUS_DAMAGE..":",STAT_SPELLDAMAGE_TOOLTIP);
+				PaperDollFrame_SetSpell(stat2,2,BONUS_HEALING..":",STAT_SPELLHEALING_TOOLTIP);
+				PaperDollFrame_SetSpell(stat3,3,STAT_HIT_CHANCE..":",ITEM_MOD_HIT_SPELL_RATING_SHORT);
+				PaperDollFrame_SetSpell(stat4,4,CRIT_CHANCE..":",ITEM_MOD_CRIT_SPELL_RATING_SHORT);
+				PaperDollFrame_SetSpell(stat5,5,SPELL_HASTE..":",HIGHLIGHT_FONT_COLOR_CODE .. SPELL_HASTE .. FONT_COLOR_CODE_CLOSE);
+				PaperDollFrame_SetSpell(stat6,6,ITEM_MOD_MANA_REGENERATION_SHORT..":",ITEM_MOD_MANA_REGENERATION_SHORT);
+			elseif ( index == "PLAYERSTAT_DEFENSES" ) then
+				PaperDollFrame_SetArmor(stat1);
+				PaperDollFrame_SetDefenses(stat2,2,PLAYERSTAT_DEFENSES,STAT_SPELLHEALING_TOOLTIP);
+				PaperDollFrame_SetDefenses(stat3,3,DODGE_CHANCE..":",DODGE_CHANCE);
+				PaperDollFrame_SetDefenses(stat4,4,PARRY_CHANCE..":",PARRY_CHANCE);
+				PaperDollFrame_SetDefenses(stat5,5,BLOCK_CHANCE..":",BLOCK_CHANCE);
+				PaperDollFrame_SetDefenses(stat6,6,ITEM_MOD_BLOCK_VALUE_SHORT..":",STAT_BLOCK_TOOLTIP);
+			end
+		end
+		local function shunxu_paixie(xuhao)
+			for i=2, #PLAYERSTAT_DROPDOWN_OPTIONS do
+				shuxingF.fuji.CategoryList[i]:ClearAllPoints();
+			end
+			if xuhao==1 then
+				shuxingF.fuji.CategoryList[2]:SetPoint("TOP", shuxingF.fuji.CategoryList[1],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[3]:SetPoint("TOP", shuxingF.fuji.CategoryList[2],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[4]:SetPoint("TOP", shuxingF.fuji.CategoryList[3],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[5]:SetPoint("TOP", shuxingF.fuji.CategoryList[4],"BOTTOM",0, 0)
+			elseif xuhao==2 then
+				shuxingF.fuji.CategoryList[3]:SetPoint("TOP", shuxingF.fuji.CategoryList[1],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[2]:SetPoint("TOP", shuxingF.fuji.CategoryList[3],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[4]:SetPoint("TOP", shuxingF.fuji.CategoryList[2],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[5]:SetPoint("TOP", shuxingF.fuji.CategoryList[4],"BOTTOM",0, 0)
+			elseif xuhao==3 then
+				shuxingF.fuji.CategoryList[4]:SetPoint("TOP", shuxingF.fuji.CategoryList[1],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[2]:SetPoint("TOP", shuxingF.fuji.CategoryList[4],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[3]:SetPoint("TOP", shuxingF.fuji.CategoryList[2],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[5]:SetPoint("TOP", shuxingF.fuji.CategoryList[3],"BOTTOM",0, 0)
+			elseif xuhao==4 then
+				shuxingF.fuji.CategoryList[5]:SetPoint("TOP", shuxingF.fuji.CategoryList[1],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[2]:SetPoint("TOP", shuxingF.fuji.CategoryList[5],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[3]:SetPoint("TOP", shuxingF.fuji.CategoryList[2],"BOTTOM",0, 0)
+				shuxingF.fuji.CategoryList[4]:SetPoint("TOP", shuxingF.fuji.CategoryList[3],"BOTTOM",0, 0)	
+			end
+		end
+		local _, classId = UnitClassBase("player");--1战士/2圣骑士/3猎人/4盗贼/5牧师/6死亡骑士/7萨满祭司/8法师/9术士/10武僧/11德鲁伊/12恶魔猎手
+		local function Update_Point_P()
+			if classId == 3 then--远程
+				shunxu_paixie(2)
+			elseif classId ==5 or classId ==8 or classId ==9 then--法术
+				shunxu_paixie(3)
+			elseif classId ==2 then
+				local datax=TalentData.GetTianfuIcon(nil,classId,"player")
+				if datax[4]==3 then
+					shunxu_paixie(1)
+				elseif datax[4]==2 then
+					shunxu_paixie(4)
+				else
+					shunxu_paixie(3)
+				end
+			elseif classId ==7 then
+				local datax=TalentData.GetTianfuIcon(nil,classId,"player")
+				if datax[4]==2 then
+					shunxu_paixie(1)
+				else
+					shunxu_paixie(3)
+				end
+			else--近战
+				shunxu_paixie(1)
+			end
+		end
+		local function PaperDollFrameUpdate()
+			if CharacterModelFrame.backdrop then CharacterModelFrame.backdrop:SetPoint("BOTTOMRIGHT",CharacterModelFrame,"BOTTOMRIGHT",5,0);end
+			local avgItemLevel, avgItemLevelEquipped, avgItemLevelPvP = GetAverageItemLevel();
+			shuxingF.fuji.CategoryList[0].Butlist[1].Label:SetText(string.format("%.2f",avgItemLevelEquipped).." / "..string.format("%.2f",avgItemLevel))
+			for i=1, #PLAYERSTAT_DROPDOWN_OPTIONS do
+				UpdatePaperdollStats("CategoryName"..i, PLAYERSTAT_DROPDOWN_OPTIONS[i], i)
+			end
+		end;
+		PaperDollFrame:HookScript("OnShow", function()
+			if CharacterFrame.backdrop then CharacterFrame.backdrop:SetPoint("BOTTOMRIGHT", PaperDollFrame.pigBGF,"BOTTOMRIGHT", 0, 0);end
+			CharacterFrameCloseButton:SetPoint("CENTER",CharacterFrame,"TOPRIGHT",142,-25)
+			PaperDollFrame.InsetR:SetSidebarTab(1)
+			SetPortraitTexture(PaperDollFrame.InsetR.TabList[1].Icon, "player");
+			PaperDollFrameUpdate()
+			Update_Point_P()
+		end)
+		PaperDollFrame:HookScript("OnHide", function()
+			if CharacterFrame.backdrop then CharacterFrame.backdrop:SetPoint("BOTTOMRIGHT", CharacterFrame,"BOTTOMRIGHT", -32, 76);end
+			CharacterFrameCloseButton:SetPoint("CENTER",CharacterFrame,"TOPRIGHT",-44,-25)
+		end)
+		--内存占用优化
+		PaperDollFrame:RegisterEvent("UNIT_AURA");--获得BUFF时
+		PaperDollFrame:RegisterEvent("UNIT_DISPLAYPOWER");--当单位的魔法类型改变时触发，例如德鲁伊变形
+		PaperDollFrame:RegisterEvent("CHARACTER_POINTS_CHANGED");--分配天赋点触发
+		PaperDollFrame:RegisterEvent("PLAYER_TALENT_UPDATE");--天赋改变
+		if PIG_MaxTocversion(20000) then
+			PaperDollFrame:RegisterEvent("LEARNED_SPELL_IN_TAB");--学习新法术触发
+		end
+		hooksecurefunc("PaperDollFrame_UpdateStats", function()
+			PaperDollFrameUpdate()
+		end)
+
+		--称号
+		if PIG_MaxTocversion(40000) then
+			if PlayerTitleDropdown then PlayerTitleDropdown:ClearAllPoints() end
+			local chenghaoF = add_SidebarTab("T").F
+			local hangeH=20
+			chenghaoF.Butlist={}
+			local function addhang(jishuxinc,id)
+				if not chenghaoF.Butlist[jishuxinc] then
+					local hang= CreateFrame("Button", nil, chenghaoF,nil,id)
+					chenghaoF.Butlist[jishuxinc]=hang
+					hang:SetSize(UIffWW-8,hangeH);
+					hang.name = PIGFontString(hang,{"LEFT",hang,"LEFT",10,0})
+					if jishuxinc==-1 then
+						hang:SetPoint("TOP",chenghaoF,"TOP",0,-4);
+						hang.name:SetText(NONE)
+					elseif jishuxinc==1 then
+						hang:SetPoint("TOP",chenghaoF.Butlist[-1],"BOTTOM",0,0);
+					else
+						hang:SetPoint("TOP",chenghaoF.Butlist[jishuxinc-1],"BOTTOM",0,0);
+					end
+					hang.hightex = hang:CreateTexture(nil,"HIGHLIGHT");
+					hang.hightex:SetTexture("interface/buttons/ui-listbox-highlight2");
+					hang.hightex:SetAllPoints(hang)
+					hang.hightex:SetBlendMode("ADD")
+					hang.hightex:SetAlpha(0.4);
+					hang.Select = hang:CreateTexture();
+					hang.Select:SetTexture("interface/buttons/ui-listbox-highlight");
+					hang.Select:SetAllPoints(hang)
+					hang.Select:SetBlendMode("ADD")
+					hang.Select:SetAlpha(0.8);
+					hang.Select:Hide()
+					hang:SetScript("OnClick", function(self)
+						SetCurrentTitle(self:GetID())
+						C_Timer.After(0.6,chenghaoF.UpdataList)
+						C_Timer.After(0.8,chenghaoF.UpdataList)
+						C_Timer.After(1,chenghaoF.UpdataList)
+					end)
+				end
+			end
+			addhang(-1)
+			function chenghaoF.UpdataList()
+				for k,v in pairs(chenghaoF.Butlist) do
+					if k==-1 then
+						v.Select:SetShown(true)
+						v.name:SetTextColor(1, 1, 1, 1)
+					else
+						v:Hide()
+					end
+				end
+				local jishuxinc=0
+				for i=1, GetNumTitles() do
+					if ( IsTitleKnown(i) ) then
+						jishuxinc=jishuxinc+1
+						if not chenghaoF.Butlist[jishuxinc] then
+							addhang(jishuxinc,i)
+						end
+						local text = GetTitleName(i);
+						chenghaoF.Butlist[jishuxinc]:Show()
+						chenghaoF.Butlist[jishuxinc].name:SetText(text)
+						chenghaoF.Butlist[jishuxinc].Select:SetShown(GetCurrentTitle()==i)
+						if GetCurrentTitle()==i then
+							chenghaoF.Butlist[jishuxinc].name:SetTextColor(1, 1, 1, 1)
+							chenghaoF.Butlist[-1].Select:SetShown(false)
+							chenghaoF.Butlist[-1].name:SetTextColor(1, 0.843, 0, 1)
+							chenghaoF.Butlist[jishuxinc].Select:SetShown(true)
+						else
+							chenghaoF.Butlist[jishuxinc].name:SetTextColor(1, 0.843, 0, 1)
+						end
+					end
+				end
+			end
+			chenghaoF:HookScript("OnShow", function()
+				chenghaoF.UpdataList()
+			end)
+		end
+
+		--装备配装管理==========
+		local TabButEquip = add_SidebarTab("E")
+		if PIG_MaxTocversion(30000) then
+			add_AutoEquip(TabButEquip)
+		else
+			if NDui then
+				local B = unpack(NDui)
+				local M = B:GetModule("Misc")
+				M.ExGearManager=function()
+				end
+			end
+			SetCVar("equipmentManager","1")
+			GearManagerToggleButton:ClearAllPoints();
+			GearManagerDialog:ClearAllPoints();
+			hooksecurefunc(PaperDollFrame.InsetR,"SetSidebarTab", function(self,tabid)
+				if self.TabList[tabid].ly=="E" then
+					GearManagerDialog:Show();
+					TabButEquip.Update_SizePoint()
+				else
+					GearManagerDialog:Hide();
+				end
+			end)
+			local butWWw=29
+			for i = 1, MAX_EQUIPMENT_SETS_PER_PLAYER do
+				local button = _G["GearSetButton" .. i]
+				button:SetParent(TabButEquip.F)
+				button:SetSize(butWWw, butWWw)
+				if ( i == 1 ) then
+					button:SetPoint("TOPLEFT", TabButEquip.F, "TOPLEFT", 10, -32);
+				else
+					button:SetPoint("TOPLEFT", _G["GearSetButton"..(i-1)], "BOTTOMLEFT", 0, -4);
+				end
+				button.icon:SetSize(butWWw, butWWw)
+				button.text:ClearAllPoints();
+				button.text:SetPoint("LEFT", button, "RIGHT", 4, 0);
+				button.text:SetSize(140,butWWw)
+				button.text:SetJustifyH("LEFT")
+				local regions = {button:GetRegions()}
+				for _,vv in pairs(regions) do
+					if not vv:GetName() then
+						vv:SetSize(butWWw+3, butWWw+3)
+					end
+				end
+			end
+			function TabButEquip.Update_SizePoint()
+				GearManagerDialogEquipSet:SetParent(TabButEquip.F)
+				GearManagerDialogSaveSet:SetParent(TabButEquip.F)
+				GearManagerDialogDeleteSet:SetParent(TabButEquip.F)
+				GearManagerDialogPopup:SetParent(TabButEquip.F)
+				GearManagerDialogEquipSet:SetWidth(52)
+				GearManagerDialogEquipSet:ClearAllPoints();
+				GearManagerDialogEquipSet:SetPoint("TOPLEFT", TabButEquip.F, "TOPLEFT", 10, -5);
+				GearManagerDialogSaveSet:SetWidth(52)
+				GearManagerDialogSaveSet:ClearAllPoints();
+				GearManagerDialogSaveSet:SetPoint("LEFT", GearManagerDialogEquipSet, "RIGHT", 8, 0);
+				GearManagerDialogDeleteSet:SetWidth(52)
+				GearManagerDialogDeleteSet:ClearAllPoints();
+				GearManagerDialogDeleteSet:SetPoint("LEFT", GearManagerDialogSaveSet, "RIGHT", 8, 0);
+				GearManagerDialogPopup:ClearAllPoints();
+				GearManagerDialogPopup:SetPoint("TOPLEFT", PaperDollFrame, "TOPRIGHT", -38, 0);
+				for i = 1, MAX_EQUIPMENT_SETS_PER_PLAYER do
+					local button = _G["GearSetButton" .. i]
+					button.text:SetSize(140,butWWw)
+				end
+			end
+			hooksecurefunc("GearManagagerDialogPopup_AdjustAnchors", function()
+				TabButEquip.Update_SizePoint()
+			end)
+		end
+
+		--3探索符文=========
+		if C_Engraving and C_Engraving.IsEngravingEnabled() then
+			hooksecurefunc("ToggleEngravingFrame", function()
+				EngravingFrame:Hide()
+				RuneFrameControlButton:Hide()
+			end)
+			PaperDollFrame:HookScript("OnShow", function()
+				PaperDollFrame_OnHide()
+			end)
+			local function add_fuwenUICZ()
+				local SidebarTab = add_SidebarTab("R")
+				SidebarTab:HookScript("OnClick", function(self)
+					EngravingFrame:Show();
+				end)
+				SidebarTab.Scroll = CreateFrame("ScrollFrame",nil,SidebarTab, "UIPanelScrollFrameTemplate"); 
+				SidebarTab.Scroll.ScrollBar:SetScale(0.8)
+				SidebarTab.Scroll:SetPoint("TOPLEFT",PaperDollFrame.InsetR,"TOPLEFT",0,-2);
+				SidebarTab.Scroll:SetPoint("BOTTOMRIGHT",PaperDollFrame.InsetR,"BOTTOMRIGHT",-18,2);
+				SidebarTab.F:SetWidth(SidebarTab.Scroll:GetWidth()+8)
+				SidebarTab.F:SetHeight(10) 
+				SidebarTab.Scroll:SetScrollChild(SidebarTab.F)
+				SidebarTab.F.numallT = PIGFontString(SidebarTab.F,{"TOP",SidebarTab.F,"TOP", -20, -3},RUNES..COLLECTED)
+				SidebarTab.F.numall = PIGFontString(SidebarTab.F,{"LEFT",SidebarTab.F.numallT,"RIGHT", 1, 0})
+				local FFWW,fWhangH,buweifuwenNum = SidebarTab.F:GetWidth()-8,48,10
+				SidebarTab.F.fuwenSlotS = {}
+				SidebarTab.F.ButList={}
+				for Slot=1,19 do
+					if EngravingSlot[Slot] then
+						local fuwenF = PIGFrame(SidebarTab.F,{"TOP",SidebarTab.F,"TOP",0,-fWhangH*(#SidebarTab.F.fuwenSlotS)-19},{FFWW,fWhangH})
+						SidebarTab.F.ButList[Slot]={}
+						table.insert(SidebarTab.F.fuwenSlotS,{fuwenF,Slot})
+						fuwenF:PIGSetBackdrop(0,0.6,nil,{0.2, 0.2, 0.2})
+						fuwenF.biaoti = PIGFontString(fuwenF,{"TOPLEFT", fuwenF, "TOPLEFT", 1, -10},InvSlot.Name[Slot][2])
+						fuwenF.num= PIGFontString(fuwenF,{"TOPLEFT", fuwenF.biaoti, "BOTTOMLEFT", 2, 0})
+						for ir=1,buweifuwenNum do
+							local RuneBut = CreateFrame("Button",nil,fuwenF);
+							SidebarTab.F.ButList[Slot][ir]=RuneBut
+							RuneBut:SetHighlightTexture("Interface/Buttons/ButtonHilight-Square");
+							RuneBut:SetSize(fWhangH*0.5-2,fWhangH*0.5-2);
+							RuneBut.xuanzhong = RuneBut:CreateTexture(nil, "OVERLAY");
+							RuneBut.xuanzhong:SetTexture(130724);
+							RuneBut.xuanzhong:SetBlendMode("ADD");
+							RuneBut.xuanzhong:SetAllPoints(RuneBut)
+							RuneBut.xuanzhong:Hide()
+							if ir==1 then
+								RuneBut:SetPoint("TOPLEFT",fuwenF,"TOPLEFT",34,-2);
+							elseif ir==6 then
+								RuneBut:SetPoint("TOPLEFT",SidebarTab.F.ButList[Slot][ir-5],"BOTTOMLEFT",0,-1);
+							else
+								RuneBut:SetPoint("LEFT",SidebarTab.F.ButList[Slot][ir-1],"RIGHT",5,0);
+							end
+							RuneBut:HookScript("OnLeave", function()
+								GameTooltip:ClearLines();
+								GameTooltip:Hide() 
+							end);
+							RuneBut:SetScript("OnEnter", function (self)
+								GameTooltip:ClearLines();
+								GameTooltip:SetOwner(self, "ANCHOR_RIGHT",0,0);
+								GameTooltip:SetEngravingRune(self.skillLineAbilityID);
+								GameTooltip:Show();
+							end);
+							RuneBut:HookScript("OnClick", function(self)
+								EngravingFrameSpell_OnClick(self)
+								UseInventoryItem(Slot)
+							end);
+						end
+					end				
+				end
+				local function SetnumTextColor(TextUI,known,max)
+					if known==max then
+						TextUI:SetTextColor(0, 1, 0, 1)
+					elseif known==0 then
+						TextUI:SetTextColor(1, 0, 0, 1)
+					else
+						TextUI:SetTextColor(1, 1, 0, 1)
+					end
+				end
+				local function Engraving_UpdateRuneList()
+					for Slot=1,19 do
+						if EngravingSlot[Slot] then
+							for ir=1,buweifuwenNum do
+								local RuneBut = SidebarTab.F.ButList[Slot][ir]
+								RuneBut:Hide()
+								RuneBut.xuanzhong:Hide()
+							end
+						end
+					end
+					C_Engraving.ClearExclusiveCategoryFilter();
+					C_Engraving.EnableEquippedFilter(false);
+					local known, max = C_Engraving.GetNumRunesKnown();
+					SidebarTab.F.numall:SetText(known.."/"..max);
+					SetnumTextColor(SidebarTab.F.numall,known,max)
+					for i=1,#SidebarTab.F.fuwenSlotS do
+						local infosole = SidebarTab.F.fuwenSlotS[i][2]
+						if infosole==12 then
+							infosole = 11
+						end
+						local known, max = C_Engraving.GetNumRunesKnown(infosole);
+						SidebarTab.F.fuwenSlotS[i][1].num:SetText(known.."/"..max);
+						SetnumTextColor(SidebarTab.F.fuwenSlotS[i][1].num,known,max)
+					end
+					local categories = C_Engraving.GetRuneCategories(true, true);
+					for _, category in ipairs(categories) do
+						local BUTxuhao = 1
+						local runes = C_Engraving.GetRunesForCategory(category, true);
+						for _, rune in ipairs(runes) do
+							local RuneBut = SidebarTab.F.ButList[rune.equipmentSlot][BUTxuhao]
+							BUTxuhao=BUTxuhao+1
+							RuneBut:Show()
+							RuneBut:SetAlpha(0.6)
+							RuneBut.skillLineAbilityID=rune.skillLineAbilityID
+							RuneBut:SetNormalTexture(rune.iconTexture);
+							local engravingInfo = C_Engraving.GetRuneForEquipmentSlot(category);
+							if engravingInfo then
+								if engravingInfo.skillLineAbilityID==RuneBut.skillLineAbilityID then
+									RuneBut.xuanzhong:Show()
+									RuneBut:SetAlpha(1)
+								end
+							end
+						end
+					end
+				end
+				EngravingFrame:HookScript("OnShow", function(self,event)
+					self:SetAlpha(0.00001)
+					self:SetPoint("TOPLEFT",CharacterFrame,"TOPRIGHT",-234,-70);
+					Engraving_UpdateRuneList()
+				end)
+				EngravingFrame:RegisterEvent("RUNE_UPDATED");
+				EngravingFrame:RegisterEvent("REPLACE_ENCHANT");
+				EngravingFrame:HookScript("OnEvent", function(self,event)
+					if self:IsVisible() then
+						if event=="REPLACE_ENCHANT" then
+							StaticPopup_OnClick(StaticPopup1, 1) 
+							StaticPopup1:Hide()
+						else
+							Engraving_UpdateRuneList()
+						end
+					end
+				end)
+			end
+			Fun.IsAddOnLoaded("Blizzard_EngravingUI",function()
+		        add_fuwenUICZ()
+			end)
+		end
+		HideUIPanel(CharacterFrame);
+	elseif PIG_MaxTocversion() then
+		PaperDollFrame:HookScript("OnShow", function()
+			CharacterFrame:Expand()
+		end)
+	end
+	Character_Mingzhong()
+	Character_xiuliG()
+end

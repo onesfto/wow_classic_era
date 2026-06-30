@@ -1,0 +1,77 @@
+
+CellCharacterDB = {
+["layoutAutoSwitch"] = {
+{
+["raid_instance"] = "default",
+["party"] = "default",
+["solo"] = "default",
+["arena"] = "default",
+["battleground"] = "default",
+["raid_outdoor"] = "default",
+},
+{
+["raid_instance"] = "default",
+["party"] = "default",
+["solo"] = "default",
+["arena"] = "default",
+["battleground"] = "default",
+["raid_outdoor"] = "default",
+},
+},
+["revise"] = "r272-release",
+["clickCastings"] = {
+{
+{
+"type1",
+"target",
+},
+{
+"type2",
+"togglemenu",
+},
+{
+"type-shiftR",
+"spell",
+7328,
+},
+},
+{
+{
+"type1",
+"target",
+},
+{
+"type2",
+"togglemenu",
+},
+{
+"type-shiftR",
+"spell",
+7328,
+},
+},
+["alwaysTargeting"] = {
+"disabled",
+"disabled",
+["common"] = "disabled",
+},
+["common"] = {
+{
+"type1",
+"target",
+},
+{
+"type2",
+"togglemenu",
+},
+{
+"type-shiftR",
+"spell",
+7328,
+},
+},
+["class"] = "PALADIN",
+["useCommon"] = true,
+["smartResurrection"] = "disabled",
+},
+}

@@ -1,0 +1,51 @@
+VER 3 010000000000000B "元素" "INV_Misc_QuestionMark"
+#showtooltip 元素诅咒
+/cast [@mouseover,exists,harm,nodead][] 元素诅咒
+END
+VER 3 010000000000000C "吸片" "INV_Misc_QuestionMark"
+#showtooltip 吸取灵魂
+/cast [@mouseover,exists,harm,nodead][] 吸取灵魂
+END
+VER 3 010000000000000D "吸血" "INV_Misc_QuestionMark"
+#showtooltip [mod:ctrl] 吸取法力; [mod:shift] 生命通道; 吸取生命
+/cast [mod:ctrl] 吸取法力
+/cast [mod:shift,@pet] 生命通道
+/cast [@mouseover,exists,harm,nodead][] 吸取生命
+END
+VER 3 010000000000000E "恐惧" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 恐惧嚎叫; 恐惧术
+/cast [mod:shift] 恐惧嚎叫
+/cast [@mouseover,exists,harm,nodead][] 恐惧术
+END
+VER 3 010000000000000F "拉人" "INV_Misc_QuestionMark"
+#showtooltip 召唤仪式
+/ra 召唤 %t
+/cast 召唤仪式
+END
+VER 3 0100000000000010 "火雨" "INV_Misc_QuestionMark"
+#showtooltip
+/cast [mod:shift]地狱烈焰;火焰之雨
+END
+VER 3 0100000000000015 "献祭" "INV_Misc_QuestionMark"
+#showtooltip 献祭之油
+/use [combat] 献祭之油
+END
+VER 3 0100000000000011 "痛苦" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 诅咒增幅; 痛苦诅咒
+/cast [mod:shift] 诅咒增幅
+/cast [@mouseover,exists,harm,nodead][] 痛苦诅咒
+END
+VER 3 0100000000000012 "腐蚀" "INV_Misc_QuestionMark"
+#showtooltip
+/cast [@mouseover,exists,harm,nodead][] 腐蚀术
+END
+VER 3 0100000000000013 "蓝胖" "INV_Misc_QuestionMark"
+#showtooltip [pet:虚空行者] 牺牲; 召唤虚空行者
+/cast [combat,pet:虚空行者] 牺牲
+/cast [combat,nopet][@pet,dead] 恶魔支配
+/cast 召唤虚空行者
+END
+VER 3 0100000000000014 "鲁莽" "INV_Misc_QuestionMark"
+#showtooltip 鲁莽诅咒
+/cast [@mouseover,exists,harm,nodead][] 鲁莽诅咒
+END

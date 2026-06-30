@@ -1,0 +1,93 @@
+
+PawnOptions = {
+["LastVersion"] = 2.1005,
+["ItemLevels"] = {
+{
+["ID"] = 23035,
+["Level"] = 83,
+["Link"] = "|cffa335ee|Hitem:23035:2544:::::::60:::::::::|h[导师之帽]|h|r",
+},
+{
+["ID"] = 18814,
+["Level"] = 78,
+["Link"] = "|cffa335ee|Hitem:18814::::::::60:::::::::|h[火焰之王的项圈]|h|r",
+},
+{
+["ID"] = 19370,
+["Level"] = 73,
+["Link"] = "|cffa335ee|Hitem:19370:2605:::::::60:::::::::|h[黑翼衬肩]|h|r",
+},
+nil,
+{
+["ID"] = 23220,
+["Level"] = 85,
+["Link"] = "|cffa335ee|Hitem:23220:1891:::::::60:::::::::|h[水晶网袍]|h|r",
+},
+{
+["ID"] = 22730,
+["Level"] = 88,
+["Link"] = "|cffa335ee|Hitem:22730::::::::60:::::::::|h[眼柄腰带]|h|r",
+},
+{
+["ID"] = 23070,
+["Level"] = 85,
+["Link"] = "|cffa335ee|Hitem:23070:2544:::::::60:::::::::|h[极性护腿]|h|r",
+},
+{
+["ID"] = 21600,
+["Level"] = 81,
+["Link"] = "|cffa335ee|Hitem:21600:911:::::::60:::::::::|h[显灵长靴]|h|r",
+},
+{
+["ID"] = 21611,
+["Level"] = 81,
+["Link"] = "|cffa335ee|Hitem:21611:1883:::::::60:::::::::|h[掘地虫护腕]|h|r",
+},
+{
+["ID"] = 21585,
+["Level"] = 88,
+["Link"] = "|cffa335ee|Hitem:21585:2614:::::::60:::::::::|h[黑暗风暴护手]|h|r",
+},
+{
+["ID"] = 21709,
+["Level"] = 88,
+["AlsoFitsIn"] = 12,
+["Link"] = "|cffa335ee|Hitem:21709::::::::60:::::::::|h[堕落神明之戒]|h|r",
+},
+{
+["ID"] = 21210,
+["Level"] = 80,
+["AlsoFitsIn"] = 11,
+["Link"] = "|cffa335ee|Hitem:21210::::::::60:::::::::|h[青铜龙军团的徽记之戒]|h|r",
+},
+{
+["ID"] = 19379,
+["Level"] = 83,
+["AlsoFitsIn"] = 14,
+["Link"] = "|cffa335ee|Hitem:19379::::::::60:::::::::|h[奈萨里奥之泪]|h|r",
+},
+nil,
+{
+["ID"] = 22731,
+["Level"] = 88,
+["Link"] = "|cffa335ee|Hitem:22731:2621:::::::60:::::::::|h[被吞噬者的披风]|h|r",
+},
+{
+["ID"] = 22631,
+["Level"] = 90,
+["Link"] = "|cffff8000|Hitem:22631:2504:::::::60:::::::::|h[埃提耶什，守护者的传说之杖]|h|r",
+},
+[18] = {
+["ID"] = 19861,
+["Level"] = 68,
+["Link"] = "|cffa335ee|Hitem:19861::::::::60:::::::::|h[混乱之触]|h|r",
+},
+},
+["AutoSelectScales"] = false,
+["LastPlayerFullName"] = "德加和尚-哈霍兰",
+}
+PawnMrRobotScaleProviderOptions = nil
+PawnClassicScaleProviderOptions = {
+["LastClass"] = "PRIEST",
+["LastAdded"] = 3,
+}

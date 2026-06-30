@@ -1,0 +1,6 @@
+<Ui>
+	<Script file="Blizzard.lua" />
+	<Script file="Widget.lua" />
+	<Script file="PIG.lua" />
+	<Script file="Chat.lua" />
+</Ui>

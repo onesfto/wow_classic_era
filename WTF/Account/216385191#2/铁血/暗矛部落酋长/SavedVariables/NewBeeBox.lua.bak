@@ -1,0 +1,15 @@
+
+WclBoxCharacter = {
+["hash"] = "d3b3e850",
+["class"] = "PRIEST",
+["realmID"] = 5453,
+["name"] = "暗矛部落酋长",
+["faction"] = "Horde",
+["race"] = "巨魔",
+["version"] = "1.0.22",
+["loginTime"] = 1764818719,
+["realmName"] = "铁血",
+["level"] = 1,
+["gold"] = 0,
+["playerGUID"] = "Player-5453-04C746EA",
+}

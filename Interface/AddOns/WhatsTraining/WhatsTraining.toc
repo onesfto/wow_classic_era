@@ -1,0 +1,39 @@
+## Interface: 20505, 11508
+## Title: What's Training?
+## Version: 9.2.0
+## Author: Sveng
+## Notes: Shows you what spells are available at your class trainer
+## SavedVariables: WT_ShowIgnoreNotice, WT_ShowLearnedNotice
+## SavedVariablesPerCharacter: WT_LearnedPetAbilities, WT_NeedsToOpenBeastTraining, WT_IgnoredSpells
+## OptionalDeps: ClassTrainerPlus
+## X-Curse-Project-ID: 324944
+## X-WoWI-ID: 25031
+## X-Thanks: capitano666 on curse for Shaman SoD info
+
+libs\LibStub.lua
+libs\CallbackHandler-1.0.lua
+libs\LibDataBroker-1.1.lua
+libs\LibBabble-CreatureType-3.0\lib.xml
+libs\FusionIgnoreStore\IgnoreStore.lua
+
+Localization.lua
+Utils.lua
+Cache.lua
+
+Classes\[Game]\Druid.lua
+Classes\[Game]\Hunter.lua
+Classes\[Game]\HunterPets.lua
+Classes\[Game]\Mage.lua
+Classes\[Game]\Paladin.lua
+Classes\[Game]\Priest.lua
+Classes\[Game]\Rogue.lua
+Classes\[Game]\Shaman.lua
+Classes\[Game]\Warlock.lua
+Classes\[Game]\WarlockTomes.lua
+Classes\WarlockTomes.lua
+Classes\[Game]\Warrior.lua
+
+WhatsTrainingUI.lua
+WhatsTraining.lua
+
+Broker.lua

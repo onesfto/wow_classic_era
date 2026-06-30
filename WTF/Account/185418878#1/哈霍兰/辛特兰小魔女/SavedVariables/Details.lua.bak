@@ -1,0 +1,7188 @@
+
+_detalhes_database = {
+["savedbuffs"] = {
+},
+["mythic_dungeon_id"] = 0,
+["tabela_historico"] = {
+["tabelas"] = {
+{
+{
+["combatId"] = 22,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.006857,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 0.006857,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.006857,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["血羽复仇者"] = true,
+["血羽风巫"] = true,
+},
+["targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149318,
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+["血羽复仇者"] = 0,
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 0,
+["c_max"] = 0,
+["a_amt"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["PARRY"] = 1,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 532.006857,
+["start_time"] = 1749149318,
+["delay"] = 0,
+["last_event"] = 1749149291,
+},
+{
+["flag_original"] = 2632,
+["totalabsorbed"] = 0.005706,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 339.005706,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 339.005706,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2020-0000414D49",
+["aID"] = "2020",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 339,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149318,
+["nome"] = "血羽风巫",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 15,
+["targets"] = {
+["辛特兰小魔女"] = 339,
+},
+["n_total"] = 339,
+["n_min"] = 10,
+["g_dmg"] = 0,
+["counter"] = 28,
+["total"] = 339,
+["c_max"] = 0,
+["MISS"] = 2,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 26,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[6982] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+["辛特兰小魔女"] = 0,
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 0,
+["c_max"] = 0,
+["id"] = 6982,
+["r_dmg"] = 0,
+["RESIST"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 3,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.005706,
+["start_time"] = 1749149295,
+["delay"] = 0,
+["last_event"] = 1749149318,
+},
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.006502,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 193.006502,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 193.006502,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2019-000041922A",
+["aID"] = "2019",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 193,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149318,
+["nome"] = "血羽复仇者",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 15,
+["targets"] = {
+["辛特兰小魔女"] = 193,
+},
+["n_total"] = 193,
+["n_min"] = 12,
+["g_dmg"] = 0,
+["counter"] = 15,
+["total"] = 193,
+["c_max"] = 0,
+["MISS"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 14,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[5515] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 0,
+["total"] = 0,
+["c_max"] = 0,
+["id"] = 5515,
+["r_dmg"] = 0,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 1,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.006502,
+["start_time"] = 1749149291,
+["delay"] = 0,
+["last_event"] = 1749149318,
+},
+},
+},
+{
+["combatId"] = 22,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 22,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 22,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["serial"] = "Creature-0-5341-1-177-2019-000041922A",
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["monster"] = true,
+["aID"] = "2019",
+["nome"] = "血羽复仇者",
+["last_event"] = 0,
+["tipo"] = 4,
+},
+{
+["flag_original"] = 2632,
+["pets"] = {
+},
+["serial"] = "Creature-0-5341-1-177-2020-0000414DF5",
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["monster"] = true,
+["aID"] = "2020",
+["nome"] = "血羽风巫",
+["last_event"] = 0,
+["tipo"] = 4,
+},
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["serial"] = "Player-5376-03D61E57",
+["grupo"] = true,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 22,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+},
+["tempo_start"] = 1749149291,
+["last_events_tables"] = {
+{
+{
+{
+6,
+6982,
+2,
+1749149307.839,
+0,
+"血羽风巫",
+},
+{
+4,
+6982,
+1,
+1749149307.839,
+0.4656488549618321,
+"血羽风巫",
+false,
+false,
+false,
+false,
+},
+{
+true,
+1,
+15,
+1749149308.682,
+0.4370229007633588,
+"血羽复仇者",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+12,
+1749149309.849,
+0.4141221374045802,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+12,
+1749149309.849,
+0.3912213740458015,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+13,
+1749149309.849,
+0.366412213740458,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+12,
+1749149310.618,
+0.3435114503816794,
+"血羽复仇者",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+13,
+1749149311.859,
+0.3187022900763359,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+15,
+1749149311.859,
+0.2900763358778626,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+13,
+1749149311.859,
+0.2652671755725191,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+14,
+1749149312.619,
+0.2385496183206107,
+"血羽复仇者",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+14,
+1749149313.89,
+0.2118320610687023,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+15,
+1749149313.89,
+0.183206106870229,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+13,
+1749149315.891,
+0.1583969465648855,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+14,
+1749149315.891,
+0.1316793893129771,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+14,
+1749149316.358,
+0.1049618320610687,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+14,
+1749149316.629,
+0.07824427480916031,
+"血羽复仇者",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+13,
+1749149317.899,
+0.05343511450381679,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+13,
+1749149317.899,
+0.02862595419847328,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+10,
+1749149318.382,
+0.009541984732824428,
+"血羽风巫",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+true,
+1,
+13,
+1749149318.629,
+0,
+"血羽复仇者",
+nil,
+1,
+false,
+8,
+false,
+false,
+},
+{
+3,
+0,
+0,
+0,
+0,
+"辛特兰小魔女",
+},
+},
+1749149318.629,
+"辛特兰小魔女",
+"WARLOCK",
+524,
+"0m 26s",
+["dead_at"] = 26.87100000000646,
+["dead"] = true,
+},
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 41,
+["playerTalents"] = {
+},
+["totals"] = {
+669,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 1,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = false,
+["amountCasts"] = {
+["血羽风巫"] = {
+["阵风"] = 3,
+},
+["血羽复仇者"] = {
+["野性"] = 1,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "02:48:38",
+["hasTimer"] = 26.08100000000559,
+["timeEnd"] = 1749149318,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "血羽风巫",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 50591.931,
+["CombatEndedAt"] = 50591.931,
+["aura_timeline"] = {
+},
+["data_inicio"] = "02:48:11",
+["end_time"] = 50591.931,
+["mapId"] = 1,
+["combat_id"] = 22,
+["timeStart"] = 1749149291,
+["overall_added"] = true,
+["playing_solo"] = true,
+["boss_hp"] = 1,
+["frags"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 1,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 0.006857,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 50565.06,
+["TimeData"] = {
+},
+["contra"] = "血羽复仇者",
+},
+{
+{
+["combatId"] = 21,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.006061,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 0.006061,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.006061,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["血羽游荡者"] = true,
+["血羽女巫"] = true,
+},
+["targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149250,
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 55.006061,
+["start_time"] = 1749149250,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 2632,
+["totalabsorbed"] = 0.007975,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 48.007975,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 48.007975,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2018-0000413DE4",
+["aID"] = "2018",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 48,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149250,
+["nome"] = "血羽女巫",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+[12544] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 0,
+["total"] = 0,
+["c_max"] = 0,
+["id"] = 12544,
+["r_dmg"] = 0,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 2,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[20793] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 25,
+["targets"] = {
+["辛特兰小魔女"] = 48,
+},
+["n_total"] = 48,
+["n_min"] = 23,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 48,
+["c_max"] = 0,
+["id"] = 20793,
+["r_dmg"] = 0,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 2,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.007975,
+["start_time"] = 1749149239,
+["delay"] = 0,
+["last_event"] = 1749149244,
+},
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.008992,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 7.008992,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 7.008992,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2017-0000413DCF",
+["aID"] = "2017",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 7,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149250,
+["nome"] = "血羽游荡者",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 7,
+["targets"] = {
+["辛特兰小魔女"] = 7,
+},
+["n_total"] = 7,
+["n_min"] = 7,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 7,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.008992,
+["start_time"] = 1749149249,
+["delay"] = 1749149232,
+["last_event"] = 1749149232,
+},
+},
+},
+{
+["combatId"] = 21,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 21,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 21,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 2632,
+["pets"] = {
+},
+["serial"] = "Creature-0-5341-1-177-2018-0000419253",
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["monster"] = true,
+["aID"] = "2018",
+["nome"] = "血羽女巫",
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 21,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+},
+["CombatStartedAt"] = 50564.56,
+["tempo_start"] = 1749149232,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 40,
+["playerTalents"] = {
+},
+["totals"] = {
+55,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = false,
+["amountCasts"] = {
+["血羽女巫"] = {
+["火球术"] = 1,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "02:47:30",
+["hasTimer"] = 16.11100000000442,
+["timeEnd"] = 1749149250,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "血羽女巫",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 50523.615,
+["CombatEndedAt"] = 50523.615,
+["aura_timeline"] = {
+},
+["data_inicio"] = "02:47:13",
+["end_time"] = 50523.615,
+["mapId"] = 1,
+["combat_id"] = 21,
+["timeStart"] = 1749149233,
+["overall_added"] = true,
+["playing_solo"] = true,
+["boss_hp"] = 1,
+["frags"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 0.006061,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 50506.971,
+["TimeData"] = {
+},
+["contra"] = "血羽游荡者",
+},
+{
+{
+["combatId"] = 20,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.006836,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 0.006836,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.006836,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["血羽鹰身人"] = true,
+["血羽女巫"] = true,
+["血羽游荡者"] = true,
+},
+["targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149219,
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 146.006836,
+["start_time"] = 1749149219,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 2632,
+["totalabsorbed"] = 0.001294,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 82.001294,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 82.001294,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2015-0000419333",
+["aID"] = "2015",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 82,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149219,
+["nome"] = "血羽鹰身人",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 13,
+["targets"] = {
+["辛特兰小魔女"] = 82,
+},
+["n_total"] = 82,
+["n_min"] = 10,
+["g_dmg"] = 0,
+["counter"] = 8,
+["total"] = 82,
+["c_max"] = 0,
+["MISS"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 7,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[6958] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+["辛特兰小魔女"] = 0,
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 0,
+["c_max"] = 0,
+["id"] = 6958,
+["r_dmg"] = 0,
+["RESIST"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 1,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.001294,
+["start_time"] = 1749149202,
+["delay"] = 0,
+["last_event"] = 1749149213,
+},
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.003743,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 57.003743,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 57.003743,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2018-0002C0FFC7",
+["aID"] = "2018",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 57,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149219,
+["nome"] = "血羽女巫",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+[20793] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 29,
+["targets"] = {
+["辛特兰小魔女"] = 57,
+},
+["n_total"] = 57,
+["n_min"] = 28,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 57,
+["c_max"] = 0,
+["id"] = 20793,
+["r_dmg"] = 0,
+["spellschool"] = 4,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 1,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[12544] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 0,
+["total"] = 0,
+["c_max"] = 0,
+["id"] = 12544,
+["r_dmg"] = 0,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 1,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.003743,
+["start_time"] = 1749149214,
+["delay"] = 1749149196,
+["last_event"] = 1749149196,
+},
+},
+},
+{
+["combatId"] = 20,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 20,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 20,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["serial"] = "Creature-0-5341-1-177-2018-0002C0FFC7",
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["monster"] = true,
+["aID"] = "2018",
+["nome"] = "血羽女巫",
+["last_event"] = 0,
+["tipo"] = 4,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["serial"] = "Creature-0-5341-1-177-2015-000041947C",
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["monster"] = true,
+["aID"] = "2015",
+["nome"] = "血羽鹰身人",
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 20,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+},
+["CombatStartedAt"] = 50505.77,
+["tempo_start"] = 1749149192,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 39,
+["playerTalents"] = {
+},
+["totals"] = {
+146,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+["辛特兰小魔女"] = {
+{
+true,
+1,
+7,
+1749149232.468,
+0.7411347517730497,
+"血羽游荡者",
+nil,
+1,
+false,
+-1,
+false,
+false,
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+["n"] = 2,
+},
+},
+["frags_need_refresh"] = false,
+["amountCasts"] = {
+["血羽鹰身人"] = {
+["吸血术"] = 1,
+},
+["血羽女巫"] = {
+["火球术"] = 1,
+["霜甲术"] = 1,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "02:47:00",
+["hasTimer"] = 26.05900000000111,
+["timeEnd"] = 1749149220,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "血羽鹰身人",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 50492.751,
+["CombatEndedAt"] = 50492.751,
+["aura_timeline"] = {
+},
+["data_inicio"] = "02:46:33",
+["end_time"] = 50493.75,
+["mapId"] = 1,
+["combat_id"] = 20,
+["timeStart"] = 1749149193,
+["overall_added"] = true,
+["boss_hp"] = 1,
+["frags"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 0.006836,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 50466.682,
+["TimeData"] = {
+},
+["contra"] = "血羽女巫",
+},
+{
+{
+["combatId"] = 19,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.006305,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 0.006305,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.006305,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["夜刃捕食者"] = true,
+},
+["targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149033,
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 53.006305,
+["start_time"] = 1749149033,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.007459,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 53.007459,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 53.007459,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2043-0000C0FFCA",
+["aID"] = "2043",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 53,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149033,
+["nome"] = "夜刃捕食者",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 8,
+["targets"] = {
+["辛特兰小魔女"] = 53,
+},
+["n_total"] = 53,
+["n_min"] = 7,
+["g_dmg"] = 0,
+["counter"] = 8,
+["total"] = 53,
+["c_max"] = 0,
+["DODGE"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 7,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.007459,
+["start_time"] = 1749149022,
+["delay"] = 0,
+["last_event"] = 1749149032,
+},
+},
+},
+{
+["combatId"] = 19,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 19,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 19,
+["tipo"] = 9,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 19,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+},
+["CombatStartedAt"] = 50462.736,
+["tempo_start"] = 1749149022,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 38,
+["playerTalents"] = {
+},
+["totals"] = {
+53,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = false,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "02:43:54",
+["hasTimer"] = 11.0199999999968,
+["timeEnd"] = 1749149034,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "夜刃捕食者",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 50307.12,
+["CombatEndedAt"] = 50307.12,
+["aura_timeline"] = {
+},
+["data_inicio"] = "02:43:43",
+["end_time"] = 50307.29,
+["mapId"] = 1,
+["combat_id"] = 19,
+["timeStart"] = 1749149023,
+["overall_added"] = true,
+["boss_hp"] = 1,
+["frags"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 0.006305,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 50296.27,
+["TimeData"] = {
+},
+["contra"] = "夜刃捕食者",
+},
+{
+{
+["combatId"] = 18,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.007872,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 0.007872,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.007872,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["瘤背战士"] = true,
+["环境伤害 (坠落)"] = true,
+},
+["targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749148946,
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 145.007872,
+["start_time"] = 1749148946,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.004698,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 29.004698,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 29.004698,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2008-0000C13906",
+["aID"] = "2008",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 29,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749148946,
+["nome"] = "瘤背战士",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 8,
+["targets"] = {
+["辛特兰小魔女"] = 29,
+},
+["n_total"] = 29,
+["n_min"] = 7,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 29,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.004698,
+["start_time"] = 1749148928,
+["delay"] = 0,
+["last_event"] = 1749148938,
+},
+},
+},
+{
+["combatId"] = 18,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 18,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 18,
+["tipo"] = 9,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 18,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+},
+["CombatStartedAt"] = 50295.76,
+["tempo_start"] = 1749148928,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 37,
+["playerTalents"] = {
+},
+["totals"] = {
+145,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+["辛特兰小魔女"] = {
+{
+true,
+3,
+116,
+1749148953.668,
+0.7322695035460993,
+"环境伤害 (坠落)",
+nil,
+3,
+false,
+-1,
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+["n"] = 2,
+},
+},
+["frags_need_refresh"] = false,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "02:42:27",
+["hasTimer"] = 18.0850000000064,
+["timeEnd"] = 1749148947,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "瘤背战士",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 50219.601,
+["CombatEndedAt"] = 50219.601,
+["aura_timeline"] = {
+},
+["data_inicio"] = "02:42:08",
+["end_time"] = 50220.234,
+["mapId"] = 1,
+["combat_id"] = 18,
+["timeStart"] = 1749148928,
+["overall_added"] = true,
+["boss_hp"] = 1,
+["frags"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 0.007872,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 50202.149,
+["TimeData"] = {
+},
+["contra"] = "瘤背战士",
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 17,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 94.004811,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 94.004811,
+["colocacao"] = 1,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["瘤背战士"] = true,
+},
+["targets"] = {
+["林精"] = 94,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749127559,
+["totalabsorbed"] = 0.004811,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+[1088] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 94,
+},
+["n_total"] = 94,
+["n_min"] = 94,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 94,
+["c_max"] = 0,
+["id"] = 1088,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 94,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["on_hold"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127558,
+["damage_taken"] = 6.004811,
+["start_time"] = 1749127558,
+["delay"] = 0,
+["last_dps"] = 94.004811,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 0.005756,
+["last_dps_realtime"] = 0,
+["monster"] = true,
+["total"] = 0.005756,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-42-2022-000041916B",
+["on_hold"] = false,
+["damage_from"] = {
+["辛特兰小魔女"] = true,
+},
+["targets"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.005756,
+["fight_component"] = true,
+["end_time"] = 1749127559,
+["aID"] = "2022",
+["nome"] = "林精",
+["spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["dps_started"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 94.005756,
+["start_time"] = 1749127559,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 17,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 17,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 17,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["buff_uptime_targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[687] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 1,
+["uptime"] = 1,
+["id"] = 687,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["nome"] = "辛特兰小魔女",
+["grupo"] = true,
+["buff_uptime"] = 1,
+["tipo"] = 4,
+["classe"] = "WARLOCK",
+["serial"] = "Player-5376-03D61E57",
+["last_event"] = 1749127559,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 17,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["CombatStartedAt"] = 50200.165,
+["tempo_start"] = 1749127558,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+100,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "20:46:00",
+["timeEnd"] = 1749127560,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "林精",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 28832.745,
+["CombatEndedAt"] = 28832.745,
+["aura_timeline"] = {
+},
+["data_inicio"] = "20:45:59",
+["end_time"] = 28833.415,
+["mapId"] = 1,
+["combat_id"] = 17,
+["timeStart"] = 1749127559,
+["overall_added"] = true,
+["TimeData"] = {
+},
+["frags"] = {
+["林精"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["totals_grupo"] = {
+94,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 94.004811,
+},
+},
+},
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+["魔女桑德兰"] = "Player-5376-161F7B5F",
+},
+["start_time"] = 28832.415,
+["contra"] = "林精",
+["combat_counter"] = 36,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 16,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 123.005603,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 123.005603,
+["colocacao"] = 1,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["林精"] = true,
+},
+["targets"] = {
+["林精"] = 123,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749127558,
+["totalabsorbed"] = 0.005603,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 1,
+["g_amt"] = 0,
+["b_dmg"] = 45,
+["targets"] = {
+["林精"] = 45,
+},
+["n_total"] = 45,
+["n_min"] = 45,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 45,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 45,
+["r_amt"] = 0,
+},
+[5676] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 78,
+},
+["n_total"] = 78,
+["n_min"] = 36,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 78,
+["c_max"] = 0,
+["id"] = 5676,
+["r_dmg"] = 0,
+["spellschool"] = 4,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["n_max"] = 42,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["on_hold"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127555,
+["damage_taken"] = 5.005603,
+["start_time"] = 1749127489,
+["delay"] = 0,
+["last_dps"] = 30.59840870646434,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 5.007702,
+["last_dps_realtime"] = 0,
+["monster"] = true,
+["total"] = 5.007702,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-42-2022-0000419028",
+["on_hold"] = false,
+["damage_from"] = {
+["辛特兰小魔女"] = true,
+},
+["targets"] = {
+["辛特兰小魔女"] = 5,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.007702,
+["fight_component"] = true,
+["end_time"] = 1749127492,
+["aID"] = "2022",
+["nome"] = "林精",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["辛特兰小魔女"] = 5,
+},
+["n_total"] = 5,
+["n_min"] = 5,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 5,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 5,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["dps_started"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127491,
+["damage_taken"] = 123.007702,
+["start_time"] = 1749127491,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 16,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 16,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 16,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["buff_uptime_targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[687] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 1,
+["uptime"] = 3,
+["id"] = 687,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["nome"] = "辛特兰小魔女",
+["grupo"] = true,
+["buff_uptime"] = 3,
+["tipo"] = 4,
+["classe"] = "WARLOCK",
+["serial"] = "Player-5376-03D61E57",
+["last_event"] = 1749127492,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 16,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["CombatStartedAt"] = 28829.275,
+["tempo_start"] = 1749127489,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 35,
+["playerTalents"] = {
+},
+["totals"] = {
+128,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "20:44:53",
+["hasTimer"] = 3.010999999998603,
+["timeEnd"] = 1749127493,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "林精",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 28766.295,
+["CombatEndedAt"] = 28766.295,
+["aura_timeline"] = {
+},
+["data_inicio"] = "20:44:49",
+["end_time"] = 28766.595,
+["mapId"] = 1,
+["combat_id"] = 16,
+["timeStart"] = 1749127489,
+["overall_added"] = true,
+["TimeData"] = {
+},
+["frags"] = {
+["林精"] = 1,
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+123,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 81.00560300000001,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 28762.575,
+["contra"] = "林精",
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+["魔女桑德兰"] = "Player-5376-161F7B5F",
+},
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 15,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 169.001581,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 169.001581,
+["colocacao"] = 1,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["林精"] = true,
+},
+["targets"] = {
+["林精"] = 169,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749127489,
+["totalabsorbed"] = 0.001581,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+[5676] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 79,
+},
+["n_total"] = 79,
+["n_min"] = 37,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 79,
+["c_max"] = 0,
+["id"] = 5676,
+["r_dmg"] = 0,
+["spellschool"] = 4,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["n_max"] = 42,
+["r_amt"] = 0,
+},
+[1088] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 90,
+},
+["n_total"] = 90,
+["n_min"] = 90,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 90,
+["c_max"] = 0,
+["id"] = 1088,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 90,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["on_hold"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127487,
+["damage_taken"] = 5.001581,
+["start_time"] = 1749127476,
+["delay"] = 0,
+["last_dps"] = 33.59872385684232,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 5.002282,
+["last_dps_realtime"] = 0,
+["monster"] = true,
+["total"] = 5.002282,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-42-2022-0000419095",
+["on_hold"] = false,
+["damage_from"] = {
+["辛特兰小魔女"] = true,
+},
+["targets"] = {
+["辛特兰小魔女"] = 5,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.002282,
+["fight_component"] = true,
+["end_time"] = 1749127481,
+["aID"] = "2022",
+["nome"] = "林精",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["辛特兰小魔女"] = 5,
+},
+["n_total"] = 5,
+["n_min"] = 5,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 5,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 5,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["dps_started"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127479,
+["damage_taken"] = 169.002282,
+["start_time"] = 1749127479,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 15,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 15,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 15,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["buff_uptime_targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[687] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 1,
+["uptime"] = 5,
+["id"] = 687,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["nome"] = "辛特兰小魔女",
+["grupo"] = true,
+["buff_uptime"] = 5,
+["tipo"] = 4,
+["classe"] = "WARLOCK",
+["serial"] = "Player-5376-03D61E57",
+["last_event"] = 1749127481,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 15,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["CombatStartedAt"] = 28761.067,
+["tempo_start"] = 1749127476,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 34,
+["playerTalents"] = {
+},
+["totals"] = {
+174,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["辛特兰小魔女"] = {
+["暗影箭"] = 1,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "20:44:41",
+["hasTimer"] = 4.02100000000064,
+["timeEnd"] = 1749127481,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "林精",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 28754.576,
+["CombatEndedAt"] = 28754.576,
+["aura_timeline"] = {
+},
+["data_inicio"] = "20:44:36",
+["end_time"] = 28754.775,
+["mapId"] = 1,
+["combat_id"] = 15,
+["timeStart"] = 1749127476,
+["overall_added"] = true,
+["TimeData"] = {
+},
+["frags"] = {
+["林精"] = 1,
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+169,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 132.001581,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 28749.745,
+["contra"] = "林精",
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+["魔女桑德兰"] = "Player-5376-161F7B5F",
+},
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 14,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 91.006897,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 91.006897,
+["colocacao"] = 1,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+},
+["targets"] = {
+["林精"] = 91,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749127469,
+["totalabsorbed"] = 0.006897,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+[1088] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 91,
+},
+["n_total"] = 91,
+["n_min"] = 91,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 91,
+["c_max"] = 0,
+["id"] = 1088,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 91,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["on_hold"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127468,
+["damage_taken"] = 0.006897,
+["start_time"] = 1749127468,
+["delay"] = 0,
+["last_dps"] = 91.006897,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 0.008374,
+["last_dps_realtime"] = 0,
+["monster"] = true,
+["total"] = 0.008374,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-42-2022-0000418FC4",
+["on_hold"] = false,
+["damage_from"] = {
+["辛特兰小魔女"] = true,
+},
+["targets"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.008374,
+["fight_component"] = true,
+["end_time"] = 1749127469,
+["aID"] = "2022",
+["nome"] = "林精",
+["spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["dps_started"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 91.008374,
+["start_time"] = 1749127469,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 14,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 14,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 14,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["buff_uptime_targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[687] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 1,
+["uptime"] = 1,
+["id"] = 687,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["nome"] = "辛特兰小魔女",
+["grupo"] = true,
+["buff_uptime"] = 1,
+["tipo"] = 4,
+["classe"] = "WARLOCK",
+["serial"] = "Player-5376-03D61E57",
+["last_event"] = 1749127469,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 14,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["CombatStartedAt"] = 28749.745,
+["tempo_start"] = 1749127468,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+91,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "20:44:30",
+["timeEnd"] = 1749127470,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "林精",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 28741.976,
+["CombatEndedAt"] = 28741.976,
+["aura_timeline"] = {
+},
+["data_inicio"] = "20:44:29",
+["end_time"] = 28742.976,
+["mapId"] = 1,
+["combat_id"] = 14,
+["timeStart"] = 1749127469,
+["overall_added"] = true,
+["TimeData"] = {
+},
+["frags"] = {
+["林精"] = 1,
+},
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+["魔女桑德兰"] = "Player-5376-161F7B5F",
+},
+["totals_grupo"] = {
+91,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 91.006897,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 28741.976,
+["contra"] = "林精",
+["combat_counter"] = 33,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 13,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 201.001462,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 201.001462,
+["colocacao"] = 1,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+},
+["targets"] = {
+["林精"] = 201,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749127468,
+["totalabsorbed"] = 0.001462,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+[1088] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 146,
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 146,
+["c_max"] = 146,
+["id"] = 1088,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 146,
+["successful_casted"] = 0,
+["c_total"] = 146,
+["n_amt"] = 0,
+["n_max"] = 0,
+["r_amt"] = 0,
+},
+[5676] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 55,
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 55,
+["c_max"] = 55,
+["id"] = 5676,
+["r_dmg"] = 0,
+["spellschool"] = 4,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 55,
+["successful_casted"] = 0,
+["c_total"] = 55,
+["n_amt"] = 0,
+["n_max"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["on_hold"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127464,
+["damage_taken"] = 0.001462,
+["start_time"] = 1749127428,
+["delay"] = 0,
+["last_dps"] = 100.500731,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 0.005223,
+["last_dps_realtime"] = 0,
+["monster"] = true,
+["total"] = 0.005223,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-42-2022-0000418D1E",
+["on_hold"] = false,
+["damage_from"] = {
+["辛特兰小魔女"] = true,
+},
+["targets"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.005223,
+["fight_component"] = true,
+["end_time"] = 1749127430,
+["aID"] = "2022",
+["nome"] = "林精",
+["spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["dps_started"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 201.005223,
+["start_time"] = 1749127430,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 13,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 13,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 13,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["buff_uptime_targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[687] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 1,
+["uptime"] = 2,
+["id"] = 687,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["nome"] = "辛特兰小魔女",
+["grupo"] = true,
+["buff_uptime"] = 2,
+["tipo"] = 4,
+["classe"] = "WARLOCK",
+["serial"] = "Player-5376-03D61E57",
+["last_event"] = 1749127430,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 13,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["CombatStartedAt"] = 28738.465,
+["tempo_start"] = 1749127428,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 32,
+["playerTalents"] = {
+},
+["totals"] = {
+201,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "20:43:50",
+["hasTimer"] = 1,
+["timeEnd"] = 1749127430,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "林精",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 28703.485,
+["CombatEndedAt"] = 28703.485,
+["aura_timeline"] = {
+},
+["data_inicio"] = "20:43:48",
+["end_time"] = 28703.535,
+["mapId"] = 1,
+["combat_id"] = 13,
+["timeStart"] = 1749127428,
+["overall_added"] = true,
+["TimeData"] = {
+},
+["frags"] = {
+["林精"] = 1,
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+201,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 146.001462,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 28701.535,
+["contra"] = "林精",
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+["魔女桑德兰"] = "Player-5376-161F7B5F",
+},
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 12,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 86.007105,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 86.007105,
+["colocacao"] = 1,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["林精"] = true,
+},
+["targets"] = {
+["林精"] = 86,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749127421,
+["totalabsorbed"] = 0.007105,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+[1088] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 86,
+},
+["n_total"] = 86,
+["n_min"] = 86,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 86,
+["c_max"] = 0,
+["id"] = 1088,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 86,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["on_hold"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127419,
+["damage_taken"] = 5.007105,
+["start_time"] = 1749127419,
+["delay"] = 0,
+["last_dps"] = 42.78960447756857,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 5.007194,
+["last_dps_realtime"] = 0,
+["monster"] = true,
+["total"] = 5.007194,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-42-2022-0000418CD6",
+["on_hold"] = false,
+["damage_from"] = {
+["辛特兰小魔女"] = true,
+},
+["targets"] = {
+["辛特兰小魔女"] = 5,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.007194,
+["fight_component"] = true,
+["end_time"] = 1749127421,
+["aID"] = "2022",
+["nome"] = "林精",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["辛特兰小魔女"] = 5,
+},
+["n_total"] = 5,
+["n_min"] = 5,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 5,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 5,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["dps_started"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127419,
+["damage_taken"] = 86.007194,
+["start_time"] = 1749127419,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 12,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 12,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 12,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["buff_uptime_targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[687] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 1,
+["uptime"] = 2,
+["id"] = 687,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["nome"] = "辛特兰小魔女",
+["grupo"] = true,
+["buff_uptime"] = 2,
+["tipo"] = 4,
+["classe"] = "WARLOCK",
+["serial"] = "Player-5376-03D61E57",
+["last_event"] = 1749127421,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 12,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["CombatStartedAt"] = 28700.586,
+["tempo_start"] = 1749127419,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 31,
+["playerTalents"] = {
+},
+["totals"] = {
+91,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "20:43:41",
+["hasTimer"] = 1.010000000002037,
+["timeEnd"] = 1749127421,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "林精",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 28694.176,
+["CombatEndedAt"] = 28694.176,
+["aura_timeline"] = {
+},
+["data_inicio"] = "20:43:39",
+["end_time"] = 28694.565,
+["mapId"] = 1,
+["combat_id"] = 12,
+["timeStart"] = 1749127419,
+["overall_added"] = true,
+["TimeData"] = {
+},
+["frags"] = {
+["林精"] = 1,
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+86,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 86.007105,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 28692.555,
+["contra"] = "林精",
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+["魔女桑德兰"] = "Player-5376-161F7B5F",
+},
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 11,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 185.004464,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 185.004464,
+["colocacao"] = 1,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+},
+["targets"] = {
+["林精"] = 185,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749127419,
+["totalabsorbed"] = 0.004464,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+[5676] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 87,
+},
+["n_total"] = 87,
+["n_min"] = 43,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 87,
+["c_max"] = 0,
+["id"] = 5676,
+["r_dmg"] = 0,
+["spellschool"] = 4,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["n_max"] = 44,
+["r_amt"] = 0,
+},
+[1088] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 98,
+},
+["n_total"] = 98,
+["n_min"] = 98,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 98,
+["c_max"] = 0,
+["id"] = 1088,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 98,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["on_hold"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127416,
+["damage_taken"] = 0.004464,
+["start_time"] = 1749127405,
+["delay"] = 0,
+["last_dps"] = 36.71451954752439,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 0.004668,
+["last_dps_realtime"] = 0,
+["monster"] = true,
+["total"] = 0.004668,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-42-2022-0000418CFA",
+["on_hold"] = false,
+["damage_from"] = {
+["辛特兰小魔女"] = true,
+},
+["targets"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.004668,
+["fight_component"] = true,
+["end_time"] = 1749127410,
+["aID"] = "2022",
+["nome"] = "林精",
+["spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["dps_started"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 185.004668,
+["start_time"] = 1749127410,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 11,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 11,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 11,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["buff_uptime_targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[687] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 1,
+["uptime"] = 5,
+["id"] = 687,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["nome"] = "辛特兰小魔女",
+["grupo"] = true,
+["buff_uptime"] = 5,
+["tipo"] = 4,
+["classe"] = "WARLOCK",
+["serial"] = "Player-5376-03D61E57",
+["last_event"] = 1749127410,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 11,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["CombatStartedAt"] = 28689.505,
+["tempo_start"] = 1749127405,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 30,
+["playerTalents"] = {
+},
+["totals"] = {
+185,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["辛特兰小魔女"] = {
+["暗影箭"] = 1,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "20:43:31",
+["hasTimer"] = 5.039000000000669,
+["timeEnd"] = 1749127411,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "林精",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 28683.665,
+["CombatEndedAt"] = 28683.665,
+["aura_timeline"] = {
+},
+["data_inicio"] = "20:43:26",
+["end_time"] = 28684.105,
+["mapId"] = 1,
+["combat_id"] = 11,
+["timeStart"] = 1749127406,
+["overall_added"] = true,
+["TimeData"] = {
+},
+["frags"] = {
+["林精"] = 1,
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+185,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 141.004464,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 28679.066,
+["contra"] = "林精",
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+["魔女桑德兰"] = "Player-5376-161F7B5F",
+},
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 10,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 91.0071,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 91.0071,
+["colocacao"] = 1,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["林精"] = true,
+},
+["targets"] = {
+["林精"] = 91,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749127401,
+["totalabsorbed"] = 0.0071,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+[1088] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 91,
+},
+["n_total"] = 91,
+["n_min"] = 91,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 91,
+["c_max"] = 0,
+["id"] = 1088,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 91,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["on_hold"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127400,
+["damage_taken"] = 6.0071,
+["start_time"] = 1749127400,
+["delay"] = 0,
+["last_dps"] = 30.3357,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 6.00123,
+["last_dps_realtime"] = 0,
+["monster"] = true,
+["total"] = 6.00123,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-42-2022-0000C18CFA",
+["on_hold"] = false,
+["damage_from"] = {
+["辛特兰小魔女"] = true,
+},
+["targets"] = {
+["辛特兰小魔女"] = 6,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.00123,
+["fight_component"] = true,
+["end_time"] = 1749127401,
+["aID"] = "2022",
+["nome"] = "林精",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["辛特兰小魔女"] = 6,
+},
+["n_total"] = 6,
+["n_min"] = 6,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 6,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 6,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["dps_started"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127398,
+["damage_taken"] = 91.00123,
+["start_time"] = 1749127398,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 10,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 10,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 10,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["buff_uptime_targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[687] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 1,
+["uptime"] = 3,
+["id"] = 687,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["nome"] = "辛特兰小魔女",
+["grupo"] = true,
+["buff_uptime"] = 3,
+["tipo"] = 4,
+["classe"] = "WARLOCK",
+["serial"] = "Player-5376-03D61E57",
+["last_event"] = 1749127401,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 10,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["CombatStartedAt"] = 28679.066,
+["tempo_start"] = 1749127398,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 29,
+["playerTalents"] = {
+},
+["totals"] = {
+97,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["辛特兰小魔女"] = {
+["暗影箭"] = 1,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "20:43:21",
+["hasTimer"] = 2,
+["timeEnd"] = 1749127401,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "林精",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 28673.905,
+["CombatEndedAt"] = 28673.905,
+["aura_timeline"] = {
+},
+["data_inicio"] = "20:43:18",
+["end_time"] = 28674.815,
+["mapId"] = 1,
+["combat_id"] = 10,
+["timeStart"] = 1749127398,
+["overall_added"] = true,
+["TimeData"] = {
+},
+["frags"] = {
+["林精"] = 1,
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+91,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 91.0071,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 28671.815,
+["contra"] = "林精",
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+["魔女桑德兰"] = "Player-5376-161F7B5F",
+},
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 137.003494,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 137.003494,
+["colocacao"] = 1,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["林精"] = true,
+},
+["targets"] = {
+["林精"] = 137,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749127398,
+["totalabsorbed"] = 0.003494,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+[1088] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 96,
+},
+["n_total"] = 96,
+["n_min"] = 96,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 96,
+["c_max"] = 0,
+["id"] = 1088,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 96,
+["r_amt"] = 0,
+},
+[5676] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 41,
+},
+["n_total"] = 41,
+["n_min"] = 41,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 41,
+["c_max"] = 0,
+["id"] = 5676,
+["r_dmg"] = 0,
+["spellschool"] = 4,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 41,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["on_hold"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127395,
+["damage_taken"] = 6.003494,
+["start_time"] = 1749127386,
+["delay"] = 0,
+["last_dps"] = 135.6470237621026,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 6.004591,
+["last_dps_realtime"] = 0,
+["monster"] = true,
+["total"] = 6.004591,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-42-2022-0000418E14",
+["on_hold"] = false,
+["damage_from"] = {
+["辛特兰小魔女"] = true,
+},
+["targets"] = {
+["辛特兰小魔女"] = 6,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.004591,
+["fight_component"] = true,
+["end_time"] = 1749127387,
+["aID"] = "2022",
+["nome"] = "林精",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["辛特兰小魔女"] = 6,
+},
+["n_total"] = 6,
+["n_min"] = 6,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 6,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["n_max"] = 6,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["dps_started"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127386,
+["damage_taken"] = 137.004591,
+["start_time"] = 1749127386,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 9,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 9,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["buff_uptime_targets"] = {
+},
+["aID"] = "5376-03D61E57",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[687] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 1,
+["uptime"] = 1,
+["id"] = 687,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["nome"] = "辛特兰小魔女",
+["grupo"] = true,
+["buff_uptime"] = 1,
+["tipo"] = 4,
+["classe"] = "WARLOCK",
+["serial"] = "Player-5376-03D61E57",
+["last_event"] = 1749127387,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 9,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["CombatStartedAt"] = 28668.815,
+["tempo_start"] = 1749127386,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+143,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "20:43:07",
+["timeEnd"] = 1749127387,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "林精",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 28660.134,
+["CombatEndedAt"] = 28660.134,
+["aura_timeline"] = {
+},
+["data_inicio"] = "20:43:06",
+["end_time"] = 28660.435,
+["mapId"] = 1,
+["combat_id"] = 9,
+["timeStart"] = 1749127386,
+["overall_added"] = true,
+["TimeData"] = {
+},
+["frags"] = {
+["林精"] = 1,
+},
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+["魔女桑德兰"] = "Player-5376-161F7B5F",
+},
+["totals_grupo"] = {
+137,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 96.003494,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 28659.425,
+["contra"] = "林精",
+["combat_counter"] = 28,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 8,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 116.00602,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 116.00602,
+["colocacao"] = 1,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["林精"] = true,
+},
+["targets"] = {
+["林精"] = 116,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749127386,
+["totalabsorbed"] = 0.00602,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+[6222] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 36,
+},
+["n_total"] = 36,
+["n_min"] = 18,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 36,
+["c_max"] = 0,
+["id"] = 6222,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["n_max"] = 18,
+["r_amt"] = 0,
+},
+[5676] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 80,
+},
+["n_total"] = 80,
+["n_min"] = 38,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 80,
+["c_max"] = 0,
+["id"] = 5676,
+["r_dmg"] = 0,
+["spellschool"] = 4,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["n_max"] = 42,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["on_hold"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127382,
+["damage_taken"] = 29.00602,
+["start_time"] = 1749127364,
+["delay"] = 0,
+["last_dps"] = 8.889350191571378,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 29.003754,
+["last_dps_realtime"] = 0,
+["monster"] = true,
+["total"] = 29.003754,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-42-2022-0000C19028",
+["on_hold"] = false,
+["damage_from"] = {
+["辛特兰小魔女"] = true,
+},
+["targets"] = {
+["辛特兰小魔女"] = 29,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.003754,
+["fight_component"] = true,
+["end_time"] = 1749127368,
+["aID"] = "2022",
+["nome"] = "林精",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["辛特兰小魔女"] = 29,
+},
+["n_total"] = 29,
+["n_min"] = 4,
+["g_dmg"] = 0,
+["counter"] = 6,
+["total"] = 29,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 6,
+["n_max"] = 5,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["dps_started"] = false,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1749127365,
+["damage_taken"] = 116.003754,
+["start_time"] = 1749127356,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 8,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 8,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 8,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["debuff_uptime_spells"] = {
+["_ActorTable"] = {
+[6222] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 0,
+["uptime"] = 6,
+["id"] = 6222,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[689] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 0,
+["uptime"] = 0,
+["id"] = 689,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["pets"] = {
+},
+["buff_uptime"] = 12,
+["classe"] = "WARLOCK",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[687] = {
+["appliedamt"] = 1,
+["targets"] = {
+},
+["activedamt"] = 1,
+["uptime"] = 12,
+["id"] = 687,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["debuff_uptime"] = 6,
+["buff_uptime_targets"] = {
+},
+["debuff_uptime_targets"] = {
+},
+["grupo"] = true,
+["nome"] = "辛特兰小魔女",
+["last_event"] = 1749127368,
+["aID"] = "5376-03D61E57",
+["serial"] = "Player-5376-03D61E57",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 8,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["CombatStartedAt"] = 28655.465,
+["tempo_start"] = 1749127356,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 27,
+["playerTalents"] = {
+},
+["totals"] = {
+145,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["辛特兰小魔女"] = {
+["吸取生命"] = 1,
+["腐蚀术"] = 1,
+["灼热之痛"] = 1,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "20:42:49",
+["hasTimer"] = 13.04999999999927,
+["timeEnd"] = 1749127369,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "林精",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 28641.885,
+["CombatEndedAt"] = 28641.885,
+["aura_timeline"] = {
+},
+["data_inicio"] = "20:42:36",
+["end_time"] = 28642.364,
+["mapId"] = 1,
+["combat_id"] = 8,
+["timeStart"] = 1749127356,
+["overall_added"] = true,
+["TimeData"] = {
+},
+["frags"] = {
+["林精"] = 1,
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+116,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["辛特兰小魔女"] = 74.00602,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 28629.314,
+["contra"] = "林精",
+["raid_roster"] = {
+["法德迦"] = "Player-5376-03E2B2A8",
+["辛特兰小魔女"] = "Player-5376-03D61E57",
+["魔女桑德兰"] = "Player-5376-161F7B5F",
+},
+},
+},
+},
+["ocd_tracker"] = {
+["show_title"] = true,
+["current_cooldowns"] = {
+},
+["lines_per_column"] = 12,
+["group_frames"] = true,
+["show_options"] = false,
+["frames"] = {
+["defensive-raid"] = {
+},
+["main"] = {
+},
+["ofensive"] = {
+},
+["defensive-target"] = {
+},
+["utility"] = {
+},
+["defensive-personal"] = {
+},
+},
+["width"] = 120,
+["ignored_cooldowns"] = {
+},
+["framme_locked"] = false,
+["cooldowns"] = {
+},
+["own_frame"] = {
+["defensive-raid"] = false,
+["ofensive"] = false,
+["defensive-target"] = false,
+["utility"] = false,
+["defensive-personal"] = false,
+},
+["height"] = 18,
+["show_conditions"] = {
+["only_inside_instance"] = true,
+["only_in_group"] = true,
+},
+["enabled"] = false,
+["filters"] = {
+["itemutil"] = false,
+["itempower"] = false,
+["defensive-target"] = false,
+["itemheal"] = false,
+["defensive-personal"] = false,
+["defensive-raid"] = false,
+["ofensive"] = true,
+["crowdcontrol"] = false,
+["utility"] = false,
+},
+},
+["last_version"] = "1.15.7 13601",
+["player_stats"] = {
+},
+["force_font_outline"] = "",
+["tabela_instancias"] = {
+},
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
+},
+["last_coach_name"] = false,
+},
+["local_instances_config"] = {
+{
+["modo"] = 2,
+["sub_attribute"] = 1,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+1,
+1,
+},
+["is_open"] = true,
+["isLocked"] = false,
+["snap"] = {
+},
+["segment"] = 0,
+["mode"] = 2,
+["attribute"] = 1,
+["pos"] = {
+["normal"] = {
+["y"] = -285.2354736328125,
+["x"] = 814.5794677734375,
+["w"] = 309.9999389648438,
+["h"] = 158.0000305175781,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+},
+["cached_talents"] = {
+},
+["last_instance_id"] = 0,
+["data_harvest_for_charsts"] = {
+["players"] = {
+{
+["playerKey"] = "total",
+["combatObjectContainer"] = 1,
+["name"] = "Damage of Each Individual Player",
+["playerOnly"] = true,
+},
+},
+["totals"] = {
+{
+["combatObjectSubTableKey"] = 1,
+["name"] = "Damage of All Player Combined",
+["combatObjectSubTableName"] = "totals",
+},
+},
+},
+["announce_interrupts"] = {
+["enabled"] = false,
+["whisper"] = "",
+["channel"] = "SAY",
+["custom"] = "",
+["next"] = "",
+},
+["announce_prepots"] = {
+["enabled"] = false,
+["channel"] = "SELF",
+["reverse"] = false,
+},
+["active_profile"] = "辛特兰小魔女-哈霍兰",
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
+["benchmark_db"] = {
+["frame"] = {
+},
+},
+["combat_log"] = {
+["inverse_deathlog_overalldata"] = false,
+["merge_gemstones_1007"] = false,
+["track_hunter_frenzy"] = false,
+["merge_critical_heals"] = false,
+["inverse_deathlog_raid"] = false,
+["calc_evoker_damage"] = true,
+["evoker_show_realtimedps"] = false,
+["inverse_deathlog_mplus"] = false,
+},
+["data_harvested_for_charts"] = {
+},
+["mythic_plus_log"] = {
+},
+["on_death_menu"] = false,
+["announce_damagerecord"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["nick_tag_cache"] = {
+["nextreset"] = 1750009163,
+["last_version"] = 16,
+},
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["ignore_nicktag"] = false,
+["last_realversion"] = 165,
+["last_instance_time"] = 0,
+["combat_id"] = 22,
+["savedStyles"] = {
+},
+["last_day"] = "06",
+["character_data"] = {
+["logons"] = 8,
+},
+["announce_deaths"] = {
+["enabled"] = false,
+["last_hits"] = 1,
+["only_first"] = 5,
+["where"] = 1,
+},
+["tabela_overall"] = {
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "WARLOCK",
+["total_without_pet"] = 1870.129118,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 1870.129118,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-03D61E57",
+["damage_from"] = {
+["瘤背战士"] = true,
+["血羽风巫"] = true,
+["血羽女巫"] = true,
+["血羽复仇者"] = true,
+["血羽鹰身人"] = true,
+["夜刃捕食者"] = true,
+["血羽游荡者"] = true,
+["林精"] = true,
+},
+["targets"] = {
+["林精"] = 1870,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749127010,
+["totalabsorbed"] = 0.129118,
+["aID"] = "5376-03D61E57",
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 1,
+["g_amt"] = 5,
+["n_max"] = 58,
+["targets"] = {
+["血羽复仇者"] = 0,
+["林精"] = 198,
+},
+["n_total"] = 103,
+["n_min"] = 0,
+["g_dmg"] = 95,
+["counter"] = 8,
+["total"] = 198,
+["c_max"] = 0,
+["a_amt"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["PARRY"] = 1,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 45,
+["r_amt"] = 0,
+},
+[5676] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 43,
+["targets"] = {
+["林精"] = 299,
+},
+["n_total"] = 234,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 7,
+["total"] = 299,
+["c_max"] = 65,
+["id"] = 5676,
+["r_dmg"] = 0,
+["spellschool"] = 4,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 65,
+["n_amt"] = 6,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[1088] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 98,
+["targets"] = {
+["林精"] = 1171,
+},
+["n_total"] = 1025,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 12,
+["total"] = 1171,
+["c_max"] = 146,
+["id"] = 1088,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 146,
+["n_amt"] = 11,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[6222] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 18,
+["targets"] = {
+["林精"] = 108,
+},
+["n_total"] = 108,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 6,
+["total"] = 108,
+["c_max"] = 0,
+["id"] = 6222,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 6,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[689] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["b_dmg"] = 0,
+["targets"] = {
+["林精"] = 80,
+},
+["n_total"] = 80,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 8,
+["total"] = 80,
+["c_max"] = 0,
+["id"] = 689,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 8,
+["n_max"] = 10,
+["r_amt"] = 0,
+},
+[1014] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 7,
+["targets"] = {
+["林精"] = 14,
+},
+["n_total"] = 14,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 14,
+["c_max"] = 0,
+["id"] = 1014,
+["r_dmg"] = 0,
+["spellschool"] = 32,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 928.129118,
+["start_time"] = 1749126944,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 120.084898,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 120.084898,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-42-2022-0000418F4D",
+["on_hold"] = false,
+["damage_from"] = {
+["辛特兰小魔女"] = true,
+},
+["targets"] = {
+["辛特兰小魔女"] = 120,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.084898,
+["fight_component"] = true,
+["end_time"] = 1749127010,
+["aID"] = "2022",
+["nome"] = "林精",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 7,
+["targets"] = {
+["辛特兰小魔女"] = 120,
+},
+["n_total"] = 120,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 25,
+["total"] = 120,
+["c_max"] = 0,
+["MISS"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 24,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["monster"] = true,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 1870.084898,
+["start_time"] = 1749126957,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.010115,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 29.010115,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 29.010115,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2008-0000C13906",
+["aID"] = "2008",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 29,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749148947,
+["nome"] = "瘤背战士",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 8,
+["targets"] = {
+["辛特兰小魔女"] = 29,
+},
+["n_total"] = 29,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 29,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.010115,
+["start_time"] = 1749148926,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.014816,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 53.014816,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 53.014816,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2043-0000C0FFCA",
+["aID"] = "2043",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 53,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149034,
+["nome"] = "夜刃捕食者",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 8,
+["targets"] = {
+["辛特兰小魔女"] = 53,
+},
+["n_total"] = 53,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 8,
+["total"] = 53,
+["c_max"] = 0,
+["DODGE"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 7,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.014816,
+["start_time"] = 1749149020,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.018497,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 105.018497,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 105.018497,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2018-0002C0FFC7",
+["aID"] = "2018",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 105,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149220,
+["nome"] = "血羽女巫",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+[20793] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 29,
+["targets"] = {
+["辛特兰小魔女"] = 105,
+},
+["n_total"] = 105,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 105,
+["c_max"] = 0,
+["id"] = 20793,
+["r_dmg"] = 0,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 3,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[12544] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 0,
+["total"] = 0,
+["c_max"] = 0,
+["id"] = 12544,
+["r_dmg"] = 0,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 3,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.018497,
+["start_time"] = 1749149201,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 2632,
+["totalabsorbed"] = 0.00765,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 82.00765,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 82.00765,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2015-0000419333",
+["aID"] = "2015",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 82,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149220,
+["nome"] = "血羽鹰身人",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 13,
+["targets"] = {
+["辛特兰小魔女"] = 82,
+},
+["n_total"] = 82,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 8,
+["total"] = 82,
+["c_max"] = 0,
+["MISS"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 7,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[6958] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+["辛特兰小魔女"] = 0,
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 0,
+["c_max"] = 0,
+["RESIST"] = 1,
+["id"] = 6958,
+["r_dmg"] = 0,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 1,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.00765,
+["start_time"] = 1749149200,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.011381,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 7.011381,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 7.011381,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2017-0000413DCF",
+["aID"] = "2017",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 7,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149250,
+["nome"] = "血羽游荡者",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 7,
+["targets"] = {
+["辛特兰小魔女"] = 7,
+},
+["n_total"] = 7,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 7,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.011381,
+["start_time"] = 1749149246,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.009217,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 193.009217,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 193.009217,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2019-000041922A",
+["aID"] = "2019",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 193,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149318,
+["nome"] = "血羽复仇者",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 15,
+["targets"] = {
+["辛特兰小魔女"] = 193,
+},
+["n_total"] = 193,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 15,
+["total"] = 193,
+["c_max"] = 0,
+["MISS"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 14,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[5515] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 0,
+["total"] = 0,
+["c_max"] = 0,
+["id"] = 5515,
+["r_dmg"] = 0,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 1,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.009217,
+["start_time"] = 1749149288,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 2632,
+["totalabsorbed"] = 0.007109,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 339.007109,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 339.007109,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5341-1-177-2020-0000414D49",
+["aID"] = "2020",
+["fight_component"] = true,
+["damage_from"] = {
+},
+["targets"] = {
+["辛特兰小魔女"] = 339,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1749149318,
+["nome"] = "血羽风巫",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 15,
+["targets"] = {
+["辛特兰小魔女"] = 339,
+},
+["n_total"] = 339,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 28,
+["total"] = 339,
+["c_max"] = 0,
+["MISS"] = 2,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 26,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[6982] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+["辛特兰小魔女"] = 0,
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 0,
+["c_max"] = 0,
+["RESIST"] = 2,
+["id"] = 6982,
+["r_dmg"] = 0,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 3,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.007109,
+["start_time"] = 1749149292,
+["delay"] = 0,
+["last_event"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["healing_from"] = {
+["辛特兰小魔女"] = true,
+},
+["pets"] = {
+},
+["iniciar_hps"] = false,
+["classe"] = "WARLOCK",
+["totalover"] = 57.023768,
+["total_without_pet"] = 16.023768,
+["total"] = 16.023768,
+["targets_absorbs"] = {
+},
+["heal_enemy"] = {
+},
+["on_hold"] = false,
+["serial"] = "Player-5376-03D61E57",
+["totalabsorb"] = 0.023768,
+["last_hps"] = 0,
+["targets"] = {
+["辛特兰小魔女"] = 16,
+},
+["totalover_without_pet"] = 0.023768,
+["heal_enemy_amt"] = 0,
+["healing_taken"] = 16.023768,
+["fight_component"] = true,
+["end_time"] = 1749127302,
+["targets_overheal"] = {
+["辛特兰小魔女"] = 57,
+},
+["nome"] = "辛特兰小魔女",
+["spells"] = {
+["_ActorTable"] = {
+[689] = {
+["c_amt"] = 0,
+["totalabsorb"] = 0,
+["targets_overheal"] = {
+["辛特兰小魔女"] = 57,
+},
+["n_max"] = 10,
+["targets"] = {
+["辛特兰小魔女"] = 16,
+},
+["n_total"] = 16,
+["n_min"] = 0,
+["counter"] = 8,
+["overheal"] = 57,
+["total"] = 16,
+["spellschool"] = 32,
+["id"] = 689,
+["targets_absorbs"] = {
+},
+["c_min"] = 0,
+["c_max"] = 0,
+["c_total"] = 0,
+["totaldenied"] = 0,
+["n_amt"] = 8,
+["absorbed"] = 0,
+},
+},
+["tipo"] = 3,
+},
+["grupo"] = true,
+["aID"] = "5376-03D61E57",
+["start_time"] = 1749127285,
+["custom"] = 0,
+["tipo"] = 2,
+["totaldenied"] = 0.023768,
+["delay"] = 0,
+["last_event"] = 0,
+},
+},
+},
+{
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["debuff_uptime_spells"] = {
+["_ActorTable"] = {
+[689] = {
+["refreshamt"] = 0,
+["activedamt"] = 0,
+["appliedamt"] = 4,
+["id"] = 689,
+["uptime"] = 8,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[6222] = {
+["refreshamt"] = 0,
+["activedamt"] = 0,
+["appliedamt"] = 3,
+["id"] = 6222,
+["uptime"] = 18,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[1014] = {
+["refreshamt"] = 0,
+["activedamt"] = 0,
+["appliedamt"] = 1,
+["id"] = 1014,
+["uptime"] = 3,
+["targets"] = {
+},
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["buff_uptime"] = 75,
+["aID"] = "5376-03D61E57",
+["buff_uptime_spells"] = {
+["_ActorTable"] = {
+[687] = {
+["refreshamt"] = 0,
+["activedamt"] = 17,
+["appliedamt"] = 17,
+["id"] = 687,
+["uptime"] = 75,
+["targets"] = {
+},
+["counter"] = 0,
+},
+},
+["tipo"] = 9,
+},
+["fight_component"] = true,
+["debuff_uptime"] = 29,
+["pets"] = {
+},
+["debuff_uptime_targets"] = {
+},
+["buff_uptime_targets"] = {
+},
+["grupo"] = true,
+["nome"] = "辛特兰小魔女",
+["last_event"] = 0,
+["classe"] = "WARLOCK",
+["serial"] = "Player-5376-03D61E57",
+["tipo"] = 4,
+},
+{
+["flag_original"] = 68168,
+["serial"] = "Creature-0-5341-1-177-2018-0002C0FFC7",
+["fight_component"] = true,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["tipo"] = 4,
+["monster"] = true,
+["aID"] = "2018",
+["nome"] = "血羽女巫",
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68168,
+["serial"] = "Creature-0-5341-1-177-2015-000041947C",
+["fight_component"] = true,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["tipo"] = 4,
+["monster"] = true,
+["aID"] = "2015",
+["nome"] = "血羽鹰身人",
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68168,
+["serial"] = "Creature-0-5341-1-177-2019-000041922A",
+["fight_component"] = true,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["tipo"] = 4,
+["monster"] = true,
+["aID"] = "2019",
+["nome"] = "血羽复仇者",
+["last_event"] = 0,
+},
+{
+["flag_original"] = 2632,
+["serial"] = "Creature-0-5341-1-177-2020-0000414DF5",
+["fight_component"] = true,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["tipo"] = 4,
+["monster"] = true,
+["aID"] = "2020",
+["nome"] = "血羽风巫",
+["last_event"] = 0,
+},
+},
+},
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+},
+["tempo_start"] = 1749127005,
+["cleu_timeline"] = {
+},
+["alternate_power"] = {
+},
+["combat_counter"] = 19,
+["bossTimers"] = {
+},
+["trinketProcs"] = {
+},
+["playerTalents"] = {
+},
+["totals"] = {
+2798.253543,
+16.01712,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+1870.12636,
+16.01712,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["last_events_tables"] = {
+},
+["frags_need_refresh"] = false,
+["aura_timeline"] = {
+},
+["overall_refreshed"] = true,
+["data_inicio"] = "20:36:45",
+["amountCasts"] = {
+["血羽复仇者"] = {
+["野性"] = 1,
+},
+["血羽鹰身人"] = {
+["吸血术"] = 1,
+},
+["辛特兰小魔女"] = {
+["吸取生命"] = 2,
+["生命分流"] = 1,
+["暗影箭"] = 4,
+["灼热之痛"] = 3,
+["腐蚀术"] = 1,
+},
+["血羽风巫"] = {
+["阵风"] = 3,
+},
+["血羽女巫"] = {
+["火球术"] = 2,
+["霜甲术"] = 1,
+},
+},
+["mapId"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["zoneName"] = "卡利姆多",
+["end_time"] = 50591.931,
+["boss_hp"] = 1,
+["segments_added"] = {
+{
+["elapsed"] = 26.87100000000646,
+["type"] = 0,
+["name"] = "血羽风巫",
+["clock"] = "02:48:11",
+},
+{
+["elapsed"] = 16.64400000000023,
+["type"] = 0,
+["name"] = "血羽女巫",
+["clock"] = "02:47:13",
+},
+{
+["elapsed"] = 27.0679999999993,
+["type"] = 0,
+["name"] = "血羽鹰身人",
+["clock"] = "02:46:33",
+},
+{
+["elapsed"] = 11.0199999999968,
+["type"] = 0,
+["name"] = "夜刃捕食者",
+["clock"] = "02:43:43",
+},
+{
+["elapsed"] = 18.0850000000064,
+["type"] = 0,
+["name"] = "瘤背战士",
+["clock"] = "02:42:08",
+},
+{
+["elapsed"] = 1,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:45:59",
+},
+{
+["elapsed"] = 4.020000000000437,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:44:49",
+},
+{
+["elapsed"] = 5.030000000002474,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:44:36",
+},
+{
+["elapsed"] = 1,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:44:29",
+},
+{
+["elapsed"] = 2,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:43:48",
+},
+{
+["elapsed"] = 2.010000000002037,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:43:39",
+},
+{
+["elapsed"] = 5.039000000000669,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:43:26",
+},
+{
+["elapsed"] = 3,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:43:18",
+},
+{
+["elapsed"] = 1.010000000002037,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:43:06",
+},
+{
+["elapsed"] = 13.04999999999927,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:42:36",
+},
+{
+["elapsed"] = 7.02100000000064,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:42:23",
+},
+{
+["elapsed"] = 4,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:42:09",
+},
+{
+["elapsed"] = 8.011000000002241,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:41:34",
+},
+{
+["elapsed"] = 2.018000000000029,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:41:25",
+},
+{
+["elapsed"] = 3.018000000000029,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:39:41",
+},
+{
+["elapsed"] = 12.03899999999703,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:37:28",
+},
+{
+["elapsed"] = 5.008999999998196,
+["type"] = 0,
+["name"] = "林精",
+["clock"] = "20:36:45",
+},
+},
+["frags"] = {
+},
+["data_fim"] = "02:48:38",
+["overall_enemy_name"] = "-- x -- x --",
+["spells_cast_timeline"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+},
+["damage"] = {
+},
+},
+["start_time"] = 50413.96799999999,
+["TimeData"] = {
+},
+["player_last_events"] = {
+},
+},
+["plugin_database"] = {
+["DETAILS_PLUGIN_TINY_THREAT"] = {
+["enabled"] = true,
+["animate"] = false,
+["hide_pull_bar"] = false,
+["author"] = "Terciob",
+["playercolor"] = {
+1,
+1,
+1,
+},
+["usefocus"] = false,
+["updatespeed"] = 1,
+["useclasscolors"] = false,
+["showamount"] = false,
+["useplayercolor"] = false,
+["absolute_mode"] = false,
+["playSound"] = false,
+["playSoundFile"] = "Details Threat Warning Volume 3",
+["disable_gouge"] = false,
+},
+["DETAILS_PLUGIN_COMPARETWO_WINDOW"] = {
+["enabled"] = true,
+["author"] = "Terciob",
+["max_compares"] = 4,
+["compare_type"] = 1,
+},
+["DETAILS_PLUGIN_STREAM_OVERLAY"] = {
+["use_square_mode"] = false,
+["is_first_run"] = false,
+["arrow_color"] = {
+1,
+1,
+1,
+0.5,
+},
+["arrow_anchor_y"] = 0,
+["main_frame_size"] = {
+300.0000305175781,
+500,
+},
+["minimap"] = {
+["minimapPos"] = 160,
+["radius"] = 160,
+["hide"] = false,
+},
+["main_frame_locked"] = false,
+["arrow_anchor_x"] = 0,
+["row_color"] = {
+0.1,
+0.1,
+0.1,
+0.4,
+},
+["row_texture"] = "Details Serenity",
+["square_grow_direction"] = "right",
+["per_second"] = {
+["enabled"] = false,
+["point"] = "CENTER",
+["scale"] = 1,
+["font_shadow"] = true,
+["y"] = 0.0001220703125,
+["x"] = 0.00079345703125,
+["attribute_type"] = 1,
+["update_speed"] = 0.05,
+["size"] = 32,
+},
+["author"] = "Terciob",
+["square_amount"] = 5,
+["enabled"] = false,
+["arrow_size"] = 10,
+["font_size"] = 10,
+["row_spacement"] = 21,
+["main_frame_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["main_frame_strata"] = "LOW",
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["y"] = -1.52587890625e-05,
+["use_spark"] = true,
+["x"] = 3.0517578125e-05,
+["font_face"] = "Friz Quadrata TT",
+["square_size"] = 32,
+["point"] = "CENTER",
+["font_color"] = {
+1,
+1,
+1,
+1,
+},
+["row_height"] = 20,
+["scale"] = 1,
+},
+},
+["combat_counter"] = 41,
+["SoloTablesSaved"] = {
+["Mode"] = 1,
+},
+["announce_cooldowns"] = {
+["ignored_cooldowns"] = {
+},
+["enabled"] = false,
+["custom"] = "",
+["channel"] = "RAID",
+},
+["rank_window"] = {
+["last_difficulty"] = 15,
+["last_raid"] = "",
+},
+["cached_roles"] = {
+},
+["cached_specs"] = {
+},
+}

@@ -1,0 +1,699 @@
+VER 3 00000000000002E4 " " "INV_Misc_QuestionMark"
+#showtooltip 顺劈斩(等级 5)
+/startattack
+/cast 顺劈斩(等级 5)
+END
+VER 3 00000000000002E2 " " "INV_Misc_QuestionMark"
+#showtooltip 斩杀(等级 5)
+/startattack
+/cast 斩杀(等级 5)
+/施放 英勇打击(等级 9)
+END
+VER 3 00000000000002E1 " " "INV_Misc_QuestionMark"
+#showtooltip 盾击(等级 3)
+/施放 防御姿态
+/equip 死亡的面孔
+/equip 黑女巫的悔恨
+/施放 盾击(等级 3)
+END
+VER 3 00000000000002E0 " " "INV_Misc_QuestionMark"
+#showtooltip 拦截(等级 3)
+/施放 狂暴姿态
+/施放 血性狂暴
+/startattack
+/施放 拦截
+/施放 破甲攻击(等级 5)
+END
+VER 3 00000000000002E5 " " "INV_Misc_QuestionMark"
+#showtooltip 斩杀(等级 5)
+/startattack
+/cast 斩杀(等级 5)
+END
+VER 3 00000000000002E3 " " "INV_Misc_QuestionMark"
+#showtooltip 猛击(等级 4)
+/startattack
+/equip 米奈希尔之力
+/cast 猛击(等级 4)
+END
+VER 3 00000000000002E6 " 强撸" "INV_Misc_QuestionMark"
+#showtooltip 鲁莽
+/use 13
+/use 14
+/施放 鲁莽
+END
+VER 3 00000000000002E7 " 强撸" "INV_Misc_QuestionMark"
+#showtooltip 鲁莽
+/cast [nostance:3]狂暴姿态;[stance:3]鲁莽
+/use 13
+/use 14
+/startattack
+END
+VER 3 00000000000002E8 " 拳击盾击" "INV_Misc_QuestionMark"
+#showtooltip 盾击
+/cast [stance:3] 拳击(等级 2)；
+/equip [nostance:3,noequipped: Shields] 饥饿之寒
+/equip [nostance:3] 瘟疫携带者
+/cast 英勇打击
+/cast 盾击
+END
+VER 3 00000000000002E9 " 爆发" "INV_Misc_QuestionMark"
+#showtooltip 死亡之愿
+/施放 死亡之愿
+/施放 蜘蛛之吻
+/施放 屠龙者的纹章
+/施放 沙漠掠夺者塑像
+/施放 虫群卫士徽章
+END
+VER 3 00000000000002EA " 缴械" "INV_Misc_QuestionMark"
+#showtooltip 缴械
+/cast 防御姿态
+/cast 缴械
+END
+VER 3 00000000000002EB "11" "134400"
+/run FollowUnit(followTarget or "player")
+END
+VER 3 00000000000002EC "123" "132182"
+/团队 32103484 熔火之心1
+END
+VER 3 00000000000002EE "`" "INV_Misc_QuestionMark"
+#showtooltip 盾牌格挡
+/startattack
+/equipslot 16 饥饿之寒
+/equipslot 17 死亡的面孔
+/cast 防御姿态
+/cast 盾牌格挡
+END
+VER 3 00000000000002EF "`" "INV_Misc_QuestionMark"
+#showtooltip 惩戒痛击
+/cast 战斗姿态
+/cast 惩戒痛击
+END
+VER 3 00000000000002ED "`" "132282"
+/cast 英勇打击
+/cast 嗜血
+END
+VER 3 00000000000002F0 "A" "134400"
+/y 炉火燃尽凡铁，狮心终将觉醒！今日，我以钢铸魂，以血封王！
+/y 战鼓雷鸣，铁火铸心！狮心头盔——唯有真战士，配得此冠！
+/y 铁锤落下，火光如星！狮心将生，荣耀重临艾泽拉斯！
+/y 血与火为誓，钢与魂为冠！狮心不灭，战意永生！
+/y 当最后一锤击响，大地为之震颤——狮心诞生，王者归来！
+END
+VER 3 00000000000002F1 "alaGearMan0" "132293"
+/run AGM_FUNC.takeoffAll()
+END
+VER 3 00000000000002F3 "BCT" "INV_Misc_QuestionMark"
+#showtooltip 
+/startattack
+/施放 嗜血
+/click BCT
+/cancelAura 嗜血
+/cancelAura 保护祝福
+/cancelAura 强效治疗术
+/cancelAura 愈合
+/cancelAura 神圣之力
+/cancelAura 信仰
+/cancelAura 利爪祝福
+/cancelAura 恢复
+/cancelAura 回春术
+/cancelAura 血性狂暴
+END
+VER 3 00000000000002F4 "BCT" "INV_Misc_QuestionMark"
+#showtooltip 
+/startattack
+/cast 顺劈斩
+/click BCT
+/cancelAura 保护祝福
+/cancelAura 强效治疗术
+/cancelAura 愈合
+/cancelAura 嗜血
+/cancelAura 神圣之力
+/cancelAura 信仰
+/cancelAura 利爪祝福
+END
+VER 3 00000000000002F5 "BCT" "132282"
+/startattack
+/cast 破甲攻击
+/cancelAura 保护祝福
+/cancelAura 奥术光辉
+/cancelAura 精神祷言
+/cancelAura 强效治疗术
+/cancelAura 愈合
+/cancelAura 回春术
+/cancelAura 嗜血
+/cancelAura 神圣之力
+/cancelAura 信仰
+/cancelAura 利爪祝福
+/cancelaura 银色黎明委任徽章
+END
+VER 3 00000000000002F6 "BCT" "INV_Misc_QuestionMark"
+#showtooltip 
+/startattack
+/施放 嗜血
+/click BCT
+/cancelAura 嗜血
+/cancelAura 保护祝福
+/cancelAura 强效拯救祝福
+/cancelAura 
+/cancelAura 
+/cancelAura 
+/cancelAura 
+/cancelAura 
+/cancelAura
+END
+VER 3 00000000000002F2 "BCT" "132282"
+/startattack
+/cast 英勇打击
+/cast 破甲攻击
+/click BCT
+/cancelAura 保护祝福
+/cancelAura 强效治疗术
+/cancelAura 愈合
+/cancelAura 嗜血
+/cancelAura 神圣之力
+/cancelAura 信仰
+/cancelAura 利爪祝福
+END
+VER 3 00000000000002F7 "BOSS" "136179"
+/stopcasting
+/equipslot 16 格雷希尔，毁灭之黎明
+/equipslot 17 伊普利斯，堕落炽天使之刃
+END
+VER 3 00000000000002F8 "BUF" "133986"
+/cancelaura 真言术：韧
+/cancelaura 坚韧祷言
+/cancelaura 摩尔达的勇气
+/cancelaura 赞扎之魂
+/cancelaura 洛丹伦的祝福
+/cancelaura 野猪之魂
+/cancelaura 生命 II
+/cancelaura 黑标美味朗姆酒
+/cancelaura 戈多克绿酒
+END
+VER 3 00000000000002DF "da" "136225"
+/目标 纳兹加克王子
+END
+VER 3 00000000000002F9 "DEBUFF" "136172"
+/cancelAura 保护祝福
+/cancelAura 强效拯救祝福
+/cancelAura 奥术光辉
+/cancelAura 精神祷言
+/cancelAura 强效治疗术
+/cancelAura 愈合
+/cancelAura 回春术
+/cancelAura 嗜血
+/cancelAura 神圣之力
+/cancelAura 信仰
+/cancelAura 利爪祝福
+/cancelaura 银色黎明委任徽章
+END
+VER 3 00000000000002FB "Decursive" "INV_MISC_QUESTIONMARK"
+/stopcasting
+/cast [@mouseover,nomod,exists] 解除诅咒;  [@mouseover,exists,mod:ctrl] 驱毒术; [@mouseover,exists,mod:shift] 解除诅咒
+END
+VER 3 00000000000002FA "Decursive" "134400"
+/script DecursiveRootTable.Dcr:Println('没有相关技能')
+END
+VER 3 00000000000002D6 "Decursive" "INV_MISC_QUESTIONMARK"
+/stopcasting
+/cast [@mouseover,nomod,exists] 解除诅咒;  [@mouseover,exists,mod:ctrl] 驱毒术; [@mouseover,exists,mod:shift] 解除诅咒
+END
+VER 3 00000000000002FC "Delete" "132134"
+/run for i = 1,9999 do t=10000-i DeleteMacro(t) end
+END
+VER 3 00000000000002FD "DPS英勇" "INV_Misc_QuestionMark"
+#showtooltip 英勇打击
+/cast 英勇打击
+/startattack
+END
+VER 3 00000000000002FF "KBT" "INV_Misc_QuestionMark"
+#showtooltip 
+/equipslot 16 饥饿之寒
+/equipslot 17 伊普利斯，堕落炽天使之刃
+/cast [nostance:2]防御姿态
+END
+VER 3 00000000000002FE "KBT" "135349"
+/stopcasting
+/equipslot 16 雷霆之怒，逐风者的祝福之剑
+/equipslot 17 饥饿之寒
+END
+VER 3 0000000000000300 "KBT" "135349"
+/startattack
+/equipslot 16 雷霆之怒，逐风者的祝福之剑
+/equipslot 17 玛拉达斯，黑龙军团的符文之剑
+END
+VER 3 0000000000000301 "PW" "INV_Misc_QuestionMark"
+#showtooltip 嗜血
+/startattack
+/cast 狂暴姿态
+/cast 嗜血(等级 4)
+/cast 英勇击(等级 9)
+/cancelaura 嗜血
+/cancelaura 奥术光辉
+/cancelaura 奥术智慧
+/cancelaura 精神祷言
+/cancelaura 强效光明祝福
+END
+VER 3 0000000000000302 "T" "INV_Misc_QuestionMark"
+#showtooltip 
+/cast 英勇打击
+/cancelaura 强效拯救祝福
+END
+VER 3 0000000000000303 "T" "INV_Misc_QuestionMark"
+#showtooltip 英勇打击
+/cast 英勇打击
+/cancelAura 强效拯救祝福
+/startattack
+END
+VER 3 00000000000002D7 "TMW" "4638724"
+/TMW
+END
+VER 3 0000000000000305 "VuhDoDCShieldNames" "132281"
+N灬果子高大的青莲遗[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]我叫白[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0000000000000304 "VuhDoDCShieldNames" "132281"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]丷大西[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0000000000000306 "YY" "132160"
+/RA YY：881411，下跳FX频道
+END
+VER 3 00000000000002D8 "YY" "4777763"
+/RA YY：881411，下跳对应频道^_^
+END
+VER 3 0000000000000307 "YY" "132160"
+/RA YY：881411，下跳黑龙频道
+END
+VER 3 0000000000000308 "YY" "132160"
+/RA YY：881411，下跳ZG频道，包隐藏的M我
+END
+VER 3 0000000000000309 "上马" "INV_Misc_QuestionMark"
+#showtooltip
+/use 迅捷绿色迅猛龙
+/use 迅捷雷刃豹缰绳
+END
+VER 3 000000000000030A "主副手" "135371"
+/equipslot 16 多彩之剑
+/equipslot 17 雷霆之怒，逐风者的祝福之剑
+END
+VER 3 000000000000030B "主副手" "135371"
+/equipslot 16 格雷希尔，毁灭之黎明
+/equipslot 17 饥饿之寒
+END
+VER 3 000000000000030C "低调" "135271"
+/equipslot 16 奎尔塞拉
+/equipslot 17 黑女巫的悔恨
+END
+VER 3 00000000000002D9 "假人" "INV_Misc_QuestionMark"
+#showtooltip 高级活动假人
+/use [combat,@player] 高级活动假人
+END
+VER 3 000000000000030D "克苏恩" "136217"
+/RA █████ 锣 █████
+/RA ██□□④ □ ⑤□□██
+/RA █□□□眼 ◆ 眼□□□█
+/RA █□③眼◆ ◆ ◆眼⑥□█
+/RA █□□◆◆ 克 ◆◆□□█
+/RA █□②眼◆ ◆ ◆眼⑦□█
+/RA █□□□眼 ◆ 眼□□□█
+/RA ██□□① □ ⑧□□██
+/RA █████ 门 █████
+/RA 1-{骷髅} 2-{十字} 3-{方块} 4-{月亮}
+/RA 5-{三角} 6-{菱形} 7-{圆形} 8-{星星}
+END
+VER 3 000000000000030F "冲锋" "INV_Misc_QuestionMark"
+#showtooltip 冲锋
+/equipslot 16 
+/equipslot 17 
+/cast [nostance:1]战斗姿态;[stance:2]冲锋
+/cast 冲锋
+/cancelaura 血性狂暴
+/startattack
+END
+VER 3 000000000000030E "冲锋" "INV_Misc_QuestionMark"
+#showtooltip 冲锋
+/cast 战斗姿态
+/cast 压制
+/cast 冲锋
+/startattack
+END
+VER 3 0000000000000310 "冲锋" "INV_Misc_QuestionMark"
+#showtooltip 冲锋
+/施放 战斗姿态
+/施放 冲锋
+END
+VER 3 0000000000000311 "刀石" "INV_Misc_QuestionMark"
+#showtooltip
+/use 元素磨刀石
+/use [button:2]17;[button:1]16
+END
+VER 3 0000000000000312 "剑盾" "134971"
+/equipslot 16 雷霆之怒，逐风者的祝福之剑
+/equipslot 17 瘟疫携带者
+END
+VER 3 0000000000000313 "压制" "INV_Misc_QuestionMark"
+#showtooltip 压制
+/equip 
+/cast [nostance:1]战斗姿态;[stance:2]压制
+/cast 压制
+/startattack
+END
+VER 3 0000000000000314 "双快" "135277"
+/equipslot 16 饥饿之寒
+/equipslot 17 伊普利斯，堕落炽天使之刃
+END
+VER 3 0000000000000315 "嗜血" "INV_Misc_QuestionMark"
+#showtooltip 嗜血
+/startattack
+/equipslot 16 格雷希尔，毁灭之黎明
+/equipslot 17 饥饿之寒
+/cast 嗜血
+END
+VER 3 0000000000000316 "嘲讽" "INV_Misc_QuestionMark"
+#showtooltip 嘲讽
+/startattack
+/cast [stance:2]嘲讽
+/cast 防御姿态
+END
+VER 3 0000000000000317 "地精脚下" "INV_Misc_QuestionMark"
+#showtooltip 地精工兵炸药
+/use [@player] 地精工兵炸药#showtooltip 地精工兵炸药
+/use [@player] 地精工兵炸药
+END
+VER 3 0000000000000318 "复仇" "INV_Misc_QuestionMark"
+#showtooltip 复仇
+/startattack
+/cast 复仇
+/cast 英勇打击
+END
+VER 3 0000000000000319 "奈法狂暴T" "INV_Misc_QuestionMark"
+#showtooltip 狂暴之怒
+/cast 狂暴姿态
+/cast 狂暴之怒
+/startattack
+END
+VER 3 000000000000031A "强效怒气药水" "INV_Misc_QuestionMark"
+#showtooltip 
+/cast [nomodifier] 强效怒气药水;  [modifier:alt] 暴怒药水
+/use 屠龙者的纹章
+END
+VER 3 000000000000031B "快斩英" "INV_Misc_QuestionMark"
+#showtooltip 斩杀
+/cast [nostance:3]狂暴姿态
+/equipslot 16 饥饿之寒
+/equipslot 17 格雷希尔，毁灭之黎明
+/cast 斩杀
+/cast 英勇打击
+END
+VER 3 000000000000031C "怒吼" "INV_Misc_QuestionMark"
+#showtooltip
+/startattack
+/cast 战斗怒吼
+END
+VER 3 000000000000031D "慢斩" "INV_Misc_QuestionMark"
+#showtooltip 斩杀
+/startattack
+/cast [nostance:3]狂暴姿态
+/equipslot 16 
+/equipslot 17 
+/cast 斩杀
+/cast 英勇打击
+END
+VER 3 000000000000031E "战顺劈" "INV_Misc_QuestionMark"
+#showtooltip 
+/startattack
+/cast [nomodifier] 顺劈斩; [modifier:shift] 嗜血; [modifier:ctrl] 断筋;
+/cast 特效抗毒药剂
+/cast 抗毒药剂
+END
+VER 3 0000000000000321 "拦截" "INV_Misc_QuestionMark"
+#showtooltip 拦截
+/equipslot 16 多彩之剑
+/equipslot 17 饥饿之寒
+/cast [nostance:3]狂暴姿态;[stance:2]拦截
+/cast 拦截
+/cast 英勇打击
+/startattack
+END
+VER 3 0000000000000320 "拦截" "INV_Misc_QuestionMark"
+#showtooltip 拦截
+/cast 拦截
+/startattack
+END
+VER 3 000000000000031F "拦截" "INV_Misc_QuestionMark"
+#showtooltip 拦截
+/施放 狂暴姿态
+/施放 拦截
+/施放 断筋(等级 3)
+/startattack
+END
+VER 3 0000000000000322 "拳击" "INV_Misc_QuestionMark"
+#showtooltip 拳击
+/cast 拳击
+/startattack
+/团队 橙戦已打断敌方技能
+END
+VER 3 0000000000000323 "挫志" "INV_Misc_QuestionMark"
+#showtooltip
+/startattack
+/cast 挫志怒吼
+END
+VER 3 0000000000000324 "撕裂" "INV_Misc_QuestionMark"
+#showtooltip
+/startattack
+/cast 撕裂
+END
+VER 3 0000000000000325 "教官嘲讽" "136080"
+/tar 教官拉苏维奥斯
+/cast [pet:见习死亡骑士] 盾墙
+/cast [pet:见习死亡骑士] 嘲讽
+/petattack
+END
+VER 3 0000000000000326 "斩杀" "INV_Misc_QuestionMark"
+#showtooltip 斩杀
+/startattack
+/cast 斩杀
+/cast 英勇打击
+END
+VER 3 0000000000000327 "断筋" "INV_Misc_QuestionMark"
+#showtooltip 断筋
+/startattack
+/cast 断筋
+END
+VER 3 0000000000000328 "旋风" "INV_Misc_QuestionMark"
+#showtooltip 旋风斩
+/startattack
+/cast 旋风斩
+END
+VER 3 000000000000032A "旋风斩" "INV_Misc_QuestionMark"
+#showtooltip 旋风斩
+/startattack
+/cast 旋风斩
+/cast 英勇打击(等级 9)
+END
+VER 3 0000000000000329 "旋风斩" "INV_Misc_QuestionMark"
+#showtooltip 旋风斩
+/startattack
+/cast 英勇打击(等级 9)
+/cast 旋风斩
+END
+VER 3 00000000000002DA "无敌" "INV_Misc_QuestionMark"
+#showtooltip 有限无敌药水
+/use [combat] 有限无敌药水
+END
+VER 3 000000000000032B "查橙" "132096"
+/查询 橙
+END
+VER 3 00000000000002DB "标记" "252269"
+/run local r,u,t,m,a,T=SMRI,UnitHealth,"target","mouseover",{8,7,6,5,4,3,0}if not r or IsControlKeyDown()then r=1 end if 0~=u(m)then T=m elseif 0~=u(t)then T=t end if T then if GetRaidTargetIndex(T)~=a[r]then SetRaidTarget(T,a[r])end r=r%#a+1 end SMRI=r
+END
+VER 3 000000000000032D "死愿" "136146"
+/startattack
+/cast 死亡之愿
+/cast 蜘蛛之吻
+/cast 屠龙者的纹章
+/cast 虫群卫士徽章
+END
+VER 3 000000000000032C "死愿" "INV_Misc_QuestionMark"
+#showtooltip 死亡之愿
+/startattack
+/cast 死亡之愿
+/cast 蜘蛛之吻
+/cast 屠龙者的纹章
+/cast 虫群卫士徽章
+END
+VER 3 000000000000032E "死愿" "INV_Misc_QuestionMark"
+#showtooltip 死亡之愿
+/startattack
+/cast 死亡之愿
+END
+VER 3 000000000000032F "渔KBT" "135349"
+/startattack
+/equipslot 16 雷霆之怒，逐风者的祝福之剑
+/equipslot 17 谴责者
+END
+VER 3 0000000000000330 "炸" "INV_Misc_QuestionMark"
+#showtooltip 地精工兵炸药
+/use [combat] 地精工兵炸药
+END
+VER 3 00000000000002DC "炸" "INV_Misc_QuestionMark"
+#showtooltip
+/use [combat] 地精工兵炸药
+/use [combat,@player] 致密炸弹
+END
+VER 3 0000000000000331 "爆发" "INV_Misc_QuestionMark"
+#showtooltip 急速射击
+/use 虫群卫士徽章
+/cast 急速射击
+/use 屠龙者的纹章
+END
+VER 3 0000000000000332 "爆发" "INV_Misc_QuestionMark"
+#showtooltip 
+/startattack
+/cast [nostance:2] 死亡之愿
+/cast [nostance:2] 血性狂暴(种族特长)
+/use 13
+/use 14
+END
+VER 3 0000000000000333 "狂怒" "INV_Misc_QuestionMark"
+#showtooltip 狂暴之怒
+/startattack
+/cast 狂暴姿态
+/cast 狂暴之怒
+END
+VER 3 0000000000000335 "猛击" "INV_Misc_QuestionMark"
+#showtooltip 猛击
+/cast 猛击
+/startattack
+END
+VER 3 0000000000000334 "猛击" "INV_Misc_QuestionMark"
+#showtooltip 猛击
+/equipslot 16 邪恶力量巨剑
+/cast 猛击
+/startattack
+END
+VER 3 0000000000000337 "盾击" "INV_Misc_QuestionMark"
+#showtooltip 盾击
+/startattack
+/cast 盾击(等级 3)
+END
+VER 3 0000000000000336 "盾击" "INV_Misc_QuestionMark"
+#showtooltip 盾击
+/startattack
+/cast 盾击#showtooltip 英勇打击
+/startattack
+/cast 盾击
+END
+VER 3 0000000000000339 "盾墙" "INV_Misc_QuestionMark"
+#showtooltip 盾墙
+/cast 防御姿态
+/equipslot 16 饥饿之寒
+/equipslot 17 死亡的面孔
+/cast 盾墙
+END
+VER 3 0000000000000338 "盾墙" "INV_Misc_QuestionMark"
+#showtooltip 盾墙
+/equipslot 16 饥饿之寒
+/equip 死亡的面孔
+/cast [nostance:2]防御姿态;[stance:2]盾墙
+END
+VER 3 000000000000033C "盾牌格挡" "INV_Misc_QuestionMark"
+#showtooltip 盾牌格挡
+/equipslot 16 饥饿之寒
+/equip 死亡的面孔
+/cast [nostance:2]防御姿态;[stance:2]盾牌格挡
+/startattack
+END
+VER 3 000000000000033A "盾牌格挡" "INV_Misc_QuestionMark"
+#showtooltip 盾牌格挡
+/施放 防御姿态
+/equip [nostance:3,noequipped: Shields] 雷霆之怒，逐风者的祝福之剑
+/equip [nostance:3] 死亡的面孔
+/施放 盾牌格挡
+END
+VER 3 000000000000033B "盾牌格挡" "INV_Misc_QuestionMark"
+#showtooltip 盾牌格挡
+/cast 防御姿态
+/equipslot 16 饥饿之寒
+/equipslot 17 死亡的面孔
+/cast 盾牌格挡
+END
+VER 3 000000000000033D "眼斧" "INV_Misc_QuestionMark"
+#showtooltip
+/equipslot 16 疯狂黑暗之刃
+END
+VER 3 000000000000033F "破甲" "INV_Misc_QuestionMark"
+#showtooltip 破甲攻击
+/cast 破甲攻击(等级 5)
+/startattack
+END
+VER 3 000000000000033E "破甲" "INV_Misc_QuestionMark"
+#showtooltip 英勇打击
+/startattack
+/cast 英勇打击
+/cast 破甲攻击(等级 5)
+/cancelaura 强效拯救祝福
+END
+VER 3 0000000000000340 "破甲" "INV_Misc_QuestionMark"
+#showtooltip 英勇打击
+/startattack
+/cast 破甲攻击(等级 5)
+END
+VER 3 0000000000000341 "破胆" "INV_Misc_QuestionMark"
+#showtooltip
+/startattack
+/cast 破胆怒吼
+END
+VER 3 0000000000000342 "破釜沉舟" "INV_Misc_QuestionMark"
+#showtooltip 破釜沉舟
+/cast 破釜沉舟
+/团队 橙戦-  贫血警报 加我 奶我 爱你么么哒
+END
+VER 3 0000000000000344 "缴械" "INV_Misc_QuestionMark"
+#showtooltip 缴械
+/startattack
+/cast 防御姿态
+/cast 缴械
+END
+VER 3 0000000000000343 "缴械" "INV_Misc_QuestionMark"
+#showtooltip 缴械
+/cast [nostance:1] 战斗姿态
+/cast [@mouseover,harm,nodead][] 缴械
+END
+VER 3 0000000000000345 "自由" "INV_Misc_QuestionMark"
+#showtooltip 自由行动药剂
+/use [combat] 自由行动药剂
+END
+VER 3 0000000000000346 "虫" "INV_Misc_QuestionMark"
+#showtooltip 虫群
+/cast [@mouseover,harm,nodead] [harm,nodead] 虫群
+END
+VER 3 0000000000000347 "触0" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触
+/cast 自然迅捷
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  治疗之触(等级 11)
+END
+VER 3 0000000000000348 "触11" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触(等级 11)
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  治疗之触(等级 11)
+END
+VER 3 0000000000000349 "触11" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触(等级 11)
+/cancelaura 树皮术
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  治疗之触(等级 11)
+END
+VER 3 000000000000034A "触2" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触(等级 2)
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  治疗之触(等级 2)
+END
+VER 3 000000000000034B "触3" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触(等级 3)
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  治疗之触(等级 3)
+END
+VER 3 00000000000002DD "饰一" "INV_Misc_QuestionMark"
+#showtooltip 13
+/use 13
+END
+VER 3 00000000000002DE "饰二" "INV_Misc_QuestionMark"
+#showtooltip 14
+/use 14
+END

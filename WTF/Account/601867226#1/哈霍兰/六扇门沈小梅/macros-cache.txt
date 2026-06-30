@@ -1,0 +1,176 @@
+VER 3 010000000000001F "冰" "INV_Misc_QuestionMark"
+#showtooltip [mod] 寒冰箭(等级 1); 寒冰箭
+/cast [mod] 寒冰箭(等级 1); 寒冰箭
+END
+VER 3 0100000000000036 "冰" "INV_Misc_QuestionMark"
+#showtooltip [mod] 寒冰箭(等级 1); 寒冰箭
+/use 萨菲隆的精华
+/cast [mod] 寒冰箭(等级 1); 寒冰箭
+END
+VER 3 0100000000000020 "冰火盾" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 防护火焰结界; 防护冰霜结界
+/cast [mod:shift] 防护火焰结界; 防护冰霜结界
+END
+VER 3 0100000000000021 "冰箱" "INV_Misc_QuestionMark"
+#showtooltip 寒冰屏障
+/stopcasting
+/cast !寒冰屏障
+/cancelAura [mod]寒冰屏障
+END
+VER 3 0100000000000022 "冲" "INV_Misc_QuestionMark"
+#showtooltip 火焰冲击
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/cast 火焰冲击
+END
+VER 3 0100000000000023 "冻" "INV_Misc_QuestionMark"
+#showtooltip 冰霜新星
+/stopcasting
+/cancelAura 寒冰屏障
+/cast 冰霜新星
+END
+VER 3 0100000000000024 "反" "INV_Misc_QuestionMark"
+#showtooltip 法术反制
+/stopcasting
+/cast [@mouseover,harm,nodead][@focus,harm,nodead][] 法术反制
+END
+VER 3 0100000000000025 "吃" "INV_Misc_QuestionMark"
+#showtooltip [btn:2] 造食术; 魔法肉桂面包
+/use [btn:1] 魔法肉桂面包
+/cast [btn:2] 造食术
+END
+VER 3 0100000000000026 "喝" "INV_Misc_QuestionMark"
+#showtooltip [btn:2] 造水术; 魔法晶水
+/use [btn:1] 魔法晶水
+/cast [btn:2] 造水术
+END
+VER 3 0100000000000027 "宝石" "INV_Misc_QuestionMark"
+#showtooltip 法力红宝石
+/use [btn:1] 法力红宝石
+/cast [btn:2] 制造魔法红宝石
+END
+VER 3 0100000000000028 "弹" "INV_Misc_QuestionMark"
+#showtooltip 奥术飞弹
+/cast [nochanneling:奥术飞弹] 奥术飞弹
+END
+VER 3 0100000000000029 "波" "INV_Misc_QuestionMark"
+#showtooltip 冲击波
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 燃烧
+/cast 冲击波
+END
+VER 3 0100000000000037 "波" "INV_Misc_QuestionMark"
+#showtooltip 冲击波
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 短暂能量护符
+/use 赞达拉英雄护符
+/use 萨菲隆的精华
+/cast 冲击波
+END
+VER 3 010000000000002A "火" "INV_Misc_QuestionMark"
+#showtooltip 火球术
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 燃烧
+/cast 火球术
+END
+VER 3 0100000000000038 "火" "INV_Misc_QuestionMark"
+#showtooltip 火球术
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 短暂能量护符
+/use 赞达拉英雄护符
+/use 萨菲隆的精华
+/cast 火球术
+END
+VER 3 010000000000002B "火冰盾" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 防护冰霜结界; 防护火焰结界
+/cast [mod:shift] 防护冰霜结界; 防护火焰结界
+END
+VER 3 010000000000002C "炎" "INV_Misc_QuestionMark"
+#showtooltip 炎爆术
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 燃烧
+/cast 炎爆术
+END
+VER 3 0100000000000039 "炎" "INV_Misc_QuestionMark"
+#showtooltip 炎爆术
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 燃烧
+/use 短暂能量护符
+/use 赞达拉英雄护符
+/use 萨菲隆的精华
+/cast 炎爆术
+END
+VER 3 010000000000002D "烧" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 射击; 灼烧
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/cast [mod:shift] 射击; 灼烧
+END
+VER 3 010000000000003A "焰" "INV_Misc_QuestionMark"
+#showtooltip 烈焰风暴
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 短暂能量护符
+/use 赞达拉英雄护符
+/use 萨菲隆的精华
+/cast 烈焰风暴
+END
+VER 3 010000000000002E "焰" "INV_Misc_QuestionMark"
+#showtooltip 烈焰风暴
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 燃烧
+/cast 烈焰风暴
+END
+VER 3 010000000000002F "爆" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 魔爆术(等级 1); 魔爆术
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/cast [mod:shift] 魔爆术(等级 1); 魔爆术
+END
+VER 3 010000000000003B "爆" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 魔爆术(等级 1); 魔爆术
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use [nomod] 短暂能量护符
+/use [nomod] 赞达拉英雄护符
+/use [nomod] 萨菲隆的精华
+/cast [mod:shift] 魔爆术(等级 1); 魔爆术
+END
+VER 3 0100000000000030 "盾" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 防护冰霜结界; [mod:alt] 防护火焰结界; 法力护盾
+/cast [mod:shift] 防护冰霜结界; [mod:alt] 防护火焰结界; 法力护盾
+END
+VER 3 0100000000000035 "瞬冰" "134400"
+#showtooltip 寒冰箭
+/cast 气定神闲
+/cast 寒冰箭
+END
+VER 3 0100000000000031 "破邪" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 侦测魔法; 解除次级诅咒
+/cast [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 侦测魔法
+/cast [nomod,@mouseover,help,nodead][nomod,help,nodead][nomod,@player] 解除次级诅咒
+END
+VER 3 0100000000000032 "醒" "INV_Misc_QuestionMark"
+#showtooltip 唤醒
+/equip  [mod:shift]  埃提耶什，守护者的传说之杖
+/equip  [mod:alt] 娅尔罗的意志
+/cast 唤醒
+END
+VER 3 0100000000000033 "雪" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 暴风雪(等级 1); 暴风雪
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/cast [mod:shift] 暴风雪(等级 1); 暴风雪
+END
+VER 3 0100000000000034 "龟" "INV_Misc_QuestionMark"
+#showtooltip 变形术(龟)
+/stopcasting
+/cast [@mouseover,harm,nodead][] 变形术(龟)
+END

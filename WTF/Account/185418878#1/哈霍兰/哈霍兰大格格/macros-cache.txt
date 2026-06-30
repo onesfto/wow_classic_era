@@ -1,0 +1,10 @@
+VER 3 0000000001000002 "VuhDoDCShieldData" "Ability_Repair"
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1PM[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0000000001000003 "VuhDoDCShieldNames" "Ability_Repair"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]哈霍兰[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0000000001000001 "卖" "132094"
+/1 出《黑莲花》120G /朵，2350G/组~~收《奥术水晶》 60G/个，《符文布》1G/组~~~~~~~~~~~~~~~~~~~~~~~~~
+/Y 出《黑莲花》120G /朵，2350G/组~~收《奥术水晶》 60G/个，《符文布》1G/组~~~~~~~~~~~~~~~~~~~~~~~~~
+END

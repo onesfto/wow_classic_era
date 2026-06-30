@@ -1,0 +1,239 @@
+VER 3 0100000001000002 "冲" "132337"
+#showtooltip 冲锋
+/cast [nocombat,nostance:1] 战斗姿态
+/cast [nocombat,@mouseover,harm,nodead][] 冲锋
+END
+VER 3 0100000001000026 "勇" "134400"
+#showtooltip 英勇打击
+/cast [nostance:2] 防御姿态
+/cast 英勇打击
+/startattack
+/cancelaura 奥术光辉
+/cancelaura 精神祷言
+/cancelaura 强效治疗术
+/cancelaura 灵感
+/cancelaura 愈合
+/cancelaura 回春术
+/cancelaura 嗜血
+/cancelaura 神圣之力
+/cancelaura 信仰
+/cancelaura 利爪祝福
+/cancelaura 银色黎明委任徽章
+END
+VER 3 010000000100002A "单体" "136012"
+#showtooltip 嗜血(等级 4)
+/startattack
+/castsequence reset=4 嗜血(等级 4),旋风斩,嗜血(等级 4)
+/cast 英勇打击(等级 9)
+END
+VER 3 0100000001000015 "双快" "134400"
+#showtooltip 饥饿之寒
+/equipslot 16 饥饿之寒
+/equipslot 17 伊普利斯，堕落炽天使之刃 
+END
+VER 3 0100000001000014 "双锤" "134400"
+#showtooltip 苍穹击碎者
+/equipslot 16 苍穹击碎者
+/equipslot 17 阿努比萨斯战锤 
+END
+VER 3 0100000001000005 "嗜" "136012"
+#showtooltip 嗜血
+/cast [nostance:3] 狂暴姿态
+/cast 嗜血
+/startattack
+/cancelaura 奥术光辉
+/cancelaura 精神祷言
+/cancelaura 强效治疗术
+/cancelaura 愈合
+/cancelaura 回春术
+/cancelaura 嗜血
+/cancelaura 神圣之力
+/cancelaura 信仰
+/cancelaura 利爪祝福
+/cancelaura 银色黎明委任徽章
+END
+VER 3 0100000001000017 "嘲" "134400"
+#showtooltip [mod]挑战怒吼;[stance:1]惩戒痛击;[stance:2]嘲讽;[stance:3]猛击
+/startattack
+/施放 [mod:shift] 挑战怒吼
+/施放 [nomod,stance:1]惩戒痛击;[nomod,stance:2]嘲讽;[nomod,stance:3]猛击
+END
+VER 3 0100000001000006 "拦" "134400"
+#showtooltip 拦截
+/cast [nostance:3] 狂暴姿态
+/cast [@mouseover,harm,nodead][] 拦截
+END
+VER 3 0100000001000003 "拳" "134400"
+#showtooltip 拳击
+/cast [nostance:3] 狂暴姿态
+/cast [@mouseover,harm,nodead][] 拳击
+END
+VER 3 010000000100000C "斩" "134400"
+#showtooltip 斩杀
+/equipslot 16 饥饿之寒
+/equipslot 17 伊普利斯，堕落炽天使之刃
+/cast [nostance:3] 狂暴姿态
+/cast 斩杀
+/startattack
+/cancelaura 奥术光辉
+/cancelaura 精神祷言
+/cancelaura 强效治疗术
+/cancelaura 愈合
+/cancelaura 回春术
+/cancelaura 嗜血
+/cancelaura 神圣之力
+/cancelaura 信仰
+/cancelaura 利爪祝福
+END
+VER 3 010000000100000F "断筋" "134400"
+#showtooltips 断筋
+/cast 断筋
+/startattack
+/cancelaura 奥术光辉
+/cancelaura 精神祷言
+/cancelaura 强效治疗术
+/cancelaura 愈合
+/cancelaura 回春术
+/cancelaura 嗜血
+/cancelaura 神圣之力
+/cancelaura 信仰
+/cancelaura 利爪祝福
+/cancelaura 银色黎明委任徽章
+END
+VER 3 0100000001000007 "旋" "134400"
+#showtooltips 旋风斩
+/cast [nostance:3] 狂暴姿态
+/cast 旋风斩
+/startattack
+/cancelaura 奥术光辉
+/cancelaura 精神祷言
+/cancelaura 强效治疗术
+/cancelaura 愈合
+/cancelaura 回春术
+/cancelaura 嗜血
+/cancelaura 神圣之力
+/cancelaura 信仰
+/cancelaura 利爪祝福
+/cancelaura 银色黎明委任徽章
+END
+VER 3 0100000001000028 "杀" "134400"
+END
+VER 3 0100000001000027 "死愿" "134400"
+#showtooltip 死亡之愿
+/startattack
+/cast 死亡之愿
+END
+VER 3 0100000001000013 "狂怒" "134400"
+#showtooltip 狂暴之怒
+/cast [nostance:3] 狂暴姿态
+/cast 狂暴之怒
+/startattack
+END
+VER 3 0100000001000029 "盾击" "134400"
+#showtooltip 盾击
+/equip 大元帅的庇护之盾
+/cast 盾击
+/startattack
+END
+VER 3 0100000001000001 "盾墙" "Ability_Warrior_ShieldWall."
+#showtooltip 盾墙
+/equipslot 16 饥饿之寒
+/equip 大元帅的庇护之盾
+/cast [nostance:2]防御姿态;[stance:2]盾墙
+END
+VER 3 0100000001000021 "破甲" "134400"
+#showtooltip 破甲攻击
+/cast 破甲攻击(等级 5)
+/startattack
+END
+VER 3 0100000001000016 "缴" "134400"
+#showtooltip 缴械
+/cast [nostance:2] 防御姿态
+/cast 缴械
+/cancelaura 缴械
+/startattack
+END
+VER 3 010000000100002B "群" "132369"
+#showtooltip 嗜血(等级 4)
+/startattack
+/castsequence reset=4 嗜血(等级 4),旋风斩,嗜血(等级 4)
+/cast 顺劈斩(等级 5)
+END
+VER 3 0100000001000009 "群嘲" "134400"
+#showtooltip 挑战怒吼
+/cast [nostance:2] 防御姿态
+/cast 挑战怒吼
+END
+VER 3 010000000100001C "致密炸弹" "INV_Misc_QuestionMark"
+#showtooltip 致密炸弹
+/use [@player] 致密炸弹
+END
+VER 3 0100000001000004 "英" "132282"
+#showtooltip 英勇打击
+/cast [nostance:3] 狂暴姿态
+/cast 英勇打击
+/startattack
+/cancelaura 奥术光辉
+/cancelaura 精神祷言
+/cancelaura 强效治疗术
+/cancelaura 灵感
+/cancelaura 愈合
+/cancelaura 回春术
+/cancelaura 嗜血
+/cancelaura 神圣之力
+/cancelaura 信仰
+/cancelaura 利爪祝福
+/cancelaura 银色黎明委任徽章
+END
+VER 3 0100000001000011 "血" "134400"
+#showtooltip 嗜血
+/cast [nostance:2] 防御姿态
+/cast 嗜血
+/cancelaura 嗜血
+/startattack
+END
+VER 3 010000000100001E "血性" "INV_Misc_QuestionMark"
+#showtooltip 血性狂暴
+/startattack
+/cast 血性狂暴
+END
+VER 3 010000000100001F "远程" "INV_Misc_QuestionMark"
+#showtooltip
+/startattack
+/cast 枪械射击
+/cast 弩射击
+/cast 弓射击
+/cast 投掷
+END
+VER 3 0100000001000020 "雷霆" "INV_Misc_QuestionMark"
+#showtooltip 雷霆一击
+/施放 战斗姿态
+/施放 雷霆一击
+END
+VER 3 0100000001000008 "顺" "134400"
+#showtooltips 顺劈斩
+/cast [nostance:3] 狂暴姿态
+/cast 顺劈斩
+/startattack
+/cancelaura 奥术光辉
+/cancelaura 精神祷言
+/cancelaura 强效治疗术
+/cancelaura 愈合
+/cancelaura 回春术
+/cancelaura 嗜血
+/cancelaura 神圣之力
+/cancelaura 信仰
+/cancelaura 利爪祝福
+/cancelaura 银色黎明委任徽章
+END
+VER 3 0100000001000023 "饰" "134400"
+#showtooltip 13
+END
+VER 3 0100000001000022 "饰" "134400"
+#showtooltip 死亡之愿
+/施放 死亡之愿
+/施放 蜘蛛之吻
+/施放 屠龙者的纹章
+/施放 沙漠掠夺者塑像
+/施放 虫群卫士徽章
+END

@@ -1,0 +1,25 @@
+# 客户端程序与运行库
+*.exe
+*.app
+*.dll
+*.pdb
+*.dmp
+*.tmp
+*.log
+
+# 游戏客户端产生的巨型缓存与数据目录
+/Cache/
+/Errors/
+/Logs/
+/Data/
+/Utils/
+/Screenshots/
+
+# WTF 目录下的临时或无用文件（保留插件配置文件）
+/WTF/Account/*/*.bak
+/WTF/Account/*/*/*.bak
+
+# 操作系统自动生成的隐藏文件
+.DS_Store
+Thumbs.db
+!WowClassic.exe

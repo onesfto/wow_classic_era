@@ -1,0 +1,328 @@
+
+SpyDB = {
+["kosData"] = {
+["法琳娜"] = {
+["Alliance"] = {
+["雪球女士"] = {
+},
+["瑟银零件"] = {
+},
+["寒脊山小郡主"] = {
+},
+},
+},
+["哈霍兰"] = {
+["Alliance"] = {
+["哈霍兰大格格"] = {
+},
+["津巴布韦公主"] = {
+},
+["熊心猫爪"] = {
+},
+["青铜龙守护者"] = {
+},
+["魔女桑德兰"] = {
+},
+["院长安娜"] = {
+},
+["绿龙守护者"] = {
+},
+["蓝龙守护者"] = {
+},
+["巨龙守护者"] = {
+},
+["红龙守护者"] = {
+},
+["辛特兰小魔女"] = {
+},
+["护士长玛利亚"] = {
+},
+["打撒是的哇"] = {
+},
+},
+},
+},
+["removeKOSData"] = {
+["法琳娜"] = {
+["Alliance"] = {
+},
+},
+["哈霍兰"] = {
+["Alliance"] = {
+},
+},
+},
+["profileKeys"] = {
+["红龙守护者 - 哈霍兰"] = "红龙守护者 - 哈霍兰",
+["打撒是的哇 - 哈霍兰"] = "打撒是的哇 - 哈霍兰",
+["院长安娜 - 哈霍兰"] = "院长安娜 - 哈霍兰",
+["雪球女士 - 法琳娜"] = "雪球女士 - 法琳娜",
+["寒脊山小郡主 - 法琳娜"] = "寒脊山小郡主 - 法琳娜",
+["哈霍兰大格格 - 哈霍兰"] = "哈霍兰大格格 - 哈霍兰",
+["熊心猫爪 - 哈霍兰"] = "熊心猫爪 - 哈霍兰",
+["青铜龙守护者 - 哈霍兰"] = "青铜龙守护者 - 哈霍兰",
+["津巴布韦公主 - 哈霍兰"] = "津巴布韦公主 - 哈霍兰",
+["魔女桑德兰 - 哈霍兰"] = "魔女桑德兰 - 哈霍兰",
+["巨龙守护者 - 哈霍兰"] = "巨龙守护者 - 哈霍兰",
+["瑟银零件 - 法琳娜"] = "瑟银零件 - 法琳娜",
+["蓝龙守护者 - 哈霍兰"] = "蓝龙守护者 - 哈霍兰",
+["辛特兰小魔女 - 哈霍兰"] = "辛特兰小魔女 - 哈霍兰",
+["护士长玛利亚 - 哈霍兰"] = "护士长玛利亚 - 哈霍兰",
+["绿龙守护者 - 哈霍兰"] = "绿龙守护者 - 哈霍兰",
+},
+["profiles"] = {
+["红龙守护者 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["打撒是的哇 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["院长安娜 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["雪球女士 - 法琳娜"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["寒脊山小郡主 - 法琳娜"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["哈霍兰大格格 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["熊心猫爪 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["青铜龙守护者 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["津巴布韦公主 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindow"] = {
+["Position"] = {
+["y"] = 1006.050415039063,
+["x"] = 0,
+["h"] = 211.0000152587891,
+},
+},
+["Colors"] = {
+["Alert"] = {
+["Stealth Text"] = {
+["a"] = 1,
+},
+["Name Text"] = {
+["a"] = 1,
+},
+},
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["魔女桑德兰 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindow"] = {
+["Position"] = {
+["y"] = 950.929443359375,
+["h"] = 146.9999694824219,
+["w"] = 159.9999847412109,
+["x"] = 0,
+},
+},
+["Colors"] = {
+["Alert"] = {
+["Stealth Text"] = {
+["a"] = 1,
+},
+["Name Text"] = {
+["a"] = 1,
+},
+},
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+["MainWindowVis"] = false,
+},
+["巨龙守护者 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindow"] = {
+["Position"] = {
+["y"] = 932.7225341796875,
+["x"] = 0,
+["h"] = 147,
+},
+},
+["Colors"] = {
+["Alert"] = {
+["Stealth Text"] = {
+["a"] = 1,
+},
+["Name Text"] = {
+["a"] = 1,
+},
+},
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+["MainWindowVis"] = false,
+},
+["瑟银零件 - 法琳娜"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["蓝龙守护者 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["辛特兰小魔女 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["护士长玛利亚 - 哈霍兰"] = {
+["MainWindow"] = {
+["Position"] = {
+["y"] = 953.6156005859375,
+["x"] = 0,
+["w"] = 157.9999694824219,
+["h"] = 34.99999618530273,
+},
+},
+["Colors"] = {
+["Alert"] = {
+["Stealth Text"] = {
+["a"] = 1,
+},
+["Name Text"] = {
+["a"] = 1,
+},
+},
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["AppendUnitKoSCheck"] = true,
+},
+["绿龙守护者 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+},
+}

@@ -1,0 +1,69 @@
+
+GearMenuConfiguration = {
+["enableDragAndDrop"] = true,
+["trinketMenuSlotSize"] = 48,
+["trinketMenuShowCooldowns"] = true,
+["filterItemQuality"] = 4,
+["firstTimeInitializationDone"] = true,
+["enableTrinketMenu"] = true,
+["lockTrinketMenuFrame"] = false,
+["enableFastPress"] = false,
+["enableSimpleTooltips"] = true,
+["enableTooltips"] = true,
+["enableUnequipSlot"] = true,
+["enableRuneSlots"] = true,
+["gearBars"] = {
+{
+["showKeyBindings"] = true,
+["id"] = 180927,
+["slots"] = {
+{
+["type"] = {
+"INVTYPE_TRINKET",
+},
+["inventoryTypeId"] = 11,
+["name"] = "slot_name_upper_trinket",
+["simplifiedName"] = "slot_name_trinket",
+["slotId"] = 13,
+["textureId"] = 136528,
+},
+{
+["type"] = {
+"INVTYPE_TRINKET",
+},
+["inventoryTypeId"] = 11,
+["name"] = "slot_name_lower_trinket",
+["simplifiedName"] = "slot_name_trinket",
+["slotId"] = 14,
+["textureId"] = 136528,
+},
+},
+["displayName"] = "饰品",
+["isLocked"] = true,
+["gearSlotSize"] = 48,
+["showCooldowns"] = true,
+["orientation"] = 1,
+["changeSlotSize"] = 36,
+["position"] = {
+["relativePoint"] = "RIGHT",
+["posY"] = -213.5133972167969,
+["point"] = "RIGHT",
+["posX"] = -464.8694152832031,
+},
+["changeMenuDirection"] = 1,
+},
+},
+["quickChangeRules"] = {
+},
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 6,
+["frames"] = {
+["GM_TrinketMenuFrame"] = {
+["posX"] = -173.3762664794922,
+["posY"] = -212.9483184814453,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+},
+["addonVersion"] = "v2.7.0",
+}

@@ -1,0 +1,4247 @@
+
+_detalhes_database = {
+["savedbuffs"] = {
+},
+["mythic_dungeon_id"] = 0,
+["tabela_historico"] = {
+["tabelas"] = {
+{
+{
+["combatId"] = 11,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.006047,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 68.006047,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 68.006047,
+["spec"] = 201,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5453-04C746EA",
+["damage_from"] = {
+},
+["targets"] = {
+["杂斑野猪"] = 68,
+},
+["colocacao"] = 1,
+["aID"] = "5453-04C746EA",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 52,
+},
+["end_time"] = 1764819078,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+[585] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 18,
+["targets"] = {
+["杂斑野猪"] = 68,
+},
+["n_total"] = 68,
+["n_min"] = 16,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 68,
+["c_max"] = 0,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 10.54357317829338,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.006047,
+["start_time"] = 1764819072,
+["delay"] = 0,
+["last_event"] = 1764819077,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.002543,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 0.002543,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.002543,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5355-1-45-3098-000030F9D4",
+["aID"] = "3098",
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764819078,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+["暗矛部落酋长"] = 0,
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 0,
+["c_max"] = 0,
+["MISS"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 68.002543,
+["start_time"] = 1764819078,
+["delay"] = 0,
+["last_event"] = 1764819075,
+},
+},
+},
+{
+["combatId"] = 11,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 11,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 11,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["grupo"] = true,
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 11,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["暗矛部落酋长"] = "Player-5453-04C746EA",
+},
+["CombatStartedAt"] = 10624.929,
+["tempo_start"] = 1764819072,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+68,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+68,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 3,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "11:31:19",
+["hasTimer"] = 6.032999999999447,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "杂斑野猪",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 6.450000000000728,
+["overall_added"] = true,
+["CombatEndedAt"] = 10631.379,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "11:31:12",
+["end_time"] = 10631.379,
+["mapId"] = 1,
+["combat_id"] = 11,
+["timeStart"] = 1764819072,
+["timeEnd"] = 1764819079,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["杂斑野猪"] = 1,
+},
+["boss_hp"] = 1,
+["combat_counter"] = 24,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["暗矛部落酋长"] = 68.006047,
+},
+},
+},
+["start_time"] = 10624.929,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+{
+{
+["combatId"] = 10,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.00541,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 44.00541,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 44.00541,
+["spec"] = 201,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5453-04C746EA",
+["damage_from"] = {
+["杂斑野猪"] = true,
+},
+["targets"] = {
+["杂斑野猪"] = 44,
+},
+["colocacao"] = 1,
+["aID"] = "5453-04C746EA",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 44,
+},
+["end_time"] = 1764819065,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+[585] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 15,
+["targets"] = {
+["杂斑野猪"] = 44,
+},
+["n_total"] = 44,
+["n_min"] = 14,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 44,
+["c_max"] = 0,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 7.080516492359107,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 2.00541,
+["start_time"] = 1764819058,
+["delay"] = 0,
+["last_event"] = 1764819063,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.006111,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 2.006111,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 2.006111,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5355-1-45-3098-000030F9B5",
+["aID"] = "3098",
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+["暗矛部落酋长"] = 2,
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764819065,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2,
+["targets"] = {
+["暗矛部落酋长"] = 2,
+},
+["n_total"] = 2,
+["n_min"] = 2,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 2,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 44.006111,
+["start_time"] = 1764819061,
+["delay"] = 0,
+["last_event"] = 1764819061,
+},
+},
+},
+{
+["combatId"] = 10,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 10,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 10,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["grupo"] = true,
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 10,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["暗矛部落酋长"] = "Player-5453-04C746EA",
+},
+["CombatStartedAt"] = 10611.514,
+["tempo_start"] = 1764819058,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+46,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+44,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "11:31:05",
+["hasTimer"] = 6.06499999999869,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "杂斑野猪",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 6.214999999998327,
+["overall_added"] = true,
+["CombatEndedAt"] = 10617.729,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "11:30:59",
+["end_time"] = 10617.729,
+["mapId"] = 1,
+["combat_id"] = 10,
+["timeStart"] = 1764819059,
+["timeEnd"] = 1764819065,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["杂斑野猪"] = 1,
+},
+["boss_hp"] = 1,
+["combat_counter"] = 23,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["暗矛部落酋长"] = 44.00541,
+},
+},
+},
+["start_time"] = 10611.514,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+{
+{
+["combatId"] = 9,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.004999,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 57.004999,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 57.004999,
+["spec"] = 201,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5453-04C746EA",
+["damage_from"] = {
+["杂斑野猪"] = true,
+},
+["targets"] = {
+["杂斑野猪"] = 57,
+},
+["colocacao"] = 1,
+["aID"] = "5453-04C746EA",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 57,
+},
+["end_time"] = 1764818990,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 1,
+["n_max"] = 5,
+["targets"] = {
+["杂斑野猪"] = 23,
+},
+["n_total"] = 12,
+["n_min"] = 3,
+["g_dmg"] = 3,
+["counter"] = 6,
+["total"] = 23,
+["c_max"] = 8,
+["a_amt"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["PARRY"] = 1,
+["c_min"] = 8,
+["successful_casted"] = 0,
+["c_total"] = 8,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[585] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 18,
+["targets"] = {
+["杂斑野猪"] = 34,
+},
+["n_total"] = 34,
+["n_min"] = 16,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 34,
+["c_max"] = 0,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 3.693708222639582,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 18.004999,
+["start_time"] = 1764818976,
+["delay"] = 0,
+["last_event"] = 1764818989,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.003659,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 18.003659,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 18.003659,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5355-1-45-3098-000030FD83",
+["aID"] = "3098",
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+["暗矛部落酋长"] = 18,
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764818990,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 3,
+["targets"] = {
+["暗矛部落酋长"] = 18,
+},
+["n_total"] = 18,
+["n_min"] = 2,
+["g_dmg"] = 0,
+["counter"] = 8,
+["total"] = 18,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 8,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 57.003659,
+["start_time"] = 1764818974,
+["delay"] = 0,
+["last_event"] = 1764818988,
+},
+},
+},
+{
+["combatId"] = 9,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 9,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 9,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["grupo"] = true,
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 9,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["暗矛部落酋长"] = "Player-5453-04C746EA",
+},
+["tempo_start"] = 1764818974,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+75,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+57,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "11:29:50",
+["hasTimer"] = 15.06700000000092,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "杂斑野猪",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 10542.53,
+["overall_added"] = true,
+["CombatEndedAt"] = 10542.53,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "11:29:35",
+["end_time"] = 10542.53,
+["mapId"] = 1,
+["combat_id"] = 9,
+["timeStart"] = 1764818975,
+["timeEnd"] = 1764818990,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["杂斑野猪"] = 1,
+},
+["boss_hp"] = 1,
+["combat_counter"] = 22,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["暗矛部落酋长"] = 57.004999,
+},
+},
+},
+["start_time"] = 10527.097,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+{
+{
+["combatId"] = 8,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.002609,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 63.002609,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 63.002609,
+["spec"] = 201,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5453-04C746EA",
+["damage_from"] = {
+["杂斑野猪"] = true,
+},
+["targets"] = {
+["杂斑野猪"] = 63,
+},
+["colocacao"] = 1,
+["aID"] = "5453-04C746EA",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 63,
+},
+["end_time"] = 1764818965,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+[585] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 18,
+["targets"] = {
+["杂斑野猪"] = 63,
+},
+["n_total"] = 36,
+["n_min"] = 18,
+["g_dmg"] = 0,
+["counter"] = 6,
+["total"] = 63,
+["c_max"] = 27,
+["RESIST"] = 3,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 27,
+["successful_casted"] = 0,
+["c_total"] = 27,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 7.516417203531729,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 5.002609,
+["start_time"] = 1764818956,
+["delay"] = 0,
+["last_event"] = 1764818974,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.008203,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 5.008203,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 5.008203,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5355-1-45-3098-000030FD69",
+["aID"] = "3098",
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+["暗矛部落酋长"] = 5,
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764818965,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2,
+["targets"] = {
+["暗矛部落酋长"] = 5,
+},
+["n_total"] = 5,
+["n_min"] = 1,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 5,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 63.008203,
+["start_time"] = 1764818958,
+["delay"] = 0,
+["last_event"] = 1764818962,
+},
+},
+},
+{
+["combatId"] = 8,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 8,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 8,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["grupo"] = true,
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 8,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["暗矛部落酋长"] = "Player-5453-04C746EA",
+},
+["CombatStartedAt"] = 10525.014,
+["tempo_start"] = 1764818956,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+68,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+63,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 3,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "11:29:25",
+["hasTimer"] = 8.06500000000051,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "杂斑野猪",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 8.381999999999607,
+["overall_added"] = true,
+["CombatEndedAt"] = 10517.363,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "11:29:16",
+["end_time"] = 10517.363,
+["mapId"] = 1,
+["combat_id"] = 8,
+["timeStart"] = 1764818956,
+["timeEnd"] = 1764818965,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["杂斑野猪"] = 1,
+},
+["boss_hp"] = 1,
+["combat_counter"] = 21,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["暗矛部落酋长"] = 63.002609,
+},
+},
+},
+["start_time"] = 10508.981,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+{
+{
+["combatId"] = 7,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.00638,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 44.00638,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 44.00638,
+["spec"] = 201,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5453-04C746EA",
+["damage_from"] = {
+["杂斑野猪"] = true,
+},
+["targets"] = {
+["杂斑野猪"] = 44,
+},
+["colocacao"] = 1,
+["aID"] = "5453-04C746EA",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 44,
+},
+["end_time"] = 1764818919,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 4,
+["targets"] = {
+["杂斑野猪"] = 10,
+},
+["n_total"] = 4,
+["n_min"] = 4,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 10,
+["c_max"] = 6,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 6,
+["successful_casted"] = 0,
+["c_total"] = 6,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[585] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 18,
+["targets"] = {
+["杂斑野猪"] = 34,
+},
+["n_total"] = 34,
+["n_min"] = 16,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 34,
+["c_max"] = 0,
+["RESIST"] = 1,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 4.576370632279541,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 4.00638,
+["start_time"] = 1764818909,
+["delay"] = 0,
+["last_event"] = 1764818919,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.007575,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 4.007575,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 4.007575,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5355-1-45-3098-000030F0C1",
+["aID"] = "3098",
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+["暗矛部落酋长"] = 4,
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764818919,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 1,
+["targets"] = {
+["暗矛部落酋长"] = 4,
+},
+["n_total"] = 4,
+["n_min"] = 1,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 4,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 44.007575,
+["start_time"] = 1764818910,
+["delay"] = 0,
+["last_event"] = 1764818917,
+},
+},
+},
+{
+["combatId"] = 7,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 7,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 7,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["grupo"] = true,
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 7,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["暗矛部落酋长"] = "Player-5453-04C746EA",
+},
+["CombatStartedAt"] = 10462.13,
+["tempo_start"] = 1764818909,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+48,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+44,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "11:28:39",
+["hasTimer"] = 9.050999999999476,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "杂斑野猪",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 9.615999999999985,
+["overall_added"] = true,
+["CombatEndedAt"] = 10471.746,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "11:28:30",
+["end_time"] = 10471.746,
+["mapId"] = 1,
+["combat_id"] = 7,
+["timeStart"] = 1764818910,
+["timeEnd"] = 1764818919,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["杂斑野猪"] = 1,
+},
+["boss_hp"] = 1,
+["combat_counter"] = 20,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["暗矛部落酋长"] = 44.00638,
+},
+},
+},
+["start_time"] = 10462.13,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+{
+{
+["combatId"] = 6,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.004815,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 57.004815,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 57.004815,
+["spec"] = 201,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5453-04C746EA",
+["damage_from"] = {
+["杂斑野猪"] = true,
+},
+["targets"] = {
+["杂斑野猪"] = 57,
+},
+["colocacao"] = 1,
+["aID"] = "5453-04C746EA",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 57,
+},
+["end_time"] = 1764818900,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 4,
+["targets"] = {
+["杂斑野猪"] = 13,
+},
+["n_total"] = 13,
+["n_min"] = 3,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 13,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[585] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 17,
+["targets"] = {
+["杂斑野猪"] = 44,
+},
+["n_total"] = 44,
+["n_min"] = 13,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 44,
+["c_max"] = 0,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 4.330356654512086,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 6.004815,
+["start_time"] = 1764818887,
+["delay"] = 0,
+["last_event"] = 1764818899,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.001664,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 6.001664,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 6.001664,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5355-1-45-3098-000030F097",
+["aID"] = "3098",
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+["暗矛部落酋长"] = 6,
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764818900,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2,
+["targets"] = {
+["暗矛部落酋长"] = 6,
+},
+["n_total"] = 6,
+["n_min"] = 2,
+["g_dmg"] = 0,
+["counter"] = 5,
+["total"] = 6,
+["c_max"] = 0,
+["DODGE"] = 2,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 57.00166400000001,
+["start_time"] = 1764818890,
+["delay"] = 0,
+["last_event"] = 1764818898,
+},
+},
+},
+{
+["combatId"] = 6,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 6,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 6,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["grupo"] = true,
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 6,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["暗矛部落酋长"] = "Player-5453-04C746EA",
+},
+["CombatStartedAt"] = 10440.749,
+["tempo_start"] = 1764818887,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+63,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+57,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "11:28:21",
+["hasTimer"] = 13.1140000000014,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "杂斑野猪",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 13.06500000000051,
+["overall_added"] = true,
+["CombatEndedAt"] = 10453.814,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "11:28:08",
+["end_time"] = 10453.814,
+["mapId"] = 1,
+["combat_id"] = 6,
+["timeStart"] = 1764818888,
+["timeEnd"] = 1764818901,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["杂斑野猪"] = 1,
+},
+["boss_hp"] = 1,
+["combat_counter"] = 19,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["暗矛部落酋长"] = 57.004815,
+},
+},
+},
+["start_time"] = 10440.65,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+{
+{
+["combatId"] = 5,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.006823,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 67.006823,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 67.006823,
+["spec"] = 201,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5453-04C746EA",
+["damage_from"] = {
+["杂斑野猪"] = true,
+},
+["targets"] = {
+["杂斑野猪"] = 67,
+},
+["colocacao"] = 1,
+["aID"] = "5453-04C746EA",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 67,
+},
+["end_time"] = 1764818880,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+[585] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 17,
+["targets"] = {
+["杂斑野猪"] = 67,
+},
+["n_total"] = 67,
+["n_min"] = 16,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 67,
+["c_max"] = 0,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 7.090669100529919,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 7.006823,
+["start_time"] = 1764818870,
+["delay"] = 0,
+["last_event"] = 1764818879,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.004476,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 7.004476,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 7.004476,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5355-1-45-3098-000030F986",
+["aID"] = "3098",
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+["暗矛部落酋长"] = 7,
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764818880,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 3,
+["targets"] = {
+["暗矛部落酋长"] = 7,
+},
+["n_total"] = 7,
+["n_min"] = 2,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 7,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 67.004476,
+["start_time"] = 1764818874,
+["delay"] = 0,
+["last_event"] = 1764818878,
+},
+},
+},
+{
+["combatId"] = 5,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 5,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 5,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["grupo"] = true,
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 5,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["暗矛部落酋长"] = "Player-5453-04C746EA",
+},
+["CombatStartedAt"] = 10423.532,
+["tempo_start"] = 1764818870,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+74,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+67,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 3,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "11:28:00",
+["hasTimer"] = 9.06499999999869,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "杂斑野猪",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 9.449999999998909,
+["overall_added"] = true,
+["CombatEndedAt"] = 10432.982,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "11:27:51",
+["end_time"] = 10432.982,
+["mapId"] = 1,
+["combat_id"] = 5,
+["timeStart"] = 1764818871,
+["timeEnd"] = 1764818880,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["杂斑野猪"] = 1,
+},
+["boss_hp"] = 1,
+["combat_counter"] = 18,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["暗矛部落酋长"] = 67.006823,
+},
+},
+},
+["start_time"] = 10423.532,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+{
+{
+["combatId"] = 4,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.003642,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 55.003642,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 55.003642,
+["spec"] = 201,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5453-04C746EA",
+["damage_from"] = {
+["杂斑野猪"] = true,
+},
+["targets"] = {
+["杂斑野猪"] = 55,
+},
+["colocacao"] = 1,
+["aID"] = "5453-04C746EA",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 55,
+},
+["end_time"] = 1764818854,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 4,
+["n_max"] = 4,
+["targets"] = {
+["杂斑野猪"] = 20,
+},
+["n_total"] = 14,
+["n_min"] = 2,
+["g_dmg"] = 6,
+["counter"] = 8,
+["total"] = 20,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[585] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 18,
+["targets"] = {
+["杂斑野猪"] = 35,
+},
+["n_total"] = 35,
+["n_min"] = 17,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 35,
+["c_max"] = 0,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 3.008293699409377,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 15.003642,
+["start_time"] = 1764818836,
+["delay"] = 0,
+["last_event"] = 1764818853,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.006255,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 15.006255,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 15.006255,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5355-1-45-3098-000030FCF7",
+["aID"] = "3098",
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+["暗矛部落酋长"] = 15,
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764818854,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 3,
+["targets"] = {
+["暗矛部落酋长"] = 15,
+},
+["n_total"] = 15,
+["n_min"] = 2,
+["g_dmg"] = 0,
+["counter"] = 7,
+["total"] = 15,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 7,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 55.006255,
+["start_time"] = 1764818840,
+["delay"] = 0,
+["last_event"] = 1764818852,
+},
+},
+},
+{
+["combatId"] = 4,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 4,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 4,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["grupo"] = true,
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 4,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["暗矛部落酋长"] = "Player-5453-04C746EA",
+},
+["CombatStartedAt"] = 10389.031,
+["tempo_start"] = 1764818836,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+70,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+55,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 1,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "11:27:35",
+["hasTimer"] = 18.11799999999857,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "杂斑野猪",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 18.28399999999965,
+["overall_added"] = true,
+["CombatEndedAt"] = 10407.315,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "11:27:17",
+["end_time"] = 10407.315,
+["mapId"] = 1,
+["combat_id"] = 4,
+["timeStart"] = 1764818837,
+["timeEnd"] = 1764818855,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["杂斑野猪"] = 1,
+},
+["boss_hp"] = 1,
+["combat_counter"] = 17,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["暗矛部落酋长"] = 55.003642,
+},
+},
+},
+["start_time"] = 10389.031,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+{
+{
+["combatId"] = 3,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.008925,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 59.008925,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 59.008925,
+["spec"] = 201,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5453-04C746EA",
+["damage_from"] = {
+["杂斑野猪"] = true,
+},
+["targets"] = {
+["杂斑野猪"] = 59,
+},
+["colocacao"] = 1,
+["aID"] = "5453-04C746EA",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 59,
+},
+["end_time"] = 1764818831,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+[585] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 17,
+["targets"] = {
+["杂斑野猪"] = 59,
+},
+["n_total"] = 59,
+["n_min"] = 13,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 59,
+["c_max"] = 0,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 9.62311236138067,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 3.008925,
+["start_time"] = 1764818825,
+["delay"] = 0,
+["last_event"] = 1764818830,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.008506,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 3.008506,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 3.008506,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5355-1-45-3098-000030F96C",
+["aID"] = "3098",
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+["暗矛部落酋长"] = 3,
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764818831,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 3,
+["targets"] = {
+["暗矛部落酋长"] = 3,
+},
+["n_total"] = 3,
+["n_min"] = 3,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 3,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 59.008506,
+["start_time"] = 1764818828,
+["delay"] = 0,
+["last_event"] = 1764818828,
+},
+},
+},
+{
+["combatId"] = 3,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 3,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 3,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["grupo"] = true,
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 3,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["暗矛部落酋长"] = "Player-5453-04C746EA",
+},
+["CombatStartedAt"] = 10377.649,
+["tempo_start"] = 1764818825,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+62,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+59,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 3,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "11:27:11",
+["hasTimer"] = 6.081000000000131,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "杂斑野猪",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 6.132000000001426,
+["overall_added"] = true,
+["CombatEndedAt"] = 10383.781,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "11:27:05",
+["end_time"] = 10383.781,
+["mapId"] = 1,
+["combat_id"] = 3,
+["timeStart"] = 1764818825,
+["timeEnd"] = 1764818831,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["杂斑野猪"] = 1,
+},
+["boss_hp"] = 1,
+["combat_counter"] = 16,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["暗矛部落酋长"] = 59.008925,
+},
+},
+},
+["start_time"] = 10377.649,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+{
+{
+["combatId"] = 2,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.004648,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 56.004648,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 56.004648,
+["spec"] = 201,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5453-04C746EA",
+["damage_from"] = {
+["杂斑野猪"] = true,
+},
+["targets"] = {
+["杂斑野猪"] = 56,
+},
+["colocacao"] = 1,
+["aID"] = "5453-04C746EA",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 56,
+},
+["end_time"] = 1764818810,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 3,
+["n_max"] = 5,
+["targets"] = {
+["杂斑野猪"] = 28,
+},
+["n_total"] = 21,
+["n_min"] = 3,
+["g_dmg"] = 7,
+["counter"] = 9,
+["total"] = 28,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 6,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[585] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 15,
+["targets"] = {
+["杂斑野猪"] = 28,
+},
+["n_total"] = 28,
+["n_min"] = 13,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 28,
+["c_max"] = 0,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 2.826376381529332,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 17.004648,
+["start_time"] = 1764818790,
+["delay"] = 0,
+["last_event"] = 1764818809,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.005393,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 17.005393,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 17.005393,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5355-1-45-3098-000030FCC8",
+["aID"] = "3098",
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+["暗矛部落酋长"] = 17,
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764818810,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 3,
+["targets"] = {
+["暗矛部落酋长"] = 17,
+},
+["n_total"] = 17,
+["n_min"] = 2,
+["g_dmg"] = 0,
+["counter"] = 8,
+["total"] = 17,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 8,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 56.005393,
+["start_time"] = 1764818793,
+["delay"] = 0,
+["last_event"] = 1764818807,
+},
+},
+},
+{
+["combatId"] = 2,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 2,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 2,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["grupo"] = true,
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 2,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["暗矛部落酋长"] = "Player-5453-04C746EA",
+},
+["CombatStartedAt"] = 10342.817,
+["tempo_start"] = 1764818790,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+73,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+56,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 1,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "11:26:50",
+["hasTimer"] = 19.16499999999905,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "杂斑野猪",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 19.81499999999869,
+["overall_added"] = true,
+["CombatEndedAt"] = 10362.632,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "11:26:30",
+["end_time"] = 10362.632,
+["mapId"] = 1,
+["combat_id"] = 2,
+["timeStart"] = 1764818790,
+["timeEnd"] = 1764818810,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["杂斑野猪"] = 1,
+},
+["boss_hp"] = 1,
+["combat_counter"] = 15,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["暗矛部落酋长"] = 56.004648,
+},
+},
+},
+["start_time"] = 10342.817,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+{
+{
+["combatId"] = 1,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.002878,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 60.002878,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 60.002878,
+["spec"] = 201,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5453-04C746EA",
+["damage_from"] = {
+["杂斑野猪"] = true,
+},
+["targets"] = {
+["杂斑野猪"] = 60,
+},
+["colocacao"] = 1,
+["aID"] = "5453-04C746EA",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 60,
+},
+["end_time"] = 1764818785,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+[585] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 18,
+["targets"] = {
+["杂斑野猪"] = 60,
+},
+["n_total"] = 60,
+["n_min"] = 14,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 60,
+["c_max"] = 0,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 8.935648250185956,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 2.002878,
+["start_time"] = 1764818778,
+["delay"] = 0,
+["last_event"] = 1764818784,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.008248,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 2.008248,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 2.008248,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5355-1-45-3098-000030FCD8",
+["aID"] = "3098",
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+["暗矛部落酋长"] = 2,
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764818785,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2,
+["targets"] = {
+["暗矛部落酋长"] = 2,
+},
+["n_total"] = 2,
+["n_min"] = 2,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 2,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 60.008248,
+["start_time"] = 1764818783,
+["delay"] = 0,
+["last_event"] = 1764818783,
+},
+},
+},
+{
+["combatId"] = 1,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 1,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 1,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["grupo"] = true,
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 1,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["暗矛部落酋长"] = "Player-5453-04C746EA",
+},
+["tempo_start"] = 1764818778,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+62,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+60,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 3,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "11:26:25",
+["hasTimer"] = 6.033000000001266,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "杂斑野猪",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 10337.981,
+["overall_added"] = true,
+["CombatEndedAt"] = 10337.981,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "11:26:19",
+["end_time"] = 10337.981,
+["mapId"] = 1,
+["combat_id"] = 1,
+["timeStart"] = 1764818779,
+["timeEnd"] = 1764818785,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["杂斑野猪"] = 1,
+},
+["boss_hp"] = 1,
+["combat_counter"] = 14,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["暗矛部落酋长"] = 60.002878,
+},
+},
+},
+["start_time"] = 10331.266,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+},
+},
+["ocd_tracker"] = {
+["show_title"] = true,
+["current_cooldowns"] = {
+},
+["lines_per_column"] = 12,
+["group_frames"] = true,
+["show_options"] = false,
+["frames"] = {
+["defensive-raid"] = {
+},
+["main"] = {
+},
+["ofensive"] = {
+},
+["defensive-target"] = {
+},
+["utility"] = {
+},
+["defensive-personal"] = {
+},
+},
+["width"] = 120,
+["ignored_cooldowns"] = {
+},
+["cooldowns"] = {
+},
+["height"] = 18,
+["own_frame"] = {
+["defensive-raid"] = false,
+["ofensive"] = false,
+["defensive-target"] = false,
+["utility"] = false,
+["defensive-personal"] = false,
+},
+["framme_locked"] = false,
+["show_conditions"] = {
+["only_inside_instance"] = true,
+["only_in_group"] = true,
+},
+["enabled"] = false,
+["filters"] = {
+["itemutil"] = false,
+["itempower"] = false,
+["defensive-target"] = false,
+["itemheal"] = false,
+["defensive-personal"] = false,
+["defensive-raid"] = false,
+["ofensive"] = true,
+["crowdcontrol"] = false,
+["utility"] = false,
+},
+},
+["combat_counter"] = 24,
+["player_stats"] = {
+},
+["character_data"] = {
+["logons"] = 4,
+},
+["tabela_instancias"] = {
+},
+["arena_data_compressed"] = {
+},
+["arena_data_index_selected"] = 1,
+["on_death_menu"] = false,
+["cached_talents"] = {
+},
+["last_instance_id"] = 0,
+["data_harvest_for_charsts"] = {
+["players"] = {
+{
+["playerKey"] = "total",
+["combatObjectContainer"] = 1,
+["name"] = "Damage of Each Individual Player",
+["playerOnly"] = true,
+},
+},
+["totals"] = {
+{
+["combatObjectSubTableKey"] = 1,
+["name"] = "Damage of All Player Combined",
+["combatObjectSubTableName"] = "totals",
+},
+},
+},
+["announce_interrupts"] = {
+["enabled"] = false,
+["whisper"] = "",
+["channel"] = "SAY",
+["custom"] = "",
+["next"] = "",
+},
+["announce_prepots"] = {
+["enabled"] = false,
+["channel"] = "SELF",
+["reverse"] = false,
+},
+["active_profile"] = "暗矛部落酋长-铁血",
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
+["benchmark_db"] = {
+["frame"] = {
+},
+},
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
+},
+["last_coach_name"] = false,
+},
+["last_version"] = "1.15.8 13857",
+["combat_log"] = {
+["inverse_deathlog_overalldata"] = false,
+["merge_gemstones_1007"] = false,
+["track_hunter_frenzy"] = false,
+["merge_critical_heals"] = false,
+["inverse_deathlog_raid"] = false,
+["calc_evoker_damage"] = true,
+["evoker_show_realtimedps"] = false,
+["inverse_deathlog_mplus"] = false,
+},
+["announce_damagerecord"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["mythic_plus_log"] = {
+},
+["ignore_nicktag"] = false,
+["data_harvested_for_charts"] = {
+},
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["force_font_outline"] = "",
+["nick_tag_cache"] = {
+["nextreset"] = 1766114340,
+["last_version"] = 16,
+},
+["plugin_database"] = {
+["DETAILS_PLUGIN_TINY_THREAT"] = {
+["enabled"] = true,
+["only_my_group"] = false,
+["animate"] = false,
+["author"] = "Terciob",
+["hide_pull_bar"] = false,
+["useclasscolors"] = false,
+["playercolor"] = {
+1,
+1,
+1,
+},
+["usefocus"] = false,
+["updatespeed"] = 1,
+["playSound"] = false,
+["showamount"] = false,
+["useplayercolor"] = false,
+["absolute_mode"] = false,
+["show_party_pets"] = false,
+["playSoundFile"] = "Details Threat Warning Volume 3",
+["disable_gouge"] = false,
+},
+["DETAILS_PLUGIN_COMPARETWO_WINDOW"] = {
+["enabled"] = true,
+["author"] = "Terciob",
+["max_compares"] = 4,
+["compare_type"] = 1,
+},
+["DETAILS_PLUGIN_STREAM_OVERLAY"] = {
+["use_square_mode"] = false,
+["is_first_run"] = false,
+["arrow_color"] = {
+1,
+1,
+1,
+0.5,
+},
+["arrow_anchor_y"] = 0,
+["main_frame_size"] = {
+300,
+500,
+},
+["minimap"] = {
+["minimapPos"] = 160,
+["radius"] = 160,
+["hide"] = false,
+},
+["main_frame_locked"] = false,
+["arrow_anchor_x"] = 0,
+["use_spark"] = true,
+["row_texture"] = "Details Serenity",
+["square_grow_direction"] = "right",
+["row_color"] = {
+0.1,
+0.1,
+0.1,
+0.4,
+},
+["author"] = "Terciob",
+["square_amount"] = 5,
+["enabled"] = false,
+["arrow_size"] = 10,
+["y"] = -3.0517578125e-05,
+["row_spacement"] = 21,
+["main_frame_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["main_frame_strata"] = "LOW",
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["font_size"] = 10,
+["per_second"] = {
+["enabled"] = false,
+["point"] = "CENTER",
+["scale"] = 1,
+["font_shadow"] = true,
+["y"] = -0.000396728515625,
+["x"] = 0,
+["attribute_type"] = 1,
+["update_speed"] = 0.05,
+["size"] = 32,
+},
+["x"] = 0.000152587890625,
+["font_face"] = "Friz Quadrata TT",
+["square_size"] = 32,
+["point"] = "CENTER",
+["font_color"] = {
+1,
+1,
+1,
+1,
+},
+["row_height"] = 20,
+["scale"] = 1,
+},
+},
+["last_day"] = "04",
+["combat_id"] = 11,
+["savedStyles"] = {
+},
+["last_instance_time"] = 0,
+["last_realversion"] = 166,
+["announce_deaths"] = {
+["enabled"] = false,
+["last_hits"] = 1,
+["only_first"] = 5,
+["where"] = 1,
+},
+["tabela_overall"] = {
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.063143,
+["pets"] = {
+},
+["classe"] = "PRIEST",
+["total_without_pet"] = 630.063143,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 630.063143,
+["spec"] = 201,
+["serial"] = "Player-5453-04C746EA",
+["on_hold"] = false,
+["total_extra"] = 0,
+["aID"] = "5453-04C746EA",
+["damage_from"] = {
+["杂斑野猪"] = true,
+},
+["targets"] = {
+["杂斑野猪"] = 630,
+},
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+[128] = 614,
+},
+["end_time"] = 1764818785,
+["nome"] = "暗矛部落酋长",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 2,
+["b_amt"] = 0,
+["g_amt"] = 8,
+["n_max"] = 5,
+["targets"] = {
+["杂斑野猪"] = 94,
+},
+["n_total"] = 64,
+["n_min"] = 0,
+["g_dmg"] = 16,
+["counter"] = 29,
+["total"] = 94,
+["c_max"] = 8,
+["a_amt"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["PARRY"] = 1,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 14,
+["n_amt"] = 18,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[585] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 18,
+["targets"] = {
+["杂斑野猪"] = 536,
+},
+["n_total"] = 509,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 35,
+["total"] = 536,
+["c_max"] = 27,
+["RESIST"] = 2,
+["id"] = 585,
+["r_dmg"] = 0,
+["spellschool"] = 2,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 27,
+["n_amt"] = 32,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 79.06314299999998,
+["start_time"] = 1764818662,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.065021,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 79.065021,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 79.065021,
+["serial"] = "Creature-0-5355-1-45-3098-000030FCD8",
+["on_hold"] = false,
+["total_extra"] = 0,
+["aID"] = "3098",
+["fight_component"] = true,
+["damage_from"] = {
+["暗矛部落酋长"] = true,
+},
+["targets"] = {
+["暗矛部落酋长"] = 79,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1764818785,
+["nome"] = "杂斑野猪",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 3,
+["targets"] = {
+["暗矛部落酋长"] = 79,
+},
+["n_total"] = 79,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 42,
+["MISS"] = 1,
+["total"] = 79,
+["c_max"] = 0,
+["DODGE"] = 2,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 39,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 630.0650210000001,
+["start_time"] = 1764818694,
+["delay"] = 0,
+["last_event"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["nome"] = "暗矛部落酋长",
+["spec"] = 201,
+["grupo"] = true,
+["pets"] = {
+},
+["last_event"] = 0,
+["tipo"] = 4,
+["classe"] = "PRIEST",
+["serial"] = "Player-5453-04C746EA",
+["aID"] = "5453-04C746EA",
+},
+},
+},
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["raid_roster"] = {
+},
+["tempo_start"] = 1764818778,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["cleu_timeline"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 13,
+["playerTalents"] = {
+},
+["totals"] = {
+709.1198089999998,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+630.0571759999999,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["segments_added"] = {
+{
+["elapsed"] = 6.450000000000728,
+["type"] = 0,
+["name"] = "杂斑野猪",
+["clock"] = "11:31:12",
+},
+{
+["elapsed"] = 6.214999999998327,
+["type"] = 0,
+["name"] = "杂斑野猪",
+["clock"] = "11:30:59",
+},
+{
+["elapsed"] = 15.4330000000009,
+["type"] = 0,
+["name"] = "杂斑野猪",
+["clock"] = "11:29:35",
+},
+{
+["elapsed"] = 8.381999999999607,
+["type"] = 0,
+["name"] = "杂斑野猪",
+["clock"] = "11:29:16",
+},
+{
+["elapsed"] = 9.615999999999985,
+["type"] = 0,
+["name"] = "杂斑野猪",
+["clock"] = "11:28:30",
+},
+{
+["elapsed"] = 13.16400000000067,
+["type"] = 0,
+["name"] = "杂斑野猪",
+["clock"] = "11:28:08",
+},
+{
+["elapsed"] = 9.449999999998909,
+["type"] = 0,
+["name"] = "杂斑野猪",
+["clock"] = "11:27:51",
+},
+{
+["elapsed"] = 18.28399999999965,
+["type"] = 0,
+["name"] = "杂斑野猪",
+["clock"] = "11:27:17",
+},
+{
+["elapsed"] = 6.132000000001426,
+["type"] = 0,
+["name"] = "杂斑野猪",
+["clock"] = "11:27:05",
+},
+{
+["elapsed"] = 19.81499999999869,
+["type"] = 0,
+["name"] = "杂斑野猪",
+["clock"] = "11:26:30",
+},
+{
+["elapsed"] = 6.715000000000146,
+["type"] = 0,
+["name"] = "杂斑野猪",
+["clock"] = "11:26:19",
+},
+},
+["frags_need_refresh"] = false,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+},
+["damage_section"] = {
+},
+["damage"] = {
+},
+},
+["end_time"] = 10631.379,
+["mapId"] = 1,
+["trinketProcs"] = {
+},
+["zoneName"] = "卡利姆多",
+["player_last_events"] = {
+},
+["data_inicio"] = "11:26:19",
+["is_challenge"] = false,
+["spells_cast_timeline"] = {
+},
+["data_fim"] = "11:31:19",
+["overall_enemy_name"] = "杂斑野猪",
+["amountCasts"] = {
+["暗矛部落酋长"] = {
+["惩击"] = 25,
+},
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["start_time"] = 10511.723,
+["TimeData"] = {
+},
+["frags"] = {
+},
+},
+["SoloTablesSaved"] = {
+["Mode"] = 1,
+},
+["arena_data_headers"] = {
+},
+["local_instances_config"] = {
+{
+["modo"] = 2,
+["sub_attribute"] = 1,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+1,
+1,
+},
+["is_open"] = true,
+["isLocked"] = false,
+["snap"] = {
+},
+["segment"] = 0,
+["mode"] = 2,
+["attribute"] = 1,
+["pos"] = {
+["normal"] = {
+["y"] = -168.7083740234375,
+["x"] = 869.870849609375,
+["w"] = 309.9998474121094,
+["h"] = 157.9999847412109,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+},
+["announce_cooldowns"] = {
+["ignored_cooldowns"] = {
+},
+["enabled"] = false,
+["custom"] = "",
+["channel"] = "RAID",
+},
+["rank_window"] = {
+["last_difficulty"] = 15,
+["last_raid"] = "",
+},
+["cached_roles"] = {
+},
+["cached_specs"] = {
+["Player-5453-04C746EA"] = 201,
+},
+}

@@ -1,0 +1,4887 @@
+
+_detalhes_database = {
+["savedbuffs"] = {
+},
+["mythic_dungeon_id"] = 0,
+["tabela_historico"] = {
+["tabelas"] = {
+{
+{
+["tipo"] = 2,
+["combatId"] = 12,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 49.008975,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 49.008975,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+["环境伤害 (坠落)"] = true,
+["夜刃豹幼崽"] = true,
+},
+["targets"] = {
+["夜刃豹幼崽"] = 49,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748342086,
+["totalabsorbed"] = 0.008975,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+[75] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 14,
+["targets"] = {
+["夜刃豹幼崽"] = 39,
+},
+["n_total"] = 39,
+["n_min"] = 12,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 39,
+["c_max"] = 0,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[2973] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 10,
+["targets"] = {
+["夜刃豹幼崽"] = 10,
+},
+["n_total"] = 10,
+["n_min"] = 10,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 10,
+["c_max"] = 0,
+["id"] = 2973,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748342085,
+["damage_taken"] = 53.008975,
+["start_time"] = 1748342080,
+["delay"] = 0,
+["last_dps"] = 7.656456022494501,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "2031",
+["total_without_pet"] = 1.005979,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 1.005979,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-2031-0000333318",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+["蓝龙守护者"] = 1,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748342086,
+["totalabsorbed"] = 0.005979,
+["nome"] = "夜刃豹幼崽",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 1,
+["targets"] = {
+["蓝龙守护者"] = 1,
+},
+["n_total"] = 1,
+["n_min"] = 1,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 1,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748342085,
+["damage_taken"] = 49.005979,
+["start_time"] = 1748342085,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 12,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 12,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 12,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 12,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["tempo_start"] = 1748342080,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 31,
+["playerTalents"] = {
+},
+["totals"] = {
+145,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+["蓝龙守护者"] = {
+{
+true,
+3,
+45,
+1748342487.674,
+0.2698412698412698,
+"环境伤害 (坠落)",
+nil,
+3,
+false,
+-1,
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+["n"] = 2,
+},
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["猛禽一击"] = 1,
+["自动射击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:34:47",
+["hasTimer"] = 6.11699999999837,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "夜刃豹幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30673.823,
+["CombatEndedAt"] = 30673.823,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:34:40",
+["end_time"] = 30673.823,
+["mapId"] = 1,
+["combat_id"] = 12,
+["timeStart"] = 1748342080,
+["overall_added"] = true,
+["playing_solo"] = true,
+["frags"] = {
+["夜刃豹幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+49,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 49.008975,
+},
+},
+},
+["start_time"] = 30667.422,
+["TimeData"] = {
+},
+["timeEnd"] = 1748342087,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 11,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 42.006527,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 42.006527,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+},
+["targets"] = {
+["夜刃豹幼崽"] = 42,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748342066,
+["totalabsorbed"] = 0.006527,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+[75] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 14,
+["targets"] = {
+["夜刃豹幼崽"] = 42,
+},
+["n_total"] = 14,
+["n_min"] = 14,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 42,
+["c_max"] = 28,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 28,
+["successful_casted"] = 0,
+["c_total"] = 28,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748342065,
+["damage_taken"] = 0.006527,
+["start_time"] = 1748342063,
+["delay"] = 0,
+["last_dps"] = 14.08197351659321,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "2031",
+["total_without_pet"] = 0.007943,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.007943,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-2031-0000359526",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748342066,
+["totalabsorbed"] = 0.007943,
+["nome"] = "夜刃豹幼崽",
+["spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 42.007943,
+["start_time"] = 1748342066,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 11,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 11,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 11,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 11,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["CombatStartedAt"] = 30666.555,
+["tempo_start"] = 1748342063,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 30,
+["playerTalents"] = {
+},
+["totals"] = {
+42,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["自动射击"] = 1,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:34:27",
+["hasTimer"] = 2.001000000000204,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "夜刃豹幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30653.972,
+["CombatEndedAt"] = 30653.972,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:34:24",
+["end_time"] = 30653.972,
+["mapId"] = 1,
+["combat_id"] = 11,
+["timeStart"] = 1748342064,
+["overall_added"] = true,
+["playing_solo"] = true,
+["frags"] = {
+["夜刃豹幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+42,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 42.006527,
+},
+},
+},
+["start_time"] = 30650.989,
+["TimeData"] = {
+},
+["timeEnd"] = 1748342067,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 10,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 58.006544,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 58.006544,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+["草刺野猪幼崽"] = true,
+},
+["targets"] = {
+["草刺野猪幼崽"] = 58,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748342056,
+["totalabsorbed"] = 0.006544,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 2,
+["n_max"] = 5,
+["targets"] = {
+["草刺野猪幼崽"] = 28,
+},
+["n_total"] = 9,
+["n_min"] = 4,
+["g_dmg"] = 10,
+["counter"] = 5,
+["total"] = 28,
+["c_max"] = 9,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 9,
+["successful_casted"] = 0,
+["c_total"] = 9,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[2973] = {
+["c_amt"] = 0,
+["b_amt"] = 1,
+["g_amt"] = 0,
+["n_max"] = 10,
+["targets"] = {
+["草刺野猪幼崽"] = 17,
+},
+["n_total"] = 17,
+["n_min"] = 7,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 17,
+["c_max"] = 0,
+["id"] = 2973,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 7,
+["r_amt"] = 0,
+},
+[75] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 13,
+["targets"] = {
+["草刺野猪幼崽"] = 13,
+},
+["n_total"] = 13,
+["n_min"] = 13,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 13,
+["c_max"] = 0,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748342055,
+["damage_taken"] = 12.006544,
+["start_time"] = 1748342040,
+["delay"] = 0,
+["last_dps"] = 3.632901860086302,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "1984",
+["total_without_pet"] = 12.006417,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 12.006417,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-1984-0000359507",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+["蓝龙守护者"] = 12,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748342056,
+["totalabsorbed"] = 0.006417,
+["nome"] = "草刺野猪幼崽",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2,
+["targets"] = {
+["蓝龙守护者"] = 12,
+},
+["n_total"] = 12,
+["n_min"] = 2,
+["g_dmg"] = 0,
+["counter"] = 7,
+["total"] = 12,
+["c_max"] = 0,
+["DODGE"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 6,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748342055,
+["damage_taken"] = 45.006417,
+["start_time"] = 1748342043,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 10,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 10,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 10,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 10,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者-德姆塞卡尔"] = "Player-5376-11966C0B",
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["CombatStartedAt"] = 30650.238,
+["tempo_start"] = 1748342040,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 29,
+["playerTalents"] = {
+},
+["totals"] = {
+70,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["猛禽一击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:34:16",
+["hasTimer"] = 15.14999999999782,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "草刺野猪幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30643.473,
+["CombatEndedAt"] = 30643.473,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:34:00",
+["end_time"] = 30643.473,
+["mapId"] = 1,
+["combat_id"] = 10,
+["timeStart"] = 1748342040,
+["overall_added"] = true,
+["playing_solo"] = true,
+["frags"] = {
+["草刺野猪幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+58,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 58.006544,
+},
+},
+},
+["start_time"] = 30627.506,
+["TimeData"] = {
+},
+["timeEnd"] = 1748342056,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 42.005134,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 42.005134,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+["夜刃豹幼崽"] = true,
+},
+["targets"] = {
+["夜刃豹幼崽"] = 42,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748342022,
+["totalabsorbed"] = 0.005134,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 5,
+["targets"] = {
+["夜刃豹幼崽"] = 5,
+},
+["n_total"] = 5,
+["n_min"] = 5,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 5,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[2973] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 10,
+["targets"] = {
+["夜刃豹幼崽"] = 10,
+},
+["n_total"] = 10,
+["n_min"] = 10,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 10,
+["c_max"] = 0,
+["id"] = 2973,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[75] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 14,
+["targets"] = {
+["夜刃豹幼崽"] = 27,
+},
+["n_total"] = 27,
+["n_min"] = 13,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 27,
+["c_max"] = 0,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748342021,
+["damage_taken"] = 1.005134,
+["start_time"] = 1748342015,
+["delay"] = 0,
+["last_dps"] = 5.903743359099163,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "2031",
+["total_without_pet"] = 1.00605,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 1.00605,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-2031-0000357EB4",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+["蓝龙守护者"] = 1,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748342022,
+["totalabsorbed"] = 0.00605,
+["nome"] = "夜刃豹幼崽",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 1,
+["targets"] = {
+["蓝龙守护者"] = 1,
+},
+["n_total"] = 1,
+["n_min"] = 1,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 1,
+["c_max"] = 0,
+["MISS"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748342021,
+["damage_taken"] = 42.00605,
+["start_time"] = 1748342021,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 9,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 9,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 9,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者-德姆塞卡尔"] = "Player-5376-11966C0B",
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["CombatStartedAt"] = 30626.939,
+["tempo_start"] = 1748342015,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 28,
+["playerTalents"] = {
+},
+["totals"] = {
+43,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["猛禽一击"] = 1,
+["自动射击"] = 1,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:33:43",
+["hasTimer"] = 7.115000000001601,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "夜刃豹幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30609.789,
+["CombatEndedAt"] = 30609.789,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:33:36",
+["end_time"] = 30610.272,
+["mapId"] = 1,
+["combat_id"] = 9,
+["timeStart"] = 1748342016,
+["overall_added"] = true,
+["frags"] = {
+["夜刃豹幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+42,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 42.005134,
+},
+},
+},
+["start_time"] = 30603.157,
+["TimeData"] = {
+},
+["timeEnd"] = 1748342023,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 8,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 49.005263,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 49.005263,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+["夜刃豹幼崽"] = true,
+},
+["targets"] = {
+["夜刃豹幼崽"] = 49,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748342011,
+["totalabsorbed"] = 0.005263,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+[75] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 14,
+["targets"] = {
+["夜刃豹幼崽"] = 39,
+},
+["n_total"] = 39,
+["n_min"] = 12,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 39,
+["c_max"] = 0,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[2973] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 10,
+["targets"] = {
+["夜刃豹幼崽"] = 10,
+},
+["n_total"] = 10,
+["n_min"] = 10,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 10,
+["c_max"] = 0,
+["id"] = 2973,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748342009,
+["damage_taken"] = 1.005263,
+["start_time"] = 1748342004,
+["delay"] = 0,
+["last_dps"] = 6.96691256752949,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "2031",
+["total_without_pet"] = 1.005803,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 1.005803,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-2031-0000357EBE",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+["蓝龙守护者"] = 1,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748342011,
+["totalabsorbed"] = 0.005803,
+["nome"] = "夜刃豹幼崽",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 1,
+["targets"] = {
+["蓝龙守护者"] = 1,
+},
+["n_total"] = 1,
+["n_min"] = 1,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 1,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748342009,
+["damage_taken"] = 49.005803,
+["start_time"] = 1748342009,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 8,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 8,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 8,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 8,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者-德姆塞卡尔"] = "Player-5376-11966C0B",
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["CombatStartedAt"] = 30602.506,
+["tempo_start"] = 1748342004,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 27,
+["playerTalents"] = {
+},
+["totals"] = {
+50,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["猛禽一击"] = 1,
+["自动射击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:33:32",
+["hasTimer"] = 7.033999999999651,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "夜刃豹幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30598.055,
+["CombatEndedAt"] = 30598.055,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:33:25",
+["end_time"] = 30598.973,
+["mapId"] = 1,
+["combat_id"] = 8,
+["timeStart"] = 1748342005,
+["overall_added"] = true,
+["frags"] = {
+["夜刃豹幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+49,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 49.005263,
+},
+},
+},
+["start_time"] = 30591.939,
+["TimeData"] = {
+},
+["timeEnd"] = 1748342012,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 7,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 47.00888,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 47.00888,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+["夜刃豹幼崽"] = true,
+},
+["targets"] = {
+["夜刃豹幼崽"] = 47,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748341990,
+["totalabsorbed"] = 0.00888,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+[75] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 14,
+["targets"] = {
+["夜刃豹幼崽"] = 38,
+},
+["n_total"] = 38,
+["n_min"] = 11,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 38,
+["c_max"] = 0,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[2973] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 9,
+["targets"] = {
+["夜刃豹幼崽"] = 9,
+},
+["n_total"] = 9,
+["n_min"] = 9,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 9,
+["c_max"] = 0,
+["id"] = 2973,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341988,
+["damage_taken"] = 1.00888,
+["start_time"] = 1748341983,
+["delay"] = 0,
+["last_dps"] = 6.684043793545243,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "2031",
+["total_without_pet"] = 1.0065,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 1.0065,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-2031-00003592FE",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+["蓝龙守护者"] = 1,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748341990,
+["totalabsorbed"] = 0.0065,
+["nome"] = "夜刃豹幼崽",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 1,
+["targets"] = {
+["蓝龙守护者"] = 1,
+},
+["n_total"] = 1,
+["n_min"] = 1,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 1,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341988,
+["damage_taken"] = 47.0065,
+["start_time"] = 1748341988,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 7,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 7,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者-德姆塞卡尔"] = "Player-5376-11966C0B",
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["CombatStartedAt"] = 30591.125,
+["tempo_start"] = 1748341983,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 26,
+["playerTalents"] = {
+},
+["totals"] = {
+48,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["猛禽一击"] = 1,
+["自动射击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:33:10",
+["hasTimer"] = 6.032999999999447,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "夜刃豹幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30576.99,
+["CombatEndedAt"] = 30576.99,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:33:03",
+["end_time"] = 30577.339,
+["mapId"] = 1,
+["combat_id"] = 7,
+["timeStart"] = 1748341983,
+["overall_added"] = true,
+["frags"] = {
+["夜刃豹幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+47,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 47.00888,
+},
+},
+},
+["start_time"] = 30570.306,
+["TimeData"] = {
+},
+["timeEnd"] = 1748341990,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 6,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 47.007375,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 47.007375,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+["夜刃豹幼崽"] = true,
+},
+["targets"] = {
+["夜刃豹幼崽"] = 47,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748341952,
+["totalabsorbed"] = 0.007375,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 1,
+["n_max"] = 4,
+["targets"] = {
+["夜刃豹幼崽"] = 12,
+},
+["n_total"] = 8,
+["n_min"] = 4,
+["g_dmg"] = 4,
+["counter"] = 3,
+["total"] = 12,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[2973] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 10,
+["targets"] = {
+["夜刃豹幼崽"] = 20,
+},
+["n_total"] = 20,
+["n_min"] = 10,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 20,
+["c_max"] = 0,
+["id"] = 2973,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[75] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 15,
+["targets"] = {
+["夜刃豹幼崽"] = 15,
+},
+["n_total"] = 15,
+["n_min"] = 15,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 15,
+["c_max"] = 0,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341951,
+["damage_taken"] = 6.007375,
+["start_time"] = 1748341942,
+["delay"] = 0,
+["last_dps"] = 4.648212696528671,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "2031",
+["total_without_pet"] = 6.002281,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 6.002281,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-2031-0000357EA4",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+["蓝龙守护者"] = 6,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748341952,
+["totalabsorbed"] = 0.002281,
+["nome"] = "夜刃豹幼崽",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2,
+["targets"] = {
+["蓝龙守护者"] = 6,
+},
+["n_total"] = 6,
+["n_min"] = 1,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 6,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341949,
+["damage_taken"] = 47.002281,
+["start_time"] = 1748341944,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 6,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 6,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 6,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 6,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者-德姆塞卡尔"] = "Player-5376-11966C0B",
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["CombatStartedAt"] = 30569.406,
+["tempo_start"] = 1748341942,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 25,
+["playerTalents"] = {
+},
+["totals"] = {
+53,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["猛禽一击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:32:32",
+["hasTimer"] = 10.11300000000119,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "夜刃豹幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30538.473,
+["CombatEndedAt"] = 30538.473,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:32:22",
+["end_time"] = 30539.239,
+["mapId"] = 1,
+["combat_id"] = 6,
+["timeStart"] = 1748341942,
+["overall_added"] = true,
+["frags"] = {
+["夜刃豹幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+47,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 47.007375,
+},
+},
+},
+["start_time"] = 30529.126,
+["TimeData"] = {
+},
+["timeEnd"] = 1748341952,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 5,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 62.001025,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 62.001025,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+["草刺野猪幼崽"] = true,
+},
+["targets"] = {
+["草刺野猪幼崽"] = 62,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748341926,
+["totalabsorbed"] = 0.001025,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 5,
+["targets"] = {
+["草刺野猪幼崽"] = 18,
+},
+["n_total"] = 18,
+["n_min"] = 4,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 18,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 0,
+["targets"] = {
+["夜刃豹幼崽"] = 0,
+},
+["n_total"] = 0,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 0,
+["c_max"] = 0,
+["MISS"] = 1,
+["id"] = 2,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 0,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[75] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 13,
+["targets"] = {
+["草刺野猪幼崽"] = 35,
+},
+["n_total"] = 35,
+["n_min"] = 11,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 35,
+["c_max"] = 0,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[2973] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 9,
+["targets"] = {
+["草刺野猪幼崽"] = 9,
+},
+["n_total"] = 9,
+["n_min"] = 9,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 9,
+["c_max"] = 0,
+["a_amt"] = 0,
+["id"] = 2973,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["PARRY"] = 1,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341940,
+["damage_taken"] = 8.001025,
+["start_time"] = 1748341910,
+["delay"] = 0,
+["last_dps"] = 3.831007476519758,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "1984",
+["total_without_pet"] = 8.002901,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 8.002901,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-1984-0000358ED2",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+["蓝龙守护者"] = 8,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748341926,
+["totalabsorbed"] = 0.002901,
+["nome"] = "草刺野猪幼崽",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2,
+["targets"] = {
+["蓝龙守护者"] = 8,
+},
+["n_total"] = 8,
+["n_min"] = 2,
+["g_dmg"] = 0,
+["counter"] = 6,
+["total"] = 8,
+["c_max"] = 0,
+["DODGE"] = 2,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341925,
+["damage_taken"] = 62.002901,
+["start_time"] = 1748341916,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 5,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 5,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 5,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 5,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者-德姆塞卡尔"] = "Player-5376-11966C0B",
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["CombatStartedAt"] = 30526.273,
+["tempo_start"] = 1748341910,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 24,
+["playerTalents"] = {
+},
+["totals"] = {
+70,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["猛禽一击"] = 2,
+["自动射击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:32:07",
+["hasTimer"] = 16.18400000000111,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "草刺野猪幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30514.49,
+["CombatEndedAt"] = 30514.49,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:31:51",
+["end_time"] = 30514.49,
+["mapId"] = 1,
+["combat_id"] = 5,
+["timeStart"] = 1748341911,
+["overall_added"] = true,
+["frags"] = {
+["草刺野猪幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+62,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 62.001025,
+},
+},
+},
+["start_time"] = 30498.306,
+["TimeData"] = {
+},
+["timeEnd"] = 1748341927,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 4,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 48.008487,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 48.008487,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+},
+["targets"] = {
+["草刺野猪幼崽"] = 48,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748341904,
+["totalabsorbed"] = 0.008487,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+[75] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 13,
+["targets"] = {
+["草刺野猪幼崽"] = 48,
+},
+["n_total"] = 25,
+["n_min"] = 12,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 48,
+["c_max"] = 23,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 23,
+["successful_casted"] = 0,
+["c_total"] = 23,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341902,
+["damage_taken"] = 0.008487,
+["start_time"] = 1748341898,
+["delay"] = 0,
+["last_dps"] = 7.847088427592546,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "1984",
+["total_without_pet"] = 0.002958,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.002958,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-1984-00003592E9",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748341904,
+["totalabsorbed"] = 0.002958,
+["nome"] = "草刺野猪幼崽",
+["spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 48.002958,
+["start_time"] = 1748341904,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 4,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 4,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 4,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 4,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者-德姆塞卡尔"] = "Player-5376-11966C0B",
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["CombatStartedAt"] = 30497.456,
+["tempo_start"] = 1748341898,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 23,
+["playerTalents"] = {
+},
+["totals"] = {
+48,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["自动射击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:31:45",
+["hasTimer"] = 6.117999999998574,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "草刺野猪幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30491.006,
+["CombatEndedAt"] = 30491.006,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:31:39",
+["end_time"] = 30491.856,
+["mapId"] = 1,
+["combat_id"] = 4,
+["timeStart"] = 1748341899,
+["overall_added"] = true,
+["frags"] = {
+["草刺野猪幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+48,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 48.008487,
+},
+},
+},
+["start_time"] = 30485.738,
+["TimeData"] = {
+},
+["timeEnd"] = 1748341905,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 3,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 62.00441100000001,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 62.00441100000001,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+},
+["targets"] = {
+["草刺野猪幼崽"] = 62,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748341888,
+["totalabsorbed"] = 0.004411,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+[75] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 14,
+["targets"] = {
+["草刺野猪幼崽"] = 62,
+},
+["n_total"] = 38,
+["n_min"] = 12,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 62,
+["c_max"] = 24,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 24,
+["successful_casted"] = 0,
+["c_total"] = 24,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341887,
+["damage_taken"] = 0.004411,
+["start_time"] = 1748341878,
+["delay"] = 0,
+["last_dps"] = 6.178199581506541,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "1984",
+["total_without_pet"] = 0.004803,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.004803,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-1984-0000357E80",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748341888,
+["totalabsorbed"] = 0.004803,
+["nome"] = "草刺野猪幼崽",
+["spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 62.004803,
+["start_time"] = 1748341888,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 3,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 3,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者-德姆塞卡尔"] = "Player-5376-11966C0B",
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["CombatStartedAt"] = 30484.872,
+["tempo_start"] = 1748341878,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 22,
+["playerTalents"] = {
+},
+["totals"] = {
+62,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["自动射击"] = 3,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:31:29",
+["hasTimer"] = 10.03600000000006,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "草刺野猪幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30475.625,
+["CombatEndedAt"] = 30475.625,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:31:19",
+["end_time"] = 30475.925,
+["mapId"] = 1,
+["combat_id"] = 3,
+["timeStart"] = 1748341879,
+["overall_added"] = true,
+["frags"] = {
+["草刺野猪幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+62,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 62.00441100000001,
+},
+},
+},
+["start_time"] = 30465.889,
+["TimeData"] = {
+},
+["timeEnd"] = 1748341889,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 44.006767,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 44.006767,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+["夜刃豹幼崽"] = true,
+},
+["targets"] = {
+["夜刃豹幼崽"] = 44,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748341871,
+["totalabsorbed"] = 0.006767,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 5,
+["targets"] = {
+["夜刃豹幼崽"] = 13,
+},
+["n_total"] = 13,
+["n_min"] = 4,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 13,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[2973] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 9,
+["targets"] = {
+["夜刃豹幼崽"] = 18,
+},
+["n_total"] = 18,
+["n_min"] = 9,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 18,
+["c_max"] = 0,
+["id"] = 2973,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[75] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 13,
+["targets"] = {
+["夜刃豹幼崽"] = 13,
+},
+["n_total"] = 13,
+["n_min"] = 13,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 13,
+["c_max"] = 0,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341870,
+["damage_taken"] = 6.006767,
+["start_time"] = 1748341855,
+["delay"] = 0,
+["last_dps"] = 2.719656819726757,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "2031",
+["total_without_pet"] = 6.005933000000001,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 6.005933000000001,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-2031-00003579B7",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+["蓝龙守护者"] = 6,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748341871,
+["totalabsorbed"] = 0.005933,
+["nome"] = "夜刃豹幼崽",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2,
+["targets"] = {
+["蓝龙守护者"] = 6,
+},
+["n_total"] = 6,
+["n_min"] = 1,
+["g_dmg"] = 0,
+["counter"] = 5,
+["total"] = 6,
+["c_max"] = 0,
+["DODGE"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341869,
+["damage_taken"] = 44.005933,
+["start_time"] = 1748341863,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 2,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 2,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者-德姆塞卡尔"] = "Player-5376-11966C0B",
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["CombatStartedAt"] = 30465.072,
+["tempo_start"] = 1748341855,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 21,
+["playerTalents"] = {
+},
+["totals"] = {
+50,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["猛禽一击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:31:12",
+["hasTimer"] = 16.1810000000005,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "夜刃豹幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30458.624,
+["CombatEndedAt"] = 30458.624,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:30:55",
+["end_time"] = 30458.806,
+["mapId"] = 1,
+["combat_id"] = 2,
+["timeStart"] = 1748341855,
+["overall_added"] = true,
+["frags"] = {
+["夜刃豹幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+44,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 44.006767,
+},
+},
+},
+["start_time"] = 30442.625,
+["TimeData"] = {
+},
+["timeEnd"] = 1748341872,
+},
+{
+{
+["tipo"] = 2,
+["combatId"] = 1,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 56.003297,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 56.003297,
+["colocacao"] = 1,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+["草刺野猪幼崽"] = true,
+},
+["targets"] = {
+["草刺野猪幼崽"] = 56,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748341843,
+["totalabsorbed"] = 0.003297,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 1,
+["n_max"] = 5,
+["targets"] = {
+["草刺野猪幼崽"] = 8,
+},
+["n_total"] = 5,
+["n_min"] = 5,
+["g_dmg"] = 3,
+["counter"] = 2,
+["total"] = 8,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[2973] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 9,
+["targets"] = {
+["草刺野猪幼崽"] = 9,
+},
+["n_total"] = 9,
+["n_min"] = 9,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 9,
+["c_max"] = 0,
+["id"] = 2973,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[75] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 15,
+["targets"] = {
+["草刺野猪幼崽"] = 39,
+},
+["n_total"] = 39,
+["n_min"] = 11,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 39,
+["c_max"] = 0,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341842,
+["damage_taken"] = 8.003297,
+["start_time"] = 1748341829,
+["delay"] = 0,
+["last_dps"] = 4.253307283359502,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "1984",
+["total_without_pet"] = 8.003244,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 8.003244,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-1984-0000358EF6",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+["蓝龙守护者"] = 8,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748341843,
+["totalabsorbed"] = 0.003244,
+["nome"] = "草刺野猪幼崽",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2,
+["targets"] = {
+["蓝龙守护者"] = 8,
+},
+["n_total"] = 8,
+["n_min"] = 2,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 8,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1748341841,
+["damage_taken"] = 56.003244,
+["start_time"] = 1748341835,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 1,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 1,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 1,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["aID"] = "5376-161E8A17",
+["last_event"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 1,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者-德姆塞卡尔"] = "Player-5376-11966C0B",
+["蓝龙守护者"] = "Player-5376-161E8A17",
+},
+["CombatStartedAt"] = 30442.139,
+["tempo_start"] = 1748341829,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 20,
+["playerTalents"] = {
+},
+["totals"] = {
+64,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["猛禽一击"] = 1,
+["自动射击"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "18:30:43",
+["hasTimer"] = 13.16700000000128,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "草刺野猪幼崽",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 30429.824,
+["CombatEndedAt"] = 30429.824,
+["aura_timeline"] = {
+},
+["data_inicio"] = "18:30:30",
+["end_time"] = 30430.256,
+["mapId"] = 1,
+["combat_id"] = 1,
+["timeStart"] = 1748341830,
+["overall_added"] = true,
+["frags"] = {
+["草刺野猪幼崽"] = 1,
+},
+["spells_cast_timeline"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+56,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 56.003297,
+},
+},
+},
+["start_time"] = 30417.089,
+["TimeData"] = {
+},
+["timeEnd"] = 1748341843,
+},
+},
+},
+["ocd_tracker"] = {
+["enabled"] = false,
+["current_cooldowns"] = {
+},
+["lines_per_column"] = 12,
+["group_frames"] = true,
+["width"] = 120,
+["frames"] = {
+["defensive-raid"] = {
+},
+["main"] = {
+},
+["ofensive"] = {
+},
+["defensive-target"] = {
+},
+["utility"] = {
+},
+["defensive-personal"] = {
+},
+},
+["show_options"] = false,
+["ignored_cooldowns"] = {
+},
+["framme_locked"] = false,
+["cooldowns"] = {
+},
+["own_frame"] = {
+["defensive-raid"] = false,
+["ofensive"] = false,
+["defensive-target"] = false,
+["utility"] = false,
+["defensive-personal"] = false,
+},
+["height"] = 18,
+["show_conditions"] = {
+["only_inside_instance"] = true,
+["only_in_group"] = true,
+},
+["show_title"] = true,
+["filters"] = {
+["itemutil"] = false,
+["itempower"] = false,
+["defensive-target"] = false,
+["itemheal"] = false,
+["defensive-personal"] = false,
+["defensive-raid"] = false,
+["ofensive"] = true,
+["crowdcontrol"] = false,
+["utility"] = false,
+},
+},
+["last_version"] = "1.15.7 13601",
+["player_stats"] = {
+},
+["force_font_outline"] = "",
+["tabela_instancias"] = {
+},
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
+},
+["last_coach_name"] = false,
+},
+["local_instances_config"] = {
+{
+["modo"] = 2,
+["sub_attribute"] = 1,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+1,
+1,
+},
+["is_open"] = true,
+["isLocked"] = true,
+["snap"] = {
+},
+["segment"] = 0,
+["mode"] = 2,
+["attribute"] = 1,
+["pos"] = {
+["normal"] = {
+["y"] = -414.2162322998047,
+["x"] = 892.3473510742188,
+["w"] = 246.9036102294922,
+["h"] = 219.2269592285156,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+},
+["cached_talents"] = {
+},
+["last_instance_id"] = 0,
+["data_harvest_for_charsts"] = {
+["players"] = {
+{
+["name"] = "Damage of Each Individual Player",
+["playerOnly"] = true,
+["playerKey"] = "total",
+["combatObjectContainer"] = 1,
+},
+},
+["totals"] = {
+{
+["combatObjectSubTableKey"] = 1,
+["name"] = "Damage of All Player Combined",
+["combatObjectSubTableName"] = "totals",
+},
+},
+},
+["announce_interrupts"] = {
+["enabled"] = false,
+["whisper"] = "",
+["channel"] = "SAY",
+["custom"] = "",
+["next"] = "",
+},
+["announce_prepots"] = {
+["enabled"] = false,
+["channel"] = "SELF",
+["reverse"] = false,
+},
+["active_profile"] = "蓝龙守护者-哈霍兰",
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
+["benchmark_db"] = {
+["frame"] = {
+},
+},
+["combat_log"] = {
+["inverse_deathlog_overalldata"] = false,
+["track_hunter_frenzy"] = false,
+["merge_gemstones_1007"] = false,
+["merge_critical_heals"] = false,
+["inverse_deathlog_raid"] = false,
+["calc_evoker_damage"] = true,
+["evoker_show_realtimedps"] = false,
+["inverse_deathlog_mplus"] = false,
+},
+["ignore_nicktag"] = false,
+["mythic_plus_log"] = {
+},
+["combat_counter"] = 31,
+["cached_roles"] = {
+},
+["data_harvested_for_charts"] = {
+},
+["on_death_menu"] = false,
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["plugin_database"] = {
+["DETAILS_PLUGIN_TINY_THREAT"] = {
+["enabled"] = true,
+["animate"] = false,
+["hide_pull_bar"] = false,
+["author"] = "Terciob",
+["playercolor"] = {
+1,
+1,
+1,
+},
+["usefocus"] = false,
+["updatespeed"] = 1,
+["disable_gouge"] = false,
+["showamount"] = false,
+["useplayercolor"] = false,
+["absolute_mode"] = false,
+["playSound"] = false,
+["playSoundFile"] = "Details Threat Warning Volume 3",
+["useclasscolors"] = false,
+},
+["DETAILS_PLUGIN_COMPARETWO_WINDOW"] = {
+["enabled"] = true,
+["author"] = "Terciob",
+["max_compares"] = 4,
+["compare_type"] = 1,
+},
+["DETAILS_PLUGIN_STREAM_OVERLAY"] = {
+["use_square_mode"] = false,
+["is_first_run"] = false,
+["arrow_color"] = {
+1,
+1,
+1,
+0.5,
+},
+["scale"] = 1,
+["arrow_anchor_y"] = 0,
+["minimap"] = {
+["minimapPos"] = 160,
+["radius"] = 160,
+["hide"] = false,
+},
+["row_height"] = 20,
+["arrow_anchor_x"] = 0,
+["font_color"] = {
+1,
+1,
+1,
+1,
+},
+["row_texture"] = "Details Serenity",
+["square_grow_direction"] = "right",
+["point"] = "CENTER",
+["main_frame_strata"] = "LOW",
+["square_amount"] = 5,
+["enabled"] = false,
+["arrow_size"] = 10,
+["y"] = -1.52587890625e-05,
+["row_spacement"] = 21,
+["main_frame_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["row_color"] = {
+0.1,
+0.1,
+0.1,
+0.4,
+},
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["use_spark"] = true,
+["per_second"] = {
+["enabled"] = false,
+["point"] = "CENTER",
+["scale"] = 1,
+["font_shadow"] = true,
+["y"] = 0.0001220703125,
+["x"] = 0.00079345703125,
+["size"] = 32,
+["update_speed"] = 0.05,
+["attribute_type"] = 1,
+},
+["x"] = 3.0517578125e-05,
+["font_face"] = "Friz Quadrata TT",
+["square_size"] = 32,
+["font_size"] = 10,
+["author"] = "Terciob",
+["main_frame_locked"] = false,
+["main_frame_size"] = {
+300.0000305175781,
+500,
+},
+},
+},
+["last_instance_time"] = 0,
+["combat_id"] = 12,
+["savedStyles"] = {
+},
+["last_day"] = "16",
+["character_data"] = {
+["logons"] = 17,
+},
+["announce_deaths"] = {
+["enabled"] = false,
+["last_hits"] = 1,
+["only_first"] = 5,
+["where"] = 1,
+},
+["tabela_overall"] = {
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "HUNTER",
+["total_without_pet"] = 606.0745229999999,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 606.0745229999999,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-161E8A17",
+["damage_from"] = {
+["草刺野猪幼崽"] = true,
+["夜刃豹幼崽"] = true,
+},
+["targets"] = {
+["草刺野猪幼崽"] = 286,
+["夜刃豹幼崽"] = 320,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1748341843,
+["totalabsorbed"] = 0.074523,
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 4,
+["n_max"] = 5,
+["targets"] = {
+["草刺野猪幼崽"] = 54,
+["夜刃豹幼崽"] = 30,
+},
+["n_total"] = 58,
+["n_min"] = 0,
+["g_dmg"] = 17,
+["counter"] = 18,
+["total"] = 84,
+["c_max"] = 9,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 9,
+["n_amt"] = 13,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[2973] = {
+["c_amt"] = 0,
+["b_amt"] = 1,
+["g_amt"] = 0,
+["n_max"] = 10,
+["targets"] = {
+["草刺野猪幼崽"] = 35,
+["夜刃豹幼崽"] = 77,
+},
+["n_total"] = 112,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 13,
+["total"] = 112,
+["c_max"] = 0,
+["a_amt"] = 0,
+["id"] = 2973,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["PARRY"] = 1,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 12,
+["b_dmg"] = 7,
+["r_amt"] = 0,
+},
+[75] = {
+["c_amt"] = 3,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 15,
+["targets"] = {
+["草刺野猪幼崽"] = 197,
+["夜刃豹幼崽"] = 213,
+},
+["n_total"] = 335,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 29,
+["total"] = 410,
+["c_max"] = 28,
+["id"] = 75,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 75,
+["n_amt"] = 26,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 44.07452299999999,
+["start_time"] = 1748341722,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "1984",
+["total_without_pet"] = 28.026527,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 28.026527,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-1984-0000358EF6",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+["蓝龙守护者"] = 28,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748341843,
+["totalabsorbed"] = 0.026527,
+["nome"] = "草刺野猪幼崽",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2,
+["targets"] = {
+["蓝龙守护者"] = 28,
+},
+["n_total"] = 28,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 17,
+["total"] = 28,
+["c_max"] = 0,
+["DODGE"] = 3,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 14,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 273.026527,
+["start_time"] = 1748341809,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["aID"] = "2031",
+["total_without_pet"] = 16.048983,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 16.048983,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-5424-1-2036-2031-00003579B7",
+["damage_from"] = {
+["蓝龙守护者"] = true,
+},
+["targets"] = {
+["蓝龙守护者"] = 16,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["end_time"] = 1748341872,
+["totalabsorbed"] = 0.04898299999999999,
+["nome"] = "夜刃豹幼崽",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2,
+["targets"] = {
+["蓝龙守护者"] = 16,
+},
+["n_total"] = 16,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 14,
+["MISS"] = 1,
+["total"] = 16,
+["c_max"] = 0,
+["DODGE"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 12,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 320.048983,
+["start_time"] = 1748341847,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["aID"] = "5376-161E8A17",
+["nome"] = "蓝龙守护者",
+["grupo"] = true,
+["classe"] = "HUNTER",
+["tipo"] = 4,
+["serial"] = "Player-5376-161E8A17",
+["last_event"] = 0,
+},
+},
+},
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+},
+["tempo_start"] = 1748341829,
+["cleu_timeline"] = {
+},
+["alternate_power"] = {
+},
+["combat_counter"] = 19,
+["bossTimers"] = {
+},
+["trinketProcs"] = {
+},
+["playerTalents"] = {
+},
+["totals"] = {
+650.1334969999999,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+606.072685,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["last_events_tables"] = {
+},
+["frags_need_refresh"] = false,
+["aura_timeline"] = {
+},
+["overall_refreshed"] = true,
+["data_inicio"] = "18:30:30",
+["amountCasts"] = {
+["蓝龙守护者"] = {
+["自动射击"] = 17,
+["猛禽一击"] = 13,
+},
+},
+["mapId"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["zoneName"] = "卡利姆多",
+["end_time"] = 30673.823,
+["boss_hp"] = 1,
+["segments_added"] = {
+{
+["elapsed"] = 6.400999999998021,
+["type"] = 0,
+["name"] = "夜刃豹幼崽",
+["clock"] = "18:34:40",
+},
+{
+["elapsed"] = 2.983000000000175,
+["type"] = 0,
+["name"] = "夜刃豹幼崽",
+["clock"] = "18:34:24",
+},
+{
+["elapsed"] = 15.96700000000055,
+["type"] = 0,
+["name"] = "草刺野猪幼崽",
+["clock"] = "18:34:00",
+},
+{
+["elapsed"] = 7.115000000001601,
+["type"] = 0,
+["name"] = "夜刃豹幼崽",
+["clock"] = "18:33:36",
+},
+{
+["elapsed"] = 7.033999999999651,
+["type"] = 0,
+["name"] = "夜刃豹幼崽",
+["clock"] = "18:33:25",
+},
+{
+["elapsed"] = 7.032999999999447,
+["type"] = 0,
+["name"] = "夜刃豹幼崽",
+["clock"] = "18:33:03",
+},
+{
+["elapsed"] = 10.11300000000119,
+["type"] = 0,
+["name"] = "夜刃豹幼崽",
+["clock"] = "18:32:22",
+},
+{
+["elapsed"] = 16.18400000000111,
+["type"] = 0,
+["name"] = "草刺野猪幼崽",
+["clock"] = "18:31:51",
+},
+{
+["elapsed"] = 6.117999999998574,
+["type"] = 0,
+["name"] = "草刺野猪幼崽",
+["clock"] = "18:31:39",
+},
+{
+["elapsed"] = 10.03600000000006,
+["type"] = 0,
+["name"] = "草刺野猪幼崽",
+["clock"] = "18:31:19",
+},
+{
+["elapsed"] = 16.1810000000005,
+["type"] = 0,
+["name"] = "夜刃豹幼崽",
+["clock"] = "18:30:55",
+},
+{
+["elapsed"] = 13.16700000000128,
+["type"] = 0,
+["name"] = "草刺野猪幼崽",
+["clock"] = "18:30:30",
+},
+},
+["frags"] = {
+},
+["data_fim"] = "18:34:47",
+["overall_enemy_name"] = "-- x -- x --",
+["spells_cast_timeline"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+},
+["damage"] = {
+},
+},
+["start_time"] = 30555.491,
+["TimeData"] = {
+},
+["player_last_events"] = {
+},
+},
+["last_realversion"] = 165,
+["SoloTablesSaved"] = {
+["Mode"] = 1,
+},
+["nick_tag_cache"] = {
+["nextreset"] = 1751008845,
+["last_version"] = 16,
+},
+["announce_cooldowns"] = {
+["enabled"] = false,
+["ignored_cooldowns"] = {
+},
+["custom"] = "",
+["channel"] = "RAID",
+},
+["rank_window"] = {
+["last_difficulty"] = 15,
+["last_raid"] = "",
+},
+["announce_damagerecord"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["cached_specs"] = {
+},
+}

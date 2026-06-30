@@ -1,0 +1,76 @@
+VER 3 00000000000003CD "AC" "132261"
+/ac button 1
+/ac button scale 1.25
+END
+VER 3 00000000000003C3 "GO！" "134400"
+#showtooltip
+/dismount [mounted]
+/castsequence 黑色其拉共鸣水晶, 迅捷祖利安猛虎, 拉扎什迅猛龙, 迅捷幽灵虎的缰绳
+END
+VER 3 00000000000003CE "YY" "4777763"
+/RA YY：881411，下跳对应频道^_^
+END
+VER 3 00000000000003CA "剑盾" "134400"
+#showtooltip 死亡的面孔
+/施放 防御姿态
+/equipslot 16 雷霆之怒，逐风者的祝福之剑
+/equipslot 17 死亡的面孔
+END
+VER 3 000000000000035A "双王" "134400"
+#showtooltip [mod:shift] 饥饿之寒; 格雷希尔，毁灭之黎明
+/equipslot 16 格雷希尔，毁灭之黎明
+/equipslot 17 饥饿之寒
+END
+VER 3 00000000000003C4 "双锤" "134400"
+#showtooltip [mod:shift] 阿努比萨斯战锤;苍穹击碎者
+/equipslot 16 苍穹击碎者
+/equipslot 17 阿努比萨斯战锤
+END
+VER 3 00000000000003CB "射" "134400"
+#showtooltip 
+/cast 弩射击
+/cast 弓射击
+/cast 枪械射击
+/cast 投掷
+END
+VER 3 00000000000003C7 "强怒" "134400"
+#showtooltip 强效怒气药水
+/use [combat] 强效怒气药水
+END
+VER 3 00000000000003B1 "无敌" "INV_Misc_QuestionMark"
+#showtooltip 有限无敌药水
+/use [combat] 有限无敌药水
+END
+VER 3 00000000000003B2 "炸" "INV_Misc_QuestionMark"
+#showtooltip 地精工兵炸药
+/use [combat] 地精工兵炸药
+END
+VER 3 00000000000003CF "王风" "134400"
+#showtooltip [mod:shift] 雷霆之怒，逐风者的祝福之剑; 饥饿之寒
+/equipslot 16 饥饿之寒
+/equipslot 17 雷霆之怒，逐风者的祝福之剑
+END
+VER 3 00000000000003C6 "自由" "134400"
+#showtooltip 自由行动药剂
+/use 自由行动药剂
+END
+VER 3 00000000000003CC "角色名称文字大小" "135769"
+/run C_CVar.SetCVar("WorldTextMinSize", 6)
+END
+VER 3 00000000000003C8 "风1" "134400"
+/equipslot 16 雷霆之怒，逐风者的祝福之剑
+/equipslot 17 格雷希尔，毁灭之黎明
+END
+VER 3 00000000000003B4 "饰" "134400"
+#showtooltip [mod:shift] 14;13
+/use 13
+/use 14
+END
+VER 3 00000000000003C5 "饰一" "134400"
+#showtooltip 13
+/use 13
+END
+VER 3 00000000000003C2 "饰二" "134400"
+#showtooltip 14
+/use 14
+END

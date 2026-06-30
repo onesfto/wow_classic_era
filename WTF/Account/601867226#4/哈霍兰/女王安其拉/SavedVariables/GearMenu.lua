@@ -1,0 +1,129 @@
+
+GearMenuConfiguration = {
+["enableDragAndDrop"] = false,
+["trinketMenuSlotSize"] = 24,
+["trinketMenuShowCooldowns"] = true,
+["filterItemQuality"] = 3,
+["firstTimeInitializationDone"] = true,
+["enableTrinketMenu"] = true,
+["lockTrinketMenuFrame"] = false,
+["enableFastPress"] = true,
+["enableSimpleTooltips"] = true,
+["enableTooltips"] = true,
+["enableUnequipSlot"] = false,
+["enableRuneSlots"] = true,
+["gearBars"] = {
+{
+["showKeyBindings"] = true,
+["id"] = 116193,
+["slots"] = {
+{
+["type"] = {
+"INVTYPE_TRINKET",
+},
+["inventoryTypeId"] = 11,
+["name"] = "slot_name_upper_trinket",
+["simplifiedName"] = "slot_name_trinket",
+["slotId"] = 13,
+["textureId"] = 136528,
+},
+{
+["type"] = {
+"INVTYPE_TRINKET",
+},
+["inventoryTypeId"] = 11,
+["name"] = "slot_name_lower_trinket",
+["simplifiedName"] = "slot_name_trinket",
+["slotId"] = 14,
+["textureId"] = 136528,
+},
+},
+["displayName"] = "Default GearBar",
+["isLocked"] = false,
+["showCooldowns"] = true,
+["position"] = {
+["posX"] = 287.3406677246094,
+["point"] = "CENTER",
+["posY"] = -59.29436874389648,
+["relativePoint"] = "CENTER",
+},
+["changeSlotSize"] = 36,
+["gearSlotSize"] = 48,
+},
+{
+["showKeyBindings"] = true,
+["id"] = 175102,
+["slots"] = {
+{
+["type"] = {
+"INVTYPE_WEAPONMAINHAND",
+"INVTYPE_2HWEAPON",
+"INVTYPE_WEAPON",
+},
+["inventoryTypeId"] = 13,
+["name"] = "slot_name_main_hand",
+["slotId"] = 16,
+["textureId"] = 136518,
+},
+{
+["type"] = {
+"INVTYPE_HOLDABLE",
+"INVTYPE_SHIELD",
+"INVTYPE_WEAPON",
+"INVTYPE_WEAPONOFFHAND",
+},
+["inventoryTypeId"] = 14,
+["name"] = "slot_name_off_hand",
+["slotId"] = 17,
+["textureId"] = 136524,
+},
+{
+["type"] = {
+"INVTYPE_RANGED",
+"INVTYPE_THROWN",
+"INVTYPE_RANGEDRIGHT",
+"INVTYPE_RELIC",
+},
+["inventoryTypeId"] = 15,
+["name"] = "slot_name_ranged",
+["slotId"] = 18,
+["textureId"] = 136520,
+},
+{
+["type"] = {
+"INVTYPE_CHEST",
+"INVTYPE_ROBE",
+},
+["inventoryTypeId"] = 4,
+["name"] = "slot_name_chest",
+["slotId"] = 5,
+["textureId"] = 136512,
+},
+},
+["displayName"] = "装备",
+["isLocked"] = false,
+["showCooldowns"] = true,
+["position"] = {
+["relativePoint"] = "RIGHT",
+["posY"] = -245.5554504394531,
+["point"] = "RIGHT",
+["posX"] = -306.1113891601563,
+},
+["changeSlotSize"] = 40,
+["gearSlotSize"] = 40,
+},
+},
+["quickChangeRules"] = {
+},
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 1,
+["frames"] = {
+["GM_TrinketMenuFrame"] = {
+["relativePoint"] = "RIGHT",
+["point"] = "RIGHT",
+["posY"] = -180.7458343505859,
+["posX"] = -508.5517883300781,
+},
+},
+["addonVersion"] = "v2.6.0",
+}

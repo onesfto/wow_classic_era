@@ -1,0 +1,830 @@
+
+_detalhes_database = {
+["savedbuffs"] = {
+},
+["mythic_dungeon_id"] = 0,
+["tabela_historico"] = {
+["tabelas"] = {
+{
+{
+["tipo"] = 2,
+["combatId"] = 1,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["aID"] = "5376-1641CE59",
+["total_without_pet"] = 0.002099,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.002099,
+["spec"] = 361,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-1641CE59",
+["damage_from"] = {
+["树林潜伏者"] = true,
+},
+["targets"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1762372489,
+["totalabsorbed"] = 0.002099,
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 23.002099,
+["start_time"] = 1762372489,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 23.002009,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 23.002009,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5346-1-44-1998-00008B4B84",
+["on_hold"] = false,
+["damage_from"] = {
+},
+["targets"] = {
+["蓝龙守护者"] = 23,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.002009,
+["fight_component"] = true,
+["end_time"] = 1762372489,
+["aID"] = "1998",
+["nome"] = "树林潜伏者",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 6,
+["targets"] = {
+["蓝龙守护者"] = 23,
+},
+["n_total"] = 23,
+["n_min"] = 5,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 23,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["monster"] = true,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 1762372484,
+["damage_taken"] = 0.002009,
+["start_time"] = 1762372477,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["combatId"] = 1,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["combatId"] = 1,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["combatId"] = 1,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 2,
+["combatId"] = 1,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["蓝龙守护者"] = "Player-5376-1641CE59",
+},
+["CombatStartedAt"] = 972176.55,
+["tempo_start"] = 1762372477,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playing_solo"] = true,
+["totals"] = {
+23,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = false,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "卡利姆多",
+["data_fim"] = "03:54:49",
+["hasTimer"] = 11.0679999999702,
+["timeEnd"] = 1762372489,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "树林潜伏者",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 11.36699999996927,
+["overall_added"] = true,
+["CombatEndedAt"] = 972187.917,
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["data_inicio"] = "03:54:38",
+["end_time"] = 972174.917,
+["mapId"] = 1,
+["combat_id"] = 1,
+["timeStart"] = 1762372478,
+["TimeData"] = {
+},
+["boss_hp"] = 1,
+["is_challenge"] = false,
+["frags"] = {
+},
+["combat_counter"] = 12,
+["player_last_events"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage"] = {
+{
+["蓝龙守护者"] = 0.002099,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 972163.549,
+["contra"] = "树林潜伏者",
+["playerTalents"] = {
+},
+},
+},
+},
+["ocd_tracker"] = {
+["enabled"] = false,
+["current_cooldowns"] = {
+},
+["lines_per_column"] = 12,
+["group_frames"] = true,
+["width"] = 120,
+["frames"] = {
+["defensive-raid"] = {
+},
+["main"] = {
+},
+["ofensive"] = {
+},
+["defensive-target"] = {
+},
+["utility"] = {
+},
+["defensive-personal"] = {
+},
+},
+["show_options"] = false,
+["ignored_cooldowns"] = {
+},
+["cooldowns"] = {
+},
+["height"] = 18,
+["own_frame"] = {
+["defensive-raid"] = false,
+["ofensive"] = false,
+["defensive-target"] = false,
+["utility"] = false,
+["defensive-personal"] = false,
+},
+["framme_locked"] = false,
+["show_conditions"] = {
+["only_inside_instance"] = true,
+["only_in_group"] = true,
+},
+["show_title"] = true,
+["filters"] = {
+["itemutil"] = false,
+["itempower"] = false,
+["defensive-target"] = false,
+["itemheal"] = false,
+["defensive-personal"] = false,
+["defensive-raid"] = false,
+["ofensive"] = true,
+["crowdcontrol"] = false,
+["utility"] = false,
+},
+},
+["last_version"] = "1.15.8 13857",
+["player_stats"] = {
+},
+["force_font_outline"] = "",
+["tabela_instancias"] = {
+},
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
+},
+["last_coach_name"] = false,
+},
+["arena_data_index_selected"] = 1,
+["local_instances_config"] = {
+{
+["modo"] = 2,
+["sub_attribute"] = 1,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+1,
+1,
+},
+["is_open"] = true,
+["isLocked"] = false,
+["snap"] = {
+},
+["segment"] = 0,
+["mode"] = 2,
+["attribute"] = 1,
+["pos"] = {
+["normal"] = {
+["y"] = -436.8149108886719,
+["x"] = 793.03759765625,
+["w"] = 309.9998474121094,
+["h"] = 157.9998779296875,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+},
+["cached_talents"] = {
+},
+["last_instance_id"] = 0,
+["data_harvest_for_charsts"] = {
+["players"] = {
+{
+["name"] = "Damage of Each Individual Player",
+["playerOnly"] = true,
+["playerKey"] = "total",
+["combatObjectContainer"] = 1,
+},
+},
+["totals"] = {
+{
+["combatObjectSubTableKey"] = 1,
+["name"] = "Damage of All Player Combined",
+["combatObjectSubTableName"] = "totals",
+},
+},
+},
+["announce_interrupts"] = {
+["enabled"] = false,
+["whisper"] = "",
+["channel"] = "SAY",
+["custom"] = "",
+["next"] = "",
+},
+["announce_prepots"] = {
+["enabled"] = false,
+["channel"] = "SELF",
+["reverse"] = false,
+},
+["active_profile"] = "蓝龙守护者-哈霍兰",
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
+["benchmark_db"] = {
+["frame"] = {
+},
+},
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["on_death_menu"] = false,
+["combat_log"] = {
+["inverse_deathlog_overalldata"] = false,
+["track_hunter_frenzy"] = false,
+["merge_gemstones_1007"] = false,
+["merge_critical_heals"] = false,
+["inverse_deathlog_raid"] = false,
+["calc_evoker_damage"] = true,
+["evoker_show_realtimedps"] = false,
+["inverse_deathlog_mplus"] = false,
+},
+["cached_roles"] = {
+},
+["plugin_database"] = {
+["DETAILS_PLUGIN_TINY_THREAT"] = {
+["enabled"] = true,
+["only_my_group"] = false,
+["animate"] = false,
+["disable_gouge"] = false,
+["hide_pull_bar"] = false,
+["author"] = "Terciob",
+["playercolor"] = {
+1,
+1,
+1,
+},
+["show_party_pets"] = false,
+["updatespeed"] = 1,
+["useclasscolors"] = false,
+["showamount"] = false,
+["useplayercolor"] = false,
+["absolute_mode"] = false,
+["playSound"] = false,
+["playSoundFile"] = "Details Threat Warning Volume 3",
+["usefocus"] = false,
+},
+["DETAILS_PLUGIN_COMPARETWO_WINDOW"] = {
+["enabled"] = true,
+["author"] = "Terciob",
+["max_compares"] = 4,
+["compare_type"] = 1,
+},
+["DETAILS_PLUGIN_STREAM_OVERLAY"] = {
+["use_square_mode"] = false,
+["is_first_run"] = false,
+["arrow_color"] = {
+1,
+1,
+1,
+0.5,
+},
+["scale"] = 1,
+["main_frame_size"] = {
+300,
+500,
+},
+["minimap"] = {
+["minimapPos"] = 160,
+["radius"] = 160,
+["hide"] = false,
+},
+["row_height"] = 20,
+["arrow_anchor_x"] = 0,
+["font_color"] = {
+1,
+1,
+1,
+1,
+},
+["row_texture"] = "Details Serenity",
+["square_grow_direction"] = "right",
+["point"] = "CENTER",
+["main_frame_strata"] = "LOW",
+["square_amount"] = 5,
+["enabled"] = false,
+["arrow_size"] = 10,
+["use_spark"] = true,
+["row_spacement"] = 21,
+["main_frame_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["author"] = "Terciob",
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["font_size"] = 10,
+["y"] = -3.0517578125e-05,
+["x"] = 0.000152587890625,
+["font_face"] = "Friz Quadrata TT",
+["square_size"] = 32,
+["per_second"] = {
+["enabled"] = false,
+["point"] = "CENTER",
+["scale"] = 1,
+["font_shadow"] = true,
+["y"] = -0.000396728515625,
+["x"] = 0,
+["size"] = 32,
+["update_speed"] = 0.05,
+["attribute_type"] = 1,
+},
+["row_color"] = {
+0.1,
+0.1,
+0.1,
+0.4,
+},
+["main_frame_locked"] = false,
+["arrow_anchor_y"] = 0,
+},
+},
+["nick_tag_cache"] = {
+["nextreset"] = 1765118552,
+["last_version"] = 16,
+},
+["SoloTablesSaved"] = {
+["Mode"] = 1,
+},
+["ignore_nicktag"] = false,
+["arena_data_compressed"] = {
+},
+["combat_counter"] = 12,
+["last_realversion"] = 166,
+["character_data"] = {
+["logons"] = 7,
+},
+["combat_id"] = 1,
+["savedStyles"] = {
+},
+["last_day"] = "05",
+["last_instance_time"] = 0,
+["announce_deaths"] = {
+["enabled"] = false,
+["last_hits"] = 1,
+["only_first"] = 5,
+["where"] = 1,
+},
+["tabela_overall"] = {
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 23.004392,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 23.004392,
+["friendlyfire"] = {
+},
+["total_extra"] = 0,
+["serial"] = "Creature-0-5346-1-44-1998-00008B4B84",
+["on_hold"] = false,
+["damage_from"] = {
+},
+["targets"] = {
+["蓝龙守护者"] = 23,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["totalabsorbed"] = 0.004392,
+["fight_component"] = true,
+["end_time"] = 1762372489,
+["aID"] = "1998",
+["nome"] = "树林潜伏者",
+["spells"] = {
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 6,
+["targets"] = {
+["蓝龙守护者"] = 23,
+},
+["n_total"] = 23,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 23,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+["tipo"] = 2,
+},
+["monster"] = true,
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 0.004392,
+["start_time"] = 1762372474,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["aID"] = "5376-1641CE59",
+["total_without_pet"] = 0.00709,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.00709,
+["spec"] = 361,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-5376-1641CE59",
+["damage_from"] = {
+["树林潜伏者"] = true,
+},
+["targets"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1762372489,
+["totalabsorbed"] = 0.00709,
+["classe"] = "HUNTER",
+["nome"] = "蓝龙守护者",
+["spells"] = {
+["_ActorTable"] = {
+},
+["tipo"] = 2,
+},
+["grupo"] = true,
+["friendlyfire"] = {
+},
+["tipo"] = 1,
+["custom"] = 0,
+["last_event"] = 0,
+["damage_taken"] = 23.00709,
+["start_time"] = 1762372486,
+["delay"] = 0,
+["last_dps"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["tempo_start"] = 1762372477,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+23.004108,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+0.002099,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["cooldowns_defensive"] = 0,
+["dispell"] = 0,
+["interrupt"] = 0,
+["debuff_uptime"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["frags_need_refresh"] = false,
+["overall_refreshed"] = true,
+["amountCasts"] = {
+},
+["zoneName"] = "卡利姆多",
+["data_fim"] = "03:54:49",
+["cleu_timeline"] = {
+},
+["trinketProcs"] = {
+},
+["aura_timeline"] = {
+},
+["compressed_charts"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["damage_section"] = {
+},
+["heal_section"] = {
+},
+["heal"] = {
+},
+["damage"] = {
+},
+},
+["end_time"] = 972174.917,
+["mapId"] = 1,
+["raid_roster"] = {
+},
+["combat_counter"] = 11,
+["is_challenge"] = false,
+["spells_cast_timeline"] = {
+},
+["player_last_events"] = {
+},
+["overall_enemy_name"] = "树林潜伏者",
+["data_inicio"] = "03:54:38",
+["segments_added"] = {
+{
+["elapsed"] = 11.36800000001676,
+["type"] = 0,
+["name"] = "树林潜伏者",
+["clock"] = "03:54:38",
+},
+},
+["start_time"] = 972163.549,
+["TimeData"] = {
+},
+["frags"] = {
+},
+},
+["data_harvested_for_charts"] = {
+},
+["arena_data_headers"] = {
+},
+["mythic_plus_log"] = {
+},
+["announce_cooldowns"] = {
+["enabled"] = false,
+["ignored_cooldowns"] = {
+},
+["custom"] = "",
+["channel"] = "RAID",
+},
+["rank_window"] = {
+["last_difficulty"] = 15,
+["last_raid"] = "",
+},
+["announce_damagerecord"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["cached_specs"] = {
+},
+}

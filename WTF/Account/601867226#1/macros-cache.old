@@ -1,0 +1,78 @@
+VER 3 0000000000000015 "Decursive" "INV_MISC_QUESTIONMARK"
+/script DecursiveRootTable.Dcr:Println('没有相关技能')
+END
+VER 3 0000000000000016 "YY" "4777763"
+/RA YY：881411，下跳对应频道^_^
+END
+VER 3 0000000000000017 "假人" "INV_Misc_QuestionMark"
+#showtooltip 高级活动假人
+/use [combat] 高级活动假人
+END
+VER 3 0000000000000018 "冰霜" "INV_Misc_QuestionMark"
+#showtooltips 自然伤害
+/equip 骨寒魔杖
+/施放 射击
+END
+VER 3 0000000000000019 "化石" "INV_Misc_QuestionMark"
+#showtooltip 化石合剂
+/use [combat] 化石合剂
+END
+VER 3 000000000000001A "圣水" "INV_Misc_QuestionMark"
+#showtooltip 斯坦索姆圣水
+/use [mod:shift] 斯坦索姆圣水
+/use [combat,@player,nomod] 斯坦索姆圣水
+END
+VER 3 000000000000001B "奥术" "135467"
+/equip 精华收集者
+/施放 射击
+END
+VER 3 000000000000001C "无敌" "INV_Misc_QuestionMark"
+#showtooltip 有限无敌药水
+/use [combat] 有限无敌药水
+END
+VER 3 000000000000001D "暗影" "135482"
+/equip 厄运之指
+/施放 射击
+END
+VER 3 000000000000001E "炸弹" "INV_Misc_QuestionMark"
+#showtooltip 致密炸弹
+/use [combat] 致密炸弹
+END
+VER 3 000000000000001F "炸药" "INV_Misc_QuestionMark"
+#showtooltip  [mod:shift] 致密炸弹;地精工兵炸药
+/use [combat] 地精工兵炸药
+/use [combat,@player] 致密炸弹
+END
+VER 3 0000000000000020 "自然" "135466"
+/equip 玛尔里之触
+/施放 射击
+END
+VER 3 0000000000000021 "萝卜" "INV_Misc_QuestionMark"
+#showtooltip  [mod] 特效治疗石;鞭根块茎
+/use 特效治疗石
+/use 鞭根块茎
+END
+VER 3 0000000000000022 "钓" "INV_Misc_QuestionMark"
+#showtooltip 钓鱼
+/equip 奥金钓鱼竿
+/cast 钓鱼
+END
+VER 3 0000000000000023 "饰一" "INV_Misc_QuestionMark"
+#showtooltip 13
+/use 13
+END
+VER 3 0000000000000024 "饰二" "INV_Misc_QuestionMark"
+#showtooltip 14
+/use 14
+END
+VER 3 0000000000000025 "饰品" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 14; 13
+/use 13
+/use 14
+END
+VER 3 0000000000000026 "麻风病" "INV_Misc_QuestionMark"
+#showtooltip 退化射线
+/stopcasting
+/use [@mouseover,harm,nodead] 退化射线
+/use [harm,nodead] 退化射线
+END

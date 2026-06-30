@@ -1,0 +1,171 @@
+VER 3 01000000000000F2 "VuhDoDCShieldData" "132281"
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1MR[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 01000000000000F3 "VuhDoDCShieldNames" "132281"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]法德迦[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 01000000000000DF "冻" "INV_Misc_QuestionMark"
+#showtooltip 冰冻陷阱
+/cleartarget
+/petpassive
+/petfollow
+/cast [combat] 假死
+/cast 冰冻陷阱
+/targetlasttarget
+END
+VER 3 01000000000000E0 "双武器" "135291"
+/equipslot 16 大元帅的长剑
+/equipslot 17 大元帅的迅捷之刃
+END
+VER 3 01000000000000F4 "吃喝" "INV_Misc_QuestionMark"
+#showtooltip item:34062
+/console Sound_EnableSFX 0
+/use 奥特兰克魔法点心
+/cast 影遁(种族特长)
+/console Sound_EnableSFX 1
+/script UIErrorsFrame:Clear()
+END
+VER 3 01000000000000F5 "啸" "INV_Misc_QuestionMark"
+#showtooltip
+/castsequence 雄鹰守护,猎豹守护
+END
+VER 3 01000000000000F6 "喝水" "132089"
+/castsequence [nostealth] reset=20 魔法晶水
+/cast 影遁(种族特长)
+END
+VER 3 01000000000000E1 "图腾" "310730"
+/petattack
+/petattack [target=战栗图腾][target=图腾]
+/petattack [target=风怒图腾][target=图腾]
+/petattack [target=地缚图腾][target=图腾]
+/petattack [target=根基图腾][target=图腾]
+/petattack [target=灼热图腾][target=图腾]
+/petattack [target=法力之泉图腾][target=图腾]
+END
+VER 3 01000000000000F7 "多重" "INV_Misc_QuestionMark"
+#showtooltip 多重射击
+/cast !自动射击
+/cast 多重射击
+END
+VER 3 01000000000000E2 "多重" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 扰乱射击; 多重射击
+/cast !自动射击
+/cast [mod:shift] 扰乱射击
+/cast 多重射击
+END
+VER 3 01000000000000F8 "奥" "INV_Misc_QuestionMark"
+#showtooltip 奥术射击
+/cast [@mouseover,harm,nodead][] !自动射击
+/cast [@mouseover,harm,nodead][] 奥术射击
+/petattack [@mouseover,harm,nodead][harm]
+END
+VER 3 01000000000000E3 "奥" "INV_Misc_QuestionMark"
+#showtooltip 奥术射击
+/cast [@mouseover,harm,nodead][] !自动射击
+/cast [@mouseover,harm,nodead][] 奥术射击
+END
+VER 3 01000000000000E4 "守护" "INV_Misc_QuestionMark"
+#showtooltip [mod:alt] 豹群守护; [mod:shift] 猎豹守护; 雄鹰守护
+/cast [mod:alt] 豹群守护
+/cast [mod:shift] 猎豹守护
+/cast 雄鹰守护
+END
+VER 3 01000000000000E5 "射" "INV_Misc_QuestionMark"
+#showtooltip 18
+/startattack
+/cast !自动射击
+END
+VER 3 01000000000000E6 "影遁" "INV_Misc_QuestionMark"
+#showtooltip 影遁
+/petpassive
+/petstay
+/cast [nostealth,combat] 假死
+/castsequence [nostealth] reset=20 晨露酒
+/castsequence [nostealth] 影遁
+END
+VER 3 01000000000000F9 "急速射击" "INV_Misc_QuestionMark"
+#showtooltip 急速射击
+/cast 急速射击
+/use 虫群卫士徽章
+/use 蜘蛛之吻
+/use 屠龙者的纹章
+END
+VER 3 01000000000000E7 "标" "135815"
+/cast [harm] 猎人印记;照明弹
+END
+VER 3 01000000000000FB "毒" "INV_Misc_QuestionMark"
+#showtooltip 毒蛇钉刺
+/cast [@mouseover,harm,nodead][] !自动射击
+/cast [@mouseover,harm,nodead][] 毒蛇钉刺
+/petattack [@mouseover,harm,nodead][harm]
+END
+VER 3 01000000000000FA "毒" "INV_Misc_QuestionMark"
+#showtooltip 毒蛇钉刺
+/cast [@mouseover,harm,nodead][] !自动射击
+/cast [@mouseover,harm,nodead][] 毒蛇钉刺
+END
+VER 3 01000000000000E8 "火" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 爆炸陷阱; 献祭陷阱
+/cast [mod:shift] 爆炸陷阱
+/cast 献祭陷阱
+END
+VER 3 01000000000000E9 "狗" "INV_Misc_QuestionMark"
+#showtooltip
+/cast [mod:alt] 复活宠物
+/cast [mod:shiftl] 召唤宠物
+/cast [mod:ctrl] 解散野兽
+/cast 治疗宠物
+END
+VER 3 01000000000000EA "瞄准" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 宁神射击; 瞄准射击
+/cast !自动射击
+/cast [mod:shift] 宁神射击
+/cast 瞄准射击
+END
+VER 3 01000000000000FC "砍" "132223"
+# showtooltip 猛禽一击
+/castsequence reset=5 猛禽一击,摔绊,摔绊,摔绊,摔绊
+/castrandom 猫鼬撕咬,反击
+END
+VER 3 01000000000000EB "砍" "INV_Misc_QuestionMark"
+#showtooltip
+/startattack
+/equipslot [mod:shift] 16 堕落的灰烬使者
+/castsequence reset=5 猛禽一击,摔绊,摔绊,摔绊,摔绊
+/castrandom 猫鼬撕咬,反击
+END
+VER 3 01000000000000EC "野兽" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 恐吓野兽; 野兽之眼
+/cast [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 恐吓野兽
+/cast 野兽之眼
+END
+VER 3 01000000000000ED "钉刺" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 蝰蛇钉刺; [mod:alt] 毒蝎钉刺; 毒蛇钉刺
+/cast [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 蝰蛇钉刺
+/cast [mod:alt,@mouseover,harm,nodead][mod:alt,harm,nodead] 毒蝎钉刺
+/cast [@mouseover,harm,nodead][harm,nodead] 毒蛇钉刺
+END
+VER 3 01000000000000EE "震荡" "INV_Misc_QuestionMark"
+#showtooltip 震荡射击
+/stopcasting
+/cast [@mouseover,harm,nodead][harm,nodead] 震荡射击
+END
+VER 3 01000000000000EF "霜" "INV_Misc_QuestionMark"
+#showtooltip 冰霜陷阱
+/cleartarget
+/petpassive
+/petfollow
+/cast [combat] 假死
+/cast 冰霜陷阱
+/targetlasttarget
+END
+VER 3 01000000000000F0 "驱散" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 震荡射击; 驱散射击
+/stopcasting
+/cast [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 震荡射击
+/cast [@mouseover,harm,nodead][harm,nodead] 驱散射击
+END
+VER 3 01000000000000F1 "鹰" "132172"
+# showtooltip 鹰眼术
+/cast !鹰眼术
+END

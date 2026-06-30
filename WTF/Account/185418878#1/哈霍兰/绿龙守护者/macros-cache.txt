@@ -1,0 +1,83 @@
+VER 3 0000000001000001 "VuhDoDCShieldData" "Ability_Repair"
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1DH[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0000000001000003 "VuhDoDCShieldData" "132281"
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1MR[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0000000001000002 "VuhDoDCShieldNames" "Ability_Repair"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]绿龙守[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0000000001000004 "VuhDoDCShieldNames" "132281"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]法德迦[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0000000001000005 "冰" "INV_Misc_QuestionMark"
+#showtooltip 寒冰箭
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 萨菲隆的精华
+/use 短暂能量护符
+/use 赞达拉英雄护符
+/cast 寒冰箭
+END
+VER 3 0000000001000006 "宝石" "135451"
+/施放 [combat][mod:alt]法力红宝石
+/施放 [combat]法力黄水晶
+/施放 [combat]法力翡翠
+/脚本 local b,k="宝石","魔".."法" for _,x in ipairs({"红宝石","黄水晶","翡翠"})do if GetItemCount("法力"..x)==0 then EditMacro(b,nil,nil,GetMacroBody(b):gsub(k..".+",k..x))break end end
+/施放 [nocombat]制造魔法翡翠
+END
+VER 3 0000000001000007 "火" "INV_Misc_QuestionMark"
+#showtooltip 火球术
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 燃烧
+/use 萨菲隆的精华
+/use 短暂能量护符
+/use 赞达拉英雄护符
+/cast 火球术
+END
+VER 3 0000000001000008 "炎" "INV_Misc_QuestionMark"
+#showtooltip 炎爆术
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 燃烧
+/use 萨菲隆的精华
+/use 短暂能量护符
+/use 赞达拉英雄护符
+/cast 炎爆术
+END
+VER 3 0000000001000009 "烧" "INV_Misc_QuestionMark"
+#showtooltip 灼烧
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 燃烧
+/use 萨菲隆的精华
+/use 短暂能量护符
+/use 赞达拉英雄护符
+/cast 灼烧
+END
+VER 3 000000000100000A "焰" "INV_Misc_QuestionMark"
+#showtooltip 烈焰风暴
+/use 萨菲隆的精华
+/use 短暂能量护符
+/use 赞达拉英雄护符
+/cast 烈焰风暴
+END
+VER 3 000000000100000B "爆" "INV_Misc_QuestionMark"
+#showtooltip 魔爆术
+/use 萨菲隆的精华
+/use 短暂能量护符
+/use 赞达拉英雄护符
+/cast 魔爆术
+END
+VER 3 000000000100000C "醒" "INV_Misc_QuestionMark"
+#showtooltip 唤醒
+/equip [mod:shift] 娅尔罗的意志;
+/equip [mod:shift] 玛尔里之触;
+/cast 唤醒
+END
+VER 3 000000000100000D "龟" "INV_Misc_QuestionMark"
+#showtooltip 
+/s 我的小龟龟，别打她
+/cast 变形术(龟)
+END

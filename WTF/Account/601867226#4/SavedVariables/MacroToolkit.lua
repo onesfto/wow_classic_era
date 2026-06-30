@@ -1,0 +1,284 @@
+
+MacroToolkitDB = {
+["char"] = {
+["女王安其拉 - 哈霍兰"] = {
+["classFile"] = "WARRIOR",
+["macros"] = {
+[131] = {
+["icon"] = "135358",
+["name"] = "斩",
+["body"] = "#showtooltip 斩杀\n/cast [nostance:3] 狂暴姿态\n/equipslot [nostance:3] 16 格雷希尔，毁灭之黎明\n/equipslot [nostance:3] 17 饥饿之寒\n/cast 斩杀\n/startattack\n",
+},
+[135] = {
+["icon"] = "132277",
+["name"] = "狂嘲",
+["body"] = "#showtooltip [mod:shift] 挑战怒吼; 血性狂暴\n/cast [mod:shift,combat] 挑战怒吼\n/cast 血性狂暴\n/startattack\n",
+},
+[139] = {
+["icon"] = "132282",
+["name"] = "英",
+["body"] = "#showtooltip [mod:shift/ctrl]弩射击;英勇打击\n/cast [mod:shift/ctrl]弩射击\n/cast [mod:shift/ctrl]弓射击\n/cast [mod:shift/ctrl]枪械射击\n/cast [mod:shift/ctrl]投掷\n/stopmacro [mod:shift/ctrl]\n/cast [nostance:3]狂暴姿态\n/startattack\n/cast 英勇打击\n",
+},
+[122] = {
+["icon"] = "132307",
+["name"] = "冲",
+["body"] = "#showtooltip [mod:shift] 冲锋; 拦截\n/cast [mod:shift,nostance:1,nocombat] 战斗姿态; [nomod,nostance:3] 狂暴姿态\n/cast [mod:shift,@mouseover,harm,nodead][mod:shift] 冲锋; [@mouseover,harm,nodead][] 拦截\n/startattack\n",
+},
+[124] = {
+["icon"] = "132282",
+["name"] = "勇",
+["body"] = "#showtooltip [mod:shift/ctrl]弩射击;英勇打击\n/cast [mod:shift/ctrl]弩射击\n/cast [mod:shift/ctrl]弓射击\n/cast [mod:shift/ctrl]枪械射击\n/cast [mod:shift/ctrl]投掷\n/stopmacro [mod:shift/ctrl]\n/cast [nostance:2] 防御姿态\n/startattack\n/cast 英勇打击\n",
+},
+[126] = {
+["icon"] = "132366",
+["name"] = "吼",
+["body"] = "#showtooltip [stance:2,mod:shift] 战斗怒吼; [stance:2] 挫志怒吼; [mod:shift] 挫志怒吼; 战斗怒吼\n/cast [stance:2,mod:shift] 战斗怒吼; [stance:2] 挫志怒吼; [mod:shift] 挫志怒吼; 战斗怒吼\n/startattack\n",
+},
+[128] = {
+["icon"] = "136080",
+["name"] = "嘲",
+["body"] = "#showtooltip [stance:1] 惩戒痛击; [mod:shift] 惩戒痛击; 嘲讽\n/cast [stance:1,nomod] 惩戒痛击\n/cast [stance:2,nomod] 嘲讽\n/cast [stance:3,nomod] 防御姿态\n/cast [mod:shift,stance:2/3] 战斗姿态\n/cast [mod:shift,stance:2/3] 惩戒痛击\n/startattack\n",
+},
+[132] = {
+["icon"] = "132357",
+["name"] = "断",
+["body"] = "#showtooltip [mod:shift,stance:2] 拳击; [mod:shift] 盾击; [stance:2] 盾击; 拳击\n/equipslot [stance:2][mod:shift,nostance:2] 17 死亡的面孔\n/cast [mod:shift,stance:2] 狂暴姿态; [mod:shift,nostance:2] 防御姿态; [stance:2] 盾击; [stance:3] 拳击; 狂暴姿态\n",
+},
+[136] = {
+["icon"] = "132110",
+["name"] = "盾挡",
+["body"] = "#showtooltip 盾牌格挡\n/cast [nostance:2] 防御姿态\n/cast 盾牌格挡\n/startattack\n",
+},
+[129] = {
+["icon"] = "136009",
+["name"] = "怒",
+["body"] = "#showtooltip 狂暴之怒\n/cast [nostance:3] 狂暴姿态\n/cast [combat] 狂暴之怒\n/startattack\n",
+},
+[133] = {
+["icon"] = "132369",
+["name"] = "旋",
+["body"] = "#showtooltip [mod:shift/ctrl,stance:1][nomod,nostance:1] 旋风斩;雷霆一击\n/cast [mod:shift/ctrl,stance:1][nomod,stance:2] 狂暴姿态;[mod:shift/ctrl,nostance:1] 战斗姿态\n/cast [stance:1] 雷霆一击;[stance:3] 旋风斩\n/startattack\n",
+},
+[137] = {
+["icon"] = "132363",
+["name"] = "破",
+["body"] = "#showtooltip [mod:shift/ctrl] 缴械;破甲攻击\n/cast [nostance:2] 防御姿态\n/cast [mod:shift/ctrl] 缴械;破甲攻击\n/startattack\n",
+},
+[121] = {
+["icon"] = "134400",
+["name"] = "30",
+["body"] = "#showtooltip [mod:shift] 盾墙; [stance:1] 反击风暴; [stance:2] 盾墙; [stance:3] 鲁莽\n/equipslot [mod:shift][stance:2] 17 死亡的面孔\n/cast [mod:shift,nostance:2] 防御姿态; [mod:shift,stance:2] 盾墙; [stance:1] 反击风暴; [stance:2] 盾墙; [stance:3] 鲁莽\n/startattack\n",
+},
+[123] = {
+["icon"] = "132338",
+["name"] = "劈",
+["body"] = "#showtooltips 顺劈斩\n/cast [nostance:3] 狂暴姿态\n/cast 顺劈斩\n/startattack\n",
+},
+[125] = {
+["icon"] = "132353",
+["name"] = "压",
+["body"] = "#showtooltip [mod:shift/ctrl,stance:2] 压制; [mod:shift/ctrl] 复仇; [stance:2] 复仇; 压制\n/cast [mod:shift/ctrl,stance:2] 战斗姿态; [mod:shift/ctrl,nostance:2] 防御姿态; [nomod,nostance:1,nostance:2] 战斗姿态\n/cast [stance:1] 压制; [stance:2] 复仇\n/startattack\n",
+},
+[127] = {
+["icon"] = "136012",
+["name"] = "嗜",
+["body"] = "#showtooltip 嗜血\n/cast [nostance:3] 狂暴姿态\n/cast 嗜血\n/cancelaura 嗜血\n/startattack\n",
+},
+[130] = {
+["icon"] = "132316",
+["name"] = "控",
+["body"] = "#showtooltip [mod:shift] 破胆怒吼; 断筋\n/cast [mod:shift] 破胆怒吼\n/cast [nomod,stance:2] 战斗姿态\n/cast [nomod] 断筋\n/startattack\n",
+},
+[134] = {
+["icon"] = "136146",
+["name"] = "死愿",
+["body"] = "#showtooltip 死亡之愿\n/cast [combat] 死亡之愿\n/use [combat] 13\n/use [combat] 14\n/startattack\n",
+},
+[138] = {
+["icon"] = "135871",
+["name"] = "破釜",
+["body"] = "#showtooltip 破釜沉舟\n/cast [nostance:2] 防御姿态\n/cast [combat] 破釜沉舟\n/startattack\n",
+},
+},
+["backups"] = {
+},
+},
+["打撒打撒的 - 哈霍兰"] = {
+["classFile"] = "WARRIOR",
+},
+["无畏的树树 - 哈霍兰"] = {
+["macros"] = {
+[131] = {
+["name"] = " ",
+["icon"] = "132091",
+["body"] = "/施放 挑战怒吼\n/use 有限无敌药水\n/y 我已群嘲，奶妈救我！！！\n",
+},
+[135] = {
+["name"] = " ",
+["icon"] = "132282",
+["body"] = "#showtooltip 英勇打击\n/use 英勇打击\n/use 嗜血\n/use 抗毒药剂\n/startattack\n/cancelaura 嗜血\n/cancelaura 真1言术：盾\n/cancelaura 恢1复\n/cancelaura 强1效治疗术\n/cancelaura 利爪祝福\n/cancelaura 灵感\n/cancelaura 回春术\n/cancelaura 愈合\n/cancelaura 神圣之力\n/cancelaura 信仰\n",
+},
+[139] = {
+["name"] = " ",
+["icon"] = "132282",
+["body"] = "#showtooltip 英勇打击\n/use 英勇打击\n/use 嗜血\n/use 复仇\n/startattack\n",
+},
+[143] = {
+["name"] = " ",
+["icon"] = "132362",
+["body"] = "#showtooltip 盾墙\n/cast 防御姿态\n/cast 盾墙\n/equipslot [noequipped:盾牌]17 死亡的面孔\n/equipslot [noequipped:主手武器]16 雷霆之怒，逐风者的祝福之剑\n",
+},
+[122] = {
+["name"] = " ",
+["icon"] = "132338",
+["body"] = "#showtooltip 顺劈斩\n/use 顺劈斩\n/use 嗜血\n/use 抗毒药剂\n/startattack\n/cancelaura 嗜血\n/cancelaura 真1言术：盾\n/cancelaura 恢1复\n/cancelaura 强1效治疗术\n/cancelaura 利爪祝福\n/cancelaura 灵感\n/cancelaura 回春术\n/cancelaura 愈合\n/cancelaura 神圣之力\n/cancelaura 信仰\n",
+},
+[124] = {
+["name"] = " ",
+["icon"] = "132307",
+["body"] = "#showtooltip 拦截\n/use 狂暴姿态\n/use 拦截\n",
+},
+[126] = {
+["name"] = " ",
+["icon"] = "136009",
+["body"] = "#showtooltip 狂暴之怒\n/施放 狂暴姿态\n/use 狂暴之怒\n/startattack\n",
+},
+[128] = {
+["name"] = " ",
+["icon"] = "132938",
+["body"] = "#showtooltip 拳击\n/施放 狂暴姿态\n/use 拳击\n/use 英勇打击\n/startattack\n",
+},
+[132] = {
+["name"] = " ",
+["icon"] = "135826",
+["body"] = "#showtooltip 地精工兵炸药\n/use 地精炸弹箱\n/use 拉姆斯登的闪电钉\n/use 地精工兵炸药\n/use 献祭1之油\n",
+},
+[136] = {
+["name"] = " ",
+["icon"] = "135358",
+["body"] = "#showtooltip 斩杀\n/use 斩杀\n/cast 英勇打击\n/startattack\n",
+},
+[140] = {
+["name"] = " ",
+["icon"] = "132282",
+["body"] = "#showtooltip 英勇打击\n/施放 狂暴姿态\n/use 英勇打击\n/startattack\n",
+},
+[144] = {
+["name"] = "切盾",
+["icon"] = "134971",
+["body"] = "/施放 防御姿态\n/equipslot 16 雷霆之怒，逐风者的祝福之剑\n/equipslot 17 死亡的面孔\n",
+},
+[148] = {
+["name"] = "狂暴T宏",
+["icon"] = "136012",
+["body"] = "/startattack\n/run setmode(\"-CGDT -fy -stpj(5)stpj -gd(90)gd -nq(35)nq -qxcz -sx -bcpj -bclw -znyy -jnhp(0)jnhp\")\n",
+},
+[129] = {
+["name"] = " ",
+["icon"] = "136146",
+["body"] = "#showtooltip 死亡之愿\n/cast 死亡之愿\n/use 13\n/use 14\n",
+},
+[133] = {
+["name"] = " ",
+["icon"] = "132762",
+["body"] = "#showtooltip 高级活动假人\n/cast [@player] 高级活动假人\n/y 救命！！！救命！！！救命！！！\n",
+},
+[137] = {
+["name"] = " ",
+["icon"] = "135672",
+["body"] = "/equipslot 16 格雷希尔，毁灭之黎明\n/equipslot 17 帝殒\n",
+},
+[141] = {
+["name"] = " ",
+["icon"] = "132223",
+["body"] = "#showtooltip 压制\n/use 战斗姿态\n/cast 压制\n/use 英勇打击\n/startattack\n",
+},
+[121] = {
+["name"] = " ",
+["icon"] = "132362",
+["body"] = "#showtooltip 盾墙\n/cast 防御姿态\n/cast 盾墙\n/equipslot [noequipped:盾牌]17 死亡的面孔\n/equipslot [noequipped:主手武器]16饥饿之寒\n",
+},
+[123] = {
+["name"] = " ",
+["icon"] = "136012",
+["body"] = "#showtooltip 嗜血\n/startattack\n/施放 狂暴姿态\n/cast 嗜血\n/stopcasting 英勇打击\n/stopcasting 顺劈斩\n/cancelaura 嗜血\n/cancelaura 石化\n/cancelaura 奥术光辉 \n/cancelaura 精神祷言\n/cancelaura 银色黎明委任徽章\n/cancelaura 强效1光明祝福\n/cancelaura 保护祝福\n/cancelaura 无荣誉目标\n",
+},
+[125] = {
+["name"] = " ",
+["icon"] = "132337",
+["body"] = "#showtooltip 冲锋\n/施放 战斗姿态\n/cast 冲锋\n/startattack\n",
+},
+[127] = {
+["name"] = " ",
+["icon"] = "132316",
+["body"] = "#showtooltip 断筋\n/use 断筋\n/use 英勇打击\n/startattack\n",
+},
+[130] = {
+["name"] = " ",
+["icon"] = "132222",
+["body"] = "#showtooltip \n/cast 弩射击\n/cast 弓射击\n/cast 枪械射击\n/cast 投掷\n",
+},
+[134] = {
+["name"] = " ",
+["icon"] = "136080",
+["body"] = "#showtooltip 嘲讽\n/startattack\n/cast 防御姿态\n/cast 嘲讽\n",
+},
+[138] = {
+["name"] = " ",
+["icon"] = "136012",
+["body"] = "#showtooltip 嗜血\n/use 嗜血\n/startattack\n/stopcasting 英勇打击\n/stopcasting 顺劈斩\n/cancelaura 强效拯救祝福\n/cancelaura 奥术光辉 \n/cancelaura 精神祷言\n/cancelaura 银色黎明委任徽章\n",
+},
+[142] = {
+["name"] = " ",
+["icon"] = "132369",
+["body"] = "#showtooltip 旋风斩\n/use 旋风斩\n/startattack\n",
+},
+[146] = {
+["name"] = "插件开启",
+["icon"] = "132315",
+["body"] = "/run DSZHELP()\n",
+},
+[150] = {
+["name"] = "防战群拉",
+["icon"] = "132326",
+["body"] = "/startattack\n/dismount\n/run setmode(\"-CGAOE -cf -ztzd -zdcz -yxdm -qxnh\")\n",
+},
+[145] = {
+["name"] = "双快",
+["icon"] = "135349",
+["body"] = "/equipslot 16 雷霆之怒，逐风者的祝福之剑\n/equipslot 17 饥饿之寒\n",
+},
+[147] = {
+["name"] = "斩杀",
+["icon"] = "135277",
+["body"] = "/equipslot 16 饥饿之寒\n/equipslot 17 格雷希尔，毁灭之黎明\n",
+},
+[149] = {
+["name"] = "界面刷新",
+["icon"] = "132097",
+["body"] = "/run SetCVar(\"nameplateShowOnlyNames\", 0) ReloadUI()\n",
+},
+},
+["classFile"] = "WARRIOR",
+},
+},
+["profileKeys"] = {
+["女王安其拉 - 哈霍兰"] = "profile",
+["打撒打撒的 - 哈霍兰"] = "profile",
+["无畏的树树 - 哈霍兰"] = "profile",
+},
+["global"] = {
+["ebackups"] = {
+},
+["backups"] = {
+},
+},
+["profiles"] = {
+["profile"] = {
+["y"] = 754.3873901367188,
+["x"] = 860.334716796875,
+["height"] = 424.5870971679688,
+["width"] = 638.0000610351562,
+},
+},
+}

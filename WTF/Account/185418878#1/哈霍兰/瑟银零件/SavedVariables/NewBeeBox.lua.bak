@@ -1,0 +1,15 @@
+
+WclBoxCharacter = {
+["hash"] = "14abbce0",
+["class"] = "ROGUE",
+["realmID"] = 5376,
+["name"] = "瑟银零件",
+["faction"] = "Alliance",
+["race"] = "侏儒",
+["version"] = "1.0.22",
+["loginTime"] = 1780730112,
+["realmName"] = "哈霍兰",
+["level"] = 1,
+["gold"] = 575734,
+["playerGUID"] = "Player-5376-16C41194",
+}

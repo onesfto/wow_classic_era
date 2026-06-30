@@ -1,0 +1,130 @@
+VER 3 01000000010000E3 "30" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 盾墙; [stance:1] 反击风暴; [stance:2] 盾墙; [stance:3] 鲁莽
+/equipslot [mod:shift][stance:2] 17 死亡的面孔
+/cast [mod:shift,nostance:2] 防御姿态; [mod:shift,stance:2] 盾墙; [stance:1] 反击风暴; [stance:2] 盾墙; [stance:3] 鲁莽
+/startattack
+END
+VER 3 01000000010000FA "冲" "134400"
+#showtooltip [mod:shift] 冲锋; 拦截
+/cast [mod:shift,nostance:1,nocombat] 战斗姿态; [nomod,nostance:3] 狂暴姿态
+/cast [mod:shift,@mouseover,harm,nodead][mod:shift] 冲锋; [@mouseover,harm,nodead][] 拦截
+/startattack
+END
+VER 3 01000000010000E6 "劈" "INV_Misc_QuestionMark"
+#showtooltips 顺劈斩
+/cast [nostance:3] 狂暴姿态
+/cast 顺劈斩
+/startattack
+END
+VER 3 01000000010000E7 "勇" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift/ctrl]弩射击;英勇打击
+/cast [mod:shift/ctrl]弩射击
+/cast [mod:shift/ctrl]弓射击
+/cast [mod:shift/ctrl]枪械射击
+/cast [mod:shift/ctrl]投掷
+/stopmacro [mod:shift/ctrl]
+/cast [nostance:2] 防御姿态
+/startattack
+/cast 英勇打击
+END
+VER 3 01000000010000E8 "压" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift/ctrl,stance:2] 压制; [mod:shift/ctrl] 复仇; [stance:2] 复仇; 压制
+/cast [mod:shift/ctrl,stance:2] 战斗姿态; [mod:shift/ctrl,nostance:2] 防御姿态; [nomod,nostance:1,nostance:2] 战斗姿态
+/cast [stance:1] 压制; [stance:2] 复仇
+/startattack
+END
+VER 3 01000000010000E9 "吼" "INV_Misc_QuestionMark"
+#showtooltip [stance:2,mod:shift] 战斗怒吼; [stance:2] 挫志怒吼; [mod:shift] 挫志怒吼; 战斗怒吼
+/cast [stance:2,mod:shift] 战斗怒吼; [stance:2] 挫志怒吼; [mod:shift] 挫志怒吼; 战斗怒吼
+/startattack
+END
+VER 3 01000000010000EA "嗜" "INV_Misc_QuestionMark"
+#showtooltip 嗜血
+/cast [nostance:3] 狂暴姿态
+/cast 嗜血
+/cancelaura 嗜血
+/startattack
+END
+VER 3 01000000010000EB "嘲" "INV_Misc_QuestionMark"
+#showtooltip [stance:1] 惩戒痛击; [mod:shift] 惩戒痛击; 嘲讽
+/cast [stance:1,nomod] 惩戒痛击
+/cast [stance:2,nomod] 嘲讽
+/cast [stance:3,nomod] 防御姿态
+/cast [mod:shift,stance:2/3] 战斗姿态
+/cast [mod:shift,stance:2/3] 惩戒痛击
+/startattack
+END
+VER 3 01000000010000ED "怒" "INV_Misc_QuestionMark"
+#showtooltip 狂暴之怒
+/cast [nostance:3] 狂暴姿态
+/cast [combat] 狂暴之怒
+/startattack
+END
+VER 3 01000000010000EF "控" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 破胆怒吼; 断筋
+/cast [mod:shift] 破胆怒吼
+/cast [nomod,stance:2] 战斗姿态
+/cast [nomod] 断筋
+/startattack
+END
+VER 3 01000000010000F0 "斩" "INV_Misc_QuestionMark"
+#showtooltip 斩杀
+/cast [nostance:3] 狂暴姿态
+/equipslot [nostance:3] 16 格雷希尔，毁灭之黎明
+/equipslot [nostance:3] 17 饥饿之寒
+/cast 斩杀
+/startattack
+END
+VER 3 01000000010000F1 "断" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift,stance:2] 拳击; [mod:shift] 盾击; [stance:2] 盾击; 拳击
+/equipslot [stance:2][mod:shift,nostance:2] 17 死亡的面孔
+/cast [mod:shift,stance:2] 狂暴姿态; [mod:shift,nostance:2] 防御姿态; [stance:2] 盾击; [stance:3] 拳击; 狂暴姿态
+END
+VER 3 01000000010000F2 "旋" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift/ctrl,stance:1][nomod,nostance:1] 旋风斩;雷霆一击
+/cast [mod:shift/ctrl,stance:1][nomod,stance:2] 狂暴姿态;[mod:shift/ctrl,nostance:1] 战斗姿态
+/cast [stance:1] 雷霆一击;[stance:3] 旋风斩
+/startattack
+END
+VER 3 01000000010000F3 "死愿" "INV_Misc_QuestionMark"
+#showtooltip 死亡之愿
+/cast [combat] 死亡之愿
+/use [combat] 13
+/use [combat] 14
+/startattack
+END
+VER 3 01000000010000F4 "狂嘲" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 挑战怒吼; 血性狂暴
+/cast [mod:shift,combat] 挑战怒吼
+/cast 血性狂暴
+/startattack
+END
+VER 3 01000000010000F6 "盾挡" "INV_Misc_QuestionMark"
+#showtooltip 盾牌格挡
+/cast [nostance:2] 防御姿态
+/cast 盾牌格挡
+/startattack
+END
+VER 3 01000000010000F7 "破" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift/ctrl] 缴械;破甲攻击
+/cast [nostance:2] 防御姿态
+/cast [mod:shift/ctrl] 缴械;破甲攻击
+/startattack
+END
+VER 3 01000000010000F8 "破釜" "INV_Misc_QuestionMark"
+#showtooltip 破釜沉舟
+/cast [nostance:2] 防御姿态
+/cast [combat] 破釜沉舟
+/startattack
+END
+VER 3 01000000010000F9 "英" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift/ctrl]弩射击;英勇打击
+/cast [mod:shift/ctrl]弩射击
+/cast [mod:shift/ctrl]弓射击
+/cast [mod:shift/ctrl]枪械射击
+/cast [mod:shift/ctrl]投掷
+/stopmacro [mod:shift/ctrl]
+/cast [nostance:3]狂暴姿态
+/startattack
+/cast 英勇打击
+END

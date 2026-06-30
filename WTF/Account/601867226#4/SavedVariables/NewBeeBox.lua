@@ -1,0 +1,30 @@
+
+WclBoxGlobal = {
+["Player-5376-086AB4E5"] = {
+["hash"] = "ab3540c8",
+["realmID"] = 5376,
+["gold"] = 377056666,
+["loginTime"] = 1782402424,
+["race"] = "人类",
+["name"] = "女王安其拉",
+["faction"] = "Alliance",
+["realmName"] = "哈霍兰",
+["level"] = 60,
+["class"] = "WARRIOR",
+["playerGUID"] = "Player-5376-086AB4E5",
+},
+["version"] = "1.0.22",
+["Player-5376-174206B4"] = {
+["hash"] = "e5610848",
+["realmID"] = 5376,
+["class"] = "WARRIOR",
+["gold"] = 0,
+["race"] = "暗夜精灵",
+["name"] = "打撒打撒的",
+["faction"] = "Alliance",
+["realmName"] = "哈霍兰",
+["level"] = 1,
+["loginTime"] = 1779966153,
+["playerGUID"] = "Player-5376-174206B4",
+},
+}

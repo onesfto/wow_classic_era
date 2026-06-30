@@ -1,0 +1,143 @@
+VER 3 010000000100006A "VuhDoDCShieldData" "132281"
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1MR[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 010000000100006B "VuhDoDCShieldNames" "132281"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]德加和[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 010000000100006C "保护" "INV_Misc_QuestionMark"
+#showtooltip 保护祝福
+/cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead][@player] 保护祝福
+END
+VER 3 010000000100006D "强一" "INV_Misc_QuestionMark"
+#showtooltip
+/cast [mod:shift,@mouseover,help,nodead][mod:shift,help,nodead][mod:shift,@targettarget,help,nodead][mod:shift,@player] 强效治疗术; [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 强效治疗术(等级 1)
+END
+VER 3 010000000100006E "强五" "INV_Misc_QuestionMark"
+#showtooltip
+/cast [mod:shift,@mouseover,help,nodead][mod:shift,help,nodead][mod:shift,@targettarget,help,nodead][mod:shift,@player] 强效治疗术(等级 1); [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 强效治疗术
+END
+VER 3 010000000100006F "快疗" "INV_Misc_QuestionMark"
+#showtooltip 快速治疗
+/cast [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 快速治疗
+END
+VER 3 0100000001000070 "恐" "INV_Misc_QuestionMark"
+#showtooltip 心灵尖啸
+/stopcasting
+/施放 心灵尖啸
+END
+VER 3 0100000001000071 "恢复" "INV_Misc_QuestionMark"
+#showtooltip 恢复
+/cast [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 恢复
+END
+VER 3 0100000001000072 "惩击" "INV_Misc_QuestionMark"
+#showtooltip
+/cast [mod:alt] 暗言术：痛; [mod:ctrl] 神圣之火; 惩击
+END
+VER 3 0100000001000073 "惩击" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 神圣之火; 惩击
+/施放 [mod:shift] 神圣之火; 惩击
+END
+VER 3 0100000001000074 "控" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 束缚亡灵; 精神控制
+/施放 [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 束缚亡灵
+/施放 [@mouseover,harm,nodead] [harm,nodead] 精神控制
+END
+VER 3 0100000001000075 "控" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 束缚亡灵; 心灵尖啸
+/stopcasting
+/施放 [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 束缚亡灵
+/施放 心灵尖啸
+END
+VER 3 0100000001000076 "治疗" "INV_Misc_QuestionMark"
+#showtooltip 治疗术
+/cast [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 治疗术
+END
+VER 3 0100000001000077 "激素" "INV_Misc_QuestionMark"
+#showtooltip 能量灌注
+/cast [@mouseover,help,nodead][@target,help,nodead][] 能量灌注
+/run SendChatMessage("纳米激素已注入！","WHISPER",nil,UnitName("target"))
+END
+VER 3 0100000001000078 "激素" "INV_Misc_QuestionMark"
+#showtooltip 能量灌注
+/cast [mod:alt,@player][@mouseover,help,nodead][@target,help,nodead] 能量灌注
+/run local t=UnitName("target") if not IsAltKeyDown() and UnitExists("target") then SendChatMessage("纳米激素已注入!","WHISPER",nil,t) end
+END
+VER 3 0100000001000079 "爆" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 法力燃烧; 心灵震爆
+/cast [mod:shift, nochanneling] 法力燃烧; [nochanneling] 心灵震爆
+END
+VER 3 010000000100007A "痛" "INV_Misc_QuestionMark"
+#showtooltip 暗言术：痛
+/stopcasting
+/施放 [mod:shift,@mouseover,harm,nodead] 暗言术：痛(等级 1)
+/施放 [mod:shift,harm,nodead] 暗言术：痛(等级 1)
+/施放 [@mouseover,harm,nodead] 暗言术：痛
+/施放 [harm,nodead] 暗言术：痛
+END
+VER 3 010000000100007B "痛一" "INV_Misc_QuestionMark"
+#showtooltip 暗言术：痛(等级 1)
+/stopcasting
+/cast [target=mouseover,harm,nodead] 暗言术：痛(等级 1); [harm,nodead] 暗言术：痛(等级 1)
+END
+VER 3 010000000100007C "盾" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 心灵之火; 真言术：盾
+/stopcasting
+/cast [mod:shift] 心灵之火
+/cast [mod:alt,@player][@mouseover,help,nodead][@target,help,nodead][@targettarget,help,nodead][] 真言术：盾
+END
+VER 3 010000000100007D "群一" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 治疗祷言; 治疗祷言(等级 1)
+/施放 [mod:shift] 治疗祷言; 治疗祷言(等级 1)
+END
+VER 3 010000000100007E "群二" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 治疗祷言; 治疗祷言(等级 2)
+/施放 [mod:shift] 治疗祷言; 治疗祷言(等级 2)
+END
+VER 3 010000000100007F "群疗" "INV_Misc_QuestionMark"
+#showtooltip 治疗祷言
+/施放 治疗祷言
+END
+VER 3 0100000001000080 "闭嘴" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 精神控制; 沉默
+/stopcasting
+/施放 [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 精神控制
+/施放 [@mouseover,harm,nodead][harm,nodead] 沉默
+END
+VER 3 0100000001000081 "隐" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 驱散魔法; [mod:ctrl] 驱除疾病; [mod:alt] 安抚心灵; 渐隐术
+/stopcasting
+/施放 [mod:shift,@player] 驱散魔法
+/施放 [mod:ctrl,@player] 驱除疾病
+/施放 [mod:alt,@mouseover,harm,nodead] 安抚心灵
+/施放 [mod:alt,@target,harm,nodead] 安抚心灵
+/施放 渐隐术
+END
+VER 3 0100000001000082 "鞭" "INV_Misc_QuestionMark"
+#showtooltip 精神鞭笞
+/施放 [mod:shift] 精神鞭笞(等级 1);
+/cast [nochanneling:精神鞭笞] 精神鞭笞
+END
+VER 3 0100000001000083 "饰" "INV_Misc_QuestionMark"
+#showtooltip 13
+/use 13
+END
+VER 3 0100000001000084 "驱病" "INV_Misc_QuestionMark"
+#showtooltip 驱除疾病
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help,nodead] [@targettarget,help,nodead] [@player] 驱除疾病
+END
+VER 3 0100000001000085 "驱病" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 驱散魔法; 驱除疾病
+/stopcasting
+/cast [mod:shift,@mouseover,nodead][mod:shift,nodead][mod:shift,@player] 驱散魔法
+/cast [@mouseover,harm,nodead][harm,nodead] 驱散魔法
+/cast [@mouseover,help,nodead][help,nodead][@player] 驱除疾病
+END
+VER 3 0100000001000086 "驱魔" "INV_Misc_QuestionMark"
+#showtooltip 驱散魔法
+/cast [mod:alt,@player] [@mouseover,harm,nodead] [harm,nodead] [@targettarget,harm,nodead] [@player] 驱散魔法
+END
+VER 3 0100000001000087 "魔杖" "INV_Misc_QuestionMark"
+#showtooltips
+/equip 其拉贵族魔杖
+/施放 射击
+END

@@ -1,0 +1,5 @@
+
+RankMsgEnabled = true
+RankSoundEnabled = true
+RankSoundOption = 235207
+DebugEnabled = false

@@ -1,0 +1,105 @@
+VER 3 0100000000000050 "GO！" "INV_Misc_QuestionMark"
+#showtooltip 迅捷幽灵虎的缰绳
+/use [nocombat] 迅捷幽灵虎的缰绳
+/cast [swimming] 水栖形态
+/cast [combat] 猎豹形态
+END
+VER 3 0100000000000063 "GO！" "INV_Misc_QuestionMark"
+#showtooltip 黑色战豹缰绳
+/use [nocombat] 黑色战豹缰绳
+/cast [swimming] 水栖形态
+/cast [combat] 猎豹形态
+END
+VER 3 0100000000000051 "咒" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 分解; 解除诅咒
+/cast [mod:shift] 分解
+/cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead] 解除诅咒
+END
+VER 3 0100000000000052 "弱" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 虫群; 精灵之火
+/cast [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 虫群
+/cast [stance:1/2,@mouseover,harm,nodead][stance:1/2,harm,nodead] 精灵之火（野性）
+/cast [nostance,@mouseover,harm,nodead][nostance,harm,nodead] 精灵之火
+END
+VER 3 0100000000000053 "愈0" "INV_Misc_QuestionMark"
+#showtooltip 愈合(等级 9)
+/cancelaura 树皮术
+/cast 自然迅捷
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] 愈合(等级 9)
+END
+VER 3 0100000000000054 "愈4" "INV_Misc_QuestionMark"
+#showtooltip 愈合(等级 4)
+/cancelaura 树皮术
+/use [combat] 休眠水晶
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  愈合(等级 4)
+END
+VER 3 0100000000000055 "愈5" "INV_Misc_QuestionMark"
+#showtooltip 愈合(等级 5)
+/cancelaura 树皮术
+/use [combat] 休眠水晶
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  愈合(等级 5)
+END
+VER 3 0100000000000056 "愈9" "INV_Misc_QuestionMark"
+#showtooltip 愈合
+/cancelaura 树皮术
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  愈合(等级 9)
+END
+VER 3 0100000000000057 "春" "INV_Misc_QuestionMark"
+#showtooltip 回春术
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  回春术
+END
+VER 3 0100000000000058 "毒" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 休眠; 驱毒术
+/cast [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 休眠
+/cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead][] 驱毒术
+END
+VER 3 0100000000000059 "激活" "INV_Misc_QuestionMark"
+#showtooltip 激活
+/cast [mod:alt, @player] 激活; [@target, exists] 激活
+END
+VER 3 010000000000005A "炉石" "INV_Misc_QuestionMark"
+#showtooltip
+/cast [mod:shift] 传送：月光林地; 炉石
+END
+VER 3 010000000000005B "缠" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 自然之握; 纠缠根须
+/cast [mod:shift] 自然之握
+/cast [@mouseover,harm,nodead][harm,nodead] 纠缠根须
+END
+VER 3 010000000000005C "触0" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触
+/cancelaura 树皮术
+/cast 自然迅捷
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  治疗之触(等级 11)
+END
+VER 3 010000000000005D "触11" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触(等级 11)
+/cancelaura 树皮术
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  治疗之触(等级 11)
+#/RA 》》%t《《 正在接受 第 11 棒 的超级治疗
+END
+VER 3 010000000000005E "触2" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触(等级 2)
+/cancelaura 树皮术
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  治疗之触(等级 2)
+END
+VER 3 010000000000005F "触3" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触(等级 3)
+/cancelaura 树皮术
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] [] 治疗之触(等级 3)
+END
+VER 3 0100000000000060 "触4" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触(等级 4)
+/cancelaura 树皮术
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] [] 治疗之触(等级 4)
+END
+VER 3 0100000000000061 "触7" "INV_Misc_QuestionMark"
+#showtooltip 治疗之触(等级 7)
+/cancelaura 树皮术
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help] [@targettarget,help,nodead] []  治疗之触(等级 7)
+END
+VER 3 0100000000000062 "隐" "INV_Misc_QuestionMark"
+#showtooltip 影遁
+/cancelform [noform:5]
+/施放 影遁
+END

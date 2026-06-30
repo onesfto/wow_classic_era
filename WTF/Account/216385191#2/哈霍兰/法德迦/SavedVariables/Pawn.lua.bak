@@ -1,0 +1,93 @@
+
+PawnOptions = {
+["LastVersion"] = 2.1005,
+["LastPlayerFullName"] = "法德迦-哈霍兰",
+["AutoSelectScales"] = false,
+["ItemLevels"] = {
+{
+["ID"] = 22498,
+["Level"] = 88,
+["Link"] = "|cffa335ee|Hitem:22498:2588:::::::60:::::::::|h[霜火头饰]|h|r",
+},
+{
+["ID"] = 23057,
+["Level"] = 92,
+["Link"] = "|cffa335ee|Hitem:23057::::::::60:::::::::|h[无辜囚徒宝石]|h|r",
+},
+{
+["ID"] = 22983,
+["Level"] = 83,
+["Link"] = "|cffa335ee|Hitem:22983:2721:::::::60:::::::::|h[蒙霜衬肩]|h|r",
+},
+nil,
+{
+["ID"] = 22496,
+["Level"] = 92,
+["Link"] = "|cffa335ee|Hitem:22496:1891:::::::60:::::::::|h[霜火长袍]|h|r",
+},
+{
+["ID"] = 22730,
+["Level"] = 88,
+["Link"] = "|cffa335ee|Hitem:22730::::::::60:::::::::|h[眼柄腰带]|h|r",
+},
+{
+["ID"] = 23070,
+["Level"] = 85,
+["Link"] = "|cffa335ee|Hitem:23070:2588:::::::60:::::::::|h[极性护腿]|h|r",
+},
+{
+["ID"] = 22500,
+["Level"] = 86,
+["Link"] = "|cffa335ee|Hitem:22500:911:::::::60:::::::::|h[霜火便鞋]|h|r",
+},
+{
+["ID"] = 22503,
+["Level"] = 88,
+["Link"] = "|cffa335ee|Hitem:22503:1883:::::::60:::::::::|h[霜火腕轮]|h|r",
+},
+{
+["ID"] = 22501,
+["Level"] = 88,
+["Link"] = "|cffa335ee|Hitem:22501:2616:::::::60:::::::::|h[霜火手套]|h|r",
+},
+{
+["ID"] = 23062,
+["Level"] = 92,
+["AlsoFitsIn"] = 12,
+["Link"] = "|cffa335ee|Hitem:23062::::::::60:::::::::|h[霜火之戒]|h|r",
+},
+{
+["ID"] = 21709,
+["Level"] = 88,
+["AlsoFitsIn"] = 11,
+["Link"] = "|cffa335ee|Hitem:21709::::::::60:::::::::|h[堕落神明之戒]|h|r",
+},
+{
+["ID"] = 19379,
+["Level"] = 83,
+["AlsoFitsIn"] = 14,
+["Link"] = "|cffa335ee|Hitem:19379::::::::60:::::::::|h[奈萨里奥之泪]|h|r",
+},
+nil,
+{
+["ID"] = 22731,
+["Level"] = 88,
+["Link"] = "|cffa335ee|Hitem:22731:1888:::::::60:::::::::|h[被吞噬者的披风]|h|r",
+},
+{
+["ID"] = 22589,
+["Level"] = 90,
+["Link"] = "|cffff8000|Hitem:22589:2504:::::::60:::::::::|h[埃提耶什，守护者的传说之杖]|h|r",
+},
+[18] = {
+["ID"] = 22821,
+["Level"] = 92,
+["Link"] = "|cffa335ee|Hitem:22821::::::::60:::::::::|h[厄运之指]|h|r",
+},
+},
+}
+PawnMrRobotScaleProviderOptions = nil
+PawnClassicScaleProviderOptions = {
+["LastClass"] = "MAGE",
+["LastAdded"] = 3,
+}

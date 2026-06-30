@@ -1,0 +1,22 @@
+
+WT_LearnedPetAbilities = {
+[16320] = true,
+[16350] = true,
+[16389] = true,
+[16356] = true,
+[16366] = true,
+[16330] = true,
+[16362] = true,
+["SUC:16380"] = true,
+["SUC:16374"] = true,
+[16383] = true,
+[16325] = true,
+[16390] = true,
+["SUC:16378"] = true,
+[16331] = true,
+[16387] = true,
+["SUC:16379"] = true,
+}
+WT_NeedsToOpenBeastTraining = false
+WT_IgnoredSpells = {
+}

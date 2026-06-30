@@ -1,0 +1,16 @@
+
+CappingSettings = {
+["profileKeys"] = {
+["女王安其拉 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["position"] = {
+"RIGHT",
+"RIGHT",
+-141.3111724853516,
+-126.8102722167969,
+},
+},
+},
+}

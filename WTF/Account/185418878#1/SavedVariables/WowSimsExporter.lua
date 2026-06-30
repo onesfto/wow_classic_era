@@ -1,0 +1,36 @@
+
+WSEDB = {
+["profileKeys"] = {
+["津巴布韦公主 - 哈霍兰"] = "Default",
+["魔女桑德兰 - 哈霍兰"] = "Default",
+["巨龙守护者 - 哈霍兰"] = "Default",
+["青铜龙守护者 - 哈霍兰"] = "Default",
+["红龙守护者 - 哈霍兰"] = "Default",
+["护士长玛利亚 - 哈霍兰"] = "Default",
+["瑟银零件 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["savedCharacters"] = {
+{
+["data"] = "{\"talents\":\"5103053012001000-0000000000000000-505503101014050\",\"id\":\"Player-5376-164F57FA\",\"class\":\"druid\",\"unit\":\"player\",\"professions\":[{\"name\":\"Leatherworking\",\"level\":300},{\"name\":\"Enchanting\",\"level\":60}],\"race\":\"NightElf\",\"name\":\"护士长玛利亚\",\"spec\":\"\",\"gear\":{\"items\":[{\"enchant\":2591,\"id\":19132},{\"id\":21712},{\"id\":18810},{\"id\":18208},{\"enchant\":1893,\"id\":21663},{\"enchant\":2566,\"id\":22495},{\"enchant\":2617,\"id\":22493},{\"id\":21582},{\"enchant\":2591,\"id\":19385},{\"enchant\":911,\"id\":19437},{\"id\":22939},{\"id\":19382},{\"id\":20636},{\"id\":23047},{\"enchant\":2505,\"id\":23056},{\"id\":23029},{\"id\":22399}],\"version\":\"v3.1.5\"},\"level\":60,\"version\":\"v3.1.5\",\"realm\":\"哈霍兰\"}",
+["timestamp"] = 1766547374,
+["name"] = "护士长玛利亚-哈霍兰",
+["dateString"] = "2025-12-24 11:36:14",
+},
+{
+["data"] = "{\"talents\":\"00000000000000000-00000000000000000-0000000000000000\",\"id\":\"Player-5376-169F1D64\",\"class\":\"warlock\",\"unit\":\"player\",\"professions\":[{\"name\":\"Herbalism\",\"level\":1}],\"race\":\"Human\",\"name\":\"津巴布韦公主\",\"spec\":\"affliction\",\"gear\":{\"items\":[null,null,null,null,null,null,null,null,{\"id\":19133},null,null,null,{\"id\":23046},null,{\"id\":17070}],\"version\":\"v3.1.5\"},\"level\":60,\"version\":\"v3.1.5\",\"realm\":\"哈霍兰\"}",
+["timestamp"] = 1766505289,
+["name"] = "津巴布韦公主-哈霍兰",
+["dateString"] = "2025-12-23 23:54:49",
+},
+{
+["data"] = "{\"talents\":\"5020320000000000-05551035513051-0000000000000000\",\"id\":\"Player-5376-161F7B5F\",\"class\":\"hunter\",\"unit\":\"player\",\"professions\":[{\"name\":\"Engineering\",\"level\":300},{\"name\":\"Mining\",\"level\":300}],\"race\":\"NightElf\",\"name\":\"魔女桑德兰\",\"spec\":\"marksman\",\"gear\":{\"items\":[{\"enchant\":2544,\"id\":23035},{\"id\":18814},{\"id\":22983},{\"enchant\":849,\"id\":22731},{\"enchant\":1891,\"id\":23220},{\"enchant\":1883,\"id\":21611},{\"id\":21585},{\"id\":22730},{\"enchant\":2544,\"id\":23070},{\"id\":21600},{\"id\":23031},{\"id\":21709},{\"id\":23046},{\"id\":19379},{\"enchant\":2504,\"id\":22807},{\"enchant\":2504,\"id\":22803},{\"enchant\":664,\"id\":22812}],\"version\":\"v3.1.5\"},\"level\":60,\"version\":\"v3.1.5\",\"realm\":\"哈霍兰\"}",
+["timestamp"] = 1766479994,
+["name"] = "魔女桑德兰-哈霍兰",
+["dateString"] = "2025-12-23 16:53:14",
+},
+},
+},
+},
+}
