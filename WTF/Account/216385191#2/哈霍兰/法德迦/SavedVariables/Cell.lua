@@ -7,16 +7,16 @@ CellCharacterDB = {
 ["party"] = "小队",
 ["solo"] = "hide",
 ["arena"] = "default",
-["battleground"] = "default",
 ["raid_outdoor"] = "团队",
+["battleground"] = "default",
 },
 {
 ["raid_instance"] = "default",
 ["party"] = "小队",
 ["solo"] = "hide",
 ["arena"] = "default",
-["battleground"] = "default",
 ["raid_outdoor"] = "default",
+["battleground"] = "default",
 },
 },
 ["clickCastings"] = {

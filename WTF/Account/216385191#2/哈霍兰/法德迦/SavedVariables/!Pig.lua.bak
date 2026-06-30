@@ -1,18 +1,18 @@
 
 PIGA_Per = {
-["GDKP"] = {
-},
-["AutoSellBuy"] = {
-["Take_List"] = {
-},
-["Save_List"] = {
-},
-["Save_Money"] = 10000000,
-["Buy_List"] = {
-},
-["Take_Money"] = 10000000,
-},
 ["PigAction"] = {
+["Lock"] = {
+false,
+false,
+false,
+false,
+},
+["Scale"] = {
+1.399999976158142,
+1,
+1,
+1,
+},
 ["AnniuNum"] = {
 2,
 12,
@@ -21,24 +21,6 @@ PIGA_Per = {
 },
 ["ShowTJ"] = {
 3,
-1,
-1,
-1,
-},
-["ActionData"] = {
-[502] = {
-"item",
-"|cffffffff|Hitem:8079::::::::60:::::::::|h[魔法晶水]|h|r",
-8079,
-},
-[501] = {
-"item",
-"|cffffffff|Hitem:22895::::::::60:::::::::|h[魔法肉桂面包]|h|r",
-22895,
-},
-},
-["Scale"] = {
-1.399999976158142,
 1,
 1,
 1,
@@ -55,11 +37,17 @@ false,
 false,
 false,
 },
-["Lock"] = {
-false,
-false,
-false,
-false,
+["ActionData"] = {
+[502] = {
+"item",
+"|cffffffff|Hitem:8079::::::::60:::::::::|h[魔法晶水]|h|r",
+8079,
+},
+[501] = {
+"item",
+"|cffffffff|Hitem:22895::::::::60:::::::::|h[魔法肉桂面包]|h|r",
+22895,
+},
 },
 },
 ["QuickBut"] = {
@@ -620,9 +608,19 @@ nil,
 ["LockTrinket"] = 0,
 ["TrinketMode"] = 1,
 },
-["CombatPlus"] = {
-["PetFoodList"] = {
+["GDKP"] = {
 },
+["AutoSellBuy"] = {
+["Take_List"] = {
+},
+["Save_List"] = {
+},
+["Save_Money"] = 10000000,
+["Buy_List"] = {
+},
+["Take_Money"] = 10000000,
+},
+["Tardis"] = {
 },
 ["Pig_UI"] = {
 ["PIG_ActionBar1"] = {
@@ -632,6 +630,8 @@ nil,
 -140.79,
 },
 },
-["Tardis"] = {
+["CombatPlus"] = {
+["PetFoodList"] = {
+},
 },
 }

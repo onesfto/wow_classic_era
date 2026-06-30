@@ -40,30 +40,30 @@ GearMenuConfiguration = {
 },
 ["displayName"] = "饰品",
 ["isLocked"] = true,
-["changeMenuDirection"] = 1,
+["gearSlotSize"] = 48,
 ["showCooldowns"] = true,
 ["orientation"] = 1,
-["position"] = {
-["posX"] = -464.8694152832031,
-["point"] = "RIGHT",
-["posY"] = -213.5133972167969,
-["relativePoint"] = "RIGHT",
-},
 ["changeSlotSize"] = 36,
-["gearSlotSize"] = 48,
-},
-},
-["addonVersion"] = "v2.7.0",
-["uiTheme"] = 2,
-["trinketMenuColumns"] = 6,
-["frames"] = {
-["GM_TrinketMenuFrame"] = {
+["position"] = {
 ["relativePoint"] = "RIGHT",
+["posY"] = -213.5133972167969,
 ["point"] = "RIGHT",
-["posY"] = -212.9483184814453,
-["posX"] = -173.3762664794922,
+["posX"] = -464.8694152832031,
+},
+["changeMenuDirection"] = 1,
 },
 },
 ["quickChangeRules"] = {
 },
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 6,
+["frames"] = {
+["GM_TrinketMenuFrame"] = {
+["posX"] = -173.3762664794922,
+["posY"] = -212.9483184814453,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+},
+["addonVersion"] = "v2.7.0",
 }

@@ -1,13 +1,12 @@
 
 BugSackDB = {
-["soundMedia"] = "BugSack: Fatality",
-["altwipe"] = true,
 ["useMaster"] = false,
+["altwipe"] = false,
+["soundMedia"] = "BugSack: Fatality",
 ["fontSize"] = "GameFontHighlight",
 ["mute"] = true,
 ["auto"] = false,
-["chatframe"] = false,
+["chatframe"] = true,
 }
 BugSackLDBIconDB = {
-["minimapPos"] = 187.8776750970049,
 }

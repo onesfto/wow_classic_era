@@ -49,6 +49,7 @@ SpyDB = {
 },
 },
 ["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
 ["AppendUnitKoSCheck"] = true,
 },
 ["保姆安娜 - 哈霍兰"] = {

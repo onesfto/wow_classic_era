@@ -1,5 +1,6 @@
+
 DBMAzeroth_AllSavedVars = {
-["萌萌的露小露-铁血"] = {
+["六扇门沈小梅-哈霍兰"] = {
 ["KazzakClassicVanilla"] = {
 [0] = {
 ["Enabled"] = true,
@@ -15,18 +16,28 @@ DBMAzeroth_AllSavedVars = {
 },
 ["YsondreVanilla"] = {
 [0] = {
-["Enabled"] = true,
+["Timer1214136cast"] = true,
 ["Timer24819cdTColor"] = 3,
 ["SpecWarn24814dodgeSWNote"] = true,
-["SpecWarn24814dodgeSWSound"] = 2,
 ["Timer24819cd"] = true,
-["announce24818stack2"] = false,
-["SpecWarn24814dodge"] = true,
-["Timer24814cd"] = true,
-["Timer24819cdCVoice"] = 0,
-["Timer24814cdCVoice"] = 0,
 ["Timer24814cdTColor"] = 3,
+["Timer1214136castCVoice"] = 0,
+["SpecWarn24814dodge"] = true,
+["Timer24814cdCVoice"] = 0,
+["Timer24819cdCVoice"] = 0,
+["SpecWarn1214136soakSWSound"] = 1,
+["Enabled"] = true,
+["SpecWarn24814dodgeSWSound"] = 2,
 ["announce24819spell"] = true,
+["announce1214136target"] = true,
+["Yell1214136"] = true,
+["Yell1214136shortfade"] = true,
+["SpecWarn1214136soakSWNote"] = true,
+["SpecWarn1214136soak"] = true,
+["announce24818stack2"] = false,
+["SetIconOnBombTarget"] = true,
+["Timer1214136castTColor"] = 0,
+["Timer24814cd"] = true,
 },
 },
 ["EmerissVanilla"] = {
@@ -68,9 +79,9 @@ DBMAzeroth_AllSavedVars = {
 ["AzuregosVanilla"] = {
 [0] = {
 ["Enabled"] = true,
-["SpecWarn22067spellSWNote"] = true,
 ["SpecWarn21147spell"] = true,
 ["SpecWarn22067spell"] = true,
+["SpecWarn22067spellSWNote"] = true,
 ["SpecWarn22067spellSWSound"] = 1,
 ["announce21099spell"] = true,
 ["SpecWarn21147spellSWSound"] = 2,

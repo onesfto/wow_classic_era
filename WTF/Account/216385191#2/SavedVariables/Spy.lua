@@ -1,32 +1,6 @@
 
 SpyDB = {
 ["kosData"] = {
-["法琳娜"] = {
-["Horde"] = {
-["联盟的奸细"] = {
-},
-},
-["Alliance"] = {
-["寒脊山大郡主"] = {
-},
-},
-},
-["铁血"] = {
-["Horde"] = {
-["暗矛部落酋长"] = {
-},
-},
-["Alliance"] = {
-["女兵七十六"] = {
-},
-},
-},
-["德姆塞卡尔"] = {
-["Alliance"] = {
-["蓝龙守护者"] = {
-},
-},
-},
 ["哈霍兰"] = {
 ["Alliance"] = {
 ["哈霍兰大格格"] = {
@@ -65,20 +39,44 @@ SpyDB = {
 },
 ["蓝龙守护者"] = {
 },
-["红龙守护者"] = {
-},
 ["德加和尚"] = {
 ["神之新七天"] = {
 ["added"] = 1765613796,
 },
 },
+["红龙守护者"] = {
+},
+},
+},
+["铁血"] = {
+["Horde"] = {
+["暗矛部落酋长"] = {
+},
+},
+["Alliance"] = {
+["女兵七十六"] = {
+},
+},
+},
+["德姆塞卡尔"] = {
+["Alliance"] = {
+["蓝龙守护者"] = {
+},
+},
+},
+["法琳娜"] = {
+["Horde"] = {
+["联盟的奸细"] = {
+},
+},
+["Alliance"] = {
+["寒脊山大郡主"] = {
+},
 },
 },
 },
 ["removeKOSData"] = {
-["法琳娜"] = {
-["Horde"] = {
-},
+["哈霍兰"] = {
 ["Alliance"] = {
 },
 },
@@ -92,7 +90,9 @@ SpyDB = {
 ["Alliance"] = {
 },
 },
-["哈霍兰"] = {
+["法琳娜"] = {
+["Horde"] = {
+},
 ["Alliance"] = {
 },
 },
@@ -100,18 +100,18 @@ SpyDB = {
 ["profileKeys"] = {
 ["黑龙守护者 - 哈霍兰"] = "黑龙守护者 - 哈霍兰",
 ["寒脊山大郡主 - 法琳娜"] = "寒脊山大郡主 - 法琳娜",
-["红龙守护者 - 哈霍兰"] = "红龙守护者 - 哈霍兰",
+["绿龙守护者 - 哈霍兰"] = "绿龙守护者 - 哈霍兰",
 ["哈霍兰大格格 - 哈霍兰"] = "哈霍兰大格格 - 哈霍兰",
-["联盟的奸细 - 法琳娜"] = "联盟的奸细 - 法琳娜",
+["女兵七十六 - 铁血"] = "女兵七十六 - 铁血",
 ["法德迦 - 哈霍兰"] = "法德迦 - 哈霍兰",
-["大叔大婶多少 - 哈霍兰"] = "大叔大婶多少 - 哈霍兰",
+["德加和尚 - 哈霍兰"] = "德加和尚 - 哈霍兰",
 ["暗矛部落酋长 - 铁血"] = "暗矛部落酋长 - 铁血",
 ["蓝龙守护者 - 德姆塞卡尔"] = "蓝龙守护者 - 德姆塞卡尔",
 ["是德东东 - 哈霍兰"] = "是德东东 - 哈霍兰",
 ["蓝龙守护者 - 哈霍兰"] = "蓝龙守护者 - 哈霍兰",
-["德加和尚 - 哈霍兰"] = "德加和尚 - 哈霍兰",
-["女兵七十六 - 铁血"] = "女兵七十六 - 铁血",
-["绿龙守护者 - 哈霍兰"] = "绿龙守护者 - 哈霍兰",
+["大叔大婶多少 - 哈霍兰"] = "大叔大婶多少 - 哈霍兰",
+["联盟的奸细 - 法琳娜"] = "联盟的奸细 - 法琳娜",
+["红龙守护者 - 哈霍兰"] = "红龙守护者 - 哈霍兰",
 },
 ["profiles"] = {
 ["黑龙守护者 - 哈霍兰"] = {
@@ -138,7 +138,7 @@ SpyDB = {
 },
 ["AppendUnitKoSCheck"] = true,
 },
-["红龙守护者 - 哈霍兰"] = {
+["绿龙守护者 - 哈霍兰"] = {
 ["AppendUnitNameCheck"] = true,
 ["MainWindowVis"] = false,
 ["Colors"] = {
@@ -178,7 +178,7 @@ SpyDB = {
 ["AppendUnitKoSCheck"] = true,
 ["MainWindowVis"] = false,
 },
-["联盟的奸细 - 法琳娜"] = {
+["女兵七十六 - 铁血"] = {
 ["AppendUnitNameCheck"] = true,
 ["MainWindowVis"] = false,
 ["Colors"] = {
@@ -222,10 +222,24 @@ SpyDB = {
 ["AppendUnitKoSCheck"] = true,
 ["MainWindowVis"] = false,
 },
-["大叔大婶多少 - 哈霍兰"] = {
+["德加和尚 - 哈霍兰"] = {
 ["AppendUnitNameCheck"] = true,
-["MainWindowVis"] = false,
+["MainWindow"] = {
+["Position"] = {
+["y"] = 963.2870483398438,
+["h"] = 275,
+["x"] = 0,
+},
+},
 ["Colors"] = {
+["Alert"] = {
+["Stealth Text"] = {
+["a"] = 1,
+},
+["Name Text"] = {
+["a"] = 1,
+},
+},
 ["Bar"] = {
 ["Bar Text"] = {
 ["a"] = 1,
@@ -233,6 +247,7 @@ SpyDB = {
 },
 },
 ["AppendUnitKoSCheck"] = true,
+["MainWindowVis"] = false,
 },
 ["暗矛部落酋长 - 铁血"] = {
 ["AppendUnitNameCheck"] = true,
@@ -282,34 +297,7 @@ SpyDB = {
 },
 ["AppendUnitKoSCheck"] = true,
 },
-["德加和尚 - 哈霍兰"] = {
-["AppendUnitNameCheck"] = true,
-["MainWindow"] = {
-["Position"] = {
-["y"] = 963.2870483398438,
-["h"] = 275,
-["x"] = 0,
-},
-},
-["Colors"] = {
-["Alert"] = {
-["Stealth Text"] = {
-["a"] = 1,
-},
-["Name Text"] = {
-["a"] = 1,
-},
-},
-["Bar"] = {
-["Bar Text"] = {
-["a"] = 1,
-},
-},
-},
-["AppendUnitKoSCheck"] = true,
-["MainWindowVis"] = false,
-},
-["女兵七十六 - 铁血"] = {
+["大叔大婶多少 - 哈霍兰"] = {
 ["AppendUnitNameCheck"] = true,
 ["MainWindowVis"] = false,
 ["Colors"] = {
@@ -321,7 +309,19 @@ SpyDB = {
 },
 ["AppendUnitKoSCheck"] = true,
 },
-["绿龙守护者 - 哈霍兰"] = {
+["联盟的奸细 - 法琳娜"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["红龙守护者 - 哈霍兰"] = {
 ["AppendUnitNameCheck"] = true,
 ["MainWindowVis"] = false,
 ["Colors"] = {

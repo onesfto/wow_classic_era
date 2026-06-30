@@ -4,10 +4,10 @@ SexyMap2DB = {
 ["core"] = {
 ["clamp"] = true,
 ["lock"] = false,
-["rightClickToConfig"] = true,
-["autoZoom"] = 5,
-["shape"] = "Interface\\AddOns\\SexyMap\\shapes\\circle.tga",
 ["northTag"] = true,
+["shape"] = "Interface\\AddOns\\SexyMap\\shapes\\circle.tga",
+["autoZoom"] = 5,
+["rightClickToConfig"] = true,
 },
 ["coordinates"] = {
 ["enabled"] = true,
@@ -25,9 +25,21 @@ SexyMap2DB = {
 },
 ["outline"] = "NONE",
 },
-["ping"] = {
-["showPing"] = true,
-["showAt"] = "map",
+["movers"] = {
+["lockDurability"] = false,
+["lockObjectives"] = false,
+["moveDurability"] = false,
+["lockCaptureBar"] = false,
+["moveVehicle"] = false,
+["lockVehicle"] = false,
+["moverPositions"] = {
+},
+["lockTopWidget"] = false,
+["moveBuffs"] = false,
+["moveTopWidget"] = false,
+["lockBuffs"] = false,
+["moveCaptureBar"] = false,
+["moveObjectives"] = false,
 },
 ["buttons"] = {
 ["radius"] = 10,
@@ -39,12 +51,12 @@ SexyMap2DB = {
 ["GameTimeFrame"] = "never",
 ["MiniMapWorldMapButton"] = "never",
 ["MinimapZoomOut"] = "never",
-["SexyMapZoneTextButton"] = "always",
+["MiniMapTracking"] = "always",
 ["MiniMapBattlefieldFrame"] = "always",
 ["GarrisonLandingPageMinimapButton"] = "always",
-["TimeManagerClockButton"] = "always",
 ["LFGMinimapFrame"] = "always",
-["MiniMapTracking"] = "always",
+["TimeManagerClockButton"] = "always",
+["SexyMapZoneTextButton"] = "always",
 },
 ["dragPositions"] = {
 },
@@ -53,18 +65,18 @@ SexyMap2DB = {
 ["clock"] = {
 ["bgColor"] = {
 ["a"] = 1,
-["r"] = 0,
-["g"] = 0,
 ["b"] = 0,
+["g"] = 0,
+["r"] = 0,
 },
 ["font"] = "默认",
 ["fontColor"] = {
 },
 ["borderColor"] = {
 ["a"] = 1,
-["r"] = 0,
-["g"] = 0,
 ["b"] = 0,
+["g"] = 0,
+["r"] = 0,
 },
 ["xOffset"] = 0,
 ["monochrome"] = false,
@@ -131,37 +143,25 @@ SexyMap2DB = {
 ["yOffset"] = 0,
 ["bgColor"] = {
 ["a"] = 1,
-["r"] = 0,
-["g"] = 0,
 ["b"] = 0,
+["g"] = 0,
+["r"] = 0,
 },
 ["font"] = "默认",
 ["useSecureButton"] = false,
 ["borderColor"] = {
 ["a"] = 1,
-["r"] = 0,
-["g"] = 0,
 ["b"] = 0,
+["g"] = 0,
+["r"] = 0,
 },
 },
-["movers"] = {
-["lockDurability"] = false,
-["lockObjectives"] = false,
-["moveDurability"] = false,
-["lockCaptureBar"] = false,
-["moveVehicle"] = false,
-["lockVehicle"] = false,
-["moverPositions"] = {
-},
-["lockTopWidget"] = false,
-["moveBuffs"] = false,
-["moveTopWidget"] = false,
-["lockBuffs"] = false,
-["moveCaptureBar"] = false,
-["moveObjectives"] = false,
+["ping"] = {
+["showPing"] = true,
+["showAt"] = "map",
 },
 },
-["保姆安娜-哈霍兰"] = {
+["六扇门沈小梅-哈霍兰"] = {
 ["core"] = {
 ["clamp"] = true,
 ["lock"] = false,
@@ -324,7 +324,7 @@ SexyMap2DB = {
 },
 ["presets"] = {
 },
-["六扇门沈小梅-哈霍兰"] = {
+["保姆安娜-哈霍兰"] = {
 ["core"] = {
 ["clamp"] = true,
 ["lock"] = false,
@@ -353,26 +353,21 @@ SexyMap2DB = {
 ["showPing"] = true,
 ["showAt"] = "map",
 },
-["buttons"] = {
-["radius"] = 10,
-["lockDragging"] = false,
-["allowDragging"] = true,
-["visibilitySettings"] = {
-["MinimapZoomIn"] = "never",
-["MiniMapMailFrame"] = "always",
-["GameTimeFrame"] = "never",
-["MiniMapWorldMapButton"] = "never",
-["MinimapZoomOut"] = "never",
-["SexyMapZoneTextButton"] = "always",
-["MiniMapBattlefieldFrame"] = "always",
-["GarrisonLandingPageMinimapButton"] = "always",
-["TimeManagerClockButton"] = "always",
-["LFGMinimapFrame"] = "always",
-["MiniMapTracking"] = "always",
+["movers"] = {
+["lockDurability"] = false,
+["lockObjectives"] = false,
+["moveDurability"] = false,
+["lockCaptureBar"] = false,
+["moveVehicle"] = false,
+["lockVehicle"] = false,
+["moverPositions"] = {
 },
-["dragPositions"] = {
-},
-["controlVisibility"] = true,
+["lockTopWidget"] = false,
+["moveBuffs"] = false,
+["moveTopWidget"] = false,
+["lockBuffs"] = false,
+["moveCaptureBar"] = false,
+["moveObjectives"] = false,
 },
 ["clock"] = {
 ["bgColor"] = {
@@ -468,21 +463,26 @@ SexyMap2DB = {
 ["b"] = 0,
 },
 },
-["movers"] = {
-["lockDurability"] = false,
-["lockObjectives"] = false,
-["moveDurability"] = false,
-["lockCaptureBar"] = false,
-["moveVehicle"] = false,
-["lockVehicle"] = false,
-["moverPositions"] = {
+["buttons"] = {
+["radius"] = 10,
+["lockDragging"] = false,
+["allowDragging"] = true,
+["visibilitySettings"] = {
+["MinimapZoomIn"] = "never",
+["MiniMapMailFrame"] = "always",
+["GameTimeFrame"] = "never",
+["MiniMapWorldMapButton"] = "never",
+["MinimapZoomOut"] = "never",
+["SexyMapZoneTextButton"] = "always",
+["MiniMapBattlefieldFrame"] = "always",
+["MiniMapTracking"] = "always",
+["TimeManagerClockButton"] = "always",
+["LFGMinimapFrame"] = "always",
+["GarrisonLandingPageMinimapButton"] = "always",
 },
-["lockTopWidget"] = false,
-["moveBuffs"] = false,
-["moveTopWidget"] = false,
-["lockBuffs"] = false,
-["moveCaptureBar"] = false,
-["moveObjectives"] = false,
+["dragPositions"] = {
+},
+["controlVisibility"] = true,
 },
 },
 }

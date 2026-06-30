@@ -1,10 +1,16 @@
+VER 3 00000000000001AB "Decursive" "INV_MISC_QUESTIONMARK"
+/stopcasting
+/cast [@mouseover,nomod,exists] 驱散魔法;  [@mouseover,exists,mod:ctrl] 驱除疾病; [@mouseover,exists,mod:shift] 驱散魔法
+END
 VER 3 00000000000001AA "Decursive" "INV_MISC_QUESTIONMARK"
 /stopcasting
-/cast [@mouseover,nomod,exists] 解除次级诅咒;  [@mouseover,exists,mod:ctrl] 变形术; [@mouseover,exists,mod:shift] 解除次级诅咒
+/cast [@mouseover,nomod,exists] 清洁术;  [@mouseover,exists,mod:ctrl] 清洁术; [@mouseover,exists,mod:shift] 清洁术
 END
-VER 3 00000000000001AB "Decursive" "134400"
-/stopcasting
-/cast [@mouseover,nomod,exists] 解除次级诅咒;  [@mouseover,exists,mod:ctrl] 解除次级诅咒; [@mouseover,exists,mod:shift] 解除次级诅咒
+VER 3 00000000000001C0 "RXPTargeting" "Ability_eyeoftheowl"
+/targetexact 女牧师安妮塔
+/targetlasttarget [dead]
+END
+VER 3 00000000000001C1 "RXPTargeting" "Ability_eyeoftheowl"
 END
 VER 3 00000000000001AC "YY" "4777763"
 /RA YY：881411，下跳对应频道^_^
