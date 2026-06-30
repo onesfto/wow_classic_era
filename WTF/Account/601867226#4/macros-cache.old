@@ -34,8 +34,8 @@ VER 3 00000000000003CB "射" "134400"
 /cast 投掷
 END
 VER 3 00000000000003C7 "强怒" "134400"
-#showtooltip 强行怒气药水
-/use [combat] 强行怒气药水
+#showtooltip 强效怒气药水
+/use [combat] 强效怒气药水
 END
 VER 3 00000000000003B1 "无敌" "INV_Misc_QuestionMark"
 #showtooltip 有限无敌药水

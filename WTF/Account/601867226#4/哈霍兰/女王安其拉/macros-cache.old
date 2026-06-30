@@ -17,11 +17,15 @@ VER 3 01000000010000E6 "劈" "INV_Misc_QuestionMark"
 /startattack
 END
 VER 3 01000000010000E7 "勇" "INV_Misc_QuestionMark"
-#showtooltip
-/cast [mod:shift/ctrl,worn:弩]弩射击;[mod:shift/ctrl,worn:弓]弓射击;[mod:shift/ctrl,worn:枪械]枪械射击;[nomod]英勇打击
+#showtooltip [mod:shift/ctrl]弩射击;英勇打击
+/cast [mod:shift/ctrl]弩射击
+/cast [mod:shift/ctrl]弓射击
+/cast [mod:shift/ctrl]枪械射击
+/cast [mod:shift/ctrl]投掷
 /stopmacro [mod:shift/ctrl]
-/cast [nostance:2]防御姿态
+/cast [nostance:2] 防御姿态
 /startattack
+/cast 英勇打击
 END
 VER 3 01000000010000E8 "压" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift/ctrl,stance:2] 压制; [mod:shift/ctrl] 复仇; [stance:2] 复仇; 压制
@@ -114,9 +118,13 @@ VER 3 01000000010000F8 "破釜" "INV_Misc_QuestionMark"
 /startattack
 END
 VER 3 01000000010000F9 "英" "INV_Misc_QuestionMark"
-#showtooltip
-/cast [mod:shift/ctrl,worn:弩]弩射击;[mod:shift/ctrl,worn:弓]弓射击;[mod:shift/ctrl,worn:枪械]枪械射击;[nomod]英勇打击
+#showtooltip [mod:shift/ctrl]弩射击;英勇打击
+/cast [mod:shift/ctrl]弩射击
+/cast [mod:shift/ctrl]弓射击
+/cast [mod:shift/ctrl]枪械射击
+/cast [mod:shift/ctrl]投掷
 /stopmacro [mod:shift/ctrl]
 /cast [nostance:3]狂暴姿态
 /startattack
+/cast 英勇打击
 END

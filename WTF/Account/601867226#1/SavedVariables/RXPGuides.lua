@@ -8,16 +8,16 @@ RXPData = {
 }
 RXPDB = {
 ["profileKeys"] = {
-["愛雅法拉 - 铁血"] = "global",
 ["伊芙莉特 - 铁血"] = "global",
 ["蒂琪爱尔 - 铁血"] = "global",
 ["萌萌的露小露 - 铁血"] = "global",
-["小露露糖 - 铁血"] = "global",
-["露露緹婭 - 碧玉矿洞"] = "global",
 ["露露缇娅 - 哈霍兰"] = "global",
+["愛雅法拉 - 铁血"] = "global",
 ["露露糖 - 铁血"] = "global",
-["保姆安娜 - 哈霍兰"] = "global",
 ["六扇门沈小梅 - 哈霍兰"] = "global",
+["保姆安娜 - 哈霍兰"] = "global",
+["露露緹婭 - 碧玉矿洞"] = "global",
+["小露露糖 - 铁血"] = "global",
 },
 ["profiles"] = {
 ["global"] = {
@@ -31,15 +31,14 @@ RXPSettings = {
 ["小露露糖 - 铁血"] = "露露緹婭 - 碧玉矿洞",
 ["露露缇娅 - 哈霍兰"] = "露露缇娅丶 - 铁血",
 ["露露糖 - 铁血"] = "露露緹婭 - 碧玉矿洞",
-["愛雅法拉 - 铁血"] = "露露緹婭 - 碧玉矿洞",
-["萌萌的露小露 - 铁血"] = "露露緹婭 - 碧玉矿洞",
 ["露露緹婭 - 碧玉矿洞"] = "露露缇娅丶 - 铁血",
-["保姆安娜 - 哈霍兰"] = "露露缇娅丶 - 铁血",
 ["六扇门沈小梅 - 哈霍兰"] = "露露缇娅丶 - 铁血",
+["保姆安娜 - 哈霍兰"] = "露露缇娅丶 - 铁血",
+["萌萌的露小露 - 铁血"] = "露露緹婭 - 碧玉矿洞",
+["愛雅法拉 - 铁血"] = "露露緹婭 - 碧玉矿洞",
 },
 ["profiles"] = {
 ["露露缇娅丶 - 铁血"] = {
-["disableArrow"] = false,
 ["hardcore"] = false,
 ["enableAddonIncompatibilityCheck"] = false,
 ["season"] = 0,
@@ -47,32 +46,42 @@ RXPSettings = {
 ["guideFontSize"] = 14,
 ["enableBindAutomation"] = false,
 ["frameSizes"] = {
-["activeTargetFrame"] = {
-54.40001678466797,
-68.00000762939453,
+["arrowFrame"] = {
+38.39999389648438,
+38.40004730224609,
 },
 ["RXPFrame"] = {
 257.3334045410156,
-28.0000114440918,
+28,
 },
 ["activeItemFrame"] = {
-51.23808288574219,
-40,
+50.59539031982422,
+40.00001525878906,
 },
-["arrowFrame"] = {
-38.39999771118164,
-38.40005111694336,
+["activeTargetFrame"] = {
+54.43443298339844,
+40.00001525878906,
 },
 },
 ["hideInRaid"] = true,
+["hideCompletedSteps"] = false,
+["arrowScale"] = 1.2,
+["soloSelfFound"] = true,
+["showDangerousMobsMap"] = false,
+["enableGroupQuests"] = false,
+["arrowText"] = 15,
+["frameHeight"] = 28.0000114440918,
+["macroAnnounced"] = true,
+["showDangerousUnitscan"] = false,
+["disableArrow"] = false,
 ["framePositions"] = {
-["activeTargetFrame"] = {
+["arrowFrame"] = {
 {
 "LEFT",
 nil,
 "LEFT",
-264.5238037109375,
-6.952399253845215,
+277.1809997558594,
+-39.23849105834961,
 },
 },
 ["RXPFrame"] = {
@@ -93,25 +102,16 @@ nil,
 0,
 },
 },
-["arrowFrame"] = {
+["activeTargetFrame"] = {
 {
 "LEFT",
 nil,
 "LEFT",
-277.1809997558594,
--39.23849105834961,
+264.5238342285156,
+6.952399253845215,
 },
 },
 },
-["showDangerousMobsMap"] = false,
-["hideCompletedSteps"] = false,
-["enableGroupQuests"] = false,
-["arrowScale"] = 1.2,
-["soloSelfFound"] = true,
-["arrowText"] = 15,
-["frameHeight"] = 28.0000114440918,
-["macroAnnounced"] = true,
-["showDangerousUnitscan"] = false,
 },
 },
 }

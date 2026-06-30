@@ -2,10 +2,6 @@
 ElvCharacterDB = {
 ["ConvertKeybindings"] = true,
 ["ChatEditHistory"] = {
-"/PULL 10",
-"/mrt",
-"/KB",
-"/s |cff1eff00|Hitem:11288::::::::10:::::::::|h[强效魔法杖]|h|r",
 "/LTP",
 "/DECURSIVE",
 "/ec",
@@ -22,6 +18,10 @@ ElvCharacterDB = {
 "/dbm",
 "/wa",
 "/WA",
+"/cw 凤凰浴火-哈霍兰 我刚弄了下电脑",
+"/cw 凤凰浴火-哈霍兰 换游戏插件 全部清了 但是苹果电脑不能用黑盒 所以麻烦",
+"/cw 凤凰浴火-哈霍兰 应该是好了",
+"/cw 凤凰浴火-哈霍兰 截图给你看",
 },
 ["ChatHistoryLog"] = {
 },

@@ -36,11 +36,11 @@ W: 608
 H: 424
 Frame: WorldMapFrame
 FrameLevel: 1
-Anchor: LEFT
+Anchor: TOPLEFT
 X: 16
-Y: 61
-W: 610
-H: 438
+Y: -46
+W: 1024
+H: 712
 Frame: RARESCANNER_BUTTON
 FrameLevel: 200
 Anchor: LEFT

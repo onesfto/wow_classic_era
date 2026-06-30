@@ -25,9 +25,11 @@ alaGearManSV = {
 },
 ["Player-5453-040319F3"] = {
 },
+["Player-5376-0EA7E05E"] = {
+},
 ["Player-6118-1570FF1C"] = {
 },
-["Player-5843-00E2C33F"] = {
+["Player-5843-00D14C3F"] = {
 },
 ["Player-5453-041DA392"] = {
 },
@@ -35,9 +37,9 @@ alaGearManSV = {
 },
 ["Player-5303-154A4CAC"] = {
 },
-["Player-5453-0476F4B3"] = {
+["Player-5843-00E2C33F"] = {
 },
-["Player-5453-03F7B721"] = {
+["Player-5843-00D04D9B"] = {
 },
 ["Player-5843-00DC3A00"] = {
 },
@@ -47,13 +49,13 @@ alaGearManSV = {
 },
 ["Player-5453-041DA61B"] = {
 },
-["Player-5453-041DA806"] = {
-},
 ["Player-5843-00E2C300"] = {
 },
-["Player-5843-00D04D9B"] = {
+["Player-5453-041DA806"] = {
 },
-["Player-5843-00D14C3F"] = {
+["Player-5453-03F7B721"] = {
+},
+["Player-5453-0476F4B3"] = {
 },
 },
 ["useBar"] = true,
@@ -65,11 +67,11 @@ nil,
 -303.2378234863281,
 -194.0478057861328,
 },
-["takeoffAll_include_neck_finger_and_trinket"] = false,
-["_version"] = 220902,
-["show_outfit_in_tooltip"] = true,
-["multi_lines"] = false,
+["quickSize"] = 18,
 ["quickPosChar"] = {
 },
-["quickSize"] = 18,
+["show_outfit_in_tooltip"] = true,
+["multi_lines"] = false,
+["_version"] = 220902,
+["takeoffAll_include_neck_finger_and_trinket"] = false,
 }

@@ -1,297 +1,213 @@
 
 BiaoGe = {
 ["bag"] = {
-[5376] = {
-["女王安其拉"] = {
+[5453] = {
+["露露缇娅丶"] = {
 ["bag"] = {
-[234465] = 1,
-[19431] = 1,
-[12384] = 1,
-[23247] = 39,
-[18042] = 53,
-[12643] = 3,
-[184937] = 5,
-[4388] = 1,
-[14047] = 3,
-[19723] = 1,
-[3387] = 5,
-[11516] = 27,
-[19858] = 11,
-[7189] = 1,
-[23041] = 1,
-[23045] = 1,
-[13810] = 19,
-[18606] = 1,
-[23053] = 1,
-[20769] = 1,
-[22422] = 1,
-[23059] = 1,
-[15723] = 1,
-[7005] = 1,
-[21670] = 1,
-[21674] = 1,
-[19902] = 1,
-[23206] = 1,
-[21176] = 1,
-[19019] = 1,
-[23720] = 1,
+[1191] = 1,
+[1195] = 2,
+[11288] = 1,
+[3013] = 1,
+[6215] = 1,
+[4656] = 1,
+[1389] = 1,
+[2455] = 3,
+[2589] = 49,
+[159] = 20,
+[748] = 1,
+[2070] = 8,
+[2968] = 1,
+[13444] = 1,
+[6078] = 1,
+[2575] = 1,
+[2835] = 2,
+[5071] = 2,
+[4536] = 6,
+[1359] = 1,
+[1434] = 5,
+[118] = 5,
+[36] = 1,
 [6948] = 1,
-[13452] = 4,
-[13455] = 5,
-[19301] = 60,
-[12451] = 12,
-[23000] = 1,
-[14530] = 20,
-[12457] = 12,
-[11951] = 20,
-[12460] = 15,
-[12640] = 1,
-[22938] = 1,
-[23226] = 1,
-[22936] = 1,
-[22420] = 1,
-[8529] = 49,
-[21377] = 7,
-[22418] = 1,
-[6838] = 50,
-[19872] = 1,
-[6839] = 12,
-[23038] = 1,
-[6840] = 1,
-[18821] = 1,
-[15209] = 1,
-[180089] = 1,
-[6842] = 1,
-[21526] = 1,
-[22417] = 1,
-[23054] = 1,
-[22421] = 1,
-[18984] = 1,
-[9308] = 13,
-[9309] = 8,
-[19387] = 1,
-[22812] = 1,
-[23068] = 1,
-[6657] = 16,
-[20559] = 2,
-[21665] = 1,
-[21536] = 20,
-[22419] = 1,
-[19143] = 1,
-[23716] = 1,
-[3825] = 5,
-[184938] = 1,
-[12404] = 14,
+[6303] = 7,
+[2770] = 2,
+[2672] = 7,
+[1177] = 5,
 [13446] = 1,
-[20130] = 1,
+[5580] = 1,
+[11192] = 1,
+[858] = 2,
+[11191] = 1,
+[768] = 1,
 },
 ["bagKey"] = {
-[12382] = 1,
-[7146] = 1,
-[6893] = 1,
-[13704] = 1,
-[11140] = 1,
 },
 ["mail"] = {
-[2592] = 60,
 },
 ["faction"] = {
 [270] = {
 ["name"] = "赞达拉部族",
-["standingID"] = 8,
-["currentValue"] = 999,
-["maxValue"] = 1000,
+["standingID"] = 4,
+["currentValue"] = 0,
+["maxValue"] = 3000,
 ["factionID"] = 270,
 },
 [59] = {
 ["name"] = "瑟银兄弟会",
 ["standingID"] = 4,
-["currentValue"] = 385,
+["currentValue"] = 0,
 ["maxValue"] = 3000,
 ["factionID"] = 59,
 },
 [529] = {
 ["name"] = "银色黎明",
-["standingID"] = 8,
-["currentValue"] = 999,
-["maxValue"] = 1000,
+["standingID"] = 4,
+["currentValue"] = 200,
+["maxValue"] = 3000,
 ["factionID"] = 529,
-},
-[609] = {
-["name"] = "塞纳里奥议会",
-["standingID"] = 8,
-["currentValue"] = 999,
-["maxValue"] = 1000,
-["factionID"] = 609,
-},
-[910] = {
-["name"] = "诺兹多姆的子嗣",
-["standingID"] = 8,
-["currentValue"] = 999,
-["maxValue"] = 1000,
-["factionID"] = 910,
-},
-[749] = {
-["name"] = "海达希亚水元素",
-["standingID"] = 7,
-["currentValue"] = 20999,
-["maxValue"] = 21000,
-["factionID"] = 749,
 },
 [576] = {
 ["name"] = "木喉要塞",
-["standingID"] = 3,
-["currentValue"] = 110,
+["standingID"] = 2,
+["currentValue"] = 2500,
 ["maxValue"] = 3000,
 ["factionID"] = 576,
 },
+[749] = {
+["name"] = "海达希亚水元素",
+["standingID"] = 4,
+["currentValue"] = 0,
+["maxValue"] = 3000,
+["factionID"] = 749,
+},
+[910] = {
+["name"] = "诺兹多姆的子嗣",
+["standingID"] = 1,
+["currentValue"] = 0,
+["maxValue"] = 36000,
+["factionID"] = 910,
+},
+[609] = {
+["name"] = "塞纳里奥议会",
+["standingID"] = 4,
+["currentValue"] = 0,
+["maxValue"] = 3000,
+["factionID"] = 609,
+},
 },
 ["bank"] = {
-[21701] = 1,
-[10725] = 1,
-[21330] = 1,
-[19947] = 1,
-[22235] = 1,
-[22237] = 1,
-[11122] = 1,
-[20600] = 1,
-[21618] = 1,
-[23327] = 18,
-[11511] = 1,
-[16309] = 1,
-[21134] = 1,
-[16484] = 1,
-[18348] = 1,
-[1973] = 1,
-[10716] = 1,
-[18241] = 1,
-[12662] = 2,
-[22658] = 1,
-[19866] = 1,
-[19364] = 1,
-[22664] = 1,
-[22666] = 1,
-[21652] = 1,
-[23122] = 17,
-[1322] = 5,
-[19372] = 1,
-[13180] = 35,
-[16963] = 1,
-[23315] = 1,
-[13442] = 10,
-[22691] = 1,
-[18876] = 1,
-[16965] = 1,
-[23570] = 1,
-[15855] = 1,
-[23456] = 1,
-[19384] = 1,
-[21579] = 1,
-[17112] = 1,
-[16479] = 1,
-[21180] = 1,
-[13246] = 1,
-[19406] = 1,
-[16964] = 1,
-[13965] = 1,
-[22802] = 1,
-[16959] = 1,
-[21664] = 1,
-[18817] = 1,
-[18404] = 1,
-[21200] = 1,
-[21837] = 1,
-[21331] = 1,
-[21333] = 1,
-[18541] = 1,
-[19432] = 1,
-[12584] = 1,
-[23246] = 10,
-[20633] = 1,
-[19948] = 1,
-[23379] = 1,
-[21647] = 1,
-[11445] = 1,
-[23040] = 1,
-[16477] = 1,
-[18182] = 1,
-[15138] = 1,
-[11951] = 19,
-[12460] = 40,
-[18825] = 1,
-[21621] = 1,
-[22385] = 1,
-[18208] = 1,
-[17182] = 1,
-[16022] = 1,
-[20579] = 1,
-[18767] = 1,
-[20619] = 1,
-[19351] = 1,
-[17067] = 1,
-[17069] = 1,
-[5951] = 10,
-[5634] = 5,
-[21520] = 1,
-[22665] = 1,
-[20599] = 1,
-[23558] = 1,
-[16961] = 1,
-[12451] = 20,
-[16960] = 1,
-[16962] = 1,
-[23314] = 1,
-[16966] = 1,
-[10645] = 1,
-[1172] = 1,
-[18242] = 1,
-[18244] = 1,
-[22818] = 1,
-[19137] = 1,
-[14023] = 1,
-[10587] = 1,
-[22699] = 1,
-[16478] = 1,
-[21812] = 1,
-[18854] = 1,
-[22707] = 1,
-[14530] = 15,
-[13515] = 1,
-[21691] = 1,
+},
+},
+},
+[5381] = {
+["露露緹婭"] = {
+["bag"] = {
+[159] = 2,
+[2070] = 4,
+[6948] = 1,
+},
+["bagKey"] = {
+},
+["mail"] = {
+},
+["faction"] = {
+[270] = {
+["name"] = "赞达拉部族",
+["standingID"] = 4,
+["currentValue"] = 0,
+["maxValue"] = 3000,
+["factionID"] = 270,
+},
+[59] = {
+["name"] = "瑟银兄弟会",
+["standingID"] = 4,
+["currentValue"] = 0,
+["maxValue"] = 3000,
+["factionID"] = 59,
+},
+[529] = {
+["name"] = "银色黎明",
+["standingID"] = 4,
+["currentValue"] = 200,
+["maxValue"] = 3000,
+["factionID"] = 529,
+},
+[576] = {
+["name"] = "木喉要塞",
+["standingID"] = 2,
+["currentValue"] = 2500,
+["maxValue"] = 3000,
+["factionID"] = 576,
+},
+[749] = {
+["name"] = "海达希亚水元素",
+["standingID"] = 4,
+["currentValue"] = 0,
+["maxValue"] = 3000,
+["factionID"] = 749,
+},
+[910] = {
+["name"] = "诺兹多姆的子嗣",
+["standingID"] = 1,
+["currentValue"] = 0,
+["maxValue"] = 36000,
+["factionID"] = 910,
+},
+[609] = {
+["name"] = "塞纳里奥议会",
+["standingID"] = 4,
+["currentValue"] = 0,
+["maxValue"] = 3000,
+["factionID"] = 609,
+},
+},
+["bank"] = {
 },
 },
 },
 },
 ["QuestCD"] = {
-[5376] = {
-["女王安其拉"] = {
+[5842] = {
+},
+[5381] = {
+["露露緹婭"] = {
 },
 },
+[6118] = {
 },
-["roleOverviewNote"] = {
-[5376] = {
+[5843] = {
+},
+[5453] = {
+["露露缇娅丶"] = {
+},
+},
+[5303] = {
 },
 },
 ["realmName"] = {
-[5376] = "哈霍兰",
+[5303] = "硬汉",
+[6118] = "无情",
+[5843] = "孤狼",
+[5453] = "铁血",
+[5381] = "碧玉矿洞",
 },
 ["ItemLib"] = {
+["itemLibOrder"] = 1,
 ["iLevel"] = {
 },
-["itemLibOrder"] = 1,
 ["fitlerGet"] = {
 },
 ["ItemLibInvType"] = {
 "INVTYPE_HEAD",
 },
+["itemLibOrderButtonId"] = 2,
 ["itemLibOrderButtonID"] = 3,
 },
 ["MONEYchoice"] = {
 [226404] = 1,
 [221365] = 1,
-[22726] = 1,
-["money"] = 1,
 [221262] = 1,
+["money"] = 1,
+[22726] = 1,
 },
 ["MC"] = {
 ["boss8"] = {
@@ -303,115 +219,41 @@ BiaoGe = {
 ["boss11"] = {
 },
 ["boss12"] = {
-["loot1"] = {
-{
-["time"] = 1782236265,
-["class"] = "DRUID",
-["count"] = 1,
-["player"] = "湘児",
-},
-},
-["zhuangbei1"] = "|cff0070dd|Hitem:17011::::::::60::::::::::|h[熔岩之核]|h|r",
 },
 ["boss17"] = {
 },
 ["boss2"] = {
 },
-["raidRoster"] = {
-["roster"] = {
-"凤凰浴火",
-"名门正派",
-"女王安其拉",
-"芭卡玛卡",
-"黛丶",
-"流照君",
-"凤凰浴火焚身",
-"柒尐陌",
-"灬亚麻得灬",
-"蓝色冰咖啡",
-"湘児",
-"安乐",
-"清风向晚",
-"丨哪吒丨",
-},
-["time"] = 1782237574,
-["realm"] = "哈霍兰",
-},
 ["boss5"] = {
-},
-["boss16"] = {
 },
 ["boss20"] = {
 },
+["boss16"] = {
+},
 ["boss18"] = {
 },
-["boss22"] = {
+["boss21"] = {
 },
 ["boss13"] = {
 },
-["boss19"] = {
+["boss22"] = {
 },
 ["boss10"] = {
 },
 ["boss4"] = {
-["loot2"] = {
-{
-["time"] = 1782237580,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "凤凰浴火",
 },
-},
-["zhuangbei1"] = "|cffa335ee|Hitem:19136::::::::60::::::::::|h[燃魔腰带]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:17071::::::::60::::::::::|h[血腥撕裂者]|h|r",
-["loot3"] = {
-{
-["time"] = 1782237580,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "凤凰浴火",
-},
-},
-["loot1"] = {
-{
-["time"] = 1782237580,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "凤凰浴火",
-},
-},
-["zhuangbei2"] = "|cffa335ee|Hitem:17066::::::::60::::::::::|h[钻孔虫之碟]|h|r",
-},
-["boss21"] = {
+["boss19"] = {
 },
 ["boss1"] = {
 },
+["boss3"] = {
+},
 ["boss6"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:16807::::::::60::::::::::|h[恶魔之心护肩]|h|r",
-["loot2"] = {
-{
-["time"] = 1782237025,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "凤凰浴火",
-},
-},
-["loot1"] = {
-{
-["time"] = 1782237025,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "凤凰浴火",
-},
-},
-["zhuangbei1"] = "|cffa335ee|Hitem:16836::::::::60::::::::::|h[塞纳里奥肩甲]|h|r",
 },
 ["boss14"] = {
-["zhuangbei3"] = "DPS补贴",
+["zhuangbei3"] = "Dps补贴",
 ["zhuangbei2"] = "N补贴",
 ["zhuangbei1"] = "T补贴",
-},
-["boss3"] = {
 },
 ["boss7"] = {
 },
@@ -429,97 +271,52 @@ BiaoGe = {
 },
 },
 ["MONEY"] = {
-[5376] = {
-["女王安其拉"] = {
-["colorplayer"] = "|cffc79c6e女王安其拉|r",
-["player"] = "女王安其拉",
+[5303] = {
+},
+[5453] = {
+["露露缇娅丶"] = {
+["colorplayer"] = "|cffffffff露露缇娅丶|r",
+["player"] = "露露缇娅丶",
 [22726] = {
 ["tex"] = 134888,
 ["isItem"] = true,
 ["count"] = 0,
 },
-["money"] = 37705,
+["money"] = 76,
+},
+},
+[5381] = {
+["露露緹婭"] = {
+["colorplayer"] = "|cffffffff露露緹婭|r",
+["player"] = "露露緹婭",
+[22726] = {
+["tex"] = 134888,
+["isItem"] = true,
+["count"] = 0,
+},
+["money"] = 0,
 ["xp"] = {
-["perNow"] = "0",
-["resting"] = true,
-["per"] = "0.0",
+["perNow"] = 52,
+["resting"] = false,
+["per"] = "52.0",
 ["isPanda"] = false,
-["time"] = 1782306515,
+["time"] = 1770477705,
 },
 ["skill"] = {
-[129] = {
-["level"] = 300,
-["icon"] = 135966,
-},
-[393] = {
-["level"] = 150,
-["icon"] = 134366,
-["isMain"] = true,
-},
-[202] = {
-["level"] = 300,
-["icon"] = 136243,
-["isMain"] = true,
-},
-[185] = {
-["level"] = 300,
-["icon"] = 133971,
 },
 },
 },
+[6118] = {
+},
+[5843] = {
 },
 },
 ["NAXX"] = {
 ["boss8"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:23073::::::::60::::::::::|h[偏移之靴]|h|r",
-["loot2"] = {
-{
-["player"] = "北冥幽月",
-["class"] = "PRIEST",
-["time"] = 1781964693,
-["count"] = 1,
-},
-},
-["loot1"] = {
-{
-["player"] = "北冥幽月",
-["class"] = "PRIEST",
-["time"] = 1781964693,
-["count"] = 1,
-},
-},
-["zhuangbei2"] = "|cffa335ee|Hitem:22365::::::::60::::::::::|h[被玷污的长靴]|h|r",
 },
 ["tradeTbl"] = {
 },
 ["boss9"] = {
-["loot2"] = {
-{
-["time"] = 1781967077,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["zhuangbei1"] = "|cffa335ee|Hitem:22351::::::::60::::::::::|h[被玷污的长袍]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:22349::::::::60::::::::::|h[被玷污的胸甲]|h|r",
-["loot3"] = {
-{
-["time"] = 1781967077,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["loot1"] = {
-{
-["time"] = 1781967077,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["zhuangbei2"] = "|cffa335ee|Hitem:23071::::::::60::::::::::|h[天启护腿]|h|r",
 },
 ["boss11"] = {
 },
@@ -528,1819 +325,211 @@ BiaoGe = {
 ["boss17"] = {
 },
 ["boss2"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:22940::::::::60::::::::::|h[破冰肩铠]|h|r",
-["loot2"] = {
-{
-["time"] = 1781965519,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["loot1"] = {
-{
-["time"] = 1781965519,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["zhuangbei1"] = "|cffa335ee|Hitem:22355::::::::60::::::::::|h[被玷污的护腕]|h|r",
-},
-["raidRoster"] = {
-["roster"] = {
-"北冥幽月",
-"大武生",
-"叫他聪哥",
-"木叶小德",
-"秀到你跪",
-"愤怒小豆包",
-"娜噜噜丶甜",
-"瀌在欣",
-"月之舞刃",
-"如果也许可能",
-"嚣张的土豆",
-"小佛爷灬",
-"解冻",
-"餐厅小妹",
-"匕手小贼",
-"胸毛随风飘",
-"丨哪吒丨",
-"女王安其拉",
-"美妞灬",
-"狡猾的小子",
-"奇怪的乂人",
-"秋婉乄",
-"蔷薇小哥哥",
-"黄岛小螃蟹",
-"丶烟烟罗",
-"阿拉蕾乄",
-"斩杀爽唖",
-"名字太难了",
-"黑猫丶警长",
-"跑跑第一名",
-"凤凰的现女友",
-"塔拉夏传说",
-"丸寳",
-"Bripal",
-"奶存泄漏",
-"白驹灬过隙",
-"凯棋老爸-法琳娜",
-"宅莫",
-"脱塔天亡",
-},
-["time"] = 1781967776,
-["realm"] = "哈霍兰",
 },
 ["boss5"] = {
 },
-["boss16"] = {
-["zhuangbei4"] = "|cffa335ee|Hitem:23044::::::::60::::::::::|h[末日先驱]|h|r",
-["zhuangbei3"] = "|cffffffff|Hitem:23055::::::::60::::::::::|h[熔解之语]|h|rx2",
-["loot8"] = {
-{
-["time"] = 1781974177,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["zhuangbei6"] = "|cffa335ee|Hitem:23060::::::::60::::::::::|h[骨镰之戒]|h|r",
-["zhuangbei9"] = "|cffa335ee|Hitem:22812::::::::60::::::::::|h[蛛魔制奴者]|h|r",
-["loot5"] = {
-{
-["time"] = 1781966291,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["loot10"] = {
-{
-["time"] = 1781974177,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["zhuangbei2"] = "|cffff8000|Hitem:22726::::::::60::::::::::|h[埃提耶什的碎片]|h|rx2",
-["loot3"] = {
-{
-["time"] = 1781964949,
-["class"] = "WARRIOR",
-["count"] = 1,
-["player"] = "大武生",
-},
-{
-["time"] = 1781965354,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["zhuangbei10"] = "|cffa335ee|Hitem:22799::::::::60::::::::::|h[搜魂者]|h|r",
-["loot6"] = {
-{
-["time"] = 1781974177,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["zhuangbei8"] = "|cffa335ee|Hitem:23062::::::::60::::::::::|h[霜火之戒]|h|r",
-["zhuangbei7"] = "|cffa335ee|Hitem:22520::::::::60::::::::::|h[克尔苏加德的护符匣]|h|r",
-["loot2"] = {
-{
-["count"] = 1,
-["player"] = "有德必有得",
-["time"] = 1781963922,
-["class"] = "DRUID",
-},
-{
-["time"] = 1781965518,
-["class"] = "DRUID",
-["count"] = 1,
-["player"] = "有德必有得",
-},
-},
-["zhuangbei5"] = "|cffa335ee|Hitem:23226::::::::60::::::::::|h[食尸鬼皮外套]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:23237::::::::60::::::::::|h[永恒烈焰之戒]|h|r",
-["loot9"] = {
-{
-["time"] = 1781974177,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["loot4"] = {
-{
-["time"] = 1781965358,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["loot1"] = {
-{
-["count"] = 1,
-["player"] = "北冥幽月",
-["time"] = 1781963174,
-["class"] = "PRIEST",
-},
-},
-["loot7"] = {
-{
-["time"] = 1781974177,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-},
 ["boss20"] = {
 },
-["boss18"] = {
-["zhuangbei2"] = "N补贴",
-["zhuangbei1"] = "T补贴",
-["zhuangbei3"] = "DPS补贴",
+["boss16"] = {
 },
-["boss22"] = {
+["boss18"] = {
+},
+["boss21"] = {
 },
 ["boss13"] = {
 },
-["boss21"] = {
+["boss22"] = {
 },
 ["boss10"] = {
 },
 ["boss4"] = {
 },
 ["boss19"] = {
-["zhuangbei4"] = "分钱人数",
-["zhuangbei3"] = "净收入",
-["jine2"] = "0",
-["jine4"] = "40",
-["zhuangbei5"] = "人均工资",
-["zhuangbei1"] = "总收入",
-["jine5"] = "0",
-["zhuangbei2"] = "总支出",
-["jine1"] = "0",
-["jine3"] = "0",
 },
 ["boss1"] = {
 },
 ["boss3"] = {
-["loot2"] = {
-{
-["time"] = 1781966036,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["zhuangbei1"] = "|cffa335ee|Hitem:22371::::::::60::::::::::|h[被玷污的手套]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:22371::::::::60::::::::::|h[被玷污的手套]|h|r",
-["loot3"] = {
-{
-["time"] = 1781966036,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["loot1"] = {
-{
-["time"] = 1781966036,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["zhuangbei2"] = "|cffa335ee|Hitem:22804::::::::60::::::::::|h[迈克斯纳之牙]|h|r",
-},
-["boss14"] = {
-["loot4"] = {
-{
-["time"] = 1781967801,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["loot2"] = {
-{
-["time"] = 1781967801,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["zhuangbei4"] = "|cffa335ee|Hitem:23549::::::::60::::::::::|h[天灾的坚韧]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:23547::::::::60::::::::::|h[天灾的活力]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:23043::::::::60::::::::::|h[死亡的面孔]|h|r",
-["loot3"] = {
-{
-["time"] = 1781967801,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["loot1"] = {
-{
-["time"] = 1781967801,
-["class"] = "PRIEST",
-["count"] = 1,
-["player"] = "北冥幽月",
-},
-},
-["zhuangbei2"] = "|cffa335ee|Hitem:23050::::::::60::::::::::|h[大墓地披风]|h|r",
 },
 ["boss6"] = {
 },
+["boss14"] = {
+},
 ["boss7"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:22358::::::::60::::::::::|h[被玷污的马靴]|h|r",
-["loot2"] = {
-{
-["count"] = 1,
-["player"] = "北冥幽月",
-["time"] = 1781963923,
-["class"] = "PRIEST",
-},
-},
-["loot1"] = {
-{
-["count"] = 1,
-["player"] = "北冥幽月",
-["time"] = 1781963923,
-["class"] = "PRIEST",
-},
-},
-["zhuangbei1"] = "|cffa335ee|Hitem:23017::::::::60::::::::::|h[日蚀之幕]|h|r",
 },
 ["boss15"] = {
 },
 },
-["worldBossCD"] = {
-[5376] = {
-["女王安其拉"] = {
-},
-},
-},
-["options"] = {
-["roleOverviewNotShowiLevel"] = 0,
-["autoAuctionScale"] = 0.9,
-["autoTrade"] = 1,
-["fastCountMsg"] = 1,
-["editFontSize"] = 14,
-["tradeTime"] = 3,
-["bg"] = "0.01,0.01,0.01,0.8",
-["showAuctionLogFrame"] = 0,
-["tradeSameMoney"] = 1,
-["autoAllLootToMe"] = 0,
-["countDownSendChannel"] = "RAID",
-["autoAuctionStart"] = 1,
-["retainExpenses"] = 1,
-["autoAuctionLogLink"] = 1,
-["showGuoQiFrame"] = 0,
-["ERR_CHAT_THROTTLED"] = 1,
-["retainExpensesMoney"] = 0,
-["autoShowTradeCopyMoney"] = 1,
-["roleOverviewLayout"] = "up_down",
-["mouseHistoryMoney"] = 1,
-["scale"] = 1,
-["roleOverviewSort1"] = "iLevel-class-player",
-["autoAuctionAutoEndTips"] = 1,
-["roleOverviewShowTalent"] = 1,
-["allLootToMe"] = 1,
-["roleOverviewDefaultShow"] = "one",
-["auctionChat"] = 1,
-["countDownStop"] = 1,
-["autoAuctionFrameLevel"] = "HIGH",
-["MeetingHorn_isSend"] = 0,
-["duiZhangTime"] = 24,
-["configChooseMeetingHornWhisper"] = 1,
-["roleOverviewAlpha"] = 0.9,
-["autoAuctionHappySay"] = 1,
-["searchList"] = 1,
-["fastCount"] = 1,
-["lootFontSize"] = 20,
-["joinorleavePlayercolor"] = 1,
-["mainIconFrameLevel"] = "HIGH",
-["zhichuPercent"] = 1,
-["autoLoot"] = 1,
-["autoAuctionMoney"] = 1,
-["guoqiRemind"] = 1,
-["mainIconScale"] = 1,
-["NDuiOpenBag"] = 0,
-["qiankuanTrade"] = 1,
-["autoAuctionFold"] = 0,
-["isTrading"] = 1,
-["showRaidCDKillNum"] = 0,
-["miniMap"] = 1,
-["MeetingHorn_history"] = 0,
-["mainIcon"] = 0,
-["MeetingHorn_members"] = 0,
-["alpha"] = 0.8,
-["roleOverviewScale"] = 1,
-["autolootRemind"] = 1,
-["MeetingHorn_search"] = 0,
-["configChooseMeetingHornHistory"] = 1,
-["autoQingKongSaveHistory"] = 1,
-["auctionChatHoldNew"] = 1,
-["autoCreateBill"] = 1,
-["tradeMoneyTop"] = 1,
-["NumFrame"] = 1,
-["autoAdd0"] = 0,
-["countDownDuration"] = 5,
-["report"] = 1,
-["ignore"] = 1,
-["autoAuctionQianKuan"] = 1,
-["roleOverviewShowFaction"] = 0,
-["guoqiRemindMinTime"] = 30,
-["roleOverviewNotShowLevel"] = 0,
-["MeetingHorn_ActivityList"] = 0,
-["auctionLogChoose"] = 1,
-["model"] = 1,
-["lastFrame"] = "FrameOptions_config",
-["MeetingHorn_yy"] = 0,
-["fastMoney"] = 1,
-["MeetingHorn_always"] = 0,
-["auctionTopPrice"] = 1,
-["auctionHigh"] = 1,
-["autoAuctionSureClick"] = 0,
-["buttonSound"] = 1,
-["moLing"] = 1,
-["autolootNotice"] = 1,
-["tradePreview"] = 1,
-["roleOverviewShowNote"] = 0,
-["roleOverviewShowNote_width"] = 100,
-["roleOverviewShowNote_useClassColor"] = 1,
-["configChooseFilter"] = 1,
-["lootTime"] = 8,
-["auctionHighTime"] = 20,
-["fastCountPreview"] = 1,
-["Sound"] = "AI",
-["autoQingKong"] = 1,
-["HighOnterItem"] = 1,
-["tradeFontSize"] = 20,
-["tradeNotice"] = 1,
-["lastVer"] = "v1.30.1",
-["tipsSound"] = 1,
-["aotoSendLate"] = 0,
-["configChooseHope"] = 1,
-["autoAuctionPut"] = 1,
-["autoAuctionUp"] = 0,
-["tradeFlashClientIcon"] = 1,
-["autoAuctionSetMoney"] = 1,
-["addonsOutTime"] = 1,
-["mouseFK"] = 1,
-["SearchHistory"] = {
-["FilterClassItemDB260425"] = true,
-["showAuctionLogFrame260209"] = true,
-["dt231005"] = true,
-["options250610"] = true,
-["ro250602"] = true,
-["yy250509"] = true,
-["|cff00FF003月28日更新v1.26.2"] = true,
-["firstOpenMainFrame"] = true,
-["sound250527"] = true,
-["YY240925"] = true,
-["autoShowTradeCopyMoney260218"] = true,
-["|cff00FF005月22日更新v1.29.2"] = true,
-},
-["countDown"] = 1,
-["MeetingHorn_whisper"] = 0,
-},
-["filterClassNum"] = {
-[5376] = {
-["女王安其拉"] = 0,
-},
-},
-["BWL"] = {
-["boss8"] = {
-["zhuangbei4"] = "|cffa335ee|Hitem:19380::::::::60::::::::::|h[塞拉赞恩之链]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:16916::::::::60::::::::::|h[灵风长袍]|h|r",
-["loot3"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781941127,
-["count"] = 1,
-},
-},
-["loot2"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781941125,
-["count"] = 1,
-},
-},
-["zhuangbei5"] = "|cffa335ee|Hitem:19003::::::::60::::::::::|h[奈法利安的头颅]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:16905::::::::60::::::::::|h[血牙胸甲]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:19363::::::::60::::::::::|h[克鲁索洛克恩，混乱之刃]|h|r",
-["loot1"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781941122,
-["count"] = 1,
-},
-},
-["loot5"] = {
-{
-["player"] = "铭刻之盗刃",
-["class"] = "ROGUE",
-["time"] = 1781941213,
-["count"] = 1,
-},
-},
-["loot4"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781941131,
-["count"] = 1,
-},
-},
+["Gno"] = {
+["boss1"] = {
 },
 ["tradeTbl"] = {
 },
 ["boss9"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:16934::::::::60::::::::::|h[复仇护腕]|h|r",
-["loot2"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781937388,
-["count"] = 1,
-},
-},
-["zhuangbei4"] = "|cffa335ee|Hitem:18562::::::::60::::::::::|h[源质矿石]|h|rx2",
-["zhuangbei2"] = "|cffa335ee|Hitem:19337::::::::60::::::::::|h[黑龙之书]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:16959::::::::60::::::::::|h[愤怒护腕]|h|r",
-["loot3"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781937389,
-["count"] = 1,
-},
-},
-["loot1"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781937388,
-["count"] = 1,
-},
-},
-["loot4"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781938542,
-["count"] = 1,
-},
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781938613,
-["count"] = 1,
-},
-},
 },
 ["boss11"] = {
-["zhuangbei1"] = "T补贴",
-["zhuangbei2"] = "N补贴",
-["zhuangbei3"] = "DPS补贴",
 },
 ["boss12"] = {
-["zhuangbei4"] = "分钱人数",
-["zhuangbei3"] = "净收入",
-["jine2"] = "0",
-["jine4"] = "40",
-["zhuangbei5"] = "人均工资",
-["zhuangbei1"] = "总收入",
-["jine5"] = "0",
-["zhuangbei2"] = "总支出",
-["jine1"] = "0",
-["jine3"] = "0",
 },
 ["boss17"] = {
 },
 ["boss2"] = {
-["loot2"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781937484,
-["count"] = 1,
-},
-},
-["zhuangbei1"] = "|cffa335ee|Hitem:16936::::::::60::::::::::|h[巨龙追猎者腰带]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:19340::::::::60::::::::::|h[变形符文]|h|r",
-["loot3"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781937487,
-["count"] = 1,
-},
-},
-["loot1"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781937481,
-["count"] = 1,
-},
-},
-["zhuangbei3"] = "|cffa335ee|Hitem:16910::::::::60::::::::::|h[血牙腰带]|h|r",
-},
-["boss20"] = {
 },
 ["boss5"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:16928::::::::60::::::::::|h[复仇手套]|h|r",
-["loot2"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781939745,
-["count"] = 1,
 },
-},
-["loot1"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781939742,
-["count"] = 1,
-},
-},
-["zhuangbei2"] = "|cffa335ee|Hitem:19407::::::::60::::::::::|h[黑焰手套]|h|r",
+["boss20"] = {
 },
 ["boss16"] = {
 },
 ["boss18"] = {
 },
-["boss21"] = {
-},
-["boss22"] = {
-},
-["boss13"] = {
-},
 ["boss10"] = {
-},
-["boss19"] = {
-},
-["boss4"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:16920::::::::60::::::::::|h[卓越护手]|h|r",
-["loot2"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781939026,
-["count"] = 1,
-},
-},
-["loot1"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781939023,
-["count"] = 1,
-},
-},
-["zhuangbei2"] = "|cffa335ee|Hitem:19400::::::::60::::::::::|h[火喉之握]|h|r",
-},
-["boss1"] = {
-},
-["boss3"] = {
-["loot2"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781938389,
-["count"] = 1,
-},
-},
-["zhuangbei1"] = "|cffa335ee|Hitem:16919::::::::60::::::::::|h[卓越长靴]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:19374::::::::60::::::::::|h[奥术精准护腕]|h|r",
-["loot3"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781938392,
-["count"] = 1,
-},
-},
-["loot1"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781938386,
-["count"] = 1,
-},
-},
-["zhuangbei3"] = "|cffa335ee|Hitem:16957::::::::60::::::::::|h[审判马靴]|h|r",
-},
-["boss6"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:16913::::::::60::::::::::|h[灵风手套]|h|r",
-["loot2"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781940036,
-["count"] = 1,
-},
-},
-["loot1"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781940033,
-["count"] = 1,
-},
-},
-["zhuangbei2"] = "|cffa335ee|Hitem:19431::::::::60::::::::::|h[斯泰林的甲虫壳]|h|r",
 },
 ["boss14"] = {
 },
-["boss15"] = {
+["boss22"] = {
 },
-["boss7"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:16924::::::::60::::::::::|h[卓越肩铠]|h|r",
-["loot2"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781940567,
-["count"] = 1,
+["boss21"] = {
 },
+["boss4"] = {
 },
-["zhuangbei4"] = "|cffa335ee|Hitem:19389::::::::60::::::::::|h[紧绷的龙皮护肩]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:19391::::::::60::::::::::|h[闪光之鞋]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:16902::::::::60::::::::::|h[怒风肩甲]|h|r",
-["loot3"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781940570,
-["count"] = 1,
-},
-},
-["loot1"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781940565,
-["count"] = 1,
-},
-},
-["loot4"] = {
-{
-["player"] = "巴蜀小鎮",
-["class"] = "MAGE",
-["time"] = 1781940574,
-["count"] = 1,
-},
-},
-},
-["raidRoster"] = {
-["roster"] = {
-"巴蜀小鎮",
-"天堂向佐",
-"恶魔仆从",
-"幽鬼-德姆塞卡尔",
-"池淼淼",
-"倔强的老登",
-"素寺",
-"门神-法琳娜",
-"勇者辛美尔",
-"劈特儿",
-"痴心情长见",
-"恋之初吻",
-"上门女婿战",
-"明不详",
-"赤紅十三",
-"老中医康奶奶",
-"愤怒的三角裤",
-"轻风微吹",
-"勇敢的老黄",
-"罪恶滔天-法琳娜",
-"你有礼貌吗",
-"橙色星矢",
-"女王安其拉",
-"花火瞬夜",
-"尐胖墩",
-"八零后德",
-"哆哆猪",
-"明教灬黛绮丝",
-"点点猪",
-"希瓦噢",
-"青萍之沫",
-"母侏会飞",
-"潃澀",
-"肆拾贰",
-"王总的小秘书",
-"你这么狂吗-德姆塞卡尔",
-"天山戰戈",
-"老登登陆",
-"铭刻之盗刃",
-"傻妞妞",
-},
-["time"] = 1781941109,
-["realm"] = "哈霍兰",
-},
-},
-["font"] = "ARKai_T.ttf",
-["clearBiaoGeMoney"] = {
-["BWL"] = {
-["name"] = "女王安其拉",
-["money"] = 42326,
-["realmID"] = 5376,
-["FB"] = "BWL",
-["time"] = 1781627400,
-},
-["ZUG"] = {
-["name"] = "女王安其拉",
-["money"] = 51016,
-["realmID"] = 5376,
-["FB"] = "ZUG",
-["time"] = 1781934612,
-},
-["MC"] = {
-["name"] = "女王安其拉",
-["money"] = 42326,
-["realmID"] = 5376,
-["FB"] = "MC",
-["time"] = 1781627404,
-},
-["AQL"] = {
-["name"] = "女王安其拉",
-["money"] = 51016,
-["realmID"] = 5376,
-["FB"] = "AQL",
-["time"] = 1781934624,
-},
-["TAQ"] = {
-["name"] = "女王安其拉",
-["money"] = 42326,
-["realmID"] = 5376,
-["FB"] = "TAQ",
-["time"] = 1781627416,
-},
-},
-["marketPrice"] = {
-},
-["SKILLchoice"] = {
-[0] = 1,
-},
-["buffCD"] = {
-[5376] = {
-["女王安其拉"] = {
-},
-},
-},
-["point"] = {
-},
-["MeetingHorn"] = {
-[5376] = {
-["女王安其拉"] = {
-},
-},
-},
-["auctionMSGhistory"] = {
-},
-["FB"] = "MC",
-["NotifyChannel"] = "RAID",
-["MeetingHornWhisper"] = {
-[5376] = {
-["女王安其拉"] = {
-["AchievementChoose"] = 1,
-["otherChoose2"] = 1,
-["otherChoose1"] = 1,
-["iLevelChoose"] = 1,
-},
-},
-},
-["ZUG"] = {
 ["boss8"] = {
 },
-["tradeTbl"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["raidRoster"] = {
-["roster"] = {
-"女王安其拉",
-"Kensoul",
-"飓风之锤",
-"刀剑冷无情",
-"幕云",
-"依佤卡卡西诺",
-"青州第一法师",
-"仙女妮可",
-"慈父多败汪",
-"是藤儿呀",
-"Qiqa",
-"污喵王之怒",
-"禅悟-法琳娜",
-"会飞双马尾",
-"老麻雀-法琳娜",
-},
-["time"] = 1782049636,
-["realm"] = "哈霍兰",
-},
-["boss5"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-["boss18"] = {
-},
-["boss22"] = {
-},
-["boss14"] = {
-["zhuangbei4"] = "分钱人数",
-["zhuangbei3"] = "净收入",
-["jine2"] = "0",
-["jine4"] = 20,
-["zhuangbei5"] = "人均工资",
-["zhuangbei1"] = "总收入",
-["jine5"] = "0",
-["zhuangbei2"] = "总支出",
-["jine1"] = "0",
-["jine3"] = "0",
-},
-["boss10"] = {
-},
 ["boss19"] = {
-},
-["boss4"] = {
-["loot2"] = {
-{
-["time"] = 1782049734,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "Kensoul",
-},
-},
-["zhuangbei1"] = "|cff0070dd|Hitem:22637::::::::60::::::::::|h[原始哈卡莱神像]|h|r",
-["zhuangbei3"] = "|cff0070dd|Hitem:19870::::::::60::::::::::|h[哈卡莱血披风]|h|r",
-["loot3"] = {
-{
-["time"] = 1782049737,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "飓风之锤",
-},
-},
-["loot1"] = {
-{
-["time"] = 1782049731,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "仙女妮可",
-},
-},
-["zhuangbei2"] = "|cff0070dd|Hitem:19869::::::::60::::::::::|h[浴血护手]|h|r",
-},
-["boss21"] = {
-},
-["boss1"] = {
-},
-["boss3"] = {
-},
-["boss13"] = {
-["zhuangbei1"] = "T补贴",
-["zhuangbei2"] = "N补贴",
-["zhuangbei3"] = "DPS补贴",
-},
-["boss6"] = {
-},
-["boss7"] = {
-["maijia2"] = "慈父多败汪",
-["guid2"] = "Player-5376-173602CC",
-["realm2"] = "哈霍兰",
-["zhuangbei3"] = "|cff0070dd|Hitem:22718::::::::60::::::::::|h[浴血面具]|h|r",
-["jine2"] = 0,
-["loot3"] = {
-{
-["time"] = 1782049199,
-["class"] = "WARRIOR",
-["count"] = 1,
-["player"] = "女王安其拉",
-},
-},
-["factionGroup2"] = "Alliance",
-["zhuangbei1"] = "|cffa335ee|Hitem:19723::::::::60::::::::::|h[原始哈卡莱套索]|h|r",
-["color2"] = {
-0.96,
-0.55,
-0.73,
-},
-["loot2"] = {
-{
-["time"] = 1782049196,
-["class"] = "WARRIOR",
-["count"] = 1,
-["player"] = "女王安其拉",
-},
-},
-["class2"] = "PALADIN",
-["raceID2"] = 1,
-["guild2"] = "戦沧海",
-["level2"] = 60,
-["loot1"] = {
-{
-["time"] = 1782049194,
-["class"] = "WARRIOR",
-["count"] = 1,
-["player"] = "女王安其拉",
-},
-},
-["zhuangbei2"] = "|cff0070dd|Hitem:19898::::::::60::::::::::|h[巨魔族长徽记]|h|r",
-},
-["boss15"] = {
-},
-},
-["tradeSkillCooldown"] = {
-[5376] = {
-["女王安其拉"] = {
-},
-},
-},
-["equip"] = {
-[5376] = {
-["女王安其拉"] = {
-["5"] = {
-["quality"] = 4,
-["level"] = 92,
-["itemID"] = 22416,
-["link"] = "|cffa335ee|Hitem:22416:1891:::::::60::::::::::|h[无畏胸甲]|h|r",
-},
-["4"] = {
-["quality"] = 1,
-["level"] = 15,
-["itemID"] = 3342,
-["link"] = "|cffffffff|Hitem:3342::::::::60::::::::::|h[杉德尔船长的衬衣]|h|r",
-},
-["9"] = {
-["quality"] = 4,
-["level"] = 88,
-["itemID"] = 22423,
-["link"] = "|cffa335ee|Hitem:22423:1885:::::::60::::::::::|h[无畏护腕]|h|r",
-},
-["1"] = {
-["quality"] = 4,
-["level"] = 81,
-["itemID"] = 21329,
-["link"] = "|cffa335ee|Hitem:21329:2583:::::::60::::::::::|h[征服者的皇冠]|h|r",
-},
-["8"] = {
-["quality"] = 4,
-["level"] = 71,
-["itemID"] = 16483,
-["link"] = "|cffa335ee|Hitem:16483:911:::::::60::::::::::|h[统帅的板甲战靴]|h|r",
-},
-["3"] = {
-["quality"] = 4,
-["level"] = 74,
-["itemID"] = 16480,
-["link"] = "|cffa335ee|Hitem:16480:2606:::::::60::::::::::|h[元帅的板甲护肩]|h|r",
-},
-["2"] = {
-["quality"] = 4,
-["level"] = 88,
-["itemID"] = 22732,
-["link"] = "|cffa335ee|Hitem:22732::::::::60::::::::::|h[克苏恩的印记]|h|r",
-},
-["19"] = {
-["quality"] = 1,
-["level"] = 20,
-["itemID"] = 19506,
-["link"] = "|cffffffff|Hitem:19506::::::::60::::::::::|h[银翼军服]|h|r",
-},
-["18"] = {
-["quality"] = 4,
-["level"] = 75,
-["itemID"] = 19368,
-["link"] = "|cffa335ee|Hitem:19368::::::::60::::::::::|h[龙息手持火炮]|h|r",
-},
-["7"] = {
-["quality"] = 4,
-["level"] = 81,
-["itemID"] = 21332,
-["link"] = "|cffa335ee|Hitem:21332:2543:::::::60::::::::::|h[征服者的腿铠]|h|r",
-},
-["6"] = {
-["quality"] = 4,
-["level"] = 85,
-["itemID"] = 23219,
-["link"] = "|cffa335ee|Hitem:23219::::::::60::::::::::|h[教官的腰带]|h|r",
-},
-["14"] = {
-["quality"] = 4,
-["level"] = 85,
-["itemID"] = 22954,
-["link"] = "|cffa335ee|Hitem:22954::::::::60::::::::::|h[蜘蛛之吻]|h|r",
-},
-["15"] = {
-["quality"] = 4,
-["level"] = 88,
-["itemID"] = 21710,
-["link"] = "|cffa335ee|Hitem:21710:2622:::::::60::::::::::|h[堕落神明披风]|h|r",
-},
-["16"] = {
-["quality"] = 4,
-["level"] = 89,
-["itemID"] = 23577,
-["link"] = "|cffa335ee|Hitem:23577:1900:::::::60::::::::::|h[饥饿之寒]|h|r",
-},
-["17"] = {
-["quality"] = 4,
-["level"] = 90,
-["itemID"] = 23043,
-["link"] = "|cffa335ee|Hitem:23043:929:::::::60::::::::::|h[死亡的面孔]|h|r",
-},
-["13"] = {
-["quality"] = 4,
-["level"] = 76,
-["itemID"] = 19341,
-["link"] = "|cffa335ee|Hitem:19341::::::::60::::::::::|h[生命宝石]|h|r",
-},
-["12"] = {
-["quality"] = 4,
-["level"] = 81,
-["itemID"] = 21601,
-["link"] = "|cffa335ee|Hitem:21601::::::::60::::::::::|h[维克洛尔大帝之戒]|h|r",
-},
-["11"] = {
-["quality"] = 4,
-["level"] = 83,
-["itemID"] = 19376,
-["link"] = "|cffa335ee|Hitem:19376::::::::60::::::::::|h[阿基迪罗斯的清算之戒]|h|r",
-},
-["10"] = {
-["quality"] = 4,
-["level"] = 88,
-["itemID"] = 21581,
-["link"] = "|cffa335ee|Hitem:21581:2564:::::::60::::::::::|h[毁灭护手]|h|r",
-},
-},
-},
-},
-["RaidCD"] = {
-[5376] = {
-["女王安其拉"] = {
-{
-["fbId"] = 409,
-["num"] = 40,
-["killInfo"] = {
-{
-["name"] = "鲁西弗隆",
-["isKilled"] = false,
-},
-{
-["name"] = "玛格曼达",
-["isKilled"] = false,
-},
-{
-["name"] = "基赫纳斯",
-["isKilled"] = false,
-},
-{
-["name"] = "加尔",
-["isKilled"] = true,
-},
-{
-["name"] = "沙斯拉尔",
-["isKilled"] = false,
-},
-{
-["name"] = "迦顿男爵",
-["isKilled"] = true,
-},
-{
-["name"] = "萨弗隆先驱者",
-["isKilled"] = false,
-},
-{
-["name"] = "焚化者古雷曼格",
-["isKilled"] = false,
-},
-{
-["name"] = "管理者埃克索图斯",
-["isKilled"] = false,
-},
-{
-["name"] = "拉格纳罗斯",
-["isKilled"] = false,
-},
-{
-["name"] = "熔火之心",
-["isKilled"] = false,
-},
-},
-["resettime"] = 32022,
-["colorplayer"] = "|cffc79c6e女王安其拉|r",
-["player"] = "女王安其拉",
-["diff"] = 9,
-["killNum"] = 2,
-["bossSum"] = 11,
-["endtime"] = 1782342000,
-},
-{
-["fbId"] = 469,
-["num"] = 40,
-["killInfo"] = {
-{
-["name"] = "狂野的拉佐格尔",
-["isKilled"] = true,
-},
-{
-["name"] = "堕落的瓦拉斯塔兹",
-["isKilled"] = true,
-},
-{
-["name"] = "勒什雷尔",
-["isKilled"] = true,
-},
-{
-["name"] = "费尔默",
-["isKilled"] = true,
-},
-{
-["name"] = "埃博诺克",
-["isKilled"] = true,
-},
-{
-["name"] = "弗莱格尔",
-["isKilled"] = true,
-},
-{
-["name"] = "克洛玛古斯",
-["isKilled"] = true,
-},
-{
-["name"] = "奈法利安",
-["isKilled"] = true,
-},
-},
-["resettime"] = 32022,
-["colorplayer"] = "|cffc79c6e女王安其拉|r",
-["player"] = "女王安其拉",
-["diff"] = 9,
-["killNum"] = 8,
-["bossSum"] = 8,
-["endtime"] = 1782342000,
-},
-{
-["fbId"] = 531,
-["num"] = 40,
-["killInfo"] = {
-{
-["name"] = "预言者斯克拉姆",
-["isKilled"] = true,
-},
-{
-["name"] = "安其拉三宝",
-["isKilled"] = true,
-},
-{
-["name"] = "沙尔图拉",
-["isKilled"] = true,
-},
-{
-["name"] = "顽强的范克瑞斯",
-["isKilled"] = true,
-},
-{
-["name"] = "维希度斯",
-["isKilled"] = false,
-},
-{
-["name"] = "哈霍兰公主",
-["isKilled"] = true,
-},
-{
-["name"] = "双子皇帝",
-["isKilled"] = true,
-},
-{
-["name"] = "奥罗",
-["isKilled"] = true,
-},
-{
-["name"] = "克苏恩",
-["isKilled"] = true,
-},
-},
-["resettime"] = 32022,
-["colorplayer"] = "|cffc79c6e女王安其拉|r",
-["player"] = "女王安其拉",
-["diff"] = 9,
-["killNum"] = 8,
-["bossSum"] = 9,
-["endtime"] = 1782342000,
-},
-{
-["fbId"] = 533,
-["num"] = 40,
-["killInfo"] = {
-{
-["name"] = "阿努布雷坎",
-["isKilled"] = true,
-},
-{
-["name"] = "黑女巫法琳娜",
-["isKilled"] = true,
-},
-{
-["name"] = "迈克斯纳",
-["isKilled"] = true,
-},
-{
-["name"] = "瘟疫使者诺斯",
-["isKilled"] = true,
-},
-{
-["name"] = "肮脏的希尔盖",
-["isKilled"] = true,
-},
-{
-["name"] = "洛欧塞布",
-["isKilled"] = true,
-},
-{
-["name"] = "教官拉苏维奥斯",
-["isKilled"] = true,
-},
-{
-["name"] = "收割者戈提克",
-["isKilled"] = true,
-},
-{
-["name"] = "天启四骑士",
-["isKilled"] = true,
-},
-{
-["name"] = "帕奇维克",
-["isKilled"] = true,
-},
-{
-["name"] = "格罗布鲁斯",
-["isKilled"] = true,
-},
-{
-["name"] = "格拉斯",
-["isKilled"] = true,
-},
-{
-["name"] = "塔迪乌斯",
-["isKilled"] = true,
-},
-{
-["name"] = "萨菲隆",
-["isKilled"] = true,
-},
-{
-["name"] = "克尔苏加德",
-["isKilled"] = true,
-},
-},
-["resettime"] = 32022,
-["colorplayer"] = "|cffc79c6e女王安其拉|r",
-["player"] = "女王安其拉",
-["diff"] = 9,
-["killNum"] = 15,
-["bossSum"] = 15,
-["endtime"] = 1782342000,
-},
-},
-},
-},
-["AQL"] = {
-["boss8"] = {
-},
-["tradeTbl"] = {
-},
-["boss9"] = {
-["zhuangbei1"] = "T补贴",
-["zhuangbei2"] = "N补贴",
-["zhuangbei3"] = "DPS补贴",
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss20"] = {
-},
-["boss16"] = {
-},
-["boss18"] = {
-},
-["boss10"] = {
-["zhuangbei4"] = "分钱人数",
-["zhuangbei3"] = "净收入",
-["jine2"] = "0",
-["jine4"] = 20,
-["zhuangbei5"] = "人均工资",
-["zhuangbei1"] = "总收入",
-["jine5"] = "0",
-["zhuangbei2"] = "总支出",
-["jine1"] = "0",
-["jine3"] = "0",
-},
-["boss13"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss1"] = {
 },
 ["boss6"] = {
 },
 ["boss3"] = {
 },
-["boss14"] = {
+["boss13"] = {
 },
 ["boss7"] = {
 },
 ["boss15"] = {
-},
-},
-["lastGuoQiTime"] = 0,
-["HistoryList"] = {
-["BWL"] = {
-{
-260529022651,
-"05月29日02:26:51\n黑翼之巢 40人 工资:",
-},
-},
-["ZUG"] = {
-{
-260606045514,
-"06月06日04:55:14\n祖尔格拉布 20人 工资:50",
-},
-},
-["MC"] = {
-{
-260610010524,
-"06月10日01:05:24\n熔火之心 40人 工资:0",
-},
-{
-260530035803,
-"05月30日03:58:03\n熔火之心 40人 工资:",
-},
-},
-["NAXX"] = {
-},
-["AQL"] = {
-},
-["TAQ"] = {
-{
-260530025047,
-"05月30日02:50:47\n安其拉神殿 40人 工资:",
-},
-{
-260524005236,
-"05月24日00:52:36\n安其拉神殿 40人 工资:",
-},
-},
-},
-["FilterClassItemDB"] = {
-[5376] = {
-["女王安其拉"] = {
-{
-["ShuXing"] = {
-["法术强度"] = 1,
-["精神"] = 1,
-["特定法术强度"] = 1,
-["法术命中"] = 1,
-["5回法力值"] = 1,
-["法术爆击"] = 1,
-["治疗强度"] = 1,
-},
-["Name"] = "战士",
-["Armor"] = {
-["1"] = 1,
-["0"] = 1,
-["8"] = 1,
-["9"] = 1,
-["7"] = 1,
-["10"] = 1,
-},
-["Class"] = {
-["过滤职业限定"] = 1,
-},
-["Icon"] = "Interface/Icons/classicon_WARRIOR",
-["Weapon"] = {
-["19"] = 1,
-["9"] = 1,
-["20"] = 1,
-},
-},
-{
-["ShuXing"] = {
-["法术强度"] = 1,
-["精神"] = 1,
-["智力"] = 1,
-["特定法术强度"] = 1,
-["法术命中"] = 1,
-["5回法力值"] = 1,
-["法术爆击"] = 1,
-["治疗强度"] = 1,
-},
-["Name"] = "战士-防御",
-["Armor"] = {
-["1"] = 1,
-["0"] = 1,
-["3"] = 1,
-["2"] = 1,
-["8"] = 1,
-["9"] = 1,
-["7"] = 1,
-["10"] = 1,
-},
-["Class"] = {
-["过滤职业限定"] = 1,
-},
-["Icon"] = "Interface/Icons/ability_warrior_defensivestance",
-["Weapon"] = {
-["9"] = 1,
-["8"] = 1,
-["6"] = 1,
-["1"] = 1,
-["5"] = 1,
-["19"] = 1,
-["20"] = 1,
-["10"] = 1,
-},
-},
-{
-["ShuXing"] = {
-["法术强度"] = 1,
-["格挡"] = 1,
-["特定法术强度"] = 1,
-["招架"] = 1,
-["法术命中"] = 1,
-["治疗强度"] = 1,
-["防御"] = 1,
-["躲闪"] = 1,
-["5回法力值"] = 1,
-["法术爆击"] = 1,
-["精神"] = 1,
-},
-["Name"] = "战士-武器",
-["Armor"] = {
-["1"] = 1,
-["0"] = 1,
-["10"] = 1,
-["8"] = 1,
-["9"] = 1,
-["7"] = 1,
-["6"] = 1,
-},
-["Class"] = {
-["过滤职业限定"] = 1,
-},
-["Icon"] = "Interface/Icons/ability_warrior_savageblow",
-["Weapon"] = {
-["9"] = 1,
-["0"] = 1,
-["15"] = 1,
-["19"] = 1,
-["13"] = 1,
-["4"] = 1,
-["7"] = 1,
-["20"] = 1,
-},
-},
-{
-["ShuXing"] = {
-["法术强度"] = 1,
-["格挡"] = 1,
-["特定法术强度"] = 1,
-["招架"] = 1,
-["法术命中"] = 1,
-["治疗强度"] = 1,
-["防御"] = 1,
-["躲闪"] = 1,
-["5回法力值"] = 1,
-["法术爆击"] = 1,
-["精神"] = 1,
-},
-["Name"] = "战士-狂怒",
-["Armor"] = {
-["1"] = 1,
-["0"] = 1,
-["10"] = 1,
-["8"] = 1,
-["9"] = 1,
-["7"] = 1,
-["6"] = 1,
-},
-["Class"] = {
-["过滤职业限定"] = 1,
-},
-["Icon"] = "Interface/Icons/ability_warrior_innerrage",
-["Weapon"] = {
-["9"] = 1,
-["8"] = 1,
-["6"] = 1,
-["1"] = 1,
-["5"] = 1,
-["19"] = 1,
-["20"] = 1,
-["10"] = 1,
-},
-},
-},
-},
-},
-["whoFrame"] = {
-["history"] = {
-"凤凰",
-"鸣鸣快跑",
-"星宇",
-"貂小",
-"六扇门",
-"位面",
-},
-},
-["lastFrame"] = "Hope",
-["YYdb"] = {
-["share"] = 1,
-["history"] = {
-},
-["all"] = {
-{
-["name"] = "",
-["edit"] = "",
-["date"] = 260530,
-["yy"] = "881411",
-["pingjia"] = 1,
-},
-},
-["historyFilter"] = 0,
-["historyEmpty"] = {
-},
-["allFilter"] = 0,
-["shareCount"] = 6,
-["LeaderYY"] = {
 },
 },
 ["playerInfo"] = {
-[5376] = {
-["女王安其拉"] = {
-["faction"] = "Alliance",
-["iLevel"] = 83.75,
-["talent"] = 2,
-["class"] = "WARRIOR",
-["level"] = 60,
+[5303] = {
+},
+[6118] = {
+},
+[5843] = {
+},
+[5453] = {
+["露露缇娅丶"] = {
+["raceID"] = 1,
+["level"] = 10,
+["class"] = "PRIEST",
+["iLevel"] = 3.9375,
+},
+},
+[5381] = {
+["露露緹婭"] = {
+["iLevel"] = 0.375,
+["class"] = "PRIEST",
+["level"] = 1,
 ["raceID"] = 1,
 },
 },
 },
-["TAQ"] = {
+["duizhang"] = {
+},
+["filterClassNum"] = {
+[5842] = {
+},
+[5381] = {
+["露露緹婭"] = 0,
+},
+[6118] = {
+},
+[5843] = {
+},
+[5453] = {
+["露露缇娅丶"] = 0,
+},
+[5303] = {
+},
+},
+["BWL"] = {
 ["boss8"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:20931::::::::60::::::::::|h[巨型沙虫的皮]|h|r",
+["zhuangbei2"] = "|cffa335ee|Hitem:16923::::::::60:::::::::|h[卓越法袍]|h|r",
+["itemLevel5"] = 83,
+["zhuangbei4"] = "|cffa335ee|Hitem:19003::::::::60:::::::::|h[奈法利安的头颅]|h|r",
+["zhuangbei3"] = "|cffa335ee|Hitem:19380::::::::60:::::::::|h[塞拉赞恩之链]|h|r",
+["itemLevel3"] = 83,
+["itemLevel4"] = 60,
 ["loot3"] = {
 {
-["class"] = "MAGE",
-["player"] = "貂小蝉",
+["time"] = 1743344366,
+["class"] = "PRIEST",
 ["count"] = 1,
-["time"] = 1782197282,
-},
-},
-["loot2"] = {
-{
-["class"] = "MAGE",
-["player"] = "貂小蝉",
-["count"] = 1,
-["time"] = 1782197282,
-},
-},
-["zhuangbei1"] = "|cffa335ee|Hitem:20927::::::::60::::::::::|h[奥罗的外皮]|h|r",
-["itemLevel2"] = 1,
-["itemLevel3"] = 81,
-["itemLevel1"] = 1,
-["loot1"] = {
-{
-["class"] = "MAGE",
-["player"] = "貂小蝉",
-["count"] = 1,
-["time"] = 1782197282,
-},
-},
-["zhuangbei3"] = "|cffa335ee|Hitem:21611::::::::60::::::::::|h[掘地虫护腕]|h|r",
-},
-["tradeTbl"] = {
-},
-["boss9"] = {
-["itemLevel5"] = 88,
-["zhuangbei4"] = "|cffa335ee|Hitem:22730::::::::60::::::::::|h[眼柄腰带]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:21221::::::::60::::::::::|h[克苏恩之眼]|h|r",
-["itemLevel3"] = 60,
-["itemLevel4"] = 88,
-["loot1"] = {
-{
-["count"] = 1,
-["player"] = "貂小蝉",
-["time"] = 1782198255,
-["class"] = "MAGE",
-},
-},
-["loot3"] = {
-{
-["count"] = 1,
-["player"] = "貂小蝉",
-["time"] = 1782198256,
-["class"] = "MAGE",
+["player"] = "潼宝",
 },
 },
 ["loot4"] = {
 {
+["time"] = 1743344366,
+["class"] = "PRIEST",
 ["count"] = 1,
-["player"] = "貂小蝉",
-["time"] = 1782198256,
-["class"] = "MAGE",
+["player"] = "潼宝",
 },
 },
+["zhuangbei1"] = "|cffa335ee|Hitem:16931::::::::60:::::::::|h[复仇法袍]|h|r",
 ["loot2"] = {
 {
+["time"] = 1743344366,
+["class"] = "PRIEST",
 ["count"] = 1,
-["player"] = "貂小蝉",
-["time"] = 1782198256,
-["class"] = "MAGE",
+["player"] = "潼宝",
 },
 },
-["zhuangbei5"] = "|cffa335ee|Hitem:21581::::::::60::::::::::|h[毁灭护手]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:20929::::::::60::::::::::|h[上古之神的甲壳]|h|r",
-["itemLevel2"] = 1,
-["itemLevel1"] = 1,
+["zhuangbei5"] = "|cffa335ee|Hitem:19375::::::::60:::::::::|h[密苏达尔，夺魂者的头饰]|h|r",
+["itemLevel2"] = 76,
+["time"] = "8:46",
+["itemLevel1"] = 76,
 ["loot5"] = {
 {
+["time"] = 1743344366,
+["class"] = "PRIEST",
 ["count"] = 1,
-["player"] = "貂小蝉",
-["time"] = 1782198256,
-["class"] = "MAGE",
+["player"] = "潼宝",
 },
 },
-["zhuangbei2"] = "|cffa335ee|Hitem:20933::::::::60::::::::::|h[上古之神的外鞘]|h|r",
-},
-["boss11"] = {
-},
-["boss12"] = {
-["zhuangbei2"] = "N补贴",
-["zhuangbei3"] = "DPS补贴",
-["zhuangbei1"] = "T补贴",
-},
-["boss17"] = {
-},
-["boss2"] = {
-["loot2"] = {
-{
-["time"] = 1782192552,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "貂小蝉",
-},
-},
-["zhuangbei1"] = "|cffa335ee|Hitem:21697::::::::60::::::::::|h[神性披风]|h|r",
-["itemLevel2"] = 75,
-["itemLevel1"] = 75,
 ["loot1"] = {
 {
-["time"] = 1782192551,
-["class"] = "MAGE",
+["time"] = 1743344366,
+["class"] = "PRIEST",
 ["count"] = 1,
-["player"] = "貂小蝉",
+["player"] = "潼宝",
 },
 },
-["zhuangbei2"] = "|cffa335ee|Hitem:21691::::::::60::::::::::|h[沾满软泥的护手]|h|r",
 },
-["raidRoster"] = {
-["roster"] = {
-"貂小蝉",
-"小羊苏希-法琳娜",
-"廉小刀",
-"米小可",
-"小阿柯",
-"牛小蔓",
-"微笑恶魔",
-"干饭达人",
-"Ipoql",
-"偷的就是你",
-"冬夜之秋",
-"儍妞儿",
-"神秘的老黄",
-"子熠",
-"女王安其拉",
-"神萬仨",
-"漫威丶矮保罗",
-"萤勾绮绮",
-"圣光空空",
-"封刀无澜",
-"电竞张学友",
-"芙汐",
-"捅你小菊菊",
-"移动我不动",
-"破丶苍穹",
-"法喜自在",
-"甜甜圈-德姆塞卡尔",
-"一纸流年",
-"然和",
-"生而伟大",
-"小香宝灵犀",
-"长安老猫",
-"点星辰",
-"吉吉熊",
-"法号销魂-德姆塞卡尔",
-"晋北啊妹",
-"纳闷的黑生蚝",
-"往日不可追",
-"青锋冷月",
-"肆虐狂少",
+["lockoutIDtbl"] = {
+[469] = {
+["instanceID"] = 469,
+["realmID"] = 5453,
+["lockoutID"] = 104463405,
 },
-["time"] = 1782198247,
-["realm"] = "哈霍兰",
 },
-["boss5"] = {
+["tradeTbl"] = {
 },
-["boss16"] = {
+["boss9"] = {
+["itemLevel1"] = 60,
+["loot1"] = {
+{
+["time"] = 1743340377,
+["class"] = "PRIEST",
+["count"] = 1,
+["player"] = "潼宝",
 },
-["boss20"] = {
 },
-["boss18"] = {
+["zhuangbei1"] = "|cffa335ee|Hitem:18562::::::::60:::::::::|h[源质矿石]|h|r",
 },
-["boss22"] = {
+["boss11"] = {
+["zhuangbei1"] = "T补贴",
+["zhuangbei3"] = "DPS补贴",
+["zhuangbei2"] = "N补贴",
 },
-["boss13"] = {
+["boss12"] = {
 ["zhuangbei4"] = "分钱人数",
 ["zhuangbei3"] = "净收入",
 ["jine2"] = "0",
@@ -2352,6 +541,76 @@ BiaoGe = {
 ["jine1"] = "0",
 ["jine5"] = "0",
 },
+["boss17"] = {
+},
+["boss2"] = {
+["zhuangbei2"] = "|cffa335ee|Hitem:19339::::::::60:::::::::|h[思维加速宝石]|h|r",
+["loot3"] = {
+{
+["player"] = "潼宝",
+["class"] = "PRIEST",
+["time"] = 1743338996,
+["count"] = 1,
+},
+},
+["zhuangbei3"] = "|cffa335ee|Hitem:16910::::::::60:::::::::|h[血牙腰带]|h|r",
+["loot2"] = {
+{
+["player"] = "潼宝",
+["class"] = "PRIEST",
+["time"] = 1743338996,
+["count"] = 1,
+},
+},
+["time"] = "1:33",
+["zhuangbei1"] = "|cffa335ee|Hitem:16952::::::::60:::::::::|h[审判腰带]|h|r",
+["loot1"] = {
+{
+["player"] = "潼宝",
+["class"] = "PRIEST",
+["time"] = 1743338996,
+["count"] = 1,
+},
+},
+["itemLevel1"] = 76,
+["itemLevel3"] = 76,
+["itemLevel2"] = 76,
+},
+["boss20"] = {
+},
+["boss5"] = {
+["loot2"] = {
+{
+["time"] = 1743342273,
+["class"] = "PRIEST",
+["count"] = 1,
+["player"] = "潼宝",
+},
+},
+["time"] = "2:55",
+["zhuangbei1"] = "|cffa335ee|Hitem:19394::::::::60:::::::::|h[龙爪肩铠]|h|r",
+["zhuangbei2"] = "|cffa335ee|Hitem:19405::::::::60:::::::::|h[玛法里奥的祝福]|h|r",
+["itemLevel1"] = 75,
+["loot1"] = {
+{
+["time"] = 1743342273,
+["class"] = "PRIEST",
+["count"] = 1,
+["player"] = "潼宝",
+},
+},
+["itemLevel2"] = 75,
+},
+["boss16"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss22"] = {
+},
+["boss13"] = {
+},
 ["boss19"] = {
 },
 ["boss21"] = {
@@ -2359,238 +618,287 @@ BiaoGe = {
 ["boss4"] = {
 ["loot2"] = {
 {
-["time"] = 1782193608,
-["class"] = "MAGE",
+["time"] = 1743341212,
+["class"] = "PRIEST",
 ["count"] = 1,
-["player"] = "貂小蝉",
+["player"] = "潼宝",
 },
 },
-["zhuangbei1"] = "|cffa335ee|Hitem:21645::::::::60::::::::::|h[掘洞者之靴]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:21663::::::::60::::::::::|h[守护圣徒长袍]|h|r",
-["itemLevel1"] = 77,
+["time"] = "3:15",
+["zhuangbei1"] = "|cffa335ee|Hitem:16899::::::::60:::::::::|h[怒风护手]|h|r",
+["zhuangbei2"] = "|cffa335ee|Hitem:19365::::::::60:::::::::|h[黑龙之爪]|h|r",
+["itemLevel1"] = 76,
 ["loot1"] = {
 {
-["time"] = 1782193608,
-["class"] = "MAGE",
+["time"] = 1743341212,
+["class"] = "PRIEST",
 ["count"] = 1,
-["player"] = "貂小蝉",
+["player"] = "潼宝",
 },
 },
-["itemLevel2"] = 77,
-},
-["boss10"] = {
-["zhuangbei4"] = "|cff0070dd|Hitem:20875::::::::60::::::::::|h[夜晚塑像]|h|rx2",
-["loot19"] = {
-{
-["time"] = 1782194999,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "貂小蝉",
-},
-},
-["itemLevel4"] = 61,
-["itemLevel19"] = 70,
-["itemLevel1"] = 1,
-["loot5"] = {
-{
-["time"] = 1782196208,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "貂小蝉",
-},
-},
-["itemLevel5"] = 60,
-["zhuangbei2"] = "|cff0070dd|Hitem:20882::::::::60::::::::::|h[战争塑像]|h|rx2",
-["loot3"] = {
-{
-["time"] = 1782192551,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "貂小蝉",
-},
-},
-["zhuangbei3"] = "|cffa335ee|Hitem:21232::::::::60::::::::::|h[其拉帝王武器]|h|r",
-["zhuangbei1"] = "|cffffffff|Hitem:21762::::::::60::::::::::|h[大型圣甲虫箱的钥匙]|h|rx2",
-["loot2"] = {
-{
-["time"] = 1782191525,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "子熠",
-},
-{
-["time"] = 1782192145,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "子熠",
-},
-},
-["zhuangbei5"] = "|cffa335ee|Hitem:21237::::::::60::::::::::|h[其拉帝王徽记]|h|r",
-["itemLevel2"] = 61,
-["loot4"] = {
-{
-["time"] = 1782193712,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "貂小蝉",
-},
-{
-["time"] = 1782194674,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "貂小蝉",
-},
-},
-["zhuangbei19"] = "|cff0070dd|Hitem:20730::::::::60::::::::::|h[公式：附魔手套 - 治疗能量]|h|r",
-["loot1"] = {
-{
-["time"] = 1782191344,
-["class"] = "DRUID",
-["count"] = 1,
-["player"] = "吉吉熊",
-},
-{
-["time"] = 1782195475,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "法喜自在",
-},
-},
-["itemLevel3"] = 60,
+["itemLevel2"] = 75,
 },
 ["boss1"] = {
+["zhuangbei2"] = "|cffa335ee|Hitem:19369::::::::60:::::::::|h[疾速进化手套]|h|r",
+["loot3"] = {
+{
+["player"] = "潼宝",
+["class"] = "PRIEST",
+["time"] = 1743338736,
+["count"] = 1,
+},
+},
+["zhuangbei3"] = "|cffa335ee|Hitem:16951::::::::60:::::::::|h[审判束腕]|h|r",
 ["loot2"] = {
 {
-["time"] = 1782191729,
-["class"] = "MAGE",
+["player"] = "潼宝",
+["class"] = "PRIEST",
+["time"] = 1743338736,
 ["count"] = 1,
-["player"] = "貂小蝉",
 },
 },
-["zhuangbei1"] = "|cffa335ee|Hitem:21128::::::::60::::::::::|h[其拉预言者法杖]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:21704::::::::60::::::::::|h[救赎预言长靴]|h|r",
-["itemLevel1"] = 75,
+["time"] = "6:31",
+["zhuangbei1"] = "|cffa335ee|Hitem:16959::::::::60:::::::::|h[愤怒护腕]|h|r",
+["itemLevel3"] = 76,
+["itemLevel1"] = 76,
 ["loot1"] = {
 {
-["time"] = 1782191729,
-["class"] = "MAGE",
+["player"] = "潼宝",
+["class"] = "PRIEST",
+["time"] = 1743338736,
 ["count"] = 1,
-["player"] = "貂小蝉",
 },
 },
 ["itemLevel2"] = 73,
 },
 ["boss3"] = {
+["zhuangbei3"] = "|cffa335ee|Hitem:16957::::::::60:::::::::|h[审判马靴]|h|r",
+["loot3"] = {
+{
+["time"] = 1743340113,
+["class"] = "PRIEST",
+["count"] = 1,
+["player"] = "潼宝",
+},
+},
+["zhuangbei2"] = "|cffa335ee|Hitem:16957::::::::60:::::::::|h[审判马靴]|h|r",
 ["loot2"] = {
 {
-["time"] = 1782193256,
-["class"] = "MAGE",
+["time"] = 1743340113,
+["class"] = "PRIEST",
 ["count"] = 1,
-["player"] = "貂小蝉",
+["player"] = "潼宝",
 },
 },
-["zhuangbei1"] = "|cffa335ee|Hitem:21673::::::::60::::::::::|h[异种虫爪]|h|r",
+["time"] = "2:02",
 ["itemLevel2"] = 76,
+["itemLevel3"] = 76,
+["itemLevel1"] = 75,
+["loot1"] = {
+{
+["time"] = 1743340113,
+["class"] = "PRIEST",
+["count"] = 1,
+["player"] = "潼宝",
+},
+},
+["zhuangbei1"] = "|cffa335ee|Hitem:19350::::::::60:::::::::|h[击心者]|h|r",
+},
+["boss6"] = {
+["loot2"] = {
+{
+["time"] = 1743342457,
+["class"] = "PRIEST",
+["count"] = 1,
+["player"] = "潼宝",
+},
+},
+["time"] = "2:06",
+["zhuangbei1"] = "|cffa335ee|Hitem:16899::::::::60:::::::::|h[怒风护手]|h|r",
+["zhuangbei2"] = "|cffa335ee|Hitem:19430::::::::60:::::::::|h[纯净思想斗篷]|h|r",
 ["itemLevel1"] = 76,
 ["loot1"] = {
 {
-["time"] = 1782193256,
-["class"] = "MAGE",
+["time"] = 1743342457,
+["class"] = "PRIEST",
 ["count"] = 1,
-["player"] = "貂小蝉",
+["player"] = "潼宝",
 },
 },
-["zhuangbei2"] = "|cffa335ee|Hitem:21670::::::::60::::::::::|h[虫群卫士徽章]|h|r",
+["itemLevel2"] = 75,
 },
 ["boss14"] = {
 },
-["boss6"] = {
-["zhuangbei3"] = "|cffa335ee|Hitem:21619::::::::60::::::::::|h[救世者手套]|h|r",
-["loot3"] = {
-{
-["time"] = 1782194999,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "貂小蝉",
-},
-},
-["loot2"] = {
-{
-["time"] = 1782194999,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "貂小蝉",
-},
-},
-["zhuangbei1"] = "|cffa335ee|Hitem:20928::::::::60::::::::::|h[其拉命令腕轮]|h|r",
-["itemLevel2"] = 1,
-["itemLevel3"] = 78,
-["itemLevel1"] = 1,
-["loot1"] = {
-{
-["time"] = 1782194999,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "貂小蝉",
-},
-},
-["zhuangbei2"] = "|cffa335ee|Hitem:20932::::::::60::::::::::|h[其拉统御腕轮]|h|r",
+["boss15"] = {
 },
 ["boss7"] = {
-["zhuangbei4"] = "|cffa335ee|Hitem:21601::::::::60::::::::::|h[维克洛尔大帝之戒]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:20930::::::::60::::::::::|h[维克洛尔的王冠]|h|r",
+["zhuangbei4"] = "|cffa335ee|Hitem:19347::::::::60:::::::::|h[克洛玛古斯之爪]|h|r",
+["zhuangbei3"] = "|cffa335ee|Hitem:19349::::::::60:::::::::|h[源质壁垒]|h|r",
 ["loot3"] = {
 {
-["time"] = 1782196208,
-["class"] = "MAGE",
+["time"] = 1743343088,
+["class"] = "PRIEST",
 ["count"] = 1,
-["player"] = "貂小蝉",
+["player"] = "潼宝",
 },
 },
-["itemLevel4"] = 81,
-["itemLevel3"] = 1,
+["zhuangbei2"] = "|cffa335ee|Hitem:16902::::::::60:::::::::|h[怒风肩甲]|h|r",
+["loot1"] = {
+{
+["time"] = 1743343088,
+["class"] = "PRIEST",
+["count"] = 1,
+["player"] = "潼宝",
+},
+},
+["itemLevel2"] = 76,
 ["loot2"] = {
 {
-["time"] = 1782196185,
-["class"] = "MAGE",
+["time"] = 1743343088,
+["class"] = "PRIEST",
 ["count"] = 1,
-["player"] = "貂小蝉",
+["player"] = "潼宝",
 },
 },
-["itemLevel2"] = 81,
-["zhuangbei1"] = "|cffa335ee|Hitem:20926::::::::60::::::::::|h[维克尼拉斯的头饰]|h|r",
+["time"] = "5:25",
 ["loot4"] = {
 {
-["time"] = 1782196208,
-["class"] = "MAGE",
+["time"] = 1743343088,
+["class"] = "PRIEST",
 ["count"] = 1,
-["player"] = "貂小蝉",
+["player"] = "潼宝",
 },
 },
-["itemLevel1"] = 1,
-["loot1"] = {
-{
-["time"] = 1782196185,
-["class"] = "MAGE",
-["count"] = 1,
-["player"] = "貂小蝉",
+["itemLevel4"] = 77,
+["itemLevel1"] = 76,
+["itemLevel3"] = 77,
+["zhuangbei1"] = "|cffa335ee|Hitem:16953::::::::60:::::::::|h[审判肩铠]|h|r",
+},
+["raidRoster"] = {
+["roster"] = {
+"小耳朵",
+"时光清浅灬",
+"快过来啊",
+"枫雪纷飞",
+"予伿",
+"小树先生",
+"小钊钊",
+"渣女一抬腿丶",
+"唐门丨衮",
+"硬的像花岗岩",
+"洛卅",
+"闲闲鱼",
+"重相逢",
+"加拿大打桩机",
+"我的发谢特贰",
+"名字不一般",
+"彩叮可",
+"超级小奶瓶",
+"柒月初",
+"萌豆",
+"梵尘丶",
+"八斤七两",
+"墩墩勇",
+"霸罢",
+"背手尿尿灬",
+"潼宝",
+"花活猎",
+"奈良吐泡泡",
+"勤劳的纪春生",
+"五点水",
+"爱的豹豹",
+"麻薯小卷",
+"南巷灬清风",
+"龍小纭",
+"排骨法",
+"爱吃西蓝花",
+"咖喱鸡",
+"送祝福",
+"素言丶",
+"溧水老司机",
+},
+["time"] = 1743344343,
+["realm"] = "铁血",
 },
 },
-["zhuangbei2"] = "|cffa335ee|Hitem:21606::::::::60::::::::::|h[堕落帝王腰带]|h|r",
+["History"] = {
+["UBRS"] = {
 },
-["boss15"] = {
+["BD"] = {
 },
+["TAQ"] = {
 },
-["Hope"] = {
-[5376] = {
-["女王安其拉"] = {
 ["BWL"] = {
-["nandu2"] = {
+},
+["NAXX"] = {
+},
+["ZUG"] = {
+},
+["AQL"] = {
+},
+["MCsod"] = {
+},
+["MC"] = {
+},
+["Temple"] = {
+},
+["Gno"] = {
+},
+},
+["newbee_report"] = {
+},
+["lastFrame"] = "FB",
+["SKILLchoice"] = {
+[0] = 1,
+},
+["BossFrame"] = {
+["BD"] = {
+},
+},
+["point"] = {
+},
+["worldBossCD"] = {
+[5381] = {
+["露露緹婭"] = {
+},
+},
+},
+["MeetingHorn"] = {
+[5842] = {
+},
+[5381] = {
+["露露緹婭"] = {
+},
+},
+[6118] = {
+},
+[5843] = {
+},
+[5453] = {
+["露露缇娅丶"] = {
+},
+},
+[5303] = {
+},
+},
+["BD"] = {
 ["boss1"] = {
+},
+["tradeTbl"] = {
 },
 ["boss9"] = {
 },
 ["boss11"] = {
+["zhuangbei4"] = "分钱人数",
+["zhuangbei3"] = "净收入",
+["jine2"] = "0",
+["jine4"] = "10",
+["zhuangbei5"] = "人均工资",
+["zhuangbei1"] = "总收入",
+["zhuangbei2"] = "总支出",
+["jine5"] = "0",
+["jine1"] = "0",
+["jine3"] = "0",
 },
 ["boss12"] = {
 },
@@ -2604,15 +912,15 @@ BiaoGe = {
 },
 ["boss7"] = {
 },
-["boss13"] = {
-},
-["boss3"] = {
-},
 ["boss14"] = {
 },
 ["boss6"] = {
 },
-["boss10"] = {
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss21"] = {
 },
 ["boss4"] = {
 },
@@ -2622,53 +930,10 @@ BiaoGe = {
 },
 ["boss22"] = {
 },
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu1"] = {
-["boss1"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
 ["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
+["zhuangbei3"] = "输出补贴",
+["zhuangbei2"] = "治疗补贴",
+["zhuangbei1"] = "坦克补贴",
 },
 ["boss18"] = {
 },
@@ -2677,102 +942,31 @@ BiaoGe = {
 ["boss20"] = {
 },
 },
-["nandu3"] = {
-["boss1"] = {
+["FB"] = "BWL",
+["NotifyChannel"] = "RAID",
+["font"] = "ARKai_T.ttf",
+["MeetingHornWhisper"] = {
+[5842] = {
 },
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
+[5381] = {
+["露露緹婭"] = {
 },
 },
-["nandu4"] = {
-["boss1"] = {
+[6118] = {
 },
-["boss9"] = {
+[5843] = {
 },
-["boss11"] = {
+[5453] = {
+["露露缇娅丶"] = {
 },
-["boss12"] = {
 },
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
+[5303] = {
 },
 },
 ["ZUG"] = {
-["nandu2"] = {
-["boss1"] = {
+["boss8"] = {
+},
+["tradeTbl"] = {
 },
 ["boss9"] = {
 },
@@ -2786,17 +980,17 @@ BiaoGe = {
 },
 ["boss5"] = {
 },
-["boss15"] = {
+["boss20"] = {
 },
-["boss7"] = {
+["boss16"] = {
+},
+["boss18"] = {
+},
+["boss21"] = {
 },
 ["boss13"] = {
 },
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
+["boss22"] = {
 },
 ["boss10"] = {
 },
@@ -2804,534 +998,153 @@ BiaoGe = {
 },
 ["boss19"] = {
 },
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu1"] = {
 ["boss1"] = {
 },
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
 ["boss3"] = {
-},
-["boss14"] = {
 },
 ["boss6"] = {
 },
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu3"] = {
-["boss1"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
+["boss14"] = {
 },
 ["boss7"] = {
 },
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu4"] = {
-["boss1"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
 ["boss15"] = {
 },
-["boss7"] = {
 },
-["boss13"] = {
+["tradeSkillCooldown"] = {
+[5842] = {
+},
+[5381] = {
+["露露緹婭"] = {
+},
+},
+[6118] = {
+},
+[5843] = {
+},
+[5453] = {
+["露露缇娅丶"] = {
+},
+},
+[5303] = {
+},
+},
+["equip"] = {
+[5453] = {
+["露露缇娅丶"] = {
+["5"] = {
+["link"] = "|cff9d9d9d|Hitem:1380::::::::10::::::::::|h[磨损的长袍]|h|r",
+["level"] = 4,
+["itemID"] = 1380,
+["quality"] = 0,
 },
-["boss3"] = {
+["4"] = {
+["link"] = "|cffffffff|Hitem:53::::::::10::::::::::|h[见习牧师衬衣]|h|r",
+["level"] = 1,
+["itemID"] = 53,
+["quality"] = 1,
 },
-["boss14"] = {
+["7"] = {
+["link"] = "|cff1eff00|Hitem:2958::::::::10::::::::::|h[旅者短裤]|h|r",
+["level"] = 10,
+["itemID"] = 2958,
+["quality"] = 2,
 },
-["boss6"] = {
+["6"] = {
+["link"] = "|cffffffff|Hitem:983::::::::10::::::::::|h[红色亚麻腰带]|h|r",
+["level"] = 9,
+["itemID"] = 983,
+["quality"] = 1,
 },
-["boss10"] = {
+["9"] = {
+["link"] = "|cff9d9d9d|Hitem:3365::::::::10::::::::::|h[磨损的护腕]|h|r",
+["level"] = 5,
+["itemID"] = 3365,
+["quality"] = 0,
 },
-["boss4"] = {
+["15"] = {
+["link"] = "|cff9d9d9d|Hitem:1376::::::::10::::::::::|h[磨损的披风]|h|r",
+["level"] = 5,
+["itemID"] = 1376,
+["quality"] = 0,
 },
-["boss19"] = {
+["16"] = {
+["link"] = "|cffffffff|Hitem:4563::::::::10::::::::::|h[粗棍]|h|r",
+["level"] = 9,
+["itemID"] = 4563,
+["quality"] = 1,
 },
-["boss8"] = {
+["18"] = {
+["link"] = "|cff1eff00|Hitem:11287::::::::10::::::::::|h[次级魔法杖]|h|r",
+["level"] = 15,
+["itemID"] = 11287,
+["quality"] = 2,
 },
-["boss22"] = {
+["8"] = {
+["link"] = "|cffffffff|Hitem:80::::::::10::::::::::|h[柔软的毛边鞋]|h|r",
+["level"] = 5,
+["itemID"] = 80,
+["quality"] = 1,
 },
-["boss21"] = {
+["10"] = {
+["link"] = "|cffffffff|Hitem:2960::::::::10::::::::::|h[旅者手套]|h|r",
+["level"] = 9,
+["itemID"] = 2960,
+["quality"] = 1,
 },
-["boss18"] = {
 },
-["boss16"] = {
 },
-["boss20"] = {
+[5381] = {
+["露露緹婭"] = {
+["8"] = {
+["quality"] = 1,
+["level"] = 1,
+["itemID"] = 51,
+["link"] = "|cffffffff|Hitem:51::::::::1::::::::::|h[见习牧师之靴]|h|r",
 },
+["16"] = {
+["quality"] = 1,
+["level"] = 2,
+["itemID"] = 36,
+["link"] = "|cffffffff|Hitem:36::::::::1::::::::::|h[用旧的钉锤]|h|r",
 },
+["5"] = {
+["quality"] = 0,
+["level"] = 1,
+["itemID"] = 6098,
+["link"] = "|cff9d9d9d|Hitem:6098::::::::1::::::::::|h[见习牧师长袍]|h|r",
 },
-["MC"] = {
-["nandu2"] = {
-["boss1"] = {
+["4"] = {
+["quality"] = 1,
+["level"] = 1,
+["itemID"] = 53,
+["link"] = "|cffffffff|Hitem:53::::::::1::::::::::|h[见习牧师衬衣]|h|r",
 },
-["boss9"] = {
+["7"] = {
+["quality"] = 0,
+["level"] = 1,
+["itemID"] = 52,
+["link"] = "|cff9d9d9d|Hitem:52::::::::1::::::::::|h[见习牧师短裤]|h|r",
 },
-["boss11"] = {
 },
-["boss12"] = {
 },
-["boss17"] = {
 },
-["boss2"] = {
+["RaidCD"] = {
+[5303] = {
 },
-["boss5"] = {
+[5453] = {
 },
-["boss15"] = {
+[5381] = {
 },
-["boss7"] = {
+[6118] = {
 },
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu1"] = {
-["boss1"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu3"] = {
-["boss1"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu4"] = {
-["boss1"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-},
-["TAQ"] = {
-["nandu2"] = {
-["boss1"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu1"] = {
-["boss1"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:21702::::::::60::::::::::|h[邪恶守卫咒符]|h|r",
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu3"] = {
-["boss1"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu4"] = {
-["boss1"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
+[5843] = {
 },
 },
 ["AQL"] = {
-["nandu2"] = {
-["boss1"] = {
+["boss8"] = {
+},
+["tradeTbl"] = {
 },
 ["boss9"] = {
 },
@@ -3345,17 +1158,17 @@ BiaoGe = {
 },
 ["boss5"] = {
 },
-["boss15"] = {
+["boss20"] = {
 },
-["boss7"] = {
+["boss16"] = {
+},
+["boss18"] = {
+},
+["boss21"] = {
 },
 ["boss13"] = {
 },
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
+["boss22"] = {
 },
 ["boss10"] = {
 },
@@ -3363,161 +1176,244 @@ BiaoGe = {
 },
 ["boss19"] = {
 },
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu1"] = {
 ["boss1"] = {
 },
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
 ["boss3"] = {
-},
-["boss14"] = {
 },
 ["boss6"] = {
 },
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu3"] = {
-["boss1"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
+["boss14"] = {
 },
 ["boss7"] = {
 },
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu4"] = {
-["boss1"] = {
-},
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
 ["boss15"] = {
 },
-["boss7"] = {
 },
-["boss13"] = {
+["marketPrice"] = {
+{
+["time"] = 1759684121,
+["price"] = 29490000,
 },
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
+{
+["time"] = 1761245010,
+["price"] = 27890000,
 },
 },
+["lastGuoQiTime"] = 0,
+["HistoryList"] = {
+["UBRS"] = {
+},
+["BD"] = {
+},
+["TAQ"] = {
+},
+["BWL"] = {
 },
 ["NAXX"] = {
-["nandu2"] = {
-["boss1"] = {
+},
+["ZUG"] = {
+},
+["AQL"] = {
+},
+["MCsod"] = {
+},
+["MC"] = {
+},
+["Temple"] = {
+},
+["Gno"] = {
+},
+},
+["FilterClassItemDB"] = {
+[5842] = {
+},
+[5381] = {
+["露露緹婭"] = {
+{
+["ShuXing"] = {
+["物理命中"] = 1,
+["武器技能"] = 1,
+["攻击强度"] = 1,
+["格挡值"] = 1,
+["击中时可能"] = 1,
+["招架"] = 1,
+["法术命中"] = 1,
+["防御"] = 1,
+["躲闪"] = 1,
+["所有命中"] = 1,
+["物理暴击"] = 1,
+["特定法术强度"] = 1,
+},
+["Name"] = "牧师-戒律/神圣",
+["Armor"] = {
+["9"] = 1,
+["8"] = 1,
+["3"] = 1,
+["2"] = 1,
+["4"] = 1,
+["7"] = 1,
+["6"] = 1,
+},
+["Class"] = {
+["过滤职业限定"] = 1,
+},
+["Icon"] = "Interface/Icons/spell_holy_wordfortitude",
+["Weapon"] = {
+["1"] = 1,
+["0"] = 1,
+["3"] = 1,
+["2"] = 1,
+["5"] = 1,
+["18"] = 1,
+["7"] = 1,
+["6"] = 1,
+["8"] = 1,
+["16"] = 1,
+["13"] = 1,
+},
+},
+{
+["ShuXing"] = {
+["物理命中"] = 1,
+["武器技能"] = 1,
+["攻击强度"] = 1,
+["格挡值"] = 1,
+["击中时可能"] = 1,
+["招架"] = 1,
+["治疗强度"] = 1,
+["防御"] = 1,
+["躲闪"] = 1,
+["物理暴击"] = 1,
+},
+["Name"] = "牧师-暗影",
+["Armor"] = {
+["9"] = 1,
+["8"] = 1,
+["3"] = 1,
+["2"] = 1,
+["4"] = 1,
+["7"] = 1,
+["6"] = 1,
+},
+["Class"] = {
+["过滤职业限定"] = 1,
+},
+["Icon"] = "Interface/Icons/spell_shadow_shadowwordpain",
+["Weapon"] = {
+["1"] = 1,
+["0"] = 1,
+["3"] = 1,
+["2"] = 1,
+["5"] = 1,
+["18"] = 1,
+["7"] = 1,
+["6"] = 1,
+["8"] = 1,
+["16"] = 1,
+["13"] = 1,
+},
+},
+},
+},
+[6118] = {
+},
+[5843] = {
+},
+[5453] = {
+["露露缇娅丶"] = {
+{
+["ShuXing"] = {
+["物理命中"] = 1,
+["武器技能"] = 1,
+["攻击强度"] = 1,
+["格挡值"] = 1,
+["击中时可能"] = 1,
+["招架"] = 1,
+["法术命中"] = 1,
+["防御"] = 1,
+["躲闪"] = 1,
+["特定法术强度"] = 1,
+["物理暴击"] = 1,
+["所有命中"] = 1,
+},
+["Name"] = "牧师-戒律/神圣",
+["Armor"] = {
+["9"] = 1,
+["8"] = 1,
+["3"] = 1,
+["2"] = 1,
+["4"] = 1,
+["7"] = 1,
+["6"] = 1,
+},
+["Class"] = {
+["过滤职业限定"] = 1,
+},
+["Icon"] = "Interface/Icons/spell_holy_wordfortitude",
+["Weapon"] = {
+["1"] = 1,
+["0"] = 1,
+["3"] = 1,
+["2"] = 1,
+["5"] = 1,
+["18"] = 1,
+["7"] = 1,
+["6"] = 1,
+["8"] = 1,
+["16"] = 1,
+["13"] = 1,
+},
+},
+{
+["ShuXing"] = {
+["物理命中"] = 1,
+["武器技能"] = 1,
+["攻击强度"] = 1,
+["格挡值"] = 1,
+["击中时可能"] = 1,
+["招架"] = 1,
+["治疗强度"] = 1,
+["防御"] = 1,
+["躲闪"] = 1,
+["物理暴击"] = 1,
+},
+["Name"] = "牧师-暗影",
+["Armor"] = {
+["9"] = 1,
+["8"] = 1,
+["3"] = 1,
+["2"] = 1,
+["4"] = 1,
+["7"] = 1,
+["6"] = 1,
+},
+["Class"] = {
+["过滤职业限定"] = 1,
+},
+["Icon"] = "Interface/Icons/spell_shadow_shadowwordpain",
+["Weapon"] = {
+["1"] = 1,
+["0"] = 1,
+["3"] = 1,
+["2"] = 1,
+["5"] = 1,
+["18"] = 1,
+["7"] = 1,
+["6"] = 1,
+["8"] = 1,
+["16"] = 1,
+["13"] = 1,
+},
+},
+},
+},
+[5303] = {
+},
+},
+["MCsod"] = {
+["boss8"] = {
+},
+["tradeTbl"] = {
 },
 ["boss9"] = {
 },
@@ -3547,55 +1443,9 @@ BiaoGe = {
 },
 ["boss4"] = {
 },
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-["nandu1"] = {
 ["boss1"] = {
 },
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
 ["boss19"] = {
-},
-["boss8"] = {
 },
 ["boss22"] = {
 },
@@ -3608,106 +1458,32 @@ BiaoGe = {
 ["boss20"] = {
 },
 },
-["nandu3"] = {
-["boss1"] = {
+["auctionMSGhistory"] = {
 },
-["boss9"] = {
-},
-["boss11"] = {
-},
-["boss12"] = {
-},
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
+["whoFrame"] = {
+["history"] = {
 },
 },
-["nandu4"] = {
-["boss1"] = {
+["newbee_report_notuploaded"] = {
 },
-["boss9"] = {
+["YYdb"] = {
+["share"] = 0,
+["history"] = {
 },
-["boss11"] = {
+["allFilter"] = 0,
+["historyFilter"] = 0,
+["historyEmpty"] = {
 },
-["boss12"] = {
+["all"] = {
 },
-["boss17"] = {
-},
-["boss2"] = {
-},
-["boss5"] = {
-},
-["boss15"] = {
-},
-["boss7"] = {
-},
-["boss13"] = {
-},
-["boss3"] = {
-},
-["boss14"] = {
-},
-["boss6"] = {
-},
-["boss10"] = {
-},
-["boss4"] = {
-},
-["boss19"] = {
-},
-["boss8"] = {
-},
-["boss22"] = {
-},
-["boss21"] = {
-},
-["boss18"] = {
-},
-["boss16"] = {
-},
-["boss20"] = {
-},
-},
-},
-},
+["shareCount"] = 0,
+["LeaderYY"] = {
 },
 },
 ["Auction"] = {
 ["mod"] = "normal",
-["money"] = 1,
-["duration"] = 40,
+["money"] = 5000,
+["duration"] = 60,
 ["fastMoney"] = {
 100,
 300,
@@ -3717,770 +1493,2567 @@ BiaoGe = {
 },
 ["aotoSendLate"] = 3,
 },
+["HopeSendChannel"] = "RAID",
+["options"] = {
+["roleOverviewNotShowiLevel"] = 0,
+["fastCountPreview"] = 1,
+["lastTrade"] = 1,
+["autoTrade"] = 1,
+["fastCountMsg"] = 1,
+["editFontSize"] = 14,
+["tradeTime"] = 3,
+["configChooseHope"] = 1,
+["showAuctionLogFrame"] = 0,
+["tradeSameMoney"] = 1,
+["autoAllLootToMe"] = 0,
+["countDownSendChannel"] = "RAID_WARNING",
+["autoAuctionStart"] = 1,
+["autoAdd0"] = 0,
+["autoAuctionLogLink"] = 1,
+["showGuoQiFrame"] = 0,
+["ERR_CHAT_THROTTLED"] = 1,
+["retainExpensesMoney"] = 0,
+["autoGetOnline"] = 0,
+["roleOverviewLayout"] = "up_down",
+["scale"] = 0.9,
+["allLootToMe"] = 1,
+["autoAuctionAutoEndTips"] = 1,
+["roleOverviewDefaultShow"] = "one",
+["auctionChat"] = 1,
+["countDownStop"] = 1,
+["autoAuctionFrameLevel"] = "HIGH",
+["countDown"] = 1,
+["duiZhangTime"] = 24,
+["autoAuctionHappySay"] = 1,
+["MeetingHorn_history"] = 0,
+["fastCount"] = 1,
+["lootFontSize"] = 20,
+["joinorleavePlayercolor"] = 1,
+["zhichuPercent"] = 1,
+["HighOnterItem"] = 1,
+["autoAuctionMoney"] = 1,
+["guoqiRemind"] = 1,
+["qiankuanTrade"] = 1,
+["commerceAuthorityTooltip"] = 1,
+["miniMap"] = 1,
+["MeetingHorn_members"] = 0,
+["roleOverviewScale"] = 1,
+["aotoSendLate"] = 0,
+["MeetingHorn_search"] = 0,
+["configChooseMeetingHornHistory"] = 1,
+["autoQingKongSaveHistory"] = 1,
+["auctionChatHoldNew"] = 1,
+["alpha"] = 0.8,
+["tradeMoneyTop"] = 1,
+["report"] = 1,
+["SearchHistory"] = {
+["option231029"] = true,
+["FBCDchoice240208"] = true,
+["QuestCD240403愛雅法拉-孤狼"] = true,
+["sound250527"] = true,
+["|cff00FF004月9日更新v1.17.0"] = true,
+["FBCDchoice240923"] = true,
+["QuestCD240403萌萌奶糖-野性痊癒"] = true,
+["firstOpenMainFrame"] = true,
+["|cff00FF004月19日更新v1.17.5"] = true,
+["|cff00FF005月3日更新v1.17.7"] = true,
+["dt231005"] = true,
+["history250312"] = true,
+["FBCDchoice240711"] = true,
+["|cff00FF005月21日更新v1.18.3"] = true,
+["FBCDchoice240412"] = true,
+["YY240925"] = true,
+["FBCDchoice240328"] = true,
+["|cff00FF008月3日更新v1.20.0"] = true,
+["MONEYchoice240408"] = true,
+["60FB240703"] = true,
+["FBCDchoice2401065843萌萌的露小露"] = true,
+["QuestCD240403萌萌的露小露-孤狼"] = true,
+["autoGetOnline240615"] = true,
+["FBCDchoice240113"] = true,
+["QuestCD240113"] = true,
+["options250610"] = true,
+["ro250602"] = true,
+["dt231208"] = true,
+["FBCDchoice240106"] = true,
+["yy250509"] = true,
+["yongshi240425"] = true,
+["|cff00FF005月9日更新v1.17.8"] = true,
+["MONEYchoice241101"] = true,
+["|cff00FF007月20日更新v1.19.6"] = true,
+},
+["countDownDuration"] = 8,
+["tradeFastGiveMoney"] = 1,
+["roleOverviewSort1"] = "iLevel-class-player",
+["autoAuctionShowSender"] = 0,
+["fastMoney"] = 1,
+["guoqiRemindMinTime"] = 30,
+["roleOverviewNotShowLevel"] = 0,
+["MeetingHorn_isSend"] = 0,
+["auctionLogChoose"] = 1,
+["model"] = 1,
+["lastFrame"] = "FrameOptions_biaoge",
+["searchList"] = 1,
+["NumFrame"] = 1,
+["MeetingHorn_always"] = 0,
+["moLing"] = 1,
+["auctionHigh"] = 1,
+["autoAuctionSureClick"] = 0,
+["buttonSound"] = 1,
+["auctionHighTime"] = 20,
+["bg"] = "0.01,0.01,0.01,0.8",
+["tradePreview"] = 1,
+["tipsSound"] = 1,
+["lastVer"] = "v1.25.3",
+["autolootNotice"] = 1,
+["lootTime"] = 8,
+["xueyueAuto"] = 0,
+["configChooseFilter"] = 1,
+["autoAuctionScale"] = 0.95,
+["Sound"] = "露露缇娅",
+["autoQingKong"] = 1,
+["autoAuctionQianKuan"] = 1,
+["tradeFontSize"] = 20,
+["tradeNotice"] = 1,
+["autolootRemind"] = 1,
+["MeetingHorn_yy"] = 0,
+["autoLoot"] = 1,
+["retainExpenses"] = 1,
+["autoAuctionPut"] = 1,
+["autoAuctionUp"] = 0,
+["ignore"] = 1,
+["autoAuctionSetMoney"] = 1,
+["isTrading"] = 1,
+["mouseFK"] = 1,
+["configChooseMeetingHornWhisper"] = 1,
+["addonsOutTime"] = 1,
+["MeetingHorn_whisper"] = 0,
+},
+["UBRS"] = {
+["boss8"] = {
+},
+["tradeTbl"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss1"] = {
+},
+["boss19"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
 ["FBCDchoice"] = {
 ["TAQ"] = 1,
 ["ZUGsod"] = 1,
+["mengyan"] = 1,
 ["ZUG"] = 1,
 ["tailor"] = 1,
 ["MC"] = 1,
 ["leatherworking"] = 1,
-["NAXX"] = 1,
+["AQL"] = 1,
 ["TTS"] = 1,
 ["SC"] = 1,
-["alchemy"] = 1,
+["BWL"] = 1,
 ["BWLsod"] = 1,
 ["TCV"] = 1,
-["AQL"] = 1,
+["huiguweek"] = 1,
 ["OL"] = 1,
+["NAXX"] = 1,
 ["OLsod"] = 1,
 ["MCsod"] = 1,
-["BWL"] = 1,
 },
-["HopeSendChannel"] = "RAID",
-["duizhang"] = {
-},
-["History"] = {
-["BWL"] = {
-[260529022651] = {
-["boss5"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:19368::::::::60::::::::::|h[龙息手持火炮]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:16907::::::::60::::::::::|h[血牙手套]|h|r",
-},
-["boss1"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:16911::::::::60::::::::::|h[血牙护腕]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:19337::::::::60::::::::::|h[黑龙之书]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:16951::::::::60::::::::::|h[审判束腕]|h|r",
+["TAQ"] = {
+["boss8"] = {
 },
 ["tradeTbl"] = {
 },
 ["boss9"] = {
-["zhuangbei12"] = "|cff0070dd|Hitem:14501::::::::60::::::::::|h[图样：月布外衣]|h|r",
 },
 ["boss11"] = {
-["zhuangbei2"] = "N补贴",
-["zhuangbei3"] = "DPS补贴",
-["zhuangbei1"] = "T补贴",
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss20"] = {
+},
+["boss16"] = {
+},
+["boss18"] = {
+},
+["boss21"] = {
+},
+["boss13"] = {
+},
+["boss22"] = {
 },
 ["boss10"] = {
 },
 ["boss4"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:19402::::::::60::::::::::|h[堕落十字军腿甲]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:16956::::::::60::::::::::|h[审判护手]|h|r",
 },
-["boss12"] = {
-["jine4"] = "40",
-},
-["raidRoster"] = {
-["roster"] = {
-"风生",
-"光华佬骨头煲",
-"痘痔者",
-"拉猪哥",
-"大护法查理",
-"幽鬼-德姆塞卡尔",
-"忧伤的馒头",
-"佬谭牛肉面",
-"圣光闪瞎眼",
-"超载的心-德姆塞卡尔",
-"兰玫",
-"暴躁欧尼",
-"人小灬鸟贼大",
-"猪肉老",
-"卓玛-法琳娜",
-"杀戮乄猎",
-"幽暗行走",
-"小米粒战",
-"丶冷灬戦",
-"Aqumen",
-"乐淘",
-"隐身射击-法琳娜",
-"飞鱼公子",
-"Begining",
-"庸医治大病",
-"玄谷",
-"女王安其拉",
-"大家退后",
-"勇敢的老黄",
-"玛丽丶影歌",
-"双马尾阿飘",
-"李郁离-法琳娜",
-"施瓦辛格法",
-"无双阿阳",
-"香蒲",
-"不受情緖挑拨",
-"起来重睡",
-"冰火之奥",
-"沧粤",
-"正面之王",
-},
-["time"] = 1779992811,
-["realm"] = "哈霍兰",
-},
-["boss6"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:19431::::::::60::::::::::|h[斯泰林的甲虫壳]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:16956::::::::60::::::::::|h[审判护手]|h|r",
-},
-["boss7"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:16961::::::::60::::::::::|h[愤怒肩铠]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:19352::::::::60::::::::::|h[多彩之剑]|h|r",
-["zhuangbei4"] = "|cffa335ee|Hitem:19392::::::::60::::::::::|h[堕落十字军腰带]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:16953::::::::60::::::::::|h[审判肩铠]|h|r",
-},
-["boss8"] = {
-["zhuangbei5"] = "|cffa335ee|Hitem:19382::::::::60::::::::::|h[纯源质指环]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:16923::::::::60::::::::::|h[卓越法袍]|h|r",
-["zhuangbei4"] = "|cffa335ee|Hitem:19003::::::::60::::::::::|h[奈法利安的头颅]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:19376::::::::60::::::::::|h[阿基迪罗斯的清算之戒]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:16897::::::::60::::::::::|h[怒风胸甲]|h|r",
-},
-["boss2"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:19340::::::::60::::::::::|h[变形符文]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:16910::::::::60::::::::::|h[血牙腰带]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:16903::::::::60::::::::::|h[怒风腰带]|h|r",
-},
-["boss3"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:16906::::::::60::::::::::|h[血牙长靴]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:16941::::::::60::::::::::|h[巨龙追猎者胫甲]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:19374::::::::60::::::::::|h[奥术精准护腕]|h|r",
-},
-},
-},
-["ZUG"] = {
-[260606045514] = {
-["boss5"] = {
+["boss19"] = {
 },
 ["boss1"] = {
-["guild2"] = "DOVE",
-["zhuangbei2"] = "|cff0070dd|Hitem:19920::::::::60::::::::::|h[首领指环]|h|r",
-["jine2"] = "打包交易",
-["itemLevel2"] = 68,
-["factionGroup2"] = "Alliance",
-["zhuangbei1"] = "|cff0070dd|Hitem:22714::::::::60::::::::::|h[祭祀护手]|h|r",
-["color2"] = {
-0.529411792755127,
-0.529411792755127,
-0.9294118285179138,
-1,
 },
-["level2"] = 60,
-["class2"] = "WARLOCK",
-["raceID2"] = 7,
-["maijia2"] = "仙女可妮",
-["itemLevel1"] = 68,
-["realm2"] = "哈霍兰",
-["guid2"] = "Player-5376-1735AF15",
+["boss3"] = {
 },
-["boss9"] = {
-["zhuangbei3"] = "|cff0070dd|Hitem:22637::::::::60::::::::::|h[原始哈卡莱神像]|h|r",
-["jine3"] = "打包交易",
-["zhuangbei1"] = "|cff0070dd|Hitem:19889::::::::60::::::::::|h[浴血护腿]|h|r",
-["zhuangbei2"] = "|cff0070dd|Hitem:19929::::::::60::::::::::|h[淡血手套]|h|r",
-["raceID3"] = 4,
-["itemLevel2"] = 71,
-["realm3"] = "哈霍兰",
-["guid3"] = "Player-5376-058FFE41",
-["guild3"] = "四川麻辣烫",
-["factionGroup3"] = "Alliance",
-["color3"] = {
-0.6705882549285889,
-0.8313726186752319,
-0.4509804248809815,
-1,
-},
-["maijia3"] = "Aéêa",
-["level3"] = 60,
-["itemLevel1"] = 71,
-["itemLevel3"] = 60,
-["class3"] = "HUNTER",
-},
-["boss2"] = {
-["maijia2"] = "仙女可妮",
-["guid2"] = "Player-5376-1735AF15",
-["itemLevel3"] = 1,
-["zhuangbei2"] = "|cff0070dd|Hitem:22720::::::::60::::::::::|h[祖利安头饰]|h|r",
-["jine2"] = "打包交易",
-["guild2"] = "DOVE",
-["factionGroup2"] = "Alliance",
-["raceID2"] = 7,
-["color2"] = {
-0.529411792755127,
-0.529411792755127,
-0.9294118285179138,
-1,
-},
-["level2"] = 60,
-["class2"] = "WARLOCK",
-["itemLevel2"] = 68,
-["zhuangbei1"] = "|cff0070dd|Hitem:19900::::::::60::::::::::|h[祖利安石斧]|h|r",
-["itemLevel1"] = 68,
-["realm2"] = "哈霍兰",
-["zhuangbei3"] = "|cffa335ee|Hitem:19720::::::::60::::::::::|h[原始哈卡莱腰带]|h|r",
-},
-["tradeTbl"] = {
-{
-{
-["i"] = 1,
-["itemID"] = 22637,
-["link"] = "|cff0070dd|Hitem:22637::::::::60::::::::::|h[原始哈卡莱神像]|h|r",
-["FB"] = "ZUG",
-["b"] = 4,
-},
-{
-["i"] = 3,
-["itemID"] = 22637,
-["link"] = "|cff0070dd|Hitem:22637::::::::60::::::::::|h[原始哈卡莱神像]|h|r",
-["FB"] = "ZUG",
-["b"] = 9,
-},
-},
-{
-{
-["i"] = 3,
-["itemID"] = 19876,
-["link"] = "|cffa335ee|Hitem:19876::::::::60::::::::::|h[堕灵者项链]|h|r",
-["FB"] = "ZUG",
-["b"] = 10,
-},
-{
-["i"] = 2,
-["itemID"] = 19920,
-["link"] = "|cff0070dd|Hitem:19920::::::::60::::::::::|h[首领指环]|h|r",
-["FB"] = "ZUG",
-["b"] = 1,
-},
-{
-["i"] = 2,
-["itemID"] = 22720,
-["link"] = "|cff0070dd|Hitem:22720::::::::60::::::::::|h[祖利安头饰]|h|r",
-["FB"] = "ZUG",
-["b"] = 2,
-},
-{
-["i"] = 1,
-["itemID"] = 22716,
-["link"] = "|cff0070dd|Hitem:22716::::::::60::::::::::|h[无尽潜能腰带]|h|r",
-["FB"] = "ZUG",
-["b"] = 7,
-},
-},
+["boss6"] = {
 },
 ["boss14"] = {
+},
+["boss7"] = {
+},
+["boss15"] = {
+},
+},
+["Temple"] = {
+["boss1"] = {
+},
+["tradeTbl"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+["zhuangbei2"] = "治疗补贴",
+["zhuangbei1"] = "坦克补贴",
+["zhuangbei3"] = "输出补贴",
+},
+["boss12"] = {
 ["zhuangbei4"] = "分钱人数",
-["jine3"] = "1000",
+["zhuangbei3"] = "净收入",
 ["jine2"] = "0",
 ["jine4"] = "20",
 ["zhuangbei5"] = "人均工资",
 ["zhuangbei1"] = "总收入",
-["zhuangbei3"] = "净收入",
+["jine3"] = "0",
 ["zhuangbei2"] = "总支出",
-["jine1"] = "1000",
-["jine5"] = "50",
+["jine1"] = "0",
+["jine5"] = "0",
 },
-["boss11"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:19720::::::::60::::::::::|h[原始哈卡莱腰带]|h|r",
-["itemLevel1"] = 1,
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss20"] = {
+},
+["boss16"] = {
+},
+["boss18"] = {
 },
 ["boss10"] = {
-["guid2"] = "Player-5376-16E55DA5",
-["zhuangbei3"] = "|cffa335ee|Hitem:19876::::::::60::::::::::|h[堕灵者项链]|h|r",
-["jine2"] = "0",
-["realm3"] = "哈霍兰",
-["level2"] = 60,
-["itemLevel1"] = 58,
-["jine1"] = "0",
-["class1"] = "PRIEST",
-["factionGroup2"] = "Alliance",
-["color2"] = {
-1,
-0.960784375667572,
-0.4117647409439087,
-1,
 },
-["factionGroup1"] = "Alliance",
-["class2"] = "ROGUE",
-["raceID2"] = 7,
-["guild2"] = "DOVE",
-["raceID1"] = 3,
-["guid1"] = "Player-5376-172FAC23",
-["level1"] = 60,
-["realm2"] = "哈霍兰",
-["class3"] = "WARLOCK",
-["itemLevel3"] = 68,
-["itemLevel2"] = 68,
-["maijia1"] = "暴走奶妈",
-["zhuangbei2"] = "|cffa335ee|Hitem:19853::::::::60::::::::::|h[古拉巴什矮人摧毁者]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:19802::::::::60::::::::::|h[哈卡之心]|h|r",
-["maijia3"] = "仙女可妮",
-["raceID3"] = 7,
-["color1"] = {
-1,
-1,
-1,
-1,
+["boss14"] = {
 },
-["guid3"] = "Player-5376-1735AF15",
-["realm1"] = "哈霍兰",
-["color3"] = {
-0.529411792755127,
-0.529411792755127,
-0.9294118285179138,
-1,
+["boss22"] = {
 },
-["guild3"] = "DOVE",
-["level3"] = 60,
-["maijia2"] = "泰迪王中王",
-["factionGroup3"] = "Alliance",
-["jine3"] = "0",
+["boss21"] = {
 },
 ["boss4"] = {
-["zhuangbei4"] = "|cffa335ee|Hitem:19722::::::::60::::::::::|h[原始哈卡莱徽章]|h|r",
-["raceID1"] = 4,
-["guid1"] = "Player-5376-058FFE41",
-["level1"] = 60,
-["itemLevel1"] = 60,
-["jine1"] = "1000",
-["maijia1"] = "Aéêa",
-["zhuangbei2"] = "|cff0070dd|Hitem:19869::::::::60::::::::::|h[浴血护手]|h|r",
-["itemLevel4"] = 1,
-["color1"] = {
-0.6705882549285889,
-0.8313726186752319,
-0.4509804248809815,
-1,
 },
-["realm1"] = "哈霍兰",
-["factionGroup1"] = "Alliance",
-["zhuangbei1"] = "|cff0070dd|Hitem:22637::::::::60::::::::::|h[原始哈卡莱神像]|h|r",
-["itemLevel2"] = 71,
-["class1"] = "HUNTER",
-["zhuangbei3"] = "|cff0070dd|Hitem:19873::::::::60::::::::::|h[督军的红色指环]|h|r",
-["itemLevel3"] = 71,
-["guild1"] = "四川麻辣烫",
+["boss8"] = {
 },
-["boss12"] = {
+["boss19"] = {
 },
 ["boss6"] = {
 },
 ["boss3"] = {
-["zhuangbei2"] = "|cff0070dd|Hitem:19871::::::::60::::::::::|h[保护之符]|h|r",
-["itemLevel1"] = 68,
-["itemLevel2"] = 68,
-["zhuangbei1"] = "|cff0070dd|Hitem:22720::::::::60::::::::::|h[祖利安头饰]|h|r",
-},
-["boss8"] = {
-["zhuangbei2"] = "|cff0070dd|Hitem:22714::::::::60::::::::::|h[祭祀护手]|h|r",
-["itemLevel1"] = 65,
-["itemLevel2"] = 68,
-["zhuangbei1"] = "|cffa335ee|Hitem:19910::::::::60::::::::::|h[娅尔罗之握]|h|r",
 },
 ["boss13"] = {
-["zhuangbei1"] = "T补贴",
-["zhuangbei3"] = "DPS补贴",
-["zhuangbei2"] = "N补贴",
 },
 ["boss7"] = {
-["zhuangbei2"] = "|cff0070dd|Hitem:20266::::::::60::::::::::|h[和平守护者护腿]|h|r",
-["itemLevel3"] = 1,
-["maijia1"] = "仙女可妮",
-["raceID1"] = 7,
-["guid1"] = "Player-5376-1735AF15",
-["level1"] = 60,
-["class1"] = "WARLOCK",
-["color1"] = {
-0.529411792755127,
-0.529411792755127,
-0.9294118285179138,
-1,
 },
-["zhuangbei3"] = "|cffa335ee|Hitem:19719::::::::60::::::::::|h[原始哈卡莱束带]|h|r",
-["realm1"] = "哈霍兰",
-["itemLevel2"] = 68,
-["zhuangbei1"] = "|cff0070dd|Hitem:22716::::::::60::::::::::|h[无尽潜能腰带]|h|r",
-["factionGroup1"] = "Alliance",
-["itemLevel1"] = 68,
-["jine1"] = "打包交易",
-["guild1"] = "DOVE",
+["boss15"] = {
 },
-["raidRoster"] = {
-["roster"] = {
-"女王安其拉",
-"小暴龙战士",
-"叁零陆贰柒",
-"老兵山姆-法琳娜",
-"仙女可妮",
-"十二月六日",
-"呀拉索-法琳娜",
-"泰迪王中王",
-"大東方",
-"弔卯二号",
-"Aéêa",
-"暴走奶妈",
-"勇敢的老黄",
-"哈霍兰小格格",
-"铁血第一战",
-"蛋疼妹妹",
-"原谅丶",
-"小布丁牧",
-"叫我拓海",
-"Ljb",
 },
-["time"] = 1780692914,
-["realm"] = "哈霍兰",
+["Hope"] = {
+[5842] = {
+},
+[5381] = {
+["露露緹婭"] = {
+["BWL"] = {
+["nandu2"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu4"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu3"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+},
+["ZUG"] = {
+["nandu2"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu4"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu3"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
 },
 },
 },
 ["MC"] = {
-[260530035803] = {
-["boss8"] = {
-},
-["tradeTbl"] = {
+["nandu2"] = {
+["boss1"] = {
 },
 ["boss9"] = {
 },
 ["boss11"] = {
 },
 ["boss12"] = {
-["zhuangbei5"] = "|cffa335ee|Hitem:16806::::::::60::::::::::|h[恶魔之心腰带]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:16802::::::::60::::::::::|h[奥术师腰带]|h|r",
-["zhuangbei4"] = "|cff0070dd|Hitem:17010::::::::60::::::::::|h[炽热之核]|h|rx2",
-["zhuangbei3"] = "|cff0070dd|Hitem:17011::::::::60::::::::::|h[熔岩之核]|h|rx3",
-["zhuangbei2"] = "|cffffffff|Hitem:17012::::::::60::::::::::|h[熔火犬皮]|h|rx4",
+},
+["boss17"] = {
 },
 ["boss2"] = {
 },
 ["boss5"] = {
 },
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
 ["boss13"] = {
+},
+["boss18"] = {
 },
 ["boss10"] = {
 },
 ["boss4"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:16834::::::::60::::::::::|h[塞纳里奥头盔]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:17105::::::::60::::::::::|h[光环石锤]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:16813::::::::60::::::::::|h[预言头饰]|h|r",
 },
-["raidRoster"] = {
-["roster"] = {
-"风生",
-"貔貅乄",
-"李静静-法琳娜",
-"安安砍西瓜-法琳娜",
-"暴躁的蟹",
-"晕晕捏葡萄-法琳娜",
-"弔卯八号",
-"女王安其拉",
-"她最矜贵",
-"风亦扬",
-"芬达一月神",
-"考拉熊",
-"矫健的老黄",
-"仙女妮可",
+["boss8"] = {
 },
-["time"] = 1780084683,
-["realm"] = "哈霍兰",
+["boss16"] = {
 },
 ["boss3"] = {
 },
-["boss6"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:16797::::::::60::::::::::|h[奥术师衬肩]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:16836::::::::60::::::::::|h[塞纳里奥肩甲]|h|r",
-},
 ["boss15"] = {
-["jine4"] = "40",
 },
 ["boss14"] = {
-["zhuangbei2"] = "N补贴",
-["zhuangbei3"] = "DPS补贴",
-["zhuangbei1"] = "T补贴",
 },
 ["boss7"] = {
 },
+["boss6"] = {
+},
+},
+["nandu4"] = {
 ["boss1"] = {
-},
-},
-[260610010524] = {
-["boss8"] = {
-},
-["tradeTbl"] = {
 },
 ["boss9"] = {
 },
 ["boss11"] = {
 },
 ["boss12"] = {
-["itemLevel1"] = 60,
-["zhuangbei1"] = "|cff0070dd|Hitem:17011::::::::60::::::::::|h[熔岩之核]|h|r",
+},
+["boss17"] = {
 },
 ["boss2"] = {
 },
 ["boss5"] = {
 },
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
 ["boss13"] = {
+},
+["boss18"] = {
 },
 ["boss10"] = {
 },
 ["boss4"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:17066::::::::60::::::::::|h[钻孔虫之碟]|h|r",
-["itemLevel2"] = 67,
-["zhuangbei3"] = "|cffa335ee|Hitem:16821::::::::60::::::::::|h[夜幕杀手头巾]|h|r",
-["itemLevel1"] = 67,
-["itemLevel3"] = 66,
-["zhuangbei1"] = "|cffa335ee|Hitem:18821::::::::60::::::::::|h[迅击戒指]|h|r",
 },
-["raidRoster"] = {
-["roster"] = {
-"王季春",
-"月圜见夜",
-"快乐小王者",
-"魔魔术",
-"那个斩士",
-"一剑九州",
-"零度琴弦",
-"远诺轩",
-"凤凰的苏菲",
-"法号销魂-德姆塞卡尔",
-"毛十三",
-"莫抚清风",
-"女王安其拉",
-"湘児",
-"凤凰的小奶狗",
+["boss8"] = {
 },
-["time"] = 1781024724,
-["realm"] = "哈霍兰",
+["boss16"] = {
 },
 ["boss3"] = {
 },
-["boss6"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:16797::::::::60::::::::::|h[奥术师衬肩]|h|r",
-["itemLevel1"] = 66,
-["itemLevel2"] = 66,
-["zhuangbei2"] = "|cffa335ee|Hitem:16856::::::::60::::::::::|h[秩序之源肩铠]|h|r",
-},
 ["boss15"] = {
-["zhuangbei4"] = "分钱人数",
-["jine3"] = "0",
-["jine2"] = "0",
-["jine4"] = "40",
-["zhuangbei5"] = "人均工资",
-["zhuangbei1"] = "总收入",
-["jine5"] = "0",
-["zhuangbei2"] = "总支出",
-["jine1"] = "0",
-["zhuangbei3"] = "净收入",
 },
 ["boss14"] = {
-["zhuangbei2"] = "N补贴",
-["zhuangbei3"] = "DPS补贴",
-["zhuangbei1"] = "T补贴",
 },
 ["boss7"] = {
 },
+["boss6"] = {
+},
+},
+["nandu3"] = {
 ["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
 },
 },
 },
 ["NAXX"] = {
+["nandu2"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu4"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu3"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
 },
 ["AQL"] = {
+["nandu2"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu4"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu3"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
 },
 ["TAQ"] = {
-[260524005236] = {
-["boss5"] = {
-},
+["nandu2"] = {
 ["boss1"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:21707::::::::60::::::::::|h[风暴思绪之戒]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:21700::::::::60::::::::::|h[其拉守护者坠饰]|h|r",
-},
-["tradeTbl"] = {
-},
-["raidRoster"] = {
-["roster"] = {
-"黑帝",
-"是柒柒呀",
-"示申言舌亻二",
-"李黑桃-法琳娜",
-"哈肾",
-"卡洛斯中尉",
-"手心",
-"起闓我来",
-"小美酱酱骑士",
-"是锤哥呀",
-"Oldhunter",
-"灬刺杀灬",
-"铁骨战魂-法琳娜",
-"女王安其拉",
-"振興東北",
-"十字军猎神",
-"枫林鬼影",
-"炒菜达人",
-"娘西貔",
-"小奶穆",
-"哈霍兰小郡主",
-"亦秀",
-"柒尐陌",
-"伍月初七",
-"贰柒捌贰叁",
-"俊二",
-"法师姐姐",
-"还是那么银",
-"大叔丶威武",
-"二队那个骑士",
-"小阿箐",
-"兜兜有大米",
-"看穿",
-"仙女妮可",
-"为爱拯救世界",
-"晕晕捏葡萄-法琳娜",
-"御风舞",
-"八刀手",
-"Kubrazeyrek",
-},
-["time"] = 1779555156,
-["realm"] = "哈霍兰",
 },
 ["boss9"] = {
 },
 ["boss11"] = {
 },
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
 ["boss10"] = {
-["zhuangbei1"] = "|cffffffff|Hitem:21762::::::::60::::::::::|h[大型圣甲虫箱的钥匙]|h|rx3",
-["zhuangbei3"] = "|cff0070dd|Hitem:20882::::::::60::::::::::|h[战争塑像]|h|r",
-["zhuangbei4"] = "|cff0070dd|Hitem:20874::::::::60::::::::::|h[太阳塑像]|h|r",
-["zhuangbei2"] = "|cff0070dd|Hitem:20875::::::::60::::::::::|h[夜晚塑像]|h|rx2",
 },
 ["boss4"] = {
 },
-["boss12"] = {
-["zhuangbei2"] = "N补贴",
-["zhuangbei3"] = "DPS补贴",
-["zhuangbei1"] = "T补贴",
+["boss8"] = {
 },
-["boss7"] = {
+["boss16"] = {
 },
 ["boss3"] = {
 },
-["boss8"] = {
+["boss15"] = {
 },
-["boss13"] = {
-["jine4"] = "40",
+["boss14"] = {
 },
-["boss2"] = {
+["boss7"] = {
 },
 ["boss6"] = {
 },
 },
-[260530025047] = {
-["boss5"] = {
-},
+["nandu4"] = {
 ["boss1"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:21704::::::::60::::::::::|h[救赎预言长靴]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:21698::::::::60::::::::::|h[浸没护腿]|h|r",
-},
-["boss3"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:21667::::::::60::::::::::|h[闪耀光芒腿甲]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:21678::::::::60::::::::::|h[纯洁项链]|h|r",
-},
-["raidRoster"] = {
-["roster"] = {
-"风生",
-"弔卯八号",
-"眼睛不干",
-"李周日-法琳娜",
-"考拉二熊",
-"章鱼小丸纸",
-"黄芪老鸭汤",
-"明媚的忧伤",
-"女王安其拉",
-"肌肉仙子",
-"李动动-法琳娜",
-"迷糊红箭",
-"大田哥是我",
-"风百川",
-"虎玟",
-"猫啸天",
-"紫焰飘零",
-"貔貅乄",
-"孤独小雪",
-"卓玛-法琳娜",
-"猎风柒号",
-"钨钢披甲喵熊",
-"凉城夜雨",
-"仙女妮可",
-"苍澜-法琳娜",
-"餮魉饕魍",
-"狂战安其拉",
-"灞桥马德华",
-"晕晕洗葡萄-法琳娜",
-"过瘾吧",
-"丨美丽法丨",
-"赤紅十三",
-"干涉骑士",
-"十戒",
-"施瓦辛格法",
-"第九只手",
-"炒菜达人",
-"脯大",
-"阿福寿",
-"无情德",
-},
-["time"] = 1780080647,
-["realm"] = "哈霍兰",
 },
 ["boss9"] = {
-["zhuangbei6"] = "|cffa335ee|Hitem:21579::::::::60::::::::::|h[克苏恩的触须]|h|r",
-["zhuangbei4"] = "|cffa335ee|Hitem:22730::::::::60::::::::::|h[眼柄腰带]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:20933::::::::60::::::::::|h[上古之神的外鞘]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:21221::::::::60::::::::::|h[克苏恩之眼]|h|r",
-["zhuangbei5"] = "|cffa335ee|Hitem:21583::::::::60::::::::::|h[明晰披风]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:20929::::::::60::::::::::|h[上古之神的甲壳]|h|r",
 },
 ["boss11"] = {
 },
-["boss10"] = {
-["zhuangbei2"] = "|cff0070dd|Hitem:20882::::::::60::::::::::|h[战争塑像]|h|r",
-["zhuangbei6"] = "|cffa335ee|Hitem:21232::::::::60::::::::::|h[其拉帝王武器]|h|r",
-["zhuangbei4"] = "|cff0070dd|Hitem:20876::::::::60::::::::::|h[死亡塑像]|h|r",
-["zhuangbei3"] = "|cff0070dd|Hitem:20879::::::::60::::::::::|h[生命塑像]|h|r",
-["zhuangbei1"] = "|cffffffff|Hitem:21762::::::::60::::::::::|h[大型圣甲虫箱的钥匙]|h|r",
-["zhuangbei7"] = "|cff0070dd|Hitem:20878::::::::60::::::::::|h[复生塑像]|h|r",
-["zhuangbei8"] = "|cffa335ee|Hitem:21232::::::::60::::::::::|h[其拉帝王武器]|h|r",
-["zhuangbei5"] = "|cff0070dd|Hitem:20877::::::::60::::::::::|h[先知塑像]|h|rx2",
-},
-["boss4"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:21645::::::::60::::::::::|h[掘洞者之靴]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:21652::::::::60::::::::::|h[异种虫壳护胸]|h|r",
-},
 ["boss12"] = {
-["zhuangbei1"] = "T补贴",
-["zhuangbei3"] = "DPS补贴",
-["zhuangbei2"] = "N补贴",
+},
+["boss17"] = {
 },
 ["boss2"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:21688::::::::60::::::::::|h[堕落英雄长靴]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:21692::::::::60::::::::::|h[蔓延腰带]|h|r",
 },
-["boss6"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:20928::::::::60::::::::::|h[其拉命令腕轮]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:21617::::::::60::::::::::|h[黄蜂外壳护手]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:20932::::::::60::::::::::|h[其拉统御腕轮]|h|r",
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
 },
 ["boss13"] = {
-["jine4"] = "40",
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
 },
 ["boss8"] = {
-["zhuangbei1"] = "|cffa335ee|Hitem:21615::::::::60::::::::::|h[瑞格贝托的帽子]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:20931::::::::60::::::::::|h[巨型沙虫的皮]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:20927::::::::60::::::::::|h[奥罗的外皮]|h|r",
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
 },
 ["boss7"] = {
-["zhuangbei2"] = "|cffa335ee|Hitem:21608::::::::60::::::::::|h[维克尼拉斯的咒符]|h|r",
-["zhuangbei3"] = "|cffa335ee|Hitem:20930::::::::60::::::::::|h[维克洛尔的王冠]|h|r",
-["zhuangbei4"] = "|cffa335ee|Hitem:21601::::::::60::::::::::|h[维克洛尔大帝之戒]|h|r",
-["zhuangbei1"] = "|cffa335ee|Hitem:20926::::::::60::::::::::|h[维克尼拉斯的头饰]|h|r",
 },
-["tradeTbl"] = {
+["boss6"] = {
 },
 },
+["nandu3"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss20"] = {
+},
+["boss19"] = {
+},
+["boss13"] = {
+},
+["boss18"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss8"] = {
+},
+["boss16"] = {
+},
+["boss3"] = {
+},
+["boss15"] = {
+},
+["boss14"] = {
+},
+["boss7"] = {
+},
+["boss6"] = {
+},
+},
+},
+},
+},
+[6118] = {
+},
+[5843] = {
+},
+[5453] = {
+["露露缇娅丶"] = {
+["BWL"] = {
+["nandu2"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu3"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu4"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+},
+["ZUG"] = {
+["nandu2"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu3"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu4"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+},
+["MC"] = {
+["nandu2"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu3"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu4"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+},
+["TAQ"] = {
+["nandu2"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu3"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu4"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+},
+["AQL"] = {
+["nandu2"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu3"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu4"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+},
+["NAXX"] = {
+["nandu2"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu1"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu3"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+["nandu4"] = {
+["boss1"] = {
+},
+["boss9"] = {
+},
+["boss11"] = {
+},
+["boss12"] = {
+},
+["boss17"] = {
+},
+["boss2"] = {
+},
+["boss5"] = {
+},
+["boss15"] = {
+},
+["boss7"] = {
+},
+["boss13"] = {
+},
+["boss3"] = {
+},
+["boss14"] = {
+},
+["boss6"] = {
+},
+["boss10"] = {
+},
+["boss4"] = {
+},
+["boss19"] = {
+},
+["boss8"] = {
+},
+["boss22"] = {
+},
+["boss21"] = {
+},
+["boss18"] = {
+},
+["boss16"] = {
+},
+["boss20"] = {
+},
+},
+},
+},
+},
+[5303] = {
 },
 },
 }

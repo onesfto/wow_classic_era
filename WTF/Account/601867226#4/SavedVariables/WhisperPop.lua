@@ -1,6 +1,36 @@
 
 WhisperPopDB = {
 ["listHeight"] = 320,
+["listScale"] = 100,
+["notifyButton"] = 1,
+["applyFilters"] = 1,
+["listWidth"] = 200,
+["timeFormat"] = 2,
+["ignoreTags"] = 1,
+["buttonScale"] = 100,
+["history"] = {
+{
+["received"] = 1,
+["name"] = "凤凰浴火-哈霍兰",
+["class"] = "PALADIN",
+["messages"] = {
+"0[T1782839712]在干嘛",
+"1[T1782839722]我刚弄了下电脑",
+"0[T1782839735]电脑咋了？",
+"1[T1782839763]换游戏插件 全部清了 但是苹果电脑不能用黑盒 所以麻烦",
+"0[T1782839783]那你弄好了吗",
+"1[T1782839790]应该是好了",
+"0[T1782839800]心电脑吗",
+"1[T1782839807]截图给你看",
+"0[T1782839875]幸好不玩KBZ，这个界面就看不懂",
+"0[T1782839881]所有KBXZ都是这个界面",
+},
+},
+},
+["time"] = 1,
+["version"] = 4.3,
+["foreignOnly"] = 1,
+["save"] = 1,
 ["sound"] = 1,
 ["positions"] = {
 ["WhisperPopFrame"] = {
@@ -18,17 +48,4 @@ WhisperPopDB = {
 185,
 },
 },
-["listWidth"] = 200,
-["save"] = 1,
-["timeFormat"] = 2,
-["time"] = 1,
-["buttonScale"] = 100,
-["history"] = {
-},
-["ignoreTags"] = 1,
-["version"] = 4.3,
-["foreignOnly"] = 1,
-["applyFilters"] = 1,
-["notifyButton"] = 1,
-["listScale"] = 100,
 }

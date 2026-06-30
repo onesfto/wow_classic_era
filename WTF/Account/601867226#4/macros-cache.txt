@@ -2,10 +2,17 @@ VER 3 00000000000003CD "AC" "132261"
 /ac button 1
 /ac button scale 1.25
 END
+VER 3 00000000000003D1 "Decursive" "INV_MISC_QUESTIONMARK"
+/script DecursiveRootTable.Dcr:Println('没有相关技能')
+END
 VER 3 00000000000003C3 "GO！" "134400"
 #showtooltip
 /dismount [mounted]
 /castsequence 黑色其拉共鸣水晶, 迅捷祖利安猛虎, 拉扎什迅猛龙, 迅捷幽灵虎的缰绳
+END
+VER 3 00000000000003D0 "RXPTargeting" "Ability_eyeoftheowl"
+/targetexact 莱尼·拜舍尔
+/targetlasttarget [dead]
 END
 VER 3 00000000000003CE "YY" "4777763"
 /RA YY：881411，下跳对应频道^_^
