@@ -1,0 +1,34 @@
+
+DecursiveDB = {
+["global"] = {
+["LastVersionAnnounce"] = 1780512707,
+["NonRelease"] = "2.8.0-RC7",
+["LastExpirationAlert"] = 1779514141,
+},
+["class"] = {
+["WARRIOR"] = {
+["CureOrder-1"] = {
+1,
+5,
+nil,
+2,
+[64] = 7,
+[16] = 4,
+[32] = 6,
+[8] = 3,
+},
+},
+},
+["profileKeys"] = {
+["女王安其拉 - 哈霍兰"] = "Default",
+["无畏的树树 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["DebuffsFrameContainer_y"] = 479.7369580270432,
+["MainBarX"] = 720.6575620170479,
+["MainBarY"] = -95.99999785423279,
+["DebuffsFrameContainer_x"] = 1080.986343025572,
+},
+},
+}

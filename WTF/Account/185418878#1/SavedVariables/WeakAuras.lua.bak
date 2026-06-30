@@ -1,0 +1,8615 @@
+
+WeakAurasSaved = {
+["dynamicIconCache"] = {
+},
+["editor_tab_spaces"] = 4,
+["displays"] = {
+["耐怖1"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = -10.833374023438,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_loop"] = false,
+["sound_path"] = "Interface\\AddOns\\WA_sekiro\\zhi.mp3",
+["sound"] = " custom",
+["do_sound"] = true,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["spellId"] = {
+"18499",
+},
+["duration"] = "2.5",
+["genericShowOn"] = "showOnCooldown",
+["subeventPrefix"] = "SPELL",
+["debuffType"] = "HELPFUL",
+["spellName"] = {
+0,
+},
+["use_track"] = true,
+["type"] = "combatlog",
+["unit"] = "player",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["use_absorbMode"] = true,
+["unevent"] = "timed",
+["event"] = "Combat Log",
+["use_spellId"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["use_genericShowOn"] = true,
+["names"] = {
+},
+["sourceUnit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"49039",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["spellName"] = {
+0,
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["duration"] = "2.5",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "combatlog",
+["spellId"] = {
+"7744",
+},
+["subeventSuffix"] = "_CAST_SUCCESS",
+["duration"] = "2.5",
+["event"] = "Combat Log",
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["unit"] = "player",
+["sourceUnit"] = "player",
+["debuffType"] = "HELPFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["spellId"] = {
+"8143",
+},
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["duration"] = "2.5",
+["event"] = "Combat Log",
+["unit"] = "player",
+["use_sourceFlags3"] = false,
+["use_spellId"] = true,
+["sourceFlags2"] = "Friendly",
+["use_sourceUnit"] = false,
+["subeventSuffix"] = "_CAST_SUCCESS",
+["use_sourceFlags"] = true,
+["use_sourceFlags2"] = true,
+["sourceFlags"] = "InGroup",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 150,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMPTOBLACKADDITIVE",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "BLEND",
+["texture"] = "Interface\\Addons\\WA_sekiro\\naib",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = ".3",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["type"] = "none",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "alphaPulse",
+},
+["finish"] = {
+["colorR"] = 1,
+["duration_type"] = "seconds",
+["colorA"] = 1,
+["colorG"] = 1,
+["type"] = "preset",
+["easeType"] = "none",
+["scaleFunc"] = "    function(progress, startX, startY, scaleX, scaleY)\n      return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\n    end\n  ",
+["preset"] = "grow",
+["alpha"] = 0,
+["use_scale"] = false,
+["y"] = 0,
+["x"] = 0,
+["easeStrength"] = 3,
+["scalex"] = 1,
+["scaleType"] = "straightScale",
+["rotate"] = 0,
+["scaley"] = 1,
+["colorB"] = 1,
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "耐怖1",
+["xOffset"] = -0.0001220703125,
+["alpha"] = 0.95,
+["anchorFrameType"] = "SCREEN",
+["width"] = 150,
+["config"] = {
+},
+["frameStrata"] = 1,
+["uid"] = "JDXU(lgRfMQ",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+},
+["color"] = {
+0.23137254901961,
+0,
+0.9921568627451,
+1,
+},
+},
+["忍杀2"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_loop"] = false,
+["sound_path"] = "Interface\\AddOns\\WA_sekiro\\Sekiro_wei.mp3",
+["sound"] = " custom",
+["do_sound"] = false,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["use_sourceRaidFlags"] = false,
+["duration"] = "3",
+["subeventPrefix"] = "UNIT_DIED",
+["unit"] = "player",
+["use_sourceFlags"] = false,
+["use_sourceName"] = false,
+["debuffType"] = "HELPFUL",
+["unevent"] = "timed",
+["type"] = "custom",
+["use_eventtype"] = true,
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["events"] = "CLEU:UNIT_DIED",
+["event"] = "Combat Log",
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+["sourceRaidFlags"] = 8,
+["dynamicDuration"] = false,
+["custom"] = "function(event, _, subEvent, _,_,_,_,_,destGUID)\n    if UnitGUID(\"target\") == destGUID and not UnitIsUnit(\"target\", \"boss1\") then\n        local c = UnitClassification(\"target\")\n        return c ==  \"worldboss\" or c == \"rareelite\" or c == \"elite\" or c == \"rare\"\n    end\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+["use_sourceUnit"] = false,
+["subeventSuffix"] = "",
+["use_destRaidFlags"] = false,
+["custom_hide"] = "timed",
+["names"] = {
+},
+},
+["untrigger"] = {
+["use_eventtype"] = true,
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+},
+},
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 1100,
+["rotate"] = true,
+["load"] = {
+["size"] = {
+["multi"] = {
+["none"] = true,
+},
+},
+["use_size"] = false,
+["use_encounter"] = false,
+["talent"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["use_never"] = true,
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:忍杀1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\rs",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = ".7",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["type"] = "none",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "alphaPulse",
+},
+["finish"] = {
+["colorR"] = 1,
+["duration_type"] = "seconds",
+["colorA"] = 1,
+["colorG"] = 1,
+["type"] = "preset",
+["easeType"] = "none",
+["scaleFunc"] = "    function(progress, startX, startY, scaleX, scaleY)\n      return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\n    end\n  ",
+["preset"] = "grow",
+["alpha"] = 0,
+["use_scale"] = false,
+["y"] = 0,
+["x"] = 0,
+["easeStrength"] = 3,
+["scalex"] = 1,
+["scaleType"] = "straightScale",
+["rotate"] = 0,
+["scaley"] = 1,
+["colorB"] = 1,
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "忍杀2",
+["xOffset"] = 0,
+["frameStrata"] = 4,
+["width"] = 1100,
+["alpha"] = 0.57,
+["uid"] = "W1PNn(ATN85",
+["anchorFrameType"] = "SELECTFRAME",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+0.83137254901961,
+0.82352941176471,
+0.85882352941176,
+1,
+},
+},
+["菜3"] = {
+["outline"] = "None",
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["displayText"] = "N     O     O     B",
+["yOffset"] = 40,
+["anchorPoint"] = "CENTER",
+["customTextUpdate"] = "update",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["useGroup_count"] = true,
+["ownOnly"] = true,
+["names"] = {
+},
+["matchesShowOn"] = "showOnMissing",
+["group_count"] = "1",
+["group_countOperator"] = ">",
+["custom_hide"] = "custom",
+["debuffType"] = "HARMFUL",
+["use_absorbMode"] = true,
+["type"] = "custom",
+["subeventSuffix"] = "_CAST_START",
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["duration"] = "1",
+["event"] = "Conditions",
+["unevent"] = "auto",
+["auraspellids"] = {
+"160029",
+},
+["events"] = "PLAYER_DEAD  RESURRECT_REQUEST PLAYER_ALIVE PLAYER_UNGHOST",
+["custom"] = "function(event)\n  return event == \"PLAYER_DEAD\"\nend",
+["useExactSpellId"] = true,
+["subeventPrefix"] = "SPELL",
+["use_alive"] = false,
+["unit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"PLAYER_DEAD\"\nend",
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"160029",
+},
+["matchesShowOn"] = "showOnMissing",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["useName"] = true,
+["subeventSuffix"] = "_CAST_START",
+["debuffType"] = "HARMFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["health"] = {
+"0",
+},
+["use_health"] = true,
+["unevent"] = "auto",
+["use_unit"] = true,
+["use_absorbMode"] = true,
+["health_operator"] = {
+"<=",
+},
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "all",
+["customTriggerLogic"] = "\nfunction (trigger) \n    local unit = \"player\"\n    return UnitExists(unit) and UnitIsDead(unit) and trigger[1]\nend\n\n\n\n\n\n\n\n",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["wordWrap"] = "WordWrap",
+["desaturate"] = false,
+["rotation"] = 0,
+["font"] = "伤害数字",
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 512,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["fontSize"] = 29,
+["semver"] = "1.3.0",
+["selfPoint"] = "CENTER",
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:deadth",
+["regionType"] = "texture",
+["automaticWidth"] = "Auto",
+["blendMode"] = "ADD",
+["authorOptions"] = {
+},
+["fixedWidth"] = 200,
+["texture"] = "Interface\\AddOns\\WA_sekiro\\noob",
+["uid"] = "xpUf0XXttwe",
+["alpha"] = 1,
+["justify"] = "CENTER",
+["tocversion"] = 11508,
+["id"] = "菜3",
+["width"] = 512,
+["frameStrata"] = 5,
+["anchorFrameType"] = "SELECTFRAME",
+["color"] = {
+1,
+0.32941176470588,
+0.30980392156863,
+1,
+},
+["config"] = {
+},
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["scalex"] = 1,
+["alphaType"] = "hide",
+["colorB"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function()\n    return 0\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["colorA"] = 1,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["xOffset"] = 0,
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["preferToUpdate"] = false,
+},
+["菜1"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 50,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_sound"] = false,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["useGroup_count"] = true,
+["ownOnly"] = true,
+["names"] = {
+},
+["matchesShowOn"] = "showOnMissing",
+["group_count"] = "1",
+["group_countOperator"] = ">",
+["custom_hide"] = "custom",
+["debuffType"] = "HARMFUL",
+["use_absorbMode"] = true,
+["type"] = "custom",
+["subeventSuffix"] = "_CAST_START",
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["duration"] = "1",
+["event"] = "Conditions",
+["unevent"] = "auto",
+["auraspellids"] = {
+"160029",
+},
+["events"] = "PLAYER_DEAD  RESURRECT_REQUEST PLAYER_ALIVE PLAYER_UNGHOST",
+["custom"] = "function(event)\n  return event == \"PLAYER_DEAD\"\nend",
+["useExactSpellId"] = true,
+["subeventPrefix"] = "SPELL",
+["use_alive"] = false,
+["unit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"PLAYER_DEAD\"\nend",
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"160029",
+},
+["matchesShowOn"] = "showOnMissing",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["useName"] = true,
+["subeventSuffix"] = "_CAST_START",
+["debuffType"] = "HARMFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["health"] = {
+"0",
+},
+["use_health"] = true,
+["unevent"] = "auto",
+["use_unit"] = true,
+["use_absorbMode"] = true,
+["health_operator"] = {
+"<=",
+},
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "all",
+["customTriggerLogic"] = "\nfunction (trigger) \n    local unit = \"player\"\n    return UnitExists(unit) and UnitIsDead(unit) and trigger[1]\nend\n\n\n\n\n\n\n\n",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 512,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\cai",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = "2",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = true,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "function(progress, startX, startY, deltaX, deltaY)\n    local prog\n    if(progress < 0.25) then\n        prog = progress * 4\n    elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n    else\n        prog = (progress - 1) * 4\n    end\n    return startX + (prog * deltaX), startY + (prog * deltaY)\nend\n",
+["scaley"] = 1.3,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 1.3,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "菜1",
+["xOffset"] = 0,
+["alpha"] = 0.48,
+["anchorFrameType"] = "SCREEN",
+["width"] = 512,
+["config"] = {
+},
+["frameStrata"] = 5,
+["uid"] = "v7RifTD)5RE",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0,
+0.066666666666667,
+1,
+},
+},
+["危3"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = -2.4000854492188,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_sound"] = false,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["use_absorbMode"] = true,
+["use_unit"] = true,
+["unit"] = "player",
+["percenthealth_operator"] = {
+"<=",
+},
+["use_percenthealth"] = true,
+["debuffType"] = "HELPFUL",
+["duration"] = "1",
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["unevent"] = "auto",
+["health_operator"] = {
+"<=",
+},
+["percenthealth"] = {
+"50",
+},
+["event"] = "Health",
+["health"] = {
+"100",
+},
+["use_health"] = false,
+["subeventSuffix"] = "",
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "UNIT_DIED",
+["use_alive"] = false,
+["sourceUnit"] = "player",
+["names"] = {
+},
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["use_absorbMode"] = true,
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["use_health"] = true,
+["health_operator"] = {
+">",
+},
+["health"] = {
+"1",
+},
+["unevent"] = "auto",
+["subeventPrefix"] = "SPELL",
+["use_percenthealth"] = false,
+["percenthealth_operator"] = {
+">",
+},
+["use_unit"] = true,
+},
+["untrigger"] = {
+},
+},
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 512,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:危1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\wei",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = ".2",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = true,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "function(progress, startX, startY, deltaX, deltaY)\n    local prog\n    if(progress < 0.25) then\n        prog = progress * 4\n    elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n    else\n        prog = (progress - 1) * 4\n    end\n    return startX + (prog * deltaX), startY + (prog * deltaY)\nend\n",
+["scaley"] = 1.3,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 1.3,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "危3",
+["xOffset"] = -2.39990234375,
+["frameStrata"] = 4,
+["width"] = 512,
+["alpha"] = 0.48,
+["uid"] = "ep(MRMuvACV",
+["anchorFrameType"] = "SELECTFRAME",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0,
+0.066666666666667,
+1,
+},
+},
+["夜叉3"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = -10,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound"] = " custom",
+["do_sound"] = true,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["spellId"] = {
+"307494",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307495",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307164",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307163",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307162",
+},
+["use_absorbMode"] = true,
+["subeventPrefix"] = "SPELL",
+["debuffType"] = "HELPFUL",
+["use_sourceName"] = false,
+["subeventSuffix"] = "_AURA_APPLIED",
+["names"] = {
+},
+["duration"] = "3",
+["event"] = "Combat Log",
+["unevent"] = "timed",
+["use_spellName"] = false,
+["use_spellId"] = true,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["type"] = "combatlog",
+["unit"] = "player",
+["sourceUnit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307159",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307160",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"344314",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307161",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"322302",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307497",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 170,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMPTOBLACKADDITIVE",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "BLEND",
+["texture"] = "Interface\\Addons\\WA_Sekiro\\yecha.tga",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = ".2",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = true,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "function(progress, startX, startY, deltaX, deltaY)\n    local prog\n    if(progress < 0.25) then\n        prog = progress * 4\n    elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n    else\n        prog = (progress - 1) * 4\n    end\n    return startX + (prog * deltaX), startY + (prog * deltaY)\nend\n",
+["scaley"] = 1.3,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 1.3,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "夜叉3",
+["xOffset"] = 2.4998779296875,
+["alpha"] = 1,
+["anchorFrameType"] = "SCREEN",
+["width"] = 170,
+["config"] = {
+},
+["frameStrata"] = 1,
+["uid"] = "9C(7ZdjvzLd",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+},
+["color"] = {
+1,
+0.054901960784314,
+0,
+1,
+},
+},
+["夜叉2"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = -10,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["spellId"] = {
+"307494",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307495",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307164",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307163",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307162",
+},
+["use_absorbMode"] = true,
+["subeventPrefix"] = "SPELL",
+["debuffType"] = "HELPFUL",
+["use_sourceName"] = false,
+["subeventSuffix"] = "_AURA_APPLIED",
+["names"] = {
+},
+["duration"] = "3",
+["event"] = "Combat Log",
+["unevent"] = "timed",
+["use_spellName"] = false,
+["use_spellId"] = true,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["type"] = "combatlog",
+["unit"] = "player",
+["sourceUnit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307159",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307160",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"344314",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307161",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"322302",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307497",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 170,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMPTOBLACKADDITIVE",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "BLEND",
+["texture"] = "Interface\\Addons\\WA_Sekiro\\yecha.tga",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = "0.4",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = false,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "    function(progress, startX, startY, deltaX, deltaY)\n      local prog\n      if(progress < 0.25) then\n        prog = progress * 4\n      elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n      else\n        prog = (progress - 1) * 4\n      end\n      return startX + (prog * deltaX), startY + (prog * deltaY)\n    end\n  ",
+["scaley"] = 2.5,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.32941176470588,
+["scalex"] = 2.5,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "夜叉2",
+["xOffset"] = 2.4998779296875,
+["alpha"] = 1,
+["anchorFrameType"] = "SCREEN",
+["width"] = 170,
+["config"] = {
+},
+["frameStrata"] = 1,
+["uid"] = "1aiR(A3M9Ep",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+},
+["color"] = {
+0.87058823529412,
+0,
+0.070588235294118,
+0.76028855144978,
+},
+},
+["月隐2"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["track"] = "auto",
+["use_form"] = true,
+["spellId"] = {
+"1784",
+},
+["use_inverse"] = false,
+["genericShowOn"] = "showOnCooldown",
+["use_unit"] = true,
+["duration"] = "2",
+["use_track"] = true,
+["subeventPrefix"] = "SPELL",
+["unit"] = "player",
+["spellName"] = {
+"潜行",
+},
+["custom_hide"] = "timed",
+["use_spellId"] = false,
+["debuffType"] = "HELPFUL",
+["use_eventtype"] = true,
+["type"] = "combatlog",
+["unevent"] = "timed",
+["custom_type"] = "event",
+["use_genericShowOn"] = true,
+["form"] = {
+["single"] = 1,
+},
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["realSpellName"] = "潜行",
+["use_spellName"] = true,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["use_absorbMode"] = true,
+["names"] = {
+},
+["sourceUnit"] = "player",
+["use_auraType"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隐形",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隐形术",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"114018",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"潜伏帷幕",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"199483",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"潜伏帷幕",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["track"] = "auto",
+["use_form"] = true,
+["spellId"] = {
+"1784",
+},
+["use_inverse"] = false,
+["genericShowOn"] = "showOnCooldown",
+["use_unit"] = true,
+["duration"] = "2",
+["use_track"] = true,
+["subeventPrefix"] = "SPELL",
+["unit"] = "player",
+["spellName"] = {
+"潛行",
+},
+["custom_hide"] = "timed",
+["use_spellId"] = false,
+["debuffType"] = "HELPFUL",
+["use_eventtype"] = true,
+["type"] = "combatlog",
+["unevent"] = "timed",
+["custom_type"] = "event",
+["use_genericShowOn"] = true,
+["form"] = {
+["single"] = 1,
+},
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["realSpellName"] = "潜行",
+["use_spellName"] = true,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["use_absorbMode"] = true,
+["names"] = {
+},
+["sourceUnit"] = "player",
+["use_auraType"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隱形",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隱形術",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"321422",
+},
+["debuffType"] = "HELPFUL",
+["ownOnly"] = true,
+["useName"] = true,
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 150,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMPTOBLACKADDITIVE",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\Addons\\WA_sekiro\\yueyin",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = "0.4",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 0,
+["use_translate"] = false,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "    function(progress, startX, startY, deltaX, deltaY)\n      local prog\n      if(progress < 0.25) then\n        prog = progress * 4\n      elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n      else\n        prog = (progress - 1) * 4\n      end\n      return startX + (prog * deltaX), startY + (prog * deltaY)\n    end\n  ",
+["scaley"] = 2.5,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.90196078431373,
+["scalex"] = 2.5,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "月隐2",
+["xOffset"] = 0,
+["alpha"] = 0.78,
+["anchorFrameType"] = "SCREEN",
+["width"] = 150,
+["config"] = {
+},
+["frameStrata"] = 1,
+["uid"] = "NqyOEMe)Wyz",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+},
+["color"] = {
+0.14117647058824,
+0.3843137254902,
+0.41176470588235,
+1,
+},
+},
+["月隐3"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["track"] = "auto",
+["use_form"] = true,
+["spellId"] = {
+"1784",
+},
+["use_inverse"] = false,
+["genericShowOn"] = "showOnCooldown",
+["use_unit"] = true,
+["duration"] = "2",
+["use_track"] = true,
+["subeventPrefix"] = "SPELL",
+["unit"] = "player",
+["spellName"] = {
+"潜行",
+},
+["custom_hide"] = "timed",
+["use_spellId"] = false,
+["debuffType"] = "HELPFUL",
+["use_eventtype"] = true,
+["type"] = "combatlog",
+["unevent"] = "timed",
+["custom_type"] = "event",
+["use_genericShowOn"] = true,
+["form"] = {
+["single"] = 1,
+},
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["realSpellName"] = "潜行",
+["use_spellName"] = true,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["use_absorbMode"] = true,
+["names"] = {
+},
+["sourceUnit"] = "player",
+["use_auraType"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隐形",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隐形术",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"114018",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"潜伏帷幕",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"199483",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"潜伏帷幕",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["track"] = "auto",
+["use_form"] = true,
+["spellId"] = {
+"1784",
+},
+["use_inverse"] = false,
+["genericShowOn"] = "showOnCooldown",
+["use_unit"] = true,
+["duration"] = "2",
+["use_track"] = true,
+["subeventPrefix"] = "SPELL",
+["unit"] = "player",
+["spellName"] = {
+"潛行",
+},
+["custom_hide"] = "timed",
+["use_spellId"] = false,
+["debuffType"] = "HELPFUL",
+["use_eventtype"] = true,
+["type"] = "combatlog",
+["unevent"] = "timed",
+["custom_type"] = "event",
+["use_genericShowOn"] = true,
+["form"] = {
+["single"] = 1,
+},
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["realSpellName"] = "潜行",
+["use_spellName"] = true,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["use_absorbMode"] = true,
+["names"] = {
+},
+["sourceUnit"] = "player",
+["use_auraType"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隱形",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隱形術",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"321422",
+},
+["debuffType"] = "HELPFUL",
+["ownOnly"] = true,
+["useName"] = true,
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 150,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMPTOBLACKADDITIVE",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\Addons\\WA_sekiro\\yueyin",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = ".8",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = true,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "function(progress, startX, startY, deltaX, deltaY)\n    local prog\n    if(progress < 0.25) then\n        prog = progress * 4\n    elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n    else\n        prog = (progress - 1) * 4\n    end\n    return startX + (prog * deltaX), startY + (prog * deltaY)\nend\n",
+["scaley"] = 1.3,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 1.3,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "月隐3",
+["xOffset"] = 0,
+["alpha"] = 1,
+["anchorFrameType"] = "SCREEN",
+["width"] = 150,
+["config"] = {
+},
+["frameStrata"] = 1,
+["uid"] = "ESqOz1HKHPA",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+},
+["color"] = {
+0.21176470588235,
+0.5843137254902,
+0.62352941176471,
+1,
+},
+},
+["危2"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 1,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_sound"] = false,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["use_absorbMode"] = true,
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["debuffType"] = "HELPFUL",
+["health_operator"] = {
+"<=",
+},
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["use_percenthealth"] = true,
+["percenthealth"] = {
+"50",
+},
+["event"] = "Health",
+["unevent"] = "auto",
+["use_health"] = false,
+["health"] = {
+"50",
+},
+["spellIds"] = {
+},
+["duration"] = "1",
+["use_unit"] = true,
+["use_alive"] = false,
+["percenthealth_operator"] = {
+"<=",
+},
+["names"] = {
+},
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["use_absorbMode"] = true,
+["percenthealth"] = {
+"1",
+},
+["unevent"] = "auto",
+["subeventPrefix"] = "SPELL",
+["use_percenthealth"] = true,
+["percenthealth_operator"] = {
+">=",
+},
+["use_unit"] = true,
+},
+["untrigger"] = {
+},
+},
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 512,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:危1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["anchorFrameParent"] = true,
+["texture"] = "Interface\\AddOns\\WA_sekiro\\wei",
+["alpha"] = 0.48,
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = "1",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = false,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "    function(progress, startX, startY, deltaX, deltaY)\n      local prog\n      if(progress < 0.25) then\n        prog = progress * 4\n      elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n      else\n        prog = (progress - 1) * 4\n      end\n      return startX + (prog * deltaX), startY + (prog * deltaY)\n    end\n  ",
+["scaley"] = 2.5,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 2.5,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "危2",
+["xOffset"] = 0.999755859375,
+["frameStrata"] = 5,
+["width"] = 512,
+["color"] = {
+1,
+0,
+0.066666666666667,
+1,
+},
+["config"] = {
+},
+["uid"] = "b2eVv8Q6pMe",
+["anchorFrameType"] = "SELECTFRAME",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["authorOptions"] = {
+},
+},
+["死2"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound"] = " custom",
+["sound_path"] = "Interface\\AddOns\\WA_sekiro\\Sekiro_si.ogg",
+["do_sound"] = false,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["useGroup_count"] = true,
+["ownOnly"] = true,
+["names"] = {
+},
+["matchesShowOn"] = "showOnMissing",
+["group_count"] = "1",
+["group_countOperator"] = ">",
+["custom_hide"] = "custom",
+["debuffType"] = "HARMFUL",
+["use_absorbMode"] = true,
+["type"] = "custom",
+["subeventSuffix"] = "_CAST_START",
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["duration"] = "1",
+["event"] = "Conditions",
+["unevent"] = "auto",
+["auraspellids"] = {
+"160029",
+},
+["events"] = "PLAYER_DEAD  RESURRECT_REQUEST PLAYER_ALIVE PLAYER_UNGHOST",
+["custom"] = "function(event)\n  return event == \"PLAYER_DEAD\"\nend",
+["useExactSpellId"] = true,
+["subeventPrefix"] = "SPELL",
+["use_alive"] = false,
+["unit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"PLAYER_DEAD\"\nend",
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"160029",
+},
+["matchesShowOn"] = "showOnMissing",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["useName"] = true,
+["subeventSuffix"] = "_CAST_START",
+["debuffType"] = "HARMFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["health"] = {
+"0",
+},
+["use_health"] = true,
+["unevent"] = "auto",
+["use_unit"] = true,
+["use_absorbMode"] = true,
+["health_operator"] = {
+"<=",
+},
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "all",
+["customTriggerLogic"] = "\nfunction (trigger) \n    local unit = \"player\"\n    return UnitExists(unit) and UnitIsDead(unit) and trigger[1]\nend\n\n\n\n\n\n\n\n",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 512,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:死1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\si",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["scalex"] = 1,
+["alphaType"] = "straight",
+["colorB"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["colorA"] = 1,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "死2",
+["xOffset"] = 0,
+["frameStrata"] = 5,
+["width"] = 512,
+["alpha"] = 1,
+["uid"] = "krI6(mF9yuv",
+["anchorFrameType"] = "SELECTFRAME",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0.23137254901961,
+0.24313725490196,
+0.75,
+},
+},
+["死1"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 50,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound"] = " custom",
+["sound_path"] = "Interface\\AddOns\\WA_sekiro\\Sekiro_si.ogg",
+["do_sound"] = true,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["useGroup_count"] = true,
+["ownOnly"] = true,
+["names"] = {
+},
+["matchesShowOn"] = "showOnMissing",
+["group_count"] = "1",
+["group_countOperator"] = ">",
+["custom_hide"] = "custom",
+["debuffType"] = "HARMFUL",
+["use_absorbMode"] = true,
+["type"] = "custom",
+["subeventSuffix"] = "_CAST_START",
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["duration"] = "1",
+["event"] = "Conditions",
+["unevent"] = "auto",
+["auraspellids"] = {
+"160029",
+},
+["events"] = "PLAYER_DEAD  RESURRECT_REQUEST PLAYER_ALIVE PLAYER_UNGHOST",
+["custom"] = "function(event)\n  return event == \"PLAYER_DEAD\"\nend",
+["useExactSpellId"] = true,
+["subeventPrefix"] = "SPELL",
+["use_alive"] = false,
+["unit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"PLAYER_DEAD\"\nend",
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"160029",
+},
+["matchesShowOn"] = "showOnMissing",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["useName"] = true,
+["subeventSuffix"] = "_CAST_START",
+["debuffType"] = "HARMFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["health"] = {
+"0",
+},
+["use_health"] = true,
+["unevent"] = "auto",
+["use_unit"] = true,
+["use_absorbMode"] = true,
+["health_operator"] = {
+"<=",
+},
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "all",
+["customTriggerLogic"] = "\nfunction (trigger) \n    local unit = \"player\"\n    return UnitExists(unit) and UnitIsDead(unit) and trigger[1]\nend\n\n\n\n\n\n\n\n",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 512,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\si",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = "2",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = true,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "function(progress, startX, startY, deltaX, deltaY)\n    local prog\n    if(progress < 0.25) then\n        prog = progress * 4\n    elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n    else\n        prog = (progress - 1) * 4\n    end\n    return startX + (prog * deltaX), startY + (prog * deltaY)\nend\n",
+["scaley"] = 1.3,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 1.3,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "死1",
+["xOffset"] = 0,
+["alpha"] = 0.48,
+["anchorFrameType"] = "SCREEN",
+["width"] = 512,
+["config"] = {
+},
+["frameStrata"] = 5,
+["uid"] = "JPnDt(dMURv",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0,
+0.066666666666667,
+1,
+},
+},
+["危1"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 29.639389038086,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_loop"] = false,
+["sound_path"] = "Interface\\AddOns\\WA_sekiro\\Sekiro_wei.mp3",
+["sound"] = " custom",
+["do_sound"] = true,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["use_absorbMode"] = true,
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["debuffType"] = "HELPFUL",
+["health_operator"] = {
+"<=",
+},
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["use_percenthealth"] = true,
+["percenthealth"] = {
+"50",
+},
+["event"] = "Health",
+["unevent"] = "auto",
+["use_health"] = false,
+["health"] = {
+"100",
+},
+["spellIds"] = {
+},
+["duration"] = "1",
+["use_unit"] = true,
+["use_alive"] = false,
+["percenthealth_operator"] = {
+"<=",
+},
+["names"] = {
+},
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["use_absorbMode"] = true,
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["use_health"] = true,
+["health_operator"] = {
+">",
+},
+["health"] = {
+"1",
+},
+["unevent"] = "auto",
+["subeventPrefix"] = "SPELL",
+["use_percenthealth"] = false,
+["percenthealth_operator"] = {
+">",
+},
+["use_unit"] = true,
+},
+["untrigger"] = {
+},
+},
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 509.6120300293,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\wei",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = ".3",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["type"] = "none",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "alphaPulse",
+},
+["finish"] = {
+["colorR"] = 1,
+["duration_type"] = "seconds",
+["colorA"] = 1,
+["colorG"] = 1,
+["type"] = "preset",
+["easeType"] = "none",
+["scaleFunc"] = "    function(progress, startX, startY, scaleX, scaleY)\n      return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\n    end\n  ",
+["preset"] = "grow",
+["alpha"] = 0,
+["use_scale"] = false,
+["y"] = 0,
+["x"] = 0,
+["easeStrength"] = 3,
+["scalex"] = 1,
+["scaleType"] = "straightScale",
+["rotate"] = 0,
+["scaley"] = 1,
+["colorB"] = 1,
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "危1",
+["xOffset"] = 10,
+["alpha"] = 1,
+["anchorFrameType"] = "SCREEN",
+["width"] = 512,
+["config"] = {
+},
+["frameStrata"] = 4,
+["uid"] = "CqIKJN9K)s3",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0.57254901960784,
+0.61960784313726,
+1,
+},
+},
+["耐怖3"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = -10.833374023438,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["spellId"] = {
+"18499",
+},
+["duration"] = "2.5",
+["genericShowOn"] = "showOnCooldown",
+["subeventPrefix"] = "SPELL",
+["debuffType"] = "HELPFUL",
+["spellName"] = {
+0,
+},
+["use_track"] = true,
+["type"] = "combatlog",
+["unit"] = "player",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["use_absorbMode"] = true,
+["unevent"] = "timed",
+["event"] = "Combat Log",
+["use_spellId"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["use_genericShowOn"] = true,
+["names"] = {
+},
+["sourceUnit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"49039",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["spellName"] = {
+0,
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["duration"] = "2.5",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "combatlog",
+["spellId"] = {
+"7744",
+},
+["subeventSuffix"] = "_CAST_SUCCESS",
+["duration"] = "2.5",
+["event"] = "Combat Log",
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["unit"] = "player",
+["sourceUnit"] = "player",
+["debuffType"] = "HELPFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["spellId"] = {
+"8143",
+},
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["duration"] = "2.5",
+["event"] = "Combat Log",
+["unit"] = "player",
+["use_sourceFlags3"] = false,
+["use_spellId"] = true,
+["sourceFlags2"] = "Friendly",
+["use_sourceUnit"] = false,
+["subeventSuffix"] = "_CAST_SUCCESS",
+["use_sourceFlags"] = true,
+["use_sourceFlags2"] = true,
+["sourceFlags"] = "InGroup",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 150,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\Addons\\WA_sekiro\\naib",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = ".8",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 0.48235294117647,
+["use_translate"] = true,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "function(progress, startX, startY, deltaX, deltaY)\n    local prog\n    if(progress < 0.25) then\n        prog = progress * 4\n    elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n    else\n        prog = (progress - 1) * 4\n    end\n    return startX + (prog * deltaX), startY + (prog * deltaY)\nend\n",
+["scaley"] = 1.3,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 1,
+["scalex"] = 1.3,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "耐怖3",
+["xOffset"] = -0.0001220703125,
+["alpha"] = 0.48,
+["anchorFrameType"] = "SCREEN",
+["width"] = 150,
+["config"] = {
+},
+["frameStrata"] = 1,
+["uid"] = "9ZGmH(nzbET",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+},
+["color"] = {
+0.23137254901961,
+0,
+1,
+1,
+},
+},
+["回生2"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 1,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_sound"] = false,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["type"] = "aura2",
+["auraspellids"] = {
+"160029",
+},
+["debuffType"] = "HARMFUL",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["custom_type"] = "event",
+["events"] = "RESURRECT_REQUEST",
+["spellIds"] = {
+},
+["names"] = {
+},
+["subeventSuffix"] = "_CAST_START",
+["useExactSpellId"] = true,
+["custom_hide"] = "timed",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["subeventPrefix"] = "SPELL",
+["type"] = "custom",
+["events"] = "RESURRECT_REQUEST PLAYER_ALIVE",
+["custom_type"] = "event",
+["subeventSuffix"] = "_CAST_START",
+["custom"] = "function(event)\n  return event == \"RESURRECT_REQUEST\"\nend",
+["event"] = "Health",
+["custom_hide"] = "custom",
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"RESURRECT_REQUEST\"\nend",
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 412,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:回生1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["anchorFrameParent"] = true,
+["texture"] = "Interface\\AddOns\\WA_sekiro\\hs",
+["alpha"] = 0.48,
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = "1",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = false,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "    function(progress, startX, startY, deltaX, deltaY)\n      local prog\n      if(progress < 0.25) then\n        prog = progress * 4\n      elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n      else\n        prog = (progress - 1) * 4\n      end\n      return startX + (prog * deltaX), startY + (prog * deltaY)\n    end\n  ",
+["scaley"] = 2.5,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 2.5,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "回生2",
+["xOffset"] = 0.999755859375,
+["frameStrata"] = 5,
+["width"] = 412,
+["color"] = {
+1,
+0,
+0.066666666666667,
+1,
+},
+["config"] = {
+},
+["uid"] = "qJIla5Es5qA",
+["anchorFrameType"] = "SELECTFRAME",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["authorOptions"] = {
+},
+},
+["【自身】只狼特效"] = {
+["controlledChildren"] = {
+"回生1",
+"回生2",
+"回生3",
+"不死斩1",
+"不死斩2",
+"不死斩3",
+"不死斩背景",
+"忍杀1",
+"忍杀2",
+"忍杀3",
+"忍杀背景",
+"寄",
+"寄2",
+"寄3",
+"死1",
+"死2",
+"死3",
+"菜1",
+"菜2",
+"菜3",
+"危1",
+"危2",
+"危3",
+"治1",
+"治2",
+"治3",
+"死\\菜 黑色背景",
+"耐怖1",
+"耐怖2",
+"耐怖3",
+"月隐1",
+"月隐2",
+"月隐3",
+"夜叉1",
+"夜叉2",
+"夜叉3",
+},
+["borderBackdrop"] = "Blizzard Tooltip",
+["wagoID"] = "tpoBFufNn",
+["xOffset"] = -0.8331298828125,
+["preferToUpdate"] = false,
+["yOffset"] = 2.5001220703125,
+["anchorPoint"] = "CENTER",
+["borderColor"] = {
+1,
+1,
+1,
+0.5,
+},
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["names"] = {
+},
+["type"] = "aura2",
+["spellIds"] = {
+},
+["subeventSuffix"] = "_CAST_START",
+["subeventPrefix"] = "SPELL",
+["unit"] = "player",
+["event"] = "Health",
+["debuffType"] = "HELPFUL",
+},
+["untrigger"] = {
+},
+},
+},
+["internalVersion"] = 90,
+["animation"] = {
+["start"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+},
+["version"] = 11,
+["subRegions"] = {
+},
+["load"] = {
+["use_class"] = false,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["backdropColor"] = {
+1,
+1,
+1,
+0.5,
+},
+["scale"] = 1,
+["border"] = false,
+["borderEdge"] = "None",
+["regionType"] = "group",
+["borderSize"] = 16,
+["config"] = {
+},
+["borderOffset"] = 5,
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "【自身】只狼特效",
+["groupIcon"] = 369761,
+["alpha"] = 1,
+["anchorFrameType"] = "SCREEN",
+["selfPoint"] = "BOTTOMLEFT",
+["uid"] = "uDH9EfjpPrZ",
+["borderInset"] = 11,
+["frameStrata"] = 1,
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["groupOffset"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["authorOptions"] = {
+},
+},
+["菜2"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 50,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound"] = " custom",
+["sound_path"] = "Interface\\AddOns\\WA_sekiro\\Sekiro_si.ogg",
+["do_sound"] = true,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["useGroup_count"] = true,
+["ownOnly"] = true,
+["names"] = {
+},
+["matchesShowOn"] = "showOnMissing",
+["group_count"] = "1",
+["group_countOperator"] = ">",
+["custom_hide"] = "custom",
+["debuffType"] = "HARMFUL",
+["use_absorbMode"] = true,
+["type"] = "custom",
+["subeventSuffix"] = "_CAST_START",
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["duration"] = "1",
+["event"] = "Conditions",
+["unevent"] = "auto",
+["auraspellids"] = {
+"160029",
+},
+["events"] = "PLAYER_DEAD  RESURRECT_REQUEST PLAYER_ALIVE PLAYER_UNGHOST",
+["custom"] = "function(event)\n  return event == \"PLAYER_DEAD\"\nend",
+["useExactSpellId"] = true,
+["subeventPrefix"] = "SPELL",
+["use_alive"] = false,
+["unit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"PLAYER_DEAD\"\nend",
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"160029",
+},
+["matchesShowOn"] = "showOnMissing",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["useName"] = true,
+["subeventSuffix"] = "_CAST_START",
+["debuffType"] = "HARMFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["health"] = {
+"0",
+},
+["use_health"] = true,
+["unevent"] = "auto",
+["use_unit"] = true,
+["use_absorbMode"] = true,
+["health_operator"] = {
+"<=",
+},
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "all",
+["customTriggerLogic"] = "\nfunction (trigger) \n    local unit = \"player\"\n    return UnitExists(unit) and UnitIsDead(unit) and trigger[1]\nend\n\n\n\n\n\n\n\n",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 512,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\cai",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["scalex"] = 1,
+["alphaType"] = "straight",
+["colorB"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["colorA"] = 1,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "菜2",
+["xOffset"] = 0,
+["alpha"] = 1,
+["anchorFrameType"] = "SCREEN",
+["width"] = 512,
+["config"] = {
+},
+["frameStrata"] = 5,
+["uid"] = "Yhv5c9g)(h6",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0.23137254901961,
+0.24313725490196,
+0.75,
+},
+},
+["治2"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_sound"] = false,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["spellId"] = {
+"301308",
+},
+["duration"] = "1.5",
+["genericShowOn"] = "showOnActive",
+["names"] = {
+},
+["sourceFlags3"] = "Player",
+["use_sourceFlags3"] = false,
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["spellName"] = {
+"灵魂治疗药水",
+},
+["unevent"] = "timed",
+["unit"] = "player",
+["custom_type"] = "event",
+["event"] = "Combat Log",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["spellIds"] = {
+},
+["use_spellName"] = true,
+["events"] = "",
+["use_sourceUnit"] = true,
+["use_spellId"] = false,
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["custom_hide"] = "timed",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "combatlog",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["duration"] = "1.5",
+["event"] = "Combat Log",
+["subeventPrefix"] = "SPELL",
+["use_spellName"] = true,
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["sourceUnit"] = "player",
+["spellName"] = {
+"治疗石",
+},
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["subeventPrefix"] = "SPELL",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["unit"] = "player",
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellId"] = false,
+["duration"] = "1.5",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["use_spellName"] = true,
+["sourceUnit"] = "player",
+["spellName"] = {
+"意气风发",
+},
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "combatlog",
+["spellId"] = {
+"171267",
+},
+["subeventSuffix"] = "_CAST_SUCCESS",
+["duration"] = "1.5",
+["event"] = "Combat Log",
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["unit"] = "player",
+["sourceUnit"] = "player",
+["debuffType"] = "HELPFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"301308",
+},
+["duration"] = "1.5",
+["genericShowOn"] = "showOnActive",
+["names"] = {
+},
+["sourceFlags3"] = "Player",
+["use_sourceFlags3"] = false,
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["spellName"] = {
+"宇宙治疗药水",
+},
+["unevent"] = "timed",
+["unit"] = "player",
+["custom_type"] = "event",
+["event"] = "Combat Log",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["spellIds"] = {
+},
+["use_spellName"] = true,
+["events"] = "",
+["use_sourceUnit"] = true,
+["use_spellId"] = false,
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["custom_hide"] = "timed",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 450,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:治1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\zhi",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = ".4",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = true,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "function(progress, startX, startY, deltaX, deltaY)\n    local prog\n    if(progress < 0.25) then\n        prog = progress * 4\n    elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n    else\n        prog = (progress - 1) * 4\n    end\n    return startX + (prog * deltaX), startY + (prog * deltaY)\nend\n",
+["scaley"] = 1.3,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 1.3,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "治2",
+["xOffset"] = 0,
+["frameStrata"] = 4,
+["width"] = 450,
+["alpha"] = 0.39,
+["uid"] = "2nRRw20flDt",
+["anchorFrameType"] = "SELECTFRAME",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+0.67058823529412,
+1,
+0.71764705882353,
+1,
+},
+},
+["治1"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_loop"] = false,
+["sound_path"] = "Interface\\AddOns\\WA_sekiro\\zhi.mp3",
+["sound"] = " custom",
+["do_sound"] = true,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["spellId"] = {
+"301308",
+},
+["duration"] = "1.5",
+["genericShowOn"] = "showOnActive",
+["names"] = {
+},
+["sourceFlags3"] = "Player",
+["use_sourceFlags3"] = false,
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["spellName"] = {
+"灵魂治疗药水",
+},
+["unevent"] = "timed",
+["unit"] = "player",
+["custom_type"] = "event",
+["event"] = "Combat Log",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["spellIds"] = {
+},
+["use_spellName"] = true,
+["events"] = "",
+["use_sourceUnit"] = true,
+["use_spellId"] = false,
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["custom_hide"] = "timed",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "combatlog",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["duration"] = "1.5",
+["event"] = "Combat Log",
+["subeventPrefix"] = "SPELL",
+["use_spellName"] = true,
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["sourceUnit"] = "player",
+["spellName"] = {
+"治疗石",
+},
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["subeventPrefix"] = "SPELL",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["unit"] = "player",
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellId"] = false,
+["duration"] = "1.5",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["use_spellName"] = true,
+["sourceUnit"] = "player",
+["spellName"] = {
+"意气风发",
+},
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "combatlog",
+["spellId"] = {
+"171267",
+},
+["subeventSuffix"] = "_CAST_SUCCESS",
+["duration"] = "1.5",
+["event"] = "Combat Log",
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["unit"] = "player",
+["sourceUnit"] = "player",
+["debuffType"] = "HELPFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"301308",
+},
+["duration"] = "1.5",
+["genericShowOn"] = "showOnActive",
+["names"] = {
+},
+["sourceFlags3"] = "Player",
+["use_sourceFlags3"] = false,
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["spellName"] = {
+"宇宙治疗药水",
+},
+["unevent"] = "timed",
+["unit"] = "player",
+["custom_type"] = "event",
+["event"] = "Combat Log",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["spellIds"] = {
+},
+["use_spellName"] = true,
+["events"] = "",
+["use_sourceUnit"] = true,
+["use_spellId"] = false,
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["custom_hide"] = "timed",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 450,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\zhi",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = ".5",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["type"] = "none",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "alphaPulse",
+},
+["finish"] = {
+["colorR"] = 1,
+["duration_type"] = "seconds",
+["colorA"] = 1,
+["colorG"] = 1,
+["type"] = "preset",
+["easeType"] = "none",
+["scaleFunc"] = "    function(progress, startX, startY, scaleX, scaleY)\n      return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\n    end\n  ",
+["preset"] = "grow",
+["alpha"] = 0,
+["use_scale"] = false,
+["y"] = 0,
+["x"] = 0,
+["easeStrength"] = 3,
+["scalex"] = 1,
+["scaleType"] = "straightScale",
+["rotate"] = 0,
+["scaley"] = 1,
+["colorB"] = 1,
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "治1",
+["xOffset"] = -2.5,
+["alpha"] = 1,
+["anchorFrameType"] = "SCREEN",
+["width"] = 450,
+["config"] = {
+},
+["frameStrata"] = 4,
+["uid"] = "YvTbQKzV)xY",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+0.54901960784314,
+1,
+0.6,
+1,
+},
+},
+["忍杀1"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 61.000305175781,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound"] = " custom",
+["sound_path"] = "Interface\\Addons\\WA_Sekiro\\rensha.mp3",
+["do_sound"] = true,
+},
+["finish"] = {
+["sound_channel"] = "Master",
+["sound"] = " custom",
+["sound_path"] = "Interface\\Addons\\WA_Sekiro\\Sekiro_wei.mp3",
+["do_sound"] = false,
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["use_sourceRaidFlags"] = false,
+["duration"] = "3",
+["subeventPrefix"] = "UNIT_DIED",
+["unit"] = "player",
+["use_sourceFlags"] = false,
+["use_sourceName"] = false,
+["debuffType"] = "HELPFUL",
+["unevent"] = "timed",
+["type"] = "custom",
+["use_eventtype"] = true,
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["events"] = "CLEU:UNIT_DIED",
+["event"] = "Combat Log",
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+["sourceRaidFlags"] = 8,
+["dynamicDuration"] = false,
+["custom"] = "function(event, _, subEvent, _,_,_,_,_,destGUID)\n    if UnitGUID(\"target\") == destGUID and not UnitIsUnit(\"target\", \"boss1\") then\n        local c = UnitClassification(\"target\")\n        return c ==  \"worldboss\" or c == \"rareelite\" or c == \"elite\" or c == \"rare\"\n    end\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+["use_sourceUnit"] = false,
+["subeventSuffix"] = "",
+["use_destRaidFlags"] = false,
+["custom_hide"] = "timed",
+["names"] = {
+},
+},
+["untrigger"] = {
+["use_eventtype"] = true,
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+},
+},
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 1100,
+["rotate"] = true,
+["load"] = {
+["size"] = {
+["single"] = "fortyman",
+["multi"] = {
+["none"] = true,
+},
+},
+["use_size"] = false,
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["use_encounter"] = false,
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:忍杀2",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\Addons\\WA_Sekiro\\rs",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = "2",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["type"] = "none",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "alphaPulse",
+},
+["finish"] = {
+["colorR"] = 1,
+["duration_type"] = "seconds",
+["colorA"] = 1,
+["colorG"] = 1,
+["type"] = "preset",
+["easeType"] = "none",
+["scaleFunc"] = "    function(progress, startX, startY, scaleX, scaleY)\n      return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\n    end\n  ",
+["preset"] = "grow",
+["alpha"] = 0,
+["use_scale"] = false,
+["y"] = 0,
+["x"] = 0,
+["easeStrength"] = 3,
+["scalex"] = 1,
+["scaleType"] = "straightScale",
+["rotate"] = 0,
+["scaley"] = 1,
+["colorB"] = 1,
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "忍杀1",
+["xOffset"] = -6.666748046875,
+["frameStrata"] = 5,
+["width"] = 1100,
+["alpha"] = 1,
+["uid"] = "NXTfb3DyVXm",
+["anchorFrameType"] = "SCREEN",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+1,
+1,
+1,
+},
+},
+["寄"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 50,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound"] = " custom",
+["sound_path"] = "Interface\\AddOns\\WA_sekiro\\Sekiro_si.ogg",
+["do_sound"] = true,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["useGroup_count"] = true,
+["ownOnly"] = true,
+["names"] = {
+},
+["matchesShowOn"] = "showOnMissing",
+["group_count"] = "1",
+["group_countOperator"] = ">",
+["custom_hide"] = "custom",
+["debuffType"] = "HARMFUL",
+["use_absorbMode"] = true,
+["type"] = "custom",
+["subeventSuffix"] = "_CAST_START",
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["duration"] = "1",
+["event"] = "Conditions",
+["unevent"] = "auto",
+["auraspellids"] = {
+"160029",
+},
+["events"] = "PLAYER_DEAD  RESURRECT_REQUEST PLAYER_ALIVE PLAYER_UNGHOST",
+["custom"] = "function(event)\n  return event == \"PLAYER_DEAD\"\nend",
+["useExactSpellId"] = true,
+["subeventPrefix"] = "SPELL",
+["use_alive"] = false,
+["unit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"PLAYER_DEAD\"\nend",
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"160029",
+},
+["matchesShowOn"] = "showOnMissing",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["useName"] = true,
+["subeventSuffix"] = "_CAST_START",
+["debuffType"] = "HARMFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["health"] = {
+"0",
+},
+["use_health"] = true,
+["unevent"] = "auto",
+["use_unit"] = true,
+["use_absorbMode"] = true,
+["health_operator"] = {
+"<=",
+},
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "all",
+["customTriggerLogic"] = "\nfunction (trigger) \n    local unit = \"player\"\n    return UnitExists(unit) and UnitIsDead(unit) and trigger[1]\nend\n\n\n\n\n\n\n\n",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 512,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\ji",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = "2",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = true,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "function(progress, startX, startY, deltaX, deltaY)\n    local prog\n    if(progress < 0.25) then\n        prog = progress * 4\n    elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n    else\n        prog = (progress - 1) * 4\n    end\n    return startX + (prog * deltaX), startY + (prog * deltaY)\nend\n",
+["scaley"] = 1.3,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 1.3,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "寄",
+["xOffset"] = 0,
+["alpha"] = 0.48,
+["anchorFrameType"] = "SCREEN",
+["width"] = 512,
+["config"] = {
+},
+["frameStrata"] = 5,
+["uid"] = "tD593i856)h",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0,
+0.066666666666667,
+1,
+},
+},
+["耐怖2"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = -10.833374023438,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["spellId"] = {
+"18499",
+},
+["duration"] = "2.5",
+["genericShowOn"] = "showOnCooldown",
+["subeventPrefix"] = "SPELL",
+["debuffType"] = "HELPFUL",
+["spellName"] = {
+0,
+},
+["use_track"] = true,
+["type"] = "combatlog",
+["unit"] = "player",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["use_absorbMode"] = true,
+["unevent"] = "timed",
+["event"] = "Combat Log",
+["use_spellId"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["use_genericShowOn"] = true,
+["names"] = {
+},
+["sourceUnit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"49039",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["spellName"] = {
+0,
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["duration"] = "2.5",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "combatlog",
+["spellId"] = {
+"7744",
+},
+["subeventSuffix"] = "_CAST_SUCCESS",
+["duration"] = "2.5",
+["event"] = "Combat Log",
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["unit"] = "player",
+["sourceUnit"] = "player",
+["debuffType"] = "HELPFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["spellId"] = {
+"8143",
+},
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["duration"] = "2.5",
+["event"] = "Combat Log",
+["unit"] = "player",
+["use_sourceFlags3"] = false,
+["use_spellId"] = true,
+["sourceFlags2"] = "Friendly",
+["use_sourceUnit"] = false,
+["subeventSuffix"] = "_CAST_SUCCESS",
+["use_sourceFlags"] = true,
+["use_sourceFlags2"] = true,
+["sourceFlags"] = "InGroup",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 150,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\Addons\\WA_sekiro\\naib",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = "0.4",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = false,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "    function(progress, startX, startY, deltaX, deltaY)\n      local prog\n      if(progress < 0.25) then\n        prog = progress * 4\n      elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n      else\n        prog = (progress - 1) * 4\n      end\n      return startX + (prog * deltaX), startY + (prog * deltaY)\n    end\n  ",
+["scaley"] = 2.5,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 2.5,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "耐怖2",
+["xOffset"] = -0.0001220703125,
+["alpha"] = 0.48,
+["anchorFrameType"] = "SCREEN",
+["width"] = 150,
+["config"] = {
+},
+["frameStrata"] = 1,
+["uid"] = "9D26iRPVs42",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+},
+["color"] = {
+0.23137254901961,
+0,
+1,
+1,
+},
+},
+["不死斩3"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound"] = " custom",
+["sound_path"] = "Interface\\Addons\\WA_Sekiro\\is.mp3",
+["do_sound"] = true,
+},
+["finish"] = {
+["sound_channel"] = "Master",
+["sound"] = " custom",
+["sound_path"] = "Interface\\Addons\\WA_Sekiro\\Sekiro_wei.mp3",
+["do_sound"] = false,
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["use_sourceRaidFlags"] = false,
+["duration"] = "3",
+["subeventPrefix"] = "UNIT_DIED",
+["unit"] = "player",
+["use_sourceFlags"] = false,
+["use_sourceName"] = false,
+["debuffType"] = "HELPFUL",
+["unevent"] = "timed",
+["type"] = "custom",
+["use_eventtype"] = true,
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["events"] = "ENCOUNTER_END",
+["event"] = "Combat Log",
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+["sourceRaidFlags"] = 8,
+["dynamicDuration"] = false,
+["custom"] = "function(event,arg1, arg2, arg3, arg4, success)\n    return event == \"ENCOUNTER_END\" and success == 1\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+["use_sourceUnit"] = false,
+["subeventSuffix"] = "",
+["use_destRaidFlags"] = false,
+["custom_hide"] = "timed",
+["names"] = {
+},
+},
+["untrigger"] = {
+["use_eventtype"] = true,
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+},
+},
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 1100,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:不死斩1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\is",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = "0.6",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = false,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "    function(progress, startX, startY, deltaX, deltaY)\n      local prog\n      if(progress < 0.25) then\n        prog = progress * 4\n      elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n      else\n        prog = (progress - 1) * 4\n      end\n      return startX + (prog * deltaX), startY + (prog * deltaY)\n    end\n  ",
+["scaley"] = 2.5,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 2.5,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "不死斩3",
+["xOffset"] = -0.0006103515625,
+["frameStrata"] = 5,
+["width"] = 1100,
+["alpha"] = 0.48,
+["uid"] = "SAyl1TYrt)1",
+["anchorFrameType"] = "SELECTFRAME",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0.9921568627451,
+0.95294117647059,
+1,
+},
+},
+["寄2"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound"] = " custom",
+["sound_path"] = "Interface\\AddOns\\WA_sekiro\\Sekiro_si.ogg",
+["do_sound"] = false,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["useGroup_count"] = true,
+["ownOnly"] = true,
+["names"] = {
+},
+["matchesShowOn"] = "showOnMissing",
+["group_count"] = "1",
+["group_countOperator"] = ">",
+["custom_hide"] = "custom",
+["debuffType"] = "HARMFUL",
+["use_absorbMode"] = true,
+["type"] = "custom",
+["subeventSuffix"] = "_CAST_START",
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["duration"] = "1",
+["event"] = "Conditions",
+["unevent"] = "auto",
+["auraspellids"] = {
+"160029",
+},
+["events"] = "PLAYER_DEAD  RESURRECT_REQUEST PLAYER_ALIVE PLAYER_UNGHOST",
+["custom"] = "function(event)\n  return event == \"PLAYER_DEAD\"\nend",
+["useExactSpellId"] = true,
+["subeventPrefix"] = "SPELL",
+["use_alive"] = false,
+["unit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"PLAYER_DEAD\"\nend",
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"160029",
+},
+["matchesShowOn"] = "showOnMissing",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["useName"] = true,
+["subeventSuffix"] = "_CAST_START",
+["debuffType"] = "HARMFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["health"] = {
+"0",
+},
+["use_health"] = true,
+["unevent"] = "auto",
+["use_unit"] = true,
+["use_absorbMode"] = true,
+["health_operator"] = {
+"<=",
+},
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "all",
+["customTriggerLogic"] = "\nfunction (trigger) \n    local unit = \"player\"\n    return UnitExists(unit) and UnitIsDead(unit) and trigger[1]\nend\n\n\n\n\n\n\n\n",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 512,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:死1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\ji",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["scalex"] = 1,
+["alphaType"] = "straight",
+["colorB"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["colorA"] = 1,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "寄2",
+["xOffset"] = 0,
+["frameStrata"] = 5,
+["width"] = 512,
+["alpha"] = 1,
+["uid"] = "B99IwNLofiO",
+["anchorFrameType"] = "SELECTFRAME",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0.23137254901961,
+0.24313725490196,
+0.75,
+},
+},
+["不死斩1"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 136.00018310547,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound"] = " custom",
+["sound_path"] = "Interface\\Addons\\WA_Sekiro\\is.mp3",
+["do_sound"] = true,
+},
+["finish"] = {
+["sound_channel"] = "Master",
+["sound"] = " custom",
+["sound_path"] = "Interface\\Addons\\WA_Sekiro\\Sekiro_wei.mp3",
+["do_sound"] = false,
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["use_sourceRaidFlags"] = false,
+["duration"] = "3",
+["subeventPrefix"] = "UNIT_DIED",
+["unit"] = "player",
+["use_sourceFlags"] = false,
+["use_sourceName"] = false,
+["debuffType"] = "HELPFUL",
+["unevent"] = "timed",
+["type"] = "custom",
+["use_eventtype"] = true,
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["events"] = "ENCOUNTER_END",
+["event"] = "Combat Log",
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+["sourceRaidFlags"] = 8,
+["dynamicDuration"] = false,
+["custom"] = "function(event,arg1, arg2, arg3, arg4, success)\n    return event == \"ENCOUNTER_END\" and success == 1\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+["use_sourceUnit"] = false,
+["subeventSuffix"] = "",
+["use_destRaidFlags"] = false,
+["custom_hide"] = "timed",
+["names"] = {
+},
+},
+["untrigger"] = {
+["use_eventtype"] = true,
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+},
+},
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 1100,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:忍杀2",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\Addons\\WA_Sekiro\\is",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = "2",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["type"] = "none",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "alphaPulse",
+},
+["finish"] = {
+["colorR"] = 1,
+["duration_type"] = "seconds",
+["colorA"] = 1,
+["colorG"] = 1,
+["type"] = "preset",
+["easeType"] = "none",
+["scaleFunc"] = "    function(progress, startX, startY, scaleX, scaleY)\n      return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\n    end\n  ",
+["preset"] = "grow",
+["alpha"] = 0,
+["use_scale"] = false,
+["y"] = 0,
+["x"] = 0,
+["easeStrength"] = 3,
+["scalex"] = 1,
+["scaleType"] = "straightScale",
+["rotate"] = 0,
+["scaley"] = 1,
+["colorB"] = 1,
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "不死斩1",
+["xOffset"] = 0.1663818359375,
+["frameStrata"] = 5,
+["width"] = 1100,
+["alpha"] = 1,
+["uid"] = "o)ZyaZSkXdR",
+["anchorFrameType"] = "SCREEN",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+1,
+1,
+1,
+},
+},
+["忍杀3"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 0.1281616210937955,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_sound"] = false,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["use_sourceRaidFlags"] = false,
+["duration"] = "3",
+["subeventPrefix"] = "UNIT_DIED",
+["unit"] = "player",
+["use_sourceFlags"] = false,
+["use_sourceName"] = false,
+["debuffType"] = "HELPFUL",
+["unevent"] = "timed",
+["type"] = "custom",
+["use_eventtype"] = true,
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["events"] = "CLEU:UNIT_DIED",
+["event"] = "Combat Log",
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+["sourceRaidFlags"] = 8,
+["dynamicDuration"] = false,
+["custom"] = "function(event, _, subEvent, _,_,_,_,_,destGUID)\n    if UnitGUID(\"target\") == destGUID and not UnitIsUnit(\"target\", \"boss1\") then\n        local c = UnitClassification(\"target\")\n        return c ==  \"worldboss\" or c == \"rareelite\" or c == \"elite\" or c == \"rare\"\n    end\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+["use_sourceUnit"] = false,
+["subeventSuffix"] = "",
+["use_destRaidFlags"] = false,
+["custom_hide"] = "timed",
+["names"] = {
+},
+},
+["untrigger"] = {
+["use_eventtype"] = true,
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+},
+},
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 1100,
+["rotate"] = true,
+["load"] = {
+["size"] = {
+["multi"] = {
+["none"] = true,
+},
+},
+["use_size"] = false,
+["use_encounter"] = false,
+["talent"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["use_never"] = true,
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:忍杀1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\rs",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = "0.6",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = false,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "    function(progress, startX, startY, deltaX, deltaY)\n      local prog\n      if(progress < 0.25) then\n        prog = progress * 4\n      elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n      else\n        prog = (progress - 1) * 4\n      end\n      return startX + (prog * deltaX), startY + (prog * deltaY)\n    end\n  ",
+["scaley"] = 2.5,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 2.5,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "忍杀3",
+["xOffset"] = 0.2155273437499545,
+["frameStrata"] = 5,
+["width"] = 1100,
+["alpha"] = 0.48,
+["uid"] = "4GI0hFXHtpx",
+["anchorFrameType"] = "SELECTFRAME",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0.9921568627451,
+0.95294117647059,
+1,
+},
+},
+["回生3"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = -2.4000854492188,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_sound"] = false,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["type"] = "aura2",
+["auraspellids"] = {
+"160029",
+},
+["debuffType"] = "HARMFUL",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["custom_type"] = "event",
+["events"] = "RESURRECT_REQUEST",
+["spellIds"] = {
+},
+["names"] = {
+},
+["subeventSuffix"] = "_CAST_START",
+["useExactSpellId"] = true,
+["custom_hide"] = "timed",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["subeventPrefix"] = "SPELL",
+["type"] = "custom",
+["events"] = "RESURRECT_REQUEST PLAYER_ALIVE",
+["custom_type"] = "event",
+["subeventSuffix"] = "_CAST_START",
+["custom"] = "function(event)\n  return event == \"RESURRECT_REQUEST\"\nend",
+["event"] = "Health",
+["custom_hide"] = "custom",
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"RESURRECT_REQUEST\"\nend",
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 412,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:回生1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\hs",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = ".2",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = true,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "function(progress, startX, startY, deltaX, deltaY)\n    local prog\n    if(progress < 0.25) then\n        prog = progress * 4\n    elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n    else\n        prog = (progress - 1) * 4\n    end\n    return startX + (prog * deltaX), startY + (prog * deltaY)\nend\n",
+["scaley"] = 1.3,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 1.3,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "回生3",
+["xOffset"] = -2.39990234375,
+["frameStrata"] = 4,
+["width"] = 412,
+["alpha"] = 0.48,
+["uid"] = "7rq(vPhVy5o",
+["anchorFrameType"] = "SELECTFRAME",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0,
+0.066666666666667,
+1,
+},
+},
+["月隐1"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound_channel"] = "Master",
+["sound"] = " custom",
+["sound_path"] = "Interface\\AddOns\\WA_sekiro\\yueyin_1.mp3",
+["do_sound"] = true,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["track"] = "auto",
+["use_form"] = true,
+["spellId"] = {
+"1784",
+},
+["use_inverse"] = false,
+["genericShowOn"] = "showOnCooldown",
+["use_unit"] = true,
+["duration"] = "2",
+["use_track"] = true,
+["subeventPrefix"] = "SPELL",
+["unit"] = "player",
+["spellName"] = {
+"潜行",
+},
+["custom_hide"] = "timed",
+["use_spellId"] = false,
+["debuffType"] = "HELPFUL",
+["use_eventtype"] = true,
+["type"] = "combatlog",
+["unevent"] = "timed",
+["custom_type"] = "event",
+["use_genericShowOn"] = true,
+["form"] = {
+["single"] = 1,
+},
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["realSpellName"] = "潜行",
+["use_spellName"] = true,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["use_absorbMode"] = true,
+["names"] = {
+},
+["sourceUnit"] = "player",
+["use_auraType"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隐形",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隐形术",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"114018",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"潜伏帷幕",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"199483",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"潜伏帷幕",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = false,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["track"] = "auto",
+["use_form"] = true,
+["spellId"] = {
+"1784",
+},
+["use_inverse"] = false,
+["genericShowOn"] = "showOnCooldown",
+["use_unit"] = true,
+["duration"] = "2",
+["use_track"] = true,
+["subeventPrefix"] = "SPELL",
+["unit"] = "player",
+["spellName"] = {
+"潛行",
+},
+["custom_hide"] = "timed",
+["use_spellId"] = false,
+["debuffType"] = "HELPFUL",
+["use_eventtype"] = true,
+["type"] = "combatlog",
+["unevent"] = "timed",
+["custom_type"] = "event",
+["use_genericShowOn"] = true,
+["form"] = {
+["single"] = 1,
+},
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["realSpellName"] = "潜行",
+["use_spellName"] = true,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["use_absorbMode"] = true,
+["names"] = {
+},
+["sourceUnit"] = "player",
+["use_auraType"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隱形",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307195",
+},
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["unit"] = "player",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_AURA_APPLIED",
+["spellName"] = {
+"隱形術",
+},
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellName"] = true,
+["duration"] = "2",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["use_spellId"] = false,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"321422",
+},
+["debuffType"] = "HELPFUL",
+["ownOnly"] = true,
+["useName"] = true,
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 150,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMPTOBLACKADDITIVE",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\Addons\\WA_sekiro\\yueyin",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = ".3",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["type"] = "none",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "alphaPulse",
+},
+["finish"] = {
+["colorR"] = 1,
+["duration_type"] = "seconds",
+["colorA"] = 1,
+["colorG"] = 1,
+["type"] = "preset",
+["easeType"] = "none",
+["scaleFunc"] = "    function(progress, startX, startY, scaleX, scaleY)\n      return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\n    end\n  ",
+["preset"] = "grow",
+["alpha"] = 0,
+["use_scale"] = false,
+["y"] = 0,
+["x"] = 0,
+["easeStrength"] = 3,
+["scalex"] = 1,
+["scaleType"] = "straightScale",
+["rotate"] = 0,
+["scaley"] = 1,
+["colorB"] = 1,
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "月隐1",
+["xOffset"] = 0,
+["alpha"] = 1,
+["anchorFrameType"] = "SCREEN",
+["width"] = 150,
+["config"] = {
+},
+["frameStrata"] = 1,
+["uid"] = "06G5fEeFCTS",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+},
+["color"] = {
+0.34509803921569,
+0.61960784313725,
+0.66274509803922,
+1,
+},
+},
+["治3"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_sound"] = false,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["spellId"] = {
+"301308",
+},
+["duration"] = "1.5",
+["genericShowOn"] = "showOnActive",
+["names"] = {
+},
+["sourceFlags3"] = "Player",
+["use_sourceFlags3"] = false,
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["spellName"] = {
+"灵魂治疗药水",
+},
+["unevent"] = "timed",
+["unit"] = "player",
+["custom_type"] = "event",
+["event"] = "Combat Log",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["spellIds"] = {
+},
+["use_spellName"] = true,
+["events"] = "",
+["use_sourceUnit"] = true,
+["use_spellId"] = false,
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["custom_hide"] = "timed",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "combatlog",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["duration"] = "1.5",
+["event"] = "Combat Log",
+["subeventPrefix"] = "SPELL",
+["use_spellName"] = true,
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["sourceUnit"] = "player",
+["spellName"] = {
+"治疗石",
+},
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["use_genericShowOn"] = true,
+["genericShowOn"] = "showOnCooldown",
+["subeventPrefix"] = "SPELL",
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["unit"] = "player",
+["event"] = "Combat Log",
+["use_track"] = true,
+["realSpellName"] = 0,
+["use_spellId"] = false,
+["duration"] = "1.5",
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["use_spellName"] = true,
+["sourceUnit"] = "player",
+["spellName"] = {
+"意气风发",
+},
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "combatlog",
+["spellId"] = {
+"171267",
+},
+["subeventSuffix"] = "_CAST_SUCCESS",
+["duration"] = "1.5",
+["event"] = "Combat Log",
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["use_sourceUnit"] = true,
+["unevent"] = "timed",
+["unit"] = "player",
+["sourceUnit"] = "player",
+["debuffType"] = "HELPFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"301308",
+},
+["duration"] = "1.5",
+["genericShowOn"] = "showOnActive",
+["names"] = {
+},
+["sourceFlags3"] = "Player",
+["use_sourceFlags3"] = false,
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["spellName"] = {
+"宇宙治疗药水",
+},
+["unevent"] = "timed",
+["unit"] = "player",
+["custom_type"] = "event",
+["event"] = "Combat Log",
+["subeventSuffix"] = "_CAST_SUCCESS",
+["spellIds"] = {
+},
+["use_spellName"] = true,
+["events"] = "",
+["use_sourceUnit"] = true,
+["use_spellId"] = false,
+["subeventPrefix"] = "SPELL",
+["sourceUnit"] = "player",
+["custom_hide"] = "timed",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 450,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:治1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\zhi",
+["animation"] = {
+["start"] = {
+["translateType"] = "shake",
+["duration"] = "0.8",
+["duration_type"] = "seconds",
+["use_scale"] = true,
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 0.7843137254902,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["rotate"] = 0,
+["colorR"] = 1,
+["use_translate"] = false,
+["use_alpha"] = true,
+["scaleFunc"] = "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+["scaleType"] = "straightScale",
+["preset"] = "grow",
+["easeType"] = "none",
+["translateFunc"] = "    function(progress, startX, startY, deltaX, deltaY)\n      local prog\n      if(progress < 0.25) then\n        prog = progress * 4\n      elseif(progress < .75) then\n        prog = 2 - (progress * 4)\n      else\n        prog = (progress - 1) * 4\n      end\n      return startX + (prog * deltaX), startY + (prog * deltaY)\n    end\n  ",
+["scaley"] = 2.5,
+["alpha"] = 0.7,
+["colorType"] = "straightColor",
+["y"] = 5,
+["x"] = 5,
+["use_color"] = true,
+["type"] = "custom",
+["colorFunc"] = "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+["easeStrength"] = 3,
+["colorB"] = 0.73333333333333,
+["scalex"] = 2.5,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "治3",
+["xOffset"] = -0.000244140625,
+["frameStrata"] = 5,
+["width"] = 450,
+["alpha"] = 0.48,
+["uid"] = "aDt4sf9EH8H",
+["anchorFrameType"] = "SELECTFRAME",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+0.066666666666667,
+1,
+0,
+1,
+},
+},
+["忍杀背景"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 0.1284362792968778,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["use_sourceRaidFlags"] = false,
+["duration"] = "3",
+["subeventPrefix"] = "UNIT_DIED",
+["unit"] = "player",
+["use_sourceFlags"] = false,
+["use_sourceName"] = false,
+["debuffType"] = "HELPFUL",
+["unevent"] = "timed",
+["type"] = "custom",
+["use_eventtype"] = true,
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["events"] = "CLEU:UNIT_DIED",
+["event"] = "Combat Log",
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+["sourceRaidFlags"] = 8,
+["dynamicDuration"] = false,
+["custom"] = "function(event, _, subEvent, _,_,_,_,_,destGUID)\n    if UnitGUID(\"target\") == destGUID and not UnitIsUnit(\"target\", \"boss1\") then\n        local c = UnitClassification(\"target\")\n        return c ==  \"worldboss\" or c == \"rareelite\" or c == \"elite\" or c == \"rare\"\n    end\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+["use_sourceUnit"] = false,
+["subeventSuffix"] = "",
+["use_destRaidFlags"] = false,
+["custom_hide"] = "timed",
+["names"] = {
+},
+},
+["untrigger"] = {
+["use_eventtype"] = true,
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+},
+},
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 1200,
+["rotate"] = true,
+["load"] = {
+["size"] = {
+["multi"] = {
+["none"] = true,
+},
+},
+["use_size"] = false,
+["use_encounter"] = false,
+["talent"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["use_never"] = true,
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "BLEND",
+["texture"] = "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = "1",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "fade",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "fade",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "忍杀背景",
+["xOffset"] = -0.08597412109372726,
+["alpha"] = 0.7,
+["anchorFrameType"] = "SCREEN",
+["width"] = 2864,
+["config"] = {
+},
+["frameStrata"] = 4,
+["uid"] = "9IMoaarE7oD",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+0,
+0,
+0,
+0.85298418998718,
+},
+},
+["不死斩背景"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["use_sourceRaidFlags"] = false,
+["duration"] = "3",
+["subeventPrefix"] = "UNIT_DIED",
+["unit"] = "player",
+["use_sourceFlags"] = false,
+["use_sourceName"] = false,
+["debuffType"] = "HELPFUL",
+["unevent"] = "timed",
+["type"] = "custom",
+["use_eventtype"] = true,
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["events"] = "ENCOUNTER_END",
+["event"] = "Combat Log",
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+["sourceRaidFlags"] = 8,
+["dynamicDuration"] = false,
+["custom"] = "function(event,arg1, arg2, arg3, arg4, success)\n    return event == \"ENCOUNTER_END\" and success == 1\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+["use_sourceUnit"] = false,
+["subeventSuffix"] = "",
+["use_destRaidFlags"] = false,
+["custom_hide"] = "timed",
+["names"] = {
+},
+},
+["untrigger"] = {
+["use_eventtype"] = true,
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+},
+},
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 1200,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "BLEND",
+["texture"] = "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = "1",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "fade",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "fade",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "不死斩背景",
+["xOffset"] = 0,
+["alpha"] = 0.7,
+["anchorFrameType"] = "SCREEN",
+["width"] = 2864,
+["config"] = {
+},
+["frameStrata"] = 4,
+["uid"] = "DdQdrVD6Zn)",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+0,
+0,
+0,
+0.85298418998718,
+},
+},
+["死3"] = {
+["outline"] = "None",
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["displayText"] = "N     O     O     B",
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["customTextUpdate"] = "update",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["useGroup_count"] = true,
+["ownOnly"] = true,
+["names"] = {
+},
+["matchesShowOn"] = "showOnMissing",
+["group_count"] = "1",
+["group_countOperator"] = ">",
+["custom_hide"] = "custom",
+["debuffType"] = "HARMFUL",
+["use_absorbMode"] = true,
+["type"] = "custom",
+["subeventSuffix"] = "_CAST_START",
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["duration"] = "1",
+["event"] = "Conditions",
+["unevent"] = "auto",
+["auraspellids"] = {
+"160029",
+},
+["events"] = "PLAYER_DEAD  RESURRECT_REQUEST PLAYER_ALIVE PLAYER_UNGHOST",
+["custom"] = "function(event)\n  return event == \"PLAYER_DEAD\"\nend",
+["useExactSpellId"] = true,
+["subeventPrefix"] = "SPELL",
+["use_alive"] = false,
+["unit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"PLAYER_DEAD\"\nend",
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"160029",
+},
+["matchesShowOn"] = "showOnMissing",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["useName"] = true,
+["subeventSuffix"] = "_CAST_START",
+["debuffType"] = "HARMFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["health"] = {
+"0",
+},
+["use_health"] = true,
+["unevent"] = "auto",
+["use_unit"] = true,
+["use_absorbMode"] = true,
+["health_operator"] = {
+"<=",
+},
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "all",
+["customTriggerLogic"] = "\nfunction (trigger) \n    local unit = \"player\"\n    return UnitExists(unit) and UnitIsDead(unit) and trigger[1]\nend\n\n\n\n\n\n\n\n",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["wordWrap"] = "WordWrap",
+["desaturate"] = false,
+["rotation"] = 0,
+["font"] = "伤害数字",
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 512,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["fontSize"] = 29,
+["semver"] = "1.3.0",
+["selfPoint"] = "CENTER",
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:deadth",
+["regionType"] = "texture",
+["automaticWidth"] = "Auto",
+["blendMode"] = "ADD",
+["authorOptions"] = {
+},
+["fixedWidth"] = 200,
+["texture"] = "Interface\\AddOns\\WA_sekiro\\death",
+["uid"] = "HSSNeBsLm7l",
+["alpha"] = 1,
+["justify"] = "CENTER",
+["tocversion"] = 11508,
+["id"] = "死3",
+["width"] = 512,
+["frameStrata"] = 5,
+["anchorFrameType"] = "SELECTFRAME",
+["color"] = {
+1,
+0.32941176470588,
+0.30980392156863,
+1,
+},
+["config"] = {
+},
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["scalex"] = 1,
+["alphaType"] = "hide",
+["colorB"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function()\n    return 0\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["colorA"] = 1,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["xOffset"] = 0,
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["preferToUpdate"] = false,
+},
+["不死斩2"] = {
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound"] = " custom",
+["sound_path"] = "Interface\\Addons\\WA_Sekiro\\is.mp3",
+["do_sound"] = true,
+},
+["finish"] = {
+["sound_channel"] = "Master",
+["sound"] = " custom",
+["sound_path"] = "Interface\\Addons\\WA_Sekiro\\Sekiro_wei.mp3",
+["do_sound"] = false,
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["use_sourceRaidFlags"] = false,
+["duration"] = "3",
+["subeventPrefix"] = "UNIT_DIED",
+["unit"] = "player",
+["use_sourceFlags"] = false,
+["use_sourceName"] = false,
+["debuffType"] = "HELPFUL",
+["unevent"] = "timed",
+["type"] = "custom",
+["use_eventtype"] = true,
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["events"] = "ENCOUNTER_END",
+["event"] = "Combat Log",
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+["sourceRaidFlags"] = 8,
+["dynamicDuration"] = false,
+["custom"] = "function(event,arg1, arg2, arg3, arg4, success)\n    return event == \"ENCOUNTER_END\" and success == 1\nend\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+["use_sourceUnit"] = false,
+["subeventSuffix"] = "",
+["use_destRaidFlags"] = false,
+["custom_hide"] = "timed",
+["names"] = {
+},
+},
+["untrigger"] = {
+["use_eventtype"] = true,
+["eventtype"] = "PLAYER_REGEN_ENABLED",
+},
+},
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 1100,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:不死斩1",
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\is",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = "0.5",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["type"] = "none",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "alphaPulse",
+},
+["finish"] = {
+["colorR"] = 1,
+["duration_type"] = "seconds",
+["colorA"] = 1,
+["colorG"] = 1,
+["type"] = "preset",
+["easeType"] = "none",
+["scaleFunc"] = "    function(progress, startX, startY, scaleX, scaleY)\n      return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\n    end\n  ",
+["preset"] = "grow",
+["alpha"] = 0,
+["use_scale"] = false,
+["y"] = 0,
+["x"] = 0,
+["easeStrength"] = 3,
+["scalex"] = 1,
+["scaleType"] = "straightScale",
+["rotate"] = 0,
+["scaley"] = 1,
+["colorB"] = 1,
+},
+},
+["authorOptions"] = {
+},
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "不死斩2",
+["xOffset"] = 0,
+["frameStrata"] = 4,
+["width"] = 1100,
+["alpha"] = 0.57,
+["uid"] = "tyS9f2mO4dk",
+["anchorFrameType"] = "SELECTFRAME",
+["config"] = {
+},
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+0.83137254901961,
+0.82352941176471,
+0.85882352941176,
+1,
+},
+},
+["夜叉1"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = -10,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["sound"] = " custom",
+["sound_path"] = "Interface\\AddOns\\WA_sekiro\\yechaa.mp3",
+["do_sound"] = true,
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["spellId"] = {
+"307494",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307495",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307164",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307163",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307162",
+},
+["use_absorbMode"] = true,
+["subeventPrefix"] = "SPELL",
+["debuffType"] = "HELPFUL",
+["use_sourceName"] = false,
+["subeventSuffix"] = "_AURA_APPLIED",
+["names"] = {
+},
+["duration"] = "3",
+["event"] = "Combat Log",
+["unevent"] = "timed",
+["use_spellName"] = false,
+["use_spellId"] = true,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["type"] = "combatlog",
+["unit"] = "player",
+["sourceUnit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307159",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307160",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"344314",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307161",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"322302",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["spellId"] = {
+"307497",
+},
+["use_absorbMode"] = true,
+["names"] = {
+},
+["debuffType"] = "HELPFUL",
+["type"] = "combatlog",
+["unevent"] = "timed",
+["use_unit"] = true,
+["event"] = "Combat Log",
+["subeventSuffix"] = "_AURA_APPLIED",
+["duration"] = "3",
+["use_spellName"] = false,
+["spellIds"] = {
+},
+["use_sourceUnit"] = true,
+["subeventPrefix"] = "SPELL",
+["use_spellId"] = true,
+["sourceUnit"] = "player",
+["unit"] = "player",
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 170,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMPTOBLACKADDITIVE",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "BLEND",
+["texture"] = "Interface\\Addons\\WA_Sekiro\\yecha.tga",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = ".5",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["type"] = "none",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "alphaPulse",
+},
+["finish"] = {
+["colorR"] = 1,
+["duration_type"] = "seconds",
+["colorA"] = 1,
+["colorG"] = 1,
+["type"] = "preset",
+["easeType"] = "none",
+["scaleFunc"] = "    function(progress, startX, startY, scaleX, scaleY)\n      return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\n    end\n  ",
+["preset"] = "grow",
+["alpha"] = 0,
+["use_scale"] = false,
+["y"] = 0,
+["x"] = 0,
+["easeStrength"] = 3,
+["scalex"] = 1,
+["scaleType"] = "straightScale",
+["rotate"] = 0,
+["scaley"] = 1,
+["colorB"] = 1,
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "夜叉1",
+["xOffset"] = 2.499755859375,
+["alpha"] = 1,
+["anchorFrameType"] = "SCREEN",
+["width"] = 170,
+["config"] = {
+},
+["frameStrata"] = 1,
+["uid"] = "x9pXzTFPmfz",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+},
+["color"] = {
+1,
+0,
+0.082352941176471,
+1,
+},
+},
+["死\\菜 黑色背景"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 0,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["useGroup_count"] = true,
+["ownOnly"] = true,
+["names"] = {
+},
+["matchesShowOn"] = "showOnMissing",
+["group_count"] = "1",
+["group_countOperator"] = ">",
+["custom_hide"] = "custom",
+["debuffType"] = "HARMFUL",
+["use_absorbMode"] = true,
+["type"] = "custom",
+["subeventSuffix"] = "_CAST_START",
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["duration"] = "1",
+["event"] = "Conditions",
+["unevent"] = "auto",
+["auraspellids"] = {
+"160029",
+},
+["events"] = "PLAYER_DEAD  RESURRECT_REQUEST PLAYER_ALIVE PLAYER_UNGHOST",
+["custom"] = "function(event)\n  return event == \"PLAYER_DEAD\"\nend",
+["useExactSpellId"] = true,
+["subeventPrefix"] = "SPELL",
+["use_alive"] = false,
+["unit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"PLAYER_DEAD\"\nend",
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"160029",
+},
+["matchesShowOn"] = "showOnMissing",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["useName"] = true,
+["subeventSuffix"] = "_CAST_START",
+["debuffType"] = "HARMFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["health"] = {
+"0",
+},
+["use_health"] = true,
+["unevent"] = "auto",
+["use_unit"] = true,
+["use_absorbMode"] = true,
+["health_operator"] = {
+"<=",
+},
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "all",
+["customTriggerLogic"] = "\nfunction (trigger) \n    local unit = \"player\"\n    return UnitExists(unit) and UnitIsDead(unit) and trigger[1]\nend\n\n\n\n\n\n\n\n",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 1200,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "BLEND",
+["texture"] = "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = "1",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "fade",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "fade",
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "死\\菜 黑色背景",
+["xOffset"] = 0,
+["alpha"] = 0.43,
+["anchorFrameType"] = "SCREEN",
+["width"] = 2864,
+["config"] = {
+},
+["frameStrata"] = 4,
+["uid"] = "2OlCeK0MyKW",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+0,
+0,
+0,
+0.85298418998718,
+},
+},
+["回生1"] = {
+["wagoID"] = "tpoBFufNn",
+["authorOptions"] = {
+},
+["preferToUpdate"] = false,
+["yOffset"] = 1,
+["anchorPoint"] = "CENTER",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+["do_loop"] = false,
+["sound_path"] = "",
+["sound"] = " custom",
+["do_sound"] = false,
+},
+["finish"] = {
+["sound"] = " custom",
+["sound_path"] = "Interface\\Addons\\WA_Sekiro\\hs.mp3",
+["do_sound"] = true,
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["type"] = "aura2",
+["auraspellids"] = {
+"160029",
+},
+["debuffType"] = "HARMFUL",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["custom_type"] = "event",
+["events"] = "RESURRECT_REQUEST",
+["spellIds"] = {
+},
+["names"] = {
+},
+["subeventSuffix"] = "_CAST_START",
+["useExactSpellId"] = true,
+["custom_hide"] = "timed",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["subeventPrefix"] = "SPELL",
+["type"] = "custom",
+["events"] = "RESURRECT_REQUEST PLAYER_ALIVE",
+["custom_type"] = "event",
+["subeventSuffix"] = "_CAST_START",
+["custom"] = "function(event)\n  return event == \"RESURRECT_REQUEST\"\nend",
+["event"] = "Health",
+["custom_hide"] = "custom",
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"RESURRECT_REQUEST\"\nend",
+},
+},
+["disjunctive"] = "any",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["selfPoint"] = "CENTER",
+["desaturate"] = false,
+["rotation"] = 0,
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 412,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["regionType"] = "texture",
+["blendMode"] = "ADD",
+["texture"] = "Interface\\AddOns\\WA_sekiro\\hs",
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["duration"] = ".2",
+["alphaType"] = "straight",
+["colorA"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["colorB"] = 1,
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["scalex"] = 1,
+},
+["main"] = {
+["type"] = "none",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "alphaPulse",
+},
+["finish"] = {
+["colorR"] = 1,
+["duration_type"] = "seconds",
+["colorA"] = 1,
+["colorG"] = 1,
+["type"] = "preset",
+["easeType"] = "none",
+["scaleFunc"] = "    function(progress, startX, startY, scaleX, scaleY)\n      return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\n    end\n  ",
+["preset"] = "grow",
+["alpha"] = 0,
+["use_scale"] = false,
+["y"] = 0,
+["x"] = 0,
+["easeStrength"] = 3,
+["scalex"] = 1,
+["scaleType"] = "straightScale",
+["rotate"] = 0,
+["scaley"] = 1,
+["colorB"] = 1,
+},
+},
+["parent"] = "【自身】只狼特效",
+["semver"] = "1.3.0",
+["tocversion"] = 11508,
+["id"] = "回生1",
+["xOffset"] = 1,
+["alpha"] = 1,
+["anchorFrameType"] = "SCREEN",
+["width"] = 412,
+["config"] = {
+},
+["frameStrata"] = 4,
+["uid"] = "BesZ9HztDVY",
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["color"] = {
+1,
+0.57254901960784,
+0.61960784313726,
+1,
+},
+},
+["寄3"] = {
+["outline"] = "None",
+["wagoID"] = "tpoBFufNn",
+["parent"] = "【自身】只狼特效",
+["displayText"] = "N     O     O     B",
+["yOffset"] = -7.5,
+["anchorPoint"] = "CENTER",
+["customTextUpdate"] = "update",
+["url"] = "https://wago.io/sekirowa/11",
+["actions"] = {
+["start"] = {
+},
+["finish"] = {
+},
+["init"] = {
+},
+},
+["triggers"] = {
+{
+["trigger"] = {
+["useGroup_count"] = true,
+["ownOnly"] = true,
+["names"] = {
+},
+["matchesShowOn"] = "showOnMissing",
+["group_count"] = "1",
+["group_countOperator"] = ">",
+["custom_hide"] = "custom",
+["debuffType"] = "HARMFUL",
+["use_absorbMode"] = true,
+["type"] = "custom",
+["subeventSuffix"] = "_CAST_START",
+["custom_type"] = "event",
+["spellIds"] = {
+},
+["duration"] = "1",
+["event"] = "Conditions",
+["unevent"] = "auto",
+["auraspellids"] = {
+"160029",
+},
+["events"] = "PLAYER_DEAD  RESURRECT_REQUEST PLAYER_ALIVE PLAYER_UNGHOST",
+["custom"] = "function(event)\n  return event == \"PLAYER_DEAD\"\nend",
+["useExactSpellId"] = true,
+["subeventPrefix"] = "SPELL",
+["use_alive"] = false,
+["unit"] = "player",
+["use_unit"] = true,
+},
+["untrigger"] = {
+["custom"] = "function(event)\n  return event ~= \"PLAYER_DEAD\"\nend",
+},
+},
+{
+["trigger"] = {
+["type"] = "aura2",
+["auranames"] = {
+"160029",
+},
+["matchesShowOn"] = "showOnMissing",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["useName"] = true,
+["subeventSuffix"] = "_CAST_START",
+["debuffType"] = "HARMFUL",
+},
+["untrigger"] = {
+},
+},
+{
+["trigger"] = {
+["type"] = "unit",
+["use_absorbHealMode"] = true,
+["subeventSuffix"] = "_CAST_START",
+["duration"] = "1",
+["event"] = "Health",
+["unit"] = "player",
+["subeventPrefix"] = "SPELL",
+["health"] = {
+"0",
+},
+["use_health"] = true,
+["unevent"] = "auto",
+["use_unit"] = true,
+["use_absorbMode"] = true,
+["health_operator"] = {
+"<=",
+},
+},
+["untrigger"] = {
+},
+},
+["disjunctive"] = "all",
+["customTriggerLogic"] = "\nfunction (trigger) \n    local unit = \"player\"\n    return UnitExists(unit) and UnitIsDead(unit) and trigger[1]\nend\n\n\n\n\n\n\n\n",
+["activeTriggerMode"] = -10,
+},
+["internalVersion"] = 90,
+["wordWrap"] = "WordWrap",
+["desaturate"] = false,
+["rotation"] = 0,
+["font"] = "伤害数字",
+["version"] = 11,
+["subRegions"] = {
+{
+["type"] = "subbackground",
+},
+},
+["height"] = 450,
+["rotate"] = true,
+["load"] = {
+["use_never"] = true,
+["talent"] = {
+["multi"] = {
+},
+},
+["size"] = {
+["multi"] = {
+},
+},
+["class"] = {
+["multi"] = {
+},
+},
+["spec"] = {
+["multi"] = {
+},
+},
+["zoneIds"] = "",
+},
+["fontSize"] = 29,
+["semver"] = "1.3.0",
+["selfPoint"] = "CENTER",
+["textureWrapMode"] = "CLAMP",
+["mirror"] = false,
+["anchorFrameFrame"] = "WeakAuras:deadth",
+["regionType"] = "texture",
+["automaticWidth"] = "Auto",
+["blendMode"] = "ADD",
+["authorOptions"] = {
+},
+["fixedWidth"] = 200,
+["texture"] = "Interface\\AddOns\\WA_sekiro\\ji2",
+["uid"] = "LTM(3IG4NVF",
+["alpha"] = 1,
+["justify"] = "CENTER",
+["tocversion"] = 11508,
+["id"] = "寄3",
+["width"] = 450,
+["frameStrata"] = 5,
+["anchorFrameType"] = "SELECTFRAME",
+["color"] = {
+1,
+0.32941176470588,
+0.30980392156863,
+1,
+},
+["config"] = {
+},
+["animation"] = {
+["start"] = {
+["colorR"] = 1,
+["scalex"] = 1,
+["alphaType"] = "hide",
+["colorB"] = 1,
+["colorG"] = 1,
+["alphaFunc"] = "function()\n    return 0\nend\n",
+["use_alpha"] = true,
+["type"] = "custom",
+["easeType"] = "none",
+["preset"] = "grow",
+["alpha"] = 0,
+["y"] = 0,
+["x"] = 0,
+["duration_type"] = "seconds",
+["rotate"] = 0,
+["easeStrength"] = 3,
+["scaley"] = 1,
+["colorA"] = 1,
+},
+["main"] = {
+["easeStrength"] = 3,
+["type"] = "none",
+["duration_type"] = "seconds",
+["easeType"] = "none",
+},
+["finish"] = {
+["type"] = "preset",
+["easeType"] = "none",
+["easeStrength"] = 3,
+["duration_type"] = "seconds",
+["preset"] = "grow",
+},
+},
+["xOffset"] = 0.8333740234375,
+["conditions"] = {
+},
+["information"] = {
+["showNilIsFalse"] = true,
+["forceEvents"] = true,
+["ignoreOptionsEventErrors"] = true,
+},
+["preferToUpdate"] = false,
+},
+},
+["registered"] = {
+},
+["editor_font_size"] = 12,
+["login_squelch_time"] = 10,
+["lastArchiveClear"] = 1780728761,
+["minimap"] = {
+["hide"] = false,
+},
+["historyCutoff"] = 730,
+["lastLoaded"] = {
+},
+["migrationCutoff"] = 730,
+["features"] = {
+},
+["lastUpgrade"] = 1780728767,
+["dbVersion"] = 90,
+["editor_theme"] = "Monokai",
+}

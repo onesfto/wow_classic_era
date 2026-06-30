@@ -1,0 +1,22 @@
+
+AddOnSkinsDB = {
+["profileKeys"] = {
+["女王安其拉 - 哈霍兰"] = "Default",
+["打撒打撒的 - 哈霍兰"] = "Default",
+["无畏的树树 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["BugSack"] = false,
+["Spy"] = false,
+["RareScanner"] = false,
+},
+},
+}
+AddOnSkinsDS = {
+[4.73] = {
+["BugSack"] = true,
+["Spy"] = true,
+["RareScanner"] = true,
+},
+}

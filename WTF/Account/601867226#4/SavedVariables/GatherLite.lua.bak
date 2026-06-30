@@ -1,0 +1,26 @@
+
+GatherLiteSettings = {
+["profileKeys"] = {
+["女王安其拉 - 哈霍兰"] = "Default",
+["无畏的树树 - 哈霍兰"] = "Default",
+},
+["global"] = {
+["lastSeenVersion"] = "7.6.8",
+["maps"] = {
+[1453] = {
+["id"] = 1453,
+["name"] = "暴风城",
+["instance"] = 0,
+},
+[1440] = {
+["id"] = 1440,
+["name"] = "灰谷",
+["instance"] = 1,
+},
+},
+},
+["profiles"] = {
+["Default"] = {
+},
+},
+}

@@ -1,0 +1,26 @@
+
+ThreatClassic2DB = {
+["profileKeys"] = {
+["女王安其拉 - 哈霍兰"] = "Default",
+["打撒打撒的 - 哈霍兰"] = "Default",
+["无畏的树树 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["frame"] = {
+["width"] = 234.0254669189453,
+["height"] = 157.4775695800781,
+["position"] = {
+nil,
+nil,
+nil,
+1781.896118164063,
+-956.1641235351562,
+},
+},
+["bar"] = {
+["count"] = 8,
+},
+},
+},
+}

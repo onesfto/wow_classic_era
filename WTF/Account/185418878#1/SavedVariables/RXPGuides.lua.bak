@@ -1,0 +1,210 @@
+
+RXPData = {
+["gameVersion"] = 11507,
+["defaultProfile"] = false,
+["release"] = "v4.6.50",
+["cacheVersion"] = 26,
+["trainGenericSpells"] = true,
+}
+RXPDB = {
+["profileKeys"] = {
+["魔女桑德兰 - 哈霍兰"] = "global",
+["护士长玛利亚 - 哈霍兰"] = "global",
+["瑟银零件 - 法琳娜"] = "global",
+},
+["profiles"] = {
+["global"] = {
+},
+},
+}
+RXPSettings = {
+["profileKeys"] = {
+["魔女桑德兰 - 哈霍兰"] = "魔女桑德兰 - 哈霍兰",
+["护士长玛利亚 - 哈霍兰"] = "护士长玛利亚 - 哈霍兰",
+["瑟银零件 - 法琳娜"] = "瑟银零件 - 法琳娜",
+},
+["profiles"] = {
+["魔女桑德兰 - 哈霍兰"] = {
+["frameHeight"] = 124.9999771118164,
+["macroAnnounced"] = true,
+["hardcore"] = true,
+["frameSizes"] = {
+["arrowFrame"] = {
+31.99997711181641,
+31.99997711181641,
+},
+["RXPFrame"] = {
+235.0001220703125,
+124.9999694824219,
+},
+["activeItemFrame"] = {
+57.92454528808594,
+40.00004196166992,
+},
+["activeTargetFrame"] = {
+61.92464065551758,
+68.00001525878906,
+},
+},
+["season"] = 0,
+["framePositions"] = {
+["arrowFrame"] = {
+{
+"TOP",
+"UIParent",
+"TOP",
+0,
+0,
+},
+},
+["RXPFrame"] = {
+{
+"TOP",
+nil,
+"TOP",
+-302.8758850097656,
+-100.5616455078125,
+},
+},
+["activeItemFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["activeTargetFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+},
+},
+["护士长玛利亚 - 哈霍兰"] = {
+["framePositions"] = {
+["arrowFrame"] = {
+{
+"TOP",
+"UIParent",
+"TOP",
+0,
+0,
+},
+},
+["RXPFrame"] = {
+{
+"LEFT",
+"UIParent",
+"LEFT",
+0,
+35,
+},
+},
+["activeItemFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["activeTargetFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+},
+["season"] = 0,
+["frameSizes"] = {
+["arrowFrame"] = {
+31.99991226196289,
+31.99998092651367,
+},
+["RXPFrame"] = {
+235,
+27.99999237060547,
+},
+["activeItemFrame"] = {
+58.14741897583008,
+39.99996566772461,
+},
+["activeTargetFrame"] = {
+60.85791397094727,
+67.99998474121094,
+},
+},
+["frameHeight"] = 125.0000228881836,
+},
+["瑟银零件 - 法琳娜"] = {
+["season"] = 0,
+["frameSizes"] = {
+["activeTargetFrame"] = {
+61.39050674438477,
+68.00001525878906,
+},
+["RXPFrame"] = {
+235,
+27.99999237060547,
+},
+["activeItemFrame"] = {
+57.92461395263672,
+39.99999237060547,
+},
+["arrowFrame"] = {
+31.99999046325684,
+31.99999046325684,
+},
+},
+["frameHeight"] = 125.0000076293945,
+["framePositions"] = {
+["activeTargetFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["RXPFrame"] = {
+{
+"LEFT",
+"UIParent",
+"LEFT",
+0,
+35,
+},
+},
+["activeItemFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["arrowFrame"] = {
+{
+"TOP",
+"UIParent",
+"TOP",
+0,
+0,
+},
+},
+},
+},
+},
+}

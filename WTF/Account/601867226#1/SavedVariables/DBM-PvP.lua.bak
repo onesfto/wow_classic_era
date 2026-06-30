@@ -1,0 +1,87 @@
+
+DBMPvP_AllSavedVars = {
+["法力無笾-哈霍兰"] = {
+["PvPGeneral"] = {
+[0] = {
+["TimerFlagCVoice"] = 0,
+["TimerStartTColor"] = 0,
+["ShowBasesToWin"] = true,
+["TimerFlagTColor"] = 0,
+["HideBossEmoteFrame"] = false,
+["TimerWinCVoice"] = 0,
+["TimerWinTColor"] = 0,
+["TimerCapCVoice"] = 0,
+["TimerFlag"] = true,
+["TimerStartCVoice"] = 0,
+["Enabled"] = true,
+["ShowRelativeGameTime"] = true,
+["TimerWin"] = true,
+["TimerCapTColor"] = 0,
+["TimerCap"] = true,
+["AutoSpirit"] = false,
+["TimerStart"] = true,
+},
+},
+["z529"] = {
+[0] = {
+["Enabled"] = true,
+},
+},
+["z489"] = {
+[0] = {
+["Enabled"] = true,
+},
+},
+["z30"] = {
+[0] = {
+["Enabled"] = true,
+["TimerBossTColor"] = 0,
+["TimerBoss"] = true,
+["AutoTurnIn"] = true,
+["TimerBossCVoice"] = 0,
+},
+},
+},
+["六扇门沈小梅-哈霍兰"] = {
+["PvPGeneral"] = {
+[0] = {
+["TimerFlagCVoice"] = 0,
+["TimerStartTColor"] = 0,
+["ShowBasesToWin"] = true,
+["TimerFlagTColor"] = 0,
+["HideBossEmoteFrame"] = false,
+["TimerWinCVoice"] = 0,
+["TimerWinTColor"] = 0,
+["TimerCapCVoice"] = 0,
+["TimerFlag"] = true,
+["TimerStartCVoice"] = 0,
+["Enabled"] = true,
+["TimerCap"] = true,
+["TimerWin"] = true,
+["TimerCapTColor"] = 0,
+["ShowRelativeGameTime"] = true,
+["AutoSpirit"] = false,
+["TimerStart"] = true,
+},
+},
+["z529"] = {
+[0] = {
+["Enabled"] = true,
+},
+},
+["z489"] = {
+[0] = {
+["Enabled"] = true,
+},
+},
+["z30"] = {
+[0] = {
+["Enabled"] = true,
+["TimerBossTColor"] = 0,
+["TimerBoss"] = true,
+["AutoTurnIn"] = true,
+["TimerBossCVoice"] = 0,
+},
+},
+},
+}

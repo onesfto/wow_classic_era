@@ -1,0 +1,40 @@
+
+ThreatClassic2DB = {
+["profileKeys"] = {
+["哈霍兰大格格 - 哈霍兰"] = "Default",
+["辛特兰小魔女 - 哈霍兰"] = "Default",
+["护士长玛利亚 - 哈霍兰"] = "Default",
+["红龙守护者 - 哈霍兰"] = "Default",
+["院长安娜 - 哈霍兰"] = "Default",
+["雪球女士 - 法琳娜"] = "Default",
+["寒脊山小郡主 - 法琳娜"] = "Default",
+["熊心猫爪 - 哈霍兰"] = "Default",
+["绿龙守护者 - 哈霍兰"] = "Default",
+["津巴布韦公主 - 哈霍兰"] = "Default",
+["猫德加 - 哈霍兰"] = "Default",
+["巨龙守护者 - 哈霍兰"] = "Default",
+["打撒是的哇 - 哈霍兰"] = "Default",
+["青铜龙守护者 - 哈霍兰"] = "Default",
+["魔女桑德兰 - 哈霍兰"] = "Default",
+["蓝龙守护者 - 哈霍兰"] = "Default",
+["瑟银零件 - 法琳娜"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["general"] = {
+["hideOOC"] = true,
+},
+["frame"] = {
+["width"] = 214.6652069091797,
+["height"] = 165.7571258544922,
+["position"] = {
+nil,
+nil,
+nil,
+1591.266479492188,
+-854.47900390625,
+},
+},
+},
+},
+}

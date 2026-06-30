@@ -1,0 +1,619 @@
+
+alaCalendarSV = {
+["daily"] = {
+},
+["_GlobalRef"] = {
+["cal"] = {
+["SlashCmdList"] = 1.072624634395413e+155,
+["OK"] = 1.072624634395413e+155,
+["Mixin"] = 3.217873903186252e+155,
+["GameTimeFrame"] = 1.072624634395413e+155,
+["hooksecurefunc"] = 1.340780792994266e+154,
+["UnitLevel"] = 8.580997075163304e+155,
+["alaCalendarSV"] = 8.580997075163304e+155,
+["UIParent"] = 8.580997075163304e+155,
+["DAILY"] = 1.072624634395413e+155,
+["GameTimeFrame_UpdateTooltip"] = 1.340780792994266e+154,
+["DONE"] = 1.072624634395413e+155,
+["RESETS_IN"] = 1.072624634395413e+155,
+["UISpecialFrames"] = 1.608936951593126e+155,
+["YES"] = 1.072624634395413e+155,
+["LibStub"] = 1.608936951593126e+155,
+["StaticPopupDialogs"] = 1.072624634395413e+155,
+},
+},
+["set"] = {
+["minimapPos"] = 215,
+["char_list"] = {
+"Player-5376-16DB1557",
+"Player-5376-16DB1555",
+"Player-5376-16DB1558",
+"Player-5376-16D2FC27",
+"Player-5376-16CE2457",
+"Player-5376-16CE0A32",
+"Player-5376-16CE0A06",
+"Player-5376-16C41194",
+"Player-5376-16C1DB01",
+"Player-5376-169F1D64",
+"Player-5376-161FF541",
+"Player-5376-164F57FA",
+"Player-5376-163F4190",
+"Player-5376-163E5D93",
+"Player-5376-1626BAF9",
+"Player-5376-163DA63D",
+"Player-5376-03D61E57",
+"Player-5376-161F85C8",
+"Player-5376-161F7DAA",
+"Player-5376-161F7B5F",
+"Player-5376-03D5B786",
+"Player-5376-161F0648",
+"Player-5376-161E8D71",
+"Player-5376-03DBF7DC",
+"Player-5376-161E8A17",
+"Player-5376-03E44C80",
+"Player-5376-0E2B46E5",
+},
+["inst_hash"] = {
+["Zul'Gurub"] = true,
+["DarkMoon: Elwynn"] = true,
+["Warsong Gulch"] = true,
+["Ruins of Ahn'Qiraj"] = true,
+["Fishing Extravaganza"] = true,
+["Alterac Valley"] = true,
+["Blackwing Lair"] = true,
+["Arathi Basin"] = true,
+["Onyxia's Lair"] = true,
+["DarkMoon: Mulgore"] = true,
+["Naxxramas"] = true,
+["Molten Core"] = true,
+["Temple of Ahn'Qiraj"] = true,
+},
+["collapsed"] = {
+},
+["raid_list"] = {
+"Naxxramas",
+"Temple of Ahn'Qiraj",
+"Ruins of Ahn'Qiraj",
+"Blackwing Lair",
+"Zul'Gurub",
+"Molten Core",
+"Onyxia's Lair",
+},
+},
+["var"] = {
+["Player-5376-16CE2457"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["realm_name"] = "哈霍兰",
+["Naxxramas"] = {
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+},
+["Onyxia's Lair"] = {
+},
+},
+["Player-5376-16DB1558"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Onyxia's Lair"] = {
+},
+["realm_name"] = "法琳娜",
+["realm_id"] = 5308,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-16CE0A32"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["Onyxia's Lair"] = {
+},
+["Naxxramas"] = {
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+},
+["realm_name"] = "哈霍兰",
+},
+["Player-5376-163DA63D"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["Onyxia's Lair"] = {
+},
+["realm_id"] = 5376,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-0E2B46E5"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Onyxia's Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["realm_id"] = 5376,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-161F0648"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Onyxia's Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["realm_id"] = 5376,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-169F1D64"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 60,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["Onyxia's Lair"] = {
+},
+["Naxxramas"] = {
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+},
+["realm_name"] = "哈霍兰",
+},
+["Player-5376-16D2FC27"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["Onyxia's Lair"] = {
+},
+["realm_id"] = 5376,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-03D61E57"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 20,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["Onyxia's Lair"] = {
+},
+["realm_id"] = 5376,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-161E8A17"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["realm_name"] = "哈霍兰",
+["Naxxramas"] = {
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+},
+["Onyxia's Lair"] = {
+},
+},
+["Player-5376-161F7DAA"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Onyxia's Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["realm_id"] = 5376,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-16CE0A06"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["realm_name"] = "法琳娜",
+["Naxxramas"] = {
+},
+["realm_id"] = 5308,
+["Molten Core"] = {
+},
+["Onyxia's Lair"] = {
+},
+},
+["Player-5376-16DB1555"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["Onyxia's Lair"] = {
+},
+["Naxxramas"] = {
+},
+["realm_id"] = 5308,
+["Molten Core"] = {
+},
+["realm_name"] = "法琳娜",
+},
+["Player-5376-163E5D93"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["realm_name"] = "哈霍兰",
+["Naxxramas"] = {
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+},
+["Onyxia's Lair"] = {
+},
+},
+["Player-5376-03E44C80"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 60,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["realm_name"] = "哈霍兰",
+["Naxxramas"] = {
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+214917309,
+1782948799,
+0,
+0,
+},
+["Onyxia's Lair"] = {
+},
+},
+["Player-5376-164F57FA"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 60,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["Onyxia's Lair"] = {
+},
+["Naxxramas"] = {
+215192558,
+1782947756,
+0,
+0,
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+214982000,
+1782947756,
+0,
+0,
+},
+["realm_name"] = "哈霍兰",
+},
+["Player-5376-161F85C8"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 5,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["realm_name"] = "哈霍兰",
+["Naxxramas"] = {
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+},
+["Onyxia's Lair"] = {
+},
+},
+["Player-5376-161F7B5F"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 60,
+["Temple of Ahn'Qiraj"] = {
+214751742,
+1782947382,
+0,
+0,
+},
+["Blackwing Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["Onyxia's Lair"] = {
+},
+["realm_id"] = 5376,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-161E8D71"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["Onyxia's Lair"] = {
+},
+["Naxxramas"] = {
+},
+["realm_id"] = 5308,
+["Molten Core"] = {
+},
+["realm_name"] = "法琳娜",
+},
+["Player-5376-16C41194"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Onyxia's Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["realm_id"] = 5376,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-163F4190"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["Onyxia's Lair"] = {
+},
+["Naxxramas"] = {
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+},
+["realm_name"] = "哈霍兰",
+},
+["Player-5376-161FF541"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["realm_name"] = "哈霍兰",
+["Naxxramas"] = {
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+},
+["Onyxia's Lair"] = {
+},
+},
+["Player-5376-03D5B786"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 9,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Onyxia's Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["realm_id"] = 5376,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-03DBF7DC"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 2,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["Onyxia's Lair"] = {
+},
+["realm_id"] = 5376,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-16C1DB01"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["realm_name"] = "哈霍兰",
+["Naxxramas"] = {
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+},
+["Onyxia's Lair"] = {
+},
+},
+["Player-5376-16DB1557"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Onyxia's Lair"] = {
+},
+["realm_name"] = "法琳娜",
+["realm_id"] = 5308,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-1626BAF9"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 2,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+["Onyxia's Lair"] = {
+},
+["Naxxramas"] = {
+},
+["realm_id"] = 5376,
+["Molten Core"] = {
+},
+["realm_name"] = "哈霍兰",
+},
+},
+["_version"] = 220308.01,
+["_GlobalAssign"] = {
+["cal"] = {
+},
+},
+}

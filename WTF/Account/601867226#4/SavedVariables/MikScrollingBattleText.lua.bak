@@ -1,0 +1,130 @@
+
+MSBTProfiles_SavedVars = {
+["profiles"] = {
+["Default"] = {
+["critFontSize"] = 38,
+["events"] = {
+["NOTIFICATION_COMBAT_ENTER"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_PC_KILLING_BLOW"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_BUFF_FADE"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_DEBUFF_FADE"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_REP_LOSS"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_SKILL_GAIN"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_LOOT"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_MONEY"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_HONOR_GAIN"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_ALT_POWER_LOSS"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_POWER_LOSS"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_AC_FULL"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_DEBUFF_STACK"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_ALT_POWER_GAIN"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_POWER_GAIN"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_HOLY_POWER_FULL"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_MONSTER_EMOTE"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_COMBAT_LEAVE"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_HOLY_POWER_CHANGE"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_CP_FULL"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_ESSENCE_CHANGE"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_BUFF_STACK"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_ITEM_BUFF_FADE"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_ESSENCE_FULL"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_AC_CHANGE"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_CP_GAIN"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_CURRENCY"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_CHI_CHANGE"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_CHI_FULL"] = {
+["disabled"] = true,
+},
+["NOTIFICATION_REP_GAIN"] = {
+["disabled"] = true,
+},
+},
+["enableBlizzardDamage"] = true,
+["scrollAreas"] = {
+["Outgoing"] = {
+["offsetX"] = 450,
+["offsetY"] = -150,
+},
+["Notification"] = {
+["offsetY"] = 100,
+},
+["Incoming"] = {
+["offsetX"] = -450,
+["offsetY"] = -150,
+},
+["Static"] = {
+["offsetY"] = -450,
+},
+},
+["normalFontSize"] = 19,
+["creationVersion"] = "6.3",
+["triggers"] = {
+["MSBT_TRIGGER_EXECUTE"] = {
+["disabled"] = true,
+},
+},
+},
+},
+}
+MSBT_SavedMedia = {
+["fonts"] = {
+},
+["sounds"] = {
+},
+}

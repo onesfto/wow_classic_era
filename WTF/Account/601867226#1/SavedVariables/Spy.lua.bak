@@ -1,0 +1,87 @@
+
+SpyDB = {
+["kosData"] = {
+["哈霍兰"] = {
+["Alliance"] = {
+["保姆安娜"] = {
+},
+["法力無笾"] = {
+},
+["六扇门沈小梅"] = {
+},
+},
+},
+},
+["removeKOSData"] = {
+["哈霍兰"] = {
+["Alliance"] = {
+},
+},
+},
+["profileKeys"] = {
+["六扇门沈小梅 - 哈霍兰"] = "六扇门沈小梅 - 哈霍兰",
+["保姆安娜 - 哈霍兰"] = "保姆安娜 - 哈霍兰",
+["法力無笾 - 哈霍兰"] = "法力無笾 - 哈霍兰",
+},
+["profiles"] = {
+["六扇门沈小梅 - 哈霍兰"] = {
+["MainWindow"] = {
+["Position"] = {
+["y"] = 1048.218994140625,
+["x"] = 0,
+["w"] = 159.9999847412109,
+["h"] = 83,
+},
+},
+["Colors"] = {
+["Alert"] = {
+["Stealth Text"] = {
+["a"] = 1,
+},
+["Name Text"] = {
+["a"] = 1,
+},
+},
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitNameCheck"] = true,
+["AppendUnitKoSCheck"] = true,
+},
+["保姆安娜 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+["法力無笾 - 哈霍兰"] = {
+["AppendUnitNameCheck"] = true,
+["MainWindowVis"] = false,
+["Colors"] = {
+["Alert"] = {
+["Stealth Text"] = {
+["a"] = 1,
+},
+["Name Text"] = {
+["a"] = 1,
+},
+},
+["Bar"] = {
+["Bar Text"] = {
+["a"] = 1,
+},
+},
+},
+["AppendUnitKoSCheck"] = true,
+},
+},
+}

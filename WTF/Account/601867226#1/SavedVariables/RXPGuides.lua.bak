@@ -1,0 +1,117 @@
+
+RXPData = {
+["gameVersion"] = 11507,
+["defaultProfile"] = false,
+["release"] = "v4.6.55 Rurutia Fix2",
+["cacheVersion"] = 26,
+["trainGenericSpells"] = true,
+}
+RXPDB = {
+["profileKeys"] = {
+["伊芙莉特 - 铁血"] = "global",
+["蒂琪爱尔 - 铁血"] = "global",
+["萌萌的露小露 - 铁血"] = "global",
+["露露缇娅 - 哈霍兰"] = "global",
+["愛雅法拉 - 铁血"] = "global",
+["露露糖 - 铁血"] = "global",
+["六扇门沈小梅 - 哈霍兰"] = "global",
+["保姆安娜 - 哈霍兰"] = "global",
+["露露緹婭 - 碧玉矿洞"] = "global",
+["小露露糖 - 铁血"] = "global",
+},
+["profiles"] = {
+["global"] = {
+},
+},
+}
+RXPSettings = {
+["profileKeys"] = {
+["伊芙莉特 - 铁血"] = "露露緹婭 - 碧玉矿洞",
+["蒂琪爱尔 - 铁血"] = "露露緹婭 - 碧玉矿洞",
+["小露露糖 - 铁血"] = "露露緹婭 - 碧玉矿洞",
+["露露缇娅 - 哈霍兰"] = "露露缇娅丶 - 铁血",
+["露露糖 - 铁血"] = "露露緹婭 - 碧玉矿洞",
+["露露緹婭 - 碧玉矿洞"] = "露露缇娅丶 - 铁血",
+["六扇门沈小梅 - 哈霍兰"] = "露露缇娅丶 - 铁血",
+["保姆安娜 - 哈霍兰"] = "露露缇娅丶 - 铁血",
+["萌萌的露小露 - 铁血"] = "露露緹婭 - 碧玉矿洞",
+["愛雅法拉 - 铁血"] = "露露緹婭 - 碧玉矿洞",
+},
+["profiles"] = {
+["露露缇娅丶 - 铁血"] = {
+["hardcore"] = false,
+["enableAddonIncompatibilityCheck"] = false,
+["season"] = 0,
+["enableTracker"] = false,
+["guideFontSize"] = 14,
+["enableBindAutomation"] = false,
+["frameSizes"] = {
+["arrowFrame"] = {
+38.40000915527344,
+38.40004348754883,
+},
+["RXPFrame"] = {
+257.3334045410156,
+28.00005912780762,
+},
+["activeItemFrame"] = {
+50.52844619750977,
+39.9999885559082,
+},
+["activeTargetFrame"] = {
+54.4344482421875,
+39.9999885559082,
+},
+},
+["hideInRaid"] = true,
+["hideCompletedSteps"] = false,
+["arrowScale"] = 1.2,
+["soloSelfFound"] = true,
+["showDangerousMobsMap"] = false,
+["enableGroupQuests"] = false,
+["arrowText"] = 15,
+["frameHeight"] = 28.0000114440918,
+["macroAnnounced"] = true,
+["showDangerousUnitscan"] = false,
+["disableArrow"] = false,
+["framePositions"] = {
+["arrowFrame"] = {
+{
+"LEFT",
+nil,
+"LEFT",
+277.1809997558594,
+-39.23849105834961,
+},
+},
+["RXPFrame"] = {
+{
+"LEFT",
+nil,
+"LEFT",
+0,
+-50.04766082763672,
+},
+},
+["activeItemFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["activeTargetFrame"] = {
+{
+"LEFT",
+nil,
+"LEFT",
+264.5238342285156,
+6.952399253845215,
+},
+},
+},
+},
+},
+}

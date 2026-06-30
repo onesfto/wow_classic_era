@@ -1,0 +1,35 @@
+
+WSEDB = {
+["profileKeys"] = {
+["德加和尚 - 哈霍兰"] = "Default",
+["绿龙守护者 - 哈霍兰"] = "Default",
+["蓝龙守护者 - 哈霍兰"] = "Default",
+["哈霍兰大格格 - 哈霍兰"] = "Default",
+["黑龙守护者 - 哈霍兰"] = "Default",
+["法德迦 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["savedCharacters"] = {
+{
+["data"] = "{\"talents\":\"2300050010000000-0000000000000000-05350233132301351\",\"id\":\"Player-5376-03E2B2A8\",\"class\":\"mage\",\"unit\":\"player\",\"professions\":[{\"name\":\"Engineering\",\"level\":315},{\"name\":\"Alchemy\",\"level\":300}],\"race\":\"Gnome\",\"name\":\"法德迦\",\"spec\":\"frost\",\"gear\":{\"items\":[{\"enchant\":2588,\"id\":22498},{\"id\":23057},{\"enchant\":2721,\"id\":22983},{\"enchant\":2621,\"id\":23050},{\"enchant\":1891,\"id\":22496},{\"enchant\":1883,\"id\":23021},{\"enchant\":2615,\"id\":22501},{\"id\":22730},{\"enchant\":2588,\"id\":23070},{\"enchant\":911,\"id\":22500},{\"id\":21709},{\"id\":23031},{\"id\":4397},{\"id\":23046},{\"enchant\":2504,\"id\":22589},null,{\"id\":22821}],\"version\":\"v3.1.5\"},\"level\":60,\"version\":\"v3.1.5\",\"realm\":\"哈霍兰\"}",
+["timestamp"] = 1766511487,
+["name"] = "法德迦-哈霍兰",
+["dateString"] = "2025-12-24 01:38:07",
+},
+{
+["name"] = "哈霍兰大格格-哈霍兰",
+["timestamp"] = 1766511406,
+["data"] = "{\"talents\":\"05503120521151-500231300000000-500000000000000\",\"id\":\"Player-5376-16CCC446\",\"class\":\"paladin\",\"unit\":\"player\",\"professions\":[],\"race\":\"Dwarf\",\"name\":\"哈霍兰大格格\",\"spec\":\"retribution\",\"gear\":{\"items\":[{\"id\":22428},{\"id\":23036},null,null,null,{\"id\":22424},null,{\"id\":23666},null,{\"id\":22430},{\"id\":20632},{\"id\":23037},null,null,{\"enchant\":2505,\"id\":23056},{\"id\":1203}],\"version\":\"v3.1.5\"},\"level\":60,\"version\":\"v3.1.5\",\"realm\":\"哈霍兰\"}",
+["dateString"] = "2025-12-24 01:36:46",
+},
+{
+["data"] = "{\"talents\":\"500231133000000-2000000000000000-0502520103511051\",\"id\":\"Player-5376-03D5066C\",\"class\":\"priest\",\"unit\":\"player\",\"professions\":[{\"name\":\"Engineering\",\"level\":300},{\"name\":\"Tailoring\",\"level\":300}],\"race\":\"Human\",\"name\":\"德加和尚\",\"spec\":\"shadow\",\"gear\":{\"items\":[{\"enchant\":2544,\"id\":23035},{\"id\":18814},{\"enchant\":2605,\"id\":22983},{\"enchant\":2621,\"id\":22731},{\"enchant\":1891,\"id\":23220},{\"enchant\":1883,\"id\":21611},{\"enchant\":2614,\"id\":21585},{\"id\":22730},{\"enchant\":2544,\"id\":19133},{\"enchant\":929,\"id\":19131},{\"id\":21709},{\"id\":23031},{\"id\":23046},{\"id\":19379},{\"enchant\":2504,\"id\":22631},null,{\"id\":21603}],\"version\":\"v3.1.5\"},\"level\":60,\"version\":\"v3.1.5\",\"realm\":\"哈霍兰\"}",
+["timestamp"] = 1766497148,
+["name"] = "德加和尚-哈霍兰",
+["dateString"] = "2025-12-23 21:39:08",
+},
+},
+},
+},
+}

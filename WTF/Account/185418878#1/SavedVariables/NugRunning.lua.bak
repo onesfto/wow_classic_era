@@ -1,0 +1,23 @@
+
+NRunDB_Global = {
+["anchors"] = {
+["main"] = {
+["y"] = -234.6405944824219,
+["x"] = 178.9403533935547,
+["to"] = "TOP",
+["point"] = "TOP",
+},
+},
+["charspec"] = {
+},
+}
+NugRunningConfigCustom = {
+["HUNTER"] = {
+},
+["WARRIOR"] = {
+},
+["MAGE"] = {
+},
+["DRUID"] = {
+},
+}

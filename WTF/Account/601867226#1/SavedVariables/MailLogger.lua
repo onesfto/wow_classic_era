@@ -21,7 +21,7 @@ MailLoggerDB = {
 "CENTER",
 nil,
 "CENTER",
--210.0000457763672,
+-210.0000610351563,
 0,
 },
 ["OutputFramePos"] = {

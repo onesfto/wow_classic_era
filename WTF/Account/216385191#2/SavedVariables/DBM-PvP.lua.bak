@@ -1,0 +1,197 @@
+
+DBMPvP_AllSavedVars = {
+["法德迦-哈霍兰"] = {
+["PvPGeneral"] = {
+[0] = {
+["TimerFlagCVoice"] = 0,
+["TimerStartTColor"] = 0,
+["ShowBasesToWin"] = true,
+["TimerFlagTColor"] = 0,
+["HideBossEmoteFrame"] = false,
+["TimerWinCVoice"] = 0,
+["TimerWinTColor"] = 0,
+["TimerCapCVoice"] = 0,
+["TimerFlag"] = true,
+["TimerStartCVoice"] = 0,
+["Enabled"] = true,
+["TimerCap"] = true,
+["TimerWin"] = true,
+["TimerCapTColor"] = 0,
+["ShowRelativeGameTime"] = true,
+["AutoSpirit"] = false,
+["TimerStart"] = true,
+},
+},
+["z529"] = {
+[0] = {
+["Enabled"] = true,
+},
+},
+["z489"] = {
+[0] = {
+["Enabled"] = true,
+},
+},
+["z30"] = {
+[0] = {
+["Enabled"] = true,
+["TimerBossTColor"] = 0,
+["TimerBoss"] = true,
+["AutoTurnIn"] = true,
+["TimerBossCVoice"] = 0,
+},
+},
+},
+["哈霍兰大格格-哈霍兰"] = {
+["z489"] = {
+{
+["Enabled"] = true,
+},
+},
+["talent1"] = "PALADIN1",
+["PvPGeneral"] = {
+{
+["TimerFlagCVoice"] = 0,
+["TimerStartTColor"] = 0,
+["ShowBasesToWin"] = true,
+["TimerFlagTColor"] = 0,
+["HideBossEmoteFrame"] = false,
+["TimerWinCVoice"] = 0,
+["TimerWinTColor"] = 0,
+["TimerCapCVoice"] = 0,
+["TimerFlag"] = true,
+["TimerStartCVoice"] = 0,
+["Enabled"] = true,
+["ShowRelativeGameTime"] = true,
+["TimerWin"] = true,
+["TimerCapTColor"] = 0,
+["TimerCap"] = true,
+["AutoSpirit"] = false,
+["TimerStart"] = true,
+},
+},
+["z529"] = {
+{
+["Enabled"] = true,
+},
+},
+["z30"] = {
+{
+["Enabled"] = true,
+["TimerBossTColor"] = 0,
+["TimerBoss"] = true,
+["AutoTurnIn"] = true,
+["TimerBossCVoice"] = 0,
+},
+},
+},
+["德加和尚-哈霍兰"] = {
+["z489"] = {
+{
+["Enabled"] = true,
+},
+{
+["Enabled"] = true,
+},
+{
+["Enabled"] = true,
+},
+},
+["talent3"] = "PRIEST3",
+["talent1"] = "PRIEST1",
+["PvPGeneral"] = {
+{
+["TimerFlagCVoice"] = 0,
+["TimerStartTColor"] = 0,
+["ShowBasesToWin"] = true,
+["TimerFlagTColor"] = 0,
+["HideBossEmoteFrame"] = false,
+["TimerWinCVoice"] = 0,
+["TimerWinTColor"] = 0,
+["TimerCapCVoice"] = 0,
+["TimerFlag"] = true,
+["TimerStartCVoice"] = 0,
+["Enabled"] = true,
+["ShowRelativeGameTime"] = true,
+["TimerWin"] = true,
+["TimerCapTColor"] = 0,
+["TimerCap"] = true,
+["AutoSpirit"] = false,
+["TimerStart"] = true,
+},
+{
+["TimerFlagCVoice"] = 0,
+["TimerStartTColor"] = 0,
+["ShowBasesToWin"] = true,
+["TimerFlagTColor"] = 0,
+["HideBossEmoteFrame"] = false,
+["TimerWinCVoice"] = 0,
+["TimerWinTColor"] = 0,
+["TimerCapCVoice"] = 0,
+["TimerFlag"] = true,
+["TimerStartCVoice"] = 0,
+["Enabled"] = true,
+["TimerCap"] = true,
+["TimerWin"] = true,
+["TimerCapTColor"] = 0,
+["ShowRelativeGameTime"] = true,
+["AutoSpirit"] = false,
+["TimerStart"] = true,
+},
+{
+["TimerFlagCVoice"] = 0,
+["TimerStartTColor"] = 0,
+["ShowBasesToWin"] = true,
+["TimerFlagTColor"] = 0,
+["HideBossEmoteFrame"] = false,
+["TimerWinCVoice"] = 0,
+["TimerWinTColor"] = 0,
+["TimerCapCVoice"] = 0,
+["TimerFlag"] = true,
+["TimerStartCVoice"] = 0,
+["Enabled"] = true,
+["ShowRelativeGameTime"] = true,
+["TimerWin"] = true,
+["TimerCapTColor"] = 0,
+["TimerCap"] = true,
+["AutoSpirit"] = false,
+["TimerStart"] = true,
+},
+},
+["talent2"] = "PRIEST2",
+["z529"] = {
+{
+["Enabled"] = true,
+},
+{
+["Enabled"] = true,
+},
+{
+["Enabled"] = true,
+},
+},
+["z30"] = {
+{
+["Enabled"] = true,
+["TimerBossTColor"] = 0,
+["TimerBoss"] = true,
+["AutoTurnIn"] = true,
+["TimerBossCVoice"] = 0,
+},
+{
+["Enabled"] = true,
+["TimerBossTColor"] = 0,
+["TimerBoss"] = true,
+["AutoTurnIn"] = true,
+["TimerBossCVoice"] = 0,
+},
+{
+["Enabled"] = true,
+["TimerBossTColor"] = 0,
+["TimerBoss"] = true,
+["AutoTurnIn"] = true,
+["TimerBossCVoice"] = 0,
+},
+},
+},
+}

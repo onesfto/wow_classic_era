@@ -1,0 +1,111 @@
+
+alaCalendarSV = {
+["daily"] = {
+},
+["_GlobalRef"] = {
+["cal"] = {
+["SlashCmdList"] = 3.777893186295716e+22,
+["OK"] = 3.777893186295716e+22,
+["Mixin"] = 9.444732965739289e+22,
+["GameTimeFrame"] = 3.777893186295716e+22,
+["hooksecurefunc"] = 1.888946593147858e+22,
+["UnitLevel"] = 9.444732965739289e+22,
+["alaCalendarSV"] = 7.555786372591432e+22,
+["UIParent"] = 7.555786372591432e+22,
+["DAILY"] = 3.777893186295716e+22,
+["GameTimeFrame_UpdateTooltip"] = 1.888946593147858e+22,
+["DONE"] = 3.777893186295716e+22,
+["RESETS_IN"] = 3.777893186295716e+22,
+["UISpecialFrames"] = 5.666839779443568e+22,
+["YES"] = 3.777893186295716e+22,
+["LibStub"] = 5.666839779443568e+22,
+["StaticPopupDialogs"] = 3.777893186295716e+22,
+},
+},
+["set"] = {
+["minimapPos"] = 215,
+["char_list"] = {
+"Player-5376-17512BEB",
+"Player-5376-0EA7E05E",
+},
+["inst_hash"] = {
+["Zul'Gurub"] = true,
+["DarkMoon: Elwynn"] = true,
+["Warsong Gulch"] = true,
+["Ruins of Ahn'Qiraj"] = true,
+["Fishing Extravaganza"] = true,
+["Blackwing Lair"] = true,
+["Alterac Valley"] = true,
+["Arathi Basin"] = true,
+["Onyxia's Lair"] = true,
+["DarkMoon: Mulgore"] = true,
+["Naxxramas"] = true,
+["Molten Core"] = true,
+["Temple of Ahn'Qiraj"] = true,
+},
+["collapsed"] = {
+},
+["raid_list"] = {
+"Naxxramas",
+"Temple of Ahn'Qiraj",
+"Ruins of Ahn'Qiraj",
+"Blackwing Lair",
+"Zul'Gurub",
+"Molten Core",
+"Onyxia's Lair",
+},
+},
+["var"] = {
+["Player-5376-0EA7E05E"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 60,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["Onyxia's Lair"] = {
+},
+["realm_id"] = 5376,
+["Naxxramas"] = {
+214953046,
+1782947391,
+0,
+0,
+},
+["Molten Core"] = {
+214977939,
+1782947391,
+0,
+0,
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+["Player-5376-17512BEB"] = {
+["Zul'Gurub"] = {
+},
+["PLAYER_LEVEL"] = 1,
+["Temple of Ahn'Qiraj"] = {
+},
+["Blackwing Lair"] = {
+},
+["realm_name"] = "哈霍兰",
+["Onyxia's Lair"] = {
+},
+["realm_id"] = 5376,
+["Naxxramas"] = {
+},
+["Molten Core"] = {
+},
+["Ruins of Ahn'Qiraj"] = {
+},
+},
+},
+["_version"] = 220308.01,
+["_GlobalAssign"] = {
+["cal"] = {
+},
+},
+}

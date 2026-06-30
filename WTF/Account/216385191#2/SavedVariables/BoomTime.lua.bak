@@ -1,0 +1,28 @@
+
+boomTimeSv = {
+["instance_timer_sv"] = {
+["locked"] = false,
+["on"] = true,
+["pos"] = {
+"LEFT",
+nil,
+"LEFT",
+8.712886810302734,
+237.8626403808594,
+},
+},
+["target_warn_sv"] = {
+["Player-5376-03E2B2A8"] = {
+["on"] = true,
+["locked"] = false,
+},
+["Player-5376-0E2BA70B"] = {
+["on"] = true,
+["locked"] = false,
+},
+["Player-5376-03D5066C"] = {
+["on"] = true,
+["locked"] = false,
+},
+},
+}

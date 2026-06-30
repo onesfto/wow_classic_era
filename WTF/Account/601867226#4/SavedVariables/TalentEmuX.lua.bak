@@ -1,0 +1,27 @@
+
+TalentEmuSV = {
+["_GlobalRef"] = {
+["METHOD"] = {
+["ITEM_SET_BONUS"] = 357,
+["ITEM_SET_BONUS_GRAY"] = 357,
+},
+["EXTERNAL"] = {
+["LibStub"] = 357,
+},
+["UI-EquipmentContainer"] = {
+["ceil"] = 1,
+},
+},
+["set"] = {
+["minimapPos"] = 185,
+},
+["var"] = {
+["Player-5376-086AB4E5"] = "!T129w022EzccV70YJVG3UM7:=F3:0YJVG8rI7:3AS2G!E120+^+FB5:1Lc:7w:-+AX5:8w:-+U14:1ic:7w:-+Co:8w:-+ES5:1XR:7w:-+ne5:8w:-+IB5:1jb:7w:-+X14:1DC:7w:-+LS5:1RR:7w:-+BF5:14c:7w:-+ki4:8w:-+VF5:8w:-+Bi4:8w:-+ea5:8w:-+CH5:1yc:7w:-+Nk5:1gR:7w:-+3c5:1VC:7w:-+ci4:8w:-+mk4:8w:-",
+["Player-5376-174206B4"] = "!T12910110!E120+^+^+^+^+cT1:81:-+^+^+dT1:81:-+eT1:81:-+^+^+^+^+^+^+^+N:81:-+uY:81:-+^+^",
+["savedTalent"] = {
+},
+},
+["_version"] = 220811,
+["_GlobalAssign"] = {
+},
+}

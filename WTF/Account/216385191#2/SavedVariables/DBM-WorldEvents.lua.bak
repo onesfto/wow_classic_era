@@ -1,0 +1,16 @@
+
+DBMWorldEvents_AllSavedVars = {
+["法德迦-哈霍兰"] = {
+["CannonClassic"] = {
+[0] = {
+["Enabled"] = true,
+["Timer24742fadesTColor"] = 5,
+["SpecWarn24742spellSWSound"] = 1,
+["Timer24742fades"] = true,
+["SpecWarn24742spellSWNote"] = true,
+["Timer24742fadesCVoice"] = 1,
+["SpecWarn24742spell"] = true,
+},
+},
+},
+}

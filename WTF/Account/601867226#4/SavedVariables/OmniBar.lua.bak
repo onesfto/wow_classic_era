@@ -1,0 +1,52 @@
+
+OmniBarDB = {
+["profileKeys"] = {
+["女王安其拉 - 哈霍兰"] = "Default",
+["打撒打撒的 - 哈霍兰"] = "Default",
+["无畏的树树 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["bars"] = {
+["OmniBar1"] = {
+["glow"] = true,
+["scenario"] = true,
+["tooltips"] = true,
+["border"] = true,
+["names"] = false,
+["multiple"] = true,
+["arena"] = true,
+["highlightFocus"] = false,
+["padding"] = 2,
+["swipeAlpha"] = 0.65,
+["trackUnit"] = "ENEMY",
+["highlightTarget"] = true,
+["size"] = 40,
+["cooldownCount"] = true,
+["ratedBattleground"] = true,
+["columns"] = 8,
+["unusedAlpha"] = 0.45,
+["align"] = "CENTER",
+["locked"] = false,
+["world"] = true,
+["adaptive"] = false,
+["maxIcons"] = 32,
+["iconSorting"] = "TIME_ADDED",
+["name"] = "",
+["position"] = {
+["relativeTo"] = "UIParent",
+["point"] = "TOP",
+["relativePoint"] = "TOP",
+["yOfs"] = -4.10957670211792,
+["xOfs"] = -314.0907287597656,
+["frameStrata"] = "MEDIUM",
+},
+["center"] = false,
+["showUnused"] = false,
+["growUpward"] = true,
+["battleground"] = true,
+},
+},
+},
+},
+}

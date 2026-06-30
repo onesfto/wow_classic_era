@@ -1,0 +1,5239 @@
+
+ElvDB = {
+["profileKeys"] = {
+["哈霍兰大格格 - 哈霍兰"] = "Default",
+["瑟银零件 - 哈霍兰"] = "仓库",
+["幽影谷小帝姬 - 法琳娜"] = "Default",
+["辛特兰小魔女 - 哈霍兰"] = "Default",
+["护士长玛利亚 - 哈霍兰"] = "护士长玛利亚 - 哈霍兰",
+["红龙守护者 - 哈霍兰"] = "仓库",
+["院长安娜 - 哈霍兰"] = "Default",
+["雪球女士 - 法琳娜"] = "Default",
+["熊心猫爪 - 哈霍兰"] = "Default",
+["寒脊山小郡主 - 法琳娜"] = "Default",
+["津巴布韦公主 - 哈霍兰"] = "津巴布韦公主 - 哈霍兰",
+["魔女桑德兰 - 哈霍兰"] = "魔女桑德兰 - 哈霍兰",
+["艾尔文小公主 - 法琳娜"] = "Default",
+["打撒是的哇 - 哈霍兰"] = "Default",
+["青铜龙守护者 - 哈霍兰"] = "仓库",
+["猫德加 - 哈霍兰"] = "Default",
+["瑟银零件 - 法琳娜"] = "Default",
+["巨龙守护者 - 哈霍兰"] = "巨龙守护者 - 哈霍兰",
+},
+["gold"] = {
+["哈霍兰"] = {
+["瑟银零件"] = 24,
+["红龙守护者"] = 78734,
+["巨龙守护者"] = 2706189,
+["护士长玛利亚"] = 11236514,
+["津巴布韦公主"] = 87172,
+["院长安娜"] = 0,
+["青铜龙守护者"] = 977,
+["魔女桑德兰"] = 6927485,
+},
+["法琳娜"] = {
+["雪球女士"] = 4063,
+["寒脊山小郡主"] = 1186,
+["幽影谷小帝姬"] = 0,
+},
+},
+["global"] = {
+["unitframe"] = {
+["aurafilters"] = {
+["通用"] = {
+["spells"] = {
+[11359] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[29166] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[20580] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[2379] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[17528] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[11392] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[6615] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[2893] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[7840] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[3680] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[11364] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[8892] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[552] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[21165] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[3169] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[10901] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[20600] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+},
+["type"] = "Whitelist",
+},
+["猎人"] = {
+["spells"] = {
+[20906] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[20190] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[5118] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[13161] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[13163] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[25296] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[5384] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[3045] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[6150] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[13159] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+},
+["type"] = "whitelist",
+},
+["德鲁伊"] = {
+["spells"] = {
+[16886] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[22812] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[17116] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[9821] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+},
+["type"] = "Whitelist",
+},
+["饰品"] = {
+["spells"] = {
+[13744] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[26480] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[26481] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[29506] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[16593] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[24659] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[23780] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[17670] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[23721] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[23723] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[24544] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[24546] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[28773] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[24427] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[4079] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[28778] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[28779] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[28780] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[23930] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[29602] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[24542] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[23097] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[24998] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[23684] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[28777] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[25891] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[23725] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[23506] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[26464] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[29113] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[26400] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[24574] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[24198] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[29112] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[26467] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[28862] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[24347] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[23131] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[23132] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[28866] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[23271] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[17252] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+},
+["type"] = "whitelist",
+},
+["目标BUFF"] = {
+["type"] = "Whitelist",
+["spells"] = {
+[11095] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[355] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[6788] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[8647] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[15258] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[11717] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[1490] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[11556] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[11719] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[2649] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[5209] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[1160] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[1161] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[11597] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[702] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[16857] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[9898] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[20186] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[770] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[26281] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[603] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+},
+},
+["战士"] = {
+["type"] = "whitelist",
+["spells"] = {
+[12970] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[24427] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[18499] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[29131] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[11551] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+},
+},
+["法师"] = {
+["spells"] = {
+[11426] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[12536] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[28682] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[130] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[10193] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[10225] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[10177] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+},
+["type"] = "Whitelist",
+},
+["牧师"] = {
+["spells"] = {
+[10901] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[15473] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[10952] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[10942] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[11392] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+[19275] = {
+["enable"] = true,
+["priority"] = 0,
+["stackThreshold"] = 0,
+},
+},
+["type"] = "whitelist",
+},
+},
+},
+["general"] = {
+["allowDistributor"] = true,
+["WorldMapCoordinates"] = {
+["enable"] = false,
+},
+["UIScale"] = 0.7,
+},
+},
+["DisabledAddOns"] = {
+},
+["serverID"] = {
+[5376] = {
+["哈霍兰"] = true,
+["法琳娜"] = true,
+},
+},
+["class"] = {
+["哈霍兰"] = {
+["瑟银零件"] = "ROGUE",
+["巨龙守护者"] = "WARRIOR",
+["猫德加"] = "DRUID",
+["津巴布韦公主"] = "WARLOCK",
+["哈霍兰大格格"] = "PALADIN",
+["蓝龙守护者"] = "HUNTER",
+["魔女桑德兰"] = "HUNTER",
+["院长安娜"] = "PRIEST",
+["绿龙守护者"] = "DRUID",
+["熊心猫爪"] = "DRUID",
+["青铜龙守护者"] = "MAGE",
+["红龙守护者"] = "PALADIN",
+["辛特兰小魔女"] = "WARLOCK",
+["护士长玛利亚"] = "DRUID",
+["打撒是的哇"] = "WARRIOR",
+},
+["法琳娜"] = {
+["瑟银零件"] = "WARLOCK",
+["寒脊山小郡主"] = "MAGE",
+["雪球女士"] = "PALADIN",
+["艾尔文小公主"] = "ROGUE",
+["幽影谷小帝姬"] = "DRUID",
+},
+},
+["faction"] = {
+["哈霍兰"] = {
+["瑟银零件"] = "Alliance",
+["巨龙守护者"] = "Alliance",
+["猫德加"] = "Alliance",
+["津巴布韦公主"] = "Alliance",
+["哈霍兰大格格"] = "Alliance",
+["蓝龙守护者"] = "Alliance",
+["魔女桑德兰"] = "Alliance",
+["院长安娜"] = "Alliance",
+["绿龙守护者"] = "Alliance",
+["熊心猫爪"] = "Alliance",
+["青铜龙守护者"] = "Alliance",
+["红龙守护者"] = "Alliance",
+["辛特兰小魔女"] = "Alliance",
+["护士长玛利亚"] = "Alliance",
+["打撒是的哇"] = "Alliance",
+},
+["法琳娜"] = {
+["瑟银零件"] = "Alliance",
+["寒脊山小郡主"] = "Alliance",
+["雪球女士"] = "Alliance",
+["艾尔文小公主"] = "Alliance",
+["幽影谷小帝姬"] = "Alliance",
+},
+},
+["profiles"] = {
+["津巴布韦公主 - 哈霍兰"] = {
+["databars"] = {
+["petExperience"] = {
+["frameStrata"] = "HIGH",
+["clickThrough"] = true,
+["height"] = 5,
+["hideInCombat"] = true,
+["showBubbles"] = true,
+["width"] = 270,
+},
+["threat"] = {
+["height"] = 24,
+["width"] = 472,
+},
+["experience"] = {
+["enable"] = false,
+},
+["azerite"] = {
+["enable"] = false,
+},
+},
+["general"] = {
+["totems"] = {
+["spacing"] = 8,
+["size"] = 50,
+["growthDirection"] = "HORIZONTAL",
+},
+["fontSize"] = 14,
+["bonusObjectivePosition"] = "AUTO",
+["valuecolor"] = {
+["b"] = 0.93,
+["g"] = 0.53,
+["r"] = 0.53,
+},
+["objectiveFrameHeight"] = 400,
+["talkingHeadFrameScale"] = 1,
+["afkSpin"] = false,
+["minimap"] = {
+["size"] = 220,
+},
+},
+["movers"] = {
+["ElvAB_15"] = "BOTTOM,ElvUIParent,BOTTOM,-1,392",
+["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,332",
+["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,96",
+["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,4",
+["GMMover"] = "TOPLEFT,UIParent,TOPLEFT,525,-4",
+["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,0",
+["BagsMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-477,0",
+["ElvUF_PetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-612,394",
+["LootFrameMover"] = "TOPLEFT,UIParent,TOPLEFT,250,-156",
+["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,-170",
+["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-187",
+["ElvAB_13"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["ElvUF_Raid3Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,368",
+["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["ElvUF_PetMover"] = "BOTTOM,ElvUIParent,BOTTOM,285,420",
+["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,420",
+["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-30",
+["MicrobarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,477,0",
+["DurabilityFrameMover"] = "BOTTOMLEFT,UIParent,BOTTOMLEFT,558,186",
+["ElvUF_PetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,285,356",
+["VehicleSeatMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-4",
+["ElvAB_10"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["ExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,43",
+["ElvAB_14"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,263",
+["ElvUF_TargetMover"] = "TOP,ElvUIParent,TOP,320,-460",
+["ElvUF_PlayerAuraMover"] = "TOP,UIParent,TOP,-334,-512",
+["LossControlMover"] = "BOTTOM,ElvUIParent,BOTTOM,-1,507",
+["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,366",
+["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96",
+["ElvUF_Raid1Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1",
+["ElvAB_2"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,477,20",
+["BelowMinimapContainerMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-274",
+["ElvUF_Raid2Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvAB_4"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,312",
+["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,58",
+["PetExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,286,458",
+["ElvAB_3"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-478,23",
+["ReputationBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-243",
+["VehicleLeaveButton"] = "TOP,ElvUIParent,TOP,0,-60",
+["MirrorTimer2Mover"] = "TOP,MirrorTimer1,BOTTOM,0,0",
+["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,0,326",
+["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-163,-325",
+["BNETMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-81",
+["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-133",
+["ElvUF_TargetTargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-577,494",
+["HonorBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-251",
+["ElvUF_TargetCastbarMover"] = "BOTTOM,UIParent,BOTTOM,318,440",
+["TooltipMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-539",
+["ElvAB_6"] = "BOTTOM,ElvUIParent,BOTTOM,0,48",
+["ElvUF_TargetTargetMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-577,-525",
+["ElvUIBagMover"] = "BOTTOMRIGHT,UIParent,BOTTOMRIGHT,-4,4",
+["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,298",
+["ElvUF_PartyMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["AlertFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-155",
+["DebuffsMover"] = "TOP,ElvUIParent,TOP,-177,-26",
+["MirrorTimer3Mover"] = "TOP,MirrorTimer2,BOTTOM,0,0",
+},
+["convertPages"] = true,
+["bags"] = {
+["bagWidth"] = 474,
+["bagBar"] = {
+["growthDirection"] = "HORIZONTAL",
+["mouseover"] = true,
+["size"] = 20,
+},
+["bankWidth"] = 474,
+["split"] = {
+["bagSpacing"] = 7,
+["bag4"] = true,
+["bag1"] = true,
+["bag2"] = true,
+["bag3"] = true,
+["player"] = true,
+},
+["bankSize"] = 42,
+["itemLevelCustomColorEnable"] = true,
+["scrapIcon"] = true,
+["bagSize"] = 42,
+},
+["chat"] = {
+["panelSnapRightID"] = 4,
+["tabSelectorColor"] = {
+["b"] = 0.93,
+["g"] = 0.53,
+["r"] = 0.53,
+},
+["copyChatLines"] = true,
+["panelHeight"] = 236,
+["timeStampFormat"] = "%H:%M ",
+["timeStampLocalTime"] = true,
+["panelSnapLeftID"] = 1,
+["panelWidth"] = 472,
+},
+["dbConverted"] = 15.17,
+["datatexts"] = {
+["panels"] = {
+["LeftChatDataPanel"] = {
+[3] = "QuickJoin",
+},
+},
+["fontSize"] = 14,
+},
+["actionbar"] = {
+["bar3"] = {
+["buttonSize"] = 48,
+["macroFontSize"] = 16,
+["macroTextPosition"] = "BOTTOM",
+["buttonSpacing"] = 0,
+["buttons"] = 10,
+["showGrid"] = false,
+["macroTextYOffset"] = 6,
+["buttonsPerRow"] = 2,
+["macrotext"] = true,
+},
+["bar6"] = {
+["enabled"] = true,
+["macroTextPosition"] = "BOTTOM",
+["visibility"] = "[petbattle] hide; show",
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+["macroFontSize"] = 16,
+["buttonSpacing"] = 1,
+},
+["equippedItem"] = true,
+["flashAnimation"] = true,
+["desaturateOnCooldown"] = true,
+["globalFadeAlpha"] = 0.89,
+["microbar"] = {
+["enabled"] = true,
+["buttons"] = 8,
+["buttonHeight"] = 20,
+["mouseover"] = true,
+["useIcons"] = false,
+},
+["chargeCooldown"] = true,
+["bar2"] = {
+["enabled"] = true,
+["macroTextPosition"] = "BOTTOM",
+["visibility"] = "[petbattle] hide; show",
+["buttonSize"] = 40,
+["showGrid"] = false,
+["macroTextYOffset"] = 2,
+["buttonSpacing"] = 1,
+["buttonsPerRow"] = 2,
+},
+["rightClickSelfCast"] = true,
+["bar14"] = {
+["enabled"] = true,
+["showGrid"] = false,
+["buttonSpacing"] = 0,
+["buttonSize"] = 48,
+},
+["bar5"] = {
+["buttonSpacing"] = 1,
+["point"] = "TOPRIGHT",
+["buttonSize"] = 42,
+["showGrid"] = false,
+["buttonsPerRow"] = 12,
+["visibility"] = "[petbattle] hide; show",
+["buttons"] = 8,
+},
+["bar1"] = {
+["macroTextPosition"] = "BOTTOM",
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+["macroFontSize"] = 16,
+["buttonSpacing"] = 1,
+},
+["bar13"] = {
+["inheritGlobalFade"] = true,
+["buttons"] = 8,
+["showGrid"] = false,
+["buttonsPerRow"] = 4,
+["buttonSpacing"] = 6,
+["buttonSize"] = 48,
+},
+["bar15"] = {
+["enabled"] = true,
+["buttonSize"] = 30,
+["buttonsPerRow"] = 10,
+["buttonSpacing"] = 0,
+["buttons"] = 10,
+},
+["stanceBar"] = {
+["enabled"] = false,
+},
+["barPet"] = {
+["buttonsPerRow"] = 10,
+["buttonSize"] = 34,
+},
+["bar4"] = {
+["buttonSize"] = 42,
+["mouseover"] = true,
+["inheritGlobalFade"] = true,
+["buttonSpacing"] = 0,
+["buttons"] = 8,
+["showGrid"] = false,
+["buttonsPerRow"] = 2,
+["visibility"] = "[petbattle] hide; show",
+["backdrop"] = false,
+},
+},
+["nameplates"] = {
+["cutaway"] = {
+["health"] = {
+["enabled"] = true,
+},
+["power"] = {
+["enabled"] = true,
+},
+},
+["colors"] = {
+["selection"] = {
+nil,
+{
+["b"] = 0.36,
+["g"] = 0.76,
+["r"] = 0.85,
+},
+{
+["b"] = 0.3,
+["g"] = 0.67,
+["r"] = 0.29,
+},
+[0] = {
+["b"] = 0.25,
+["g"] = 0.25,
+["r"] = 0.78,
+},
+},
+["reactions"] = {
+["neutral"] = {
+["g"] = 0.76,
+},
+["good"] = {
+["b"] = 0.29,
+["g"] = 0.67,
+["r"] = 0.3,
+},
+},
+["threat"] = {
+["goodTransition"] = {
+["b"] = 0.36,
+["g"] = 0.76,
+["r"] = 0.85,
+},
+["goodColor"] = {
+["b"] = 0.3,
+["g"] = 0.67,
+["r"] = 0.29,
+},
+["badColor"] = {
+["b"] = 0.25,
+["g"] = 0.25,
+["r"] = 0.78,
+},
+},
+},
+["visibility"] = {
+["enemy"] = {
+["pets"] = true,
+["guardians"] = true,
+["minions"] = true,
+["totems"] = true,
+},
+},
+["units"] = {
+["PLAYER"] = {
+["enable"] = true,
+},
+["ENEMY_PLAYER"] = {
+["portrait"] = {
+["xOffset"] = 0,
+["yOffset"] = 0,
+["enable"] = true,
+["position"] = "LEFT",
+},
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+},
+["TARGET"] = {
+["arrow"] = "ArrowRed",
+},
+["ENEMY_NPC"] = {
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+["nameOnly"] = true,
+},
+},
+},
+["tooltip"] = {
+["modifierID"] = "SHIFT",
+["playerTitles"] = false,
+["guildRanks"] = false,
+},
+["unitframe"] = {
+["targetSound"] = true,
+["colors"] = {
+["auraBarBuff"] = {
+["b"] = 0.93,
+["g"] = 0.53,
+["r"] = 0.53,
+},
+["powerPrediction"] = {
+["enable"] = true,
+},
+["castClassColor"] = true,
+["healthclass"] = true,
+},
+["fontOutline"] = "OUTLINE",
+["font"] = "默认",
+["fontSize"] = 14,
+["units"] = {
+["tank"] = {
+["enable"] = false,
+},
+["targettargettarget"] = {
+["debuffs"] = {
+["anchorPoint"] = "BOTTOMLEFT",
+["attachTo"] = "HEALTH",
+["growthX"] = "RIGHT",
+},
+["health"] = {
+["text_format"] = "[healthcolor][health:current:shortvalue]",
+["yOffset"] = -12,
+},
+["power"] = {
+["height"] = 5,
+["text_format"] = "[powercolor][power:current:shortvalue]",
+["yOffset"] = -12,
+},
+["enable"] = true,
+["height"] = 40,
+["width"] = 90,
+},
+["pettarget"] = {
+["enable"] = true,
+},
+["boss"] = {
+["infoPanel"] = {
+["height"] = 17,
+},
+["debuffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = -16,
+},
+["castbar"] = {
+["width"] = 246,
+},
+["height"] = 60,
+["buffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = 16,
+},
+["width"] = 246,
+},
+["pet"] = {
+["infoPanel"] = {
+["height"] = 14,
+},
+["debuffs"] = {
+["enable"] = true,
+},
+["disableTargetGlow"] = false,
+["castbar"] = {
+["iconSize"] = 32,
+["overlayOnFrame"] = "Health",
+},
+["buffs"] = {
+["enable"] = true,
+["yOffset"] = -20,
+["perrow"] = 12,
+},
+["health"] = {
+["xOffset"] = 0,
+["text_format"] = "[healthcolor][health:current]/[health:max]",
+["yOffset"] = -6,
+},
+["width"] = 270,
+},
+["player"] = {
+["cutaway"] = {
+["health"] = {
+["enabled"] = true,
+},
+},
+["debuffs"] = {
+["attachTo"] = "BUFFS",
+["enable"] = false,
+},
+["threatStyle"] = "HEALTHBORDER",
+["power"] = {
+["attachTextTo"] = "Power",
+["powerPrediction"] = true,
+["height"] = 14,
+["EnergyManaRegen"] = true,
+["text_format"] = "[powercolor][power:current] / [power:max]",
+["detachedWidth"] = 270,
+},
+["partyIndicator"] = {
+["enable"] = false,
+},
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["disableMouseoverGlow"] = true,
+["width"] = 300,
+["castbar"] = {
+["insideInfoPanel"] = false,
+["iconAttached"] = false,
+["tickColor"] = {
+["a"] = 0.800000011920929,
+},
+["iconXOffset"] = 0,
+["width"] = 300,
+["iconSize"] = 48,
+["height"] = 24,
+["format"] = "REMAININGMAX",
+["customColor"] = {
+["color"] = {
+["r"] = 0.3098039329051971,
+["g"] = 0.3098039329051971,
+["b"] = 0.3098039329051971,
+},
+},
+["iconPosition"] = "TOP",
+},
+["health"] = {
+["xOffset"] = 0,
+["text_format"] = "[healthcolor][health:current]                            [health:max]",
+["position"] = "RIGHT",
+},
+["smartAuraPosition"] = "DEBUFFS_ON_BUFFS",
+["raidRoleIcons"] = {
+["enable"] = false,
+},
+["height"] = 36,
+["buffs"] = {
+["attachTo"] = "FRAME",
+["clickThrough"] = true,
+["stackAuras"] = false,
+["priority"] = "饰品,通用,猎人",
+["enable"] = true,
+["sortMethod"] = "NAME",
+},
+["classbar"] = {
+["enable"] = false,
+["height"] = 14,
+},
+["aurabar"] = {
+["height"] = 32,
+["tooltipAnchorType"] = "ANCHOR_CURSOR",
+["attachTo"] = "DETACHED",
+},
+},
+["target"] = {
+["debuffs"] = {
+["numrows"] = 3,
+["priority"] = "",
+},
+["power"] = {
+["attachTextTo"] = "Power",
+["powerPrediction"] = true,
+["height"] = 8,
+["text_format"] = "[powercolor][power:current]/[power:max]",
+["yOffset"] = 10,
+},
+["castbar"] = {
+["height"] = 16,
+["insideInfoPanel"] = false,
+["overlayOnFrame"] = "InfoPanel",
+["customColor"] = {
+["enable"] = true,
+["color"] = {
+["r"] = 0.3098039329051971,
+["g"] = 0.3098039329051971,
+["b"] = 0.3098039329051971,
+},
+["useClassColor"] = true,
+["transparent"] = true,
+},
+},
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["threatPlayer"] = true,
+["disableMouseoverGlow"] = true,
+["auras"] = {
+["yOffset"] = 6,
+["priority"] = "目标BUFF",
+},
+["infoPanel"] = {
+["enable"] = true,
+["height"] = 18,
+["transparent"] = true,
+},
+["health"] = {
+["text_format"] = "[healthcolor][health:current]/[health:max] - [health:percent]",
+["yOffset"] = -14,
+},
+["fader"] = {
+["minAlpha"] = 0.75,
+},
+["height"] = 48,
+["orientation"] = "LEFT",
+["buffs"] = {
+["numrows"] = 3,
+},
+["name"] = {
+["position"] = "TOP",
+},
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = -34,
+["size"] = 32,
+["attachToObject"] = "Health",
+["yOffset"] = -6,
+},
+},
+["raid3"] = {
+["enable"] = false,
+},
+["raid1"] = {
+["roleIcon"] = {
+["attachTo"] = "InfoPanel",
+["xOffset"] = 0,
+["size"] = 12,
+},
+["enable"] = false,
+["rdebuffs"] = {
+["xOffset"] = 30,
+["yOffset"] = 25,
+["size"] = 30,
+},
+["numGroups"] = 8,
+["growthDirection"] = "RIGHT_UP",
+["infoPanel"] = {
+["enable"] = true,
+},
+["resurrectIcon"] = {
+["attachTo"] = "BOTTOMRIGHT",
+},
+["name"] = {
+["attachTextTo"] = "InfoPanel",
+["xOffset"] = 2,
+["position"] = "BOTTOMLEFT",
+},
+["width"] = 92,
+},
+["focus"] = {
+["castbar"] = {
+["width"] = 270,
+},
+["width"] = 270,
+},
+["assist"] = {
+["enable"] = false,
+},
+["party"] = {
+["height"] = 74,
+["power"] = {
+["height"] = 13,
+},
+["enable"] = false,
+["width"] = 231,
+},
+["raid2"] = {
+["enable"] = false,
+},
+["targettarget"] = {
+["width"] = 180,
+["debuffs"] = {
+["attachTo"] = "HEALTH",
+["growthX"] = "RIGHT",
+["anchorPoint"] = "BOTTOMLEFT",
+["perrow"] = 6,
+},
+["threatStyle"] = "GLOW",
+["power"] = {
+["height"] = 5,
+["text_format"] = "[powercolor][power:current]",
+["yOffset"] = -12,
+},
+["height"] = 40,
+["health"] = {
+["text_format"] = "[healthcolor][health:current]",
+["yOffset"] = -12,
+},
+["disableMouseoverGlow"] = true,
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = 2,
+["enable"] = false,
+["yOffset"] = 0,
+},
+},
+},
+},
+["auras"] = {
+["debuffs"] = {
+["horizontalSpacing"] = 0,
+["growthDirection"] = "UP_LEFT",
+["verticalSpacing"] = 12,
+["size"] = 40,
+["wrapAfter"] = 10,
+},
+["buffs"] = {
+["size"] = 40,
+},
+},
+},
+["魔女桑德兰 - 哈霍兰"] = {
+["databars"] = {
+["petExperience"] = {
+["showBubbles"] = true,
+["clickThrough"] = true,
+["height"] = 5,
+["hideInCombat"] = true,
+["frameStrata"] = "HIGH",
+["width"] = 270,
+},
+["threat"] = {
+["height"] = 24,
+["width"] = 472,
+},
+["experience"] = {
+["enable"] = false,
+},
+["azerite"] = {
+["enable"] = false,
+},
+},
+["general"] = {
+["totems"] = {
+["growthDirection"] = "HORIZONTAL",
+["size"] = 50,
+["spacing"] = 8,
+},
+["fontSize"] = 14,
+["bonusObjectivePosition"] = "AUTO",
+["objectiveFrameHeight"] = 400,
+["valuecolor"] = {
+["r"] = 0.67,
+["g"] = 0.83,
+["b"] = 0.45,
+},
+["talkingHeadFrameScale"] = 1,
+["afkSpin"] = false,
+["minimap"] = {
+["size"] = 220,
+},
+},
+["movers"] = {
+["ElvAB_15"] = "BOTTOM,ElvUIParent,BOTTOM,-1,392",
+["ElvAB_13"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,96",
+["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,4",
+["GMMover"] = "TOPLEFT,UIParent,TOPLEFT,525,-4",
+["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,0",
+["BagsMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-477,0",
+["ElvUF_PetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-612,394",
+["LootFrameMover"] = "TOPLEFT,UIParent,TOPLEFT,250,-156",
+["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,-170",
+["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-187",
+["MirrorTimer3Mover"] = "TOP,MirrorTimer2,BOTTOM,0,0",
+["ElvUF_Raid3Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvUF_PlayerCastbarMover"] = "BOTTOM,UIParent,BOTTOM,0,354",
+["ElvUF_PartyMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvUF_PetMover"] = "BOTTOM,ElvUIParent,BOTTOM,285,420",
+["ElvUIBagMover"] = "BOTTOMRIGHT,UIParent,BOTTOMRIGHT,-4,4",
+["ElvUF_TargetMover"] = "TOP,ElvUIParent,TOP,320,-460",
+["ElvUF_TargetCastbarMover"] = "BOTTOM,UIParent,BOTTOM,318,440",
+["MicrobarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,477,0",
+["ElvUF_PetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,285,356",
+["VehicleSeatMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-4",
+["TooltipMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-539",
+["ExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,43",
+["ElvAB_14"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,263",
+["ElvUF_TargetTargetMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-577,-525",
+["ElvAB_6"] = "BOTTOM,ElvUIParent,BOTTOM,0,48",
+["LossControlMover"] = "BOTTOM,ElvUIParent,BOTTOM,-1,507",
+["ElvAB_2"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,477,20",
+["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96",
+["ElvUF_Raid1Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1",
+["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,366",
+["BelowMinimapContainerMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-274",
+["ReputationBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-243",
+["ElvAB_4"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,312",
+["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-133",
+["PetExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,286,458",
+["ElvAB_3"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-478,23",
+["ElvUF_TargetTargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-577,494",
+["VehicleLeaveButton"] = "TOP,ElvUIParent,TOP,0,-60",
+["BNETMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-81",
+["ElvAB_5"] = "BOTTOM,UIParent,BOTTOM,15,238",
+["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-163,-325",
+["MirrorTimer2Mover"] = "TOP,MirrorTimer1,BOTTOM,0,0",
+["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,58",
+["ElvUF_Raid2Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["HonorBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-251",
+["ElvUF_PlayerAuraMover"] = "TOP,UIParent,TOP,-334,-512",
+["ElvAB_10"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["DurabilityFrameMover"] = "BOTTOMLEFT,UIParent,BOTTOMLEFT,558,186",
+["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,332",
+["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,420",
+["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,298",
+["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["AlertFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-155",
+["DebuffsMover"] = "TOP,ElvUIParent,TOP,-177,-26",
+["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-30",
+},
+["convertPages"] = true,
+["bags"] = {
+["scrapIcon"] = true,
+["bagSize"] = 42,
+["bankWidth"] = 474,
+["split"] = {
+["bagSpacing"] = 7,
+["bag4"] = true,
+["bag1"] = true,
+["bag2"] = true,
+["bag3"] = true,
+["player"] = true,
+},
+["bagWidth"] = 474,
+["itemLevelCustomColorEnable"] = true,
+["bankSize"] = 42,
+["bagBar"] = {
+["size"] = 20,
+["mouseover"] = true,
+["growthDirection"] = "HORIZONTAL",
+},
+},
+["chat"] = {
+["panelSnapRightID"] = 4,
+["tabSelectorColor"] = {
+["r"] = 0.67,
+["g"] = 0.83,
+["b"] = 0.45,
+},
+["panelHeight"] = 236,
+["copyChatLines"] = true,
+["panelSnapLeftID"] = 1,
+["panelWidth"] = 472,
+},
+["dbConverted"] = 15.17,
+["datatexts"] = {
+["panels"] = {
+["LeftChatDataPanel"] = {
+[3] = "QuickJoin",
+},
+},
+["fontSize"] = 14,
+},
+["actionbar"] = {
+["bar3"] = {
+["buttonSize"] = 48,
+["showGrid"] = false,
+["buttonsPerRow"] = 2,
+["buttonSpacing"] = 0,
+["buttons"] = 10,
+},
+["bar6"] = {
+["enabled"] = true,
+["buttonSpacing"] = 1,
+["macroFontSize"] = 16,
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+["visibility"] = "[petbattle] hide; show",
+["macroTextPosition"] = "BOTTOM",
+},
+["equippedItem"] = true,
+["flashAnimation"] = true,
+["desaturateOnCooldown"] = true,
+["globalFadeAlpha"] = 0.89,
+["microbar"] = {
+["enabled"] = true,
+["buttons"] = 8,
+["buttonHeight"] = 20,
+["mouseover"] = true,
+["useIcons"] = false,
+},
+["chargeCooldown"] = true,
+["bar2"] = {
+["enabled"] = true,
+["buttonsPerRow"] = 2,
+["buttonSpacing"] = 1,
+["buttonSize"] = 40,
+["showGrid"] = false,
+["macroTextYOffset"] = 2,
+["visibility"] = "[petbattle] hide; show",
+["macroTextPosition"] = "BOTTOM",
+},
+["bar1"] = {
+["macroTextPosition"] = "BOTTOM",
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+["macroFontSize"] = 16,
+["buttonSpacing"] = 1,
+},
+["bar14"] = {
+["enabled"] = true,
+["macrotext"] = true,
+["buttonSpacing"] = 0,
+["buttonSize"] = 48,
+["showGrid"] = false,
+["macroTextYOffset"] = 3,
+["macroFontSize"] = 11,
+["macroTextPosition"] = "BOTTOM",
+},
+["bar5"] = {
+["point"] = "TOPLEFT",
+["buttons"] = 8,
+["macroFontSize"] = 16,
+["macroTextPosition"] = "BOTTOM",
+["buttonSize"] = 42,
+["showGrid"] = false,
+["macroTextYOffset"] = 6,
+["macrotext"] = true,
+["buttonsPerRow"] = 12,
+["visibility"] = "[petbattle] hide; show",
+["buttonSpacing"] = 1,
+},
+["rightClickSelfCast"] = true,
+["stanceBar"] = {
+["enabled"] = false,
+},
+["bar15"] = {
+["enabled"] = true,
+["buttonSize"] = 30,
+["buttonsPerRow"] = 10,
+["buttonSpacing"] = 0,
+["buttons"] = 10,
+},
+["bar13"] = {
+["inheritGlobalFade"] = true,
+["buttons"] = 8,
+["showGrid"] = false,
+["buttonsPerRow"] = 4,
+["buttonSpacing"] = 6,
+["buttonSize"] = 48,
+},
+["barPet"] = {
+["buttonSize"] = 34,
+["buttonsPerRow"] = 10,
+},
+["bar4"] = {
+["buttonSize"] = 42,
+["mouseover"] = true,
+["inheritGlobalFade"] = true,
+["backdrop"] = false,
+["buttons"] = 8,
+["showGrid"] = false,
+["buttonsPerRow"] = 2,
+["visibility"] = "[petbattle] hide; show",
+["buttonSpacing"] = 0,
+},
+},
+["nameplates"] = {
+["cutaway"] = {
+["health"] = {
+["enabled"] = true,
+},
+["power"] = {
+["enabled"] = true,
+},
+},
+["visibility"] = {
+["enemy"] = {
+["pets"] = true,
+["guardians"] = true,
+["totems"] = true,
+["minions"] = true,
+},
+},
+["colors"] = {
+["selection"] = {
+nil,
+{
+["r"] = 0.85,
+["g"] = 0.76,
+["b"] = 0.36,
+},
+{
+["r"] = 0.29,
+["g"] = 0.67,
+["b"] = 0.3,
+},
+[0] = {
+["r"] = 0.78,
+["g"] = 0.25,
+["b"] = 0.25,
+},
+},
+["threat"] = {
+["goodTransition"] = {
+["r"] = 0.85,
+["g"] = 0.76,
+["b"] = 0.36,
+},
+["goodColor"] = {
+["r"] = 0.29,
+["g"] = 0.67,
+["b"] = 0.3,
+},
+["badColor"] = {
+["r"] = 0.78,
+["g"] = 0.25,
+["b"] = 0.25,
+},
+},
+["reactions"] = {
+["neutral"] = {
+["g"] = 0.76,
+},
+["good"] = {
+["r"] = 0.3,
+["g"] = 0.67,
+["b"] = 0.29,
+},
+},
+},
+["units"] = {
+["PLAYER"] = {
+["enable"] = true,
+},
+["ENEMY_NPC"] = {
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+["nameOnly"] = true,
+},
+["ENEMY_PLAYER"] = {
+["portrait"] = {
+["xOffset"] = 0,
+["position"] = "LEFT",
+["enable"] = true,
+["yOffset"] = 0,
+},
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+},
+["TARGET"] = {
+["arrow"] = "ArrowRed",
+},
+},
+},
+["auras"] = {
+["debuffs"] = {
+["horizontalSpacing"] = 0,
+["size"] = 40,
+["verticalSpacing"] = 12,
+["wrapAfter"] = 10,
+["growthDirection"] = "UP_LEFT",
+},
+["buffs"] = {
+["size"] = 40,
+},
+},
+["unitframe"] = {
+["targetSound"] = true,
+["colors"] = {
+["powerPrediction"] = {
+["enable"] = true,
+},
+["auraBarBuff"] = {
+["r"] = 0.67,
+["g"] = 0.83,
+["b"] = 0.45,
+},
+["castClassColor"] = true,
+["healthclass"] = true,
+},
+["fontOutline"] = "OUTLINE",
+["font"] = "默认",
+["fontSize"] = 14,
+["units"] = {
+["tank"] = {
+["enable"] = false,
+},
+["targettargettarget"] = {
+["debuffs"] = {
+["anchorPoint"] = "BOTTOMLEFT",
+["attachTo"] = "HEALTH",
+["growthX"] = "RIGHT",
+},
+["health"] = {
+["text_format"] = "[healthcolor][health:current:shortvalue]",
+["yOffset"] = -12,
+},
+["power"] = {
+["height"] = 5,
+["text_format"] = "[powercolor][power:current:shortvalue]",
+["yOffset"] = -12,
+},
+["enable"] = true,
+["height"] = 40,
+["width"] = 90,
+},
+["targettarget"] = {
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = 2,
+["enable"] = false,
+["yOffset"] = 0,
+},
+["debuffs"] = {
+["attachTo"] = "HEALTH",
+["perrow"] = 6,
+["anchorPoint"] = "BOTTOMLEFT",
+["growthX"] = "RIGHT",
+},
+["threatStyle"] = "GLOW",
+["power"] = {
+["height"] = 5,
+["text_format"] = "[powercolor][power:current]",
+["yOffset"] = -12,
+},
+["height"] = 40,
+["health"] = {
+["text_format"] = "[healthcolor][health:current]",
+["yOffset"] = -12,
+},
+["disableMouseoverGlow"] = true,
+["width"] = 180,
+},
+["party"] = {
+["height"] = 74,
+["width"] = 231,
+["enable"] = false,
+["power"] = {
+["height"] = 13,
+},
+},
+["pet"] = {
+["infoPanel"] = {
+["height"] = 14,
+},
+["debuffs"] = {
+["enable"] = true,
+},
+["disableTargetGlow"] = false,
+["castbar"] = {
+["iconSize"] = 32,
+["overlayOnFrame"] = "Health",
+},
+["buffs"] = {
+["enable"] = true,
+["priority"] = "",
+["perrow"] = 12,
+["yOffset"] = -23,
+},
+["health"] = {
+["xOffset"] = 0,
+["text_format"] = "[healthcolor][health:current]/[health:max]",
+["yOffset"] = -6,
+},
+["width"] = 270,
+},
+["boss"] = {
+["infoPanel"] = {
+["height"] = 17,
+},
+["debuffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = -16,
+},
+["castbar"] = {
+["width"] = 246,
+},
+["height"] = 60,
+["buffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = 16,
+},
+["width"] = 246,
+},
+["assist"] = {
+["enable"] = false,
+},
+["player"] = {
+["cutaway"] = {
+["health"] = {
+["enabled"] = true,
+},
+},
+["debuffs"] = {
+["attachTo"] = "BUFFS",
+["enable"] = false,
+},
+["threatStyle"] = "HEALTHBORDER",
+["power"] = {
+["attachTextTo"] = "Power",
+["powerPrediction"] = true,
+["height"] = 14,
+["detachedWidth"] = 270,
+["EnergyManaRegen"] = true,
+["text_format"] = "[powercolor][power:current] / [power:max]",
+},
+["partyIndicator"] = {
+["enable"] = false,
+},
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["disableMouseoverGlow"] = true,
+["width"] = 300,
+["castbar"] = {
+["insideInfoPanel"] = false,
+["iconAttached"] = false,
+["tickColor"] = {
+["a"] = 0.800000011920929,
+},
+["iconXOffset"] = 0,
+["iconPosition"] = "TOP",
+["customColor"] = {
+["color"] = {
+["b"] = 0.3098039329051971,
+["g"] = 0.3098039329051971,
+["r"] = 0.3098039329051971,
+},
+},
+["iconSize"] = 48,
+["format"] = "REMAININGMAX",
+["height"] = 24,
+["width"] = 300,
+},
+["smartAuraPosition"] = "DEBUFFS_ON_BUFFS",
+["health"] = {
+["xOffset"] = 0,
+["text_format"] = "[healthcolor][health:current]                            [health:max]",
+["position"] = "RIGHT",
+},
+["raidRoleIcons"] = {
+["enable"] = false,
+},
+["height"] = 36,
+["buffs"] = {
+["attachTo"] = "FRAME",
+["clickThrough"] = true,
+["stackAuras"] = false,
+["priority"] = "饰品,通用,猎人",
+["sortMethod"] = "NAME",
+["enable"] = true,
+},
+["classbar"] = {
+["enable"] = false,
+["height"] = 14,
+},
+["aurabar"] = {
+["height"] = 32,
+["tooltipAnchorType"] = "ANCHOR_CURSOR",
+["attachTo"] = "DETACHED",
+},
+},
+["raid1"] = {
+["roleIcon"] = {
+["attachTo"] = "InfoPanel",
+["xOffset"] = 0,
+["size"] = 12,
+},
+["enable"] = false,
+["rdebuffs"] = {
+["xOffset"] = 30,
+["size"] = 30,
+["yOffset"] = 25,
+},
+["numGroups"] = 8,
+["growthDirection"] = "RIGHT_UP",
+["infoPanel"] = {
+["enable"] = true,
+},
+["resurrectIcon"] = {
+["attachTo"] = "BOTTOMRIGHT",
+},
+["name"] = {
+["attachTextTo"] = "InfoPanel",
+["xOffset"] = 2,
+["position"] = "BOTTOMLEFT",
+},
+["width"] = 92,
+},
+["focus"] = {
+["width"] = 270,
+["castbar"] = {
+["width"] = 270,
+},
+},
+["target"] = {
+["debuffs"] = {
+["numrows"] = 3,
+["priority"] = "",
+},
+["power"] = {
+["attachTextTo"] = "Power",
+["powerPrediction"] = true,
+["height"] = 8,
+["text_format"] = "[powercolor][power:current]/[power:max]",
+["yOffset"] = 10,
+},
+["castbar"] = {
+["height"] = 16,
+["customColor"] = {
+["enable"] = true,
+["color"] = {
+["b"] = 0.3098039329051971,
+["g"] = 0.3098039329051971,
+["r"] = 0.3098039329051971,
+},
+["useClassColor"] = true,
+["transparent"] = true,
+},
+["overlayOnFrame"] = "InfoPanel",
+["insideInfoPanel"] = false,
+},
+["name"] = {
+["position"] = "TOP",
+},
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["disableMouseoverGlow"] = true,
+["auras"] = {
+["priority"] = "目标BUFF",
+["yOffset"] = 6,
+},
+["infoPanel"] = {
+["enable"] = true,
+["height"] = 18,
+["transparent"] = true,
+},
+["health"] = {
+["text_format"] = "[healthcolor][health:current]/[health:max] - [health:percent]",
+["yOffset"] = -14,
+},
+["fader"] = {
+["minAlpha"] = 0.75,
+},
+["orientation"] = "LEFT",
+["height"] = 48,
+["buffs"] = {
+["numrows"] = 3,
+},
+["threatPlayer"] = true,
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = -34,
+["yOffset"] = -6,
+["attachToObject"] = "Health",
+["size"] = 32,
+},
+},
+["raid3"] = {
+["enable"] = false,
+},
+["raid2"] = {
+["enable"] = false,
+},
+["pettarget"] = {
+["enable"] = true,
+},
+},
+},
+["tooltip"] = {
+["modifierID"] = "SHIFT",
+["playerTitles"] = false,
+["guildRanks"] = false,
+},
+},
+["巨龙守护者 - 哈霍兰"] = {
+["databars"] = {
+["threat"] = {
+["width"] = 472,
+["height"] = 24,
+},
+["petExperience"] = {
+["clickThrough"] = true,
+["hideInCombat"] = true,
+["frameStrata"] = "HIGH",
+["width"] = 270,
+["height"] = 5,
+["showBubbles"] = true,
+},
+["experience"] = {
+["enable"] = false,
+},
+["azerite"] = {
+["enable"] = false,
+},
+},
+["general"] = {
+["totems"] = {
+["spacing"] = 8,
+["growthDirection"] = "HORIZONTAL",
+["size"] = 50,
+},
+["valuecolor"] = {
+["r"] = 0.78,
+["g"] = 0.61,
+["b"] = 0.43,
+},
+["minimap"] = {
+["size"] = 220,
+},
+["objectiveFrameHeight"] = 400,
+["talkingHeadFrameScale"] = 1,
+["fontSize"] = 14,
+["bonusObjectivePosition"] = "AUTO",
+["afkSpin"] = false,
+},
+["bags"] = {
+["itemLevelCustomColorEnable"] = true,
+["scrapIcon"] = true,
+["bagBar"] = {
+["mouseover"] = true,
+["growthDirection"] = "HORIZONTAL",
+["size"] = 20,
+},
+["bankWidth"] = 474,
+["bankSize"] = 42,
+["split"] = {
+["bag4"] = true,
+["bag2"] = true,
+["bag3"] = true,
+["player"] = true,
+["bag1"] = true,
+["bagSpacing"] = 7,
+},
+["bagWidth"] = 474,
+["bagSize"] = 42,
+},
+["chat"] = {
+["tabSelectorColor"] = {
+["r"] = 0.78,
+["g"] = 0.61,
+["b"] = 0.43,
+},
+["panelWidth"] = 472,
+["panelHeight"] = 236,
+["panelSnapLeftID"] = 1,
+["panelSnapRightID"] = 4,
+["copyChatLines"] = true,
+},
+["dbConverted"] = 15.17,
+["movers"] = {
+["ElvAB_15"] = "BOTTOM,ElvUIParent,BOTTOM,-1,392",
+["ElvAB_13"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,96",
+["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,4",
+["GMMover"] = "TOPLEFT,UIParent,TOPLEFT,525,-4",
+["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,0",
+["MirrorTimer3Mover"] = "TOP,MirrorTimer2,BOTTOM,0,0",
+["ElvUF_PetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-577,430",
+["LootFrameMover"] = "TOPLEFT,UIParent,TOPLEFT,250,-156",
+["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,-170",
+["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-187",
+["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-30",
+["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,332",
+["ElvUF_Raid3Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["ElvUF_PetMover"] = "BOTTOM,ElvUIParent,BOTTOM,320,456",
+["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-250,388",
+["ElvUF_TargetTargetMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-577,-525",
+["ElvUF_PlayerAuraMover"] = "TOP,UIParent,TOP,-334,-512",
+["DurabilityFrameMover"] = "BOTTOMLEFT,UIParent,BOTTOMLEFT,558,186",
+["ElvUF_PetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,285,356",
+["VehicleSeatMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-4",
+["ElvAB_10"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["ExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,43",
+["ElvAB_14"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,263",
+["ElvUF_TargetMover"] = "TOP,ElvUIParent,TOP,320,-460",
+["ElvUF_TargetCastbarMover"] = "BOTTOM,UIParent,BOTTOM,318,440",
+["LossControlMover"] = "BOTTOM,ElvUIParent,BOTTOM,-1,507",
+["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,366",
+["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96",
+["ElvUF_Raid1Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1",
+["ElvAB_2"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,477,20",
+["BelowMinimapContainerMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-274",
+["ElvUF_Raid2Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvAB_4"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,312",
+["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,-164,317",
+["PetExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,286,458",
+["ElvAB_3"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-478,23",
+["ReputationBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-243",
+["VehicleLeaveButton"] = "TOP,ElvUIParent,TOP,0,-60",
+["MirrorTimer2Mover"] = "TOP,MirrorTimer1,BOTTOM,0,0",
+["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,0,245",
+["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-163,-325",
+["BNETMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-81",
+["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-133",
+["ElvUF_TargetTargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-577,494",
+["HonorBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-251",
+["ElvAB_6"] = "BOTTOM,ElvUIParent,BOTTOM,0,48",
+["TooltipMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-539",
+["MicrobarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,477,0",
+["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-250,365",
+["ElvUIBagMover"] = "BOTTOMRIGHT,UIParent,BOTTOMRIGHT,-4,4",
+["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,298",
+["ElvUF_PartyMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["AlertFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-155",
+["DebuffsMover"] = "TOP,ElvUIParent,TOP,-177,-26",
+["BagsMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-477,0",
+},
+["tooltip"] = {
+["modifierID"] = "SHIFT",
+["playerTitles"] = false,
+["guildRanks"] = false,
+},
+["unitframe"] = {
+["targetSound"] = true,
+["fontSize"] = 14,
+["units"] = {
+["tank"] = {
+["enable"] = false,
+},
+["targettargettarget"] = {
+["debuffs"] = {
+["growthX"] = "RIGHT",
+["anchorPoint"] = "BOTTOMLEFT",
+["attachTo"] = "HEALTH",
+},
+["enable"] = true,
+["health"] = {
+["text_format"] = "[healthcolor][health:current:shortvalue]",
+["yOffset"] = -12,
+},
+["power"] = {
+["text_format"] = "[powercolor][power:current:shortvalue]",
+["yOffset"] = -12,
+["height"] = 5,
+},
+["width"] = 90,
+["height"] = 40,
+},
+["party"] = {
+["height"] = 74,
+["enable"] = false,
+["power"] = {
+["height"] = 13,
+},
+["width"] = 231,
+},
+["focus"] = {
+["castbar"] = {
+["width"] = 270,
+},
+["width"] = 270,
+},
+["target"] = {
+["debuffs"] = {
+["priority"] = "",
+["numrows"] = 3,
+},
+["threatPlayer"] = true,
+["auras"] = {
+["yOffset"] = 6,
+},
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["disableMouseoverGlow"] = true,
+["infoPanel"] = {
+["enable"] = true,
+["height"] = 18,
+["transparent"] = true,
+},
+["name"] = {
+["position"] = "TOP",
+},
+["height"] = 48,
+["buffs"] = {
+["numrows"] = 3,
+},
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = -34,
+["yOffset"] = -6,
+["attachToObject"] = "Health",
+["size"] = 32,
+},
+["power"] = {
+["text_format"] = "[powercolor][power:current]/[power:max]",
+["yOffset"] = 10,
+["powerPrediction"] = true,
+["attachTextTo"] = "Power",
+["height"] = 8,
+},
+["health"] = {
+["text_format"] = "[healthcolor][health:current]/[health:max] - [health:percent]",
+["yOffset"] = -14,
+},
+["orientation"] = "LEFT",
+["fader"] = {
+["minAlpha"] = 0.75,
+},
+["castbar"] = {
+["insideInfoPanel"] = false,
+["height"] = 16,
+["overlayOnFrame"] = "InfoPanel",
+["customColor"] = {
+["enable"] = true,
+["transparent"] = true,
+["useClassColor"] = true,
+["color"] = {
+["b"] = 0.3098039329051971,
+["g"] = 0.3098039329051971,
+["r"] = 0.3098039329051971,
+},
+},
+},
+},
+["raid2"] = {
+["enable"] = false,
+},
+["pettarget"] = {
+["enable"] = true,
+},
+["targettarget"] = {
+["debuffs"] = {
+["growthX"] = "RIGHT",
+["attachTo"] = "HEALTH",
+["perrow"] = 6,
+["anchorPoint"] = "BOTTOMLEFT",
+},
+["threatStyle"] = "GLOW",
+["power"] = {
+["text_format"] = "[powercolor][power:current]",
+["yOffset"] = -12,
+["height"] = 5,
+},
+["disableMouseoverGlow"] = true,
+["width"] = 180,
+["health"] = {
+["text_format"] = "[healthcolor][health:current]",
+["yOffset"] = -12,
+},
+["height"] = 40,
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = 2,
+["enable"] = false,
+["yOffset"] = 0,
+},
+},
+["player"] = {
+["debuffs"] = {
+["attachTo"] = "BUFFS",
+["enable"] = false,
+},
+["classbar"] = {
+["enable"] = false,
+["height"] = 14,
+},
+["threatStyle"] = "HEALTHBORDER",
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["disableMouseoverGlow"] = true,
+["height"] = 40,
+["buffs"] = {
+["clickThrough"] = true,
+["stackAuras"] = false,
+["attachTo"] = "FRAME",
+["enable"] = true,
+["priority"] = "饰品,通用,战士",
+["sortMethod"] = "NAME",
+},
+["raidRoleIcons"] = {
+["enable"] = false,
+},
+["power"] = {
+["text_format"] = "[powercolor][power:current] / [power:max]",
+["powerPrediction"] = true,
+["attachTextTo"] = "Power",
+["EnergyManaRegen"] = true,
+["detachedWidth"] = 270,
+["height"] = 14,
+},
+["smartAuraPosition"] = "DEBUFFS_ON_BUFFS",
+["aurabar"] = {
+["height"] = 32,
+["tooltipAnchorType"] = "ANCHOR_CURSOR",
+["attachTo"] = "DETACHED",
+},
+["cutaway"] = {
+["health"] = {
+["enabled"] = true,
+},
+},
+["castbar"] = {
+["iconXOffset"] = 0,
+["format"] = "REMAININGMAX",
+["insideInfoPanel"] = false,
+["height"] = 24,
+["customColor"] = {
+["color"] = {
+["b"] = 0.3098039329051971,
+["g"] = 0.3098039329051971,
+["r"] = 0.3098039329051971,
+},
+},
+["iconSize"] = 48,
+["iconAttached"] = false,
+["width"] = 300,
+["tickColor"] = {
+["a"] = 0.800000011920929,
+},
+["iconPosition"] = "TOP",
+},
+["width"] = 300,
+["health"] = {
+["position"] = "RIGHT",
+["xOffset"] = 0,
+["text_format"] = "[healthcolor][health:current]                            [health:max]",
+},
+["partyIndicator"] = {
+["enable"] = false,
+},
+},
+["raid1"] = {
+["numGroups"] = 8,
+["growthDirection"] = "RIGHT_UP",
+["infoPanel"] = {
+["enable"] = true,
+},
+["name"] = {
+["attachTextTo"] = "InfoPanel",
+["position"] = "BOTTOMLEFT",
+["xOffset"] = 2,
+},
+["rdebuffs"] = {
+["xOffset"] = 30,
+["yOffset"] = 25,
+["size"] = 30,
+},
+["resurrectIcon"] = {
+["attachTo"] = "BOTTOMRIGHT",
+},
+["roleIcon"] = {
+["attachTo"] = "InfoPanel",
+["xOffset"] = 0,
+["size"] = 12,
+},
+["width"] = 92,
+["enable"] = false,
+},
+["raid3"] = {
+["enable"] = false,
+},
+["pet"] = {
+["debuffs"] = {
+["enable"] = true,
+},
+["disableTargetGlow"] = false,
+["health"] = {
+["xOffset"] = 0,
+["text_format"] = "[healthcolor][health:current]/[health:max]",
+["yOffset"] = -6,
+},
+["width"] = 270,
+["infoPanel"] = {
+["height"] = 14,
+},
+["buffs"] = {
+["yOffset"] = -20,
+["perrow"] = 12,
+["enable"] = true,
+},
+["castbar"] = {
+["iconSize"] = 32,
+["overlayOnFrame"] = "Health",
+},
+},
+["boss"] = {
+["debuffs"] = {
+["yOffset"] = -16,
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+},
+["castbar"] = {
+["width"] = 246,
+},
+["width"] = 246,
+["infoPanel"] = {
+["height"] = 17,
+},
+["height"] = 60,
+["buffs"] = {
+["yOffset"] = 16,
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+},
+},
+["assist"] = {
+["enable"] = false,
+},
+},
+["font"] = "默认",
+["colors"] = {
+["auraBarBuff"] = {
+["r"] = 0.78,
+["g"] = 0.61,
+["b"] = 0.43,
+},
+["healthclass"] = true,
+["castClassColor"] = true,
+["powerPrediction"] = {
+["enable"] = true,
+},
+},
+["fontOutline"] = "OUTLINE",
+},
+["datatexts"] = {
+["panels"] = {
+["LeftChatDataPanel"] = {
+[3] = "QuickJoin",
+},
+},
+["fontSize"] = 14,
+},
+["actionbar"] = {
+["bar3"] = {
+["buttonsPerRow"] = 2,
+["buttonSpacing"] = 0,
+["buttonSize"] = 48,
+["buttons"] = 10,
+["showGrid"] = false,
+},
+["desaturateOnCooldown"] = true,
+["chargeCooldown"] = true,
+["bar1"] = {
+["macroTextPosition"] = "BOTTOM",
+["macroFontSize"] = 16,
+["buttonSpacing"] = 1,
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+},
+["bar15"] = {
+["buttonsPerRow"] = 10,
+["buttonSpacing"] = 0,
+["buttons"] = 10,
+["buttonSize"] = 30,
+},
+["bar13"] = {
+["buttonsPerRow"] = 4,
+["buttonSpacing"] = 6,
+["inheritGlobalFade"] = true,
+["buttons"] = 8,
+["buttonSize"] = 48,
+["showGrid"] = false,
+},
+["barPet"] = {
+["buttonsPerRow"] = 10,
+["buttonSize"] = 34,
+},
+["equippedItem"] = true,
+["flashAnimation"] = true,
+["globalFadeAlpha"] = 0.89,
+["microbar"] = {
+["buttonHeight"] = 20,
+["enabled"] = true,
+["buttons"] = 8,
+["useIcons"] = false,
+["mouseover"] = true,
+},
+["bar2"] = {
+["enabled"] = true,
+["macroTextPosition"] = "BOTTOM",
+["buttonsPerRow"] = 2,
+["visibility"] = "[petbattle] hide; show",
+["macroFontSize"] = 12,
+["buttonSpacing"] = 1,
+["buttonSize"] = 40,
+["macrotext"] = true,
+["macroTextYOffset"] = 2,
+["showGrid"] = false,
+},
+["bar14"] = {
+["enabled"] = true,
+["macroTextPosition"] = "BOTTOM",
+["buttonSpacing"] = 0,
+["macroFontSize"] = 14,
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+["showGrid"] = false,
+},
+["bar5"] = {
+["buttonsPerRow"] = 12,
+["visibility"] = "[petbattle] hide; show",
+["point"] = "TOPRIGHT",
+["buttonSpacing"] = 1,
+["buttonSize"] = 42,
+["buttons"] = 8,
+["showGrid"] = false,
+},
+["bar6"] = {
+["enabled"] = true,
+["macroTextPosition"] = "BOTTOM",
+["visibility"] = "[petbattle] hide; show",
+["buttonSpacing"] = 1,
+["macroFontSize"] = 16,
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+},
+["stanceBar"] = {
+["buttonSize"] = 40,
+},
+["rightClickSelfCast"] = true,
+["bar4"] = {
+["mouseover"] = true,
+["buttonsPerRow"] = 2,
+["visibility"] = "[petbattle] hide; show",
+["buttonSpacing"] = 0,
+["inheritGlobalFade"] = true,
+["buttonSize"] = 42,
+["buttons"] = 8,
+["showGrid"] = false,
+["backdrop"] = false,
+},
+},
+["nameplates"] = {
+["cutaway"] = {
+["health"] = {
+["enabled"] = true,
+},
+["power"] = {
+["enabled"] = true,
+},
+},
+["units"] = {
+["PLAYER"] = {
+["enable"] = true,
+},
+["TARGET"] = {
+["arrow"] = "ArrowRed",
+},
+["ENEMY_PLAYER"] = {
+["portrait"] = {
+["xOffset"] = 0,
+["yOffset"] = 0,
+["position"] = "LEFT",
+["enable"] = true,
+},
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+},
+["ENEMY_NPC"] = {
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+["nameOnly"] = true,
+},
+},
+["colors"] = {
+["selection"] = {
+nil,
+{
+["r"] = 0.85,
+["g"] = 0.76,
+["b"] = 0.36,
+},
+{
+["r"] = 0.29,
+["g"] = 0.67,
+["b"] = 0.3,
+},
+[0] = {
+["r"] = 0.78,
+["g"] = 0.25,
+["b"] = 0.25,
+},
+},
+["reactions"] = {
+["neutral"] = {
+["g"] = 0.76,
+},
+["good"] = {
+["r"] = 0.3,
+["g"] = 0.67,
+["b"] = 0.29,
+},
+},
+["threat"] = {
+["goodTransition"] = {
+["r"] = 0.85,
+["g"] = 0.76,
+["b"] = 0.36,
+},
+["goodColor"] = {
+["r"] = 0.29,
+["g"] = 0.67,
+["b"] = 0.3,
+},
+["badColor"] = {
+["r"] = 0.78,
+["g"] = 0.25,
+["b"] = 0.25,
+},
+},
+},
+["visibility"] = {
+["enemy"] = {
+["pets"] = true,
+["guardians"] = true,
+["minions"] = true,
+["totems"] = true,
+},
+},
+},
+["convertPages"] = true,
+["auras"] = {
+["buffs"] = {
+["size"] = 40,
+},
+["debuffs"] = {
+["growthDirection"] = "UP_LEFT",
+["horizontalSpacing"] = 0,
+["wrapAfter"] = 10,
+["verticalSpacing"] = 12,
+["size"] = 40,
+},
+},
+},
+["瑟银零件 - 哈霍兰"] = {
+["databars"] = {
+["petExperience"] = {
+["showBubbles"] = true,
+["clickThrough"] = true,
+["height"] = 5,
+["hideInCombat"] = true,
+["frameStrata"] = "HIGH",
+["width"] = 270,
+},
+["threat"] = {
+["height"] = 24,
+["width"] = 472,
+},
+["experience"] = {
+["enable"] = false,
+},
+["azerite"] = {
+["enable"] = false,
+},
+},
+["general"] = {
+["totems"] = {
+["size"] = 50,
+["growthDirection"] = "HORIZONTAL",
+["spacing"] = 8,
+},
+["fontSize"] = 14,
+["bonusObjectivePosition"] = "AUTO",
+["objectiveFrameHeight"] = 400,
+["valuecolor"] = {
+["b"] = 0.41,
+["g"] = 0.96,
+["r"] = 1,
+},
+["talkingHeadFrameScale"] = 1,
+["afkSpin"] = false,
+["minimap"] = {
+["size"] = 220,
+},
+},
+["movers"] = {
+["ElvAB_15"] = "BOTTOM,ElvUIParent,BOTTOM,-1,411",
+["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,332",
+["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,96",
+["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,4",
+["GMMover"] = "TOPLEFT,UIParent,TOPLEFT,525,-4",
+["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,0",
+["MirrorTimer3Mover"] = "TOP,MirrorTimer2,BOTTOM,0,0",
+["ElvUF_PetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-611,349",
+["LootFrameMover"] = "TOPLEFT,UIParent,TOPLEFT,250,-156",
+["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,-170",
+["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-187",
+["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-30",
+["ElvUF_Raid3Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,387",
+["ElvUF_PartyMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvUIBagMover"] = "BOTTOMRIGHT,UIParent,BOTTOMRIGHT,-4,4",
+["ElvUF_PetMover"] = "BOTTOM,ElvUIParent,BOTTOM,285,374",
+["ElvAB_13"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["DurabilityFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-26",
+["MicrobarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,477,0",
+["ElvUF_PetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,285,356",
+["VehicleSeatMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-4",
+["TooltipMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-539",
+["ExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,43",
+["ElvAB_14"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,263",
+["ElvUF_TargetMover"] = "TOP,ElvUIParent,TOP,319,-482",
+["ElvAB_6"] = "BOTTOM,ElvUIParent,BOTTOM,0,48",
+["LossControlMover"] = "BOTTOM,ElvUIParent,BOTTOM,-1,507",
+["ElvAB_2"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,477,20",
+["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96",
+["ElvUF_Raid1Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1",
+["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,366",
+["BelowMinimapContainerMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-274",
+["ReputationBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-243",
+["ElvAB_4"] = "RIGHT,ElvUIParent,RIGHT,-4,0",
+["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-133",
+["PetExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,285,410",
+["ElvAB_3"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-478,23",
+["ElvUF_TargetTargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-577,489",
+["VehicleLeaveButton"] = "TOP,ElvUIParent,TOP,0,-60",
+["BNETMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-81",
+["ElvAB_5"] = "BOTTOM,UIParent,BOTTOM,0,270",
+["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-163,-325",
+["MirrorTimer2Mover"] = "TOP,MirrorTimer1,BOTTOM,0,0",
+["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,58",
+["ElvUF_Raid2Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["HonorBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-251",
+["ElvUF_TargetCastbarMover"] = "BOTTOM,UIParent,BOTTOM,318,440",
+["ElvAB_10"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["ElvUF_PlayerAuraMover"] = "TOP,UIParent,TOP,-334,-512",
+["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-577,528",
+["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,440",
+["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,298",
+["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["AlertFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-155",
+["DebuffsMover"] = "TOP,ElvUIParent,TOP,-177,-15",
+["BagsMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-477,0",
+},
+["convertPages"] = true,
+["bags"] = {
+["scrapIcon"] = true,
+["bagWidth"] = 474,
+["bankWidth"] = 474,
+["split"] = {
+["bagSpacing"] = 7,
+["bag4"] = true,
+["bag1"] = true,
+["bag2"] = true,
+["bag3"] = true,
+["player"] = true,
+},
+["bagSize"] = 42,
+["itemLevelCustomColorEnable"] = true,
+["bankSize"] = 42,
+["bagBar"] = {
+["size"] = 20,
+["mouseover"] = true,
+["growthDirection"] = "HORIZONTAL",
+},
+},
+["chat"] = {
+["panelSnapRightID"] = 4,
+["tabSelectorColor"] = {
+["b"] = 0.41,
+["g"] = 0.96,
+["r"] = 1,
+},
+["panelHeight"] = 236,
+["copyChatLines"] = true,
+["panelSnapLeftID"] = 1,
+["panelWidth"] = 472,
+},
+["dbConverted"] = 14.04,
+["datatexts"] = {
+["panels"] = {
+["LeftChatDataPanel"] = {
+[3] = "QuickJoin",
+},
+},
+["fontSize"] = 14,
+},
+["actionbar"] = {
+["bar3"] = {
+["buttonSize"] = 48,
+["showGrid"] = false,
+["buttonsPerRow"] = 2,
+["buttonSpacing"] = 0,
+["buttons"] = 10,
+},
+["bar6"] = {
+["enabled"] = true,
+["macroFontSize"] = 16,
+["buttonSpacing"] = 1,
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+["visibility"] = "[petbattle] hide; show",
+["macroTextPosition"] = "BOTTOM",
+},
+["equippedItem"] = true,
+["flashAnimation"] = true,
+["desaturateOnCooldown"] = true,
+["globalFadeAlpha"] = 0.89,
+["microbar"] = {
+["enabled"] = true,
+["buttons"] = 7,
+["buttonHeight"] = 20,
+["mouseover"] = true,
+["useIcons"] = false,
+},
+["chargeCooldown"] = true,
+["bar2"] = {
+["enabled"] = true,
+["buttonsPerRow"] = 2,
+["buttonSpacing"] = 1,
+["buttonSize"] = 40,
+["showGrid"] = false,
+["macroTextYOffset"] = 2,
+["visibility"] = "[petbattle] hide; show",
+["macroTextPosition"] = "BOTTOM",
+},
+["rightClickSelfCast"] = true,
+["bar14"] = {
+["enabled"] = true,
+["showGrid"] = false,
+["buttonSpacing"] = 0,
+["buttonSize"] = 48,
+},
+["bar5"] = {
+["buttonSize"] = 48,
+["point"] = "TOPRIGHT",
+["buttons"] = 8,
+["showGrid"] = false,
+["buttonsPerRow"] = 12,
+["buttonSpacing"] = 1,
+["visibility"] = "[petbattle] hide; show",
+},
+["bar1"] = {
+["macroTextPosition"] = "BOTTOM",
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+["macroFontSize"] = 16,
+["buttonSpacing"] = 1,
+},
+["stanceBar"] = {
+["enabled"] = false,
+},
+["bar15"] = {
+["enabled"] = true,
+["buttonSize"] = 30,
+["buttonsPerRow"] = 10,
+["buttonSpacing"] = 0,
+["buttons"] = 10,
+},
+["bar13"] = {
+["inheritGlobalFade"] = true,
+["buttons"] = 8,
+["showGrid"] = false,
+["buttonsPerRow"] = 4,
+["buttonSpacing"] = 6,
+["buttonSize"] = 48,
+},
+["barPet"] = {
+["buttonSize"] = 34,
+["buttonsPerRow"] = 10,
+},
+["bar4"] = {
+["enabled"] = false,
+["buttonSize"] = 41,
+["buttonsPerRow"] = 6,
+["visibility"] = "[petbattle] hide; show",
+["backdrop"] = false,
+},
+},
+["nameplates"] = {
+["cutaway"] = {
+["health"] = {
+["enabled"] = true,
+},
+["power"] = {
+["enabled"] = true,
+},
+},
+["visibility"] = {
+["enemy"] = {
+["pets"] = true,
+["guardians"] = true,
+["totems"] = true,
+["minions"] = true,
+},
+},
+["colors"] = {
+["selection"] = {
+nil,
+{
+["b"] = 0.36,
+["g"] = 0.76,
+["r"] = 0.85,
+},
+{
+["b"] = 0.3,
+["g"] = 0.67,
+["r"] = 0.29,
+},
+[0] = {
+["b"] = 0.25,
+["g"] = 0.25,
+["r"] = 0.78,
+},
+},
+["reactions"] = {
+["neutral"] = {
+["g"] = 0.76,
+},
+["good"] = {
+["b"] = 0.29,
+["g"] = 0.67,
+["r"] = 0.3,
+},
+},
+["threat"] = {
+["goodTransition"] = {
+["b"] = 0.36,
+["g"] = 0.76,
+["r"] = 0.85,
+},
+["goodColor"] = {
+["b"] = 0.3,
+["g"] = 0.67,
+["r"] = 0.29,
+},
+["badColor"] = {
+["b"] = 0.25,
+["g"] = 0.25,
+["r"] = 0.78,
+},
+},
+},
+["units"] = {
+["PLAYER"] = {
+["enable"] = true,
+},
+["ENEMY_NPC"] = {
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+["nameOnly"] = true,
+},
+["ENEMY_PLAYER"] = {
+["portrait"] = {
+["xOffset"] = 0,
+["yOffset"] = 0,
+["enable"] = true,
+["position"] = "LEFT",
+},
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+},
+["TARGET"] = {
+["arrow"] = "ArrowRed",
+},
+},
+},
+["auras"] = {
+["buffs"] = {
+["size"] = 40,
+},
+["debuffs"] = {
+["horizontalSpacing"] = 0,
+["wrapAfter"] = 10,
+["verticalSpacing"] = 12,
+["growthDirection"] = "UP_LEFT",
+["size"] = 40,
+},
+},
+["unitframe"] = {
+["targetSound"] = true,
+["colors"] = {
+["auraBarBuff"] = {
+["b"] = 0.41,
+["g"] = 0.96,
+["r"] = 1,
+},
+["powerPrediction"] = {
+["enable"] = true,
+},
+["castClassColor"] = true,
+["healthclass"] = true,
+},
+["fontOutline"] = "OUTLINE",
+["font"] = "默认",
+["fontSize"] = 14,
+["units"] = {
+["tank"] = {
+["enable"] = false,
+},
+["targettargettarget"] = {
+["debuffs"] = {
+["attachTo"] = "HEALTH",
+["anchorPoint"] = "BOTTOMLEFT",
+["growthX"] = "RIGHT",
+},
+["health"] = {
+["text_format"] = "[healthcolor][health:current:shortvalue]",
+["yOffset"] = -12,
+},
+["power"] = {
+["height"] = 5,
+["text_format"] = "[powercolor][power:current:shortvalue]",
+["yOffset"] = -12,
+},
+["enable"] = true,
+["height"] = 40,
+["width"] = 90,
+},
+["pet"] = {
+["infoPanel"] = {
+["height"] = 14,
+},
+["debuffs"] = {
+["enable"] = true,
+},
+["disableTargetGlow"] = false,
+["castbar"] = {
+["iconSize"] = 32,
+},
+["buffs"] = {
+["enable"] = true,
+["perrow"] = 12,
+["yOffset"] = -20,
+},
+["health"] = {
+["xOffset"] = 0,
+["text_format"] = "[healthcolor][health:current]/[health:max]",
+["yOffset"] = -6,
+},
+["width"] = 270,
+},
+["player"] = {
+["partyIndicator"] = {
+["enable"] = false,
+},
+["debuffs"] = {
+["attachTo"] = "BUFFS",
+["enable"] = false,
+},
+["threatStyle"] = "HEALTHBORDER",
+["power"] = {
+["attachTextTo"] = "Power",
+["powerPrediction"] = true,
+["detachedWidth"] = 270,
+["height"] = 14,
+["EnergyManaRegen"] = true,
+["text_format"] = "[powercolor][power:current] / [power:max]",
+},
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["disableMouseoverGlow"] = true,
+["width"] = 300,
+["raidRoleIcons"] = {
+["enable"] = false,
+},
+["castbar"] = {
+["insideInfoPanel"] = false,
+["iconAttached"] = false,
+["customColor"] = {
+["color"] = {
+["r"] = 0.3098039329051971,
+["g"] = 0.3098039329051971,
+["b"] = 0.3098039329051971,
+},
+},
+["iconXOffset"] = 0,
+["iconPosition"] = "TOP",
+["height"] = 24,
+["format"] = "REMAININGMAX",
+["tickColor"] = {
+["a"] = 0.800000011920929,
+},
+["width"] = 300,
+},
+["health"] = {
+["xOffset"] = 0,
+["text_format"] = "[healthcolor][health:current]                            [health:max]",
+["position"] = "RIGHT",
+},
+["cutaway"] = {
+["health"] = {
+["enabled"] = true,
+},
+},
+["height"] = 36,
+["buffs"] = {
+["attachTo"] = "FRAME",
+["clickThrough"] = true,
+["stackAuras"] = false,
+["priority"] = "饰品,通用,猎人",
+["sortMethod"] = "NAME",
+["enable"] = true,
+},
+["classbar"] = {
+["enable"] = false,
+["height"] = 14,
+},
+["aurabar"] = {
+["attachTo"] = "DETACHED",
+},
+},
+["targettarget"] = {
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = 2,
+["enable"] = false,
+["yOffset"] = 0,
+},
+["debuffs"] = {
+["attachTo"] = "HEALTH",
+["perrow"] = 6,
+["anchorPoint"] = "BOTTOMLEFT",
+["growthX"] = "RIGHT",
+},
+["threatStyle"] = "GLOW",
+["power"] = {
+["height"] = 5,
+["text_format"] = "[powercolor][power:current]",
+["yOffset"] = -12,
+},
+["height"] = 40,
+["health"] = {
+["text_format"] = "[healthcolor][health:current]",
+["yOffset"] = -12,
+},
+["disableMouseoverGlow"] = true,
+["width"] = 180,
+},
+["boss"] = {
+["infoPanel"] = {
+["height"] = 17,
+},
+["debuffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = -16,
+},
+["castbar"] = {
+["width"] = 246,
+},
+["height"] = 60,
+["buffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = 16,
+},
+["width"] = 246,
+},
+["assist"] = {
+["enable"] = false,
+},
+["party"] = {
+["height"] = 74,
+["width"] = 231,
+["enable"] = false,
+["power"] = {
+["height"] = 13,
+},
+},
+["raid1"] = {
+["roleIcon"] = {
+["attachTo"] = "InfoPanel",
+["xOffset"] = 0,
+["size"] = 12,
+},
+["enable"] = false,
+["rdebuffs"] = {
+["xOffset"] = 30,
+["size"] = 30,
+["yOffset"] = 25,
+},
+["numGroups"] = 8,
+["growthDirection"] = "RIGHT_UP",
+["infoPanel"] = {
+["enable"] = true,
+},
+["resurrectIcon"] = {
+["attachTo"] = "BOTTOMRIGHT",
+},
+["name"] = {
+["attachTextTo"] = "InfoPanel",
+["xOffset"] = 2,
+["position"] = "BOTTOMLEFT",
+},
+["width"] = 92,
+},
+["focus"] = {
+["width"] = 270,
+["castbar"] = {
+["width"] = 270,
+},
+},
+["target"] = {
+["debuffs"] = {
+["numrows"] = 3,
+["priority"] = "",
+},
+["power"] = {
+["attachTextTo"] = "Power",
+["powerPrediction"] = true,
+["height"] = 8,
+["text_format"] = "[powercolor][power:current]/[power:max]",
+["yOffset"] = 10,
+},
+["castbar"] = {
+["height"] = 16,
+["customColor"] = {
+["enable"] = true,
+["color"] = {
+["a"] = 1,
+["r"] = 0.3098039329051971,
+["g"] = 0.3098039329051971,
+["b"] = 0.3098039329051971,
+},
+["useClassColor"] = true,
+["transparent"] = true,
+},
+["overlayOnFrame"] = "InfoPanel",
+["insideInfoPanel"] = false,
+},
+["threatPlayer"] = true,
+["disableMouseoverGlow"] = true,
+["auras"] = {
+["yOffset"] = 6,
+},
+["infoPanel"] = {
+["enable"] = true,
+["height"] = 18,
+["transparent"] = true,
+},
+["fader"] = {
+["minAlpha"] = 0.75,
+},
+["health"] = {
+["text_format"] = "[healthcolor][health:current]/[health:max]",
+["yOffset"] = -14,
+},
+["orientation"] = "LEFT",
+["height"] = 48,
+["buffs"] = {
+["numrows"] = 3,
+},
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = -34,
+["size"] = 32,
+["attachToObject"] = "Health",
+["yOffset"] = -6,
+},
+},
+["raid3"] = {
+["enable"] = false,
+},
+["raid2"] = {
+["enable"] = false,
+},
+["pettarget"] = {
+["enable"] = true,
+},
+},
+},
+["tooltip"] = {
+["modifierID"] = "SHIFT",
+["playerTitles"] = false,
+["guildRanks"] = false,
+},
+},
+["仓库"] = {
+["databars"] = {
+["reputation"] = {
+["enable"] = true,
+},
+["threat"] = {
+["height"] = 24,
+["width"] = 472,
+},
+["azerite"] = {
+["enable"] = false,
+},
+},
+["general"] = {
+["totems"] = {
+["growthDirection"] = "HORIZONTAL",
+["size"] = 50,
+["spacing"] = 8,
+},
+["bonusObjectivePosition"] = "AUTO",
+["autoTrackReputation"] = true,
+["valuecolor"] = {
+["r"] = 0.25,
+["g"] = 0.78,
+["b"] = 0.92,
+},
+["talkingHeadFrameScale"] = 1,
+["objectiveFrameHeight"] = 400,
+["minimap"] = {
+["size"] = 220,
+},
+},
+["movers"] = {
+["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-30",
+["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["PetAB"] = "RIGHT,ElvUIParent,RIGHT,-4,0",
+["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-249",
+["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,4",
+["GMMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,251,-5",
+["BuffsMover"] = "TOPRIGHT,ElvUI_MinimapHolder,TOPLEFT,-7,0",
+["ElvUF_Raid3Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,243",
+["ElvUF_PartyMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["BossButton"] = "BOTTOM,ElvUIParent,BOTTOM,-150,301",
+["LootFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,419,-187",
+["ZoneAbility"] = "BOTTOM,ElvUIParent,BOTTOM,150,301",
+["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-187",
+["ElvUF_FocusCastbarMover"] = "TOPLEFT,ElvUF_Focus,BOTTOMLEFT,0,-1",
+["ElvUF_PetMover"] = "BOTTOM,ElvUIParent,BOTTOM,-342,101",
+["PrivateRaidWarningMover"] = "TOP,RaidBossEmoteFrame,TOP,0,0",
+["ElvAB_6"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,264",
+["PowerBarContainerMover"] = "TOP,ElvUIParent,TOP,0,-75",
+["ElvUF_FocusMover"] = "BOTTOM,ElvUIParent,BOTTOM,342,60",
+["ArenaHeaderMover"] = "BOTTOMRIGHT,ElvUIParent,RIGHT,-106,-166",
+["DurabilityFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,141,-4",
+["EventToastMover"] = "TOP,ElvUIParent,TOP,0,-150",
+["PrivateAurasMover"] = "TOPRIGHT,ElvUI_MinimapHolder,BOTTOMLEFT,-10,-4",
+["ElvUF_PetCastbarMover"] = "TOPLEFT,ElvUF_Pet,BOTTOMLEFT,0,-1",
+["VehicleSeatMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-4",
+["BossBannerMover"] = "TOP,ElvUIParent,TOP,0,-126",
+["ExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,44",
+["AltPowerBarMover"] = "TOP,ElvUIParent,TOP,0,-41",
+["ElvUIBankMover"] = "BOTTOMLEFT,LeftChatPanel,BOTTOMLEFT,0,26",
+["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,58",
+["LossControlMover"] = "BOTTOM,ElvUIParent,BOTTOM,-1,507",
+["QueueStatusMover"] = "BOTTOMRIGHT,ElvUI_MinimapHolder,BOTTOMRIGHT,-5,25",
+["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96",
+["ElvUF_Raid1Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,-1,191",
+["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,4",
+["BelowMinimapContainerMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-274",
+["BNETMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-274",
+["ElvAB_4"] = "RIGHT,ElvUIParent,RIGHT,-4,0",
+["ElvAB_3"] = "BOTTOM,ElvUIParent,BOTTOM,-1,139",
+["AzeriteBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-246",
+["ElvUF_Raid2Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ReputationBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-243",
+["VehicleLeaveButton"] = "BOTTOM,ElvUIParent,BOTTOM,0,301",
+["ElvUF_TargetTargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,342,101",
+["AddonCompartmentMover"] = "RIGHT,ElvUI_MinimapHolder,RIGHT,-5,10",
+["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-163,-325",
+["TotemTrackerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,491,4",
+["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,369,-210",
+["ElvUF_TargetMover"] = "BOTTOM,ElvUIParent,BOTTOM,342,139",
+["HonorBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-251",
+["ElvUF_TargetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,97",
+["TooltipMover"] = "BOTTOMRIGHT,RightChatToggleButton,BOTTOMRIGHT,0,0",
+["ElvUF_TankMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-187",
+["BossHeaderMover"] = "BOTTOMRIGHT,ElvUIParent,RIGHT,-106,-166",
+["ElvUIBagMover"] = "BOTTOMRIGHT,RightChatPanel,BOTTOMRIGHT,0,26",
+["ElvUF_PlayerMover"] = "BOTTOM,ElvUIParent,BOTTOM,-342,139",
+["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["AlertFrameMover"] = "TOP,ElvUIParent,TOP,0,-20",
+["DebuffsMover"] = "BOTTOMRIGHT,ElvUI_MinimapHolder,BOTTOMLEFT,-7,0",
+["MinimapMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-3",
+},
+["convertPages"] = true,
+["bags"] = {
+["bagWidth"] = 474,
+["bankWidth"] = 474,
+["split"] = {
+["bagSpacing"] = 7,
+["bag4"] = true,
+["bag1"] = true,
+["bag2"] = true,
+["bag3"] = true,
+["player"] = true,
+},
+["bagSize"] = 42,
+["itemLevelCustomColorEnable"] = true,
+["scrapIcon"] = true,
+["bankSize"] = 42,
+},
+["auras"] = {
+["debuffs"] = {
+["size"] = 40,
+},
+["buffs"] = {
+["size"] = 40,
+},
+},
+["dbConverted"] = 15.16,
+["datatexts"] = {
+["panels"] = {
+["LeftChatDataPanel"] = {
+[3] = "Coords",
+},
+["Coords"] = {
+"",
+["enable"] = false,
+["battleground"] = false,
+},
+},
+},
+["actionbar"] = {
+["bar3"] = {
+["buttonSize"] = 50,
+["buttons"] = 8,
+["buttonsPerRow"] = 10,
+["buttonSpacing"] = 1,
+["visibility"] = "[petbattle] hide; show",
+},
+["bar6"] = {
+["enabled"] = true,
+["buttonsPerRow"] = 6,
+["visibility"] = "[petbattle] hide; show",
+["buttons"] = 6,
+},
+["bar2"] = {
+["enabled"] = true,
+["buttonSize"] = 38,
+["buttons"] = 9,
+["buttonSpacing"] = 1,
+["visibility"] = "[petbattle] hide; show",
+},
+["bar1"] = {
+["buttonSize"] = 50,
+["buttonSpacing"] = 1,
+["buttons"] = 8,
+},
+["bar5"] = {
+["enabled"] = false,
+["buttonsPerRow"] = 12,
+["visibility"] = "[petbattle] hide; show",
+["buttons"] = 12,
+},
+["microbar"] = {
+["buttons"] = 7,
+},
+["bar4"] = {
+["enabled"] = false,
+["visibility"] = "[petbattle] hide; show",
+},
+},
+["nameplates"] = {
+["colors"] = {
+["selection"] = {
+nil,
+{
+["r"] = 0.85,
+["g"] = 0.76,
+["b"] = 0.36,
+},
+{
+["r"] = 0.29,
+["g"] = 0.67,
+["b"] = 0.3,
+},
+[0] = {
+["r"] = 0.78,
+["g"] = 0.25,
+["b"] = 0.25,
+},
+},
+["threat"] = {
+["goodTransition"] = {
+["r"] = 0.85,
+["g"] = 0.76,
+["b"] = 0.36,
+},
+["goodColor"] = {
+["r"] = 0.29,
+["g"] = 0.67,
+["b"] = 0.3,
+},
+["badColor"] = {
+["r"] = 0.78,
+["g"] = 0.25,
+["b"] = 0.25,
+},
+},
+["reactions"] = {
+["neutral"] = {
+["g"] = 0.76,
+},
+["good"] = {
+["r"] = 0.3,
+["g"] = 0.67,
+["b"] = 0.29,
+},
+},
+},
+["units"] = {
+["ENEMY_PLAYER"] = {
+["portrait"] = {
+["xOffset"] = 0,
+["position"] = "LEFT",
+["enable"] = true,
+["yOffset"] = 0,
+},
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+},
+["ENEMY_NPC"] = {
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+},
+},
+},
+["chat"] = {
+["panelSnapRightID"] = 4,
+["tabSelectorColor"] = {
+["r"] = 0.25,
+["g"] = 0.78,
+["b"] = 0.92,
+},
+["panelHeight"] = 236,
+["copyChatLines"] = true,
+["panelSnapLeftID"] = 1,
+["panelWidth"] = 472,
+},
+["unitframe"] = {
+["colors"] = {
+["auraBarBuff"] = {
+["r"] = 0.25,
+["g"] = 0.78,
+["b"] = 0.92,
+},
+["castClassColor"] = true,
+["healthclass"] = true,
+},
+["units"] = {
+["tank"] = {
+["enable"] = false,
+},
+["targettarget"] = {
+["debuffs"] = {
+["enable"] = false,
+},
+["threatStyle"] = "GLOW",
+["power"] = {
+["enable"] = false,
+},
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = 2,
+["enable"] = false,
+["yOffset"] = 0,
+},
+["disableMouseoverGlow"] = true,
+["width"] = 270,
+},
+["pet"] = {
+["infoPanel"] = {
+["height"] = 14,
+},
+["debuffs"] = {
+["enable"] = true,
+},
+["disableTargetGlow"] = false,
+["castbar"] = {
+["iconSize"] = 32,
+},
+["width"] = 270,
+},
+["party"] = {
+["height"] = 74,
+["width"] = 231,
+["enable"] = false,
+["power"] = {
+["height"] = 13,
+},
+},
+["target"] = {
+["debuffs"] = {
+["attachTo"] = "FRAME",
+["enable"] = false,
+["anchorPoint"] = "TOPLEFT",
+["maxDuration"] = 0,
+["perrow"] = 7,
+},
+["power"] = {
+["attachTextTo"] = "InfoPanel",
+["height"] = 22,
+},
+["disableMouseoverGlow"] = true,
+["infoPanel"] = {
+["enable"] = true,
+},
+["castbar"] = {
+["height"] = 40,
+["width"] = 405,
+["insideInfoPanel"] = false,
+},
+["name"] = {
+["attachTextTo"] = "InfoPanel",
+},
+["height"] = 82,
+["orientation"] = "LEFT",
+["buffs"] = {
+["anchorPoint"] = "TOPLEFT",
+["perrow"] = 7,
+["growthX"] = "RIGHT",
+},
+["health"] = {
+["attachTextTo"] = "InfoPanel",
+},
+["aurabar"] = {
+["height"] = 26,
+},
+},
+["player"] = {
+["debuffs"] = {
+["perrow"] = 7,
+},
+["castbar"] = {
+["height"] = 40,
+["width"] = 405,
+["insideInfoPanel"] = false,
+},
+["disableMouseoverGlow"] = true,
+["infoPanel"] = {
+["enable"] = true,
+},
+["health"] = {
+["attachTextTo"] = "InfoPanel",
+},
+["power"] = {
+["attachTextTo"] = "InfoPanel",
+["height"] = 22,
+},
+["height"] = 82,
+["buffs"] = {
+["perrow"] = 7,
+},
+["classbar"] = {
+["height"] = 14,
+},
+["aurabar"] = {
+["height"] = 26,
+},
+},
+["raid1"] = {
+["roleIcon"] = {
+["attachTo"] = "InfoPanel",
+["xOffset"] = 0,
+["size"] = 12,
+},
+["enable"] = false,
+["rdebuffs"] = {
+["xOffset"] = 30,
+["size"] = 30,
+["yOffset"] = 25,
+},
+["numGroups"] = 8,
+["growthDirection"] = "RIGHT_UP",
+["infoPanel"] = {
+["enable"] = true,
+},
+["resurrectIcon"] = {
+["attachTo"] = "BOTTOMRIGHT",
+},
+["name"] = {
+["attachTextTo"] = "InfoPanel",
+["xOffset"] = 2,
+["position"] = "BOTTOMLEFT",
+},
+["width"] = 92,
+},
+["focus"] = {
+["debuffs"] = {
+["anchorPoint"] = "BOTTOMLEFT",
+["growthX"] = "RIGHT",
+},
+["width"] = 270,
+["castbar"] = {
+["width"] = 270,
+},
+},
+["assist"] = {
+["enable"] = false,
+},
+["boss"] = {
+["infoPanel"] = {
+["height"] = 17,
+},
+["debuffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = -16,
+},
+["castbar"] = {
+["width"] = 246,
+},
+["height"] = 60,
+["buffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = 16,
+},
+["width"] = 246,
+},
+["raid2"] = {
+["enable"] = false,
+},
+["raid3"] = {
+["enable"] = false,
+},
+},
+},
+},
+["Default"] = {
+["databars"] = {
+["threat"] = {
+["height"] = 24,
+["width"] = 472,
+},
+["azerite"] = {
+["enable"] = false,
+},
+},
+["general"] = {
+["totems"] = {
+["spacing"] = 8,
+["growthDirection"] = "HORIZONTAL",
+["size"] = 50,
+},
+["bonusObjectivePosition"] = "AUTO",
+["autoTrackReputation"] = true,
+["valuecolor"] = {
+["r"] = 0.25,
+["g"] = 0.78,
+["b"] = 0.92,
+},
+["talkingHeadFrameScale"] = 1,
+["objectiveFrameHeight"] = 400,
+["minimap"] = {
+["size"] = 220,
+},
+},
+["movers"] = {
+["ElvAB_15"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,332",
+["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["PetAB"] = "RIGHT,ElvUIParent,RIGHT,-4,0",
+["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,4",
+["GMMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,250,-5",
+["ElvUF_Raid3Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["MirrorTimer3Mover"] = "TOP,MirrorTimer2,BOTTOM,0,0",
+["LootFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,418,-186",
+["QuestWatchFrameMover"] = "TOPLEFT,UIParent,TOPLEFT,605,-135",
+["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-187",
+["TopCenterContainerMover"] = "TOP,ElvUIParent,TOP,0,-30",
+["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-170,-4",
+["ElvAB_13"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["ElvUF_PartyMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvUF_PlayerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,548,446",
+["ElvUF_PetMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,548,408",
+["MicrobarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,477,4",
+["ElvUF_TargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-498,447",
+["TooltipMover"] = "BOTTOMRIGHT,UIParent,BOTTOMRIGHT,-4,394",
+["DurabilityFrameMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,478,188",
+["ElvUF_PetCastbarMover"] = "TOPLEFT,ElvUF_Pet,BOTTOMLEFT,0,-1",
+["VehicleSeatMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-4",
+["ElvUF_TargetCastbarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-498,408",
+["ExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,12",
+["ElvAB_14"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["ElvUF_TargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,447",
+["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,366",
+["LossControlMover"] = "BOTTOM,ElvUIParent,BOTTOM,-1,507",
+["ReputationBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-243",
+["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96",
+["ElvUF_Raid1Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,157",
+["ElvAB_2"] = "BOTTOM,ElvUIParent,BOTTOM,0,4",
+["BelowMinimapContainerMover"] = "TOPRIGHT,UIParent,TOPRIGHT,-4,-210",
+["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,58",
+["ElvAB_4"] = "RIGHT,ElvUIParent,RIGHT,-4,0",
+["TotemTrackerMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,490,4",
+["PetExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,1",
+["ElvUF_Raid2Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvUF_TargetTargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-397,408",
+["VehicleLeaveButton"] = "TOPRIGHT,UIParent,TOPRIGHT,-541,-356",
+["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,-279,4",
+["MirrorTimer2Mover"] = "TOP,MirrorTimer1,BOTTOM,0,0",
+["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-163,-325",
+["BNETMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,250,-80",
+["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,368,-210",
+["ElvAB_3"] = "BOTTOMRIGHT,UIParent,BOTTOMRIGHT,-216,499",
+["HonorBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-251",
+["ElvAB_6"] = "BOTTOM,ElvUIParent,BOTTOM,0,112",
+["ElvAB_10"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["ElvUF_TankMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-186",
+["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,291",
+["ElvUIBagMover"] = "BOTTOMRIGHT,UIParent,BOTTOMRIGHT,-476,4",
+["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,298",
+["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["AlertFrameMover"] = "TOP,UIParent,TOP,0,-170",
+["DebuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-170,-174",
+["ElvUF_AssistMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-248",
+},
+["convertPages"] = true,
+["bags"] = {
+["scrapIcon"] = true,
+["bankWidth"] = 474,
+["split"] = {
+["bagSpacing"] = 7,
+["bag4"] = true,
+["bag1"] = true,
+["bag2"] = true,
+["bag3"] = true,
+["player"] = true,
+},
+["bankSize"] = 42,
+["itemLevelCustomColorEnable"] = true,
+["bagWidth"] = 474,
+["bagSize"] = 42,
+},
+["auras"] = {
+["buffs"] = {
+["size"] = 40,
+},
+["debuffs"] = {
+["size"] = 40,
+},
+},
+["dbConverted"] = 15.15,
+["datatexts"] = {
+["panels"] = {
+["LeftChatDataPanel"] = {
+[3] = "QuickJoin",
+},
+},
+},
+["actionbar"] = {
+["bar3"] = {
+["enabled"] = false,
+["buttonSize"] = 50,
+["buttonSpacing"] = 1,
+["buttonsPerRow"] = 10,
+["visibility"] = "[petbattle] hide; show",
+["buttons"] = 8,
+},
+["bar6"] = {
+["enabled"] = true,
+["buttonSpacing"] = 1,
+["buttonSize"] = 48,
+},
+["bar2"] = {
+["visibility"] = "[petbattle] hide; show",
+["buttonSpacing"] = 1,
+["buttonSize"] = 38,
+},
+["bar1"] = {
+["buttonSpacing"] = 1,
+["buttonSize"] = 48,
+},
+["bar5"] = {
+["enabled"] = false,
+["buttonsPerRow"] = 12,
+["visibility"] = "[petbattle] hide; show",
+["buttons"] = 12,
+},
+["barPet"] = {
+["enabled"] = false,
+},
+["stanceBar"] = {
+["enabled"] = false,
+["buttonSize"] = 42,
+},
+["microbar"] = {
+["enabled"] = true,
+["mouseover"] = true,
+["buttons"] = 7,
+},
+["bar4"] = {
+["enabled"] = false,
+["visibility"] = "[petbattle] hide; show",
+},
+},
+["layoutSet"] = "tank",
+["unitframe"] = {
+["smoothbars"] = true,
+["colors"] = {
+["auraBarBuff"] = {
+["r"] = 0.25,
+["g"] = 0.78,
+["b"] = 0.92,
+},
+["castClassColor"] = true,
+["healthclass"] = true,
+},
+["units"] = {
+["tank"] = {
+["enable"] = false,
+},
+["targettargettarget"] = {
+["enable"] = true,
+["height"] = 40,
+["width"] = 102,
+},
+["pet"] = {
+["infoPanel"] = {
+["height"] = 14,
+},
+["debuffs"] = {
+["enable"] = true,
+},
+["disableTargetGlow"] = false,
+["castbar"] = {
+["iconSize"] = 32,
+},
+["width"] = 270,
+},
+["targettarget"] = {
+["debuffs"] = {
+["enable"] = false,
+},
+["threatStyle"] = "GLOW",
+["power"] = {
+["enable"] = false,
+},
+["height"] = 102,
+["width"] = 102,
+["disableMouseoverGlow"] = true,
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = 2,
+["enable"] = false,
+["yOffset"] = 0,
+},
+},
+["player"] = {
+["debuffs"] = {
+["perrow"] = 7,
+},
+["castbar"] = {
+["height"] = 40,
+["insideInfoPanel"] = false,
+["width"] = 405,
+},
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["disableMouseoverGlow"] = true,
+["infoPanel"] = {
+["enable"] = true,
+},
+["health"] = {
+["attachTextTo"] = "InfoPanel",
+},
+["power"] = {
+["attachTextTo"] = "InfoPanel",
+["height"] = 22,
+},
+["height"] = 82,
+["buffs"] = {
+["perrow"] = 7,
+},
+["classbar"] = {
+["height"] = 14,
+},
+["aurabar"] = {
+["height"] = 26,
+},
+},
+["assist"] = {
+["enable"] = false,
+},
+["boss"] = {
+["infoPanel"] = {
+["height"] = 17,
+},
+["debuffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = -16,
+},
+["castbar"] = {
+["width"] = 246,
+},
+["height"] = 60,
+["buffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = 16,
+},
+["width"] = 246,
+},
+["raid1"] = {
+["roleIcon"] = {
+["attachTo"] = "InfoPanel",
+["xOffset"] = 0,
+["size"] = 12,
+},
+["enable"] = false,
+["rdebuffs"] = {
+["xOffset"] = 30,
+["yOffset"] = 25,
+["size"] = 30,
+},
+["numGroups"] = 8,
+["growthDirection"] = "RIGHT_UP",
+["infoPanel"] = {
+["enable"] = true,
+},
+["resurrectIcon"] = {
+["attachTo"] = "BOTTOMRIGHT",
+},
+["name"] = {
+["attachTextTo"] = "InfoPanel",
+["xOffset"] = 2,
+["position"] = "BOTTOMLEFT",
+},
+["width"] = 92,
+},
+["focus"] = {
+["debuffs"] = {
+["anchorPoint"] = "BOTTOMLEFT",
+["growthX"] = "RIGHT",
+},
+["castbar"] = {
+["width"] = 270,
+},
+["width"] = 270,
+},
+["target"] = {
+["debuffs"] = {
+["maxDuration"] = 0,
+["enable"] = false,
+["anchorPoint"] = "TOPLEFT",
+["attachTo"] = "FRAME",
+["perrow"] = 7,
+},
+["castbar"] = {
+["height"] = 40,
+["insideInfoPanel"] = false,
+},
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["disableMouseoverGlow"] = true,
+["infoPanel"] = {
+["enable"] = true,
+},
+["power"] = {
+["attachTextTo"] = "InfoPanel",
+["height"] = 22,
+},
+["name"] = {
+["attachTextTo"] = "InfoPanel",
+},
+["health"] = {
+["attachTextTo"] = "InfoPanel",
+},
+["orientation"] = "LEFT",
+["buffs"] = {
+["anchorPoint"] = "TOPLEFT",
+["growthX"] = "RIGHT",
+["perrow"] = 7,
+},
+["height"] = 82,
+["aurabar"] = {
+["height"] = 26,
+},
+},
+["raid3"] = {
+["enable"] = false,
+},
+["raid2"] = {
+["enable"] = false,
+},
+["party"] = {
+["height"] = 74,
+["power"] = {
+["height"] = 13,
+},
+["enable"] = false,
+["width"] = 231,
+},
+},
+},
+["nameplates"] = {
+["colors"] = {
+["threat"] = {
+["goodTransition"] = {
+["r"] = 0.85,
+["g"] = 0.76,
+["b"] = 0.36,
+},
+["goodColor"] = {
+["r"] = 0.29,
+["g"] = 0.67,
+["b"] = 0.3,
+},
+["badColor"] = {
+["r"] = 0.78,
+["g"] = 0.25,
+["b"] = 0.25,
+},
+},
+["reactions"] = {
+["good"] = {
+["r"] = 0.3,
+["g"] = 0.67,
+["b"] = 0.29,
+},
+["neutral"] = {
+["g"] = 0.76,
+},
+},
+["selection"] = {
+nil,
+{
+["r"] = 0.85,
+["g"] = 0.76,
+["b"] = 0.36,
+},
+{
+["r"] = 0.29,
+["g"] = 0.67,
+["b"] = 0.3,
+},
+[0] = {
+["r"] = 0.78,
+["g"] = 0.25,
+["b"] = 0.25,
+},
+},
+},
+["units"] = {
+["ENEMY_PLAYER"] = {
+["portrait"] = {
+["classicon"] = false,
+["xOffset"] = 0,
+["position"] = "LEFT",
+["enable"] = true,
+["yOffset"] = 0,
+},
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+},
+["ENEMY_NPC"] = {
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+},
+},
+},
+["chat"] = {
+["panelSnapRightID"] = 4,
+["tabSelectorColor"] = {
+["r"] = 0.25,
+["g"] = 0.78,
+["b"] = 0.92,
+},
+["panelHeight"] = 236,
+["copyChatLines"] = true,
+["panelSnapLeftID"] = 1,
+["panelWidth"] = 472,
+},
+},
+["护士长玛利亚 - 哈霍兰"] = {
+["databars"] = {
+["petExperience"] = {
+["showBubbles"] = true,
+["clickThrough"] = true,
+["height"] = 5,
+["hideInCombat"] = true,
+["frameStrata"] = "HIGH",
+["width"] = 270,
+},
+["threat"] = {
+["height"] = 24,
+["width"] = 472,
+},
+["experience"] = {
+["enable"] = false,
+},
+["azerite"] = {
+["enable"] = false,
+},
+},
+["general"] = {
+["totems"] = {
+["size"] = 50,
+["growthDirection"] = "HORIZONTAL",
+["spacing"] = 8,
+},
+["fontSize"] = 14,
+["bonusObjectivePosition"] = "AUTO",
+["objectiveFrameHeight"] = 400,
+["valuecolor"] = {
+["b"] = 0.04,
+["g"] = 0.49,
+["r"] = 1,
+},
+["talkingHeadFrameScale"] = 1,
+["afkSpin"] = false,
+["minimap"] = {
+["size"] = 220,
+},
+},
+["movers"] = {
+["ElvAB_15"] = "BOTTOM,UIParent,BOTTOM,0,393",
+["TopCenterContainerMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-20,-220",
+["ThreatBarMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["PetAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,96",
+["LeftChatMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,4",
+["GMMover"] = "TOPLEFT,UIParent,TOPLEFT,525,-4",
+["ElvUF_Raid3Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["BagsMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-477,0",
+["ElvUF_PetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-612,394",
+["LootFrameMover"] = "TOPLEFT,UIParent,TOPLEFT,250,-156",
+["QuestWatchFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,-170",
+["SocialMenuMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-187",
+["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,368",
+["ElvAB_8"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,332",
+["BuffsMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-164,0",
+["RightChatMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
+["ElvUF_PlayerMover"] = "BOTTOM,UIParent,BOTTOM,0,420",
+["ElvUIBagMover"] = "BOTTOMRIGHT,UIParent,BOTTOMRIGHT,-4,4",
+["ElvAB_13"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["DurabilityFrameMover"] = "BOTTOMLEFT,UIParent,BOTTOMLEFT,558,186",
+["MicrobarMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,477,0",
+["ElvUF_PetCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,285,356",
+["VehicleSeatMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,4,-4",
+["ElvAB_10"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,400",
+["ExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,43",
+["ElvAB_14"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,1,263",
+["ElvUF_TargetTargetMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-577,-525",
+["ElvUF_PlayerAuraMover"] = "TOP,UIParent,TOP,-334,-512",
+["LossControlMover"] = "BOTTOM,ElvUIParent,BOTTOM,-1,507",
+["ElvAB_9"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,366",
+["MirrorTimer1Mover"] = "TOP,ElvUIParent,TOP,-1,-96",
+["ElvUF_Raid1Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvAB_1"] = "BOTTOM,ElvUIParent,BOTTOM,0,-1",
+["ElvAB_2"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,477,20",
+["BelowMinimapContainerMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-274",
+["ElvAB_3"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-478,23",
+["ElvAB_4"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,0,312",
+["ShiftAB"] = "BOTTOM,ElvUIParent,BOTTOM,0,58",
+["PetExperienceBarMover"] = "BOTTOM,ElvUIParent,BOTTOM,285,410",
+["ElvUF_Raid2Mover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["ElvUF_TargetTargetTargetMover"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-577,494",
+["VehicleLeaveButton"] = "TOP,ElvUIParent,TOP,0,-60",
+["MirrorTimer2Mover"] = "TOP,MirrorTimer1,BOTTOM,0,0",
+["ElvAB_5"] = "BOTTOMRIGHT,UIParent,BOTTOMRIGHT,-208,441",
+["ObjectiveFrameMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-163,-325",
+["BNETMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-81",
+["VOICECHAT"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-133",
+["ReputationBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-243",
+["HonorBarMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-251",
+["ElvAB_6"] = "BOTTOM,ElvUIParent,BOTTOM,0,48",
+["TooltipMover"] = "TOPRIGHT,ElvUIParent,TOPRIGHT,0,-539",
+["ElvUF_TargetCastbarMover"] = "BOTTOM,UIParent,BOTTOM,318,440",
+["ElvUF_TargetMover"] = "TOP,ElvUIParent,TOP,320,-460",
+["ElvUF_PetMover"] = "BOTTOM,ElvUIParent,BOTTOM,285,420",
+["ElvAB_7"] = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,298",
+["ElvUF_PartyMover"] = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+["AlertFrameMover"] = "TOPLEFT,ElvUIParent,TOPLEFT,525,-155",
+["DebuffsMover"] = "TOP,ElvUIParent,TOP,-177,-26",
+["MirrorTimer3Mover"] = "TOP,MirrorTimer2,BOTTOM,0,0",
+},
+["convertPages"] = true,
+["bags"] = {
+["bagWidth"] = 474,
+["bagSize"] = 42,
+["bankWidth"] = 474,
+["split"] = {
+["bagSpacing"] = 7,
+["bag4"] = true,
+["bag1"] = true,
+["bag2"] = true,
+["bag3"] = true,
+["player"] = true,
+},
+["scrapIcon"] = true,
+["itemLevelCustomColorEnable"] = true,
+["bankSize"] = 42,
+["bagBar"] = {
+["size"] = 20,
+["mouseover"] = true,
+["growthDirection"] = "HORIZONTAL",
+},
+},
+["chat"] = {
+["panelSnapRightID"] = 4,
+["tabSelectorColor"] = {
+["b"] = 0.04,
+["g"] = 0.49,
+["r"] = 1,
+},
+["copyChatLines"] = true,
+["panelHeight"] = 236,
+["timeStampFormat"] = "%H:%M ",
+["timeStampLocalTime"] = true,
+["panelSnapLeftID"] = 1,
+["panelWidth"] = 472,
+},
+["dbConverted"] = 15.17,
+["datatexts"] = {
+["panels"] = {
+["LeftChatDataPanel"] = {
+[3] = "QuickJoin",
+},
+},
+["fontSize"] = 14,
+},
+["actionbar"] = {
+["bar3"] = {
+["buttons"] = 10,
+["buttonSpacing"] = 0,
+["macroTextPosition"] = "BOTTOM",
+["showGrid"] = false,
+["macroTextYOffset"] = 6,
+["macrotext"] = true,
+["buttonsPerRow"] = 2,
+["buttonSize"] = 48,
+["macroFontSize"] = 16,
+},
+["bar6"] = {
+["enabled"] = true,
+["buttonSpacing"] = 1,
+["macroFontSize"] = 16,
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+["visibility"] = "[petbattle] hide; show",
+["macroTextPosition"] = "BOTTOM",
+},
+["equippedItem"] = true,
+["flashAnimation"] = true,
+["desaturateOnCooldown"] = true,
+["globalFadeAlpha"] = 0.89,
+["microbar"] = {
+["enabled"] = true,
+["buttons"] = 8,
+["buttonHeight"] = 20,
+["mouseover"] = true,
+["useIcons"] = false,
+},
+["chargeCooldown"] = true,
+["bar2"] = {
+["enabled"] = true,
+["macroTextYOffset"] = 2,
+["buttonSpacing"] = 1,
+["buttonSize"] = 40,
+["showGrid"] = false,
+["buttonsPerRow"] = 2,
+["visibility"] = "[petbattle] hide; show",
+["macroTextPosition"] = "BOTTOM",
+},
+["rightClickSelfCast"] = true,
+["bar14"] = {
+["enabled"] = true,
+["macroFontSize"] = 11,
+["showGrid"] = false,
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+["buttonSpacing"] = 0,
+["macroTextPosition"] = "BOTTOM",
+},
+["bar5"] = {
+["buttonSize"] = 42,
+["point"] = "TOPRIGHT",
+["buttons"] = 8,
+["showGrid"] = false,
+["buttonsPerRow"] = 12,
+["visibility"] = "[petbattle] hide; show",
+["buttonSpacing"] = 1,
+},
+["stanceBar"] = {
+["enabled"] = false,
+},
+["bar1"] = {
+["macroTextPosition"] = "BOTTOM",
+["buttonSize"] = 48,
+["macrotext"] = true,
+["macroTextYOffset"] = 6,
+["buttonSpacing"] = 1,
+["macroFontSize"] = 16,
+},
+["bar15"] = {
+["enabled"] = true,
+["buttonSize"] = 30,
+["buttonsPerRow"] = 10,
+["buttonSpacing"] = 0,
+["buttons"] = 10,
+},
+["bar13"] = {
+["inheritGlobalFade"] = true,
+["buttonSize"] = 48,
+["showGrid"] = false,
+["buttonsPerRow"] = 4,
+["buttonSpacing"] = 6,
+["buttons"] = 8,
+},
+["barPet"] = {
+["buttonSize"] = 34,
+["buttonsPerRow"] = 10,
+},
+["bar4"] = {
+["buttonSize"] = 42,
+["mouseover"] = true,
+["inheritGlobalFade"] = true,
+["backdrop"] = false,
+["buttons"] = 8,
+["showGrid"] = false,
+["buttonsPerRow"] = 2,
+["visibility"] = "[petbattle] hide; show",
+["buttonSpacing"] = 0,
+},
+},
+["nameplates"] = {
+["cutaway"] = {
+["health"] = {
+["enabled"] = true,
+},
+["power"] = {
+["enabled"] = true,
+},
+},
+["visibility"] = {
+["enemy"] = {
+["pets"] = true,
+["guardians"] = true,
+["totems"] = true,
+["minions"] = true,
+},
+},
+["colors"] = {
+["selection"] = {
+nil,
+{
+["b"] = 0.36,
+["g"] = 0.76,
+["r"] = 0.85,
+},
+{
+["b"] = 0.3,
+["g"] = 0.67,
+["r"] = 0.29,
+},
+[0] = {
+["b"] = 0.25,
+["g"] = 0.25,
+["r"] = 0.78,
+},
+},
+["threat"] = {
+["goodTransition"] = {
+["b"] = 0.36,
+["g"] = 0.76,
+["r"] = 0.85,
+},
+["goodColor"] = {
+["b"] = 0.3,
+["g"] = 0.67,
+["r"] = 0.29,
+},
+["badColor"] = {
+["b"] = 0.25,
+["g"] = 0.25,
+["r"] = 0.78,
+},
+},
+["reactions"] = {
+["neutral"] = {
+["g"] = 0.76,
+},
+["good"] = {
+["b"] = 0.29,
+["g"] = 0.67,
+["r"] = 0.3,
+},
+},
+},
+["units"] = {
+["PLAYER"] = {
+["enable"] = true,
+},
+["ENEMY_NPC"] = {
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+["nameOnly"] = true,
+},
+["TARGET"] = {
+["arrow"] = "ArrowRed",
+},
+["ENEMY_PLAYER"] = {
+["portrait"] = {
+["enable"] = true,
+["xOffset"] = 0,
+["position"] = "LEFT",
+["yOffset"] = 0,
+},
+["health"] = {
+["text"] = {
+["format"] = "",
+},
+},
+},
+},
+},
+["auras"] = {
+["debuffs"] = {
+["horizontalSpacing"] = 0,
+["size"] = 40,
+["verticalSpacing"] = 12,
+["wrapAfter"] = 10,
+["growthDirection"] = "UP_LEFT",
+},
+["buffs"] = {
+["size"] = 40,
+},
+},
+["unitframe"] = {
+["targetSound"] = true,
+["colors"] = {
+["powerPrediction"] = {
+["enable"] = true,
+},
+["auraBarBuff"] = {
+["b"] = 0.04,
+["g"] = 0.49,
+["r"] = 1,
+},
+["castClassColor"] = true,
+["healthclass"] = true,
+},
+["fontOutline"] = "OUTLINE",
+["font"] = "默认",
+["fontSize"] = 14,
+["units"] = {
+["tank"] = {
+["enable"] = false,
+},
+["targettargettarget"] = {
+["debuffs"] = {
+["anchorPoint"] = "BOTTOMLEFT",
+["attachTo"] = "HEALTH",
+["growthX"] = "RIGHT",
+},
+["health"] = {
+["text_format"] = "[healthcolor][health:current:shortvalue]",
+["yOffset"] = -12,
+},
+["power"] = {
+["height"] = 5,
+["text_format"] = "[powercolor][power:current:shortvalue]",
+["yOffset"] = -12,
+},
+["enable"] = true,
+["height"] = 40,
+["width"] = 90,
+},
+["targettarget"] = {
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = 2,
+["enable"] = false,
+["yOffset"] = 0,
+},
+["debuffs"] = {
+["attachTo"] = "HEALTH",
+["anchorPoint"] = "BOTTOMLEFT",
+["perrow"] = 6,
+["growthX"] = "RIGHT",
+},
+["threatStyle"] = "GLOW",
+["power"] = {
+["height"] = 5,
+["text_format"] = "[powercolor][power:current]",
+["yOffset"] = -12,
+},
+["height"] = 40,
+["health"] = {
+["text_format"] = "[healthcolor][health:current]",
+["yOffset"] = -12,
+},
+["disableMouseoverGlow"] = true,
+["width"] = 180,
+},
+["party"] = {
+["height"] = 74,
+["width"] = 231,
+["enable"] = false,
+["power"] = {
+["height"] = 13,
+},
+},
+["pettarget"] = {
+["enable"] = true,
+},
+["target"] = {
+["debuffs"] = {
+["numrows"] = 3,
+["priority"] = "",
+},
+["power"] = {
+["attachTextTo"] = "Power",
+["powerPrediction"] = true,
+["height"] = 8,
+["text_format"] = "[powercolor][power:current]/[power:max]",
+["yOffset"] = 10,
+},
+["castbar"] = {
+["height"] = 16,
+["customColor"] = {
+["enable"] = true,
+["color"] = {
+["r"] = 0.3098039329051971,
+["g"] = 0.3098039329051971,
+["b"] = 0.3098039329051971,
+},
+["useClassColor"] = true,
+["transparent"] = true,
+},
+["overlayOnFrame"] = "InfoPanel",
+["insideInfoPanel"] = false,
+},
+["health"] = {
+["text_format"] = "[healthcolor][health:current]/[health:max] - [health:percent]",
+["yOffset"] = -14,
+},
+["threatPlayer"] = true,
+["disableMouseoverGlow"] = true,
+["auras"] = {
+["yOffset"] = 6,
+},
+["infoPanel"] = {
+["enable"] = true,
+["height"] = 18,
+["transparent"] = true,
+},
+["orientation"] = "LEFT",
+["name"] = {
+["position"] = "TOP",
+},
+["fader"] = {
+["minAlpha"] = 0.75,
+},
+["height"] = 48,
+["buffs"] = {
+["numrows"] = 3,
+},
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["raidicon"] = {
+["attachTo"] = "LEFT",
+["xOffset"] = -34,
+["size"] = 32,
+["attachToObject"] = "Health",
+["yOffset"] = -6,
+},
+},
+["raid3"] = {
+["enable"] = false,
+},
+["boss"] = {
+["infoPanel"] = {
+["height"] = 17,
+},
+["debuffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = -16,
+},
+["castbar"] = {
+["width"] = 246,
+},
+["height"] = 60,
+["buffs"] = {
+["maxDuration"] = 300,
+["sizeOverride"] = 27,
+["yOffset"] = 16,
+},
+["width"] = 246,
+},
+["raid1"] = {
+["roleIcon"] = {
+["attachTo"] = "InfoPanel",
+["xOffset"] = 0,
+["size"] = 12,
+},
+["enable"] = false,
+["rdebuffs"] = {
+["xOffset"] = 30,
+["size"] = 30,
+["yOffset"] = 25,
+},
+["numGroups"] = 8,
+["growthDirection"] = "RIGHT_UP",
+["infoPanel"] = {
+["enable"] = true,
+},
+["resurrectIcon"] = {
+["attachTo"] = "BOTTOMRIGHT",
+},
+["name"] = {
+["attachTextTo"] = "InfoPanel",
+["xOffset"] = 2,
+["position"] = "BOTTOMLEFT",
+},
+["width"] = 92,
+},
+["focus"] = {
+["width"] = 270,
+["castbar"] = {
+["width"] = 270,
+},
+},
+["assist"] = {
+["enable"] = false,
+},
+["player"] = {
+["cutaway"] = {
+["health"] = {
+["enabled"] = true,
+},
+},
+["debuffs"] = {
+["attachTo"] = "BUFFS",
+["enable"] = false,
+},
+["threatStyle"] = "HEALTHBORDER",
+["power"] = {
+["attachTextTo"] = "Power",
+["powerPrediction"] = true,
+["detachedWidth"] = 270,
+["height"] = 14,
+["text_format"] = "[powercolor][power:current] / [power:max]",
+["EnergyManaRegen"] = true,
+},
+["partyIndicator"] = {
+["enable"] = false,
+},
+["healPrediction"] = {
+["absorbStyle"] = "NORMAL",
+},
+["disableMouseoverGlow"] = true,
+["width"] = 300,
+["health"] = {
+["xOffset"] = 0,
+["text_format"] = "[healthcolor][health:current]                            [health:max]",
+["position"] = "RIGHT",
+},
+["castbar"] = {
+["insideInfoPanel"] = false,
+["iconAttached"] = false,
+["customColor"] = {
+["color"] = {
+["r"] = 0.3098039329051971,
+["g"] = 0.3098039329051971,
+["b"] = 0.3098039329051971,
+},
+},
+["iconXOffset"] = 0,
+["iconPosition"] = "TOP",
+["tickColor"] = {
+["a"] = 0.800000011920929,
+},
+["height"] = 24,
+["format"] = "REMAININGMAX",
+["width"] = 300,
+["iconSize"] = 48,
+},
+["smartAuraPosition"] = "DEBUFFS_ON_BUFFS",
+["raidRoleIcons"] = {
+["enable"] = false,
+},
+["height"] = 36,
+["buffs"] = {
+["attachTo"] = "FRAME",
+["clickThrough"] = true,
+["stackAuras"] = false,
+["priority"] = "饰品,通用,德鲁伊",
+["sortMethod"] = "NAME",
+["enable"] = true,
+},
+["classbar"] = {
+["enable"] = false,
+["height"] = 14,
+},
+["aurabar"] = {
+["height"] = 32,
+["tooltipAnchorType"] = "ANCHOR_CURSOR",
+["attachTo"] = "DETACHED",
+},
+},
+["raid2"] = {
+["enable"] = false,
+},
+["pet"] = {
+["infoPanel"] = {
+["height"] = 14,
+},
+["debuffs"] = {
+["enable"] = true,
+},
+["disableTargetGlow"] = false,
+["castbar"] = {
+["iconSize"] = 32,
+["overlayOnFrame"] = "Health",
+},
+["buffs"] = {
+["enable"] = true,
+["perrow"] = 12,
+["yOffset"] = -20,
+},
+["health"] = {
+["xOffset"] = 0,
+["text_format"] = "[healthcolor][health:current]/[health:max]",
+["yOffset"] = -6,
+},
+["width"] = 270,
+},
+},
+},
+["tooltip"] = {
+["modifierID"] = "SHIFT",
+["playerTitles"] = false,
+["guildRanks"] = false,
+},
+},
+["PRIEST"] = {
+["convertPages"] = true,
+["dbConverted"] = 14.04,
+["actionbar"] = {
+["bar6"] = {
+["enabled"] = true,
+["buttonsPerRow"] = 6,
+["buttons"] = 6,
+},
+["microbar"] = {
+["buttons"] = 7,
+},
+["bar5"] = {
+["enabled"] = false,
+["buttonsPerRow"] = 12,
+["buttons"] = 12,
+},
+},
+},
+},
+}
+ElvPrivateDB = {
+["profileKeys"] = {
+["哈霍兰大格格 - 哈霍兰"] = "哈霍兰大格格 - 哈霍兰",
+["瑟银零件 - 哈霍兰"] = "瑟银零件 - 哈霍兰",
+["幽影谷小帝姬 - 法琳娜"] = "幽影谷小帝姬 - 法琳娜",
+["辛特兰小魔女 - 哈霍兰"] = "辛特兰小魔女 - 哈霍兰",
+["护士长玛利亚 - 哈霍兰"] = "护士长玛利亚 - 哈霍兰",
+["绿龙守护者 - 哈霍兰"] = "绿龙守护者 - 哈霍兰",
+["院长安娜 - 哈霍兰"] = "院长安娜 - 哈霍兰",
+["雪球女士 - 法琳娜"] = "雪球女士 - 法琳娜",
+["寒脊山小郡主 - 法琳娜"] = "寒脊山小郡主 - 法琳娜",
+["打撒是的哇 - 哈霍兰"] = "打撒是的哇 - 哈霍兰",
+["熊心猫爪 - 哈霍兰"] = "熊心猫爪 - 哈霍兰",
+["青铜龙守护者 - 哈霍兰"] = "青铜龙守护者 - 哈霍兰",
+["津巴布韦公主 - 哈霍兰"] = "津巴布韦公主 - 哈霍兰",
+["猫德加 - 哈霍兰"] = "猫德加 - 哈霍兰",
+["艾尔文小公主 - 法琳娜"] = "艾尔文小公主 - 法琳娜",
+["瑟银零件 - 法琳娜"] = "瑟银零件 - 法琳娜",
+["蓝龙守护者 - 哈霍兰"] = "蓝龙守护者 - 哈霍兰",
+["巨龙守护者 - 哈霍兰"] = "巨龙守护者 - 哈霍兰",
+["魔女桑德兰 - 哈霍兰"] = "魔女桑德兰 - 哈霍兰",
+["红龙守护者 - 哈霍兰"] = "红龙守护者 - 哈霍兰",
+},
+["profiles"] = {
+["哈霍兰大格格 - 哈霍兰"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+},
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 13.9,
+},
+["瑟银零件 - 哈霍兰"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+["bagBar"] = true,
+},
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 14.04,
+},
+["幽影谷小帝姬 - 法琳娜"] = {
+["install_complete"] = 15.15,
+},
+["辛特兰小魔女 - 哈霍兰"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+},
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 13.9,
+},
+["护士长玛利亚 - 哈霍兰"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+["bagBar"] = true,
+},
+["general"] = {
+["totemTracker"] = false,
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 15.16,
+},
+["绿龙守护者 - 哈霍兰"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+},
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 13.9,
+},
+["院长安娜 - 哈霍兰"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+},
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 14.04,
+},
+["雪球女士 - 法琳娜"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+},
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 14.04,
+},
+["寒脊山小郡主 - 法琳娜"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+},
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 14.04,
+},
+["打撒是的哇 - 哈霍兰"] = {
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 14.04,
+},
+["熊心猫爪 - 哈霍兰"] = {
+["general"] = {
+["voiceOverlay"] = false,
+["totemTracker"] = false,
+["minimap"] = {
+["enable"] = false,
+},
+},
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["bagBar"] = true,
+["enable"] = false,
+},
+["theme"] = "class",
+["install_complete"] = 13.9,
+},
+["青铜龙守护者 - 哈霍兰"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+["bagBar"] = true,
+},
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 13.9,
+},
+["津巴布韦公主 - 哈霍兰"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+["bagBar"] = true,
+},
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 15.07,
+},
+["猫德加 - 哈霍兰"] = {
+["install_complete"] = 13.9,
+},
+["艾尔文小公主 - 法琳娜"] = {
+["install_complete"] = 15,
+},
+["瑟银零件 - 法琳娜"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+},
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 13.9,
+},
+["蓝龙守护者 - 哈霍兰"] = {
+["general"] = {
+["minimap"] = {
+["enable"] = false,
+},
+},
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+},
+["theme"] = "class",
+["install_complete"] = 13.9,
+},
+["巨龙守护者 - 哈霍兰"] = {
+["general"] = {
+["voiceOverlay"] = false,
+["minimap"] = {
+["enable"] = false,
+},
+["totemTracker"] = false,
+},
+["bags"] = {
+["bagBar"] = true,
+["enable"] = false,
+},
+["nameplates"] = {
+["enable"] = false,
+},
+["theme"] = "class",
+["install_complete"] = 14.04,
+},
+["魔女桑德兰 - 哈霍兰"] = {
+["general"] = {
+["totemTracker"] = false,
+["minimap"] = {
+["enable"] = false,
+},
+},
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+["bagBar"] = true,
+},
+["theme"] = "class",
+["install_complete"] = 15.1,
+},
+["红龙守护者 - 哈霍兰"] = {
+["nameplates"] = {
+["enable"] = false,
+},
+["bags"] = {
+["enable"] = false,
+["bagBar"] = true,
+},
+["general"] = {
+["totemTracker"] = false,
+["minimap"] = {
+["enable"] = false,
+},
+},
+["install_complete"] = 14.04,
+},
+},
+}

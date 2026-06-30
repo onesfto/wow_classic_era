@@ -1,0 +1,26 @@
+
+GTFOData = {
+["BrannMode"] = 0,
+["Active"] = true,
+["IgnoreTimeAmount"] = 0.2,
+["IgnoreSpellList"] = {
+},
+["Sounds"] = {
+true,
+true,
+true,
+true,
+},
+["DataCode"] = "4",
+["Volume"] = 3,
+["IgnoreOptions"] = {
+},
+["TrivialDamagePercent"] = 2,
+["SoundOverrides"] = {
+"",
+"",
+"",
+"",
+},
+["SoundChannel"] = "Master",
+}

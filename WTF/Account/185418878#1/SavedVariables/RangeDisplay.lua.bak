@@ -1,0 +1,59 @@
+
+RangeDisplayDB3 = {
+["profileKeys"] = {
+["红龙守护者 - 哈霍兰"] = "Default",
+["辛特兰小魔女 - 哈霍兰"] = "Default",
+["院长安娜 - 哈霍兰"] = "Default",
+["雪球女士 - 法琳娜"] = "Default",
+["寒脊山小郡主 - 法琳娜"] = "Default",
+["蓝龙守护者 - 哈霍兰"] = "Default",
+["熊心猫爪 - 哈霍兰"] = "Default",
+["瑟银零件 - 哈霍兰"] = "Default",
+["津巴布韦公主 - 哈霍兰"] = "Default",
+["魔女桑德兰 - 哈霍兰"] = "Default",
+["巨龙守护者 - 哈霍兰"] = "Default",
+["瑟银零件 - 法琳娜"] = "Default",
+["青铜龙守护者 - 哈霍兰"] = "Default",
+["打撒是的哇 - 哈霍兰"] = "Default",
+["护士长玛利亚 - 哈霍兰"] = "Default",
+["绿龙守护者 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["locked"] = true,
+["units"] = {
+["pet"] = {
+},
+["playertarget"] = {
+["lrSection"] = {
+["enabled"] = true,
+["warnSound"] = true,
+["range"] = 41,
+},
+["oorSection"] = {
+["range"] = 42,
+["warnSound"] = true,
+},
+["checkVisible"] = true,
+["y"] = 65.3059310913086,
+["x"] = 316.733154296875,
+["crSection"] = {
+["warnSound"] = true,
+},
+},
+["focus"] = {
+},
+["arena2"] = {
+},
+["mouseover"] = {
+["y"] = 116.5059051513672,
+["x"] = -2.956214427947998,
+},
+["arena5"] = {
+},
+["arena4"] = {
+},
+},
+},
+},
+}

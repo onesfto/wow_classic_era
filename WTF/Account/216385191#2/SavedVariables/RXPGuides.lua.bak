@@ -1,0 +1,339 @@
+
+RXPData = {
+["gameVersion"] = 11507,
+["defaultProfile"] = false,
+["release"] = "v4.6.50",
+["cacheVersion"] = 26,
+["trainGenericSpells"] = true,
+}
+RXPDB = {
+["profileKeys"] = {
+["黑龙守护者 - 哈霍兰"] = "global",
+["德加和尚 - 哈霍兰"] = "global",
+["哈霍兰大格格 - 哈霍兰"] = "global",
+["暗矛部落酋长 - 铁血"] = "global",
+["法德迦 - 哈霍兰"] = "global",
+},
+["profiles"] = {
+["global"] = {
+},
+},
+}
+RXPSettings = {
+["profileKeys"] = {
+["黑龙守护者 - 哈霍兰"] = "黑龙守护者 - 哈霍兰",
+["德加和尚 - 哈霍兰"] = "德加和尚 - 哈霍兰",
+["哈霍兰大格格 - 哈霍兰"] = "哈霍兰大格格 - 哈霍兰",
+["暗矛部落酋长 - 铁血"] = "暗矛部落酋长 - 铁血",
+["法德迦 - 哈霍兰"] = "法德迦 - 哈霍兰",
+},
+["profiles"] = {
+["黑龙守护者 - 哈霍兰"] = {
+["season"] = 0,
+["frameSizes"] = {
+["activeTargetFrame"] = {
+61.39042663574219,
+68.00000762939453,
+},
+["RXPFrame"] = {
+235.0000152587891,
+28.00000953674316,
+},
+["activeItemFrame"] = {
+57.92448425292969,
+40.00003433227539,
+},
+["arrowFrame"] = {
+31.99997138977051,
+31.99997138977051,
+},
+},
+["frameHeight"] = 124.9999847412109,
+["framePositions"] = {
+["activeTargetFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["RXPFrame"] = {
+{
+"LEFT",
+"UIParent",
+"LEFT",
+0,
+35,
+},
+},
+["activeItemFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["arrowFrame"] = {
+{
+"TOP",
+"UIParent",
+"TOP",
+0,
+0,
+},
+},
+},
+},
+["德加和尚 - 哈霍兰"] = {
+["framePositions"] = {
+["activeTargetFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["RXPFrame"] = {
+{
+"LEFT",
+nil,
+"LEFT",
+0,
+35.00004196166992,
+},
+},
+["activeItemFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["arrowFrame"] = {
+{
+"TOP",
+"UIParent",
+"TOP",
+0,
+0,
+},
+},
+},
+["frameSizes"] = {
+["activeTargetFrame"] = {
+61.39047241210938,
+68.00003051757812,
+},
+["RXPFrame"] = {
+235,
+27.99999237060547,
+},
+["activeItemFrame"] = {
+58.1475715637207,
+40.00003814697266,
+},
+["arrowFrame"] = {
+32.00003051757813,
+32.00003051757813,
+},
+},
+["season"] = 0,
+["frameHeight"] = 125.0000610351563,
+},
+["哈霍兰大格格 - 哈霍兰"] = {
+["framePositions"] = {
+["arrowFrame"] = {
+{
+"TOP",
+"UIParent",
+"TOP",
+0,
+0,
+},
+},
+["RXPFrame"] = {
+{
+"LEFT",
+"UIParent",
+"LEFT",
+0,
+35,
+},
+},
+["activeItemFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["activeTargetFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+},
+["season"] = 0,
+["frameSizes"] = {
+["arrowFrame"] = {
+32.00003051757813,
+32.00003051757813,
+},
+["RXPFrame"] = {
+235,
+27.99999237060547,
+},
+["activeItemFrame"] = {
+58.1475715637207,
+40.00003814697266,
+},
+["activeTargetFrame"] = {
+60.85800170898438,
+67.99996185302734,
+},
+},
+["frameHeight"] = 124.9999847412109,
+},
+["暗矛部落酋长 - 铁血"] = {
+["showDangerousMobsMap"] = false,
+["macroAnnounced"] = true,
+["framePositions"] = {
+["arrowFrame"] = {
+{
+"TOP",
+"UIParent",
+"TOP",
+0,
+0,
+},
+},
+["RXPFrame"] = {
+{
+"LEFT",
+"UIParent",
+"LEFT",
+0,
+35,
+},
+},
+["activeItemFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["activeTargetFrame"] = {
+{
+"RIGHT",
+nil,
+"RIGHT",
+-281.1983032226563,
+125.1881942749023,
+},
+},
+},
+["season"] = 11,
+["enableGroupQuests"] = false,
+["soloSelfFound"] = true,
+["showDangerousUnitscan"] = false,
+["frameSizes"] = {
+["arrowFrame"] = {
+32.00003051757813,
+32.00003051757813,
+},
+["RXPFrame"] = {
+235,
+124.9999847412109,
+},
+["activeItemFrame"] = {
+58.1475715637207,
+40.00003814697266,
+},
+["activeTargetFrame"] = {
+60.85800170898438,
+39.99996948242188,
+},
+},
+["frameHeight"] = 124.9999847412109,
+},
+["法德迦 - 哈霍兰"] = {
+["frameHeight"] = 27.99996757507324,
+["macroAnnounced"] = true,
+["hardcore"] = false,
+["frameSizes"] = {
+["activeTargetFrame"] = {
+61.92450714111328,
+67.99999237060547,
+},
+["RXPFrame"] = {
+234.4657745361328,
+27.99996757507324,
+},
+["activeItemFrame"] = {
+57.92451095581055,
+40.00009536743164,
+},
+["arrowFrame"] = {
+31.99996376037598,
+32.00003433227539,
+},
+},
+["season"] = 0,
+["framePositions"] = {
+["activeTargetFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["RXPFrame"] = {
+{
+"CENTER",
+nil,
+"CENTER",
+-444.1581420898438,
+104.9737854003906,
+},
+},
+["activeItemFrame"] = {
+{
+"CENTER",
+"UIParent",
+"CENTER",
+0,
+0,
+},
+},
+["arrowFrame"] = {
+{
+"TOP",
+"UIParent",
+"TOP",
+0,
+0,
+},
+},
+},
+},
+},
+}

@@ -1,0 +1,52 @@
+
+OmniBarDB = {
+["profileKeys"] = {
+["六扇门沈小梅 - 哈霍兰"] = "Default",
+["保姆安娜 - 哈霍兰"] = "Default",
+["法力無笾 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["bars"] = {
+["OmniBar1"] = {
+["glow"] = true,
+["scenario"] = true,
+["center"] = false,
+["tooltips"] = true,
+["names"] = false,
+["multiple"] = true,
+["swipeAlpha"] = 0.65,
+["growUpward"] = true,
+["arena"] = true,
+["locked"] = false,
+["highlightFocus"] = false,
+["size"] = 40,
+["world"] = true,
+["cooldownCount"] = true,
+["highlightTarget"] = true,
+["columns"] = 8,
+["unusedAlpha"] = 0.45,
+["align"] = "CENTER",
+["padding"] = 2,
+["ratedBattleground"] = true,
+["adaptive"] = false,
+["maxIcons"] = 32,
+["border"] = true,
+["name"] = "O",
+["position"] = {
+["relativeTo"] = "UIParent",
+["point"] = "TOP",
+["relativePoint"] = "TOP",
+["yOfs"] = -2.435348033905029,
+["xOfs"] = -287.6712341308594,
+["frameStrata"] = "MEDIUM",
+},
+["iconSorting"] = "TIME_ADDED",
+["showUnused"] = false,
+["trackUnit"] = "ENEMY",
+["battleground"] = true,
+},
+},
+},
+},
+}

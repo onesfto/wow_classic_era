@@ -1,0 +1,54 @@
+
+AtlasLootClassicDB = {
+["global"] = {
+["__addonrevision"] = 3010003,
+},
+["profileKeys"] = {
+["女王安其拉 - 哈霍兰"] = "女王安其拉 - 哈霍兰",
+["打撒打撒的 - 哈霍兰"] = "打撒打撒的 - 哈霍兰",
+["无畏的树树 - 哈霍兰"] = "无畏的树树 - 哈霍兰",
+},
+["profiles"] = {
+["女王安其拉 - 哈霍兰"] = {
+["minimap"] = {
+["minimapPos"] = 181.4004969345807,
+},
+["GUI"] = {
+["point"] = {
+nil,
+nil,
+"CENTER",
+147.0046234130859,
+12.84139156341553,
+},
+["selected"] = {
+nil,
+"BlackwingLair",
+6,
+3,
+0,
+},
+},
+},
+["打撒打撒的 - 哈霍兰"] = {
+},
+["无畏的树树 - 哈霍兰"] = {
+["GUI"] = {
+["point"] = {
+nil,
+nil,
+"CENTER",
+7.604996062582359e-05,
+0,
+},
+["selected"] = {
+"AtlasLootClassic_Collections",
+"AQOpening",
+nil,
+1,
+0,
+},
+},
+},
+},
+}

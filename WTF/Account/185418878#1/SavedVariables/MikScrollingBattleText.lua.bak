@@ -1,0 +1,29 @@
+
+MSBTProfiles_SavedVars = {
+["profiles"] = {
+["Default"] = {
+["critFontSize"] = 38,
+["events"] = {
+["NOTIFICATION_ITEM_COOLDOWN"] = {
+["scrollArea"] = "Notification",
+},
+["NOTIFICATION_PET_COOLDOWN"] = {
+["scrollArea"] = "Notification",
+},
+["NOTIFICATION_COOLDOWN"] = {
+["scrollArea"] = "Notification",
+},
+},
+["critOutlineIndex"] = 6,
+["creationVersion"] = "6.3",
+["enableBlizzardDamage"] = true,
+["normalFontSize"] = 19,
+},
+},
+}
+MSBT_SavedMedia = {
+["fonts"] = {
+},
+["sounds"] = {
+},
+}

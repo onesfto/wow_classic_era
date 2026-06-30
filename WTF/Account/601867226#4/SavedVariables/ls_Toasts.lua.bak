@@ -1,0 +1,36 @@
+
+LS_TOASTS_GLOBAL_CONFIG = {
+["profileKeys"] = {
+["女王安其拉 - 哈霍兰"] = "Default",
+["打撒打撒的 - 哈霍兰"] = "Default",
+["无畏的树树 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["version"] = 1150202,
+["types"] = {
+["loot_gold"] = {
+["enabled"] = true,
+["dnd"] = false,
+["sfx"] = true,
+["anchor"] = 1,
+["track_loss"] = false,
+["threshold"] = 1,
+},
+["loot_items"] = {
+["enabled"] = true,
+["ilvl"] = true,
+["pet"] = false,
+["threshold"] = 1,
+["dnd"] = false,
+["sfx"] = true,
+["anchor"] = 1,
+["material"] = false,
+["quest"] = false,
+["filters"] = {
+},
+},
+},
+},
+},
+}

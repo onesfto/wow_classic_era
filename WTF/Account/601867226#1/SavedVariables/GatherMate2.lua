@@ -12,10 +12,10 @@ GatherMate2DB = {
 ["露露糖 - 铁血"] = "Default",
 ["愛雅法拉 - 铁血"] = "Default",
 ["萌萌的露小露 - 铁血"] = "Default",
+["六扇门沈小梅 - 哈霍兰"] = "Default",
+["保姆安娜 - 哈霍兰"] = "Default",
 ["露露緹婭 - 碧玉矿洞"] = "Default",
 ["露露缇娅 - 哈霍兰"] = "Default",
-["保姆安娜 - 哈霍兰"] = "Default",
-["六扇门沈小梅 - 哈霍兰"] = "Default",
 },
 ["profiles"] = {
 ["Default"] = {

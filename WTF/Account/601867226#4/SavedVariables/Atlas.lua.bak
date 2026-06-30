@@ -1,0 +1,20 @@
+
+AtlasDB = {
+["profileKeys"] = {
+["女王安其拉 - 哈霍兰"] = "Default",
+["打撒打撒的 - 哈霍兰"] = "Default",
+["无畏的树树 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["dropdowns"] = {
+["东部王国副本"] = 17,
+},
+["options"] = {
+["dropdowns"] = {
+["zone"] = 17,
+},
+},
+},
+},
+}
