@@ -12,6 +12,16 @@ Postal3DB = {
 },
 ["profiles"] = {
 ["法德迦 - 哈霍兰"] = {
+["BlackBook"] = {
+["contacts"] = {
+"哈霍兰大格格",
+"黑龙守护者",
+},
+["recent"] = {
+"黑龙守护者|哈霍兰|Alliance",
+"哈霍兰大格格|哈霍兰|Alliance",
+},
+},
 },
 },
 }

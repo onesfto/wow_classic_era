@@ -1,6 +1,6 @@
 VER 3 00000000000001AB "Decursive" "INV_MISC_QUESTIONMARK"
 /stopcasting
-/cast [@mouseover,nomod,exists] 驱散魔法;  [@mouseover,exists,mod:ctrl] 驱除疾病; [@mouseover,exists,mod:shift] 驱散魔法
+/cast [@mouseover,nomod,exists] 解除次级诅咒;  [@mouseover,exists,mod:ctrl] 解除次级诅咒; [@mouseover,exists,mod:shift] 解除次级诅咒
 END
 VER 3 00000000000001AA "Decursive" "INV_MISC_QUESTIONMARK"
 /stopcasting

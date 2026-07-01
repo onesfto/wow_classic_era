@@ -1,10 +1,10 @@
+VER 3 010000000000001F "冰" "INV_Misc_QuestionMark"
+#showtooltip [mod] 寒冰箭(等级 1); 寒冰箭
+/cast [mod] 寒冰箭(等级 1); 寒冰箭
+END
 VER 3 0100000000000036 "冰" "INV_Misc_QuestionMark"
 #showtooltip [mod] 寒冰箭(等级 1); 寒冰箭
 /use 萨菲隆的精华
-/cast [mod] 寒冰箭(等级 1); 寒冰箭
-END
-VER 3 010000000000001F "冰" "INV_Misc_QuestionMark"
-#showtooltip [mod] 寒冰箭(等级 1); 寒冰箭
 /cast [mod] 寒冰箭(等级 1); 寒冰箭
 END
 VER 3 0100000000000020 "冰火盾" "INV_Misc_QuestionMark"
@@ -69,6 +69,13 @@ VER 3 0100000000000037 "波" "INV_Misc_QuestionMark"
 /use 萨菲隆的精华
 /cast 冲击波
 END
+VER 3 010000000000002A "火" "INV_Misc_QuestionMark"
+#showtooltip 火球术
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/use 燃烧
+/cast 火球术
+END
 VER 3 0100000000000038 "火" "INV_Misc_QuestionMark"
 #showtooltip 火球术
 /equip 埃提耶什，守护者的传说之杖
@@ -76,13 +83,6 @@ VER 3 0100000000000038 "火" "INV_Misc_QuestionMark"
 /use 短暂能量护符
 /use 赞达拉英雄护符
 /use 萨菲隆的精华
-/cast 火球术
-END
-VER 3 010000000000002A "火" "INV_Misc_QuestionMark"
-#showtooltip 火球术
-/equip 埃提耶什，守护者的传说之杖
-/equip 厄运之指
-/use 燃烧
 /cast 火球术
 END
 VER 3 010000000000002B "火冰盾" "INV_Misc_QuestionMark"
@@ -128,6 +128,12 @@ VER 3 010000000000002E "焰" "INV_Misc_QuestionMark"
 /use 燃烧
 /cast 烈焰风暴
 END
+VER 3 010000000000002F "爆" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 魔爆术(等级 1); 魔爆术
+/equip 埃提耶什，守护者的传说之杖
+/equip 厄运之指
+/cast [mod:shift] 魔爆术(等级 1); 魔爆术
+END
 VER 3 010000000000003B "爆" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 魔爆术(等级 1); 魔爆术
 /equip 埃提耶什，守护者的传说之杖
@@ -135,12 +141,6 @@ VER 3 010000000000003B "爆" "INV_Misc_QuestionMark"
 /use [nomod] 短暂能量护符
 /use [nomod] 赞达拉英雄护符
 /use [nomod] 萨菲隆的精华
-/cast [mod:shift] 魔爆术(等级 1); 魔爆术
-END
-VER 3 010000000000002F "爆" "INV_Misc_QuestionMark"
-#showtooltip [mod:shift] 魔爆术(等级 1); 魔爆术
-/equip 埃提耶什，守护者的传说之杖
-/equip 厄运之指
 /cast [mod:shift] 魔爆术(等级 1); 魔爆术
 END
 VER 3 0100000000000030 "盾" "INV_Misc_QuestionMark"

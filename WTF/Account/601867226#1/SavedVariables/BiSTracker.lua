@@ -14,7 +14,7 @@ BiSTrackerDB = {
 ["露露糖 - 铁血"] = "Default",
 ["蒂琪爱尔 - 铁血"] = "Default",
 ["纱梨儿灬 - 铁血"] = "Default",
-["小露露糖 - 铁血"] = "Default",
+["小露露糖 - 铁血II"] = "Default",
 ["伊芙莉特 - 铁血II"] = "Default",
 ["超小露露糖 - 铁血"] = "Default",
 ["露露緹婭 - 碧玉矿洞II"] = "Default",
@@ -24,7 +24,7 @@ BiSTrackerDB = {
 ["紗梨儿灬 - 铁血"] = "Default",
 ["六扇门沈小梅 - 哈霍兰"] = "Default",
 ["保姆安娜 - 哈霍兰"] = "Default",
-["小露露糖 - 铁血II"] = "Default",
+["小露露糖 - 铁血"] = "Default",
 ["露露糖 - 铁血II"] = "Default",
 },
 ["profiles"] = {

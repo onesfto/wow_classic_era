@@ -1473,5 +1473,38 @@ true,
 ["ReceiveItems"] = {
 },
 },
+{
+["TargetName"] = "维特根-哈霍兰",
+["Date"] = "2026-07-01",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 1380000,
+["Time"] = "06:55:18",
+["GiveMoney"] = 0,
+["Location"] = "艾萨拉",
+["PlayerName"] = "六扇门沈小梅-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "法德迦-哈霍兰",
+["Date"] = "2026-07-01",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "07:31:01",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["PlayerName"] = "六扇门沈小梅-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 9,
+["ItemLink"] = "|cffffffff|Hitem:14256::::::::60::::::::::|h[恶魔布]|h|r",
+["Name"] = "恶魔布",
+},
+},
+},
 },
 }

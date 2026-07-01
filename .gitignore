@@ -20,3 +20,15 @@
 .DS_Store
 Thumbs.db
 !WowClassic.exe
+
+# 角色属性统计插件
+/Interface/AddOns/SinStats/
+
+# 小地图美化插件
+/Interface/AddOns/SexyMap/
+
+# 背包管理插件
+/Interface/AddOns/BetterBags/
+
+# 毕业装备追踪插件 (Best in Slot)
+/Interface/AddOns/BiSTracker/
