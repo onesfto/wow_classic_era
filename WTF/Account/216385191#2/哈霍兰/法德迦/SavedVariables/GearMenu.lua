@@ -45,9 +45,9 @@ GearMenuConfiguration = {
 ["orientation"] = 1,
 ["position"] = {
 ["relativePoint"] = "CENTER",
-["posY"] = -223.1751098632813,
+["posY"] = -222.1014709472656,
 ["point"] = "CENTER",
-["posX"] = 422.0020446777344,
+["posX"] = 426.2960510253906,
 },
 ["changeSlotSize"] = 48,
 ["gearSlotSize"] = 40,

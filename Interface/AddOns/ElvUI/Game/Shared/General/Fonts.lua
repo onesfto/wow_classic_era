@@ -7,6 +7,8 @@ local strsub = strsub
 local tinsert = tinsert
 local strmatch = strmatch
 
+local FontStringScaleAnimationMode = Enum.FontStringScaleAnimationMode
+
 local FontMap = {
 	worldzone		= { objects = { _G.ZoneTextFont, _G.WorldMapTextFont } },
 	worldsubzone	= { object = _G.SubZoneTextFont },
@@ -25,10 +27,17 @@ local FontMap = {
 	end }
 }
 
-if E.Retail then
+local IgnoreSlug = {}
+if E.Retail or E.Mists then
 	FontMap.questtext		= { object = _G.QuestFont }
 	FontMap.questtitle		= { object = _G.QuestTitleFont }
 	FontMap.questsmall		= { object = _G.QuestFontNormalSmall }
+
+	-- this will break the `instantQuestText` and prevent the text from rendering correctly
+	IgnoreSlug[_G.QuestFont] = E.Mists -- on Mop at least
+end
+
+if E.Retail then
 	FontMap.talkingtitle	= { object = _G.TalkingHeadFrame.NameFrame.Name }
 	FontMap.talkingtext		= { object = _G.TalkingHeadFrame.TextFrame.Text }
 	FontMap.objective = { objects = { _G.ObjectiveFont, _G.ObjectiveTrackerLineFont, _G.ObjectiveTrackerHeaderFont } }
@@ -61,8 +70,15 @@ function E:SetFont(obj, font, size, style, sR, sG, sB, sA, sX, sY, r, g, b, a)
 
 	if style == 'NONE' or not style then style = '' end
 
+	local slug = E:CanFlagSlug(style) and not IgnoreSlug[obj]
+	if slug then style = style..'SLUG' end -- handle before shadow
+
 	local shadow = strsub(style, 0, 6) == 'SHADOW'
 	if shadow then style = strsub(style, 7) end -- shadow isnt a real style
+
+	if obj.SetScaleAnimationMode then
+		obj:SetScaleAnimationMode(slug and FontStringScaleAnimationMode.Vertex or FontStringScaleAnimationMode.FontSize)
+	end
 
 	obj:SetFont(font, size, style)
 	obj:SetShadowColor(sR or 0, sG or 0, sB or 0, sA or (shadow and (style == '' and 1 or 0.6)) or 0)
@@ -129,9 +145,11 @@ function E:UpdateBlizzardFonts()
 		local LARGE = LSM:Fetch('font', db.nameplateLargeFont)
 
 		E:SetFont(_G.SystemFont_NamePlate,				PLATE, db.nameplateFontSize,		db.nameplateFontOutline)		-- 9
-		E:SetFont(_G.SystemFont_NamePlateFixed,			PLATE, db.nameplateFontSize,		db.nameplateFontOutline)		-- 9
+		E:SetFont(_G.SystemFont_NamePlateFixed,			PLATE, db.nameplateFontSize,		db.nameplateFontOutline)		-- 14
+		E:SetFont(_G.SystemFont_NamePlateCastBar,		PLATE, db.nameplateFontSize,		db.nameplateFontOutline)		-- 10
+		E:SetFont(_G.SystemFont_NamePlate_Outlined,		PLATE, db.nameplateFontSize,		db.nameplateFontOutline)		-- 9
 		E:SetFont(_G.SystemFont_LargeNamePlate,			LARGE, db.nameplateLargeFontSize,	db.nameplateLargeFontOutline)	-- 12
-		E:SetFont(_G.SystemFont_LargeNamePlateFixed,	LARGE, db.nameplateLargeFontSize,	db.nameplateLargeFontOutline)	-- 12
+		E:SetFont(_G.SystemFont_LargeNamePlateFixed,	LARGE, db.nameplateLargeFontSize,	db.nameplateLargeFontOutline)	-- 20
 	end
 
 	-- advanced fonts
@@ -145,10 +163,13 @@ function E:UpdateBlizzardFonts()
 		E:MapFont(FontMap.worldsubzone,				NORMAL, (blizz and 24) or unscale or huge, outline)
 		E:MapFont(FontMap.worldzone,				NORMAL, (blizz and 25) or unscale or mega, outline)
 
-		if E.Retail then
+		if E.Retail or E.Mists then
 			E:MapFont(FontMap.questsmall,			NORMAL, (blizz and 12) or unscale or medium, 'NONE')
 			E:MapFont(FontMap.questtext,			NORMAL, (blizz and 13) or unscale or medium, 'NONE')
 			E:MapFont(FontMap.questtitle,			NORMAL, (blizz and 18) or unscale or big, 'NONE')
+		end
+
+		if E.Retail then
 			E:MapFont(FontMap.objective,			NORMAL, (blizz and 12) or unscale or size, 'SHADOW')
 			E:MapFont(FontMap.talkingtext,			NORMAL, (blizz and 16) or unscale or big, 'SHADOW')
 			E:MapFont(FontMap.talkingtitle,			NORMAL, (blizz and 22) or unscale or large, outline)
@@ -271,6 +292,7 @@ function E:UpdateBlizzardFonts()
 		E:SetFont(_G.SystemFont_Med3,						NORMAL, (blizz and 14) or unscale or medium)
 		E:SetFont(_G.SystemFont_Shadow_Med2,				NORMAL, (blizz and 14) or unscale or medium, 'SHADOW')		-- Shows Order resourses on OrderHallTalentFrame
 		E:SetFont(_G.SystemFont_Shadow_Med3,				NORMAL, (blizz and 14) or unscale or medium, 'SHADOW')
+		E:SetFont(_G.Game15Font_Shadow,						NORMAL, (blizz and 15) or unscale or medium, 'SHADOW')		-- House Relinquish
 		E:SetFont(_G.Game15Font_o1,							NORMAL, (blizz and 15) or unscale or medium)				-- CharacterStatsPane, ItemLevelFrame
 		E:SetFont(_G.MailFont_Large,						NORMAL, (blizz and 15) or unscale or medium)				-- Mail
 		E:SetFont(_G.QuestFont_Large,						NORMAL, (blizz and 15) or unscale or medium)
@@ -280,13 +302,16 @@ function E:UpdateBlizzardFonts()
 		E:SetFont(_G.SystemFont_Large,						NORMAL, (blizz and 16) or unscale or big)
 		E:SetFont(_G.SystemFont_Shadow_Large,				NORMAL, (blizz and 16) or unscale or big, 'SHADOW')
 		E:SetFont(_G.SystemFont16_Shadow_ThickOutline,		NORMAL, (blizz and 16) or unscale or big, outline)			-- Talent & Profession SpendText
+		E:SetFont(_G.Game17Font_Shadow,						NORMAL, (blizz and 17) or unscale or big, 'SHADOW')			-- House Settings
 		E:SetFont(_G.Game18Font,							NORMAL, (blizz and 18) or unscale or big)					-- MissionUI Bonus Chance
 		E:SetFont(_G.GameFontNormalLarge2,					NORMAL, (blizz and 18) or unscale or big, 'SHADOW')			-- Garrison Follower Names
 		E:SetFont(_G.QuestFont_Huge,						NORMAL, (blizz and 18) or unscale or big)					-- Quest rewards title, Rewards
 		E:SetFont(_G.SystemFont_Shadow_Large2,				NORMAL, (blizz and 18) or unscale or big, 'SHADOW')			-- Auction House ItemDisplay
 		E:SetFont(_G.SystemFont_Huge1, 						NORMAL, (blizz and 20) or unscale or large)					-- Garrison Mission XP
+		E:SetFont(_G.Game20Font,							NORMAL, (blizz and 20) or unscale or large)					-- House Relinquish title
 		E:SetFont(_G.SystemFont_Huge1_Outline,				NORMAL, (blizz and 20) or unscale or large, outline)		-- Garrison Mission Chance
 		E:SetFont(_G.SystemFont_Shadow_Huge1,				NORMAL, (blizz and 20) or unscale or large, outline)
+		E:SetFont(_G.Game22Font,							NORMAL, (blizz and 22) or unscale or large)					-- Housing Neighborhood
 		E:SetFont(_G.Fancy22Font,							NORMAL, (blizz and 22) or unscale or large)					-- Talking frame Title font
 		E:SetFont(_G.SystemFont_OutlineThick_Huge2,			NORMAL, (blizz and 22) or unscale or large, thick)
 		E:SetFont(_G.Fancy24Font,							NORMAL, (blizz and 24) or unscale or huge)					-- Artifact frame - weapon name

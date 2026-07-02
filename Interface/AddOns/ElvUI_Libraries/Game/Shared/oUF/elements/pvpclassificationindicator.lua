@@ -29,6 +29,8 @@ This element updates by changing the texture.
 local _, ns = ...
 local oUF = ns.oUF
 
+local UnitPvpClassification = UnitPvpClassification
+
 -- sourced from Blizzard_UnitFrame/Mainline/CompactUnitFrame.lua
 local ICONS = {
 	[Enum.PvPUnitClassification.FlagCarrierHorde or 0] = "nameplates-icon-flag-horde",
@@ -59,8 +61,8 @@ local function Update(self, event, unit)
 		element:PreUpdate(unit)
 	end
 
-	local class = UnitPvpClassification(unit)
-	local icon = ICONS[class]
+	local className = UnitPvpClassification(unit)
+	local icon = ICONS[className]
 	if(icon) then
 		element:SetAtlas(icon, element.useAtlasSize)
 		element:Show()
@@ -76,7 +78,7 @@ local function Update(self, event, unit)
 	* class - the pvp classification of the unit (number?)
 	--]]
 	if(element.PostUpdate) then
-		return element:PostUpdate(unit, class)
+		return element:PostUpdate(unit, className)
 	end
 end
 

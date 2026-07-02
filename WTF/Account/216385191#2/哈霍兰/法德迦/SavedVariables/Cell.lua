@@ -3,7 +3,7 @@ CellCharacterDB = {
 ["revise"] = "r274-release",
 ["layoutAutoSwitch"] = {
 {
-["raid_instance"] = "团队",
+["raid_instance"] = "团队-DPS",
 ["party"] = "小队",
 ["solo"] = "hide",
 ["arena"] = "default",

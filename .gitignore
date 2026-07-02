@@ -32,3 +32,7 @@ Thumbs.db
 
 # 毕业装备追踪插件 (Best in Slot)
 /Interface/AddOns/BiSTracker/
+
+# 宏命令增强面板与图标库
+/Interface/AddOns/MacroToolkit/
+/Interface/AddOns/MacroToolkitIcons/

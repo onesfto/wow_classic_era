@@ -21,48 +21,59 @@ end
 function LO:ChatPanel_OnEvent(event)
 	if event == 'HOUSE_EDITOR_MODE_CHANGED' then
 		self:SetParent(IsHouseEditorActive() and _G.HousingControlsFrame or E.UIParent)
+
+		LO.Panel_OnShow(self) -- adjust panel levels back to normal
 	end
 end
 
 function LO:Initialize()
 	LO.Initialized = true
+
 	LO:CreateChatPanels()
 	LO:CreateMinimapPanels()
 	LO:SetDataPanelStyle()
 
 	LO.BottomPanel = CreateFrame('Frame', 'ElvUI_BottomPanel', E.UIParent)
 	LO.BottomPanel:SetScript('OnShow', LO.Panel_OnShow)
-	E.FrameLocks.ElvUI_BottomPanel = true
 	LO.Panel_OnShow(LO.BottomPanel)
 	LO:UpdateBottomPanel()
+
+	E.FrameLocks[LO.BottomPanel] = true
 
 	LO.TopPanel = CreateFrame('Frame', 'ElvUI_TopPanel', E.UIParent)
 	LO.TopPanel:SetScript('OnShow', LO.Panel_OnShow)
 	LO.Panel_OnShow(LO.TopPanel)
-	E.FrameLocks.ElvUI_TopPanel = true
 	LO:UpdateTopPanel()
+
+	E.FrameLocks[LO.TopPanel] = true
 end
 
 function LO:UpdateBottomPanel()
-	LO.BottomPanel:SetShown(E.db.general.bottomPanel)
+	local shown = E.db.general.bottomPanel
+	LO.BottomPanel:SetShown(shown)
 	LO.BottomPanel:Point('BOTTOM', 0, -E.Border)
 
-	local SPACING = E.Border * 2
-	local db = E.db.general.bottomPanelSettings
-	local width = (db.width == 0 and E.screenWidth) or db.width
-	LO.BottomPanel:Size(width + SPACING, db.height)
-	LO.BottomPanel:SetTemplate(db.transparent and 'Transparent')
+	if shown then
+		local SPACING = E.Border * 2
+		local db = E.db.general.bottomPanelSettings
+		local width = db and (db.width ~= 0 and db.width) or E.screenWidth
+		LO.BottomPanel:Size(width + SPACING, (db and db.height) or 22)
+		LO.BottomPanel:SetTemplate(db and db.transparent and 'Transparent')
+	end
 end
 
 function LO:UpdateTopPanel()
-	LO.TopPanel:SetShown(E.db.general.topPanel)
+	local shown = E.db.general.topPanel
+	LO.TopPanel:SetShown(shown)
 	LO.TopPanel:Point('TOP', 0, E.Border)
 
-	local SPACING = E.Border * 2
-	local db = E.db.general.topPanelSettings
-	local width = (db.width == 0 and E.screenWidth) or db.width
-	LO.TopPanel:Size(width + SPACING, db.height)
-	LO.TopPanel:SetTemplate(db.transparent and 'Transparent')
+	if shown then
+		local SPACING = E.Border * 2
+		local db = E.db.general.topPanelSettings
+		local width = db and (db.width ~= 0 and db.width) or E.screenWidth
+		LO.TopPanel:Size(width + SPACING, (db and db.height) or 22)
+		LO.TopPanel:SetTemplate(db and db.transparent and 'Transparent')
+	end
 end
 
 local function FinishFade(self)

@@ -1,102 +1,43 @@
-VER 3 00000000000001AB "Decursive" "INV_MISC_QUESTIONMARK"
+VER 3 00000000000001D5 "Decursive" "INV_MISC_QUESTIONMARK"
 /stopcasting
-/cast [@mouseover,nomod,exists] 解除次级诅咒;  [@mouseover,exists,mod:ctrl] 变形术; [@mouseover,exists,mod:shift] 解除次级诅咒
+/cast [@mouseover,nomod,exists] 解除次级诅咒;  [@mouseover,exists,mod:ctrl] 解除次级诅咒; [@mouseover,exists,mod:shift] 解除次级诅咒
 END
-VER 3 00000000000001AA "Decursive" "INV_MISC_QUESTIONMARK"
-/stopcasting
-/cast [@mouseover,nomod,exists] 清洁术;  [@mouseover,exists,mod:ctrl] 清洁术; [@mouseover,exists,mod:shift] 清洁术
-END
-VER 3 00000000000001C0 "RXPTargeting" "Ability_eyeoftheowl"
-/targetexact 女牧师安妮塔
-/targetlasttarget [dead]
-END
-VER 3 00000000000001C1 "RXPTargeting" "Ability_eyeoftheowl"
-END
-VER 3 00000000000001AC "YY" "4777763"
+VER 3 00000000000001C4 "YY" "4777763"
 /RA YY：881411，下跳对应频道^_^
 END
-VER 3 00000000000001AD "假人" "INV_Misc_QuestionMark"
+VER 3 00000000000001C5 "假人" "INV_Misc_QuestionMark"
 #showtooltip 高级活动假人
 /use [combat] 高级活动假人
 END
-VER 3 00000000000001AE "冰霜" "INV_Misc_QuestionMark"
-#showtooltips 自然伤害
-/equip 骨寒魔杖
-/施放 射击
-END
-VER 3 00000000000001AF "化石" "INV_Misc_QuestionMark"
-#showtooltip 化石合剂
-/use [combat] 化石合剂
-END
-VER 3 00000000000001B0 "圣水" "INV_Misc_QuestionMark"
+VER 3 00000000000001C8 "圣水" "INV_Misc_QuestionMark"
 #showtooltip 斯坦索姆圣水
 /use [mod:shift] 斯坦索姆圣水
 /use [combat,@player,nomod] 斯坦索姆圣水
 END
-VER 3 00000000000001B1 "奥术" "135467"
-/equip 精华收集者
-/施放 射击
-END
-VER 3 00000000000001B2 "快疗" "INV_Misc_QuestionMark"
-#showtooltip
-/cast [mod:shift,@player] 快速治疗(等级 4); [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 快速治疗
-END
-VER 3 00000000000001B3 "控" "INV_Misc_QuestionMark"
-#showtooltip [mod:alt] 安抚心灵; [mod:shift] 束缚亡灵; 精神控制
-/cast [mod:alt,@player] 安抚心灵; [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 束缚亡灵; [@mouseover,harm,nodead][harm,nodead] 精神控制
-END
-VER 3 00000000000001B4 "无敌" "INV_Misc_QuestionMark"
-#showtooltip 有限无敌药水
-/use [combat] 有限无敌药水
-END
-VER 3 00000000000001B5 "暗影" "135482"
-/equip 厄运之指
-/施放 射击
-END
-VER 3 00000000000001B6 "炸弹" "INV_Misc_QuestionMark"
+VER 3 00000000000001CC "炸弹" "INV_Misc_QuestionMark"
 #showtooltip 致密炸弹
 /use [combat] 致密炸弹
 END
-VER 3 00000000000001B7 "炸药" "INV_Misc_QuestionMark"
+VER 3 00000000000001CD "炸药" "INV_Misc_QuestionMark"
 #showtooltip  [mod:shift] 致密炸弹;地精工兵炸药
 /use [combat] 地精工兵炸药
 /use [combat,@player] 致密炸弹
 END
-VER 3 00000000000001B8 "自然" "135466"
-/equip 玛尔里之触
-/施放 射击
-END
-VER 3 00000000000001B9 "萝卜" "INV_Misc_QuestionMark"
-#showtooltip  [mod] 特效治疗石;鞭根块茎
-/use 特效治疗石
-/use 鞭根块茎
-END
-VER 3 00000000000001BA "钓" "INV_Misc_QuestionMark"
+VER 3 00000000000001D0 "钓" "INV_Misc_QuestionMark"
 #showtooltip 钓鱼
 /equip 奥金钓鱼竿
 /cast 钓鱼
 END
-VER 3 00000000000001BB "隐" "INV_Misc_QuestionMark"
-#showtooltip
-/stopcasting
-/cast [mod:shift] 驱散魔法; [mod:alt] 驱除疾病; [nomod] 渐隐术
-END
-VER 3 00000000000001BC "饰一" "INV_Misc_QuestionMark"
+VER 3 00000000000001D1 "饰一" "INV_Misc_QuestionMark"
 #showtooltip 13
 /use 13
 END
-VER 3 00000000000001BD "饰二" "INV_Misc_QuestionMark"
+VER 3 00000000000001D2 "饰二" "INV_Misc_QuestionMark"
 #showtooltip 14
 /use 14
 END
-VER 3 00000000000001BE "饰品" "INV_Misc_QuestionMark"
+VER 3 00000000000001D3 "饰品" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 14; 13
 /use 13
 /use 14
-END
-VER 3 00000000000001BF "麻风病" "INV_Misc_QuestionMark"
-#showtooltip 退化射线
-/stopcasting
-/use [@mouseover,harm,nodead] 退化射线
-/use [harm,nodead] 退化射线
 END

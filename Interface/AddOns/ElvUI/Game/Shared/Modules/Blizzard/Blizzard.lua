@@ -190,10 +190,6 @@ function BL:Initialize()
 
 	BL:SkinBlizzTimers()
 
-	if not E.Classic and not E.TBC then
-		BL:PositionVehicleFrame()
-	end
-
 	if (E.Retail or E.Mists) and not E.OtherAddons.SimplePowerBar then
 		BL:PositionAltPowerBar()
 		BL:SkinAltPowerBar()

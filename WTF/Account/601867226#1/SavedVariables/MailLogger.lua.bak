@@ -1473,5 +1473,71 @@ true,
 ["ReceiveItems"] = {
 },
 },
+{
+["TargetName"] = "维特根-哈霍兰",
+["Date"] = "2026-07-01",
+["Time"] = "06:55:18",
+["ReceiveMoney"] = 1380000,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "艾萨拉",
+["PlayerName"] = "六扇门沈小梅-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "法德迦-哈霍兰",
+["Date"] = "2026-07-01",
+["Time"] = "07:31:01",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["PlayerName"] = "六扇门沈小梅-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 9,
+["ItemLink"] = "|cffffffff|Hitem:14256::::::::60::::::::::|h[恶魔布]|h|r",
+["Name"] = "恶魔布",
+},
+},
+},
+{
+["TargetName"] = "德加和尚-哈霍兰",
+["Date"] = "2026-07-01",
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cffffffff|Hitem:14342::::::::60::::::::::|h[月布]|h|r",
+["Name"] = "月布",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "19:56:15",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["PlayerName"] = "六扇门沈小梅-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "晟辉-哈霍兰",
+["Date"] = "2026-07-01",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 3330000,
+["Time"] = "20:27:47",
+["GiveMoney"] = 0,
+["Location"] = "诅咒之地",
+["PlayerName"] = "六扇门沈小梅-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
 },
 }

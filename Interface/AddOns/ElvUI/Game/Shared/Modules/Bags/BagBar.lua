@@ -17,7 +17,7 @@ local IsModifiedClick = IsModifiedClick
 local PutItemInBackpack = PutItemInBackpack
 local InCombatLockdown = InCombatLockdown
 local RegisterStateDriver = RegisterStateDriver
-local CalculateTotalNumberOfFreeBagSlots = CalculateTotalNumberOfFreeBagSlots
+local CalculateTotalNumberOfFreeBagSlots = C_Container.CalculateTotalNumberOfFreeBagSlots or CalculateTotalNumberOfFreeBagSlots
 
 local NUM_BAG_FRAMES = NUM_BAG_FRAMES or 4
 local KEYRING_CONTAINER = Enum.BagIndex.Keyring
@@ -32,11 +32,11 @@ local commandNames = {
 }
 
 function B:BagBar_OnEnter()
-	return B.BagBar.db.mouseover and E:UIFrameFadeIn(B.BagBar, 0.2, B.BagBar:GetAlpha(), 1)
+	return E.db.bags.bagBar.mouseover and E:UIFrameFadeIn(B.BagBar, 0.2, B.BagBar:GetAlpha(), 1)
 end
 
 function B:BagBar_OnLeave()
-	return B.BagBar.db.mouseover and E:UIFrameFadeOut(B.BagBar, 0.2, B.BagBar:GetAlpha(), 0)
+	return E.db.bags.bagBar.mouseover and E:UIFrameFadeOut(B.BagBar, 0.2, B.BagBar:GetAlpha(), 0)
 end
 
 function B:BagButton_OnEnter()
@@ -45,7 +45,7 @@ function B:BagButton_OnEnter()
 		AB:BindUpdate(self)
 	end
 
-	if not B.BagBar.db.justBackpack and B.BagFrame and B:IsBagShown(self.BagID) then
+	if not E.db.bags.bagBar.justBackpack and B.BagFrame and B:IsBagShown(self.BagID) then
 		B:SetSlotAlphaForBag(B.BagFrame, self.BagID)
 	end
 
@@ -53,7 +53,7 @@ function B:BagButton_OnEnter()
 end
 
 function B:BagButton_OnLeave()
-	if not B.BagBar.db.justBackpack and B.BagFrame then
+	if not E.db.bags.bagBar.justBackpack and B.BagFrame then
 		B:ResetSlotAlphaForBags(B.BagFrame)
 	end
 
@@ -122,14 +122,17 @@ function B:SkinBag(bag)
 end
 
 function B:BagBar_UpdateVisibility()
-	local visibility = gsub(B.BagBar.db.visibility, '[\n\r]', '')
+	local db = E.db.bags.bagBar
+	if not db then return end
+
+	local visibility = gsub(db.visibility, '[\n\r]', '')
 	RegisterStateDriver(B.BagBar, 'visibility', visibility)
 end
 
 function B:SizeAndPositionBagBar()
 	if not B.BagBar then return end
 
-	local db = B.BagBar.db
+	local db = E.db.bags.bagBar
 	local bagBarSize = db.size
 	local buttonSpacing = db.spacing
 	local growthDirection = db.growthDirection
@@ -228,7 +231,7 @@ end
 
 function B:UpdateMainButtonCount()
 	local mainCount = B.BagBar.buttons[1].Count
-	mainCount:SetShown(B.BagBar.db.showCount)
+	mainCount:SetShown(E.db.bags.bagBar.showCount)
 	mainCount:SetText(CalculateTotalNumberOfFreeBagSlots())
 end
 
@@ -279,9 +282,15 @@ function B:BagBar_UpdateDesaturated(inactive)
 end
 
 function B:LoadBagBar()
-	if E.Retail or E.TBC then
+	if E.hasEditMode then
 		_G.BagsBar:SetParent(E.HiddenFrame)
 		_G.BagsBar:UnregisterAllEvents()
+
+		--_G.EventRegistry:UnregisterCallback('MainMenuBarManager.OnExpandChanged', _G.BagsBar.Layout, _G.BagsBar)
+
+		if _G.MainMenuBarBagManager.OnCursorChanged then
+			_G.EventRegistry:UnregisterFrameEventAndCallback('CURSOR_CHANGED', _G.MainMenuBarBagManager.OnCursorChanged, _G.MainMenuBarBagManager)
+		end
 	end
 
 	if not E.private.bags.bagBar then return end
@@ -293,7 +302,6 @@ function B:LoadBagBar()
 	B.BagBar:SetScript('OnLeave', B.BagBar_OnLeave)
 	B.BagBar:SetScript('OnEvent', B.BagBar_OnEvent)
 	B.BagBar:EnableMouse(true)
-	B.BagBar.db = E.db.bags.bagBar
 	B.BagBar.buttons = {}
 
 	_G.MainMenuBarBackpackButton:SetParent(B.BagBar)
@@ -303,9 +311,9 @@ function B:LoadBagBar()
 
 	_G.MainMenuBarBackpackButtonCount:ClearAllPoints()
 	_G.MainMenuBarBackpackButtonCount:Point('BOTTOMRIGHT', _G.MainMenuBarBackpackButton, 0, 1)
-	_G.MainMenuBarBackpackButtonCount:FontTemplate(LSM:Fetch('font', B.BagBar.db.font), B.BagBar.db.fontSize, B.BagBar.db.fontOutline)
+	_G.MainMenuBarBackpackButtonCount:FontTemplate(LSM:Fetch('font', E.db.bags.bagBar.font), E.db.bags.bagBar.fontSize, E.db.bags.bagBar.fontOutline)
 
-	if E.Retail or E.TBC then
+	if E.hasEditMode then
 		hooksecurefunc(_G.BagsBar, 'Layout', B.SizeAndPositionBagBar)
 		hooksecurefunc(_G.MainMenuBarBagManager, 'OnExpandBarChanged', B.SizeAndPositionBagBar)
 	else

@@ -7,7 +7,7 @@ false,
 false,
 false,
 },
-["Scale"] = {
+["ShowTJ"] = {
 1,
 1,
 1,
@@ -15,7 +15,7 @@ false,
 },
 ["ActionData"] = {
 },
-["ShowTJ"] = {
+["Scale"] = {
 1,
 1,
 1,
@@ -87,6 +87,8 @@ false,
 },
 },
 ["EquipList"] = {
+},
+["TalentEquip"] = {
 },
 ["LockTrinket"] = 0,
 ["TrinketMode"] = 1,

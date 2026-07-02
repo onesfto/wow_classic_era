@@ -49,22 +49,24 @@ GearMenuConfiguration = {
 },
 ["displayName"] = "Default GearBar",
 ["isLocked"] = false,
+["changeMenuDirection"] = 1,
 ["showCooldowns"] = true,
+["orientation"] = 1,
 ["position"] = {
-["relativePoint"] = "LEFT",
-["posY"] = 18.28560447692871,
-["point"] = "LEFT",
 ["posX"] = 64.07537078857422,
+["point"] = "LEFT",
+["posY"] = 18.28560447692871,
+["relativePoint"] = "LEFT",
 },
 ["changeSlotSize"] = 40,
 ["gearSlotSize"] = 40,
 },
 },
-["addonVersion"] = "v2.4.6",
+["quickChangeRules"] = {
+},
 ["uiTheme"] = 2,
 ["trinketMenuColumns"] = 4,
 ["frames"] = {
 },
-["quickChangeRules"] = {
-},
+["addonVersion"] = "v2.7.0",
 }

@@ -51,20 +51,20 @@ GearMenuConfiguration = {
 ["isLocked"] = false,
 ["showCooldowns"] = true,
 ["position"] = {
-["posX"] = 64.07537078857422,
-["point"] = "LEFT",
-["posY"] = 18.28560447692871,
 ["relativePoint"] = "LEFT",
+["posY"] = 18.28560447692871,
+["point"] = "LEFT",
+["posX"] = 64.07537078857422,
 },
 ["changeSlotSize"] = 40,
 ["gearSlotSize"] = 40,
 },
 },
-["quickChangeRules"] = {
-},
+["addonVersion"] = "v2.4.6",
 ["uiTheme"] = 2,
 ["trinketMenuColumns"] = 4,
 ["frames"] = {
 },
-["addonVersion"] = "v2.4.6",
+["quickChangeRules"] = {
+},
 }

@@ -1,42 +1,73 @@
 
 WhisperPopDB = {
 ["listHeight"] = 320,
-["applyFilters"] = 1,
-["notifyButton"] = 1,
 ["ignoreTags"] = 1,
-["listWidth"] = 200,
-["timeFormat"] = 2,
+["notifyButton"] = 1,
 ["listScale"] = 100,
+["save"] = 1,
+["timeFormat"] = 2,
+["applyFilters"] = 1,
 ["buttonScale"] = 100,
 ["history"] = {
 {
 ["received"] = 1,
-["name"] = "黛丶-哈霍兰",
+["class"] = "PALADIN",
+["name"] = "凤凰浴火-哈霍兰",
+["messages"] = {
+"0[T1782913377]你睡醒了？",
+"1[T1782913509]看盘啊",
+"1[T1782913522]一群人等我出策略。。",
+"0[T1782913538]那你还上号，专心看去",
+"1[T1782913559]一直挂着的吧 好像是下午打世界boss 上的",
+"1[T1782913572]忘了几点了 赚了1200",
+"1[T1782913613]随时双开 进组 打世界boss 5分钟 分1000-2000 很香的",
+},
+},
+{
+["received"] = 1,
+["class"] = "PRIEST",
+["name"] = "晟辉-哈霍兰",
+["messages"] = {
+"0[T1782908873]与[六扇门沈小梅]交易成功。(交出)333g",
+},
+},
+{
 ["class"] = "WARLOCK",
+["messages"] = {
+"1[T1782907701]3",
+"1[T1782907706]3",
+"1[T1782907711]33",
+"1[T1782907712]3",
+},
+["name"] = "星宇卡扎克-哈霍兰",
+},
+{
+["received"] = 1,
+["class"] = "WARLOCK",
+["name"] = "黛丶-哈霍兰",
 ["messages"] = {
 "0[T1782859550]正在拉你，不来的是猪",
 },
 },
 {
+["class"] = "PALADIN",
 ["messages"] = {
 "1[T1782859249]7",
 },
-["class"] = "PALADIN",
 ["name"] = "蓝龙房飞冯-法琳娜",
 },
 {
+["class"] = "WARRIOR",
 ["messages"] = {
 "1[T1782858577]7",
 },
-["class"] = "WARRIOR",
 ["name"] = "扎克房飞冯-法琳娜",
 },
 },
 ["time"] = 1,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["save"] = 1,
-["sound"] = 1,
+["listWidth"] = 200,
 ["positions"] = {
 ["WhisperPopFrame"] = {
 "LEFT",
@@ -53,4 +84,5 @@ WhisperPopDB = {
 185,
 },
 },
+["sound"] = 1,
 }

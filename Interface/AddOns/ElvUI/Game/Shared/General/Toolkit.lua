@@ -9,6 +9,7 @@ local hooksecurefunc = hooksecurefunc
 local getmetatable = getmetatable
 local tonumber = tonumber
 
+local FontStringScaleAnimationMode = Enum.FontStringScaleAnimationMode
 local EnumerateFrames = EnumerateFrames
 local CreateFrame = CreateFrame
 
@@ -82,14 +83,34 @@ function E:SafeGetPoint(frame)
 	end
 end
 
+-- 12.0 secret restrictions break SetBackdrop
+function E:NotSizeRestricted(frame)
+	if not frame or not frame.GetSize then return true end -- what?
+
+	local width, height = frame:GetSize()
+	return E:NotSecretValue(width) and E:NotSecretValue(height)
+end
+
+function E:SetupTextureCoordinates()
+	if E:NotSizeRestricted(self) then
+		_G.BackdropTemplateMixin.SetupTextureCoordinates(self)
+	end
+end
+
+function E:ReplaceSetupTextureCoordinates(frame) -- temp until blizzard fixes the backdrop mixin from this error
+	if E.Retail and (frame.SetupTextureCoordinates ~= E.SetupTextureCoordinates) then
+		frame.SetupTextureCoordinates = E.SetupTextureCoordinates
+	end
+end
+
 local function WatchPixelSnap(frame, snap)
-	if (frame and not frame:IsForbidden()) and frame.PixelSnapDisabled and snap then
+	if E:NotSecretTable(frame) and (frame and not frame:IsForbidden()) and frame.PixelSnapDisabled and snap then
 		frame.PixelSnapDisabled = nil
 	end
 end
 
 local function DisablePixelSnap(frame)
-	if (frame and not frame:IsForbidden()) and not frame.PixelSnapDisabled then
+	if E:NotSecretTable(frame) and (frame and not frame:IsForbidden()) and not frame.PixelSnapDisabled then
 		if frame.SetSnapToPixelGrid then
 			frame:SetSnapToPixelGrid(false)
 			frame:SetTexelSnappingBias(0)
@@ -284,6 +305,8 @@ local function SetTemplate(frame, template, glossTex, ignoreUpdates, forcePixelM
 		end
 	end
 
+	E:ReplaceSetupTextureCoordinates(frame)
+
 	if template == 'NoBackdrop' then
 		frame:SetBackdrop()
 	else
@@ -312,6 +335,7 @@ local function SetTemplate(frame, template, glossTex, ignoreUpdates, forcePixelM
 			local level = frame:GetFrameLevel()
 			if not frame.iborder then
 				local border = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
+				E:ReplaceSetupTextureCoordinates(border)
 				border:SetBackdrop(backdrop)
 				border:SetBackdropBorderColor(0, 0, 0, 1)
 				border:SetFrameLevel(level)
@@ -321,6 +345,7 @@ local function SetTemplate(frame, template, glossTex, ignoreUpdates, forcePixelM
 
 			if not frame.oborder then
 				local border = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
+				E:ReplaceSetupTextureCoordinates(border)
 				border:SetBackdrop(backdrop)
 				border:SetBackdropBorderColor(0, 0, 0, 1)
 				border:SetFrameLevel(level)
@@ -386,10 +411,12 @@ local function CreateShadow(frame, size, pass)
 
 	local offset = (E.PixelMode and size) or (size + 1)
 	local shadow = CreateFrame('Frame', nil, frame, 'BackdropTemplate')
+	E:ReplaceSetupTextureCoordinates(shadow)
+
 	shadow:SetFrameLevel(1)
 	shadow:SetFrameStrata(frame:GetFrameStrata())
 	shadow:SetOutside(frame, offset, offset, nil, true)
-	shadow:SetBackdrop({edgeFile = E.Media.Textures.GlowTex, edgeSize = size})
+	shadow:SetBackdrop({ edgeFile = E.Media.Textures.GlowTex, edgeSize = size })
 	shadow:SetBackdropColor(backdropr, backdropg, backdropb, 0)
 	shadow:SetBackdropBorderColor(borderr, borderg, borderb, 0.9)
 
@@ -398,11 +425,6 @@ local function CreateShadow(frame, size, pass)
 	else
 		frame.shadow = shadow
 	end
-end
-
-local function KillEditMode(object)
-	object.HighlightSystem = E.noop
-	object.ClearHighlight = E.noop
 end
 
 local function Kill(object)
@@ -465,7 +487,7 @@ end
 
 local function FontTemplate(fs, font, size, style, skip)
 	if not skip then -- ignore updates from UpdateFontTemplates
-		fs.font, fs.fontSize, fs.fontStyle = font, size, style
+		E.texts[fs] = { font = font, fontSize = size, fontStyle = style }
 	end
 
 	-- grab values from profile before conversion
@@ -473,15 +495,19 @@ local function FontTemplate(fs, font, size, style, skip)
 	if not size then size = E.db.general.fontSize or P.general.fontSize end
 	if style == 'NONE' then style = '' end -- none isnt a real style
 
+	local slug = E:CanFlagSlug(style)
+	if slug then style = style..'SLUG' end -- handle before shadow
+
 	local shadow = strsub(style, 0, 6) == 'SHADOW'
 	if shadow then style = strsub(style, 7) end -- shadow isnt a real style
 
+	if fs.SetScaleAnimationMode then
+		fs:SetScaleAnimationMode(slug and FontStringScaleAnimationMode.Vertex or FontStringScaleAnimationMode.FontSize)
+	end
+
 	fs:SetShadowColor(0, 0, 0, (shadow and (style == '' and 1 or 0.6)) or 0)
 	fs:SetShadowOffset((shadow and 1) or 0, (shadow and -1) or 0)
-
 	fs:SetFont(font or E.media.normFont, size, style)
-
-	E.texts[fs] = true
 end
 
 local function StyleButton(button, noHover, noPushed, noChecked)
@@ -513,11 +539,6 @@ local function StyleButton(button, noHover, noPushed, noChecked)
 		checked:SetBlendMode('ADD')
 		checked:SetColorTexture(1, 1, 1, 0.3)
 		button.checked = checked
-	end
-
-	if button.cooldown then
-		button.cooldown:SetDrawEdge(false)
-		button.cooldown:SetInside(button, 0, 0)
 	end
 end
 
@@ -563,7 +584,6 @@ local API = {
 	SetTemplate = SetTemplate,
 	CreateBackdrop = CreateBackdrop,
 	CreateShadow = CreateShadow,
-	KillEditMode = KillEditMode,
 	FontTemplate = FontTemplate,
 	StripTextures = StripTextures,
 	StripTexts = StripTexts,

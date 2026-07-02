@@ -2,8 +2,6 @@
 ElvCharacterDB = {
 ["ConvertKeybindings"] = true,
 ["ChatEditHistory"] = {
-"/mrt",
-"/KB",
 "/s |cff1eff00|Hitem:11288::::::::10:::::::::|h[强效魔法杖]|h|r",
 "/LTP",
 "/DECURSIVE",
@@ -22,6 +20,8 @@ ElvCharacterDB = {
 "/WA",
 "/rl",
 "/wa",
+"/cw 扎克房飞冯-法琳娜 7",
+"/cw 蓝龙房飞冯-法琳娜 7",
 },
 ["ChatHistoryLog"] = {
 },

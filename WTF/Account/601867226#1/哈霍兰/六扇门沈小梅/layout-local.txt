@@ -1,11 +1,4 @@
 Version: 1
-Frame: GM_TrinketMenuFrame
-FrameLevel: 1
-Anchor: BOTTOMRIGHT
-X: -389
-Y: 251
-W: 202
-H: 48
 Frame: SettingsPanel
 FrameLevel: 1
 Anchor: CENTER
@@ -37,7 +30,7 @@ H: 444
 Frame: WorldMapFrame
 FrameLevel: 1
 Anchor: BOTTOMRIGHT
-X: 133
+X: 134
 Y: -211
 W: 1024
 H: 712
@@ -69,10 +62,3 @@ X: 16
 Y: -116
 W: 608
 H: 424
-Frame: BetterBagsBagBackpack
-FrameLevel: 500
-Anchor: CENTER
-X: 289
-Y: 78
-W: 693
-H: 534

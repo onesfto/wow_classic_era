@@ -29,18 +29,13 @@ VER 3 0100000001000071 "恢复" "INV_Misc_QuestionMark"
 #showtooltip 恢复
 /cast [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 恢复
 END
-VER 3 0100000001000072 "惩击" "INV_Misc_QuestionMark"
-#showtooltip
-/cast [mod:alt] 暗言术：痛; [mod:ctrl] 神圣之火; 惩击
-END
 VER 3 0100000001000073 "惩击" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 神圣之火; 惩击
 /施放 [mod:shift] 神圣之火; 惩击
 END
-VER 3 0100000001000074 "控" "INV_Misc_QuestionMark"
-#showtooltip [mod:shift] 束缚亡灵; 精神控制
-/施放 [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 束缚亡灵
-/施放 [@mouseover,harm,nodead] [harm,nodead] 精神控制
+VER 3 0100000001000072 "惩击" "INV_Misc_QuestionMark"
+#showtooltip
+/cast [mod:alt] 暗言术：痛; [mod:ctrl] 神圣之火; 惩击
 END
 VER 3 0100000001000075 "控" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 束缚亡灵; 心灵尖啸
@@ -48,19 +43,24 @@ VER 3 0100000001000075 "控" "INV_Misc_QuestionMark"
 /施放 [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 束缚亡灵
 /施放 心灵尖啸
 END
+VER 3 0100000001000074 "控" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 束缚亡灵; 精神控制
+/施放 [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 束缚亡灵
+/施放 [@mouseover,harm,nodead] [harm,nodead] 精神控制
+END
 VER 3 0100000001000076 "治疗" "INV_Misc_QuestionMark"
 #showtooltip 治疗术
 /cast [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 治疗术
-END
-VER 3 0100000001000077 "激素" "INV_Misc_QuestionMark"
-#showtooltip 能量灌注
-/cast [@mouseover,help,nodead][@target,help,nodead][] 能量灌注
-/run SendChatMessage("纳米激素已注入！","WHISPER",nil,UnitName("target"))
 END
 VER 3 0100000001000078 "激素" "INV_Misc_QuestionMark"
 #showtooltip 能量灌注
 /cast [mod:alt,@player][@mouseover,help,nodead][@target,help,nodead] 能量灌注
 /run local t=UnitName("target") if not IsAltKeyDown() and UnitExists("target") then SendChatMessage("纳米激素已注入!","WHISPER",nil,t) end
+END
+VER 3 0100000001000077 "激素" "INV_Misc_QuestionMark"
+#showtooltip 能量灌注
+/cast [@mouseover,help,nodead][@target,help,nodead][] 能量灌注
+/run SendChatMessage("纳米激素已注入！","WHISPER",nil,UnitName("target"))
 END
 VER 3 0100000001000079 "爆" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 法力燃烧; 心灵震爆
@@ -121,16 +121,16 @@ VER 3 0100000001000083 "饰" "INV_Misc_QuestionMark"
 #showtooltip 13
 /use 13
 END
-VER 3 0100000001000084 "驱病" "INV_Misc_QuestionMark"
-#showtooltip 驱除疾病
-/cast [mod:alt,@player] [@mouseover,help,nodead] [help,nodead] [@targettarget,help,nodead] [@player] 驱除疾病
-END
 VER 3 0100000001000085 "驱病" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 驱散魔法; 驱除疾病
 /stopcasting
 /cast [mod:shift,@mouseover,nodead][mod:shift,nodead][mod:shift,@player] 驱散魔法
 /cast [@mouseover,harm,nodead][harm,nodead] 驱散魔法
 /cast [@mouseover,help,nodead][help,nodead][@player] 驱除疾病
+END
+VER 3 0100000001000084 "驱病" "INV_Misc_QuestionMark"
+#showtooltip 驱除疾病
+/cast [mod:alt,@player] [@mouseover,help,nodead] [help,nodead] [@targettarget,help,nodead] [@player] 驱除疾病
 END
 VER 3 0100000001000086 "驱魔" "INV_Misc_QuestionMark"
 #showtooltip 驱散魔法

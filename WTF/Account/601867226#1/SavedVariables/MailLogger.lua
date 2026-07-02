@@ -1506,5 +1506,38 @@ true,
 },
 },
 },
+{
+["TargetName"] = "德加和尚-哈霍兰",
+["Date"] = "2026-07-01",
+["Time"] = "19:56:15",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cffffffff|Hitem:14342::::::::60::::::::::|h[月布]|h|r",
+["Name"] = "月布",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["PlayerName"] = "六扇门沈小梅-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "晟辉-哈霍兰",
+["Date"] = "2026-07-01",
+["Time"] = "20:27:47",
+["ReceiveMoney"] = 3330000,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "诅咒之地",
+["PlayerName"] = "六扇门沈小梅-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
 },
 }

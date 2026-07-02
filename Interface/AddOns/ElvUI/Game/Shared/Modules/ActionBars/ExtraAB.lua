@@ -10,9 +10,13 @@ local GetBindingKey = GetBindingKey
 local InCombatLockdown = InCombatLockdown
 local hooksecurefunc = hooksecurefunc
 
-local ActionButton_UpdateCooldown = ActionButton_UpdateCooldown
+local extraBtns, extraHooked = {}, {}
 
-local extraBtns, extraHooked, ExtraActionBarHolder, ZoneAbilityHolder = {}, {}
+local ExtraActionBarHolder = CreateFrame('Frame', 'ElvUI_ExtraActionBarHolder', E.UIParent)
+E.FrameLocks[ExtraActionBarHolder] = true
+
+local ZoneAbilityHolder = CreateFrame('Frame', 'ElvUI_ZoneAbilityHolder', E.UIParent)
+E.FrameLocks[ZoneAbilityHolder] = true
 
 function AB:ExtraButtons_AddFrame(frame)
 	AB:ExtraButtons_BossStyle(frame.button)
@@ -21,12 +25,19 @@ end
 function AB:ExtraButtons_BossStyle(button)
 	if not button or button.IsSkinned then return end
 
-	AB:StyleButton(button, true) -- registers cooldown too
+	-- normally we handle this in StyleButton but we want
+	-- to skip the cooldown register and use custom one
+	if not AB.handledbuttons[button] then
+		if button.cooldown then
+			button.cooldown:SetAllPoints(button.icon)
 
-	-- the cooldown is already fired sometimes?
-	if ActionButton_UpdateCooldown then
-		ActionButton_UpdateCooldown(button)
+			E:RegisterCooldown(button.cooldown, 'bossbutton')
+		end
+
+		AB.handledbuttons[button] = true
 	end
+
+	AB:StyleButton(button, true) -- normally handles cooldown
 
 	button.icon:SetDrawLayer('ARTWORK', -1)
 	button:SetTemplate()
@@ -67,8 +78,7 @@ function AB:ExtraButtons_ZoneStyle()
 				spellButton:HookScript('OnLeave', AB.ExtraButtons_OnLeave)
 
 				if spellButton.Cooldown then
-					E:RegisterCooldown(spellButton.Cooldown, 'actionbar')
-					spellButton.Cooldown:SetInside(spellButton)
+					E:RegisterCooldown(spellButton.Cooldown, 'zonebutton')
 				end
 
 				spellButton.IsSkinned = true
@@ -110,13 +120,8 @@ function AB:ExtraButtons_OnLeave()
 end
 
 function AB:ExtraButtons_GlobalFade()
-	if ExtraActionBarHolder then
-		ExtraActionBarHolder:SetParent(E.db.actionbar.extraActionButton.inheritGlobalFade and AB.fadeParent or E.UIParent)
-	end
-
-	if ZoneAbilityHolder then
-		ZoneAbilityHolder:SetParent(E.db.actionbar.zoneActionButton.inheritGlobalFade and AB.fadeParent or E.UIParent)
-	end
+	ExtraActionBarHolder:SetParent(E.db.actionbar.extraActionButton.inheritGlobalFade and AB.fadeParent or E.UIParent)
+	ZoneAbilityHolder:SetParent(E.db.actionbar.zoneActionButton.inheritGlobalFade and AB.fadeParent or E.UIParent)
 end
 
 function AB:ExtraButtons_UpdateAlpha()
@@ -243,9 +248,7 @@ function AB:ExtraButtons_SetupZone()
 	ZoneAbilityFrame:SetAllPoints()
 	ZoneAbilityFrame.ignoreInLayout = true
 
-	if ZoneAbilityHolder then
-		ZoneAbilityHolder:Size(52 * E.db.actionbar.zoneActionButton.scale)
-	end
+	ZoneAbilityHolder:Size(52 * E.db.actionbar.zoneActionButton.scale)
 end
 
 function AB:ExtraButtons_SetupAbility()
@@ -253,7 +256,6 @@ function AB:ExtraButtons_SetupAbility()
 	if ExtraAbilityContainer then
 		if not extraHooked[ExtraAbilityContainer] then
 			-- try to shutdown the container movement and taints
-			ExtraAbilityContainer:KillEditMode()
 			ExtraAbilityContainer:SetScript('OnShow', nil)
 			ExtraAbilityContainer:SetScript('OnUpdate', nil)
 			ExtraAbilityContainer.OnUpdate = nil -- remove BaseLayoutMixin.OnUpdate
@@ -275,26 +277,20 @@ function AB:ExtraButtons_SetupAbility()
 	end
 end
 
-function AB:CreateExtraHolders()
-	if not ExtraActionBarHolder then
-		ExtraActionBarHolder = CreateFrame('Frame', 'ElvUI_ExtraActionBarHolder', E.UIParent)
+function AB:CreateExtraMovers()
+	if not ExtraActionBarHolder.mover then
 		ExtraActionBarHolder:Point('BOTTOM', E.UIParent, 'BOTTOM', -150, 300)
-		E.FrameLocks[ExtraActionBarHolder] = true
-
 		E:CreateMover(ExtraActionBarHolder, 'BossButton', L["Boss Button"], nil, nil, nil, 'ALL,ACTIONBARS', nil, 'actionbar,extraButtons,extraActionButton')
 	end
 
-	if not ZoneAbilityHolder then
-		ZoneAbilityHolder = CreateFrame('Frame', 'ElvUI_ZoneAbilityHolder', E.UIParent)
+	if not ZoneAbilityHolder.mover then
 		ZoneAbilityHolder:Point('BOTTOM', E.UIParent, 'BOTTOM', 150, 300)
-		E.FrameLocks[ZoneAbilityHolder] = true
-
 		E:CreateMover(ZoneAbilityHolder, 'ZoneAbility', L["Zone Ability"], nil, nil, nil, 'ALL,ACTIONBARS', nil, 'actionbar,extraButtons,extraActionButton')
 	end
 end
 
 function AB:SetupExtraButtons()
-	AB:CreateExtraHolders()			-- make the holders
+	AB:CreateExtraMovers()			-- make the holders
 	AB:ExtraButtons_Reparent()		-- reparent to the holders (keep before setup)
 	AB:ExtraButtons_SetupBoss()		-- attach boss
 	AB:ExtraButtons_SetupZone()		-- attach zone

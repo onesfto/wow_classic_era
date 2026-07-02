@@ -78,9 +78,10 @@ function M:UpdateInspectInfo(event, arg1)
 
 	if M.InspectTimer then -- event can spam when it has to load items
 		E:CancelTimer(M.InspectTimer)
+		M.InspectTimer = nil
 	end
 
-	if arg1 then -- model changed but no guid???
+	if E:NotSecretValue(arg1) and arg1 then -- model changed but no guid???
 		M.InspectTimer = E:ScheduleTimer(M.UpdatePageInfo, 0.2, M, frame, 'Inspect', arg1)
 	end
 end
@@ -125,7 +126,7 @@ function M:CheckStatsItemLevel()
 end
 
 function M:ToggleItemLevelInfo(setupCharacterPage, config)
-	if E.Classic then return end
+	if E.Classic or E.TBC then return end
 
 	if setupCharacterPage then
 		M:CreateSlotStrings(_G.CharacterFrame, 'Character')
@@ -310,10 +311,17 @@ end
 
 do
 	local iLevelDB = {}
-	function M:UpdatePageInfo(frame, which, guid, event)
-		if which == 'Inspect' then M.InspectTimer = nil end -- clear inspect timer
+	function M:UpdatePageInfo(frame, which, arg1, event)
 		if not (which and frame and frame.ItemLevelText) then return end
-		if which == 'Inspect' and (not frame or not frame.unit or (guid and frame:IsShown() and UnitGUID(frame.unit) ~= guid)) then return end
+
+		if which == 'Inspect' then
+			M.InspectTimer = nil -- clear inspect timer
+
+			if (E:IsSecretValue(arg1) or not arg1) or (not frame.unit or not frame:IsShown()) then return end
+
+			local guid = UnitGUID(frame.unit)
+			if (E:IsSecretValue(guid) or not guid) or (arg1 ~= guid) then return end
+		end
 
 		wipe(iLevelDB)
 
@@ -352,7 +360,7 @@ function M:CreateSlotStrings(frame, which)
 
 	if which == 'Inspect' then
 		frame.ItemLevelText = _G.InspectPaperDollItemsFrame:CreateFontString(nil, 'ARTWORK')
-		frame.ItemLevelText:Point('BOTTOMLEFT', 6, 6)
+		frame.ItemLevelText:Point('TOPRIGHT', -10, -32)
 	elseif E.Mists or E.Wrath then
 		frame.ItemLevelText = _G.PaperDollItemsFrame:CreateFontString(nil, 'ARTWORK')
 		frame.ItemLevelText:Point('BOTTOMLEFT', 6, 6)
