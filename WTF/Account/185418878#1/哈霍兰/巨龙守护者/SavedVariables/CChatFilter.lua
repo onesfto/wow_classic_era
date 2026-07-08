@@ -28,6 +28,8 @@ BFWC_Filter_SavedConfigs = {
 },
 ["Player-5303-1554C9B3"] = {
 },
+["Player-5376-03E44C80"] = {
+},
 ["Player-5381-152D7C91"] = {
 },
 ["Player-5303-154A4CAC"] = {

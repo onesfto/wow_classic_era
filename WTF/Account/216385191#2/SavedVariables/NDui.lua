@@ -10,7 +10,7 @@ NDuiADB = {
 ["NumberFormat"] = 1,
 ["IgnoredButtons"] = "",
 ["Changelog"] = {
-["Version"] = "1.51.2",
+["Version"] = "1.52.4",
 },
 ["ChatFilterList"] = "%*",
 ["Help"] = {
@@ -40,6 +40,7 @@ NDuiADB = {
 },
 ["ProfileIndex"] = {
 ["法德迦-哈霍兰"] = 1,
+["德加和尚-哈霍兰"] = 1,
 },
 ["TexStyle"] = 2,
 ["MajorSpells"] = {

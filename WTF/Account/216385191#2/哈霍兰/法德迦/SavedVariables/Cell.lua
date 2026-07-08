@@ -3,20 +3,20 @@ CellCharacterDB = {
 ["revise"] = "r274-release",
 ["layoutAutoSwitch"] = {
 {
-["raid_instance"] = "团队-DPS",
-["party"] = "小队",
+["raid_instance"] = "团队-输出",
+["party"] = "default",
 ["solo"] = "hide",
 ["arena"] = "default",
-["raid_outdoor"] = "团队",
 ["battleground"] = "default",
+["raid_outdoor"] = "团队-输出",
 },
 {
-["raid_instance"] = "default",
-["party"] = "小队",
+["raid_instance"] = "团队-输出",
+["party"] = "default",
 ["solo"] = "hide",
 ["arena"] = "default",
-["raid_outdoor"] = "default",
-["battleground"] = "default",
+["battleground"] = "团队-输出",
+["raid_outdoor"] = "团队-输出",
 },
 },
 ["clickCastings"] = {

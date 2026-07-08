@@ -111,6 +111,7 @@ end
 --------------------
 local QuickChatfun=PD.QuickChatfun
 function QuickChatfun.QuickBut_miyijiluGL(arg2,arg5,arg1,arg6)
+	if PIGisSecret(arg1) then return false end
 	if arg2~=PlayerInfo.AllName then
 		if FilterBlack_IsFriend(arg2,arg5) then
 			return false
@@ -407,6 +408,7 @@ function QuickChatfun.QuickBut_Keyword()
 		else
 			if TiquCanshu["shuchumode"]==2 or TiquCanshu["shuchumode"]==1 and TiquCanshu["ChatWox"]>0 then
 				local arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17=...
+				if PIGisSecret(arg1) then return false end
 				if not arg12 then return end
 				if arg9=="MeetingHorn" then return end
 				if arg9=="PIG" then return end		
@@ -480,7 +482,8 @@ function QuickChatfun.QuickBut_Keyword()
 	BlackList["word"]=PIGA["Chat"]["Filter"]["BlacksList"]
 
 	local function FilterBlack(self,event,arg1,arg2,arg3,arg4,arg5,arg6)
-		if self==ChatFrame2 or self==ChatFrame3 then return end
+		if PIGisSecret(arg1) then return false end	
+		if self==ChatFrame2 or self==ChatFrame3 then return false end
 		if arg2~=PlayerInfo.AllName then--自身不过滤
 			BlackList["count"]=BlackList["count"]+1
 			if event=="CHAT_MSG_WHISPER" then

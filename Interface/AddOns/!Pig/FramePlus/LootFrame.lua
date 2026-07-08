@@ -167,24 +167,8 @@ function FramePlusfun.Loot()
 				else
 					self:SetHeight(self.numLootItems*41+74)
 				end
-				if ( GetCVar("lootUnderMouse") == "1" and self.numLootItems>6 ) then
-					local _,_,_,xpos,ypos=self:GetPoint()
-					local pignypos = ypos
-					if ( self.numLootItems>14 ) then
-						pignypos = ypos+(self.numLootItems-7)*41
-					elseif ( self.numLootItems>10 ) then
-						pignypos = ypos+(self.numLootItems-6)*41
-					else
-						pignypos = ypos+(self.numLootItems-6)*41
-					end
-					self:SetPoint("TOPLEFT", nil, "BOTTOMLEFT", xpos, pignypos);
-				end
 			else
 				self:SetSize(170,240)
-			end
-			if ( GetCVar("lootUnderMouse") == "0" ) then
-				self:ClearAllPoints();
-				self:SetPoint("CENTER", nil, "CENTER", 0, 0);
 			end
 			PIG_LootFrame_Update(self)
 		end

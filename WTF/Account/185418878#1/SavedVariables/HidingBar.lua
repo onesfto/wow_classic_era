@@ -1,105 +1,99 @@
 
 HidingBarDB = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 ["profiles"] = {
 {
 ["isDefault"] = true,
 ["config"] = {
 ["mbtnSettings"] = {
 ["LibDBIcon10_RareScannerMinimapIcon"] = {
-["tstmp"] = 1770477706,
-},
-["LibDBIcon10_BiSTracker"] = {
-["tstmp"] = 1770477706,
-},
-["LibDBIcon10_RXPGuides"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_MeetingHorn"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_alaCalendar"] = {
-["tstmp"] = 1770477706,
-},
-["LibDBIcon10_Questie"] = {
-["tstmp"] = 1770477706,
-},
-["LFGMinimapFrame"] = {
-["tstmp"] = 1770477706,
-},
-["LibDBIcon10_DBM"] = {
-["tstmp"] = 1770477706,
-},
-["LibDBIcon10_CChatFilter"] = {
-["tstmp"] = 1770477706,
-},
-["LibDBIcon10_WeakAuras"] = {
-["tstmp"] = 1770477706,
-},
-["LibDBIcon10_BiaoGe"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_Leatrix_Plus"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
-["LibDBIcon10_Myslot"] = {
-["tstmp"] = 1770477706,
+["LFGMinimapFrame"] = {
+["tstmp"] = 1783360420,
+},
+["LibDBIcon10_DBM"] = {
+["tstmp"] = 1783360420,
+},
+["LibDBIcon10_CChatFilter"] = {
+["tstmp"] = 1783360420,
+},
+["LibDBIcon10_Questie"] = {
+["tstmp"] = 1783360420,
+},
+["LibDBIcon10_BiaoGe"] = {
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_BugSack"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
+},
+["LibDBIcon10_Myslot"] = {
+["tstmp"] = 1783360420,
+},
+["LibDBIcon10_WeakAuras"] = {
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_Details"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360421,
 },
 ["LibDBIcon10_MailLogger"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_HandyNotes_NPCs"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_Atlas"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_AtlasLoot"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_Leatrix_Maps"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_MethodRaidTools"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
-["LibDBIcon10_HidingBar1"] = {
-["tstmp"] = 0,
+["LibDBIcon10_SinStats"] = {
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_TalentEmu"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_PallyPower"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783083151,
 },
 ["LibDBIcon10_NovaWorldBuffs"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_DetailsStreamer"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_alaTradeSkill"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["LibDBIcon10_Plater"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 ["PIG_MiniMapBut"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783056049,
 },
 ["LibDBIcon10_Decursive"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 },
 ["btnSettings"] = {
 ["HidingBar"] = {
-["tstmp"] = 1770477706,
+["tstmp"] = 1783360420,
 },
 },
 ["grabMinimap"] = true,
@@ -113,7 +107,6 @@ HidingBarDB = {
 ["grabDefMinimap"] = false,
 ["grabMinimapAfterN"] = 1,
 ["ombGrabQueue"] = {
-1,
 },
 ["grabMinimapAfter"] = false,
 },
@@ -141,7 +134,7 @@ HidingBarDB = {
 },
 ["anchor"] = "left",
 ["lineTexture"] = "Solid",
-["barTypePosition"] = 2,
+["barTypePosition"] = 1,
 ["size"] = 8,
 ["interceptTooltipPosition"] = 0,
 ["petBattleHide"] = true,
@@ -154,7 +147,7 @@ HidingBarDB = {
 ["mbtnPosition"] = 2,
 ["lineBorderEdge"] = false,
 ["lineBorderOffset"] = 1,
-["showHandler"] = 1,
+["showHandler"] = 0,
 ["expand"] = 0,
 ["borderEdge"] = false,
 ["bgColor"] = {
@@ -174,6 +167,7 @@ HidingBarDB = {
 ["omb"] = {
 ["minimapPos"] = 204.5129655988926,
 ["canGrabbed"] = true,
+["hide"] = true,
 ["size"] = 27,
 ["fadeOpacity"] = 1,
 ["lock"] = true,

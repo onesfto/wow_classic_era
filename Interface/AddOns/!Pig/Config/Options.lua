@@ -94,7 +94,9 @@ function PD.addOptions_Config()
 		    		newdata["Config_Unit"]=newdata["Config_Unit"] or {}
 		    		if uiname:IsUserPlaced() then
 			        	local point, relativePoint, offsetX, offsetY = PIGGetPoint(uiname)
-			       		newdata["Config_Unit"][name]={point, relativePoint, offsetX, offsetY}
+			        	if point then
+			       			newdata["Config_Unit"][name]={point, relativePoint, offsetX, offsetY}
+			       		end
 			       	else
 			       		newdata["Config_Unit"][name]=nil
 			       	end

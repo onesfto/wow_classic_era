@@ -52,21 +52,22 @@ SinStatsDB = {
 ["BuffCounter"] = {
 ["Show"] = false,
 },
-["RangedCrit"] = {
+["RAP"] = {
 ["Show"] = true,
-["Level_Same_Boss"] = 1,
 },
 ["ShadowResist"] = {
 ["Show"] = false,
 },
-["NatureResist"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
+["Main_Off_Auto"] = 1,
 },
 ["SpellHit"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["RAPUD"] = {
+["NatureResist"] = {
 ["Show"] = false,
 },
 ["Lag"] = {
@@ -81,9 +82,8 @@ SinStatsDB = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["Fire"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["RDMG"] = {
 ["Show"] = true,
@@ -93,53 +93,53 @@ SinStatsDB = {
 ["Show"] = false,
 ["Main_Off_Auto"] = 1,
 },
-["mDPS"] = {
+["Fire"] = {
 ["Show"] = false,
-["Display_Average"] = false,
-["Main_Off_Auto"] = 1,
+["Enhanced_Base"] = 1,
 },
 ["SpellMiss"] = {
-["Show"] = false,
-["Level_Same_Boss"] = 1,
-},
-["CritCap"] = {
-["Show"] = false,
-},
-["HasteMelee"] = {
-["Show"] = false,
-},
-["MeleeMiss"] = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
 ["RangedHit"] = {
 ["Show"] = true,
 },
-["Armor"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
 ["DebuffCounter"] = {
 ["Show"] = false,
 },
-["Parry"] = {
+["MeleeMiss"] = {
 ["Show"] = false,
+["Level_Same_Boss"] = 1,
 },
-["HasteCaster"] = {
-["Show"] = false,
-},
-["Nature"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["FPS"] = {
+["CritCap"] = {
 ["Show"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["Money"] = {
+["HasteRanged"] = {
+["Show"] = true,
+},
+["AP"] = {
+["Show"] = false,
+},
+["Block"] = {
+["Show"] = false,
+},
+["Nature"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Healing"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["ManaRegen"] = {
+["Show"] = false,
+["Regen_Normal_Casting"] = 1,
+},
+["rangedSpeed"] = {
 ["Show"] = false,
 },
 ["Dodge"] = {
@@ -148,51 +148,50 @@ SinStatsDB = {
 ["Speed"] = {
 ["Show"] = true,
 },
-["Block"] = {
+["HasteCaster"] = {
+["Show"] = false,
+},
+["TargetSpeed"] = {
+["Show"] = false,
+},
+["Mitigation"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Holy"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Threat"] = {
+["Show"] = false,
+["Percent_Rating"] = 1,
+},
+["Defense"] = {
 ["Show"] = false,
 },
 ["Honor"] = {
 ["Show"] = false,
 ["Honor_Kills"] = 1,
 },
-["Defense"] = {
+["Money"] = {
 ["Show"] = false,
 },
-["Threat"] = {
+["FPS"] = {
 ["Show"] = false,
-["Percent_Rating"] = 1,
-},
-["Holy"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["Mitigation"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["TargetSpeed"] = {
-["Show"] = false,
-},
-["rangedSpeed"] = {
-["Show"] = false,
-},
-["Healing"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["MP5"] = {
 ["Show"] = false,
 ["Regen_Normal_Casting"] = 1,
 },
-["AP"] = {
+["Parry"] = {
 ["Show"] = false,
 },
-["ManaRegen"] = {
+["Armor"] = {
 ["Show"] = false,
-["Regen_Normal_Casting"] = 1,
+["Enhanced_Base"] = 1,
 },
-["HasteRanged"] = {
-["Show"] = true,
+["HasteMelee"] = {
+["Show"] = false,
 },
 ["RangedMiss"] = {
 ["Show"] = true,
@@ -211,8 +210,9 @@ SinStatsDB = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["RAP"] = {
+["RangedCrit"] = {
 ["Show"] = true,
+["Level_Same_Boss"] = 1,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -223,33 +223,33 @@ SinStatsDB = {
 ["StatWidth"] = 150,
 ["StatSpacingH"] = 1,
 ["EventPvP"] = false,
-["StatTextCaps"] = false,
-["HUDBgAlpha"] = 0,
+["StatTextColor"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 1,
+},
+["StatIcons"] = true,
 ["ResetPosition"] = false,
-["StatAlignment"] = "TOPLEFT",
+["ClassColors"] = false,
 ["CompButton"] = true,
 ["DataColor"] = {
-["b"] = 1,
-["g"] = 1,
 ["r"] = 1,
+["g"] = 1,
+["b"] = 1,
 },
-["EventWorld"] = false,
-["LockHUD"] = false,
 ["Minimap"] = {
 ["Show"] = true,
 },
+["LockHUD"] = false,
+["EventWorld"] = false,
 ["HUDBgColor"] = {
-["b"] = 0.1,
-["g"] = 0.1,
 ["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
 },
-["ClassColors"] = false,
-["StatIcons"] = true,
-["StatTextColor"] = {
-["b"] = 1,
-["g"] = 1,
-["r"] = 1,
-},
+["StatAlignment"] = "TOPLEFT",
+["HUDBgAlpha"] = 0,
+["StatTextCaps"] = false,
 },
 ["WARRIOR"] = {
 ["EventEnable"] = false,
@@ -303,21 +303,22 @@ SinStatsDB = {
 ["BuffCounter"] = {
 ["Show"] = false,
 },
-["RangedCrit"] = {
+["RAP"] = {
 ["Show"] = false,
-["Level_Same_Boss"] = 1,
 },
 ["ShadowResist"] = {
 ["Show"] = false,
 },
-["NatureResist"] = {
-["Show"] = false,
+["mDPS"] = {
+["Show"] = true,
+["Display_Average"] = false,
+["Main_Off_Auto"] = 1,
 },
 ["SpellHit"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["RAPUD"] = {
+["NatureResist"] = {
 ["Show"] = false,
 },
 ["Lag"] = {
@@ -332,9 +333,8 @@ SinStatsDB = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["Fire"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["RDMG"] = {
 ["Show"] = false,
@@ -344,53 +344,53 @@ SinStatsDB = {
 ["Show"] = true,
 ["Main_Off_Auto"] = 1,
 },
-["mDPS"] = {
-["Show"] = true,
-["Display_Average"] = false,
-["Main_Off_Auto"] = 1,
+["Fire"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
 },
 ["SpellMiss"] = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["CritCap"] = {
-["Show"] = true,
+["RangedHit"] = {
+["Show"] = false,
 },
-["HasteMelee"] = {
-["Show"] = true,
+["DebuffCounter"] = {
+["Show"] = false,
 },
 ["MeleeMiss"] = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["RangedHit"] = {
-["Show"] = false,
+["CritCap"] = {
+["Show"] = true,
 },
-["Armor"] = {
+["Frost"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["DebuffCounter"] = {
+["HasteRanged"] = {
 ["Show"] = false,
 },
-["Parry"] = {
-["Show"] = false,
+["AP"] = {
+["Show"] = true,
 },
-["HasteCaster"] = {
+["Block"] = {
 ["Show"] = false,
 },
 ["Nature"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["FPS"] = {
-["Show"] = false,
-},
-["Frost"] = {
+["Healing"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["Money"] = {
+["ManaRegen"] = {
+["Show"] = false,
+["Regen_Normal_Casting"] = 1,
+},
+["rangedSpeed"] = {
 ["Show"] = false,
 },
 ["Dodge"] = {
@@ -399,51 +399,50 @@ SinStatsDB = {
 ["Speed"] = {
 ["Show"] = true,
 },
-["Block"] = {
+["HasteCaster"] = {
+["Show"] = false,
+},
+["TargetSpeed"] = {
+["Show"] = false,
+},
+["Mitigation"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Holy"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Threat"] = {
+["Show"] = false,
+["Percent_Rating"] = 1,
+},
+["Defense"] = {
 ["Show"] = false,
 },
 ["Honor"] = {
 ["Show"] = false,
 ["Honor_Kills"] = 1,
 },
-["Defense"] = {
+["Money"] = {
 ["Show"] = false,
 },
-["Threat"] = {
+["FPS"] = {
 ["Show"] = false,
-["Percent_Rating"] = 1,
-},
-["Holy"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["Mitigation"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["TargetSpeed"] = {
-["Show"] = false,
-},
-["rangedSpeed"] = {
-["Show"] = false,
-},
-["Healing"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["MP5"] = {
 ["Show"] = false,
 ["Regen_Normal_Casting"] = 1,
 },
-["AP"] = {
+["Parry"] = {
+["Show"] = false,
+},
+["Armor"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["HasteMelee"] = {
 ["Show"] = true,
-},
-["ManaRegen"] = {
-["Show"] = false,
-["Regen_Normal_Casting"] = 1,
-},
-["HasteRanged"] = {
-["Show"] = false,
 },
 ["RangedMiss"] = {
 ["Show"] = false,
@@ -462,8 +461,9 @@ SinStatsDB = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["RAP"] = {
+["RangedCrit"] = {
 ["Show"] = false,
+["Level_Same_Boss"] = 1,
 },
 },
 ["StatFont"] = "聊天",
@@ -474,33 +474,33 @@ SinStatsDB = {
 ["StatWidth"] = 150,
 ["StatSpacingH"] = 1,
 ["EventPvP"] = false,
-["StatTextCaps"] = false,
-["HUDBgAlpha"] = 0,
-["ResetPosition"] = false,
-["StatAlignment"] = "TOPLEFT",
-["CompButton"] = true,
-["DataColor"] = {
+["StatTextColor"] = {
 ["b"] = 1,
 ["g"] = 1,
 ["r"] = 1,
 },
-["EventWorld"] = false,
-["LockHUD"] = true,
+["StatIcons"] = false,
+["ResetPosition"] = false,
+["ClassColors"] = false,
+["CompButton"] = true,
+["DataColor"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 1,
+},
 ["Minimap"] = {
 ["Show"] = true,
 },
+["LockHUD"] = true,
+["EventWorld"] = false,
 ["HUDBgColor"] = {
-["b"] = 0.1,
-["g"] = 0.1,
 ["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
 },
-["ClassColors"] = false,
-["StatIcons"] = false,
-["StatTextColor"] = {
-["r"] = 1,
-["g"] = 1,
-["b"] = 1,
-},
+["StatAlignment"] = "TOPLEFT",
+["HUDBgAlpha"] = 0,
+["StatTextCaps"] = false,
 },
 ["SHAMAN"] = {
 ["EventEnable"] = false,
@@ -548,21 +548,22 @@ SinStatsDB = {
 ["BuffCounter"] = {
 ["Show"] = false,
 },
-["RangedCrit"] = {
+["RAP"] = {
 ["Show"] = false,
-["Level_Same_Boss"] = 1,
 },
 ["ShadowResist"] = {
 ["Show"] = false,
 },
-["NatureResist"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
+["Main_Off_Auto"] = 1,
 },
 ["SpellHit"] = {
 ["Show"] = true,
 ["Enhanced_Base"] = 1,
 },
-["RAPUD"] = {
+["NatureResist"] = {
 ["Show"] = false,
 },
 ["Lag"] = {
@@ -577,9 +578,8 @@ SinStatsDB = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["Fire"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["RDMG"] = {
 ["Show"] = false,
@@ -589,53 +589,53 @@ SinStatsDB = {
 ["Show"] = false,
 ["Main_Off_Auto"] = 1,
 },
-["mDPS"] = {
+["Fire"] = {
 ["Show"] = false,
-["Display_Average"] = false,
-["Main_Off_Auto"] = 1,
+["Enhanced_Base"] = 1,
 },
 ["SpellMiss"] = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["CritCap"] = {
+["RangedHit"] = {
 ["Show"] = false,
 },
-["HasteMelee"] = {
+["DebuffCounter"] = {
 ["Show"] = false,
 },
 ["MeleeMiss"] = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["RangedHit"] = {
-["Show"] = false,
-},
-["Armor"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["DebuffCounter"] = {
-["Show"] = false,
-},
-["Parry"] = {
-["Show"] = false,
-},
-["HasteCaster"] = {
-["Show"] = false,
-},
-["Nature"] = {
-["Show"] = true,
-["Enhanced_Base"] = 1,
-},
-["FPS"] = {
+["CritCap"] = {
 ["Show"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["Money"] = {
+["HasteRanged"] = {
+["Show"] = false,
+},
+["AP"] = {
+["Show"] = true,
+},
+["Block"] = {
+["Show"] = false,
+},
+["Nature"] = {
+["Show"] = true,
+["Enhanced_Base"] = 1,
+},
+["Healing"] = {
+["Show"] = true,
+["Enhanced_Base"] = 1,
+},
+["ManaRegen"] = {
+["Show"] = false,
+["Regen_Normal_Casting"] = 1,
+},
+["rangedSpeed"] = {
 ["Show"] = false,
 },
 ["Dodge"] = {
@@ -644,50 +644,49 @@ SinStatsDB = {
 ["Speed"] = {
 ["Show"] = true,
 },
-["Block"] = {
+["HasteCaster"] = {
+["Show"] = false,
+},
+["TargetSpeed"] = {
+["Show"] = false,
+},
+["Mitigation"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Holy"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Threat"] = {
+["Show"] = false,
+["Percent_Rating"] = 1,
+},
+["Defense"] = {
 ["Show"] = false,
 },
 ["Honor"] = {
 ["Show"] = false,
 ["Honor_Kills"] = 1,
 },
-["Defense"] = {
+["Money"] = {
 ["Show"] = false,
 },
-["Threat"] = {
+["FPS"] = {
 ["Show"] = false,
-["Percent_Rating"] = 1,
-},
-["Holy"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["Mitigation"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["TargetSpeed"] = {
-["Show"] = false,
-},
-["rangedSpeed"] = {
-["Show"] = false,
-},
-["Healing"] = {
-["Show"] = true,
-["Enhanced_Base"] = 1,
 },
 ["MP5"] = {
 ["Show"] = true,
 ["Regen_Normal_Casting"] = 1,
 },
-["AP"] = {
-["Show"] = true,
-},
-["ManaRegen"] = {
+["Parry"] = {
 ["Show"] = false,
-["Regen_Normal_Casting"] = 1,
 },
-["HasteRanged"] = {
+["Armor"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["HasteMelee"] = {
 ["Show"] = false,
 },
 ["RangedMiss"] = {
@@ -707,8 +706,9 @@ SinStatsDB = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["RAP"] = {
+["RangedCrit"] = {
 ["Show"] = false,
+["Level_Same_Boss"] = 1,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -719,33 +719,33 @@ SinStatsDB = {
 ["StatWidth"] = 150,
 ["StatSpacingH"] = 1,
 ["EventPvP"] = false,
-["StatTextCaps"] = false,
-["HUDBgAlpha"] = 0,
+["StatTextColor"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 1,
+},
+["StatIcons"] = true,
 ["ResetPosition"] = false,
-["StatAlignment"] = "TOPLEFT",
+["ClassColors"] = false,
 ["CompButton"] = true,
 ["DataColor"] = {
-["b"] = 1,
-["g"] = 1,
 ["r"] = 1,
+["g"] = 1,
+["b"] = 1,
 },
-["EventWorld"] = false,
-["LockHUD"] = false,
 ["Minimap"] = {
 ["Show"] = true,
 },
+["LockHUD"] = false,
+["EventWorld"] = false,
 ["HUDBgColor"] = {
-["b"] = 0.1,
-["g"] = 0.1,
 ["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
 },
-["ClassColors"] = false,
-["StatIcons"] = true,
-["StatTextColor"] = {
-["b"] = 1,
-["g"] = 1,
-["r"] = 1,
-},
+["StatAlignment"] = "TOPLEFT",
+["HUDBgAlpha"] = 0,
+["StatTextCaps"] = false,
 },
 ["MAGE"] = {
 ["EventEnable"] = false,
@@ -793,21 +793,22 @@ SinStatsDB = {
 ["BuffCounter"] = {
 ["Show"] = false,
 },
-["RangedCrit"] = {
+["RAP"] = {
 ["Show"] = false,
-["Level_Same_Boss"] = 1,
 },
 ["ShadowResist"] = {
 ["Show"] = false,
 },
-["NatureResist"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
+["Main_Off_Auto"] = 1,
 },
 ["SpellHit"] = {
 ["Show"] = true,
 ["Enhanced_Base"] = 1,
 },
-["RAPUD"] = {
+["NatureResist"] = {
 ["Show"] = false,
 },
 ["Lag"] = {
@@ -822,9 +823,8 @@ SinStatsDB = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["Fire"] = {
-["Show"] = true,
-["Enhanced_Base"] = 1,
+["RAPUD"] = {
+["Show"] = false,
 },
 ["RDMG"] = {
 ["Show"] = false,
@@ -834,53 +834,53 @@ SinStatsDB = {
 ["Show"] = false,
 ["Main_Off_Auto"] = 1,
 },
-["mDPS"] = {
-["Show"] = false,
-["Display_Average"] = false,
-["Main_Off_Auto"] = 1,
+["Fire"] = {
+["Show"] = true,
+["Enhanced_Base"] = 1,
 },
 ["SpellMiss"] = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["CritCap"] = {
+["RangedHit"] = {
 ["Show"] = false,
 },
-["HasteMelee"] = {
+["DebuffCounter"] = {
 ["Show"] = false,
 },
 ["MeleeMiss"] = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["RangedHit"] = {
-["Show"] = false,
-},
-["Armor"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["DebuffCounter"] = {
-["Show"] = false,
-},
-["Parry"] = {
-["Show"] = false,
-},
-["HasteCaster"] = {
-["Show"] = true,
-},
-["Nature"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["FPS"] = {
+["CritCap"] = {
 ["Show"] = false,
 },
 ["Frost"] = {
 ["Show"] = true,
 ["Enhanced_Base"] = 1,
 },
-["Money"] = {
+["HasteRanged"] = {
+["Show"] = false,
+},
+["AP"] = {
+["Show"] = false,
+},
+["Block"] = {
+["Show"] = false,
+},
+["Nature"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Healing"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["ManaRegen"] = {
+["Show"] = true,
+["Regen_Normal_Casting"] = 1,
+},
+["rangedSpeed"] = {
 ["Show"] = false,
 },
 ["Dodge"] = {
@@ -889,50 +889,49 @@ SinStatsDB = {
 ["Speed"] = {
 ["Show"] = true,
 },
-["Block"] = {
+["HasteCaster"] = {
+["Show"] = true,
+},
+["TargetSpeed"] = {
+["Show"] = false,
+},
+["Mitigation"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Holy"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Threat"] = {
+["Show"] = false,
+["Percent_Rating"] = 1,
+},
+["Defense"] = {
 ["Show"] = false,
 },
 ["Honor"] = {
 ["Show"] = false,
 ["Honor_Kills"] = 1,
 },
-["Defense"] = {
+["Money"] = {
 ["Show"] = false,
 },
-["Threat"] = {
+["FPS"] = {
 ["Show"] = false,
-["Percent_Rating"] = 1,
-},
-["Holy"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["Mitigation"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["TargetSpeed"] = {
-["Show"] = false,
-},
-["rangedSpeed"] = {
-["Show"] = false,
-},
-["Healing"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["MP5"] = {
 ["Show"] = false,
 ["Regen_Normal_Casting"] = 1,
 },
-["AP"] = {
+["Parry"] = {
 ["Show"] = false,
 },
-["ManaRegen"] = {
-["Show"] = true,
-["Regen_Normal_Casting"] = 1,
+["Armor"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
 },
-["HasteRanged"] = {
+["HasteMelee"] = {
 ["Show"] = false,
 },
 ["RangedMiss"] = {
@@ -952,8 +951,9 @@ SinStatsDB = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["RAP"] = {
+["RangedCrit"] = {
 ["Show"] = false,
+["Level_Same_Boss"] = 1,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -964,33 +964,33 @@ SinStatsDB = {
 ["StatWidth"] = 150,
 ["StatSpacingH"] = 1,
 ["EventPvP"] = false,
-["StatTextCaps"] = false,
-["HUDBgAlpha"] = 0,
+["StatTextColor"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 1,
+},
+["StatIcons"] = true,
 ["ResetPosition"] = false,
-["StatAlignment"] = "TOPLEFT",
+["ClassColors"] = false,
 ["CompButton"] = true,
 ["DataColor"] = {
-["b"] = 1,
-["g"] = 1,
 ["r"] = 1,
+["g"] = 1,
+["b"] = 1,
 },
-["EventWorld"] = false,
-["LockHUD"] = false,
 ["Minimap"] = {
 ["Show"] = true,
 },
+["LockHUD"] = false,
+["EventWorld"] = false,
 ["HUDBgColor"] = {
-["b"] = 0.1,
-["g"] = 0.1,
 ["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
 },
-["ClassColors"] = false,
-["StatIcons"] = true,
-["StatTextColor"] = {
-["b"] = 1,
-["g"] = 1,
-["r"] = 1,
-},
+["StatAlignment"] = "TOPLEFT",
+["HUDBgAlpha"] = 0,
+["StatTextCaps"] = false,
 },
 ["PRIEST"] = {
 ["EventEnable"] = false,
@@ -1038,21 +1038,22 @@ SinStatsDB = {
 ["BuffCounter"] = {
 ["Show"] = false,
 },
-["RangedCrit"] = {
+["RAP"] = {
 ["Show"] = false,
-["Level_Same_Boss"] = 1,
 },
 ["ShadowResist"] = {
 ["Show"] = false,
 },
-["NatureResist"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
+["Main_Off_Auto"] = 1,
 },
 ["SpellHit"] = {
 ["Show"] = true,
 ["Enhanced_Base"] = 1,
 },
-["RAPUD"] = {
+["NatureResist"] = {
 ["Show"] = false,
 },
 ["Lag"] = {
@@ -1067,9 +1068,8 @@ SinStatsDB = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["Fire"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["RDMG"] = {
 ["Show"] = false,
@@ -1079,53 +1079,53 @@ SinStatsDB = {
 ["Show"] = false,
 ["Main_Off_Auto"] = 1,
 },
-["mDPS"] = {
+["Fire"] = {
 ["Show"] = false,
-["Display_Average"] = false,
-["Main_Off_Auto"] = 1,
+["Enhanced_Base"] = 1,
 },
 ["SpellMiss"] = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["CritCap"] = {
+["RangedHit"] = {
 ["Show"] = false,
 },
-["HasteMelee"] = {
+["DebuffCounter"] = {
 ["Show"] = false,
 },
 ["MeleeMiss"] = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["RangedHit"] = {
-["Show"] = false,
-},
-["Armor"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["DebuffCounter"] = {
-["Show"] = false,
-},
-["Parry"] = {
-["Show"] = false,
-},
-["HasteCaster"] = {
-["Show"] = true,
-},
-["Nature"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["FPS"] = {
+["CritCap"] = {
 ["Show"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["Money"] = {
+["HasteRanged"] = {
+["Show"] = false,
+},
+["AP"] = {
+["Show"] = false,
+},
+["Block"] = {
+["Show"] = false,
+},
+["Nature"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Healing"] = {
+["Show"] = true,
+["Enhanced_Base"] = 1,
+},
+["ManaRegen"] = {
+["Show"] = true,
+["Regen_Normal_Casting"] = 1,
+},
+["rangedSpeed"] = {
 ["Show"] = false,
 },
 ["Dodge"] = {
@@ -1134,50 +1134,49 @@ SinStatsDB = {
 ["Speed"] = {
 ["Show"] = true,
 },
-["Block"] = {
+["HasteCaster"] = {
+["Show"] = true,
+},
+["TargetSpeed"] = {
+["Show"] = false,
+},
+["Mitigation"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Holy"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Threat"] = {
+["Show"] = false,
+["Percent_Rating"] = 1,
+},
+["Defense"] = {
 ["Show"] = false,
 },
 ["Honor"] = {
 ["Show"] = false,
 ["Honor_Kills"] = 1,
 },
-["Defense"] = {
+["Money"] = {
 ["Show"] = false,
 },
-["Threat"] = {
+["FPS"] = {
 ["Show"] = false,
-["Percent_Rating"] = 1,
-},
-["Holy"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["Mitigation"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["TargetSpeed"] = {
-["Show"] = false,
-},
-["rangedSpeed"] = {
-["Show"] = false,
-},
-["Healing"] = {
-["Show"] = true,
-["Enhanced_Base"] = 1,
 },
 ["MP5"] = {
 ["Show"] = false,
 ["Regen_Normal_Casting"] = 1,
 },
-["AP"] = {
+["Parry"] = {
 ["Show"] = false,
 },
-["ManaRegen"] = {
-["Show"] = true,
-["Regen_Normal_Casting"] = 1,
+["Armor"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
 },
-["HasteRanged"] = {
+["HasteMelee"] = {
 ["Show"] = false,
 },
 ["RangedMiss"] = {
@@ -1197,8 +1196,9 @@ SinStatsDB = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["RAP"] = {
+["RangedCrit"] = {
 ["Show"] = false,
+["Level_Same_Boss"] = 1,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -1209,33 +1209,33 @@ SinStatsDB = {
 ["StatWidth"] = 150,
 ["StatSpacingH"] = 1,
 ["EventPvP"] = false,
-["StatTextCaps"] = false,
-["HUDBgAlpha"] = 0,
+["StatTextColor"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 1,
+},
+["StatIcons"] = true,
 ["ResetPosition"] = false,
-["StatAlignment"] = "TOPLEFT",
+["ClassColors"] = false,
 ["CompButton"] = true,
 ["DataColor"] = {
-["b"] = 1,
-["g"] = 1,
 ["r"] = 1,
+["g"] = 1,
+["b"] = 1,
 },
-["EventWorld"] = false,
-["LockHUD"] = false,
 ["Minimap"] = {
 ["Show"] = true,
 },
+["LockHUD"] = false,
+["EventWorld"] = false,
 ["HUDBgColor"] = {
-["b"] = 0.1,
-["g"] = 0.1,
 ["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
 },
-["ClassColors"] = false,
-["StatIcons"] = true,
-["StatTextColor"] = {
-["b"] = 1,
-["g"] = 1,
-["r"] = 1,
-},
+["StatAlignment"] = "TOPLEFT",
+["HUDBgAlpha"] = 0,
+["StatTextCaps"] = false,
 },
 ["WARLOCK"] = {
 ["EventEnable"] = false,
@@ -1283,21 +1283,22 @@ SinStatsDB = {
 ["BuffCounter"] = {
 ["Show"] = false,
 },
-["RangedCrit"] = {
+["RAP"] = {
 ["Show"] = false,
-["Level_Same_Boss"] = 1,
 },
 ["ShadowResist"] = {
 ["Show"] = false,
 },
-["NatureResist"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
+["Main_Off_Auto"] = 1,
 },
 ["SpellHit"] = {
 ["Show"] = true,
 ["Enhanced_Base"] = 1,
 },
-["RAPUD"] = {
+["NatureResist"] = {
 ["Show"] = false,
 },
 ["Lag"] = {
@@ -1312,9 +1313,8 @@ SinStatsDB = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["Fire"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["RDMG"] = {
 ["Show"] = false,
@@ -1324,53 +1324,53 @@ SinStatsDB = {
 ["Show"] = false,
 ["Main_Off_Auto"] = 1,
 },
-["mDPS"] = {
+["Fire"] = {
 ["Show"] = false,
-["Display_Average"] = false,
-["Main_Off_Auto"] = 1,
+["Enhanced_Base"] = 1,
 },
 ["SpellMiss"] = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["CritCap"] = {
+["RangedHit"] = {
 ["Show"] = false,
 },
-["HasteMelee"] = {
+["DebuffCounter"] = {
 ["Show"] = false,
 },
 ["MeleeMiss"] = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["RangedHit"] = {
-["Show"] = false,
-},
-["Armor"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["DebuffCounter"] = {
-["Show"] = false,
-},
-["Parry"] = {
-["Show"] = false,
-},
-["HasteCaster"] = {
-["Show"] = true,
-},
-["Nature"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["FPS"] = {
+["CritCap"] = {
 ["Show"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["Money"] = {
+["HasteRanged"] = {
+["Show"] = false,
+},
+["AP"] = {
+["Show"] = false,
+},
+["Block"] = {
+["Show"] = false,
+},
+["Nature"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Healing"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["ManaRegen"] = {
+["Show"] = true,
+["Regen_Normal_Casting"] = 1,
+},
+["rangedSpeed"] = {
 ["Show"] = false,
 },
 ["Dodge"] = {
@@ -1379,50 +1379,49 @@ SinStatsDB = {
 ["Speed"] = {
 ["Show"] = true,
 },
-["Block"] = {
+["HasteCaster"] = {
+["Show"] = true,
+},
+["TargetSpeed"] = {
+["Show"] = false,
+},
+["Mitigation"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Holy"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Threat"] = {
+["Show"] = false,
+["Percent_Rating"] = 1,
+},
+["Defense"] = {
 ["Show"] = false,
 },
 ["Honor"] = {
 ["Show"] = false,
 ["Honor_Kills"] = 1,
 },
-["Defense"] = {
+["Money"] = {
 ["Show"] = false,
 },
-["Threat"] = {
+["FPS"] = {
 ["Show"] = false,
-["Percent_Rating"] = 1,
-},
-["Holy"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["Mitigation"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["TargetSpeed"] = {
-["Show"] = false,
-},
-["rangedSpeed"] = {
-["Show"] = false,
-},
-["Healing"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["MP5"] = {
 ["Show"] = false,
 ["Regen_Normal_Casting"] = 1,
 },
-["AP"] = {
+["Parry"] = {
 ["Show"] = false,
 },
-["ManaRegen"] = {
-["Show"] = true,
-["Regen_Normal_Casting"] = 1,
+["Armor"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
 },
-["HasteRanged"] = {
+["HasteMelee"] = {
 ["Show"] = false,
 },
 ["RangedMiss"] = {
@@ -1442,8 +1441,9 @@ SinStatsDB = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["RAP"] = {
+["RangedCrit"] = {
 ["Show"] = false,
+["Level_Same_Boss"] = 1,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -1454,33 +1454,33 @@ SinStatsDB = {
 ["StatWidth"] = 150,
 ["StatSpacingH"] = 1,
 ["EventPvP"] = false,
-["StatTextCaps"] = false,
-["HUDBgAlpha"] = 0,
+["StatTextColor"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 1,
+},
+["StatIcons"] = true,
 ["ResetPosition"] = false,
-["StatAlignment"] = "TOPLEFT",
+["ClassColors"] = false,
 ["CompButton"] = true,
 ["DataColor"] = {
-["b"] = 1,
-["g"] = 1,
 ["r"] = 1,
+["g"] = 1,
+["b"] = 1,
 },
-["EventWorld"] = false,
-["LockHUD"] = false,
 ["Minimap"] = {
 ["Show"] = true,
 },
+["LockHUD"] = false,
+["EventWorld"] = false,
 ["HUDBgColor"] = {
-["b"] = 0.1,
-["g"] = 0.1,
 ["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
 },
-["ClassColors"] = false,
-["StatIcons"] = true,
-["StatTextColor"] = {
-["b"] = 1,
-["g"] = 1,
-["r"] = 1,
-},
+["StatAlignment"] = "TOPLEFT",
+["HUDBgAlpha"] = 0,
+["StatTextCaps"] = false,
 },
 ["DRUID"] = {
 ["EventEnable"] = false,
@@ -1528,21 +1528,22 @@ SinStatsDB = {
 ["BuffCounter"] = {
 ["Show"] = false,
 },
-["RangedCrit"] = {
+["RAP"] = {
 ["Show"] = false,
-["Level_Same_Boss"] = 1,
 },
 ["ShadowResist"] = {
 ["Show"] = false,
 },
-["NatureResist"] = {
+["mDPS"] = {
 ["Show"] = false,
+["Display_Average"] = false,
+["Main_Off_Auto"] = 1,
 },
 ["SpellHit"] = {
 ["Show"] = true,
 ["Enhanced_Base"] = 1,
 },
-["RAPUD"] = {
+["NatureResist"] = {
 ["Show"] = false,
 },
 ["Lag"] = {
@@ -1557,9 +1558,8 @@ SinStatsDB = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["Fire"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["RDMG"] = {
 ["Show"] = false,
@@ -1569,53 +1569,53 @@ SinStatsDB = {
 ["Show"] = false,
 ["Main_Off_Auto"] = 1,
 },
-["mDPS"] = {
+["Fire"] = {
 ["Show"] = false,
-["Display_Average"] = false,
-["Main_Off_Auto"] = 1,
+["Enhanced_Base"] = 1,
 },
 ["SpellMiss"] = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["CritCap"] = {
+["RangedHit"] = {
 ["Show"] = false,
 },
-["HasteMelee"] = {
+["DebuffCounter"] = {
 ["Show"] = false,
 },
 ["MeleeMiss"] = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["RangedHit"] = {
-["Show"] = false,
-},
-["Armor"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["DebuffCounter"] = {
-["Show"] = false,
-},
-["Parry"] = {
-["Show"] = false,
-},
-["HasteCaster"] = {
-["Show"] = false,
-},
-["Nature"] = {
-["Show"] = true,
-["Enhanced_Base"] = 1,
-},
-["FPS"] = {
+["CritCap"] = {
 ["Show"] = false,
 },
 ["Frost"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["Money"] = {
+["HasteRanged"] = {
+["Show"] = false,
+},
+["AP"] = {
+["Show"] = true,
+},
+["Block"] = {
+["Show"] = false,
+},
+["Nature"] = {
+["Show"] = true,
+["Enhanced_Base"] = 1,
+},
+["Healing"] = {
+["Show"] = true,
+["Enhanced_Base"] = 1,
+},
+["ManaRegen"] = {
+["Show"] = false,
+["Regen_Normal_Casting"] = 1,
+},
+["rangedSpeed"] = {
 ["Show"] = false,
 },
 ["Dodge"] = {
@@ -1624,50 +1624,49 @@ SinStatsDB = {
 ["Speed"] = {
 ["Show"] = true,
 },
-["Block"] = {
+["HasteCaster"] = {
+["Show"] = false,
+},
+["TargetSpeed"] = {
+["Show"] = false,
+},
+["Mitigation"] = {
+["Show"] = true,
+["Enhanced_Base"] = 1,
+},
+["Holy"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Threat"] = {
+["Show"] = false,
+["Percent_Rating"] = 1,
+},
+["Defense"] = {
 ["Show"] = false,
 },
 ["Honor"] = {
 ["Show"] = false,
 ["Honor_Kills"] = 1,
 },
-["Defense"] = {
+["Money"] = {
 ["Show"] = false,
 },
-["Threat"] = {
+["FPS"] = {
 ["Show"] = false,
-["Percent_Rating"] = 1,
-},
-["Holy"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["Mitigation"] = {
-["Show"] = true,
-["Enhanced_Base"] = 1,
-},
-["TargetSpeed"] = {
-["Show"] = false,
-},
-["rangedSpeed"] = {
-["Show"] = false,
-},
-["Healing"] = {
-["Show"] = true,
-["Enhanced_Base"] = 1,
 },
 ["MP5"] = {
 ["Show"] = true,
 ["Regen_Normal_Casting"] = 1,
 },
-["AP"] = {
-["Show"] = true,
-},
-["ManaRegen"] = {
+["Parry"] = {
 ["Show"] = false,
-["Regen_Normal_Casting"] = 1,
 },
-["HasteRanged"] = {
+["Armor"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["HasteMelee"] = {
 ["Show"] = false,
 },
 ["RangedMiss"] = {
@@ -1687,254 +1686,10 @@ SinStatsDB = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["RAP"] = {
-["Show"] = false,
-},
-},
-["StatFont"] = "Arial Narrow",
-["EventCombat"] = false,
-["PanelDisplay"] = false,
-["StatFontSize"] = 16,
-["StatSpacingV"] = 0,
-["StatWidth"] = 150,
-["StatSpacingH"] = 1,
-["EventPvP"] = false,
-["StatTextCaps"] = false,
-["HUDBgAlpha"] = 0,
-["ResetPosition"] = false,
-["StatAlignment"] = "TOPLEFT",
-["CompButton"] = true,
-["DataColor"] = {
-["b"] = 1,
-["g"] = 1,
-["r"] = 1,
-},
-["EventWorld"] = false,
-["LockHUD"] = false,
-["Minimap"] = {
-["Show"] = true,
-},
-["HUDBgColor"] = {
-["b"] = 0.1,
-["g"] = 0.1,
-["r"] = 0.1,
-},
-["ClassColors"] = false,
-["StatIcons"] = true,
-["StatTextColor"] = {
-["b"] = 1,
-["g"] = 1,
-["r"] = 1,
-},
-},
-["PALADIN"] = {
-["EventEnable"] = false,
-["StatFontFlags"] = "",
-["EventRaid"] = false,
-["HUDStrata"] = "MEDIUM",
-["StatTextAbreviate"] = false,
-["HideHUD"] = false,
-["EventDungeon"] = false,
-["TextSeparator"] = ":",
-["PanelShow"] = false,
-["SplitColors"] = false,
-["IconAlignment"] = "TOPLEFT",
-["EventArena"] = false,
-["Stats"] = {
-["Durability"] = {
-["Show"] = true,
-},
-["Shadow"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["ArcaneResist"] = {
-["Show"] = false,
-},
-["FrostResist"] = {
-["Show"] = false,
-},
-["APUD"] = {
-["Show"] = false,
-},
-["DMG"] = {
-["Show"] = false,
-["Display_Average"] = false,
-["Main_Off_Auto"] = 1,
-},
-["Arcane"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["RepairCost"] = {
-["Show"] = false,
-["Total_Equipped_Bags"] = 1,
-},
-["BuffCounter"] = {
-["Show"] = false,
-},
 ["RangedCrit"] = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["ShadowResist"] = {
-["Show"] = false,
-},
-["NatureResist"] = {
-["Show"] = false,
-},
-["SpellHit"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["RAPUD"] = {
-["Show"] = false,
-},
-["Lag"] = {
-["Show"] = false,
-["World_Realm"] = 1,
-},
-["rDPS"] = {
-["Show"] = false,
-["Max_Average_Damage"] = 1,
-},
-["SpellCrit"] = {
-["Show"] = true,
-["Level_Same_Boss"] = 1,
-},
-["Fire"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["RDMG"] = {
-["Show"] = false,
-["Max_Average_Damage"] = 1,
-},
-["weaponSpeed"] = {
-["Show"] = false,
-["Main_Off_Auto"] = 1,
-},
-["mDPS"] = {
-["Show"] = false,
-["Display_Average"] = false,
-["Main_Off_Auto"] = 1,
-},
-["SpellMiss"] = {
-["Show"] = false,
-["Level_Same_Boss"] = 1,
-},
-["CritCap"] = {
-["Show"] = false,
-},
-["HasteMelee"] = {
-["Show"] = true,
-},
-["MeleeMiss"] = {
-["Show"] = false,
-["Level_Same_Boss"] = 1,
-},
-["RangedHit"] = {
-["Show"] = false,
-},
-["Armor"] = {
-["Show"] = true,
-["Enhanced_Base"] = 1,
-},
-["DebuffCounter"] = {
-["Show"] = false,
-},
-["Parry"] = {
-["Show"] = false,
-},
-["HasteCaster"] = {
-["Show"] = false,
-},
-["Nature"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["FPS"] = {
-["Show"] = false,
-},
-["Frost"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["Money"] = {
-["Show"] = false,
-},
-["Dodge"] = {
-["Show"] = false,
-},
-["Speed"] = {
-["Show"] = true,
-},
-["Block"] = {
-["Show"] = false,
-},
-["Honor"] = {
-["Show"] = false,
-["Honor_Kills"] = 1,
-},
-["Defense"] = {
-["Show"] = false,
-},
-["Threat"] = {
-["Show"] = false,
-["Percent_Rating"] = 1,
-},
-["Holy"] = {
-["Show"] = true,
-["Enhanced_Base"] = 1,
-},
-["Mitigation"] = {
-["Show"] = true,
-["Enhanced_Base"] = 1,
-},
-["TargetSpeed"] = {
-["Show"] = false,
-},
-["rangedSpeed"] = {
-["Show"] = false,
-},
-["Healing"] = {
-["Show"] = true,
-["Enhanced_Base"] = 1,
-},
-["MP5"] = {
-["Show"] = true,
-["Regen_Normal_Casting"] = 1,
-},
-["AP"] = {
-["Show"] = true,
-},
-["ManaRegen"] = {
-["Show"] = false,
-["Regen_Normal_Casting"] = 1,
-},
-["HasteRanged"] = {
-["Show"] = false,
-},
-["RangedMiss"] = {
-["Show"] = false,
-["Level_Same_Boss"] = 1,
-},
-["Hit"] = {
-["Show"] = false,
-},
-["FireResist"] = {
-["Show"] = false,
-},
-["SpellUD"] = {
-["Show"] = false,
-},
-["Crit"] = {
-["Show"] = true,
-["Level_Same_Boss"] = 1,
-},
-["RAP"] = {
-["Show"] = false,
-},
 },
 ["StatFont"] = "Arial Narrow",
 ["EventCombat"] = false,
@@ -1944,33 +1699,33 @@ SinStatsDB = {
 ["StatWidth"] = 150,
 ["StatSpacingH"] = 1,
 ["EventPvP"] = false,
-["StatTextCaps"] = false,
-["HUDBgAlpha"] = 0,
+["StatTextColor"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 1,
+},
+["StatIcons"] = true,
 ["ResetPosition"] = false,
-["StatAlignment"] = "TOPLEFT",
+["ClassColors"] = false,
 ["CompButton"] = true,
 ["DataColor"] = {
-["b"] = 1,
-["g"] = 1,
 ["r"] = 1,
+["g"] = 1,
+["b"] = 1,
 },
-["EventWorld"] = false,
-["LockHUD"] = false,
 ["Minimap"] = {
 ["Show"] = true,
 },
+["LockHUD"] = false,
+["EventWorld"] = false,
 ["HUDBgColor"] = {
-["b"] = 0.1,
-["g"] = 0.1,
 ["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
 },
-["ClassColors"] = false,
-["StatIcons"] = true,
-["StatTextColor"] = {
-["b"] = 1,
-["g"] = 1,
-["r"] = 1,
-},
+["StatAlignment"] = "TOPLEFT",
+["HUDBgAlpha"] = 0,
+["StatTextCaps"] = false,
 },
 ["ROGUE"] = {
 ["EventEnable"] = false,
@@ -2018,21 +1773,22 @@ SinStatsDB = {
 ["BuffCounter"] = {
 ["Show"] = false,
 },
-["RangedCrit"] = {
+["RAP"] = {
 ["Show"] = false,
-["Level_Same_Boss"] = 1,
 },
 ["ShadowResist"] = {
 ["Show"] = false,
 },
-["NatureResist"] = {
-["Show"] = false,
+["mDPS"] = {
+["Show"] = true,
+["Display_Average"] = false,
+["Main_Off_Auto"] = 1,
 },
 ["SpellHit"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["RAPUD"] = {
+["NatureResist"] = {
 ["Show"] = false,
 },
 ["Lag"] = {
@@ -2047,9 +1803,8 @@ SinStatsDB = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
-["Fire"] = {
+["RAPUD"] = {
 ["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["RDMG"] = {
 ["Show"] = false,
@@ -2059,53 +1814,53 @@ SinStatsDB = {
 ["Show"] = true,
 ["Main_Off_Auto"] = 1,
 },
-["mDPS"] = {
-["Show"] = true,
-["Display_Average"] = false,
-["Main_Off_Auto"] = 1,
+["Fire"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
 },
 ["SpellMiss"] = {
-["Show"] = false,
-["Level_Same_Boss"] = 1,
-},
-["CritCap"] = {
-["Show"] = true,
-},
-["HasteMelee"] = {
-["Show"] = true,
-},
-["MeleeMiss"] = {
 ["Show"] = false,
 ["Level_Same_Boss"] = 1,
 },
 ["RangedHit"] = {
 ["Show"] = false,
 },
-["Armor"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
 ["DebuffCounter"] = {
 ["Show"] = false,
 },
-["Parry"] = {
+["MeleeMiss"] = {
+["Show"] = false,
+["Level_Same_Boss"] = 1,
+},
+["CritCap"] = {
+["Show"] = true,
+},
+["Frost"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["HasteRanged"] = {
 ["Show"] = false,
 },
-["HasteCaster"] = {
+["AP"] = {
+["Show"] = true,
+},
+["Block"] = {
 ["Show"] = false,
 },
 ["Nature"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["FPS"] = {
-["Show"] = false,
-},
-["Frost"] = {
+["Healing"] = {
 ["Show"] = false,
 ["Enhanced_Base"] = 1,
 },
-["Money"] = {
+["ManaRegen"] = {
+["Show"] = false,
+["Regen_Normal_Casting"] = 1,
+},
+["rangedSpeed"] = {
 ["Show"] = false,
 },
 ["Dodge"] = {
@@ -2114,51 +1869,50 @@ SinStatsDB = {
 ["Speed"] = {
 ["Show"] = true,
 },
-["Block"] = {
+["HasteCaster"] = {
+["Show"] = false,
+},
+["TargetSpeed"] = {
+["Show"] = false,
+},
+["Mitigation"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Holy"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Threat"] = {
+["Show"] = false,
+["Percent_Rating"] = 1,
+},
+["Defense"] = {
 ["Show"] = false,
 },
 ["Honor"] = {
 ["Show"] = false,
 ["Honor_Kills"] = 1,
 },
-["Defense"] = {
+["Money"] = {
 ["Show"] = false,
 },
-["Threat"] = {
+["FPS"] = {
 ["Show"] = false,
-["Percent_Rating"] = 1,
-},
-["Holy"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["Mitigation"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
-},
-["TargetSpeed"] = {
-["Show"] = false,
-},
-["rangedSpeed"] = {
-["Show"] = false,
-},
-["Healing"] = {
-["Show"] = false,
-["Enhanced_Base"] = 1,
 },
 ["MP5"] = {
 ["Show"] = false,
 ["Regen_Normal_Casting"] = 1,
 },
-["AP"] = {
+["Parry"] = {
+["Show"] = false,
+},
+["Armor"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["HasteMelee"] = {
 ["Show"] = true,
-},
-["ManaRegen"] = {
-["Show"] = false,
-["Regen_Normal_Casting"] = 1,
-},
-["HasteRanged"] = {
-["Show"] = false,
 },
 ["RangedMiss"] = {
 ["Show"] = false,
@@ -2177,8 +1931,9 @@ SinStatsDB = {
 ["Show"] = true,
 ["Level_Same_Boss"] = 1,
 },
-["RAP"] = {
+["RangedCrit"] = {
 ["Show"] = false,
+["Level_Same_Boss"] = 1,
 },
 },
 ["StatFont"] = "Arial Narrow",
@@ -2189,33 +1944,278 @@ SinStatsDB = {
 ["StatWidth"] = 150,
 ["StatSpacingH"] = 1,
 ["EventPvP"] = false,
-["StatTextCaps"] = false,
-["HUDBgAlpha"] = 0,
+["StatTextColor"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 1,
+},
+["StatIcons"] = true,
 ["ResetPosition"] = false,
-["StatAlignment"] = "TOPLEFT",
+["ClassColors"] = false,
 ["CompButton"] = true,
 ["DataColor"] = {
-["b"] = 1,
-["g"] = 1,
 ["r"] = 1,
+["g"] = 1,
+["b"] = 1,
 },
-["EventWorld"] = false,
-["LockHUD"] = false,
 ["Minimap"] = {
 ["Show"] = true,
 },
+["LockHUD"] = false,
+["EventWorld"] = false,
 ["HUDBgColor"] = {
-["b"] = 0.1,
-["g"] = 0.1,
 ["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
 },
-["ClassColors"] = false,
-["StatIcons"] = true,
+["StatAlignment"] = "TOPLEFT",
+["HUDBgAlpha"] = 0,
+["StatTextCaps"] = false,
+},
+["PALADIN"] = {
+["EventEnable"] = false,
+["StatFontFlags"] = "",
+["EventRaid"] = false,
+["HUDStrata"] = "MEDIUM",
+["StatTextAbreviate"] = false,
+["HideHUD"] = false,
+["EventDungeon"] = false,
+["TextSeparator"] = ":",
+["PanelShow"] = false,
+["SplitColors"] = false,
+["IconAlignment"] = "TOPLEFT",
+["EventArena"] = false,
+["Stats"] = {
+["Durability"] = {
+["Show"] = true,
+},
+["Shadow"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["ArcaneResist"] = {
+["Show"] = false,
+},
+["FrostResist"] = {
+["Show"] = false,
+},
+["APUD"] = {
+["Show"] = false,
+},
+["DMG"] = {
+["Show"] = false,
+["Display_Average"] = false,
+["Main_Off_Auto"] = 1,
+},
+["Arcane"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["RepairCost"] = {
+["Show"] = false,
+["Total_Equipped_Bags"] = 1,
+},
+["BuffCounter"] = {
+["Show"] = false,
+},
+["RAP"] = {
+["Show"] = false,
+},
+["ShadowResist"] = {
+["Show"] = false,
+},
+["mDPS"] = {
+["Show"] = false,
+["Display_Average"] = false,
+["Main_Off_Auto"] = 1,
+},
+["SpellHit"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["NatureResist"] = {
+["Show"] = false,
+},
+["Lag"] = {
+["Show"] = false,
+["World_Realm"] = 1,
+},
+["rDPS"] = {
+["Show"] = false,
+["Max_Average_Damage"] = 1,
+},
+["SpellCrit"] = {
+["Show"] = true,
+["Level_Same_Boss"] = 1,
+},
+["RAPUD"] = {
+["Show"] = false,
+},
+["RDMG"] = {
+["Show"] = false,
+["Max_Average_Damage"] = 1,
+},
+["weaponSpeed"] = {
+["Show"] = false,
+["Main_Off_Auto"] = 1,
+},
+["Fire"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["SpellMiss"] = {
+["Show"] = false,
+["Level_Same_Boss"] = 1,
+},
+["RangedHit"] = {
+["Show"] = false,
+},
+["DebuffCounter"] = {
+["Show"] = false,
+},
+["MeleeMiss"] = {
+["Show"] = false,
+["Level_Same_Boss"] = 1,
+},
+["CritCap"] = {
+["Show"] = false,
+},
+["Frost"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["HasteRanged"] = {
+["Show"] = false,
+},
+["AP"] = {
+["Show"] = true,
+},
+["Block"] = {
+["Show"] = false,
+},
+["Nature"] = {
+["Show"] = false,
+["Enhanced_Base"] = 1,
+},
+["Healing"] = {
+["Show"] = true,
+["Enhanced_Base"] = 1,
+},
+["ManaRegen"] = {
+["Show"] = false,
+["Regen_Normal_Casting"] = 1,
+},
+["rangedSpeed"] = {
+["Show"] = false,
+},
+["Dodge"] = {
+["Show"] = false,
+},
+["Speed"] = {
+["Show"] = true,
+},
+["HasteCaster"] = {
+["Show"] = false,
+},
+["TargetSpeed"] = {
+["Show"] = false,
+},
+["Mitigation"] = {
+["Show"] = true,
+["Enhanced_Base"] = 1,
+},
+["Holy"] = {
+["Show"] = true,
+["Enhanced_Base"] = 1,
+},
+["Threat"] = {
+["Show"] = false,
+["Percent_Rating"] = 1,
+},
+["Defense"] = {
+["Show"] = false,
+},
+["Honor"] = {
+["Show"] = false,
+["Honor_Kills"] = 1,
+},
+["Money"] = {
+["Show"] = false,
+},
+["FPS"] = {
+["Show"] = false,
+},
+["MP5"] = {
+["Show"] = true,
+["Regen_Normal_Casting"] = 1,
+},
+["Parry"] = {
+["Show"] = false,
+},
+["Armor"] = {
+["Show"] = true,
+["Enhanced_Base"] = 1,
+},
+["HasteMelee"] = {
+["Show"] = true,
+},
+["RangedMiss"] = {
+["Show"] = false,
+["Level_Same_Boss"] = 1,
+},
+["Hit"] = {
+["Show"] = false,
+},
+["FireResist"] = {
+["Show"] = false,
+},
+["SpellUD"] = {
+["Show"] = false,
+},
+["Crit"] = {
+["Show"] = true,
+["Level_Same_Boss"] = 1,
+},
+["RangedCrit"] = {
+["Show"] = false,
+["Level_Same_Boss"] = 1,
+},
+},
+["StatFont"] = "Arial Narrow",
+["EventCombat"] = false,
+["PanelDisplay"] = false,
+["StatFontSize"] = 16,
+["StatSpacingV"] = 0,
+["StatWidth"] = 150,
+["StatSpacingH"] = 1,
+["EventPvP"] = false,
 ["StatTextColor"] = {
-["b"] = 1,
-["g"] = 1,
 ["r"] = 1,
+["g"] = 1,
+["b"] = 1,
 },
+["StatIcons"] = true,
+["ResetPosition"] = false,
+["ClassColors"] = false,
+["CompButton"] = true,
+["DataColor"] = {
+["r"] = 1,
+["g"] = 1,
+["b"] = 1,
+},
+["Minimap"] = {
+["Show"] = true,
+},
+["LockHUD"] = false,
+["EventWorld"] = false,
+["HUDBgColor"] = {
+["r"] = 0.1,
+["g"] = 0.1,
+["b"] = 0.1,
+},
+["StatAlignment"] = "TOPLEFT",
+["HUDBgAlpha"] = 0,
+["StatTextCaps"] = false,
 },
 },
 }

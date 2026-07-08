@@ -2,12 +2,12 @@
 CellCharacterDB = {
 ["layoutAutoSwitch"] = {
 {
-["raid_instance"] = "团队",
+["raid_instance"] = "default",
 ["party"] = "default",
 ["solo"] = "default",
 ["arena"] = "default",
 ["battleground"] = "default",
-["raid_outdoor"] = "团队",
+["raid_outdoor"] = "default",
 },
 {
 ["raid_instance"] = "default",

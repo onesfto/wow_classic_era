@@ -1,0 +1,8 @@
+
+CopyAnythingDB = {
+["profileKeys"] = {
+["津巴布韦公主 - 哈霍兰"] = "Default",
+["巨龙守护者 - 哈霍兰"] = "Default",
+["护士长玛利亚 - 哈霍兰"] = "Default",
+},
+}

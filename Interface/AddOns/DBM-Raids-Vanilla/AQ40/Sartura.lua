@@ -9,7 +9,9 @@ end
 local mod	= DBM:NewMod("Sartura", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20241214185855")
+mod:SetRevision("20260523022054")
+mod:SetMinSyncRevision(20260522000000) -- 2026, May 22nd
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(15516)
 mod:SetEncounterID(711)
 mod:SetModelID(15583)
@@ -18,7 +20,8 @@ mod:SetZone(531)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_CAST_SUCCESS 26083 8269"
+	"SPELL_CAST_SUCCESS 26083 8269",
+	"UNIT_DIED"
 )
 
 mod:NewGtfo{spell = 26084, spellAura = false, spellPeriodicDamage = false}
@@ -27,12 +30,17 @@ mod:NewGtfo{spell = 26084, spellAura = false, spellPeriodicDamage = false}
 local warnEnrageSoon	= mod:NewSoonAnnounce(8269, 2)
 local warnEnrage		= mod:NewSpellAnnounce(8269, 4)
 local warnWhirlwind		= mod:NewSpellAnnounce(26083, 3)
+local warnGuardDied		= mod:NewAnnounce("WarnGuardDied", 2, "133572")
 
-local specWarnWhirlwind	= mod:NewSpecialWarningRun(26083, nil, nil, 2, 4, 2)
+local specWarnWhirlwind	= mod:NewSpecialWarningRun(26083, nil, nil, 2, 4, 2, nil, nil, "justrun")
+local addsGuidCheck = {}
 
 mod.vb.prewarn_enrage = false
+mod.vb.guardsRemaining = 3
 
-function mod:OnCombatStart(delay)
+function mod:OnCombatStart()
+	table.wipe(addsGuidCheck)
+	self.vb.guardsRemaining = 3
 	self.vb.prewarn_enrage = false
 	self:RegisterShortTermEvents(
 		"UNIT_HEALTH"
@@ -40,6 +48,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:OnCombatEnd()
+	table.wipe(addsGuidCheck)
 	self:UnregisterShortTermEvents()
 end
 
@@ -57,9 +66,29 @@ function mod:SPELL_CAST_SUCCESS(args)
 end
 
 function mod:UNIT_HEALTH(uId)
-	if UnitHealth(uId) / UnitHealthMax(uId) <= 0.35 and self:GetUnitCreatureId(uId) == 15516 and not self.vb.prewarn_enrage then
-		warnEnrageSoon:Show()
-		self.vb.prewarn_enrage = true
+	if self:GetUnitCreatureId(uId) == 15516 and UnitHealth(uId) / UnitHealthMax(uId) <= 0.35 then
+		self:SendSync("EnrageSoon")
 		self:UnregisterShortTermEvents()
 	end
+end
+
+function mod:OnSync(msg)
+	if not self:IsInCombat() then return end
+	if msg == "EnrageSoon" and not self.vb.prewarn_enrage then
+		self.vb.prewarn_enrage = true
+		warnEnrageSoon:Show()
+	end
+end
+
+function mod:UNIT_DIED(args)
+    local guid = args.destGUID
+    local cid = self:GetCIDFromGUID(guid)
+
+    if cid == 15984 then -- Sartura's Royal Guard
+        if not addsGuidCheck[guid] then
+            addsGuidCheck[guid] = true
+            self.vb.guardsRemaining = self.vb.guardsRemaining - 1
+            warnGuardDied:Show(self.vb.guardsRemaining, 3)
+        end
+    end
 end

@@ -39,10 +39,9 @@ local function GetFriendData(linData)
 	end
 end
 Data.MailTabsList={SendTabs,SendTabsTisp,GetFriendData}
-local PIG_OPEN_ALL_MAIL_MIN_DELAY=1
+local PIG_OPEN_ALL_MAIL_MIN_DELAY=0.6
 function BusinessInfo.MailPlusOptions()
 	local Tab2_F,Tab2_But =PIGOptionsList_R(BusinessInfo.RTabFrame,GnName,90)
-	PIG_OPEN_ALL_MAIL_MIN_DELAY=PIGA["MailPlus"]["OpenAllCD"]
 	------
 	local Tooltip = {GnName,L["TRADEMAIL_TABNAMETISP"]};
 	Tab2_F.MailPlus = PIGCheckbutton(Tab2_F,{"TOPLEFT",Tab2_F,"TOPLEFT",20,-20},Tooltip)
@@ -98,6 +97,7 @@ end
 function BusinessInfo.MailPlus_ADDUI()
 	if not PIGA["MailPlus"]["Open"] then return end
 	if InboxFrame.bagliu1 then return end
+	PIG_OPEN_ALL_MAIL_MIN_DELAY=PIGA["MailPlus"]["OpenAllCD"]
 	----
 	local OnekeyTake = CreateFrame("Frame",nil,InboxFrame)
 	local boxitemdata = {["boxbutNum"]=64,["meihang"]=8}

@@ -18,7 +18,8 @@ else
 	mod.statTypes = "normal"
 end
 
-mod:SetRevision("20241103123604")
+mod:SetRevision("20260523022054")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(13020)
 mod:SetEncounterID(611)
 if not mod:IsClassic() then
@@ -44,12 +45,12 @@ mod:RegisterEventsInCombat(
 local warnBreath			= mod:NewCastAnnounce(23461, 2, nil, nil, "Tank", 2)
 local warnAdrenaline		= mod:NewTargetNoFilterAnnounce(18173, 2)
 
-local specWarnAdrenaline	= mod:NewSpecialWarningYou(18173, nil, nil, nil, 1, 2)
-local specWarnAdrenalineOut	= mod:NewSpecialWarningMoveAway(18173, nil, nil, nil, 1, 2)
+local specWarnAdrenaline	= mod:NewSpecialWarningYou(18173, nil, nil, nil, 4, 2, nil, nil, "targetyou")
+local specWarnAdrenalineOut	= mod:NewSpecialWarningMoveAway(18173, nil, nil, nil, 1, 2, nil, nil, "runout")
 local yellAdrenaline		= mod:NewYell(18173, nil, true, 2)
 local yellAdrenalineFades	= mod:NewShortFadesYell(18173)
 
-local timerAdrenalineCD		= mod:NewCDTimer(15.7, 18173, nil, nil, nil, 3)
+local timerAdrenalineCD		= mod:NewVarTimer("v16.1-17.8", 18173, nil, nil, nil, 3)
 local timerAdrenaline		= mod:NewTargetTimer(20, 18173, nil, nil, nil, 3)
 local timerCombatStart		= mod:NewCombatTimer(43.5)
 
@@ -57,10 +58,10 @@ mod:AddSetIconOption("SetIconOnDebuffTarget2", 18173, true, 0, {8, 7, 6})
 
 mod.vb.debuffIcon = 8
 
-function mod:OnCombatStart(delay)
+function mod:OnCombatStart()
 	self.vb.debuffIcon = 8
 	if not DBM:IsSeasonal("SeasonOfDiscovery") then
-		timerAdrenalineCD:Start(15.7-delay)
+		timerAdrenalineCD:Start()
 	end
 end
 

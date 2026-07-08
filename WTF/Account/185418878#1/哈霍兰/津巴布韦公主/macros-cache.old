@@ -45,6 +45,11 @@ VER 3 0100000000000013 "蓝胖" "INV_Misc_QuestionMark"
 /cast [combat,nopet][@pet,dead] 恶魔支配
 /cast 召唤虚空行者
 END
+VER 3 0100000000000016 "饰品" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 14; 13
+/use 13
+/use 14
+END
 VER 3 0100000000000014 "鲁莽" "INV_Misc_QuestionMark"
 #showtooltip 鲁莽诅咒
 /cast [@mouseover,exists,harm,nodead][] 鲁莽诅咒

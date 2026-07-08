@@ -44,7 +44,7 @@ if Locale == "zhCN" or Locale == "zhTW" then
 		addData[L.addnames[1]].nameLocale="工具箱"
 		addData[L.addnames[1]].tooltip="工具合集。整合很多小功能，可以极大减少你的插件数量"
 		addData[L.addnames[2]].nameLocale="时空之门"
-		addData[L.addnames[2]].tooltip="查找车头/老板/换位面/便捷喊话(智能邀请回复)"
+		addData[L.addnames[2]].tooltip="寻找车头/老板/换位面/便捷喊话(智能邀请回复)"
 		addData[L.addnames[3]].nameLocale="金团助手"
 		addData[L.addnames[3]].tooltip="拾取记录，快速拍卖/出价，补助/罚款记录，分G助手等"
 		addData[L.addnames[4]].nameLocale="带本助手"

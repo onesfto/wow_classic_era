@@ -6905,5 +6905,99 @@ nil,
 },
 },
 },
+{
+["PlayerName"] = "女王安其拉-哈霍兰",
+["Date"] = "2026-07-04",
+["Reason"] = 4,
+["Time"] = "00:54:57",
+["ReceiveMoney"] = 24000000,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "法德迦-哈霍兰",
+["Result"] = "received",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "女王安其拉-哈霍兰",
+["Date"] = "2026-07-04",
+["Reason"] = 1,
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "00:56:39",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "联盟拍卖行-哈霍兰",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cffffffff|Hitem:12404::::::::60::::::::::|h[致密磨刀石]|h|r",
+["Name"] = "致密磨刀石",
+},
+},
+},
+{
+["PlayerName"] = "女王安其拉-哈霍兰",
+["Date"] = "2026-07-04",
+["Reason"] = 4,
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "00:56:57",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "法德迦-哈霍兰",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 9,
+["ItemLink"] = "|cffffffff|Hitem:16023::::::::60::::::::::|h[高级活动假人]|h|r",
+["Name"] = "高级活动假人",
+},
+},
+},
+{
+["PlayerName"] = "女王安其拉-哈霍兰",
+["Date"] = "2026-07-04",
+["Reason"] = 6,
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "00:57:14",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "黑龙守护者-哈霍兰",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 10,
+["ItemLink"] = "|cffffffff|Hitem:12820::::::::60::::::::::|h[冬泉火酒]|h|r",
+["Name"] = "冬泉火酒",
+},
+{
+["Number"] = 4,
+["ItemLink"] = "|cffffffff|Hitem:13452::::::::60::::::::::|h[猫鼬药剂]|h|r",
+["Name"] = "猫鼬药剂",
+},
+},
+},
+{
+["TargetName"] = "凤凰浴火-哈霍兰",
+["Date"] = "2026-07-07",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "01:50:05",
+["GiveMoney"] = 400000000,
+["Location"] = "暴风城",
+["PlayerName"] = "女王安其拉-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
 },
 }

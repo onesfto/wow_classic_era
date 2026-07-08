@@ -442,8 +442,8 @@ function CombatPlusfun.addOptions_HPMPBar()
 						PIGA["CombatPlus"]["HPMPBar"]["Showshuzhi"]=true;
 					else
 						PIGA["CombatPlus"]["HPMPBar"]["Showshuzhi"]=false;
-						PIG_HPMPBarUI.Showshuzhi=false
 					end
+					PIG_HPMPBarUI.Showshuzhi=PIGA["CombatPlus"]["HPMPBar"]["Showshuzhi"]
 					PIG_HPMPBarUI.Set_BarFontAll()
 				end);
 				Tab2_F.SetF.FontSize = PIGSlider(Tab2_F.SetF,{"LEFT",Tab2_F.SetF.Showshuzhi,"LEFT",210,0},{10,26,1})

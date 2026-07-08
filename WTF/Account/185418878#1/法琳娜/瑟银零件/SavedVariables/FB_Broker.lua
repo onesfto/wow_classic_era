@@ -1,3 +1,0 @@
-
-FB_BrokerData = {
-}

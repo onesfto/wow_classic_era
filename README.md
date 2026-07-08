@@ -14,6 +14,10 @@
 - **tdInspect**: 观察目标玩家的装备和天赋详情。
 - **Leatrix_Plus**: 百宝箱，提供非常多便利的小功能。
 - **CharacterStatsClassic**: 经典旧世角色属性面板增强。
+- **SinStats**: 提供角色全属性深入统计数据的浮动面板。
+- **Cell**: 强大的团队框架插件（点击施法和增益监视）。
+- **NDui** (及 _Plus): 轻量级、高度集成的完整界面替换包。
+- **SexyMap**: 小地图美化与增强。
 - **Rurutia** (及 _Raids): 游戏自定义整合包或语音资源包。
 
 ## 战斗与首领模块 (Combat & Raiding)
@@ -27,13 +31,12 @@
 - **SpellActivationOverlay** / **ClassicSpellActivations**: 技能触发高亮提示（如法术连击）。
 - **TotemTimers**: 萨满图腾时间监视与管理。
 - **Doom_CooldownPulse**: 技能冷却完毕屏幕中央闪烁提示。
-- **PallyPower**: 圣骑士祝福管理。
 - **aBlueShaman**: 萨满辅助相关插件。
+- **SimpleRaidTargetIcons**: 鼠标双击/修饰键快速标记团队目标。
 
 ## 物品与背包 (Inventory & Loot)
 - **BetterBags**: 智能分类背包插件。
 - **AtlasLootClassic** (及各子模块): 物品掉落查询字典（副本、阵营、制造业等掉落大全）。
-- **BiSTracker**: 毕业装备查询与追踪。
 - **GearMenu**: 装备一键切换与饰品管理菜单。
 
 ## 拍卖行与经济 (Economy & Trade)
@@ -66,7 +69,9 @@
 - **HidingBar** (及 _Options): 隐藏/收纳小地图周围杂乱的插件图标。
 - **MeetingHorn**: 集结号（寻找队伍、发布招募信息的国服常用工具）。
 - **Myslot**: 快捷键和宏的导入/导出工具。
+- **MacroToolkit** (及 _Icons): 强大的宏命令管理与图标扩展。
 - **NovaWorldBuffs**: 世界 BUFF 计时与位面监控（对于经典服打团至关重要）。
+- **Onesfto**: 个人定制化的综合辅助代码与模块。
 - **RangeDisplay** (及 _Options): 显示与目标的距离。
 - **RareScanner**: 稀有怪物、宝箱刷新扫描报警。
 - **TalentEmuX**: 游戏内天赋模拟器。

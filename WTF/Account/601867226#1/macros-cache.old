@@ -1,6 +1,5 @@
 VER 3 0000000000000015 "Decursive" "INV_MISC_QUESTIONMARK"
-/stopcasting
-/cast [@mouseover,nomod,exists] 解除次级诅咒;  [@mouseover,exists,mod:ctrl] 变形术; [@mouseover,exists,mod:shift] 解除次级诅咒
+/script DecursiveRootTable.Dcr:Println('没有相关技能')
 END
 VER 3 0000000000000028 "RXPTargeting" "Ability_eyeoftheowl"
 /targetexact 凯尔登·布雷门

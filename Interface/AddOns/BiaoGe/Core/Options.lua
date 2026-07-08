@@ -192,13 +192,15 @@ BG.Init(function()
         others = BG.OptionsCreateTab("Options_others", L["其他功能"])
         config = BG.OptionsCreateTab("Options_config", L["角色配置"])
 
-        if BiaoGe.options.lastFrame and BG[BiaoGe.options.lastFrame] then
-            BG[BiaoGe.options.lastFrame]:Show()
-            BG[BiaoGe.options.lastFrame]:GetParent():SetEnabled(false)
-        else
-            BG.FrameOptions_biaoge:Show()
-            BG.FrameOptions_biaoge:GetParent():SetEnabled(false)
-        end
+        BG.Init2(function()
+            if BiaoGe.options.lastFrame and BG[BiaoGe.options.lastFrame] then
+                BG[BiaoGe.options.lastFrame]:Show()
+                BG[BiaoGe.options.lastFrame]:GetParent():SetEnabled(false)
+            else
+                BG.FrameOptions_biaoge:Show()
+                BG.FrameOptions_biaoge:GetParent():SetEnabled(false)
+            end
+        end)
     end
 
     -- 模板
@@ -2507,8 +2509,8 @@ BG.Init(function()
                     " ",
                     L["需要使用非匿名模式，而且你是团长时才会生效。"],
                 },
-                autoAuctionAutoEndTips   = { L["自动出价结束后语音提醒"], L["自动出价结束后，语音提醒你，防止你错过装备。"] },
-                auctionTopPrice          = { L["小心偷家语音提醒"],
+                autoAuctionAutoEndTips   = { L["拍卖语音提醒"],
+                    L["自动出价结束后，语音提醒你，防止你错过装备。"], " ",
                     L["没有使用自动出价时，如果拍卖剩余时间低于10秒时被顶价，语音提醒你\"小心偷家\"。"],
                 },
                 autoCreateBill           = { L["自动生成表格账单"], L["当一个装备拍卖成功时，会根据拍卖记录，自动填写表格里该装备所对应的买家和金额。"], " ",
@@ -2547,7 +2549,6 @@ BG.Init(function()
                 { name = "autoAuctionLogLink", default = 1, },
                 { name = "autoAuctionHappySay", default = 1, condition = function() return not BG.IsTitan end },
                 { name = "autoAuctionAutoEndTips", default = 1, },
-                { name = "auctionTopPrice", default = 1, },
                 { name = "autoCreateBill", default = 1, callback = { BG.UpdateAutoCreateBillButton } },
                 { name = "autoAuctionFold", default = 0, isnew = true },
                 { name = "autoAuctionFoldIfNotHope", default = 0, isnew = true },

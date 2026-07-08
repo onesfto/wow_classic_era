@@ -1,7 +1,7 @@
 
 GearMenuConfiguration = {
 ["enableDragAndDrop"] = true,
-["trinketMenuSlotSize"] = 35,
+["trinketMenuSlotSize"] = 40,
 ["trinketMenuShowCooldowns"] = true,
 ["filterItemQuality"] = 4,
 ["firstTimeInitializationDone"] = true,
@@ -10,7 +10,7 @@ GearMenuConfiguration = {
 ["enableFastPress"] = false,
 ["enableSimpleTooltips"] = true,
 ["enableTooltips"] = true,
-["enableUnequipSlot"] = true,
+["enableUnequipSlot"] = false,
 ["enableRuneSlots"] = true,
 ["gearBars"] = {
 {
@@ -40,30 +40,30 @@ GearMenuConfiguration = {
 },
 ["displayName"] = "饰品",
 ["isLocked"] = true,
-["changeMenuDirection"] = 1,
+["gearSlotSize"] = 40,
 ["showCooldowns"] = true,
 ["orientation"] = 1,
+["changeSlotSize"] = 40,
 ["position"] = {
-["relativePoint"] = "CENTER",
-["posY"] = -222.1014709472656,
-["point"] = "CENTER",
 ["posX"] = 426.2960510253906,
+["point"] = "CENTER",
+["posY"] = -222.1014709472656,
+["relativePoint"] = "CENTER",
 },
-["changeSlotSize"] = 48,
-["gearSlotSize"] = 40,
-},
-},
-["addonVersion"] = "v2.7.0",
-["uiTheme"] = 2,
-["trinketMenuColumns"] = 4,
-["frames"] = {
-["GM_TrinketMenuFrame"] = {
-["posX"] = -319.3756713867188,
-["posY"] = 229.7484741210938,
-["point"] = "BOTTOMRIGHT",
-["relativePoint"] = "BOTTOMRIGHT",
+["changeMenuDirection"] = 2,
 },
 },
 ["quickChangeRules"] = {
 },
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 8,
+["frames"] = {
+["GM_TrinketMenuFrame"] = {
+["posX"] = -237.2508697509766,
+["posY"] = -222.0956420898438,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+},
+["addonVersion"] = "v2.7.0",
 }

@@ -3,9 +3,9 @@
 ## Title: BetterBags
 ## Notes: Better Bags for everyone!
 ## Author: Cidan
-## Version: v0.4.9
+## Version: v0.4.10
 ## SavedVariables: BetterBagsDB
-## X-Date: 2026-06-29T05:19:38Z
+## X-Date: 2026-07-03T01:45:25Z
 ## X-License: MIT
 ## X-Curse-Project-ID: 942432
 ## X-Wago-ID: aNDmy96o

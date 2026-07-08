@@ -1,5 +1,166 @@
 
 SexyMap2DB = {
+["联盟的奸细-法琳娜"] = {
+["core"] = {
+["clamp"] = true,
+["lock"] = false,
+["rightClickToConfig"] = true,
+["autoZoom"] = 5,
+["shape"] = "Interface\\AddOns\\SexyMap\\shapes\\circle.tga",
+["northTag"] = true,
+},
+["coordinates"] = {
+["enabled"] = true,
+["fontColor"] = {
+},
+["xOffset"] = 0,
+["monochrome"] = false,
+["updateRate"] = 1,
+["yOffset"] = 10,
+["font"] = "默认",
+["borderColor"] = {
+},
+["coordPrecision"] = "%d,%d",
+["backgroundColor"] = {
+},
+["outline"] = "NONE",
+},
+["ping"] = {
+["showPing"] = true,
+["showAt"] = "map",
+},
+["buttons"] = {
+["radius"] = 10,
+["lockDragging"] = false,
+["allowDragging"] = true,
+["visibilitySettings"] = {
+["MinimapZoomIn"] = "never",
+["MiniMapMailFrame"] = "always",
+["GameTimeFrame"] = "never",
+["MiniMapWorldMapButton"] = "never",
+["MinimapZoomOut"] = "never",
+["SexyMapZoneTextButton"] = "always",
+["MiniMapBattlefieldFrame"] = "always",
+["GarrisonLandingPageMinimapButton"] = "always",
+["TimeManagerClockButton"] = "always",
+["LFGMinimapFrame"] = "always",
+["MiniMapTracking"] = "always",
+},
+["dragPositions"] = {
+},
+["controlVisibility"] = true,
+},
+["clock"] = {
+["bgColor"] = {
+["a"] = 1,
+["r"] = 0,
+["g"] = 0,
+["b"] = 0,
+},
+["font"] = "默认",
+["fontColor"] = {
+},
+["borderColor"] = {
+["a"] = 1,
+["r"] = 0,
+["g"] = 0,
+["b"] = 0,
+},
+["xOffset"] = 0,
+["monochrome"] = false,
+["outline"] = "NONE",
+["yOffset"] = 0,
+},
+["borders"] = {
+["applyPreset"] = false,
+["borders"] = {
+{
+["name"] = "Rune 1",
+["r"] = 0.3098039215686275,
+["scale"] = 1.4,
+["rotSpeed"] = -30,
+["g"] = 0.4784313725490196,
+["texture"] = 165630,
+},
+{
+["a"] = 0.3799999952316284,
+["rotSpeed"] = 60,
+["r"] = 0.196078431372549,
+["scale"] = 2.1,
+["name"] = "Rune 2",
+["g"] = 0.2901960784313725,
+["texture"] = 165638,
+},
+{
+["a"] = 0.3,
+["name"] = "Fade",
+["r"] = 0,
+["scale"] = 1.6,
+["g"] = 0.2235294117647059,
+["texture"] = 167062,
+},
+},
+["backdrop"] = {
+["show"] = false,
+["textureColor"] = {
+},
+["settings"] = {
+["bgFile"] = "Interface\\Tooltips\\UI-Tooltip-Background",
+["edgeFile"] = "Interface\\Tooltips\\UI-Tooltip-Border",
+["tile"] = false,
+["edgeSize"] = 16,
+["insets"] = {
+["top"] = 4,
+["right"] = 4,
+["left"] = 4,
+["bottom"] = 4,
+},
+},
+["borderColor"] = {
+},
+["scale"] = 1,
+},
+["hideBlizzard"] = true,
+},
+["zonetext"] = {
+["outline"] = "NONE",
+["fontColor"] = {
+},
+["xOffset"] = 0,
+["monochrome"] = false,
+["yOffset"] = 0,
+["bgColor"] = {
+["a"] = 1,
+["r"] = 0,
+["g"] = 0,
+["b"] = 0,
+},
+["font"] = "默认",
+["useSecureButton"] = false,
+["borderColor"] = {
+["a"] = 1,
+["r"] = 0,
+["g"] = 0,
+["b"] = 0,
+},
+},
+["movers"] = {
+["lockDurability"] = false,
+["lockObjectives"] = false,
+["moveDurability"] = false,
+["lockCaptureBar"] = false,
+["moveVehicle"] = false,
+["lockVehicle"] = false,
+["moverPositions"] = {
+},
+["lockTopWidget"] = false,
+["moveBuffs"] = false,
+["moveTopWidget"] = false,
+["lockBuffs"] = false,
+["moveCaptureBar"] = false,
+["moveObjectives"] = false,
+},
+},
 ["大叔大婶多少-哈霍兰"] = {
 ["core"] = {
 ["clamp"] = true,
@@ -328,14 +489,14 @@ SexyMap2DB = {
 ["showAt"] = "map",
 },
 },
-["联盟的奸细-法琳娜"] = {
+["蓝龙守护者-德姆塞卡尔"] = {
 ["core"] = {
 ["clamp"] = true,
 ["lock"] = false,
-["rightClickToConfig"] = true,
-["autoZoom"] = 5,
-["shape"] = "Interface\\AddOns\\SexyMap\\shapes\\circle.tga",
 ["northTag"] = true,
+["shape"] = "Interface\\AddOns\\SexyMap\\shapes\\circle.tga",
+["autoZoom"] = 5,
+["rightClickToConfig"] = true,
 },
 ["coordinates"] = {
 ["enabled"] = true,
@@ -353,9 +514,21 @@ SexyMap2DB = {
 },
 ["outline"] = "NONE",
 },
-["ping"] = {
-["showPing"] = true,
-["showAt"] = "map",
+["movers"] = {
+["lockDurability"] = false,
+["lockObjectives"] = false,
+["moveDurability"] = false,
+["lockCaptureBar"] = false,
+["moveVehicle"] = false,
+["lockVehicle"] = false,
+["moverPositions"] = {
+},
+["lockTopWidget"] = false,
+["moveBuffs"] = false,
+["moveTopWidget"] = false,
+["lockBuffs"] = false,
+["moveCaptureBar"] = false,
+["moveObjectives"] = false,
 },
 ["buttons"] = {
 ["radius"] = 10,
@@ -367,12 +540,12 @@ SexyMap2DB = {
 ["GameTimeFrame"] = "never",
 ["MiniMapWorldMapButton"] = "never",
 ["MinimapZoomOut"] = "never",
-["SexyMapZoneTextButton"] = "always",
+["MiniMapTracking"] = "always",
 ["MiniMapBattlefieldFrame"] = "always",
 ["GarrisonLandingPageMinimapButton"] = "always",
-["TimeManagerClockButton"] = "always",
 ["LFGMinimapFrame"] = "always",
-["MiniMapTracking"] = "always",
+["TimeManagerClockButton"] = "always",
+["SexyMapZoneTextButton"] = "always",
 },
 ["dragPositions"] = {
 },
@@ -381,18 +554,18 @@ SexyMap2DB = {
 ["clock"] = {
 ["bgColor"] = {
 ["a"] = 1,
-["r"] = 0,
-["g"] = 0,
 ["b"] = 0,
+["g"] = 0,
+["r"] = 0,
 },
 ["font"] = "默认",
 ["fontColor"] = {
 },
 ["borderColor"] = {
 ["a"] = 1,
-["r"] = 0,
-["g"] = 0,
 ["b"] = 0,
+["g"] = 0,
+["r"] = 0,
 },
 ["xOffset"] = 0,
 ["monochrome"] = false,
@@ -459,34 +632,22 @@ SexyMap2DB = {
 ["yOffset"] = 0,
 ["bgColor"] = {
 ["a"] = 1,
-["r"] = 0,
-["g"] = 0,
 ["b"] = 0,
+["g"] = 0,
+["r"] = 0,
 },
 ["font"] = "默认",
 ["useSecureButton"] = false,
 ["borderColor"] = {
 ["a"] = 1,
-["r"] = 0,
-["g"] = 0,
 ["b"] = 0,
+["g"] = 0,
+["r"] = 0,
 },
 },
-["movers"] = {
-["lockDurability"] = false,
-["lockObjectives"] = false,
-["moveDurability"] = false,
-["lockCaptureBar"] = false,
-["moveVehicle"] = false,
-["lockVehicle"] = false,
-["moverPositions"] = {
-},
-["lockTopWidget"] = false,
-["moveBuffs"] = false,
-["moveTopWidget"] = false,
-["lockBuffs"] = false,
-["moveCaptureBar"] = false,
-["moveObjectives"] = false,
+["ping"] = {
+["showPing"] = true,
+["showAt"] = "map",
 },
 },
 ["法德迦-哈霍兰"] = {
@@ -650,14 +811,14 @@ SexyMap2DB = {
 ["showAt"] = "map",
 },
 },
-["蓝龙守护者-德姆塞卡尔"] = {
+["迪菲亚女皇-哈霍兰"] = {
 ["core"] = {
 ["clamp"] = true,
 ["lock"] = false,
-["northTag"] = true,
-["shape"] = "Interface\\AddOns\\SexyMap\\shapes\\circle.tga",
-["autoZoom"] = 5,
 ["rightClickToConfig"] = true,
+["autoZoom"] = 5,
+["shape"] = "Interface\\AddOns\\SexyMap\\shapes\\circle.tga",
+["northTag"] = true,
 },
 ["coordinates"] = {
 ["enabled"] = true,
@@ -675,21 +836,9 @@ SexyMap2DB = {
 },
 ["outline"] = "NONE",
 },
-["movers"] = {
-["lockDurability"] = false,
-["lockObjectives"] = false,
-["moveDurability"] = false,
-["lockCaptureBar"] = false,
-["moveVehicle"] = false,
-["lockVehicle"] = false,
-["moverPositions"] = {
-},
-["lockTopWidget"] = false,
-["moveBuffs"] = false,
-["moveTopWidget"] = false,
-["lockBuffs"] = false,
-["moveCaptureBar"] = false,
-["moveObjectives"] = false,
+["ping"] = {
+["showPing"] = true,
+["showAt"] = "map",
 },
 ["buttons"] = {
 ["radius"] = 10,
@@ -701,12 +850,12 @@ SexyMap2DB = {
 ["GameTimeFrame"] = "never",
 ["MiniMapWorldMapButton"] = "never",
 ["MinimapZoomOut"] = "never",
-["MiniMapTracking"] = "always",
+["SexyMapZoneTextButton"] = "always",
 ["MiniMapBattlefieldFrame"] = "always",
 ["GarrisonLandingPageMinimapButton"] = "always",
-["LFGMinimapFrame"] = "always",
 ["TimeManagerClockButton"] = "always",
-["SexyMapZoneTextButton"] = "always",
+["LFGMinimapFrame"] = "always",
+["MiniMapTracking"] = "always",
 },
 ["dragPositions"] = {
 },
@@ -715,18 +864,18 @@ SexyMap2DB = {
 ["clock"] = {
 ["bgColor"] = {
 ["a"] = 1,
-["b"] = 0,
-["g"] = 0,
 ["r"] = 0,
+["g"] = 0,
+["b"] = 0,
 },
 ["font"] = "默认",
 ["fontColor"] = {
 },
 ["borderColor"] = {
 ["a"] = 1,
-["b"] = 0,
-["g"] = 0,
 ["r"] = 0,
+["g"] = 0,
+["b"] = 0,
 },
 ["xOffset"] = 0,
 ["monochrome"] = false,
@@ -793,22 +942,34 @@ SexyMap2DB = {
 ["yOffset"] = 0,
 ["bgColor"] = {
 ["a"] = 1,
-["b"] = 0,
-["g"] = 0,
 ["r"] = 0,
+["g"] = 0,
+["b"] = 0,
 },
 ["font"] = "默认",
 ["useSecureButton"] = false,
 ["borderColor"] = {
 ["a"] = 1,
-["b"] = 0,
-["g"] = 0,
 ["r"] = 0,
+["g"] = 0,
+["b"] = 0,
 },
 },
-["ping"] = {
-["showPing"] = true,
-["showAt"] = "map",
+["movers"] = {
+["lockDurability"] = false,
+["lockObjectives"] = false,
+["moveDurability"] = false,
+["lockCaptureBar"] = false,
+["moveVehicle"] = false,
+["lockVehicle"] = false,
+["moverPositions"] = {
+},
+["lockTopWidget"] = false,
+["moveBuffs"] = false,
+["moveTopWidget"] = false,
+["lockBuffs"] = false,
+["moveCaptureBar"] = false,
+["moveObjectives"] = false,
 },
 },
 ["是德东东-哈霍兰"] = {
@@ -1785,13 +1946,13 @@ SexyMap2DB = {
 ["core"] = {
 ["clamp"] = true,
 ["lock"] = false,
-["northTag"] = true,
+["northTag"] = false,
 ["shape"] = "Interface\\AddOns\\SexyMap\\shapes\\circle.tga",
 ["autoZoom"] = 5,
 ["rightClickToConfig"] = true,
 },
 ["coordinates"] = {
-["enabled"] = true,
+["enabled"] = false,
 ["fontColor"] = {
 },
 ["xOffset"] = 0,
@@ -1818,9 +1979,9 @@ SexyMap2DB = {
 ["MinimapZoomOut"] = "never",
 ["GarrisonLandingPageMinimapButton"] = "always",
 ["MiniMapBattlefieldFrame"] = "always",
-["MiniMapTracking"] = "always",
+["MiniMapTracking"] = "hover",
 ["LFGMinimapFrame"] = "always",
-["TimeManagerClockButton"] = "always",
+["TimeManagerClockButton"] = "hover",
 ["SexyMapZoneTextButton"] = "always",
 },
 ["dragPositions"] = {

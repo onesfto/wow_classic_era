@@ -4,11 +4,11 @@ WhisperPopDB = {
 ["sound"] = 1,
 ["positions"] = {
 ["WhisperPopFrame"] = {
-"LEFT",
+"CENTER",
 "UIParent",
-"LEFT",
-325,
--74,
+"CENTER",
+-273,
+44,
 },
 ["WhisperPopNotifyButton"] = {
 "BOTTOMLEFT",
@@ -25,10 +25,10 @@ WhisperPopDB = {
 ["buttonScale"] = 100,
 ["history"] = {
 },
-["ignoreTags"] = 1,
+["listScale"] = 100,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["applyFilters"] = 1,
+["ignoreTags"] = 1,
 ["notifyButton"] = 1,
-["listScale"] = 100,
+["applyFilters"] = 1,
 }

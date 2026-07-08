@@ -2,7 +2,7 @@
 CellCharacterDB = {
 ["layoutAutoSwitch"] = {
 {
-["raid_instance"] = "奶",
+["raid_instance"] = "default",
 ["party"] = "default",
 ["solo"] = "default",
 ["arena"] = "default",
@@ -10,11 +10,11 @@ CellCharacterDB = {
 ["battleground"] = "default",
 },
 {
-["raid_instance"] = "团队",
+["raid_instance"] = "团队-治疗",
 ["party"] = "default",
-["solo"] = "default",
+["solo"] = "hide",
 ["arena"] = "default",
-["raid_outdoor"] = "default",
+["raid_outdoor"] = "团队-治疗",
 ["battleground"] = "default",
 },
 },

@@ -458,7 +458,9 @@ local function InsertButToBox(data,uiname,butx)
 		end
 	end
 	local Point1,Point3,Point4,Point5 = PIGGetPoint(butx)
-	table.insert(data,{uiname,Point1,Point3,Point4,Point5})
+	if Point1 then
+		table.insert(data,{uiname,Point1,Point3,Point4,Point5})
+	end
 end
 local function UpdateCollectBut()
 	if not PIGA["Map"]["MinimapBut"] then return end

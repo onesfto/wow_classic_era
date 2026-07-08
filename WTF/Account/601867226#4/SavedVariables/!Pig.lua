@@ -76,14 +76,14 @@ PIGA = {
 ["Spell"] = false,
 ["Trinket"] = false,
 ["Open"] = true,
-["Lock"] = false,
+["AddonList"] = false,
 ["RuneShow"] = false,
-["BGbroadcast"] = false,
+["Lock"] = false,
 ["Rune"] = true,
 ["Lushi"] = false,
 ["TrinketFenli"] = false,
 ["TrinketFenlilock"] = false,
-["AddonList"] = false,
+["BGbroadcast"] = false,
 },
 ["Chat"] = {
 ["Jianyin"] = false,
@@ -129,12 +129,12 @@ PIGA = {
 ["QuickChat"] = false,
 ["ShowLinkGem"] = true,
 ["jingjian"] = true,
-["QuickChat_ButHide"] = {
-},
+["ShowLinkSlots"] = true,
 ["FastCopy"] = false,
 ["GuildLevel"] = true,
 ["ShowZb"] = true,
-["QuickChat_pianyiY"] = 0,
+["QuickChat_ButHide"] = {
+},
 ["QuickChat_pianyiX"] = 0,
 ["Filter"] = {
 ["BlacksList"] = {
@@ -166,7 +166,7 @@ PIGA = {
 ["Guolv"] = false,
 ["FontSize"] = false,
 ["WhoWhisperMsg"] = "",
-["ShowLinkSlots"] = true,
+["QuickChat_pianyiY"] = 0,
 },
 ["Interaction"] = {
 ["AutoDialogue"] = true,
@@ -207,11 +207,11 @@ PIGA = {
 },
 ["WHISPER"] = {
 ["AudioID"] = 1,
-["jichengBlack"] = true,
+["Open"] = true,
 ["record"] = {
 },
+["jichengBlack"] = true,
 ["AudioOpen"] = true,
-["Open"] = true,
 ["Tips"] = true,
 },
 ["INSTANCE_CHAT"] = {
@@ -229,9 +229,9 @@ PIGA = {
 },
 },
 ["CVars"] = {
+["MaxZoom"] = true,
 ["Fast_Loot"] = false,
 ["EaseUse"] = true,
-["MaxZoom"] = true,
 ["Shaman_Blue"] = true,
 },
 ["CABar"] = {
@@ -250,62 +250,51 @@ PIGA = {
 ["PetTishi"] = true,
 ["AutoFanye"] = false,
 },
-["Hardcore"] = {
-["CVars"] = {
-["NameMinV"] = 0,
-["NameMaxV"] = 0,
-["NameMinSelect"] = 2,
+["AHPlus"] = {
+["autoya"] = false,
+["Coll"] = {
+},
+["DaojiTime"] = 0,
+["ScanTimeCD"] = 4,
+["exactMatch"] = false,
+["SaveDuration_V"] = 2,
+["SaveDuration"] = false,
+["CacheData"] = {
+["铁血"] = {
+},
+["碧玉矿洞"] = {
+},
+["哈霍兰"] = {
+["劣质磨刀石"] = {
+"2862::::::::60::::::::::",
+{
+{
+773,
+1783097777,
+},
+},
+2862,
+},
+["致密磨刀石"] = {
+"12404::::::::60::::::::::",
+{
+{
+9110,
+1783097780,
+},
+},
+12404,
+},
+},
+},
+["AHUIoff"] = true,
+["AHtooltip"] = false,
 ["Open"] = true,
-["NameMaxSelect"] = 4,
-},
-["Deaths"] = {
-["Tgminlevel"] = 20,
-["ListWinp"] = {
-},
-["Open"] = true,
-["tipsmap"] = false,
-["BigTgminlevel"] = 55,
-["VoiceID"] = 3,
-["UIScale"] = 1,
-["savedays"] = 1,
-["level"] = {
-},
-["List"] = {
-{
-1735206479,
-"揽月观风",
-"33",
-"奥妮克希亚的精英护卫",
-"暴风城",
-"",
-},
-{
-1735206490,
-"啊歪",
-"44",
-"血帆水手",
-"蛮荒海岸",
-"",
-},
-{
-1735206492,
-"Wjax",
-"14",
-"河爪秘法师",
-"尘埃平原",
-"",
-},
-{
-1735206499,
-"醉不在酒",
-"20",
-"藓皮沼泽行者",
-"藓皮沼泽",
-"",
-},
-},
-["Player"] = {
-},
+["yajingbiao"] = true,
+["oldaucG"] = false,
+["QuicAuc"] = false,
+["fastBuy"] = false,
+["Stacking"] = {
 },
 },
 ["MailPlus"] = {
@@ -362,11 +351,22 @@ PIGA = {
 ["MinimapAnchor"] = "TOPRIGHT",
 },
 ["TradePlus"] = {
-["zhiyeLV"] = true,
 ["Open"] = true,
 ["AddBut"] = true,
+["zhiyeLV"] = true,
 },
 ["VerC"] = {
+["!Pig"] = {
+["verno"] = 10.4,
+["p"] = {
+"米兕",
+"莱恩莉亚德琳",
+"鍅铓",
+"妖娆的杨梅-法琳娜",
+"何如兰",
+"天生丶可爱",
+},
+},
 },
 ["Common"] = {
 ["QuestsEndAudio"] = 2,
@@ -381,32 +381,23 @@ PIGA = {
 ["AutoCombatLogTJ"] = 1,
 ["SetFocusMouse"] = true,
 },
-["AHPlus"] = {
-["autoya"] = false,
-["Coll"] = {
-},
-["DaojiTime"] = 0,
-["ScanTimeCD"] = 4,
-["exactMatch"] = false,
-["SaveDuration_V"] = 2,
-["SaveDuration"] = false,
-["CacheData"] = {
-["铁血"] = {
-},
-["碧玉矿洞"] = {
-},
-["哈霍兰"] = {
-},
-},
-["AHUIoff"] = true,
-["AHtooltip"] = false,
-["Open"] = true,
-["yajingbiao"] = true,
-["oldaucG"] = false,
-["QuicAuc"] = false,
-["fastBuy"] = false,
-["Stacking"] = {
-},
+["BagBank"] = {
+["BAGmeihangshu"] = 8,
+["JunkShow"] = true,
+["wupinRanse"] = true,
+["wupinLV"] = true,
+["BagKongyu"] = true,
+["BAGsuofangBili"] = 1,
+["NewItem"] = true,
+["BANKmeihangshu"] = 16,
+["SortBagsRightToLeft"] = false,
+["BANKsuofangBili"] = 1,
+["Zhenghe"] = false,
+["SortBag_Config"] = true,
+["JianjieMOD"] = false,
+["BAGmeihangshu_retail"] = 10,
+["BANKmeihangshu_retail"] = 17,
+["BAGmeihangshu_WLK"] = 10,
 },
 ["Tardis"] = {
 ["Chedui"] = {
@@ -426,12 +417,12 @@ PIGA = {
 ["AddBut"] = true,
 ["Plane"] = {
 ["AutoInvite"] = true,
+["Open"] = true,
 ["InfoList"] = {
 ["孤狼"] = {
 },
 },
 ["AutoInviteCD"] = 0,
-["Open"] = true,
 ["DaojishiCD"] = 0,
 },
 ["Yell"] = {
@@ -534,9 +525,9 @@ PIGA = {
 ["TopBar"] = {
 ["AnchorPoint"] = "TOP",
 ["Height"] = 22,
-["Alpha"] = 1,
 ["Open"] = false,
 ["Backdrop"] = 1,
+["Alpha"] = 1,
 },
 ["MicroMenu"] = {
 ["AnchorPoint"] = "TOP",
@@ -550,30 +541,70 @@ PIGA = {
 },
 },
 },
-["BagBank"] = {
-["BAGmeihangshu"] = 8,
-["JunkShow"] = true,
-["wupinRanse"] = true,
-["wupinLV"] = true,
-["BagKongyu"] = true,
-["BAGsuofangBili"] = 1,
-["NewItem"] = true,
-["BANKmeihangshu"] = 16,
-["BANKsuofangBili"] = 1,
-["BAGmeihangshu_WLK"] = 10,
-["Zhenghe"] = true,
-["SortBag_Config"] = true,
-["JianjieMOD"] = false,
-["BAGmeihangshu_retail"] = 10,
-["BANKmeihangshu_retail"] = 17,
-["SortBagsRightToLeft"] = false,
+["Hardcore"] = {
+["CVars"] = {
+["NameMinV"] = 0,
+["NameMinSelect"] = 2,
+["NameMaxSelect"] = 4,
+["Open"] = true,
+["NameMaxV"] = 0,
+},
+["Deaths"] = {
+["Tgminlevel"] = 20,
+["ListWinp"] = {
+},
+["Open"] = true,
+["tipsmap"] = false,
+["BigTgminlevel"] = 55,
+["VoiceID"] = 3,
+["UIScale"] = 1,
+["savedays"] = 1,
+["level"] = {
+},
+["List"] = {
+{
+1735206479,
+"揽月观风",
+"33",
+"奥妮克希亚的精英护卫",
+"暴风城",
+"",
+},
+{
+1735206490,
+"啊歪",
+"44",
+"血帆水手",
+"蛮荒海岸",
+"",
+},
+{
+1735206492,
+"Wjax",
+"14",
+"河爪秘法师",
+"尘埃平原",
+"",
+},
+{
+1735206499,
+"醉不在酒",
+"20",
+"藓皮沼泽行者",
+"藓皮沼泽",
+"",
+},
+},
+["Player"] = {
+},
+},
 },
 ["StatsInfo"] = {
 ["TradeTongGaoChannel"] = "WHISPER",
 ["Played"] = {
 ["女王安其拉-哈霍兰"] = {
-7824258,
-7554052,
+7850162,
+7579956,
 },
 },
 ["Qita_Num"] = true,
@@ -657,13 +688,47 @@ PIGA = {
 ["露露缇娅丶-铁血"] = {
 },
 ["女王安其拉-哈霍兰"] = {
+{
+20640,
+},
+{
+{
+{
+["MoneyP"] = 400000000,
+["MoneyT"] = 0,
+["All_Name"] = "凤凰浴火-哈霍兰",
+["ItemP"] = {
+"无",
+"无",
+"无",
+"无",
+"无",
+"无",
+},
+["Class"] = 2,
+["Race"] = "raceicon-human-female",
+["Name"] = "凤凰浴火",
+["ItemT"] = {
+"无",
+"无",
+"无",
+"无",
+"无",
+"无",
+},
+["Level"] = 60,
+["Map"] = "暴风城-法师区",
+["Time"] = 1783360213,
+},
+},
+},
 },
 },
 ["FBCDRecords"] = {
 ["女王安其拉-哈霍兰"] = {
 ["熔火之心"] = {
 [9] = {
-1782946800,
+1783551654,
 11,
 2,
 {
@@ -721,36 +786,21 @@ false,
 ["TradeClassLV"] = true,
 ["Items"] = {
 ["女王安其拉-哈霍兰"] = {
-["GUILD"] = {
-},
-["MAIL"] = {
-},
-["C"] = "1-12640:2543:::::::60::::::::::+2-23053::::::::60::::::::::+3-216B5:2717:::::::60::::::::::+4-3B42::::::::60::::::::::+5-230C:1891:::::::60::::::::::+6-23219::::::::60::::::::::+7-23068:1506:::::::60::::::::::+8-19387:18B7:::::::60::::::::::+9-2B936:18B5:::::::60::::::::::+10-21581:2564:::::::60::::::::::+11-23038::::::::60::::::::::+12-18B21::::::::60::::::::::+13-2B954::::::::60::::::::::+14-23041::::::::60::::::::::+15-23045:849:::::::60::::::::::+16-23054:190B:::::::60::::::::::+17-2357B:190B:::::::60::::::::::+18-2B812::::::::60::::::::::+19-19506::::::::60::::::::::",
 ["BAG"] = {
 {
-"12451::::::::60::::::::::",
-20,
-12451,
+"184938::::::::60::::::::::",
+1,
+184938,
 },
 {
-"12460::::::::60::::::::::",
-20,
-12460,
-},
-{
-"12460::::::::60::::::::::",
-20,
-12460,
+"7078::::::::60::::::::::",
+1,
+7078,
 },
 {
 "17067::::::::60::::::::::",
 1,
 17067,
-},
-{
-"2312B::::::::60::::::::::",
-17,
-23122,
 },
 {
 "23247::::::::60::::::::::",
@@ -759,7 +809,7 @@ false,
 },
 {
 "23247::::::::60::::::::::",
-19,
+18,
 23247,
 },
 {
@@ -793,19 +843,19 @@ false,
 12384,
 },
 {
-"6838::::::::60::::::::::",
+"12404::::::::60::::::::::",
 20,
-6838,
+12404,
 },
 {
-"6838::::::::60::::::::::",
-20,
-6838,
+"16023::::::::60::::::::::",
+9,
+16023,
 },
 {
-"6838::::::::60::::::::::",
-10,
-6838,
+"12820::::::::60::::::::::",
+8,
+12820,
 },
 {
 "6839::::::::60::::::::::",
@@ -839,12 +889,12 @@ false,
 },
 {
 "12457::::::::60::::::::::",
-12,
+11,
 12457,
 },
 {
 "12451::::::::60::::::::::",
-12,
+11,
 12451,
 },
 {
@@ -859,7 +909,7 @@ false,
 },
 {
 "12404::::::::60::::::::::",
-14,
+12,
 12404,
 },
 {
@@ -873,9 +923,9 @@ false,
 14047,
 },
 {
-"23716::::::::60::::::::::",
+"21670::::::::60::::::::::",
 1,
-23716,
+21670,
 },
 {
 "70B5::::::::60::::::::::",
@@ -889,7 +939,7 @@ false,
 },
 {
 "21536::::::::60::::::::::",
-20,
+17,
 21536,
 },
 {
@@ -904,18 +954,13 @@ false,
 },
 {
 "3825::::::::60::::::::::",
-5,
+4,
 3825,
 },
 {
-"8529::::::::60::::::::::",
-20,
-8529,
-},
-{
-"8529::::::::60::::::::::",
-20,
-8529,
+"13452::::::::60::::::::::",
+3,
+13452,
 },
 {
 "8529::::::::60::::::::::",
@@ -934,13 +979,8 @@ false,
 },
 {
 "13810::::::::60::::::::::",
-19,
+18,
 13810,
-},
-{
-"134B6::::::::60::::::::::",
-1,
-13446,
 },
 {
 "1345B::::::::60::::::::::",
@@ -959,7 +999,7 @@ false,
 },
 {
 "184937::::::::60::::::::::",
-5,
+4,
 184937,
 },
 {
@@ -1003,19 +1043,14 @@ false,
 20559,
 },
 {
-"184938::::::::60::::::::::",
-1,
-184938,
-},
-{
 "15723::::::::60::::::::::",
 1,
 15723,
 },
 {
-"20130::::::::60::::::::::",
+"2B954::::::::60::::::::::",
 1,
-20130,
+22954,
 },
 {
 "19B02::::::::60::::::::::",
@@ -1048,9 +1083,9 @@ false,
 22938,
 },
 {
-"21710:262B:::::::60::::::::::",
+"23045:849:::::::60::::::::::",
 1,
-21710,
+23045,
 },
 {
 "19431::::::::60::::::::::",
@@ -1058,14 +1093,14 @@ false,
 19431,
 },
 {
-"19341::::::::60::::::::::",
+"23716::::::::60::::::::::",
 1,
-19341,
+23716,
 },
 {
-"21670::::::::60::::::::::",
+"23041::::::::60::::::::::",
 1,
-21670,
+23041,
 },
 {
 "23206::::::::60::::::::::",
@@ -1073,19 +1108,19 @@ false,
 23206,
 },
 {
-"21526::::::::60::::::::::",
-1,
-21526,
-},
-{
-"21601::::::::60::::::::::",
-1,
-21601,
-},
-{
 "19376::::::::60::::::::::",
 1,
 19376,
+},
+{
+"18B21::::::::60::::::::::",
+1,
+18821,
+},
+{
+"23038::::::::60::::::::::",
+1,
+23038,
 },
 {
 "23059::::::::60::::::::::",
@@ -1108,14 +1143,14 @@ false,
 22421,
 },
 {
-"2B423:18B5:::::::60::::::::::",
+"2B936:18B5:::::::60::::::::::",
 1,
-22423,
+22936,
 },
 {
-"16483:91B:::::::60::::::::::",
+"19387:18B7:::::::60::::::::::",
 1,
-16483,
+19387,
 },
 {
 "2B420:18B7:::::::60::::::::::",
@@ -1123,9 +1158,9 @@ false,
 22420,
 },
 {
-"213B2:2543:::::::60::::::::::",
+"23068:1506:::::::60::::::::::",
 1,
-21332,
+23068,
 },
 {
 "2B417:2583:::::::60::::::::::",
@@ -1143,14 +1178,14 @@ false,
 23226,
 },
 {
-"2B416:1891:::::::60::::::::::",
+"230C:1891:::::::60::::::::::",
 1,
-22416,
+23000,
 },
 {
-"16480:2606:::::::60::::::::::",
+"216B5:2717:::::::60::::::::::",
 1,
-16480,
+21665,
 },
 {
 "2B419:2606:::::::60::::::::::",
@@ -1158,14 +1193,14 @@ false,
 22419,
 },
 {
-"2B732::::::::60::::::::::",
+"23053::::::::60::::::::::",
 1,
-22732,
+23053,
 },
 {
-"21329:2583:::::::60::::::::::",
+"12640:2543:::::::60::::::::::",
 1,
-21329,
+12640,
 },
 {
 "2B418:2583:::::::60::::::::::",
@@ -1173,9 +1208,9 @@ false,
 22418,
 },
 {
-"19368::::::::60::::::::::",
+"2B812::::::::60::::::::::",
 1,
-19368,
+22812,
 },
 {
 "21B76::::::::60::::::::::",
@@ -1183,15 +1218,174 @@ false,
 21176,
 },
 {
-"19019:190B:::::::60::::::::::",
+"23054:190B:::::::60::::::::::",
 1,
-19019,
+23054,
 },
 },
-["R"] = {
+["MAIL"] = {
+{
+"14530::::::::60::::::::::",
+20,
+14530,
 },
-["T"] = "30R5050C5B05010B510523010B50H&303050B13020H50530B2525010B510Q",
-["G"] = "",
+{
+"14530::::::::60::::::::::",
+20,
+14530,
+},
+{
+"13456::::::::60::::::::::",
+4,
+13456,
+},
+{
+"20C7::::::::60::::::::::",
+2,
+20007,
+},
+{
+"13931::::::::60::::::::::",
+17,
+13931,
+},
+{
+"13454::::::::60::::::::::",
+3,
+13454,
+},
+{
+"21546::::::::60::::::::::",
+1,
+21546,
+},
+{
+"134C::::::::60::::::::::",
+5,
+13444,
+},
+{
+"134C::::::::60::::::::::",
+5,
+13444,
+},
+{
+"134C::::::::60::::::::::",
+1,
+13444,
+},
+{
+"134C::::::::60::::::::::",
+5,
+13444,
+},
+{
+"18641::::::::60::::::::::",
+20,
+18641,
+},
+{
+"10646::::::::60::::::::::",
+10,
+10646,
+},
+{
+"10646::::::::60::::::::::",
+1,
+10646,
+},
+{
+"13512::::::::60::::::::::",
+1,
+13512,
+},
+{
+"18254::::::::60::::::::::",
+2,
+18254,
+},
+{
+"20C7::::::::60::::::::::",
+2,
+20007,
+},
+{
+"3825::::::::60::::::::::",
+3,
+3825,
+},
+{
+"20C7::::::::60::::::::::",
+5,
+20007,
+},
+{
+"13456::::::::60::::::::::",
+5,
+13456,
+},
+{
+"13459::::::::60::::::::::",
+5,
+13459,
+},
+{
+"20749::::::::60::::::::::",
+1,
+20749,
+},
+{
+"134B2::::::::60::::::::::",
+5,
+13442,
+},
+{
+"134B2::::::::60::::::::::",
+5,
+13442,
+},
+{
+"134B2::::::::60::::::::::",
+3,
+13442,
+},
+{
+"3B87::::::::60::::::::::",
+2,
+3387,
+},
+{
+"5634::::::::60::::::::::",
+5,
+5634,
+},
+{
+"12B17::::::::60::::::::::",
+18,
+12217,
+},
+{
+"18262::::::::60::::::::::",
+3,
+18262,
+},
+{
+"2592::::::::60::::::::::",
+20,
+2592,
+},
+{
+"2592::::::::60::::::::::",
+20,
+2592,
+},
+{
+"2592::::::::60::::::::::",
+20,
+2592,
+},
+},
+["C"] = "1-21329:2583:::::::60::::::::::+2-2B732::::::::60::::::::::+3-16480:2606:::::::60::::::::::+4-3B42::::::::60::::::::::+5-2B416:1891:::::::60::::::::::+6-23219::::::::60::::::::::+7-213B2:2543:::::::60::::::::::+8-16483:91B:::::::60::::::::::+9-2B423:18B5:::::::60::::::::::+10-21581:2564:::::::60::::::::::+11-21526::::::::60::::::::::+12-21601::::::::60::::::::::+13-19341::::::::60::::::::::+14-20130::::::::60::::::::::+15-21710:262B:::::::60::::::::::+16-2357B:190B:::::::60::::::::::+17-19019:190B:::::::60::::::::::+18-19368::::::::60::::::::::+19-19506::::::::60::::::::::",
 ["BANK"] = {
 {
 "2B6B5:18B5:::::::60::::::::::",
@@ -1212,6 +1406,11 @@ false,
 "18B25::::::::60::::::::::",
 1,
 18825,
+},
+{
+"6838::::::::60::::::::::",
+20,
+6838,
 },
 {
 "216B4::::::::60::::::::::",
@@ -1272,6 +1471,11 @@ false,
 "21812::::::::60::::::::::",
 1,
 21812,
+},
+{
+"6838::::::::60::::::::::",
+20,
+6838,
 },
 {
 "1973::::::::60::::::::::",
@@ -1454,6 +1658,11 @@ false,
 18241,
 },
 {
+"6838::::::::60::::::::::",
+10,
+6838,
+},
+{
 "10725::::::::60::::::::::",
 1,
 10725,
@@ -1464,9 +1673,14 @@ false,
 11122,
 },
 {
-"23B79::::::::60::::::::::",
-1,
-23379,
+"8529::::::::60::::::::::",
+20,
+8529,
+},
+{
+"8529::::::::60::::::::::",
+20,
+8529,
 },
 {
 "21618:18B5:::::::60::::::::::",
@@ -1522,6 +1736,11 @@ false,
 "19364:190B:::::::60::::::::::",
 1,
 19364,
+},
+{
+"12460::::::::60::::::::::",
+20,
+12460,
 },
 {
 "1986B:190B:::::::60::::::::::",
@@ -1589,9 +1808,24 @@ false,
 21331,
 },
 {
+"12460::::::::60::::::::::",
+20,
+12460,
+},
+{
+"12451::::::::60::::::::::",
+20,
+12451,
+},
+{
 "235B8::::::::60::::::::::",
 1,
 23558,
+},
+{
+"2312B::::::::60::::::::::",
+17,
+23122,
 },
 {
 "1B72::::::::60::::::::::",
@@ -1729,8 +1963,25 @@ false,
 1322,
 },
 },
+["R"] = {
+},
+["T"] = "30R5050C5B05010B510523010B50H&303050B13020H50530B2525010B510Q",
+["G"] = "",
+["GUILD"] = {
+},
 },
 ["露露緹婭-碧玉矿洞"] = {
+["BANK"] = {
+},
+["MAIL"] = {
+},
+["C"] = "1-^+2-^+3-^+4-53::::::::1::::::::::+5-6098::::::::1::::::::::+6-^+7-52::::::::1::::::::::+8-51::::::::1::::::::::+9-^+10-^+11-^+12-^+13-^+14-^+15-^+16-36::::::::1::::::::::+17-^+18-^+19-^",
+["GUILD"] = {
+},
+["R"] = {
+},
+["T"] = "0u",
+["G"] = "",
 ["BAG"] = {
 {
 "159::::::::1::::::::::",
@@ -1748,24 +1999,8 @@ false,
 6948,
 },
 },
-["MAIL"] = {
-},
-["C"] = "1-^+2-^+3-^+4-53::::::::1::::::::::+5-6098::::::::1::::::::::+6-^+7-52::::::::1::::::::::+8-51::::::::1::::::::::+9-^+10-^+11-^+12-^+13-^+14-^+15-^+16-36::::::::1::::::::::+17-^+18-^+19-^",
-["BANK"] = {
-},
-["R"] = {
-},
-["T"] = "0u",
-["G"] = "",
-["GUILD"] = {
-},
 },
 ["露露缇娅丶-铁血"] = {
-["GUILD"] = {
-},
-["MAIL"] = {
-},
-["C"] = "1-^+2-^+3-^+4-53:H10:J+5-1380:H10:J+6-983:H10:J+7-2958:H10:J+8-80:H10:J+9-3B65:H10:J+10-2960:H10:J+11-^+12-^+13-^+14-^+15-1376:H10:J+16-4563:H10:J+17-^+18-1B287:H10:J+19-^",
 ["BAG"] = {
 {
 "2835:H10:J",
@@ -1958,11 +2193,16 @@ false,
 6948,
 },
 },
+["MAIL"] = {
+},
+["C"] = "1-^+2-^+3-^+4-53:H10:J+5-1380:H10:J+6-983:H10:J+7-2958:H10:J+8-80:H10:J+9-3B65:H10:J+10-2960:H10:J+11-^+12-^+13-^+14-^+15-1376:H10:J+16-4563:H10:J+17-^+18-1B287:H10:J+19-^",
+["BANK"] = {
+},
 ["R"] = {
 },
 ["T"] = "0u",
 ["G"] = "",
-["BANK"] = {
+["GUILD"] = {
 },
 },
 },
@@ -1970,7 +2210,7 @@ false,
 ["女王安其拉-哈霍兰"] = {
 ["Tokens"] = {
 },
-["Money"] = 377056666,
+["Money"] = 797537,
 },
 ["露露緹婭-碧玉矿洞"] = {
 ["Money"] = 9,
@@ -2857,74 +3097,74 @@ false,
 ["ErrorTishi"] = false,
 ["ErrorDB"] = {
 {
-["time"] = 1746945754,
-["logrizhi"] = "",
-["msg"] = "Interface/AddOns/RXPGuides/Guides/GuideList-classic.xml:49 Error loading Interface/AddOns/RXPGuides/Guides/SoD/Custom.lua",
-["stack"] = "",
-["counter"] = 2,
-},
-{
-["time"] = 1746945780,
-["logrizhi"] = "",
-["msg"] = "Interface/AddOns/RXPGuides/Guides/GuideList-classic.xml:49 Error loading Interface/AddOns/RXPGuides/Guides/SoD/Custom.lua",
-["stack"] = "",
-["counter"] = 2,
-},
-{
-["time"] = 1746945815,
-["logrizhi"] = "",
-["msg"] = "Interface/AddOns/RXPGuides/Guides/GuideList-classic.xml:49 Error loading Interface/AddOns/RXPGuides/Guides/SoD/Custom.lua",
-["stack"] = "",
-["counter"] = 2,
-},
-{
-["time"] = 1746945938,
-["logrizhi"] = "",
-["msg"] = "Interface/AddOns/RXPGuides/Guides/GuideList-classic.xml:49 Error loading Interface/AddOns/RXPGuides/Guides/SoD/Custom.lua",
-["stack"] = "",
-["counter"] = 2,
-},
-{
-["time"] = 1746945986,
-["logrizhi"] = "",
-["msg"] = "Interface/AddOns/RXPGuides/Guides/GuideList-classic.xml:49 Error loading Interface/AddOns/RXPGuides/Guides/SoD/Custom.lua",
-["stack"] = "",
-["counter"] = 2,
-},
-{
-["time"] = 1761245095,
-["logrizhi"] = "(*temporary) = \"女牧师安妮塔\"\n(*temporary) = true\n",
-["msg"] = "[ADDON_ACTION_FORBIDDEN] 插件< RXPGuides >尝试调用保护功能< TargetUnit() >",
-["stack"] = "[C]: ?\n[Interface/AddOns/RXPGuides/Targeting.lua]:509: in function <Interface/AddOns/RXPGuides/Targeting.lua:486>\n[C]: ?\n[C]: ?\n",
-["counter"] = 221,
-},
-{
-["time"] = 1761245158,
-["logrizhi"] = "(*temporary) = \"女牧师安妮塔\"\n(*temporary) = true\n",
-["msg"] = "[ADDON_ACTION_FORBIDDEN] 插件< RXPGuides >尝试调用保护功能< TargetUnit() >",
-["stack"] = "[C]: ?\n[Interface/AddOns/RXPGuides/Targeting.lua]:509: in function <Interface/AddOns/RXPGuides/Targeting.lua:486>\n[C]: ?\n[C]: ?\n",
-["counter"] = 101,
-},
-{
-["time"] = 1782840411,
+["time"] = 1783100335,
 ["logrizhi"] = "null",
-["msg"] = "[11508-10.37] [ADDON_ACTION_FORBIDDEN] 插件< RXPGuides >尝试调用保护功能< TargetUnit() >",
-["stack"] = "[C]: ?\n[Interface/AddOns/RXPGuides/Targeting.lua]:509: in function <Interface/AddOns/RXPGuides/Targeting.lua:486>\n[C]: ?\n[C]: ?\n",
-["counter"] = 1941,
+["msg"] = "[11508-10.37] [ADDON_ACTION_BLOCKED] 插件< WeakAuras >尝试调用保护功能< Frame:ClearAllPoints() >",
+["stack"] = "[C]: in function 'ClearAllPoints'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:54: in function 'SetAnchorPoint'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1355: in function 'DoPositionChildrenPerFrame'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1516: in function 'DoPositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1332: in function 'PositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1313: in function 'SortUpdatedChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1113: in function 'RunDelayedActions'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1104: in function 'Resume'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:4991: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:4944>\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:5122: in function 'UpdatedTriggerState'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:1014: in function 'ScanEventsInternal'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:911: in function 'ScanEvents'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:881: in function 'ScanEventsByID'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3415: in function 'CheckItemCooldown'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3376: in function 'CheckItemCooldowns'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:2911: in function <Interface/AddOns/WeakAuras/GenericTrigger.lua:2857>\n",
+["counter"] = 6,
 },
 {
-["time"] = 1782840780,
+["time"] = 1783100335,
 ["logrizhi"] = "null",
-["msg"] = "[11508-10.37] [ADDON_ACTION_FORBIDDEN] 插件< RXPGuides >尝试调用保护功能< TargetUnit() >",
-["stack"] = "[C]: ?\n[Interface/AddOns/RXPGuides/Targeting.lua]:509: in function <Interface/AddOns/RXPGuides/Targeting.lua:486>\n[C]: ?\n[C]: ?\n",
-["counter"] = 881,
+["msg"] = "[11508-10.37] [ADDON_ACTION_BLOCKED] 插件< WeakAuras >尝试调用保护功能< Frame:SetPoint() >",
+["stack"] = "[C]: in function 'SetPoint'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:60: in function 'SetAnchorPoint'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1355: in function 'DoPositionChildrenPerFrame'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1516: in function 'DoPositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1332: in function 'PositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1313: in function 'SortUpdatedChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1113: in function 'RunDelayedActions'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1104: in function 'Resume'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:4991: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:4944>\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:5122: in function 'UpdatedTriggerState'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:1014: in function 'ScanEventsInternal'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:911: in function 'ScanEvents'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:881: in function 'ScanEventsByID'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3415: in function 'CheckItemCooldown'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3376: in function 'CheckItemCooldowns'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:2911: in function <Interface/AddOns/WeakAuras/GenericTrigger.lua:2857>\n",
+["counter"] = 6,
 },
 {
-["time"] = 1782842879,
+["time"] = 1783100335,
 ["logrizhi"] = "null",
-["msg"] = "[11508-10.37] [ADDON_ACTION_BLOCKED] 插件< *** ForceTaint_Strong *** >尝试调用保护功能< UNKNOWN() >",
-["stack"] = "[C]: ?\n[C]: in function 'IsItemInRange'\n[return function()]:7: in function <[string \"return function()\"]:1>\n[C]: in function 'xpcall'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:5163: in function 'RunCustomTextFunc'\n[Interface/AddOns/WeakAuras/RegionTypes/Text.lua]:307: in function '?'\n[Interface/AddOns/WeakAuras/SubscribableObject.lua]:94: in function 'Notify'\n[Interface/AddOns/WeakAuras/RegionTypes/RegionPrototype.lua]:676: in function '?'\n[Interface/AddOns/WeakAuras/SubscribableObject.lua]:94: in function 'Notify'\n[Interface/AddOns/WeakAuras/RegionTypes/RegionPrototype.lua]:912: in function <...ace/AddOns/WeakAuras/RegionTypes/RegionPrototype.lua:910>\n",
-["counter"] = 81,
+["msg"] = "[11508-10.37] [ADDON_ACTION_BLOCKED] 插件< WeakAuras >尝试调用保护功能< Frame:SetShown() >",
+["stack"] = "[C]: in function 'SetShown'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1369: in function 'DoPositionChildrenPerFrame'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1516: in function 'DoPositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1332: in function 'PositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1313: in function 'SortUpdatedChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1113: in function 'RunDelayedActions'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1104: in function 'Resume'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:4991: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:4944>\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:5122: in function 'UpdatedTriggerState'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:1014: in function 'ScanEventsInternal'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:911: in function 'ScanEvents'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:881: in function 'ScanEventsByID'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3415: in function 'CheckItemCooldown'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3376: in function 'CheckItemCooldowns'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:2911: in function <Interface/AddOns/WeakAuras/GenericTrigger.lua:2857>\n",
+["counter"] = 6,
+},
+{
+["time"] = 1783100335,
+["logrizhi"] = "null",
+["msg"] = "[11508-10.37] [ADDON_ACTION_BLOCKED] 插件< WeakAuras >尝试调用保护功能< Frame:SetWidth() >",
+["stack"] = "[C]: in function 'SetWidth'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1370: in function 'DoPositionChildrenPerFrame'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1516: in function 'DoPositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1332: in function 'PositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1313: in function 'SortUpdatedChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1113: in function 'RunDelayedActions'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1104: in function 'Resume'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:4991: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:4944>\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:5122: in function 'UpdatedTriggerState'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:1014: in function 'ScanEventsInternal'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:911: in function 'ScanEvents'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:881: in function 'ScanEventsByID'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3415: in function 'CheckItemCooldown'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3376: in function 'CheckItemCooldowns'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:2911: in function <Interface/AddOns/WeakAuras/GenericTrigger.lua:2857>\n",
+["counter"] = 6,
+},
+{
+["time"] = 1783100335,
+["logrizhi"] = "null",
+["msg"] = "[11508-10.37] [ADDON_ACTION_BLOCKED] 插件< WeakAuras >尝试调用保护功能< Frame:SetHeight() >",
+["stack"] = "[C]: in function 'SetHeight'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1371: in function 'DoPositionChildrenPerFrame'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1516: in function 'DoPositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1332: in function 'PositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1313: in function 'SortUpdatedChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1113: in function 'RunDelayedActions'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1104: in function 'Resume'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:4991: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:4944>\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:5122: in function 'UpdatedTriggerState'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:1014: in function 'ScanEventsInternal'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:911: in function 'ScanEvents'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:881: in function 'ScanEventsByID'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3415: in function 'CheckItemCooldown'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3376: in function 'CheckItemCooldowns'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:2911: in function <Interface/AddOns/WeakAuras/GenericTrigger.lua:2857>\n",
+["counter"] = 5,
+},
+{
+["time"] = 1783100335,
+["logrizhi"] = "null",
+["msg"] = "[11508-10.37] [ADDON_ACTION_BLOCKED] 插件< WeakAuras >尝试调用保护功能< UNKNOWN() >",
+["stack"] = "[C]: ?\n[C]: in function 'SetParent'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1392: in function 'DoPositionChildrenPerFrame'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1516: in function 'DoPositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1332: in function 'PositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1313: in function 'SortUpdatedChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1113: in function 'RunDelayedActions'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1104: in function 'Resume'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:4991: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:4944>\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:5122: in function 'UpdatedTriggerState'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:1014: in function 'ScanEventsInternal'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:911: in function 'ScanEvents'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:881: in function 'ScanEventsByID'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3415: in function 'CheckItemCooldown'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3376: in function 'CheckItemCooldowns'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:2911: in function <Interface/AddOns/WeakAuras/GenericTrigger.lua:2857>\n",
+["counter"] = 4,
+},
+{
+["time"] = 1783100335,
+["logrizhi"] = "null",
+["msg"] = "[11508-10.37] [ADDON_ACTION_BLOCKED] 插件< WeakAuras >尝试调用保护功能< Frame:SetScale() >",
+["stack"] = "[C]: in function 'SetScale'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1393: in function 'DoPositionChildrenPerFrame'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1516: in function 'DoPositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1332: in function 'PositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1313: in function 'SortUpdatedChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1113: in function 'RunDelayedActions'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1104: in function 'Resume'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:4991: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:4944>\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:5122: in function 'UpdatedTriggerState'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:1014: in function 'ScanEventsInternal'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:911: in function 'ScanEvents'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:881: in function 'ScanEventsByID'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3415: in function 'CheckItemCooldown'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3376: in function 'CheckItemCooldowns'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:2911: in function <Interface/AddOns/WeakAuras/GenericTrigger.lua:2857>\n",
+["counter"] = 4,
+},
+{
+["time"] = 1783100335,
+["logrizhi"] = "null",
+["msg"] = "[11508-10.37] [ADDON_ACTION_BLOCKED] 插件< WeakAuras >尝试调用保护功能< Frame:SetFrameStrata() >",
+["stack"] = "[C]: in function 'SetFrameStrata'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1403: in function 'DoPositionChildrenPerFrame'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1516: in function 'DoPositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1332: in function 'PositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1313: in function 'SortUpdatedChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1113: in function 'RunDelayedActions'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1104: in function 'Resume'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:4991: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:4944>\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:5122: in function 'UpdatedTriggerState'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:1014: in function 'ScanEventsInternal'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:911: in function 'ScanEvents'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:881: in function 'ScanEventsByID'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3415: in function 'CheckItemCooldown'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3376: in function 'CheckItemCooldowns'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:2911: in function <Interface/AddOns/WeakAuras/GenericTrigger.lua:2857>\n",
+["counter"] = 4,
+},
+{
+["time"] = 1783100335,
+["logrizhi"] = "null",
+["msg"] = "[11508-10.37] [ADDON_ACTION_BLOCKED] 插件< WeakAuras >尝试调用保护功能< SetFrameLevel() >",
+["stack"] = "[C]: ?\n[Interface/AddOns/WeakAuras/RegionTypes/Icon.lua]:292: in function 'SetFrameLevel'\n[Interface/AddOns/WeakAuras/SubRegionTypes/Background.lua]:17: in function 'SetFrameLevel'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:4482: in function 'ApplyFrameLevel'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1407: in function 'DoPositionChildrenPerFrame'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1516: in function 'DoPositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1332: in function 'PositionChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1313: in function 'SortUpdatedChildren'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1113: in function 'RunDelayedActions'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1104: in function 'Resume'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:4991: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:4944>\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:5122: in function 'UpdatedTriggerState'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:1014: in function 'ScanEventsInternal'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:911: in function 'ScanEvents'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:881: in function 'ScanEventsByID'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3415: in function 'CheckItemCooldown'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:3376: in function 'CheckItemCooldowns'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:2911: in function <Interface/AddOns/WeakAuras/GenericTrigger.lua:2857>\n",
+["counter"] = 4,
+},
+{
+["time"] = 1783100335,
+["logrizhi"] = "null",
+["msg"] = "[11508-10.37] [ADDON_ACTION_BLOCKED] 插件< WeakAuras >尝试调用保护功能< Frame:Show() >",
+["stack"] = "[C]: in function 'Show'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1567: in function 'Resize'\n[Interface/AddOns/WeakAuras/RegionTypes/DynamicGroup.lua]:1528: in function 'DoPositionChildren'\n[Interface/AddOns/WeakAuras/Animations.lua]:170: in function <Interface/AddOns/WeakAuras/Animations.lua:162>\n",
+["counter"] = 1,
 },
 },
 },

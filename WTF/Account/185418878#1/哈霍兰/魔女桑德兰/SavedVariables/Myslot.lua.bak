@@ -1,7 +1,0 @@
-
-MyslotSettings = {
-["allowclearonimport"] = false,
-["minimap"] = {
-["hide"] = false,
-},
-}

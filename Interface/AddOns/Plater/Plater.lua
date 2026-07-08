@@ -5504,7 +5504,7 @@ function Plater.OnInit() --private --~oninit ~init
 				
 				castBar.playedFinishedTest = nil
 				
-				if IS_WOW_PROJECT_MIDNIGHT then --IS_WOW_PROJECT_MIDNIGHT_API?
+				if IS_WOW_PROJECT_MIDNIGHT_API then
 					local durationObject = C_DurationUtil.CreateDuration()
 					durationObject:SetTimeFromEnd(castBar.spellEndTime , castBar.maxValue, 1)
 					castBar.durationObject = durationObject
@@ -5540,6 +5540,9 @@ function Plater.OnInit() --private --~oninit ~init
 				local textString = castBar.FrameOverlay.TargetName
 				textString:Show()
 				textString:SetText("Target Name")
+
+				--attempt to stop designer from restarting the cast bar
+				castBar.castID = "PLATER_TEST_" .. GetTime()
 			end
 		end
 		
@@ -6478,9 +6481,20 @@ function Plater.OnInit() --private --~oninit ~init
 			end
 		end)
 	elseif PlayerCastingBarFrame then
+        hooksecurefunc(PlayerCastingBarFrame, "SetAlpha", function(self, alpha)
+			if (Plater.db.profile.hide_blizzard_castbar) then
+				if alpha ~= 0 and self:IsProtected() then
+					self:SetAlpha(0)
+				end
+			end
+        end)
 		PlayerCastingBarFrame:HookScript ("OnShow", function (self)
 			if (Plater.db.profile.hide_blizzard_castbar) then
-				self:Hide()
+				if self:IsProtected() then
+					self:SetAlpha(0)
+				else
+					self:Hide()
+				end
 			end
 		end)		
 	end
@@ -8021,7 +8035,17 @@ end
 			unitFrame.softInteractIconFrame:Hide()
 		end
 	end
-	
+
+	--iterate all shown nameplates and hide the focus indicator on the first plate where it is visible
+	function Plater.HideFocusIndicator()
+		for index, plateFrame in ipairs(Plater.GetAllShownPlates()) do
+			if (plateFrame.FocusIndicator:IsShown()) then
+				plateFrame.FocusIndicator:Hide()
+				return
+			end
+		end
+	end
+
 	-- ~target ~selection
 	function Plater.UpdateTarget (plateFrame) --private
 

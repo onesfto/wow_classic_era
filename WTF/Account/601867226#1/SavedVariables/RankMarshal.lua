@@ -1,5 +1,5 @@
 
 RankMsgEnabled = true
-RankSoundEnabled = false
+RankSoundEnabled = true
 RankSoundOption = 235207
 DebugEnabled = false

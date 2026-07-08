@@ -449,10 +449,11 @@ function BG.RoleOverviewUI()
         }
         ids_updateItem = {
             -- 10938, 10939, 29223, 264272, 2131, -- 测试
-            265340, 265524, 267339, -- 橙脖
-            265335, 265523, 267338, -- 橙锤
-            265526, 267335,         -- 风剑
-            267340,                 -- 橙杖
+            265340, 265524, 267339, 269664, -- 橙脖
+            265335, 265523, 267338, 269667, -- 橙锤
+            265526, 267335, 269669,         -- 风剑
+            267340, 269665,                 -- 橙杖
+            269670,                         -- 橙匕
         }
     end
 
@@ -1183,41 +1184,38 @@ GameTooltip:SetCurrencyByID(697)
             end
         end
 
-        local f = CreateFrame("Frame")
-        f.cd = nil
-        f:RegisterEvent("PLAYER_ENTERING_WORLD")
-        f:RegisterEvent("ENCOUNTER_END")
-        f:RegisterEvent("CHAT_MSG_SYSTEM")
-        f:SetScript("OnEvent", function(self, event, msg, _, _, _, success)
-            if event == "PLAYER_ENTERING_WORLD" then
-                self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+        local cd
+        local function RequestRaidInfoWithCD()
+            if not cd then
+                cd = true
+                BG.After(0.5, function()
+                    cd = nil
+                    RequestRaidInfo()
+                end)
             end
-            if event == "PLAYER_ENTERING_WORLD"
-                or (event == "ENCOUNTER_END" and success == 1)
-                or (event == "CHAT_MSG_SYSTEM" and not BG.IsSecret(msg) and msg == INSTANCE_SAVED) then
-                if not self.cd then
-                    self.cd = true
-                    BG.After(0.5, function()
-                        self.cd = nil
-                        RequestRaidInfo()
-                    end)
-                end
+        end
+        BG.Init2(RequestRaidInfoWithCD)
+        BG.RegisterEvent("ENCOUNTER_END", function(self, event, _, _, _, _, success)
+            if success == 1 then
+                RequestRaidInfoWithCD()
+            end
+        end)
+        BG.RegisterEvent("CHAT_MSG_SYSTEM", function(self, event, msg)
+            if not BG.IsSecret(msg) and msg == INSTANCE_SAVED then
+                RequestRaidInfoWithCD()
             end
         end)
 
-        local f = CreateFrame("Frame")
-        f:RegisterEvent("PLAYER_ENTERING_WORLD")
-        f:RegisterEvent("ENCOUNTER_END")
-        f:RegisterEvent("UPDATE_INSTANCE_INFO")
-        f:SetScript("OnEvent", function(self, event, bossId, _, _, _, success)
-            if event == "PLAYER_ENTERING_WORLD" then
-                self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+        BG.Init2(function()
+            BG.After(1, BG.UpdateFBCD)
+        end)
+        BG.RegisterEvent("ENCOUNTER_END", function(self, event, _, _, _, _, success)
+            if success == 1 then
+                BG.After(1, BG.UpdateFBCD)
             end
-            if event ~= "ENCOUNTER_END" or (event == "ENCOUNTER_END" and success == 1) then
-                BG.After(1, function()
-                    BG.UpdateFBCD()
-                end)
-            end
+        end)
+        BG.RegisterEvent("UPDATE_INSTANCE_INFO", function()
+            BG.After(1, BG.UpdateFBCD)
         end)
 
         for realmID, players in pairs(BiaoGe[MONEY]) do
@@ -2175,19 +2173,12 @@ GameTooltip:SetCurrencyByID(697)
         end
 
         -- 事件
-        local f = CreateFrame("Frame")
-        f:RegisterEvent("PLAYER_ENTERING_WORLD")
-        f:RegisterEvent("CURRENCY_DISPLAY_UPDATE")
-        f:RegisterEvent("PLAYER_MONEY")
-        f:RegisterEvent("BAG_UPDATE_DELAYED")
-        f:SetScript("OnEvent", function(self, event, ...)
-            if event == "PLAYER_ENTERING_WORLD" then
-                self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-                UpdateCD()
-            end
-            C_Timer.After(0.5, function()
-                BG.MONEYupdate()
-            end)
+        BG.Init2(function()
+            UpdateCD()
+            C_Timer.After(0.5, BG.MONEYupdate)
+        end)
+        BG.RegisterEvent({ "CURRENCY_DISPLAY_UPDATE", "PLAYER_MONEY", "BAG_UPDATE_DELAYED" }, function()
+            C_Timer.After(0.5, BG.MONEYupdate)
         end)
     end
 
@@ -2196,16 +2187,7 @@ GameTooltip:SetCurrencyByID(697)
         -- 创建插件框架
         local race = select(2, UnitRace("player"))
         local isPanda = race == "Pandaren"
-        local f = CreateFrame("Frame")
-        f:RegisterEvent("PLAYER_ENTERING_WORLD")
-        f:RegisterEvent("PLAYER_XP_UPDATE")
-        f:RegisterEvent("UPDATE_EXHAUSTION")
-        f:RegisterEvent("PLAYER_LEVEL_UP")
-        f:RegisterEvent("PLAYER_UPDATE_RESTING")
-        f:SetScript("OnEvent", function(self, event)
-            if event == "PLAYER_ENTERING_WORLD" then
-                self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-            end
+        local function UpdateXP()
             local exhaustion = GetXPExhaustion() -- 获取剩余双倍经验值
             local per = 0
             if exhaustion then
@@ -2219,7 +2201,9 @@ GameTooltip:SetCurrencyByID(697)
                 resting = IsResting(),
                 isPanda = isPanda,
             }
-        end)
+        end
+        BG.Init2(UpdateXP)
+        BG.RegisterEvent({ "PLAYER_XP_UPDATE", "UPDATE_EXHAUSTION", "PLAYER_LEVEL_UP", "PLAYER_UPDATE_RESTING" }, UpdateXP)
 
         function BG.UpdateXP()
             local time = GetServerTime()

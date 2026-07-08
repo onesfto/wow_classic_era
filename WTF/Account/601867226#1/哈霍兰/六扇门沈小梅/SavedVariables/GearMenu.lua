@@ -59,8 +59,8 @@ GearMenuConfiguration = {
 ["trinketMenuColumns"] = 4,
 ["frames"] = {
 ["GM_TrinketMenuFrame"] = {
-["point"] = "BOTTOMRIGHT",
 ["relativePoint"] = "BOTTOMRIGHT",
+["point"] = "BOTTOMRIGHT",
 ["posY"] = 250.7049102783203,
 ["posX"] = -389.1790771484375,
 },

@@ -197,6 +197,7 @@ function Create.PIGSetMovableNoSave(LeftUI,MovableUI,KeyDown)
 end
 function PIGGetPoint(MovableUI)
 	local point, _, relativePoint, offsetX, offsetY = MovableUI:GetPoint()
+	if not point then return nil end
 	local offsetX = floor(offsetX*100+0.5)*0.01
 	local offsetY = floor(offsetY*100+0.5)*0.01
 	return point, relativePoint, offsetX, offsetY

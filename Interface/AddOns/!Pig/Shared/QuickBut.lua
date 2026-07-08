@@ -297,6 +297,7 @@ end
 -- [20]时空之门[21]时空之门喊话
 -- [30]开团助手
 -- [40]带本助手
+-- [50]汇合石
 function Fun.QuickBut_Update()
 	if next(Data.QKData)==nil then return end
 	local QuickBar=addQuickBarUI()

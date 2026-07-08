@@ -1,6 +1,6 @@
 
 ACP_Data = {
-["sorter"] = "按名称分组",
+["sorter"] = "名称",
 ["NoRecurse"] = false,
 ["NoChildren"] = true,
 ["AddonSet"] = {

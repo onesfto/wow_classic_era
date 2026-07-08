@@ -348,7 +348,7 @@ function GeneralFun.Hardcore()
 			ButUI.ListF.NR.List = PIGFrame(ButUI.ListF.NR,{"TOPLEFT", ButUI.ListF.NR, "TOPLEFT", 2, -44})
 			ButUI.ListF.NR.List:SetPoint("BOTTOMRIGHT", ButUI.ListF.NR, "BOTTOMRIGHT", -2, 2);
 			ButUI.ListF.NR.List:PIGSetBackdrop(0)
-			local biaotiLsit = {{ID,4},{L["TIME"],30},{LEVEL,130},{CALENDAR_PLAYER_NAME,210},{L["HARDCORE_KILLER"],320},{DEAD..FLOOR,460},}
+			local biaotiLsit = {{ID,4},{L["TIME"],36},{LEVEL,130},{CALENDAR_PLAYER_NAME,210},{L["HARDCORE_KILLER"],320},{DEAD..FLOOR,460},}
 			for i=1,#biaotiLsit do
 				local biaoti = PIGFontString(ButUI.ListF.NR.List,{"BOTTOMLEFT", ButUI.ListF.NR.List, "TOPLEFT", biaotiLsit[i][2], 2},biaotiLsit[i][1])
 				biaoti:SetTextColor(0, 1, 0.9, 0.8);

@@ -1,33 +1,102 @@
-﻿local _, addonTable = ...;
-local GeneralFun=addonTable.GeneralFun
+﻿local _, PD = ...;
+local GeneralFun=PD.GeneralFun
 -----------------
 local GNopen=PIG_MaxTocversion(40000)
 function GeneralFun.BabySitter()
 	if not GNopen then return end
-	local L=addonTable.locale
+	local L=PD.locale
+	local Data=PD.Data
 	--------
-	local Create=addonTable.Create
+	local Create=PD.Create
 	local PIGFrame=Create.PIGFrame
+	local PIGButton=Create.PIGButton
 	local PIGEnter=Create.PIGEnter
 	local PIGDiyBut=Create.PIGDiyBut
+	local PIGSlider=Create.PIGSlider
 	local PIGCheckbutton_R=Create.PIGCheckbutton
 	local PIGCheckbutton_R=Create.PIGCheckbutton_R
 	local PIGOptionsList_R=Create.PIGOptionsList_R
 	local PIGFontString=Create.PIGFontString
 	--
-	local Fun=addonTable.Fun
+	local Fun=PD.Fun
 	local ActionFun=Fun.ActionFun
-	local bagData=addonTable.Data.bagData
-	--远程武器提起
+	local bagData=Data.bagData
+	local PlayerInfo=Data.PlayerInfo
+	local zhanshitouzhiOK
+	--远程武器弹药
+	local function GetammoMinNum(ammoMin1, ammoMin2)
+		PIGA["CombatPlus"]["ammoMin1"]=ammoMin1 or PIGA["CombatPlus"]["ammoMin1"]
+		PIGA["CombatPlus"]["ammoMin2"]=ammoMin2 or PIGA["CombatPlus"]["ammoMin2"]
+		return PIGA["CombatPlus"]["ammoMin1"] or 60,PIGA["CombatPlus"]["ammoMin2"] or 600
+	end
+	local function event_Script()
+		if not GeneralFun.ammotips then return end
+		local resting = IsResting()
+		if resting then
+			local tipsShow=false
+			local tipsShowicon=134400
+			local itemId= GetInventoryItemID("player", 18)
+			if itemId then
+				local itemID, itemType, itemSubType, itemEquipLoc, icon, classID, subclassID = PIGGetItemInfoInstant(itemId) 
+				if classID==2 then--武器
+					local ammoMin1,ammoMin2 = GetammoMinNum()
+					if subclassID==16 then--投掷
+						local xxxx = GetInventoryItemCount("player", 18)
+						GeneralFun.ammotips:SetNormalTexture(135426)--投掷刀
+						GeneralFun.ammotips.t:SetText(ACTION_SPELL_ENERGIZE..INVTYPE_THROWN..WEAPON)
+						GeneralFun.ammotips:SetShown(xxxx<ammoMin1)
+					elseif subclassID==2 or subclassID==3 or subclassID==18 then--弓/枪/弩
+						tipsShowicon=132382
+						local xxxx = GetInventoryItemCount("player", 0)
+						if xxxx<ammoMin2 then
+							tipsShow=true
+						end
+						if subclassID==3 then
+							tipsShowicon=132384
+						end
+						GeneralFun.ammotips:SetNormalTexture(tipsShowicon)
+						GeneralFun.ammotips.t:SetText(ACTION_SPELL_ENERGIZE..AMMOSLOT)
+						GeneralFun.ammotips:SetShown(tipsShow)
+					end	
+				end
+			else
+				tipsShowicon=135426
+				if GeneralFun.classId==3 then
+					tipsShow,tipsShowicon=true,136520
+				elseif GeneralFun.classId==4 then
+					tipsShow=true
+				elseif GeneralFun.classId==1 and zhanshitouzhiOK then
+					tipsShow=true
+				end
+				if tipsShow then
+					GeneralFun.ammotips:SetNormalTexture(tipsShowicon)
+					GeneralFun.ammotips.t:SetText(L["BABY_TISPAMMO1"])
+					GeneralFun.ammotips:Show()
+				end
+			end
+		end
+	end
+	local function Class_Load()
+		local numSkills = GetNumSkillLines();
+		for x=1,numSkills do
+			local skillName = GetSkillLineInfo(x);
+			if skillName==INVTYPE_THROWN..WEAPON then
+				zhanshitouzhiOK=true
+				break
+			end
+		end
+		event_Script()
+	end	
 	local function AmmotipsFun(ly)
 		if PIG_MaxTocversion(20000,true) then return end
 		if not PIGA["CombatPlus"]["ammotips"] then return end
-		if GeneralFun.ammotipsOpen then return end
-		local _, classId = UnitClassBase("player");
+		if GeneralFun.ammotips then return end
+		local classId=PlayerInfo.ClassData.classId
+		GeneralFun.classId=classId
 		--职业编号1战士/2圣骑士/3猎人/4盗贼/5牧师/6死亡骑士/7萨满祭司/8法师/9术士/10武僧/11德鲁伊/12恶魔猎手
 		if not classId and classId~=1 and classId~=3 and classId~=4 then return end
 		local ammotips=CreateFrame("Button", nil, UIParent)
-		GeneralFun.ammotipsOpen=true
+		GeneralFun.ammotips=ammotips
 		ammotips:SetSize(30,30);
 		ammotips:SetPoint("TOP",UIParent,"TOP",-80,-200);
 		ammotips:Hide();
@@ -35,78 +104,6 @@ function GeneralFun.BabySitter()
 		ammotips.t = PIGFontString(ammotips,{"LEFT",ammotips,"RIGHT", 0, 0},"","OUTLINE",24)
 		ammotips.t:SetTextColor(1, 0, 0, 1);
 		--
-		local function event_Script()
-			local resting = IsResting()
-			if resting then
-				ammotips.tipsShow=false
-				local itemId= GetInventoryItemID("player", 18)
-				if itemId then
-					local itemID, itemType, itemSubType, itemEquipLoc, icon, classID, subclassID = PIGGetItemInfoInstant(itemId) 
-					if classID==2 then--武器
-						if subclassID==16 then--投掷
-							local xxxx = GetInventoryItemCount("player", 18)
-							if xxxx<50 then
-								ammotips:SetNormalTexture(135426)--投掷刀
-								ammotips.t:SetText(ACTION_SPELL_ENERGIZE..INVTYPE_THROWN..WEAPON)
-								ammotips:Show()
-							end
-						elseif subclassID==2 or subclassID==3 or subclassID==18 then--弓/枪/弩
-							ammotips.tipsShowicon=132382
-							ammotips.tipsammonum=50
-							local xxxx = GetInventoryItemCount("player", 0)
-							if ammotips.classId==3 then
-								for bag=1,#bagData["bagID"] do
-									local numFreeSlots, bagType = PIGGetContainerNumFreeSlots(bagData["bagID"][bag])
-									if bagType==1 or bagType==2 then
-										local numSlots = PIGGetContainerNumSlots(bagData["bagID"][bag])
-										ammotips.tipsammonum=(numSlots*0.5)*200
-										break
-									end
-								end
-							end
-							if xxxx<ammotips.tipsammonum then
-								ammotips.tipsShow=true
-							end
-							if subclassID==3 then
-								ammotips.tipsShowicon=132384
-							end
-							if ammotips.tipsShow then
-								ammotips:SetNormalTexture(ammotips.tipsShowicon)
-								ammotips.t:SetText(ACTION_SPELL_ENERGIZE..AMMOSLOT)
-								ammotips:Show()
-							end
-						end	
-					end
-				else
-					ammotips.tipsShowicon=135426
-					if ammotips.classId==3 then
-						ammotips.tipsShow,ammotips.tipsShowicon=true,136520
-					elseif ammotips.classId==4 then
-						ammotips.tipsShow=true
-					elseif ammotips.classId==1 and ammotips.touzhiOK then
-						ammotips.tipsShow=true
-					end
-					if ammotips.tipsShow then
-						ammotips:SetNormalTexture(ammotips.tipsShowicon)
-						ammotips.t:SetText(L["BABY_TISPAMMO1"])
-						ammotips:Show()
-					end
-				end
-			end
-		end
-		local function Class_Load()
-			local _, classId = UnitClassBase("player");
-			ammotips.classId=classId
-			local numSkills = GetNumSkillLines();
-			for x=1,numSkills do
-				local skillName = GetSkillLineInfo(x);
-				if skillName==INVTYPE_THROWN..WEAPON then
-					ammotips.touzhiOK=true
-					break
-				end
-			end
-			event_Script()
-		end	
 		if ly then Class_Load() end
 		ammotips:RegisterEvent("PLAYER_ENTERING_WORLD")
 		ammotips:RegisterEvent("PLAYER_UPDATE_RESTING");
@@ -530,35 +527,9 @@ function GeneralFun.BabySitter()
 	function GeneralFun.addOptions_BabySitter()
 		local TabBbbyF =PIGOptionsList_R(GeneralFun.NR,L["BABY_TABNAME"],90)
 		TabBbbyF:HookScript("OnShow", function(self)
-			if PIG_MaxTocversion(20000) then
-				if not TabBbbyF.ammotips then 
-					TabBbbyF.ammotips = PIGCheckbutton_R(TabBbbyF,{L["BABY_TISPAMMO"]})
-					TabBbbyF.ammotips:SetScript("OnClick", function (self)
-						if self:GetChecked() then
-							PIGA["CombatPlus"]["ammotips"]=true;
-							AmmotipsFun(true)
-						else
-							PIGA["CombatPlus"]["ammotips"]=false;
-							PIG_OptionsUI.RLUI:Show()
-						end
-					end)
-					TabBbbyF.Submerged = PIGCheckbutton_R(TabBbbyF,{L["BABY_TISPSUBMERGED"]})
-					TabBbbyF.Submerged:SetScript("OnClick", function (self)
-						if self:GetChecked() then
-							PIGA["CombatPlus"]["Submerged"]=true;
-							SubmergedFun(true)
-						else
-							PIGA["CombatPlus"]["Submerged"]=false;
-							PIG_OptionsUI.RLUI:Show()
-						end
-					end)
-				end
-				TabBbbyF.ammotips:SetChecked(PIGA["CombatPlus"]["ammotips"])
-				TabBbbyF.Submerged:SetChecked(PIGA["CombatPlus"]["Submerged"])
-			end
 			if PIG_MaxTocversion(40000) then
 				if not TabBbbyF.PetHappiness then  
-					TabBbbyF.PetHappiness = PIGCheckbutton_R(TabBbbyF,{L["BABY_PETHAPPINESS"],L["BABY_PETHAPPINESS1"]})
+					TabBbbyF.PetHappiness = PIGCheckbutton_R(TabBbbyF,{L["BABY_PETHAPPINESS"],L["BABY_PETHAPPINESS1"]},true)
 					TabBbbyF.PetHappiness:SetScript("OnClick", function (self)
 						if self:GetChecked() then
 							PIGA["CombatPlus"]["PetHappiness"]=true;
@@ -568,8 +539,56 @@ function GeneralFun.BabySitter()
 							PIG_OptionsUI.RLUI:Show()
 						end
 					end)
+					TabBbbyF.PetHappiness:SetChecked(PIGA["CombatPlus"]["PetHappiness"])
 				end
-				TabBbbyF.PetHappiness:SetChecked(PIGA["CombatPlus"]["PetHappiness"])
+			end
+			if PIG_MaxTocversion(20000) then
+				if not TabBbbyF.ammotips then
+					TabBbbyF.Submerged = PIGCheckbutton_R(TabBbbyF,{L["BABY_TISPSUBMERGED"]},true)
+					TabBbbyF.Submerged:SetScript("OnClick", function (self)
+						if self:GetChecked() then
+							PIGA["CombatPlus"]["Submerged"]=true;
+							SubmergedFun(true)
+						else
+							PIGA["CombatPlus"]["Submerged"]=false;
+							PIG_OptionsUI.RLUI:Show()
+						end
+					end)
+					TabBbbyF.Submerged:SetChecked(PIGA["CombatPlus"]["Submerged"])
+
+					TabBbbyF.ammotips = PIGCheckbutton_R(TabBbbyF,{L["BABY_TISPAMMO"]},true)
+					TabBbbyF.ammotips:SetScript("OnClick", function (self)
+						if self:GetChecked() then
+							PIGA["CombatPlus"]["ammotips"]=true;
+							AmmotipsFun(true)
+						else
+							PIGA["CombatPlus"]["ammotips"]=false;
+							PIG_OptionsUI.RLUI:Show()
+						end
+					end)
+					TabBbbyF.ammotips:SetChecked(PIGA["CombatPlus"]["ammotips"])
+					TabBbbyF.ammotips.CZ = PIGButton(TabBbbyF.ammotips,{"LEFT",TabBbbyF.ammotips.Text,"RIGHT",10,0},{60,22},RESET);  
+					TabBbbyF.ammotips.CZ:SetScript("OnClick", function ()
+						GetammoMinNum(PD.Default["CombatPlus"]["ammoMin1"],PD.Default["CombatPlus"]["ammoMin2"])
+						event_Script()
+						TabBbbyF.ammotips.Minnum1:PIGSetValue(GetammoMinNum(arg1))
+						TabBbbyF.ammotips.Minnum2:PIGSetValue(select(2,GetammoMinNum(nil,arg1)))
+					end);
+					
+					TabBbbyF.ammotips.Minnum1 = PIGSlider(TabBbbyF.ammotips,{"TOPLEFT",TabBbbyF.ammotips.Text,"BOTTOMLEFT",6,-2},{1,2000,1,{["Right"]="投掷武器少于:%d"}},400)
+					function TabBbbyF.ammotips.Minnum1:PIGOnValueChange(arg1)
+						GetammoMinNum(arg1)
+						event_Script()
+					end
+					TabBbbyF.ammotips.Minnum1:PIGSetValue(GetammoMinNum(arg1))
+					
+					TabBbbyF.ammotips.Minnum2 = PIGSlider(TabBbbyF.ammotips,{"TOPLEFT",TabBbbyF.ammotips.Minnum1,"BOTTOMLEFT",0,-2},{1,2000,1,{["Right"]="弓箭/弹药少于:%d"}},400)
+					function TabBbbyF.ammotips.Minnum2:PIGOnValueChange(arg1)
+						GetammoMinNum(nil,arg1)
+						event_Script()
+					end
+					TabBbbyF.ammotips.Minnum2:PIGSetValue(select(2,GetammoMinNum(nil,arg1)))
+				end		
 			end
 		end)
 	end

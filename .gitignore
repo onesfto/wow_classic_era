@@ -1,38 +1,70 @@
-# 客户端程序与运行库
+# ==============================================================================
+# 系统与日志文件 (System & Logs)
+# ==============================================================================
+# 操作系统隐藏文件
+.DS_Store
+Thumbs.db
+
+# 平台与环境标识文件
+.curseclient
+.flavor.info
+
+# 临时与日志文件
+*.tmp
+*.log
+*.dmp
+
+
+# ==============================================================================
+# 游戏客户端与数据 (Client & Game Data)
+# ==============================================================================
+# 客户端运行库与程序
 *.exe
 *.app
 *.dll
 *.pdb
-*.dmp
-*.tmp
-*.log
 
-# 游戏客户端产生的巨型缓存与数据目录
-/Cache/
-/Errors/
-/Logs/
-/Data/
-/Utils/
-/Screenshots/
-
-
-# 操作系统自动生成的隐藏文件
-.DS_Store
-Thumbs.db
+# 保留经典旧世主程序
 !WowClassic.exe
 
-# 角色属性统计插件
-/Interface/AddOns/SinStats/
+# 巨型缓存与本地数据目录
+/Cache/
+/Data/
+/Errors/
+/Logs/
+/Screenshots/
+/Utils/
 
-# 小地图美化插件
-/Interface/AddOns/SexyMap/
+# 字体预渲染缓存文件
+*.slug
+*.slugo
 
-# 背包管理插件
+
+# ==============================================================================
+# 插件忽略列表 (Ignored AddOns)
+# ==============================================================================
+# 智能分类背包插件
 /Interface/AddOns/BetterBags/
 
-# 毕业装备追踪插件 (Best in Slot)
+# 毕业装备追踪查询 (Best in Slot)
 /Interface/AddOns/BiSTracker/
 
 # 宏命令增强面板与图标库
 /Interface/AddOns/MacroToolkit/
 /Interface/AddOns/MacroToolkitIcons/
+
+# NDui 轻量级界面增强
+/Interface/AddOns/NDui/
+/Interface/AddOns/NDui_Plus/
+
+# 个人定制化综合插件
+/Interface/AddOns/Onesfto/
+
+# 小地图美化
+/Interface/AddOns/SexyMap/
+
+# 团队目标快速标记
+/Interface/AddOns/SimpleRaidTargetIcons/
+
+# 角色属性深入统计面板
+/Interface/AddOns/SinStats/

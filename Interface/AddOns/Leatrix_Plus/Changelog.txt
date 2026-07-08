@@ -1,4 +1,7 @@
-﻿1.15.142 - 24th June 2026
+﻿1.15.143 - 1st July 2026
+- For 'Enhance minimap' ('Interface'), the 'Cluster scale' setting is now 'Cluster height'.  It's useful for moving the quest watch frame up or down if the minimap is blocking it.  The 'Not minimap' checkbox has been removed as it's no longer needed.  This also fixes an issue where the zone text bar would scale incorrectly with the cluster.
+
+1.15.142 - 24th June 2026
 - For 'Enhance minimap' ('Interface'), tweaked the position of the zone text bar and day and night indicator.
 
 1.15.141 - 18th June 2026
