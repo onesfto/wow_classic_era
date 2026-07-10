@@ -1,0 +1,17 @@
+## Interface: 11508
+## Title: Onesfto
+## Notes: Custom tweaks and fixes
+## Author: Onesfto
+## OptionalDeps: WhisperPop, NDui_Plus, NDui, ElvUI, BetterBags, AtlasLootClassic
+
+Modules/WhisperPop.lua
+Modules/alaGearMan.lua
+Modules/NovaWorldBuffs.lua
+Modules/WorldMapButtons.lua
+Modules/MacroToolkit.lua
+Modules/NDui_Disable.lua
+Modules/PigIcons.lua
+Modules/tdInspect.lua
+Modules/SexyMap.lua
+Modules/BetterBags.lua
+Modules/AutoCarrot.lua
