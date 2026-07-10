@@ -89,16 +89,16 @@ local Custom_CSV_Items = {
         [22192] = "A-属性",
         [22193] = "A-属性",
         [22236] = "A-属性",
-        [3824] = "A-武器",
-        [3829] = "A-武器",
-        [12404] = "A-武器",
-        [12643] = "A-武器",
-        [18262] = "A-武器",
-        [20748] = "A-武器",
-        [20749] = "A-武器",
-        [23122] = "A-武器",
-        [23123] = "A-武器",
         [22239] = "A-治疗",
+        [3824] = "A-涂剂",
+        [3829] = "A-涂剂",
+        [12404] = "A-涂剂",
+        [12643] = "A-涂剂",
+        [18262] = "A-涂剂",
+        [20748] = "A-涂剂",
+        [20749] = "A-涂剂",
+        [23122] = "A-涂剂",
+        [23123] = "A-涂剂",
         [1710] = "A-红蓝",
         [3928] = "A-红蓝",
         [5513] = "A-红蓝",
@@ -125,48 +125,25 @@ local Custom_CSV_Items = {
         [20079] = "A-非专业",
         [20080] = "A-非专业",
         [20081] = "A-非专业",
-        [774] = "B-矿",
-        [818] = "B-矿",
-        [1206] = "B-矿",
-        [1210] = "B-矿",
-        [1529] = "B-矿",
-        [1705] = "B-矿",
-        [2770] = "B-矿",
-        [2771] = "B-矿",
-        [2772] = "B-矿",
-        [2775] = "B-矿",
-        [2776] = "B-矿",
-        [2835] = "B-矿",
-        [2836] = "B-矿",
-        [2838] = "B-矿",
-        [2840] = "B-矿",
-        [2841] = "B-矿",
-        [2842] = "B-矿",
-        [3575] = "B-矿",
-        [3576] = "B-矿",
-        [3577] = "B-矿",
-        [3858] = "B-矿",
-        [3859] = "B-矿",
-        [3860] = "B-矿",
-        [3864] = "B-矿",
-        [6037] = "B-矿",
-        [7067] = "B-矿",
-        [7909] = "B-矿",
-        [7910] = "B-矿",
-        [7911] = "B-矿",
-        [7912] = "B-矿",
-        [10620] = "B-矿",
-        [11370] = "B-矿",
-        [11371] = "B-矿",
-        [11382] = "B-矿",
-        [12359] = "B-矿",
-        [12361] = "B-矿",
-        [12363] = "B-矿",
-        [12364] = "B-矿",
-        [12655] = "B-矿",
-        [12800] = "B-矿",
-        [12809] = "B-矿",
-        [17771] = "B-矿",
+        [774] = "B-宝石",
+        [818] = "B-宝石",
+        [1206] = "B-宝石",
+        [1210] = "B-宝石",
+        [1529] = "B-宝石",
+        [1705] = "B-宝石",
+        [3864] = "B-宝石",
+        [5498] = "B-宝石",
+        [5500] = "B-宝石",
+        [7909] = "B-宝石",
+        [7910] = "B-宝石",
+        [7971] = "B-宝石",
+        [12361] = "B-宝石",
+        [12363] = "B-宝石",
+        [12364] = "B-宝石",
+        [12800] = "B-宝石",
+        [12809] = "B-宝石",
+        [13926] = "B-宝石",
+        [19726] = "B-宝石",
         [2589] = "B-布",
         [2592] = "B-布",
         [2996] = "B-布",
@@ -197,9 +174,37 @@ local Custom_CSV_Items = {
         [8170] = "B-皮",
         [8171] = "B-皮",
         [8172] = "B-皮",
-        [12735] = "B-皮",
         [15407] = "B-皮",
         [17012] = "B-皮",
+        [2770] = "B-矿",
+        [2771] = "B-矿",
+        [2772] = "B-矿",
+        [2775] = "B-矿",
+        [2776] = "B-矿",
+        [2835] = "B-矿",
+        [2836] = "B-矿",
+        [2838] = "B-矿",
+        [2840] = "B-矿",
+        [2841] = "B-矿",
+        [2842] = "B-矿",
+        [3575] = "B-矿",
+        [3576] = "B-矿",
+        [3577] = "B-矿",
+        [3858] = "B-矿",
+        [3859] = "B-矿",
+        [3860] = "B-矿",
+        [6037] = "B-矿",
+        [7067] = "B-矿",
+        [7911] = "B-矿",
+        [7912] = "B-矿",
+        [10620] = "B-矿",
+        [11370] = "B-矿",
+        [11371] = "B-矿",
+        [11382] = "B-矿",
+        [12359] = "B-矿",
+        [12360] = "B-矿",
+        [12655] = "B-矿",
+        [17771] = "B-矿",
         [2447] = "B-草",
         [2449] = "B-草",
         [2450] = "B-草",
@@ -227,7 +232,6 @@ local Custom_CSV_Items = {
         [13466] = "B-草",
         [13467] = "B-草",
         [13468] = "B-草",
-        [19726] = "B-草",
         [6291] = "B-鱼",
         [6303] = "B-鱼",
         [6308] = "B-鱼",
@@ -246,14 +250,12 @@ local Custom_CSV_Items = {
         [13758] = "B-鱼",
         [13759] = "B-鱼",
         [13760] = "B-鱼",
-        [13761] = "B-鱼",
         [13888] = "B-鱼",
         [13889] = "B-鱼",
         [13893] = "B-鱼",
         [21071] = "B-鱼",
         [21153] = "B-鱼",
         [21217] = "B-鱼",
-        [12360] = "B-矿",
         [5462] = "坐骑宠物玩具",
         [11026] = "坐骑宠物玩具",
         [11027] = "坐骑宠物玩具",
@@ -295,6 +297,9 @@ local Custom_CSV_Items = {
         [20558] = "战场",
         [20559] = "战场",
         [20560] = "战场",
+        [17056] = "材料",
+        [6948] = "工具",
+        [12344] = "工具",
         [17193] = "武器-双手",
         [943] = "武器-双手",
         [17070] = "武器-单手",
@@ -639,6 +644,53 @@ local Custom_CSV_Items = {
         [19371] = "首饰-治疗",
         [21707] = "首饰-法系",
         [21681] = "首饰-治疗",
+        [11122] = "首饰-特殊",
+        [21529] = "首饰-抗性",
+        [22707] = "首饰-抗性",
+        [22935] = "首饰-抗性",
+        [23028] = "首饰-抗性",
+        [23042] = "首饰-抗性",
+        [2802] = "首饰-抗性",
+        [16309] = "首饰-抗性",
+        [17744] = "首饰-抗性",
+        [18399] = "首饰-抗性",
+        [21678] = "首饰-抗性",
+        [18638] = "首饰-抗性",
+        [18639] = "首饰-抗性",
+        [18634] = "首饰-抗性",
+        [744] = "首饰-特殊",
+        [4397] = "首饰-特殊",
+        [10645] = "首饰-特殊",
+        [10716] = "首饰-特殊",
+        [14022] = "首饰-特殊",
+        [14023] = "首饰-特殊",
+        [18854] = "首饰-特殊",
+        [18856] = "首饰-特殊",
+        [18857] = "首饰-特殊",
+        [18858] = "首饰-特殊",
+        [18859] = "首饰-特殊",
+        [18862] = "首饰-特殊",
+        [18863] = "首饰-特殊",
+        [18864] = "首饰-特殊",
+        [19979] = "首饰-特殊",
+        [21579] = "首饰-特殊",
+        [1973] = "首饰-特殊",
+        [2820] = "首饰-特殊",
+        [16022] = "首饰-特殊",
+        [18398] = "首饰-抗性",
+        [18403] = "首饰-抗性",
+        [20600] = "首饰-抗性",
+        [18587] = "首饰-特殊",
+        [18986] = "首饰-特殊",
+        [21647] = "首饰-特殊",
+        [21687] = "首饰-抗性",
+        [19345] = "首饰-特殊",
+        [21685] = "首饰-抗性",
+        [19947] = "首饰-特殊",
+        [13347] = "首饰-特殊",
+        [20685] = "首饰-治疗",
+        [19948] = "首饰-防御",
+        [18984] = "首饰-特殊",
         [14146] = "装备-法系",
         [18809] = "装备-法系",
         [19131] = "装备-法系",
@@ -764,6 +816,16 @@ local Custom_CSV_Items = {
         [22385] = "装备-物理",
         [21581] = "装备-物理",
         [23000] = "装备-物理",
+        [10588] = "装备-特殊",
+        [10726] = "装备-特殊",
+        [10506] = "装备-特殊",
+        [16816] = "装备-暗抗",
+        [21627] = "装备-暗抗",
+        [21838] = "装备-暗抗",
+        [20537] = "装备-暗抗",
+        [20538] = "装备-暗抗",
+        [20539] = "装备-暗抗",
+        [22225] = "装备-暗抗",
 }
 
 local consumableCache = {}
@@ -907,7 +969,7 @@ local function OnPlayerLogin()
     end)
 
     local customCategories = {
-        "A-AD", "A-AP", "A-功能", "A-吃喝", "A-合剂", "A-属性", "A-武器", "A-治疗", "A-红蓝", "A-非专业", "B-布", "B-皮", "B-矿", "B-草", "B-鱼", "T2", "T2.5", "T3", "坐骑宠物玩具", "工具", "战场", "武器-副手", "武器-单手", "武器-双手", "武器-远程", "装备-冰抗", "装备-抗性", "装备-披风", "装备-暗抗", "装备-治疗", "装备-法系", "装备-火抗", "装备-物理", "装备-特殊", "装备-自然抗", "装备-防御", "首饰-治疗", "首饰-法系", "首饰-物理", "首饰-特殊", "首饰-防御"
+        "A-AD", "A-AP", "A-功能", "A-吃喝", "A-合剂", "A-属性", "A-武器", "A-治疗", "A-涂剂", "A-红蓝", "A-非专业", "B-宝石", "B-布", "B-皮", "B-矿", "B-草", "B-鱼", "T2", "T2.5", "T3", "坐骑宠物玩具", "工具", "战场", "材料", "武器-副手", "武器-单手", "武器-双手", "武器-远程", "装备-冰抗", "装备-抗性", "装备-披风", "装备-暗抗", "装备-治疗", "装备-法系", "装备-火抗", "装备-物理", "装备-特殊", "装备-自然抗", "装备-防御", "首饰-抗性", "首饰-治疗", "首饰-法系", "首饰-物理", "首饰-特殊", "首饰-防御"
     }
     
     for _, catName in ipairs(customCategories) do
@@ -943,6 +1005,73 @@ local function OnPlayerLogin()
             return section
         end
     end
+
+    -- 1. Setup Custom Groups properly through AceDB instance
+    local db = bb:GetModule("Database", true)
+    if db and db.data and db.data.profile then
+        local profile = db.data.profile
+        local groups = profile.groups
+        if groups and groups[0] then
+            if groups[0][1] and (groups[0][1].name == "Backpack" or groups[0][1].name == "背包" or groups[0][1].name == "主要") then
+                groups[0][1].name = "主要"
+            end
+            if not groups[0][2] then
+                groups[0][2] = { id = 2, name = "次要", order = 2, kind = 0, isDefault = false }
+                profile.groupCounter[0] = math.max(profile.groupCounter[0] or 1, 2)
+            end
+            if not groups[0][3] then
+                groups[0][3] = { id = 3, name = "钥匙", order = 3, kind = 0, isDefault = false }
+                profile.groupCounter[0] = math.max(profile.groupCounter[0] or 1, 3)
+            end
+        end
+        if profile.categoryToGroup and profile.categoryToGroup[0] then
+            if profile.categoryToGroup[0]["Keys"] == nil then
+                profile.categoryToGroup[0]["Keys"] = 3
+            end
+            if profile.categoryToGroup[0]["钥匙"] == nil then
+                profile.categoryToGroup[0]["钥匙"] = 3
+            end
+        end
+    end
+
+    -- 2. Inject Missing Localization
+    local loc = bb:GetModule("Localization", true)
+    if loc and loc.data then
+        if not loc.data["Create New Backpack Tab"] then loc.data["Create New Backpack Tab"] = {} end
+        loc.data["Create New Backpack Tab"]["zhCN"] = "创建新背包分组"
+        loc.data["Create New Backpack Tab"]["zhTW"] = "創建新背包分組"
+        
+        if not loc.data["Enter group name:"] then loc.data["Enter group name:"] = {} end
+        loc.data["Enter group name:"]["zhCN"] = "输入分组名称："
+        loc.data["Enter group name:"]["zhTW"] = "輸入分組名稱："
+    end
+
+    -- 3. Monkey patch Question module to inherit ElvUI skin if loaded
+    if ElvUI then
+        local E = unpack(ElvUI)
+        local S = E:GetModule("Skins")
+        if S then
+            local question = bb:GetModule("Question", true)
+            if question and question._OnCreate and not question.OnesftoHooked then
+                local oldCreate = question._OnCreate
+                question._OnCreate = function(self, ...)
+                    local q = oldCreate(self, ...)
+                    if q and q.frame and not q.OnesftoSkinned then
+                        S:HandleFrame(q.frame)
+                        if q.yes then S:HandleButton(q.yes) end
+                        if q.no then S:HandleButton(q.no) end
+                        if q.ok then S:HandleButton(q.ok) end
+                        if q.input then S:HandleEditBox(q.input) end
+                        q.OnesftoSkinned = true
+                    end
+                    return q
+                end
+                question.OnesftoHooked = true
+            end
+        end
+    end
+
+
 end
 
 local f = CreateFrame("Frame")
