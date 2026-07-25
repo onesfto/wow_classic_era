@@ -3,7 +3,8 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal25"
 
-mod:SetRevision("20241103131702")
+mod:SetRevision("20260523022044")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(17968)
 mod:SetEncounterID(622, 2472)
 mod:SetModelID(20939)
@@ -22,7 +23,7 @@ local warnGrip			= mod:NewTargetNoFilterAnnounce(31972, 3, nil, "RemoveMagic")--
 local warnBurst			= mod:NewTargetNoFilterAnnounce(32014, 3)
 local warnFear			= mod:NewSpellAnnounce(31970, 3)
 
-local specWarnBurst		= mod:NewSpecialWarningYou(32014, nil, nil, nil, 3, 2)
+local specWarnBurst		= mod:NewSpecialWarningYou(32014, nil, nil, nil, 3, 2, nil, nil, "targetyou")
 local yellBurst			= mod:NewYell(32014)
 
 local timerFearCD		= mod:NewCDTimer(41, 31970, nil, nil, nil, 2)
@@ -31,7 +32,6 @@ local timerFearCD		= mod:NewCDTimer(41, 31970, nil, nil, nil, 2)
 local berserkTimer		= mod:NewBerserkTimer(600)
 
 mod:AddSetIconOption("BurstIcon", 32014, true, 0, {8})
-mod:AddRangeFrameOption(13, 32014)
 
 function mod:BurstTarget(targetname, uId)
 	if not targetname then return end
@@ -39,9 +39,6 @@ function mod:BurstTarget(targetname, uId)
 		specWarnBurst:Show()
 		specWarnBurst:Play("targetyou")
 		yellBurst:Yell()
-		if self.Options.RangeFrame then
-			DBM.RangeCheck:Show(13, nil, nil, nil, 5)
-		end
 	else
 		warnBurst:Show(targetname)
 	end
@@ -55,11 +52,6 @@ function mod:OnCombatStart(delay)
 	berserkTimer:Start(-delay)
 end
 
-function mod:OnCombatEnd()
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Hide()
-	end
-end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 31972 then

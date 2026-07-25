@@ -3,7 +3,8 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal25"
 
-mod:SetRevision("20241103131702")
+mod:SetRevision("20260523022044")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(25315)
 mod:SetEncounterID(729, 2493)
 mod:SetModelID(23200)
@@ -30,11 +31,11 @@ local warnPhase2		= mod:NewPhaseAnnounce(2)
 local warnPhase3		= mod:NewPhaseAnnounce(3)
 local warnPhase4		= mod:NewPhaseAnnounce(4)
 
-local specWarnArmaYou	= mod:NewSpecialWarningYou(45909, nil, nil, nil, 3, 2)
+local specWarnArmaYou	= mod:NewSpecialWarningYou(45909, nil, nil, nil, 3, 2, nil, nil, "targetyou")
 local yellArmageddon	= mod:NewYell(45909)
-local specWarnBloom		= mod:NewSpecialWarningYou(45641, nil, nil, nil, 1, 2)
+local specWarnBloom		= mod:NewSpecialWarningYou(45641, nil, nil, nil, 1, 2, nil, nil, "targetyou")
 local yellBloom			= mod:NewYell(45641)
-local specWarnDarkness	= mod:NewSpecialWarningMoveTo(46605, nil, nil, nil, 3, 2)--findshield
+local specWarnDarkness	= mod:NewSpecialWarningMoveTo(46605, nil, nil, nil, 3, 2, nil, nil, "findshield")--findshield
 local specWarnDarkOrb	= mod:NewSpecialWarning("SpecWarnDarkOrb", false)
 local specWarnBlueOrb	= mod:NewSpecialWarning("SpecWarnBlueOrb", false)
 
@@ -48,7 +49,6 @@ local timerBlueOrb		= mod:NewTimer(37, "TimerBlueOrb", 45109, nil, nil, 5)
 local berserkTimer		= mod:NewBerserkTimer(900)
 
 mod:AddSetIconOption("BloomIcon", 45641, true, 0, {4, 5, 6, 7, 8})
-mod:AddRangeFrameOption(10, 45641)
 
 local warnBloomTargets = {}
 local orbGUIDs = {}
@@ -83,16 +83,8 @@ function mod:OnCombatStart(delay)
 	self:SetStage(1)
 	timerBloomCD:Start(13.5-delay)
 	berserkTimer:Start(-delay)
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Show()
-	end
 end
 
-function mod:OnCombatEnd()
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Hide()
-	end
-end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 45641 then

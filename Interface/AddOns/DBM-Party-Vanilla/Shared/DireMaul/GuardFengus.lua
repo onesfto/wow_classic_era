@@ -1,7 +1,8 @@
 local mod	= DBM:NewMod(413, "DBM-Party-Vanilla", DBM:IsPostCata() and 3 or 6, 230)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20241103114940")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(14321)
 mod:SetEncounterID(364)
 mod:SetZone(429)
@@ -16,7 +17,7 @@ mod:RegisterEventsInCombat(
 
 --local warningSoul	= mod:NewTargetAnnounce(32346, 2)
 
-local specWarnMaddeningCall			= mod:NewSpecialWarningInterrupt(86620, "HasInterrupt", nil, nil, 1, 2)
+local specWarnMaddeningCall			= mod:NewSpecialWarningInterrupt(86620, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
 
 local timerMaddeningCallCD			= mod:NewAITimer(180, 86620, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 

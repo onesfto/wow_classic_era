@@ -1,7 +1,8 @@
 local mod	= DBM:NewMod(467, "DBM-Party-Vanilla", DBM:IsPostCata() and 13 or 18, 239)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20241103114940")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(6910)
 mod:SetEncounterID(547)
 mod:SetZone(70)
@@ -12,8 +13,8 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 16006 15801"
 )
 
-local specWarnChainLightning			= mod:NewSpecialWarningInterrupt(16006, "HasInterrupt", nil, nil, 1, 2)
-local specWarnLightningBolt				= mod:NewSpecialWarningInterrupt(15801, false, nil, nil, 1, 2)
+local specWarnChainLightning			= mod:NewSpecialWarningInterrupt(16006, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnLightningBolt				= mod:NewSpecialWarningInterrupt(15801, false, nil, nil, 1, 2, nil, nil, "kickcast")
 
 local timerChainLightningCD				= mod:NewAITimer(180, 16006, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 local timerLightningBoltCD				= mod:NewAITimer(180, 15801, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)

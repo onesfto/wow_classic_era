@@ -9,14 +9,14 @@ local L = DBM_CORE_L
 local DBM = private:GetPrototype("DBM")
 
 private.voiceSessionDisabled = false
-private.swFilterDisabled = 12
+private.swFilterDisabled = 19
 
-local minVoicePackVersion = 18
+local minVoicePackVersion = 19
 
 function DBM:CheckVoicePackVersion(value)
 	local activeVP = self.Options.ChosenVoicePack2
 	--Check if voice pack out of date
-	if activeVP ~= "None" and activeVP == value then
+	if not self:IsNoneValue(activeVP) and activeVP == value then
 		-- User might reselect "missing" entry shown in GUI if previously selected voice pack is uninstalled or disabled
 		if self.VoiceVersions[value] then
 			private.voiceSessionDisabled = false

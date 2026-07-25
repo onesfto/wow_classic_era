@@ -5,10 +5,12 @@ if mod:IsRetail() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20231014053250")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 
 mod:SetCreatureID(20886)
 mod:SetEncounterID(1915)
+mod:SetZone(552)
 
 if not mod:IsRetail() then
 	mod:SetModelID(19977)
@@ -23,7 +25,7 @@ mod:RegisterEventsInCombat(
 
 local warnKnockaway			= mod:NewSpellAnnounce(36512, 2, nil, nil, nil, nil, nil, 2)
 
-local specwarnFelFireShock	= mod:NewSpecialWarningDispel(35759, "RemoveMagic", nil, 2, 1, 2)
+local specwarnFelFireShock	= mod:NewSpecialWarningDispel(35759, "RemoveMagic", nil, 2, 1, 2, nil, nil, "dispelnow")
 
 function mod:SPELL_CAST_SUCCESS(args)
 	if args.spellId == 36512 then

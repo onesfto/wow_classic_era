@@ -3,7 +3,8 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,heroic,timewalker"
 
-mod:SetRevision("20241102154000")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(43214)
 mod:SetEncounterID(1059)
 mod:SetZone(725)
@@ -20,8 +21,8 @@ local warnGroundphase		= mod:NewAnnounce("WarnGroundphase", 2, "Interface\\AddOn
 local warnAirphase			= mod:NewAnnounce("WarnAirphase", 2, "Interface\\AddOns\\DBM-Core\\textures\\CryptFiendUnBurrow.blp")
 local warnFissure			= mod:NewSpellAnnounce(80803, 3)
 
-local specWarnEruption 		= mod:NewSpecialWarningMove(80801, nil, nil, nil, 1, 2)
-local specWarnCrystalStorm 	= mod:NewSpecialWarning("specWarnCrystalStorm", nil, nil, nil, 2, 2)
+local specWarnEruption 		= mod:NewSpecialWarningMove(80801, nil, nil, nil, 1, 2, nil, nil, "runaway")
+local specWarnCrystalStorm 	= mod:NewSpecialWarning("specWarnCrystalStorm", nil, nil, nil, 2, 2, nil, nil, nil, nil, "findshelter")
 
 local timerFissureCD		= mod:NewCDTimer(6.2, 80803, nil, nil, nil, 3)
 local timerCrystalStorm		= mod:NewBuffActiveTimer(8.5, 92265, nil, nil, nil, 2)

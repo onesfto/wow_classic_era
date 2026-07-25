@@ -1,10 +1,11 @@
 local mod	= DBM:NewMod(539, "DBM-Party-BC", 11, 251)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20250609051305")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(17862)
 mod:SetEncounterID(1907)
-mod:SetZone(251)
+mod:SetZone(560)
 
 mod:RegisterCombat("combat")
 
@@ -22,8 +23,8 @@ mod:RegisterEventsInCombat(
 
 local warnHammer                = mod:NewTargetNoFilterAnnounce(13005, 2)
 
-local specWarnHeal				= mod:NewSpecialWarningInterrupt(29427, "HasInterrupt", nil, nil, 1, 2)
-local specWarnConsecration		= mod:NewSpecialWarningMove(38385, nil, nil, nil, 1, 2)
+local specWarnHeal				= mod:NewSpecialWarningInterrupt(29427, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnConsecration		= mod:NewSpecialWarningMove(38385, nil, nil, nil, 1, 2, nil, nil, "runaway")
 
 local timerHammer               = mod:NewTargetTimer(6, 13005, nil, nil, nil, 3)
 

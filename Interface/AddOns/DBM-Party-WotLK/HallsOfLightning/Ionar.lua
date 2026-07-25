@@ -5,7 +5,8 @@ if not mod:IsClassic() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20240428124541")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(28546)
 mod:SetEncounterID(1984)
 mod:SetUsedIcons(8)
@@ -22,11 +23,10 @@ local warningDisperseSoon	= mod:NewSoonAnnounce(52770, 2)
 local warningDisperse		= mod:NewSpellAnnounce(52770, 3)
 local warningOverload		= mod:NewTargetAnnounce(52658, 2)
 
-local specWarnOverload		= mod:NewSpecialWarningMoveAway(52658, nil, nil, nil, 1, 2)
+local specWarnOverload		= mod:NewSpecialWarningMoveAway(52658, nil, nil, nil, 1, 2, nil, nil, "runout")
 
 local timerOverload			= mod:NewTargetTimer(10, 52658, nil, nil, nil, 3)
 
-mod:AddRangeFrameOption(10, 52658)
 mod:AddSetIconOption("SetIconOnOverloadTarget", 52658, true, 0, {8})
 
 local warnedDisperse = false
@@ -46,9 +46,6 @@ end
 
 function mod:OnCombatEnd()
 	self:UnregisterShortTermEvents()
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Hide()
-	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
@@ -56,9 +53,6 @@ function mod:SPELL_AURA_APPLIED(args)
 		if args:IsPlayer() then
 			specWarnOverload:Show()
 			specWarnOverload:Play("runout")
-			if self.Options.RangeFrame then
-				DBM.RangeCheck:Show(10)
-			end
 		else
 			warningOverload:Show(args.destName)
 		end
@@ -71,9 +65,6 @@ end
 
 function mod:SPELL_AURA_REMOVED(args)
 	if args:IsSpellID(52658, 59795) then
-		if args:IsPlayer() and self.Options.RangeFrame then
-			DBM.RangeCheck:Hide()
-		end
 		if self.Options.SetIconOnOverloadTarget then
 			self:SetIcon(args.destName, 0)
 		end

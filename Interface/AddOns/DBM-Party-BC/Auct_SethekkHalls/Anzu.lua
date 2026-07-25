@@ -3,10 +3,12 @@ local L = mod:GetLocalizedStrings()
 
 mod.statTypes = "heroic"
 
-mod:SetRevision("20231014053250")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 
 mod:SetCreatureID(23035)
 mod:SetEncounterID(1904)
+mod:SetZone(556)
 
 if not mod:IsRetail() then
 	mod:SetModelID(21492)
@@ -29,7 +31,7 @@ local warnStoned            = mod:NewAnnounce("warnStoned", 1, 32810, false)
 local warnCyclone           = mod:NewTargetAnnounce(40321, 2)
 local warnSpellBomb         = mod:NewTargetAnnounce(40303, 2)
 
-local specWarnScreech		= mod:NewSpecialWarningSpell(40184, nil, nil, nil, 2, 2)
+local specWarnScreech		= mod:NewSpecialWarningSpell(40184, nil, nil, nil, 2, 2, nil, nil, "aesoon")
 
 local timerScreech          = mod:NewCastTimer(5, 40184, nil, nil, nil, 2)
 local timerScreechDebuff    = mod:NewBuffActiveTimer(6, 40184, nil, nil, nil, 3)

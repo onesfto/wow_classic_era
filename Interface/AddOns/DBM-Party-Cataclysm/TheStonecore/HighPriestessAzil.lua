@@ -3,7 +3,8 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,heroic,timewalker"
 
-mod:SetRevision("20241102154000")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(42333)
 mod:SetEncounterID(1057)
 mod:SetZone(725)
@@ -21,8 +22,8 @@ local warnGrip		= mod:NewTargetNoFilterAnnounce(79351, 3)
 local warnWell		= mod:NewSpellAnnounce(79340, 2)
 local warnShard		= mod:NewSpellAnnounce(79002, 2)
 
-local specWarnGrip	= mod:NewSpecialWarningInterrupt(79351, "HasInterrupt", nil, nil, 1, 2)
-local specWarnCurse	= mod:NewSpecialWarningDispel(79345, "RemoveCurse", nil, 2, 1, 2)
+local specWarnGrip	= mod:NewSpecialWarningInterrupt(79351, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnCurse	= mod:NewSpecialWarningDispel(79345, "RemoveCurse", nil, 2, 1, 2, nil, nil, "helpdispel")
 
 local timerGrip		= mod:NewTargetTimer(5, 79351, nil, nil, nil, 3)
 

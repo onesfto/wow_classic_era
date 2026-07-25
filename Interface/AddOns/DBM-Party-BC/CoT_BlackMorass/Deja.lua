@@ -5,9 +5,11 @@ if mod:IsRetail() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20231014053250")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(17879)
 mod:SetEncounterID(1920)
+mod:SetZone(269)
 
 if not mod:IsRetail() then
 	mod:SetModelID(20513)
@@ -22,7 +24,7 @@ mod:RegisterEventsInCombat(
 
 local warnArcaneDischarge		= mod:NewSpellAnnounce(38539, 2)
 
-local specwarnTimeLapse			= mod:NewSpecialWarningDispel(31467, "RemoveMagic", nil, 2, 1, 2)
+local specwarnTimeLapse			= mod:NewSpecialWarningDispel(31467, "RemoveMagic", nil, 2, 1, 2, nil, nil, "dispelnow")
 
 function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(38539, 31472) then

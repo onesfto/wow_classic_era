@@ -5,7 +5,8 @@ if not mod:IsClassic() then
 	mod.statTypes = "normal,heroic,timewalker"
 end
 
-mod:SetRevision("20230311193122")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 --mod:SetEncounterID(519)--FIXME in 7.1
 
 if UnitFactionGroup("player") == "Alliance" then
@@ -26,7 +27,7 @@ mod:RegisterEventsInCombat(
 local warningFear		= mod:NewSpellAnnounce(19134, 3)
 local warningWhirlwind	= mod:NewSpellAnnounce(38619, 3)
 
-local specWarnWW		= mod:NewSpecialWarningRun(38619, "MeleeDps", nil, nil, 4, 2)
+local specWarnWW		= mod:NewSpecialWarningRun(38619, "MeleeDps", nil, nil, 4, 2, nil, nil, "runaway")
 
 local timerFearCD		= mod:NewCDTimer(20, 19134, nil, nil, nil, 2)--Correct?
 local timerWhirlwindCD	= mod:NewCDTimer(15, 38619, nil, nil, nil, 2)--Correct?

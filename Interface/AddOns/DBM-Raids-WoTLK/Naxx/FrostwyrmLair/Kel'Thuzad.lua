@@ -2,7 +2,8 @@ local mod	= DBM:NewMod("Kel'Thuzad", "DBM-Raids-WoTLK", 8)
 local L		= mod:GetLocalizedStrings()
 local isRetail = WOW_PROJECT_ID == (WOW_PROJECT_MAINLINE or 1)
 
-mod:SetRevision("20241103133102")
+mod:SetRevision("20260523022030")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(15990)
 mod:SetEncounterID(1114)
 --mod:SetModelID(15945)--Doesn't work at all, doesn't even render.
@@ -32,7 +33,7 @@ local specWarnFissureClose
 local yellFissure
 if isRetail then
 	warnFissure				= mod:NewTargetNoFilterAnnounce(27810, 4)
-	specWarnFissureYou		= mod:NewSpecialWarningYou(27810, nil, nil, nil, 3, 2)
+	specWarnFissureYou		= mod:NewSpecialWarningYou(27810, nil, nil, nil, 3, 2, nil, nil, "targetyou")
 	yellFissure				= mod:NewYell(27810)
 else
 	warnFissure				= mod:NewSpellAnnounce(27810, 4, nil, nil, nil, nil, nil, 2)
@@ -41,9 +42,9 @@ local warnMana				= mod:NewTargetAnnounce(27819, 2)
 local warnChainsTargets		= mod:NewTargetNoFilterAnnounce(28410, 4)
 
 local specwarnP2Soon		= mod:NewSpecialWarning("specwarnP2Soon")
-local specWarnManaBomb		= mod:NewSpecialWarningMoveAway(27819, nil, nil, nil, 1, 2)
+local specWarnManaBomb		= mod:NewSpecialWarningMoveAway(27819, nil, nil, nil, 1, 2, nil, nil, "scatter")
 local yellManaBomb			= mod:NewShortYell(27819)
-local specWarnBlast			= mod:NewSpecialWarningTarget(27808, "Healer", nil, nil, 1, 2)
+local specWarnBlast			= mod:NewSpecialWarningTarget(27808, "Healer", nil, nil, 1, 2, nil, nil, "healall")
 
 local blastTimer			= mod:NewBuffActiveTimer(4, 27808, nil, nil, nil, 5, nil, DBM_COMMON_L.HEALER_ICON)
 local timerManaBomb			= mod:NewCDTimer(20, 27819, nil, nil, nil, 3)--20-50
@@ -55,7 +56,6 @@ local timerPhase2			= mod:NewTimer(215, "TimerPhase2", "136116", nil, nil, 6)
 mod:AddSetIconOption("SetIconOnMC", 28410, true, 0, {1, 2, 3})
 mod:AddSetIconOption("SetIconOnManaBomb", 27819, false, 0, {8})
 mod:AddSetIconOption("SetIconOnFrostTomb", 27808, true, 0, {1, 2, 3, 4, 5, 6, 7, 8})
-mod:AddRangeFrameOption(10, 27819)
 
 mod.vb.warnedAdds = false
 mod.vb.MCIcon = 1
@@ -84,14 +84,6 @@ local function AnnounceBlastTargets(self)
 	end
 end
 
-local function RangeToggle(show)
-	if show then
-		DBM.RangeCheck:Show(10)
-	else
-		DBM.RangeCheck:Hide()
-	end
-end
-
 function mod:OnCombatStart(delay)
 	self:SetStage(1)
 	table.wipe(chainsTargets)
@@ -103,17 +95,9 @@ function mod:OnCombatStart(delay)
 	--Redundancy below here isn't needed on retail but may be on wrath classic
 	if not isRetail then
 		warnPhase2:Schedule(220)
-		if self.Options.RangeFrame then
-			self:Schedule(220-delay, RangeToggle, true)
-		end
 	end
 end
 
-function mod:OnCombatEnd()
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Hide()
-	end
-end
 
 function mod:SPELL_CAST_SUCCESS(args)
 	if args.spellId == 27810 then
@@ -191,13 +175,9 @@ end
 
 function mod:UNIT_TARGETABLE_CHANGED()
 	if self.vb.phase == 1 then
-		self:Unschedule(RangeToggle)
 		warnPhase2:Cancel()
 		self:SetStage(2)
 		warnPhase2:Show()
 		warnPhase2:Play("ptwo")
-		if self.Options.RangeFrame then
-			DBM.RangeCheck:Show(10)
-		end
 	end
 end

@@ -3,7 +3,8 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "heroic,timewalker"
 
-mod:SetRevision("20241102154000")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(55085)
 mod:SetEncounterID(1272)
 mod:SetZone(939)
@@ -21,7 +22,7 @@ local warnFelFlames			= mod:NewTargetNoFilterAnnounce(108141, 3)
 local warnDecay				= mod:NewTargetNoFilterAnnounce(105544, 3, nil, "Healer")
 local warnFelQuickening		= mod:NewTargetNoFilterAnnounce(104905, 3, nil, "Tank|Healer")
 
-local specWarnFelFlames		= mod:NewSpecialWarningMove(108141, nil, nil, nil, 1, 2)
+local specWarnFelFlames		= mod:NewSpecialWarningMove(108141, nil, nil, nil, 1, 2, nil, nil, "watchstep")
 
 local timerFelFlamesCD		= mod:NewNextTimer(8.4, 108141, nil, nil, nil, 3)
 local timerDecay			= mod:NewTargetTimer(10, 105544, nil, "Healer", nil, 5, nil, DBM_COMMON_L.HEALER_ICON)

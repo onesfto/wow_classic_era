@@ -1,6 +1,6 @@
 -- Diablohu(diablohudream@gmail.com)
 -- yleaf(yaroot@gmail.com)
-----Mini Dragon <流浪者酒馆-Brilla@金色平原(The Golden Plains-CN)> projecteurs@gmail.NOSPAM.com 20260122
+----Mini Dragon <流浪者酒馆-Brilla@金色平原(The Golden Plains-CN)> projecteurs@gmail.NOSPAM.com 20260521
 
 if GetLocale() ~= "zhCN" then return end
 if not DBM_CORE_L then DBM_CORE_L = {} end
@@ -15,8 +15,8 @@ end
 
 L.HOW_TO_USE_MOD					= "欢迎使用" .. L.DBM .. "。在聊天框输入 /dbm help 以获取可用命令的帮助。输入 /dbm 可打开设置窗口。手动按需加载区域模块可对任意Boss进行设置，也可以浏览首领击杀记录。"..L.DBM.." 会自动按你的专精做出相应配置，但是你可以进行微调。"
 L.SILENT_REMINDER					= "提示：" .. L.DBM .. " 正处于静音模式。"
-L.NEWS_UPDATE						= "|h|c11ff1111News|r|h: 此次更新主要重做了DBM的结构。无论正式服、还是各个版本的怀旧服都使用相同版本的DBM内核和模组。详情点击 |Hgarrmission:DBM:news|h|cff3588ff[这里]|r|h"
-L.NEWS_UPDATE_REPEAT				= "|h|c11ff1111News|r|h: 此次更新主要重做了DBM的结构。无论正式服、还是各个版本的怀旧服都使用相同版本的DBM内核和模组。你当前进入的团队缺少相应模组，无法提供战斗警报。本信息将持续显示，直到你安装了正确的模组。"
+L.NEWS_UPDATE						= "|h|c11ff1111新闻|r|h: DBM 已更新并加入了技能重命名功能。输入 /dbm，前往模块分类（团队副本、地下城等），然后进入你想重命名技能的模块即可。"
+L.NEWS_UPDATE_REPEAT				= "|h|c11ff1111News|r|h: 此次更新主要重做了DBM的结构。无论正式服、还是各个版本的怀旧服都使用相同版本的DBM内核和模组。你当前进入的团队缺少相应模组，无法提供战斗警告。本信息将持续显示，直到你安装了正确的模组。"
 
 L.COPY_URL_DIALOG_NEWS				= "阅读最新新闻，请点击下方连接"
 
@@ -156,11 +156,11 @@ L.BAD						= "必杀技"
 
 L.OPTION_CATEGORY_TIMERS		= "计时条"
 --Sub cats for "announce" object
-L.OPTION_CATEGORY_WARNINGS	= "警报"
-L.OPTION_CATEGORY_WARNINGS_YOU	= "个人警报"
-L.OPTION_CATEGORY_WARNINGS_OTHER	= "目标警报"
-L.OPTION_CATEGORY_WARNINGS_ROLE	= "角色警报"
-L.OPTION_CATEGORY_SPECWARNINGS		= "特殊警报"
+L.OPTION_CATEGORY_WARNINGS	= "警告"
+L.OPTION_CATEGORY_WARNINGS_YOU	= "个人警告"
+L.OPTION_CATEGORY_WARNINGS_OTHER	= "目标警告"
+L.OPTION_CATEGORY_WARNINGS_ROLE	= "角色警告"
+L.OPTION_CATEGORY_SPECWARNINGS		= "特殊警告"
 
 L.OPTION_CATEGORY_SOUNDS		= "声音"
 --Misc object broken down into sub cats
@@ -220,10 +220,11 @@ L.DBMLOOTREMINDER					= "警告: 第三方插件DBM-LootReminder已安装。该�
 L.UPDATE_REQUIRES_RELAUNCH		= "警告: 如果你不完全重启游戏，" .. L.DBM .. "可能会工作不正常。此次更新包含了新的文件，或者toc文件的改变，这是重载界面无法加载的。不重启游戏可能导致作战模块功能错误。"
 L.OUT_OF_DATE_NAG				= "你的" .. L.DBM .. "版本已经过期，新版本针对特定的首领战斗增加新的功能和错误的修复。建议您进行更新来改善您的游戏体验。"
 L.PLATER_NP_AURAS_MSG					= L.DBM .. "现在提供可以在敌人姓名版提供技能冷却的高级功能。对于大部分用户来说，本功能默认开启，但 Plater 用户需要在 Plater “Buff选项” 中手动开启。如果你不想见到本消息，你也可以在DBM设置界面的“姓名版全局开启与过滤选项”中关掉它"
+L.HARDCODED_FALLBACK				= L.DBM .. "检测到硬编码模组出现异常结果。" .. L.DBM .. "将在这场战斗中回退为暴雪计时器和警告。"
 
 L.MOVABLE_BAR				= "拖动我！"
 
-L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h向你发送了一个" .. L.DBM .. " 计时条: '%2$s'\n|Hgarrmission:DBM:cancel:%2$s:nil|h|cff3588ff[取消此倒计时]|r|h |Hgarrmission:DBM:ignore:%2$s:%1$s|h|cff3588ff[忽略来自%1$s的计时条]|r|h"
+L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h向你发送了一个" .. L.DBM .. " 计时条: '%2$s'\n|Haddon:DBM:cancel:%2$s:nil|h|cff3588ff[取消此倒计时]|r|h |Haddon:DBM:ignore:%2$s:%1$s|h|cff3588ff[忽略来自%1$s的计时条]|r|h"
 --L.PIZZA_SYNC_INFO
 L.PIZZA_CONFIRM_IGNORE			= "是否要在该次游戏连接中屏蔽来自%s的计时条？"
 L.PIZZA_ERROR_USAGE				= "命令：/dbm [broadcast] timer <时间（秒）> <文本>"
@@ -258,6 +259,7 @@ L.INFOFRAME_TITLE				= "信息窗"
 L.INFOFRAME_SHOW_SELF			= "总是显示你的能量"		-- Always show your own power value even if you are below the threshold
 L.INFOFRAME_SETLINES			= "设置最大行数"
 L.INFOFRAME_SETCOLS				= "设置最大列数"
+L.INFOFRAME_SETSTRATA			= "设置框体层级"
 L.INFOFRAME_LINESDEFAULT		= "由模组设置"
 L.INFOFRAME_LINES_TO			= "%d行"
 L.INFOFRAME_COLS_TO				= "%d列"
@@ -280,6 +282,7 @@ L.SLASHCMD_HELP				= {
 	"/dbm key: 执行大秘钥石和评级检查，适用于队伍/公会，并提供副本传送的快捷方式。 (也可使用: key, keys, keystone)",
 	"/dbm lag: 检测全团网络延时",
 	"/dbm durability: 检测全团装备耐久度",
+	"/dbm brez: 显示战复计时器框架以供定位。",
 	"/dbm help2: 显示额外的/命令"
 }
 L.SLASHCMD_HELP2				= {
@@ -329,6 +332,7 @@ L.AUTO_ANNOUNCE_TEXTS.you				= "你中了%s"
 L.AUTO_ANNOUNCE_TEXTS.target			= "%s: >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.targetsource		= ">%%s< 施放 %s 于 >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.targetcount		= "%s (%%s)：>%%s<"
+L.AUTO_ANNOUNCE_TEXTS.blizztarget		= "%s (%%s)：>%%s<"
 L.AUTO_ANNOUNCE_TEXTS.spell				= "%s"
 L.AUTO_ANNOUNCE_TEXTS.spellsource		= ">%%s< 施放 %s"
 L.AUTO_ANNOUNCE_TEXTS.incoming			= "Debuff %s 即将到来"
@@ -349,31 +353,32 @@ L.AUTO_ANNOUNCE_TEXTS.count				= "%s (%%s)"
 L.AUTO_ANNOUNCE_TEXTS.stack				= ">%%s< 中了 %s (%%d)"
 L.AUTO_ANNOUNCE_TEXTS.moveto			= "%s - 移动到 >%%s<"
 
-L.AUTO_ANNOUNCE_OPTIONS.you				= "警报：中了%s时"
-L.AUTO_ANNOUNCE_OPTIONS.target			= "警报：$spell:%s的目标"
-L.AUTO_ANNOUNCE_OPTIONS.targetNF		= "警报：$spell:%s的目标(忽略全局目标过滤器)"
-L.AUTO_ANNOUNCE_OPTIONS.targetsource	= "警报：$spell:%s的目标(带来源)"
-L.AUTO_ANNOUNCE_OPTIONS.targetcount		= "警报：$spell:%s的目标(带计数)"
-L.AUTO_ANNOUNCE_OPTIONS.spell			= "警报：当$spell:%s施法时"
-L.AUTO_ANNOUNCE_OPTIONS.spellsource		= "警报：当$spell:%s施法时(带来源)"
-L.AUTO_ANNOUNCE_OPTIONS.incoming		= "警报：当debuff $spell:%s 即将到来时"
-L.AUTO_ANNOUNCE_OPTIONS.incomingcount	= "警报：当debuffs $spell:%s 即将到来时（带计数）"
-L.AUTO_ANNOUNCE_OPTIONS.ends			= "警报：$spell:%s结束"
-L.AUTO_ANNOUNCE_OPTIONS.endtarget		= "警报：$spell:%s结束（带目标）"
-L.AUTO_ANNOUNCE_OPTIONS.fades			= "警报：$spell:%s消失"
-L.AUTO_ANNOUNCE_OPTIONS.addsleft		= "警报：$spell:%s剩余数量"
-L.AUTO_ANNOUNCE_OPTIONS.cast			= "警报：$spell:%s在施放"
+L.AUTO_ANNOUNCE_OPTIONS.you				= "警告：中了%s时"
+L.AUTO_ANNOUNCE_OPTIONS.target			= "警告：$spell:%s的目标"
+L.AUTO_ANNOUNCE_OPTIONS.targetNF		= "警告：$spell:%s的目标(忽略全局目标过滤器)"
+L.AUTO_ANNOUNCE_OPTIONS.targetsource	= "警告：$spell:%s的目标(带来源)"
+L.AUTO_ANNOUNCE_OPTIONS.targetcount		= "警告：$spell:%s的目标(带计数)"
+L.AUTO_ANNOUNCE_OPTIONS.blizztarget		= "警告：$spell:%s的目标(带计数)"
+L.AUTO_ANNOUNCE_OPTIONS.spell			= "警告：当$spell:%s施法时"
+L.AUTO_ANNOUNCE_OPTIONS.spellsource		= "警告：当$spell:%s施法时(带来源)"
+L.AUTO_ANNOUNCE_OPTIONS.incoming		= "警告：当debuff $spell:%s 即将到来时"
+L.AUTO_ANNOUNCE_OPTIONS.incomingcount	= "警告：当debuffs $spell:%s 即将到来时（带计数）"
+L.AUTO_ANNOUNCE_OPTIONS.ends			= "警告：$spell:%s结束"
+L.AUTO_ANNOUNCE_OPTIONS.endtarget		= "警告：$spell:%s结束（带目标）"
+L.AUTO_ANNOUNCE_OPTIONS.fades			= "警告：$spell:%s消失"
+L.AUTO_ANNOUNCE_OPTIONS.addsleft		= "警告：$spell:%s剩余数量"
+L.AUTO_ANNOUNCE_OPTIONS.cast			= "警告：$spell:%s在施放"
 L.AUTO_ANNOUNCE_OPTIONS.soon			= "预警：$spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.sooncount		= "预警：$spell:%s(带计数)"
 L.AUTO_ANNOUNCE_OPTIONS.countdown		= "预警：$spell:%s(带计数)"
 L.AUTO_ANNOUNCE_OPTIONS.prewarn			= "预警：$spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.bait			= "预警: $spell:%s需要引诱"
-L.AUTO_ANNOUNCE_OPTIONS.stage			= "警报：第%s阶段"
-L.AUTO_ANNOUNCE_OPTIONS.stagechange		= "警报：阶段转换"
+L.AUTO_ANNOUNCE_OPTIONS.stage			= "警告：第%s阶段"
+L.AUTO_ANNOUNCE_OPTIONS.stagechange		= "警告：阶段转换"
 L.AUTO_ANNOUNCE_OPTIONS.prestage		= "预警：第%s阶段"
-L.AUTO_ANNOUNCE_OPTIONS.count			= "警报：$spell:%s(带计数)"
-L.AUTO_ANNOUNCE_OPTIONS.stack			= "警报：$spell:%s叠加层数"
-L.AUTO_ANNOUNCE_OPTIONS.moveto			= "警报：$spell:%s需要移动到某人或某个地方"
+L.AUTO_ANNOUNCE_OPTIONS.count			= "警告：$spell:%s(带计数)"
+L.AUTO_ANNOUNCE_OPTIONS.stack			= "警告：$spell:%s叠加层数"
+L.AUTO_ANNOUNCE_OPTIONS.moveto			= "警告：$spell:%s需要移动到某人或某个地方"
 
 L.AUTO_SPEC_WARN_TEXTS.spell			= "%s!"
 L.AUTO_SPEC_WARN_TEXTS.ends				= "%s 结束"
@@ -392,6 +397,8 @@ L.AUTO_SPEC_WARN_TEXTS.youposcount		= "你中了%s (%%s) (位置: %%s)"
 L.AUTO_SPEC_WARN_TEXTS.soakpos			= "%s - 快去%%s分担伤害"
 L.AUTO_SPEC_WARN_TEXTS.target			= ">%%s<中了%s"
 L.AUTO_SPEC_WARN_TEXTS.targetcount		= ">%%2$s<中了%s (%%1$s)"
+L.AUTO_SPEC_WARN_TEXTS.blizztarget		= ">%%2$s<中了%s (%%1$s)"
+L.AUTO_SPEC_WARN_TEXTS.blizzyou			= "你中了%s (%%s)"
 L.AUTO_SPEC_WARN_TEXTS.link				= "%s 与 >%%s< 连线"
 L.AUTO_SPEC_WARN_TEXTS.defensive		= "%s - 快开自保技能"
 L.AUTO_SPEC_WARN_TEXTS.taunt			= ">%%s<中了%s - 快嘲讽"
@@ -424,82 +431,84 @@ L.AUTO_SPEC_WARN_TEXTS.addscustom		= "小怪出现 - %%s"
 L.AUTO_SPEC_WARN_TEXTS.targetchange		= "更换目标 - 请选择 %%s"
 
 -- Auto-generated Special Warning Localizations
-L.AUTO_SPEC_WARN_OPTIONS.spell			= "特殊警报：$spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.ends			= "特殊警报：$spell:%s结束"
-L.AUTO_SPEC_WARN_OPTIONS.fades			= "特殊警报：$spell:%s消失"
-L.AUTO_SPEC_WARN_OPTIONS.soon			= "特殊警报：$spell:%s即将到来"
-L.AUTO_SPEC_WARN_OPTIONS.sooncount		= "特殊警报：$spell:%s即将到来(带计数)"
-L.AUTO_SPEC_WARN_OPTIONS.bait			= "特殊警报: $spell:%s需要引诱"
-L.AUTO_SPEC_WARN_OPTIONS.prewarn 		= "特殊警报：%s秒前预警$spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.dispel			= "特殊警报：需要驱散$spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.interrupt		= "特殊警报：需要打断$spell:%s"
-L.AUTO_SPEC_WARN_OPTIONS.interruptcount	= "特殊警报：需要打断$spell:%s(带计数)"
-L.AUTO_SPEC_WARN_OPTIONS.you				= "特殊警报：当你受到$spell:%s影响时"
-L.AUTO_SPEC_WARN_OPTIONS.youcount		= "特殊警报：当你受到$spell:%s影响时(带计数)"
-L.AUTO_SPEC_WARN_OPTIONS.youpos			= "特殊警报：当你受到$spell:%s影响时(带位置)"
-L.AUTO_SPEC_WARN_OPTIONS.youposcount	= "特殊警报：当你受到$spell:%s影响时(带位置和计数)"
-L.AUTO_SPEC_WARN_OPTIONS.soakpos			= "特殊警报：当你需要为受到$spell:%s的玩家分担伤害时(带位置)"
-L.AUTO_SPEC_WARN_OPTIONS.target			= "特殊警报：当他人受到$spell:%s影响时"
-L.AUTO_SPEC_WARN_OPTIONS.targetcount		= "特殊警报：当他人受到$spell:%s影响时(带计数)"
-L.AUTO_SPEC_WARN_OPTIONS.targetcount		= "特殊警报：当你中了$spell:%s并与其他玩家连线时"
-L.AUTO_SPEC_WARN_OPTIONS.defensive 		= "特殊警报：当你受到$spell:%s影响并需要开启自保技能时"
-L.AUTO_SPEC_WARN_OPTIONS.taunt 			= "特殊警报：当另外一个T中了$spell:%s并需要你嘲讽时"
-L.AUTO_SPEC_WARN_OPTIONS.close			= "特殊警报：当你附近有人受到$spell:%s影响时"
-L.AUTO_SPEC_WARN_OPTIONS.move			= "特殊警报：当你受到$spell:%s影响而需要移开时"
-L.AUTO_SPEC_WARN_OPTIONS.keepmove 		= "特殊警报：当你受到$spell:%s影响而需要继续移动时"
-L.AUTO_SPEC_WARN_OPTIONS.stopmove 		= "特殊警报：当你结束受到$spell:%s影响可以停止移动时"
-L.AUTO_SPEC_WARN_OPTIONS.dodge			= "特殊警报：当你受到$spell:%s影响并需要躲开攻击"
-L.AUTO_SPEC_WARN_OPTIONS.dodgecount		= "特殊警报：当你受到$spell:%s影响并需要躲开攻击(带计数)"
-L.AUTO_SPEC_WARN_OPTIONS.dodgeloc		= "特殊警报：当你受到$spell:%s影响并需要朝某个方向躲开攻击"
-L.AUTO_SPEC_WARN_OPTIONS.moveaway		= "特殊警报：当你受到$spell:%s影响并需要跑开人群时"
-L.AUTO_SPEC_WARN_OPTIONS.moveawaycount	= "特殊警报：当你受到$spell:%s影响并需要跑开人群时(带计数)"
-L.AUTO_SPEC_WARN_OPTIONS.moveto			= "特殊警报：当他人中了$spell:%s并需要你去靠近时"
-L.AUTO_SPEC_WARN_OPTIONS.soak			= "特殊警报：当你需要分担$spell:%s伤害时"
-L.AUTO_SPEC_WARN_OPTIONS.soakcount		= "特殊警报：当你需要分担$spell:%s伤害时（带计数）"
-L.AUTO_SPEC_WARN_OPTIONS.jump			= "特殊警报：当你受到$spell:%s影响并需要跳起来时"
-L.AUTO_SPEC_WARN_OPTIONS.run			= "特殊警报：当你受到$spell:%s影响并需要跑开时"
-L.AUTO_SPEC_WARN_OPTIONS.runcount		= "特殊警报：当你受到$spell:%s影响并需要跑开时（带计数）"
-L.AUTO_SPEC_WARN_OPTIONS.cast			= "特殊警报：当你需要打断$spell:%s时"
-L.AUTO_SPEC_WARN_OPTIONS.lookaway		= "特殊警报：当你受到$spell:%s影响需要快转身时"
-L.AUTO_SPEC_WARN_OPTIONS.reflect		= "特殊警报：当目标使用$spell:%s需要停止攻击时"
-L.AUTO_SPEC_WARN_OPTIONS.count 			= "特殊警报：$spell:%s(带计数)"
-L.AUTO_SPEC_WARN_OPTIONS.stack			= "特殊警报：当叠加了>=%d层$spell:%s时"
-L.AUTO_SPEC_WARN_OPTIONS.switch 		= "特殊警报：针对$spell:%s需要转换目标"
-L.AUTO_SPEC_WARN_OPTIONS.switchcount	= "特殊警报：针对$spell:%s需要转换目标(带计数)"
-L.AUTO_SPEC_WARN_OPTIONS.gtfo			= "特殊警报：需要躲开地上的有害技能"
-L.AUTO_SPEC_WARN_OPTIONS.adds			= "特殊警报：需要攻击小怪"
-L.AUTO_SPEC_WARN_OPTIONS.addscount		= "特殊警报：需要攻击小怪(带计数)"
-L.AUTO_SPEC_WARN_OPTIONS.addscustom		= "特殊警报：小怪(自定义)"
-L.AUTO_SPEC_WARN_OPTIONS.targetchange	= "特殊警报：需要立刻切换目标时"
+L.AUTO_SPEC_WARN_OPTIONS.spell			= "特殊警告：$spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.ends			= "特殊警告：$spell:%s结束"
+L.AUTO_SPEC_WARN_OPTIONS.fades			= "特殊警告：$spell:%s消失"
+L.AUTO_SPEC_WARN_OPTIONS.soon			= "特殊警告：$spell:%s即将到来"
+L.AUTO_SPEC_WARN_OPTIONS.sooncount		= "特殊警告：$spell:%s即将到来(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.bait			= "特殊警告: $spell:%s需要引诱"
+L.AUTO_SPEC_WARN_OPTIONS.prewarn 		= "特殊警告：%s秒前预警$spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.dispel			= "特殊警告：需要驱散$spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.interrupt		= "特殊警告：需要打断$spell:%s"
+L.AUTO_SPEC_WARN_OPTIONS.interruptcount	= "特殊警告：需要打断$spell:%s(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.you				= "特殊警告：当你受到$spell:%s影响时"
+L.AUTO_SPEC_WARN_OPTIONS.youcount		= "特殊警告：当你受到$spell:%s影响时(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.youpos			= "特殊警告：当你受到$spell:%s影响时(带位置)"
+L.AUTO_SPEC_WARN_OPTIONS.youposcount	= "特殊警告：当你受到$spell:%s影响时(带位置和计数)"
+L.AUTO_SPEC_WARN_OPTIONS.soakpos			= "特殊警告：当你需要为受到$spell:%s的玩家分担伤害时(带位置)"
+L.AUTO_SPEC_WARN_OPTIONS.target			= "特殊警告：当他人受到$spell:%s影响时"
+L.AUTO_SPEC_WARN_OPTIONS.targetcount		= "特殊警告：当他人受到$spell:%s影响时(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.targetcount		= "特殊警告：当你中了$spell:%s并与其他玩家连线时"
+L.AUTO_SPEC_WARN_OPTIONS.blizztarget		= "特殊警告：当他人受到$spell:%s影响时(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.blizzyou		= "特殊警告：当你受到$spell:%s影响时(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.defensive 		= "特殊警告：当你受到$spell:%s影响并需要开启自保技能时"
+L.AUTO_SPEC_WARN_OPTIONS.taunt 			= "特殊警告：当另外一个T中了$spell:%s并需要你嘲讽时"
+L.AUTO_SPEC_WARN_OPTIONS.close			= "特殊警告：当你附近有人受到$spell:%s影响时"
+L.AUTO_SPEC_WARN_OPTIONS.move			= "特殊警告：当你受到$spell:%s影响而需要移开时"
+L.AUTO_SPEC_WARN_OPTIONS.keepmove 		= "特殊警告：当你受到$spell:%s影响而需要继续移动时"
+L.AUTO_SPEC_WARN_OPTIONS.stopmove 		= "特殊警告：当你结束受到$spell:%s影响可以停止移动时"
+L.AUTO_SPEC_WARN_OPTIONS.dodge			= "特殊警告：当你受到$spell:%s影响并需要躲开攻击"
+L.AUTO_SPEC_WARN_OPTIONS.dodgecount		= "特殊警告：当你受到$spell:%s影响并需要躲开攻击(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.dodgeloc		= "特殊警告：当你受到$spell:%s影响并需要朝某个方向躲开攻击"
+L.AUTO_SPEC_WARN_OPTIONS.moveaway		= "特殊警告：当你受到$spell:%s影响并需要跑开人群时"
+L.AUTO_SPEC_WARN_OPTIONS.moveawaycount	= "特殊警告：当你受到$spell:%s影响并需要跑开人群时(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.moveto			= "特殊警告：当他人中了$spell:%s并需要你去靠近时"
+L.AUTO_SPEC_WARN_OPTIONS.soak			= "特殊警告：当你需要分担$spell:%s伤害时"
+L.AUTO_SPEC_WARN_OPTIONS.soakcount		= "特殊警告：当你需要分担$spell:%s伤害时（带计数）"
+L.AUTO_SPEC_WARN_OPTIONS.jump			= "特殊警告：当你受到$spell:%s影响并需要跳起来时"
+L.AUTO_SPEC_WARN_OPTIONS.run			= "特殊警告：当你受到$spell:%s影响并需要跑开时"
+L.AUTO_SPEC_WARN_OPTIONS.runcount		= "特殊警告：当你受到$spell:%s影响并需要跑开时（带计数）"
+L.AUTO_SPEC_WARN_OPTIONS.cast			= "特殊警告：当你需要打断$spell:%s时"
+L.AUTO_SPEC_WARN_OPTIONS.lookaway		= "特殊警告：当你受到$spell:%s影响需要快转身时"
+L.AUTO_SPEC_WARN_OPTIONS.reflect		= "特殊警告：当目标使用$spell:%s需要停止攻击时"
+L.AUTO_SPEC_WARN_OPTIONS.count 			= "特殊警告：$spell:%s(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.stack			= "特殊警告：当叠加了>=%d层$spell:%s时"
+L.AUTO_SPEC_WARN_OPTIONS.switch 		= "特殊警告：针对$spell:%s需要转换目标"
+L.AUTO_SPEC_WARN_OPTIONS.switchcount	= "特殊警告：针对$spell:%s需要转换目标(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.gtfo			= "特殊警告：需要躲开地上的有害技能"
+L.AUTO_SPEC_WARN_OPTIONS.adds			= "特殊警告：需要攻击小怪"
+L.AUTO_SPEC_WARN_OPTIONS.addscount		= "特殊警告：需要攻击小怪(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.addscustom		= "特殊警告：小怪(自定义)"
+L.AUTO_SPEC_WARN_OPTIONS.targetchange	= "特殊警告：需要立刻切换目标时"
 
 -- Auto-generated Timer Localizations
 L.AUTO_TIMER_TEXTS.target				= "%s: >%%s<"
 L.AUTO_TIMER_TEXTS.targetcount 			= "%s: >%%s< (%%s)"
 L.AUTO_TIMER_TEXTS.cast					= "%s"
-L.AUTO_TIMER_TEXTS.castcount				= "%s (%%s)"
-L.AUTO_TIMER_TEXTS.castsource			= "%s: %%s"
+L.AUTO_TIMER_TEXTS.castcount			= "%s (%%s)"
+L.AUTO_TIMER_TEXTS.castsource			= "%s：%%s"
 L.AUTO_TIMER_TEXTS.active				= "%s结束"--Buff/Debuff/event on boss
-L.AUTO_TIMER_TEXTS.fades					= "%s消失"--Buff/Debuff on players
+L.AUTO_TIMER_TEXTS.fades				= "%s消失"--Buff/Debuff on players
 L.AUTO_TIMER_TEXTS.ai					= "%s AI"
 
-L.AUTO_TIMER_TEXTS.cd					= "%s冷却"
-L.AUTO_TIMER_TEXTS.cdcount				= "%s冷却（%%s）"
-L.AUTO_TIMER_TEXTS.cdsource				= "%s冷却: >%%s<"
-L.AUTO_TIMER_TEXTS.cdspecial				= "特殊技能冷却"
+L.AUTO_TIMER_TEXTS.cd					= "%s"
+L.AUTO_TIMER_TEXTS.cdcount				= "%s（%%s）"
+L.AUTO_TIMER_TEXTS.cdsource				= "%s：>%%s<"
+L.AUTO_TIMER_TEXTS.cdspecial			= "特殊技能冷却"
 
-L.AUTO_TIMER_TEXTS.next 					= "下一次%s"
-L.AUTO_TIMER_TEXTS.nextcount				= "下一次%s（%%s）"
-L.AUTO_TIMER_TEXTS.nextsource			= "下一次%s: >%%s<"
+L.AUTO_TIMER_TEXTS.next 				= "%s"
+L.AUTO_TIMER_TEXTS.nextcount			= "%s（%%s）"
+L.AUTO_TIMER_TEXTS.nextsource			= "%s：>%%s<"
 L.AUTO_TIMER_TEXTS.nextspecial			= "下一次特殊技能"
 
 L.AUTO_TIMER_TEXTS.achievement 			= "%s"
-L.AUTO_TIMER_TEXTS.stage					= "阶段"
-L.AUTO_TIMER_TEXTS.stagecount				= "阶段 %%s"
-L.AUTO_TIMER_TEXTS.stagecountcycle			= "阶段 %%s (%%s)"--Example: Stage 2 (3) for a fight that alternates stage 1 and stage 2, but also tracks total cycles
-L.AUTO_TIMER_TEXTS.stagecontext				= "%s"
-L.AUTO_TIMER_TEXTS.stagecontextcount		= "%s (%%s)"
-L.AUTO_TIMER_TEXTS.intermission				= "转阶段"
-L.AUTO_TIMER_TEXTS.intermissioncount		= "转阶段 %%s"
+L.AUTO_TIMER_TEXTS.stage				= "阶段"
+L.AUTO_TIMER_TEXTS.stagecount			= "第%%s阶段"
+L.AUTO_TIMER_TEXTS.stagecountcycle		= "第%%s阶段 (%%s)"--Example: Stage 2 (3) for a fight that alternates stage 1 and stage 2, but also tracks total cycles
+L.AUTO_TIMER_TEXTS.stagecontext			= "%s"
+L.AUTO_TIMER_TEXTS.stagecontextcount	= "%s (%%s)"
+L.AUTO_TIMER_TEXTS.intermission			= "转阶段"
+L.AUTO_TIMER_TEXTS.intermissioncount	= "转阶段 (%%s)"
 L.AUTO_TIMER_TEXTS.adds					= "下一波小怪"
 L.AUTO_TIMER_TEXTS.addscustom			= "小怪 (%%s)"
 L.AUTO_TIMER_TEXTS.roleplay				= GUILD_INTEREST_RP or "剧情"
@@ -602,17 +611,17 @@ L.AUTO_INFO_FRAME_OPTION_TEXT		= "信息框：$spell:%s"
 L.AUTO_INFO_FRAME_OPTION_TEXT2		= "信息框：战斗总览"
 L.AUTO_INFO_FRAME_OPTION_TEXT3		= "信息框：$spell:%s （当%%s阈值达到时）"
 L.AUTO_READY_CHECK_OPTION_TEXT		= "当首领开打时播放准备检查的音效（即使没有选定目标）"
-L.AUTO_SPEEDCLEAR_OPTION_TEXT		= "为%s显示快速消除计数器"
+L.AUTO_SPEEDCLEAR_OPTION_TEXT		= "显示该区域的最快通关计时器"
 L.AUTO_PRIVATEAURA_OPTION_TEXT		= "在这场战斗中，为DBM的私人光环$spell:%s播放音效"
 L.AUTO_GOSSIP_BUFFS					= "自动选择NPC对话来开启专业增益"
 L.AUTO_GOSSIP_PERFORM_ACTION		= "自动选择NPC对话来执行动作（例如传送）"
 L.AUTO_GOSSIP_START_ENCOUNTER		= "自动选择NPC对话来开始战斗"--This will never need to be plural, since it won't be in a trash mod like other two
 
 -- New special warnings
-L.MOVE_WARNING_BAR				= "可拖动的团队警报"
+L.MOVE_WARNING_BAR				= "可拖动的团队警告"
 L.MOVE_WARNING_MESSAGE			= "感谢您使用" .. L.DEADLY_BOSS_MODS
-L.MOVE_SPECIAL_WARNING_BAR		= "可拖动的特别警报"
-L.MOVE_SPECIAL_WARNING_TEXT		= "特别警报"
+L.MOVE_SPECIAL_WARNING_BAR		= "可拖动的特别警告"
+L.MOVE_SPECIAL_WARNING_TEXT		= "特别警告"
 
 L.HUD_INVALID_TYPE				= "无效的HUD类型"
 L.HUD_INVALID_TARGET				= "没有给定HUD目标"
@@ -644,11 +653,13 @@ L.ARROW_ERROR_USAGE	= {
 
 L.SPEED_KILL_TIMER_TEXT	= "击杀记录"
 L.SPEED_CLEAR_TIMER_TEXT	= "最速清除"
-L.COMBAT_RES_TIMER_TEXT	= "下一次可用战复"
 L.TIMER_RESPAWN		= "%s 刷新"
 
 L.LAG_HEADER					= L.DBM .. " - 延时检测"
 L.DUR_HEADER					= L.DBM .. "- 装备耐久度检测结果"
+L.GEAR_HEADER					= L.DBM .. " - 装备检测结果"
+L.GEAR_MISSING_GEMS			= "缺失宝石"
+L.GEAR_MISSING_ENCHANTS		= "缺失附魔"
 --L.KEYSTONES_HEADER					= L.DBM.. " - Keystones"
 
 L.OVERRIDE_ACTIVATED			= "本次战斗的配置已经被队长的配置覆盖"
@@ -713,8 +724,6 @@ L.KEYSTONE_NAMES[227] = '卡下' -- Return to Karazhan: Lower
 L.KEYSTONE_NAMES[233] = '教堂' -- Cathedral of Eternal Night
 L.KEYSTONE_NAMES[234] = '卡上' -- Return to Karazhan: Upper
 L.KEYSTONE_NAMES[239] = '执政' -- Seat of the Triumvirate
-
--- S3大秘
 L.KEYSTONE_NAMES[378] = '赎罪' -- Halls of Atonement
 L.KEYSTONE_NAMES[391] = '天街' -- Tazavesh: Streets of Wonder
 L.KEYSTONE_NAMES[392] = '宏图' -- Tazavesh: So'leah's Gambit
@@ -723,6 +732,14 @@ L.KEYSTONE_NAMES[503] = '回响' -- Ara-Kara, City of Echoes
 L.KEYSTONE_NAMES[505] = '破晨' -- The Dawnbreaker
 L.KEYSTONE_NAMES[525] = '水闸' -- Operation Floodgate
 L.KEYSTONE_NAMES[542] = '生态' -- Eco-Dome Al'dani
+L.KEYSTONE_NAMES[161] = '通天' -- Skyreach
+L.KEYSTONE_NAMES[402] = '学院' -- Algeth'ar Academy
+L.KEYSTONE_NAMES[556] = '萨隆' -- Pit of Saron
+L.KEYSTONE_NAMES[557] = '风行' -- Windrunner Spire
+L.KEYSTONE_NAMES[558] = '魔导' -- Magister's Terrace
+L.KEYSTONE_NAMES[559] = '节点' -- Nexus-Point Xenas
+L.KEYSTONE_NAMES[560] = '迈萨拉' -- Maisara Caverns
+L.KEYSTONE_NAMES[583] = '执政' -- Seat of the Triumvirate
 
 -- Midnight jazz
 L.MN_TIMELINE_HEADER	= "你想使用游戏自带的计时条还是DBM的计时条？"

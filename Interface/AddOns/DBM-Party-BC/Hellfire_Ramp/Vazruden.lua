@@ -1,11 +1,12 @@
 local mod	= DBM:NewMod(529, "DBM-Party-BC", 1, 248)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20250609051305")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(17537, 17307)
 mod:SetEncounterID(1892)
 mod:SetBossHPInfoToHighest()
-mod:SetZone(248)
+mod:SetZone(543)
 
 if not mod:IsRetail() then
 	mod:SetModelID(18407)
@@ -21,7 +22,7 @@ mod:RegisterEventsInCombat(
 
 local warnMark      = mod:NewTargetNoFilterAnnounce(30689)
 
-local specwarnMark  = mod:NewSpecialWarningYou(30689, nil, nil, nil, 1, 2)
+local specwarnMark  = mod:NewSpecialWarningYou(30689, nil, nil, nil, 1, 2, nil, nil, "targetyou")
 local yellMark		= mod:NewYell(30689)
 
 local timerMark     = mod:NewTargetTimer(6, 30689, nil, nil, nil, 3)

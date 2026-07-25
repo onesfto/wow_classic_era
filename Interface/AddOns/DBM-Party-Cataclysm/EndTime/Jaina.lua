@@ -3,7 +3,8 @@ local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "heroic,timewalker"
 
-mod:SetRevision("20241102154000")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(54445)
 mod:SetEncounterID(1883)
 mod:SetZone(938)
@@ -18,7 +19,7 @@ mod:RegisterEventsInCombat(
 
 local warnFrostBlades			= mod:NewSpellAnnounce(101339, 3)
 
-local specWarnFlarecore			= mod:NewSpecialWarningSpell(101927, nil, nil, nil, 2, 2)
+local specWarnFlarecore			= mod:NewSpecialWarningSpell(101927, nil, nil, nil, 2, 2, nil, nil, "specialsoon")
 
 --local timerFlarecore			= mod:NewCDTimer(13.4, 101927, nil, nil, nil, 5)
 local timerFlarecoreDetonate	= mod:NewTimer(10, "TimerFlarecoreDetonate", 101927, nil, nil, 2)

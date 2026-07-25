@@ -7,7 +7,8 @@ else
 	mod.statTypes = "normal"
 end
 
-mod:SetRevision("20241103114940")
+mod:SetRevision("20260523021914")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(645)
 mod:SetEncounterID(2986)--Retail Encounter ID
 mod:RequiresTimeWalking()
@@ -19,7 +20,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 5174"
 )
 
-local specWarnHeal			= mod:NewSpecialWarningInterrupt(5174, "HasInterrupt", nil, nil, 1, 2)
+local specWarnHeal			= mod:NewSpecialWarningInterrupt(5174, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
 
 local timerHealCD			= mod:NewAITimer(180, 5174, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 
