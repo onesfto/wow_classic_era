@@ -249,6 +249,16 @@ local function MakeFrameMovable(frame)
     end
 end
 
+local function SetProfessionFrameSize(frame, panelName)
+    if not frame then return end
+
+    frame:SetSize(PANEL_WIDTH, PANEL_HEIGHT)
+    if UIPanelWindows and panelName and UIPanelWindows[panelName] then
+        UIPanelWindows[panelName].width = PANEL_WIDTH
+        UIPanelWindows[panelName].height = PANEL_HEIGHT
+    end
+end
+
 local function SetupHeader(frame, titleText, detailFrames)
     if frame.gwTradeSkillHeaderReady then return end
 
@@ -610,14 +620,17 @@ local function LayoutCraftButtons()
 end
 
 local function QueueTradeSkillLayout()
-    LayoutTradeSkillFrame()
-    LayoutTradeSkillButtons()
+    local function RunLayout()
+        LayoutTradeSkillFrame()
+        LayoutTradeSkillButtons()
+    end
+
+    RunLayout()
 
     if C_Timer then
-        C_Timer.After(0.01, function()
-            LayoutTradeSkillFrame()
-            LayoutTradeSkillButtons()
-        end)
+        C_Timer.After(0, RunLayout)
+        C_Timer.After(0.05, RunLayout)
+        C_Timer.After(0.2, RunLayout)
     end
 end
 
@@ -628,11 +641,7 @@ function LayoutTradeSkillFrame()
     HideFilterCheckButton(TradeSkillFrameAvailableFilterCheckButton)
     HideLeftSquareArtifacts(TradeSkillFrame)
 
-    TradeSkillFrame:SetSize(PANEL_WIDTH, PANEL_HEIGHT)
-    if UIPanelWindows and UIPanelWindows.TradeSkillFrame then
-        UIPanelWindows.TradeSkillFrame.width = PANEL_WIDTH
-        UIPanelWindows.TradeSkillFrame.height = PANEL_HEIGHT
-    end
+    SetProfessionFrameSize(TradeSkillFrame, "TradeSkillFrame")
 
     if TradeSkillListScrollFrame then
         TradeSkillListScrollFrame:ClearAllPoints()
@@ -754,6 +763,7 @@ local function SkinTradeSkillFrame()
         HideRegion(TradeSkillHorizontalBarLeft)
         HideFilterCheckButton(TradeSkillFrameAvailableFilterCheckButton)
 
+        SetProfessionFrameSize(TradeSkillFrame, "TradeSkillFrame")
         SetupHeader(TradeSkillFrame, TradeSkillFrameTitleText or TradeSkillFrame.TitleText, {TradeSkillListScrollFrame, TradeSkillDetailScrollFrame})
         MakeFrameMovable(TradeSkillFrame)
 
@@ -811,11 +821,7 @@ local function LayoutCraftFrame()
     HideFilterCheckButton(CraftFrameAvailableFilterCheckButton)
     HideLeftSquareArtifacts(CraftFrame)
 
-    CraftFrame:SetSize(PANEL_WIDTH, PANEL_HEIGHT)
-    if UIPanelWindows and UIPanelWindows.CraftFrame then
-        UIPanelWindows.CraftFrame.width = PANEL_WIDTH
-        UIPanelWindows.CraftFrame.height = PANEL_HEIGHT
-    end
+    SetProfessionFrameSize(CraftFrame, "CraftFrame")
 
     if CraftListScrollFrame then
         CraftListScrollFrame:ClearAllPoints()
@@ -913,6 +919,7 @@ local function SkinCraftFrame()
         HideRegion(CraftRankFrameBackground)
         HideFilterCheckButton(CraftFrameAvailableFilterCheckButton)
 
+        SetProfessionFrameSize(CraftFrame, "CraftFrame")
         SetupHeader(CraftFrame, CraftFrameTitleText or CraftFrame.TitleText, {CraftListScrollFrame, CraftDetailScrollFrame})
         MakeFrameMovable(CraftFrame)
 
@@ -950,6 +957,8 @@ local function SkinCraftFrame()
 end
 
 local function LoadTradeSkillFrameSkin()
+    if GW.settings.TRADESKILL_SKIN_ENABLED == false then return end
+
     local f = CreateFrame("Frame")
     f:RegisterEvent("ADDON_LOADED")
     f:SetScript("OnEvent", function(_, _, addon)

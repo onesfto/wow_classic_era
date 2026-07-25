@@ -80,10 +80,10 @@ WhisperPopDB = {
 },
 },
 },
-["listScale"] = 100,
+["ignoreTags"] = 1,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["ignoreTags"] = 1,
-["notifyButton"] = 1,
 ["applyFilters"] = 1,
+["notifyButton"] = 1,
+["listScale"] = 100,
 }

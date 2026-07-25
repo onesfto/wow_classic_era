@@ -26,6 +26,10 @@ local function LoadSkinsPanel(sWindow)
     local gameFrames = CreateSkinsSubPanel(p, "skins_game_frames", L["Game Frames"])
     local addonSkins = CreateSkinsSubPanel(p, "skins_addons", ADDONS)
 
+    if GW.settings.TRADESKILL_SKIN_ENABLED == nil then
+        GW.settings.TRADESKILL_SKIN_ENABLED = true
+    end
+
     general:AddOption(L["Alert Frames"], nil, {getterSetter = "ALERTFRAME_SKIN_ENABLED", callback = function() GW.ShowRlPopup = true end, hidden = GW.Classic or GW.TBC or GW.Wrath})
     general:AddOption(MAINMENU_BUTTON, nil, {getterSetter = "MAINMENU_SKIN_ENABLED", callback = function() GW.ShowRlPopup = true end})
     general:AddOption(L["Popup notifications"], nil, {getterSetter = "STATICPOPUP_SKIN_ENABLED", callback = function() GW.ShowRlPopup = true end})
@@ -41,6 +45,7 @@ local function LoadSkinsPanel(sWindow)
     general:AddOption(TIMEMANAGER_TITLE, nil, {getterSetter = "TIMEMANAGER_SKIN_ENABLED", callback = function() GW.ShowRlPopup = true end})
 
     gameFrames:AddOption(QUEST_LOG, nil, {getterSetter = "QUESTLOG_SKIN_ENABLED", callback = function() GW.ShowRlPopup = true end, hidden = GW.Retail})
+    gameFrames:AddOption(TRADE_SKILLS, nil, {getterSetter = "TRADESKILL_SKIN_ENABLED", callback = function() GW.ShowRlPopup = true end, hidden = GW.Retail})
     gameFrames:AddOption(FLIGHT_MAP, nil, {getterSetter = "FLIGHTMAP_SKIN_ENABLED", callback = function() GW.ShowRlPopup = true end})
     gameFrames:AddOption(MACRO, nil, {getterSetter = "MACRO_SKIN_ENABLED", callback = function() GW.ShowRlPopup = true end})
     gameFrames:AddOption(BARBERSHOP, nil, {getterSetter = "BARBERSHOP_SKIN_ENABLED", callback = function() GW.ShowRlPopup = true end, hidden = not GW.Retail})

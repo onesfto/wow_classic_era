@@ -64,15 +64,15 @@ Postal3DB = {
 },
 ["法德迦 - 哈霍兰"] = {
 ["BlackBook"] = {
-["contacts"] = {
-"哈霍兰大格格",
-"黑龙守护者",
-},
 ["recent"] = {
 "黑龙守护者|哈霍兰|Alliance",
 "哈霍兰大格格|哈霍兰|Alliance",
 "女王安其拉|哈霍兰|Alliance",
 "德加和尚|哈霍兰|Alliance",
+},
+["contacts"] = {
+"哈霍兰大格格",
+"黑龙守护者",
 },
 },
 },

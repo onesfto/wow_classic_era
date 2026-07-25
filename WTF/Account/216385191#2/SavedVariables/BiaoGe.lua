@@ -102,13 +102,13 @@ BiaoGe = {
 [19909] = 1,
 [17202] = 18,
 [13446] = 5,
-[3387] = 10,
+[19902] = 1,
 [6948] = 1,
 [23237] = 1,
-[19902] = 1,
+[10646] = 1,
 [14047] = 3,
 [13512] = 1,
-[10646] = 1,
+[3387] = 10,
 [20413] = 1,
 [3403] = 1,
 [12662] = 16,
@@ -212,8 +212,8 @@ BiaoGe = {
 [19927] = 1,
 [14023] = 1,
 [13289] = 1,
+[16802] = 1,
 [184938] = 1,
-[12529] = 1,
 [19979] = 1,
 [23035] = 1,
 [23031] = 1,
@@ -309,7 +309,7 @@ BiaoGe = {
 [14146] = 1,
 [23025] = 1,
 [22707] = 1,
-[16802] = 1,
+[12529] = 1,
 [16309] = 1,
 [184937] = 9,
 },
@@ -640,8 +640,8 @@ BiaoGe = {
 [19309] = 1,
 [16816] = 1,
 [19948] = 1,
+[18809] = 1,
 [21603] = 1,
-[21349] = 1,
 [21351] = 1,
 [22369] = 1,
 [22754] = 1,
@@ -679,7 +679,7 @@ BiaoGe = {
 [23070] = 1,
 [23326] = 5,
 [22367] = 1,
-[18809] = 1,
+[21349] = 1,
 [20538] = 1,
 [23207] = 1,
 [21685] = 1,
@@ -1226,7 +1226,7 @@ BiaoGe = {
 },
 },
 ["factionGroup2"] = "Alliance",
-["raceID2"] = 1,
+["zhuangbei1"] = "|cffa335ee|Hitem:18703::::::::60::::::::::|h[远古石叶]|h|r",
 ["color2"] = {
 0.960784375667572,
 0.5490196347236633,
@@ -1242,9 +1242,9 @@ BiaoGe = {
 },
 },
 ["class2"] = "PALADIN",
-["itemLevel2"] = 71,
+["raceID2"] = 1,
 ["itemLevel3"] = 70,
-["zhuangbei1"] = "|cffa335ee|Hitem:18703::::::::60::::::::::|h[远古石叶]|h|r",
+["itemLevel2"] = 71,
 ["loot1"] = {
 {
 ["time"] = 1784659551,
@@ -1275,9 +1275,9 @@ BiaoGe = {
 ["zhuangbei8"] = "|cffa335ee|Hitem:17203::::::::60::::::::::|h[萨弗隆铁锭]|h|r",
 ["zhuangbei7"] = "|cffa335ee|Hitem:16850::::::::60::::::::::|h[巨人追猎者护腕]|h|r",
 ["itemLevel2"] = 66,
-["loot7"] = {
+["loot5"] = {
 {
-["time"] = 1784658955,
+["time"] = 1784657377,
 ["class"] = "PALADIN",
 ["count"] = 1,
 ["player"] = "哈霍兰大格格",
@@ -1322,7 +1322,14 @@ BiaoGe = {
 },
 },
 ["itemLevel1"] = 60,
-["itemLevel3"] = 60,
+["loot7"] = {
+{
+["time"] = 1784658955,
+["class"] = "PALADIN",
+["count"] = 1,
+["player"] = "哈霍兰大格格",
+},
+},
 ["loot15"] = {
 {
 ["time"] = 1784656909,
@@ -1418,14 +1425,7 @@ BiaoGe = {
 },
 ["zhuangbei5"] = "|cff1eff00|Hitem:11382::::::::60::::::::::|h[山脉之血]|h|r",
 ["zhuangbei1"] = "|cff0070dd|Hitem:17011::::::::60::::::::::|h[熔岩之核]|h|rx8",
-["loot5"] = {
-{
-["time"] = 1784657377,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "哈霍兰大格格",
-},
-},
+["itemLevel3"] = 60,
 ["zhuangbei6"] = "|cffa335ee|Hitem:16851::::::::60::::::::::|h[巨人追猎者腰带]|h|r",
 ["loot1"] = {
 {
@@ -1553,7 +1553,14 @@ BiaoGe = {
 ["itemLevel2"] = 66,
 ["maijia1"] = "艾鲁恩的右手",
 ["zhuangbei2"] = "|cffa335ee|Hitem:16824::::::::60::::::::::|h[夜幕杀手长靴]|h|r",
-["realm1"] = "哈霍兰",
+["loot2"] = {
+{
+["time"] = 1784658438,
+["class"] = "PALADIN",
+["count"] = 1,
+["player"] = "哈霍兰大格格",
+},
+},
 ["zhuangbei1"] = "|cffa335ee|Hitem:16852::::::::60::::::::::|h[巨人追猎者手套]|h|r",
 ["factionGroup2"] = "Alliance",
 ["color1"] = {
@@ -1568,17 +1575,10 @@ BiaoGe = {
 0.4117647409439087,
 1,
 },
-["factionGroup1"] = "Alliance",
+["realm1"] = "哈霍兰",
 ["class2"] = "ROGUE",
 ["raceID2"] = 1,
-["loot2"] = {
-{
-["time"] = 1784658438,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "哈霍兰大格格",
-},
-},
+["factionGroup1"] = "Alliance",
 ["class1"] = "HUNTER",
 ["loot1"] = {
 {
@@ -1644,7 +1644,10 @@ BiaoGe = {
 1,
 1,
 },
+["realm1"] = "哈霍兰",
 ["factionGroup1"] = "Alliance",
+["zhuangbei1"] = "|cffa335ee|Hitem:19142::::::::60::::::::::|h[火焰符文魔典]|h|r",
+["itemLevel2"] = 66,
 ["loot2"] = {
 {
 ["time"] = 1784658284,
@@ -1653,9 +1656,6 @@ BiaoGe = {
 ["player"] = "哈霍兰大格格",
 },
 },
-["zhuangbei1"] = "|cffa335ee|Hitem:19142::::::::60::::::::::|h[火焰符文魔典]|h|r",
-["itemLevel2"] = 66,
-["realm1"] = "哈霍兰",
 ["itemLevel1"] = 70,
 ["jine1"] = "100",
 ["guild1"] = "白銀之手",
@@ -1677,8 +1677,15 @@ BiaoGe = {
 ["itemLevel2"] = 66,
 ["maijia1"] = "刺激就射",
 ["class1"] = "HUNTER",
-["realm1"] = "哈霍兰",
 ["factionGroup1"] = "Alliance",
+["loot2"] = {
+{
+["time"] = 1784657259,
+["class"] = "PALADIN",
+["count"] = 1,
+["player"] = "哈霍兰大格格",
+},
+},
 ["factionGroup2"] = "Alliance",
 ["color1"] = {
 0.6705882549285889,
@@ -1692,14 +1699,7 @@ BiaoGe = {
 1,
 1,
 },
-["loot2"] = {
-{
-["time"] = 1784657259,
-["class"] = "PALADIN",
-["count"] = 1,
-["player"] = "哈霍兰大格格",
-},
-},
+["realm1"] = "哈霍兰",
 ["class2"] = "PRIEST",
 ["zhuangbei1"] = "|cffa335ee|Hitem:16849::::::::60::::::::::|h[巨人追猎者长靴]|h|r",
 ["zhuangbei2"] = "|cffa335ee|Hitem:16812::::::::60::::::::::|h[预言手套]|h|r",
@@ -1734,7 +1734,7 @@ BiaoGe = {
 ["jine2"] = "100",
 ["level2"] = 60,
 ["factionGroup2"] = "Alliance",
-["zhuangbei1"] = "|cffa335ee|Hitem:16863::::::::60::::::::::|h[力量护手]|h|r",
+["raceID2"] = 7,
 ["color2"] = {
 0.250980406999588,
 0.7803922295570374,
@@ -1750,8 +1750,8 @@ BiaoGe = {
 },
 },
 ["class2"] = "MAGE",
+["zhuangbei1"] = "|cffa335ee|Hitem:16863::::::::60::::::::::|h[力量护手]|h|r",
 ["itemLevel2"] = 66,
-["raceID2"] = 7,
 ["itemLevel1"] = 66,
 ["realm2"] = "哈霍兰",
 ["maijia2"] = "砂飞风中转",
@@ -1860,10 +1860,6 @@ BiaoGe = {
 1,
 },
 ["jine3"] = "4100",
-["raceID3"] = 1,
-["realm2"] = "哈霍兰",
-["class3"] = "PRIEST",
-["guild3"] = "白銀之手",
 ["loot4"] = {
 {
 ["time"] = 1784659994,
@@ -1872,7 +1868,11 @@ BiaoGe = {
 ["player"] = "哈霍兰大格格",
 },
 },
+["realm2"] = "哈霍兰",
+["class3"] = "PRIEST",
+["maijia3"] = "幸幸福福丶",
 ["itemLevel2"] = 76,
+["guild3"] = "白銀之手",
 ["zhuangbei2"] = "|cffa335ee|Hitem:16901::::::::60::::::::::|h[怒风腿甲]|h|r",
 ["level2"] = 60,
 ["zhuangbei1"] = "|cffa335ee|Hitem:17106::::::::60::::::::::|h[玛利斯达尔防御者]|h|r",
@@ -1886,7 +1886,7 @@ BiaoGe = {
 1,
 1,
 },
-["maijia3"] = "幸幸福福丶",
+["raceID3"] = 1,
 ["level3"] = 60,
 ["level4"] = 60,
 ["class4"] = "PALADIN",
@@ -1964,7 +1964,7 @@ BiaoGe = {
 },
 ["money"] = 3193,
 ["xp"] = {
-["perNow"] = "0",
+["perNow"] = 1,
 ["resting"] = false,
 ["per"] = "0.0",
 ["isPanda"] = false,
@@ -1972,26 +1972,26 @@ BiaoGe = {
 },
 ["skill"] = {
 [356] = {
-["level"] = 300,
 ["icon"] = 136245,
-},
-[171] = {
 ["level"] = 300,
-["icon"] = 136240,
-["isMain"] = true,
+},
+[185] = {
+["icon"] = 133971,
+["level"] = 300,
 },
 [202] = {
 ["level"] = 315,
 ["icon"] = 136243,
 ["isMain"] = true,
 },
-[129] = {
+[171] = {
 ["level"] = 300,
-["icon"] = 135966,
+["icon"] = 136240,
+["isMain"] = true,
 },
-[185] = {
+[129] = {
+["icon"] = 135966,
 ["level"] = 300,
-["icon"] = 133971,
 },
 },
 },
@@ -2043,7 +2043,7 @@ BiaoGe = {
 ["quest"] = true,
 },
 ["xp"] = {
-["perNow"] = 61,
+["perNow"] = 69,
 ["resting"] = true,
 ["per"] = "0.0",
 ["isPanda"] = false,
@@ -2083,17 +2083,18 @@ BiaoGe = {
 ["isItem"] = true,
 ["count"] = 0,
 },
+["money"] = 450,
 ["xp"] = {
-["perNow"] = 56,
+["perNow"] = "0",
 ["resting"] = true,
 ["per"] = "0.0",
 ["isPanda"] = false,
-["time"] = 1784654623,
+["time"] = 1785021612,
 },
 ["skill"] = {
 [129] = {
-["icon"] = 135966,
 ["level"] = 300,
+["icon"] = 135966,
 },
 [333] = {
 ["level"] = 61,
@@ -2106,7 +2107,6 @@ BiaoGe = {
 ["isMain"] = true,
 },
 },
-["money"] = 450,
 },
 ["迪菲亚女皇"] = {
 ["colorplayer"] = "|cfffff569迪菲亚女皇|r",
@@ -2120,7 +2120,7 @@ BiaoGe = {
 ["skill"] = {
 },
 ["xp"] = {
-["perNow"] = 69,
+["perNow"] = 71,
 ["resting"] = false,
 ["per"] = "0.0",
 ["isPanda"] = false,
@@ -3016,7 +3016,7 @@ BiaoGe = {
 ["itemLevel3"] = 76,
 ["itemLevel2"] = 76,
 },
-["boss21"] = {
+["boss19"] = {
 },
 ["boss4"] = {
 ["loot2"] = {
@@ -3074,11 +3074,11 @@ BiaoGe = {
 ["itemLevel3"] = 76,
 ["zhuangbei1"] = "|cffa335ee|Hitem:16959::::::::60:::::::::|h[愤怒护腕]|h|r",
 },
-["boss19"] = {
+["boss10"] = {
 },
 ["boss22"] = {
 },
-["boss10"] = {
+["boss21"] = {
 },
 ["boss18"] = {
 },
@@ -3176,22 +3176,22 @@ BiaoGe = {
 ["boss11"] = {
 },
 ["boss12"] = {
-["zhuangbei14"] = "|cff0070dd|Hitem:18260::::::::60::::::::::|h[公式：附魔武器 - 治疗能力]|h|r",
-["zhuangbei2"] = "|cff0070dd|Hitem:17011::::::::60::::::::::|h[熔岩之核]|h|rx3",
 ["itemLevel1"] = 60,
+["zhuangbei2"] = "|cff0070dd|Hitem:17011::::::::60::::::::::|h[熔岩之核]|h|rx3",
+["itemLevel14"] = 60,
 ["itemLevel2"] = 60,
 ["zhuangbei1"] = "|cffffffff|Hitem:17012::::::::60::::::::::|h[熔火犬皮]|h|rx5",
-["itemLevel14"] = 60,
+["zhuangbei14"] = "|cff0070dd|Hitem:18260::::::::60::::::::::|h[公式：附魔武器 - 治疗能力]|h|r",
 ["itemLevel15"] = 60,
 ["zhuangbei15"] = "|cff1eff00|Hitem:16665::::::::60::::::::::|h[秘典：宁神射击]|h|r",
 },
 ["boss2"] = {
+["itemLevel2"] = 68,
 ["zhuangbei1"] = "|cffa335ee|Hitem:17073::::::::60::::::::::|h[震地者]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:17065::::::::60::::::::::|h[稳固之力勋章]|h|r",
 ["zhuangbei3"] = "|cffa335ee|Hitem:16822::::::::60::::::::::|h[夜幕杀手短裤]|h|r",
 ["itemLevel1"] = 66,
 ["itemLevel3"] = 66,
-["itemLevel2"] = 68,
+["zhuangbei2"] = "|cffa335ee|Hitem:17065::::::::60::::::::::|h[稳固之力勋章]|h|r",
 },
 ["boss5"] = {
 },
@@ -3210,12 +3210,12 @@ BiaoGe = {
 ["itemLevel2"] = 78,
 },
 ["boss4"] = {
+["itemLevel2"] = 66,
 ["zhuangbei1"] = "|cffa335ee|Hitem:16808::::::::60::::::::::|h[恶魔之心角饰]|h|r",
-["zhuangbei2"] = "|cffa335ee|Hitem:16866::::::::60::::::::::|h[力量头盔]|h|r",
 ["zhuangbei3"] = "|cffa335ee|Hitem:17105::::::::60::::::::::|h[光环石锤]|h|r",
 ["itemLevel1"] = 66,
 ["itemLevel3"] = 69,
-["itemLevel2"] = 66,
+["zhuangbei2"] = "|cffa335ee|Hitem:16866::::::::60::::::::::|h[力量头盔]|h|r",
 },
 ["raidRoster"] = {
 ["roster"] = {
@@ -3299,12 +3299,12 @@ BiaoGe = {
 ["tradeTbl"] = {
 },
 ["boss9"] = {
+["zhuangbei1"] = "|cffa335ee|Hitem:18809::::::::60::::::::::|h[耳语秘言腰带]|h|r",
 ["zhuangbei2"] = "|cffa335ee|Hitem:18808::::::::60::::::::::|h[眠火手套]|h|r",
-["itemLevel2"] = 70,
 ["zhuangbei3"] = "|cffa335ee|Hitem:18646::::::::60::::::::::|h[神圣之眼]|h|r",
 ["itemLevel1"] = 71,
 ["itemLevel3"] = 71,
-["zhuangbei1"] = "|cffa335ee|Hitem:18809::::::::60::::::::::|h[耳语秘言腰带]|h|r",
+["itemLevel2"] = 70,
 },
 ["boss11"] = {
 },
@@ -3328,12 +3328,12 @@ BiaoGe = {
 ["zhuangbei13"] = "|cff0070dd|Hitem:18291::::::::60::::::::::|h[结构图：力反馈盾牌]|h|r",
 },
 ["boss2"] = {
+["zhuangbei1"] = "|cffa335ee|Hitem:16810::::::::60::::::::::|h[恶魔之心长裤]|h|r",
 ["zhuangbei2"] = "|cffa335ee|Hitem:17065::::::::60::::::::::|h[稳固之力勋章]|h|r",
-["itemLevel2"] = 68,
 ["zhuangbei3"] = "|cffa335ee|Hitem:17073::::::::60::::::::::|h[震地者]|h|r",
 ["itemLevel1"] = 66,
 ["itemLevel3"] = 66,
-["zhuangbei1"] = "|cffa335ee|Hitem:16810::::::::60::::::::::|h[恶魔之心长裤]|h|r",
+["itemLevel2"] = 68,
 },
 ["boss5"] = {
 ["zhuangbei2"] = "|cffa335ee|Hitem:16824::::::::60::::::::::|h[夜幕杀手长靴]|h|r",
@@ -3346,12 +3346,12 @@ BiaoGe = {
 ["boss10"] = {
 },
 ["boss4"] = {
+["zhuangbei1"] = "|cffa335ee|Hitem:16846::::::::60::::::::::|h[巨人追猎者头盔]|h|r",
 ["zhuangbei2"] = "|cffa335ee|Hitem:17071::::::::60::::::::::|h[血腥撕裂者]|h|r",
-["itemLevel2"] = 69,
 ["zhuangbei3"] = "|cffa335ee|Hitem:18861::::::::60::::::::::|h[召火腿甲]|h|r",
 ["itemLevel1"] = 66,
 ["itemLevel3"] = 61,
-["zhuangbei1"] = "|cffa335ee|Hitem:16846::::::::60::::::::::|h[巨人追猎者头盔]|h|r",
+["itemLevel2"] = 69,
 },
 ["boss1"] = {
 ["zhuangbei2"] = "|cffa335ee|Hitem:16805::::::::60::::::::::|h[恶魔之心手套]|h|r",
@@ -4096,106 +4096,106 @@ BiaoGe = {
 },
 ["哈霍兰大格格"] = {
 ["9"] = {
-["link"] = "|cffa335ee|Hitem:21604:2566:::::::60::::::::::|h[皇家救赎腕轮]|h|r",
+["quality"] = 4,
 ["level"] = 81,
 ["itemID"] = 21604,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:21604:2566:::::::60::::::::::|h[皇家救赎腕轮]|h|r",
 },
 ["1"] = {
-["link"] = "|cffa335ee|Hitem:22428:2584:::::::60::::::::::|h[救赎头饰]|h|r",
+["quality"] = 4,
 ["level"] = 88,
 ["itemID"] = 22428,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:22428:2584:::::::60::::::::::|h[救赎头饰]|h|r",
 },
 ["8"] = {
-["link"] = "|cffa335ee|Hitem:22430:911:::::::60::::::::::|h[救赎长靴]|h|r",
+["quality"] = 4,
 ["level"] = 86,
 ["itemID"] = 22430,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:22430:911:::::::60::::::::::|h[救赎长靴]|h|r",
 },
 ["3"] = {
-["link"] = "|cffa335ee|Hitem:22429:2721:::::::60::::::::::|h[救赎肩铠]|h|r",
+["quality"] = 4,
 ["level"] = 86,
 ["itemID"] = 22429,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:22429:2721:::::::60::::::::::|h[救赎肩铠]|h|r",
 },
 ["2"] = {
-["link"] = "|cffa335ee|Hitem:23057::::::::60::::::::::|h[无辜囚徒宝石]|h|r",
+["quality"] = 4,
 ["level"] = 92,
 ["itemID"] = 23057,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:23057::::::::60::::::::::|h[无辜囚徒宝石]|h|r",
 },
 ["5"] = {
-["link"] = "|cffa335ee|Hitem:22425:1891:::::::60::::::::::|h[救赎外套]|h|r",
+["quality"] = 4,
 ["level"] = 92,
 ["itemID"] = 22425,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:22425:1891:::::::60::::::::::|h[救赎外套]|h|r",
 },
 ["18"] = {
-["link"] = "|cffa335ee|Hitem:23006::::::::60::::::::::|h[光明圣契]|h|r",
+["quality"] = 4,
 ["level"] = 83,
 ["itemID"] = 23006,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:23006::::::::60::::::::::|h[光明圣契]|h|r",
 },
 ["7"] = {
-["link"] = "|cffa335ee|Hitem:23070:2584:::::::60::::::::::|h[极性护腿]|h|r",
+["quality"] = 4,
 ["level"] = 85,
 ["itemID"] = 23070,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:23070:2584:::::::60::::::::::|h[极性护腿]|h|r",
 },
 ["6"] = {
-["link"] = "|cffa335ee|Hitem:22730::::::::60::::::::::|h[眼柄腰带]|h|r",
+["quality"] = 4,
 ["level"] = 88,
 ["itemID"] = 22730,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:22730::::::::60::::::::::|h[眼柄腰带]|h|r",
 },
 ["14"] = {
-["link"] = "|cffa335ee|Hitem:23047::::::::60::::::::::|h[亡者之眼]|h|r",
+["quality"] = 4,
 ["level"] = 90,
 ["itemID"] = 23047,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:23047::::::::60::::::::::|h[亡者之眼]|h|r",
 },
 ["15"] = {
-["link"] = "|cffa335ee|Hitem:19857::::::::60::::::::::|h[吞噬披风]|h|r",
+["quality"] = 4,
 ["level"] = 68,
 ["itemID"] = 19857,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:19857::::::::60::::::::::|h[吞噬披风]|h|r",
 },
 ["16"] = {
-["link"] = "|cffa335ee|Hitem:23056:2505:::::::60::::::::::|h[扭曲虚空之锤]|h|r",
+["quality"] = 4,
 ["level"] = 89,
 ["itemID"] = 23056,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:23056:2505:::::::60::::::::::|h[扭曲虚空之锤]|h|r",
 },
 ["17"] = {
-["link"] = "|cffa335ee|Hitem:23075::::::::60::::::::::|h[死亡的契约]|h|r",
+["quality"] = 4,
 ["level"] = 83,
 ["itemID"] = 23075,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:23075::::::::60::::::::::|h[死亡的契约]|h|r",
 },
 ["13"] = {
-["link"] = "|cffa335ee|Hitem:23001::::::::60::::::::::|h[衰落之眼]|h|r",
+["quality"] = 4,
 ["level"] = 85,
 ["itemID"] = 23001,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:23001::::::::60::::::::::|h[衰落之眼]|h|r",
 },
 ["12"] = {
-["link"] = "|cffa335ee|Hitem:20632::::::::60::::::::::|h[心灵之泪]|h|r",
+["quality"] = 4,
 ["level"] = 71,
 ["itemID"] = 20632,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:20632::::::::60::::::::::|h[心灵之泪]|h|r",
 },
 ["11"] = {
-["link"] = "|cffa335ee|Hitem:21836::::::::60::::::::::|h[混乱之琉璃戒指]|h|r",
+["quality"] = 4,
 ["level"] = 71,
 ["itemID"] = 21836,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:21836::::::::60::::::::::|h[混乱之琉璃戒指]|h|r",
 },
 ["10"] = {
-["link"] = "|cffa335ee|Hitem:20264:2617:::::::60::::::::::|h[和平守护者护手]|h|r",
+["quality"] = 4,
 ["level"] = 68,
 ["itemID"] = 20264,
-["quality"] = 4,
+["link"] = "|cffa335ee|Hitem:20264:2617:::::::60::::::::::|h[和平守护者护手]|h|r",
 },
 },
 ["迪菲亚女皇"] = {
@@ -14494,7 +14494,14 @@ BiaoGe = {
 },
 },
 ["itemLevel4"] = 88,
-["zhuangbei1"] = "|cffa335ee|Hitem:20929::::::::60::::::::::|h[上古之神的甲壳]|h|r",
+["loot4"] = {
+{
+["class"] = "MAGE",
+["player"] = "宇晔-法琳娜",
+["count"] = 1,
+["time"] = 1782920233,
+},
+},
 ["loot2"] = {
 {
 ["class"] = "MAGE",
@@ -14504,15 +14511,8 @@ BiaoGe = {
 },
 },
 ["zhuangbei5"] = "|cffa335ee|Hitem:21581::::::::60::::::::::|h[毁灭护手]|h|r",
+["zhuangbei1"] = "|cffa335ee|Hitem:20929::::::::60::::::::::|h[上古之神的甲壳]|h|r",
 ["itemLevel2"] = 1,
-["loot4"] = {
-{
-["class"] = "MAGE",
-["player"] = "宇晔-法琳娜",
-["count"] = 1,
-["time"] = 1782920233,
-},
-},
 ["itemLevel1"] = 1,
 ["loot1"] = {
 {
@@ -14602,15 +14602,11 @@ BiaoGe = {
 },
 ["boss6"] = {
 },
-["boss19"] = {
+["boss21"] = {
 },
 ["boss4"] = {
 },
 ["boss1"] = {
-},
-["boss21"] = {
-},
-["boss22"] = {
 },
 ["boss10"] = {
 ["zhuangbei2"] = "|cffa335ee|Hitem:20931::::::::60::::::::::|h[巨型沙虫的皮]|h|r",
@@ -14643,6 +14639,10 @@ BiaoGe = {
 ["itemLevel1"] = 1,
 ["itemLevel3"] = 81,
 ["zhuangbei3"] = "|cffa335ee|Hitem:23557::::::::60::::::::::|h[巨虫的幼体]|h|r",
+},
+["boss22"] = {
+},
+["boss19"] = {
 },
 ["boss18"] = {
 },
@@ -15747,8 +15747,8 @@ BiaoGe = {
 ["allLootToMe"] = 1,
 ["scale"] = 0.9,
 ["roleOverviewSort1"] = "iLevel-class-player",
+["roleOverviewShowTalent"] = 1,
 ["roleOverviewShowNote_useClassColor"] = 1,
-["autoAuctionAutoEndTips"] = 1,
 ["tradeFastGiveMoney"] = 1,
 ["MeetingHorn_isSend"] = 0,
 ["lootFontSize"] = 20,
@@ -15759,14 +15759,14 @@ BiaoGe = {
 ["countDown"] = 1,
 ["duiZhangTime"] = 24,
 ["joinorleavePlayercolor"] = 1,
-["mainIcon"] = 0,
+["mainIconFrameLevel"] = "HIGH",
 ["autoAuctionHappySay"] = 1,
 ["MeetingHorn_history"] = 0,
 ["fastCount"] = 1,
 ["alpha"] = 0.8,
 ["roleOverviewAlpha"] = 0.9,
 ["NDuiOpenBag"] = 0,
-["zhichuPercent"] = 1,
+["mainIcon"] = 0,
 ["HighOnterItem"] = 1,
 ["autoAuctionMoney"] = 1,
 ["tipsSound"] = 1,
@@ -15827,12 +15827,12 @@ BiaoGe = {
 ["lastVer"] = "v2.1.4",
 ["roleOverviewScale"] = 1,
 ["autoAuctionFold"] = 0,
-["mainIconFrameLevel"] = "HIGH",
+["zhichuPercent"] = 1,
 ["autoAuctionPut"] = 1,
 ["autoAuctionUp"] = 0,
 ["mainIconScale"] = 1,
 ["autoAuctionSetMoney"] = 1,
-["roleOverviewShowTalent"] = 1,
+["autoAuctionAutoEndTips"] = 1,
 ["mouseFK"] = 1,
 ["SearchHistory"] = {
 ["option231029"] = true,
@@ -15908,13 +15908,13 @@ BiaoGe = {
 ["TTS"] = 1,
 ["professionCD"] = 1,
 ["SC"] = 1,
-["BWLsod"] = 1,
 ["huiguweek"] = 1,
-["TCV"] = 1,
+["OLsod"] = 1,
+["BWL"] = 1,
 ["MCsod"] = 1,
 ["OL"] = 1,
-["BWL"] = 1,
-["OLsod"] = 1,
+["TCV"] = 1,
+["BWLsod"] = 1,
 ["NAXX"] = 1,
 },
 ["marketPrice"] = {

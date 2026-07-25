@@ -21,7 +21,7 @@ tdInspect: disabled
 EKword: enabled
 aBlueShaman: disabled
 ACP: enabled
-AddOnSkins: disabled
+AddOnSkins: enabled
 AdvancedInterfaceOptions: disabled
 AlreadyKnown: disabled
 Atlas: disabled
@@ -52,7 +52,7 @@ Details_Streamer: disabled
 Details_TinyThreat: disabled
 Details_Vanguard: disabled
 Doom_CooldownPulse: disabled
-ElvUI: disabled
+ElvUI: enabled
 ElvUI_Libraries: disabled
 ElvUI_Options: disabled
 GFW_FeedOMatic: disabled
@@ -180,7 +180,7 @@ RXPGuides_Themes: enabled
 HeyboxPlayerInfo: disabled
 Rurutia: disabled
 SpellActivationOverlay: disabled
-BuyEmAllClassic: disabled
+BuyEmAllClassic: enabled
 RareScanner: disabled
 BiSTracker: disabled
 163UI_Info: disabled
@@ -204,7 +204,7 @@ MacroToolkitIcons: disabled
 Onesfto: disabled
 SexyMap: disabled
 SimpleRaidTargetIcons: disabled
-SinStats: disabled
+SinStats: enabled
 SharedMedia_Rurutia: disabled
 Blizzard_ObjectiveTracker: enabled
 ChatThrottleLib: enabled
@@ -217,3 +217,4 @@ HonorSpy: enabled
 LibClassicDurations: enabled
 Clique: enabled
 LibSFDropDown: enabled
+AllTheThings: enabled

@@ -1315,6 +1315,7 @@ GW.globalDefault = {
         WORLDMAP_SKIN_ENABLED= true,
         GOSSIP_SKIN_ENABLED= true,
         QUESTLOG_SKIN_ENABLED = true,
+        TRADESKILL_SKIN_ENABLED = true,
         ITEMUPGRADE_SKIN_ENABLED= true,
         TIMEMANAGER_SKIN_ENABLED= true,
         MERCHANT_SKIN_ENABLED= true,

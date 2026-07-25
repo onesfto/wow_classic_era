@@ -8,14 +8,14 @@ TalentEmuSV = {
 ["setmetatable"] = 104,
 },
 ["EXTERNAL"] = {
-["LibStub"] = 649,
+["LibStub"] = 653,
 },
 ["UI-EquipmentContainer"] = {
 ["ceil"] = 1,
 },
 ["METHOD"] = {
-["ITEM_SET_BONUS"] = 618,
-["ITEM_SET_BONUS_GRAY"] = 618,
+["ITEM_SET_BONUS"] = 622,
+["ITEM_SET_BONUS_GRAY"] = 622,
 },
 },
 ["set"] = {
