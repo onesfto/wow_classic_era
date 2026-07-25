@@ -7,7 +7,7 @@ else
 	mod.statTypes = "normal"
 end
 
-mod:SetRevision("20260525233242")
+mod:SetRevision("20260710163302")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(16011)
 mod:SetEncounterID(1115)
@@ -44,8 +44,8 @@ mod:RegisterEventsInCombat(
 )
 
 local isWarlock 			= select(2, UnitClass("player")) == "WARLOCK"
-local warnSporeNow			= mod:NewCountAnnounce(29234, 2, "134530", "RangedDps")
-local warnSporeSoon			= mod:NewSoonAnnounce(29234, 1, "134530", "RangedDps")
+local warnSporeNow			= mod:NewCountAnnounce(29234, 1, "134530", "Dps")
+local warnSporeSoon			= mod:NewSoonAnnounce(29234, 1, "134530", "Dps")
 local warnDoomNow			= mod:NewCountAnnounce(29204, 3)
 local warnRemoveCurse		= mod:NewSpellAnnounce(30281, 3, nil, isWarlock)
 -- SoD
@@ -61,7 +61,7 @@ else
 	warnHealNow				= mod:NewAnnounce("WarningHealNow", 1, 29184, false)
 end
 
-local timerSpore			= mod:NewNextCountTimer(12.9, 29234, nil, "RangedDps", nil, 5, "134530", DBM_COMMON_L.DAMAGE_ICON)
+local timerSpore			= mod:NewNextCountTimer(12.9, 29234, nil, "Dps", nil, 5, "134530", DBM_COMMON_L.DAMAGE_ICON)
 local timerDoom				= mod:NewNextTimer("v29.1-32.4", 29204, nil, nil, nil, 2)
 local timerRemoveCurseCD	= mod:NewNextTimer(30.7, 30281, nil, isWarlock, nil, 5)
 
@@ -122,7 +122,11 @@ do
 			end
 
 			sortedLines[i] = name
-			lines[name] = remaining
+			if remaining > 0 then
+				lines[name] = ("|cffff0000%d|r"):format(remaining)
+			else
+				lines[name] = ("|cff00ff00%s|r"):format(READY)
+			end
 		end
 
 		return lines, sortedLines

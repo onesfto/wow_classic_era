@@ -25,6 +25,7 @@ values=values,
 return variants
 end
 function SAO.TextureVariantValue(self,texture,horizontal,suffix)
+self:MarkTexture(texture)
 local text
 if (horizontal)then
 text="|T"..self.TexName[texture]..":16:32:0:0:256:128:16:240:16:112:255:255:255|t"

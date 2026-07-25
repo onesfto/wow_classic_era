@@ -1,20 +1,30 @@
-## Interface-Retail: 90200
-## Interface-Classic: 11402
-## Interface-BCC: 20504
+## Interface: 110105, 50500, 40402, 30300, 11507
 
 ## Title: Lib: Professions
 ## Author: datagutten
-## Version: v0.11
+## Version: v0.16
 ## Notes: Tools to work with profession data
 ## X-Curse-Project-ID: 342783
+## X-Wago-ID: ZQ6aAj6W
 
 #@no-lib-strip@
 libs\LibStub\LibStub.lua
+libs\AceAddon-3.0\AceAddon-3.0.xml
 libs\BM-utils\lib.xml
 #@end-no-lib-strip@
 
-data\ProfessionRanks-classic.lua
+data\ProfessionInfo-bcc.lua
+data\ProfessionInfo-cata.lua
+data\ProfessionInfo-classic.lua
+data\ProfessionInfo-mists.lua
+data\ProfessionInfo-retail.lua
+data\ProfessionInfo-wrath.lua
 data\ProfessionRanks-bcc.lua
+data\ProfessionRanks-cata.lua
+data\ProfessionRanks-classic.lua
+data\ProfessionRanks-mists.lua
+data\ProfessionRanks-retail.lua
+data\ProfessionRanks-wrath.lua
 
 addon\common.lua
 addon\ProfessionApi.lua

@@ -5,108 +5,66 @@
 local addonName, addon = ...
 _G['FeedOMatic'] = {}
 
-local tableUtils = addon.tableUtils
+local ace_addon = _G.LibStub("AceAddon-3.0"):GetAddon(addonName)
+---@type FOM_Constants
+local const = ace_addon:GetModule("FOM_Constants")
 ---@type BMUtils
-local utils = addon.utils
+local utils = _G.LibStub("BMUtils")
+local is_classic = _G.WOW_PROJECT_ID ~= _G.WOW_PROJECT_MAINLINE
 
-local C_Container
-if _G.GetContainerNumSlots ~= nil then
-    C_Container = utils.container
-else
-    C_Container = _G.C_Container
-end
+local C_Container = _G.C_Container
+local C_Item = _G.C_Item
+
+---@type feedButtonHelper
+local feedButton = _G.GFW_FeedOMatic:GetModule("feedButtonHelper")
 
 -- letting these be global inside Ace callbacks causes bugs
-local FOM_Config, FOM_IsInDiet, FOM_IsKnownFood, FOM_CategoryNames, FOM_FoodsUIList
-
--- Food quality by itemLevel
---
--- levelDelta = petLevel - foodItemLevel
--- levelDelta > 30 = won't eat
-FOM_DELTA_EATS = 30;	-- 30 >= levelDelta > 20 = 8 happiness per tick
-FOM_DELTA_LIKES = 20;   -- 20 >= levelDelta > 10 = 17 happiness per tick
-FOM_DELTA_LOVES = 10;   -- 10 >= levelDelta = 35 happiness per tick
-
--- constants
-MAX_KEEPOPEN_SLOTS = 150;
-FOM_FEED_PET_SPELL_ID = 6991;
-addon.utils:SetDefaultFontColor {0.25, 1.0, 1.0};
+local FOM_Config, FOM_FoodsUIList
+---@type FOMOptions
+local FOMOptions = _G.GFW_FeedOMatic:GetModule("FOMOptions")
+---@type FOM_FoodLogger
+local foodLogger = _G.GFW_FeedOMatic:GetModule("FOM_FoodLogger")
+---@type FOM_ItemTooltip
+local itemTooltip = _G.GFW_FeedOMatic:GetModule("FOM_ItemTooltip")
+---@type FOM_PetInfo
+local petInfo = _G.GFW_FeedOMatic:GetModule("FOM_PetInfo")
+---@type FOM_Food
+local FOM_Food =  _G.GFW_FeedOMatic:GetModule("FOM_Food")
+---@type FOM_Emotes
+local emotes = _G.GFW_FeedOMatic:GetModule("FOM_Emotes")
+---@type BMUtilsBasic
+local basic = _G.LibStub('BMUtilsBasic')
+local L = _G.LibStub("AceLocale-3.0"):GetLocale("GFW_FeedOMatic")
 
 -- Variables
 FOM_LastPetName = nil;
+local foodBag, foodSlot, foodIcon;
+local FOM_Foods = FOM_Food.getFoodList()
 
-FOM_DifficultyColors = {
-	QuestDifficultyColors["trivial"],
-	QuestDifficultyColors["standard"],
-	QuestDifficultyColors["difficult"],
-	QuestDifficultyColors["verydifficult"],
-	QuestDifficultyColors["impossible"],
-};
-
-FOM_CategoryNames = { -- localized keys for FOM_FoodTypes indexes
-	FOM_OPTIONS_FOODS_CONJURED,
-	FOM_OPTIONS_FOODS_BASIC,
-	FOM_OPTIONS_FOODS_BONUS,
-	FOM_OPTIONS_FOODS_INEDIBLE,
-};
-
-FOM_DietColors = { -- convenient reuse of familiar colors?
-	[FOM_DIET_MEAT]		= RAID_CLASS_COLORS.DEATHKNIGHT,
-	[FOM_DIET_FISH]		= RAID_CLASS_COLORS.PALADIN,
-	[FOM_DIET_BREAD]	= RAID_CLASS_COLORS.ROGUE,
-	[FOM_DIET_CHEESE]	= RAID_CLASS_COLORS.WARRIOR,
-	[FOM_DIET_FRUIT]	= RAID_CLASS_COLORS.DRUID,
-	[FOM_DIET_FUNGUS]	= RAID_CLASS_COLORS.WARLOCK,
-	[FOM_DIET_MECH]		= RAID_CLASS_COLORS.PRIEST,
-};
-
-if _G.WOW_PROJECT_ID == _G.WOW_PROJECT_CLASSIC then
-	--[==[@debug@
-	print('WoW classic detected, using classic food list')
-	--@end-debug@]==]
-	FOM_Foods = _G.FOM_Foods_classic
-elseif _G.WOW_PROJECT_ID == _G.WOW_PROJECT_WRATH_CLASSIC then
-	--[==[@debug@
-	print('WoW wrath classic detected, using wrath food list')
-	--@end-debug@]==]
-	FOM_Foods = _G.FOM_Foods_wrath
-end
-if utils:empty(FOM_Foods) then
+if basic.empty(FOM_Foods) then
 	error('Food list empty')
 end
 
-function FOM_FeedButton_PreClick(self)
-	local bag = self:GetAttribute('target-bag')
-	local slot = self:GetAttribute('target-slot')
-	if bag == nil or slot == nil then
-		return
-	end
-	local itemInfo = C_Container.GetContainerItemInfo(bag, slot)
-	_G['FOMFeedItemId'] = itemInfo['itemID']
-	_G['FOMFeedItemLink'] = itemInfo['hyperlink']
-	_G['FOMButtonPressed'] = true
-end
-
 function FOM_FeedButton_PostClick(self, button, down)
-	if (not FOM_GetFeedPetSpellName()) then
-		local GetAddOnMetadata = C_AddOns and C_AddOns.GetAddOnMetadata or GetAddOnMetadata
-		local version = GetAddOnMetadata(addonName, "Version");
+--[[	if (not feedButton:getFeedPetSpellName()) then
 		local level = GetSpellLevelLearned(slotID);
 		local diagnostic = "";
 		if ( level and level > UnitLevel("player") ) then
 			diagnostic = "This spell requires level "..level..".";
 		end
-		GFWUtils.PrintOnce(GFWUtils.Red("Feed-O-Matic v."..version.." error:").."Can't find Feed Pet spell. "..diagnostic);
+		GFWUtils.PrintOnce(GFWUtils.Red("Feed-O-Matic v."..ace_addon.version.." error:").."Can't find Feed Pet spell. "..diagnostic);
 		return;
-	end
+	end]]
 	if (not down) then
 		if (button == "RightButton") then
 			GFW_FeedOMatic:ShowConfig();
-		elseif (FOM_NextFoodLink and not FOM_NoFoodError and not InCombatLockdown()) then
+		elseif (feedButton.foodBag and not FOM_NoFoodError and not InCombatLockdown()) then
 			-- successful feed, messages are produced elsewhere
 		elseif (FOM_NoFoodError and not IsAltKeyDown()) then
-			if (FOM_NextFoodLink) then
-				GFWUtils.Note(FOM_NoFoodError.."\n"..string.format(FOM_FALLBACK_MESSAGE, FOM_NextFoodLink));
+			if feedButton.foodLocation then
+				local foodLink = C_Item.GetItemLink(feedButton.foodLocation)
+                local FOM_FALLBACK_MESSAGE = L["Hold Alt while pressing the Feed Pet button or key to feed %s anyway."]
+				GFWUtils.Note(FOM_NoFoodError.."\n"..string.format(FOM_FALLBACK_MESSAGE, foodLink))
 			else
 				GFWUtils.Note(FOM_NoFoodError);
 			end
@@ -115,11 +73,9 @@ function FOM_FeedButton_PostClick(self, button, down)
 end
 
 function FOM_GetColoredDiet()
-	local dietList = {GetPetFoodTypes()};
 	local coloredDiets = {};
-	for _, dietName in pairs(dietList) do
-		local color = FOM_DietColors[dietName];
-		local coloredText = CreateColor(color.r, color.g, color.b):WrapTextInColorCode(dietName);
+	for _, dietName in pairs(petInfo.petDiet) do
+		local coloredText = FOM_Food:dietColor(dietName):WrapTextInColorCode(dietName);
 		table.insert(coloredDiets, coloredText);
 	end
 	return table.concat(coloredDiets, ", ");
@@ -128,30 +84,28 @@ end
 function FOM_FeedButton_OnEnter()
 	if (FOM_Config.NoFeedButtonTooltip) then return; end
 
-	FOM_FeedTooltip:SetOwner(FOM_FeedButton, "ANCHOR_RIGHT");
+	FOM_FeedTooltip:SetOwner(feedButton.button.btn, "ANCHOR_RIGHT");
 	local blankLine = false;
 	local linesAdded = 0;
-	if (FOM_NextFoodLink) then
+	if (feedButton.foodBag) then
 
 		-- food to be used on click
-		local bag = FOM_FeedButton:GetAttribute("target-bag");
-		local slot = FOM_FeedButton:GetAttribute("target-slot");
-		FOM_FeedTooltip:SetBagItem(bag,slot);
+		FOM_FeedTooltip:SetBagItem(feedButton.foodBag, feedButton.foodSlot);
 
 		if (FOM_NoFoodError) then
 			-- fallback instructions
-			FOM_FeedTooltipHeader:SetText(FOM_BUTTON_TOOLTIP1_FALLBACK);
+			FOM_FeedTooltipHeader:SetText(L["Alt-Left-Click to Feed Pet:"]);
 			FOM_FeedTooltip:AddLine(" ");
 			blankLine = true;
 			FOM_FeedTooltip:AddLine(FOM_NoFoodError, RED_FONT_COLOR.r, RED_FONT_COLOR.g, RED_FONT_COLOR.b, 1);
 			linesAdded = linesAdded + 1;
 		else
 			-- left click to feed
-			FOM_FeedTooltipHeader:SetText(FOM_BUTTON_TOOLTIP1);
+			FOM_FeedTooltipHeader:SetText(L["Left-Click to Feed Pet:"]);
 		end
 	else
 		-- no food
-		FOM_FeedTooltipHeader:SetText(FOM_BUTTON_TOOLTIP_NOFOOD);
+		FOM_FeedTooltipHeader:SetText(L["Cannot Feed Pet"]);
 		blankLine = true;
 		FOM_FeedTooltip:AddLine(FOM_NoFoodError, RED_FONT_COLOR.r, RED_FONT_COLOR.g, RED_FONT_COLOR.b, 1);
 		linesAdded = linesAdded + 1;
@@ -161,16 +115,16 @@ function FOM_FeedButton_OnEnter()
 	end
 
 	-- diet summary
-	FOM_FeedTooltip:AddDoubleLine(string.format(FOM_BUTTON_TOOLTIP_DIET, UnitName("pet")), FOM_GetColoredDiet());
+	FOM_FeedTooltip:AddDoubleLine(string.format(L["%s eats:"], UnitName("pet")), FOM_GetColoredDiet());
 	linesAdded = linesAdded + 1;
 
 	-- right click for options
-	FOM_FeedTooltip:AddLine(FOM_BUTTON_TOOLTIP2, GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b);
+	FOM_FeedTooltip:AddLine(L["<Right-Click for Options>"], GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b);
 	linesAdded = linesAdded + 1;
 
 	-- putting an item in the tooltip shrinks all further text
 	-- set it back only if we've set an item
-	if (FOM_NextFoodLink) then
+	if (feedButton.foodBag) then
 		local numLines = FOM_FeedTooltip:NumLines();
 		for lineNum = numLines - linesAdded + 1, numLines do
 			local line = _G["FOM_FeedTooltipTextLeft"..lineNum];
@@ -243,7 +197,7 @@ function FOM_OnLoad(self)
 		FOM_ChatCommandHandler(msg);
 	end
 
-	BINDING_HEADER_GFW_FEEDOMATIC = GetAddOnMetadata(addonName, "Title"); -- gets us the localized title if needed
+	BINDING_HEADER_GFW_FEEDOMATIC = addon.title -- gets us the localized title if needed
 
 	--[==[@debug@
 	GFWUtils.Debug = true;
@@ -251,75 +205,12 @@ function FOM_OnLoad(self)
 
 end
 
-function FOM_HookTooltip(frame)
-	if (frame:GetScript("OnTooltipSetItem")) then
-		frame:HookScript("OnTooltipSetItem", FOM_OnTooltipSetItem);
-	else
-		frame:SetScript("OnTooltipSetItem", FOM_OnTooltipSetItem);
-	end
-end
-
-function FOM_OnTooltipSetItem(self)
-
-	if FOM_Config.Tooltip then
-		local _, link = self:GetItem();
-		if not link then return false; end
-
-		local itemID = utils:ItemIdFromLink(link);
-		local foodDiet = FOM_IsKnownFood(itemID);
-		if not foodDiet then return false; end
-
-		-- if edible at all, label diet in tooltip
-		local color = FOM_DietColors[foodDiet];
-		local coloredText = CreateColor(color.r, color.g, color.b):WrapTextInColorCode(foodDiet);
-		local label = _G[self:GetName().."TextRight1"]
-		label:SetText(coloredText);
-		label:Show();
-
-		-- if edible by current pet, add line for quality
-		if (link and UnitExists("pet")) then
-			for _, petDiet in pairs({GetPetFoodTypes()}) do
-				if petDiet == foodDiet then
-					return FOM_TooltipAddFoodQuality(self, itemID);
-				end
-			end
-			return true;
-		end
-	else
-		return false;
-	end
-
-end
-
-function FOM_TooltipAddFoodQuality(self, itemID)
-	local _, _, _, itemLevel = GetItemInfo(itemID);
-	if (itemLevel) then
-		local levelDelta = UnitLevel("pet") - itemLevel;
-		local petName = UnitName("pet");
-		if (levelDelta >= FOM_DELTA_EATS) then
-			color = QuestDifficultyColors["trivial"];
-			self:AddLine(string.format(FOM_QUALITY_UNDER, petName), color.r, color.g, color.b);
-			return true;
-		elseif (levelDelta >= FOM_DELTA_LIKES and levelDelta < FOM_DELTA_EATS) then
-			color = QuestDifficultyColors["standard"];
-			self:AddLine(string.format(FOM_QUALITY_WILL, petName), color.r, color.g, color.b);
-			return true;
-		elseif (levelDelta >= FOM_DELTA_LOVES and levelDelta < FOM_DELTA_LIKES) then
-			color = QuestDifficultyColors["difficult"];
-			self:AddLine(string.format(FOM_QUALITY_LIKE, petName), color.r, color.g, color.b);
-			return true;
-		elseif (levelDelta < FOM_DELTA_LOVES) then
-			color = QuestDifficultyColors["verydifficult"];
-			self:AddLine(string.format(FOM_QUALITY_LOVE, petName), color.r, color.g, color.b);
-			return true;
-		end
-	end
-end
-
 function FOM_GetFeedPetSpellName()
 	-- we can get the spell name from the ID
 	local _;
-	FOM_FeedPetSpellName, _, FOM_FeedPetSpellIcon = GetSpellInfo(FOM_FEED_PET_SPELL_ID);
+	local spellInfo = _G.C_Spell.GetSpellInfo(FOM_FEED_PET_SPELL_ID);
+	_G.FOM_FeedPetSpellName = spellInfo['name']
+	_G.FOM_FeedPetSpellIcon = spellInfo['iconID']
 
 	BINDING_NAME_FOM_FEED = FOM_FeedPetSpellName;
 
@@ -350,58 +241,45 @@ function FOM_Initialize(self)
 	-- Catch when feeding happened so we can notify/emote
 	self:RegisterEvent("CHAT_MSG_PET_INFO");
 
-	-- Only subscribe to inventory updates once we're in the world
-	self:RegisterEvent("PLAYER_ENTERING_WORLD");
-	self:RegisterEvent("PLAYER_LEAVING_WORLD");
-
-	-- Events for trying to catch when the pet needs feeding
-	self:RegisterEvent("UNIT_PET");
-	self:RegisterEvent("PET_BAR_SHOWGRID");
-	self:RegisterEvent("UNIT_NAME_UPDATE");
-	self:RegisterEvent("PET_BAR_UPDATE");
-	self:RegisterEvent("PET_UI_UPDATE");
-	self:RegisterEvent("PLAYER_REGEN_ENABLED");
-
-	-- events for managing feed button
-	self:RegisterEvent("SPELL_UPDATE_COOLDOWN");
-	self:RegisterEvent("SPELL_UPDATE_USABLE");
-
-	if (XPerl_Player_Pet ~= nil) then
-		PetFrame = XPerl_Player_Pet
-	end
-
-	-- create feed button
-	FOM_FeedButton = CreateFrame("Button", "FOM_FeedButton", PetFrame, "ActionButtonTemplate,SecureActionButtonTemplate");
-	if (XPerl_Player_Pet ~= nil) then
-		--[==[@debug@
-		print('Z-perl detected')
-		--@end-debug@]==]
-		FOM_FeedButton:SetWidth(27);
-		FOM_FeedButton:SetHeight(27);
-		FOM_FeedButton:SetPoint("LEFT", PetFrame, "RIGHT", -10, -15);
+	local defaultPosition = feedButton.getDefaultPosition()
+	local feedButtonParentFrame, feedButtonX, feedButtonY
+	if FOM_Config.buttonX == nil or FOM_Config.buttonY == nil then
+		feedButtonParentFrame = defaultPosition['frame']
+		feedButtonX = defaultPosition['x']
+		feedButtonY = defaultPosition['y']
+		feedButton:resetPosition()
 	else
-		FOM_FeedButton:SetWidth(21);
-		FOM_FeedButton:SetHeight(20);
-		FOM_FeedButton:SetPoint("LEFT", PetFrame, "RIGHT", 20, -4);
-	end
-	FOM_FeedButtonNormalTexture:SetTexture("");
-	FOM_FeedButton:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-	FOM_FeedButton:SetScript("PreClick", FOM_FeedButton_PreClick)
-	FOM_FeedButton:SetScript("PostClick", FOM_FeedButton_PostClick);
-	FOM_FeedButton:SetScript("OnEnter", FOM_FeedButton_OnEnter);
-	FOM_FeedButton:SetScript("OnLeave", FOM_FeedButton_OnLeave);
-	if (FOM_Config.NoButton) then
-		FOM_FeedButton:Hide();
+		feedButtonX = FOM_Config.buttonX
+		feedButtonY = FOM_Config.buttonY
 	end
 
+	feedButton:SetScript("PostClick", FOM_FeedButton_PostClick);
+	if (FOM_Config.NoButton) then
+		feedButton.button:Hide();
+	end
+
+	if FOM_Config['buttonRelative'] ~= 'absolute' then
+		--Position relative to frame
+		feedButton:setPosition(feedButtonX, feedButtonY, _G[FOM_Config['buttonRelative']])
+	else
+		--Absolute position
+		feedButton:setPosition(feedButtonX, feedButtonY)
+	end
+
+	if FOM_Config['buttonH'] ~= nil and FOM_Config['buttonW'] ~= nil then
+		--Saved size
+		--[==[@debug@
+		print('Set Feed Pet button size to saved size', FOM_Config['buttonH'], FOM_Config['buttonW'])
+		--@end-debug@]==]
+		feedButton:setSize(FOM_Config['buttonH'], FOM_Config['buttonW'])
+	else
+		--Default size
+		feedButton:resetSize()
+	end
 
 	-- set key binding to click FOM_FeedButton
 	FOM_UpdateBindings();
 	self:RegisterEvent("UPDATE_BINDINGS");
-
-	FOM_HookTooltip(GameTooltip);
-	FOM_HookTooltip(ItemRefTooltip);
-	FOM_HookTooltip(FOM_FeedTooltip);
 
 	Frame_GFW_FeedOMatic:SetScript("OnUpdate", FOM_OnUpdate);
 
@@ -418,37 +296,11 @@ function FOM_OnEvent(self, event, arg1, arg2)
 	if ( event == "VARIABLES_LOADED" or event == "SPELLS_CHANGED") then
 
 		if (not FOM_Initialized) then FOM_Initialize(self); end
-		FOM_PickFoodQueued = true;
 
 	elseif ( event == "UPDATE_BINDINGS" ) then
 
 		FOM_UpdateBindings();
 		return;
-
-	elseif ( event == "PLAYER_ENTERING_WORLD" ) then
-
-		self:RegisterEvent("BAG_UPDATE");
-		if (InCombatLockdown()) then
-			FOM_PickFoodQueued = true;
-		else
-			FOM_PickFoodForButton();
-		end
-		return;
-
-	elseif ( event == "PLAYER_LEAVING_WORLD" ) then
-
-		self:UnregisterEvent("BAG_UPDATE");
-
-	elseif (event == "BAG_UPDATE" ) then
-
-		if (arg1 < 0 or arg1 > 4) then return; end	-- don't bother looking in keyring, bank, etc for food
-		if (FOM_IsSpecialBag(arg1)) then return; end	-- don't look in bags that can't hold food, either
-
-		FOM_PickFoodQueued = true;
-
-	elseif ((event == "UNIT_NAME_UPDATE" and arg1 == "pet") or event == "PET_BAR_UPDATE" or event == "PLAYER_REGEN_ENABLED") then
-
-		FOM_PickFoodQueued = true;
 
 	elseif event == "TRADE_SKILL_SHOW"
 	  or event == "TRADE_SKILL_DETAILS_UPDATE"
@@ -463,35 +315,27 @@ function FOM_OnEvent(self, event, arg1, arg2)
 		end
 		local _, _, foodEaten = string.find(arg1, FOM_FEEDPET_LOG_FIRSTPERSON);
 		if (foodEaten) then
+			local _, itemLink = C_Item.GetItemInfo(foodEaten)
 			local foodName = foodEaten;
-			if (FOM_NextFoodLink and utils:ItemNameFromLink(FOM_NextFoodLink) == foodEaten) then
-				foodName = FOM_NextFoodLink;
-			end
 			local pet = UnitName("pet");
 			if (pet) then
 				if ( FOM_Config.AlertType == 2) then
-					GFWUtils.Print(string.format(FOM_FEEDING_EAT, pet, foodName));
+					GFWUtils.Print(string.format(L["Feeding %s a %s…"], pet, foodName));
 				elseif ( FOM_Config.AlertType == 1) then
-					SendChatMessage(string.format(FOM_FEEDING_FEED, pet, foodName).. FOM_RandomEmote(foodName), "EMOTE");
+					local emote = emotes:getRandomEmote(itemLink)
+					SendChatMessage(string.format(L["feeds %s a %s. "], pet, foodName).. emote, "EMOTE");
 				end
 			end
 		end
-	elseif (event == "SPELL_UPDATE_COOLDOWN") then
-		local start, duration, enable = GetSpellCooldown(FOM_FEED_PET_SPELL_ID);
-		CooldownFrame_Set(FOM_FeedButtonCooldown, start, duration, enable);
 	elseif (event == "SPELL_UPDATE_USABLE") then
-		local isUsable, notEnoughtMana = IsUsableSpell(FOM_FEED_PET_SPELL_ID);
+		local isUsable, notEnoughtMana = _G.C_Spell.IsSpellUsable(FOM_FEED_PET_SPELL_ID);
 		if (not isUsable) then
-			FOM_FeedButtonIcon:SetVertexColor(0.4, 0.4, 0.4);
+			feedButton:SetVertexColor(0.4, 0.4, 0.4);
 		elseif (FOM_NoFoodError) then
-			FOM_FeedButtonIcon:SetVertexColor(0.5, 0.5, 0.1);
+			feedButton:SetVertexColor(0.5, 0.5, 0.1);
 		else
-			FOM_FeedButtonIcon:SetVertexColor(1, 1, 1);
+			feedButton:SetVertexColor(1, 1, 1);
 		end
-	end
-
-	if (FOM_PickFoodQueued and not InCombatLockdown()) then
-		FOM_PickFoodForButton();
 	end
 
 	if (FOM_FoodListBorder and FOM_FoodListBorder:IsVisible()) then
@@ -503,10 +347,10 @@ end
 
 function FOM_UpdateBindings()
 	if (not InCombatLockdown()) then
-		ClearOverrideBindings(FOM_FeedButton);
+		ClearOverrideBindings(feedButton.button.btn);
 		local key = GetBindingKey("FOM_FEED");
 		if (key) then
-			SetOverrideBindingClick(FOM_FeedButton, nil, key, "FOM_FeedButton");
+			SetOverrideBindingClick(feedButton.button.btn, nil, key, "FOM_FeedButton");
 		end
 	end
 end
@@ -532,7 +376,7 @@ local function FOM_ScanQuests_retail()
                 if objective['type'] == 'item' then
                     local _, _, _, numRequired, itemName = objective['text']:find("(%d+)/(%d+) (.+)");
                     local itemID, _, _, _, _, _, _ = _G.GetItemInfoInstant(itemName)
-                    if itemID and FOM_IsKnownFood(itemID) then
+                    if itemID and FOM_Food.isKnownFood(itemID) then
                         FOM_SetQuestFood(itemID, numRequired)
                     end
                 end
@@ -543,7 +387,7 @@ end
 
 -- Update our list of quest objectives so we can avoid consuming food we want to accumulate for a quest.
 function FOM_ScanQuests()
-	if not utils:IsWoWClassic() then
+	if not is_classic then
 		return FOM_ScanQuests_retail()
 	end
 
@@ -558,8 +402,8 @@ function FOM_ScanQuests()
 						local _, link = GetItemInfo(objectiveName);
 						-- not guaranteed to get us a link if we don't have the item,
 						-- but we shouldn't be here unless we have the item anyway.
-						local itemID = utils:ItemIdFromLink(link);
-						if (itemID and FOM_IsKnownFood(itemID)) then
+						local itemID = utils.itemIdFromLink(link);
+						if (itemID and FOM_Food.isKnownFood(itemID)) then
                             FOM_SetQuestFood(itemID, numRequired)
 						end
 					end
@@ -569,7 +413,7 @@ function FOM_ScanQuests()
 	end
 end
 
-function FOM_ChatCommandHandler(msg)
+function FOM_ChatCommandHandler(msg) --TODO: Replace with AceConsole
 
 	if ( msg == "" ) then
 		GFW_FeedOMatic:ShowConfig();
@@ -578,7 +422,7 @@ function FOM_ChatCommandHandler(msg)
 
 	-- Print Help
 	if ( msg == "help" ) then
-		local version = GetAddOnMetadata(addonName, "Version");
+		local version = ace_addon.version
 		GFWUtils.Print("Fizzwidget Feed-O-Matic "..version..":");
 		GFWUtils.Print("/feedomatic /fom <command>");
 		GFWUtils.Print("- "..GFWUtils.Hilite("help").." - Print this helplist.");
@@ -588,7 +432,7 @@ function FOM_ChatCommandHandler(msg)
 	end
 
 	if ( msg == "version" ) then
-		local version = GetAddOnMetadata(addonName, "Version");
+		local version = ace_addon.version
 		GFWUtils.Print("Fizzwidget Feed-O-Matic "..version..":");
 		return;
 	end
@@ -615,130 +459,19 @@ function FOM_ChatCommandHandler(msg)
 	FOM_ChatCommandHandler("help");
 end
 
-function FOM_PickFoodForButton()
-
-	if (not FOM_GetFeedPetSpellName()) then
-		return;
-	end
-	local pet = UnitName("pet");
-	if (not pet) then
-		FOM_PickFoodQueued = true;
-		return;
-	end
-	local dietList = {GetPetFoodTypes()};
-	if ( dietList == nil or #dietList == 0) then
-		FOM_PickFoodQueued = true;
-		FOM_FeedButton:Hide();
-		return;
-	elseif (not FOM_Config.NoButton) then
-		FOM_FeedButton:Show();
-	end
-
-	local foodBag, foodSlot, foodIcon;
-	foodBag, foodSlot, FOM_NextFoodLink, foodIcon = FOM_NewFindFood();
-	FOM_SetupButton(foodBag, foodSlot);
-
-	if ( foodBag == nil) then
-		local fallbackBag, fallbackSlot;
-		fallbackBag, fallbackSlot, FOM_NextFoodLink, foodIcon = FOM_NewFindFood(1);
-		if (fallbackBag) then
-			FOM_NoFoodError = string.format(FOM_ERROR_NO_FOOD_NO_FALLBACK, pet);
-			FOM_SetupButton(fallbackBag, fallbackSlot, "alt");
-			FOM_FeedButtonIcon:SetTexture(foodIcon);
-			FOM_FeedButtonCount:SetText(GetItemCount(FOM_NextFoodLink))
-		else
-			-- No Food Could be Found
-			FOM_NoFoodError = string.format(FOM_ERROR_NO_FOOD, pet);
-			FOM_NextFoodLink = nil;
-			FOM_FeedButtonIcon:SetTexture(FOM_FeedPetSpellIcon);
-			--GFWUtils.Print("Can't feed? #SortedFoodList:"..#SortedFoodList);
-			--DevTools_Dump(GetPetFoodTypes());
-			FOM_FeedButtonCount:SetText("")
-
-		end
-
-		FOM_FeedButtonIcon:SetVertexColor(0.5, 0.5, 1);
-	else
-		FOM_NoFoodError = nil;
-		FOM_FeedButtonIcon:SetVertexColor(1, 1, 1);
-		FOM_FeedButtonIcon:SetTexture(foodIcon);
-		FOM_FeedButtonCount:SetText(GetItemCount(FOM_NextFoodLink))
-
-	end
-
-	-- debug
-	if (false and FOM_NextFoodLink) then
-		if (FOM_NoFoodError) then
-			GFWUtils.PrintOnce("Next food (fallback):"..FOM_NextFoodLink, 1);
-		else
-			GFWUtils.PrintOnce("Next food:"..FOM_NextFoodLink, 1);
-		end
-	end
-end
-
-function FOM_SetupButton(bag, slot, modifier)
-	if (not FOM_GetFeedPetSpellName()) then
-		return;
-	end
-	if (modifier) then
-		modifier = modifier.."-";
-	else
-		modifier = "";
-	end
-	if (bag and slot) then
-		FOM_FeedButton:SetAttribute(modifier.."type1", "spell");
-		FOM_FeedButton:SetAttribute(modifier.."spell1", FOM_FeedPetSpellName);
-		FOM_FeedButton:SetAttribute("target-bag", bag);
-		FOM_FeedButton:SetAttribute("target-slot", slot);
-	else
-		FOM_FeedButton:SetAttribute(modifier.."type", ATTRIBUTE_NOOP);
-		FOM_FeedButton:SetAttribute(modifier.."spell", ATTRIBUTE_NOOP);
-		FOM_FeedButton:SetAttribute(modifier.."type1", ATTRIBUTE_NOOP);
-		FOM_FeedButton:SetAttribute(modifier.."spell1", ATTRIBUTE_NOOP);
-		FOM_FeedButton:SetAttribute("target-bag", nil);
-		FOM_FeedButton:SetAttribute("target-slot", nil);
-	end
-	FOM_PickFoodQueued = nil;
-end
-
-function FOM_RandomEmote(foodLink)
-
-	local localeEmotes = FOM_Emotes[GetLocale()];
-	if (localeEmotes) then
-		local randomEmotes = {};
-		if (UnitSex("pet") == 2) then
-			randomEmotes = tableUtils:Merge(randomEmotes, localeEmotes["male"]);
-		elseif (UnitSex("pet") == 3) then
-			randomEmotes = tableUtils.Merge(randomEmotes, localeEmotes["female"]);
-		end
-
-		local itemID = utils:ItemIdFromLink(foodLink);
-		if (itemID) then
-			randomEmotes = tableUtils.Merge(randomEmotes, localeEmotes[itemID]);
-
-			local diet = FOM_DietForFood(itemID);
-			randomEmotes = tableUtils.Merge(randomEmotes, localeEmotes[diet]);
-		end
-
-		randomEmotes = tableUtils.Merge(randomEmotes, localeEmotes[UnitCreatureFamily("pet")]);
-		randomEmotes = tableUtils.Merge(randomEmotes, localeEmotes["any"]);
-
-		return randomEmotes[math.random(table.getn(randomEmotes))];
-	else
-		return "";
-	end
-end
-
 function FOM_FlatFoodList(fallback)
 	local foodList = {};
-	local petLevel = UnitLevel("pet");
+	local petLevel = petInfo.petLevel
+	if not petLevel then
+		return {} -- Skip food selection if pet level is not set
+	end
 	for bagNum = 0, 4 do
 		if (not FOM_IsSpecialBag(bagNum)) then
 		-- skip bags that can't contain food
 			for itemNum = 1, C_Container.GetContainerNumSlots(bagNum) do
 				local itemInfo = C_Container.GetContainerItemInfo(bagNum, itemNum);
-				if itemInfo ~= nil then
-					local itemID = utils:ItemIdFromLink(itemInfo['hyperlink']);
+				if not basic.empty(itemInfo) then
+					local itemID = utils.itemIdFromLink(itemInfo['hyperlink']);
 
 					-- debug
 					--if (bagNum == 0 and itemNum == 1) then itemCount = 10; end
@@ -748,7 +481,7 @@ function FOM_FlatFoodList(fallback)
 						-- make sure it's cached for future runs
 						FOMTooltip:SetHyperlink("item:"..itemID);
 					elseif (petLevel - level < FOM_DELTA_EATS) then
-						local diet = FOM_IsInDiet(itemID);
+						local diet = FOM_Food.isInDiet(itemID);
 						if ( diet ) then
 							local avoid = FOM_ShouldAvoidFood(itemID, itemInfo['stackCount'], diet);
 							if (fallback or not avoid) then
@@ -781,14 +514,20 @@ function FOM_NewFindFood(fallback)
 	local function sortCount(a, b)
 		return a.count < b.count;
 	end
-	local function sortQualityDescending(a, b)
-		return a.delta < b.delta;
-	end
-	local function sortQualityAscending(a, b)
-		return a.delta > b.delta;
-	end
 	local function sortPriority(a, b)
 		return a.priority < b.priority;
+	end
+	local function sortQualityDescending(a, b)
+		if (a.priority == b.priority) then
+			return a.delta < b.delta;
+		end
+		return sortPriority(a, b)
+	end
+	local function sortQualityAscending(a, b)
+		if (a.priority == b.priority) then
+			return a.delta > b.delta;
+		end
+		return sortPriority(a, b)
 	end
 	table.sort(SortedFoodList, sortCount); -- small stacks first
 	if (not FOM_Config.UseLowLevelFirst) then
@@ -796,7 +535,7 @@ function FOM_NewFindFood(fallback)
 	else
 		table.sort(SortedFoodList, sortQualityAscending); -- lower quality first
 	end
-	table.sort(SortedFoodList, sortPriority); -- category priorities (conjured ahead of normal ahead of bonus etc)
+	--table.sort(SortedFoodList, sortPriority); -- category priorities (conjured ahead of normal ahead of bonus etc)
 
 	if (GFWUtils.Debug) then
 		if (fallback) then
@@ -809,9 +548,9 @@ function FOM_NewFindFood(fallback)
 		end
 	end
 	for _, foodInfo in pairs(SortedFoodList) do
-		local foodItemID = utils:ItemIdFromLink(foodInfo.link)
+		local foodItemID = utils.itemIdFromLink(foodInfo.link)
 		--Check if food item is logged as not eaten by current pet
-		if _G['FOMFoodLogger'].is_good(foodItemID) ~= false then
+		if foodLogger.is_good(foodItemID) ~= false then
 			return foodInfo.bag, foodInfo.slot, foodInfo.link, foodInfo.icon;
 		end
 	end
@@ -852,37 +591,6 @@ function FOM_IsQuestFood(itemID, quantity)
 	end
 end
 
-function FOM_IsInDiet(foodItemID, dietList)
-
-	-- pass no dietList to query against current pet's diets
-	if ( dietList == nil ) then
-		dietList = {GetPetFoodTypes()};
-	end
-	-- no current pet means try again later
-	if ( dietList == nil or #dietList == 0) then
-		FOM_PickFoodQueued = true;
-		return nil;
-	end
-	if (type(dietList) ~= "table") then
-		dietList = {dietList};
-	end
-
-	for _, diet in pairs(dietList) do
-		local table = FOM_Foods[diet];
-		if (table and table[foodItemID] ~= nil) then
-			return diet;
-		end
-	end
-
-	return nil;
-
-end
-FOM_DietForFood = FOM_IsInDiet
-
-function FOM_IsKnownFood(itemID)
-	return FOM_IsInDiet(itemID, {FOM_DIET_MEAT, FOM_DIET_FISH, FOM_DIET_BREAD, FOM_DIET_CHEESE, FOM_DIET_FRUIT, FOM_DIET_FUNGUS, FOM_DIET_MECH});
-end
-
 function FOM_IsSpecialBag(bagNum)
 	-- this used to be for quivers, but they're obsolete (and gone?) now
 	-- other special bags can't contain food, though, so we may as well skip 'em
@@ -903,7 +611,7 @@ function FOM_BuildFoodsUI(panel)
 
 	FOM_FoodsPanel = panel;
 
-	local borderFrame = CreateFrame("Frame", "FOM_FoodListBorder", panel, "OptionsBoxTemplate");
+	local borderFrame = CreateFrame("Frame", "FOM_FoodListBorder", panel);
 	borderFrame:SetHeight(273);
 	borderFrame:SetPoint("BOTTOMLEFT", panel, "BOTTOMLEFT", 15, 15);
 	borderFrame:SetPoint("RIGHT", panel, -15, 0);
@@ -928,11 +636,11 @@ function FOM_BuildFoodsUI(panel)
 
 	local s = panel:CreateFontString("FOM_FoodList_NameHeader", "OVERLAY", "GameFontNormalSmall");
 	s:SetPoint("TOPLEFT", borderFrame, "TOPLEFT", 53, -12);
-	s:SetText(FOM_OPTIONS_FOODS_NAME);
+	s:SetText(L["Food"]);
 
 	s = panel:CreateFontString("FOM_FoodList_CookingHeader", "OVERLAY", "GameFontNormalSmall");
 	s:SetPoint("TOPRIGHT", borderFrame, "TOPRIGHT", -26, -12);
-	s:SetText(FOM_OPTIONS_FOODS_COOKING);
+	s:SetText(L["Ingredient for"]);
 
 	local listItem = CreateFrame("Button", "FOM_FoodList1", panel, "FOM_FoodListItemTemplate");
 	listItem:SetPoint("TOPLEFT", borderFrame, "TOPLEFT", 5, -29);
@@ -960,7 +668,7 @@ function FOM_FoodListShowTooltip(button)
 	GameTooltip:SetHyperlink("item:"..button.item);
 	if (button.recipe) then
 		local c = FOM_DifficultyColors[button.difficulty];
-		GameTooltip:AddDoubleLine(FOM_DIFFICULTY_HEADER, getglobal("FOM_DIFFICULTY_"..button.difficulty), c.r,c.g,c.b, c.r,c.g,c.b);
+		GameTooltip:AddDoubleLine(L["Recipe status:"], getglobal("FOM_DIFFICULTY_"..button.difficulty), c.r,c.g,c.b, c.r,c.g,c.b);
 	end
 	GameTooltip:Show();
 end
@@ -998,17 +706,20 @@ function FOM_FoodListButton_OnClick(self)
 	if (InCombatLockdown()) then
 		FOM_PickFoodQueued = true;
 	else
-		FOM_PickFoodForButton();
+		feedButton:updateFood()
 	end
 end
 
 function FOM_FoodListUI_UpdateList()
 	FOM_FoodsUIList = {};
-	for header = 1, #FOM_CategoryNames do
+	for header = 1, #const.FOM_CategoryNames do
 		local list = {};
 		local uniqueList = {};
 		-- build list of foods from matching criteria
-		local petLevel = UnitLevel("player");	-- pet level is always == player level now
+		local petLevel = petInfo.petLevel
+		if not petLevel then
+			return
+		end
 		local itemNamesCache = {};
 		for diet, table in pairs(FOM_Foods) do
 			for itemID, foodType in pairs(table) do
@@ -1026,7 +737,7 @@ function FOM_FoodListUI_UpdateList()
 					local dietChecked = false;
 					if (not skip and FOM_Config.ShowOnlyPetFoods) then
 						if (UnitExists("pet")) then
-							if (not FOM_IsInDiet(itemID)) then
+							if (not FOM_Food.isInDiet(itemID)) then
 								skip = true;
 							end
 							dietChecked = true;
@@ -1094,10 +805,7 @@ function FOM_FoodListUIUpdate()
 
 	FauxScrollFrame_Update(FOM_FoodListScrollFrame, numListItems, FOM_MAX_LIST_DISPLAYED, FOM_LIST_HEIGHT);
 
-	local petLevel = UnitLevel("player"); -- pet level is always == player level now
-	if (UnitExists("pet")) then
-		petLevel = UnitLevel("pet");
-	end
+	local petLevel = petInfo.petLevel
 	for i=1, FOM_MAX_LIST_DISPLAYED, 1 do
 		local listIndex = i + listOffset;
 		local listItem = FOM_FoodsUIList[listIndex];
@@ -1123,7 +831,7 @@ function FOM_FoodListUIUpdate()
 				listButton.categoryLeft:Show();
 				listButton.icon:SetTexture("");
 				listButton.name:SetText("");
-				listButton:SetText(FOM_CategoryNames[listItem]);
+				listButton:SetText(const.FOM_CategoryNames[listItem]);
 
 				for iconIndex = 1, MAX_COOKING_RESULTS do
 					listButton.cookingIcons[iconIndex]:SetTexture("");
@@ -1218,9 +926,6 @@ local AceConfig = LibStub("AceConfig-3.0")
 local AceConfigDialog = LibStub("AceConfigDialog-3.0")
 local AceDB = LibStub("AceDB-3.0")
 
--- AceAddon Initialization
-GFW_FeedOMatic = LibStub("AceAddon-3.0"):NewAddon(addonName)
-GFW_FeedOMatic.date = gsub("$Date: 2012-12-27 22:17:15 -0800 (Thu, 27 Dec 2012) $", "^.-(%d%d%d%d%-%d%d%-%d%d).-$", "%1")
 
 function GFW_FeedOMatic:OnProfileChanged(event, database, newProfileKey)
 	-- this is called every time our profile changes (after the change)
@@ -1232,135 +937,10 @@ function GFW_FeedOMatic:OnProfileChanged(event, database, newProfileKey)
 	if (InCombatLockdown()) then
 		FOM_PickFoodQueued = true;
 	else
-		FOM_PickFoodForButton();
+		feedButton:updateFood()
 	end
 end
 
-local function getProfileOption(info)
-	return FOM_Config[info.arg]
-end
-
-local function setProfileOption(info, value)
-	FOM_Config[info.arg] = value
-
-	if (FOM_FoodListBorder and FOM_FoodListBorder:IsVisible()) then
-		FOM_FoodListUI_UpdateList();
-	end
-	if (InCombatLockdown()) then
-		FOM_PickFoodQueued = true;
-	else
-		FOM_PickFoodForButton();
-	end
-
-	if (info.arg == "NoButton") then
-		if (FOM_Config.NoButton) then
-			FOM_FeedButton:Hide();
-		else
-			FOM_FeedButton:Show();
-		end
-	end
-
-end
-
-local titleText = GetAddOnMetadata(addonName, "Title");
-local version = GetAddOnMetadata(addonName, "Version");
-titleText = titleText .. " " .. version;
-
-local options = {
-	type = 'group',
-	get = getProfileOption,
-	set = setProfileOption,
-	name = titleText,
-	args = {
-		general = {
-			type = 'group',
-			order = -1,
-			name = FOM_OPTIONS_GENERAL,
-			desc = "foo",
-			args = {
-				tips = {
-					type = "description",
-					name = FOM_OPTIONS_SUBTEXT,
-					order = 1,
-				},
-				tooltip = {
-					type = 'toggle',
-					order = 2,
-					width = "double",
-					name = FOM_OPTIONS_TOOLTIP,
-					desc = FOM_OPTIONS_TOOLTIP_TIP,
-					arg = "Tooltip",
-				},
-				useLowLevelFirst = {
-					type = 'toggle',
-					order = 3,
-					width = "double",
-					name = FOM_OPTIONS_LOW_LVL_1ST,
-					desc = FOM_OPTIONS_LOW_LVL_1ST_TIP,
-					arg = "UseLowLevelFirst",
-				},
-				avoidQuestFood = {
-					type = 'toggle',
-					order = 4,
-					width = "double",
-					name = FOM_OPTIONS_AVOID_QUEST,
-					desc = FOM_OPTIONS_AVOID_QUEST_TIP,
-					arg = "AvoidQuestFood",
-				},
-				alertType = {
-					type = 'select',
-					order = 5,
-					name = FOM_OPTIONS_FEED_NOTIFY,
-					values = {
-						[1] = FOM_OPTIONS_NOTIFY_EMOTE,
-						[2] = FOM_OPTIONS_NOTIFY_TEXT,
-						[3] = FOM_OPTIONS_NOTIFY_NONE,
-					},
-					arg = "AlertType",
-				},
-				noButton = {
-					type = 'toggle',
-					order = 6,
-					width = "double",
-					name = FOM_OPTIONS_NO_BUTTON,
-					desc = FOM_OPTIONS_NO_BUTTON_TIP,
-					arg = "NoButton",
-				},
-				blank = {
-					type = "header",
-					name = FOM_OPTIONS_FOODS_TITLE,
-					order = 10,
-				},
-				tips = {
-					type = "description",
-					name = FOM_OPTIONS_FOODS_TEXT,
-					order = 11,
-				},
-				showOnlyPetFoods = {
-					type = 'toggle',
-					order = 12,
-					width = "double",
-					name = FOM_OPTIONS_FOODS_ONLY_PET,
-					desc = function()
-						if (UnitExists("pet")) then
-							return format(FOM_OPTIONS_FOODS_ONLY_PET_TIP, UnitLevel("pet"), UnitCreatureFamily("pet")) .. "\n(" .. FOM_GetColoredDiet() .. ")";
-						else
-							return format(FOM_OPTIONS_FOODS_ONLY_LVL_TIP, UnitLevel("player"));
-						end
-					end,
-					arg = "ShowOnlyPetFoods",
-				},
-				showOnlyInventory = {
-					type = 'toggle',
-					order = 13,
-					width = "double",
-					name = FOM_OPTIONS_FOODS_ONLY_INV,
-					arg = "ShowOnlyInventory",
-				},
-			},
-		},
-	},
-}
 local profileDefault = {
 	Tooltip				= true,
 	UseLowLevelFirst	= true,
@@ -1379,21 +959,24 @@ local defaults = {}
 defaults.profile = profileDefault
 
 function GFW_FeedOMatic:SetupOptions()
+	local options = FOMOptions.options
 	-- Inject profile options
 	options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db)
 	options.args.profile.order = -2
 
 	-- Register options table
 	AceConfig:RegisterOptionsTable(addonName, options)
+	AceConfig:RegisterOptionsTable('Feed Button', FOMOptions.feedButtonOptions)
 
-	local titleText = GetAddOnMetadata(addonName, "Title");
-	titleText = string.gsub(titleText, "Fizzwidget", "GFW");		-- shorter so it fits in the list width
+	-- Shorten name to fit in the list width
+	local shortTitle = "Feed-O-Matic"
 
 	-- Setup Blizzard option frames
 	self.optionsFrames = {}
 	-- The ordering here matters, it determines the order in the Blizzard Interface Options
-	self.optionsFrames.general = AceConfigDialog:AddToBlizOptions(addonName, titleText, nil, "general")
-	self.optionsFrames.profile = AceConfigDialog:AddToBlizOptions(addonName, FOM_OPTIONS_PROFILE, titleText, "profile")
+	self.optionsFrames.general, self.optionsFrames.general_id = AceConfigDialog:AddToBlizOptions(addonName, shortTitle, nil, "general")
+	self.optionsFrames.button = AceConfigDialog:AddToBlizOptions('Feed Button', L["Feed Pet button"], shortTitle)
+	self.optionsFrames.profile = AceConfigDialog:AddToBlizOptions(addonName, options.args.profile.name, shortTitle, "profile")
 
 	FOM_BuildFoodsUI(self.optionsFrames.general);
 	local aceRefresh = self.optionsFrames.general.refresh;
@@ -1406,10 +989,8 @@ function GFW_FeedOMatic:SetupOptions()
 end
 
 function GFW_FeedOMatic:OnInitialize()
-
-	local _, realClass = UnitClass("player");
-	if (realClass ~= "HUNTER") then
-		return;
+	if not ace_addon.is_hunter then
+		return
 	end
 
 	-- Create DB
@@ -1423,8 +1004,5 @@ function GFW_FeedOMatic:OnInitialize()
 end
 
 function GFW_FeedOMatic:ShowConfig()
-	InterfaceOptionsFrame_OpenToCategory(self.optionsFrames.general)
-	--Call a second time to work around bug: https://www.wowinterface.com/forums/showthread.php?t=54599
-	InterfaceOptionsFrame_OpenToCategory(self.optionsFrames.general)
+	_G.Settings.OpenToCategory(self.optionsFrames.general_id)
 end
-

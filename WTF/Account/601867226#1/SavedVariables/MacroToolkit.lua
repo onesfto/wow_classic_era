@@ -4,13 +4,13 @@ MacroToolkitDB = {
 ["黑龙守护者 - 哈霍兰"] = {
 ["macros"] = {
 [121] = {
-["icon"] = "132281",
 ["name"] = "VuhDoDCShieldData",
+["icon"] = "132281",
 ["body"] = "P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1WM[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]\n",
 },
 [122] = {
-["icon"] = "132281",
 ["name"] = "VuhDoDCShieldNames",
+["icon"] = "132281",
 ["body"] = "N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]黑龙守[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]\n",
 },
 },
@@ -20,6 +20,7 @@ MacroToolkitDB = {
 ["classFile"] = "WARLOCK",
 },
 ["哈霍兰大格格 - 哈霍兰"] = {
+["classFile"] = "PALADIN",
 ["backups"] = {
 {
 ["m"] = {
@@ -130,7 +131,6 @@ MacroToolkitDB = {
 ["n"] = "圣骑",
 },
 },
-["classFile"] = "PALADIN",
 ["lastbackup"] = "26/01/12 13:15:17",
 },
 ["法德迦 - 哈霍兰"] = {
@@ -364,158 +364,107 @@ MacroToolkitDB = {
 },
 ["lastbackup"] = "26/01/22 15:53:28",
 },
-["迪菲亚女皇 - 哈霍兰"] = {
-["classFile"] = "ROGUE",
-},
 ["六扇门沈小梅 - 哈霍兰"] = {
+["classFile"] = "MAGE",
 ["macros"] = {
 [131] = {
-["icon"] = "136096",
-["name"] = "弹",
-["body"] = "#showtooltip 奥术飞弹\n/cast [nochanneling:奥术飞弹] 奥术飞弹\n",
-},
-[135] = {
-["icon"] = "135812",
-["name"] = "火",
-["body"] = "#showtooltip 火球术\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 燃烧\n/cast 火球术\n",
-},
-[139] = {
 ["icon"] = "135827",
 ["name"] = "烧",
 ["body"] = "#showtooltip [mod:shift] 射击; 灼烧\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/cast [mod:shift] 射击; 灼烧\n",
 },
-[143] = {
-["icon"] = "136116",
-["name"] = "爆",
-["body"] = "#showtooltip [mod:shift] 魔爆术(等级 1); 魔爆术\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/cast [mod:shift] 魔爆术(等级 1); 魔爆术\n",
+[135] = {
+["icon"] = "134400",
+["name"] = "瞬冰",
+["body"] = "#showtooltip\n/use 气定神闲\n/cast 寒冰箭\n",
+},
+[139] = {
+["icon"] = "134400",
+["name"] = "龟",
+["body"] = "#showtooltip 变形术(龟)\n/stopcasting\n/cast [@mouseover,harm,nodead][] 变形术(龟)\n",
 },
 [122] = {
 ["icon"] = "135846",
 ["name"] = "冰",
-["body"] = "#showtooltip [mod] 寒冰箭(等级 1); 寒冰箭\n/cast [mod] 寒冰箭(等级 1); 寒冰箭\n",
+["body"] = "#showtooltip [mod:shift] 寒冰箭(等级 1); 寒冰箭\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/cast [mod:shift] 寒冰箭(等级 1); 寒冰箭\n",
 },
 [124] = {
-["icon"] = "134400",
-["name"] = "冰箱",
-["body"] = "#showtooltip 寒冰屏障\n/stopcasting\n/cast !寒冰屏障\n/cancelAura [mod]寒冰屏障\n",
-},
-[126] = {
-["icon"] = "135848",
-["name"] = "冻",
-["body"] = "#showtooltip 冰霜新星\n/stopcasting\n/cancelAura 寒冰屏障\n/cast 冰霜新星\n",
-},
-[128] = {
-["icon"] = "134400",
-["name"] = "吃",
-["body"] = "#showtooltip [btn:2] 造食术; 魔法肉桂面包\n/use [btn:1] 魔法肉桂面包\n/cast [btn:2] 造食术\n",
-},
-[132] = {
-["icon"] = "135903",
-["name"] = "波",
-["body"] = "#showtooltip 冲击波\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 燃烧\n/cast 冲击波\n",
-},
-[136] = {
-["icon"] = "135806",
-["name"] = "火冰盾",
-["body"] = "#showtooltip [mod:shift] 防护冰霜结界; 防护火焰结界\n/cast [mod:shift] 防护冰霜结界; 防护火焰结界\n",
-},
-[140] = {
-["icon"] = "135826",
-["name"] = "焰",
-["body"] = "#showtooltip 烈焰风暴\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 短暂能量护符\n/use 赞达拉英雄护符\n/use 萨菲隆的精华\n/cast 烈焰风暴\n",
-},
-[144] = {
-["icon"] = "136153",
-["name"] = "盾",
-["body"] = "#showtooltip [mod:shift] 防护冰霜结界; [mod:alt] 防护火焰结界; 法力护盾\n/cast [mod:shift] 防护冰霜结界; [mod:alt] 防护火焰结界; 法力护盾\n",
-},
-[148] = {
-["icon"] = "135857",
-["name"] = "雪",
-["body"] = "#showtooltip [mod:shift] 暴风雪(等级 1); 暴风雪\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/cast [mod:shift] 暴风雪(等级 1); 暴风雪\n",
-},
-[129] = {
-["icon"] = "134400",
-["name"] = "喝",
-["body"] = "#showtooltip [btn:2] 造水术; 魔法晶水\n/use [btn:1] 魔法晶水\n/cast [btn:2] 造水术\n",
-},
-[133] = {
-["icon"] = "135903",
-["name"] = "波",
-["body"] = "#showtooltip 冲击波\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 短暂能量护符\n/use 赞达拉英雄护符\n/use 萨菲隆的精华\n/cast 冲击波\n",
-},
-[137] = {
-["icon"] = "135808",
-["name"] = "炎",
-["body"] = "#showtooltip 炎爆术\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 燃烧\n/cast 炎爆术\n",
-},
-[141] = {
-["icon"] = "135826",
-["name"] = "焰",
-["body"] = "#showtooltip 烈焰风暴\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 燃烧\n/cast 烈焰风暴\n",
-},
-[121] = {
-["icon"] = "135846",
-["name"] = "冰",
-["body"] = "#showtooltip [mod] 寒冰箭(等级 1); 寒冰箭\n/use 萨菲隆的精华\n/cast [mod] 寒冰箭(等级 1); 寒冰箭\n",
-},
-[123] = {
-["icon"] = "135850",
-["name"] = "冰火盾",
-["body"] = "#showtooltip [mod:shift] 防护火焰结界; 防护冰霜结界\n/cast [mod:shift] 防护火焰结界; 防护冰霜结界\n",
-},
-[125] = {
 ["icon"] = "135807",
 ["name"] = "冲",
 ["body"] = "#showtooltip 火焰冲击\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/cast 火焰冲击\n",
 },
-[127] = {
+[126] = {
 ["icon"] = "135856",
 ["name"] = "反",
 ["body"] = "#showtooltip 法术反制\n/stopcasting\n/cast [@mouseover,harm,nodead][@focus,harm,nodead][] 法术反制\n",
 },
-[130] = {
-["icon"] = "134400",
-["name"] = "宝石",
-["body"] = "#showtooltip 法力红宝石\n/use [btn:1] 法力红宝石\n/cast [btn:2] 制造魔法红宝石\n",
+[128] = {
+["icon"] = "135903",
+["name"] = "波",
+["body"] = "#showtooltip 冲击波\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 燃烧\n/cast 冲击波\n",
 },
-[134] = {
-["icon"] = "135812",
-["name"] = "火",
-["body"] = "#showtooltip 火球术\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 短暂能量护符\n/use 赞达拉英雄护符\n/use 萨菲隆的精华\n/cast 火球术\n",
+[132] = {
+["icon"] = "135826",
+["name"] = "焰",
+["body"] = "#showtooltip 烈焰风暴\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 燃烧\n/cast 烈焰风暴\n",
 },
-[138] = {
-["icon"] = "135808",
-["name"] = "炎",
-["body"] = "#showtooltip 炎爆术\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 燃烧\n/use 短暂能量护符\n/use 赞达拉英雄护符\n/use 萨菲隆的精华\n/cast 炎爆术\n",
-},
-[142] = {
-["icon"] = "136116",
-["name"] = "爆",
-["body"] = "#showtooltip [mod:shift] 魔爆术(等级 1); 魔爆术\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use [nomod] 短暂能量护符\n/use [nomod] 赞达拉英雄护符\n/use [nomod] 萨菲隆的精华\n/cast [mod:shift] 魔爆术(等级 1); 魔爆术\n",
-},
-[146] = {
+[136] = {
 ["icon"] = "136082",
 ["name"] = "破邪",
 ["body"] = "#showtooltip [mod:shift] 侦测魔法; 解除次级诅咒\n/cast [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 侦测魔法\n/cast [nomod,@mouseover,help,nodead][nomod,help,nodead][nomod,@player] 解除次级诅咒\n",
 },
-[149] = {
-["icon"] = "132199",
-["name"] = "龟",
-["body"] = "#showtooltip 变形术(龟)\n/stopcasting\n/cast [@mouseover,harm,nodead][] 变形术(龟)\n",
+[129] = {
+["icon"] = "135812",
+["name"] = "火",
+["body"] = "#showtooltip 火球术\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 燃烧\n/cast 火球术\n",
 },
-[147] = {
+[133] = {
+["icon"] = "136116",
+["name"] = "爆",
+["body"] = "#showtooltip [mod:shift] 魔爆术(等级 1); 魔爆术\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/cast [mod:shift] 魔爆术(等级 1); 魔爆术\n",
+},
+[137] = {
 ["icon"] = "136075",
 ["name"] = "醒",
-["body"] = "#showtooltip 唤醒\n/equip  [mod:shift]  埃提耶什，守护者的传说之杖\n/equip  [mod:alt] 娅尔罗的意志\n/cast 唤醒\n",
+["body"] = "#showtooltip 唤醒\n/equip 娅尔罗的意志\n/cast 唤醒\n",
 },
-[145] = {
+[121] = {
 ["icon"] = "135846",
-["name"] = "瞬冰",
-["body"] = "#showtooltip 寒冰箭\n/cast 气定神闲\n/cast 寒冰箭\n",
+["name"] = "冰",
+["body"] = "#showtooltip [mod] 寒冰箭(等级 1); 寒冰箭\n/cast [mod] 寒冰箭(等级 1); 寒冰箭\n",
+},
+[123] = {
+["icon"] = "134400",
+["name"] = "冰箱",
+["body"] = "#showtooltip 寒冰屏障\n/stopcasting\n/cast !寒冰屏障\n/cancelAura [mod]寒冰屏障\n",
+},
+[125] = {
+["icon"] = "135848",
+["name"] = "冻",
+["body"] = "#showtooltip 冰霜新星\n/stopcasting\n/cancelAura 寒冰屏障\n/cast 冰霜新星\n",
+},
+[127] = {
+["icon"] = "136096",
+["name"] = "弹",
+["body"] = "#showtooltip 奥术飞弹\n/cast [nochanneling:奥术飞弹] 奥术飞弹\n",
+},
+[130] = {
+["icon"] = "135808",
+["name"] = "炎",
+["body"] = "#showtooltip 炎爆术\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/use 燃烧\n/cast 炎爆术\n",
+},
+[134] = {
+["icon"] = "136153",
+["name"] = "盾",
+["body"] = "#showtooltip [mod:shift] 防护冰霜结界; [mod:alt] 防护火焰结界; 法力护盾\n/cast [mod:shift] 防护冰霜结界; [mod:alt] 防护火焰结界; 法力护盾\n",
+},
+[138] = {
+["icon"] = "135857",
+["name"] = "雪",
+["body"] = "#showtooltip [mod:shift] 暴风雪(等级 1); 暴风雪\n/equip 埃提耶什，守护者的传说之杖\n/equip 厄运之指\n/cast [mod:shift] 暴风雪(等级 1); 暴风雪\n",
 },
 },
-["classFile"] = "MAGE",
+["backups"] = {
+},
 },
 ["蓝龙守护者 - 哈霍兰"] = {
 ["classFile"] = "HUNTER",
@@ -523,127 +472,126 @@ MacroToolkitDB = {
 ["德加和尚 - 哈霍兰"] = {
 ["macros"] = {
 [131] = {
-["icon"] = "135939",
 ["name"] = "激素",
+["icon"] = "135939",
 ["body"] = "#showtooltip 能量灌注\n/cast [mod:alt,@player][@mouseover,help,nodead][@target,help,nodead] 能量灌注\n/run local t=UnitName(\"target\") if not IsAltKeyDown() and UnitExists(\"target\") then SendChatMessage(\"纳米激素已注入!\",\"WHISPER\",nil,t) end\n",
 },
 [135] = {
-["icon"] = "135940",
 ["name"] = "盾",
+["icon"] = "135940",
 ["body"] = "#showtooltip [mod:shift] 心灵之火; 真言术：盾\n/stopcasting\n/cast [mod:shift] 心灵之火\n/cast [mod:alt,@player][@mouseover,help,nodead][@target,help,nodead][@targettarget,help,nodead][] 真言术：盾\n",
 },
 [139] = {
-["icon"] = "135994",
 ["name"] = "隐",
+["icon"] = "135994",
 ["body"] = "#showtooltip \n/cast 渐隐术\n",
 },
 [143] = {
-["icon"] = "136066",
 ["name"] = "驱病",
+["icon"] = "136066",
 ["body"] = "#showtooltip 驱除疾病\n/cast [mod:alt,@player] [@mouseover,help,nodead] [help,nodead] [@targettarget,help,nodead] [@player] 驱除疾病\n",
 },
 [122] = {
-["icon"] = "134400",
 ["name"] = "强一",
+["icon"] = "135913",
 ["body"] = "#showtooltip\n/cast [mod:shift,@mouseover,help,nodead][mod:shift,help,nodead][mod:shift,@targettarget,help,nodead][mod:shift,@player] 强效治疗术; [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 强效治疗术(等级 1)\n",
 },
 [124] = {
-["icon"] = "135907",
 ["name"] = "快疗",
+["icon"] = "135907",
 ["body"] = "#showtooltip 快速治疗\n/cast [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 快速治疗\n",
 },
 [126] = {
-["icon"] = "135953",
 ["name"] = "恢复",
+["icon"] = "135953",
 ["body"] = "#showtooltip 恢复\n/cast [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 恢复\n",
 },
 [128] = {
-["icon"] = "135924",
 ["name"] = "惩击",
+["icon"] = "135924",
 ["body"] = "#showtooltip [mod:shift] 神圣之火; 惩击\n/施放 [mod:shift] 神圣之火; 惩击\n",
 },
 [132] = {
-["icon"] = "136224",
 ["name"] = "爆",
+["icon"] = "136224",
 ["body"] = "#showtooltip [mod:shift] 法力燃烧; 心灵震爆\n/cast [mod:shift, nochanneling] 法力燃烧; [nochanneling] 心灵震爆\n",
 },
 [136] = {
-["icon"] = "134400",
 ["name"] = "群一",
+["icon"] = "135943",
 ["body"] = "#showtooltip [mod:shift] 治疗祷言; 治疗祷言(等级 1)\n/施放 [mod:shift] 治疗祷言; 治疗祷言(等级 1)\n",
 },
 [140] = {
-["icon"] = "136208",
 ["name"] = "鞭",
+["icon"] = "136208",
 ["body"] = "#showtooltip 精神鞭笞\n/施放 [mod:shift] 精神鞭笞(等级 1);\n/cast [nochanneling:精神鞭笞] 精神鞭笞\n",
 },
 [144] = {
-["icon"] = "132317",
 ["name"] = "魔杖",
+["icon"] = "132317",
 ["body"] = "#showtooltips\n/施放 射击\n",
 },
 [129] = {
-["icon"] = "136206",
 ["name"] = "控",
+["icon"] = "136206",
 ["body"] = "#showtooltip [mod:shift] 束缚亡灵; 精神控制\n/施放 [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 束缚亡灵\n/施放 [@mouseover,harm,nodead] [harm,nodead] 精神控制\n",
 },
 [133] = {
-["icon"] = "136207",
 ["name"] = "痛",
+["icon"] = "136207",
 ["body"] = "#showtooltip [mod:shift] 暗言术：痛(等级 1); 暗言术：痛\n/施放 [mod:shift,@mouseover,harm,nodead] 暗言术：痛(等级 1)\n/施放 [mod:shift,harm,nodead] 暗言术：痛(等级 1)\n/施放 [@mouseover,harm,nodead] 暗言术：痛\n/施放 [harm,nodead] 暗言术：痛\n",
 },
 [137] = {
-["icon"] = "134400",
 ["name"] = "群二",
+["icon"] = "135943",
 ["body"] = "#showtooltip [mod:shift] 治疗祷言; 治疗祷言(等级 2)\n/施放 [mod:shift] 治疗祷言; 治疗祷言(等级 2)\n",
 },
 [141] = {
-["icon"] = "135894",
 ["name"] = "驱友",
+["icon"] = "135894",
 ["body"] = "#showtooltip 驱散魔法\n/cast [mod:alt,@player] [@mouseover,help,nodead] [help,nodead] [@targettarget,help,nodead] [@player] 驱散魔法\n",
 },
 [121] = {
-["icon"] = "135955",
 ["name"] = "复活",
+["icon"] = "135955",
 ["body"] = "#showtooltip 复活术\n/cast [@mouseover,help,dead] [help,dead] 复活术\n",
 },
 [123] = {
-["icon"] = "135913",
 ["name"] = "强五",
+["icon"] = "135913",
 ["body"] = "#showtooltip\n/cast [mod:shift,@mouseover,help,nodead][mod:shift,help,nodead][mod:shift,@targettarget,help,nodead][mod:shift,@player] 强效治疗术(等级 1); [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 强效治疗术\n",
 },
 [125] = {
-["icon"] = "136184",
 ["name"] = "恐",
+["icon"] = "136184",
 ["body"] = "#showtooltip 心灵尖啸\n/stopcasting\n/施放 心灵尖啸\n",
 },
 [127] = {
-["icon"] = "135924",
 ["name"] = "惩击",
+["icon"] = "135924",
 ["body"] = "#showtooltip\n/cast [mod:alt] 暗言术：痛; [mod:ctrl] 神圣之火; 惩击\n",
 },
 [130] = {
-["icon"] = "135915",
 ["name"] = "治疗",
+["icon"] = "135916",
 ["body"] = "#showtooltip 治疗术\n/cast [@mouseover,help,nodead][help,nodead][@targettarget,help,nodead][@player] 治疗术\n",
 },
 [134] = {
-["icon"] = "134400",
 ["name"] = "痛一",
+["icon"] = "136207",
 ["body"] = "#showtooltip 暗言术：痛(等级 1)\n/stopcasting\n/cast [target=mouseover,harm,nodead] 暗言术：痛(等级 1); [harm,nodead] 暗言术：痛(等级 1)\n",
 },
 [138] = {
-["icon"] = "135943",
 ["name"] = "群疗",
+["icon"] = "135943",
 ["body"] = "#showtooltip 治疗祷言\n/施放 治疗祷言\n",
 },
 [142] = {
-["icon"] = "135894",
 ["name"] = "驱敌",
+["icon"] = "135894",
 ["body"] = "#showtooltip 驱散魔法\n/cast [@mouseover,harm,nodead] [harm,nodead] [@targettarget,harm,nodead] 驱散魔法\n",
 },
 },
-["classFile"] = "PRIEST",
 ["backups"] = {
 {
 ["m"] = {
@@ -790,13 +738,31 @@ MacroToolkitDB = {
 ["n"] = "牧师",
 },
 },
+["classFile"] = "PRIEST",
 ["lastbackup"] = "26/01/22 16:05:21",
+},
+["迪菲亚女皇 - 哈霍兰"] = {
+["classFile"] = "ROGUE",
 },
 ["绿龙守护者 - 哈霍兰"] = {
 ["classFile"] = "DRUID",
 },
 },
+["profileKeys"] = {
+["黑龙守护者 - 哈霍兰"] = "profile",
+["寒脊山大郡主 - 法琳娜"] = "profile",
+["哈霍兰大格格 - 哈霍兰"] = "profile",
+["法德迦 - 哈霍兰"] = "profile",
+["六扇门沈小梅 - 哈霍兰"] = "profile",
+["蓝龙守护者 - 哈霍兰"] = "profile",
+["德加和尚 - 哈霍兰"] = "profile",
+["迪菲亚女皇 - 哈霍兰"] = "profile",
+["绿龙守护者 - 哈霍兰"] = "profile",
+},
 ["global"] = {
+["ebackups"] = {
+},
+["lastbackup"] = "26/01/22 15:53:06",
 ["backups"] = {
 {
 ["m"] = {
@@ -913,20 +879,6 @@ MacroToolkitDB = {
 ["n"] = "综合",
 },
 },
-["lastbackup"] = "26/01/22 15:53:06",
-["ebackups"] = {
-},
-},
-["profileKeys"] = {
-["黑龙守护者 - 哈霍兰"] = "profile",
-["寒脊山大郡主 - 法琳娜"] = "profile",
-["哈霍兰大格格 - 哈霍兰"] = "profile",
-["法德迦 - 哈霍兰"] = "profile",
-["迪菲亚女皇 - 哈霍兰"] = "profile",
-["六扇门沈小梅 - 哈霍兰"] = "profile",
-["蓝龙守护者 - 哈霍兰"] = "profile",
-["德加和尚 - 哈霍兰"] = "profile",
-["绿龙守护者 - 哈霍兰"] = "profile",
 },
 ["profiles"] = {
 ["profile"] = {

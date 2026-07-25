@@ -1,0 +1,52 @@
+
+WhisperPopDB = {
+["sound"] = 1,
+["listHeight"] = 320,
+["positions"] = {
+["WhisperPopFrame"] = {
+"CENTER",
+"UIParent",
+"CENTER",
+-275,
+54,
+},
+["WhisperPopNotifyButton"] = {
+"BOTTOMLEFT",
+"UIParent",
+"BOTTOMLEFT",
+351,
+256,
+},
+},
+["showRealm"] = 1,
+["listWidth"] = 200,
+["save"] = 1,
+["timeFormat"] = 2,
+["time"] = 1,
+["buttonScale"] = 100,
+["history"] = {
+{
+["class"] = "PALADIN",
+["messages"] = {
+"1[T1783673598]先9 我的老板啊",
+"1[T1783673599]先9 我的老板啊",
+"1[T1783673603]组我回去",
+"1[T1783675209]123",
+},
+["name"] = "星宇呀-哈霍兰",
+},
+{
+["class"] = "WARLOCK",
+["messages"] = {
+"1[T1783657955]123",
+},
+["name"] = "星宇卡扎克-哈霍兰",
+},
+},
+["listScale"] = 100,
+["version"] = 4.3,
+["foreignOnly"] = 1,
+["ignoreTags"] = 1,
+["notifyButton"] = 1,
+["applyFilters"] = 1,
+}

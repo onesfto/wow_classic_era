@@ -242,8 +242,19 @@ end
 local worldMapButton
 function RSMap.LoadWorldMapButton()
 	if (RSConfigDB.IsShowingWorldmapButton()) then 
-		local rwm = LibStub('Krowi_WorldMapButtons-1.4')
-		worldMapButton = rwm:Add("RSWorldMapButtonTemplate", 'DROPDOWNBUTTON')
+		local rwm = LibStub('Krowi_WorldMapButtons-1.4', true)		
+		
+		hooksecurefunc(WorldMapFrame, "Show", function()
+			if (not worldMapButton) then
+				C_Timer.After(0, function()
+					worldMapButton = rwm:Add("RSWorldMapButtonTemplate", 'DROPDOWNBUTTON')
+					worldMapButton.relativeFrame = WorldMapFrame:GetCanvasContainer()
+				end)
+			else
+				worldMapButton:Show()
+				rwm.SetPoints()
+			end
+		end)
 	end
 end
 

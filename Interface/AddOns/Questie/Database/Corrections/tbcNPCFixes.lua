@@ -658,8 +658,8 @@ function QuestieTBCNpcFixes:Load()
         [17076] = { -- Lady Liadrin
             [npcKeys.spawns] = {[zoneIDs.SILVERMOON_CITY]={{92.2,36.4}}},
             [npcKeys.zoneID] = zoneIDs.SILVERMOON_CITY,
-            [npcKeys.questStarts] = {64140,64141,64142,64143,64144,64145},
-            [npcKeys.questEnds] = {64139,64140,64141,64142,64143,64144,64145},
+            [npcKeys.questStarts] = {9737,64140,64141,64142,64143,64144,64145},
+            [npcKeys.questEnds] = {9737,64139,64140,64141,64142,64143,64144,64145},
         },
         [17084] = { -- Avruu
             [npcKeys.waypoints] = {},
@@ -1742,6 +1742,9 @@ function QuestieTBCNpcFixes:Load()
         [24848] = {
             [npcKeys.spawns] = {[zoneIDs.MAGISTERS_TERRACE] = {{-1,-1}}},
             [npcKeys.zoneID] = zoneIDs.MAGISTERS_TERRACE,
+        },
+        [24868] = { -- Niobe Whizzlespark
+            [npcKeys.friendlyToFaction] = "A",
         },
         [24885] = {
             [npcKeys.spawns] = {[zoneIDs.TEROKKAR_FOREST] = {{55.8,53.8}}},

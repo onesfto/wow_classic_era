@@ -1,7 +1,61 @@
 
 WhisperPopDB = {
 ["listHeight"] = 320,
-["sound"] = 1,
+["listScale"] = 100,
+["notifyButton"] = 1,
+["applyFilters"] = 1,
+["save"] = 1,
+["timeFormat"] = 2,
+["ignoreTags"] = 1,
+["buttonScale"] = 100,
+["history"] = {
+{
+["received"] = 1,
+["class"] = "BN",
+["name"] = "冒险者#59168202",
+["messages"] = {
+"0[T1784559057]1111111111111",
+},
+},
+{
+["received"] = 1,
+["class"] = "ROGUE",
+["name"] = "窃魂者-哈霍兰",
+["messages"] = {
+"1[T1784485990]看比赛了 改天科研",
+"0[T1784485994]嗯 ",
+},
+},
+{
+["received"] = 1,
+["class"] = "WARLOCK",
+["name"] = "Pipipiglol-哈霍兰",
+["messages"] = {
+"1[T1783944255]11",
+"0[T1783944260]宝贝，在吗？",
+"0[T1783944880]宝贝，在吗？",
+},
+},
+{
+["received"] = 1,
+["class"] = "PRIEST",
+["name"] = "德加和尚-哈霍兰",
+["messages"] = {
+"0[T1783944739]纳米激素已注入!",
+},
+},
+{
+["class"] = "MAGE",
+["messages"] = {
+"1[T1783944240]123",
+},
+["name"] = "宇野-法琳娜",
+},
+},
+["time"] = 1,
+["version"] = 4.3,
+["foreignOnly"] = 1,
+["listWidth"] = 200,
 ["positions"] = {
 ["WhisperPopFrame"] = {
 "CENTER",
@@ -18,17 +72,5 @@ WhisperPopDB = {
 185,
 },
 },
-["listWidth"] = 200,
-["save"] = 1,
-["timeFormat"] = 2,
-["time"] = 1,
-["buttonScale"] = 100,
-["history"] = {
-},
-["listScale"] = 100,
-["version"] = 4.3,
-["foreignOnly"] = 1,
-["ignoreTags"] = 1,
-["notifyButton"] = 1,
-["applyFilters"] = 1,
+["sound"] = 1,
 }

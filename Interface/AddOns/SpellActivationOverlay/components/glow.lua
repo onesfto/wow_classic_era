@@ -2,11 +2,12 @@ local AddonName,SAO=...
 local Module="glow"
 local GetNumShapeshiftForms=GetNumShapeshiftForms
 local HasAction=HasAction
-SAO.ActionButtons={}
-SAO.DormantActionButtons={}
-SAO.GlowingSpells={}
+local ActionButtons={}
+local DormantActionButtons={}
+local GlowingSpells={}
 SAO.RegisteredGlowSpellIDs={}
 SAO.RegisteredGlowSpellNames={}
+local ObservedSpellIDs={}
 function SAO.RegisterGlowID(self,glowID)
 if (type(glowID)=="number")then
 self.RegisteredGlowSpellIDs[glowID]=true
@@ -183,42 +184,46 @@ button.__sao.lastGlowID=newGlowID
 if (oldGlowID==newGlowID and not forceRefresh)then
 return
 end
-if (oldGlowID and not self.RegisteredGlowSpellIDs[oldGlowID] and type(self.DormantActionButtons[oldGlowID])=='table')then
-if (self.DormantActionButtons[oldGlowID][button]==button)then
-self.DormantActionButtons[oldGlowID][button]=nil
+if (newGlowID and not ObservedSpellIDs[newGlowID])then
+ObservedSpellIDs[newGlowID]=true
+self:LearnNewSpell(newGlowID,true)
+end
+if (oldGlowID and not self.RegisteredGlowSpellIDs[oldGlowID] and type(DormantActionButtons[oldGlowID])=='table')then
+if (DormantActionButtons[oldGlowID][button]==button)then
+DormantActionButtons[oldGlowID][button]=nil
 end
 end
 if (newGlowID and not self.RegisteredGlowSpellIDs[newGlowID])then
-if (type(self.DormantActionButtons[newGlowID])=='table')then
-if (self.DormantActionButtons[newGlowID][button]~=button)then
-self.DormantActionButtons[newGlowID][button]=button
+if (type(DormantActionButtons[newGlowID])=='table')then
+if (DormantActionButtons[newGlowID][button]~=button)then
+DormantActionButtons[newGlowID][button]=button
 end
 else
-self.DormantActionButtons[newGlowID]={[button]=button}
+DormantActionButtons[newGlowID]={[button]=button}
 end
 end
 if (not self.RegisteredGlowSpellIDs[oldGlowID] and not self.RegisteredGlowSpellIDs[newGlowID])then
 return
 end
-if (oldGlowID and self.RegisteredGlowSpellIDs[oldGlowID] and type(self.ActionButtons[oldGlowID])=='table')then
-if (self.ActionButtons[oldGlowID][button]==button)then
-self.ActionButtons[oldGlowID][button]=nil
+if (oldGlowID and self.RegisteredGlowSpellIDs[oldGlowID] and type(ActionButtons[oldGlowID])=='table')then
+if (ActionButtons[oldGlowID][button]==button)then
+ActionButtons[oldGlowID][button]=nil
 end
 end
 if (newGlowID and self.RegisteredGlowSpellIDs[newGlowID])then
-if (type(self.ActionButtons[newGlowID])=='table')then
-if (self.ActionButtons[newGlowID][button]~=button)then
-self.ActionButtons[newGlowID][button]=button
+if (type(ActionButtons[newGlowID])=='table')then
+if (ActionButtons[newGlowID][button]~=button)then
+ActionButtons[newGlowID][button]=button
 end
 else
-self.ActionButtons[newGlowID]={[button]=button}
+ActionButtons[newGlowID]={[button]=button}
 end
-if (type(self.DormantActionButtons[newGlowID])=='table' and self.DormantActionButtons[newGlowID][button]==button)then
-self.DormantActionButtons[newGlowID][button]=nil
+if (type(DormantActionButtons[newGlowID])=='table' and DormantActionButtons[newGlowID][button]==button)then
+DormantActionButtons[newGlowID][button]=nil
 end
 end
-local wasGlowing=oldGlowID and (self.GlowingSpells[oldGlowID]~=nil)
-local mustGlow=newGlowID and (self.GlowingSpells[newGlowID]~=nil)
+local wasGlowing=oldGlowID and (GlowingSpells[oldGlowID]~=nil)
+local mustGlow=newGlowID and (GlowingSpells[newGlowID]~=nil)
 if (not wasGlowing and mustGlow)then
 if (not SpellActivationOverlayDB or not SpellActivationOverlayDB.glow or SpellActivationOverlayDB.glow.enabled)then
 EnableGlow(button,newGlowID, "action button update (was "..tostring(oldGlowID)..")")
@@ -323,7 +328,7 @@ end
 end
 function SAO.AwakeButtonsBySpellID(self,spellID)
 local dormantButtons={}
-for _,button in pairs(self.DormantActionButtons[spellID] or {})do
+for _,button in pairs(DormantActionButtons[spellID] or {})do
 table.insert(dormantButtons,button)
 end
 for _,button in ipairs(dormantButtons)do
@@ -331,11 +336,11 @@ self:UpdateActionButton(button,true)
 end
 end
 function SAO.AddGlowNumber(self,spellID,glowID)
-local actionButtons=self.ActionButtons[glowID]
-if (self.GlowingSpells[glowID])then
-self.GlowingSpells[glowID][spellID]=true
+local actionButtons=ActionButtons[glowID]
+if (GlowingSpells[glowID])then
+GlowingSpells[glowID][spellID]=true
 else
-self.GlowingSpells[glowID]={[spellID]=true}
+GlowingSpells[glowID]={[spellID]=true}
 for _,frame in pairs(actionButtons or {})do
 if (not SpellActivationOverlayDB or not SpellActivationOverlayDB.glow or SpellActivationOverlayDB.glow.enabled)then
 if not frame.__sao then
@@ -418,7 +423,7 @@ end
 end
 end
 end
-for glowSpellID,triggerSpellIDs in pairs(self.GlowingSpells)do
+for glowSpellID,triggerSpellIDs in pairs(GlowingSpells)do
 if triggerSpellIDs[spellID] and (not onlyTheseGlowIDs or onlyTheseGlowIDs[glowSpellID])then
 local count=0
 for _,_ in pairs(triggerSpellIDs)do
@@ -429,10 +434,10 @@ end
 end
 for glowSpellID,count in pairs(consumedGlowSpellIDs)do
 if (count > 1)then
-self.GlowingSpells[glowSpellID][spellID]=nil
+GlowingSpells[glowSpellID][spellID]=nil
 else
-self.GlowingSpells[glowSpellID]=nil
-local actionButtons=self.ActionButtons[glowSpellID]
+GlowingSpells[glowSpellID]=nil
+local actionButtons=ActionButtons[glowSpellID]
 for _,frame in pairs(actionButtons or {})do
 DisableGlow(frame,glowSpellID, "direct deactivation")
 end
@@ -473,7 +478,14 @@ else
 self.__sao={useExternalGlow=true}
 end
 self.__sao.GetGlowID=function()
-return self:GetSpellId()
+local spellID=self:GetSpellId()
+if (type(spellID)=='number')then
+return spellID
+end
+if (type(self.id)=='number')then
+return SAO:GetSpellIDByActionSlot(self.id)
+end
+return nil
 end
 self.__sao.EnableGlow=function()
 libGlow.ShowOverlayGlow(self)

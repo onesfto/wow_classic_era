@@ -1,5 +1,5 @@
 ---@class LibProfessions:LibProfessionsCommon A library to get information about the characters professions
-local lib = _G['LibProfessions-v0.11']
+local lib = _G['LibProfessions-v0.16']
 if not lib then
     -- luacov: disable
     return    -- already loaded and no upgrade necessary
@@ -8,6 +8,10 @@ end
 
 assert(lib.api, 'Error loading LibProfessionsAPI')
 assert(lib.currentProfession, 'Error loading LibProfessionsCurrentProfession')
+---@type BMUtils
+local utils = _G.LibStub('BMUtils')
+local game_name = utils.getGameShortName()
+--local profession_info = _G["ProfessionInfo-" .. game_name]
 
 local icons = {
     ["Blacksmithing"] = {136241, 'trade_blacksmithing'},
@@ -51,10 +55,8 @@ function lib:profession_id(profession_name, rank)
         rank = 1
     end
     local spellID
-    if self.is_classic_era then
-        spellID = _G['ProfessionRanks-classic'][profession_name][rank]
-    elseif self.is_bcc then
-        spellID = _G['ProfessionRanks-bcc'][profession_name][rank]
+    if self.is_classic then
+        spellID = _G['ProfessionRanks-' .. game_name][profession_name][rank]
     else
         spellID = professions_bfa[profession_name]
     end
@@ -65,6 +67,26 @@ function lib:profession_id(profession_name, rank)
     else
         return
     end
+end
+
+---Get skillLineID from profession name
+---@param professionName string Profession name in english
+---@return number skillLineID
+function lib.getSkillLineID(professionName)
+    for skillLineID, skill in pairs(_G['ProfessionInfo-' .. game_name]["professions"]) do
+        if skill["name"] == professionName then
+            return skillLineID
+        end
+    end
+end
+
+---Get profession name from skillLineID
+---@param skillLineID number skillLineID
+---@return string Profession name in english
+function lib.getSkillLineName(skillLineID)
+    assert(_G['ProfessionInfo-' .. game_name]["professions"][skillLineID],
+            ('No data for skillLineID %d'):format(skillLineID))
+    return _G['ProfessionInfo-' .. game_name]["professions"][skillLineID]["name"]
 end
 
 function lib:profession_name()
@@ -78,7 +100,7 @@ end
 --/dump LibStub("LibProfessions-0"):GetAllSkills("Secondary Skills")
 function lib:GetAllSkills(header_filters)
     if type(header_filters) == 'string' then
-        header_filters = {header_filters}
+        header_filters = { header_filters }
     end
 
     local skills = {}
@@ -89,18 +111,18 @@ function lib:GetAllSkills(header_filters)
         return
     else
         local numSkills = _G.GetNumSkillLines();
-        for skillIndex=1,  numSkills, 1 do
+        for skillIndex = 1, numSkills, 1 do
             local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank,
-                  isAbandonable, stepCost, rankCost, minLevel, skillCostType = _G.GetSkillLineInfo(skillIndex);
+            isAbandonable, stepCost, rankCost, minLevel, skillCostType = _G.GetSkillLineInfo(skillIndex);
             --print(skillName, header, skillRank)
-            if ( header ) then
+            if (header) then
                 header_name = skillName
             else
-                local skill_info = {skillName, header, isExpanded, skillRank, numTempPoints, skillModifier,
-                                    skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType,
-                                    rank_max[skillMaxRank], header_name}
+                local skill_info = { skillName, header, isExpanded, skillRank, numTempPoints, skillModifier,
+                                     skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType,
+                                     rank_max[skillMaxRank], header_name }
 
-                if header_filters ~=nil then
+                if header_filters ~= nil then
                     for _, header_filter in ipairs(header_filters) do
                         if header_filter == header_name then
                             skills[skillName] = skill_info
@@ -134,24 +156,26 @@ function lib:GetProfessions(include_secondary)
 
     local skills = {}
     if self.is_classic then
-        local profession_skills =  self:GetAllSkills("Professions")
+        local profession_skills = self:GetAllSkills("Professions")
         if include_secondary then
-            local secondary_skills =  self:GetAllSkills("Secondary Skills")
-            for k,v in pairs(secondary_skills) do profession_skills[k] = v end
+            local secondary_skills = self:GetAllSkills("Secondary Skills")
+            for k, v in pairs(secondary_skills) do
+                profession_skills[k] = v
+            end
         end
 
         local name
         for _, skill_info in pairs(profession_skills) do
             name = skill_info[1]
-            skills[name] = {name = name, skill = skill_info[4], max_skill = skill_info[7], modifier = skill_info[5]}
+            skills[name] = { name = name, skill = skill_info[4], max_skill = skill_info[7], modifier = skill_info[5] }
         end
     else
         local prof1, prof2, arch, fish, cook = _G.GetProfessions();
-        for _, index in ipairs({prof1, prof2, arch, fish, cook}) do
+        for _, index in ipairs({ prof1, prof2, arch, fish, cook }) do
             local name, _, rank, maxRank, _, _, skillLine, rankModifier, _,
             _, skillLineName = _G.GetProfessionInfo(index);
-            skills[name] = {name = name, skill = rank, max_skill = maxRank,
-                            skillLine = skillLine, modifier = rankModifier, specialization = skillLineName}
+            skills[name] = { name = name, skill = rank, max_skill = maxRank,
+                             skillLine = skillLine, modifier = rankModifier, specialization = skillLineName }
         end
     end
     return skills

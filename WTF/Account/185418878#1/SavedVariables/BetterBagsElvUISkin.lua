@@ -1,7 +1,7 @@
 
 BetterBagsElvUISkinDB = {
 ["log_level"] = "error",
-["cooldown"] = true,
 ["style"] = "elvui",
+["cooldown"] = true,
 ["transparent"] = true,
 }

@@ -35,6 +35,7 @@ local function ADD_Skill_QK_Button(fujiui,uiname,ly)
 	fujiui.ButList={}
 	local function addqkbut(id)
 		local But = CreateFrame("CheckButton",nil, fujiui, "SecureActionButtonTemplate");
+		But:SetHighlightTexture("Interface/Buttons/ButtonHilight-Square")
 		But.icon = But:CreateTexture()
 		But.icon:SetSize(54,54);
 		But.icon:SetAllPoints(But)

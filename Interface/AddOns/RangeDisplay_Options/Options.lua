@@ -44,10 +44,6 @@ local SectionNames = {
 
 function RangeDisplay:openConfigDialog(ud)
   ud = ud or lastConfiguredUd
-  if C_SettingsUtil and C_SettingsUtil.OpenSettingsPanel then
-    C_SettingsUtil.OpenSettingsPanel(ud and ud.optsId or self.optsId)
-    return
-  end
   if Settings then
     -- TODO: find out how to open to a sub-category...
     Settings.OpenToCategory(self.AppName)
@@ -536,10 +532,10 @@ do
 
   addConfigFunctions(self.units)
   ACR:RegisterOptionsTable(self.AppName, mainOptions)
-  self.opts, self.optsId = ACD:AddToBlizOptions(self.AppName, self.AppName)
+  self.opts = ACD:AddToBlizOptions(self.AppName, self.AppName)
   for i, ud in ipairs(self.units) do
     local unitOpts = makeUnitOptions(ud)
-    ud.opts, ud.optsId = registerSubOptions(ud.unit, unitOpts)
+    ud.opts = registerSubOptions(ud.unit, unitOpts)
   end
   local profiles =  AceDBOptions:GetOptionsTable(self.db)
   if LibDualSpec then
@@ -549,7 +545,7 @@ do
     lastConfiguredUd = fakeUdForProfiles
     return false
   end
-  self.profiles, self.profilesId = registerSubOptions('profiles', profiles)
+  self.profiles = registerSubOptions('profiles', profiles)
   fakeUdForProfiles.opts = self.profiles
 end
 

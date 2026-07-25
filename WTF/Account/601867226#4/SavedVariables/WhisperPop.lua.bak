@@ -1,0 +1,59 @@
+
+WhisperPopDB = {
+["positions"] = {
+["WhisperPopFrame"] = {
+"CENTER",
+"UIParent",
+"CENTER",
+-275,
+54,
+},
+["WhisperPopNotifyButton"] = {
+"BOTTOMLEFT",
+"UIParent",
+"BOTTOMLEFT",
+351,
+256,
+},
+},
+["listHeight"] = 320,
+["sound"] = 1,
+["showRealm"] = 1,
+["save"] = 1,
+["listWidth"] = 200,
+["timeFormat"] = 2,
+["time"] = 1,
+["buttonScale"] = 100,
+["history"] = {
+{
+["class"] = "MAGE",
+["messages"] = {
+"1[T1784204892]喵",
+},
+["name"] = "尾小戒-哈霍兰",
+},
+{
+["class"] = "PALADIN",
+["name"] = "七七一位面-德姆塞卡尔",
+["messages"] = {
+"1[T1784038348]1",
+"1[T1784050869]1",
+"1[T1784190456]1",
+"1[T1784204531]1",
+},
+},
+{
+["class"] = "PALADIN",
+["messages"] = {
+"1[T1784038430]1",
+},
+["name"] = "七七二位面-德姆塞卡尔",
+},
+},
+["applyFilters"] = 1,
+["version"] = 4.3,
+["foreignOnly"] = 1,
+["listScale"] = 100,
+["notifyButton"] = 1,
+["ignoreTags"] = 1,
+}

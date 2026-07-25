@@ -88,6 +88,7 @@ local IS_WOW_PROJECT_CLASSIC_WRATH = IS_WOW_PROJECT_NOT_MAINLINE and ClassicExpa
 local IS_WOW_PROJECT_CLASSIC_MOP = IS_WOW_PROJECT_NOT_MAINLINE and ClassicExpansionAtLeast and LE_EXPANSION_MISTS_OF_PANDARIA and ClassicExpansionAtLeast(LE_EXPANSION_MISTS_OF_PANDARIA)
 local IS_WOW_PROJECT_MIDNIGHT = DF.IsAddonApocalypseWow()
 local IS_WOW_PROJECT_MIDNIGHT_API = DF.IsMidnightWowAPI()
+local IS_WOW_PROJECT_MIDNIGHT_API_WITH_AURA_CONTAINERS = C_XMLUtil and C_XMLUtil.GetTemplateInfo and C_XMLUtil.GetTemplateInfo("CustomAuraContainerTemplate") and true or false
 
 local PixelUtil = PixelUtil or DFPixelUtil
 
@@ -3105,39 +3106,7 @@ Plater.AnchorNamesByPhraseId = {
 			---@field BuffFrame1 buffframe
 
 			--> buff frames
-				--main buff frame
-				local buffFrame = CreateFrame ("frame", unitFrame:GetName() .. "BuffFrame1", unitFrame, BackdropTemplateMixin and "BackdropTemplate")
-				buffFrame.amountAurasShown = 0
-				buffFrame.PlaterBuffList = {}
-				buffFrame.isNameplate = true
-				buffFrame.unitFrame = unitFrame --used on resource frame anchor update
-				buffFrame.healthBar = unitFrame.healthBar
-				buffFrame.AuraCache = {}
-				unitFrame.BuffFrame = buffFrame
-
-				--secondary buff frame
-				local buffFrame2 = CreateFrame ("frame", unitFrame:GetName() .. "BuffFrame2", unitFrame, BackdropTemplateMixin and "BackdropTemplate")
-				buffFrame2 = CreateFrame ("frame", unitFrame:GetName() .. "BuffFrame2", unitFrame, BackdropTemplateMixin and "BackdropTemplate")
-				buffFrame2.amountAurasShown = 0
-				buffFrame2.PlaterBuffList = {}
-				buffFrame2.isNameplate = true
-				buffFrame2.unitFrame = unitFrame
-				buffFrame2.healthBar = unitFrame.healthBar
-				buffFrame2.AuraCache = {}
-				unitFrame.BuffFrame2 = buffFrame2
-			
-			--> identify aura containers
-				buffFrame.Name = "Main" --aura frame 1
-				buffFrame2.Name = "Secondary" --aura frame 2
-			
-			--> store the secondary anchor inside the regular buff container for speed
-			buffFrame.BuffFrame2 = buffFrame2
-			buffFrame2.BuffFrame1 = buffFrame
-			
-			--> unit aura cache
-			unitFrame.AuraCache = {}
-			unitFrame.GhostAuraCache = {}
-			unitFrame.ExtraAuraCache = {}
+			Plater.CreateOrUpdateAuraContainers(unitFrame)
 			
 			local healthBar = unitFrame.healthBar
 			
@@ -3470,20 +3439,6 @@ Plater.AnchorNamesByPhraseId = {
 				obscuredTexture.Mask:Hide()
 				obscuredTexture:AddMaskTexture(obscuredTexture.Mask)
 
-			--> create the extra icon frame (used for the special aura)
-				local options = {
-					icon_width = 20, 
-					icon_height = 20, 
-					texcoord = {.1, .9, .1, .9},
-					show_text = true,
-				}
-				
-				unitFrame.ExtraIconFrame = DF:CreateIconRow (unitFrame, "$parentExtraIconRow", options)
-				unitFrame.ExtraIconFrame:ClearIcons()
-				unitFrame.ExtraIconFrame.RefreshID = 0
-				unitFrame.ExtraIconFrame.AuraCache = {}
-				--> cache the extra icon frame inside the buff frame for speed
-				unitFrame.BuffFrame.ExtraIconFrame = unitFrame.ExtraIconFrame
 			
 			--> Support for DBM and BigWigs Nameplate Auras
 				Plater.CreateBossModAuraFrame(unitFrame)
@@ -3886,6 +3841,9 @@ Plater.AnchorNamesByPhraseId = {
 			if (nameplateIsEditor) then
 				reaction = Plater.UnitReaction.UNITREACTION_HOSTILE
 			end
+
+			plateFrame.unitFrame.softInteractIcon:SetParent(plateFrame)
+			plateFrame.unitFrame.softInteractIconFrame:SetParent(plateFrame)
 			
 			-- we should clear stuff here, tbh...
 			
@@ -4337,8 +4295,8 @@ Plater.AnchorNamesByPhraseId = {
 			if IS_WOW_PROJECT_MAINLINE then
 				plateFrame.unitFrame.WidgetContainer = plateFrame.UnitFrame.WidgetContainer
 				if plateFrame.unitFrame.WidgetContainer then
-					plateFrame.unitFrame.WidgetContainer:SetParent(plateFrame)
 					plateFrame.unitFrame.WidgetContainer:ClearAllPoints()
+					plateFrame.unitFrame.WidgetContainer:SetParent(plateFrame)
 					plateFrame.unitFrame.WidgetContainer:SetIgnoreParentScale(true)
 					plateFrame.unitFrame.WidgetContainer:SetScale(Plater.db.profile.widget_bar_scale)
 					Plater.SetAnchor (plateFrame.unitFrame.WidgetContainer, Plater.db.profile.widget_bar_anchor, plateFrame.unitFrame)
@@ -4404,9 +4362,14 @@ Plater.AnchorNamesByPhraseId = {
 			Plater.RemoveFromAuraUpdate (unitBarId, plateFrame.unitFrame) -- ensure no updates
 			
 			plateFrame.PlaterAnchorFrame:ClearAllPoints()
-			plateFrame.PlaterAnchorFrame:SetParent(plateFrame)
+			plateFrame.PlaterAnchorFrame:SetParent(UIParent)
 			local enemyHealthSize = Plater.db.profile.plate_config.enemynpc and Plater.db.profile.plate_config.enemynpc.health or {112, 12}
 			plateFrame.PlaterAnchorFrame:SetSize(enemyHealthSize[1] or 112, enemyHealthSize[2] or 12)
+			
+			plateFrame.unitFrame.softInteractIcon:ClearAllPoints()
+			plateFrame.unitFrame.softInteractIcon:SetParent(UIParent)
+			plateFrame.unitFrame.softInteractIconFrame:ClearAllPoints()
+			plateFrame.unitFrame.softInteractIconFrame:SetParent(UIParent)
 			
 			ENABLED_BLIZZARD_PLATEFRAMES[plateFrame.unitFrame.blizzardPlateFrameID] = true -- OnRetailNamePlateShow is called first. ensure the plate might show!
 			if not plateFrame.unitFrame.PlaterOnScreen then
@@ -4528,6 +4491,8 @@ Plater.AnchorNamesByPhraseId = {
 			--March 3rd, 2019
 			if (DB_USE_UIPARENT) then
 				-- need to explicitly hide the frame now, as it is not tethered to the blizz nameplate
+				plateFrame.unitFrame:ClearAllPoints()
+				--plateFrame.unitFrame:SetParent(UIParent)
 				plateFrame.unitFrame:Hide()
 			end
 			--end of patch
@@ -4925,7 +4890,7 @@ function Plater.OnInit() --private --~oninit ~init
 			SetCVar ("nameplateRemovalAnimation", DB_USE_QUICK_HIDE and 0 or 1)
 			SetCVar ("nameplateShowFriendlyBuffs", 0)
 			SetCVar ("nameplateShowPersonalCooldowns", 0)
-			if IS_WOW_PROJECT_MAINLINE and not GetCVar("nameplatePlayerMaxDistance") then -- this is 10.1 workaround.
+			if IS_WOW_PROJECT_MIDNIGHT_API and not GetCVar("nameplatePlayerMaxDistance") then -- this is 10.1 workaround.
 				SetCVar ("nameplatePlayerMaxDistance", 60)
 			end
 		end
@@ -5197,81 +5162,80 @@ function Plater.OnInit() --private --~oninit ~init
 			--update resource bar
 			Plater.UpdateResourceFrame()
 		end
+
+		Plater.PreAllocateAuraContainers()
 		
 		--can also hook 'ClassNameplateBar:ShowNameplateBar()' which will show and call NamePlateDriverFrame:SetClassNameplateBar(self); which will call SetupClassNameplateBars()
-		if IS_WOW_PROJECT_MAINLINE then
-			hooksecurefunc (NamePlateDriverFrame, "SetupClassNameplateBars", function (self)
-				return Plater.UpdatePersonalBar (self)
+		hooksecurefunc (NamePlateDriverFrame, "SetupClassNameplateBars", function (self)
+			return Plater.UpdatePersonalBar (self)
+		end)
+		
+		if IS_WOW_PROJECT_MIDNIGHT_API then
+			
+			--Nameplate base options tables: NamePlateFriendlyFrameOptions / NamePlateEnemyFrameOptions
+			hooksecurefunc(NamePlateDriverFrame, "OnNamePlateAdded", function(_, unit)
+				if not unit:match("^nameplate") then return end
+				local profile = Plater.db.profile
+				if not profile.blizzard_nameplate_font_override_enabled then return end
+				local plateFrame = C_NamePlate.GetNamePlateForUnit(unit, issecure())
+				if not plateFrame then
+					Plater.UpdateBlizzardNameplateFonts(true)
+				else
+					DF:SetFontFace (plateFrame.UnitFrame.name, profile.blizzard_nameplate_font)
+					DF:SetFontOutline (plateFrame.UnitFrame.name, profile.blizzard_nameplate_font_outline)
+					DF:SetFontSize (plateFrame.UnitFrame.name, profile.blizzard_nameplate_font_size)
+				end
 			end)
-			
-			if IS_WOW_PROJECT_MIDNIGHT_API then
-				
-				--Nameplate base options tables: NamePlateFriendlyFrameOptions / NamePlateEnemyFrameOptions
-				hooksecurefunc(NamePlateDriverFrame, "OnNamePlateAdded", function(_, unit)
-					if not unit:match("^nameplate") then return end
-					local profile = Plater.db.profile
-					if not profile.blizzard_nameplate_font_override_enabled then return end
-					local plateFrame = C_NamePlate.GetNamePlateForUnit(unit, issecure())
-					if not plateFrame then
-						Plater.UpdateBlizzardNameplateFonts(true)
-					else
-						DF:SetFontFace (plateFrame.UnitFrame.name, profile.blizzard_nameplate_font)
-						DF:SetFontOutline (plateFrame.UnitFrame.name, profile.blizzard_nameplate_font_outline)
-						DF:SetFontSize (plateFrame.UnitFrame.name, profile.blizzard_nameplate_font_size)
-					end
-				end)
-				hooksecurefunc(NamePlatePreviewMixin, "ShowPreviewNamePlateCastBar", function()
-					if not Plater.db.profile.blizzard_nameplate_font_override_enabled then return end
+			hooksecurefunc(NamePlatePreviewMixin, "ShowPreviewNamePlateCastBar", function()
+				if not Plater.db.profile.blizzard_nameplate_font_override_enabled then return end
+				Plater.UpdateBlizzardNameplateFonts(true)
+				C_Timer.After(0.1, function ()
 					Plater.UpdateBlizzardNameplateFonts(true)
-					C_Timer.After(0.1, function ()
-						Plater.UpdateBlizzardNameplateFonts(true)
-					end)
 				end)
-				hooksecurefunc(NamePlateDriverFrame, "UpdateNamePlateSize", function()
-					if not Plater.db.profile.blizzard_nameplate_font_override_enabled then return end
+			end)
+			hooksecurefunc(NamePlateDriverFrame, "UpdateNamePlateSize", function()
+				if not Plater.db.profile.blizzard_nameplate_font_override_enabled then return end
+				Plater.UpdateBlizzardNameplateFonts(true)
+				C_Timer.After(0.1, function ()
 					Plater.UpdateBlizzardNameplateFonts(true)
-					C_Timer.After(0.1, function ()
-						Plater.UpdateBlizzardNameplateFonts(true)
-					end)
 				end)
-				hooksecurefunc(NamePlateUnitFrameMixin, "UpdateNameClassColor", function(self)
-					local plateFrame = C_NamePlate.GetNamePlateForUnit(self.unit)
-					if not plateFrame then -- secure in dungeon
-						--local onlyNamesEnabled = GetCVarBool("nameplateShowOnlyNames") or GetCVarBool("nameplateShowOnlyNameForFriendlyPlayerUnits")
+			end)
+			hooksecurefunc(NamePlateUnitFrameMixin, "UpdateNameClassColor", function(self)
+				local plateFrame = C_NamePlate.GetNamePlateForUnit(self.unit)
+				--if not plateFrame then -- secure in dungeon
+					--local onlyNamesEnabled = GetCVarBool("nameplateShowOnlyNames") or GetCVarBool("nameplateShowOnlyNameForFriendlyPlayerUnits")
 
-						if not UnitIsPlayer(self.unit) then
-							if Plater.db.profile.hide_friendly_npc_healthbar then
-								TextureLoadingGroupMixin.AddTexture({ textures = self.HealthBarsContainer.healthBar }, "showOnlyName")
-								TextureLoadingGroupMixin.AddTexture({ textures = self.castBar }, "showOnlyName")
-								TextureLoadingGroupMixin.AddTexture({ textures = self.castBar }, "widgetsOnly")
-							else
-								TextureLoadingGroupMixin.RemoveTexture({ textures = self.HealthBarsContainer.healthBar }, "showOnlyName")
-								TextureLoadingGroupMixin.RemoveTexture({ textures = self.castBar }, "showOnlyName")
-								TextureLoadingGroupMixin.RemoveTexture({ textures = self.castBar }, "widgetsOnly")
-								--TextureLoadingGroupMixin.RemoveTexture({ textures = self }, "explicitIsPlayer")
-							end
-							--TextureLoadingGroupMixin.AddTexture({ textures = self }, "explicitIsPlayer")
+					if not UnitIsPlayer(self.unit) then
+						if Plater.db.profile.hide_friendly_npc_healthbar then
+							TextureLoadingGroupMixin.AddTexture({ textures = self.HealthBarsContainer.healthBar }, "showOnlyName")
+							TextureLoadingGroupMixin.AddTexture({ textures = self.castBar }, "showOnlyName")
+							TextureLoadingGroupMixin.AddTexture({ textures = self.castBar }, "widgetsOnly")
+						else
+							TextureLoadingGroupMixin.RemoveTexture({ textures = self.HealthBarsContainer.healthBar }, "showOnlyName")
+							TextureLoadingGroupMixin.RemoveTexture({ textures = self.castBar }, "showOnlyName")
+							TextureLoadingGroupMixin.RemoveTexture({ textures = self.castBar }, "widgetsOnly")
+							--TextureLoadingGroupMixin.RemoveTexture({ textures = self }, "explicitIsPlayer")
 						end
-						TextureLoadingGroupMixin.AddTexture({ textures = self.optionTable }, "colorNameBySelection")
+						--TextureLoadingGroupMixin.AddTexture({ textures = self }, "explicitIsPlayer")
 					end
-				end)
-				hooksecurefunc(NamePlateUnitFrameMixin, "UpdateIsFriend", function(self)
-					local plateFrame = C_NamePlate.GetNamePlateForUnit(self.unit)
-					if not plateFrame and not self:IsFriend() then
-						TextureLoadingGroupMixin.RemoveTexture({ textures = self }, "isPlayer")
+					TextureLoadingGroupMixin.AddTexture({ textures = self.optionTable }, "colorNameBySelection")
+				--end
+			end)
+			hooksecurefunc(NamePlateUnitFrameMixin, "UpdateIsFriend", function(self)
+				local plateFrame = C_NamePlate.GetNamePlateForUnit(self.unit)
+				if not plateFrame and not self:IsFriend() then
+					TextureLoadingGroupMixin.RemoveTexture({ textures = self }, "isPlayer")
+				end
+			end)
+			hooksecurefunc(NamePlateUnitFrameMixin, "OnUnitSet", function(self)
+				local plateFrame = C_NamePlate.GetNamePlateForUnit(self.unit)
+				if not plateFrame then -- secure in dungeon
+					local onlyNamesEnabled = GetCVarBool("nameplateShowOnlyNames") or GetCVarBool("nameplateShowOnlyNameForFriendlyPlayerUnits")
+					if onlyNamesEnabled then
+						TextureLoadingGroupMixin.AddTexture({ textures = self }, "showOnlyName")
 					end
-				end)
-				hooksecurefunc(NamePlateUnitFrameMixin, "OnUnitSet", function(self)
-					local plateFrame = C_NamePlate.GetNamePlateForUnit(self.unit)
-					if not plateFrame then -- secure in dungeon
-						local onlyNamesEnabled = GetCVarBool("nameplateShowOnlyNames") or GetCVarBool("nameplateShowOnlyNameForFriendlyPlayerUnits")
-						if onlyNamesEnabled then
-							TextureLoadingGroupMixin.AddTexture({ textures = self }, "showOnlyName")
-						end
-					end
-				end)
-			end
-			
+				end
+			end)
 		end
 
 		--update the resource location and anchor
@@ -7447,7 +7411,7 @@ end
 			end
 			
 			--update buffs and debuffs
-			if (DB_AURA_ENABLED) then --should update only when the heathbar is shown?
+			if (DB_AURA_ENABLED and not IS_WOW_PROJECT_MIDNIGHT_API_WITH_AURA_CONTAINERS) then --should update only when the heathbar is shown?
 				--Plater.StartLogPerformanceCore("Plater-Core", "Update", "UpdateAuras")
 				
 				if (DB_TRACK_METHOD == 0x1) then --automatic
@@ -9018,8 +8982,8 @@ end
 					DF:SetFontOutline (_G.SystemFont_NamePlate_Outlined, profile.blizzard_nameplate_font_outline)
 					DF:SetFontSize (_G.SystemFont_NamePlate_Outlined, profile.blizzard_nameplate_font_size - 1)
 					
-					C_Timer.After(0, function() Plater.UpdateBlizzardNameplateFonts(true, true) end)
-					return
+					--C_Timer.After(0, function() Plater.UpdateBlizzardNameplateFonts(true, true) end)
+					--return
 				end
 			end
 
@@ -9050,32 +9014,32 @@ end
 	function Plater.UpdateStackingSize(plateFrame, customWScale, customHScale)
 		if not plateFrame then return end
 		local unitFrame = plateFrame.unitFrame
+		local profile = Plater.db.profile
+		local width, height = profile.click_space[1], profile.click_space[2]
 		if unitFrame.stackSizeFrame then --TODO: MIDNIGHT!!
 			unitFrame.stackSizeFrame:ClearAllPoints()
 			unitFrame.stackSizeFrame:SetParent(unitFrame.PlaterOnScreen and unitFrame or plateFrame)
 			plateFrame:SetStackingBoundsFrame(unitFrame.stackSizeFrame)
-			--unitFrame.stackSizeFrame:SetAllPoints()
 			
-			local width, height = Plater.db.profile.click_space[1], Plater.db.profile.click_space[2]
 			local widthScale, heightScale
-			if actorType == ACTORTYPE_FRIENDLY_PLAYER or actorType == ACTORTYPE_FRIENDLY_NPC then
-				widthScale, heightScale = Plater.db.profile.overlap_space_scale_friendly[1], Plater.db.profile.overlap_space_scale_friendly[2]
+			if plateFrame.actorType == ACTORTYPE_FRIENDLY_PLAYER or plateFrame.actorType == ACTORTYPE_FRIENDLY_NPC then
+				widthScale, heightScale = profile.overlap_space_scale_friendly[1], profile.overlap_space_scale_friendly[2]
 			else
-				widthScale, heightScale = Plater.db.profile.overlap_space_scale[1], Plater.db.profile.overlap_space_scale[2]
+				widthScale, heightScale = profile.overlap_space_scale[1], profile.overlap_space_scale[2]
 			end
 			
-			--local offsetW, offsetH = (width - width * widthScale), (height - height * heightScale)
-			
-			unitFrame.stackSizeFrame:SetPoint("CENTER", isPlateEnabled and unitFrame or plateFrame, "CENTER", 0, 0)
+			unitFrame.stackSizeFrame:SetPoint("CENTER", plateFrame.unitFrame.PlaterOnScreen and unitFrame or plateFrame, "CENTER", 0, 0)
 			unitFrame.stackSizeFrame:SetSize(width * (customWScale or widthScale), height * (customHScale or heightScale))
-			--unitFrame.stackSizeFrame:ClearAllPoints()
-			--unitFrame.stackSizeFrame:SetPoint("TOPLEFT", unitFrame.PlaterOnScreen and unitFrame or plateFrame, "TOPLEFT", offsetW, -offsetH)
-			--unitFrame.stackSizeFrame:SetPoint("BOTTOMRIGHT", unitFrame.PlaterOnScreen and unitFrame or plateFrame, "BOTTOMRIGHT", -offsetW, offsetH)
+			
 		end
 		if unitFrame.hitTestFrame then
-			--unitFrame.hitTestFrame:SetPoint("CENTER", isPlateEnabled and unitFrame or plateFrame, "CENTER", 0, 0)
-			local width, height = Plater.db.profile.click_space[1], Plater.db.profile.click_space[2]
-			unitFrame.hitTestFrame:SetSize(width, height)
+			local widthScale, heightScale
+			if plateFrame.actorType == ACTORTYPE_FRIENDLY_PLAYER or plateFrame.actorType == ACTORTYPE_FRIENDLY_NPC then
+				widthScale, heightScale = profile.select_space_scale_friendly[1], profile.select_space_scale_friendly[2]
+			else
+				widthScale, heightScale = profile.select_space_scale[1], profile.select_space_scale[2]
+			end
+			unitFrame.hitTestFrame:SetSize(width * widthScale, height * heightScale)
 		end
 	end
 	
@@ -9455,7 +9419,7 @@ end
 		Plater.UpdateNameOnRenamedUnit(plateFrame)
 
 		--update options in the extra icons row frame
-		if (unitFrame.ExtraIconFrame.RefreshID < PLATER_REFRESH_ID) then
+		if (not IS_WOW_PROJECT_MIDNIGHT_API_WITH_AURA_CONTAINERS and unitFrame.ExtraIconFrame.RefreshID < PLATER_REFRESH_ID) then
 			Plater.SetAnchor (unitFrame.ExtraIconFrame, Plater.db.profile.extra_icon_anchor)
 			unitFrame.ExtraIconFrame:SetOption ("anchor", Plater.db.profile.extra_icon_anchor)
 			unitFrame.ExtraIconFrame:SetOption ("show_text", Plater.db.profile.extra_icon_show_timer)
@@ -10308,13 +10272,15 @@ end
 
 		for i = 1, #allWidgets do
 			local widget = allWidgets[i]
-			widget.FadeAnimation = widget:CreateAnimationGroup()
-			--widget.FadeAnimation:SetScript ("OnPlay", on_play_fade_animation)
-			widget.FadeAnimation:SetScript ("OnFinished", on_finished_fade_animation)
-			widget.FadeAnimation.Animation = widget.FadeAnimation:CreateAnimation ("Alpha")
-			widget.FadeAnimation.Animation:SetOrder (1)
-			widget.FadeAnimation.Animation:SetDuration (0.15)
-			widget.SetAlphaTo = widget_set_alpha
+			if widget then
+				widget.FadeAnimation = widget:CreateAnimationGroup()
+				--widget.FadeAnimation:SetScript ("OnPlay", on_play_fade_animation)
+				widget.FadeAnimation:SetScript ("OnFinished", on_finished_fade_animation)
+				widget.FadeAnimation.Animation = widget.FadeAnimation:CreateAnimation ("Alpha")
+				widget.FadeAnimation.Animation:SetOrder (1)
+				widget.FadeAnimation.Animation:SetDuration (0.15)
+				widget.SetAlphaTo = widget_set_alpha
+			end
 		end
 	end
 

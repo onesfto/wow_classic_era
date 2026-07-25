@@ -3,7 +3,7 @@ if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
 local mod	= DBM:NewMod("DreamscytheAndWeaverSoD", "DBM-Raids-Vanilla", 8)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
+mod:SetRevision("20260709012018")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(220833, 220864)--Dreamscythe, Weaver
 mod:SetEncounterID(2955)
@@ -78,7 +78,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerWingBuffetCD:Stop()
 		timerWingBuffetCD:Start(5)
 	elseif spellId == 442622 then
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		--Makes sure the target of the debuff, is highest threat of the caster
 		--(basically filters everyone who's not actively tanking mob such as melee in wrong place)
 		if self:IsTanking(uId, nil, nil, false, args.sourceGUID) then--playerUnitID, enemyUnitID, isName, onlyRequested, enemyGUID

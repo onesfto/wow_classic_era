@@ -57,9 +57,9 @@ Details_TinyThreat: enabled
 Details_Vanguard: enabled
 DialogueUI: enabled
 Doom_CooldownPulse: enabled
-ElvUI: enabled
-ElvUI_Libraries: enabled
-ElvUI_Options: enabled
+ElvUI: disabled
+ElvUI_Libraries: disabled
+ElvUI_Options: disabled
 GFW_FeedOMatic: enabled
 GatherMate2: enabled
 GatherMate2_Data: enabled
@@ -117,3 +117,9 @@ Blizzard_CompactRaidFrames: enabled
 WeakAurasCompanion: enabled
 MissingTradeSkillsList_TBC_Data: enabled
 Blizzard_CombatText: enabled
+Blizzard_ObjectiveTracker: enabled
+AutoCarrot: enabled
+BiSTracker: enabled
+GW2_UI: enabled
+NDui: enabled
+NDui_Plus: enabled

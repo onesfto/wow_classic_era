@@ -1,24 +1,23 @@
-local _, addonTable = ...;
-local L=addonTable.locale
--------------------------------------------
-local Create=addonTable.Create
-local PIGFrame=Create.PIGFrame
-local PIGEnter=Create.PIGEnter
-local PIGFontString=Create.PIGFontString
-local Fun=addonTable.Fun
-local PIGGetRaceAtlas=Fun.PIGGetRaceAtlas
-local FasongYCqingqiu=Fun.FasongYCqingqiu
-local Data=addonTable.Data
----
-local QuickChatfun=addonTable.QuickChatfun
+local _, PD = ...;
+local QuickChatfun=PD.QuickChatfun
 function QuickChatfun.QuickBut_Stats()
+	local L=PD.locale
+	-----
+	local Create=PD.Create
+	local PIGFrame=Create.PIGFrame
+	local PIGEnter=Create.PIGEnter
+	local PIGFontString=Create.PIGFontString
+	local Fun=PD.Fun
+	local PIGGetRaceAtlas=Fun.PIGGetRaceAtlas
+	local FasongYCqingqiu=Fun.FasongYCqingqiu
+	local Data=PD.Data
+	local TalentData=Data.TalentData
 	local QuickUI=QuickChatfun.TabButUI
 	local yyybbvv=-0.5
 	if PIG_MaxTocversion() then yyybbvv=-1.6 end
 	QuickUI.playerStats=QuickUI:ADD_chatbutExt(666623,0,2,0,yyybbvv,"|cff00FFff"..KEY_BUTTON1.."-|r|cffFFFF00"..CHAT_ANNOUNCE..PAPERDOLL_SIDEBAR_STATS..
 		"\n|cff00FFff"..KEY_BUTTON2.."-|r|cffFFFF00"..PARTY.."/"..RAID_MEMBERS..INFO.."|r")
 	QuickUI.playerStats.X:Hide();
-	local TalentData=addonTable.Data.TalentData
 	QuickUI.playerStats:SetScript("OnClick", function(self, event)
 		if event=="LeftButton" then
 			local shuxintxt = TalentData.Player_Stats()

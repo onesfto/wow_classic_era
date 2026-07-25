@@ -1,0 +1,28 @@
+
+ElvCharacterDB = {
+["ConvertKeybindings"] = true,
+["ChatEditHistory"] = {
+"/KB",
+"/s |cff1eff00|Hitem:11288::::::::10:::::::::|h[强效魔法杖]|h|r",
+"/LTP",
+"/DECURSIVE",
+"/ec",
+"/EMOVE",
+"/emove",
+"/EC",
+"/BIAOGE",
+"/pig",
+"/biaoge",
+"/PIG",
+"/RL",
+"/DBM",
+"/kb",
+"/dbm",
+"/WA",
+"/团队 |cffa335ee|Hitem:18665::::::::60::::::::::|h[暗影之眼]|h|r",
+"/cw 窃魂者 看比赛了 改天科研",
+"/wa",
+},
+["ChatHistoryLog"] = {
+},
+}

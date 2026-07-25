@@ -1,4 +1,10 @@
-﻿1.15.131 - 8th April 2026
+﻿1.15.147 - 23rd July 2026
+- Fixed the Lua error when using ElvUI.
+
+1.15.146 - 22nd July 2026
+- Updated for game version 1.15.9.
+
+1.15.131 - 8th April 2026
 - Fixed a situational issue which may have caused the map to be positioned off-screen.
 
 1.15.126 - 4th March 2026

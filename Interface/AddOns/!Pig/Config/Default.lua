@@ -4,6 +4,8 @@ PD.Default = {
 	["VerC"]={},
 	["Error"] = {
 		["ErrorDB"] = {},
+		["NextError"] = false,
+		["IsPig"] = true,
 		["ErrorTishi"] = false,
 	},
 	["Hardcore"] = {
@@ -272,6 +274,7 @@ PD.Default = {
 		["Quest"]=true,
 	},
 	["BagBank"]={
+		["EquipBind"]=true,
 		["BagKongyu"]=true,
 		["Zhenghe"] = true,
 		["SortBagsRightToLeft"] = false,
@@ -396,7 +399,7 @@ PD.Default = {
 	},
 	["Map"] = {
 		["MinimapBpaichu"] = {},
-		["MinimapPos"] = -13.62698465698976,
+		["MinimapPos"] = -13.627,
 		["MinimapPointMode"] = 1,
 		["MinimapBut"] = true,
 		["MiniButShouNa_YN"] = 1,

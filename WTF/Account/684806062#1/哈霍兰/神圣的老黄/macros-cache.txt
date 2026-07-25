@@ -1,0 +1,68 @@
+VER 3 0100000001000010 "OT" "134400"
+#showtooltip
+/cast [@mouseover,help,exists][]强效王者祝福
+END
+VER 3 0100000001000009 "保护" "134400"
+#showtooltip 
+/cast [@mouseover,help,exists][nomod]保护祝福
+END
+VER 3 010000000100000E "光明" "134400"
+#showtooltip
+/cast [@mouseover,help,exists][]强效光明祝福
+END
+VER 3 0100000001000011 "光明" "134400"
+#showtooltip
+/cast 光明圣印
+/cast 审判
+END
+VER 3 0100000001000006 "力量" "134400"
+#showtooltip
+/cast [@mouseover,help,exists][]强效力量祝福
+END
+VER 3 0100000001000002 "圣光" "134400"
+#showtooltip [mod]圣光术(等级 4);圣光术(等级 9)
+/cast [nomod,@mouseover,help,exists][nomod]圣光术(等级 9)
+/cast [mod,@mouseover,help,exists][mod]圣光术(等级 4)
+END
+VER 3 010000000100000F "圣疗" "134400"
+#showtooltip
+/cast [nomod,@mouseover,help,exists][nomod]圣疗术
+END
+VER 3 0100000001000003 "圣闪" "134400"
+#showtooltip
+/cast [nomod,@mouseover,help,exists][nomod]圣光闪现(等级 6)
+/cast [mod,@mouseover,help,exists][mod]圣光闪现(等级 1)
+END
+VER 3 0100000001000004 "坐骑" "134400"
+/cast 红色其拉共鸣水晶
+/cast 迅捷幽灵虎的缰绳
+END
+VER 3 0100000001000007 "拯救" "134400"
+#showtooltip
+/cast [@mouseover,help,exists][]强效拯救祝福
+END
+VER 3 0100000001000012 "救赎" "134400"
+#showtooltip
+/cast [@mouseover,help,exists][]救赎
+END
+VER 3 010000000100000C "智慧" "134400"
+#showtooltip
+/cast 智慧圣印
+/cast 审判
+END
+VER 3 0100000001000008 "智慧" "134400"
+#showtooltip
+/cast [@mouseover,help,exists][]强效智慧祝福
+END
+VER 3 010000000100000D "自由" "134400"
+#showtooltip
+/cast [nomod,@mouseover,help,exists][nomod]自由祝福
+END
+VER 3 010000000100000A "震击" "134400"
+#showtooltip 
+/cast [@mouseover,help,exists][nomod]神圣震击
+END
+VER 3 010000000100000B "驱散" "134400"
+#showtooltip 
+/cast [@mouseover,help,exists][nomod]清洁术
+END

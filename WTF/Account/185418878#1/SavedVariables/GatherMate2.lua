@@ -1,8 +1,5 @@
 
 GatherMate2DB = {
-["global"] = {
-["data_version"] = 5,
-},
 ["profileKeys"] = {
 ["萌萌的露小露 - 铁血"] = "Default",
 ["辛特兰小魔女 - 哈霍兰"] = "Default",
@@ -21,24 +18,27 @@ GatherMate2DB = {
 ["幽影谷小帝姬 - 法琳娜"] = "Default",
 ["寒脊山小郡主 - 法琳娜"] = "Default",
 ["安其拉女王 - 哈霍兰"] = "Default",
-["愛雅法拉 - 铁血"] = "Default",
+["魔女艾鹿恩 - 哈霍兰"] = "Default",
 ["绿龙守护者 - 哈霍兰"] = "Default",
-["露露緹婭 - 碧玉矿洞"] = "Default",
-["瑟银零件 - 哈霍兰"] = "Default",
+["被遗忘的女王 - 哈霍兰"] = "Default",
+["小露露糖 - 铁血"] = "Default",
 ["院长安娜 - 哈霍兰"] = "Default",
 ["雪球女士 - 法琳娜"] = "Default",
-["小露露糖 - 铁血"] = "Default",
-["熊心猫爪 - 哈霍兰"] = "Default",
+["丹莫罗小格格 - 法琳娜"] = "Default",
 ["超小露露糖 - 铁血"] = "Default",
-["猫德加 - 哈霍兰"] = "Default",
-["津巴布韦公主 - 哈霍兰"] = "Default",
+["熊心猫爪 - 哈霍兰"] = "Default",
 ["魔女桑德兰 - 哈霍兰"] = "Default",
+["津巴布韦公主 - 哈霍兰"] = "Default",
+["猫德加 - 哈霍兰"] = "Default",
 ["巨龙守护者 - 哈霍兰"] = "Default",
 ["瑟银零件 - 法琳娜"] = "Default",
 ["青铜龙守护者 - 哈霍兰"] = "Default",
-["丹莫罗小格格 - 法琳娜"] = "Default",
-["被遗忘的女王 - 哈霍兰"] = "Default",
-["魔女艾鹿恩 - 哈霍兰"] = "Default",
+["瑟银零件 - 哈霍兰"] = "Default",
+["露露緹婭 - 碧玉矿洞"] = "Default",
+["愛雅法拉 - 铁血"] = "Default",
+},
+["global"] = {
+["data_version"] = 5,
 },
 ["profiles"] = {
 ["Default"] = {

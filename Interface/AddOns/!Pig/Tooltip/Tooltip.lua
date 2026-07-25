@@ -4,7 +4,6 @@ local gsub = _G.string.gsub
 local Fun=PD.Fun
 local TooltipPlusfun=PD.TooltipPlusfun
 local GetItemInfo=GetItemInfo or C_Item and C_Item.GetItemInfo
-local GetDetailedItemLevelInfo=GetDetailedItemLevelInfo or C_Item and C_Item.GetDetailedItemLevelInfo
 ---------
 local Create=PD.Create
 local PIGFontString=Create.PIGFontString
@@ -27,7 +26,7 @@ function TooltipPlusfun.InfoPlus()
 		if not PIGA["Tooltip"]["ItemLevel"] then return end
 		local name=tooltip:GetName()
 		if not name then return end
-		local effectiveILvl = GetDetailedItemLevelInfo(link)
+		local effectiveILvl = PIGGetDetailedItemLevelInfo(link)
 		if effectiveILvl then
 			local ILvltxt=string.format(extinfoList.lv,effectiveILvl)
 			local ISduibi=tooltip==ShoppingTooltip1 or tooltip==ShoppingTooltip2 or tooltip==ItemRefShoppingTooltip1 or tooltip==ItemRefShoppingTooltip2

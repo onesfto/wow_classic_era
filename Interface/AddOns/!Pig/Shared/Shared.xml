@@ -4,7 +4,6 @@
 	<Script file="PlayerInfo.lua" />
 	<Script file="Engraving.lua" />
 	<Script file="LFG.lua" />
-	<Script file="GetItemInfo.lua" />
 	<Include file="Create\Create.xml" />
 	<Script file="ExportImport.lua" />
 	<Script file="ActionFun.lua" />	
@@ -16,5 +15,4 @@
 	<Script file="QuickBut.lua" />
 	<Script file="TradeRecords.lua" />
 	<Script file="GDKP_Auc.lua" />
-	
 </Ui>

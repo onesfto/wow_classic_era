@@ -96,6 +96,16 @@ function Create.PIGScrollFrame_old(fujik,Point,WH,BarW)
 	Scroll:SetScript("OnVerticalScroll", function(self, offset)
 		self:UpdateShowList(offset)
 	end)
+	local function UpdataThumbTexture(max)
+		Scroll.ScrollBar.ThumbTexture:SetShown(max>0)
+		thumbtop:SetShown(max>0)
+		thumbtopHIGHLIGHT:SetShown(max>0)
+		thumbbottom:SetShown(max>0)
+		thumbbottomHIGHLIGHT:SetShown(max>0)
+		thumbmiddle:SetShown(max>0)
+		thumbmiddleHIGHLIGHT:SetShown(max>0)
+	end
+	UpdataThumbTexture(0)
 	function Scroll:UpdateThumbTexture(numItems, numToDisplay, buttonHeight)
 	    local scrollBar = self.ScrollBar or self.scrollBar
 	    if not scrollBar then return end
@@ -130,6 +140,7 @@ function Create.PIGScrollFrame_old(fujik,Point,WH,BarW)
 	        local min, max = scrollBar:GetMinMaxValues()
 	        scrollBar.ScrollUpButton:SetEnabled(offset > 0.5) 
 	        scrollBar.ScrollDownButton:SetEnabled(offset < (max - 0.5)) 
+	        UpdataThumbTexture(max)
 	    end)
 	    self:SetScript("OnScrollRangeChanged", function(self, xrange, yrange)
 	        local maxScroll = math.max(0, yrange)
@@ -144,4 +155,48 @@ function Create.PIGScrollFrame_old(fujik,Point,WH,BarW)
 	end
 	UIPanelScrollFrame_OnLoad(Scroll)
 	return Scroll
+end
+
+---
+function Create.PIGScrollFrame(fujik,hangHeight,Point,WH,frameType)
+	local hangHeight=hangHeight or 20
+	local frameType=frameType or "Button"
+	local Point_1,Point_2,Point_3,Point_4=0,0,0,0
+	if Point then
+		Point_1,Point_2,Point_3,Point_4=Point[1],Point[2],Point[3],Point[4]
+	end
+	local ScrollF = CreateFrame("Frame", nil, fujik);
+	if WH then
+		ScrollF:SetPoint(Point_1,Point_2,Point_3,Point_4);
+		ScrollF:SetSize(WH[1],WH[2] or WH[1])
+	else
+		ScrollF:SetPoint("TOPLEFT",fujik,"TOPLEFT",Point_1,Point_2);
+		ScrollF:SetPoint("BOTTOMRIGHT",fujik,"BOTTOMRIGHT",Point_3,Point_4);
+	end
+	ScrollF.ScrollBox = CreateFrame("Frame", nil, ScrollF, "WowScrollBoxList")
+	ScrollF.ScrollBar = CreateFrame("EventFrame", nil, ScrollF, "MinimalScrollBar")
+	ScrollF.ScrollBar:SetPoint("TOPLEFT", ScrollF.ScrollBox, "TOPRIGHT",4,0)
+	ScrollF.ScrollBar:SetPoint("BOTTOMLEFT", ScrollF.ScrollBox, "BOTTOMRIGHT",4,0)
+	local anchorsWithBar = {--出现ScrollBox的定位
+	    CreateAnchor("TOPLEFT", ScrollF, "TOPLEFT", 1, -1),
+	    CreateAnchor("BOTTOMRIGHT", ScrollF, "BOTTOMRIGHT", -16, 1),
+	}
+	local anchorsWithoutBar = {--没出现ScrollBox的定位
+	    anchorsWithBar[1],
+	    CreateAnchor("BOTTOMRIGHT", ScrollF, "BOTTOMRIGHT", -1, 1),
+	} 
+	ScrollUtil.AddManagedScrollBarVisibilityBehavior(ScrollF.ScrollBox, ScrollF.ScrollBar, anchorsWithBar, anchorsWithoutBar)
+	
+    local view = CreateScrollBoxListLinearView()
+    ScrollUtil.InitScrollBoxListWithScrollBar(ScrollF.ScrollBox, ScrollF.ScrollBar, view)
+    view:SetElementExtent(hangHeight)--行高度
+    --动态计算每个元素的高度
+    -- view:SetElementExtentCalculator(function(dataIndex, elementData)
+    --     return 20;
+    -- end);
+    view:SetPadding(0,0,0,0,0)--行内边距/间距paddingT,paddingB,paddingL,paddingR,spacing
+	view:SetElementInitializer(frameType, function(hang, elementData)
+		ScrollF.Update_Hang(hang, elementData)
+	end)
+	return ScrollF
 end

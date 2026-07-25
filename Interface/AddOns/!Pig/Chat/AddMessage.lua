@@ -5,7 +5,7 @@ local PlayerInfo=Data.PlayerInfo
 local Fun=addonTable.Fun
 local ReplaceEmoji=Fun.ReplaceEmoji
 local _Get_GEM_EMPTY_SOCKET=Fun._Get_GEM_EMPTY_SOCKET
-local _GetTooltipLevel=Fun._GetTooltipLevel
+local PIGGetItemLevel=Fun.PIGGetItemLevel
 local FasongYCqingqiu=Fun.FasongYCqingqiu
 local GetRaceClassTXT=Fun.GetRaceClassTXT
 --------------
@@ -64,31 +64,47 @@ function QuickChatfun.PIGMessage()
 		ShowLinkIcon=PIGA["Chat"]["ShowLinkIcon"],
 		ShowLinkLV=PIGA["Chat"]["ShowLinkLV"],
 		ShowLinkSlots=PIGA["Chat"]["ShowLinkSlots"],
+		ShowLinkGem=PIGA["Chat"]["ShowLinkGem"],
 	}
 	QuickChatfun.chatONOFF=chatONOFF
 	--
 	local Get_itemF = CreateFrame("Frame")
-	local textMsgFrame={}
-	local textAllIDs={}
+	local textMsgFrame = {}
+	local textAllIDs = {}
 	local PlayerGUIDs = {}
 	local PlayerMsgList = {}
 	local MsgPlayerLevel = {}
-	local function MsgReplaceEmoji(self,event,arg1,...)
-		local arg2,_,_,arg5,_,_,_,_,_,arg11,arg12=...
-		if arg12 and arg2 then
-			PlayerGUIDs[arg2]=arg12
-			C_Timer.After(3,function()
-				PlayerGUIDs[arg2]=nil
-			end)
-			local nnarew=arg2:match("^(.-)-")
-			if nnarew then
-				PlayerGUIDs[nnarew]=arg12
-				C_Timer.After(3,function()
-					PlayerGUIDs[nnarew]=nil
-				end)
-			end
-		end
-		return false, ReplaceEmoji(arg1),...
+	---
+	local MAX_PENDING_MSGS = 50   -- 异步待处理消息上限，防止内存泄漏
+    local pendingMsgCount = 0
+    local MAX_MSG_COUNT = 100     -- 每个频道历史消息缓存上限
+    local msgHead = {}            -- O(1) 环形缓冲区头指针
+    local msgKeys = {}            -- 环形缓冲区索引表
+    ---
+	local GUID_EXPIRE_TIME = 3
+	local CLEAN_INTERVAL = 1
+	local lastCleanTime = 0
+	local function CleanExpiredGUIDs()
+	    local now = GetTime()
+	    if now - lastCleanTime < CLEAN_INTERVAL then return end
+	    lastCleanTime = now
+	    for guid, entry in pairs(PlayerGUIDs) do
+	        if now - entry.time > GUID_EXPIRE_TIME then
+	            PlayerGUIDs[guid] = nil
+	        end
+	    end
+	end
+	local function MsgReplaceEmoji(self, event, arg1, ...)
+	    local arg2, _, _, arg5, _, _, _, _, _, arg11, arg12 = ...
+	    if arg12 and arg2 then
+	        CleanExpiredGUIDs()
+	        PlayerGUIDs[arg2] = { GUID = arg12, time = GetTime() }
+	        local nnarew = arg2:match("^(.-)-")
+	        if nnarew then
+	            PlayerGUIDs[nnarew] = { GUID = arg12, time = GetTime() }
+	        end
+	    end
+	    return false, ReplaceEmoji(arg1), ...
 	end
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", MsgReplaceEmoji)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", MsgReplaceEmoji)
@@ -107,268 +123,125 @@ function QuickChatfun.PIGMessage()
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_EMOTE", MsgReplaceEmoji)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_DND", MsgReplaceEmoji)
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_COMMUNITIES_CHANNEL", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", function(self,event,arg1)
-		if arg1:match("功德值") then return true end
+	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", function(self, event, arg1)
+	    if arg1:match("功德值") then return true end
 	end)
-	--远程观察图标
-	local ClassColor=Data.ClassColor
-	local function GetGemList(linkx)
-		local baoshiinfo = {}
-	    local statsg = GetItemStats(linkx)
-	    if statsg then
-		    for key, num in pairs(statsg) do
-		        if (key:match("EMPTY_SOCKET_")) then
-		            for i = 1, num do
-		           		table.insert(baoshiinfo, key)
-		            end
-		        end
-		    end
-		end
-		return baoshiinfo
-	end
-	---精简频道名
+	---
 	local JJM = L["CHAT_QUKBUTNAME"]
 	local JXname = L["CHAT_SIMPLIFYNAME"]
+	local PATTERNS = {}
+	do
+	    local p = PATTERNS
+	    p.SPACE_PLAYER   = " (|Hplayer:.+)"
+	    p.TEAM           = "|h%[" .. SPELL_TARGET_TYPE11_DESC .. "%]|h"
+	    p.GUILD          = "|h%[" .. GUILD .. "%]|h"
+	    p.RAID           = "|h%[" .. CHAT_MSG_RAID .. "%]|h"
+	    p.RAID_WARN      = "%[" .. CHAT_MSG_RAID_WARNING .. "%]"
+	    p.BG             = "|h%[" .. CHAT_MSG_BATTLEGROUND .. "%]|h"
+	    p.INSTANCE       = "|h%[" .. INSTANCE_CHAT .. "%]|h"
+	    p.RAID_LEADER    = "|h%[" .. CHAT_MSG_RAID_LEADER .. "%]|h"
+	    p.INST_LEADER    = "|h%[" .. INSTANCE_CHAT_LEADER .. "%]|h"
+	    p.GENERAL        = "|h%[(%d+)%. " .. GENERAL .. "(.-)%]|h"
+	    p.LFG            = "|h%[(%d+)%. " .. LOOK_FOR_GROUP .. "%]|h"
+	    p.WORLD_CAT      = "|h%[(%d+)%. " .. CHANNEL_CATEGORY_WORLD .. "%]|h"
+	    p.PIG_CHAN       = "|h%[(%d+)%. PIG%]|h"
+	    -- zhCN
+	    p.CN_XIAODUI     = "|h%[小队%]|h"
+	    p.CN_DUIZHANG    = "|h%[队长%]|h"
+	    p.CN_SAY         = "(|Hplayer:.-|h)说"
+	    p.CN_YELL        = "(|Hplayer:.-|h)喊道"
+	    p.CN_DAJIAO      = "|h%[(%d+)%. 大脚世界频道%]|h"
+	    p.CN_TRADE_CITY  = "|h%[(%d+)%. " .. TRADE .. " %- 城市%]|h"
+	    p.CN_TRADE_SRV   = "|h%[(%d+)%. " .. TRADE .. " %(服务%) %- 城市%]|h"
+	    p.CN_NEWBIE      = "|h%[(%d+)%. 新手聊天%]|h"
+	    -- zhTW
+	    p.TW_SAY         = "(|Hplayer:.-|h)說"
+	    p.TW_YELL        = "(|Hplayer:.-|h)喊道"
+	    p.TW_DUIZHANG    = "|h%[隊長%]|h"
+	    p.TW_XIAODUI     = "|h%[小隊%]|h"
+	    p.TW_TRADE_TOWN  = "|h%[(%d+)%. " .. TRADE .. " %- 城鎮%]|h"
+	    p.TW_TRADE_SRV   = "|h%[(%d+)%. " .. TRADE .. " %(服務%) %- 城鎮%]|h"
+	    p.TW_NEWBIE      = "|h%[(%d+)%. 新手聊天%]|h"
+	end
+	local REPLACEMENTS = {}
+	do
+	    local r = REPLACEMENTS
+	    r.TEAM        = "|h%[" .. JJM[3] .. "%]|h"
+	    r.GUILD       = "|h%[" .. JJM[4] .. "%]|h"
+	    r.RAID        = "|h%[" .. JJM[5] .. "%]|h"
+	    r.RAID_WARN   = "%[" .. JJM[6] .. "%]"
+	    r.BG          = "|h%[" .. JJM[7] .. "%]|h"
+	    r.INSTANCE    = "|h%[" .. JJM[7] .. "%]|h"
+	    r.RAID_LEADER = "|h%[" .. JXname[2] .. "%]|h"
+	    r.INST_LEADER = "|h%[" .. JXname[3] .. "%]|h"
+	    r.GENERAL     = "|h%[%1%." .. JJM[8] .. "%]|h"
+	    r.LFG         = "|h%[%1%." .. JJM[10] .. "%]|h"
+	    r.WORLD_CAT   = "|h%[%1%." .. JJM[11] .. "%]|h"
+	    r.PIG_CHAN    = "|h%[%.PIG%]|h"
+	    r.CN_XIAODUI  = "|h%[" .. JJM[3] .. "%]|h"
+	    r.CN_DUIZHANG = "|h%[" .. JXname[1] .. "%]|h"
+	    r.CN_SAY      = "%[说%]%1"
+	    r.CN_YELL     = "%[" .. JJM[2] .. "%]%1"
+	    r.CN_DAJIAO   = "|h%[%1%." .. JJM[11] .. "%]|h"
+	    r.CN_TRADE    = "|h%[%1%." .. JJM[9] .. "%]|h"
+	    r.CN_TRADE_SRV= "|h%[%1%." .. JXname[4] .. "%]|h"
+	    r.CN_NEWBIE   = "|h%[%1%." .. JXname[5] .. "%]|h"
+	    r.TW_SAY      = "%[說%]%1"
+	    r.TW_YELL     = "%[喊%]%1"
+	    r.TW_DUIZHANG = "|h%[" .. JXname[1] .. "%]|h"
+	    r.TW_XIAODUI  = "|h%[" .. JJM[3] .. "%]|h"
+	    r.TW_TRADE    = "|h%[%1%." .. JJM[9] .. "%]|h"
+	    r.TW_TRADE_SRV= "|h%[%1%." .. JXname[4] .. "%]|h"
+	    r.TW_NEWBIE   = "|h%[%1%." .. JXname[5] .. "%]|h"
+	end
+	local IS_TOC_100000_PLUS = PIG_MaxTocversion(100000, true)
 	local function SimplifyName(text)
-		if not chatONOFF.jingjian then return text end
-		if Locale == "zhCN" or Locale == "zhTW" then
-			text=text:gsub(" (|Hplayer:.+)", "%1")
-			text=text:gsub("|h%["..SPELL_TARGET_TYPE11_DESC.."%]|h", "|h%["..JJM[3].."%]|h")--队伍
-			text=text:gsub("|h%["..GUILD.."%]|h", "|h%["..JJM[4].."%]|h")--公會
-			text=text:gsub("|h%["..CHAT_MSG_RAID.."%]|h", "|h%["..JJM[5].."%]|h")--团队
-			text=text:gsub("%["..CHAT_MSG_RAID_WARNING.."%]", "%["..JJM[6].."%]")--團隊通告
-			text=text:gsub("|h%["..CHAT_MSG_BATTLEGROUND.."%]|h", "|h%["..JJM[7].."%]|h")--戰場
-			text=text:gsub("|h%["..INSTANCE_CHAT.."%]|h", "|h%["..JJM[7].."%]|h")--副本
-			text=text:gsub("|h%["..CHAT_MSG_RAID_LEADER.."%]|h", "|h%["..JXname[2].."%]|h")--团队领袖
-			text=text:gsub("|h%["..INSTANCE_CHAT_LEADER.."%]|h", "|h%["..JXname[3].."%]|h")--副本向导
-			--xuhao
-			text=text:gsub("|h%[(%d+)%. "..GENERAL.."(.-)%]|h", "|h%[%1%."..JJM[8].."%]|h")--综合
-			text=text:gsub("|h%[(%d+)%. "..LOOK_FOR_GROUP.."%]|h", "|h%[%1%."..JJM[10].."%]|h")--寻求组队
-			text=text:gsub("|h%[(%d+)%. "..CHANNEL_CATEGORY_WORLD.."%]|h", "|h%[%1%."..JJM[11].."%]|h")
-			text=text:gsub("|h%[(%d+)%. PIG%]|h", "|h%[%.PIG%]|h")
-			if Locale == "zhCN" then
-				text=text:gsub("|h%[小队%]|h", "|h%["..JJM[3].."%]|h")--小队
-				text=text:gsub("|h%[队长%]|h", "|h%["..JXname[1].."%]|h")--队长
-				text=text:gsub("(|Hplayer:.-|h)说", "%[说%]%1")
-				text=text:gsub("(|Hplayer:.-|h)喊道", "%["..JJM[2].."%]%1")
-				text=text:gsub("|h%[(%d+)%. 大脚世界频道%]|h", "|h%[%1%."..JJM[11].."%]|h")
-				--xuhao
-				text=text:gsub("|h%[(%d+)%. "..TRADE.." %- 城市%]|h", "|h%[%1%."..JJM[9].."%]|h")
-				if PIG_MaxTocversion(100000,true) then
-					text=text:gsub("|h%[(%d+)%. "..TRADE.." %(服务%) %- 城市%]|h", "|h%[%1%."..JXname[4].."%]|h")
-					text=text:gsub("|h%[(%d+)%. 新手聊天%]|h", "|h%[%1%."..JXname[5].."%]|h")
-				end
-			elseif Locale == "zhTW" then
-				text=text:gsub("(|Hplayer:.-|h)說", "%[說%]%1")
-				text=text:gsub("(|Hplayer:.-|h)喊道", "%[喊%]%1")
-				text=text:gsub("|h%[隊長%]|h", "|h%["..JXname[1].."%]|h")--队长
-				text=text:gsub("|h%[小隊%]|h", "|h%["..JJM[3].."%]|h")--小队
-				--xuhao
-				text=text:gsub("|h%[(%d+)%. "..TRADE.." %- 城鎮%]|h", "|h%[%1%."..JJM[9].."%]|h")
-				if PIG_MaxTocversion(100000,true) then
-					text=text:gsub("|h%[(%d+)%. "..TRADE.." %(服務%) %- 城鎮%]|h", "|h%[%1%."..JXname[4].."%]|h")
-					text=text:gsub("|h%[(%d+)%. 新手聊天%]|h", "|h%[%1%."..JXname[5].."%]|h")
-				end
-			end
-		end
-		return text
+	    if not chatONOFF.jingjian then return text end
+	    if Locale ~= "zhCN" and Locale ~= "zhTW" then return text end
+	    local P, R = PATTERNS, REPLACEMENTS
+	    text = text:gsub(P.SPACE_PLAYER, "%1")
+	    text = text:gsub(P.TEAM, R.TEAM)
+	    text = text:gsub(P.GUILD, R.GUILD)
+	    text = text:gsub(P.RAID, R.RAID)
+	    text = text:gsub(P.RAID_WARN, R.RAID_WARN)
+	    text = text:gsub(P.BG, R.BG)
+	    text = text:gsub(P.INSTANCE, R.INSTANCE)
+	    text = text:gsub(P.RAID_LEADER, R.RAID_LEADER)
+	    text = text:gsub(P.INST_LEADER, R.INST_LEADER)
+	    text = text:gsub(P.GENERAL, R.GENERAL)
+	    text = text:gsub(P.LFG, R.LFG)
+	    text = text:gsub(P.WORLD_CAT, R.WORLD_CAT)
+	    text = text:gsub(P.PIG_CHAN, R.PIG_CHAN)
+	    if Locale == "zhCN" then
+	        text = text:gsub(P.CN_XIAODUI, R.CN_XIAODUI)
+	        text = text:gsub(P.CN_DUIZHANG, R.CN_DUIZHANG)
+	        text = text:gsub(P.CN_SAY, R.CN_SAY)
+	        text = text:gsub(P.CN_YELL, R.CN_YELL)
+	        text = text:gsub(P.CN_DAJIAO, R.CN_DAJIAO)
+	        text = text:gsub(P.CN_TRADE_CITY, R.CN_TRADE)
+	        if IS_TOC_100000_PLUS then
+	            text = text:gsub(P.CN_TRADE_SRV, R.CN_TRADE_SRV)
+	            text = text:gsub(P.CN_NEWBIE, R.CN_NEWBIE)
+	        end
+	    elseif Locale == "zhTW" then
+	        text = text:gsub(P.TW_SAY, R.TW_SAY)
+	        text = text:gsub(P.TW_YELL, R.TW_YELL)
+	        text = text:gsub(P.TW_DUIZHANG, R.TW_DUIZHANG)
+	        text = text:gsub(P.TW_XIAODUI, R.TW_XIAODUI)
+	        text = text:gsub(P.TW_TRADE_TOWN, R.TW_TRADE)
+	        if IS_TOC_100000_PLUS then
+	            text = text:gsub(P.TW_TRADE_SRV, R.TW_TRADE_SRV)
+	            text = text:gsub(P.TW_NEWBIE, R.TW_NEWBIE)
+	        end
+	    end
+	    return text
 	end
-	local GetColorKey=Fun.PIGGetColorKey
-	local function escape_dash(s)
-	    return s:gsub("-", "%%-")
-	end
-	local left,right,top,bottom=0.08*500+5,0.92*500-5,0*500+5,0.95*500-5
-	local Copyicon ="|Tinterface/buttons/ui-guildbutton-publicnote-up.blp:0:0:0:0:500:500:"..left..":"..right..":"..top..":"..bottom.."|t"
-	local function MsgFastCopyShowZb(GUID,newText,tiqu)
-		if not tiqu and chatONOFF.FastCopy then
-			newText=newText:gsub("(|Hplayer:(.-)|h%[.-%]|h)", "|Hgarrmission:-999:%2|h"..Copyicon.."|h%1")
-		end
-		if chatONOFF.ShowZb then
-			local _, _, _, englishRace, sex = GetPlayerInfoByGUID(GUID)
-			local raceX = GetRaceClassTXT(0,500,englishRace,sex)
-			if raceX~="" then
-				newText=newText:gsub("(|Hplayer:(.-)|h%[.-%]|h)", "|Hgarrmission:-998:%2|h"..raceX.."|h%1")
-			end
-		end
-		return newText
-	end
-	QuickChatfun.MsgFastCopyShowZb=MsgFastCopyShowZb
-	local function PIGFormatMsg(text)
-		local newText=SimplifyName(text)
-		if chatONOFF.FastCopy or chatONOFF.ShowZb or chatONOFF.GuildLevel then
-			local namexShowZb
-			if GetCVar("chatClassColorOverride")=="0" then
-				namexShowZb = newText:match("%[|cff%w%w%w%w%w%w(.-)|r%]")
-			else
-				namexShowZb = newText:match("%[.-%].-%[(.-)%]")
-			end
-			if namexShowZb then
-				if PlayerGUIDs[namexShowZb] then
-					newText=MsgFastCopyShowZb(PlayerGUIDs[namexShowZb],newText)
-				end
-				-- if chatONOFF.GuildLevel and newText:match("|Hchannel:GUILD|h") then
-				-- 	PIG_ChatFrameKeyWord:AddMessage(newText);
-				-- 	if MsgPlayerLevel[namexShowZb] then
-				-- 		newText=newText:gsub("(%[|cff%w%w%w%w%w%w)(.-)(|r%])", "%1%2:|cffffffff"..MsgPlayerLevel[namexShowZb].."|r%3")
-				-- 	else
-				-- 		local namexxx, serveranme = strsplit("-", namexShowZb)
-				-- 		if serveranme and MsgPlayerLevel[namexxx] then
-				-- 			newText=newText:gsub("(%[|cff%w%w%w%w%w%w)(.-)(|r%])", "%1%2:|cffffffff"..MsgPlayerLevel[namexxx].."|r%3")
-				-- 		end
-				-- 	end
-				-- end
-			end
-		end
-		if chatONOFF.ShowLinkIcon or chatONOFF.ShowLinkLV or chatONOFF.ShowLinkSlots then
-			if textAllIDs[text] then
-				local tihuanidlist = {}
-				for word,level in pairs(textAllIDs[text]) do
-					tihuanidlist[word] = {}
-					if chatONOFF.ShowLinkIcon then
-						tihuanidlist[word]["icon"]=GetItemIcon(word)
-					end
-					if chatONOFF.ShowLinkLV then
-						tihuanidlist[word]["LV"]=level or 1
-					end
-					if chatONOFF.ShowLinkSlots then
-						local itemID, itemType, itemSubType, itemEquipLoc = PIGGetItemInfoInstant(word)
-						if _G[itemEquipLoc] then
-							tihuanidlist[word]["Slots"]=itemSubType.."-".._G[itemEquipLoc]
-						end
-					end
-					if chatONOFF.ShowLinkGem then
-					    tihuanidlist[word]["Gem"]=GetGemList(word)
-					end
-				end
-				for word,data in pairs(tihuanidlist) do
-					if chatONOFF.ShowLinkIcon then
-						newText=newText:gsub("(|"..GetColorKey().."|"..word.."|h)","|T"..data.icon..":0|t%1");
-					end
-					if chatONOFF.ShowLinkLV or chatONOFF.ShowLinkSlots then
-						local newtxtmsg = ""
-						if chatONOFF.ShowLinkLV then			
-							newtxtmsg=newtxtmsg..data.LV
-						end
-						if chatONOFF.ShowLinkSlots and data.Slots then
-							newtxtmsg=newtxtmsg..data.Slots
-						end
-						if newText:match("Player") then
-							newText=newText:gsub("(|"..GetColorKey().."|"..escape_dash(word).."|h%[)(.-%]|h|r)","%1("..newtxtmsg..")%2");
-						else
-							newText=newText:gsub("(|"..GetColorKey().."|"..word.."|h%[)(.-%]|h|r)","%1("..newtxtmsg..")%2");
-						end
-						if chatONOFF.ShowLinkGem and #data.Gem>0 then
-							local GemTxt = ""
-							for ixx=1,#data.Gem do
-								GemTxt=GemTxt.."|T".._Get_GEM_EMPTY_SOCKET(data.Gem[ixx])..":0|t"
-							end
-							newText=newText:gsub("(|"..GetColorKey().."|"..word.."|h%[.-%]|h|r)","%1"..GemTxt);
-						end
-					end
-				end
-			end
-		end
-		return newText
-	end
-
-	hooksecurefunc("SetItemRef", function(text,link, button, chatFrame)
-		if not chatONOFF.ShowZb and not chatONOFF.FastCopy then return end
-		if ( strsub(text, 1, 11) ~= "garrmission" ) then return end
-		local _, linktpye, playerName, lineID, chatType,ChannelID = strsplit(":", text)
-		if PIG_MaxTocversion() then
-			local name,server = strsplit("-",playerName, 2)
-			if PlayerInfo.Realm==server then
-				playerName = name
-			end
-		end
-		--print(_, linktpye, playerName, lineID, chatType,ChannelID)
-		if linktpye=="-999" then
-			local editBoxXX = ChatEdit_ChooseBoxForSend()
-	        local hasText = (editBoxXX:GetText() ~= "")
-	        ChatEdit_ActivateChat(editBoxXX)
-			if button=="LeftButton" then
-				editBoxXX:Insert(playerName)
-				if (not hasText) then editBoxXX:HighlightText() end
-			else
-				local lineID=tonumber(lineID)
-				local leibie=chatType=="CHANNEL" and "CHANNEL"..ChannelID or chatType
-				if PlayerMsgList[leibie] and PlayerMsgList[leibie][lineID] then
-					editBoxXX:Insert(PlayerMsgList[leibie][lineID])
-					if (not hasText) then editBoxXX:HighlightText() end
-				end
-			end
-		elseif linktpye=="-998" then
-			if button=="LeftButton" then
-				FasongYCqingqiu(playerName)
-			else
-				C_FriendList.SendWho('n-"'..playerName..'"')
-			end
-		elseif linktpye=="-997" then
-			QuickChatfun.TabButUI.Keyword.ClickShowTab("AddIgnore",playerName)
-		end
-	end)
-	----
-	local function GetMsgItemLists(text,msninfo,frame,extd)
-		textMsgFrame[text]={msninfo,frame,extd}
-		textAllIDs[text]={}
-		for word in text:gmatch("|(Hitem:.-)|h") do
-			textAllIDs[text][word]=0
-			_GetTooltipLevel("link",{word},function(ItemLevel)
-				if ItemLevel<2 then
-					textAllIDs[text][word]=""
-				else
-    				textAllIDs[text][word]=ItemLevel
-    			end
-    		end)
-		end
-	end
-	local function SetMsgItemLists(text)
-    	for word,level in pairs(textAllIDs[text]) do
-    		if level==0 then
-    			return
-    		end
-    	end
-    	textMsgFrame[text][1](textMsgFrame[text][2],PIGFormatMsg(text),unpack(textMsgFrame[text][3]))
-    	textAllIDs[text] = nil
-	    textMsgFrame[text] = nil
-	end
-	local function UpdateGuildMemberLevels()
-		local clubId = C_Club.GetGuildClubId()
-		if not clubId then return end
-		local streams = C_Club.GetStreams(clubId)
-		local guildStream = streams and streams[1] and streams[1].streamId
-		if not guildStream then return end
-		local members = C_Club.GetClubMembers(clubId, guildStream)
-		if not members then return end
-		for _,memberID in pairs(members) do
-			local info = C_Club.GetMemberInfo(clubId,memberID)
-			if info.presence ~= Enum.ClubMemberPresence.Offline and info.name and info.name~="" then
-				--print(info.name,info.level)
-				MsgPlayerLevel[info.name]=info.level or "?"
-			end
-		end
-	end
-	--Get_itemF:RegisterEvent("CHAT_MSG_BN_WHISPER")
-	Get_itemF:RegisterEvent("CHAT_MSG_WHISPER")
-	Get_itemF:RegisterEvent("CHAT_MSG_WHISPER_INFORM")
-	Get_itemF:RegisterEvent("CHAT_MSG_CHANNEL");
-	Get_itemF:RegisterEvent("CHAT_MSG_SAY")
-	Get_itemF:RegisterEvent("CHAT_MSG_YELL")
-	Get_itemF:RegisterEvent("CHAT_MSG_RAID")
-	Get_itemF:RegisterEvent("CHAT_MSG_RAID_LEADER")
-	Get_itemF:RegisterEvent("CHAT_MSG_RAID_WARNING")
-	Get_itemF:RegisterEvent("CHAT_MSG_PARTY")
-	Get_itemF:RegisterEvent("CHAT_MSG_PARTY_LEADER")
-	Get_itemF:RegisterEvent("CHAT_MSG_GUILD")
-	Get_itemF:RegisterEvent("CHAT_MSG_OFFICER")
-	Get_itemF:RegisterEvent("GET_ITEM_INFO_RECEIVED")
-	C_Timer.After(5,function()
-		Get_itemF:RegisterEvent("GUILD_ROSTER_UPDATE")
-		Get_itemF:RegisterEvent("CLUB_MEMBERS_UPDATED")
-		PIG_GuildRoster()
-	end)
-	local MAX_MSG_COUNT = 100
-	local msgKeys={}
+	----------
+	local ClassColor = Data.ClassColor
+ 	local colorKey = Fun.PIGGetColorKey()
+ 	local left, right, top, bottom = 0.08 * 500 + 5, 0.92 * 500 - 5, 0 * 500 + 5, 0.95 * 500 - 5
+	local Copyicon = "|Tinterface/buttons/ui-guildbutton-publicnote-up.blp:0:0:0:0:500:500:"
+	    .. left .. ":" .. right .. ":" .. top .. ":" .. bottom .. "|t"
 	local Chat_List={
 		["CHAT_MSG_WHISPER"]="WHISPER",
 		["CHAT_MSG_WHISPER_INFORM"]="WHISPER",
@@ -383,68 +256,257 @@ function QuickChatfun.PIGMessage()
 		["CHAT_MSG_GUILD"]="GUILD",
 		["CHAT_MSG_OFFICER"]="OFFICER",
 	}
-	--local shangyiciindex
-	Get_itemF:SetScript("OnEvent", function(self, event, ...)
-		if event=="GUILD_ROSTER_UPDATE" or event=="CLUB_MEMBERS_UPDATED" then
-			if self.GuildMemberLevelsTicker then self.GuildMemberLevelsTicker:Cancel() end
-			self.GuildMemberLevelsTicker=C_Timer.NewTimer(1,UpdateGuildMemberLevels)
-		elseif event=="GET_ITEM_INFO_RECEIVED" then
-		    for text,list in pairs(textAllIDs) do
-		   		SetMsgItemLists(text)
-		    end
-		else
-			local arg1,_,_,_,arg5,_,_,arg8,arg9,_,arg11=...
-			if arg5 and arg11 and arg9 then
-				-- local chazhiVV=shangyiciindex and arg11-shangyiciindex or 0
-				-- if chazhiVV>1 then
-				-- 	for ixxxx=1,chazhiVV-1 do
-				-- 		PlayerMsgList[shangyiciindex+ixxxx]=""
-				-- 		PlayerMsgList[shangyiciindex+ixxxx - MAX_MSG_COUNT] = nil
-				-- 	end
-				-- end
-				-- if arg11 > MAX_MSG_COUNT then
-				--     PlayerMsgList[arg11 - MAX_MSG_COUNT] = nil
-				-- end
-				-- shangyiciindex=arg11
-				-- PlayerMsgList[arg11]=arg1
-				----
-				local layuan = event=="CHAT_MSG_CHANNEL" and Chat_List[event]..arg8 or Chat_List[event]
-				PlayerMsgList[layuan]=PlayerMsgList[layuan] or {}
-				msgKeys[layuan]=msgKeys[layuan] or {}
-				PlayerMsgList[layuan][arg11] = arg1
-				table.insert(msgKeys[layuan], arg11)
-				if #msgKeys[layuan] > MAX_MSG_COUNT then
-	                local oldestKey = table.remove(msgKeys[layuan], 1)
-	                PlayerMsgList[layuan][oldestKey] = nil
-	            end
-			end
-		end
-	end)
-	---
-	local function FormatChatMsg()
-		for i = 1, NUM_CHAT_WINDOWS do
-			if ( i ~= 2 and i~=3 ) then
-				local chatFrame = _G["ChatFrame"..i]
-				local msninfo = chatFrame.AddMessage
-				chatFrame.AddMessage = function(frame, text, ...)
-					if PIGisSecret(text) then return msninfo(frame, text, ...) end			
-					-- if i==1 then
-					-- 	--table.insert(PIGA["xxxxxx"],text) end
-					-- 	--local text=text:gsub("|cff%w%w%w%w%w%w|Hmount:.-|h%[","");
-					-- 	-- local newTextxx = text:gsub("|", "||")
-						-- PIG_ChatFrameKeyWord:AddMessage(i..lineID);
-					-- end
-					if text and text~="" and text:match("player") then
-						if text:match("Hitem:") and chatONOFF.ShowLinkLV then
-							GetMsgItemLists(text,msninfo,frame,{...})
-							return SetMsgItemLists(text)
-						end
-						return msninfo(frame, PIGFormatMsg(text), ...)
-					end
-					return msninfo(frame, text, ...)
-				end
-			end
-		end
+	local function escape_dash(s)
+	    return s:gsub("-", "%%-")
 	end
-	FormatChatMsg()
+	local function pigGetGemList(linkx)
+	    local statsg = GetItemStats(linkx)
+	    if not statsg then return nil end
+	    local baoshiinfo
+	    for key, num in pairs(statsg) do
+	        if key:match("EMPTY_SOCKET_") then
+	            if not baoshiinfo then baoshiinfo = {} end
+	            for i = 1, num do
+	                baoshiinfo[#baoshiinfo + 1] = key
+	            end
+	        end
+	    end
+	    return baoshiinfo
+	end
+	local function MsgFastCopyShowZb(GUID, newText, tiqu)
+	    if not tiqu and chatONOFF.FastCopy then
+	        newText = newText:gsub("(|Hplayer:(.-)|h%[.-%]|h)", "|Hgarrmission:-999:%2|h" .. Copyicon .. "|h%1")
+	    end
+	    if chatONOFF.ShowZb then
+	        local _, _, _, englishRace, sex = GetPlayerInfoByGUID(GUID)
+	        local raceX = GetRaceClassTXT(0, 500, englishRace, sex)
+	        if raceX ~= "" then
+	            newText = newText:gsub("(|Hplayer:(.-)|h%[.-%]|h)", "|Hgarrmission:-998:%2|h" .. raceX .. "|h%1")
+	        end
+	    end
+	    return newText
+	end
+	QuickChatfun.MsgFastCopyShowZb = MsgFastCopyShowZb
+
+	local function PIGFormatMsg(text)
+	    local newText = SimplifyName(text)
+	    if chatONOFF.FastCopy or chatONOFF.ShowZb or chatONOFF.GuildLevel then
+	        local namexShowZb
+	        if GetCVar("chatClassColorOverride") == "0" then
+	            namexShowZb = newText:match("%[|cff%w%w%w%w%w%w(.-)|r%]")
+	        else
+	            namexShowZb = newText:match("%[.-%].-%[(.-)%]")
+	        end
+	        if namexShowZb then
+	            local entry = PlayerGUIDs[namexShowZb]
+	            if entry and entry.GUID then
+	                newText = MsgFastCopyShowZb(entry.GUID, newText)
+	            end
+	        end
+	    end
+	    if chatONOFF.ShowLinkIcon or chatONOFF.ShowLinkLV or chatONOFF.ShowLinkSlots or chatONOFF.ShowLinkGem then
+	        local idList = textAllIDs[text]
+	        if idList then
+	            local isPlayerLink = newText:match("|Hplayer:") ~= nil
+	            for word, level in pairs(idList) do
+	                local icon = chatONOFF.ShowLinkIcon and GetItemIcon(word)
+	                local lv = chatONOFF.ShowLinkLV and (level or 1)
+	                local slots
+	                if chatONOFF.ShowLinkSlots then
+	                    local _, _, itemSubType, itemEquipLoc = PIGGetItemInfoInstant(word)
+	                    slots = itemSubType
+	                    if _G[itemEquipLoc] and _G[itemEquipLoc]~="" then
+	                        slots = slots .. "-" .. _G[itemEquipLoc]
+	                    end
+	                end
+	                if icon then
+	                    newText = newText:gsub(
+	                        "(|" .. colorKey .. "|" .. word .. "|h)",
+	                        "|T" .. icon .. ":0|t%1"
+	                    )
+	                end
+	                if lv or slots then
+	                    local parts = {}
+	                    if lv then parts[#parts + 1] = lv end
+	                    if slots then parts[#parts + 1] = slots end
+	                    local newtxtmsg = table.concat(parts)
+
+	                    local escapedWord = isPlayerLink and escape_dash(word) or word
+	                    local pattern = "(|" .. colorKey .. "|" .. escapedWord .. "|h%[)(.-%]|h|r)"
+	                    newText = newText:gsub(pattern, "%1(" .. newtxtmsg .. ")%2")
+	                end
+	                if chatONOFF.ShowLinkGem then
+	                    local gems = pigGetGemList(word)
+	                    if gems then
+	                        local gemParts = {}
+	                        for i = 1, #gems do
+	                            gemParts[i] = "|T" .. _Get_GEM_EMPTY_SOCKET(gems[i]) .. ":0|t"
+	                        end
+	                        newText = newText:gsub(
+	                            "(|" .. colorKey .. "|" .. word .. "|h%[.-%]|h|r)",
+	                            "%1" .. table.concat(gemParts)
+	                        )
+	                    end
+	                end
+	            end
+	        end
+	    end
+	    return newText
+	end
+
+	---------
+    local function OutputItemMessage(text, msninfo, frame, ...)
+	    if pendingMsgCount >= MAX_PENDING_MSGS then
+	        msninfo(frame, PIGFormatMsg(text), ...)
+	        return
+	    end
+	    pendingMsgCount = pendingMsgCount + 1
+	    textAllIDs[text] = {}
+	    local itemWords = 0
+	    for word in text:gmatch("|(Hitem:.-)|h") do
+	        itemWords = 1
+	        textAllIDs[text][word] = ""
+	    end
+	    if itemWords == 0 then
+	        textAllIDs[text] = nil
+	        pendingMsgCount = math.max(0, pendingMsgCount - 1)
+	        msninfo(frame, PIGFormatMsg(text), ...)
+	        return
+	    end
+
+	    local vararg = { ... }
+	    local processed = false
+	    local function TryResolve(count)
+	        if not textAllIDs[text] then return end
+	        local allReady = true
+	        for word, level in pairs(textAllIDs[text]) do
+	            if level == "" then
+	                local ItemLevel = PIGGetItemLevel(word)
+	                if ItemLevel then
+	                    textAllIDs[text][word] = (ItemLevel >= 1) and ItemLevel or ""
+	                else
+	                    allReady = false
+	                end
+	            end
+	        end
+	        if allReady or count > 10 then
+	            msninfo(frame, PIGFormatMsg(text), unpack(vararg))
+	            textAllIDs[text] = nil
+	            pendingMsgCount = math.max(0, pendingMsgCount - 1)
+	        else
+	            local delay = (count <= 3) and 0.1 or 0.3
+	            C_Timer.After(delay, function()
+	                TryResolve(count + 1)
+	            end)
+	        end
+	    end
+	    TryResolve(0)
+	end
+    -- ===========
+    local function FormatChatMsg()
+        for i = 1, NUM_CHAT_WINDOWS do
+            if i ~= 2 and i ~= 3 then
+                local chatFrame = _G["ChatFrame" .. i]
+                local msninfo = chatFrame.AddMessage
+                chatFrame.AddMessage = function(frame, text, ...)
+                    if PIGisSecret(text) then
+                        return msninfo(frame, text, ...)
+                    end
+                    if text and text ~= "" and text:match("|Hplayer:") then
+                        if chatONOFF.ShowLinkLV and text:match("|Hitem:") then
+                            return OutputItemMessage(text, msninfo, frame, ...)
+                        end
+                        return msninfo(frame, PIGFormatMsg(text), ...)
+                    end
+                    return msninfo(frame, text, ...)
+                end
+            end
+        end
+    end
+    FormatChatMsg()
+
+    Get_itemF:RegisterEvent("CHAT_MSG_WHISPER")
+    Get_itemF:RegisterEvent("CHAT_MSG_WHISPER_INFORM")
+    Get_itemF:RegisterEvent("CHAT_MSG_CHANNEL")
+    Get_itemF:RegisterEvent("CHAT_MSG_SAY")
+    Get_itemF:RegisterEvent("CHAT_MSG_YELL")
+    Get_itemF:RegisterEvent("CHAT_MSG_RAID")
+    Get_itemF:RegisterEvent("CHAT_MSG_RAID_LEADER")
+    Get_itemF:RegisterEvent("CHAT_MSG_RAID_WARNING")
+    Get_itemF:RegisterEvent("CHAT_MSG_PARTY")
+    Get_itemF:RegisterEvent("CHAT_MSG_PARTY_LEADER")
+    Get_itemF:RegisterEvent("CHAT_MSG_GUILD")
+    Get_itemF:RegisterEvent("CHAT_MSG_OFFICER")
+    C_Timer.After(5, function()
+        Get_itemF:RegisterEvent("GUILD_ROSTER_UPDATE")
+        Get_itemF:RegisterEvent("CLUB_MEMBERS_UPDATED")
+        PIG_GuildRoster()
+    end)
+    Get_itemF:SetScript("OnEvent", function(self, event, ...)
+        if event == "GUILD_ROSTER_UPDATE" or event == "CLUB_MEMBERS_UPDATED" then
+            -- if self.GuildMemberLevelsTicker then self.GuildMemberLevelsTicker:Cancel() end
+            -- self.GuildMemberLevelsTicker = C_Timer.NewTimer(1, UpdateGuildMemberLevels)
+		elseif event=="GET_ITEM_INFO_RECEIVED" then
+		    -- local itemId = ...
+		else
+            local arg1, _, _, _, arg5, _, _, arg8, arg9, _, arg11 = ...
+            if arg5 and arg11 and arg9 then
+                local layuan = event == "CHAT_MSG_CHANNEL" and (Chat_List[event] .. arg8) or Chat_List[event]
+                if not PlayerMsgList[layuan] then
+                    PlayerMsgList[layuan] = {}
+                    msgKeys[layuan] = {}
+                    msgHead[layuan] = 0
+                end
+                local keys = msgKeys[layuan]
+                local head = msgHead[layuan]
+                local idx = (head % MAX_MSG_COUNT) + 1
+                local oldKey = keys[idx]
+                if oldKey then
+                    PlayerMsgList[layuan][oldKey] = nil
+                end
+                keys[idx] = arg11
+                PlayerMsgList[layuan][arg11] = arg1
+                msgHead[layuan] = head + 1
+            end
+        end
+    end)
+
+	local linkokck =PIG_MaxTocversion()
+    hooksecurefunc("SetItemRef", function(text, link, button, chatFrame)
+        if not chatONOFF.ShowZb and not chatONOFF.FastCopy then return end
+        if strsub(text, 1, 11) ~= "garrmission" then return end
+        local _, linktype, playerName, lineID, chatType, ChannelID = strsplit(":", text)
+        if linkokck then
+            local name, server = strsplit("-", playerName, 2)
+            if PlayerInfo.Realm == server then
+                playerName = name
+            end
+        end
+        if linktype == "-999" then
+            local editBoxXX = ChatEdit_ChooseBoxForSend()
+            local hasText = (editBoxXX:GetText() ~= "")
+            ChatEdit_ActivateChat(editBoxXX)
+            if button == "LeftButton" then
+                editBoxXX:Insert(playerName)
+                if not hasText then editBoxXX:HighlightText() end
+            else
+                local lid = tonumber(lineID)
+                local leibie = chatType == "CHANNEL"
+                    and ("CHANNEL" .. ChannelID)
+                    or chatType
+                if PlayerMsgList[leibie] and PlayerMsgList[leibie][lid] then
+                    editBoxXX:Insert(PlayerMsgList[leibie][lid])
+                    if not hasText then editBoxXX:HighlightText() end
+                end
+            end
+        elseif linktype == "-998" then
+            if button == "LeftButton" then
+                FasongYCqingqiu(playerName)
+            else
+                C_FriendList.SendWho('n-"' .. playerName .. '"')
+            end
+        elseif linktype == "-997" then
+            QuickChatfun.TabButUI.Keyword.ClickShowTab("AddIgnore", playerName)
+        end
+    end)
 end

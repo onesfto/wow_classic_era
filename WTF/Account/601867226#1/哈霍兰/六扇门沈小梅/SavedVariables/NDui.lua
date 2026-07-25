@@ -128,10 +128,10 @@ NDuiDB = {
 ["BrokenAlert"] = false,
 ["IgnoreQuestNPC"] = {
 },
-["ItemLevel"] = false,
+["ExpRep"] = false,
 ["InfoStrLeft"] = "[guild][friend][ping][fps][zone]",
 ["StatOrder"] = "12345",
-["ExpRep"] = false,
+["StatExpand"] = false,
 ["MenuButton"] = false,
 ["Focuser"] = false,
 ["PetHappiness"] = false,
@@ -139,7 +139,7 @@ NDuiDB = {
 ["TradeTabs"] = false,
 ["AutoQuest"] = false,
 ["OwnInterrupt"] = false,
-["StatExpand"] = false,
+["ItemLevel"] = false,
 ["InfoStrRight"] = "[spec][dura][gold][time]",
 ["EasyMarkKey"] = 1,
 ["InstAlertOnly"] = false,
@@ -211,6 +211,13 @@ NDuiDB = {
 },
 },
 ["Mover"] = {
+["MageBar"] = {
+"BOTTOMRIGHT",
+"UIParent",
+"BOTTOMRIGHT",
+-491,
+0,
+},
 },
 ["TempAnchor"] = {
 },

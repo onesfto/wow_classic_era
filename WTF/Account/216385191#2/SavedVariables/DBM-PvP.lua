@@ -236,7 +236,11 @@ DBMPvP_AllSavedVars = {
 [2] = {
 ["Enabled"] = true,
 },
+[3] = {
+["Enabled"] = true,
 },
+},
+["talent3"] = "MAGE3",
 ["PvPGeneral"] = {
 [2] = {
 ["TimerFlagCVoice"] = 0,
@@ -257,15 +261,44 @@ DBMPvP_AllSavedVars = {
 ["AutoSpirit"] = false,
 ["TimerStart"] = true,
 },
+[3] = {
+["TimerFlagCVoice"] = 0,
+["TimerStartTColor"] = 0,
+["ShowBasesToWin"] = true,
+["TimerFlagTColor"] = 0,
+["HideBossEmoteFrame"] = false,
+["TimerWinCVoice"] = 0,
+["TimerWinTColor"] = 0,
+["TimerCapCVoice"] = 0,
+["TimerFlag"] = true,
+["TimerStartCVoice"] = 0,
+["Enabled"] = true,
+["TimerCap"] = true,
+["TimerWin"] = true,
+["TimerCapTColor"] = 0,
+["ShowRelativeGameTime"] = true,
+["AutoSpirit"] = false,
+["TimerStart"] = true,
+},
 },
 ["talent2"] = "MAGE2",
 ["z529"] = {
 [2] = {
 ["Enabled"] = true,
 },
+[3] = {
+["Enabled"] = true,
+},
 },
 ["z30"] = {
 [2] = {
+["Enabled"] = true,
+["TimerBossTColor"] = 0,
+["TimerBoss"] = true,
+["AutoTurnIn"] = true,
+["TimerBossCVoice"] = 0,
+},
+[3] = {
 ["Enabled"] = true,
 ["TimerBossTColor"] = 0,
 ["TimerBoss"] = true,

@@ -441,40 +441,40 @@ local function ALA_FormatData_TF(nameX,leixing,msgx)
 	end
 end
 function ALA.ALA_tiquMsg(msgx,nameX)
-	if _G[Data.LongInspectUIUIname]:IsShown() and _G[Data.LongInspectUIUIname].fullnameX==nameX then
+	if Data.LongInspectUI and Data.LongInspectUI:IsShown() and Data.LongInspectUI.fullnameX==nameX then
 		local _xintou = msgx:sub(1, 1)
 		if _xintou == "_" then
 			local qianzhui = msgx:sub(1, 6)	
 			if qianzhui == '_r_tal' or qianzhui == '_reply' or qianzhui == '_r_equ' or qianzhui == '_repeq' or qianzhui == '_r_eq3' then
 				PD.talentData[nameX]=PD.talentData[nameX] or {["T"]="",["G"]=""}
-				if _G[Data.LongInspectUIUIname]:IsShown() and _G[Data.LongInspectUIUIname].fullnameX==nameX then	
+				if Data.LongInspectUI:IsShown() and Data.LongInspectUI.fullnameX==nameX then	
 					if qianzhui == '_r_tal' then
-						_G[Data.LongInspectUIUIname].fanhuiYN=true
+						Data.LongInspectUI.fanhuiYN=true
 						ALA_FormatData_60(nameX,msgx)
 					elseif qianzhui == '_r_eq3' then
-						_G[Data.LongInspectUIUIname].fanhuiYN=true
-						_G[Data.LongInspectUIUIname].allmsg=_G[Data.LongInspectUIUIname].allmsg..msgx:sub(7, -1)
-						if _G[Data.LongInspectUIUIname].ycJieshou then _G[Data.LongInspectUIUIname].ycJieshou:Cancel() end
-						_G[Data.LongInspectUIUIname].ycJieshou=C_Timer.NewTimer(0.2,function()
-							ALA_FormatData_60_Item(nameX,_G[Data.LongInspectUIUIname].allmsg)
+						Data.LongInspectUI.fanhuiYN=true
+						Data.LongInspectUI.allmsg=Data.LongInspectUI.allmsg..msgx:sub(7, -1)
+						if Data.LongInspectUI.ycJieshou then Data.LongInspectUI.ycJieshou:Cancel() end
+						Data.LongInspectUI.ycJieshou=C_Timer.NewTimer(0.2,function()
+							ALA_FormatData_60_Item(nameX,Data.LongInspectUI.allmsg)
 						end)
 					end
 				end
 			end
 		elseif _xintou == "!" then
-			_G[Data.LongInspectUIUIname].fanhuiYN=true
+			Data.LongInspectUI.fanhuiYN=true
 			PD.talentData[nameX]=PD.talentData[nameX] or {["T"]="",["G"]=""}
 			local qianzhui = msgx:sub(1, 2)
 			if qianzhui == "!P" then
 				local allnum = msgx:sub(5, 5)
 				local danqian = msgx:sub(7, 7)
 				if danqian=="1" then
-					_G[Data.LongInspectUIUIname].allmsg=msgx:sub(9, -1)
+					Data.LongInspectUI.allmsg=msgx:sub(9, -1)
 				else
-					_G[Data.LongInspectUIUIname].allmsg=_G[Data.LongInspectUIUIname].allmsg..msgx:sub(9, -1)
+					Data.LongInspectUI.allmsg=Data.LongInspectUI.allmsg..msgx:sub(9, -1)
 				end
 				if allnum==danqian then
-					ALA_FormatData(nameX,_G[Data.LongInspectUIUIname].allmsg)
+					ALA_FormatData(nameX,Data.LongInspectUI.allmsg)
 				end
 			elseif qianzhui == "!T" then
 				ALA_FormatData(nameX,msgx)
@@ -487,10 +487,10 @@ function ALA.ALA_tiquMsg(msgx,nameX)
 			PD.talentData[nameX]=PD.talentData[nameX] or {["T"]="",["G"]=""}
 			local leixing = msgx:sub(2, 2)	
 			if leixing == "T" then
-				_G[Data.LongInspectUIUIname].fanhuiYN_TF=true
+				Data.LongInspectUI.fanhuiYN_TF=true
 			end
 			if leixing == "G" then
-				_G[Data.LongInspectUIUIname].fanhuiYN_GG=true
+				Data.LongInspectUI.fanhuiYN_GG=true
 			end
 			ALA_FormatData_TF(nameX,leixing,msgx)
 		end

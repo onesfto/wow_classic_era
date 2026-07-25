@@ -1,9 +1,9 @@
-## Interface: 11508
+## Interface: 11509
 
 ## Title: Leatrix Plus
 ## Notes: curseforge.com/wow/addons/leatrix-plus
 
-## Version: 1.15.143
+## Version: 1.15.146
 ## Author: Leatrix
 ## SavedVariables: LeaPlusDB
 ## LoadSavedVariablesFirst: true

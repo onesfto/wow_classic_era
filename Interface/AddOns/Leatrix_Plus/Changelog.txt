@@ -1,4 +1,13 @@
-﻿1.15.143 - 1st July 2026
+﻿1.15.146 - 22nd July 2026
+- Updated for game patch 1.15.9.
+- The 'Manage frames', 'Manage buffs' and 'Manage durability' options ('Frames') have been removed as they are now included with Edit Mode. 
+- The 'Show character addons' option ('System') has been removed as it's now included in the default UI.
+- You may need to restart your game client completely after installing this update.
+
+1.15.145 - 15th July 2026
+- For web link (keybindings) on a Mac, you can now use command and C to copy and close the web link window.
+
+1.15.143 - 1st July 2026
 - For 'Enhance minimap' ('Interface'), the 'Cluster scale' setting is now 'Cluster height'.  It's useful for moving the quest watch frame up or down if the minimap is blocking it.  The 'Not minimap' checkbox has been removed as it's no longer needed.  This also fixes an issue where the zone text bar would scale incorrectly with the cluster.
 
 1.15.142 - 24th June 2026

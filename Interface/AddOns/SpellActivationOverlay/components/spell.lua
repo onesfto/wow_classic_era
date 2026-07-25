@@ -10,7 +10,8 @@ IsSpellKnownOrOverridesKnown=function(spellID)
 return C_SpellBook.IsSpellInBook(spellID,false,true)
 end
 end
-SAO.SpellIDsByName={}
+local SpellIDsByName={}
+local ObservedSpellIDs={}
 function SAO:DoesSpellExist(spellID)
 if GetSpellInfoModern then
 local spellInfo=GetSpellInfoModern(spellID)
@@ -57,18 +58,23 @@ function SAO:GetSpellPowerCost(spellID)
 return GetSpellPowerCost(spellID)
 end
 function SAO.GetSpellIDsByName(self,name)
-local cached=self.SpellIDsByName[name]
+local cached=SpellIDsByName[name]
 if (cached)then
 return cached
 end
 self:RefreshSpellIDsByName(name)
-return self.SpellIDsByName[name]
+return SpellIDsByName[name]
 end
 function SAO.RefreshSpellIDsByName(self,name,awaken)
-local homonyms=self:GetHomonymSpellIDs(name)
-self.SpellIDsByName[name]=homonyms
+local spellsIDsByName=self:GetHomonymSpellIDs(name)
+for spellID,spellName in pairs(ObservedSpellIDs)do
+if not tContains(spellsIDsByName,spellID) and spellName==name then
+tinsert(spellsIDsByName,spellID)
+end
+end
+SpellIDsByName[name]=spellsIDsByName
 if (awaken)then
-for _,spellID in ipairs(homonyms)do
+for _,spellID in ipairs(spellsIDsByName)do
 if (not self.RegisteredGlowSpellIDs[spellID])then
 self.RegisteredGlowSpellIDs[spellID]=true
 self:AwakeButtonsBySpellID(spellID)
@@ -76,12 +82,12 @@ end
 end
 end
 end
-function SAO:LearnNewSpell(spellID)
+function SAO:LearnNewSpell(spellID,observed)
 local name=self:GetSpellName(spellID)
 if not name then
 return
 end
-local cached=self.SpellIDsByName[name]
+local cached=SpellIDsByName[name]
 if not cached then
 return
 end
@@ -90,7 +96,10 @@ if id==spellID then
 return
 end
 end
-table.insert(self.SpellIDsByName[name],spellID)
+if observed then
+ObservedSpellIDs[spellID]=name
+end
+table.insert(SpellIDsByName[name],spellID)
 if (self.RegisteredGlowSpellNames[name])then
 self.RegisteredGlowSpellIDs[spellID]=true
 self:AwakeButtonsBySpellID(spellID)
@@ -110,8 +119,8 @@ return true
 end
 if canHaveMultipleRanks then
 local spellName=self:GetSpellName(spellID)
-for _,spellID in ipairs(self.SpellIDsByName[spellName] or {})do
-if IsSpellKnownOrOverridesKnown(spellID)then
+for _,id in ipairs(SpellIDsByName[spellName] or {})do
+if IsSpellKnownOrOverridesKnown(id)then
 return true
 end
 end
@@ -126,7 +135,7 @@ end
 if (not self.Frame.useTimer)then
 return
 end
-local duration,expirationTime=self:GetPlayerAuraDurationExpirationTimBySpellIdOrName(spellID)
+local duration,expirationTime=self:GetPlayerAuraDurationExpirationTimeBySpellIdOrName(spellID)
 if type(duration)=='number' and type(expirationTime)=='number' then
 local startTime,endTime=expirationTime-duration,expirationTime
 return {startTime=startTime,endTime=endTime}

@@ -6,6 +6,8 @@ local L=addonTable.locale
 L["ERROR_ERROR1"] = "尝试调用保护功能";
 L["ERROR_ERROR2"] = "宏尝试调用保护功能";
 L["ERROR_DEBUGTOOLTIP"] = "发生错误时在小地图按钮显示一个红X\n并且不会收纳BugSack插件的小地图图标";
+L["ERROR_ISPIGTOOLTIP"] = "只显示"..addonName.."相关的错误";
+L["ERROR_NEXTERROR"] = "获取更高一级的错误详情，此功能需要消耗少量性能";
 --Shared
 L["LIB_QUERY"] = "查询";
 L["LIB_TIPS"] = "提示";

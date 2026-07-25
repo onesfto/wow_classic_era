@@ -2,7 +2,7 @@ if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
 local mod	= DBM:NewMod("MoltenCore", "DBM-Raids-Vanilla", 6)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
+mod:SetRevision("20260709012018")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(227939)
 mod:SetEncounterID(3018)
@@ -78,7 +78,7 @@ end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpell(460890) then
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		local amount = args.amount or 1
 		if self:IsTanking(uId, nil, nil, false, args.sourceGUID) and amount >= 5 and amount % 2 == 0 then
 			warnMeltArmor:Show(args.destName, amount)

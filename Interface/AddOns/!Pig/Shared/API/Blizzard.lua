@@ -241,6 +241,14 @@ function PIGGetSpellCooldown(SpellID)
 end
 
 --物品信息=========
+local GetItemInfo=C_Item and C_Item.GetItemInfo or GetItemInfo
+function PIGGetItemInfo(Item)
+	return GetItemInfo(Item)
+end
+local GetDetailedItemLevelInfo=C_Item and C_Item.GetDetailedItemLevelInfo or GetDetailedItemLevelInfo
+function PIGGetDetailedItemLevelInfo(Item)
+	return GetDetailedItemLevelInfo(Item)
+end
 local GetItemInfoInstant=C_Item and C_Item.GetItemInfoInstant or GetItemInfoInstant
 function PIGGetItemInfoInstant(Item)
 	return GetItemInfoInstant(Item)
@@ -249,7 +257,7 @@ local GetItemSpell=C_Item and C_Item.GetItemSpell or GetItemSpell
 function PIGGetItemSpell(Item)
 	return GetItemSpell(Item)
 end
---获取背包信息===============
+--背包物品信息===============
 local GetContainerNumFreeSlots=C_Container and C_Container.GetContainerNumFreeSlots or GetContainerNumFreeSlots
 function PIGGetContainerNumFreeSlots(bag)
 	return GetContainerNumFreeSlots(bag)
@@ -322,11 +330,7 @@ function PIGChatFrameAddChannel(ChatFrame,channel)--订购一个聊天框以显�
 	end
 end
 function PIGChatFrameRemoveChannel(ChatFrame,channel)
-	if PIG_MaxTocversion("old") then
-		ChatFrame_RemoveChannel(ChatFrame,channel);
-	else
-		ChatFrame:RemoveChannel(channel)
-	end
+	ChatFrame:RemoveChannel(channel)
 end
 function PIGSendChatRaidParty(txt,GroupLeader,extinfo)
 	local Newtxt="[!Pig] "..txt

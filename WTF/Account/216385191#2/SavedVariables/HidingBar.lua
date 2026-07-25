@@ -1,103 +1,106 @@
 
 HidingBarDB = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1785017705,
 ["profiles"] = {
 {
 ["isDefault"] = true,
 ["config"] = {
 ["mbtnSettings"] = {
 ["LibDBIcon10_RareScannerMinimapIcon"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784988872,
 },
 ["LibDBIcon10_BiSTracker"] = {
-["tstmp"] = 1782903366,
+["tstmp"] = 1784988872,
 },
 ["LibDBIcon10_MeetingHorn"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784732228,
 },
 ["LibDBIcon10_alaCalendar"] = {
-["tstmp"] = 1783440341,
-},
-["LibDBIcon10_Leatrix_Plus"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784732228,
 },
 ["LFGMinimapFrame"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784732228,
+},
+["LibDBIcon10_Plater"] = {
+["tstmp"] = 1785017705,
+},
+["PIG_MiniMapBut"] = {
+["tstmp"] = 1785017705,
 },
 ["LibDBIcon10_DBM"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784988872,
 },
 ["LibDBIcon10_CChatFilter"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784988872,
 },
-["LibDBIcon10_Questie"] = {
-["tstmp"] = 1783440341,
+["LibDBIcon10_alaTradeSkill"] = {
+["tstmp"] = 1784988872,
 },
 ["LibDBIcon10_BiaoGe"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784988872,
 },
 ["LibDBIcon10_BugSack"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1785017705,
 },
 ["LibDBIcon10_Myslot"] = {
-["tstmp"] = 1783440341,
-},
-["LibDBIcon10_WeakAuras"] = {
-["tstmp"] = 1783440341,
-},
-["LibDBIcon10_Details"] = {
-["tstmp"] = 1783440342,
+["tstmp"] = 1784988872,
 },
 ["LibDBIcon10_MailLogger"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784988872,
+},
+["LibDBIcon10_Details"] = {
+["tstmp"] = 1785017705,
 },
 ["LibDBIcon10_HandyNotes_NPCs"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784988872,
 },
-["LibDBIcon10_Atlas"] = {
-["tstmp"] = 1783440341,
-},
-["LibDBIcon10_AtlasLoot"] = {
-["tstmp"] = 1783440341,
-},
-["LibDBIcon10_Leatrix_Maps"] = {
-["tstmp"] = 1783440341,
-},
-["LibDBIcon10_MethodRaidTools"] = {
-["tstmp"] = 1783440341,
+["LibDBIcon10_NovaWorldBuffs"] = {
+["tstmp"] = 1784988872,
 },
 ["LibDBIcon10_PallyPower"] = {
 ["tstmp"] = 1783116661,
 },
 ["LibDBIcon10_TalentEmu"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784988872,
+},
+["LibDBIcon10_Leatrix_Maps"] = {
+["tstmp"] = 1784988612,
+},
+["LibDBIcon10_MethodRaidTools"] = {
+["tstmp"] = 1784988872,
+},
+["MiniMapWorldMapButton"] = {
+["tstmp"] = 1785017705,
 },
 ["LibDBIcon10_SinStats"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784988872,
 },
-["LibDBIcon10_NovaWorldBuffs"] = {
-["tstmp"] = 1783440341,
+["LibDBIcon10_AtlasLoot"] = {
+["tstmp"] = 1784732228,
+},
+["LibDBIcon10_Atlas"] = {
+["tstmp"] = 1784732228,
 },
 ["LibDBIcon10_DetailsStreamer"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784988872,
 },
-["LibDBIcon10_alaTradeSkill"] = {
-["tstmp"] = 1783440341,
+["LibDBIcon10_WeakAuras"] = {
+["tstmp"] = 1784988872,
 },
-["LibDBIcon10_Plater"] = {
-["tstmp"] = 1783440341,
+["LibDBIcon10_Questie"] = {
+["tstmp"] = 1784988872,
 },
-["PIG_MiniMapBut"] = {
-["tstmp"] = 1783440341,
+["LibDBIcon10_Leatrix_Plus"] = {
+["tstmp"] = 1785017705,
 },
 ["LibDBIcon10_Decursive"] = {
-["tstmp"] = 1783440341,
+["tstmp"] = 1784988872,
 },
 },
 ["btnSettings"] = {
 ["HidingBar"] = {
 true,
-["tstmp"] = 1783440341,
+["tstmp"] = 1785017705,
 },
 },
 ["grabMinimap"] = true,
@@ -164,32 +167,32 @@ true,
 ["gapSize"] = 0,
 ["interceptTooltip"] = true,
 ["buttonDirection"] = {
-["H"] = 1,
 ["V"] = 1,
+["H"] = 1,
 },
 ["borderOffset"] = 0,
 ["omb"] = {
 ["minimapPos"] = 204.5129655988926,
 ["canGrabbed"] = true,
-["hide"] = true,
+["distanceToBar"] = 5,
 ["size"] = 27,
-["fadeOpacity"] = 1,
 ["lock"] = true,
+["fadeOpacity"] = 1,
 ["anchor"] = "right",
 ["barDisplacement"] = 0,
 ["icon"] = 133222,
-["distanceToBar"] = 5,
+["hide"] = true,
 },
 ["buttonSize"] = 28,
 ["frameStrata"] = 2,
 ["lineBorderSize"] = 1,
-["fade"] = true,
-["borderSize"] = 16,
+["lock"] = true,
+["barOffset"] = 0,
 ["fadeOpacity"] = 0.2,
 ["orientation"] = 1,
 ["hideHandler"] = 2,
-["barOffset"] = 0,
-["lock"] = true,
+["borderSize"] = 16,
+["fade"] = true,
 },
 ["name"] = "框架 1",
 },

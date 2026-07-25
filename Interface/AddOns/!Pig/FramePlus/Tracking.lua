@@ -10,14 +10,17 @@ function FramePlusfun.Tracking()
 	if FramePlusfun.TrackingOpen then return end
 	FramePlusfun.TrackingOpen=true
 	local Width,Height = 33,33;
-	local MiniMapTrackingFrame = MiniMapTrackingFrame or MiniMapTracking
-	MiniMapTracking.TrackingX = CreateFrame("Frame", nil, MiniMapTrackingFrame);
-	local Tracking=MiniMapTrackingFrame.TrackingX
-	Tracking:SetAllPoints(MiniMapTrackingFrame)
+	local fujiFrame = MiniMapTrackingFrame or MiniMapTracking
+	fujiFrame:SetSize(Width,Height);
+	fujiFrame:ClearAllPoints();
+	fujiFrame:SetPoint("TOPLEFT", MinimapBackdrop, "TOPLEFT", -2,-44);
+	local Tracking = CreateFrame("Frame", nil, fujiFrame);
+	fujiFrame.TrackingX=Tracking
+	Tracking:SetAllPoints(fujiFrame)
 	Tracking.search = Tracking:CreateTexture(nil, "BORDER");
 	Tracking.search:SetAtlas("None")
 	Tracking.search:SetSize(Width*0.7,Height*0.7);
-	if MiniMapTrackingFrame.noBorder then
+	if fujiFrame.noBorder then
 		Tracking.search:SetPoint("CENTER",Tracking,"CENTER",0,0);
 	else
 		Tracking.search:SetPoint("CENTER",Tracking,"CENTER",2,-2);
@@ -34,7 +37,7 @@ function FramePlusfun.Tracking()
 	Tracking:RegisterEvent("MINIMAP_UPDATE_TRACKING");
 	Tracking:HookScript("OnEvent", function(self,event,arg1)
 		if event=="PLAYER_ENTERING_WORLD" then
-			MiniMapTrackingFrame:Show()
+			fujiFrame:Show()
 			if ElvUI then
 				Tracking.Border:SetAlpha(0)
 				Tracking:SetSize(Width-6,Height-6);
@@ -42,17 +45,17 @@ function FramePlusfun.Tracking()
 				Tracking:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", 0, 0);
 			end
 		elseif event=="MINIMAP_UPDATE_TRACKING" then
-			MiniMapTrackingFrame:Show()
+			fujiFrame:Show()
 		end
 		if GetTrackingTexture() then
 			Tracking.search:Hide()
 			MiniMapTrackingIcon:Show()
 			MiniMapTrackingIcon:SetTexture(GetTrackingTexture())
-			if not MiniMapTrackingFrame.noBorder and Tracking.Border then Tracking.Border:Hide() end
+			if not fujiFrame.noBorder and Tracking.Border then Tracking.Border:Hide() end
 		else
 			Tracking.search:Show()
 			MiniMapTrackingIcon:Hide()
-			if not MiniMapTrackingFrame.noBorder and Tracking.Border then Tracking.Border:Show() end
+			if not fujiFrame.noBorder and Tracking.Border then Tracking.Border:Show() end
 		end
 	end)
 	Tracking.xiala=PIGDownMenu(Tracking,{"TOPLEFT",Tracking, "CENTER", -80,-10},{wwgg,hhgg},"EasyMenu")

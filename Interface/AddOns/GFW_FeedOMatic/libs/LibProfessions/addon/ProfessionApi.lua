@@ -1,4 +1,4 @@
-local addon = _G['LibProfessions-v0.11']
+local addon = _G['LibProfessions-v0.16']
 if not addon then
     -- luacov: disable
     return    -- already loaded and no upgrade necessary
@@ -25,13 +25,17 @@ end
 --- @return number Skill modifier (Not classic)
 --- @return number Profession ID (Not classic)
 function api:GetInfo()
+    --/dump LibStub("LibProfessions-0").api:GetInfo()
     if addon.is_classic then
         return _G.GetTradeSkillLine();
     else
-        local tradeSkillID, skillLineName, skillLineRank, skillLineMaxRank, skillLineModifier,
-        parentSkillLineID, parentSkillLineName = _G.C_TradeSkillUI.GetTradeSkillLine()
-        return parentSkillLineName or skillLineName, skillLineRank, skillLineMaxRank, skillLineModifier,
-        parentSkillLineID or tradeSkillID
+        local skillId = _G.C_TradeSkillUI.GetProfessionChildSkillLineID() --2542
+        local skill = _G.C_TradeSkillUI.GetProfessionInfoBySkillLineID(skillId)
+        return skill['parentProfessionName'] or skill['professionName'],
+        skill['skillLevel'],
+        skill['maxSkillLevel'],
+        skill['skillModifier'],
+        skill['parentProfessionID'] or skill['professionID']
     end
 end
 
@@ -45,8 +49,11 @@ end
 --- This is currently working only in WoW classic
 --- @return number Number of recipes
 function api:NumRecipes()
-	--TODO: Not working in BfA
-    return _G.GetNumTradeSkills()
+    if addon.is_classic then
+        return _G.GetNumTradeSkills()
+    else
+        return #_G.C_TradeSkillUI.GetAllRecipeIDs()
+    end
 end
 
 --- Get the number of reagents for a recipe
@@ -68,7 +75,7 @@ function api:GetReagentItemLink(recipeID, reagentIndex)
     if addon.is_classic then
         return _G.GetTradeSkillReagentItemLink(recipeID, reagentIndex);
     else
-        return _G.C_TradeSkillUI.GetRecipeReagentItemLink(recipeID, reagentIndex);
+        return _G.C_TradeSkillUI.GetRecipeFixedReagentItemLink(recipeID, reagentIndex);
     end
 end
 

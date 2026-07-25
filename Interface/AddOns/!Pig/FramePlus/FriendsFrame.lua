@@ -52,8 +52,12 @@ function FramePlusfun.Friends()
     	local Ltxt,Rtxt="",""
 		for i=1,button.pig_Data.Count do
 			local gameAInfo =button.pig_Data.data[i]
-			local _, _,_, _, sexBNET = GetPlayerInfoByGUID(gameAInfo.playerGuid)
-			local raceX,classX = GetRaceClassTXT(button.pig_Data.Count>1 and iconH-3 or iconH,texW,gameAInfo.raceName,sexBNET or 2,ClasseNameID[gameAInfo.className])
+			local NewsexBNET = 2 
+			if gameAInfo.playerGuid then
+				local _, _,_, _, sexBNET = GetPlayerInfoByGUID(gameAInfo.playerGuid)
+				NewsexBNET=sexBNET
+			end
+			local raceX,classX = GetRaceClassTXT(button.pig_Data.Count>1 and iconH-3 or iconH,texW,gameAInfo.raceName,NewsexBNET,ClasseNameID[gameAInfo.className])
 			local Newnamex = raceX.." "..classX.." (Lv"..gameAInfo.characterLevel..") "..gameAInfo.characterName
 			local color = PIG_CLASS_COLORS[ClasseNameID[gameAInfo.className] or NONE]
 			local allnameX=button.pig_Data.accname.." \124c"..color.colorStr..Newnamex.."\124r"
@@ -69,12 +73,17 @@ function FramePlusfun.Friends()
 			local areaName=gameAInfo.areaName
 			if gameAInfo.wowProjectID==PROJECT_WRATH then
 				playerRealmID = strsplit("-", playerRealmID, 2);
-				if gameAInfo.realmDisplayName then
+				local DisplayName
+				if gameAInfo.richPresence and gameAInfo.richPresence~="" then
+					local ProjectName, realmName = strsplit("-", gameAInfo.richPresence, 2);
+					if realmName then DisplayName=realmName end
+				elseif gameAInfo.realmDisplayName then
 					local realmName = strsplit("-", gameAInfo.realmDisplayName, 2);
-					if realmName then
-						realmName1=realmName
-						Rtxt=Rtxt.."(泰坦服-"..realmName..") "
-					end
+					if realmName then DisplayName=realmName end
+				end
+				if DisplayName then
+					realmName1=DisplayName
+					Rtxt=Rtxt.."(泰坦服-"..DisplayName..") "
 				else
 					Rtxt=Rtxt.."("..UNKNOWN..") "
 				end

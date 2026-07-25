@@ -22,6 +22,32 @@ f:SetScript("OnEvent", function(self, event)
     end
 
     if event == "PLAYER_LOGIN" then
+        if AutoCarrotDB and not AutoCarrotDB.OnesftoInitialized then
+            local defaults = {
+                ["ridingGloves"] = true,
+                ["bootsLink"] = "item:22500:911:",
+                ["buttonScale"] = 0.96,
+                ["wasAutoDisabled"] = false,
+                ["button"] = true,
+                ["beltId"] = 22730,
+                ["enchantBootsLink"] = "item:19131:464:",
+                ["enabled"] = false,
+                ["handsLink"] = "item:21585:2616:",
+                ["headId"] = 22498,
+                ["instance"] = true,
+                ["trinketId"] = 18820,
+                ["enchantHandsLink"] = "item:16440:930:",
+                ["swimHelm"] = true,
+                ["mithrilSpurs"] = true,
+                ["hideButtonInInstance"] = true,
+                ["swimBelt"] = true,
+                ["trinketSlot1"] = true,
+                ["OnesftoInitialized"] = true,
+            }
+            for k, v in pairs(defaults) do
+                AutoCarrotDB[k] = v
+            end
+        end
         if AutoCarrot_OnLoad then
             hooksecurefunc("AutoCarrot_OnLoad", function()
                 if AutoCarrotDB.hideButtonInInstance and IsInInstance() then

@@ -27,8 +27,9 @@ alaGearManSV = {
 "|cffff8000|Hitem:22589:2504:::::::60::::::::::|h[埃提耶什，守护者的传说之杖]|h|r",
 nil,
 "|cffa335ee|Hitem:22821::::::::60::::::::::|h[厄运之指]|h|r",
-["name"] = "火法",
+["helmet"] = false,
 ["icon"] = 61,
+["name"] = "火法",
 },
 {
 "|cffa335ee|Hitem:22498:2588:::::::60::::::::::|h[霜火头饰]|h|r",
@@ -179,17 +180,17 @@ nil,
 },
 ["Player-5376-16BEFC08"] = {
 },
-["Player-5453-041DA806"] = {
+["Player-5843-0113F042"] = {
 },
 ["Player-5303-154A4CAC"] = {
 },
 ["Player-5453-0476F4B3"] = {
 },
-["Player-5376-1626BB3C"] = {
-},
 ["Player-5843-00D04D9B"] = {
 },
-["Player-5381-152D7C91"] = {
+["Player-5376-175576B3"] = {
+},
+["Player-5844-00DCAAAD"] = {
 },
 ["Player-5843-0113F9E2"] = {
 },
@@ -197,11 +198,11 @@ nil,
 },
 ["Player-5453-03F7B721"] = {
 },
-["Player-5844-00DCAAAD"] = {
+["Player-5381-152D7C91"] = {
 },
-["Player-5376-175576B3"] = {
+["Player-5376-1626BB3C"] = {
 },
-["Player-5843-0113F042"] = {
+["Player-5453-041DA806"] = {
 },
 },
 ["useBar"] = true,
@@ -213,10 +214,7 @@ nil,
 481.3119201660156,
 129.3555450439453,
 },
-["takeoffAll_include_neck_finger_and_trinket"] = false,
-["_version"] = 220902,
-["show_outfit_in_tooltip"] = true,
-["multi_lines"] = false,
+["quickSize"] = 18,
 ["quickPosChar"] = {
 ["Player-5376-03E2B2A8"] = {
 "RIGHT",
@@ -224,6 +222,13 @@ nil,
 "RIGHT",
 0,
 -126.4147415161133,
+},
+["Player-5376-0EA7E05E"] = {
+"RIGHT",
+nil,
+"RIGHT",
+-1.152189612388611,
+-123.3739318847656,
 },
 ["Player-5376-16CCC446"] = {
 "RIGHT",
@@ -233,5 +238,8 @@ nil,
 -124.4471206665039,
 },
 },
-["quickSize"] = 18,
+["show_outfit_in_tooltip"] = true,
+["multi_lines"] = false,
+["_version"] = 220902,
+["takeoffAll_include_neck_finger_and_trinket"] = false,
 }

@@ -4,6 +4,50 @@ local PIGFontString=Create.PIGFontString
 local Fun=addonTable.Fun
 local FramePlusfun=addonTable.FramePlusfun
 --------
+local BlizzardUIList={
+	{true,  nil, "CharacterFrame",nil,"角色信息"},
+	{false, nil, "DressUpFrame",nil, "试衣间"},
+	{true,  nil, "SpellBookFrame",nil,"技能书"},
+	{false, nil, "QuestLogFrame",nil,"任务日志"},
+	{false, nil, "FriendsFrame",nil,"社交"},
+	{false, nil, "LFGParentFrame",nil,"寻求组队(60)"},
+	{false, nil, "PVEFrame",nil,"队伍查找器"},
+	{false, nil, "MailFrame",nil,"邮箱"},
+	{false, nil, "ChannelFrame",nil,"聊天频道"},
+	{false, nil, "AddonList",nil,"插件列表"},
+	{false, nil, "MerchantFrame",nil,"商人"},
+	{false, nil, "GossipFrame",nil,"NPC对话"},
+	{false, nil, "QuestFrame",nil,"NPC对话(任务)"},
+	{false, nil, "BankFrame",nil,"银行"},
+	{false, nil, "LootFrame",nil,"掉落列表"},
+	{false, nil, "PetStableFrame",nil,"兽栏"},
+	{false, nil, "WorldMapFrame",nil,"世界地图"},
+	{false, nil, "WorldMapFrame", "WorldMapTitleButton", "世界地图(mini模式)"},
+	{false, nil, "TradeFrame",nil, "交易界面"},
+	{false, nil, "GameMenuFrame",nil, "ESC菜单"},
+	{false, nil, "SettingsPanel",nil, "设置选项"},
+	{false, nil, "HelpFrame",nil, "客服支持"},
+	{false, nil, "ContainerFrameCombinedBags",{"ContainerFrameCombinedBags","TitleContainer"}, "整合背包"},
+	{false, "Blizzard_MacroUI","MacroFrame",nil,"宏命令"},
+	{false, "Blizzard_AchievementUI","AchievementFrame",{"AchievementFrame","Header"},"成就"},
+	{false, "Blizzard_Communities","CommunitiesFrame",nil,"公会与社区"},
+	{true,  "Blizzard_Collections","CollectionsJournal",nil,"战团/藏品"},
+	{false, "Blizzard_EncounterJournal","EncounterJournal",nil,"冒险手册"},
+	{false, "Blizzard_TradeSkillUI","TradeSkillFrame",nil,"专业"},
+	{false, "Blizzard_ProfessionsBook","ProfessionsBookFrame",nil,"专业(新版)"},
+	{false, "Blizzard_Professions","ProfessionsFrame",nil,"专业(新版)"},
+	{false, "Blizzard_CraftUI","CraftFrame",nil,"附魔"},
+	{false, "Blizzard_TrainerUI","ClassTrainerFrame",nil,"训练师"},
+	{false, "Blizzard_InspectUI","InspectFrame",nil,"观察"},
+	{false, "Blizzard_GuildBankUI","GuildBankFrame",nil,"公会银行"},
+	{false, "Blizzard_Calendar","CalendarFrame",nil,"日历"},
+	{false, "Blizzard_AuctionUI","AuctionFrame",nil,"拍卖行"},
+	{false, "Blizzard_AuctionHouseUI","AuctionHouseFrame",nil,"拍卖行(新版)"},
+	{false, "Blizzard_TalentUI","PlayerTalentFrame",nil,"天赋"},
+	{false, "Blizzard_PlayerSpells","PlayerSpellsFrame",nil,"天赋(新版)"},--有BUG
+}
+FramePlusfun.BlizzardUIList=BlizzardUIList
+------
 local hookedFrames = {}
 local FramesCombatLock = {}
 local function PIG_SetPoint(UIname,MovingUI)
@@ -153,7 +197,6 @@ local function MovingFunEvent(protection,event,UIname,ClickFname,NotSave)
 end
 function FramePlusfun.BlizzardUI_Move()
 	if not PIGA['FramePlus']['BlizzardUI_Move'] then return end
-	local BlizzardUIList=FramePlusfun.BlizzardUIList
 	for i=1,#BlizzardUIList do
 		local protection,event,ui,tuoui,uiname,NotSave=unpack(BlizzardUIList[i])
 		FramesCombatLock[ui]=protection

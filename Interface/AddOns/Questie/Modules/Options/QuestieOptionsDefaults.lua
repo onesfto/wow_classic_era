@@ -209,8 +209,6 @@ function QuestieOptionsDefaults:Load()
             debugEnabled = false,
             debugEnabledPrint = false,
             debugLevel = 0,
-            skipValidation = false,
-
             -- TBC Isle of Quel'Danas
             isleOfQuelDanasPhase = 1,
             isIsleOfQuelDanasPhaseReminderDisabled = false,
@@ -227,6 +225,14 @@ function QuestieOptionsDefaults:Load()
             },
             journey = {},
             isTrackerExpanded = true,
+            TrackerHiddenQuests = {},
+            TrackerHiddenObjectives = {},
+            TrackedQuests = {},
+            AutoUntrackedQuests = {},
+            collapsedZones = {},
+            minAllQuestsInZone = {},
+            collapsedQuests = {},
+            trackedAchievementIds = {},
         },
         global = {
             lastDailyRequestResetTime = 0,

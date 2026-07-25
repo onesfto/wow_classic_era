@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("NaxxTrash", "DBM-Raids-Vanilla", 1)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
+mod:SetRevision("20260601033555")
 mod:DisableHardcodedOptions()
 mod.isTrashMod = true
 mod:SetZone(533)
@@ -14,7 +14,7 @@ mod:RegisterEvents(
 local warnIntimidatingShout		= mod:NewSpellAnnounce(19134, 2)
 local warnFear					= mod:NewSpellAnnounce(27990, 2)
 local specWarnLightningTotem	= mod:NewSpecialWarningSwitch(28294, "Dps", nil, nil, 3, 2, nil, nil, "attacktotem")
-local warnPoisonCharge			= mod:NewSpellAnnounce(28431, 2, nil, "RemovePoison")
+local warnPoisonCharge			= mod:NewSpellAnnounce(28431, 2)
 local warnVeilofShadow			= mod:NewSpellAnnounce(28440, 2, nil, "RemoveCurse|Healer")
 
 function mod:SPELL_SUMMON(args)

@@ -442,7 +442,7 @@ function PD.addOptions_Debug()
 		local function SendGetData(namex)
 			for i=1,#L.addnames do
 				PIG_Version.infoList[namex]={}
-				PIGSendAddonMessage(PD.VerData.biaotou,L.addnames[i].."#G","WHISPER",name)
+				PIGSendAddonMessage(PD.VerData.biaotou,L.addnames[i].."#G","WHISPER",namex)
 			end
 		end
 		function PIG_Version.Clear_hang()
@@ -459,11 +459,14 @@ function PD.addOptions_Debug()
 		end
 		function PIG_Version.GetExtVer()
 			if IsInRaid() then
+				local duiwuID={}
 				for id=1,MAX_RAID_MEMBERS do
 					local name, _, subgroup, _, _, fileName = GetRaidRosterInfo(id);
 					if name then
 						SendGetData(name)
-						PIG_Version.butlist[subgroup].butlist[id].name:SetText(name)
+						duiwuID[subgroup]=duiwuID[subgroup] or 0
+						duiwuID[subgroup]=duiwuID[subgroup]+1
+						PIG_Version.butlist[subgroup].butlist[duiwuID[subgroup]].name:SetText(name)
 					end
 				end
 			elseif IsInGroup() then

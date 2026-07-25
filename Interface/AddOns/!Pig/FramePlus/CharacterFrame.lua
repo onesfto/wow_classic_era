@@ -99,8 +99,8 @@ local function Load_addonsFun(FrameX)
 				FasongYCqingqiu(nameui:GetText(),3)
 			end
 		end
-		if _G[Data.LongInspectUIUIname] then
-			_G[Data.LongInspectUIUIname]:Hide()
+		if Data.LongInspectUI then
+			Data.LongInspectUI:Hide()
 		end
 	end)
 	FrameX:RegisterEvent("PLAYER_EQUIPMENT_CHANGED");
@@ -1909,9 +1909,9 @@ function FramePlusfun.Character_Shuxing()
 		PaperDollFrame:RegisterEvent("UNIT_DISPLAYPOWER");--当单位的魔法类型改变时触发，例如德鲁伊变形
 		PaperDollFrame:RegisterEvent("CHARACTER_POINTS_CHANGED");--分配天赋点触发
 		PaperDollFrame:RegisterEvent("PLAYER_TALENT_UPDATE");--天赋改变
-		if PIG_MaxTocversion(20000) then
-			PaperDollFrame:RegisterEvent("LEARNED_SPELL_IN_TAB");--学习新法术触发
-		end
+		-- if PIG_MaxTocversion(20000) then
+		-- 	PaperDollFrame:RegisterEvent("LEARNED_SPELL_IN_TAB");--学习新法术触发
+		-- end
 		hooksecurefunc("PaperDollFrame_UpdateStats", function()
 			PaperDollFrameUpdate()
 		end)

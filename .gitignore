@@ -43,8 +43,6 @@ Thumbs.db
 # ==============================================================================
 # 插件忽略列表 (Ignored AddOns)
 # ==============================================================================
-# 智能分类背包插件
-/Interface/AddOns/BetterBags/
 
 # 毕业装备追踪查询 (Best in Slot)
 /Interface/AddOns/BiSTracker/
@@ -57,9 +55,6 @@ Thumbs.db
 /Interface/AddOns/NDui/
 /Interface/AddOns/NDui_Plus/
 
-# 个人定制化综合插件
-/Interface/AddOns/Onesfto/
-
 # 小地图美化
 /Interface/AddOns/SexyMap/
 
@@ -68,3 +63,6 @@ Thumbs.db
 
 # 角色属性深入统计面板
 /Interface/AddOns/SinStats/
+
+# 对话界面美化
+/Interface/AddOns/DialogueUI/

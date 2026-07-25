@@ -409,7 +409,7 @@ function BusinessInfo.ADDScroll(fuFrame,Title,hangName,hang_NUM,Config1)
 							local itemStackCount, itemEquipLoc, itemTexture,sellPrice,classID,subclassID= select(8, GetItemInfo(itemLink))
 							local jieguo = IsItemMay(false,itemLink,quality,sellPrice,classID,subclassID,bag, slot)
 							if jieguo then
-								local ItemLevel = GetDetailedItemLevelInfo(itemLink)
+								local ItemLevel = PIGGetDetailedItemLevelInfo(itemLink)
 								table.insert(bagshujuy,{itemID,itemLink,icon,itemStackCount,itemStackCount,false,ItemLevel})
 							end
 						end
@@ -520,7 +520,7 @@ function BusinessInfo.ADDScroll(fuFrame,Title,hangName,hang_NUM,Config1)
 		hang.item.link = PIGFontString(hang,{"LEFT", hang.item, "LEFT", hang_Height+4,0})
 		function hang.item:ShowInfoFun(itemLink)
 			self.itemLink=itemLink
-			local ItemLevel = GetDetailedItemLevelInfo(itemLink)
+			local ItemLevel = PIGGetDetailedItemLevelInfo(itemLink)
 			local ItemLevel=ItemLevel or "*"
 			self.link:SetText(ItemLevel..itemLink);	
 		end

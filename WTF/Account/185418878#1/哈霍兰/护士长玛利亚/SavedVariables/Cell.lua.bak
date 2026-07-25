@@ -1,0 +1,77 @@
+
+CellCharacterDB = {
+["revise"] = "r274-release",
+["layoutAutoSwitch"] = {
+{
+["raid_instance"] = "奶",
+["party"] = "小队",
+["solo"] = "hide",
+["arena"] = "default",
+["raid_outdoor"] = "团队",
+["battleground"] = "default",
+},
+{
+["raid_instance"] = "奶",
+["party"] = "default",
+["solo"] = "default",
+["arena"] = "default",
+["raid_outdoor"] = "default",
+["battleground"] = "default",
+},
+},
+["clickCastings"] = {
+{
+{
+"type1",
+"target",
+},
+{
+"type2",
+"togglemenu",
+},
+{
+"type-altR",
+"spell",
+20484,
+},
+},
+{
+{
+"type1",
+"target",
+},
+{
+"type2",
+"togglemenu",
+},
+{
+"type-altR",
+"spell",
+20484,
+},
+},
+["alwaysTargeting"] = {
+"disabled",
+"disabled",
+["common"] = "disabled",
+},
+["common"] = {
+{
+"type1",
+"target",
+},
+{
+"type2",
+"togglemenu",
+},
+{
+"type-altR",
+"spell",
+20484,
+},
+},
+["class"] = "DRUID",
+["useCommon"] = true,
+["smartResurrection"] = "disabled",
+},
+}

@@ -3,7 +3,7 @@ if not DBM:IsSeasonal("SeasonOfDiscovery") then return end
 local mod	= DBM:NewMod("ShadeofEranikusSoD", "DBM-Raids-Vanilla", 8)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
+mod:SetRevision("20260709012018")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(218571)
 mod:SetEncounterID(2959)
@@ -165,7 +165,7 @@ end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpell(437353) and not args:IsPlayer() then
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if self:IsTanking(uId, nil, nil, true, args.sourceGUID) then
 			specWarnCorrosiveBreathTaunt:Show(args.destName)
 			specWarnCorrosiveBreathTaunt:Play("tauntboss")

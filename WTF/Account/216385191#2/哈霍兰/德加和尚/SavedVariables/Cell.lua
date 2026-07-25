@@ -2,20 +2,20 @@
 CellCharacterDB = {
 ["layoutAutoSwitch"] = {
 {
-["raid_instance"] = "团队-治疗",
+["raid_instance"] = "团队输出",
 ["party"] = "default",
 ["solo"] = "hide",
 ["arena"] = "default",
-["battleground"] = "default",
-["raid_outdoor"] = "团队-治疗",
+["raid_outdoor"] = "团队输出",
+["battleground"] = "团队输出",
 },
 {
-["raid_instance"] = "default",
+["raid_instance"] = "团队输出",
 ["party"] = "default",
 ["solo"] = "hide",
 ["arena"] = "default",
-["battleground"] = "default",
 ["raid_outdoor"] = "default",
+["battleground"] = "default",
 },
 },
 ["revise"] = "r274-release",

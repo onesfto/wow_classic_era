@@ -108,62 +108,17 @@ TOKEN_DATA.CLASSIC = {
 	[19234] = 19228,	-- Six of Beasts
 	[19235] = 19228,	-- Seven of Beasts
 	[19236] = 19228,	-- Eight of Beasts
-	
-	-- Level 50 Decks
-	-- Wilds Deck
-	[221272] = { 221272, 221308, 0, 221271, 221273, 221274, 221275, 221276, 221277, 221278, 221279 }, -- Wilds Deck
-	[221271] = 221272,
-	[221273] = 221272,
-	[221274] = 221272,
-	[221275] = 221272,
-	[221276] = 221272,
-	[221277] = 221272,
-	[221278] = 221272,
-	[221279] = 221272,
-	
-	-- Plagues Deck
-	[221280] = { 221280, 221307, 0, 221281, 221282, 221283, 221284, 221285, 221286, 221287, 221288 },
-	[221281] = 221280,
-	[221282] = 221280,
-	[221283] = 221280,
-	[221284] = 221280,
-	[221285] = 221280,
-	[221286] = 221280,
-	[221287] = 221280,
-	[221288] = 221280,
-	
-	--Dunes Deck
-	[221289] = {221289, 221309, 0, 221290, 221291, 221292, 221293, 221294, 221295, 221296, 221297},
-	[221290] = 221289,
-	[221291] = 221289,
-	[221292] = 221289,
-	[221293] = 221289,
-	[221294] = 221289,
-	[221295] = 221289,
-	[221296] = 221289,
-	[221297] = 221289,
-	
-	--Nightmares Deck
-	[221299] = {221299, 221310, 0 , 221298, 221300, 221301, 221302, 221303, 221304, 221305, 221306},
-	[221298] = 221299,
-	[221300] = 221299,
-	[221301] = 221299,
-	[221302] = 221299,
-	[221303] = 221299,
-	[221304] = 221299,
-	[221305] = 221299,
-	[221306] = 221299,
 
 	-- Zul'Gurub
-	[19724] = { ICONS.HUNTER, 19831, {231321, "SoD"}, 0, ICONS.ROGUE, 19834, {231337, "SoD"}, 0, ICONS.PRIEST, 19841, {231333, "SoD"}, type = 6 },		-- Primal Hakkari Aegis
-	[19717] = { ICONS.WARRIOR, 19824, {231351, "SoD"}, 0, ICONS.ROGUE, 19836, {231339, "SoD"}, 0, ICONS.SHAMAN, 19830, {231343, "SoD"}, type = 6 },	-- Primal Hakkari Armsplint
-	[19716] = { ICONS.PALADIN, 19827, {231331, "SoD"}, 0, ICONS.HUNTER, 19833, {231323, "SoD"}, 0, ICONS.MAGE, 19846, {231326, "SoD"}, type = 6 },		-- Primal Hakkari Bindings
-	[19719] = { ICONS.WARRIOR, 19823, {231352, "SoD"}, 0, ICONS.ROGUE, 19835, {231338, "SoD"}, 0, ICONS.SHAMAN, 19829, {231342, "SoD"}, type = 6 },	-- Primal Hakkari Girdle
-	[19723] = { ICONS.WARRIOR, 19822, {231353, "SoD"}, 0, ICONS.MAGE, 20034, {231327, "SoD"}, 0, ICONS.WARLOCK, 20033, {231348, "SoD"}, type = 6 },	-- Primal Hakkari Kossack
-	[19720] = { ICONS.PRIEST, 19842, {231335, "SoD"}, 0, ICONS.WARLOCK, 19849, {231349, "SoD"}, 0, ICONS.DRUID, 19839, {231318, "SoD"}, type = 6 },	-- Primal Hakkari Sash
-	[19721] = { ICONS.PALADIN, 19826, {231330, "SoD"}, 0, ICONS.HUNTER, 19832, {231322, "SoD"}, 0, ICONS.MAGE, 19845, {231325, "SoD"}, type = 6 },		-- Primal Hakkari Shawl
-	[19718] = { ICONS.PRIEST, 19843, {231335, "SoD"}, 0, ICONS.WARLOCK, 19848, {231347, "SoD"}, 0, ICONS.DRUID, 19840, {231319, "SoD"}, type = 6 },	-- Primal Hakkari Stanchion
-	[19722] = { ICONS.PALADIN, 19825, {231329, "SoD"}, 0, ICONS.SHAMAN, 19828, {231341, "SoD"}, 0, ICONS.DRUID, 19838, {231317, "SoD"}, type = 6 },	-- Primal Hakkari Tabard
+	[19724] = { ICONS.HUNTER, 19831, 0, ICONS.ROGUE, 19834, 0, ICONS.PRIEST, 19841, type = 6 },		-- Primal Hakkari Aegis
+	[19717] = { ICONS.WARRIOR, 19824, 0, ICONS.ROGUE, 19836, 0, ICONS.SHAMAN, 19830, type = 6 },	-- Primal Hakkari Armsplint
+	[19716] = { ICONS.PALADIN, 19827, 0, ICONS.HUNTER, 19833, 0, ICONS.MAGE, 19846, type = 6 },		-- Primal Hakkari Bindings
+	[19719] = { ICONS.WARRIOR, 19823, 0, ICONS.ROGUE, 19835, 0, ICONS.SHAMAN, 19829, type = 6 },	-- Primal Hakkari Girdle
+	[19723] = { ICONS.WARRIOR, 19822, 0, ICONS.MAGE, 20034, 0, ICONS.WARLOCK, 20033, type = 6 },	-- Primal Hakkari Kossack
+	[19720] = { ICONS.PRIEST, 19842, 0, ICONS.WARLOCK, 19849, 0, ICONS.DRUID, 19839, type = 6 },	-- Primal Hakkari Sash
+	[19721] = { ICONS.PALADIN, 19826, 0, ICONS.HUNTER, 19832, 0, ICONS.MAGE, 19845, type = 6 },		-- Primal Hakkari Shawl
+	[19718] = { ICONS.PRIEST, 19843, 0, ICONS.WARLOCK, 19848, 0, ICONS.DRUID, 19840, type = 6 },	-- Primal Hakkari Stanchion
+	[19722] = { ICONS.PALADIN, 19825, 0, ICONS.SHAMAN, 19828, 0, ICONS.DRUID, 19838, type = 6 },	-- Primal Hakkari Tabard
 
 	-- AQ40
 	[21237] = { 21268, 21273, 21275, type = 6 },			-- Imperial Qiraji Regalia
@@ -178,12 +133,12 @@ TOKEN_DATA.CLASSIC = {
 	[20933] = { ICONS.PRIEST, 21351, 0, ICONS.MAGE, 21343, 0, ICONS.WARLOCK, 21334, 0, ICONS.DRUID, 21357, type = 6 }, -- Husk of the Old God
 
 	-- AQ20
-	[20888] = { ICONS.HUNTER, 21402, {233422, "SoD"}, 0, ICONS.ROGUE, 21405, {233434, "SoD"}, 0, ICONS.PRIEST, 21411, {233431, "SoD"}, 0, ICONS.WARLOCK, 21417, {233440, "SoD"}, type = 6 },							-- Qiraji Ceremonial Ring
-	[20884] = { ICONS.WARRIOR, 21393, {233443, "SoD"}, 0, ICONS.PALADIN, 21396, {233428, "SoD"}, 0, ICONS.SHAMAN, 21399, {233437, "SoD"}, 0, ICONS.MAGE, 21414, {233425, "SoD"}, 0, ICONS.DRUID, 21408, {233419, "SoD"}, type = 6 },		-- Qiraji Magisterial Ring
-	[20885] = { ICONS.WARRIOR, 21394, {233441, "SoD"}, 0, ICONS.ROGUE, 21406, {233432, "SoD"}, 0, ICONS.PRIEST, 21412, {233430, "SoD"}, 0, ICONS.MAGE, 21415, {233424, "SoD"}, type = 6 },								-- Qiraji Martial Drape
-	[20889] = { ICONS.PALADIN, 21397, {233427, "SoD"}, 0, ICONS.HUNTER, 21403, {233420, "SoD"}, 0, ICONS.SHAMAN, 21400, {233436, "SoD"}, 0, ICONS.WARLOCK, 21418, {233438, "SoD"}, 0, ICONS.DRUID, 21409, {233418, "SoD"}, type = 6 },	-- Qiraji Regal Drape
-	[20890] = { ICONS.PRIEST, 21410, {233429, "SoD"}, 0, ICONS.MAGE, 21413, {233423, "SoD"}, 0, ICONS.WARLOCK, 21416, {233439, "SoD"}, 0, ICONS.DRUID, 21407, {233417, "SoD"}, type = 6 },								-- Qiraji Ornate Hilt
-	[20886] = { ICONS.WARRIOR, 21392, {233442, "SoD"}, 0, ICONS.PALADIN, 21395, {233426, "SoD"}, 0, ICONS.HUNTER, 21401, {233421, "SoD"}, 0, ICONS.ROGUE, 21404, {233433, "SoD"}, 0, ICONS.SHAMAN, 21398, {233435, "SoD"}, type = 6  },	-- Qiraji Spiked Hilt
+	[20888] = { ICONS.HUNTER, 21402, 0, ICONS.ROGUE, 21405, 0, ICONS.PRIEST, 21411, 0, ICONS.WARLOCK, 21417, type = 6 },							-- Qiraji Ceremonial Ring
+	[20884] = { ICONS.WARRIOR, 21393, 0, ICONS.PALADIN, 21396, 0, ICONS.SHAMAN, 21399, 0, ICONS.MAGE, 21414, 0, ICONS.DRUID, 21408, type = 6 },		-- Qiraji Magisterial Ring
+	[20885] = { ICONS.WARRIOR, 21394, 0, ICONS.ROGUE, 21406, 0, ICONS.PRIEST, 21412, 0, ICONS.MAGE, 21415, type = 6 },								-- Qiraji Martial Drape
+	[20889] = { ICONS.PALADIN, 21397, 0, ICONS.HUNTER, 21403, 0, ICONS.SHAMAN, 21400, 0, ICONS.WARLOCK, 21418, 0, ICONS.DRUID, 21409, type = 6 },	-- Qiraji Regal Drape
+	[20890] = { ICONS.PRIEST, 21410, 0, ICONS.MAGE, 21413, 0, ICONS.WARLOCK, 21416, 0, ICONS.DRUID, 21407, type = 6 },								-- Qiraji Ornate Hilt
+	[20886] = { ICONS.WARRIOR, 21392, 0, ICONS.PALADIN, 21395, 0, ICONS.HUNTER, 21401, 0, ICONS.ROGUE, 21404, 0, ICONS.SHAMAN, 21398, type = 6  },	-- Qiraji Spiked Hilt
 
 	-- Tier 3
 	[22360] = { ICONS.PALADIN, 22428, 0, ICONS.HUNTER, 22438, 0, ICONS.SHAMAN, 22466, 0, ICONS.DRUID, 22490, type = 6 }, -- Desecrated Headpiece
@@ -231,8 +186,8 @@ TOKEN_DATA.CLASSIC = {
 	[12033] = { 7910, 1529, 7909, 12361, 1705, 12799, 7971, 5500, 12800, 1206, 12364, type = 2 },		-- Thaurissan Family Jewels
 
 	-- Misc
-	[11086] = { 9372,{223526, "SoD"}, 0, 9379, 11086 }, -- Jang'thraze the Protector
-	[9379] =  11086,{223526, "SoD"}, -- Sang'thraze the Deflector
+	[11086] = { 9372, 0, 9379, 11086 }, -- Jang'thraze the Protector
+	[9379] =  11086, -- Sang'thraze the Deflector
 	[18784] = { 12725, 0, 18783, 18784 }, -- Top Half of Advanced Armorsmithing: Volume III
 	[18783] = 18784, -- Bottom Half of Advanced Armorsmithing: Volume III
 	[18780] = { 12727, 0, 18779, 18780 }, -- Top Half of Advanced Armorsmithing: Volume I
@@ -242,12 +197,12 @@ TOKEN_DATA.CLASSIC = {
 	[18781] = { 12726, 0, 18781, 18782 }, -- Bottom Half of Advanced Armorsmithing: Volume II
 	[21813] = { 21816, 21817, 21818, 21819, 21820, 21821, 21822, 21823, type = 2}, -- Bag of Candies
 	[19697] = { {19696, 4} }, -- Bounty of the Harvest
-	[18564] = { 19019,{230224, "SoD"}, 0, 18563, 18564, 19017 }, -- Bindings of the Windseeker <right>
-	[18563] = 18564,{230224, "SoD"}, -- Bindings of the Windseeker <left>
+	[18564] = { 19019, 0, 18563, 18564, 19017 }, -- Bindings of the Windseeker <right>
+	[18563] = 18564, -- Bindings of the Windseeker <left>
 	[19017] = 18564, -- Essence of the Firelord
-	[17204] = { 17182, type = 4 }, -- Eye of Sulfuras
-	[18703] = { 18714, 18713, 18715,0,nil,{228334, "SoD"},{228332, "SoD"}}, -- Ancient Petrified Leaf
-	[18646] = { 18665, 18646, 0, 18608, 18609,0,{228335, "SoD"},{228336, "SoD"}}, -- The Eye of Divinity
+	[17204] = { 17182 }, -- Eye of Sulfuras
+	[18703] = { 18714, 18713, 18715 }, -- Ancient Petrified Leaf
+	[18646] = { 18665, 18646, 0, 18608, 18609 }, -- The Eye of Divinity
 	[18665] = 18646, -- The Eye of Shadow
 	[17074] = { 17074, 17223 }, -- Shadowstrike
 	[17223] = 17074, -- Thunderstrike
@@ -263,184 +218,17 @@ TOKEN_DATA.CLASSIC = {
 	[10441] = { 10657, 10658, type = 3 }, -- Glowing Shard
 	[6283] = { 6335, 4534, type = 3 }, -- The Book of Ur
 	[16782] = { 16886, 16887, type = 3 }, -- Strange Water Globe
-	[211454] = { 16886, 16887, type = 3 }, -- Strange Water Globe
-	[209693] = { 211451, 211450, 211449, type = 3 }, -- Perfect Blackfathom Pearl
-	[211452] = { 211451, 211450, 211449, type = 3 }, -- Perfect Blackfathom Pearl
 	[9326] = { 9588, type = 3 }, -- Grime-Encrusted Ring
 	[17008] = { 17043, 17042, 17039, type = 3 }, -- Small Scroll
 	[10454] = { 10455, type = 3 }, -- Essence of Eranikus
 	[12780] = { 13966, 13968, 13965, type = 3 }, -- General Drakkisath's Command
 	[7666] = { 7673, type = 3 }, -- Shattered Necklace
-	[19003] = { 19383, 19384, 19366,0,{230840, "SoD" },{230839, "SoD"},{230841,"SoD"}, type = 3 }, -- Head of Nefarian
-	[18423] = { 18404, 18403, 18406,0,{228685, "SoD" },{228687, "SoD"},{228686,"SoD"}, type = 3 }, -- Head of Onyxia
+	[19003] = { 19383, 19384, 19366, type = 3 }, -- Head of Nefarian
+	[18423] = { 18404, 18403, 18406, type = 3 }, -- Head of Onyxia
 	[20644] = { 20600, type = 3 }, -- Shrouded in Nightmare
-	[217350] = { 213346, 213345, 213344, 213343, type = 3 }, -- Thermaplugg's Engineering Notes
-	[217351] = { 213346, 213345, 213344, 213343, type = 3 }, -- Thermaplugg's Engineering Notes
-	[19018] = { 19019,{230224, "SoD"}, type = 3 }, -- Dormant Wind Kissed Blade
-	[231814] = { 224281, 224282, type = 3 }, -- Chromatic Heart
-	[231882] = { 231754, 231755, type = 3 }, -- Suppression Device Receipt
-	[230904] = { 229909, 229971, 229972, type = 3 }, -- Scroll: SEENECS FO RIEF
-	[231452] = { 229749, 229806, type = 3 }, -- Blood of the Lightbringer
-	[229906] = { 231509, type = 3 }, -- Tarnished Bronze Scale
-	[229352] = { 224122, type = 3 }, -- Intelligence Findings
-	[231995] = { 224279, 231890, type = 3 }, -- Hardenced Elementium Slag
-	[231722] = { 229910, type = 3 }, -- Depleted Scythe of Chaos
-	[231378] = { 224280, type = 3 }, -- Shimmering Golden Disc
 
-	--SoD Tokens
-	[217007] = { 213336, 213337, 213341, 213342, 213338, 213339, 213335, 216484, type = 6 },
-	[217008] = { 213310, 213311, 213312, 213313, 213314, 213315, 213316, 216485, type = 6 },
-	[217009] = { 213328, 213329, 213331, 213332, 213333, 213334, 213330, 216486, type = 6 },
-	--Level 50 ST Tokens
-	[220636] = { ICONS.PALADIN,nil, 220642,220643,220648,nil,220650,220651,220652, 0, ICONS.PALADIN,nil, 220660,220661,220662,nil,220653,220654,220656, 0, ICONS.WARRIOR,nil, 220642,220643,220648,nil,220653,220654,220656, 0, ICONS.HUNTER,nil, 220666,220667,220668, 0,  ICONS.ROGUE, nil,220676,220678,220677, 0,  ICONS.SHAMAN,nil, 220665,220663,220664,nil,220657,220658,220659, 0, ICONS.SHAMAN,nil, 220660,220661,220662, 0, type = 6 },
-	[220637] = { ICONS.PRIEST, nil,220683,220684,220685, nil,220680,220679,220681, 0, ICONS.MAGE,nil, 220680,220679,220681, 0, ICONS.WARLOCK, nil,220680,220679,220681,{nil},220783,220781,220784, 0, ICONS.DRUID, nil,220779,220778,220780, nil,220669,220671,220670, 0, ICONS.DRUID, {nil}, 220672,220673,220675, 0, type = 6 },
-	[221475] = { 221474, type = 3 },
-	[221363] = { 220626,220627,220628,220629,220630, type = 3 },
-	[221346] = { 220626,220627,220628,220629,220630, type = 3 },
-	
-	--25
-	[211322] = { {20744, 2}, type = 9 },
-	[211321] = { {11287, 2}, type = 9 },
-	[211318] = { {118, 20}, type = 9 },
-	[211320] = { {3473, 3}, type = 9 },
-	[211323] = { {4360, 12}, type = 9 },
-	[211329] = { {6888, 20}, type = 9 },
-	[211326] = { {2300, 3}, type = 9 },
-	[211332] = { {2581, 10}, type = 9 },
-	[211319] = { {2847, 6}, type = 9 },
-	[211330] = { {2680, 20}, type = 9 },
-	[211324] = { {4362, 3}, type = 9 },
-	[211327] = { {4343, 6}, type = 9 },
-	[211317] = { {765, 20}, type = 9 },
-	[211325] = { {4237, 5}, type = 9 },
-	[211328] = { {6238, 4}, type = 9 },
-	
-	[211934] = { {929, 10}, type = 9 },
-	[211315] = { {2318, 14}, type = 9 },
-	[211331] = { {6290, 20}, type = 9 },
-	[210771] = { {2840, 20}, type = 9 },
-	[211933] = { {2835, 10}, type = 9 },
-	[211316] = { {2447, 20}, type = 9 },
-	[211828] = { {20745, 2}, type = 9 },
-	[211824] = { {3385, 20}, type = 9 },
-	[211835] = { {21072, 15}, type = 9 },
-	[211829] = { {4374, 12}, type = 9 },
-	[211822] = { {2453, 20}, type = 9 },
-	[211838] = { {3531, 15}, type = 9 },
-	[211825] = { {6350, 3}, type = 9 },
-	[211836] = { {6890, 20}, type = 9 },
-	
-	[211831] = { {2316, 2}, type = 9 },
-	[211837] = { {5527, 8}, type = 9 },
-	[211820] = { {2842, 6}, type = 9 },
-	[211821] = { {2319, 12}, type = 9 },
-	[211833] = { {2587, 4}, type = 9 },
-	[211827] = { {6339, 1}, type = 9 },
-	[211819] = { {2841, 12}, type = 9 },
-	[211830] = { {5507, 2}, type = 9 },
-	[211826] = { {15869, 14}, type = 9 },
-	[211935] = { {6373, 15}, type = 9 },
-	[211834] = { {5542, 3}, type = 9 },
-	[211823] = { {2452, 20}, type = 9 },
-	[211832] = { {4251, 2}, type = 9 },
-	--40
-	[215403] = { {10546, 2}, type = 9 },
-	[215400] = { {7966, 5}, type = 9 },
-	[215402] = { {4394, 8}, type = 9 },
-	[215389] = { {3818, 16}, type = 9 },
-	[215391] = { {3819, 8}, type = 9 },
-	[215411] = { {7377, 2}, type = 9 },
-	[215398] = { {3835, 5}, type = 9 },
-	[215387] = { {4235, 5}, type = 9 },
-	[215420] = { {4594, 40}, type = 9 },
-	[215421] = { {6371, 7}, type = 9 },
-	[215413] = { {4334, 3}, type = 9 },
-	[215408] = { {5966, 5}, type = 9 },
-	[215392] = { {8831, 8}, type = 9 },
-	[215386] = { {3860, 6}, type = 9 },
-	[215390] = { {3358, 10}, type = 9 },
-	
-	[215399] = { {7919, 3}, type = 9 },
-	[215395] = { {8949, 6}, type = 9 },
-	[215388] = { {4304, 10}, type = 9 },
-	[215393] = { {1710, 16}, type = 9 },
-	[215401] = { {4391, 2}, type = 9 },
-	[215419] = { {6451, 10}, type = 9 },
-	[215414] = { {7062, 4}, type = 9 },
-	[215385] = { {3577, 4}, type = 9 },
-	[215417] = { {3729, 10}, type = 9 },
-	[215415] = { {4335, 5}, type = 9 },
-	[215410] = { {7387, 4}, type = 9 },
-	[215407] = { {5964, 4}, type = 9 },
-	[215418] = { {17222, 5}, type = 9 },
-
-	[215404] = { {10508, 2}, type = 9 },
-	[215406] = { {10577, 14}, type = 9 },
-	[215396] = { {8951, 14}, type = 9 },
-	[215405] = { {10724, 1}, type = 9 },
-	[215397] = { {3855, 2}, type = 9 },
-	[215409] = { {8198, 2}, type = 9 },
-	[215394] = { {4623, 20}, type = 9 },
-	[215416] = { {10008, 3}, type = 9 },
-	
-	--50
-	[220918] = { {16766, 16}, type = 9 },
-	[220919] = { {13931, 8}, type = 9 },
-	[220920] = { {18045, 12}, type = 9 },
-	[220921] = { {8545, 14}, type = 9 },
-	[220922] = { {8838, 15}, type = 9 },
-	[220923] = { {13463, 6}, type = 9 },
-	[220924] = { {6037, 12}, type = 9 },
-	[220925] = { {12359, 16}, type = 9 },
-	[220926] = { {8170, 14}, type = 9 },
-	[220927] = { {8169, 8}, type = 9 },
-	[220928] = { {12655, 4}, type = 9 },
-	[220929] = { {13443, 6}, type = 9 },
-	[220930] = { {13446, 8}, type = 9 },
-	[220931] = { {10562, 16}, type = 9 },
-	[220932] = { {15993, 3}, type = 9 },
-	[220933] = { {15995, 2}, type = 9 },
-	[220934] = { {7931, 3}, type = 9 },
-	[220935] = { {12406, 5}, type = 9 },
-	[220936] = { {7938, 2}, type = 9 },
-	[220937] = { {15564, 12}, type = 9 },
-	[220938] = { {15084, 6}, type = 9 },
-	[220939] = { {15092, 5}, type = 9 },
-	[220940] = { {10024, 5}, type = 9 },
-	[220941] = { {13856, 6}, type = 9 },
-	[220942] = { {10034, 4}, type = 9 },
-	--Naxx Tokens
-	--Hunter Mage Warrior
-	[236236] = { ICONS.HUNTER, 236046, 236054, 0, ICONS.MAGE, 236083, 236091, 0, ICONS.WARRIOR, 236016,236007, type = 6 }, -- T3 Helmet
-	[236231] = { ICONS.HUNTER, 236043, 236058, 0, ICONS.MAGE, 236081, 236095, 0, ICONS.WARRIOR, 236014,236005, type = 6 }, -- T3 Breastplate
-	[236237] = { ICONS.HUNTER, 236044, 236052, 0, ICONS.MAGE, 236084, 236089, 0, ICONS.WARRIOR, 236017,236008, type = 6 }, -- T3 Shoulders
-	[236233] = { ICONS.HUNTER, 236047, 236055, 0, ICONS.MAGE, 236082, 236092, 0, ICONS.WARRIOR, 236019,236010, type = 6 }, -- T3 Gauntlets
-	[236234] = { ICONS.HUNTER, 236049, 236057, 0, ICONS.MAGE, 236080, 236094, 0, ICONS.WARRIOR, 236018,236009, type = 6 }, -- T3 Boots
-	[236235] = { ICONS.HUNTER, 236042, 236050, 0, ICONS.MAGE, 236077, 236087, 0, ICONS.WARRIOR, 236021,236012, type = 6 }, -- T3 Bracers
-	[236238] = { ICONS.HUNTER, 236045, 236053, 0, ICONS.MAGE, 236079, 236090, 0, ICONS.WARRIOR, 236015,236006, type = 6 }, -- T3 Legs
-	[236232] = { ICONS.HUNTER, 236048, 236051, 0, ICONS.MAGE, 236078, 236088, 0, ICONS.WARRIOR, 236020,236011, type = 6 }, -- T3 Belt
-	--Druid Paladin SHAMAN
-	[236249] = { ICONS.DRUID, 236196, 236214, 236182, 236205, 0, ICONS.PALADIN, 236128, 236117, 236137, 0, ICONS.SHAMAN, 236155, 236174, 236144, 236165, type = 6 }, -- T3 Helmet
-	[236251] = { ICONS.DRUID, 236200, 236218, 236186, 236209, 0, ICONS.PALADIN, 236132, 236115, 236141, 0, ICONS.SHAMAN, 236159, 236179, 236147, 236169, type = 6 }, -- T3 Chest
-	[236254] = { ICONS.DRUID, 236194, 236212, 236189, 236203, 0, ICONS.PALADIN, 236126, 236122, 236135, 0, ICONS.SHAMAN, 236153, 236172, 236145, 236163, type = 6 }, -- T3 Shoulders
-	[236250] = { ICONS.DRUID, 236197, 236215, 236184, 236206, 0, ICONS.PALADIN, 236129, 236118, 236138, 0, ICONS.SHAMAN, 236156, 236175, 236142, 236166, type = 6 }, -- T3 Gloves
-	[236248] = { ICONS.DRUID, 236199, 236217, 236185, 236208, 0, ICONS.PALADIN, 236131, 236123, 236140, 0, ICONS.SHAMAN, 236158, 236177, 236146, 236168, type = 6 }, -- T3 Boots
-	[236247] = { ICONS.DRUID, 236192, 236210, 236183, 236201, 0, ICONS.PALADIN, 236124, 236119, 236133, 0, ICONS.SHAMAN, 236151, 236170, 236149, 236160, type = 6 }, -- T3 Bracers
-	[236253] = { ICONS.DRUID, 236195, 236213, 236188, 236204, 0, ICONS.PALADIN, 236127, 236121, 236136, 0, ICONS.SHAMAN, 236154, 236173, 236143, 236164, type = 6 }, -- T3 Legs
-	[236252] = { ICONS.DRUID, 236193, 236211, 236187, 236202, 0, ICONS.PALADIN, 236125, 236120, 236134, 0, ICONS.SHAMAN, 236152, 236171, 236148, 236162, type = 6 }, -- T3 Belt
-	--Priest Rogue WARLOCK
-	[236241] = { ICONS.PRIEST, 236110, 236103, 0, ICONS.ROGUE, 236025, 236037, 0, ICONS.WARLOCK, 236064, 236072, type = 6 }, -- T3 Helmet
-	[236242] = { ICONS.PRIEST, 236114, 236097, 0, ICONS.ROGUE, 236023, 236039, 0, ICONS.WARLOCK, 236062, 236076, type = 6 }, -- T3 Chest
-	[236240] = { ICONS.PRIEST, 236108, 236102, 0, ICONS.ROGUE, 236026, 236035, 0, ICONS.WARLOCK, 236065, 236070, type = 6 }, -- T3 Shoulders
-	[236243] = { ICONS.PRIEST, 236111, 236104, 0, ICONS.ROGUE, 236028, 236038, 0, ICONS.WARLOCK, 236063, 236073, type = 6 }, -- T3 Gloves
-	[236239] = { ICONS.PRIEST, 236113, 236099, 0, ICONS.ROGUE, 236027, 236033, 0, ICONS.WARLOCK, 236059, 236075, type = 6 }, -- T3 Boots
-	[236245] = { ICONS.PRIEST, 236106, 236100, 0, ICONS.ROGUE, 236030, 236040, 0, ICONS.WARLOCK, 236061, 236068, type = 6 }, -- T3 Bracers
-	[236246] = { ICONS.PRIEST, 236109, 236101, 0, ICONS.ROGUE, 236024, 236036, 0, ICONS.WARLOCK, 236060, 236071, type = 6 }, -- T3 Legs
-	[236244] = { ICONS.PRIEST, 236107, 236098, 0, ICONS.ROGUE, 236029, 236032, 0, ICONS.WARLOCK, 236066, 236069, type = 6 }, -- T3 Belt
-	[237381] = { ICONS.HUNTER, 236041, 236056, 0, ICONS.MAGE, 236085, 236093, 0, ICONS.WARRIOR, 236022, 236013, 0, ICONS.DRUID, 236198, 236216, 236190, 236207, 0, ICONS.PALADIN, 236130, 236116, 236139, 0, ICONS.SHAMAN, 236157, 236176, 236150, 236167, 0, ICONS.PRIEST, 236112, 236105, 0, ICONS.ROGUE, 236031, 236034, 0, ICONS.WARLOCK, 236067, 236074, type = 6 }, -- T3 Ring
-	
 	-- Quest objective
-	[18705] = { 18713,0,{228334, "SoD" }, type = 4 }, -- Mature Black Dragon Sinew
+	[18705] = { 18713, type = 4 }, -- Mature Black Dragon Sinew
 	[18704] = { 18714, type = 4 }, -- Mature Blue Dragon Sinew
 	[12871] = { 12895, 0, 12903, 12945, type = 4 }, -- Chromatic Carapace
 	[18706] = { {18706, 12}, 0, 19024, type = 4 }, -- Arena Master
@@ -448,29 +236,25 @@ TOKEN_DATA.CLASSIC = {
 
 	[22523] = { 22523, 22524, 0,
 				22689, 22690, 22681, 22680, 22688, 22679, 0,
-				22667, 22668, 22657, 22659, 22678, 22656, 0,
-				{237288, "SoD"}, {237289, "SoD"}, {237286, "SoD"}, {237285, "SoD"}, {237287, "SoD"}, {237284, "SoD"}, 0,
-				{237281, "SoD"}, {237282, "SoD"}, {237279, "SoD"}, {237280, "SoD"}, {237283, "SoD"}, {237278, "SoD"}, type = 4 }, -- Insignia of the Dawn
+				22667, 22668, 22657, 22659, 22678, 22656, type = 4 }, -- Insignia of the Dawn
 	[22524] = 22523, -- Insignia of the Crusade
 
 	-- Naxxramas
 	[22520] = { 23207, 23206, type = 3 }, -- The Phylactery of Kel'Thuzad
-	[236350] = { 236351, 236352, type = 3 }, -- The Phylactery of Kel'Thuzad (SoD)
 
 	-- AQ40
-	[21221] = { 21712, 21710, 21709,0,{234801, "SoD" },{234802, "SoD" },{234803, "SoD" }, type = 3 }, -- Eye of C'thun
+	[21221] = { 21712, 21710, 21709, type = 3 }, -- Amulet of the Fallen God
 	[21762] = { 21156, 20876, 20879, 20875, 20878, 20881, 20877, 20874, 20882 }, -- Greater Scarab Coffer Key
 
 	-- AQ20
-	[21220] = { 21504, 21507, 21505, 21506, 0, {234811, "SoD"},{234812, "SoD"},{234813, "SoD"},{234814, "SoD"}, type = 3 }, -- Head of Ossirian the Unscarred
+	[21220] = { 21504, 21507, 21505, 21506, type = 3 }, -- Head of Ossirian the Unscarred
 
 	-- ZG
 	[19802] = { 19950, 19949, 19948, type = 3 }, -- Heart of Hakkar
 	[19939] = { 19939, 19940, 19941, 19942, 0,
 				ICONS.WARLOCK, ICONS.PRIEST, ICONS.MAGE, ICONS.ROGUE, ICONS.DRUID, ICONS.HUNTER, ICONS.SHAMAN, ICONS.WARRIOR, ICONS.PALADIN, 0,
 				19819, 19820, 19818, 19814, 19821, 19816, 19817, 19813, 19815, 0,
-				19957, 19958, 19959, 19954, 19955, 19953, 19956, 19951, 19952, 0,
-				{231285, "SoD"}, {231283, "SoD"}, {231282, "SoD"}, {231287, "SoD"}, {231280, "SoD"}, {231288, "SoD"}, {231281, "SoD"}, {231286, "SoD"}, {231285, "SoD"}}, -- Gri'lek's Blood
+				19957, 19958, 19959, 19954, 19955, 19953, 19956, 19951, 19952 }, -- Gri'lek's Blood
 	[19940] = 19939, -- Renataki's Tooth
 	[19941] = 19939, -- Wushoolay's Mane
 	[19942] = 19939, -- Hazza'rah's Dream Thread
@@ -481,11 +265,11 @@ TOKEN_DATA.CLASSIC = {
 	[12811] = { "prof20034", "prof22750", "prof25079", 0, "prof18456", "prof16990", "prof23632", "prof23633", type = 5 }, -- Righteous Orb
 	[20381] = { "prof24703", type = 5 }, -- Dreamscale Breastplate
 	[12753] = { "prof22928", "prof27830", type = 5 }, -- Dreamscale Breastplate
-	[17203] = { "prof21161", {"prof460460", "SoD"}, type = 5 }, -- Sulfuron Ingot
+	[17203] = { "prof21161", type = 5 }, -- Sulfuron Ingot
 	[15410] = { "prof19106", "prof19093", type = 5 }, -- Scale of Onyxia
 
 	-- Atiesh
-	[22727] = { { 22726, 40 }, 22727, 22734, 22733, 0, 22631, 22589, 22630, 22632, 0, { 236398, "SoD"}, { 236401, "SoD"}, { 236399, "SoD"}, { 236400, "SoD"}, }, -- Frame of Atiesh
+	[22727] = { { 22726, 40 }, 22727, 22734, 22733, 0, 22631, 22589, 22630, 22632 }, -- Frame of Atiesh
 	[22726] = 22727, -- Splinter of Atiesh
 	[22734] = 22727, -- Base of Atiesh
 	[22733] = 22727, -- Staff Head of Atiesh
@@ -515,257 +299,6 @@ TOKEN_DATA.CLASSIC = {
 	[21178] = { "f609rep5", 0, {20802, 5}, {20800, 3}, {20801, 7} }, -- Gloves of Earthen Power
 	[21187] = 21178, -- Earthweave Cloak
 	[21179] = 21178, -- Band of Earthen Wrath
-	[227728] = {227683, type = 4 }, -- Eye of Sulfuras
-	[226557] = { 226557, 226568, type = 9 }, -- Arcanist Boots
-	[226552] = { 226552, 216921, type = 9 }, -- Felheart Gloves
-	[226645] = { 226645, 226652, 226663, 226673, type = 9 }, -- Cenarion Boots
-	[226613] = { 226613, 226636, 226620, 226628, type = 9 }, -- Earthfury Boots
-	[226593] = { 226593, 226601, 226609, type = 9 }, -- Lawbringer Boots
-	[226486] = { 226486, 226497, type = 9 }, -- Gauntlets of Might
-	[226574] = { 226574, 226583, type = 9 }, -- Pants of Prophecy
-	[226561] = { 226561, 226565, type = 9 }, -- Arcanist Leggings
-	[226547] = { 226547, 216923, type = 9 }, -- Felheart Pants
-	[226445] = { 226445, 226479, type = 9 }, -- Nightslayer Pants
-	[226646] = { 226646, 226651, 226666, 226671, type = 9 }, -- Cenarion Leggings
-	[226532] = { 226532, 226537, type = 9 }, -- Giantstalker's Leggings
-	[226614] = { 226614, 226639, 226623, 226631, type = 9 }, -- Earthfury Legguards
-	[226594] = { 226594, 226598, 226606, type = 9 }, -- Lawbringer Legplates
-	[226490] = { 226490, 226493, type = 9 }, -- Legplates of Might
-	[226572] = { 226572, 226585, type = 9 }, -- Gloves of Prophecy
-	[226441] = { 226441, 226475, type = 9 }, -- Nightslayer Gloves
-	[226531] = { 226531, 226538, type = 9 }, -- Giantstalker's Boots
-	[226615] = { 226615, 226637, 226621, 226629, type = 9 }, -- Earthfury Gauntlets
-	[226591] = { 226591, 226600, 226608, type = 9 }, -- Lawbringer Gauntlets
-	[226487] = { 226487, 226496, type = 9 }, -- Sabatons of Might
-	[226573] = { 226573, 226584, type = 9 }, -- Circlet of Prophecy
-	[226562] = { 226562, 226564, type = 9 }, -- Arcanist Crown
-	[226549] = { 226549, 216922, type = 9 }, -- Felheart Horns
-	[226446] = { 226446, 226480, type = 9 }, -- Nightslayer Cover
-	[226647] = { 226647, 226658, 226659, 226670, type = 9 }, -- Cenarion Helm
-	[226533] = { 226533, 226536, type = 9 }, -- Giantstalker's Helmet
-	[226612] = { 226612, 226638, 226622, 226630, type = 9 }, -- Earthfury Helmet
-	[226590] = { 226590, 226599, type = 9 }, -- Lawbringer Helm
-	[226488] = { 226488, 226495, type = 9 }, -- Helm of Might
-	[226571] = { 226571, 226586, type = 9 }, -- Boots of Prophecy
-	[226556] = { 226556, 226569, type = 9 }, -- Arcanist Gloves
-	[226554] = { 226554, 216918, type = 9 }, -- Felheart Slippers
-	[226443] = { 226443, 226477, type = 9 }, -- Nightslayer Boots
-	[226648] = { 226648, 226654, 226664, 226669, type = 9 }, -- Cenarion Gloves
-	[226528] = { 226528, 226540, type = 9 }, -- Giantstalker's Gloves
-	[226560] = { 226560, 226566, type = 9 }, -- Arcanist Mantle
-	[226550] = { 226550, 216925, type = 9 }, -- Felheart Shoulder Pads
-	[226644] = { 226644, 226653, 226665, 226674, type = 9 }, -- Cenarion Spaulders
-	[226611] = { 226611, 226640, 226624, 226632, type = 9 }, -- Earthfury Epaulets
-	[226588] = { 226588, 221783, 226605, type = 9 }, -- Lawbringer Spaulders
-	[226575] = { 226575, 226582, type = 9 }, -- Robes of Prophecy
-	[226559] = { 226559, 226563, type = 9 }, -- Arcanist Robes
-	[226548] = { 226548, 216924, type = 9 }, -- Felheart Robes
-	[226447] = { 226447, 226473, type = 9 }, -- Nightslayer Chestpiece
-	[221785] = { 221785, 226656, 226661, 226675, type = 9 }, -- Cenarion Vestments
-	[226534] = { 226534, 226535, type = 9 }, -- Giantstalker's Breastplate
-	[226617] = { 226617, 226635, 226619, 226627, type = 9 }, -- Earthfury Vestments
-	[226610] = { 226610, 226602, 226595, type = 9 }, -- Lawbringer Chestguard
-	[226489] = { 226489, 226494, type = 9 }, -- Breastplate of Might
-	[226576] = { 226576, 226581, type = 9 }, -- Mantle of Prophecy
-	[226444] = { 226444, 226478, type = 9 }, -- Nightslayer Shoulder Pads
-	[226527] = { 226527, 226543, type = 9 }, -- Giantstalker's Epaulets
-	[226491] = { 226491, 226492, type = 9 }, -- Pauldrons of Might
-	[228277] = { 228701, type = 9 }, -- Core Hound Tooth (Molten)
-	[228296] = { 228511, type = 9 }, -- Perdition's  Blade (Molten)
-	[228299] = { 228460, type = 9 }, -- Spinal Reaper (Molten)
-	[228288] = { 228461, type = 9 }, -- Bonereaver's Edge (Molten)
-	[228263] = { 229376, type = 9 }, -- Sorcerous Dagger (Molten)
-	[228229] = { 228459, type = 9 }, -- Obsidian Edged Blade (Molten)
-	[228146] = { 229377, type = 9 }, -- Magmadar's Left Claw (Molten)
-	[228350] = { 229379, type = 9 }, -- Eskhandar's Right Claw (Molten)
-	[228267] = { 229372, type = 9 }, -- Gutgore Ripper (Molten)
-	[228160] = { 229373, type = 9 }, -- Faithbringer (Molten)
-	[228139] = { 229374, type = 9 }, -- Fist of the Firesworn (Molten)
-	[228272] = { 229380, type = 9 }, -- Shadowstrike (Molten)
-	[228128] = { 228508, type = 9 }, -- Hammer of the Black Anvil (Molten)
-	[228129] = { 228143, type = 9 }, -- Shadowflame Skull
-	[228264] = { 228462, type = 9 }, -- Aurastone Hammer (Molten)
-	[228265] = { 228506, type = 9 }, -- Brutality Blade (Molten)
-	[228248] = { 228463, type = 9 }, -- Earthshaker (Molten)
-	[228252] = { 228519, type = 9 }, -- Striker's Mark (Molten)
-	[228269] = { 228517, type = 9 }, -- Azuresong Mageblade (Molten)
-	[228271] = { 228922, type = 9 }, -- Staff of Dominance (Molten)
-	[228278] = { 229382, type = 9 }, -- Hyperthermically Insulated Lava Dredger (Molten)
-	[227536] = {ICONS.MAGE, 226557, 226568, 0,ICONS.PRIEST, 226571, 226586, 0, ICONS.WARLOCK, 226554,216918, type = 5}, -- Incandescent Boots
-	[227765] = {ICONS.DRUID, 226645, 226652, 226663, 226673, 0, ICONS.WARRIOR, 226487, 226496, 0, ICONS.ROGUE, 226443, 226477, type = 5}, -- Scorched Core Boots
-	[227763] = {ICONS.DRUID, 226646, 226651, 226666, 226671, 0, ICONS.WARRIOR, 226490, 226493, 0, ICONS.ROGUE, 226445, 226479, type = 5}, -- Scorched Core Leggings
-	[227534] = {ICONS.MAGE, 226561, 226565, 0, ICONS.PRIEST, 226574, 226583, 0, ICONS.WARLOCK, 226547, 216923, type = 5}, -- Incandescent Leggings
-	[227754] = {ICONS.PALADIN, 226594, 226598, 226606, 0, ICONS.HUNTER, 226532, 226537, 0, ICONS.SHAMAN, 226614, 226639, 226623, 226631, type = 5}, -- Molten Scaled Leggings
-	[227757] = {ICONS.PALADIN, 226593, 226601, 226609, 0, ICONS.HUNTER, 226531, 226538, 0, ICONS.SHAMAN, 226613, 226636, 226620, 226628, type = 5}, -- Molten Scaled Boots
-	[227533] = {ICONS.MAGE, 226556, 226569, 0, ICONS.PRIEST, 226572, 226585, 0, ICONS.WARLOCK, 226552, 216921, type = 5}, -- Incandescent Gloves
-	[227764] = {ICONS.DRUID, 226647, 226658, 226659, 226670, 0, ICONS.WARRIOR, 226488, 226495, 0, ICONS.ROGUE, 226446, 226480, type = 5}, -- Scorched Core Helm
-	[227755] = {ICONS.PALADIN, 226590, 226599, 0, ICONS.HUNTER, 226533, 226536, 0, ICONS.SHAMAN, 226612, 226638, 226622, 226630, type = 5}, -- Molten Scaled Helm
-	[227759] = {ICONS.DRUID, 226648, 226654, 226664, 226669, 0, ICONS.WARRIOR, 226486, 226497, 0, ICONS.ROGUE, 226441, 226475, type = 5}, -- Scorched Core Gloves
-	[227756] = {ICONS.PALADIN, 226591, 226600, 226608, 0, ICONS.HUNTER, 226528, 226540, 0, ICONS.SHAMAN, 226615, 226637, 226621, 226629, type = 5}, -- Molten Scaled Gloves
-	[227537] = {ICONS.MAGE, 226560, 226566, 0, ICONS.PRIEST, 226576, 226581, 0, ICONS.WARLOCK, 226550, 216925, type = 5}, -- Incandescent Shoulderpads
-	[227762] = {ICONS.DRUID, 226644, 226653, 226665, 226674, 0, ICONS.WARRIOR, 226491, 226492, 0, ICONS.ROGUE, 226444, 226478, type = 5}, -- Scorched Core Shoulderpads
-	[227752] = {ICONS.PALADIN, 226588, 221783, 226605, 0, ICONS.HUNTER, 226527, 226543, 0, ICONS.SHAMAN, 226611, 226640, 226624, 226632, type = 5}, -- Molten Scaled Shoulderpads
-	[227535] = {ICONS.MAGE, 226559, 226563, 0, ICONS.PRIEST, 226575, 226582, 0, ICONS.WARLOCK, 226548, 216924, type = 5}, -- Incandescent Robe
-	[227766] = {ICONS.DRUID, 221785, 226656, 226661, 226675, 0, ICONS.WARRIOR, 226489, 226494, 0, ICONS.ROGUE, 226447, 226473, type = 5}, -- Scorched Core Chest
-	[227758] = {ICONS.PALADIN, 226610, 226602, 226595, 0, ICONS.HUNTER, 226534, 226535, 0, ICONS.SHAMAN, 226617, 226635, 226619, 226627, type = 5}, -- Molten Scaled Chest
-	[227532] = {ICONS.MAGE, 226562, 226564, 0, ICONS.PRIEST, 226573, 226584, 0, ICONS.WARLOCK, 226549, 216922, type = 5}, -- Incandescent Hood
-	[227531] = {ICONS.MAGE, 226558, 226567, 0, ICONS.PRIEST, 226578, 226579, 0, ICONS.WARLOCK, 226553, 216920, type = 5}, -- Incandescent Bindings
-	[227760] = {ICONS.DRUID, 226655, 226662, 226668, 226649, 0, ICONS.WARRIOR, 226484, 226499, 0, ICONS.ROGUE, 226442, 226476, type = 5}, -- Scorched Core Bindings
-	[227750] = {ICONS.PALADIN, 226589, 226596, 226603, 0, ICONS.HUNTER, 226530, 226541, 0, ICONS.SHAMAN, 226618, 226642, 226626, 226634, type = 5}, -- Molten Scaled Bindings
-	[227530] = {ICONS.MAGE, 226555, 226570, 0, ICONS.PRIEST, 226577, 226580, 0, ICONS.WARLOCK, 226551, 216919, type = 5}, -- Incandescent Belt
-	[227761] = {ICONS.DRUID, 226657, 226660, 226667, 226650, 0, ICONS.WARRIOR, 226485, 226498, 0, ICONS.ROGUE, 226440, 226474, type = 5}, -- Scorched Core Belt
-	[227751] = {ICONS.PALADIN, 226592, 226597, 226604, 0, ICONS.HUNTER, 226529, 226542, 0, ICONS.SHAMAN, 226616, 226641, 226625, 226633, type = 5}, -- Molten Scaled Belt
-	[230242] = { 232566, type = 9 }, -- The Untamed Blade (Shadowflame)
-	[230241] = { 232567, type = 9 }, -- Spineshatter (Shadowflame)
-	[230247] = { 232565, type = 9 }, -- Dragonfang Blade (Shadowflame)
-	[230253] = { 232607, type = 9 }, -- Heartstriker (Shadowflame)
-	[230254] = { 232564, type = 9 }, -- Maladath (Shadowflame)
-	[230276] = { 232561, type = 9 }, -- Claw of the Black Drake (Shadowflame)
-	[230271] = { 232562, type = 9 }, -- Drake Talon Cleaver (Shadowflame)
-	[230270] = { 232563, type = 9 }, -- Shadow Wing Focus Staff (Shadowflame)
-	[230726] = { 232608, type = 9 }, -- Dragonbreath Hand Cannon (Shadowflame)
-	[230738] = { 232559, type = 9 }, -- Herald of Woe (Shadowflame)
-	[230801] = { 232606, type = 9 }, -- Ashjre'thul (Shadowflame)
-	[230794] = { 232557, type = 9 }, -- Claw of Chromaggus (Shadowflame)
-	[230747] = { 232558, type = 9 }, -- Chromatically Tempered Sword (Shadowflame)
-	[230838] = { 232552, type = 9 }, -- Lok'amir il Romathis (Shadowflame)
-	[230837] = { 232555, type = 9 }, -- Crul'shorukh, Edge of Chaos (Shadowflame)
-	[230818] = { 232550, type = 9 }, -- Ashkandi, Greatsword of the Brotherhood (Shadowflame)
-	[230813] = { 232556, type = 9 }, -- Staff of the Shadow Flame (Shadowflame)
-	[230845] = { 232577, type = 9 }, -- Doom's Edge (Shadowflame)
-	[230844] = { 232551, type = 9 }, -- Draconic Maul (Shadowflame)
-	[232357] = { 232556, type = 9 }, -- Draconic Avenger (Shadowflame)
-	[230911] = { 231861, type = 9 }, -- Jeklik's Crusher (Bloodied)
-	[230865] = { 231874, type = 9 }, -- Fang of Venoxis (Bloodied)
-	[230868] = { 231873, type = 9 }, -- Zulian Stone Axe (Bloodied)
-	[230918] = { 231866, type = 9 }, -- Mar'li's Touch (Bloodied)
-	[230993] = { 231868, type = 9 }, -- Mandokir's Sting (Bloodied)
-	[230989] = { 231867, type = 9 }, -- Bloodlord's Defender (Bloodied)
-	[230992] = { 231869, type = 9 }, -- Warblade of the Hakkari (1) (Bloodied)
-	[231309] = { 231853, type = 9 }, -- Warblade of the Hakkari (2) (Bloodied)
-	[230991] = { 231870, type = 9 }, -- Halberd of Smiting (Bloodied)
-	[231274] = { 231847, type = 9 }, -- Gri'lek's Grinder (Bloodied)
-	[231273] = { 231846, type = 9 }, -- Gri'lek's Carver (Bloodied)
-	[231276] = { 231863, type = 9 }, -- Thoughtblighter (Bloodied)
-	[231275] = { 231862, type = 9 }, -- Blazefury Retributer (Bloodied)
-	[232309] = { 232310, type = 9 }, -- Renataki's Soul Conduit (Bloodied)
-	[231277] = { 231864, type = 9 }, -- Pitchfork of Madness (Bloodied)
-	[231278] = { 231872, type = 9 }, -- Hoodoo Hunting Bow (Bloodied)
-	[231279] = { 231871, type = 9 }, -- Wushoolay's Poker (Bloodied)
-	[231016] = { 231848, type = 9 }, -- Nat Pagle's Fish Terminator (Bloodied)
-	[231272] = { 231849, type = 9 }, -- Tigule's Harpoon (Bloodied)
-	[230925] = { 231875, type = 9 }, -- Thekal's Grasp (Bloodied)
-	[230930] = { 231876, type = 9 }, -- Zulian Slicer (Bloodied)
-	[230934] = { 231851, type = 9 }, -- Arlokk's Grasp (Bloodied)
-	[230939] = { 231850, type = 9 }, -- Will of Arlokk (Bloodied)
-	[231002] = { 231859, type = 9 }, -- Jindo's Hexxer (Bloodied)
-	[231004] = { 231860, type = 9 }, -- Jindo's Judgement (Bloodied)
-	[231308] = { 231857, type = 9 }, -- Touch of Chaos (Bloodied)
-	[231302] = { 231852, type = 9 }, -- Gurubashi Dwarf Destroyer (Bloodied)
-	[231296] = { 231858, type = 9 }, -- Bloodcaller (Bloodied)
-	[231293] = { 231856, type = 9 }, -- Ancient Hakkari Manslayer (Bloodied)
-	[231301] = { 231855, type = 9 }, -- Fang of the Faceless (Bloodied)
-	[231315] = { 231854, type = 9 }, -- Zin'rokh, Destroyer of Worlds (Bloodied)
-	[234061] = { 234989, type = 9 }, -- Qiraji Sacrifical Dagger (Void-touched)
-	[234067] = { 234990, type = 9 }, -- Manslayer of the Qiraji (Void Touched)
-	[234096] = { 234991, type = 9 }, -- Bow of Taut Sinew (Void Touched)
-	[234097] = { 234992, type = 9 }, -- Stinger of Ayamiss (Void Touched)
-	[234104] = { 234993, type = 9 }, -- Crossbow of Imminent Doom (Void Touched)
-	[234112] = { 234994, type = 9 }, -- Sand Polished Hammer (Void Touched)
-	[234115] = { 234995, type = 9 }, -- Staff of the Ruins (Void Touched)
-	[233515] = { 234975, type = 9 }, -- Hammer of Ji'zhi (Void Touched)
-	[233571] = { 234976, type = 9 }, -- Wand of Qiraji Nobility (Void Touched)
-	[233576] = { 234977, type = 9 }, -- Silithid Claw (Void Touched)
-	[233585] = { 234650, type = 9 }, -- Ancient Qiraji Ripper (Void Touched)
-	[233586] = { 234978, type = 9 }, -- Jaw of the Sand Reaver (Void Touched)
-	[233599] = { 234979, type = 9 }, -- Sharpened Silithid Femur (Void Touched)
-	[233605] = { 234980, type = 9 }, -- Huhuran's Stinger (Void Touched)
-	[233621] = { 234981, type = 9 }, -- Kalimdor's Revenge (Void Touched)
-	[233626] = { 234983, type = 9 }, -- Larvae of the Great Worm (Void Touched)
-	[233636] = { 235014, type = 9 }, -- Scepter of the False Prophet (Void Touched)
-	[233634] = { 234984, type = 9 }, -- Death's Sthing (Void Touched)
-	[233640] = { 234985, type = 9 }, -- Dark Edge of Insanity (Void Touched)
-	[233509] = { 234974, type = 9 }, -- Staff of the Qiraji Prophets (Void Touched)
-	[234119] = { 235282, type = 9 }, -- Antenna of Invigoration (Void Touched)
-	[234122] = { 234998, type = 9 }, -- The Lost Kris of Zedd (Void Touched)
-	[234121] = { 234997, type = 9 }, -- Silithid Husked Launcher (Void Touched)
-	[233647] = { 234987, type = 9 }, -- Neretzek, The Blood Drinker (Void Touched)
-	[233643] = { 234986, type = 9 }, -- Anubisath Warhammer (Void Touched)
-	[234118] = { 234996, type = 9 }, -- Gavel of Qiraji Authority (Void Touched)
-	[242365] = { 242367, 242364, 242366, 0, 240837, type = 1 }, -- Wing of Balnazzar
-	[242366] = { 242367, 0, 240837, type = 5 }, -- Strings of Fate
-	[242364] = { 242367, 242365, 242366, 0, 240837, type = 1 }, -- Mature Light Dragon Sinew
-	[238945] = { 238961, type = 9 }, -- Caladboulder
-	[239196] = { 239301, type = 3 }, -- Ashbringer
-	[239696] = { 239301, type = 3 }, -- Ashbringer
-	[231729] = {ICONS.PALADIN, 231179, 231195, 231188, 0, ICONS.HUNTER, 231060, 231069, 0, ICONS.SHAMAN, 231214, 231222, 231198, 231206, type = 6}, -- Ancient Gloves
-	[231724] = {ICONS.PALADIN, 231174, 231190, 231182, 0, ICONS.HUNTER, 231055, 231063, 0, ICONS.SHAMAN, 231215, 231223, 231199, 231207, type = 6}, -- Ancient Bindings
-	[231725] = {ICONS.PALADIN, 231175, 231191, 231183, 0, ICONS.HUNTER, 231056, 231065, 0, ICONS.SHAMAN, 231216, 231224, 231200, 231208, type = 6}, -- Ancient Belt
-	[231731] = {ICONS.PALADIN, 231181, 231197, 231187, 0, ICONS.HUNTER, 231062, 231071, 0, ICONS.SHAMAN, 231221, 231229, 231205, 231213, type = 6}, -- Ancient Chest
-	[231726] = {ICONS.PALADIN, 231176, 231192, 231184, 0, ICONS.HUNTER, 231057, 231066, 0, ICONS.SHAMAN, 231217, 231225, 231201, 231209, type = 6}, -- Ancient Shoulderpads
-	[231730] = {ICONS.PALADIN, 231180, 231196, 231189, 0, ICONS.HUNTER, 231061, 231070, 0, ICONS.SHAMAN, 231220, 231228, 231204, 231212, type = 6}, -- Ancient Boots
-	[231727] = {ICONS.PALADIN, 231177, 231193, 231185, 0, ICONS.HUNTER, 231058, 231067, 0, ICONS.SHAMAN, 231218, 231226, 231202, 231210, type = 6}, -- Ancient Leggings
-	[231728] = {ICONS.PALADIN, 231178, 231194, 231186, 0, ICONS.HUNTER, 231059, 231068, 0, ICONS.SHAMAN, 231219, 231227, 231203, 231211, type = 6}, -- Ancient Helm
-	[231715] = {ICONS.DRUID, 231253, 231261, 231237, 231245, 0, ICONS.ROGUE, 231046, 231054, 0, ICONS.WARRIOR, 231031, 231023, type = 6}, -- Primeval Bindings
-	[231721] = {ICONS.DRUID, 231247, 231255, 231231, 231239, 0, ICONS.ROGUE, 231041, 231049, 0, ICONS.WARRIOR, 231037, 231029, type = 6}, -- Primeval Boots
-	[231718] = {ICONS.DRUID, 231250, 231258, 231234, 231242, 0, ICONS.ROGUE, 231044, 231052, 0, ICONS.WARRIOR, 231034, 231026, type = 6}, -- Primeval Leggings
-	[231720] = {ICONS.DRUID, 231248, 231256, 231232, 231240, 0, ICONS.ROGUE, 231042, 231050, 0, ICONS.WARRIOR, 231036, 231028, type = 6}, -- Primeval Gloves
-	[231719] = {ICONS.DRUID, 231249, 231257, 231233, 231241, 0, ICONS.ROGUE, 231043, 231051, 0, ICONS.WARRIOR, 231035, 231027, type = 6}, -- Primeval Helm
-	[231723] = {ICONS.DRUID, 231246, 231254, 231230, 231238, 0, ICONS.ROGUE, 231040, 231048, 0, ICONS.WARRIOR, 231038, 231030, type = 6}, -- Primeval Chest
-	[231717] = {ICONS.DRUID, 231251, 231259, 231235, 231243, 0, ICONS.ROGUE, 231039, 231047, 0, ICONS.WARRIOR, 231033, 231025, type = 6}, -- Primeval Shoulderpads
-	[231716] = {ICONS.DRUID, 231252, 231260, 231236, 231244, 0, ICONS.ROGUE, 231045, 231053, 0, ICONS.WARRIOR, 231032, 231024, type = 6}, -- Primeval Belt
-	[231714] = {ICONS.PRIEST, 231169, 231159, 0, ICONS.MAGE, 231105, 231113, 0, ICONS.WARLOCK, 231076, 231095, type = 6}, -- Draconian Robe
-	[231708] = {ICONS.PRIEST, 231171, 231161, 0, ICONS.MAGE, 231100, 231108, 0, ICONS.WARLOCK, 231078, 231097, type = 6}, -- Draconian Belt
-	[231712] = {ICONS.PRIEST, 231166, 231156, 0, ICONS.MAGE, 231102, 231110, 0, ICONS.WARLOCK, 231073, 231091, type = 6}, -- Draconian Gloves
-	[231710] = {ICONS.PRIEST, 231168, 231158, 0, ICONS.MAGE, 231104, 231112, 0, ICONS.WARLOCK, 231075, 231093, type = 6}, -- Draconian Leggings
-	[231707] = {ICONS.PRIEST, 231172, 231162, 0, ICONS.MAGE, 231107, 231115, 0, ICONS.WARLOCK, 231079, 231098, type = 6}, -- Draconian Bindings
-	[231711] = {ICONS.PRIEST, 231167, 231157, 0, ICONS.MAGE, 231103, 231111, 0, ICONS.WARLOCK, 231074, 231092, type = 6}, -- Draconian Hood
-	[231709] = {ICONS.PRIEST, 231170, 231160, 0, ICONS.MAGE, 231106, 231114, 0, ICONS.WARLOCK, 231077, 231096, type = 6}, -- Draconian Shoulderpads
-	[231713] = {ICONS.PRIEST, 231165, 231155, 0, ICONS.MAGE, 231101, 231109, 0, ICONS.WARLOCK, 231072, 231090, type = 6}, -- Draconian Boots
-	[231642] = { {8845,"20"},{13463,"20"},{8846,"20"},{13465,"20"},{13466,"20"},{13467,"20"}, type = 2 }, -- Warden's Herb Bag
-	[231644] = { {14344,"4"},{16203,"1"},{16204,"20"}, type = 2 }, -- Warden's Enchanting Bag
-	[232454] = { 221487, 221488, 221489,221510, 221513, 221514, 221516, 232458, 221490,  type = 2 }, -- Emblem of the Wild Gods
-	[232455] = { 212548,212549,212551,212552,212559,212561,212562,212560,208853, type = 2 }, -- Emblem of Dishonor
-	[232456] = { 213100,213104,213112,213118,213124,213130,213137,213144,216606, type = 2 }, -- Emblem of the Violet Eye
-	[232457] = { 232459,232460,232461,232462, type = 2 }, -- Emblem of the Worldcore
-	--SoD AQ40
-	[235045] = { 234808, 234809, 234810, type = 6 },			-- Imperial Qiraji Regalia
-	[235046] = { 234804, 234805, 234806, 234807, type = 6 },	-- Imperial Qiraji Armaments
-	[233363] = { ICONS.WARRIOR, 233651, 233373, 0, ICONS.HUNTER, 233664, 233411, 0, ICONS.MAGE, 233402, 233678, 0, type = 6 }, -- Carapace of the Old God
-	[233362] = { ICONS.PALADIN, 233397, 233688, 233693, 0, ICONS.SHAMAN, 233704, 233699, 233386, 233694, 0, ICONS.DRUID, 233715, 233711, 233720, 233415, 0, type = 6 }, -- Husk of the Old God
-	[233364] = { ICONS.ROGUE, 233389, 233659, 0, ICONS.PRIEST, 233395, 233680, 0, ICONS.WARLOCK, 233380, 233670, 0, type = 6 }, -- Skin of the Old God
-	[233367] = { ICONS.WARRIOR, 233375, 233653, 0, ICONS.WARRIOR, 233374, 233654, 0, ICONS.HUNTER, 233410, 233666, 0, ICONS.HUNTER, 233408, 233667, 0, ICONS.MAGE, 233676, 233404, 0, ICONS.MAGE, 233674, 233406, 0, type = 6 }, -- Intact Peritoneum
-	[233365] = { ICONS.PALADIN, 233692, 233398, 233687, 0, ICONS.PALADIN, 233690, 233400, 233685, 0, ICONS.SHAMAN, 233705, 233700, 233385, 233695, 0, ICONS.SHAMAN, 233708, 233703, 233382, 233698, 0, ICONS.DRUID, 233718, 233709, 233723, 233412, 0, ICONS.DRUID, 233714, 233710, 233719, 233416, 0, type = 6 }, -- Intact Viscera
-	[233368] = { ICONS.ROGUE, 233661, 233388, 0, ICONS.ROGUE, 233662, 233390, 0, ICONS.PRIEST, 233682, 233393, 0, ICONS.PRIEST, 233679, 233396, 0, ICONS.WARLOCK, 233669, 233381, 0, ICONS.WARLOCK, 233672, 233378, 0, type = 6 }, -- Intact Entrails
-	[233370] = { ICONS.WARRIOR, 233376, 233658, 0, ICONS.WARRIOR, 233372, 233652, 0, ICONS.HUNTER, 233409, 233668, 0, ICONS.HUNTER, 233407, 233665, 0, ICONS.MAGE, 233677, 233403, 0, ICONS.MAGE, 233675, 233405, 0, type = 6 }, -- Qiraji Bindings of Command
-	[233369] = { ICONS.PALADIN, 233689, 233401, 233684, 0, ICONS.PALADIN, 233691, 233399, 233686, 0, ICONS.SHAMAN, 233707, 233702, 233383, 233697, 0, ICONS.SHAMAN, 233706, 233701, 233384, 233696, 0, ICONS.DRUID, 233717, 233713, 233722, 233413, 0, ICONS.DRUID, 233716, 233712, 233721, 233414, 0, type = 6 }, -- Qiraji Bindings of Dominance
-	[233371] = { ICONS.ROGUE, 233663, 233387, 0, ICONS.ROGUE, 233660, 233391, 0, ICONS.PRIEST, 233681, 233394, 0, ICONS.PRIEST, 233683, 233392, 0, ICONS.WARLOCK, 233671, 233379, 0, ICONS.WARLOCK, 233673, 233377, 0, type = 6 }, -- Qiraji Bindings of Sovereignty
-	--SOD Tier 3.5 Scarlet Enclave Stuff
-	[239719] = {ICONS.ROGUE, 239555, 239547, 0, ICONS.PRIEST, 239583, 239588, 0, ICONS.WARLOCK, 240152, 240145, type = 6}, -- Consecrated Bindings
-	[239718] = {ICONS.ROGUE, 239556, 239554, 0, ICONS.PRIEST, 239582, 239590, 0, ICONS.WARLOCK, 240151, 240144, type = 6}, -- Consecrated Belt
-	[239716] = {ICONS.ROGUE, 239557, 239549, 0, ICONS.PRIEST, 239574, 239584, 0, ICONS.WARLOCK, 240147, 240140, type = 6}, -- Consecrated Gloves
-	[239714] = {ICONS.ROGUE, 239560, 239550, 0, ICONS.PRIEST, 239575, 239585, 0, ICONS.WARLOCK, 240148, 240141, type = 6}, -- Consecrated Circlet
-	[239710] = {ICONS.ROGUE, 239558, 239553, 0, ICONS.PRIEST, 239572, 239589, 0, ICONS.WARLOCK, 240153, 240139, type = 6}, -- Consecrated Sandals
-	[239712] = {ICONS.ROGUE, 239559, 239552, 0, ICONS.PRIEST, 239581, 239586, 0, ICONS.WARLOCK, 240150, 240143, type = 6}, -- Consecrated Shoulderpads
-	[239721] = {ICONS.ROGUE, 239561, 239551, 0, ICONS.PRIEST, 239577, 239587, 0, ICONS.WARLOCK, 240149, 240142, type = 6}, -- Consecrated Leggings
-	[239715] = {ICONS.ROGUE, 239562, 239548, 0, ICONS.PRIEST, 239565, 239591, 0, ICONS.WARLOCK, 240146, 240138, type = 6}, -- Consecrated Robe
-	[239759] = {ICONS.WARRIOR, 239512, 239520, 0, ICONS.HUNTER, 239536, 239544, 0, ICONS.MAGE, 240052, 240044, type = 6}, -- Consecrated Bracers
-	[239760] = {ICONS.WARRIOR, 239513, 239521, 0, ICONS.HUNTER, 239535, 239538, 0, ICONS.MAGE, 240053, 240045, type = 6}, -- Consecrated Waistguard
-	[239762] = {ICONS.WARRIOR, 239514, 239522, 0, ICONS.HUNTER, 239531, 239539, 0, ICONS.MAGE, 240057, 240049, type = 6}, -- Consecrated Gauntlets
-	[239707] = {ICONS.WARRIOR, 239517, 239525, 0, ICONS.HUNTER, 239532, 239540, 0, ICONS.MAGE, 240056, 240048, type = 6}, -- Consecrated Helmet
-	[239706] = {ICONS.WARRIOR, 239515, 239523, 0, ICONS.HUNTER, 239530, 239537, 0, ICONS.MAGE, 240058, 240050, type = 6}, -- Consecrated Sabatons
-	[239708] = {ICONS.WARRIOR, 239516, 239524, 0, ICONS.HUNTER, 239534, 239542, 0, ICONS.MAGE, 240054, 240046, type = 6}, -- Consecrated Pauldrons
-	[239709] = {ICONS.WARRIOR, 239518, 239526, 0, ICONS.HUNTER, 239533, 239541, 0, ICONS.MAGE, 240055, 240047, type = 6}, -- Consecrated Legplates
-	[239761] = {ICONS.WARRIOR, 239519, 239527, 0, ICONS.HUNTER, 239529, 239543, 0, ICONS.MAGE, 240059, 240051, type = 6}, -- Consecrated Breastplate
-	[239722] = {ICONS.PALADIN, 240023, 240042, 240031, 246056, 0, ICONS.SHAMAN, 240108, 240100, 240137, 240127, 0, ICONS.DRUID, 240060, 240068, 240084, 240076, type = 6}, -- Consecrated Wristguards
-	[239756] = {ICONS.PALADIN, 240024, 240043, 240032, 246059, 0, ICONS.SHAMAN, 240107, 240099, 240136, 240126, 0, ICONS.DRUID, 240061, 240069, 240085, 240077, type = 6}, -- Consecrated Girdle
-	[239730] = {ICONS.PALADIN, 240028, 240041, 240036, 246055, 0, ICONS.SHAMAN, 240103, 240095, 240130, 240122, 0, ICONS.DRUID, 240065, 240073, 240089, 240081, type = 6}, -- Consecrated Handguards
-	[239729] = {ICONS.PALADIN, 240027, 240040, 240035, 246062, 0, ICONS.SHAMAN, 240104, 240096, 240131, 240123, 0, ICONS.DRUID, 240064, 240072, 240088, 240080, type = 6}, -- Consecrated Headpiece
-	[239726] = {ICONS.PALADIN, 240029, 240022, 240037, 246057, 0, ICONS.SHAMAN, 240102, 240093, 240129, 240110, 0, ICONS.DRUID, 240066, 240074, 240090, 240082, type = 6}, -- Consecrated Boots
-	[239758] = {ICONS.PALADIN, 240025, 240021, 240033, 246061, 0, ICONS.SHAMAN, 240106, 240098, 240135, 240125, 0, ICONS.DRUID, 240062, 240070, 240086, 240078, type = 6}, -- Consecrated Spaulders
-	[239757] = {ICONS.PALADIN, 240026, 240020, 240034, 246058, 0, ICONS.SHAMAN, 240105, 240097, 240134, 240124, 0, ICONS.DRUID, 240063, 240071, 240087, 240079, type = 6}, -- Consecrated Legguards
-	[239731] = {ICONS.PALADIN, 240030, 240039, 240038, 246060, 0, ICONS.SHAMAN, 240101, 240092, 240128, 240109, 0, ICONS.DRUID, 240067, 240075, 240091, 240083, type = 6}, -- Consecrated Tunic
-	[239215] = { 242314, 242317, 242315, 242316, type = 3 }, -- Charred Emblem
 }
 
 if AtlasLoot:GameVersion_GE(AtlasLoot.BC_VERSION_NUM) then
@@ -1445,7 +978,7 @@ if AtlasLoot:GameVersion_GE(AtlasLoot.WRATH_VERSION_NUM) then
 
 
 		--- Misc
-		[44951] = { { 41119, "24-40" }, type = 11 },
+		[44951] = { { 41119, "24-40" }, type = 11 }
 	}
 end
 

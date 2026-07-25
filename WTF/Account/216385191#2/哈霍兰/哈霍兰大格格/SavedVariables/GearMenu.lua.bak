@@ -1,0 +1,69 @@
+
+GearMenuConfiguration = {
+["enableDragAndDrop"] = true,
+["trinketMenuSlotSize"] = 40,
+["trinketMenuShowCooldowns"] = true,
+["filterItemQuality"] = 4,
+["firstTimeInitializationDone"] = true,
+["enableTrinketMenu"] = true,
+["lockTrinketMenuFrame"] = true,
+["enableFastPress"] = false,
+["enableSimpleTooltips"] = true,
+["enableTooltips"] = true,
+["enableUnequipSlot"] = false,
+["enableRuneSlots"] = true,
+["gearBars"] = {
+{
+["showKeyBindings"] = true,
+["id"] = 189774,
+["slots"] = {
+{
+["type"] = {
+"INVTYPE_TRINKET",
+},
+["inventoryTypeId"] = 11,
+["name"] = "slot_name_upper_trinket",
+["simplifiedName"] = "slot_name_trinket",
+["slotId"] = 13,
+["textureId"] = 136528,
+},
+{
+["type"] = {
+"INVTYPE_TRINKET",
+},
+["inventoryTypeId"] = 11,
+["name"] = "slot_name_lower_trinket",
+["simplifiedName"] = "slot_name_trinket",
+["slotId"] = 14,
+["textureId"] = 136528,
+},
+},
+["displayName"] = "Default GearBar",
+["isLocked"] = true,
+["gearSlotSize"] = 40,
+["showCooldowns"] = true,
+["orientation"] = 1,
+["changeSlotSize"] = 40,
+["position"] = {
+["relativePoint"] = "CENTER",
+["posY"] = -222.4268646240234,
+["point"] = "CENTER",
+["posX"] = 423.1248168945313,
+},
+["changeMenuDirection"] = 2,
+},
+},
+["quickChangeRules"] = {
+},
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 10,
+["frames"] = {
+["GM_TrinketMenuFrame"] = {
+["relativePoint"] = "RIGHT",
+["point"] = "RIGHT",
+["posY"] = -221.7552947998047,
+["posX"] = -160.623779296875,
+},
+},
+["addonVersion"] = "v2.7.0",
+}

@@ -101,6 +101,30 @@ nil,
 ["Player-5843-00E2C300"] = {
 },
 ["Player-5376-03D5066C"] = {
+{
+"|cffa335ee|Hitem:16921:2590:::::::60::::::::::|h[卓越之环]|h|r",
+"|cffa335ee|Hitem:23036::::::::60::::::::::|h[尸身项链]|h|r",
+"|cffa335ee|Hitem:16924:2715:::::::60::::::::::|h[卓越肩铠]|h|r",
+"|cffffffff|Hitem:3342::::::::60::::::::::|h[杉德尔船长的衬衣]|h|r",
+"|cffa335ee|Hitem:16923:1891:::::::60::::::::::|h[卓越法袍]|h|r",
+"|cffa335ee|Hitem:16925::::::::60::::::::::|h[卓越腰带]|h|r",
+"|cffa335ee|Hitem:16922:2590:::::::60::::::::::|h[卓越护腿]|h|r",
+"|cffa335ee|Hitem:16919:911:::::::60::::::::::|h[卓越长靴]|h|r",
+"|cffa335ee|Hitem:16926:2566:::::::60::::::::::|h[卓越束腕]|h|r",
+"|cffa335ee|Hitem:16920:2617:::::::60::::::::::|h[卓越护手]|h|r",
+"|cffa335ee|Hitem:23061::::::::60::::::::::|h[信仰之戒]|h|r",
+"|cffa335ee|Hitem:19382::::::::60::::::::::|h[纯源质指环]|h|r",
+"|cffa335ee|Hitem:20636::::::::60::::::::::|h[休眠水晶]|h|r",
+"|cffa335ee|Hitem:23047::::::::60::::::::::|h[亡者之眼]|h|r",
+"|cffa335ee|Hitem:22960::::::::60::::::::::|h[缝合披风]|h|r",
+"|cffff8000|Hitem:22631:2505:::::::60::::::::::|h[埃提耶什，守护者的传说之杖]|h|r",
+["name"] = "T2",
+[18] = "|cffa335ee|Hitem:23009::::::::60::::::::::|h[秘语亡者之杖]|h|r",
+["helmet"] = true,
+[19] = "|cffffffff|Hitem:5976::::::::60::::::::::|h[公会徽章]|h|r",
+["icon"] = 92,
+["cloak"] = false,
+},
 },
 ["Player-5843-00DC356D"] = {
 },
@@ -178,17 +202,17 @@ nil,
 },
 ["Player-5376-16BEFC08"] = {
 },
-["Player-5453-041DA806"] = {
+["Player-5843-0113F042"] = {
 },
 ["Player-5303-154A4CAC"] = {
 },
 ["Player-5453-0476F4B3"] = {
 },
-["Player-5376-1626BB3C"] = {
-},
 ["Player-5843-00D04D9B"] = {
 },
-["Player-5381-152D7C91"] = {
+["Player-5376-175576B3"] = {
+},
+["Player-5844-00DCAAAD"] = {
 },
 ["Player-5843-0113F9E2"] = {
 },
@@ -196,11 +220,11 @@ nil,
 },
 ["Player-5453-03F7B721"] = {
 },
-["Player-5844-00DCAAAD"] = {
+["Player-5381-152D7C91"] = {
 },
-["Player-5376-175576B3"] = {
+["Player-5376-1626BB3C"] = {
 },
-["Player-5843-0113F042"] = {
+["Player-5453-041DA806"] = {
 },
 },
 ["useBar"] = true,
@@ -212,10 +236,7 @@ nil,
 481.3119201660156,
 129.3555450439453,
 },
-["takeoffAll_include_neck_finger_and_trinket"] = false,
-["_version"] = 220902,
-["show_outfit_in_tooltip"] = true,
-["multi_lines"] = false,
+["quickSize"] = 18,
 ["quickPosChar"] = {
 ["Player-5376-03E2B2A8"] = {
 "RIGHT",
@@ -223,6 +244,13 @@ nil,
 "RIGHT",
 0,
 -126.4147415161133,
+},
+["Player-5376-03D5066C"] = {
+"RIGHT",
+nil,
+"RIGHT",
+-7.235653400421143,
+-120.51123046875,
 },
 ["Player-5376-16CCC446"] = {
 "RIGHT",
@@ -232,5 +260,8 @@ nil,
 -124.4471206665039,
 },
 },
-["quickSize"] = 18,
+["show_outfit_in_tooltip"] = true,
+["multi_lines"] = false,
+["_version"] = 220902,
+["takeoffAll_include_neck_finger_and_trinket"] = false,
 }

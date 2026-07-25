@@ -1,6 +1,13 @@
 VER 3 000000000000034E "Decursive" "INV_MISC_QUESTIONMARK"
 /script DecursiveRootTable.Dcr:Println('没有相关技能')
 END
+VER 3 0000000000000357 "Decursive" "134400"
+/stopcasting
+/cast [@mouseover,nomod,exists] 解除诅咒;  [@mouseover,exists,mod:ctrl] 驱毒术; [@mouseover,exists,mod:shift] 解除诅咒
+END
+VER 3 0000000000000358 "TMW" "4638724"
+/TMW
+END
 VER 3 000000000000034F "TMW" "4638724"
 /目标 纳兹加克王子
 END

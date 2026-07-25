@@ -124,7 +124,8 @@ end
 local function addOneOverlay(overlays,overlayConfig,project,default,triggers)
 local condition=getCondition(overlayConfig,default,triggers)
 local texture=overlayConfig.texture or default.texture
-if type(texture)~='string' then
+if type(texture)~='string'
+and (type(texture)~='function' or type(texture())~='string')then
 SAO:Error(Module, "Adding Overlay with invalid texture "..tostring(texture))
 end
 local position=overlayConfig.position or default.position
@@ -332,7 +333,7 @@ local combatOnly=overlay.combatOnly==true or effect.combatOnly==true
 local overlayPod={
 stacks=nil,
 spellID=spellID,
-texture=SAO.TexName[texture],
+texture=type(texture)=='string' and SAO.TexName[texture] or texture,
 position=position,
 level=level,
 scale=scale,

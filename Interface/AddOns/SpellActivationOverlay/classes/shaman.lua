@@ -25,8 +25,6 @@ end
 local spellID=16246
 local textureVariant1="genericarc_05"
 local textureVariant2="echo_of_the_elements"
-self:MarkTexture(textureVariant1)
-self:MarkTexture(textureVariant2)
 local weakText=PET_BATTLE_COMBAT_LOG_DAMAGE_WEAK:gsub("[ ()]","")
 local strongText=PET_BATTLE_COMBAT_LOG_DAMAGE_STRONG:gsub("[ ()]","")
 elementalFocusVariants=self:CreateTextureVariants(spellID,0,{
@@ -56,6 +54,18 @@ overlays={
 if self.IsEra() and not self.IsSoD()then
 self:RegisterAura("elemental_focus",0,16246,texture, "Left + Right (Flipped)",1.25,255,255,255,false)
 end
+end
+local function useEyeOfTheStorm(self)
+self:CreateEffect(
+"eye_of_the_storm",
+SAO.ERA + SAO.TBC,
+29063,
+"aura",
+{
+talent=29062,
+overlay={texture="white_tiger",position="Left + Right (Flipped)",scale=1.4,color={32,192,255},level=5,pulse=false},
+}
+)
 end
 local function useShamanisticFocus(self)
 self:CreateEffect(
@@ -260,6 +270,7 @@ local elementalFocusBuff=16246
 local elementalFocusTalent=16164
 local _,_,efTalentTab,efTalentIndex=SAO:GetTalentByName(self:GetSpellName(elementalFocusTalent))
 local powerSurgeSoDRune=48829
+lazyCreateElementalFocusVariants(self)
 local powerSurgeRightTextureFunc=function()
 local hasElementalFocusOption=SpellActivationOverlayDB.classes["SHAMAN"]["alert"][elementalFocusBuff][0]
 local canProcElementalFocus=efTalentTab and efTalentIndex and self:GetNbTalentPoints(efTalentTab,efTalentIndex) > 0
@@ -274,12 +285,12 @@ local canProcPowerSurge=C_Engraving and C_Engraving.IsRuneEquipped(powerSurgeSoD
 if hasPowerSurgeOption and canProcPowerSurge then
 return
 end
-return self.TexName["genericarc_05"]
+return elementalFocusVariants and elementalFocusVariants.textureFunc() or self.TexName["genericarc_05"]
 end
 self:RegisterAura("power_surge_sod",0,powerSurgeSoDBuff, "imp_empowerment", "Left",1.25,255,255,255,true,powerSurgeSpells)
 self:RegisterAura("power_surge_sod",0,powerSurgeSoDBuff,powerSurgeRightTextureFunc, "Right (Flipped)",1.25,255,255,255,true,powerSurgeSpells)
 self:RegisterAura("elemental_focus",0,elementalFocusBuff,elementalFocusLeftTextureFunc, "Left",1.25,255,255,255,false)
-self:RegisterAura("elemental_focus",0,elementalFocusBuff, "genericarc_05", "Right (Flipped)",1.25,255,255,255,false)
+self:RegisterAura("elemental_focus",0,elementalFocusBuff,elementalFocusVariants and elementalFocusVariants.textureFunc or "genericarc_05", "Right (Flipped)",1.25,255,255,255,false)
 SAO:CreateEffect(
 "power_surge_sod_heal",
 SAO.SOD,
@@ -293,6 +304,7 @@ button={spellID=chainHeal,option={talentSubText=HEALER}},
 end
 local function registerClass(self)
 useElementalFocus(self)
+useEyeOfTheStorm(self)
 useShamanisticFocus(self)
 useLavaSurge(self)
 useTidalWaves(self)

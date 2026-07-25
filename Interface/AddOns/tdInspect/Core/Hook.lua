@@ -14,7 +14,7 @@ local function HookSetupMenu(_, root)
     local name = root.contextData and (root.contextData.chatTarget or root.contextData.name)
     if name then
         root:CreateDivider()
-        root:CreateTitle('tdInspect')
+        -- root:CreateTitle('tdInspect') -- Modified by Onesfto
         root:CreateButton(INSPECT, function()
             ns.Inspect:Query(nil, name)
         end)

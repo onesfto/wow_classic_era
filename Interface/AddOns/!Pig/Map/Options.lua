@@ -156,13 +156,13 @@ function PD.addOptions_Map()
 							if datax[ix]==self.uiname then
 								table.remove(datax,ix)
 								UpdatePaichuButLsit()
-								Mapfun.UpdateCollectBut()
+								Mapfun.UpdateCollectBut(true)
 								return
 							end
 						end
 						table.insert(datax,self.uiname)
 						UpdatePaichuButLsit()
-						Mapfun.UpdateCollectBut()
+						Mapfun.UpdateCollectBut(true)
 					end);
 				end
 				local butuiname=unpack(Mapfun.MiniBoxList[i])

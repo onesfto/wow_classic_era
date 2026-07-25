@@ -1,0 +1,80 @@
+
+ThreatClassic2DB = {
+["profileKeys"] = {
+["德加和尚 - 哈霍兰"] = "露露缇娅",
+["哈霍兰大格格 - 哈霍兰"] = "露露缇娅",
+["法德迦 - 哈霍兰"] = "露露缇娅",
+["津巴布韦公主 - 哈霍兰"] = "露露缇娅",
+["魔女桑德兰 - 哈霍兰"] = "露露缇娅",
+["巨龙守护者 - 哈霍兰"] = "露露缇娅",
+["黑龙守护者 - 哈霍兰"] = "Default",
+["六扇门沈小梅 - 哈霍兰"] = "露露缇娅",
+["女王安其拉 - 哈霍兰"] = "露露缇娅",
+["护士长玛利亚 - 哈霍兰"] = "露露缇娅",
+["神圣的老黄 - 哈霍兰"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["bar"] = {
+["count"] = 8,
+},
+},
+["露露缇娅"] = {
+["font"] = {
+["name"] = "默认",
+["size"] = 13,
+},
+["general"] = {
+["updateFreq"] = 0.5,
+["welcome"] = false,
+},
+["warnings"] = {
+["threshold"] = 99,
+["soundFile"] = "!Rurutia_OT",
+["soundChannel"] = "Master",
+["sound"] = true,
+},
+["frame"] = {
+["headerShow"] = false,
+["color"] = {
+nil,
+nil,
+nil,
+0,
+},
+["position"] = {
+nil,
+nil,
+nil,
+680,
+0,
+},
+["locked"] = true,
+["height"] = 135.23806762695,
+["headerColor"] = {
+nil,
+nil,
+nil,
+0,
+},
+["width"] = 160,
+},
+["backdrop"] = {
+["edgeTexture"] = "1 Pixel",
+["bgTexture"] = "Solid",
+["edgeColor"] = {
+nil,
+nil,
+nil,
+0,
+},
+},
+["bar"] = {
+["height"] = 22,
+["padding"] = 2,
+["count"] = 5,
+["texture"] = "Solid",
+},
+},
+},
+}

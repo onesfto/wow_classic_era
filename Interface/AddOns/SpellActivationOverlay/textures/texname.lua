@@ -95,7 +95,7 @@ SAO.TexName={}
 SAO.TextureFilenameFromFullname={}
 for retailTexture,classicTexture in pairs(mapping)do
 local filename=classicTexture:gsub(" ", "_"):gsub("'", "")
-local fullTextureName="Interface\\Addons\\SpellActivationOverlay\\textures\\"..filename
+local fullTextureName="Interface\\AddOns\\SpellActivationOverlay\\textures\\"..filename
 local retailNumber=tonumber(retailTexture,10)
 if (
 (SAO.IsCata() and retailNumber <=511469)

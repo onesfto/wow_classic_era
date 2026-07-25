@@ -47,6 +47,7 @@ local buildInfo=tonumber((select(2,GetBuildInfo())))
 hasMidnightUI=(SAO.IsWoD())
 or (SAO.IsMoP() and buildInfo >=68042)
 or (SAO.IsTBC() and buildInfo >=65295)
+or (SAO.IsEra() and buildInfo >=68808)
 or (SAO.IsRetail() and LE_EXPANSION_LEVEL_CURRENT >=LE_EXPANSION_MIDNIGHT)
 return hasMidnightUI
 end

@@ -1,0 +1,3 @@
+
+BAGANATOR_CONFIG = nil
+BAGANATOR_DATA = nil

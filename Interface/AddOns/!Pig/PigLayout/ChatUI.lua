@@ -59,7 +59,10 @@ local PIGFontStringBG=Create.PIGFontStringBG
 -----
 local RTabFrame =PigLayoutFun.RTabFrame
 local fujiF,fujiBut =PIGOptionsList_R(RTabFrame,CHAT..L["LIB_LAYOUT"],90)
-
+fujiF.PailieT = PIGFontString(fujiF,{"TOPLEFT",fujiF,"TOPLEFT",20,-20},"经典版本暴雪已增加编辑模式，聊天布局请在编辑模式调整")
+fujiF.PailieT:SetTextColor(0, 1, 0, 1);
+fujiF.PailieT:SetJustifyH("LEFT");
+if fujiF.PailieT then return end
 --设置主聊天宽度
 fujiF.ZhuOpen = PIGCheckbutton(fujiF,{"TOPLEFT",fujiF,"TOPLEFT",10,-10},{L["CHAT_ZHUCHATF"].."("..L["CHAT_ZHUNAME"]..")"})
 fujiF.ZhuOpen:SetChecked(PIGA["PigLayout"]["ChatUI"]["Zhu"])

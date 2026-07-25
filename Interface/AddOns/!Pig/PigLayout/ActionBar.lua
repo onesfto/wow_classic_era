@@ -420,7 +420,8 @@ local MicroButLoadFun = {
 		end)
 	end,
 	["PIG_LFGMicroButton"]=function()
-		if PIG_MaxTocversion(20000) then
+		if C_LFGList.GetPremadeGroupFinderStyle()==1 then
+		else
 			EventUtil.ContinueOnAddOnLoaded("Blizzard_GroupFinder_VanillaStyle", function()
 				local bizbut = _G[GameMenu["PIG_LFGMicroButton"]]
 				bizbut:RegisterForClicks("LeftButtonUp","RightButtonUp")
@@ -437,15 +438,6 @@ local MicroButLoadFun = {
 					GameTooltip_AddNewbieTip(self, self.tooltipText, 1.0, 1.0, 1.0, self.newbieText);
 				end)
 			end)
-		elseif PIGIsAddOnLoaded("MeetingHorn") then
-			local bizbut = _G[GameMenu["PIG_LFGMicroButton"]]
-			local LeftClickFun = MeetingHornDataBroker:GetScript("OnClick")
-			bizbut:HookScript("OnMouseUp", function (self,button)
-				if button=="LeftButton" then
-					PVEFrame_ToggleFrame();
-					LeftClickFun()
-				end
-			end);
 		end
 	end,
 	["PIG_EJMicroButton"]=function()
@@ -929,8 +921,13 @@ function PigLayoutFun.addOptions_ActionBar(openxx)
 	
 	local PIGSetAtlas=Fun.PIGSetAtlas
 	local RTabFrame =PigLayoutFun.RTabFrame
-	--
 	local fujiF,fujiBut =PIGOptionsList_R(RTabFrame,ACTIONBARS_LABEL..L["LIB_LAYOUT"],90)
+
+	fujiF.PailieT = PIGFontString(fujiF,{"TOPLEFT",fujiF,"TOPLEFT",20,-20},"经典版本暴雪已增加编辑模式，动作条布局请在编辑模式调整")
+	fujiF.PailieT:SetTextColor(0, 1, 0, 1);
+	fujiF.PailieT:SetJustifyH("LEFT");
+	if fujiF.PailieT then return end
+	--
 	fujiF.HideShijiu=PIGCheckbutton(fujiF,{"TOPLEFT",fujiF,"TOPLEFT",20,-20},{"隐藏狮鹫图标","隐藏动作条两边的狮鹫图标"})
 	fujiF.HideShijiu:SetChecked(PIGA["PigLayout"]["ActionBar"]["HideShijiu"])
 	fujiF.HideShijiu:SetScript("OnClick", function (self)

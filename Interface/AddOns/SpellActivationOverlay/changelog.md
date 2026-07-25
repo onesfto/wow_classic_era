@@ -1,5 +1,43 @@
 ## SpellActivationOverlay Changelog
 
+#### v2.7.9 (2026-07-24)
+
+Thank you to our amazing contributors for helping out. Thanks!
+- brownfiesta and Clemonti for reporting the Bartender issue
+
+Bug Fixes
+- Glowing buttons should now work for macros in Bartender 4.17.8 or later
+- 'Show all spell ranks' is no longer required in spellbook (Era, TBC, Wrath)
+
+This spellbook option was not really required, but it prevented some issues
+Now, players with or without this option should experience the same behavior
+
+#### v2.7.8 (2026-07-22)
+
+Bump in TOC file for Classic Era
+Bump in TOC file for The Burning Crusade Anniversary
+
+The 'Write Debug to chatbox' option should no longer trigger Lua errors
+- Paladin (Classic Era, The Burning Crusade)
+- Warrior (Mists of Pandaria)
+
+New Spell Alerts
+- Priest's Martyrdom (Classic Era, The Burning Crusade, Wrath of the Lich King)
+- Shaman's Eye of the Storm (Classic Era, The Burning Crusade)
+
+Bug Fixes
+- The addon should no longer cause Lua errors since last patch (Classic Era)
+- Shaman's Elemental Focus displays selected visuals (Season of Discovery)
+
+#### v2.7.7 (2026-06-26)
+
+Thank you to our amazing contributors for helping out. Thanks!
+- JonathanCheung for reporting the Shaman issue
+
+Bug Fixes
+- Shamans no longer get a Lua error at start (TBC, Wrath)
+- Incidentally, Elemental Focus really works this time
+
 #### v2.7.6 (2026-06-25)
 
 Bug Fixes
@@ -105,6 +143,7 @@ Bug Fixes
 - Opening the options panel is delayed after leaving combat (Mists of Pandaria)
 - Paladin's The Art of War now displays its Spell Alert (Mists of Pandaria)
 - Paladin's Exorcism now triggers if the target is Demon or Undead\* (Era, TBC)
+
 \* Previously, Exorcism triggered independently of the target's creature type
 
 #### v2.7.3 (2026-06-07)

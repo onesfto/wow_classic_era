@@ -311,7 +311,7 @@ function GeneralFun.BabySitter()
 						butx:Enable()
 						local itemID, itemType, itemSubType, itemEquipLoc, icon= PIGGetItemInfoInstant(cfitem[i]) 
 						butx.icon:SetTexture(icon)
-						local effectiveILvl, isPreview, baseILvl = GetDetailedItemLevelInfo(cfitem[i])
+						local effectiveILvl, isPreview, baseILvl = PIGGetDetailedItemLevelInfo(cfitem[i])
 						butx.liv:SetText(effectiveILvl)
 						local ItemCount = C_Item.GetItemCount(cfitem[i])
 						if ItemCount>0 then
@@ -327,7 +327,7 @@ function GeneralFun.BabySitter()
 						local itemID, itemLink, icon, stackCount, quality=PIGGetContainerItemInfo(Action_l.BagItmes[ix][1],Action_l.BagItmes[ix][2])
 						butxx.icon:SetTexture(icon)
 						butxx.Count:SetText(stackCount)
-						local effectiveILvl, isPreview, baseILvl = GetDetailedItemLevelInfo(itemID)
+						local effectiveILvl, isPreview, baseILvl = PIGGetDetailedItemLevelInfo(itemID)
 						butxx.liv:SetText(effectiveILvl)
 						butxx.itemID=itemID
 						butxx.bag=Action_l.BagItmes[ix][1]

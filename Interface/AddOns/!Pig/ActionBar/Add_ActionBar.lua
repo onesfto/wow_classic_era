@@ -230,24 +230,20 @@ local function ADD_ActionBar(barName,CFdata,anniugeshu, anniujiange)
 	-----
 	for id=1,anniugeshu do
 		local piganniu
-		if PIG_MaxTocversion("old") then
-			piganniu = CreateFrame("CheckButton", "$parent_But"..id, Pig_bar, "SecureActionButtonTemplate,ActionButtonTemplate,SecureHandlerDragTemplate,SecureHandlerMouseUpDownTemplate,SecureHandlerStateTemplate,SecureHandlerBaseTemplate")
-		else
-			piganniu = CreateFrame("CheckButton", "$parent_But"..id, Pig_bar, "ActionBarButtonTemplate")
-			piganniu:UnregisterAllEvents()
-			piganniu:SetScript("OnLoad", nil)
-			piganniu:SetScript("OnAttributeChanged", nil)
-			piganniu:SetScript("OnEvent", nil)
-			--piganniu:SetScript("OnClick", nil)
-			piganniu:SetScript("PostClick", nil)
-			piganniu:SetScript("OnDragStart", nil)
-			piganniu:SetScript("OnReceiveDrag", nil)
-			piganniu:SetScript("OnDragStop", nil)
-			piganniu:SetScript("OnEnter", nil)
-			piganniu:SetScript("OnLeave", nil)
-			piganniu:SetScript("OnShow", nil)
-			piganniu:SetScript("OnHide", nil)
-		end
+		piganniu = CreateFrame("CheckButton", "$parent_But"..id, Pig_bar, "ActionBarButtonTemplate")
+		piganniu:UnregisterAllEvents()
+		piganniu:SetScript("OnLoad", nil)
+		piganniu:SetScript("OnAttributeChanged", nil)
+		piganniu:SetScript("OnEvent", nil)
+		--piganniu:SetScript("OnClick", nil)
+		piganniu:SetScript("PostClick", nil)
+		piganniu:SetScript("OnDragStart", nil)
+		piganniu:SetScript("OnReceiveDrag", nil)
+		piganniu:SetScript("OnDragStop", nil)
+		piganniu:SetScript("OnEnter", nil)
+		piganniu:SetScript("OnLeave", nil)
+		piganniu:SetScript("OnShow", nil)
+		piganniu:SetScript("OnHide", nil)
 		piganniu:SetSize(ActionW, ActionW)
 		if id==1 then
 			piganniu:SetPoint("LEFT",Pig_bar.yidong,"RIGHT",2,0)

@@ -34,6 +34,7 @@ end
 local NoDialogue = {
 	33662,--取消奥杜尔BUFF
 	37119,--取消ICCBUFF
+	35646,--虫洞
 }
 local function IsNoDialogue(npcID)
 	for i=1,#NoDialogue do

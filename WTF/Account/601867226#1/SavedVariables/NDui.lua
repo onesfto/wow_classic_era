@@ -1,6 +1,6 @@
 
 NDuiADB = {
-["DisableInfobars"] = true,
+["DisableInfobars"] = false,
 ["CustomJunkList"] = {
 },
 ["CornerSpells"] = {
@@ -28,31 +28,17 @@ NDuiADB = {
 },
 ["ChatFilterWhiteList"] = "",
 ["UIScale"] = 0.71,
-["ContactList"] = {
+["GuildSortOrder"] = true,
+["RaidAuraWatch"] = {
 },
-["ProfileNames"] = {
-"角色配置",
-"共享配置1",
-"共享配置2",
-"共享配置3",
-"共享配置4",
-"共享配置5",
-},
-["ProfileIndex"] = {
-["法德迦-哈霍兰"] = 1,
-["六扇门沈小梅-哈霍兰"] = 1,
-},
-["TexStyle"] = 2,
+["BWRequest"] = true,
+["SkadaRequest"] = true,
 ["MajorSpells"] = {
 },
 ["totalGold"] = {
 ["哈霍兰"] = {
 ["法德迦"] = {
 173793401,
-"MAGE",
-},
-["六扇门沈小梅"] = {
-92187296,
 "MAGE",
 },
 },
@@ -64,22 +50,33 @@ NDuiADB = {
 {
 },
 },
-["AutoRecycle"] = false,
-["RaidDebuffs"] = {
-},
-["DetectVersion"] = "1.52.4",
 ["ClickSets"] = {
 ["MAGE"] = {
-["MWD"] = 1460,
 ["MWU"] = 475,
+["MWD"] = 1460,
 },
 },
+["RaidDebuffs"] = {
+},
+["DetectVersion"] = "1.51.2",
+["AutoRecycle"] = false,
 ["LockUIScale"] = false,
-["SkadaRequest"] = true,
-["BWRequest"] = true,
-["RaidAuraWatch"] = {
+["TexStyle"] = 2,
+["ProfileIndex"] = {
+["法德迦-哈霍兰"] = 1,
+["六扇门沈小梅-哈霍兰"] = 1,
+["德加和尚-哈霍兰"] = 1,
 },
-["GuildSortOrder"] = true,
+["ProfileNames"] = {
+"角色配置",
+"共享配置1",
+"共享配置2",
+"共享配置3",
+"共享配置4",
+"共享配置5",
+},
+["ContactList"] = {
+},
 }
 NDuiPDB = {
 {

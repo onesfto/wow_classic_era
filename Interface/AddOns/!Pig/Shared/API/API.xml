@@ -3,4 +3,5 @@
 	<Script file="Widget.lua" />
 	<Script file="PIG.lua" />
 	<Script file="Chat.lua" />
+	<Script file="ItemInfo.lua" />
 </Ui>

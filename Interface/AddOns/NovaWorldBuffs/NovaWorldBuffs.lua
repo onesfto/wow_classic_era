@@ -330,7 +330,11 @@ function NWB:loadSODPhases()
 	--Has to be done after PEW.
 	if (NWB.isClassic and C_Engraving and C_Engraving.IsEngravingEnabled()) then
 		local sodPhases = {[25]=1,[40]=2,[50]=3,[60]=4};
-		NWB.sodPhase = sodPhases[(GetEffectivePlayerMaxLevel())];
+		if (GameRulesUtil and GameRulesUtil.GetEffectiveMaxLevelForPlayer) then
+			NWB.sodPhase = sodPhases[(GameRulesUtil.GetEffectiveMaxLevelForPlayer())];
+		else
+			NWB.sodPhase = 4;
+		end
 	end
 end
 --Some notes on the change Blizzard just implemented to make layers share buffs.
@@ -3166,9 +3170,9 @@ function NWB:countDebuffs()
 			count = count + 1;
 		end
 	end
-	if (count > limit - 1) then
+	if (count >= limit) then
 		local dmfCooldown, noMsgs = NWB:getDmfCooldown();
-		if (NWB.isDmfUp and dmfCooldown > 0 and not noMsgs) then
+		if (dmfCooldown > 0 and not noMsgs) then
 			NWB:print(L["dmfBuffReset"]);
 			if (NWB.data.myChars[UnitName("player")].buffs) then
 				for k, v in pairs(NWB.data.myChars[UnitName("player")].buffs) do
@@ -3178,7 +3182,7 @@ function NWB:countDebuffs()
 					end
 				end
 			end
-		elseif (NWB.isDmfUp and (lastDmfTick + 7200) > 0) then
+		elseif ((lastDmfTick + 7200) > 0) then
 			--Backup if buff gotten with older version.
 			NWB:print(L["dmfBuffReset"]);
 			if (NWB.data.myChars[UnitName("player")].buffs) then

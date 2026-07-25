@@ -67,8 +67,8 @@ local function ActionBar_Cailiao()
             end
         end
     end
-    hooksecurefunc("ActionButton_UpdateCount", function(actionButton)
-	    local action = actionButton.action
+    hooksecurefunc(ActionBarActionButtonMixin,"OnEnter", function(actionButton)
+    	local action = actionButton.action
 	    if ( HasAction(action) ) then
 	    	local actiontype,spellID = GetActionInfo(action)
 	    	if actiontype=="spell" and spellID==2764 or spellID==2567 then
@@ -85,10 +85,11 @@ local function ActionBar_Cailiao()
 			    end
 			end
 		end
-	end)
+    end)
 	local FrameUI = CreateFrame("Frame")
 	FrameUI:RegisterEvent("PLAYER_ENTERING_WORLD");
 	FrameUI:RegisterEvent("UNIT_INVENTORY_CHANGED");
+	FrameUI:RegisterEvent("SPELL_UPDATE_CHARGES");
 	FrameUI:HookScript("OnEvent", function(self,event)
 		if event == "UNIT_INVENTORY_CHANGED" or event == "PLAYER_ENTERING_WORLD" then
 			for k, frame in pairs(ActionBarButtonEventsFrame.frames) do

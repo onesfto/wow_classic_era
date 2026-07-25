@@ -1,0 +1,24 @@
+---@class GW2
+local GW = select(2, ...)
+
+local function Construct_MissingAuraIndicator(frame)
+    if GW.Retail then return nil end
+
+    local missingbuffFrame = CreateFrame('Frame', '$parent_MissingBuffIndicatorFrame', frame)
+
+    missingbuffFrame:SetFrameLevel(frame.RaisedElementParent.MissingAuraIndicator)
+
+	return missingbuffFrame
+end
+GW.Construct_MissingAuraIndicator = Construct_MissingAuraIndicator
+
+local function Update_MissingAuraIndicator(frame)
+    if GW.Retail then return nil end
+
+    local missingbuffFrame = frame.MissingBuffFrame
+    missingbuffFrame:SetHeight(16)
+    missingbuffFrame:ClearAllPoints()
+    missingbuffFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, 0)
+    missingbuffFrame:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, 16)
+end
+GW.Update_MissingAuraIndicator = Update_MissingAuraIndicator

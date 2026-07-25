@@ -9,7 +9,7 @@ else
 	mod.statTypes = "normal"
 end
 
-mod:SetRevision("20260523022054")
+mod:SetRevision("20260601033555")
 mod:SetMinSyncRevision(20260522000000) -- 2026, May 22nd
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(15928)
@@ -40,7 +40,7 @@ local timerEnrage			= mod:NewBerserkTimer(300)
 local timerNextShift		= mod:NewVarTimer("v25.9-35.7", 28089, nil, nil, nil, 2, nil, DBM_COMMON_L.DEADLY_ICON)
 local timerShiftCast		= mod:NewCastTimer(3, 28089, nil, nil, nil, 2)
 local timerThrow			= mod:NewCDTimer(20.6, 28338, nil, nil, nil, 5, nil, DBM_COMMON_L.TANK_ICON)
-local timerIntermission		= mod:NewIntermissionTimer("v3.2-4.8", nil, CL.INTERMISSION, true, nil, nil, "136106")
+local timerIntermission		= mod:NewIntermissionTimer("v1.6-4.8", nil, CL.INTERMISSION, true, nil, nil, "136106")
 
 mod:AddInfoFrameOption()
 

@@ -11,8 +11,8 @@ Create.BarTexNum=#BarTexList
 local BorderColorX = {0.65, 0.65, 0.65, 1}
 local BGColorX = {0, 0, 0, 0.4}
 function Create.add_Bar(fuji,ly,Point,WH)
-	local zitix=ChatFontNormal:GetFont()
-	--local zitix=TextStatusBarText:GetFont()
+	--local zitix=ChatFontNormal:GetFont()
+	local zitix=TextStatusBarText:GetFont()
 	local BarHT
 	if ly==4 or ly==6 or ly==7 or ly==11 then
 		BarHT = CreateFrame("Frame", nil, fuji)
@@ -90,10 +90,10 @@ function Create.add_Bar(fuji,ly,Point,WH)
 			BarHT.Border:SetBackdropBorderColor(unpack(BorderColorX))
 			BarHT.Border:SetPoint("TOPLEFT",BarHT,"TOPLEFT",0,0);
 			BarHT.Border:SetPoint("BOTTOMRIGHT",BarHT,"BOTTOMRIGHT",0,0);
-			BarHT.xiaxian = BarHT:CreateFontString();
-			BarHT.V = BarHT:CreateFontString();
-			BarHT.maxV = BarHT:CreateFontString();
-			BarHT.xiaxian:SetPoint("CENTER",BarHT,"CENTER",0,0.8);
+			BarHT.xiaxian = BarHT.Border:CreateFontString();
+			BarHT.V = BarHT.Border:CreateFontString();
+			BarHT.maxV = BarHT.Border:CreateFontString(nil,"OVERLAY");
+			BarHT.xiaxian:SetPoint("CENTER",BarHT,"CENTER",0,0);
 			BarHT.V:SetPoint("RIGHT",BarHT.xiaxian,"LEFT",0,0);
 			BarHT.maxV:SetPoint("LEFT",BarHT.xiaxian,"RIGHT",0,0);
 			function BarHT:PIGStatusBarColort(r,g,b,a)

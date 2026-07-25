@@ -1,0 +1,53 @@
+
+WhisperPopDB = {
+["sound"] = 1,
+["listHeight"] = 320,
+["positions"] = {
+["WhisperPopFrame"] = {
+"CENTER",
+"UIParent",
+"CENTER",
+-275,
+54,
+},
+["WhisperPopNotifyButton"] = {
+"BOTTOMLEFT",
+"UIParent",
+"BOTTOMLEFT",
+351,
+256,
+},
+},
+["showRealm"] = 1,
+["listWidth"] = 200,
+["save"] = 1,
+["timeFormat"] = 2,
+["time"] = 1,
+["buttonScale"] = 100,
+["history"] = {
+{
+["received"] = 1,
+["name"] = "八零后术爷-哈霍兰",
+["class"] = "WARLOCK",
+["messages"] = {
+"0[T1784695447]帮我开个门 铁",
+},
+["new"] = 1,
+},
+{
+["received"] = 1,
+["name"] = "有点小呆萌-哈霍兰",
+["class"] = "PRIEST",
+["messages"] = {
+"0[T1784695255]与[六扇门沈小梅]交易成功。(交出) 54g",
+},
+["new"] = 1,
+},
+},
+["listScale"] = 100,
+["version"] = 4.3,
+["foreignOnly"] = 1,
+["ignoreTags"] = 1,
+["notifyButton"] = 1,
+["applyFilters"] = 1,
+}

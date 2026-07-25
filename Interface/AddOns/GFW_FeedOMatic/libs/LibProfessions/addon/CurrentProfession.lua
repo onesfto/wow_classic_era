@@ -1,5 +1,5 @@
 ---@type LibProfessions
-local addon = _G['LibProfessions-v0.11']
+local addon = _G['LibProfessions-v0.16']
 if not addon then
     -- luacov: disable
     return    -- already loaded and no upgrade necessary
@@ -8,6 +8,8 @@ end
 ---@class LibProfessionsCurrentProfession A library to get information about the current profession
 local profession = addon.currentProfession
 local api = addon.api
+---@type BMUtils
+local utils = _G.LibStub('BMUtils')
 
 --/dump LibStub("LibCurrentProfession-1.0"):ProfessionIs("Cooking")
 function profession:ProfessionIs(profession_name)
@@ -23,17 +25,46 @@ end
 --/dump LibStub("LibCurrentProfession-1.0"):GetReagents(160962)
 function profession:GetReagents(recipeID)
     local reagents = {}
-    local numReagents = api:NumReagents(recipeID);
-    if numReagents > 0 then
-        for reagent_Index = 1, numReagents, 1 do
-            local reagentLink = api:GetReagentItemLink(recipeID, reagent_Index);
-            local reagentName, reagentTexture, reagentCount, playerReagentCount =
-            api:GetReagentInfo(recipeID, reagent_Index);
-            if reagentLink then
-                local reagentItemID = addon.utils:ItemIdFromLink(reagentLink)
-                reagents[reagent_Index] = {["reagentItemID"]=reagentItemID, ["reagentName"]=reagentName,
-                                           ["reagentTexture"]=reagentTexture, ["reagentCount"]=reagentCount,
-                                           ["playerReagentCount"]=playerReagentCount, ["reagentLink"]=reagentLink}
+    if addon.is_classic then
+        local numReagents = api:NumReagents(recipeID);
+        if numReagents > 0 then
+            for reagent_Index = 1, numReagents, 1 do
+                local reagentLink = api:GetReagentItemLink(recipeID, reagent_Index);
+                local reagentName, reagentTexture, reagentCount, playerReagentCount =
+                api:GetReagentInfo(recipeID, reagent_Index);
+                if reagentLink then
+                    local reagentItemID = utils.itemIdFromLink(reagentLink)
+                    reagents[reagent_Index] = { ["reagentItemID"] = reagentItemID,
+                                                ["reagentName"] = reagentName,
+                                                ["reagentTexture"] = reagentTexture,
+                                                ["reagentCount"] = reagentCount,
+                                                ["playerReagentCount"] = playerReagentCount,
+                                                ["reagentLink"] = reagentLink }
+                end
+            end
+            return reagents
+        end
+    else
+        local schematic = _G.C_TradeSkillUI.GetRecipeSchematic(recipeID, false)
+        for index, slot in ipairs(schematic['reagentSlotSchematics']) do
+            for _, reagent in ipairs(slot['reagents']) do
+                local reagentLink = api:GetReagentItemLink(recipeID, index)
+                if reagentLink then
+                    local itemID = utils.itemIdFromLink(reagentLink)
+                    local reagentName = utils.itemNameFromLink(reagentLink)
+
+                    reagents[index] = {
+                        ["reagentItemID"] = itemID,
+                        ["reagentName"] = reagentName,
+                        --["reagentTexture"]=reagentTexture,
+                        ["reagentCount"] = slot['quantityRequired'],
+                        --["playerReagentCount"]=playerReagentCount,
+                        ["reagentLink"] = reagentLink }
+                end
+                --[==[@debug@
+                print(('Recipe %d need %d %s (item id %d)'):format(recipeID, slot['quantityRequired'],
+                        reagentLink, reagent['itemID']))
+                --@end-debug@]==]
             end
         end
         return reagents
@@ -61,7 +92,11 @@ function profession:GetRecipes()
             recipes[recipeID]['numAvailable'] = numAvailable
             recipes[recipeID]['link'] = _G.GetTradeSkillItemLink(recipeID)
             recipes[recipeID]['recipeLink'] = _G.GetTradeSkillRecipeLink(recipeID)
-            recipes[recipeID]['recipeId'] = tonumber(string.match(recipes[recipeID]['recipeLink'], "enchant:(%d+)"))
+            if recipes[recipeID]['recipeLink'] then
+                recipes[recipeID]['recipeId'] = tonumber(string.match(recipes[recipeID]['recipeLink'], "enchant:(%d+)"))
+            else
+                recipes[recipeID]['recipeId'] = nil
+            end
         end
     else
         --In BfA the recipeID is a real ID

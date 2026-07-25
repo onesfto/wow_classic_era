@@ -7,7 +7,7 @@ else
 	mod.statTypes = "normal"
 end
 
-mod:SetRevision("20260527035720")
+mod:SetRevision("20260710163202")
 mod:SetMinSyncRevision(20260522000000) -- 2026, May 22nd
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(15989)
@@ -30,8 +30,8 @@ ability.id = 28524 and type = "begincast"
 --]]
 local airPhaseTimer = "v54.3-70.8"
 
-local warnDrainLifeNow	= mod:NewSpellAnnounce(28542, 2)
-local warnDrainLifeSoon	= mod:NewSoonAnnounce(28542, 1, nil, "RemoveCurse")
+local warnDrainLifeNow	= mod:NewSpellAnnounce(28542, 3)
+local warnDrainLifeSoon	= mod:NewSoonAnnounce(28542, 2, nil, "RemoveCurse")
 local warnIceBlock
 if DBM:IsSeasonal("SeasonOfDiscovery") then
 	warnIceBlock		= mod:NewTargetCountAnnounce(28522, 2)
@@ -67,6 +67,7 @@ local berserkTimer		= mod:NewBerserkTimer(900)
 local noTargetTime = 0
 mod.vb.isFlying = false
 mod.vb.iceBlocks = 0
+mod.vb.airPhaseHPThreshold = false
 local UnitAffectingCombat = UnitAffectingCombat
 local isMythic = select(5, DBM:GetCurrentInstanceDifficulty()) == 4
 
@@ -77,14 +78,16 @@ end
 local function Landing()
 	mod.vb.iceBlocks = 0
 	if isMythic or DBM:IsSeasonal("SeasonOfDiscovery") then
-	warnAirPhaseSoon:Schedule(airPhaseTimer - 10)
-	else
-	warnAirPhaseSoon:Schedule(50)
+		warnAirPhaseSoon:Schedule(airPhaseTimer - 10)
+	elseif not mod.vb.airPhaseHPThreshold then
+		warnAirPhaseSoon:Schedule(50)
 	end
 	warnLanded:Show()
-	timerAirPhase:Start(airPhaseTimer)
+	if not mod.vb.airPhaseHPThreshold then
+		timerAirPhase:Start(airPhaseTimer)
+	end
 	if DBM:IsSeasonal("SeasonOfDiscovery") then
-	mod:Schedule(airPhaseTimer + 1, timerBomb.Stop, timerBomb)
+		mod:Schedule(airPhaseTimer + 1, timerBomb.Stop, timerBomb)
 	end
 end
 
@@ -92,15 +95,16 @@ function mod:OnCombatStart()
 	noTargetTime = 0
 	self.vb.isFlying = false
 	self.vb.iceBlocks = 0
+	self.vb.airPhaseHPThreshold = false
 	self:RegisterShortTermEvents(
 		"UNIT_HEALTH"
 	)
 	-- TODO: confirm this, it seems to have changed with the Mythic hot fixes for both mythic and normal?
-	local initialAirPhaseTimer = isMythic and 39.66 or DBM:IsSeasonal("SeasonOfDiscovery") and 31 or "v32.9-45.9" -- Air phase timer is variable on Era
+	local initialAirPhaseTimer = isMythic and 39.66 or DBM:IsSeasonal("SeasonOfDiscovery") and 31 or "v31.2-45.9" -- Air phase timer is variable on Era
 	if isMythic or DBM:IsSeasonal("SeasonOfDiscovery") then
-	warnAirPhaseSoon:Schedule(initialAirPhaseTimer - 10)
+		warnAirPhaseSoon:Schedule(initialAirPhaseTimer - 10)
 	else
-	warnAirPhaseSoon:Schedule(30)
+		warnAirPhaseSoon:Schedule(30)
 	end
 	timerAirPhase:Start(initialAirPhaseTimer)
 	berserkTimer:Start(900)
@@ -205,7 +209,8 @@ end
 
 function mod:OnSync(msg)
 	if not self:IsInCombat() then return end
-	if msg == "CancelAirPhaseTimer" and timerAirPhase:IsStarted() then
+	if msg == "CancelAirPhaseTimer" then
+		self.vb.airPhaseHPThreshold = true
 		warnAirPhaseSoon:Cancel()
 		timerAirPhase:Stop()
 	end

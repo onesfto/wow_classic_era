@@ -1,6 +1,6 @@
 ﻿
 	----------------------------------------------------------------------
-	-- 	Leatrix Maps 1.15.143 (1st July 2026)
+	-- 	Leatrix Maps 1.15.147 (22nd July 2026)
 	----------------------------------------------------------------------
 
 	-- 10:Func, 20:Comm, 30:Evnt, 40:Panl
@@ -12,7 +12,7 @@
 	local LeaMapsLC, LeaMapsCB, LeaDropList, LeaConfigList, LeaLockList = {}, {}, {}, {}, {}
 
 	-- Version
-	LeaMapsLC["AddonVer"] = "1.15.143"
+	LeaMapsLC["AddonVer"] = "1.15.147"
 
 	-- Get locale table
 	local void, Leatrix_Maps = ...
@@ -1129,11 +1129,11 @@
 					local scale = GetScaleDistance() / moveDistance * mapNormalScale
 					if scale < 0.2 then	scale = 0.2	elseif scale > 3.0 then	scale = 3.0	end
 					WorldMapFrame:SetScale(scale)
-					local s = mapNormalScale / WorldMapScreenAnchor:GetScale()
+					local s = mapNormalScale / WorldMapFrame:GetScale()
 					local x = mapX * s
 					local y = mapY * s
-					WorldMapScreenAnchor:ClearAllPoints()
-					WorldMapScreenAnchor:SetPoint("TOPLEFT", nil, "TOPLEFT", x, y)
+					WorldMapFrame:ClearAllPoints()
+					WorldMapFrame:SetPoint("TOPLEFT", nil, "TOPLEFT", x, y)
 					LeaMapsLC["MapScale"] = WorldMapFrame:GetScale()
 					LeaMapsCB["MapScale"]:Hide(); LeaMapsCB["MapScale"]:Show()
 				end)
@@ -1664,21 +1664,30 @@
 			WorldMapFrame:RegisterForDrag("LeftButton")
 			WorldMapFrame:SetScript("OnDragStart", function()
 				if LeaMapsLC["UnlockMapFrame"] == "On" then
-					WorldMapScreenAnchor:StartMoving()
+					WorldMapFrame:StartMoving()
 				end
 			end)
 			WorldMapFrame:SetScript("OnDragStop", function()
 				if LeaMapsLC["UnlockMapFrame"] == "On" then
-					WorldMapScreenAnchor:StopMovingOrSizing()
-					WorldMapScreenAnchor:SetUserPlaced(false)
+					WorldMapFrame:StopMovingOrSizing()
+					WorldMapFrame:SetUserPlaced(false)
 					-- Save map frame position
-					LeaMapsLC["MapPosA"], void, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"] = WorldMapScreenAnchor:GetPoint()
+					LeaMapsLC["MapPosA"], void, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"] = WorldMapFrame:GetPoint()
 				end
 			end)
 
-			-- Set map position on startup
-			WorldMapScreenAnchor:ClearAllPoints()
-			WorldMapScreenAnchor:SetPoint(LeaMapsLC["MapPosA"], nil, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"])
+			-- Set map position
+			hooksecurefunc(WorldMapFrame, "SynchronizeDisplayState", function()
+				WorldMapFrame:ClearAllPoints()
+				WorldMapFrame:SetPoint(LeaMapsLC["MapPosA"], nil, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"])
+			end)
+			hooksecurefunc(WorldMapFrame, "OnFrameSizeChanged", function()
+				LeaMapsLC["MapPosA"], void, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"] = WorldMapFrame:GetPoint()
+				WorldMapFrame:ClearAllPoints()
+				WorldMapFrame:SetPoint(LeaMapsLC["MapPosA"], nil, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"])
+			end)
+			WorldMapFrame:ClearAllPoints()
+			WorldMapFrame:SetPoint(LeaMapsLC["MapPosA"], nil, LeaMapsLC["MapPosR"], LeaMapsLC["MapPosX"], LeaMapsLC["MapPosY"])
 
 			-- Set map screen clamp
 			WorldMapFrame:SetClampedToScreen(true)
@@ -1725,6 +1734,21 @@
 				WorldMapFrame:SetClampedToScreen(true)
 				WorldMapFrame:SetClampRectInsets(500, -500, -400, 400)
 			end)
+
+			-- Fix for default map minimise button map position
+			do
+				local MapFirstOpen = true
+				WorldMapFrame:HookScript("OnShow", function()
+					if MapFirstOpen then
+						local mapa, void, mapr, mapx, mapy = WorldMapFrame:GetPoint()
+						hooksecurefunc(WorldMapFrame, "HandleUserActionMinimizeSelf", function()
+							WorldMapFrame:ClearAllPoints()
+							WorldMapFrame:SetPoint(mapa, UIParent, mapr, mapx, mapy)
+						end)
+						MapFirstOpen = nil
+					end
+				end)
+			end
 
 		end
 
@@ -3423,7 +3447,7 @@
 						if E.private.general.worldMap then
 							Lock("SetMapOpacity", reason, "Maps") -- Set map opacity
 						end
-						EnableAddOn("Leatrix_Maps")
+						C_AddOns.EnableAddOn("Leatrix_Maps")
 					end
 				end
 			end

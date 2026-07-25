@@ -36,6 +36,7 @@ function BusinessInfo.AHPlus_Mainline()
 		return nil;
 	end
 	local function Show_hangdata(hangui)
+		if not hangui.rowData then return end
 		local itemKey = hangui.rowData.itemKey
 		local itemKeyInfo = C_AuctionHouse.GetItemKeyInfo(itemKey);
 		if itemKeyInfo then

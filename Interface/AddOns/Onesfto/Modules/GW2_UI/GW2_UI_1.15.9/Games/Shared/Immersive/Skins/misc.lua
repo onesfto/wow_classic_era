@@ -1,0 +1,27 @@
+---@class GW2
+local GW = select(2, ...)
+
+local function LoadMiscBlizzardFrameSkins()
+    if not GW.settings.MISC_SKIN_ENABLED then return end
+
+    GW.LoadTimerTrackerSkin()
+    GW.LoadGhostFrameSkin()
+
+    OpacityFrame:GwStripTextures()
+    OpacityFrame:GwCreateBackdrop(GW.BackdropTemplates.Default, true)
+    OpacityFrameSlider:GwSkinSliderFrame()
+
+    -- Basic Message Dialog
+    if BasicMessageDialog then
+        BasicMessageDialog:GwStripTextures()
+        BasicMessageDialog:GwCreateBackdrop(GW.BackdropTemplates.Default, true)
+        BasicMessageDialogButton:GwSkinButton(false, true)
+    end
+
+    -- SplashFrame (Whats New)
+    if SplashFrame then
+        SplashFrame.TopCloseButton:GwSkinButton(true)
+        SplashFrame.BottomCloseButton:GwSkinButton(false, true)
+    end
+end
+GW.LoadMiscBlizzardFrameSkins = LoadMiscBlizzardFrameSkins

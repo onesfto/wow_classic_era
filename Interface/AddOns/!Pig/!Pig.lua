@@ -12,28 +12,35 @@ PD.VerData={biaotou=Ver_biaotou,Ver={},audioVer={},TopVerF={},Genxing={}}
 C_ChatInfo.RegisterAddonMessagePrefix(Ver_biaotou)
 local function GetAddonsVerV(EXTaddname,ly)
 	if ly=="audio" then
-		return PD.VerData.audioVer[EXTaddname] or 0
+		if not PD.VerData.audioVer[EXTaddname] then
+			local VersionID=PIGGetAddOnMetadata(EXTaddname, "Version")
+			if VersionID then
+				PD.VerData.audioVer[EXTaddname] = VersionID
+			else
+				PD.VerData.audioVer[EXTaddname] = "-1"
+			end
+		end
+		return PD.VerData.audioVer[EXTaddname] or "-1"
 	else
-		return PD.VerData.Ver[EXTaddname] or 0
+		if not PD.VerData.Ver[EXTaddname] then
+			local VersionID=PIGGetAddOnMetadata(EXTaddname, "Version")
+			if VersionID then
+				PD.VerData.Ver[EXTaddname] = VersionID
+			else
+				PD.VerData.Ver[EXTaddname] = "-1"
+			end
+		end
+		return PD.VerData.Ver[EXTaddname] or "-1"
 	end
 end
-local function IsUpdateOK_v1(adname,VersionID)
+PD.VerData.GetAddonsVerV=GetAddonsVerV
+local function IsUpdateOK(adname,VersionID)
 	if PIGA["VerC"][adname] and PIGA["VerC"][adname].verno>tonumber(VersionID) and #PIGA["VerC"][adname].p>4 then
 		return true
 	end
 	return false
 end
-PD.VerData.IsUpdateOK_v1=IsUpdateOK_v1
-local function IsUpdateOK(adname,VersionID)
-	if adname==addonName and not PD.VerData.Genxing[adname] then
-		PD.VerData.Genxing[adname]=true
-		if IsUpdateOK_v1(adname,VersionID) then
-			PIGprint(L["ABOUT_UPDATETIPS"],"R")
-			return true
-		end
-	end
-	return false
-end
+PD.VerData.IsUpdateOK=IsUpdateOK
 local function ISchongfuP(name,data)
 	for i=1,#data do
 		if name==data[i] then
@@ -55,10 +62,10 @@ local function GetExtVerInfo(arg2, arg3, arg4, arg5)
 		-- print("名字+服务器:"..arg4)
 		-- print("名字      :"..arg5)
 		local getVer=tonumber(getVer)
-		local LocalVer=tonumber(PD.VerData.Ver[getName])
+		local LocalVer=tonumber(GetAddonsVerV(getName))
 		if arg3=="WHISPER" then
 			if getype=="V" then--手动请求的返回
-				PIG_Version.infoList[arg5][getName]=getVer
+				PIG_VersionUI.infoList[arg5][getName]=getVer
 			elseif getype=="G" then--发出手动请求
 				PIGSendAddonMessage(Ver_biaotou,getName.."#V#"..GetAddonsVerV(getName),"WHISPER",arg4)
 			elseif getype=="D" then--收到其他玩家版本号
@@ -74,7 +81,12 @@ local function GetExtVerInfo(arg2, arg3, arg4, arg5)
 					else
 						PIGA["VerC"][getName]= {["verno"]=getVer,["p"]={arg5}}
 					end
-					IsUpdateOK(adname,getVer)
+					if adname==addonName and not PD.VerData.Genxing[adname] then
+						PD.VerData.Genxing[adname]=true
+						if IsUpdateOK(adname,getVer) then
+							PIGprint(L["ABOUT_UPDATETIPS"],"R")
+						end
+					end
 				end
 			end
 		else
@@ -94,7 +106,7 @@ local function SendExtVerInfo(adname,jimoV)
 		if jimoV then
 			fsMsg=fsMsg.."#X#"..jimoV
 		else
-			if IsUpdateOK(adname,tonumber(PD.VerData.Ver[adname])) then return end
+			if IsUpdateOK(adname,GetAddonsVerV(adname)) then return end
 			fsMsg=fsMsg.."#U#"..GetAddonsVerV(adname)
 		end
 		if PIG_MaxTocversion(100000) then
@@ -118,6 +130,7 @@ end
 --===========================
 local PIGUI = CreateFrame("Frame")
 PIGUI:RegisterEvent("PLAYER_LOGIN")
+PIGUI:RegisterEvent("CHAT_MSG_ADDON")
 PIGUI:SetScript("OnEvent",function(self, event, arg1, arg2, arg3, arg4, arg5)
 	if event=="CHAT_MSG_ADDON" then
 		if arg1 ~= Ver_biaotou then return end
@@ -147,12 +160,6 @@ PIGUI:SetScript("OnEvent",function(self, event, arg1, arg2, arg3, arg4, arg5)
 		if not PIGA["Other"]["PigLoad"] then
 			PIGprint(L["ADDON_LOAD"])
 		end
-		for i=1,#L.addnames do
-			local adname=L.addnames[i]
-			local VersionID=PIGGetAddOnMetadata(adname, "Version")
-			PD.VerData.Ver[adname]=VersionID or 0
-		end
-		self:RegisterEvent("CHAT_MSG_ADDON")
 		for i=1,#L.addnames do
 			SendExtVerInfo(L.addnames[i])
 		end

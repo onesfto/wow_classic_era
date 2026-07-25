@@ -33,49 +33,8 @@ end
 UnitFramefun.zhiyetubiao_Click=zhiyetubiao_Click
 function UnitFramefun.Mubiao()
 	if PIGA["UnitFrame"]["TargetFrame"]["Plus"] and not TargetFrame.ClassBut then
-		if PIG_MaxTocversion(20000) then
-			--目标血量
-			-- hooksecurefunc("TargetFrame_CheckClassification",function(self,lock)--银鹰标志
-			-- 	if not lock and UnitClassification(self.unit)=="rareelite" then
-			-- 		self.borderTexture:SetTexture("Interface/TargetingFrame/UI-TargetingFrame-Rare-Elite");
-			-- 	end
-			-- end);
-			local function SetupStatusBarText(bar,parent)
-				local text=parent:CreateFontString(nil,"OVERLAY","TextStatusBarText")
-				local left=parent:CreateFontString(nil,"OVERLAY","TextStatusBarText")
-				local right=parent:CreateFontString(nil,"OVERLAY","TextStatusBarText");
-
-				text:SetPoint("CENTER",bar,"CENTER");
-				left:SetPoint("LEFT",bar,"LEFT",2,0);
-				right:SetPoint("RIGHT",bar,"RIGHT",-2,0);
-				bar.TextString,bar.LeftText,bar.RightText=text,left,right;
-			end
-			SetupStatusBarText(TargetFrameHealthBar,TargetFrameTextureFrame);
-			SetupStatusBarText(TargetFrameManaBar,TargetFrameTextureFrame);
-
-			TargetHealthDB = TargetHealthDB or { version=1, forcePercentages=false }
-			TargetHealthDB.forcePercentages = true
-			local function HealthBar_Update(statusbar, unit)
-			    if ( not statusbar or statusbar.lockValues ) then
-			        return;
-			    end
-			    if ( unit == statusbar.unit ) then
-			        TargetHealthDB.maxValue = UnitHealthMax(unit);
-			        statusbar.showPercentage = false;
-			        statusbar.forceHideText = false;
-			        if ( TargetHealthDB.maxValue == 0 ) then
-			            TargetHealthDB.maxValue = 1;
-			            statusbar.forceHideText = true;
-			        elseif ( TargetHealthDB.maxValue == 100 and not ShouldKnowUnitHealth(unit) ) then
-			            if TargetHealthDB.forcePercentages then
-			                statusbar.showPercentage = true;
-			            end
-			        end
-			    end
-			    TextStatusBar_UpdateTextString(statusbar);
-			end
-			hooksecurefunc("UnitFrameHealthBar_Update", HealthBar_Update)
-		elseif PIG_MaxTocversion(30000) then
+		--目标血量
+		if PIG_MaxTocversion(30000) then
 			TargetHealthDB = TargetHealthDB or { version=1, forcePercentages=false }
 			TargetHealthDB.forcePercentages = true
 			local function HealthBar_Update(statusbar, unit)
@@ -107,11 +66,7 @@ function UnitFramefun.Mubiao()
 		TargetFrame.ClassBut:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight");
 		TargetFrame.ClassBut:Hide()
 		if PIG_MaxTocversion() then
-			if PIG_MaxTocversion("old") then
-				TargetFrame.ClassBut:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 119, 3);
-			else
-				TargetFrame.ClassBut:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 136, 0);
-			end
+			TargetFrame.ClassBut:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 136, 0);
 		else
 			TargetFrame.ClassBut:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 144, 4);
 			TargetFrame.ClassBut:SetFrameLevel(505)
@@ -134,11 +89,7 @@ function UnitFramefun.Mubiao()
 		TargetFrame.mubiaoLX = CreateFrame("Frame", nil, TargetFrame);
 		TargetFrame.mubiaoLX:SetSize(68,18);
 		if PIG_MaxTocversion() then
-			if PIG_MaxTocversion("old") then
-				TargetFrame.mubiaoLX:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 52, -3);
-			else
-				TargetFrame.mubiaoLX:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 72, -6);
-			end
+			TargetFrame.mubiaoLX:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 72, -6);
 		else
 			TargetFrame.mubiaoLX:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 64, -3);
 		end
@@ -168,11 +119,7 @@ function UnitFramefun.Mubiao()
 		if PIG_MaxTocversion(120000) then
 			TargetFrame.mubiaoHP=CreateFrame("Frame",nil,TargetFrame);
 			if PIG_MaxTocversion() then
-				if PIG_MaxTocversion("old") then
-					TargetFrame.mubiaoHP:SetPoint("RIGHT",TargetFrame,"LEFT",5,-2);
-				else
-					TargetFrame.mubiaoHP:SetPoint("RIGHT",TargetFrame,"LEFT",24,-4);
-				end
+				TargetFrame.mubiaoHP:SetPoint("RIGHT",TargetFrame,"LEFT",24,-4);
 			else
 				TargetFrame.mubiaoHP:SetPoint("RIGHT",TargetFrame,"LEFT",24,-2);
 			end
@@ -200,11 +147,7 @@ function UnitFramefun.Mubiao()
 			TargetFrame:HookScript("OnEvent", function (self,event,arg1)
 				if event=="PLAYER_ENTERING_WORLD" or event=="PLAYER_TARGET_CHANGED" or event=="UNIT_THREAT_LIST_UPDATE" or event=="UNIT_THREAT_SITUATION_UPDATE" then
 					if PIG_MaxTocversion() then
-						if PIG_MaxTocversion("old") then
-							TargetFrame.threatNumericIndicator:SetPoint("BOTTOM", TargetFrame, "TOP", -86, -22);
-						else
-							TargetFrame.threatNumericIndicator:SetPoint("BOTTOM", TargetFrame, "TOP", -66, -25);
-						end
+						TargetFrame.threatNumericIndicator:SetPoint("BOTTOM", TargetFrame, "TOP", -66, -25);
 					else
 						TargetFrame.threatNumericIndicator:SetPoint("BOTTOM", TargetFrame, "TOP", -68, -24);
 					end
@@ -478,11 +421,7 @@ function UnitFramefun.Mubiao()
 		TargetFrame.yisuF:SetSize(49,18);
 		TargetFrame.yisuF:SetFrameLevel(9)
 		if PIG_MaxTocversion() then
-			if PIG_MaxTocversion("old") then
-				TargetFrame.yisuF:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 192, -58);
-			else
-				TargetFrame.yisuF:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 210, -58);
-			end
+			TargetFrame.yisuF:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 210, -58);
 		else
 			TargetFrame.yisuF:SetPoint("TOPLEFT", TargetFrame, "TOPLEFT", 207, -33);
 			TargetFrame.yisuF:SetFrameLevel(505)

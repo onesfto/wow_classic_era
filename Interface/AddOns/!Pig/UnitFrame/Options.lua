@@ -21,42 +21,42 @@ local function SetDebuffui(caster,frameName)
 	if not _G[frameName] then return end
 	 _G[frameName]:SetSize(30,30)
 end
-local function BigDebuff()
-	if IsElvUI() or IsNDui() then return end
-	if PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"] then
-		if TargetFrame_UpdateDebuffAnchor then
-			if PIG_MaxTocversion(120000) then
-				TargetFrameToT:SetPoint("BOTTOMRIGHT", TargetFrame, "BOTTOMRIGHT", -4, -12);
-				hooksecurefunc("TargetFrame_UpdateDebuffAnchor", function(self, debuffName, index)
-					local _, _, _, _, _, _, caster = UnitDebuff(self.unit, index)
-					SetDebuffui(caster,debuffName..index)
-				end)
-			end
-		else
-			local maxDebuffs = TargetFrame.maxDebuffs or MAX_TARGET_DEBUFFS;
-			hooksecurefunc(TargetFrame,"UpdateAuras", function(self)
-				local debuffIndex = 1;
-				AuraUtil.ForEachAura(self.unit, AuraUtil.CreateFilterString(AuraUtil.AuraFilters.Harmful, AuraUtil.AuraFilters.IncludeNameplateOnly), maxDebuffs, function(...)
-					local debuffName, icon, count, debuffType, duration, expirationTime, caster, _, _, _, _, _, casterIsPlayer, nameplateShowAll = ...;
-					if ( debuffName ) then
-						if ( self:ShouldShowDebuffs(self.unit, caster, nameplateShowAll, casterIsPlayer) ) then
-							if ( icon ) then
-								SetDebuffui(caster,"TargetFrameDebuff"..debuffIndex)
-								debuffIndex = debuffIndex + 1;
-							end
-						end
-					end
-				end);
-			end)
-		end
-	end
-end
+-- local function BigDebuff()
+-- 	if IsElvUI() or IsNDui() then return end
+-- 	if PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"] then
+-- 		if TargetFrame_UpdateDebuffAnchor then
+-- 			if PIG_MaxTocversion(120000) then
+-- 				TargetFrameToT:SetPoint("BOTTOMRIGHT", TargetFrame, "BOTTOMRIGHT", -4, -12);
+-- 				hooksecurefunc("TargetFrame_UpdateDebuffAnchor", function(self, debuffName, index)
+-- 					local _, _, _, _, _, _, caster = UnitDebuff(self.unit, index)
+-- 					SetDebuffui(caster,debuffName..index)
+-- 				end)
+-- 			end
+-- 		else
+-- 			local maxDebuffs = TargetFrame.maxDebuffs or MAX_TARGET_DEBUFFS;
+-- 			hooksecurefunc(TargetFrame,"UpdateAuras", function(self)
+-- 				local debuffIndex = 1;
+-- 				AuraUtil.ForEachAura(self.unit, AuraUtil.CreateFilterString(AuraUtil.AuraFilters.Harmful, AuraUtil.AuraFilters.IncludeNameplateOnly), maxDebuffs, function(...)
+-- 					local debuffName, icon, count, debuffType, duration, expirationTime, caster, _, _, _, _, _, casterIsPlayer, nameplateShowAll = ...;
+-- 					if ( debuffName ) then
+-- 						if ( self:ShouldShowDebuffs(self.unit, caster, nameplateShowAll, casterIsPlayer) ) then
+-- 							if ( icon ) then
+-- 								SetDebuffui(caster,"TargetFrameDebuff"..debuffIndex)
+-- 								debuffIndex = debuffIndex + 1;
+-- 							end
+-- 						end
+-- 					end
+-- 				end);
+-- 			end)
+-- 		end
+-- 	end
+-- end
 --
 PD.UnitFrame = function()
 	UnitFramefun.Zishen()
 	UnitFramefun.Duiyou()
 	UnitFramefun.Mubiao()
-	BigDebuff()
+	--BigDebuff()
 end
 function PD.addOptions_UnitFrame()
 	local fuFrame = PIGOptionsList(L["UNIT_TABNAME"],"TOP")
@@ -152,6 +152,7 @@ function PD.addOptions_UnitFrame()
 		end
 		mubiaoText[2]="显示"..mubiaoText[1].."\r|cff00FFFF小提示：|r\r目标职业图标可以点击，"..KEY_BUTTON1.."观察/"..KEY_BUTTON2.."交易"
 		mubiaoF.Plus=PIGCheckbutton_R(mubiaoF,mubiaoText)
+		mubiaoF.Plus:SetChecked(PIGA["UnitFrame"]["TargetFrame"]["Plus"])
 		mubiaoF.Plus:SetScript("OnClick", function (self)
 			if self:GetChecked() then
 				PIGA["UnitFrame"]["TargetFrame"]["Plus"]=true;
@@ -162,6 +163,7 @@ function PD.addOptions_UnitFrame()
 			end
 		end);
 		mubiaoF.Chouhen=PIGCheckbutton_R(mubiaoF,{"仇恨高亮/仇恨目录","目标仇恨高亮/仇恨目录，微调仇恨百分比位置"})
+		mubiaoF.Chouhen:SetChecked(PIGA["UnitFrame"]["TargetFrame"]["Chouhen"])
 		mubiaoF.Chouhen:SetScript("OnClick", function (self)
 			if self:GetChecked() then
 				PIGA["UnitFrame"]["TargetFrame"]["Chouhen"]=true;
@@ -172,6 +174,7 @@ function PD.addOptions_UnitFrame()
 			end
 		end);
 		mubiaoF.ToToToT=PIGCheckbutton_R(mubiaoF,{"显示目标的目标的目标","显示目标的目标的目标（注意：请先打开系统的目标的目标）"})
+		mubiaoF.ToToToT:SetChecked(PIGA["UnitFrame"]["TargetFrame"]["ToToToT"])
 		mubiaoF.ToToToT:SetScript("OnClick", function (self)
 			if self:GetChecked() then
 				PIGA["UnitFrame"]["TargetFrame"]["ToToToT"]=true;
@@ -182,6 +185,7 @@ function PD.addOptions_UnitFrame()
 			end
 		end);
 		mubiaoF.Yisu=PIGCheckbutton_R(mubiaoF,{"显示移动速度","显示目标移动速度"})
+		mubiaoF.Yisu:SetChecked(PIGA["UnitFrame"]["TargetFrame"]["Yisu"])
 		mubiaoF.Yisu:SetScript("OnClick", function (self)
 			if self:GetChecked() then
 				PIGA["UnitFrame"]["TargetFrame"]["Yisu"]=true;
@@ -192,23 +196,16 @@ function PD.addOptions_UnitFrame()
 			end
 		end);
 
-		mubiaoF.BigDebuff=PIGCheckbutton_R(mubiaoF,{"增大自身释放的DEBUFF","增大自身释放的DEBUFF图标"})
-		mubiaoF.BigDebuff:SetScript("OnClick", function (self)
-			if self:GetChecked() then
-				PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"]=true;
-				BigDebuff()
-			else
-				PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"]=false;
-				PIG_OptionsUI.RLUI:Show()
-			end
-		end);
-
-		mubiaoF.Plus:SetChecked(PIGA["UnitFrame"]["TargetFrame"]["Plus"])
-		if mubiaoF.Chouhen then
-			mubiaoF.Chouhen:SetChecked(PIGA["UnitFrame"]["TargetFrame"]["Chouhen"])
-		end
-		mubiaoF.ToToToT:SetChecked(PIGA["UnitFrame"]["TargetFrame"]["ToToToT"])
-		mubiaoF.Yisu:SetChecked(PIGA["UnitFrame"]["TargetFrame"]["Yisu"])
-		mubiaoF.BigDebuff:SetChecked(PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"])
+		-- mubiaoF.BigDebuff=PIGCheckbutton_R(mubiaoF,{"增大自身释放的DEBUFF","增大自身释放的DEBUFF图标"})
+		-- mubiaoF.BigDebuff:SetScript("OnClick", function (self)
+		-- 	if self:GetChecked() then
+		-- 		PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"]=true;
+		-- 		BigDebuff()
+		-- 	else
+		-- 		PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"]=false;
+		-- 		PIG_OptionsUI.RLUI:Show()
+		-- 	end
+		-- end);
+		--mubiaoF.BigDebuff:SetChecked(PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"])
 	end);
 end

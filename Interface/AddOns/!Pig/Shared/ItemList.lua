@@ -349,8 +349,8 @@ local function Update_LevelTaozhuang(Parent)
 	if GetAverageItemLevel and unit=="player" then
 		local avgItemLevel, avgItemLevelEquipped, avgItemLevelPvP = GetAverageItemLevel();
 		Parent.pingjunLV_V:SetText(string.format("%.2f",avgItemLevelEquipped))
-	elseif _G[Data.LongInspectUIUIname].ZBLsit.itemLV then
-		Parent.pingjunLV_V:SetText(string.format("%.2f",_G[Data.LongInspectUIUIname].ZBLsit.itemLV))
+	elseif Data.LongInspectUI and Data.LongInspectUI.ZBLsit and Data.LongInspectUI.ZBLsit.itemLV then
+		Parent.pingjunLV_V:SetText(string.format("%.2f",Data.LongInspectUI.ZBLsit.itemLV))
 	else
 		Parent.pingjunLV_V:SetText(_GetAverageItemLevel(Parent))
 	end
@@ -405,7 +405,7 @@ local function add_ItemList(fujik,miaodian,ZBLsit_C,TalentUI)
 	if NDui then
 		ZBLsit:PIGSetBackdrop(0.5);
 		ZBLsit.LeftJG,ZBLsit.TopJG=4,3
-		ZBLsit:HookScript("OnShow", function(self)
+		local function Update_ZBLsit(self)
 			if PIG_MaxTocversion(50000) and fujik==PaperDollFrame then
 				-- if C_Engraving and C_Engraving.IsEngravingEnabled() then
 				-- 	hooksecurefunc("ToggleEngravingFrame", function()
@@ -419,6 +419,10 @@ local function add_ItemList(fujik,miaodian,ZBLsit_C,TalentUI)
 					self:SetPoint("TOPLEFT", fujik, "TOPRIGHT",-34,-15)
 				end
 			end
+		end
+		Update_ZBLsit(ZBLsit)
+		ZBLsit:HookScript("OnShow", function(self)
+			Update_ZBLsit(self)
 		end)
 	else
 		ZBLsit:PIGSetBackdrop(0.8);
@@ -557,9 +561,8 @@ local function add_ItemList(fujik,miaodian,ZBLsit_C,TalentUI)
 	function ZBLsit:CZ_ItemList()
 		if self.TalentF then self.TalentF:Hide() self.TalentF:CZ_TianfuUI() end
 		local Parent=self:GetParent()
-		self.WJname:SetText(_G[Data.LongInspectUIUIname].fullnameX)
+		self.WJname:SetText(UNKNOWNOBJECT)
 		self.pingjunLV_V:SetText("--")
-		_G[Data.LongInspectUIUIname].ZBLsit.itemLV=nil
 		self.classes:SetTexCoord(0,0,0,0);
 		self.talentBut.talent_1v:SetText("--")
 		self.talentBut.talentIcon:SetTexture(132222);
@@ -586,7 +589,7 @@ local function add_ItemList(fujik,miaodian,ZBLsit_C,TalentUI)
 			["OpenTF"]=function() end,
 		}
 		if unit=="lx" then
-			self.cName=_G[Data.LongInspectUIUIname].fullnameX
+			self.cName=Data.LongInspectUI.fullnameX
 			jichuxinxi.Talent=TalentData.GetTianfuIcon_YC(self.zhiye,self.cName,unit)
 			jichuxinxi.OpenTF=function()
 				PlaySound(SOUNDKIT.IG_CHAT_EMOTE_BUTTON);
@@ -597,7 +600,7 @@ local function add_ItemList(fujik,miaodian,ZBLsit_C,TalentUI)
 				end
 			end
 		elseif unit=="yc" then
-			self.cName=_G[Data.LongInspectUIUIname].fullnameX
+			self.cName=Data.LongInspectUI.fullnameX
 			jichuxinxi.Talent=TalentData.GetTianfuIcon_YC(self.zhiye,self.cName)
 			jichuxinxi.OpenTF=function()
 				PlaySound(SOUNDKIT.IG_CHAT_EMOTE_BUTTON);
@@ -699,14 +702,14 @@ local function add_ItemList(fujik,miaodian,ZBLsit_C,TalentUI)
 	end
 	return ZBLsit
 end
-function Create.PIGItemListUI(laiyuan)
+function Create.PIGItemListUI(laiyuan,lyx)
 	if laiyuan.ZBLsit then return end
 	if laiyuan==PaperDollFrame then
 		laiyuan.ZBLsit = add_ItemList(laiyuan,laiyuan)
 	elseif laiyuan==InspectFrame then
 		laiyuan.ZBLsit = add_ItemList(InspectPaperDollFrame,InspectPaperDollFrame,nil,true)
 		laiyuan.ZBLsit_C = add_ItemList(InspectPaperDollFrame,laiyuan.ZBLsit,true,true)
-	elseif laiyuan==_G[Data.LongInspectUIUIname] then
+	elseif lyx=="yc" then
 		laiyuan.ZBLsit = add_ItemList(laiyuan,laiyuan,nil,true)
 	end
 end

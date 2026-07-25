@@ -238,6 +238,7 @@ function PD.addOptions_Config()
 	local function ExtractConfig()
 		local NewDataX = {}
 		ExtractConfig_1(NewDataX,PD.Default,PIGA)
+		NewDataX["Error"]=nil
 		Get_ExtData(NewDataX)
 		local NewDataX_Per={}
 		ExtractConfig_1(NewDataX_Per,PD.Default_Per,PIGA_Per)
@@ -262,15 +263,15 @@ function PD.addOptions_Config()
 	end);
 	DefaultF.I_ActionBar=PIGCheckbutton(DefaultF,{"LEFT",DefaultF.daochubut,"RIGHT",20, 0},{"包含动作条启用状态","导出信息将包含系统各个动作条启用状态"})
 	DefaultF.I_ActionBar:SetChecked(true)
-	if PIG_MaxTocversion("old") then
-		DefaultF.I_UnitF=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_ActionBar,"BOTTOMLEFT",0, -10},{"导出包含头像位置（自身/目标/焦点）","导出信息将包含头像位置数据"})
-		DefaultF.I_UnitF:SetChecked(true)
-		DefaultF.I_Chat=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_UnitF,"BOTTOMLEFT",0, -10},{"导出包含聊天栏设置","导出信息将包含聊天栏设置"})
-		DefaultF.I_Chat:Disable();
-	else
+	-- if PIG_MaxTocversion("old") then
+	-- 	DefaultF.I_UnitF=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_ActionBar,"BOTTOMLEFT",0, -10},{"导出包含头像位置（自身/目标/焦点）","导出信息将包含头像位置数据"})
+	-- 	DefaultF.I_UnitF:SetChecked(true)
+	-- 	DefaultF.I_Chat=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_UnitF,"BOTTOMLEFT",0, -10},{"导出包含聊天栏设置","导出信息将包含聊天栏设置"})
+	-- 	DefaultF.I_Chat:Disable();
+	-- else
 		DefaultF.I_EditMode=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_ActionBar,"BOTTOMLEFT",0, -10},{"导出编辑模式布局","导出当前编辑模式布局"})
 		DefaultF.I_EditMode:Disable();
-	end
+	--end
 	DefaultF.I_Data=PIGCheckbutton(DefaultF,{"TOPLEFT",DefaultF.I_ActionBar,"BOTTOMLEFT",0, -110},{"导出包含数据(离线银行，聊天记录，售卖信息等)","注意这将导致字符串长度大大增加"})
 	DefaultF.I_Data:Disable();
 end

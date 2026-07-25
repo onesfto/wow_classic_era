@@ -556,7 +556,7 @@ function sectionProto:onTitleMouseEnter()
   GameTooltip:SetText(self.title:GetText())
   local info = strjoin(" ",
     "\n",
-    "Item Count: " .. #self.content.cells
+    L:G("Item Count: ") .. #self.content.cells
   )
   GameTooltip:AddLine(info, 1, 1, 1)
 
@@ -568,22 +568,22 @@ function sectionProto:onTitleMouseEnter()
     if groupID then
       local group = groups:GetGroup(kind, groupID)
       if group then
-        GameTooltip:AddLine("Group: " .. group.name, 0.5, 0.8, 1)
+        GameTooltip:AddLine(L:G("Group: ") .. group.name, 0.5, 0.8, 1)
       end
     end
     GameTooltip:AddLine(" ", 1, 1, 1)
-    GameTooltip:AddLine("Drag to a group tab to assign this category.", 0.7, 0.7, 0.7)
+    GameTooltip:AddLine(L:G("Drag to a group tab to assign this category."), 0.7, 0.7, 0.7)
   end
 
   local cursorType, _, itemLink = GetCursorInfo()
   if CursorHasItem() and IsShiftKeyDown() then
     if cursorType == "item" then
       GameTooltip:AddLine(" ", 1, 1, 1)
-      GameTooltip:AddLine("Drop "..itemLink.." here to add it to "..self.title:GetText()..".", 1, 1, 1)
+      GameTooltip:AddLine(L:G("Drop ")..itemLink..L:G(" here to add it to ")..self.title:GetText()..L:G("."), 1, 1, 1)
     end
   elseif CursorHasItem() and cursorType == "item" then
     GameTooltip:AddLine(" ", 1, 1, 1)
-    GameTooltip:AddLine("Hold shift to add "..itemLink.." to "..self.title:GetText()..".", 1, 1, 1)
+    GameTooltip:AddLine(L:G("Hold shift to add ")..itemLink..L:G(" to ")..self.title:GetText()..L:G("."), 1, 1, 1)
   end
   GameTooltip:Show()
 end

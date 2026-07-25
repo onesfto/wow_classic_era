@@ -490,7 +490,7 @@ function BusinessInfo.MailPlus_ADDUI()
 						itemBut.Num:SetText(newdata[i][2])
 					end
 					if classID==2 or classID==4 then
-						local effectiveILvl = GetDetailedItemLevelInfo(ItemLink)	
+						local effectiveILvl = PIGGetDetailedItemLevelInfo(ItemLink)	
 						if effectiveILvl and effectiveILvl>0 then
 							itemBut.LV:SetText(effectiveILvl)
 							local quality = C_Item.GetItemQualityByID(ItemLink)
@@ -1215,7 +1215,7 @@ function BusinessInfo.MailPlus_ADDUI()
 							end
 							if PIGA["BagBank"]["wupinLV"] then
 								if classID==2 or classID==4 then
-									local effectiveILvl = GetDetailedItemLevelInfo(itemLink)	
+									local effectiveILvl = PIGGetDetailedItemLevelInfo(itemLink)	
 									if effectiveILvl and effectiveILvl>0 then
 										itemBut.LV:SetText(effectiveILvl)
 										local quality = C_Item.GetItemQualityByID(itemLink)

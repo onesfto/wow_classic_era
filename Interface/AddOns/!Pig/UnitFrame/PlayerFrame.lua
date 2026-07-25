@@ -10,10 +10,8 @@ local function Update_Hp()
 		local HP = UnitHealth("player");	
 		local HPmax = UnitHealthMax("player");
 		PlayerFrame.ziji.HP:SetText(HP..'/'..HPmax);
-		if PIG_MaxTocversion() then
-			if HPmax>0 then
-				PlayerFrame.ziji.Baifenbi:SetText(floor(((HP/HPmax)*100)).."%");
-			end
+		if not PIGisSecret(HP) and HPmax>0 then
+			PlayerFrame.ziji.Baifenbi:SetText(floor(((HP/HPmax)*100)).."%");
 		end
 	end
 end
@@ -106,13 +104,8 @@ function UnitFramefun.Zishen()
 			PlayerFrame.ziji:SetBackdropBorderColor(1, 1, 1, 0.6);
 			PlayerFrame.ziji:SetWidth(70);
 			if PIG_MaxTocversion() then
-				if PIG_MaxTocversion("old") then
-					PlayerFrame.ziji:SetPoint("TOPLEFT", PlayerFrame, "TOPRIGHT", -4, -20);
-					PlayerFrame.ziji:SetPoint("BOTTOMLEFT", PlayerFrame, "BOTTOMRIGHT", -4, 32);
-				else
-					PlayerFrame.ziji:SetPoint("TOPLEFT", PlayerFrame, "TOPRIGHT", -21, -24);
-					PlayerFrame.ziji:SetPoint("BOTTOMLEFT", PlayerFrame, "BOTTOMRIGHT", -21, 29);
-				end
+				PlayerFrame.ziji:SetPoint("TOPLEFT", PlayerFrame, "TOPRIGHT", -21, -24);
+				PlayerFrame.ziji:SetPoint("BOTTOMLEFT", PlayerFrame, "BOTTOMRIGHT", -21, 29);
 			else
 				PlayerFrame.ziji:SetPoint("TOPLEFT", PlayerFrame, "TOPRIGHT", -21, -26);
 				PlayerFrame.ziji:SetPoint("BOTTOMLEFT", PlayerFrame, "BOTTOMRIGHT", -21, 26);

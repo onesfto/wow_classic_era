@@ -13,6 +13,30 @@ function Fun.CZ_ItemButtonZLVranse(ItemButton)
 end
 function Fun.Update_ItemButtonZLVranse(ly,ItemButton,data1,data2,data3)
 	if not ItemButton then return end
+	if PIGA["BagBank"]["EquipBind"] then
+		if not ItemButton.EquipBind then
+			ItemButton.EquipBind = PIGFontString(ItemButton,{"TOPRIGHT", ItemButton, "TOPRIGHT", 4, 0.4},"绑","THICKOUTLINE",14)
+			ItemButton.EquipBind:SetDrawLayer("OVERLAY", 7)
+			ItemButton.EquipBind:SetTextColor(0, 1, 1, 1);
+		end
+		ItemButton.EquipBind:Hide()
+		if ly=="C" then
+			-- local ItemID=GetInventoryItemID(data1, data2)
+			-- if ItemID then
+			-- 	local bindType = select(14, GetItemInfo(ItemID))
+			-- 	ItemButton.EquipBind:SetShown(bindType==2)
+			-- end
+		elseif ly=="B" then
+			local itemID, itemLink, icon, stackCount, quality, noValue, lootable, locked, isBound=PIGGetContainerItemInfo(data1, data2)
+			if itemID and not isBound then
+				local bindType = select(14, GetItemInfo(itemID))
+				ItemButton.EquipBind:SetShown(bindType==2)
+			end
+		elseif ly=="L" or ly=="YC" then
+			-- local bindType = select(14, GetItemInfo(data1))
+			-- ItemButton.EquipBind:SetShown(bindType==2)
+		end
+	end
 	if PIGA["BagBank"]["wupinLV"] then
 		if not ItemButton.ZLV then
 			ItemButton.ZLV = PIGFontString(ItemButton,{"TOPLEFT", ItemButton, "TOPLEFT", -1, 0.4},nil,"THICKOUTLINE",14)

@@ -30,6 +30,18 @@ button={stacks=-1},
 }
 )
 end
+local function useMartyrdom()
+SAO:CreateEffect(
+"martyrdom",
+SAO.ERA + SAO.TBC + SAO.WRATH,
+14743,
+"aura",
+{
+talent=14531,
+overlay={texture="white_tiger",position="Left + Right (Flipped)",scale=1.25,color={32,192,255},level=5,pulse=false},
+}
+)
+end
 local function useSerendipity()
 if SAO.IsMoP()then
 SAO:CreateEffect(
@@ -293,6 +305,7 @@ button={stacks=2,spellID=mindBlast,option={isNative=true}},
 end
 local function registerClass(self)
 useInnerFire()
+useMartyrdom()
 useSerendipity()
 useSurgeOfLight()
 useClearcasting()

@@ -259,7 +259,7 @@ function FramePlusfun.Roll()
 			local itemLink = GetLootRollItemLink(self.rollID)
 			local itemID, itemType, itemSubType, itemEquipLoc, icon, classID, subclassID = PIGGetItemInfoInstant(itemLink) 
 			if classID==2 or classID==4 then
-				local effectiveILvl = GetDetailedItemLevelInfo(itemLink)
+				local effectiveILvl = PIGGetDetailedItemLevelInfo(itemLink)
 				self.icon.lv:SetText(effectiveILvl);
 				local r, g, b = GetItemQualityColor(quality);
 				self.icon.lv:SetTextColor(r, g, b, 1);
@@ -449,7 +449,7 @@ function FramePlusfun.Roll()
 			itembut.icon.link=itemLink
 			itembut.icon.tex:SetTexture(itemTexture)
 			if classID==2 or classID==4 then
-				local effectiveILvl = GetDetailedItemLevelInfo(itemLink)
+				local effectiveILvl = PIGGetDetailedItemLevelInfo(itemLink)
 				itembut.icon.lv:SetText(effectiveILvl);
 				local r, g, b = GetItemQualityColor(itemQuality);
 				itembut.icon.lv:SetTextColor(r, g, b, 1);

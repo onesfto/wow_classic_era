@@ -1,0 +1,232 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+    <Frame name="GwTalentFrame" enableMouse="true" inherits="SecureHandlerBaseTemplate" protected="true" virtual="true">
+        <Size x="608" y="621"></Size>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="245" y="-5"></Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture file="Interface\AddOns\GW2_UI\textures\character\paperdollbg.png">
+                    <Size x="608" y="621"></Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="0" y="0"></Anchor>
+                    </Anchors>
+                </Texture>
+                <FontString parentKey="title" text="" justifyH="LEFT" justifyV="MIDDLE">
+                    <Size x="256" y="32"></Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="20" y="-50"></Anchor>
+                    </Anchors>
+                </FontString>
+                <Texture file="Interface\AddOns\GW2_UI\textures\talents\talents_header.png" parentKey="background">
+                    <Size x="512" y="32"></Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="10" y="-50"></Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame parentKey="topBar">
+                <Size x="608" y="30"></Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="10" y="-10"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString parentKey="unspentPoints" text="10" justifyH="LEFT" justifyV="MIDDLE">
+                            <Size x="250" y="30"></Size>
+                            <Anchors>
+                                <Anchor point="LEFT" relativePoint="LEFT" x="0" y="0"/>
+                            </Anchors>
+                        </FontString>
+                        <FontString parentKey="clearInfo" text="" justifyH="LEFT" justifyV="MIDDLE">
+                            <Size x="250" y="15"></Size>
+                            <Anchors>
+                                <Anchor point="LEFT" relativePoint="LEFT" x="0" y="-18"/>
+                            </Anchors>
+                        </FontString>
+                        <FontString parentKey="activeSpecIndicator" text="TALENT_SPECTAB_TOOLTIP_ACTIVE" justifyH="CENTER" justifyV="MIDDLE">
+                            <Anchors>
+                                <Anchor point="CENTER" relativePoint="CENTER" x="0" y="-20"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Frames>
+                    <Button parentKey="activateSpecGroup" text="TALENT_SPEC_ACTIVATE" registerForClicks="AnyDown" enableMouse="true" inherits="GwStandardButton">
+                        <Size x="80" y="22"/>
+                        <Anchors>
+                            <Anchor point="RIGHT" relativePoint="RIGHT" x="-20" y="0"/>
+                        </Anchors>
+                    </Button>
+                </Frames>
+            </Frame>
+        </Frames>
+    </Frame>
+
+    <Frame name="GwTalentsLevelLabel" virtual="true">
+        <Size x="30" y="30"></Size>
+        <Layers>
+            <Layer level="BORDER">
+                <FontString parentKey="title" text="0" justifyH="CENTER" justifyV="MIDDLE">
+                    <Size x="32" y="32"></Size>
+                    <Anchors>
+                        <Anchor point="CENTER" relativePoint="CENTER" x="0" y="0"></Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Button name="GwSpecFrame" enableMouse="true" virtual="true">
+        <Size x="588" y="140"></Size>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="10" y="-10"></Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="background" file="Interface\AddOns\GW2_UI\textures\character\paperdollbg.png">
+                    <Size x="588" y="140"></Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="0" y="0"></Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+        </Layers>
+        <Frames>
+            <Frame parentKey="info" enableMouse="false">
+                <Size x="460" y="140"></Size>
+                <Anchors>
+                    <Anchor point="RIGHT" relativePoint="RIGHT" x="0" y="0"></Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <Texture parentKey="background" file="Interface\AddOns\GW2_UI\textures\character\paperdollbg.png">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="0" y="0"></Anchor>
+                                <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="0" y="0"></Anchor>
+                            </Anchors>
+                            <Color r="1" g="1" b="1" a="0.6"></Color>
+                            <TexCoords left="1" right="0" top="0" bottom="1" />
+                        </Texture>
+                    </Layer>
+                    <Layer level="OVERLAY" textureSubLevel="">
+                        <FontString parentKey="specTitle" text="TITLE" justifyH="LEFT">
+                            <Size x="200" y="20"></Size>
+                            <Anchors>
+                                <Anchor point="TOPLEFT" x="0" y="-20"></Anchor>
+                            </Anchors>
+                        </FontString>
+                        <FontString parentKey="specDesc" text="DESC" justifyH="LEFT" justifyV="TOP">
+                            <Size x="400" y="60"></Size>
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.specTitle" relativePoint="BOTTOMLEFT" x="0" y="-5"></Anchor>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+            <Frame parentKey="icon">
+                <Size x="80" y="80"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="LEFT" x="20" y="0"></Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <Texture parentKey="texture" file="Interface\AddOns\GW2_UI\textures\character\paperdollbg.png">
+                            <Size x="80" y="80"></Size>
+                            <Anchors>
+                                <Anchor point="CENTER"></Anchor>
+                            </Anchors>
+                            <TexCoords left="0.1" right="0.9" top="0.1" bottom="0.9" />
+                        </Texture>
+                    </Layer>
+                    <Layer level="ARTWORK" textureSubLevel="6">
+                        <Texture parentKey="roleIcon">
+                            <Size x="25" y="25"></Size>
+                        </Texture>
+                    </Layer>
+                    <Layer level="ARTWORK" textureSubLevel="5">
+                        <Texture parentKey="roleIconBg" file="Interface/AddOns/GW2_UI/textures/hud/notification-backdrop.png">
+                            <Size x="27" y="27"></Size>
+                            <Color r="0" g="0" b="0" a="0.7"/>
+                            <Anchors>
+                                <Anchor point="CENTER" relativeKey="$parent.roleIcon" relativePoint="CENTER" x="0"></Anchor>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                    <Layer level="ARTWORK">
+                        <Texture parentKey="outline" file="Interface\AddOns\GW2_UI\textures\talents\passive_outline.png">
+                            <Size x="110" y="110"></Size>
+                            <Anchors>
+                                <Anchor point="CENTER"></Anchor>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </Frame>
+        </Frames>
+    </Button>
+
+    <Button name="GwTalentButton" enableMouse="true" inherits="SecureActionButtonTemplate" virtual="true">
+        <Size x="34" y="34"></Size>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="10" y="-10"></Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="outline" file="Interface\AddOns\GW2_UI\textures\talents\background_border.png">
+                    <Size x="44" y="44"></Size>
+                    <Anchors>
+                        <Anchor point="CENTER" relativePoint="CENTER"></Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK" textureSubLevel="2">
+                <Texture parentKey="icon">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="0" y="0"></Anchor>
+                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="0" y="0"></Anchor>
+                    </Anchors>
+                    <TexCoords left="0.1" right="0.9" top="0.1" bottom="0.9" />
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <Texture alphaMode="ADD" file="Interface\AddOns\GW2_UI\textures\talents\active_highlight.png" parentKey="highlight" hidden="true">
+                    <Size x="34" y="34"></Size>
+                    <Anchors>
+                        <Anchor point="CENTER" relativePoint="CENTER"></Anchor>
+                    </Anchors>
+                    <Color r="1" b="0.6" g="1" a="0.9"></Color>
+                </Texture>
+                <Texture file="Interface\AddOns\GW2_UI\textures\talents\active_highlight.png" parentKey="legendaryHighlight" hidden="true">
+                    <Size x="34" y="34"></Size>
+                    <Anchors>
+                        <Anchor point="CENTER" relativePoint="CENTER"></Anchor>
+                    </Anchors>
+                    <Color r="1" g="0.662" b="0.13" a="0.9"></Color>
+                </Texture>
+            </Layer>
+        </Layers>
+    </Button>
+
+    <Frame name="GwTalentLine" virtual="true">
+        <Size x="66" y="124"></Size>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="245" y="-5"></Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="line" file="Interface\AddOns\GW2_UI\textures\talents\line.png">
+                    <Size x="66" y="66"></Size>
+                </Texture>
+            </Layer>
+        </Layers>
+    </Frame>
+
+</Ui>

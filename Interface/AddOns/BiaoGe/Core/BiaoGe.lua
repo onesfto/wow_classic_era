@@ -619,7 +619,7 @@ BG.Init(function()
         end
 
         -- 团员成就
-        if BG.IsWLK_80 or BG.IsMOP then
+        if BG.IsWLK or BG.IsMOP then
             local name = "AchievementMainFrame"
             BG[name] = CreateFrame("Frame", "BG." .. name, BG.MainFrame)
             do
@@ -780,17 +780,11 @@ BG.Init(function()
 
         --通报UI
         BG.Init2(function()
-            if (BG.IsWLK or BG.IsMOP) and IsAddOnLoaded("ArchonTooltip") then
-                BG.hasWCL = true
-            end
             local lastbt
             lastbt = BG.ZhangDanUI(lastbt)
             lastbt = BG.LiuPaiUI(lastbt)
             lastbt = BG.XiaoFeiUI(lastbt)
             lastbt = BG.QianKuanUI(lastbt)
-            if BG.hasWCL then
-                lastbt = BG.WCLUI(lastbt)
-            end
             BG.NotifyChannelUI(lastbt)
         end)
 
@@ -1339,7 +1333,7 @@ BG.Init(function()
                 local bt = v.button
                 if v.num == num then
                     bt:Disable()
-                    SetColor(bt, true,1)
+                    SetColor(bt, true, 1)
                     bt:GetFontString():SetTextColor(1, 1, 1)
                     v.frame:Show()
                 else
@@ -1369,7 +1363,7 @@ BG.Init(function()
                 if BG.IsWLK_80 then
                     -- 有团本攻略 团员成就
                     bt:SetPoint("TOPLEFT", BG.MainFrame, "BOTTOM", -330, 1)
-                elseif BG.IsMOP then
+                elseif BG.IsMOP or BG.IsTitan then
                     -- 团员成就
                     bt:SetPoint("TOPLEFT", BG.MainFrame, "BOTTOM", -260, 1)
                 else
@@ -1447,19 +1441,12 @@ BG.Init(function()
         end, onEnterDelay, true)
 
         local bt = BG.Create_TabButton(BG.YYMainFrameTabNum, L["YY评价"], BG.YYMainFrame)
-        BG.OnEnterDelay(bt, function(self)
-            GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT", 0, 0)
-            GameTooltip:ClearLines()
-            GameTooltip:AddLine(L["< YY评价 >"], 1, 1, 1, true)
-            GameTooltip:AddLine(L["你可以给YY频道做评价，帮助别人辨别该团好与坏"], 1, 0.82, 0, true)
-            GameTooltip:AddLine(" ")
-            GameTooltip:AddLine(L["你可以查询YY频道的大众评价"], 1, 0.82, 0, true)
-            GameTooltip:AddLine(" ")
-            GameTooltip:AddLine(L["聊天频道的YY号变为超链接，方便你复制该号码或查询大众评价"], 1, 0.82, 0, true)
-            GameTooltip:AddLine(" ")
-            GameTooltip:AddLine(L["替换集结号的评价框，击杀当前版本团本尾王后弹出"], 1, 0.82, 0, true)
-            GameTooltip:Show()
-        end, onEnterDelay, true)
+        -- BG.OnEnterDelay(bt, function(self)
+        --     GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT", 0, 0)
+        --     GameTooltip:ClearLines()
+        --     GameTooltip:AddLine(L["< YY评价 >"], 1, 1, 1, true)
+        --     GameTooltip:Show()
+        -- end, onEnterDelay, true)
 
         if BG.AchievementMainFrame then
             local bt = BG.Create_TabButton(BG.AchievementMainFrameTabNum, L["团员成就"], BG.AchievementMainFrame)

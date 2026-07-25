@@ -159,6 +159,7 @@ function PD.addOptions_BagBank()
 		----
 		local BAG_SetList = {
 			{false,false,"显示背包剩余空间","BagKongyu",BagKongyu},
+			{true,true, "装备绑定物品提示","EquipBind",BagKongyu},
 			{true, true, "垃圾物品提示",   "JunkShow",},
 			{false,false,"战利品放入左边包",nil,        SetInsertItemsLeftToRight,GetInsertItemsLeftToRight},
 			{false,false,"反向整理",       nil,        PIGSetSortBagsRightToLeft,PIGGetSortBagsRightToLeft},

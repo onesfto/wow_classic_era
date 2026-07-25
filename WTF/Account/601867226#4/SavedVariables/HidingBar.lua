@@ -1,108 +1,106 @@
 
 HidingBarDB = {
-["tstmp"] = 1783360124,
+["tstmp"] = 1784971945,
 ["profiles"] = {
 {
 ["isDefault"] = true,
 ["config"] = {
 ["mbtnSettings"] = {
 ["LibDBIcon10_RareScannerMinimapIcon"] = {
-["tstmp"] = 1783360124,
+["tstmp"] = 1784971945,
 },
 ["LibDBIcon10_BiSTracker"] = {
-["tstmp"] = 1782843723,
-},
-["LibDBIcon10_RXPGuides"] = {
-["tstmp"] = 1782840420,
+["tstmp"] = 1784971945,
 },
 ["LibDBIcon10_MeetingHorn"] = {
-["tstmp"] = 1783360124,
-},
-["LFGMinimapFrame"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_Plater"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_alaTradeSkill"] = {
-["tstmp"] = 1783360124,
-},
-["PIG_MiniMapBut"] = {
-["tstmp"] = 1783097341,
-},
-["LibDBIcon10_DBM"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_CChatFilter"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_BugSack"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_BiaoGe"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_Leatrix_Plus"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_Myslot"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_Details"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_NovaWorldBuffs"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_HandyNotes_NPCs"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_Atlas"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_PallyPower"] = {
-["tstmp"] = 1783101273,
-},
-["LibDBIcon10_TalentEmu"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_Leatrix_Maps"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_MethodRaidTools"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_HidingBar1"] = {
-["tstmp"] = 0,
+["tstmp"] = 1784207223,
 },
 ["LibDBIcon10_SinStats"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_AtlasLoot"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_MailLogger"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_DetailsStreamer"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_WeakAuras"] = {
-["tstmp"] = 1783360124,
-},
-["LibDBIcon10_Questie"] = {
-["tstmp"] = 1783360124,
+["tstmp"] = 1784971945,
 },
 ["LibDBIcon10_alaCalendar"] = {
-["tstmp"] = 1783360124,
+["tstmp"] = 1784207223,
+},
+["PIG_MiniMapBut"] = {
+["tstmp"] = 1784207223,
+},
+["LFGMinimapFrame"] = {
+["tstmp"] = 1784207223,
+},
+["LibDBIcon10_DBM"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_CChatFilter"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_Plater"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_BiaoGe"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_Leatrix_Plus"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_Myslot"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_alaTradeSkill"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_Details"] = {
+["tstmp"] = 1784971947,
+},
+["LibDBIcon10_MailLogger"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_HandyNotes_NPCs"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_Atlas"] = {
+["tstmp"] = 1784207223,
+},
+["LibDBIcon10_NovaWorldBuffs"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_AtlasLoot"] = {
+["tstmp"] = 1784207223,
+},
+["LibDBIcon10_MethodRaidTools"] = {
+["tstmp"] = 1784971945,
+},
+["MiniMapWorldMapButton"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_TalentEmu"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_PallyPower"] = {
+["tstmp"] = 1783116661,
+},
+["LibDBIcon10_Leatrix_Maps"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_DetailsStreamer"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_WeakAuras"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_Questie"] = {
+["tstmp"] = 1784971945,
+},
+["LibDBIcon10_BugSack"] = {
+["tstmp"] = 1784971945,
 },
 ["LibDBIcon10_Decursive"] = {
-["tstmp"] = 1783360124,
+["tstmp"] = 1783922113,
 },
 },
 ["btnSettings"] = {
 ["HidingBar"] = {
-["tstmp"] = 1783360124,
+true,
+["tstmp"] = 1784971945,
 },
 },
 ["grabMinimap"] = true,
@@ -116,7 +114,6 @@ HidingBarDB = {
 ["grabDefMinimap"] = false,
 ["grabMinimapAfterN"] = 1,
 ["ombGrabQueue"] = {
-1,
 },
 ["grabMinimapAfter"] = false,
 },
@@ -144,7 +141,7 @@ HidingBarDB = {
 },
 ["anchor"] = "left",
 ["lineTexture"] = "Solid",
-["barTypePosition"] = 2,
+["barTypePosition"] = 1,
 ["size"] = 8,
 ["interceptTooltipPosition"] = 0,
 ["petBattleHide"] = true,
@@ -157,7 +154,7 @@ HidingBarDB = {
 ["mbtnPosition"] = 2,
 ["lineBorderEdge"] = false,
 ["lineBorderOffset"] = 1,
-["showHandler"] = 1,
+["showHandler"] = 0,
 ["expand"] = 0,
 ["borderEdge"] = false,
 ["bgColor"] = {
@@ -178,12 +175,13 @@ HidingBarDB = {
 ["minimapPos"] = 204.5129655988926,
 ["canGrabbed"] = true,
 ["distanceToBar"] = 5,
+["size"] = 27,
 ["lock"] = true,
 ["fadeOpacity"] = 1,
 ["anchor"] = "right",
 ["barDisplacement"] = 0,
 ["icon"] = 133222,
-["size"] = 27,
+["hide"] = true,
 },
 ["buttonSize"] = 28,
 ["frameStrata"] = 2,

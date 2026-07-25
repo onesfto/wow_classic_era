@@ -1,0 +1,2 @@
+
+SpellWhisperDB = nil

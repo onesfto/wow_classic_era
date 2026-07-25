@@ -49,6 +49,14 @@ function PD.MiniMapBut_Add()
 		GameTooltip:ClearLines();
 		GameTooltip:Hide() 
 	end);
+	local function GetMinimapScale()
+		if MinimapCluster and MinimapCluster.GetSettingValue and Enum.EditModeMicroMenuSetting.Size then
+			local Value=MinimapCluster:GetSettingValue(Enum.EditModeMicroMenuSetting.Size)/100
+			return Value>0 and Value or 1
+		else
+			return 1
+		end
+	end
 	local function YDButtonP(mode,xpos,ypos)
 		if mode==1 or mode==3 then
 			MiniMapBut:ClearAllPoints();
@@ -66,7 +74,6 @@ function PD.MiniMapBut_Add()
 					PIGA["Map"]["MinimapPoint_ElvUI"][2]=ypos
 					local function ElvUIPoint(Coun)
 						if MinimapPanel and MinimapPanel:IsVisible() then
-							MiniMapBut.Box:SetPoint("TOPRIGHT", MiniMapBut, "BOTTOMLEFT", -2, 20);
 							local PanelH = MinimapPanel:GetHeight()
 							MinimapPanel:SetPoint("TOPLEFT",Minimap,"BOTTOMLEFT",PanelH,0)
 							MiniMapBut:ClearAllPoints();
@@ -86,7 +93,10 @@ function PD.MiniMapBut_Add()
 					ElvUIPoint(0)
 				else
 					local xpos=xpos or PIGA["Map"]["MinimapPos"]
-					local banjing = Minimap:GetWidth()*0.5+8
+					local left, bottom, width, height = Minimap:GetScaledRect()
+					local minimapScale = GetMinimapScale()
+					local UIScale = UIParent:GetEffectiveScale()
+					local banjing = (width*0.5)/minimapScale/UIScale+10
 					local pianyi =MiniMapBut.pianyi
 					MiniMapBut:SetPoint("TOPLEFT",Minimap,"TOPLEFT",pianyi-2-(banjing*cos(xpos)),(banjing*sin(xpos))-pianyi)
 					PIGA["Map"]["MinimapPos"]=xpos
@@ -97,31 +107,22 @@ function PD.MiniMapBut_Add()
 					PIGA["Map"]["MinimapPointXY"][1]=xpos
 					PIGA["Map"]["MinimapPointXY"][2]=ypos	
 				else
-					local xpos=PIGA["Map"]["MinimapPointXY"] and PIGA["Map"]["MinimapPointXY"][1] or PD.Default["Map"]["MinimapPointXY"][1]
-					local ypos=PIGA["Map"]["MinimapPointXY"] and PIGA["Map"]["MinimapPointXY"][2] or PD.Default["Map"]["MinimapPointXY"][2]
+					local xpos=PIGA["Map"]["MinimapPointXY"][1] or PD.Default["Map"]["MinimapPointXY"][1]
+					local ypos=PIGA["Map"]["MinimapPointXY"][2] or PD.Default["Map"]["MinimapPointXY"][2]
 					MiniMapBut:SetPoint("CENTER",UIParent,"CENTER",xpos,ypos)
 				end
 			end
 		end
 	end
-	local function YDButtonP_OnUpdate()	
-		local mode = PIGA["Map"]["MinimapPointMode"]
+	local function GetPositionData(mode)
 		local UIScale = UIParent:GetEffectiveScale()
 		local xpos,ypos = GetCursorPosition()
-		local xpos = xpos/UIScale
-		local ypos = ypos/UIScale
-		local left, bottom, width, height = Minimap:GetScaledRect()
-		local left = left/UIScale
-	    local bottom = bottom/UIScale
-	    local width = width/UIScale
-	    local height = height/UIScale
+		xpos = xpos/UIScale
+		ypos = ypos/UIScale
 		local Pigleft, Pigbottom, Pigwidth, Pigheight  = MiniMapBut:GetScaledRect()
-		local Pigleft = Pigleft/UIScale
-	    local Pigbottom = Pigbottom/UIScale
-	    local Pigwidth = Pigwidth/UIScale
-	    local Pigheight = Pigheight/UIScale
+		Pigwidth, Pigheight=Pigwidth or ButW, Pigheight or ButW
+	    Pigwidth = Pigwidth/UIScale
 		local Pigwidth2 = Pigwidth*0.5
-		local Pigheight2 = Pigheight*0.5
 		if mode==3 then
 			local MinibutW3 = Pigwidth2-4
 			local WowWidth2=GetScreenWidth()*0.5;
@@ -132,20 +133,26 @@ function PD.MiniMapBut_Add()
 			if xpos<-WowWidth2+MinibutW3 then xpos=-WowWidth2+MinibutW3 end
 			if ypos>WowHeight2-MinibutW3 then ypos=WowHeight2-MinibutW3 end
 			if ypos<-WowHeight2+MinibutW3 then ypos=-WowHeight2+MinibutW3 end
-			YDButtonP(mode,xpos,ypos)
-			MiniMapBut.Box:ClearAllPoints();
-			local Pointinfo = {"RIGHT", "LEFT", "TOP", "BOTTOM", -2, 25}
-			if xpos<0 then
-				Pointinfo[1]="LEFT"
-				Pointinfo[2]="RIGHT"
-			end
-			if ypos<0 then
-				Pointinfo[3]="BOTTOM"
-				Pointinfo[4]="TOP"
-				Pointinfo[6]=0
-			end
-			MiniMapBut.Box:SetPoint(Pointinfo[3]..Pointinfo[1], MiniMapBut, Pointinfo[4]..Pointinfo[2], Pointinfo[5], Pointinfo[6]);
+			return xpos,ypos
 		else
+			local left, bottom, width, height = Minimap:GetScaledRect()
+			left = left/UIScale
+		    bottom = bottom/UIScale
+		    width = width/UIScale
+		   	height = height/UIScale
+		    Pigheight = Pigheight/UIScale
+		    local Pigheight2 = Pigheight*0.5
+			return xpos,ypos,left, bottom, width, height,Pigheight,Pigheight2
+		end
+	end
+	local function YDButtonP_OnUpdate()	
+		local mode = PIGA["Map"]["MinimapPointMode"]
+		if mode==3 then
+			local xpos,ypos=GetPositionData(mode)
+			YDButtonP(mode,xpos,ypos)
+			MiniMapBut.Box:UpdateMiniMapButBox_3(mode,xpos,ypos)
+		else
+		   	local xpos,ypos,left, bottom, width, height,Pigheight,Pigheight2=GetPositionData(mode)
 			if Fun.IsNDui() and not Fun.IsNDui("Map","DisableMinimap") or Fun.IsElvUI() then
 				local xpos = xpos-left-Pigwidth2
 				local ypos = ypos-bottom-Pigheight2
@@ -225,19 +232,42 @@ function PD.MiniMapBut_Add()
 		end
 	end
 	function MiniMapBut:CZMinimapInfo()
-		PIGA["Map"]["MinimapPos"]=CopyTable(PD.Default["Map"]["MinimapPos"])
-		PIGA["Map"]["MinimapPointXY"]=nil
+		PIGA["Map"]["MinimapPos"]=PD.Default["Map"]["MinimapPos"]
+		PIGA["Map"]["MinimapPointXY"]=CopyTable(PD.Default["Map"]["MinimapPointXY"])
 		PIGA["Map"]["MinimapPoint_NDui"]=CopyTable(PD.Default["Map"]["MinimapPoint_NDui"])
 		PIGA["Map"]["MinimapPoint_ElvUI"]=CopyTable(PD.Default["Map"]["MinimapPoint_ElvUI"])
 		YDButtonP(PIGA["Map"]["MinimapPointMode"]);
 	end
 	MiniMapBut.Box = PIGFrame(MiniMapBut,nil,{200, 100});
-	MiniMapBut.Box:PIGSetBackdrop()
+	MiniMapBut.Box:PIGSetBackdrop(0.9)
 	MiniMapBut.Box:Hide();
 	MiniMapBut.Box.tishi = PIGFontString(MiniMapBut.Box,nil,L["MAP_NIMIBUT_TIPS3"])
 	MiniMapBut.Box.tishi:SetPoint("TOPLEFT", MiniMapBut.Box, "TOPLEFT", 6, -6);
 	MiniMapBut.Box.tishi:SetPoint("BOTTOMRIGHT", MiniMapBut.Box, "BOTTOMRIGHT", -6, 6);
 	MiniMapBut.Box.tishi:Hide();
+	function MiniMapBut.Box:UpdateMiniMapButBox_3(mode,xpos,ypos)
+		self:ClearAllPoints();
+		if mode == 1 then--小地图
+			self:SetPoint("TOPRIGHT", MiniMapBut, "BOTTOMLEFT", -2, 20);
+		elseif mode == 2 then--聊天框
+			self:SetPoint("BOTTOMLEFT", MiniMapBut, "TOPRIGHT", 2, 2);
+		elseif mode == 3 then--自由		
+			if not xpos or not ypos then
+				xpos,ypos=GetPositionData(mode)
+			end
+			local Pointinfo = {"RIGHT", "LEFT", "TOP", "BOTTOM", -2, 25}
+			if xpos<0 then
+				Pointinfo[1]="LEFT"
+				Pointinfo[2]="RIGHT"
+			end
+			if ypos<0 then
+				Pointinfo[3]="BOTTOM"
+				Pointinfo[4]="TOP"
+				Pointinfo[6]=0
+			end
+			self:SetPoint(Pointinfo[3]..Pointinfo[1], MiniMapBut, Pointinfo[4]..Pointinfo[2], Pointinfo[5], Pointinfo[6]);
+		end
+	end
 	MiniMapBut.Box:SetScript("OnUpdate", function(self, ssss)
 		if self.zhengzaixianshi==nil then
 			return;
@@ -262,10 +292,6 @@ function PD.MiniMapBut_Add()
 	--刷新按钮位置
 	function Mapfun.UpdateMiniButPoint()
 		if not PIGA["Map"]["MinimapBut"] then MiniMapBut:Hide() return end
-		--存在外部控制函数
-		-- for adname,adDB in pairs(PD.ExtDB) do	
-		-- 	if adDB.DiyMiniMapBut then Mapfun.MiniMapBut.DiyMiniMapFun=adDB.DiyMiniMapBut break end
-		-- end
 		if PIGA["Map"]["MiniButShouNa_YN"]==2 then
 			MiniMapBut:SetParent(Minimap)
 			MiniMapBut:SetFrameStrata("MEDIUM")
@@ -278,10 +304,6 @@ function PD.MiniMapBut_Add()
 			MiniMapBut.TooltipV=L["MAP_NIMIBUT_TIPS2"]
 		end
 		local mode = PIGA["Map"]["MinimapPointMode"]
-		PIGA["Map"]["MinimapPointXY"]=PIGA["Map"]["MinimapPointXY"] or PD.Default["Map"]["MinimapPointXY"]
-		PIGA["Map"]["MinimapPoint_NDui"]=PIGA["Map"]["MinimapPoint_NDui"] or PD.Default["Map"]["MinimapPoint_NDui"]
-		PIGA["Map"]["MinimapPoint_ElvUI"]=PIGA["Map"]["MinimapPoint_ElvUI"] or PD.Default["Map"]["MinimapPoint_ElvUI"]
-		MiniMapBut.Box:ClearAllPoints();
 		MiniMapBut:ClearNormalTexture()
 		MiniMapBut:ClearPushedTexture()
 		MiniMapBut.RegistrationEvent(false)
@@ -294,7 +316,6 @@ function PD.MiniMapBut_Add()
 		end
 		if mode == 1 or mode == 3 then
 			MiniMapBut.pianyi = 0
-			MiniMapBut.Box:SetPoint("TOPRIGHT", MiniMapBut, "BOTTOMLEFT", -2, 20);
 			if mode == 1 then--小地图
 				if Fun.IsNDui() and not Fun.IsNDui("Map","DisableMinimap") then
 					MiniMapBut.RegistrationEvent(true)
@@ -304,15 +325,25 @@ function PD.MiniMapBut_Add()
 				elseif Fun.IsElvUI() then
 					
 				else
+					local minimapScale = GetMinimapScale()
+					MiniMapBut:SetScale(minimapScale)
 					MiniMapBut.RegistrationEvent(true)
 					MiniMapBut:SetSize(ButW,ButW);
-					MiniMapBut.icon:SetSize(ButW-13,ButW-13);
+					if PIG_MaxTocversion(120000,true) then
+						MiniMapBut.icon:SetSize(ButW-10,ButW-10);
+					else
+						MiniMapBut.icon:SetSize(ButW-13,ButW-13);
+					end
 					MiniMapBut.icon:SetDrawLayer("BACKGROUND",1)
 					MiniMapBut.Border:SetDrawLayer("BORDER",1)
 					MiniMapBut.Border:SetTexture("Interface/Minimap/MiniMap-TrackingBorder");
 					MiniMapBut.Border:SetSize(56,56);
 					MiniMapBut.Border:ClearAllPoints();	
-					MiniMapBut.Border:SetPoint("TOPLEFT", -1, 0);
+					if PIG_MaxTocversion(120000,true) then
+						MiniMapBut.Border:SetPoint("TOPLEFT", -2, 1);
+					else
+						MiniMapBut.Border:SetPoint("TOPLEFT", -1, 0);
+					end
 					MiniMapBut.Border:Show()
 					if PIG_MaxTocversion() then
 						MiniMapBut.pianyi = 56
@@ -335,7 +366,6 @@ function PD.MiniMapBut_Add()
 			YDButtonP(mode);
 		elseif mode == 2 then--聊天框
 			MiniMapBut.icon:SetDrawLayer("ARTWORK",1)
-			MiniMapBut.Box:SetPoint("BOTTOMLEFT", MiniMapBut, "TOPRIGHT", 2, 2);
 			MiniMapBut.Border:Hide()
 			MiniMapBut:ClearAllPoints();
 			if Fun.IsNDui() and not Fun.IsNDui("Map","DisableMinimap") then
@@ -355,6 +385,7 @@ function PD.MiniMapBut_Add()
 				MiniMapBut:SetPushedAtlas("chatframe-button-down")
 			end
 		end
+		MiniMapBut.Box:UpdateMiniMapButBox_3(mode,xpos,ypos)
 	end
 	Mapfun.UpdateMiniButPoint()
 	PD.MiniMapBut_Collect()
@@ -452,17 +483,20 @@ local function IsNoDIYExclude(uiname)
 end
 Mapfun.IsNoDIYExclude=IsNoDIYExclude
 local function InsertButToBox(data,uiname,butx)
+	local Point1,Point3,Point4,Point5 = PIGGetPoint(butx)
 	for x=1,#data do
 		if uiname==data[x][1] then
-			return
+			if Point1 then
+				data[x][2],data[x][3],data[x][4],data[x][5]=Point1,Point3,Point4,Point5
+				return
+			end
 		end
 	end
-	local Point1,Point3,Point4,Point5 = PIGGetPoint(butx)
 	if Point1 then
 		table.insert(data,{uiname,Point1,Point3,Point4,Point5})
 	end
 end
-local function UpdateCollectBut()
+local function UpdateCollectBut(set)
 	if not PIGA["Map"]["MinimapBut"] then return end
 	if not Mapfun.MiniMapBut then return end
 	local MiniMapBut=Mapfun.MiniMapBut
@@ -495,14 +529,15 @@ local function UpdateCollectBut()
 	Mapfun.MiniBoxList_Show={}
 	local paichudata = PIGA["Map"]["MinimapBpaichu"]
 	for i=1,#Mapfun.MiniBoxList do
+		local buxxx=_G[Mapfun.MiniBoxList[i][1]]
 		if IsNoDIYExclude(Mapfun.MiniBoxList[i][1]) then
-			if Mapfun.MiniBoxList[i][1] then
-				local buxxx=_G[Mapfun.MiniBoxList[i][1]]
+			if set and buxxx then
 				buxxx:SetParent(Minimap)
 				buxxx:ClearAllPoints();
 				buxxx:SetPoint(Mapfun.MiniBoxList[i][2], Minimap, Mapfun.MiniBoxList[i][3], Mapfun.MiniBoxList[i][4], Mapfun.MiniBoxList[i][5])
 			end
 		else
+			buxxx:SetParent(MiniMapBut.Box)
 			table.insert(Mapfun.MiniBoxList_Show,Mapfun.MiniBoxList[i][1])
 		end
 	end
@@ -515,8 +550,6 @@ local function UpdateCollectBut()
 		MiniMapBut.Box:SetSize(meipaishu*(32+6)+6, hangshuV*(32+6)+6)
 		for i=1,miniButNum do
 			local buxxx=_G[Mapfun.MiniBoxList_Show[i]]
-			buxxx:Show()
-			buxxx:SetParent(MiniMapBut.Box)
 			buxxx:HookScript("OnEnter", function()
 				MiniMapBut.Box.zhengzaixianshi = nil;
 			end)
@@ -527,10 +560,10 @@ local function UpdateCollectBut()
 			-- buxxx:HookScript("PostClick", function ()
 			-- 	MiniMapBut.Box:Hide();
 			-- end);
+			buxxx:ClearAllPoints();
 			if i==1 then
 				buxxx:SetPoint("TOPLEFT", MiniMapBut.Box, "TOPLEFT", 6, -6)
 			else
-				buxxx:ClearAllPoints();
 				local tmp1,tmp2 = math.modf((i-1)/meipaishu)
 				if tmp2==0 then
 					buxxx:SetPoint("TOP", _G[Mapfun.MiniBoxList_Show[i-meipaishu]], "BOTTOM", 0, -6)
@@ -538,6 +571,7 @@ local function UpdateCollectBut()
 					buxxx:SetPoint("LEFT", _G[Mapfun.MiniBoxList_Show[i-1]], "RIGHT", 6, 0)
 				end
 			end
+			buxxx:Show()
 		end
 	end
 end

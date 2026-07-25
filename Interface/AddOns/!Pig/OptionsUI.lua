@@ -149,11 +149,12 @@ local function add_Options()
 	OptionsUI.VersionID=0
 	---
 	local VerTXTformat = "|cffFFD700%s:|r|cff00FF00%s|r"
-	local IsUpdateOK_v1=PD.VerData.IsUpdateOK_v1
+	local GetAddonsVerV=PD.VerData.GetAddonsVerV
+	local IsUpdateOK=PD.VerData.IsUpdateOK
 	OptionsUI:HookScript("OnShow", function (self)
 		for i=1,#L.addnames do
 			local EXTname=L.addnames[i]
-			local EXTverV=PD.VerData.Ver[EXTname]
+			local EXTverV=GetAddonsVerV(EXTname)
 			if tonumber(EXTverV)>0 then
 				if not PD.VerData.TopVerF[EXTname] then
 					local ziframe = {OptionsUI.R.top.Ver:GetChildren()}
@@ -178,7 +179,7 @@ local function add_Options()
 					extverF.txt:SetText("|cff00FFFF + |r"..string.format(VerTXTformat,EXTname,EXTverV))
 				end
 				if PIGA["VerC"][EXTname] then
-					if IsUpdateOK_v1(EXTname,EXTverV) then
+					if IsUpdateOK(EXTname,EXTverV) then
 						extverF.New:Show()
 						if i==1 then
 							self.UpdateVer:Show()

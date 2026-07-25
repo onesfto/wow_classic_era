@@ -1,6 +1,6 @@
 # Auctionator
 
-## [329](https://github.com/TheMouseNest/Auctionator/tree/329) (2026-07-08)
-[Full Changelog](https://github.com/TheMouseNest/Auctionator/compare/328...329) 
+## [332](https://github.com/TheMouseNest/Auctionator/tree/332) (2026-07-22)
+[Full Changelog](https://github.com/TheMouseNest/Auctionator/compare/331...332) 
 
-- Bugfix for Blizzard error on TBC  
+- Vanilla: Fix multi-post error  
