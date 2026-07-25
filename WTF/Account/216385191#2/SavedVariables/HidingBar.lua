@@ -1,6 +1,6 @@
 
 HidingBarDB = {
-["tstmp"] = 1785017705,
+["tstmp"] = 1785019692,
 ["profiles"] = {
 {
 ["isDefault"] = true,
@@ -18,14 +18,14 @@ HidingBarDB = {
 ["LibDBIcon10_alaCalendar"] = {
 ["tstmp"] = 1784732228,
 },
-["LFGMinimapFrame"] = {
-["tstmp"] = 1784732228,
+["PIG_MiniMapBut"] = {
+["tstmp"] = 1785019692,
 },
 ["LibDBIcon10_Plater"] = {
-["tstmp"] = 1785017705,
+["tstmp"] = 1785019692,
 },
-["PIG_MiniMapBut"] = {
-["tstmp"] = 1785017705,
+["LFGMinimapFrame"] = {
+["tstmp"] = 1784732228,
 },
 ["LibDBIcon10_DBM"] = {
 ["tstmp"] = 1784988872,
@@ -39,8 +39,8 @@ HidingBarDB = {
 ["LibDBIcon10_BiaoGe"] = {
 ["tstmp"] = 1784988872,
 },
-["LibDBIcon10_BugSack"] = {
-["tstmp"] = 1785017705,
+["LibDBIcon10_Leatrix_Plus"] = {
+["tstmp"] = 1785019692,
 },
 ["LibDBIcon10_Myslot"] = {
 ["tstmp"] = 1784988872,
@@ -49,7 +49,7 @@ HidingBarDB = {
 ["tstmp"] = 1784988872,
 },
 ["LibDBIcon10_Details"] = {
-["tstmp"] = 1785017705,
+["tstmp"] = 1785019692,
 },
 ["LibDBIcon10_HandyNotes_NPCs"] = {
 ["tstmp"] = 1784988872,
@@ -57,20 +57,8 @@ HidingBarDB = {
 ["LibDBIcon10_NovaWorldBuffs"] = {
 ["tstmp"] = 1784988872,
 },
-["LibDBIcon10_PallyPower"] = {
-["tstmp"] = 1783116661,
-},
-["LibDBIcon10_TalentEmu"] = {
-["tstmp"] = 1784988872,
-},
-["LibDBIcon10_Leatrix_Maps"] = {
-["tstmp"] = 1784988612,
-},
-["LibDBIcon10_MethodRaidTools"] = {
-["tstmp"] = 1784988872,
-},
-["MiniMapWorldMapButton"] = {
-["tstmp"] = 1785017705,
+["LibDBIcon10_Atlas"] = {
+["tstmp"] = 1784732228,
 },
 ["LibDBIcon10_SinStats"] = {
 ["tstmp"] = 1784988872,
@@ -78,8 +66,20 @@ HidingBarDB = {
 ["LibDBIcon10_AtlasLoot"] = {
 ["tstmp"] = 1784732228,
 },
-["LibDBIcon10_Atlas"] = {
-["tstmp"] = 1784732228,
+["LibDBIcon10_MethodRaidTools"] = {
+["tstmp"] = 1784988872,
+},
+["MiniMapWorldMapButton"] = {
+["tstmp"] = 1785019692,
+},
+["LibDBIcon10_TalentEmu"] = {
+["tstmp"] = 1784988872,
+},
+["LibDBIcon10_Leatrix_Maps"] = {
+["tstmp"] = 1784988612,
+},
+["LibDBIcon10_PallyPower"] = {
+["tstmp"] = 1783116661,
 },
 ["LibDBIcon10_DetailsStreamer"] = {
 ["tstmp"] = 1784988872,
@@ -90,8 +90,8 @@ HidingBarDB = {
 ["LibDBIcon10_Questie"] = {
 ["tstmp"] = 1784988872,
 },
-["LibDBIcon10_Leatrix_Plus"] = {
-["tstmp"] = 1785017705,
+["LibDBIcon10_BugSack"] = {
+["tstmp"] = 1785019692,
 },
 ["LibDBIcon10_Decursive"] = {
 ["tstmp"] = 1784988872,
@@ -100,7 +100,7 @@ HidingBarDB = {
 ["btnSettings"] = {
 ["HidingBar"] = {
 true,
-["tstmp"] = 1785017705,
+["tstmp"] = 1785019692,
 },
 },
 ["grabMinimap"] = true,

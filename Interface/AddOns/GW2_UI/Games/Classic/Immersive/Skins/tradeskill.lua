@@ -26,8 +26,13 @@ local DETAIL_Y = LIST_Y
 -- 顶部控件行基础 Y 位置，主要给技能条/下拉框对齐时参考。
 local CONTROL_Y = -72
 -- 技能等级条位置；RANK_X 数值越大越往右，RANK_Y 数值越大越往上。
-local RANK_X = LIST_X + 2
+local RANK_X = LIST_X + 1
 local RANK_Y = CONTROL_Y + 25
+-- 技能等级条宽高；RANK_WIDTH 数值越大越宽，RANK_HEIGHT 数值越大越高。
+local RANK_WIDTH = 300
+local RANK_HEIGHT = 18
+-- 技能等级条文字右侧留白；数值越大，300/300 离右边越远。
+local RANK_TEXT_RIGHT_PADDING = 8
 
 -- 提前声明布局函数，下面的刷新队列会先引用它。
 local LayoutTradeSkillFrame
@@ -78,13 +83,48 @@ local function HideFrameTextures(frame)
 end
 
 local function SkinCloseButton(button, frame)
-    if not button then return end
+    if not button or not frame then return end
 
     button:GwStripTextures()
     button:ClearAllPoints()
     button:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -5, -3)
     button:GwSkinButton(true)
     button:SetSize(20, 20)
+    button:SetAlpha(1)
+    button:EnableMouse(true)
+    button:Show()
+
+    if button.SetFrameLevel and frame.GetFrameLevel then
+        button:SetFrameLevel(frame:GetFrameLevel() + 20)
+    end
+end
+
+local function CreateFallbackCloseButton(frame, buttonName)
+    if not frame or not buttonName then return end
+
+    local parent = frame
+    local button = _G[buttonName]
+    if not button then
+        button = CreateFrame("Button", buttonName, parent, "UIPanelCloseButton")
+        button:SetScript("OnClick", function()
+            frame:Hide()
+        end)
+    else
+        button:SetParent(parent)
+    end
+
+    button:ClearAllPoints()
+    button:SetPoint("TOPRIGHT", parent, "TOPRIGHT", -5, -3)
+    button:GwSkinButton(true)
+    button:SetSize(20, 20)
+    button:SetAlpha(1)
+    button:EnableMouse(true)
+    button:Show()
+
+    button:SetFrameStrata("DIALOG")
+    if button.SetFrameLevel and parent.GetFrameLevel then
+        button:SetFrameLevel(parent:GetFrameLevel() + 100)
+    end
 end
 
 local function SkinActionButton(button)
@@ -148,6 +188,9 @@ local function SkinRankText(fontString, currentRank, maxRank)
 
     if fontString.SetTextColor then
         fontString:SetTextColor(1, 1, 1)
+    end
+    if fontString.SetJustifyH then
+        fontString:SetJustifyH("RIGHT")
     end
     SetRankText(fontString, currentRank, maxRank)
     UpdateRankText(fontString)
@@ -613,14 +656,18 @@ function LayoutTradeSkillFrame()
     if TradeSkillRankFrame then
         TradeSkillRankFrame:ClearAllPoints()
         TradeSkillRankFrame:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", RANK_X, RANK_Y)
-        TradeSkillRankFrame:SetSize(240, 18)
+        TradeSkillRankFrame:SetSize(RANK_WIDTH, RANK_HEIGHT)
         TradeSkillRankFrame:SetStatusBarColor(RANK_BAR_R, RANK_BAR_G, RANK_BAR_B)
         HideRankSkillName(TradeSkillRankFrame)
     end
     if TradeSkillRankFrameSkillRank and TradeSkillRankFrame then
         local _, currentRank, maxRank = GetTradeSkillLine and GetTradeSkillLine()
         TradeSkillRankFrameSkillRank:ClearAllPoints()
-        TradeSkillRankFrameSkillRank:SetPoint("CENTER", TradeSkillRankFrame, "CENTER", 0, 0)
+        TradeSkillRankFrameSkillRank:SetPoint("LEFT", TradeSkillRankFrame, "LEFT", 0, 0)
+        TradeSkillRankFrameSkillRank:SetPoint("RIGHT", TradeSkillRankFrame, "RIGHT", -RANK_TEXT_RIGHT_PADDING, 0)
+        if TradeSkillRankFrameSkillRank.SetJustifyH then
+            TradeSkillRankFrameSkillRank:SetJustifyH("RIGHT")
+        end
         SkinRankText(TradeSkillRankFrameSkillRank, currentRank, maxRank)
     end
 
@@ -628,10 +675,12 @@ function LayoutTradeSkillFrame()
     local invSlotDropDown = TradeSkillInvSlotDropDown or TradeSkillInvSlotDropdown
     if subClassDropDown then
         subClassDropDown:ClearAllPoints()
-        subClassDropDown:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", DETAIL_X - 5, RANK_Y)
+        -- 第一个下拉框（所有分支）位置；DETAIL_X - 5 控制左右，RANK_Y 控制上下。
+        subClassDropDown:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", DETAIL_X + 1, RANK_Y)
     end
     if invSlotDropDown then
         invSlotDropDown:ClearAllPoints()
+        -- 第二个下拉框（所有空格）位置；10 控制它和第一个下拉框之间的左右间距。
         invSlotDropDown:SetPoint("LEFT", subClassDropDown or TradeSkillFrame, subClassDropDown and "RIGHT" or "TOPLEFT", subClassDropDown and 10 or DETAIL_X + 150, subClassDropDown and 0 or RANK_Y)
     end
 
@@ -681,6 +730,7 @@ function LayoutTradeSkillFrame()
     end
 
     SkinCloseButton(TradeSkillFrameCloseButton or TradeSkillFrame.CloseButton, TradeSkillFrame)
+    CreateFallbackCloseButton(TradeSkillFrame, "GWTradeSkillCloseButton")
 end
 
 local function SkinTradeSkillFrame()
@@ -716,6 +766,7 @@ local function SkinTradeSkillFrame()
         SkinActionButton(TradeSkillCreateButton)
         SkinActionButton(TradeSkillCancelButton)
         SkinCloseButton(TradeSkillFrameCloseButton or TradeSkillFrame.CloseButton, TradeSkillFrame)
+        CreateFallbackCloseButton(TradeSkillFrame, "GWTradeSkillCloseButton")
         SkinQuantityInput(TradeSkillInputBox)
         SkinQuantityButton(TradeSkillDecrementButton, "left")
         SkinQuantityButton(TradeSkillIncrementButton, "right")
@@ -788,20 +839,25 @@ local function LayoutCraftFrame()
     if CraftRankFrame then
         CraftRankFrame:ClearAllPoints()
         CraftRankFrame:SetPoint("TOPLEFT", CraftFrame, "TOPLEFT", RANK_X, RANK_Y)
-        CraftRankFrame:SetSize(240, 18)
+        CraftRankFrame:SetSize(RANK_WIDTH, RANK_HEIGHT)
         CraftRankFrame:SetStatusBarColor(RANK_BAR_R, RANK_BAR_G, RANK_BAR_B)
         HideRankSkillName(CraftRankFrame)
     end
     if CraftRankFrameSkillRank and CraftRankFrame then
         local _, currentRank, maxRank = GetCraftDisplaySkillLine and GetCraftDisplaySkillLine()
         CraftRankFrameSkillRank:ClearAllPoints()
-        CraftRankFrameSkillRank:SetPoint("CENTER", CraftRankFrame, "CENTER", 0, 0)
+        CraftRankFrameSkillRank:SetPoint("LEFT", CraftRankFrame, "LEFT", 0, 0)
+        CraftRankFrameSkillRank:SetPoint("RIGHT", CraftRankFrame, "RIGHT", -RANK_TEXT_RIGHT_PADDING, 0)
+        if CraftRankFrameSkillRank.SetJustifyH then
+            CraftRankFrameSkillRank:SetJustifyH("RIGHT")
+        end
         SkinRankText(CraftRankFrameSkillRank, currentRank, maxRank)
     end
 
     local dropdown = CraftFrameFilterDropDown or CraftFrameFilterDropdown or CraftFrame.Dropdown
     if dropdown then
         dropdown:ClearAllPoints()
+        -- 附魔面板下拉框位置；DETAIL_X - 5 控制左右，RANK_Y 控制上下。
         dropdown:SetPoint("TOPLEFT", CraftFrame, "TOPLEFT", DETAIL_X - 5, RANK_Y)
     end
 
@@ -837,6 +893,7 @@ local function LayoutCraftFrame()
     end
 
     SkinCloseButton(CraftFrameCloseButton or CraftFrame.CloseButton, CraftFrame)
+    CreateFallbackCloseButton(CraftFrame, "GWCraftCloseButton")
 end
 
 local function SkinCraftFrame()
@@ -867,6 +924,7 @@ local function SkinCraftFrame()
         SkinActionButton(CraftCreateButton)
         SkinActionButton(CraftCancelButton)
         SkinCloseButton(CraftFrameCloseButton or CraftFrame.CloseButton, CraftFrame)
+        CreateFallbackCloseButton(CraftFrame, "GWCraftCloseButton")
         SkinDropdown(CraftFrameFilterDropDown or CraftFrameFilterDropdown or CraftFrame.Dropdown)
         ExtendCraftListButtons()
 
