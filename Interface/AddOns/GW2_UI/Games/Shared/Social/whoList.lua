@@ -1,12 +1,31 @@
 ---@class GW2
 local GW = select(2, ...)
 
+local CLASSIC_WHO_LIST_LAYOUT = {
+    defaultContentLeft = 40,
+    defaultSearchLeftInset = 11,
+    scrollLeft = 8,
+    headerTop = -62,
+    columnGap = -2,
+    textInset = 9,
+    columns = {
+        {header = "WhoFrameColumnHeader1", field = "Name", width = 112, justify = "LEFT"},
+        {header = "WhoFrameColumnHeader2", field = "Variable", width = 155, justify = "LEFT"},
+        {header = "WhoFrameColumnHeader3", field = "Level", width = 50, justify = "CENTER"},
+        {header = "WhoFrameColumnHeader4", field = "Class", width = 120, justify = "LEFT"},
+    },
+}
+
+local function GetWhoFrameButtonField(button, field)
+    return button[field] or button:GetName() and _G[button:GetName() .. field]
+end
+
 local function ReskinWhoFrameButton(button)
     if not button.isSkinned then
-        local name = button.Name or button:GetName() and _G[button:GetName() .. "Name"]
-        local variable = button.Variable or button:GetName() and _G[button:GetName() .. "Variable"]
-        local level = button.Level or button:GetName() and _G[button:GetName() .. "Level"]
-        local class = button.Class or button:GetName() and _G[button:GetName() .. "Class"]
+        local name = GetWhoFrameButtonField(button, "Name")
+        local variable = GetWhoFrameButtonField(button, "Variable")
+        local level = GetWhoFrameButtonField(button, "Level")
+        local class = GetWhoFrameButtonField(button, "Class")
 
         if name then
             name:GwSetFontTemplate(UNIT_NAME_FONT, GW.Enum.TextSizeType.Small)
@@ -25,43 +44,106 @@ local function ReskinWhoFrameButton(button)
     end
 end
 
+local function GetClassicWhoContentLeft()
+    local searchMiddle = WhoFrameEditBox and WhoFrameEditBox.Middle
+    local frameLeft = WhoFrame and WhoFrame:GetLeft()
+    local searchLeft = searchMiddle and searchMiddle:GetLeft()
+
+    if frameLeft and searchLeft then
+        return searchLeft - frameLeft
+    end
+
+    return CLASSIC_WHO_LIST_LAYOUT.defaultContentLeft
+end
+
+local function GetClassicWhoColumnsWidth()
+    local width = 0
+
+    for index, column in ipairs(CLASSIC_WHO_LIST_LAYOUT.columns) do
+        width = width + column.width
+        if index > 1 then
+            width = width + CLASSIC_WHO_LIST_LAYOUT.columnGap
+        end
+    end
+
+    return width
+end
+
+local function GetClassicWhoSearchLeftInset()
+    local editBoxLeft = WhoFrameEditBox and WhoFrameEditBox:GetLeft()
+    local searchMiddle = WhoFrameEditBox and WhoFrameEditBox.Middle
+    local searchLeft = searchMiddle and searchMiddle:GetLeft()
+
+    if editBoxLeft and searchLeft then
+        return searchLeft - editBoxLeft
+    end
+
+    return CLASSIC_WHO_LIST_LAYOUT.defaultSearchLeftInset
+end
+
+local function LayoutClassicWhoHeader(header, previousHeader, column, contentLeft)
+    header:ClearAllPoints()
+    if previousHeader then
+        header:SetPoint("LEFT", previousHeader, "RIGHT", CLASSIC_WHO_LIST_LAYOUT.columnGap, 0)
+    else
+        header:SetPoint("TOPLEFT", WhoFrame, "TOPLEFT", contentLeft, CLASSIC_WHO_LIST_LAYOUT.headerTop)
+    end
+    header:SetWidth(column.width)
+
+    local text = header:GetFontString()
+    if text then
+        local inset = column.justify == "CENTER" and 0 or CLASSIC_WHO_LIST_LAYOUT.textInset
+        text:ClearAllPoints()
+        text:SetPoint("LEFT", header, "LEFT", inset, 0)
+        text:SetWidth(column.width - inset * 2)
+        text:SetJustifyH(column.justify)
+    end
+end
+
+local function LayoutClassicWhoFrameButton(button)
+    local columnStart = 0
+
+    for _, column in ipairs(CLASSIC_WHO_LIST_LAYOUT.columns) do
+        local field = GetWhoFrameButtonField(button, column.field)
+        if field then
+            local inset = column.justify == "CENTER" and 0 or CLASSIC_WHO_LIST_LAYOUT.textInset
+            field:ClearAllPoints()
+            field:SetPoint("LEFT", button, "LEFT", columnStart + inset, 0)
+            field:SetWidth(column.width - inset * 2)
+            field:SetJustifyH(column.justify)
+        end
+        columnStart = columnStart + column.width + CLASSIC_WHO_LIST_LAYOUT.columnGap
+    end
+end
+
 local function LayoutClassicWhoList()
     if not GW.Classic then return end
     if not WhoFrame or not WhoListScrollFrame then return end
 
+    local contentLeft = GetClassicWhoContentLeft()
+
     if WhoFrameListInset then
         WhoFrameListInset:SetAlpha(0)
     end
-    if WhoFrameColumnHeader1 then
-        WhoFrameColumnHeader1:ClearAllPoints()
-        WhoFrameColumnHeader1:SetPoint("TOPLEFT", WhoFrame, "TOPLEFT", 8, -62)
-        WhoFrameColumnHeader1:SetWidth(112)
-    end
-    if WhoFrameColumnHeader2 then
-        WhoFrameColumnHeader2:ClearAllPoints()
-        WhoFrameColumnHeader2:SetPoint("LEFT", WhoFrameColumnHeader1 or WhoFrame, WhoFrameColumnHeader1 and "RIGHT" or "TOPLEFT", -2, WhoFrameColumnHeader1 and 0 or -62)
-        WhoFrameColumnHeader2:SetWidth(155)
-    end
-    if WhoFrameColumnHeader3 then
-        WhoFrameColumnHeader3:ClearAllPoints()
-        WhoFrameColumnHeader3:SetPoint("LEFT", WhoFrameColumnHeader2 or WhoFrame, WhoFrameColumnHeader2 and "RIGHT" or "TOPLEFT", -2, WhoFrameColumnHeader2 and 0 or -62)
-        WhoFrameColumnHeader3:SetWidth(50)
-    end
-    if WhoFrameColumnHeader4 then
-        WhoFrameColumnHeader4:ClearAllPoints()
-        WhoFrameColumnHeader4:SetPoint("LEFT", WhoFrameColumnHeader3 or WhoFrame, WhoFrameColumnHeader3 and "RIGHT" or "TOPLEFT", -2, WhoFrameColumnHeader3 and 0 or -62)
-        WhoFrameColumnHeader4:SetWidth(120)
+
+    local previousHeader
+    for _, column in ipairs(CLASSIC_WHO_LIST_LAYOUT.columns) do
+        local header = _G[column.header]
+        if header then
+            LayoutClassicWhoHeader(header, previousHeader, column, contentLeft)
+            previousHeader = header
+        end
     end
 
     WhoListScrollFrame:ClearAllPoints()
-    WhoListScrollFrame:SetPoint("TOPLEFT", WhoFrame, "TOPLEFT", 8, -87)
+    WhoListScrollFrame:SetPoint("TOPLEFT", WhoFrame, "TOPLEFT", CLASSIC_WHO_LIST_LAYOUT.scrollLeft, -87)
     WhoListScrollFrame:SetPoint("BOTTOMRIGHT", WhoFrame, "BOTTOMRIGHT", -25, 78)
     WhoListScrollFrame:SetHeight(455)
 
     if WhoFrameEditBox then
         WhoFrameEditBox:ClearAllPoints()
         WhoFrameEditBox:SetPoint("BOTTOMLEFT", WhoFrame, "BOTTOMLEFT", 15, 42)
-        WhoFrameEditBox:SetPoint("BOTTOMRIGHT", WhoFrame, "BOTTOMRIGHT", -25, 42)
+        WhoFrameEditBox:SetWidth(GetClassicWhoColumnsWidth() + GetClassicWhoSearchLeftInset())
         WhoFrameEditBox:SetHeight(22)
     end
     if WhoFrameWhoButton then
@@ -83,8 +165,15 @@ local function LayoutClassicWhoList()
     for i = 1, WHOS_TO_DISPLAY or 0 do
         local button = _G["WhoFrameButton" .. i]
         if button then
+            button:ClearAllPoints()
+            if i == 1 and WhoFrameColumnHeader1 then
+                button:SetPoint("TOPLEFT", WhoFrameColumnHeader1, "BOTTOMLEFT", 0, -2)
+            elseif i > 1 and _G["WhoFrameButton" .. (i - 1)] then
+                button:SetPoint("TOP", _G["WhoFrameButton" .. (i - 1)], "BOTTOM")
+            end
             ReskinWhoFrameButton(button)
-            button:SetWidth(440)
+            LayoutClassicWhoFrameButton(button)
+            button:SetWidth(GetClassicWhoColumnsWidth())
         end
     end
 end
@@ -159,7 +248,7 @@ function GW.SkinWhoList()
 
     for _, object in pairs({WhoFrameColumnHeader1, WhoFrameColumnHeader2, WhoFrameColumnHeader3, WhoFrameColumnHeader4}) do
         if object then
-            GW.HandleScrollFrameHeaderButton(object)
+            GW.HandleScrollFrameHeaderButton(object, GW.Classic and object == WhoFrameColumnHeader4)
         end
     end
 
