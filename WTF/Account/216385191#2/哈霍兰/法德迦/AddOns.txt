@@ -1,5 +1,5 @@
 LoseControl: enabled
-!Pig: enabled
+!Pig: disabled
 BiaoGe: disabled
 DBM-Core: disabled
 DBM-StatusBarTimers: disabled
@@ -21,7 +21,7 @@ tdInspect: disabled
 EKword: enabled
 aBlueShaman: disabled
 ACP: enabled
-AddOnSkins: enabled
+AddOnSkins: disabled
 AdvancedInterfaceOptions: disabled
 AlreadyKnown: disabled
 Atlas: disabled
@@ -62,12 +62,12 @@ GTFO: disabled
 HandyNotes: disabled
 HandyNotes_DungeonLocations (Classic): disabled
 HandyNotes_NPCs (Classic): disabled
-HidingBar: enabled
-HidingBar_Options: enabled
+HidingBar: disabled
+HidingBar_Options: disabled
 Immersion: enabled
 InboxMailBag: disabled
 Leatrix_Maps: disabled
-Leatrix_Plus: enabled
+Leatrix_Plus: disabled
 LibSharedMedia-3.0: enabled
 LoonBestInSlot: enabled
 MailLogger: disabled
@@ -80,7 +80,7 @@ NovaWorldBuffs: disabled
 OmniCC: disabled
 OmniCC_Config: disabled
 PallyPower: enabled
-Plater: enabled
+Plater: disabled
 Postal: disabled
 ProjectAzilroka: disabled
 Questie: disabled
@@ -88,10 +88,10 @@ RangeDisplay: disabled
 RangeDisplay_Options: disabled
 RXPGuides: enabled
 RuneReminder: enabled
-SharedMedia: enabled
+SharedMedia: disabled
 SharedMedia_MyMedia: disabled
 TargetNameplateIndicator: disabled
-ThreatClassic2: enabled
+ThreatClassic2: disabled
 TotemTimers: enabled
 WeakAuras: disabled
 WeakAurasArchive: disabled
@@ -180,7 +180,7 @@ RXPGuides_Themes: enabled
 HeyboxPlayerInfo: disabled
 Rurutia: disabled
 SpellActivationOverlay: disabled
-BuyEmAllClassic: enabled
+BuyEmAllClassic: disabled
 RareScanner: disabled
 BiSTracker: disabled
 163UI_Info: disabled
@@ -197,14 +197,14 @@ PatchWerk: disabled
 BiaoGe-Rurutia: disabled
 AutoCarrot: disabled
 BetterBags: disabled
-Cell: enabled
+Cell: disabled
 GearMenu: disabled
 MacroToolkit: disabled
 MacroToolkitIcons: disabled
 Onesfto: disabled
 SexyMap: disabled
 SimpleRaidTargetIcons: disabled
-SinStats: enabled
+SinStats: disabled
 SharedMedia_Rurutia: disabled
 Blizzard_ObjectiveTracker: enabled
 ChatThrottleLib: enabled

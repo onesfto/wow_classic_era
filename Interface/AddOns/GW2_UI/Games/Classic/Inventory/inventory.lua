@@ -502,6 +502,7 @@ local function reskinSearchBox(sb)
 
     sb.searchIcon:Hide()
 end
+GW.SkinBagSearchBox = reskinSearchBox
 
 
 -- (re)steals the default search boxes

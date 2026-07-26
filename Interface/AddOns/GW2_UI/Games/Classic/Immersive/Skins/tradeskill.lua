@@ -204,12 +204,18 @@ end
 local function SkinDropdown(dropdown)
     if not dropdown or dropdown.gwTradeSkillSkinned then return end
 
-    local frameName = dropdown.GetName and dropdown:GetName()
-    local button = dropdown.Button or frameName and (_G[frameName .. "Button"] or _G[frameName .. "_Button"])
-    if button then
-        dropdown:GwSkinDropDownMenu()
-        dropdown.gwTradeSkillSkinned = true
+    dropdown:GwHandleDropDownBox()
+    dropdown:SetWidth(150)
+
+    if dropdown.Text then
+        dropdown.Text:ClearAllPoints()
+        dropdown.Text:SetPoint("LEFT", dropdown, "LEFT", 9, 0)
+        dropdown.Text:SetPoint("RIGHT", dropdown.gw2Arrow, "LEFT", -3, 0)
+        dropdown.Text:SetHeight(16)
+        dropdown.Text:SetJustifyH("CENTER")
     end
+
+    dropdown.gwTradeSkillSkinned = true
 end
 
 local function ClampFrameWithHeader(frame)
@@ -685,7 +691,7 @@ function LayoutTradeSkillFrame()
     if subClassDropDown then
         subClassDropDown:ClearAllPoints()
         -- 第一个下拉框（所有分支）位置；DETAIL_X - 5 控制左右，RANK_Y 控制上下。
-        subClassDropDown:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", DETAIL_X + 1, RANK_Y)
+        subClassDropDown:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", DETAIL_X - 4, RANK_Y+3)
     end
     if invSlotDropDown then
         invSlotDropDown:ClearAllPoints()

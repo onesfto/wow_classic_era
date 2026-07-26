@@ -1,6 +1,6 @@
 
 HidingBarDB = {
-["tstmp"] = 1785022249,
+["tstmp"] = 1785032531,
 ["profiles"] = {
 {
 ["isDefault"] = true,
@@ -18,14 +18,14 @@ HidingBarDB = {
 ["LibDBIcon10_alaCalendar"] = {
 ["tstmp"] = 1784732228,
 },
-["LibDBIcon10_Leatrix_Plus"] = {
-["tstmp"] = 1785022249,
+["LibDBIcon10_BugSack"] = {
+["tstmp"] = 1785032531,
 },
 ["LibDBIcon10_Questie"] = {
 ["tstmp"] = 1785021612,
 },
-["LFGMinimapFrame"] = {
-["tstmp"] = 1784732228,
+["PIG_MiniMapBut"] = {
+["tstmp"] = 1785032531,
 },
 ["LibDBIcon10_DBM"] = {
 ["tstmp"] = 1785021612,
@@ -39,8 +39,8 @@ HidingBarDB = {
 ["LibDBIcon10_BiaoGe"] = {
 ["tstmp"] = 1785021612,
 },
-["LibDBIcon10_BugSack"] = {
-["tstmp"] = 1785022249,
+["LibDBIcon10_Leatrix_Plus"] = {
+["tstmp"] = 1785032531,
 },
 ["LibDBIcon10_Myslot"] = {
 ["tstmp"] = 1785021612,
@@ -49,34 +49,34 @@ HidingBarDB = {
 ["tstmp"] = 1785021612,
 },
 ["LibDBIcon10_Details"] = {
-["tstmp"] = 1785022249,
+["tstmp"] = 1785032531,
 },
 ["LibDBIcon10_MailLogger"] = {
 ["tstmp"] = 1785021612,
 },
-["LibDBIcon10_Atlas"] = {
-["tstmp"] = 1784732228,
-},
 ["LibDBIcon10_PallyPower"] = {
 ["tstmp"] = 1783116661,
 },
-["LibDBIcon10_AtlasLoot"] = {
+["LibDBIcon10_Atlas"] = {
 ["tstmp"] = 1784732228,
 },
 ["LibDBIcon10_Leatrix_Maps"] = {
 ["tstmp"] = 1785021612,
 },
+["LibDBIcon10_AtlasLoot"] = {
+["tstmp"] = 1784732228,
+},
 ["LibDBIcon10_MethodRaidTools"] = {
 ["tstmp"] = 1785021612,
 },
 ["MiniMapWorldMapButton"] = {
-["tstmp"] = 1785022249,
+["tstmp"] = 1785032531,
+},
+["LibDBIcon10_SinStats"] = {
+["tstmp"] = 1785032531,
 },
 ["LibDBIcon10_TalentEmu"] = {
 ["tstmp"] = 1785021612,
-},
-["LibDBIcon10_SinStats"] = {
-["tstmp"] = 1785022249,
 },
 ["LibDBIcon10_NovaWorldBuffs"] = {
 ["tstmp"] = 1785021612,
@@ -88,10 +88,10 @@ HidingBarDB = {
 ["tstmp"] = 1785021612,
 },
 ["LibDBIcon10_Plater"] = {
-["tstmp"] = 1785022249,
+["tstmp"] = 1785032531,
 },
-["PIG_MiniMapBut"] = {
-["tstmp"] = 1785022249,
+["LFGMinimapFrame"] = {
+["tstmp"] = 1784732228,
 },
 ["LibDBIcon10_Decursive"] = {
 ["tstmp"] = 1785021612,
@@ -100,7 +100,7 @@ HidingBarDB = {
 ["btnSettings"] = {
 ["HidingBar"] = {
 true,
-["tstmp"] = 1785022249,
+["tstmp"] = 1785032531,
 },
 },
 ["grabMinimap"] = true,

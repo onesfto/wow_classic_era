@@ -682,7 +682,7 @@ local function evPlayerLogin(self)
 
     GW.LoadCharacter()
 
-    if GW.Retail or GW.TBC then
+    if GW.Retail or GW.TBC or GW.Classic then
         GW.LoadSocialFrame()
     end
 
@@ -914,8 +914,8 @@ local function evLoadSkins()
     if not (GW.Classic or GW.TBC) then
         GW.MakeAltPowerBarMovable()
         GW.LoadLFGSkins()
-        GW.LoadMailSkin()
     end
+    GW.LoadMailSkin()
 
     if not (GW.Classic or GW.TBC or GW.Wrath) then
         GW.LoadSocketUISkin()

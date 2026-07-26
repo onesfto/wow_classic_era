@@ -5,8 +5,8 @@ GW2UI_QUEST_WATCH_DB = {
 ["TrackedQuests"] = {
 },
 ["AutoUntrackedQuests"] = {
-[8868] = true,
 [8735] = true,
+[8868] = true,
 [8585] = true,
 [9085] = true,
 [9367] = true,

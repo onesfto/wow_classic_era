@@ -2,6 +2,64 @@
 local GW = select(2, ...)
 local L = GW.L
 
+local function GetFrameFlag(frame, methodName)
+    if not frame or not frame[methodName] then
+        return "n/a"
+    end
+
+    local ok, value = pcall(frame[methodName], frame)
+    if not ok then
+        return "error"
+    end
+
+    return tostring(value)
+end
+
+local function PrintEscDebugFrame(frameName)
+    local frame = _G[frameName]
+    if not frame then
+        return
+    end
+
+    local shown = GetFrameFlag(frame, "IsShown")
+    local keyboard = GetFrameFlag(frame, "IsKeyboardEnabled")
+    local propagate = GetFrameFlag(frame, "GetPropagateKeyboardInput")
+    if shown == "true" or keyboard == "true" or propagate == "false" then
+        GW.Notice(format("  %s shown=%s keyboard=%s propagate=%s", frameName, shown, keyboard, propagate))
+    end
+end
+
+local function PrintEscDebug()
+    local binding1, binding2 = GetBindingKey("TOGGLEGAMEMENU")
+    local focus = GetMouseFocus and GetMouseFocus()
+    local focusName = "nil"
+    if focus then
+        focusName = (focus.GetName and focus:GetName()) or tostring(focus)
+    end
+
+    GW.Notice("ESC debug:")
+    GW.Notice(format("  TOGGLEGAMEMENU=%s%s", tostring(binding1), binding2 and (", " .. binding2) or ""))
+    GW.Notice(format("  mouseFocus=%s", focusName))
+
+    for _, frameName in ipairs({
+        "GwSettingsWindow",
+        "GwPopupFrame1", "GwPopupFrame2", "GwPopupFrame3", "GwPopupFrame4",
+        "GwImmersiveQuestFrame",
+        "GossipFrame",
+        "HoverBind",
+        "AFKMode",
+        "GameMenuFrame",
+        "StaticPopup1", "StaticPopup2", "StaticPopup3", "StaticPopup4",
+        "MailFrame",
+        "TradeSkillFrame",
+        "CraftFrame",
+        "QuestLogFrame",
+        "GwSmallSettingsContainer",
+    }) do
+        PrintEscDebugFrame(frameName)
+    end
+end
+
 local function LoadSlashCommands()
     SLASH_GWSLASH1 = "/gw2"
     function SlashCmdList.GWSLASH(msg)
@@ -14,6 +72,7 @@ local function LoadSlashCommands()
             GW.Notice(L["  /gw2 mh             -> Activate Move HUD mode"])
             GW.Notice(L["  /gw2 reset profile  -> Reset the current profile to default settings"])
             GW.Notice(L["  /gw2 clear achievements  -> Untrack all earned achievements (Blizzard bug)"])
+            GW.Notice("  /gw2 escdebug      -> Show frames that may capture ESC")
         elseif msg == "settings" then
             if InCombatLockdown() then
                 GW.Notice(L["Settings are not available in combat!"])
@@ -55,6 +114,8 @@ local function LoadSlashCommands()
             )
         elseif msg == "error" then
             Gw2ErrorLog:Toggle()
+        elseif msg == "escdebug" then
+            PrintEscDebug()
         elseif msg == "clear achievements" then
             local trackedAchievements = C_ContentTracking.GetTrackedIDs(Enum.ContentTrackingType.Achievement)
             local numAchievements = #trackedAchievements

@@ -372,6 +372,35 @@ local function UpdateFriendButton(button)
 end
 
 
+local function HideClassicFriendsScrollTrack(scrollFrame)
+    if not GW.Classic or not scrollFrame then return end
+
+    local frameName = scrollFrame:GetName()
+    local trackTextures = {
+        scrollFrame.scrollBorderMiddle,
+        scrollFrame.scrollFrameScrollBarBackground,
+        frameName and _G[frameName .. "ScrollBarMiddle"],
+        frameName and _G[frameName .. "Middle"],
+        frameName and _G[frameName .. "ScrollBar"] and _G[frameName .. "ScrollBar"].Middle,
+        frameName and _G[frameName .. "ScrollBar"] and _G[frameName .. "ScrollBar"].Background
+    }
+
+    for _, texture in pairs(trackTextures) do
+        if texture then
+            if texture.SetTexture then
+                texture:SetTexture("")
+            end
+            if texture.SetAlpha then
+                texture:SetAlpha(0)
+            end
+            if texture.Hide then
+                texture:Hide()
+            end
+        end
+    end
+end
+
+
 function GW.SkinFriendList()
     if GW.Retail then
         for i = 1, 3 do
@@ -380,54 +409,109 @@ function GW.SkinFriendList()
             GW.HandleTabs(tab, "top")
         end
     else
-        GW.HandleTabs(FriendsTabHeaderTab1, "top")
-        GW.HandleTabs(FriendsTabHeaderTab2, "top")
-        FriendsTabHeaderTab1:SetHeight(25)
-        FriendsTabHeaderTab2:SetHeight(25)
-        FriendsTabHeaderTab1:SetPoint("TOPLEFT", 18, -63)
+        if FriendsTabHeaderTab1 then
+            GW.HandleTabs(FriendsTabHeaderTab1, "top")
+            FriendsTabHeaderTab1:SetHeight(25)
+            FriendsTabHeaderTab1:ClearAllPoints()
+            if GW.Classic and FriendsFrameFriendsScrollFrame then
+                FriendsTabHeaderTab1:SetPoint("TOPLEFT", FriendsFrameFriendsScrollFrame, "TOPLEFT", 0, 24)
+            else
+                FriendsTabHeaderTab1:SetPoint("TOPLEFT", FriendsFrame, "TOPLEFT", GW.Classic and 8 or 18, -63)
+            end
+        end
+        if FriendsTabHeaderTab2 then
+            GW.HandleTabs(FriendsTabHeaderTab2, "top")
+            FriendsTabHeaderTab2:SetHeight(25)
+            FriendsTabHeaderTab2:ClearAllPoints()
+            FriendsTabHeaderTab2:SetPoint("LEFT", FriendsTabHeaderTab1 or FriendsFrame, FriendsTabHeaderTab1 and "RIGHT" or "TOPLEFT", FriendsTabHeaderTab1 and 0 or 100, FriendsTabHeaderTab1 and 0 or -63)
+        end
     end
 
-    FriendsFrameStatusDropdown:GwHandleDropDownBox()
-    FriendsFrameStatusDropdown:SetWidth(55)
-    FriendsFrameStatusDropdown:ClearAllPoints()
-    FriendsFrameStatusDropdown:SetPoint("TOPLEFT", FriendsFrame.gwHeader, "BOTTOMLEFT", 5, 0)
+    if FriendsFrameStatusDropdown then
+        FriendsFrameStatusDropdown:GwHandleDropDownBox()
+        FriendsFrameStatusDropdown:SetWidth(55)
+        FriendsFrameStatusDropdown:ClearAllPoints()
+        if GW.Classic and FriendsFrameBattlenetFrame then
+            FriendsFrameStatusDropdown:SetHeight(30)
+            FriendsFrameStatusDropdown:SetPoint("LEFT", FriendsFrameBattlenetFrame, "RIGHT", 0, 0)
+            local statusText = FriendsFrameStatusDropdown.Text
+            if statusText then
+                statusText:ClearAllPoints()
+                statusText:SetPoint("LEFT", FriendsFrameStatusDropdown, "LEFT", 9, 0)
+                statusText:SetPoint("RIGHT", FriendsFrameStatusDropdown.gw2Arrow, "LEFT", -3, 0)
+                statusText:SetHeight(16)
+            end
+        else
+            FriendsFrameStatusDropdown:SetPoint("TOPLEFT", FriendsFrame.gwHeader or FriendsFrame, FriendsFrame.gwHeader and "BOTTOMLEFT" or "TOPLEFT", 5, FriendsFrame.gwHeader and 0 or -38)
+        end
+    end
 
     if GW.Retail then
         GW.HandleTrimScrollBar(FriendsListFrame.ScrollBar)
         GW.HandleScrollControls(FriendsListFrame)
         hooksecurefunc(FriendsListFrame.ScrollBox, "Update", GW.HandleItemListScrollBoxHover)
-    elseif GW.TBC or GW.Wrath then
+    elseif GW.TBC or GW.Wrath or GW.Classic then
         FriendsFrameFriendsScrollFrame:ClearAllPoints()
         FriendsFrameFriendsScrollFrame:SetPoint("TOPLEFT", FriendsFrame, 8, -87)
         FriendsFrameFriendsScrollFrame:SetPoint("BOTTOMRIGHT", FriendsFrame, -25, 35)
         FriendsFrameFriendsScrollFrame:SetHeight(480)
         HybridScrollFrame_CreateButtons(FriendsFrameFriendsScrollFrame, "FriendsFrameButtonTemplate")
 
-        FriendsFrameFriendsScrollFrameScrollBar:GwSkinScrollBar()
+        if FriendsFrameFriendsScrollFrameScrollBar then
+            FriendsFrameFriendsScrollFrameScrollBar:GwSkinScrollBar()
+        end
         FriendsFrameFriendsScrollFrame:GwSkinScrollFrame()
+        HideClassicFriendsScrollTrack(FriendsFrameFriendsScrollFrame)
     end
 
-    FriendsFrameAddFriendButton:GwSkinButton(false, true)
-    FriendsFrameSendMessageButton:GwSkinButton(false, true)
-    hooksecurefunc("FriendsFrame_UpdateFriendButton", UpdateFriendButton)
+    if FriendsFrameAddFriendButton then
+        FriendsFrameAddFriendButton:GwSkinButton(false, true)
+        if GW.Classic then
+            FriendsFrameAddFriendButton:ClearAllPoints()
+            FriendsFrameAddFriendButton:SetPoint("BOTTOMLEFT", FriendsFrame, "BOTTOMLEFT", 8, 8)
+            FriendsFrameAddFriendButton:SetWidth(130)
+        end
+    end
+    if FriendsFrameSendMessageButton then
+        FriendsFrameSendMessageButton:GwSkinButton(false, true)
+        if GW.Classic then
+            FriendsFrameSendMessageButton:ClearAllPoints()
+            FriendsFrameSendMessageButton:SetPoint("BOTTOMRIGHT", FriendsFrame, "BOTTOMRIGHT", -25, 8)
+            FriendsFrameSendMessageButton:SetWidth(130)
+        end
+    end
+    if _G.FriendsFrame_UpdateFriendButton then
+        hooksecurefunc("FriendsFrame_UpdateFriendButton", UpdateFriendButton)
+    end
 
     --View Friends BN Frame
-    local button = CreateFrame("Button", nil, FriendsFrameBattlenetFrame)
-    button:SetAllPoints()
-    button:GwCreateBackdrop(nil, true)
-    button:GwSkinButton(false, false, true)
+    local button
+    if FriendsFrameBattlenetFrame then
+        button = CreateFrame("Button", nil, FriendsFrameBattlenetFrame)
+        button:SetAllPoints()
+        button:GwCreateBackdrop(nil, true)
+        if not GW.Classic then
+            button:GwSkinButton(false, false, true)
+        end
 
-    button.Tag = button:CreateFontString(nil, "OVERLAY")
-    button.Tag:SetPoint("CENTER", button, "CENTER")
-    button.Tag:SetTextColor(0.345, 0.667, 0.867)
-    button.Tag:SetFont(UNIT_NAME_FONT, 15)
-    button.hover.r = FRIENDS_BNET_BACKGROUND_COLOR.r
-    button.hover.g = FRIENDS_BNET_BACKGROUND_COLOR.g
-    button.hover.b = FRIENDS_BNET_BACKGROUND_COLOR.b
+        button.Tag = button:CreateFontString(nil, "OVERLAY")
+        button.Tag:SetPoint("CENTER", button, "CENTER")
+        button.Tag:SetTextColor(0.345, 0.667, 0.867)
+        button.Tag:SetFont(UNIT_NAME_FONT, 15)
+        if button.hover then
+            button.hover.r = FRIENDS_BNET_BACKGROUND_COLOR.r
+            button.hover.g = FRIENDS_BNET_BACKGROUND_COLOR.g
+            button.hover.b = FRIENDS_BNET_BACKGROUND_COLOR.b
+        end
+    end
 
-    FriendsFriendsFrame:GwStripTextures()
-    FriendsFriendsFrame:GwCreateBackdrop(GW.BackdropTemplates.Default)
-    FriendsFriendsFrameDropdown:GwHandleDropDownBox()
+    if FriendsFriendsFrame then
+        FriendsFriendsFrame:GwStripTextures()
+        FriendsFriendsFrame:GwCreateBackdrop(GW.BackdropTemplates.Default)
+    end
+    if FriendsFriendsFrameDropdown then
+        FriendsFriendsFrameDropdown:GwHandleDropDownBox()
+    end
 
     if GW.Retail then
         FriendsFriendsFrame.ScrollFrameBorder:Hide()
@@ -444,64 +528,122 @@ function GW.SkinFriendList()
         FriendsFrameBattlenetFrame.ContactsMenuButton.gw2Arrow:SetSize(28, 28)
 
         button:SetScript("OnClick", function() FriendsFrameBattlenetFrame.BroadcastFrame:ToggleFrame() end)
-    elseif GW.TBC or GW.Wrath then
-        FriendsFriendsSendRequestButton:GwSkinButton(false, true)
-        FriendsFriendsCloseButton:GwSkinButton(false, true)
+    elseif GW.TBC or GW.Wrath or GW.Classic then
+        if FriendsFriendsSendRequestButton then
+            FriendsFriendsSendRequestButton:GwSkinButton(false, true)
+        end
+        if FriendsFriendsCloseButton then
+            FriendsFriendsCloseButton:GwSkinButton(false, true)
+        end
 
-        button:SetScript("OnClick", function()
-        PlaySound(SOUNDKIT.IG_CHAT_EMOTE_BUTTON)
-            if FriendsFrameBattlenetFrame.BroadcastFrame:IsShown() then
-                FriendsFrameBattlenetFrame_HideBroadcastFrame()
-            else
-                FriendsFrameBattlenetFrame_ShowBroadcastFrame()
+        if button and FriendsFrameBattlenetFrame and FriendsFrameBattlenetFrame.BroadcastFrame then
+            button:SetScript("OnClick", function()
+                PlaySound(SOUNDKIT.IG_CHAT_EMOTE_BUTTON)
+                if FriendsFrameBattlenetFrame.BroadcastFrame:IsShown() then
+                    FriendsFrameBattlenetFrame_HideBroadcastFrame()
+                else
+                    FriendsFrameBattlenetFrame_ShowBroadcastFrame()
+                end
+            end)
+        end
+    end
+
+    if FriendsFrameBattlenetFrame then
+        FriendsFrameBattlenetFrame:ClearAllPoints()
+        FriendsFrameBattlenetFrame:SetPoint("TOP", FriendsFrame.gwHeader or FriendsFrame, FriendsFrame.gwHeader and "BOTTOM" or "TOP", 0, FriendsFrame.gwHeader and 0 or -34)
+        FriendsFrameBattlenetFrame:GwStripTextures()
+        FriendsFrameBattlenetFrame:GwCreateBackdrop(GW.BackdropTemplates.Default, true)
+        if FriendsFrameBattlenetFrame.Tag then
+            FriendsFrameBattlenetFrame.Tag:GwKill()
+        end
+    end
+
+    if button then
+        button:HookScript("OnEnter", function(self)
+            if self.Tag then
+                self.Tag:SetTextColor(1, 1, 1)
             end
         end)
+        button:HookScript("OnLeave", function(self)
+            if self.Tag then
+                self.Tag:SetTextColor(0.345, 0.667, 0.867)
+            end
+            if self.hover then
+                self.hover:SetAlpha(0)
+            end
+            self.animationValue = 0
+        end)
+
+        if _G.FriendsFrame_CheckBattlenetStatus then
+            hooksecurefunc("FriendsFrame_CheckBattlenetStatus", function()
+                button.Tag:Hide()
+                if BNFeaturesEnabled() and BNConnected() then
+                    local _, battleTag = BNGetInfo()
+                    if battleTag then
+                        button.Tag:SetText(battleTag)
+                        button.Tag:Show()
+                    end
+                end
+            end)
+        end
     end
 
-    FriendsFrameBattlenetFrame:ClearAllPoints()
-    FriendsFrameBattlenetFrame:SetPoint("TOP", FriendsFrame.gwHeader, "BOTTOM", 0, 0)
-    FriendsFrameBattlenetFrame:GwStripTextures()
-    FriendsFrameBattlenetFrame:GwCreateBackdrop(GW.BackdropTemplates.Default, true)
-    FriendsFrameBattlenetFrame.Tag:GwKill()
+    if FriendsFrameBattlenetFrame and FriendsFrameBattlenetFrame.BroadcastFrame then
+        FriendsFrameBattlenetFrame.BroadcastFrame:GwStripTextures()
+        FriendsFrameBattlenetFrame.BroadcastFrame:GwCreateBackdrop(GW.BackdropTemplates.Default)
+        FriendsFrameBattlenetFrame.BroadcastFrame:ClearAllPoints()
+        FriendsFrameBattlenetFrame.BroadcastFrame:SetPoint("TOPLEFT", FriendsFrame.gwHeader or FriendsFrame, FriendsFrame.gwHeader and "BOTTOMRIGHT" or "TOPRIGHT", 45, FriendsFrame.gwHeader and 1 or -34)
+        if GW.Retail then
+            FriendsFrameBattlenetFrame.BroadcastFrame.EditBox:GwStripTextures()
+            GW.HandleBlizzardRegions(FriendsFrameBattlenetFrame.BroadcastFrame.EditBox)
+            GW.SkinTextBox(FriendsFrameBattlenetFrame.BroadcastFrame.EditBox.MiddleBorder, FriendsFrameBattlenetFrame.BroadcastFrame.EditBox.LeftBorder, FriendsFrameBattlenetFrame.BroadcastFrame.EditBox.RightBorder, nil, nil, 5, 5)
+            FriendsFrameBattlenetFrame.BroadcastFrame.UpdateButton:GwSkinButton(false, true)
+            FriendsFrameBattlenetFrame.BroadcastFrame.CancelButton:GwSkinButton(false, true)
+        elseif GW.TBC or GW.Wrath or GW.Classic then
+            if FriendsFrameBattlenetFrame.BroadcastButton then
+                FriendsFrameBattlenetFrame.BroadcastButton:GwKill()
+            end
+            if FriendsFrameBattlenetFrameScrollFrame then
+                FriendsFrameBattlenetFrameScrollFrame:GwStripTextures()
+                GW.HandleBlizzardRegions(FriendsFrameBattlenetFrameScrollFrame)
+                GW.SkinTextBox(FriendsFrameBattlenetFrameScrollFrame.MiddleBorder, FriendsFrameBattlenetFrameScrollFrame.LeftBorder, FriendsFrameBattlenetFrameScrollFrame.RightBorder, nil, nil, 5, 5)
+                local broadcastEditBox = FriendsFrameBattlenetFrameScrollFrame.EditBox
+                if broadcastEditBox then
+                    broadcastEditBox:ClearAllPoints()
+                    broadcastEditBox:SetPoint("LEFT", FriendsFrameBattlenetFrameScrollFrame, "LEFT", 4, 0)
+                    broadcastEditBox:SetPoint("RIGHT", FriendsFrameBattlenetFrameScrollFrame, "RIGHT", -4, 0)
+                    broadcastEditBox:SetHeight(16)
 
-    button:HookScript("OnEnter", function(self) self.Tag:SetTextColor(1, 1, 1) end)
-    button:HookScript("OnLeave", function(self) self.Tag:SetTextColor(0.345, 0.667, 0.867) end)
-
-    hooksecurefunc("FriendsFrame_CheckBattlenetStatus", function()
-        button.Tag:Hide()
-        if BNFeaturesEnabled() and BNConnected() then
-            local _, battleTag = BNGetInfo()
-            if battleTag then
-                button.Tag:SetText(battleTag)
-                button.Tag:Show()
+                    if broadcastEditBox.PromptText then
+                        broadcastEditBox.PromptText:ClearAllPoints()
+                        broadcastEditBox.PromptText:SetPoint("LEFT", broadcastEditBox, "LEFT", 0, 0)
+                    end
+                end
+                if FriendsFrameBattlenetFrameScrollFrame.UpdateButton then
+                    FriendsFrameBattlenetFrameScrollFrame.UpdateButton:GwSkinButton(false, true)
+                end
+                if FriendsFrameBattlenetFrameScrollFrame.CancelButton then
+                    FriendsFrameBattlenetFrameScrollFrame.CancelButton:GwSkinButton(false, true)
+                end
             end
         end
-    end)
-
-    FriendsFrameBattlenetFrame.BroadcastFrame:GwStripTextures()
-    FriendsFrameBattlenetFrame.BroadcastFrame:GwCreateBackdrop(GW.BackdropTemplates.Default)
-    FriendsFrameBattlenetFrame.BroadcastFrame:ClearAllPoints()
-    FriendsFrameBattlenetFrame.BroadcastFrame:SetPoint("TOPLEFT", FriendsFrame.gwHeader, "BOTTOMRIGHT", 45, 1)
-    if GW.Retail then
-        FriendsFrameBattlenetFrame.BroadcastFrame.EditBox:GwStripTextures()
-        GW.HandleBlizzardRegions(FriendsFrameBattlenetFrame.BroadcastFrame.EditBox)
-        GW.SkinTextBox(FriendsFrameBattlenetFrame.BroadcastFrame.EditBox.MiddleBorder, FriendsFrameBattlenetFrame.BroadcastFrame.EditBox.LeftBorder, FriendsFrameBattlenetFrame.BroadcastFrame.EditBox.RightBorder, nil, nil, 5, 5)
-        FriendsFrameBattlenetFrame.BroadcastFrame.UpdateButton:GwSkinButton(false, true)
-        FriendsFrameBattlenetFrame.BroadcastFrame.CancelButton:GwSkinButton(false, true)
-    elseif GW.TBC or GW.Wrath then
-        FriendsFrameBattlenetFrame.BroadcastButton:GwKill()
-        FriendsFrameBattlenetFrameScrollFrame:GwStripTextures()
-        GW.HandleBlizzardRegions(FriendsFrameBattlenetFrameScrollFrame)
-        GW.SkinTextBox(FriendsFrameBattlenetFrameScrollFrame.MiddleBorder, FriendsFrameBattlenetFrameScrollFrame.LeftBorder, FriendsFrameBattlenetFrameScrollFrame.RightBorder, nil, nil, 5, 5)
-        FriendsFrameBattlenetFrameScrollFrame.UpdateButton:GwSkinButton(false, true)
-        FriendsFrameBattlenetFrameScrollFrame.CancelButton:GwSkinButton(false, true)
     end
 
-    AddFriendFrame:GwStripTextures()
-    AddFriendFrame:GwCreateBackdrop(GW.BackdropTemplates.Default)
-    AddFriendEntryFrameAcceptButton:GwSkinButton(false, true)
-    AddFriendEntryFrameCancelButton:GwSkinButton(false, true)
-    GW.SkinTextBox(_G["AddFriendNameEditBoxMiddle"], _G["AddFriendNameEditBoxLeft"], _G["AddFriendNameEditBoxRight"])
-    FriendsFrameBattlenetFrame.UnavailableInfoFrame:ClearAllPoints()
-    FriendsFrameBattlenetFrame.UnavailableInfoFrame:SetPoint("TOPLEFT", FriendsFrame.gwHeader, "TOPRIGHT", 1, -18)
+    if AddFriendFrame then
+        AddFriendFrame:GwStripTextures()
+        AddFriendFrame:GwCreateBackdrop(GW.BackdropTemplates.Default)
+    end
+    if AddFriendEntryFrameAcceptButton then
+        AddFriendEntryFrameAcceptButton:GwSkinButton(false, true)
+    end
+    if AddFriendEntryFrameCancelButton then
+        AddFriendEntryFrameCancelButton:GwSkinButton(false, true)
+    end
+    if _G["AddFriendNameEditBoxMiddle"] then
+        GW.SkinTextBox(_G["AddFriendNameEditBoxMiddle"], _G["AddFriendNameEditBoxLeft"], _G["AddFriendNameEditBoxRight"])
+    end
+    if FriendsFrameBattlenetFrame and FriendsFrameBattlenetFrame.UnavailableInfoFrame then
+        FriendsFrameBattlenetFrame.UnavailableInfoFrame:ClearAllPoints()
+        FriendsFrameBattlenetFrame.UnavailableInfoFrame:SetPoint("TOPLEFT", FriendsFrame.gwHeader or FriendsFrame, FriendsFrame.gwHeader and "TOPRIGHT" or "TOPRIGHT", 1, FriendsFrame.gwHeader and -18 or -52)
+    end
 end
