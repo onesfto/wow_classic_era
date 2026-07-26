@@ -28,26 +28,13 @@ NDuiADB = {
 },
 ["ChatFilterWhiteList"] = "",
 ["UIScale"] = 0.71,
-["ContactList"] = {
+["GuildSortOrder"] = true,
+["RaidAuraWatch"] = {
 },
-["ProfileNames"] = {
-"角色配置",
-"共享配置1",
-"共享配置2",
-"共享配置3",
-"共享配置4",
-"共享配置5",
-},
-["ProfileIndex"] = {
-["绿龙守护者-哈霍兰"] = 1,
-["黑龙守护者-哈霍兰"] = 1,
-["哈霍兰大格格-哈霍兰"] = 1,
-["法德迦-哈霍兰"] = 1,
-["德加和尚-哈霍兰"] = 1,
-},
+["BWRequest"] = true,
 ["MajorSpells"] = {
 },
-["TexStyle"] = 2,
+["SkadaRequest"] = true,
 ["VersionCheck"] = true,
 ["NameplateFilter"] = {
 {
@@ -65,19 +52,32 @@ NDuiADB = {
 },
 ["RaidDebuffs"] = {
 },
-["AutoRecycle"] = false,
 ["ClickSets"] = {
 ["MAGE"] = {
-["MWD"] = 1460,
 ["MWU"] = 475,
+["MWD"] = 1460,
 },
 },
+["AutoRecycle"] = false,
 ["LockUIScale"] = false,
-["SkadaRequest"] = true,
-["BWRequest"] = true,
-["RaidAuraWatch"] = {
+["TexStyle"] = 2,
+["ProfileIndex"] = {
+["绿龙守护者-哈霍兰"] = 1,
+["黑龙守护者-哈霍兰"] = 1,
+["哈霍兰大格格-哈霍兰"] = 1,
+["法德迦-哈霍兰"] = 1,
+["德加和尚-哈霍兰"] = 1,
 },
-["GuildSortOrder"] = true,
+["ProfileNames"] = {
+"角色配置",
+"共享配置1",
+"共享配置2",
+"共享配置3",
+"共享配置4",
+"共享配置5",
+},
+["ContactList"] = {
+},
 }
 NDuiPDB = {
 {

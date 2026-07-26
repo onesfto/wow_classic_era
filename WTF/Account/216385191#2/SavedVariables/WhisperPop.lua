@@ -1,13 +1,28 @@
 
 WhisperPopDB = {
-["listScale"] = 100,
+["sound"] = 1,
 ["listHeight"] = 320,
-["notifyButton"] = 1,
+["positions"] = {
+["WhisperPopFrame"] = {
+"CENTER",
+"UIParent",
+"CENTER",
+-275,
+54,
+},
+["WhisperPopNotifyButton"] = {
+"BOTTOMLEFT",
+"UIParent",
+"BOTTOMLEFT",
+419,
+242,
+},
+},
 ["showRealm"] = 1,
-["applyFilters"] = 1,
 ["listWidth"] = 200,
+["save"] = 1,
 ["timeFormat"] = 2,
-["ignoreTags"] = 1,
+["time"] = 1,
 ["buttonScale"] = 100,
 ["history"] = {
 {
@@ -65,25 +80,10 @@ WhisperPopDB = {
 },
 },
 },
-["time"] = 1,
+["applyFilters"] = 1,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["save"] = 1,
-["sound"] = 1,
-["positions"] = {
-["WhisperPopFrame"] = {
-"CENTER",
-"UIParent",
-"CENTER",
--275,
-54,
-},
-["WhisperPopNotifyButton"] = {
-"BOTTOMLEFT",
-"UIParent",
-"BOTTOMLEFT",
-419,
-242,
-},
-},
+["listScale"] = 100,
+["notifyButton"] = 1,
+["ignoreTags"] = 1,
 }

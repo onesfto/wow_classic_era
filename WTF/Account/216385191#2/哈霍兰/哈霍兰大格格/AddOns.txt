@@ -52,9 +52,9 @@ Details_Streamer: enabled
 Details_TinyThreat: enabled
 Details_Vanguard: enabled
 Doom_CooldownPulse: enabled
-ElvUI: disabled
-ElvUI_Libraries: disabled
-ElvUI_Options: disabled
+ElvUI: enabled
+ElvUI_Libraries: enabled
+ElvUI_Options: enabled
 GFW_FeedOMatic: enabled
 GatherMate2: enabled
 GatherMate2_Data: enabled

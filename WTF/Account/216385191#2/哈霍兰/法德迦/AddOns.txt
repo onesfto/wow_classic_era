@@ -21,7 +21,7 @@ tdInspect: disabled
 EKword: enabled
 aBlueShaman: disabled
 ACP: enabled
-AddOnSkins: disabled
+AddOnSkins: enabled
 AdvancedInterfaceOptions: disabled
 AlreadyKnown: disabled
 Atlas: disabled
@@ -35,8 +35,8 @@ AtlasLootClassic_Options: disabled
 AtlasLootClassic_Factions: disabled
 AtlasLootClassic_PvP: disabled
 Auctionator: disabled
-BlizzMove: disabled
-BlizzMove_Debug: disabled
+BlizzMove: enabled
+BlizzMove_Debug: enabled
 !BugGrabber: enabled
 BugSack: enabled
 CharacterStatsClassic: disabled
@@ -52,7 +52,7 @@ Details_Streamer: disabled
 Details_TinyThreat: disabled
 Details_Vanguard: disabled
 Doom_CooldownPulse: disabled
-ElvUI: enabled
+ElvUI: disabled
 ElvUI_Libraries: disabled
 ElvUI_Options: disabled
 GFW_FeedOMatic: disabled
@@ -62,8 +62,8 @@ GTFO: disabled
 HandyNotes: disabled
 HandyNotes_DungeonLocations (Classic): disabled
 HandyNotes_NPCs (Classic): disabled
-HidingBar: disabled
-HidingBar_Options: disabled
+HidingBar: enabled
+HidingBar_Options: enabled
 Immersion: enabled
 InboxMailBag: disabled
 Leatrix_Maps: disabled
@@ -88,7 +88,7 @@ RangeDisplay: disabled
 RangeDisplay_Options: disabled
 RXPGuides: enabled
 RuneReminder: enabled
-SharedMedia: disabled
+SharedMedia: enabled
 SharedMedia_MyMedia: disabled
 TargetNameplateIndicator: disabled
 ThreatClassic2: disabled
@@ -180,13 +180,13 @@ RXPGuides_Themes: enabled
 HeyboxPlayerInfo: disabled
 Rurutia: disabled
 SpellActivationOverlay: disabled
-BuyEmAllClassic: disabled
+BuyEmAllClassic: enabled
 RareScanner: disabled
 BiSTracker: disabled
 163UI_Info: disabled
 Rurutia_Raids: disabled
 DBM-SpellTimers: disabled
-TalentEmuX: disabled
+TalentEmuX: enabled
 ElvUI_RatioMinimapAuras: disabled
 Krowi_WorldMapButtons: enabled
 !Swatter: disabled
@@ -197,7 +197,7 @@ PatchWerk: disabled
 BiaoGe-Rurutia: disabled
 AutoCarrot: disabled
 BetterBags: disabled
-Cell: disabled
+Cell: enabled
 GearMenu: disabled
 MacroToolkit: disabled
 MacroToolkitIcons: disabled
@@ -218,3 +218,4 @@ LibClassicDurations: enabled
 Clique: enabled
 LibSFDropDown: enabled
 AllTheThings: enabled
+GW2_UI_PLUS: enabled

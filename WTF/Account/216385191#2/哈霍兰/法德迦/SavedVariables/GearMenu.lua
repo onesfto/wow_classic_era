@@ -40,30 +40,30 @@ GearMenuConfiguration = {
 },
 ["displayName"] = "饰品",
 ["isLocked"] = true,
-["changeMenuDirection"] = 2,
+["gearSlotSize"] = 40,
 ["showCooldowns"] = true,
 ["orientation"] = 1,
-["position"] = {
-["relativePoint"] = "CENTER",
-["posY"] = -222.1014709472656,
-["point"] = "CENTER",
-["posX"] = 426.2960510253906,
-},
 ["changeSlotSize"] = 40,
-["gearSlotSize"] = 40,
+["position"] = {
+["posX"] = 426.2960510253906,
+["point"] = "CENTER",
+["posY"] = -222.1014709472656,
+["relativePoint"] = "CENTER",
 },
-},
-["addonVersion"] = "v2.7.0",
-["uiTheme"] = 2,
-["trinketMenuColumns"] = 8,
-["frames"] = {
-["GM_TrinketMenuFrame"] = {
-["relativePoint"] = "RIGHT",
-["point"] = "RIGHT",
-["posY"] = -222.0956420898438,
-["posX"] = -237.2508697509766,
+["changeMenuDirection"] = 2,
 },
 },
 ["quickChangeRules"] = {
 },
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 8,
+["frames"] = {
+["GM_TrinketMenuFrame"] = {
+["posX"] = -237.2508697509766,
+["posY"] = -222.0956420898438,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+},
+["addonVersion"] = "v2.7.0",
 }
