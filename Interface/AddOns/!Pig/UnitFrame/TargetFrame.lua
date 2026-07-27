@@ -254,7 +254,8 @@ function UnitFramefun.Mubiao()
 		end
 	end
 	--目标的目标的目标
-	if PIGA["UnitFrame"]["TargetFrame"]["ToToToT"] and not TargetFrameToT.TTT then	
+	if PIGA["UnitFrame"]["TargetFrame"]["ToToToT"] and not TargetFrameToT.TTT then
+		local oldtoc=PIG_MaxTocversion()
 		SetCVar("showTargetOfTarget","1")
 		local unitMubiao,fuF="targettargettarget",TargetFrameToT
 		fuF.TTT = CreateFrame("Button", "$ParentToT", fuF, "TargetofTargetFrameTemplate");
@@ -265,7 +266,7 @@ function UnitFramefun.Mubiao()
 		fuF.TTT:SetScript("OnShow", nil)
 		fuF.TTT:SetScript("OnHide", nil)
 		fuF.TTT:SetScript("OnUpdate", nil)
-		if PIG_MaxTocversion() then
+		if oldtoc then
 			fuF.TTT.healthbar =  _G["TargetFrameToTToTHealthBar"]
 			fuF.TTT.manabar =  _G["TargetFrameToTToTManaBar"]
 			fuF.TTT.portrait =_G["TargetFrameToTToTPortrait"]
@@ -331,7 +332,7 @@ function UnitFramefun.Mubiao()
 			end
 		end
 		function fuF.TTT:HealthCheck()
-			if (PIG_MaxTocversion() and UnitIsPlayer(self.unit)) then
+			if (oldtoc and UnitIsPlayer(self.unit)) then
 				local _, unitHPMax = self.HealthBar:GetMinMaxValues();
 				local unitCurrHP = self.HealthBar:GetValue();
 				self.unitHPPercent = unitCurrHP / unitHPMax;
@@ -369,12 +370,12 @@ function UnitFramefun.Mubiao()
 		fuF.TTT:RegisterUnitEvent("UNIT_TARGET","target");
 		fuF.TTT:RegisterUnitEvent("UNIT_TARGET","targettarget");
 		--fuF.TTT:RegisterUnitEvent("UNIT_AURA", unit);
-		--fuF.TTT:RegisterUnitEvent("UNIT_TARGET",unitMubiao);
+		fuF.TTT:RegisterUnitEvent("UNIT_TARGET",unitMubiao);
 		fuF.TTT:RegisterUnitEvent("UNIT_PORTRAIT_UPDATE",unitMubiao);
 		fuF.TTT:SetScript("OnEvent", function (self,event,arg1)
 			if UnitExists(self.unit) then
 				local TTTname = UnitName(self.unit)
-				if PIG_MaxTocversion() then
+				if oldtoc then
 					self.name:SetText(TTTname);
 					SetPortraitTexture(self.portrait, self.unit)
 					TargetofTargetHealthCheck(self)
@@ -409,7 +410,7 @@ function UnitFramefun.Mubiao()
 				end
 			end)
 		end
-		if PIG_MaxTocversion() then
+		if oldtoc then
 			loadEventFun(fuF.TTT.healthbar,fuF.TTT.manabar,UnitFrameHealthBar_Update,UnitFrameManaBar_Update)
 		else
 			loadEventFun(fuF.TTT.HealthBar,fuF.TTT.ManaBar,PigUnitFrameHealthBar_Update,PigUnitFrameManaBar_Update)

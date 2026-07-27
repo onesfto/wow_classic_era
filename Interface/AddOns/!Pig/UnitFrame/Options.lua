@@ -16,47 +16,10 @@ local PIGFontStringBG=Create.PIGFontStringBG
 ---
 local UnitFramefun={}
 PD.UnitFramefun=UnitFramefun
-local function SetDebuffui(caster,frameName)
-	if caster ~= "player" then return end
-	if not _G[frameName] then return end
-	 _G[frameName]:SetSize(30,30)
-end
--- local function BigDebuff()
--- 	if IsElvUI() or IsNDui() then return end
--- 	if PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"] then
--- 		if TargetFrame_UpdateDebuffAnchor then
--- 			if PIG_MaxTocversion(120000) then
--- 				TargetFrameToT:SetPoint("BOTTOMRIGHT", TargetFrame, "BOTTOMRIGHT", -4, -12);
--- 				hooksecurefunc("TargetFrame_UpdateDebuffAnchor", function(self, debuffName, index)
--- 					local _, _, _, _, _, _, caster = UnitDebuff(self.unit, index)
--- 					SetDebuffui(caster,debuffName..index)
--- 				end)
--- 			end
--- 		else
--- 			local maxDebuffs = TargetFrame.maxDebuffs or MAX_TARGET_DEBUFFS;
--- 			hooksecurefunc(TargetFrame,"UpdateAuras", function(self)
--- 				local debuffIndex = 1;
--- 				AuraUtil.ForEachAura(self.unit, AuraUtil.CreateFilterString(AuraUtil.AuraFilters.Harmful, AuraUtil.AuraFilters.IncludeNameplateOnly), maxDebuffs, function(...)
--- 					local debuffName, icon, count, debuffType, duration, expirationTime, caster, _, _, _, _, _, casterIsPlayer, nameplateShowAll = ...;
--- 					if ( debuffName ) then
--- 						if ( self:ShouldShowDebuffs(self.unit, caster, nameplateShowAll, casterIsPlayer) ) then
--- 							if ( icon ) then
--- 								SetDebuffui(caster,"TargetFrameDebuff"..debuffIndex)
--- 								debuffIndex = debuffIndex + 1;
--- 							end
--- 						end
--- 					end
--- 				end);
--- 			end)
--- 		end
--- 	end
--- end
---
 PD.UnitFrame = function()
 	UnitFramefun.Zishen()
 	UnitFramefun.Duiyou()
 	UnitFramefun.Mubiao()
-	--BigDebuff()
 end
 function PD.addOptions_UnitFrame()
 	local fuFrame = PIGOptionsList(L["UNIT_TABNAME"],"TOP")
@@ -195,17 +158,5 @@ function PD.addOptions_UnitFrame()
 				PIG_OptionsUI.RLUI:Show()
 			end
 		end);
-
-		-- mubiaoF.BigDebuff=PIGCheckbutton_R(mubiaoF,{"增大自身释放的DEBUFF","增大自身释放的DEBUFF图标"})
-		-- mubiaoF.BigDebuff:SetScript("OnClick", function (self)
-		-- 	if self:GetChecked() then
-		-- 		PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"]=true;
-		-- 		BigDebuff()
-		-- 	else
-		-- 		PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"]=false;
-		-- 		PIG_OptionsUI.RLUI:Show()
-		-- 	end
-		-- end);
-		--mubiaoF.BigDebuff:SetChecked(PIGA["UnitFrame"]["TargetFrame"]["BigDebuff"])
 	end);
 end

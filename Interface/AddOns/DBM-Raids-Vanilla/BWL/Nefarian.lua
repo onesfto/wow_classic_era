@@ -20,7 +20,7 @@ else
 	mod.statTypes = "normal"
 end
 
-mod:SetRevision("20260523022054")
+mod:SetRevision("20260724213414")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(11583)
 mod:SetEncounterID(617)
@@ -225,10 +225,11 @@ do
 	}
 
 	function mod:OnSync(msg, arg)
+		if not self:IsInCombat() then return end
 		if msg == "Phase" then
 			local phase = tonumber(arg)
 			if not phase then return end
-			if self:GetStage(phase, 3) then
+			if self:GetStage(phase, 1) then
 				self:SetStage(phase)
 				if phase % 1 == 0 then
 					warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(phase))
@@ -239,10 +240,7 @@ do
 					warnPhase:Play("pthree")
 				end
 			end
-		end
-
-		if not self:IsInCombat() then return end
-		if msg == "ClassCall" then
+		elseif msg == "ClassCall" then
 			local className = LOCALIZED_CLASS_NAMES_MALE[arg]
 			local classColor = RAID_CLASS_COLORS[arg]
 			local classNameColored = className

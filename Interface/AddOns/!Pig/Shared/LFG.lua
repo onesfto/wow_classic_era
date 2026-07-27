@@ -21,7 +21,7 @@ function Fun.PIG_GetCategories(ly)
 	local categories = C_LFGList.GetAvailableCategories(baseFilters);
 	for i=1, #categories do
 		local categoryID=categories[i]
-		print(ly,categoryID,C_LFGList.GetLfgCategoryInfo(categoryID).name)
+		--print(ly,categoryID,C_LFGList.GetLfgCategoryInfo(categoryID).name)
 		if IsPVEPVP(ly,categoryID) then
 			local CategoryInfo= C_LFGList.GetLfgCategoryInfo(categoryID)
 			local renwuname=CategoryInfo.name:match(QUESTS_LABEL)

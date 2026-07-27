@@ -9,7 +9,7 @@ end
 local mod	= DBM:NewMod("Fankriss", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260710163046")
+mod:SetRevision("20260724135520")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(15510)
 mod:SetEncounterID(712)
@@ -95,6 +95,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellId)
 end
 
 function mod:OnSync(msg)
+	if not self:IsInCombat() then return end
 	if msg == "Spawns" then
 		if self.Options.SpecWarn26631adds then
 			specWarnSpawns:Show()

@@ -1,3 +1,5 @@
+local _, addonTable = ...
+
 DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS: Core.lua is evaluating!")
 StaticPopupDialogs["GW2_UI_PLUS_RELOAD"] = {
     text = "更改“启用”状态需要重新加载界面才能生效。现在重新加载吗？",
@@ -133,8 +135,15 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
             if opt_slider then opt_slider.optionName = "alaGearMan_Scale" end
         end
     -- Register the new panel under settings.
-    settingsTab:AddSettingsPanel(p, "附加组件", "额外附加组件", { {name = "一键换装", frame = gearManFrame, icon = "Interface\\Icons\\INV_Misc_Bag_08"} }, true)
-    
+    local subPanels = { {name = "一键换装", frame = gearManFrame, icon = "Interface\\Icons\\INV_Misc_Bag_08"} }
+
+    if addonTable.BuildChatBarPanel then
+        local chatBarFrame = addonTable.BuildChatBarPanel(p)
+        table.insert(subPanels, {name = "频道按钮", frame = chatBarFrame, icon = "Interface\\Icons\\INV_Letter_15"})
+    end
+
+    settingsTab:AddSettingsPanel(p, "附加组件", "额外附加组件", subPanels, true)
+
     end)
 else
     if not GW2_ADDON then

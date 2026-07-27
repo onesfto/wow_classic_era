@@ -52,9 +52,9 @@ Details_Streamer: enabled
 Details_TinyThreat: enabled
 Details_Vanguard: enabled
 Doom_CooldownPulse: enabled
-ElvUI: enabled
-ElvUI_Libraries: enabled
-ElvUI_Options: enabled
+ElvUI: disabled
+ElvUI_Libraries: disabled
+ElvUI_Options: disabled
 GFW_FeedOMatic: enabled
 GatherMate2: enabled
 GatherMate2_Data: enabled
@@ -208,3 +208,5 @@ SexyMap: enabled
 SimpleRaidTargetIcons: enabled
 SinStats: enabled
 SharedMedia_Rurutia: enabled
+AllTheThings: enabled
+GW2_UI_PLUS: enabled

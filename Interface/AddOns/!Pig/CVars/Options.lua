@@ -41,6 +41,55 @@ local function ChatClassColor(CVarName,CVarVON,CVarVOFF)
         end 
     end
 end
+--DEBUFF增加
+local oldUpdateAuraPositions=TargetFrame.UpdateAuraPositions
+local old_LARGE_AURA_SIZE = 21;
+local LARGE_AURA_SIZE = 21;
+local function SetBigDeBuffVV()
+	LARGE_AURA_SIZE=PIGA["CVars"]["debuffSizeV"] or old_LARGE_AURA_SIZE
+end
+local function BigDeBuff()
+	if (not GetCVarBool("showDynamicBuffSize")) then TargetFrame.UpdateAuraPositions=oldUpdateAuraPositions return end
+	local AURA_OFFSET_Y = 1;
+	local SMALL_AURA_SIZE = 17;
+	local NUM_TOT_AURA_ROWS = 2;
+	local AURA_ROW_WIDTH = 122;
+	SetBigDeBuffVV()
+	--hooksecurefunc(TargetFrame, "UpdateAuraPositions", function(self,auraName, numAuras, numOppositeAuras, largeAuraList, updateFunc, maxRowWidth, offsetX, mirrorAurasVertically)	
+	TargetFrame.UpdateAuraPositions=function(self,auraName, numAuras, numOppositeAuras, largeAuraList, updateFunc, maxRowWidth, offsetX, mirrorAurasVertically)	
+		local size;
+		local offsetY = AURA_OFFSET_Y;
+		local rowWidth = 0;
+		local firstBuffOnRow = 1;
+		for i=1, numAuras do
+			if ( largeAuraList[i] ) then
+				size = LARGE_AURA_SIZE;
+				offsetY = AURA_OFFSET_Y + AURA_OFFSET_Y;
+			else
+				size = SMALL_AURA_SIZE;
+			end
+			if ( i == 1 ) then
+				rowWidth = size;
+				self.auraRows = self.auraRows + 1;
+			else
+				rowWidth = rowWidth + size + offsetX;
+			end
+			if ( rowWidth > maxRowWidth ) then
+				updateFunc(self, auraName, i, numOppositeAuras, firstBuffOnRow, size, offsetX, offsetY, mirrorAurasVertically);
+				rowWidth = size;
+				self.auraRows = self.auraRows + 1;
+				firstBuffOnRow = i;
+				offsetY = AURA_OFFSET_Y;
+				if ( self.auraRows > NUM_TOT_AURA_ROWS ) then
+					maxRowWidth = AURA_ROW_WIDTH;
+				end
+			else
+				updateFunc(self, auraName, i, numOppositeAuras, i - 1, size, offsetX, offsetY, mirrorAurasVertically);
+			end
+		end
+	end
+end
+--
 local CVarsVData = {
     {"alwaysCompareItems","1","0","自动比较装备","开启后在查看装备时会自动和身上装备对比"},
     {"chatClassColorOverride","0","1","聊天栏显示职业颜色","聊天框发言的玩家姓名会根据职业染色",ChatClassColor},
@@ -48,7 +97,7 @@ local CVarsVData = {
     {"instantQuestText","1","0",SHOW_QUEST_FADING_TEXT,OPTION_TOOLTIP_SHOW_QUEST_FADING},
     {"threatShowNumeric","1","0",SHOW_NUMERIC_THREAT,OPTION_TOOLTIP_SHOW_NUMERIC_THREAT},
     {"showTargetCastbar","1","0",SHOW_TARGET..SHOW_ENEMY_CAST,OPTION_TOOLTIP_SHOW_TARGET_CASTBAR_IN_V_KEY},
-    {"showDynamicBuffSize","1","0",DYNAMIC.."Buff/Debuff大小","增大你自己施放的增减益"},
+    {"showDynamicBuffSize","1","0",SHOW_DYNAMIC_BUFF_SIZE, OPTION_TOOLTIP_SHOW_DYNAMIC_BUFF_SIZE,BigDeBuff},
     {"autoLootDefault","1","0",AUTO_LOOT_DEFAULT_TEXT,OPTION_TOOLTIP_AUTO_LOOT_DEFAULT},
 }
 local CVarsVList = {}
@@ -161,6 +210,7 @@ local function chaoyuanshijujihuo()
     SetCVar(chaoyuanshijuVVV[1], chaoyuanshijuVVV[2])
 end
 PD.CVars = function()
+	BigDeBuff()
     CVarsfun.EaseUseCVars()
     CVarsfun.Shaman_Blue()
     CVarsfun.Update_SpellQueueClass()
@@ -240,6 +290,18 @@ function PD.addOptions_CVars()
 		    end  
 		end
 		EaseUseF.F.Show_Checked()
+
+		EaseUseF.F.debuffSizeV = PIGSlider(EaseUseF.F,{"TOPLEFT",EaseUseF.F,"BOTTOMLEFT",2,0},{21,40,1,{["Right"]=SHOW_DYNAMIC_BUFF_SIZE.."%d (默认21)"}})
+		function EaseUseF.F.debuffSizeV:PIGOnValueChange(arg1)
+			LARGE_AURA_SIZE=arg1
+			if arg1==old_LARGE_AURA_SIZE then 
+				PIGA["CVars"]["debuffSizeV"]=nil
+			else
+				PIGA["CVars"]["debuffSizeV"]=arg1
+			end
+			SetBigDeBuffVV()
+		end
+		EaseUseF.F.debuffSizeV:PIGSetValue(LARGE_AURA_SIZE)
 		
 		-----------
 		EaseUseF.diyF=PIGFrame(EaseUseF,{"TOPLEFT", EaseUseF, "TOPLEFT", 10, -340})
@@ -538,12 +600,8 @@ function PD.addOptions_CVars()
 		end
 		----
 		local enableFloatingCombatText="enableFloatingCombatText"
-		local WorldTextScale="WorldTextScale"
-		local floatingCombatTextFloatMode="floatingCombatTextFloatMode"
-		if PIG_MaxTocversion(110000,true) then
-			WorldTextScale=WorldTextScale.."_v2"
-			floatingCombatTextFloatMode=floatingCombatTextFloatMode.."_v2"
-		end
+		local WorldTextScale="WorldTextScale_v2"
+		local floatingCombatTextFloatMode="floatingCombatTextFloatMode_v2"
 		combattextF.RF=PIGFrame(combattextF,{"TOPLEFT",combattextF,"TOPLEFT",0,-260})
 		combattextF.RF:SetPoint("BOTTOMRIGHT",combattextF,"BOTTOMRIGHT",0,0);
 		combattextF.RF.OPENcombattext = PIGCheckbutton(combattextF.RF,{"TOPLEFT",combattextF.RF,"TOPLEFT",20,-20},{COMBAT_TEXT_LABEL,OPTION_TOOLTIP_SHOW_COMBAT_TEXT})
@@ -554,7 +612,6 @@ function PD.addOptions_CVars()
 				SetCVar(enableFloatingCombatText, "0")
 			end
 		end)
-
 		--浮动方式
 		local fudongModeName = {["1"]=COMBAT_TEXT_SCROLL_UP,["2"]=COMBAT_TEXT_SCROLL_DOWN,["3"]=COMBAT_TEXT_SCROLL_ARC}
 		ADD_DownMenu(combattextF.RF,1,3,fudongModeName,floatingCombatTextFloatMode,COMBAT_TEXT_FLOAT_MODE_LABEL,{"TOPLEFT",combattextF.RF,"TOPLEFT",170,-60},100)
@@ -570,7 +627,8 @@ function PD.addOptions_CVars()
 	if PIG_MaxTocversion(50000) then
 		local xingmingbanF =PIGOptionsList_R(RTabFrame,L["CVAR_TABNAME2"],70)
 		xingmingbanF:HookScript("OnShow", function (self)
-			if xingmingbanF.nameplatebiaoti then return end
+			if self.yiok then return end
+			self.yiok=true
 			local xingmingList = {
 				{SHOW..SHOW_TARGET_CASTBAR_IN_V_KEY,"nameplateShowOnlyNames","0","1",nil,true},
 				{UNIT_NAME_FRIENDLY..SHOW_TARGET_CASTBAR_IN_V_KEY..SHOW_CLASS_COLOR,"ShowClassColorInFriendlyNameplate","1","0",nil,true},
@@ -597,30 +655,30 @@ function PD.addOptions_CVars()
 				end)
 				CVarsCB:SetChecked(GetCVar(xingmingList[i][2])==xingmingList[i][3]);
 			end
-			xingmingbanF.nameplatebiaoti = PIGFontString(xingmingbanF,{"TOPLEFT",xingmingbanF,"TOPLEFT",40,-170},"锁定距离");
-			xingmingbanF.CZ = PIGButton(xingmingbanF,{"LEFT",xingmingbanF.nameplatebiaoti,"RIGHT",10,0},{60,22},RESET);  
-			xingmingbanF.CZ:SetScript("OnClick", function ()
-				SetCVar("nameplateOtherTopInset",0.08)
-				SetCVar("nameplateOtherBottomInset",0.1)
-				xingmingbanF.Update_SetUI()
-			end)
-			xingmingbanF.nameplateTop=PIGSlider(xingmingbanF,{"TOPLEFT",xingmingbanF.nameplatebiaoti,"BOTTOMLEFT",0,-10},{0,0.2,0.01,{["Right"]="顶部距离%s%%屏幕尺寸"}})
-			function xingmingbanF.nameplateTop:PIGOnValueChange(arg1)
-				SetCVar("nameplateOtherTopInset",arg1)
-			end
+			-- xingmingbanF.nameplatebiaoti = PIGFontString(xingmingbanF,{"TOPLEFT",xingmingbanF,"TOPLEFT",40,-170},"锁定距离");
+			-- xingmingbanF.CZ = PIGButton(xingmingbanF,{"LEFT",xingmingbanF.nameplatebiaoti,"RIGHT",10,0},{60,22},RESET);  
+			-- xingmingbanF.CZ:SetScript("OnClick", function ()
+			-- 	SetCVar("nameplateOtherTopInset",0.08)
+			-- 	SetCVar("nameplateOtherBottomInset",0.1)
+			-- 	xingmingbanF.Update_SetUI()
+			-- end)
+			-- xingmingbanF.nameplateTop=PIGSlider(xingmingbanF,{"TOPLEFT",xingmingbanF.nameplatebiaoti,"BOTTOMLEFT",0,-10},{0,0.2,0.01,{["Right"]="顶部距离%s%%屏幕尺寸"}})
+			-- function xingmingbanF.nameplateTop:PIGOnValueChange(arg1)
+			-- 	SetCVar("nameplateOtherTopInset",arg1)
+			-- end
 			
-			xingmingbanF.nameplateBottom=PIGSlider(xingmingbanF,{"TOPLEFT",xingmingbanF.nameplateTop,"BOTTOMLEFT",0,-10},{0,0.2,0.01,{["Right"]="底部距离%s%%屏幕尺寸"}})
-			function xingmingbanF.nameplateBottom:PIGOnValueChange(arg1)
-				SetCVar("nameplateOtherBottomInset",arg1)
-			end
-			function xingmingbanF.Update_SetUI()
-				xingmingbanF.CZ:SetEnabled(GetCVar("clampTargetNameplateToScreen")=="1")
-				xingmingbanF.nameplateTop:SetEnabled(GetCVar("clampTargetNameplateToScreen")=="1")
-				xingmingbanF.nameplateBottom:SetEnabled(GetCVar("clampTargetNameplateToScreen")=="1")
-				xingmingbanF.nameplateTop:PIGSetValue(GetCVar("nameplateOtherTopInset"))
-				xingmingbanF.nameplateBottom:PIGSetValue(GetCVar("nameplateOtherBottomInset"))
-			end
-			xingmingbanF.Update_SetUI()
+			-- xingmingbanF.nameplateBottom=PIGSlider(xingmingbanF,{"TOPLEFT",xingmingbanF.nameplateTop,"BOTTOMLEFT",0,-10},{0,0.2,0.01,{["Right"]="底部距离%s%%屏幕尺寸"}})
+			-- function xingmingbanF.nameplateBottom:PIGOnValueChange(arg1)
+			-- 	SetCVar("nameplateOtherBottomInset",arg1)
+			-- end
+			-- function xingmingbanF.Update_SetUI()
+			-- 	xingmingbanF.CZ:SetEnabled(GetCVar("clampTargetNameplateToScreen")=="1")
+			-- 	xingmingbanF.nameplateTop:SetEnabled(GetCVar("clampTargetNameplateToScreen")=="1")
+			-- 	xingmingbanF.nameplateBottom:SetEnabled(GetCVar("clampTargetNameplateToScreen")=="1")
+			-- 	xingmingbanF.nameplateTop:PIGSetValue(GetCVar("nameplateOtherTopInset"))
+			-- 	xingmingbanF.nameplateBottom:PIGSetValue(GetCVar("nameplateOtherBottomInset"))
+			-- end
+			-- xingmingbanF.Update_SetUI()
 		end);
 		--自身高亮
 		-- local gaoliangF =PIGOptionsList_R(RTabFrame,L["CVAR_TABNAME3"],90)

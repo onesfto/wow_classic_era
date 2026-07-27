@@ -9,8 +9,9 @@ local format, gsub, strfind, strjoin, strmatch = format, gsub, strfind, strjoin,
 local BNConnected = BNConnected
 local BNGetInfo = BNGetInfo
 local BNGetNumFriends = BNGetNumFriends
-local BNSetCustomMessage = C_BattleNet.SetCustomMessage or BNSetCustomMessage
+local BNSetCustomMessage = BNSetCustomMessage
 local GetQuestDifficultyColor = GetQuestDifficultyColor
+local MouseIsOver = MouseIsOver
 local IsChatAFK = IsChatAFK
 local IsChatDND = IsChatDND
 local IsAltKeyDown = IsAltKeyDown
@@ -533,7 +534,7 @@ local function OnEvent(panel, event, arg1)
 	-- force update when showing tooltip
 	dataValid = false
 
-	if not IsAltKeyDown() and event == 'MODIFIER_STATE_CHANGED' and panel:IsMouseOver() then
+	if not IsAltKeyDown() and event == 'MODIFIER_STATE_CHANGED' and MouseIsOver(panel) then
 		OnEnter(panel)
 	end
 

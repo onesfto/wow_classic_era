@@ -9,7 +9,6 @@ ElvCharacterDB = {
 "/cw 星宇蓝龙 123",
 "/团队 2-5",
 "/cw 星宇卡扎克 123",
-"/wa",
 "/cw 信宜小牧 么么哒",
 "/WA",
 "神经啊",
@@ -22,6 +21,7 @@ ElvCharacterDB = {
 "就都有了",
 "我的怎么就可以啊",
 "/rl",
+"/wa",
 },
 ["ChatHistoryLog"] = {
 },

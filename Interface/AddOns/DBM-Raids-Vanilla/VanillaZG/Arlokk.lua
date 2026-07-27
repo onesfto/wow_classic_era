@@ -12,7 +12,7 @@ end
 local mod	= DBM:NewMod("Arlokk", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260527072013")
+mod:SetRevision("20260724135520")
 mod:SetMinSyncRevision(20260522000000) -- 2026, May 22nd
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(14515)
@@ -73,6 +73,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellId)
 end
 
 function mod:OnSync(event)
+	if not self:IsInCombat() then return end
     if event == "Vanish" then
 		self.vb.vanished = true
 		warnVanish:Show()

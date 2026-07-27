@@ -1818,7 +1818,7 @@ BG.Init2(function()
                         count = "finish"
                     end
                     local msg = format("AutoLoot,%s,%s", info.itemID, count)
-                    C_ChatInfo.SendAddonMessage("BiaoGe", msg, "RAID")
+                    -- C_ChatInfo.SendAddonMessage("BiaoGe", msg, "RAID")
                 end
             end
         end)
@@ -1859,7 +1859,7 @@ BG.Init2(function()
                             BG.After(1, function()
                                 local count = GetItemCount(info.itemID, true)
                                 local msg = format("AutoLoot,%s,%s,print", info.itemID, count)
-                                C_ChatInfo.SendAddonMessage("BiaoGe", msg, "RAID")
+                                -- C_ChatInfo.SendAddonMessage("BiaoGe", msg, "RAID")
                             end)
                         end
                     end
@@ -1907,9 +1907,5 @@ BG.Init2(function()
                 end
             end
         end)
-
-        --[[
-/run C_ChatInfo.SendAddonMessage("BiaoGe", "AutoLoot,63345,2", "RAID")
-         ]]
     end
 end)

@@ -85,11 +85,10 @@ local function ADD_chatbut(fuF,name)
 	local dataX=ChannelData[name]
 	if dataX and PIGA["Chat"]["QuickChat_ButHide"][dataX[3]] then return end
 	local Width=fuF.Width
-	local ziframe = {fuF:GetChildren()}
+	fuF.butlist=fuF.butlist or {}
 	local chatbut = CreateFrame("Button",nil,fuF, fuF.PIGTemplate[1]);
 	Add_Backdrop(chatbut,fuF.PIGTemplate[1])
 	chatbut:SetSize(Width,Width);
-	chatbut:SetPoint("LEFT",fuF,"LEFT",#ziframe*Width,0);
 	chatbut:SetFrameStrata("LOW")
 	chatbut:RegisterForClicks("LeftButtonUp", "RightButtonUp");
 	chatbut:SetScript("OnEnter", function (self)	
@@ -99,6 +98,7 @@ local function ADD_chatbut(fuF,name)
 		fuF:PIGLeaveAlpha()
 	end);
 	if name=="Emoji" then
+		chatbut:SetPoint("LEFT",fuF,"LEFT",0,0);
 		chatbut.Tex = chatbut:CreateTexture(nil, "BORDER");
 		chatbut.Tex:SetTexture("Interface/AddOns/"..addonName.."/Media/Emojis/happy.tga");
 		chatbut.Tex:SetPoint("CENTER",0,0);
@@ -190,6 +190,7 @@ local function ADD_chatbut(fuF,name)
 			end)
 		end
 	else
+		table.insert(fuF.butlist,chatbut)
 		fuF.tabbutList[name]=chatbut
 		chatbut:HookScript("OnEnter", function (self)	
 			GameTooltip:ClearLines();
@@ -220,7 +221,23 @@ local function ADD_chatbut(fuF,name)
 		chatbut:SetScript("OnMouseUp", function (self)
 			self.Text:SetPoint("CENTER",0,0);
 		end);
-		if not dataX[1] then chatbut.CHANNELname=_G[name] end
+		if dataX[1] then
+			chatbut.PigxIsShown=function()
+				if name=="GUILD" then
+					return IsInGuild()
+				elseif name=="PARTY" then
+					return IsInGroup()
+				elseif name=="RAID" or name=="RAID_WARNING" then
+					return IsInRaid()--LE_PARTY_CATEGORY_HOME
+				elseif name=="INSTANCE_CHAT" then
+					return IsInRaid(LE_PARTY_CATEGORY_INSTANCE)
+				else
+					return true
+				end
+			end
+		else
+			chatbut.CHANNELname=_G[name] 
+		end
 		chatbut:SetScript("OnClick", function(self, button)
 			local pindaoid,pindaoname=Fun.GetSelectpindaoID(PIGA["Chat"]["QuickChat_Ban"],true)
 			--local chatFrame = SELECTED_DOCK_FRAME--当前选择聊天框架
@@ -353,11 +370,11 @@ function QuickChatfun.TabBut()
 		QKchatBut.PIGTemplate[1]="BackdropTemplate"
 	end
 	function QKchatBut:ADD_chatbutExt(icon,ww,hh,xx,yy,tisptxt)
-		local ziframe = {self:GetChildren()}
 		local extbut = CreateFrame("Button",nil,self, self.PIGTemplate[1])
 		Add_Backdrop(extbut,self.PIGTemplate[1])
 		extbut:SetSize(Width,Width);
-		extbut:SetPoint("LEFT",self,"LEFT",#ziframe*Width,0);
+		QKchatBut.butlist=QKchatBut.butlist or {}
+		table.insert(QKchatBut.butlist,extbut)
 		extbut.Tex = extbut:CreateTexture();
 		extbut.Tex:SetTexture(icon);
 		extbut.Tex:SetSize(Width+ww,Width+hh);
@@ -398,12 +415,14 @@ function QuickChatfun.TabBut()
 	hooksecurefunc("ChatEdit_SetLastActiveWindow", function(editBox)
 		Hidebeijing(editBox)
 	end)
+
 	function QKchatBut:PIGEnterAlpha()
 		self:SetAlpha(1)
 	end
 	function QKchatBut:PIGLeaveAlpha()
 		if PIGA["Chat"]["QuickChat_jianyin"] then self:SetAlpha(0.06) end
 	end
+	QKchatBut:PIGLeaveAlpha()
 	local function SetEnterLeave(fuix)
 		fuix:HookScript("OnEnter", function (self)	
 			QKchatBut:PIGEnterAlpha()
@@ -418,31 +437,27 @@ function QuickChatfun.TabBut()
 		local chatTab = _G["ChatFrame"..i.."Tab"]
 		SetEnterLeave(chatTab)
 	end
-	-------
-	for i=1,#listDataLoc do
-		local qkbut = ADD_chatbut(QKchatBut,listDataLoc[i])
-	end
-	----
-	QuickChatfun.QuickBut_Keyword()
-	QuickChatfun.QuickBut_Roll()
-	QuickChatfun.QuickBut_Stats()
-	QuickChatfun.QuickBut_Jilu()
-	QuickChatfun.Update_QuickChatPoint(PIGA["Chat"]["QuickChat_maodian"])
-	C_Timer.After(3,QuickChatfun.Update_ChatBut_icon)
-	C_Timer.After(5,QuickChatfun.Update_ChatBut_icon)
-	C_Timer.After(10,QuickChatfun.Update_ChatBut_icon)
-	--更新尺寸
-	function QKchatBut:PIGScale()
+
+	function QKchatBut:PIGUpdate_Scale()
 		QKchatBut:SetScale(PIGA["Chat"]["QuickChat_suofang"]);
-		QuickChatfun.Update_QuickChatPoint()
 	end
-	QKchatBut:PIGScale()
-	QKchatBut:PIGLeaveAlpha()
-end
----更新按钮的屏蔽状态
-function QuickChatfun.Update_ChatBut_icon()
-	if QuickChatfun.TabButUI then
-		for chatname,but in pairs(QuickChatfun.TabButUI.tabbutList) do
+	QKchatBut:PIGUpdate_Scale()
+	---更新按钮位置
+	function QKchatBut.Update_QuickChatPoint(arg1)
+		local arg1=arg1 or PIGA["Chat"]["QuickChat_maodian"]
+		if QKchatBut then
+			QKchatBut:ClearAllPoints();	
+			if arg1==1 then	
+				QKchatBut:SetPoint("BOTTOMLEFT",ChatFrame1,"TOPLEFT",0+PIGA["Chat"]["QuickChat_pianyiX"],28+PIGA["Chat"]["QuickChat_pianyiY"]);
+			elseif arg1==2 then
+				QKchatBut:SetPoint("TOPLEFT",ChatFrame1,"BOTTOMLEFT",-2+PIGA["Chat"]["QuickChat_pianyiX"],-4+PIGA["Chat"]["QuickChat_pianyiY"]);
+			end	
+			QuickChatfun.Update_editBoxPoint()
+		end
+	end
+	---屏蔽状态
+	local function Update_ChatButicon()
+		for chatname,but in pairs(QKchatBut.tabbutList) do
 			if but.CHANNELname then
 				if PIG_IsShow_CHANNEL(but.CHANNELname) then
 					but.X:Hide();
@@ -458,17 +473,70 @@ function QuickChatfun.Update_ChatBut_icon()
 			end
 		end
 	end
-end
----更新按钮位置
-function QuickChatfun.Update_QuickChatPoint(arg1)
-	local arg1=arg1 or PIGA["Chat"]["QuickChat_maodian"]
-	if QuickChatfun.TabButUI then
-		QuickChatfun.TabButUI:ClearAllPoints();	
-		if arg1==1 then	
-			QuickChatfun.TabButUI:SetPoint("BOTTOMLEFT",ChatFrame1,"TOPLEFT",0+PIGA["Chat"]["QuickChat_pianyiX"],28+PIGA["Chat"]["QuickChat_pianyiY"]);
-		elseif arg1==2 then
-			QuickChatfun.TabButUI:SetPoint("TOPLEFT",ChatFrame1,"BOTTOMLEFT",-2+PIGA["Chat"]["QuickChat_pianyiX"],-4+PIGA["Chat"]["QuickChat_pianyiY"]);
-		end	
-		addonTable.QuickChatfun.Update_editBoxPoint()
+	--显隐
+	local function Update_ChatButShow()
+		local index=0
+		for i,but in ipairs(QKchatBut.butlist) do
+			local shangji
+			but:ClearAllPoints();
+			if but.PigxIsShown then
+				if but.PigxIsShown() then
+					index=index+1
+				else
+					shangji=true
+				end
+			else
+				index=index+1
+			end
+			if not shangji then
+				but:SetPoint("LEFT",QKchatBut,"LEFT",index*Width,0);
+			end
+		end
 	end
+	local function Update_ChatButShowEvent()
+		QKchatBut.AutoShowHide=PIGA["Chat"]["QuickChat_AutoShowHide"]
+		if QKchatBut.AutoShowHide then
+			QKchatBut:UnregisterEvent("GROUP_ROSTER_UPDATE");
+			QKchatBut:UnregisterEvent("PLAYER_GUILD_UPDATE");
+			for i,but in ipairs(QKchatBut.butlist) do
+				but:ClearAllPoints();
+				but:SetPoint("LEFT",QKchatBut,"LEFT",i*Width,0);
+			end
+		else
+			QKchatBut:RegisterEvent("GROUP_ROSTER_UPDATE");
+			QKchatBut:RegisterEvent("PLAYER_GUILD_UPDATE")
+			Update_ChatButShow()
+		end
+	end
+	QKchatBut.Update_ChatButShowEvent=Update_ChatButShowEvent
+	-------
+	for i=1,#listDataLoc do
+		ADD_chatbut(QKchatBut,listDataLoc[i])
+	end
+	----
+	QuickChatfun.QuickBut_Keyword()
+	QuickChatfun.QuickBut_Roll()
+	QuickChatfun.QuickBut_Stats()
+	QuickChatfun.QuickBut_Jilu()
+	---
+	QKchatBut:RegisterEvent("PLAYER_ENTERING_WORLD");
+	QKchatBut:HookScript("OnEvent", function(self,event,arg1)
+		if event=="GROUP_ROSTER_UPDATE" or event=="PLAYER_GUILD_UPDATE" then
+			if self.ENTERING_WORLD then
+			    if self._chatButDebounceTimer then
+			        self._chatButDebounceTimer:Cancel()
+			    end
+			    self._chatButDebounceTimer = C_Timer.NewTimer(0.4, function()
+			        Update_ChatButShow()
+			    end)
+			end
+		else
+			self.ENTERING_WORLD=true
+			QKchatBut.Update_QuickChatPoint()
+			Update_ChatButShowEvent()
+			C_Timer.After(3,Update_ChatButicon)
+			C_Timer.After(5,Update_ChatButicon)
+			C_Timer.After(10,Update_ChatButicon)
+		end
+	end); 
 end

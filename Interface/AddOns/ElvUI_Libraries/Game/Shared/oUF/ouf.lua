@@ -106,7 +106,7 @@ local frame_metatable = {
 Private.frame_metatable = frame_metatable
 
 for k, v in next, {
-	--[[ frame:EnableElement(name[, unit])
+	--[[ frame:EnableElement(name, unit)
 	Used to activate an element for the given unit frame.
 
 	* self - unit frame for which the element should be enabled
@@ -129,16 +129,14 @@ for k, v in next, {
 		end
 	end,
 
-	--[[ frame:DisableElement(name[, unit])
+	--[[ frame:DisableElement(name)
 	Used to deactivate an element for the given unit frame.
 
 	* self - unit frame for which the element should be disabled
 	* name - name of the element to be disabled (string)
-	* unit - unit to be passed to the element's Disable function. Defaults to the frame's unit (string?)
 	--]]
-	DisableElement = function(self, name, unit)
+	DisableElement = function(self, name)
 		argcheck(name, 2, 'string')
-		argcheck(unit, 3, 'string', 'nil')
 
 		local enabled = self:IsElementEnabled(name)
 		if(not enabled) then return end
@@ -155,7 +153,7 @@ for k, v in next, {
 
 		activeElements[self][name] = nil
 
-		return elements[name].disable(self, unit or self.unit)
+		return elements[name].disable(self)
 	end,
 
 	--[[ frame:IsElementEnabled(name)

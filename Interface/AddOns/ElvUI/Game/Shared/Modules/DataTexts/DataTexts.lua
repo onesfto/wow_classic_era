@@ -19,6 +19,7 @@ local CreateFrame = CreateFrame
 local GetNumSpecializations = GetNumSpecializations
 local InCombatLockdown = InCombatLockdown
 local IsInInstance = IsInInstance
+local MouseIsOver = MouseIsOver
 local RegisterStateDriver = RegisterStateDriver
 local UnregisterStateDriver = UnregisterStateDriver
 
@@ -78,7 +79,7 @@ DT.SPECIALIZATION_CACHE = {}
 
 function DT:QuickDTMode(_, key, active)
 	if DT.SelectedDatatext and (key == 'LALT' or key == 'RALT') then
-		if active == 1 and DT.SelectedDatatext:IsMouseOver() then
+		if active == 1 and MouseIsOver(DT.SelectedDatatext) then
 			DT.OnLeave(DT.SelectedDatatext)
 			E:SetEasyMenuAnchor(E.EasyMenu, DT.SelectedDatatext)
 			E:ComplicatedMenu(QuickList, E.EasyMenu, nil, nil, nil, 'MENU')

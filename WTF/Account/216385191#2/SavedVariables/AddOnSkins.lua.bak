@@ -102,15 +102,14 @@ AddOnSkinsDB = {
 ["profiles"] = {
 ["Default"] = {
 ["BuyEmAll"] = false,
-["RareScanner"] = false,
 ["Auctionator"] = false,
+["Details"] = false,
 ["BugSack"] = false,
 ["InboxMailBag"] = false,
 ["Shadows"] = false,
-["Atlas"] = false,
+["AllTheThings"] = false,
 ["Ace3"] = false,
 ["BagSync"] = false,
-["BackgroundTexture"] = "Solid",
 ["CustomBackdropColor"] = {
 0,
 0,
@@ -118,8 +117,10 @@ AddOnSkinsDB = {
 0.3084482550621,
 },
 ["StatusBarTexture"] = "Solid",
+["Atlas"] = false,
 ["DBM-Core"] = false,
-["Details"] = false,
+["RareScanner"] = false,
+["BackgroundTexture"] = "Solid",
 },
 ["露露缇娅-右布局"] = {
 ["StatusBarTexture"] = "Solid",
@@ -156,6 +157,7 @@ AddOnSkinsDB = {
 }
 AddOnSkinsDS = {
 [4.73] = {
+["AllTheThings"] = true,
 ["Atlas"] = true,
 ["RareScanner"] = true,
 },

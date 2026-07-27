@@ -133,8 +133,8 @@ function QuickChatfun.QuickBut_Keyword()
 	PIGA["Chat"]["Tiqu"]["Audio"]=PD.Audio.IsAudioNumMaxV(PIGA["Chat"]["Tiqu"]["Audio"],AudioData)
 	local QuickUI=QuickChatfun.TabButUI
 	QuickUI.Keyword=QuickUI:ADD_chatbutExt("interface/common/voicechat-on.blp",2,-4,-7.5, 0,
-		"|cff00FFff"..KEY_BUTTON2.."-|r|cffFFFF00"..SETTINGS..CHAT..INFO..L["CHAT_FILTERS"]..
-		"|r\n|cff00FFff"..KEY_BUTTON1.."-|r|cffFFFF00"..ENABLE.."/"..CLOSE..L["CHAT_KEYWORD_NAME1"]..
+		"|cff00FFff"..KEY_BUTTON1.."-|r|cffFFFF00"..SETTINGS..CHAT..INFO..L["CHAT_FILTERS"]..
+		"|r\n|cff00FFff"..KEY_BUTTON2.."-|r|cffFFFF00"..ENABLE.."/"..CLOSE..L["CHAT_KEYWORD_NAME1"]..
 		"|r\n|cff00FFffShift+"..KEY_BUTTON1.."-|r|cffFFFF00"..ENABLE.."/"..CLOSE..L["CHAT_FILTERS"].."|r")
 	
 	QuickUI.Keyword:SetScript("OnClick", function(self,button)

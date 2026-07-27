@@ -30,9 +30,9 @@ LibElvUIPlugin API:
 		function	- function to call after Initialize (may be a string, that exists on the addons table: table['string'])
 ----------------------------]]--
 
-local tonumber, strmatch, strsub, strtrim = tonumber, strmatch, strsub, strtrim
-local next, unpack, assert, strlen, tinsert, pcall = next, unpack, assert, strlen, tinsert, pcall
-local format, type, gmatch, gsub, ceil, strfind = format, type, gmatch, gsub, ceil, strfind
+local tonumber, strmatch, strsub, tinsert, strtrim = tonumber, strmatch, strsub, tinsert, strtrim
+local unpack, assert, pairs, ipairs, strlen, pcall, xpcall = unpack, assert, pairs, ipairs, strlen, pcall, xpcall
+local format, wipe, type, gmatch, gsub, ceil, strfind = format, wipe, type, gmatch, gsub, ceil, strfind
 local hooksecurefunc = hooksecurefunc
 
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
@@ -50,8 +50,8 @@ local LE_PARTY_CATEGORY_HOME = LE_PARTY_CATEGORY_HOME
 local LE_PARTY_CATEGORY_INSTANCE = LE_PARTY_CATEGORY_INSTANCE
 local UNKNOWN = UNKNOWN
 
-lib.plugins = {}
 lib.prefix = "ElvUIPluginVC"
+lib.plugins = {}
 lib.groupSize = 0
 lib.index = 0
 
@@ -95,13 +95,13 @@ end
 
 local E, L
 local function CheckElvUI()
-	if E then return end
+	if not E then
+		if ElvUI then
+			E, L = unpack(ElvUI)
+		end
 
-	if ElvUI then
-		E, L = unpack(ElvUI)
+		assert(E, 'ElvUI not found.')
 	end
-
-	assert(E, 'ElvUI not found.')
 end
 
 function lib:RegisterPlugin(name, callback, isLib, version)
@@ -138,9 +138,12 @@ function lib:RegisterPlugin(name, callback, isLib, version)
 		lib.registeredPrefix = true
 	end
 
-	if IsAddOnLoaded('ElvUI_Options') then
+	local loaded = IsAddOnLoaded('ElvUI_Options')
+	if not loaded then
+		lib.CFFrame:RegisterEvent('ADDON_LOADED')
+	elseif loaded then
 		if name ~= MAJOR then
-			lib:UpdatePluginGroup()
+			E.Options.args.plugins.args.plugins.name = lib:GeneratePluginList()
 		end
 
 		if callback then
@@ -149,28 +152,6 @@ function lib:RegisterPlugin(name, callback, isLib, version)
 	end
 
 	return plugin
-end
-
-function lib:OptionsLoaded()
-	if not next(lib.plugins) then return end
-
-	lib:UpdatePluginGroup()
-
-	for _, plugin in next, lib.plugins do
-		if plugin.callback then
-			E:CallLoadFunc(plugin.callback)
-		end
-	end
-end
-
-function lib:UpdatePluginGroup()
-	if not E.Options.args.plugins then
-		E.Options.args.plugins = E.Libs.ACH:Group(L["Plugins"], nil, 5)
-		E.Options.args.plugins.args.pluginheader = E.Libs.ACH:Header(format(HDR_INFORMATION, MINOR), 1)
-		E.Options.args.plugins.args.plugins = E.Libs.ACH:Description('', 2)
-	end
-
-	E.Options.args.plugins.args.plugins.name = lib:GeneratePluginList()
 end
 
 local function SendVersionCheckMessage()
@@ -187,14 +168,34 @@ function lib:DelayedSendVersionCheck(delay)
 	end
 end
 
+function lib:OptionsLoaded(_, addon)
+	if addon == 'ElvUI_Options' then
+		lib:GetPluginOptions()
+
+		for _, plugin in pairs(lib.plugins) do
+			if plugin.callback then
+				E:CallLoadFunc(plugin.callback)
+			end
+		end
+
+		lib.CFFrame:UnregisterEvent('ADDON_LOADED')
+	end
+end
+
 function lib:GenerateVersionCheckMessage()
 	local list = ''
-	for _, plugin in next, lib.plugins do
+	for _, plugin in pairs(lib.plugins) do
 		if plugin.name ~= MAJOR then
 			list = list .. plugin.name .. '=' .. plugin.version .. ';'
 		end
 	end
 	return list
+end
+
+function lib:GetPluginOptions()
+	E.Options.args.plugins = E.Libs.ACH:Group(L["Plugins"], nil, 5)
+	E.Options.args.plugins.args.pluginheader = E.Libs.ACH:Header(format(HDR_INFORMATION, MINOR), 1)
+	E.Options.args.plugins.args.plugins = E.Libs.ACH:Description(lib:GeneratePluginList(), 2)
 end
 
 do	-- this will handle `8.1.5.0015` into `8.150015` etc
@@ -241,7 +242,7 @@ end
 
 function lib:GeneratePluginList()
 	local list = ''
-	for _, plugin in next, lib.plugins do
+	for _, plugin in pairs(lib.plugins) do
 		if plugin.name ~= MAJOR then
 			local color = (plugin.old and E:RGBToHex(1, 0, 0)) or E:RGBToHex(0, 1, 0)
 			list = list .. (plugin.title or plugin.name)
@@ -300,13 +301,11 @@ end
 function lib.Initialized()
 	if not lib.inits then return end
 
-	for tbl, funcs in next, lib.inits do
-		for _, func in next, funcs do
-			func(tbl)
-		end
-
-		lib.inits[tbl] = nil
+	for _, initTbl in ipairs(lib.inits) do
+		initTbl[2](initTbl[1])
 	end
+
+	wipe(lib.inits)
 end
 
 function lib:HookInitialize(tbl, func)
@@ -316,20 +315,19 @@ function lib:HookInitialize(tbl, func)
 		func = tbl[func]
 	end
 
-	if not lib.inits then
-		lib.inits = {}
+	if not self.inits then
+		self.inits = {}
 
 		CheckElvUI()
 
-		hooksecurefunc(E, 'Initialize', lib.Initialized)
+		hooksecurefunc(E, 'Initialize', self.Initialized)
 	end
 
-	if not lib.inits[tbl] then
-		lib.inits[tbl] = { func }
-	else
-		tinsert(lib.inits[tbl], func)
-	end
+	tinsert(lib.inits, { tbl, func })
 end
 
 lib.VCFrame = CreateFrame('Frame')
 lib.VCFrame:SetScript('OnEvent', lib.VersionCheck)
+
+lib.CFFrame = CreateFrame('Frame')
+lib.CFFrame:SetScript('OnEvent', lib.OptionsLoaded)

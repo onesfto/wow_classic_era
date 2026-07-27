@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("OnyxiaVanilla", "DBM-Raids-Vanilla", 7)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
+mod:SetRevision("20260724213414")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(10184)
 mod:SetEncounterID(1084)
@@ -175,10 +175,11 @@ function mod:UNIT_HEALTH(uId)
 end
 
 function mod:OnSync(msg, arg)
+	if not self:IsInCombat() then return end
 	if msg == "Phase" then
 		local phase = tonumber(arg)
 		if not phase then return end
-		if self:GetStage(phase, 3) then
+		if self:GetStage(phase, 1) then
 			self:SetStage(phase)
 			if phase % 1 == 0 then
 			warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(phase))

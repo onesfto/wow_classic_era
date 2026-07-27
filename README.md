@@ -13,10 +13,10 @@
 - **ls_Toasts**: 优化系统通知提示框（拾取、成就等）。
 - **tdInspect**: 观察目标玩家的装备和天赋详情。
 - **Leatrix_Plus**: 百宝箱，提供非常多便利的小功能。
-- **CharacterStatsClassic**: 经典旧世角色属性面板增强。
 - **SinStats**: 提供角色全属性深入统计数据的浮动面板。
 - **Cell**: 强大的团队框架插件（点击施法和增益监视）。
 - **NDui** (及 _Plus): 轻量级、高度集成的完整界面替换包。
+- **GW2_UI** (及 _PLUS): 激战2风格的完整界面替换包。
 - **SexyMap**: 小地图美化与增强。
 - **Rurutia** (及 _Raids): 游戏自定义整合包或语音资源包。
 
@@ -29,13 +29,12 @@
 - **GTFO**: 站位报警（踩在有害区域时发出声音警告）。
 - **MikScrollingBattleText (MSBT)** (及 MSBTOptions): 浮动战斗文字替换，清晰显示伤害和治疗。
 - **SpellActivationOverlay** / **ClassicSpellActivations**: 技能触发高亮提示（如法术连击）。
-- **TotemTimers**: 萨满图腾时间监视与管理。
 - **Doom_CooldownPulse**: 技能冷却完毕屏幕中央闪烁提示。
-- **aBlueShaman**: 萨满辅助相关插件。
 - **SimpleRaidTargetIcons**: 鼠标双击/修饰键快速标记团队目标。
 
 ## 物品与背包 (Inventory & Loot)
 - **BetterBags**: 智能分类背包插件。
+- **BiSTracker**: 追踪和管理各阶段的毕业装备(Best in Slot)。
 - **AtlasLootClassic** (及各子模块): 物品掉落查询字典（副本、阵营、制造业等掉落大全）。
 - **GearMenu**: 装备一键切换与饰品管理菜单。
 
@@ -46,7 +45,6 @@
 ## 地图与任务 (Map & Questing)
 - **Questie**: 经典服必装任务助手，在地图标示接取、完成及怪物位置。
 - **Leatrix_Maps**: 地图增强（解除迷雾、坐标、缩放等）。
-- **HandyNotes** (及 _DungeonLocations, _NPCs): 地图标记系统。
 - **Atlas** (及 _ClassicWoW): 副本内部地图浏览器。
 - **GatherMate2** (及 _Data): 采集助手（记录双采刷新点）。
 
@@ -56,11 +54,10 @@
 - **MailLogger**: 邮件收发记录。
 - **WhisperPop**: 密语管理，提供独立的密语窗口。
 - **CChatFilter**: 聊天窗口过滤与防刷屏。
-- **DialogueUI**: 任务对话框美化。
 
 ## 系统与辅助 (Utility & System)
+- **AutoCarrot**: 上马自动装备胡萝卜等加速饰品，下马自动换回。
 - **BugSack / !BugGrabber**: 拦截并收集 Lua 报错，防止屏幕弹出满屏错误。
-- **ACP (Addon Control Panel)**: 游戏内插件管理面板。
 - **AddOnSkins**: 使其他插件的皮肤风格与 ElvUI 统一。
 - **AlreadyKnown**: 颜色高亮商人出售的“已学习”配方或坐骑。
 - **BuyEmAllClassic**: 增强商人购买界面（支持大批量购买）。
@@ -69,14 +66,13 @@
 - **HidingBar** (及 _Options): 隐藏/收纳小地图周围杂乱的插件图标。
 - **MeetingHorn**: 集结号（寻找队伍、发布招募信息的国服常用工具）。
 - **Myslot**: 快捷键和宏的导入/导出工具。
-- **MacroToolkit** (及 _Icons): 强大的宏命令管理与图标扩展。
 - **NovaWorldBuffs**: 世界 BUFF 计时与位面监控（对于经典服打团至关重要）。
 - **Onesfto**: 个人定制化的综合辅助代码与模块。
 - **RangeDisplay** (及 _Options): 显示与目标的距离。
 - **RareScanner**: 稀有怪物、宝箱刷新扫描报警。
 - **TalentEmuX**: 游戏内天赋模拟器。
 - **WhatsTraining**: 显示各个等级可以学习的职业技能及所需花费。
-- **alaCalendar / alaGearMan / alaTradeSkill**: ala 系列日历、一键换装、专业技能面板增强。
+- **alaCalendar**: ala 系列日历增强。
 
 ## 媒体与其它依赖库 (Media & Libraries)
 - **LibSharedMedia-3.0 / SharedMedia / SharedMedia_MyMedia / SharedMedia_Rurutia**: 材质、字体共享核心库。

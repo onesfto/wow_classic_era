@@ -3,7 +3,7 @@
 ## Title-zhCN: GW2 UI Plus
 ## Title-zhTW: GW2 UI Plus
 ## SavedVariablesPerCharacter: 
-## SavedVariables: alaGearManSV, GW2_UI_PLUS_SV
+## SavedVariables: alaGearManSV, GW2_UI_PLUS_SV, GW2_UI_PLUS_ChatBarSV
 ## Notes: alaGearMan
 ## Dependencies: GW2_UI
 ## OptionalDependencies: 
@@ -13,5 +13,10 @@
 ## Author-zhCN: |cff00ff00ALA|r
 ## Author-zhTW: |cff00ff00ALA|r
 ## Version: 404r.260331
+## IconTexture: Interface\AddOns\GW2_UI_PLUS\gwlogo-red.png
 alaGearMan/alaGearMan.xml
+ChatBar/ChatBar.lua
+ChatBar/Options.lua
 core.lua
+skins/Core.lua
+skins/NovaWorldBuffs.lua

@@ -66,3 +66,23 @@ Thumbs.db
 
 # 对话界面美化
 /Interface/AddOns/DialogueUI/
+
+# 角色属性面板增强
+/Interface/AddOns/CharacterStatsClassic/
+
+# 萨满辅助插件
+/Interface/AddOns/aBlueShaman/
+
+# 地图标记系统
+/Interface/AddOns/HandyNotes/
+/Interface/AddOns/HandyNotes_DungeonLocations (Classic)/
+/Interface/AddOns/HandyNotes_NPCs (Classic)/
+
+# 游戏内插件管理面板
+/Interface/AddOns/ACP/
+
+# ala一键换装
+/Interface/AddOns/alaGearMan/
+
+# ala专业技能面板
+/Interface/AddOns/alaTradeSkill/

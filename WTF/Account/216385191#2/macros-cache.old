@@ -1,21 +1,24 @@
-VER 3 0000000000000231 "Decursive" "INV_MISC_QUESTIONMARK"
-/stopcasting
-/cast [@mouseover,nomod,exists] 清洁术;  [@mouseover,exists,mod:ctrl] 清洁术; [@mouseover,exists,mod:shift] 清洁术
+VER 3 0000000000000235 "alaGearMan0" "132293"
+/run AGM_FUNC.takeoffAll()
 END
-VER 3 0000000000000234 "Decursive" "134400"
+VER 3 0000000000000234 "Decursive" "INV_MISC_QUESTIONMARK"
+/stopcasting
+/cast [@mouseover,nomod,exists] 解除次级诅咒;  [@mouseover,exists,mod:ctrl] 解除次级诅咒; [@mouseover,exists,mod:shift] 解除次级诅咒
+END
+VER 3 0000000000000231 "Decursive" "INV_MISC_QUESTIONMARK"
 /stopcasting
 /cast [@mouseover,nomod,exists] 解除次级诅咒;  [@mouseover,exists,mod:ctrl] 变形术; [@mouseover,exists,mod:shift] 解除次级诅咒
 END
 VER 3 0000000000000223 "YY" "4777763"
 /RA YY：881411，下跳对应频道^_^
 END
-VER 3 0000000000000232 "假人" "134400"
-#showtooltip 高级活动假人
-/use [combat,@player] 高级活动假人
-END
 VER 3 0000000000000233 "假人" "INV_Misc_QuestionMark"
 #showtooltip 高级活动假人
 /use [combat] 高级活动假人
+END
+VER 3 0000000000000232 "假人" "134400"
+#showtooltip 高级活动假人
+/use [combat,@player] 高级活动假人
 END
 VER 3 0000000000000225 "化石" "INV_Misc_QuestionMark"
 #showtooltip 化石合剂

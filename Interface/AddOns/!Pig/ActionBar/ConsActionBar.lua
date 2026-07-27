@@ -26,7 +26,7 @@ function ActionBarfun.addOptions_CABar()
 	local fuFrame=ActionBarfun.fuFrame
 	local fuFrameBut=ActionBarfun.fuFrameBut
 	local CABarF,CABarTabBut =PIGOptionsList_R(RTabFrame,BAG_FILTER_CONSUMABLES..ACTIONBARS_LABEL,110)
-
+	ActionBarfun.CABarF,ActionBarfun.CABarTabBut=CABarF,CABarTabBut
 	CABarF.Open=PIGCheckbutton(CABarF,{"TOPLEFT",CABarF,"TOPLEFT",10,-12},{BAG_FILTER_CONSUMABLES..ACTIONBARS_LABEL,"在屏幕上创建一条"..LocaleName.."，以便快捷使用"})
 	CABarF.Open:SetScript("OnClick", function (self)
 		if self:GetChecked() then
@@ -172,10 +172,9 @@ function ActionBarfun.CABar()
 			if arg1 or arg2 then
 				ActionBarfun.Update_ActionButton()
 				C_Timer.After(2,function()
+					ActionBarfun.Update_ActionButton()
 					self:RegisterEvent("BAG_UPDATE_DELAYED");
 				end)
-			else
-
 			end
 		elseif event=="PLAYER_REGEN_ENABLED" then
 			self:UnregisterEvent("PLAYER_REGEN_ENABLED");

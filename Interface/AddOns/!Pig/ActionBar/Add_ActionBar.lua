@@ -221,7 +221,7 @@ local function ADD_ActionBar(barName,CFdata,anniugeshu, anniujiange)
 		if Button=="RightButton" then
 			PD.UpdateOptionsUI()
 			Create.Show_TabBut(ActionBarfun.fuFrame,ActionBarfun.fuFrameBut)
-			Create.Show_TabBut_R(ActionBarfun.RTabFrame,ActionBarfun.Tab2_F,ActionBarfun.Tab2_But)
+			Create.Show_TabBut_R(ActionBarfun.RTabFrame,ActionBarfun.CABarF,ActionBarfun.CABarTabBut)
 		end
 	end)
 	if ModeFun=="cons" then

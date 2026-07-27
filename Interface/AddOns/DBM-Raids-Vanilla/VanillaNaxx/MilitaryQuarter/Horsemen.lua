@@ -7,7 +7,7 @@ else
 	mod.statTypes = "normal"
 end
 
-mod:SetRevision("20260527072013")
+mod:SetRevision("20260717064726")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(16062, 16063, 16064, 16065)--30549
 mod:SetEncounterID(1121)
@@ -31,7 +31,7 @@ mod:RegisterEventsInCombat(
 --[[
 (ability.id = 28832 or ability.id = 28833 or ability.id = 28834 or ability.id = 28835 or ability.id = 28863 or ability.id = 28883 or ability.id = 28884) and type = "cast"
 --]]
---TODO, shouldn't timers stop when horseman die?
+
 mod:AddInfoFrameOption()
 
 local warnMarkSoon				= mod:NewAnnounce("WarningMarkSoon", 1, 28835, false)

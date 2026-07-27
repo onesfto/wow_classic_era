@@ -161,7 +161,7 @@ local texture_unk = 134400;	--"Interface\\Icons\\inv_misc_questionmark";
 local texture_open = "interface\\AddOns\\alaGearMan\\ARTWORK\\ui-gearmanager-button";
 local texture_takeoff = "Interface\\AddOns\\alaGearMan\\ARTWORK\\ui-gearmanager-leaveitem-opaque";
 local texture_ignore = "Interface\\AddOns\\alaGearMan\\ARTWORK\\ui-gearmanager-undo";
-local texture_add = "interface\\paperdollinfoframe\\character-plus";
+local texture_add = "Interface\\AddOns\\GW2_UI_PLUS\\icons\\heart_of_thorns_map.tga";
 local texture_highlight = "Interface\\Buttons\\ButtonHilight-Square";
 local texture_highlight_coord = { 0.05, 0.95, 0.05, 0.95, };
 local texture_glow = "Interface\\Buttons\\UI-ActionButton-Border";
@@ -635,6 +635,9 @@ function func.gm_CreateButton(parent, index, buttonHeight)
 
 	local title = button:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall");
 	title:SetPoint("LEFT", icon, "RIGHT", 4, 0);
+	title:SetPoint("RIGHT", button, "RIGHT", -115, 0);
+	title:SetWordWrap(false);
+	title:SetJustifyH("LEFT");
 	button.title = title;
 
 	local glow_current = button:CreateTexture(nil, "OVERLAY");
@@ -656,8 +659,8 @@ function func.gm_CreateButton(parent, index, buttonHeight)
 
 	local delete = CreateFrame("BUTTON", nil, button);
 	delete:SetSize(buttonHeight * 0.4, buttonHeight * 0.4);
-	delete:SetNormalTexture(texture_delete);
-	delete:SetPushedTexture(texture_delete);
+	delete:SetNormalTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\cancel.tga");
+	delete:SetPushedTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\cancel.tga");
 	delete:GetPushedTexture():SetVertexColor(0.25, 0.25, 0.25, 1.0);
 	delete:SetPoint("TOPRIGHT", -4, -2);
 	delete:Show();
@@ -677,8 +680,8 @@ function func.gm_CreateButton(parent, index, buttonHeight)
 
 	local modify = CreateFrame("BUTTON", nil, button);
 	modify:SetSize(buttonHeight * 0.4, buttonHeight * 0.4);
-	modify:SetNormalTexture(texture_modify);
-	modify:SetPushedTexture(texture_modify);
+	modify:SetNormalTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\mainmenumicrobutton-down.tga");
+	modify:SetPushedTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\mainmenumicrobutton-down.tga");
 	modify:GetPushedTexture():SetVertexColor(0.25, 0.25, 0.25, 1.0);
 	modify:SetPoint("BOTTOMRIGHT", -4, 2);
 	modify:Show();
@@ -693,10 +696,9 @@ function func.gm_CreateButton(parent, index, buttonHeight)
 
 	local up = CreateFrame("BUTTON", nil, button);
 	up:SetSize(buttonHeight * 0.4, buttonHeight * 0.4);
-	up:SetNormalTexture(texture_up);
-	up:SetPushedTexture(texture_up);
-	up:GetPushedTexture():SetVertexColor(0.25, 0.25, 0.25, 1.0);
-	up:SetDisabledTexture(texture_up);
+	up:SetNormalTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\arrowup_up.tga");
+	up:SetPushedTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\arrowup_down.tga");
+	up:SetDisabledTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\arrowup_up.tga");
 	up:GetDisabledTexture():SetVertexColor(0.5, 0.5, 0.5, 1.0);
 	up:SetPoint("TOPRIGHT", -6 - buttonHeight * 0.4, -2);
 	up:Show();
@@ -711,10 +713,9 @@ function func.gm_CreateButton(parent, index, buttonHeight)
 
 	local down = CreateFrame("BUTTON", nil, button);
 	down:SetSize(buttonHeight * 0.4, buttonHeight * 0.4);
-	down:SetNormalTexture(texture_down);
-	down:SetPushedTexture(texture_down);
-	down:GetPushedTexture():SetVertexColor(0.25, 0.25, 0.25, 1.0);
-	down:SetDisabledTexture(texture_down);
+	down:SetNormalTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\arrowdown_up.tga");
+	down:SetPushedTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\arrowdown_down.tga");
+	down:SetDisabledTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\arrowdown_up.tga");
 	down:GetDisabledTexture():SetVertexColor(0.5, 0.5, 0.5, 1.0);
 	down:SetPoint("BOTTOMRIGHT", -6 - buttonHeight * 0.4, 2);
 	down:Show();
@@ -847,6 +848,7 @@ function func.gm_SetButton(button, index)
 	if index <= #sets then
 		button:SetIconTexture(iconTable[sets[index].icon or 1]);
 		button:SetTitleText(sets[index].name or "UNK_NAME");
+		button.title:SetPoint("RIGHT", button, "RIGHT", -115, 0);
 		button:Show();
 		local T, isCur = func.check(index);
 		if isCur then
@@ -892,6 +894,7 @@ function func.gm_SetButton(button, index)
 	elseif index == #sets + 1 then
 		button:SetIconTexture(texture_add);
 		button:SetTitleText(L["Add a new outfit"]);
+		button.title:SetPoint("RIGHT", button, "RIGHT", -10, 0);
 		button:Show();
 		button:NonCurrent();
 		if button:IsSelected() and button:GetDataIndex() ~= var.gm_cur_set then
@@ -923,24 +926,46 @@ function func.get_pos(frame)
 end
 
 function func.initUI()
-	ui.open = CreateFrame("BUTTON", nil, PaperDollFrame);
+	local parentFrame = GwCharacterWindow or PaperDollFrame;
+	ui.open = CreateFrame("BUTTON", nil, parentFrame);
 	ui.open:SetSize(32, 32);
 	ui.open:SetFrameLevel(9999);
-	if SUPPORT_ENGRAVING then
+	if parentFrame == GwCharacterWindow then
+		ui.open:SetPoint("TOPRIGHT", parentFrame, "TOPRIGHT", -5, -10);
+		
+		GwCharacterWindow:HookScript("OnAttributeChanged", function(self, name, value)
+			if name == "windowpanelopen" then
+				if value == "paperdoll" then
+					ui.open:Show()
+				else
+					ui.open:Hide()
+					if ui.gearWin and ui.gearWin:IsShown() then
+						ui.gearWin:Hide()
+					end
+				end
+			end
+		end)
+		
+		-- Set initial state
+		if GwCharacterWindow:GetAttribute("windowpanelopen") ~= "paperdoll" then
+			ui.open:Hide()
+		end
+	elseif SUPPORT_ENGRAVING then
 		ui.open:SetPoint("TOPRIGHT", -70, -40);
 	elseif TOC >= 40000 then
 		ui.open:SetPoint("TOPRIGHT", -10, -30);
 	else
 		ui.open:SetPoint("TOPRIGHT", -40, -40);
 	end
-	ui.open:SetNormalTexture(texture_open);
-	ui.open:SetPushedTexture(texture_open);
-	ui.open:GetPushedTexture():SetVertexColor(0.25, 0.25, 0.25, 1.0);
+	ui.open:SetNormalTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\garrison-up.tga");
+	ui.open:SetPushedTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\garrison-down.tga");
+	ui.open:SetHighlightTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\garrison-down.tga");
+	-- ui.open:GetPushedTexture():SetVertexColor(0.25, 0.25, 0.25, 1.0); -- No longer needed
 	ui.open:EnableMouse(true);
 	ui.open:SetScript("OnClick", func.open_onclick);
 
 	do	--win
-		ui.gearWin = CreateFrame("FRAME", nil, PaperDollFrame);
+		ui.gearWin = CreateFrame("FRAME", nil, parentFrame);
 		ui.gearWin:SetFrameStrata("FULLSCREEN");
 		uireimp._SetBackdrop(ui.gearWin, {
 			bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
@@ -1054,11 +1079,12 @@ function func.initUI()
 
 		ui.setting = CreateFrame("BUTTON", nil, ui.gearWin);
 		ui.setting:SetSize(24, 24);
-		ui.setting:SetNormalTexture(texture_modify);
-		ui.setting:SetPushedTexture(texture_modify);
+		ui.setting:SetNormalTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\settings-window-icon.tga");
+		ui.setting:SetPushedTexture("Interface\\AddOns\\GW2_UI_PLUS\\icons\\settings-window-icon.tga");
 		ui.setting:GetPushedTexture():SetVertexColor(0.25, 0.25, 0.25, 1.0);
 		ui.setting:SetPoint("TOPRIGHT");
 		ui.setting:SetScript("OnClick", func.setting);
+		-- ui.setting.info = {  };
 	end
 
 	if false then	--quick panel
@@ -2674,6 +2700,93 @@ do	--	extern style
 			end
 		end
 	end
+	
+	function handler_table.GW2_UI()
+		if type(ui.gearWin.GwCreateBackdrop) == "function" then
+			local function handleFrame(f)
+				if f and type(f.GwCreateBackdrop) == "function" then
+                    if f.SetBackdrop then f:SetBackdrop(nil) end
+                    if type(uireimp._SetBackdrop) == "function" then uireimp._SetBackdrop(f, nil) end
+                    if f.GwStripTextures then f:GwStripTextures() end
+					
+					f:GwCreateBackdrop({
+                        bgFile = "Interface/AddOns/GW2_UI/textures/uistuff/ui-tooltip-background.png",
+                        edgeFile = "Interface/AddOns/GW2_UI/textures/uistuff/ui-tooltip-border.png",
+                        tile = false,
+                        tileSize = 64,
+                        edgeSize = 32,
+                        insets = {left = 2, right = 2, top = 2, bottom = 2}
+                    }, true)
+				end
+			end
+			local function handleButton(f)
+				if f and type(f.GwSkinButton) == "function" then
+					f:GwSkinButton(false, true)
+                    -- For buttons with text, style them like the popup buttons
+                    if GW and GW.StylePopupButton then
+                        GW.StylePopupButton(f)
+                    end
+				end
+			end
+			local function handleCheck(f)
+				if f and type(f.GwSkinCheckButton) == "function" then
+					f:GwSkinCheckButton()
+					f:SetSize(16, 16)
+				end
+			end
+			local function handleIcon(button)
+				if button and button.icon and button.icon.AddMaskTexture then
+                    if not button.gwMask then
+                        local mask = UIParent:CreateMaskTexture()
+                        mask:SetPoint("CENTER", button.icon, "CENTER", 0, 0)
+                        mask:SetTexture("Interface/AddOns/GW2_UI/textures/talents/passive_border.png", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE")
+                        mask:SetSize(button.icon:GetWidth(), button.icon:GetHeight())
+                        mask:SetParent(button)
+                        button.gwMask = mask
+                        
+                        button.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+                        button.icon:AddMaskTexture(mask)
+
+                        local outline = button:CreateTexture(nil, "BACKGROUND", nil, -1)
+                        outline:SetPoint("CENTER", button.icon, "CENTER", 0, 0)
+                        outline:SetSize(button.icon:GetWidth() * 1.25, button.icon:GetHeight() * 1.25)
+                        outline:SetTexture("Interface/AddOns/GW2_UI/textures/talents/passive_outline.png")
+                        button.gwOutline = outline
+                        
+                        -- Hook SetIconTexture to ensure mask and coords persist
+                        local oldSetIconTexture = button.SetIconTexture
+                        button.SetIconTexture = function(self, tex)
+                            oldSetIconTexture(self, tex)
+                            if self.icon and self.gwMask then
+                                self.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
+                                self.icon:AddMaskTexture(self.gwMask)
+                            end
+                        end
+                    end
+				end
+			end
+			
+			handleFrame(ui.gearWin)
+			handleButton(ui.save)
+			handleButton(ui.equip)
+			handleFrame(ui.custom)
+			handleButton(ui.customOK)
+			handleButton(ui.customCancel)
+			
+			style.frame = handleFrame
+			style.button = handleButton
+			style.check = handleCheck
+			style.icon = handleIcon
+			
+			local index = 1
+			while true do
+				if not ui.scroll:HandleLineByRawIndex(index, F.StyleScroll) then
+					break
+				end
+				index = index + 1
+			end
+		end
+	end
 	function func.StyleScroll(button)
 		if button then
 			-- func.StyleObject('button', button.delete);
@@ -2682,6 +2795,7 @@ do	--	extern style
 			-- func.StyleObject('button', button.down);
 			func.StyleObject('check', button.helmet);
 			func.StyleObject('check', button.cloak);
+			func.StyleObject('icon', button);
 			return true;
 		else
 			return false;

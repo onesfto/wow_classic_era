@@ -33,14 +33,14 @@ MailLoggerDB = {
 "CENTER",
 nil,
 "CENTER",
--210.0000762939453,
+-210.0000305175781,
 0,
 },
 ["OutputFramePos"] = {
 "RIGHT",
 true,
 "RIGHT",
--20.00000762939453,
+-20.00000190734863,
 0,
 },
 ["LogDays"] = 90,
@@ -49,80 +49,6 @@ true,
 ["OnlyThisCharacter"] = false,
 },
 ["TradeLog"] = {
-{
-["PlayerName"] = "哈霍兰大格格-哈霍兰",
-["Date"] = "2026-04-28",
-["Reason"] = 1,
-["GiveItems"] = {
-},
-["ReceiveMoney"] = 0,
-["Time"] = "20:44:40",
-["GiveMoney"] = 0,
-["Location"] = "暴风城",
-["TargetName"] = "联盟拍卖行-哈霍兰",
-["Result"] = "received",
-["ReceiveItems"] = {
-{
-["Number"] = 1,
-["ItemLink"] = "|cff1eff00|Hitem:19815::::::::60::::::::::|h[打孔的巫毒人偶]|h|r",
-["Name"] = "打孔的巫毒人偶",
-},
-},
-},
-{
-["PlayerName"] = "法德迦-哈霍兰",
-["Date"] = "2026-04-28",
-["Reason"] = 1,
-["Time"] = "21:19:33",
-["ReceiveMoney"] = 0,
-["GiveItems"] = {
-},
-["GiveMoney"] = 0,
-["Location"] = "荆棘谷",
-["TargetName"] = "静羽御寒-哈霍兰",
-["Result"] = "received",
-["ReceiveItems"] = {
-{
-["Number"] = 94,
-["ItemLink"] = "|cffffffff|Hitem:6359::::::::60::::::::::|h[火鳞鳝鱼]|h|r",
-["Name"] = "火鳞鳝鱼",
-},
-},
-},
-{
-["PlayerName"] = "法德迦-哈霍兰",
-["Date"] = "2026-04-28",
-["Time"] = "21:19:45",
-["ReceiveMoney"] = 0,
-["GiveItems"] = {
-{
-["Number"] = 94,
-["ItemLink"] = "|cffffffff|Hitem:6359::::::::60::::::::::|h[火鳞鳝鱼]|h|r",
-["Name"] = "火鳞鳝鱼",
-},
-{
-["Number"] = 1,
-["ItemLink"] = "|cff1eff00|Hitem:10165::::::1212:1856502656:60::::::::::|h[野熊之圣殿骑士护手]|h|r",
-["Name"] = "野熊之圣殿骑士护手",
-},
-{
-["Number"] = 1,
-["ItemLink"] = "|cffffffff|Hitem:20424::::::::60::::::::::|h[沙虫的肉]|h|r",
-["Name"] = "沙虫的肉",
-},
-{
-["Number"] = 1,
-["ItemLink"] = "|cffffffff|Hitem:19441::::::::60::::::::::|h[巨型毒囊]|h|r",
-["Name"] = "巨型毒囊",
-},
-},
-["GiveMoney"] = 0,
-["Location"] = "荆棘谷",
-["TargetName"] = "黑龙守护者-哈霍兰",
-["Result"] = "sent",
-["ReceiveItems"] = {
-},
-},
 {
 ["PlayerName"] = "哈霍兰大格格-哈霍兰",
 ["Date"] = "2026-04-29",
@@ -43432,6 +43358,20 @@ true,
 ["Time"] = "12:40:16",
 ["GiveMoney"] = 0,
 ["Location"] = "艾萨拉",
+["PlayerName"] = "法德迦-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "文艺少女-哈霍兰",
+["Date"] = "2026-07-26",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 7420000,
+["Time"] = "23:48:52",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
 ["PlayerName"] = "法德迦-哈霍兰",
 ["Result"] = "completed",
 ["ReceiveItems"] = {

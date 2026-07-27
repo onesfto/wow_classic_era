@@ -9,7 +9,7 @@ end
 local mod	= DBM:NewMod("AQ40Trash", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260523022054")
+mod:SetRevision("20260724035854")
 mod:DisableHardcodedOptions()
 --mod:SetModelID(47785)
 mod:SetMinSyncRevision(20200710000000)--2020, 7, 10
@@ -235,9 +235,9 @@ do
 
 	local function updateDefeatedBosses(self, encounterId)
 		if self:AntiSpam(10, encounterId) then
-			if encounterId == 710 or encounterId == 713 or encounterId == 716 or encounterId == 717 or encounterId == 714 then
+			if encounterId == 710 or encounterId == 713 or encounterId == 716 or encounterId == 717 then
 				self.vb.requiredBosses = self.vb.requiredBosses + 1
-				if self.vb.requiredBosses == 5 then
+				if self.vb.requiredBosses == 4 then
 					DBT:CancelBar(DBM_CORE_L.SPEED_CLEAR_TIMER_TEXT)
 					if self.vb.firstEngageTime then
 						local thisTime = GetServerTime() - self.vb.firstEngageTime

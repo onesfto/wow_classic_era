@@ -40,30 +40,30 @@ GearMenuConfiguration = {
 },
 ["displayName"] = "Default GearBar",
 ["isLocked"] = true,
-["changeMenuDirection"] = 1,
+["gearSlotSize"] = 40,
 ["showCooldowns"] = true,
 ["orientation"] = 1,
-["position"] = {
-["posX"] = 421.4107360839844,
-["point"] = "CENTER",
-["posY"] = -222.6348419189453,
-["relativePoint"] = "CENTER",
-},
 ["changeSlotSize"] = 40,
-["gearSlotSize"] = 40,
+["position"] = {
+["relativePoint"] = "CENTER",
+["posY"] = -222.6348419189453,
+["point"] = "CENTER",
+["posX"] = 421.4107360839844,
 },
-},
-["addonVersion"] = "v2.7.0",
-["uiTheme"] = 2,
-["trinketMenuColumns"] = 10,
-["frames"] = {
-["GM_TrinketMenuFrame"] = {
-["relativePoint"] = "RIGHT",
-["point"] = "RIGHT",
-["posY"] = -222.5922088623047,
-["posX"] = -160.7354583740234,
+["changeMenuDirection"] = 1,
 },
 },
 ["quickChangeRules"] = {
 },
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 10,
+["frames"] = {
+["GM_TrinketMenuFrame"] = {
+["posX"] = -160.7354583740234,
+["posY"] = -222.5922088623047,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
+},
+["addonVersion"] = "v2.7.0",
 }

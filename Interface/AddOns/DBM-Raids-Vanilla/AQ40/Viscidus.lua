@@ -10,7 +10,7 @@ end
 local mod = DBM:NewMod("Viscidus", "DBM-Raids-Vanilla", catID)
 local L = mod:GetLocalizedStrings()
 
-mod:SetRevision("20260527072013")
+mod:SetRevision("20260724135520")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(15299)
 mod:SetEncounterID(713)
@@ -73,20 +73,24 @@ local function getHitsPerSecond(times, threshold1, threshold2)
 	end
 end
 
-local lines, sortedLines = {}, {}
-local function updateInfoFrame()
-	table.wipe(lines)
-	table.wipe(sortedLines)
-	if mod.vb.freezeState == 0 then
-		sortedLines[1] = L.FrostHits
-		sortedLines[2] = L.FrostHitsPerSecond
-		lines[L.FrostHits] = frostHits .. "/200"
-		lines[L.FrostHitsPerSecond] = ("%.1f"):format(getHitsPerSecond(frostHitTimes, 7, 15))
-	elseif mod.vb.freezeState == 1 then
-		sortedLines[1] = L.MeleeHitsPerSecond
-		lines[L.MeleeHitsPerSecond] = ("%.1f"):format(getHitsPerSecond(meleeHitTimes, 10, 20))
+local updateInfoFrame
+do
+	local twipe = table.wipe
+	local lines, sortedLines = {}, {}
+	updateInfoFrame = function()
+		twipe(lines)
+		twipe(sortedLines)
+		if mod.vb.freezeState == 0 then
+			sortedLines[1] = L.FrostHits
+			sortedLines[2] = L.FrostHitsPerSecond
+			lines[L.FrostHits] = frostHits .. "/200"
+			lines[L.FrostHitsPerSecond] = ("%.1f"):format(getHitsPerSecond(frostHitTimes, 7, 15))
+		elseif mod.vb.freezeState == 1 then
+			sortedLines[1] = L.MeleeHitsPerSecond
+			lines[L.MeleeHitsPerSecond] = ("%.1f"):format(getHitsPerSecond(meleeHitTimes, 10, 20))
+		end
+		return lines, sortedLines
 	end
-	return lines, sortedLines
 end
 
 local function resetHitCounts()
@@ -191,6 +195,7 @@ function mod:SWING_MISSED(srcGuid)
 end
 
 function mod:OnSync(msg, count, sender)
+	if not self:IsInCombat() then return end
 	if msg == "Freeze" and sender then
 		count = tonumber(count)
 		warnFreeze:Show(count)

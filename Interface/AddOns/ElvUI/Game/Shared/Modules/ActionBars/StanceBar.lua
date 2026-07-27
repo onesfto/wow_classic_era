@@ -3,9 +3,8 @@ local AB = E:GetModule('ActionBars')
 
 local _G = _G
 local gsub = gsub
-local next = next
+local ipairs = ipairs
 local format = format
-
 local CreateFrame = CreateFrame
 local GetBindingKey = GetBindingKey
 local GetNumShapeshiftForms = GetNumShapeshiftForms
@@ -66,6 +65,10 @@ function AB:StyleShapeShift()
 				button.cooldown:SetAlpha(texture and 1 or 0)
 
 				if isActive then
+					if not E.hasEditMode then
+						_G.StanceBarFrame.lastSelected = button:GetID()
+					end
+
 					button:SetChecked(numForms == 1 and darken)
 					button.checked:SetVertexColor(1, 1, 1, 0.3)
 				elseif numForms == 1 or stance == 0 then
@@ -189,7 +192,7 @@ function AB:AdjustMaxStanceButtons(event)
 		return
 	end
 
-	for _, button in next, bar.buttons do
+	for _, button in ipairs(bar.buttons) do
 		button:Hide()
 	end
 

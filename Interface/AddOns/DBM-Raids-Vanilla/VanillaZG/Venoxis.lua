@@ -12,7 +12,7 @@ end
 local mod	= DBM:NewMod("Venoxis", "DBM-Raids-Vanilla", catID)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260527072013")
+mod:SetRevision("20260724213414")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(14507)
 mod:SetEncounterID(784)
@@ -104,7 +104,7 @@ function mod:OnSync(msg, arg)
 	if msg == "Phase" then
 		local phase = tonumber(arg)
 		if not phase then return end
-		if self:GetStage(phase, 3) then
+		if self:GetStage(phase, 1) then
 			self:SetStage(phase)
 			if phase % 1 == 0 then
 				warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(phase))

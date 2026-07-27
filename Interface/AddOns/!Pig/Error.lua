@@ -254,25 +254,28 @@ end
 ----------------------
 local PIGGetAddOnMetadata=GetAddOnMetadata or C_AddOns and C_AddOns.GetAddOnMetadata
 local VersionTXT=PIGGetAddOnMetadata(addonName, "Version")
+local ketpig="Interface/AddOns/!Pig"
+local function GetNewData(data)
+	if PIGA["Error"]["IsPig"] then
+		local datax = {}
+		for i=1,#data do
+			if data[i].msg:match(ketpig) or data[i].stack:match(ketpig) then
+				table.insert(datax,data[i])
+			end
+		end
+		return datax
+	else
+		return data
+	end
+end
 function Bugcollect.UpdateErrorUI(id)
 	if Bugcollect:IsShown() then
 		Bugcollect:qingkongERR()
-		local NewData,oldData = {},{}
+		local NewData = {}
 		if Bugcollect.selectedID==1 then
-			oldData=bencierrinfo
+			NewData=GetNewData(bencierrinfo)
 		elseif Bugcollect.selectedID==2 then
-			oldData=PIGA["Error"]["ErrorDB"]
-		end
-		if PIGA["Error"]["IsPig"] then
-			local datax = {}
-			for i=1,#oldData do
-				if oldData[i].msg:match("Interface/AddOns/!Pig") then
-					table.insert(datax,oldData[i])
-				end
-			end
-			NewData=datax
-		else
-			NewData=oldData
+			NewData=GetNewData(PIGA["Error"]["ErrorDB"])
 		end
 		local errornum=#NewData
 		if errornum==0 then return end
@@ -283,6 +286,7 @@ function Bugcollect.UpdateErrorUI(id)
 		local stack=NewData[id].stack
 		local logrizhi=NewData[id].logrizhi or "null"
 		Bugcollect.Moving.Time:SetText(date("%Y/%m/%d %H:%M:%S",time));
+
 		Bugcollect.biaoti:SetText(id.."/"..errornum);
 		if cuowushu>1 then
 			Bugcollect.NR.textArea:SetText(cuowushu.."× "..msg.."\r")
