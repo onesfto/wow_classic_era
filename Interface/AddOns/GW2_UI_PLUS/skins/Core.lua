@@ -84,6 +84,35 @@ function Skin.SkinScrollBar(bar)
     bar:GwSkinScrollBar()
 end
 
+-- 下拉框：兼容经典 UIDropDownMenuTemplate 与新版下拉框
+function Skin.SkinDropDown(dropdown, width)
+    if not dropdown or dropdown.__gwSkinnedDropDown then return end
+    dropdown.__gwSkinnedDropDown = true
+
+    local name = dropdown.GetName and dropdown:GetName()
+    if dropdown.GwSkinDropDownMenu and (dropdown.Button or name) then
+        dropdown:GwSkinDropDownMenu()
+    elseif dropdown.GwHandleDropDownBox then
+        dropdown:GwHandleDropDownBox()
+    end
+
+    if width and dropdown.SetWidth then dropdown:SetWidth(width) end
+end
+
+-- 输入框：剥离原生材质，套用 GW2 小边框背景与正文字体
+function Skin.SkinEditBox(editBox)
+    if not editBox or editBox.__gwSkinnedEditBox then return end
+    editBox.__gwSkinnedEditBox = true
+
+    if editBox.GwStripTextures then editBox:GwStripTextures() end
+    if editBox.GwCreateBackdrop then
+        local template = GW and GW.BackdropTemplates
+            and GW.BackdropTemplates.DefaultWithSmallBorder
+        editBox:GwCreateBackdrop(template)
+    end
+    Skin.SkinFont(editBox, "Normal")
+end
+
 -- 滑动条
 function Skin.SkinSlider(slider)
     if not slider or not slider.GwSkinSliderFrame then return end
