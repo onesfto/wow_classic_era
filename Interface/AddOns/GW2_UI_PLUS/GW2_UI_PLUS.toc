@@ -3,7 +3,7 @@
 ## Title-zhCN: GW2 UI Plus
 ## Title-zhTW: GW2 UI Plus
 ## SavedVariablesPerCharacter: 
-## SavedVariables: alaGearManSV, GW2_UI_PLUS_SV, GW2_UI_PLUS_ChatBarSV
+## SavedVariables: alaGearManSV, GW2_UI_PLUS_SV, GW2_UI_PLUS_ChatBarSV, GW2_UI_PLUS_ChatWindowSV, GW2_UI_PLUS_ActionBarSV
 ## Notes: alaGearMan
 ## Dependencies: GW2_UI
 ## OptionalDependencies: 
@@ -14,10 +14,38 @@
 ## Author-zhTW: |cff00ff00ALA|r
 ## Version: 404r.260331
 ## IconTexture: Interface\AddOns\GW2_UI_PLUS\gwlogo-red.png
+locale/Hardcoded.lua
+fixes/Fixes.lua
+fixes/Spellbook.lua
+fixes/Diagnostics.lua
 alaGearMan/alaGearMan.xml
 ChatBar/ChatBar.lua
 ChatBar/Options.lua
+ChatWindow/ChatWindow.lua
+ChatWindow/MsgTrim.lua
+ChatWindow/Filter.lua
+ChatWindow/ClassColor.lua
+ChatWindow/EditBox.lua
+ChatWindow/Options.lua
+ActionBar/ActionBar.lua
+ActionBar/Layout.lua
+ActionBar/Equipment.lua
+ActionBar/MageBar.lua
+ActionBar/Fader.lua
+ActionBar/Options.lua
+social/friendsFrame.lua
+social/friendsList.lua
+social/guildList.lua
+social/ignoreList.lua
+social/raidList.lua
+social/whoList.lua
+social/Social.lua
+skins/TradeSkill.lua
+skins/Mail.lua
+skins/QuestLog.lua
+skins/Options.lua
 core.lua
 skins/Core.lua
 skins/MailLogger.lua
 skins/NovaWorldBuffs.lua
+skins/NovaWorldBuffs_zhCN.lua
