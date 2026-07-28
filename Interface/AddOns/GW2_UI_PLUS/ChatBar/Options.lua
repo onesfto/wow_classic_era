@@ -94,7 +94,7 @@ local function BuildPanel(parent)
         min = -200, max = 200, step = 1, decimalNumbers = 0,
         getter = function() return db.offsetX end,
         setter = function(value) db.offsetX = value end,
-        getDefault = function() return 0 end,
+        getDefault = function() return ChatBar.defaults.offsetX end,
         callback = function() ChatBar.UpdatePoint() end,
         dependence = dep,
     })
@@ -104,7 +104,7 @@ local function BuildPanel(parent)
         min = -200, max = 200, step = 1, decimalNumbers = 0,
         getter = function() return db.offsetY end,
         setter = function(value) db.offsetY = value end,
-        getDefault = function() return 0 end,
+        getDefault = function() return ChatBar.defaults.offsetY end,
         callback = function() ChatBar.UpdatePoint() end,
         dependence = dep,
     })
@@ -133,7 +133,9 @@ local function BuildPanel(parent)
 
     panel:AddOptionButton("重置位置与缩放", "把偏移和缩放恢复为默认值", {
         callback = function()
-            db.offsetX, db.offsetY, db.scale = 0, 0, 1.0
+            db.offsetX = ChatBar.defaults.offsetX
+            db.offsetY = ChatBar.defaults.offsetY
+            db.scale = ChatBar.defaults.scale
             ChatBar.UpdatePoint()
             ChatBar.UpdateScale()
             RedrawSlider("GW2PlusChatBar_OffsetX")

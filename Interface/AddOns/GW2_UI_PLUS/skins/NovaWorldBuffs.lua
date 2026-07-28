@@ -107,17 +107,26 @@ Skin.Register("NovaWorldBuffs", function()
 
     -- NWBlayerFrame 留白微调
     if _G.NWBlayerFrame then
+        -- ① 第一行说明固定在内容区左上角 (PAD, PAD)
         if _G.NWBlayerFrame.fs2 then
             _G.NWBlayerFrame.fs2:ClearAllPoints()
             _G.NWBlayerFrame.fs2:SetPoint("TOPLEFT", PAD, -PAD)
         end
-        -- 底部说明文字(fs3)会被 NWB 的 recalclayerFrame(每 0.5s 的 OnUpdate)反复贴到底边，
-        -- 需在其之后重新抬高，留出底部 padding
+        -- ② 位面信息(EditBox 正文)顶部 inset。
+        -- 实际①②间距 = 此 inset + 原插件正文前自带的 3 个空行(不可动)，
+        -- 故此处调小(15)，把间距压到约原来的一半。想再增减间距就改这个数。
+        if _G.NWBlayerFrame.EditBox then
+            _G.NWBlayerFrame.EditBox:SetTextInsets(PAD, PAD, 15, 0)
+        end
+        -- ③ 底部说明文字(fs3)：NWB 的 recalclayerFrame 会按内容高度把它挂到窗口(贴底)
+        -- 或挂到 EditBox(跟随滚动)。这里无条件拉回窗口并固定底部 PAD，保证永远留 30px。
         if NWB.recalclayerFrame then
             hooksecurefunc(NWB, "recalclayerFrame", function()
                 local fs3 = _G.NWBlayerFrame and _G.NWBlayerFrame.fs3
-                if fs3 and fs3:GetParent() == _G.NWBlayerFrame then
-                    fs3:SetPoint("BOTTOM", _G.NWBlayerFrame, 0, 30)
+                if fs3 then
+                    fs3:SetParent(_G.NWBlayerFrame)
+                    fs3:ClearAllPoints()
+                    fs3:SetPoint("BOTTOM", _G.NWBlayerFrame, 0, PAD)
                 end
             end)
         end

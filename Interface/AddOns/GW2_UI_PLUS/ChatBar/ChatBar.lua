@@ -21,13 +21,14 @@ local defaults = {
     enable = true,
     hidden = {},        -- [按钮 key] = true 表示隐藏
     anchor = 1,         -- 1 = 聊天栏上方，2 = 聊天栏下方
-    offsetX = 0,
-    offsetY = 0,
+    offsetX = -26,
+    offsetY = 10,
     scale = 1.0,
     fadeOnLeave = false, -- 鼠标离开渐隐
     autoHide = true,     -- 动态显隐：不在队伍/团队/战场时隐藏对应按钮
     banWindow = nil,     -- 频道屏蔽控制窗口名，nil 表示第一个聊天窗口
 }
+ChatBar.defaults = defaults -- 暴露给设置面板做单一数据源（默认值/重置都引用它）
 
 local function InitDB()
     GW2_UI_PLUS_ChatBarSV = GW2_UI_PLUS_ChatBarSV or {}
@@ -74,13 +75,16 @@ ChatBar.EmojiData = EmojiData
 --             "tool"    功能按钮
 -- cmd       左键斜杠命令
 -- rightCmd  右键斜杠命令；设了它右键就是发言，不再是屏蔽
--- noRight   右键无任何行为
+-- noRight   右键无屏蔽行为（若设了 onRight 则右键执行 onRight）
+-- onRight   右键自定义回调（优先级最高，chat 类按钮生效）
+-- rightTip  tooltip 中对右键动作的说明文字（配合 onRight 使用）
 -- msgGroup  右键屏蔽/取消屏蔽时要操作的消息组，缺省用 key
 -- visible   动态显隐判定，返回 false 时该按钮让位
 -- addon     依赖的插件，未安装则整个按钮不创建
 
 local BUTTONS = {
-    {key = "SAY",   text = "说", kind = "chat", cmd = "s",  color = {1, 1, 1},           noRight = true},
+    {key = "SAY",   text = "说", kind = "chat", cmd = "s",  color = {1, 1, 1},           noRight = true,
+        onRight = function() ReloadUI() end, rightTip = "重载界面"},
     {key = "YELL",  text = "喊", kind = "chat", cmd = "y",  color = {1, 0.25, 0.25}},
     {key = "GUILD", text = "会", kind = "chat", cmd = "g",  color = {0.25, 1, 0.25},     msgGroup = {"GUILD", "OFFICER"},
         visible = function() return IsInGuild() end},
@@ -96,7 +100,7 @@ local BUTTONS = {
     {key = "TRADE",          text = "交", kind = "channel", color = {0.888, 0.668, 0.668}},
     {key = "LOOK_FOR_GROUP", text = "组", kind = "channel", color = {0.888, 0.668, 0.668}},
     -- 下面两个不是暴雪的内置频道，频道名写死；GetChannelIndex 会自动兼容 PIG1..PIG5 这类后缀
-    {key = "PIG",            text = "P", kind = "channel", color = {1, 0.6, 0.2},
+    {key = "PIG",            text = "P", kind = "channel", color = {0.888, 0.668, 0.668},
         channelName = "PIG"},
     {key = "BIGFOOTWORLD",   text = "世", kind = "channel", color = {0.888, 0.668, 0.668},
         channelName = "大脚世界频道"},
@@ -366,6 +370,17 @@ end
 
 local bar
 
+-- 屏蔽状态：不再显示图标，改为把按钮文字置灰
+local BLOCKED_COLOR = {0.5, 0.5, 0.5}
+local function SetBlockedState(button, blocked)
+    if not button or not button.Text then return end
+    if blocked then
+        button.Text:SetTextColor(unpack(BLOCKED_COLOR))
+    else
+        button.Text:SetTextColor(unpack(button.def.color))
+    end
+end
+
 local function CreateChannelButton(def)
     local button = CreateFrame("Button", nil, bar)
     button:SetSize(BUTTON_SIZE, BUTTON_SIZE)
@@ -381,14 +396,6 @@ local function CreateChannelButton(def)
     SkinFont(button.Text)
     button.Text:SetTextColor(unpack(def.color))
 
-    -- 已屏蔽标记
-    button.blocked = button:CreateTexture(nil, "OVERLAY")
-    button.blocked:SetTexture("interface/common/voicechat-muted.blp")
-    button.blocked:SetSize(BUTTON_SIZE - 9, BUTTON_SIZE - 9)
-    button.blocked:SetAlpha(0.7)
-    button.blocked:SetPoint("CENTER")
-    button.blocked:Hide()
-
     button:SetScript("OnMouseDown", function(self) self.Text:SetPoint("CENTER", 1, -1) end)
     button:SetScript("OnMouseUp", function(self) self.Text:SetPoint("CENTER", 0, 0) end)
 
@@ -397,12 +404,23 @@ local function CreateChannelButton(def)
         GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT", 0, 0)
         if def.tip then
             GameTooltip:SetText(def.tip)
-        elseif def.rightCmd then
-            GameTooltip:SetText("|cff00FFff左键-|r|cffFFFF00发言|r\n|cff00FFff右键-|r|cffFFFF00通知|r")
-        elseif def.noRight then
-            GameTooltip:SetText("|cff00FFff左键-|r|cffFFFF00发言|r")
         else
-            GameTooltip:SetText("|cff00FFff左键-|r|cffFFFF00发言|r\n|cff00FFff右键-|r|cffFFFF00屏蔽/取消屏蔽|r")
+            -- 左键：chat 类切到该频道发言；channel 类切换/加入编号频道
+            local leftText = (def.kind == "channel") and "切换频道" or "发言"
+            -- 右键：通知(rightCmd) / 自定义(onRight) / 无(noRight) / 屏蔽
+            local rightText
+            if def.rightCmd then
+                rightText = "通知"
+            elseif def.onRight then
+                rightText = def.rightTip
+            elseif not def.noRight then
+                rightText = "屏蔽"
+            end
+            local s = "|cff00FFff左键-|r|cffFFFF00" .. leftText .. "|r"
+            if rightText then
+                s = s .. "\n|cff00FFff右键-|r|cffFFFF00" .. rightText .. "|r"
+            end
+            GameTooltip:SetText(s)
         end
         GameTooltip:Show()
     end)
@@ -417,27 +435,35 @@ end
 -- 内置聊天类型的点击
 local function OnChatClick(self, click)
     local def = self.def
+    -- 可屏蔽的 chat（喊/会）：无 rightCmd/noRight/onRight
+    local canBlock = not def.rightCmd and not def.noRight and not def.onRight
     if click == "LeftButton" then
+        -- 左键顺带取消屏蔽：若可屏蔽且当前被屏蔽，恢复显示、颜色与提示
+        if canBlock and not IsMessageShown(def.key) then
+            local frame = GetBanChatFrame()
+            for _, g in ipairs(def.msgGroup or {def.key}) do ChatFrame_AddMessageGroup(frame, g) end
+            SetBlockedState(self, false)
+            ChatBar.Print("已显示 " .. (_G[def.key] or def.text) .. " 频道")
+        end
         PrefixEditBox("/" .. def.cmd)
         return
     end
+    -- 右键：自定义回调优先（如「说」按钮右键重载界面）
+    if def.onRight then def.onRight() return end
     if def.noRight then return end
     if def.rightCmd then
         PrefixEditBox("/" .. def.rightCmd)
         return
     end
 
-    -- 右键屏蔽/取消屏蔽
-    local frame = GetBanChatFrame()
-    local groups = def.msgGroup or {def.key}
+    -- 右键：只屏蔽（取消屏蔽请用左键打开）
     if IsMessageShown(def.key) then
-        for _, g in ipairs(groups) do ChatFrame_RemoveMessageGroup(frame, g) end
+        local frame = GetBanChatFrame()
+        for _, g in ipairs(def.msgGroup or {def.key}) do ChatFrame_RemoveMessageGroup(frame, g) end
         ChatBar.Print("已屏蔽 " .. (_G[def.key] or def.text) .. " 频道")
-        self.blocked:Show()
+        SetBlockedState(self, true)
     else
-        for _, g in ipairs(groups) do ChatFrame_AddMessageGroup(frame, g) end
-        ChatBar.Print("已取消屏蔽 " .. (_G[def.key] or def.text) .. " 频道")
-        self.blocked:Hide()
+        ChatBar.Print((_G[def.key] or def.text) .. " 频道已是屏蔽状态")
     end
 end
 
@@ -455,7 +481,7 @@ local function OnChannelClick(self, click)
             C_Timer.After(1, function()
                 if GetChannelIndex(channelName) > 0 then
                     AddChannelToFrame(frame, channelName)
-                    self.blocked:Hide()
+                    SetBlockedState(self, false)
                     ChatBar.Print("已加入 " .. channelName .. " 频道")
                 else
                     ChatBar.Print("加入 " .. channelName .. " 频道失败，请稍后再试")
@@ -463,12 +489,18 @@ local function OnChannelClick(self, click)
             end)
             return
         end
+        -- 已加入频道：左键切过去。若之前被屏蔽(未显示)，顺带恢复显示、颜色与提示
+        local wasHidden = not IsChannelShown(channelName)
         AddChannelToFrame(frame, channelName)
+        SetBlockedState(self, false)
+        if wasHidden then
+            ChatBar.Print("已显示 " .. channelName .. " 频道")
+        end
         PrefixEditBox("/" .. id)
         return
     end
 
-    -- 右键屏蔽/取消屏蔽
+    -- 右键：只屏蔽（取消屏蔽请用左键打开）
     if GetChannelIndex(channelName) == 0 then
         ChatBar.Print("尚未加入 " .. channelName .. " 频道")
         return
@@ -476,11 +508,9 @@ local function OnChannelClick(self, click)
     if IsChannelShown(channelName) then
         RemoveChannelFromFrame(frame, channelName)
         ChatBar.Print("已屏蔽 " .. channelName .. " 频道")
-        self.blocked:Show()
+        SetBlockedState(self, true)
     else
-        AddChannelToFrame(frame, channelName)
-        ChatBar.Print("已取消屏蔽 " .. channelName .. " 频道")
-        self.blocked:Hide()
+        ChatBar.Print(channelName .. " 频道已是屏蔽状态")
     end
 end
 
@@ -490,10 +520,10 @@ local function UpdateBlockedIcons()
     for _, button in ipairs(bar.buttons) do
         local def = button.def
         if def.kind == "chat" and not def.rightCmd and not def.noRight then
-            button.blocked:SetShown(not IsMessageShown(def.key))
+            SetBlockedState(button, not IsMessageShown(def.key))
         elseif def.kind == "channel" then
             local name = def.channelName or _G[def.key]
-            button.blocked:SetShown(name ~= nil and not IsChannelShown(name))
+            SetBlockedState(button, name ~= nil and not IsChannelShown(name))
         end
     end
 end

@@ -80,10 +80,10 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
         }
 
         if gearManFrame.AddOption then
-            -- 1. Enable (Master Toggle)
+            -- 主开关
             local opt_enable = gearManFrame:AddOption("启用", "启用或禁用 alaGearMan 插件", {
                 getter = function() return GW2_UI_PLUS_SV["alaGearMan_Enable"] end,
-                setter = function(value) 
+                setter = function(value)
                     GW2_UI_PLUS_SV["alaGearMan_Enable"] = value
                     StaticPopup_Show("GW2_UI_PLUS_RELOAD")
                 end,
@@ -92,36 +92,38 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
             })
             if opt_enable then opt_enable.optionName = "alaGearMan_Enable" end
 
-            -- 2. Show quick button
-            local opt_btn = gearManFrame:AddOption("显示悬浮按钮", "在界面上显示快速换装按钮", {
-                getter = function() 
-                    return alaGearManSV and alaGearManSV.useBar
-                end,
-                setter = function(value)
-                    if alaGearManSV then
-                        alaGearManSV.useBar = value
-                        if __ala_meta__ and __ala_meta__.gear and __ala_meta__.gear.ui and __ala_meta__.gear.ui.secure then
-                            if value then
-                                __ala_meta__.gear.ui.secure:Show()
-                            else
-                                __ala_meta__.gear.ui.secure:Hide()
-                            end
-                        end
-                    end
-                end,
-                dependence = { ["alaGearMan_Enable"] = true }
+            -- 面板里的选项统一走 alaGearMan 自己的 drop_handler，副作用（重建按钮、删宏等）与原下拉菜单完全一致。
+            local dep = { ["alaGearMan_Enable"] = true }
+            local function ApplyGearOpt(key, value)
+                if __ala_meta__ and __ala_meta__.gear and __ala_meta__.gear.func and __ala_meta__.gear.func.drop_handler then
+                    __ala_meta__.gear.func.drop_handler(nil, nil, { key, value })
+                end
+            end
+
+            -- ========== 换装栏 ==========
+            gearManFrame:AddGroupHeader("换装栏")
+
+            local opt_btn = gearManFrame:AddOption("显示换装栏", "在界面上显示快速换装按钮栏", {
+                getter = function() return alaGearManSV and alaGearManSV.useBar end,
+                setter = function(value) ApplyGearOpt("useBar", value) end,
+                getDefault = function() return true end,
+                dependence = dep,
             })
             if opt_btn then opt_btn.optionName = "alaGearMan_ShowButton" end
 
-            -- 3. Size of button
-            local opt_slider = gearManFrame:AddOptionSlider("缩放指数", "调整一键换装悬浮窗的大小", {
+            gearManFrame:AddOption("按钮分多行", "将快速切换按钮排列成多行", {
+                getter = function() return alaGearManSV and alaGearManSV.multi_lines end,
+                setter = function(value) ApplyGearOpt("multi_lines", value) end,
+                getDefault = function() return false end,
+                dependence = dep,
+            })
+
+            local opt_slider = gearManFrame:AddOptionSlider("缩放指数", "调整换装栏的大小", {
                 min = 10,
                 max = 40,
                 step = 1,
                 decimalNumbers = 0,
-                getter = function() 
-                    return alaGearManSV and alaGearManSV.quickSize or 18
-                end,
+                getter = function() return alaGearManSV and alaGearManSV.quickSize or 18 end,
                 setter = function(value)
                     if alaGearManSV then
                         alaGearManSV.quickSize = value
@@ -130,9 +132,70 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
                         end
                     end
                 end,
-                dependence = { ["alaGearMan_Enable"] = true }
+                dependence = dep,
             })
             if opt_slider then opt_slider.optionName = "alaGearMan_Scale" end
+
+            gearManFrame:AddOptionDropdown("按钮风格", "快速切换按钮的显示样式", {
+                optionsList = { "TC", "T", "C" },
+                optionNames = { "文字+图标", "图标", "文字" },
+                getter = function() return alaGearManSV and alaGearManSV.quickStyle or "C" end,
+                setter = function(value) ApplyGearOpt("quickStyle", value) end,
+                getDefault = function() return "C" end,
+                dependence = dep,
+            })
+
+            gearManFrame:AddOptionButton("重置换装栏位置", "把换装栏移回默认位置", {
+                callback = function()
+                    if not alaGearManSV then return end
+                    alaGearManSV.quickPos = { "TOP", 0, 0 }
+                    if alaGearManSV.quickPosChar then
+                        alaGearManSV.quickPosChar[UnitGUID("player")] = nil
+                    end
+                    local secure = __ala_meta__ and __ala_meta__.gear and __ala_meta__.gear.ui and __ala_meta__.gear.ui.secure
+                    if secure then
+                        secure:ClearAllPoints()
+                        secure:SetPoint(unpack(alaGearManSV.quickPos))
+                    end
+                end,
+                dependence = dep,
+            })
+
+            -- ========== 一键脱光 ==========
+            gearManFrame:AddGroupHeader("一键脱光")
+
+            gearManFrame:AddOption("脱光时一并卸下戒指、饰品、披风及耐久为 0 的装备", "勾选后一键脱光会连同这些部位一起卸下", {
+                getter = function() return alaGearManSV and alaGearManSV.takeoffAll_include_neck_finger_and_trinket end,
+                setter = function(value) ApplyGearOpt("takeoffAll_include_neck_finger_and_trinket", value) end,
+                getDefault = function() return false end,
+                dependence = dep,
+            })
+
+            gearManFrame:AddOptionDropdown("一键脱光按钮位置", "一键脱光按钮位于换装栏的哪一侧", {
+                optionsList = { "LEFT", "RIGHT" },
+                optionNames = { "左边", "右边" },
+                getter = function() return alaGearManSV and alaGearManSV.takeoffAll_pos or "RIGHT" end,
+                setter = function(value) ApplyGearOpt("takeoffAll_pos", value) end,
+                getDefault = function() return "RIGHT" end,
+                dependence = dep,
+            })
+
+            -- ========== 其他 ==========
+            gearManFrame:AddGroupHeader("其他")
+
+            gearManFrame:AddOption("自动创建宏", "为每套装备自动创建切换宏", {
+                getter = function() return alaGearManSV and alaGearManSV.UseMacro end,
+                setter = function(value) ApplyGearOpt("UseMacro", value) end,
+                getDefault = function() return false end,
+                dependence = dep,
+            })
+
+            gearManFrame:AddOption("在物品提示中显示套装信息", "鼠标悬停装备时，提示该装备属于哪套已保存的套装", {
+                getter = function() return alaGearManSV and alaGearManSV.show_outfit_in_tooltip end,
+                setter = function(value) ApplyGearOpt("show_outfit_in_tooltip", value) end,
+                getDefault = function() return true end,
+                dependence = dep,
+            })
         end
     -- Register the new panel under settings.
     local subPanels = { {name = "一键换装", frame = gearManFrame, icon = "Interface\\Icons\\INV_Misc_Bag_08"} }
@@ -142,7 +205,37 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
         table.insert(subPanels, {name = "频道按钮", frame = chatBarFrame, icon = "Interface\\Icons\\INV_Letter_15"})
     end
 
+    if addonTable.BuildChatWindowPanel then
+        local chatWindowFrame = addonTable.BuildChatWindowPanel(p)
+        table.insert(subPanels, {name = "聊天窗口", frame = chatWindowFrame, icon = "Interface\\Icons\\INV_Scroll_03"})
+    end
+
+    if addonTable.BuildSkinsPanel then
+        local skinsFrame = addonTable.BuildSkinsPanel(p)
+        table.insert(subPanels, {name = "界面皮肤", frame = skinsFrame, icon = "Interface\\Icons\\Trade_Engineering"})
+    end
+
     settingsTab:AddSettingsPanel(p, "附加组件", "额外附加组件", subPanels, true)
+
+    if addonTable.BuildActionBarTab then
+        addonTable.BuildActionBarTab(settingsTab, _G.GwSettingsWindow)
+    end
+
+    if addonTable.PrepareUnitFrameSettings then
+        addonTable.PrepareUnitFrameSettings(settingsTab)
+    end
+
+    if addonTable.BuildMainMenuTab then
+        addonTable.BuildMainMenuTab(settingsTab, _G.GwSettingsWindow)
+    end
+
+    if addonTable.ApplyProfileTabIcon then
+        addonTable.ApplyProfileTabIcon(_G.GwSettingsWindow)
+    end
+
+    if addonTable.ArrangeSettingsTabs then
+        addonTable.ArrangeSettingsTabs(_G.GwSettingsWindow)
+    end
 
     end)
 else

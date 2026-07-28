@@ -5,7 +5,6 @@
 local _G = _G;
 local __ala_meta__ = _G.__ala_meta__;
 local uireimp = __ala_meta__.uireimp;
-local menulib = __ala_meta__.__menulib;
 local autostyle = __ala_meta__.autostyle;
 local __scrolllib = __ala_meta__.__scrolllib;
 
@@ -201,6 +200,9 @@ function NS.F_ScheduleDelayCall(func, delay)
 			func();
 			sch[2] = false;
 		end;
+		-- 修复：原作者漏了把 sch 存回 T_Scheduler，导致节流永久失效——
+		-- 每次装备变化都排一个 refreshAppearance 定时器（脱光=十几次），本该合并成一次。
+		T_Scheduler[func] = sch;
 	elseif sch[2] then
 		return;
 	end
@@ -839,6 +841,36 @@ function func.gm_CreateButton(parent, index, buttonHeight)
 		end
 	end);
 
+	-- gw2ui 风格六边形外框：学天赋图标（passive_border 蒙版把图标裁成六边形 + passive_outline 描边）。
+	-- 放在创建行按钮时应用，而不是靠登录后整批扫描——换装窗初始隐藏、滚动行是延迟创建的，
+	-- 那一遍扫描扫到 0 个按钮什么也没样式化，图标才一直是方的。设置 gwMask 后，
+	-- GW2_UI 皮肤里的 handleIcon 会因 `if not button.gwMask` 跳过，避免重复叠加。
+	if icon.AddMaskTexture and not button.gwMask then
+		local mask = UIParent:CreateMaskTexture();
+		mask:SetParent(button);
+		mask:SetPoint("CENTER", icon, "CENTER", 0, 0);
+		mask:SetSize(icon:GetWidth(), icon:GetHeight());
+		mask:SetTexture("Interface/AddOns/GW2_UI/textures/talents/passive_border.png", "CLAMPTOBLACKADDITIVE", "CLAMPTOBLACKADDITIVE");
+		button.gwMask = mask;
+		icon:SetTexCoord(0.1, 0.9, 0.1, 0.9);
+		icon:AddMaskTexture(mask);
+		-- 描边放 ARTWORK：行按钮的 _SetBackdrop 背景在 BACKGROUND 层，描边要在它之上、图标(OVERLAY)之下才可见
+		local outline = button:CreateTexture(nil, "ARTWORK");
+		outline:SetPoint("CENTER", icon, "CENTER", 0, 0);
+		outline:SetSize(icon:GetWidth() * 1.25, icon:GetHeight() * 1.25);
+		outline:SetTexture("Interface/AddOns/GW2_UI/textures/talents/passive_outline.png");
+		button.gwOutline = outline;
+		-- 换图标（SetTexture）会重置 TexCoord，这里包一层重设裁边。
+		-- 蒙版不用重加：它在 SetTexture 后持续生效（GW2_UI 天赋图标同样换图不重加蒙版）。
+		local oldSetIconTexture = button.SetIconTexture;
+		button.SetIconTexture = function(self, tex)
+			oldSetIconTexture(self, tex);
+			if self.icon then
+				self.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9);
+			end
+		end
+	end
+
 	button.id = index;
 
 	return button;
@@ -1343,6 +1375,12 @@ function func.initUI()
 			if button == nil then
 				button = CreateFrame("CHECKBUTTON", SECURE_QUICK_NAME_PREFIX .. index, ui.secure, "SecureActionButtonTemplate");
 				button:SetAttribute('type', 'macro');
+				-- 按住 shift/ctrl/alt 时（拖动换装栏用）左键不执行换装/脱光宏：
+				-- 把这三种修饰键下的 type1 指向一个不存在的动作类型，安全环境里等于什么都不做。
+				-- 普通无修饰键点击仍走上面的 type='macro'，正常换装。
+				button:SetAttribute('shift-type1', 'none');
+				button:SetAttribute('ctrl-type1', 'none');
+				button:SetAttribute('alt-type1', 'none');
 				-- button:SetAttribute('macrotext', '');
 				-- SecureHandler_OnLoad(button);
 				-- UnregisterStateDriver(button, "page");
@@ -1350,6 +1388,8 @@ function func.initUI()
 				-- button:SetAttribute("action", ACTION_START + index);
 				button:SetSize(alaGearManSV.quickSize, alaGearManSV.quickSize);
 				button:EnableMouse(true);
+				-- 保持按下即触发，普通点击（哪怕手一抖有点位移）都能可靠换装。
+				-- 拖动时的误换装改由上面的 shift/ctrl/alt-type1='none' 屏蔽，不靠"拖拽抑制点击"。
 				button:RegisterForClicks("AnyUp", "AnyDown");
 				button:SetClampedToScreen(true);
 				button:RegisterForDrag("LeftButton");
@@ -1587,6 +1627,8 @@ function func.initUI()
 			for i = 1, N do
 				local button = secureButtons[i];
 				button:SetSize(alaGearManSV.quickSize, alaGearManSV.quickSize);
+				-- 数字字体随换装栏缩放同步变化（原本只在创建时按 quickSize 设过一次）
+				button.title:SetFont(GameFontNormal:GetFont(), alaGearManSV.quickSize * 0.75, "OUTLINE");
 				local setIndex = i;
 				if alaGearManSV.takeoffAll_pos == 'LEFT' then
 					setIndex = i - 1;
@@ -1868,105 +1910,13 @@ function func.delete_onclick()
 	func.delete(var.gm_editing_set or var.gm_cur_set);
 end
 function func.setting(self, button)
-	local menudef = {
-		handler = func.drop_handler,
-	};
-	if alaGearManSV.UseMacro then
-		tinsert(menudef, {
-			param = { 'UseMacro', false, },
-			text = L["UseMacro_false"],
-		});
-	else
-		tinsert(menudef, {
-			param = { 'UseMacro', true, },
-			text = L["UseMacro"],
-		});
+	-- 齿轮按钮改为打开 GW2_UI_PLUS 设置面板的「一键换装」页，原下拉菜单里的选项都搬到那里了。
+	if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
+		local tab = GW2_ADDON.GetSettingsTabFrame();
+		if tab and tab.OpenSettingsToPanel then
+			tab:OpenSettingsToPanel("gw2_ui_plus_gearman");
+		end
 	end
-	if alaGearManSV.useBar then
-		tinsert(menudef, {
-			param = { 'useBar', false, },
-			text = L["useBar_false"],
-		});
-	else
-		tinsert(menudef, {
-			param = { 'useBar', true, },
-			text = L["useBar"],
-		});
-	end
-	if alaGearManSV.quickStyle ~= 'TC' then
-		tinsert(menudef, {
-			param = { 'quickStyle', 'TC', },
-			text = L["Style_TC"],
-		});
-	end
-	if alaGearManSV.quickStyle ~= 'T' then
-		tinsert(menudef, {
-			param = { 'quickStyle', 'T', },
-			text = L["Style_T"],
-		});
-	end
-	if alaGearManSV.quickStyle ~= 'C' then
-		tinsert(menudef, {
-			param = { 'quickStyle', 'C', },
-			text = L["Style_C"],
-		});
-	end
-	if alaGearManSV.takeoffAll_pos ~= 'LEFT' then
-		tinsert(menudef, {
-			param = { 'takeoffAll_pos', 'LEFT', },
-			text = L["Take-off-all On Left"],
-		});
-	end
-	if alaGearManSV.takeoffAll_pos ~= 'RIGHT' then
-		tinsert(menudef, {
-			param = { 'takeoffAll_pos', 'RIGHT', },
-			text = L["Take-off-all On Right"],
-		});
-	end
-	if alaGearManSV.takeoffAll_include_neck_finger_and_trinket then
-		tinsert(menudef, {
-			param = { 'takeoffAll_include_neck_finger_and_trinket', false, },
-			text = L["takeoffAll_include_neck_finger_and_trinket_false"],
-		});
-	else
-		tinsert(menudef, {
-			param = { 'takeoffAll_include_neck_finger_and_trinket', true, },
-			text = L["takeoffAll_include_neck_finger_and_trinket"],
-		});
-	end
-	if alaGearManSV.show_outfit_in_tooltip then
-		tinsert(menudef, {
-			param = { 'show_outfit_in_tooltip', false, },
-			text = L["show_outfit_in_tooltip_false"],
-		});
-	else
-		tinsert(menudef, {
-			param = { 'show_outfit_in_tooltip', true, },
-			text = L["show_outfit_in_tooltip"],
-		});
-	end
-	if alaGearManSV.multi_lines then
-		tinsert(menudef, {
-			param = { 'multi_lines', false, },
-			text = L["multi_lines_false"],
-		});
-	else
-		tinsert(menudef, {
-			param = { 'multi_lines', true, },
-			text = L["multi_lines"],
-		});
-	end
-	tinsert(menudef, {
-		handler = function()
-			alaGearManSV.quickPos = { "TOP", 0, 0, };
-			alaGearManSV.quickPosChar[GUID] = nil;
-			ui.secure:ClearAllPoints();
-			ui.secure:SetPoint(unpack(alaGearManSV.quickPos));
-		end,
-		param ={  },
-		text = L["reset_pos"],
-	})
-	menulib.ShowMenu(self, "BOTTOMRIGHT", menudef);
 end
 function func.delete(set)
 	if saved_sets[set] then

@@ -3,7 +3,7 @@
 ## Title-zhCN: GW2 UI Plus
 ## Title-zhTW: GW2 UI Plus
 ## SavedVariablesPerCharacter: 
-## SavedVariables: alaGearManSV, GW2_UI_PLUS_SV, GW2_UI_PLUS_ChatBarSV, GW2_UI_PLUS_ChatWindowSV, GW2_UI_PLUS_ActionBarSV
+## SavedVariables: alaGearManSV, GW2_UI_PLUS_SV, GW2_UI_PLUS_ChatBarSV, GW2_UI_PLUS_ChatWindowSV, GW2_UI_PLUS_ActionBarSV, GW2_UI_PLUS_PlayerStatusSV
 ## Notes: alaGearMan
 ## Dependencies: GW2_UI
 ## OptionalDependencies: 
@@ -33,6 +33,11 @@ ActionBar/Equipment.lua
 ActionBar/MageBar.lua
 ActionBar/Fader.lua
 ActionBar/Options.lua
+MainMenu/EnergyTicker.lua
+MainMenu/PlayerResources.lua
+MainMenu/PlayerAuras.lua
+MainMenu/MainMenu.lua
+MainMenu/SettingsIcon.lua
 social/friendsFrame.lua
 social/friendsList.lua
 social/guildList.lua
