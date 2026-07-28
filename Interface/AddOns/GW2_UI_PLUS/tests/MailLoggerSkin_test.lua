@@ -225,6 +225,7 @@ local calendar = NewMailWindow(320, 320)
 PopulateCalendar(calendar)
 local unrelated = NewFrame("Frame", 380, 510, UIParent)
 unrelated.texture = AddRegion(unrelated, NewRegion("Texture", "Interface/OtherAddon/Header"))
+local sameStyleUnrelated = NewMailWindow(380, 510)
 
 local lastSlashCommand
 SlashCmdList.MLC = function(command)
@@ -278,6 +279,7 @@ assert(settings.__gwMailLoggerKind == "settings", "应识别设置窗口")
 assert(output.__gwMailLoggerKind == "output", "应识别交易记录窗口")
 assert(calendar.__gwMailLoggerKind == "calendar", "应识别日历窗口")
 assert(unrelated.__gwMailLoggerKind == nil, "不得处理其他插件的同尺寸窗口")
+assert(sameStyleUnrelated.__gwMailLoggerKind == nil, "不得仅凭尺寸和标题纹理识别窗口")
 
 assert(settings.__gwMailLoggerSkinned, "设置窗口应应用皮肤")
 assert(settings.inlineHeader, "设置窗口应创建内嵌标题区")

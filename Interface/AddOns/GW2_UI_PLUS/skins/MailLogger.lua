@@ -31,14 +31,53 @@ local function Rounded(value)
     return value and math.floor(value + 0.5)
 end
 
+local function GetFeatureCounts(frame)
+    local counts = {
+        button = 0,
+        checkButton = 0,
+        editBox = 0,
+        scrollFrame = 0,
+        dropDown = 0,
+    }
+    if not frame.GetChildren then return counts end
+
+    for _, child in ipairs({ frame:GetChildren() }) do
+        local objectType = child.GetObjectType and child:GetObjectType()
+        if objectType == "Button" then
+            counts.button = counts.button + 1
+        elseif objectType == "CheckButton" then
+            counts.checkButton = counts.checkButton + 1
+        elseif objectType == "EditBox" then
+            counts.editBox = counts.editBox + 1
+        elseif objectType == "ScrollFrame" then
+            counts.scrollFrame = counts.scrollFrame + 1
+        elseif objectType == "Frame" and child.Button
+            and (child.Left or child.Middle or child.Right) then
+            counts.dropDown = counts.dropDown + 1
+        end
+    end
+    return counts
+end
+
 local function GetWindowKind(frame)
     if not frame or not frame.GetSize or not HasOriginalHeader(frame) then return end
 
     local width, height = frame:GetSize()
     width, height = Rounded(width), Rounded(height)
-    if height == 510 and width == 380 then return "settings" end
-    if height == 510 and (width == 360 or width == OUTPUT_WIDTH) then return "output" end
-    if height == 320 and width == 320 then return "calendar" end
+    local counts = GetFeatureCounts(frame)
+    if height == 510 and width == 380
+        and counts.checkButton > 0 and counts.editBox > 0
+        and counts.scrollFrame > 0 and counts.dropDown > 0 then
+        return "settings"
+    end
+    if height == 510 and (width == 360 or width == OUTPUT_WIDTH)
+        and counts.button >= 6 and counts.scrollFrame > 0 then
+        return "output"
+    end
+    if height == 320 and width == 320
+        and counts.button >= 49 and counts.dropDown >= 2 then
+        return "calendar"
+    end
 end
 
 local function GetChildren(frame)
