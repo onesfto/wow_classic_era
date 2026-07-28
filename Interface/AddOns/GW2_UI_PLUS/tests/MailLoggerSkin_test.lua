@@ -220,6 +220,7 @@ end
 local settings = NewMailWindow(380, 510)
 PopulateSettings(settings)
 local output = NewMailWindow(360, 510)
+output.texture.texture = 130944
 PopulateOutput(output)
 local calendar = NewMailWindow(320, 320)
 PopulateCalendar(calendar)

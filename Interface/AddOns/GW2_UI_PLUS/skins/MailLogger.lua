@@ -24,6 +24,7 @@ end
 local function HasOriginalHeader(frame)
     local texture = frame and frame.texture
     local path = texture and texture.GetTexture and texture:GetTexture()
+    if type(path) == "number" then return true end
     return NormalizePath(path) == HEADER_TEXTURE
 end
 
