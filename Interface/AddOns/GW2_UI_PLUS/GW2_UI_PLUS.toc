@@ -19,4 +19,5 @@ ChatBar/ChatBar.lua
 ChatBar/Options.lua
 core.lua
 skins/Core.lua
+skins/MailLogger.lua
 skins/NovaWorldBuffs.lua
