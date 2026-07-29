@@ -225,6 +225,15 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
         })
     end
 
+    if addonTable.BuildToolbarPanel then
+        local toolbarFrame = addonTable.BuildToolbarPanel(p)
+        table.insert(subPanels, {
+            name = "工具条",
+            frame = toolbarFrame,
+            icon = "Interface\\Icons\\INV_Misc_Tool_01",
+        })
+    end
+
     settingsTab:AddSettingsPanel(p, "附加组件", "额外附加组件", subPanels, true)
 
     if addonTable.BuildActionBarTab then

@@ -61,6 +61,7 @@ GW2_UI_PLUS/
 ├── fixes/Spellbook.lua         法术书点击失效 + 翻页跳回
 ├── fixes/Diagnostics.lua       /gw2plus 诊断命令
 ├── alaGearMan/                 内嵌的一键换装插件（第三方原样打包）
+├── Toolbar/                    队伍管理、快捷条、标记条、性能条
 ├── ChatBar/                    频道按钮条（见 ChatBar/README.md）
 ├── ChatWindow/                 聊天窗位置大小、外观、消息过滤（见 ChatWindow/README.md）
 ├── ActionBar/                  全局渐隐、动作条尺寸、法师动作条（见 ActionBar/README.md）
@@ -119,6 +120,12 @@ fixes/Fixes.lua           ← SkinBagSearchBox 兜底必须早于任何皮肤
 fixes/Spellbook.lua
 fixes/Diagnostics.lua
 alaGearMan/alaGearMan.xml
+Toolbar/Core.lua          ← 存档、mover 与公共控件
+Toolbar/GroupManage.lua   ← 接管 GW2_UI 原生队伍管理
+Toolbar/QuickBar.lua      ← 八按钮快捷条（无战斗记录）
+Toolbar/MarkerBar.lua     ← Classic Era 目标标记条
+Toolbar/PerformanceBar.lua ← FPS、本地/世界延迟
+Toolbar/Options.lua       ← 工具条设置页
 ChatBar/ChatBar.lua       ← 必须在 Options.lua 之前
 ChatBar/Options.lua       ┐
 ChatWindow/ChatWindow.lua │ 定义 ChatWindow 表与 InitDB，必须最先
@@ -152,12 +159,12 @@ skins/NovaWorldBuffs_zhCN.lua
 
 | 变量 | 归谁 | 存什么 |
 |---|---|---|
-| `GW2_UI_PLUS_SV` | 本插件 | `TRADESKILL_SKIN_ENABLED`、`alaGearMan_Enable`（悬浮按钮与缩放那两项其实是直接读写 `alaGearManSV`） |
+| `GW2_UI_PLUS_SV` | 本插件 | `TRADESKILL_SKIN_ENABLED`、`alaGearMan_Enable`，以及 `Toolbar` 下四个工具条的启用、缩放、尺寸和功能选项（悬浮按钮与缩放那两项其实是直接读写 `alaGearManSV`） |
 | `GW2_UI_PLUS_ChatBarSV` | ChatBar | 见 `ChatBar/README.md` |
 | `GW2_UI_PLUS_ChatWindowSV` | ChatWindow | 位置大小、职业颜色、输入栏置顶、过滤器四项与关键词 |
 | `GW2_UI_PLUS_ActionBarSV` | ActionBar | 渐隐全部选项、主动作条尺寸、血球缩放、法师动作条全部选项 |
 | `alaGearManSV` | alaGearMan | 第三方插件自己的 |
-| `GW.settings.*` | **GW2_UI 本体** | `USE_SOCIAL_WINDOW`、`MAIL_SKIN_ENABLED`、`MAILBOX_POSITION`、`SOCIAL_POSITION`、`CHAT_BUTTONS_POSITION`；另外 ActionBar 用到 `MultiBarXXX.size`（动作条 2-8 尺寸）、`castingbar_pos_scale`（施法条缩放）、`MageBar_pos` 与 `MainActionBar_pos`（法师条 / 主条位置，两个 mover 都是我们加的） |
+| `GW.settings.*` | **GW2_UI 本体** | `USE_SOCIAL_WINDOW`、`MAIL_SKIN_ENABLED`、`MAILBOX_POSITION`、`SOCIAL_POSITION`、`CHAT_BUTTONS_POSITION`；另外 ActionBar 用到 `MultiBarXXX.size`（动作条 2-8 尺寸）、`castingbar_pos_scale`（施法条缩放）、`MageBar_pos` 与 `MainActionBar_pos`（法师条 / 主条位置），Toolbar 用四个 `GW2PlusToolbar*Pos` 键保存编辑界面位置 |
 
 最后一行值得注意：社交窗口和邮件的开关、位置记忆用的都是 **GW2_UI 自己的存档**，
 不是我们的。这是有意的——它们本来就是本体的功能，只是上游用 `hidden` 把经典旧世的开关挡住了，
@@ -182,7 +189,13 @@ skins/NovaWorldBuffs_zhCN.lua
 ├── 动作条        全局渐隐 / 按钮尺寸 / 血球与施法条 / 法师动作条  ActionBar/Options.lua
 ├── 频道按钮      ChatBar 全部选项                      ChatBar/Options.lua
 ├── 聊天窗口      位置大小 / 外观 / 消息过滤            ChatWindow/Options.lua
-└── 界面皮肤      专业面板 / 邮件界面 / 社交窗口        skins/Options.lua
+├── 界面皮肤      专业面板 / 邮件界面 / 社交窗口        skins/Options.lua
+├── 插件悬浮按钮  小地图第三方插件按钮收纳              Minimap/Options.lua
+└── 工具条
+    ├── 队伍管理  原生入口，仅组队时显示
+    ├── 快捷条    离队、传送、转换、重置、时间、职责、就位、倒计时
+    ├── 标记条    八种目标标记与清除
+    └── 性能条    FPS、本地延迟、世界延迟
 ```
 
 走的是 GW2_UI 的官方外部面板 API，文档在 `GW2_UI/AddonSettingIntegrationReadMe.md`。
