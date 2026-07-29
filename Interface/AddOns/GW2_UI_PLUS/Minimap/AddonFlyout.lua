@@ -293,7 +293,6 @@ local function EnsureToggle()
         end
     end
 
-    ScanToggleButtons(toggle)
     if toggle.GetNumPoints and toggle:GetNumPoints() == 0
         and Minimap then
         toggle:SetPoint(
@@ -324,6 +323,8 @@ function Flyout.Disable()
         return
     end
 
+    local toggle = Flyout.GetToggle()
+    ScanToggleButtons(toggle)
     for _, button in ipairs(managedButtons) do
         local state = buttonStates[button]
         if state then RestoreButton(button, state) end
@@ -331,7 +332,6 @@ function Flyout.Disable()
     end
     managedButtons = {}
 
-    local toggle = Flyout.GetToggle()
     if toggle then
         if toggle.container then toggle.container:Hide() end
         toggle.gw_Showing = false
@@ -352,6 +352,7 @@ function Flyout.Apply()
         return
     end
 
+    ScanToggleButtons(toggle)
     ScanButtons()
     UpdateButtons(toggle)
 end
@@ -377,7 +378,6 @@ driver:RegisterEvent("ADDON_LOADED")
 driver:SetScript("OnEvent", function(self, event)
     if event == "PLAYER_REGEN_ENABLED"
         or event == "PET_BATTLE_CLOSE" then
-        self:UnregisterEvent(event)
         if pendingRefresh and not IsBlocked() then
             pendingRefresh = false
             self:UnregisterEvent("PLAYER_REGEN_ENABLED")

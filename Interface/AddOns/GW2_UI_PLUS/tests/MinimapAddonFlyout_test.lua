@@ -215,14 +215,26 @@ assert(adoptedButton:GetParent() == Minimap,
     "接管已有入口时也应纳管并恢复其中的插件按钮")
 
 Flyout.SetEnabled(true)
+local blockedAdoptedButton =
+    NewFrame("LibDBIcon10_Blocked", firstToggle.container, 32, "Button")
+blockedAdoptedButton:SetPoint(
+    "RIGHT", firstToggle.container, "RIGHT", -59, 0)
 petBattle = true
+Flyout.Apply()
+assert(blockedAdoptedButton:GetWidth() == 32,
+    "宠物对战中不得提前修改待接管按钮")
 Flyout.SetEnabled(false)
 assert(driverFrame.events.PET_BATTLE_CLOSE == true,
     "宠物对战中延后的操作应监听宠物对战结束")
+driverFrame.scripts.OnEvent(driverFrame, "PET_BATTLE_CLOSE")
+assert(driverFrame.events.PET_BATTLE_CLOSE == true,
+    "首次关闭事件仍处于宠物对战时应继续监听")
 petBattle = false
 driverFrame.scripts.OnEvent(driverFrame, "PET_BATTLE_CLOSE")
 assert(adoptedButton:GetParent() == Minimap,
     "宠物对战结束后应立即应用延后的恢复")
+assert(blockedAdoptedButton:GetParent() == Minimap,
+    "宠物对战结束后应接管并恢复入口内遗留按钮")
 
 Flyout.SetEnabled(true)
 scheduledDelays = {}
