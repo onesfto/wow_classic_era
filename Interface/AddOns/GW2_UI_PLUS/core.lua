@@ -215,6 +215,16 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
         table.insert(subPanels, {name = "界面皮肤", frame = skinsFrame, icon = "Interface\\Icons\\Trade_Engineering"})
     end
 
+    if addonTable.BuildMinimapAddonFlyoutPanel then
+        local minimapFlyoutFrame =
+            addonTable.BuildMinimapAddonFlyoutPanel(p)
+        table.insert(subPanels, {
+            name = "插件悬浮按钮",
+            frame = minimapFlyoutFrame,
+            icon = "Interface\\AddOns\\GW2_UI\\textures\\icons\\addondropout.png",
+        })
+    end
+
     settingsTab:AddSettingsPanel(p, "附加组件", "额外附加组件", subPanels, true)
 
     if addonTable.BuildActionBarTab then
