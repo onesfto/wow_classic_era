@@ -3,9 +3,13 @@
 local _, addonTable = ...
 local Skin = addonTable.Skin
 if not Skin then return end
+local GW = _G.GW2_ADDON
 
 local STATUS_BAR_TEXTURE =
     "Interface/AddOns/GW2_UI/textures/uistuff/gwstatusbar.png"
+local EXPAND_ARROW_TEXTURE = "Interface\\ChatFrame\\ChatFrameExpandArrow"
+local dropDownProxies = {}
+local dropDownTextHooked
 
 local function Rounded(value)
     return value and math.floor(value + 0.5)
@@ -56,6 +60,79 @@ local function IsDropDown(frame)
         and frame.Button and (frame.Left or frame.Middle or frame.Right)
 end
 
+local function GetDropDownText(dropDown)
+    if dropDown and dropDown.Text and dropDown.Text.GetText then
+        return dropDown.Text:GetText()
+    end
+    if _G.UIDropDownMenu_GetText then
+        return _G.UIDropDownMenu_GetText(dropDown)
+    end
+end
+
+local function RegisterDropDownProxy(legacyDropDown, dropDown)
+    dropDownProxies[legacyDropDown] = dropDown
+    if dropDownTextHooked
+        or not _G.hooksecurefunc
+        or type(_G.UIDropDownMenu_SetText) ~= "function" then
+        return
+    end
+
+    dropDownTextHooked = true
+    _G.hooksecurefunc("UIDropDownMenu_SetText", function(source, text)
+        local proxy = dropDownProxies[source]
+        if proxy then proxy:SetText(text or "") end
+    end)
+end
+
+local function CreateDropDownProxy(frame, legacyDropDown)
+    if legacyDropDown.__gwMyslotDropDownProxy then return end
+
+    local legacyWidth = legacyDropDown.GetWidth
+        and legacyDropDown:GetWidth() or 240
+    local width = math.max(1, legacyWidth - 40)
+    local dropDown = CreateFrame(
+        "DropdownButton", nil, frame, "WowStyle1DropdownTemplate"
+    )
+    dropDown:SetSize(width, 25)
+    dropDown:SetPoint("LEFT", legacyDropDown, "LEFT", 16, 0)
+    dropDown:EnableMouse(true)
+    if dropDown.Enable then dropDown:Enable() end
+    if dropDown.RegisterForClicks then
+        dropDown:RegisterForClicks("LeftButtonUp")
+    end
+    if GW and GW.NoOp then dropDown.OnButtonStateChanged = GW.NoOp end
+    if dropDown.GwHandleDropDownBox then
+        dropDown:GwHandleDropDownBox(nil, nil, nil, width)
+    end
+    dropDown:SetText(GetDropDownText(legacyDropDown) or "")
+    dropDown:SetScript("OnClick", function(self)
+        if _G.ToggleDropDownMenu then
+            _G.ToggleDropDownMenu(1, nil, legacyDropDown, self, 0, 0)
+        end
+    end)
+    dropDown:HookScript("OnShow", function(self)
+        self:SetText(GetDropDownText(legacyDropDown) or "")
+    end)
+    RegisterDropDownProxy(legacyDropDown, dropDown)
+
+    legacyDropDown:SetAlpha(0)
+    legacyDropDown:EnableMouse(false)
+    if legacyDropDown.Button then
+        legacyDropDown.Button:EnableMouse(false)
+    end
+    legacyDropDown.__gwMyslotDropDownProxy = dropDown
+end
+
+local function PromoteExpandArrow(button)
+    if not button or not button.GetRegions then return end
+    for _, region in ipairs({ button:GetRegions() }) do
+        if region.GetTexture and region:GetTexture() == EXPAND_ARROW_TEXTURE then
+            if region.SetDrawLayer then region:SetDrawLayer("OVERLAY", 7) end
+            if region.Show then region:Show() end
+        end
+    end
+end
+
 local function SkinTextArea(frame)
     local scrollFrame = FindDirectChild(frame, "ScrollFrame")
     if not scrollFrame then return false end
@@ -86,9 +163,9 @@ local function SkinMainFrame(frame)
         local objectType = child.GetObjectType and child:GetObjectType()
         if objectType == "Button" then
             Skin.SkinButton(child)
+            PromoteExpandArrow(child)
         elseif IsDropDown(child) then
-            Skin.SkinDropDown(child,
-                child.GetWidth and child:GetWidth())
+            CreateDropDownProxy(frame, child)
         elseif objectType == "Frame" then
             SkinTextArea(child)
         end
