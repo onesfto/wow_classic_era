@@ -54,6 +54,7 @@ skins/Options.lua
 core.lua
 skins/Core.lua
 skins/BugSack.lua
+skins/SimpleRaidTargetIcons.lua
 skins/MailLogger.lua
 skins/NovaWorldBuffs.lua
 skins/NovaWorldBuffs_zhCN.lua
