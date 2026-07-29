@@ -1,6 +1,8 @@
 local openSackHook
 local fontObjectHook
 local bodyText
+local closeButton
+local unrelatedButton
 
 UNIT_NAME_FONT = "GWDefaultFont"
 
@@ -40,6 +42,17 @@ local function NewFrame(regions, children)
     return frame
 end
 
+local function NewButton(onClick)
+    local button = NewFrame()
+    function button:GetObjectType()
+        return "Button"
+    end
+    function button:GetScript(scriptType)
+        if scriptType == "OnClick" then return onClick end
+    end
+    return button
+end
+
 local function NewTab()
     local tab = NewFrame()
     function tab:GwSkinTab()
@@ -61,6 +74,16 @@ function Skin.SkinScrollBar(scrollBar)
         scrollBar.scrollBarSkinCalls = (scrollBar.scrollBarSkinCalls or 0) + 1
     end
 end
+function Skin.SkinButton(button)
+    if button then
+        button.buttonSkinCalls = (button.buttonSkinCalls or 0) + 1
+    end
+end
+function Skin.SkinClose(button)
+    if button then
+        button.closeSkinCalls = (button.closeSkinCalls or 0) + 1
+    end
+end
 
 function hooksecurefunc(target, method, func)
     if target == BugSack and method == "OpenSack" then
@@ -73,6 +96,7 @@ function hooksecurefunc(target, method, func)
 end
 
 BugSack = {}
+function BugSack:CloseSack() end
 function BugSack:OpenSack()
     if BugSackFrame then return end
 
@@ -88,7 +112,15 @@ function BugSack:OpenSack()
     BugSackTabAll = NewTab()
     BugSackTabSession = NewTab()
     BugSackTabLast = NewTab()
-    BugSackFrame = NewFrame({ bodyText }, { BugSackScroll })
+    BugSackPrevButton = NewButton()
+    BugSackSendButton = NewButton()
+    BugSackNextButton = NewButton()
+    closeButton = NewButton(BugSack.CloseSack)
+    unrelatedButton = NewButton(function() end)
+    BugSackFrame = NewFrame(
+        { bodyText },
+        { BugSackScroll, closeButton, unrelatedButton }
+    )
 end
 
 local addonTable = { Skin = Skin }
@@ -111,6 +143,14 @@ assert(BugSackTabAll.tabSkinCalls == 1
     "三个标签页都应应用 GW2 材质")
 assert(BugSackScroll.scrollFrameSkinCalls == 1, "滚动区域应应用 GW2 材质")
 assert(BugSackScrollScrollBar.scrollBarSkinCalls == 1, "滚动条应应用 GW2 材质")
+assert(BugSackPrevButton.buttonSkinCalls == 1
+    and BugSackSendButton.buttonSkinCalls == 1
+    and BugSackNextButton.buttonSkinCalls == 1,
+    "三个底部按钮都应应用 GW2 普通按钮材质")
+assert(closeButton.closeSkinCalls == 1,
+    "右上角关闭按钮应应用 GW2 关闭按钮材质")
+assert(not unrelatedButton.buttonSkinCalls and not unrelatedButton.closeSkinCalls,
+    "无关按钮不得被误处理")
 
 assert(bodyText.fontPath == UNIT_NAME_FONT and bodyText.fontSize == 13
     and bodyText.fontFlags == "OUTLINE",
@@ -128,7 +168,9 @@ assert(BugSackScrollText.fontPath == UNIT_NAME_FONT
 openSackHook(BugSack)
 assert(BugSackFrame.skinFrameCalls == 1
     and BugSackTabAll.tabSkinCalls == 1
-    and BugSackScroll.scrollFrameSkinCalls == 1,
+    and BugSackScroll.scrollFrameSkinCalls == 1
+    and BugSackPrevButton.buttonSkinCalls == 1
+    and closeButton.closeSkinCalls == 1,
     "重复打开窗口不得重复应用皮肤")
 
 print("BugSackSkin_test: OK")

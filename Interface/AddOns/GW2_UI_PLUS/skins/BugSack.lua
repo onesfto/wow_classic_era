@@ -27,6 +27,30 @@ local function ApplyFonts(frame)
     end
 end
 
+local function SkinBottomButtons()
+    for _, name in ipairs({
+        "BugSackPrevButton",
+        "BugSackSendButton",
+        "BugSackNextButton",
+    }) do
+        Skin.SkinButton(_G[name])
+    end
+end
+
+local function SkinCloseButton(frame)
+    local bugSack = _G.BugSack
+    if not frame or not frame.GetChildren or not bugSack then return end
+
+    for _, child in ipairs({ frame:GetChildren() }) do
+        if child.GetObjectType and child:GetObjectType() == "Button"
+            and child.GetScript
+            and child:GetScript("OnClick") == bugSack.CloseSack then
+            Skin.SkinClose(child)
+            return
+        end
+    end
+end
+
 local function ApplyWindowSkin()
     local frame = _G.BugSackFrame
     if not frame or frame.__gwBugSackSkinned then return end
@@ -48,6 +72,8 @@ local function ApplyWindowSkin()
     Skin.SkinScrollBar(_G.BugSackScrollScrollBar
         or (scroll and scroll.ScrollBar))
 
+    SkinBottomButtons()
+    SkinCloseButton(frame)
     ApplyFonts(frame)
 
     local textArea = _G.BugSackScrollText
