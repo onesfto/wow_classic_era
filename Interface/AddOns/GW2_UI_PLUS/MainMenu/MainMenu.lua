@@ -126,64 +126,6 @@ local function HideEmbeddedFader(panel, faderLabel)
         filtered, ScrollBoxConstants.RetainScrollPosition)
 end
 
-local function MergeTargetOfTargetSettings(
-    targetPanel, targetOfTargetPanel, faderLabel)
-    if not targetPanel or not targetOfTargetPanel
-        or targetPanel.__gwPlusTargetOfTargetMerged then
-        return
-    end
-
-    local targetScrollBox = targetPanel.scroll
-        and targetPanel.scroll.ScrollBox
-    local targetProvider = targetScrollBox
-        and targetScrollBox:GetDataProvider()
-    local sourceScrollBox = targetOfTargetPanel.scroll
-        and targetOfTargetPanel.scroll.ScrollBox
-    local sourceProvider = sourceScrollBox
-        and sourceScrollBox:GetDataProvider()
-    if not targetProvider or not sourceProvider then return end
-
-    targetPanel.gwOptions = targetPanel.gwOptions or {}
-    for _, option in ipairs(targetOfTargetPanel.gwOptions or {}) do
-        if not IsFaderOption(option, faderLabel) then
-            targetPanel.gwOptions[#targetPanel.gwOptions + 1] = option
-        end
-    end
-
-    local merged = CreateDataProvider()
-    local rowIndex = 0
-    targetProvider:ForEach(function(data)
-        rowIndex = rowIndex + 1
-        merged:Insert({
-            index = rowIndex,
-            kind = data.kind,
-            cols = data.cols,
-            panel = targetPanel,
-        })
-    end)
-    sourceProvider:ForEach(function(data)
-        local cols = {}
-        for _, option in ipairs(data.cols or {}) do
-            if not IsFaderOption(option, faderLabel) then
-                cols[#cols + 1] = option
-            end
-        end
-        if data.kind or #cols > 0 then
-            rowIndex = rowIndex + 1
-            merged:Insert({
-                index = rowIndex,
-                kind = data.kind,
-                cols = data.kind and data.cols or cols,
-                panel = targetPanel,
-            })
-        end
-    end)
-
-    targetScrollBox:SetDataProvider(
-        merged, ScrollBoxConstants.RetainScrollPosition)
-    targetPanel.__gwPlusTargetOfTargetMerged = true
-end
-
 local function CopyMap(source)
     if not source then return nil end
     local copy = {}
@@ -390,11 +332,8 @@ local function PrepareUnitFrameSettings(settingsTab)
     local faderLabel = GW2_ADDON.L and GW2_ADDON.L["Fader"]
         or "隐藏器"
     HideEmbeddedFader(embeddedPanels.target_general, faderLabel)
+    HideEmbeddedFader(embeddedPanels.target_of_target, faderLabel)
     HideEmbeddedFader(embeddedPanels.player_pet, faderLabel)
-    MergeTargetOfTargetSettings(
-        embeddedPanels.target_general,
-        embeddedPanels.target_of_target,
-        faderLabel)
     PreparePlayerAuraPanel(embeddedPanels.player_aura)
     if addonTable.PreparePlayerResourcePanel then
         local panel = addonTable.PreparePlayerResourcePanel(
@@ -596,6 +535,7 @@ local function BuildMainMenuTab(settingsTab, settingsWindow)
         CreateMenuButton(definition[1], definition[2], false, true)
     end
     CreateMenuButton("目标", "target_general", false, false)
+    CreateMenuButton("目标的目标", "target_of_target", false, false)
     CreateMenuButton("宠物", "player_pet", false, false)
     CreateMenuButton("小队", "party_general", false, false)
 

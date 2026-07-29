@@ -7,6 +7,29 @@ end
 
 local mainMenu = Read("MainMenu/MainMenu.lua")
 local playerAuras = Read("MainMenu/PlayerAuras.lua")
+local targetMenuPos = assert(mainMenu:find(
+    'CreateMenuButton("目标", "target_general", false, false)',
+    1, true), "框体菜单必须包含目标入口")
+local targetOfTargetMenuPos = assert(mainMenu:find(
+    'CreateMenuButton("目标的目标", "target_of_target", false, false)',
+    1, true), "框体菜单必须包含独立的目标的目标入口")
+local petMenuPos = assert(mainMenu:find(
+    'CreateMenuButton("宠物", "player_pet", false, false)',
+    1, true), "框体菜单必须包含宠物入口")
+assert(targetMenuPos < targetOfTargetMenuPos
+    and targetOfTargetMenuPos < petMenuPos,
+    "目标的目标必须排列在目标与宠物之间")
+assert(not mainMenu:find("MergeTargetOfTargetSettings", 1, true),
+    "目标页面不能继续合并目标的目标设置")
+assert(mainMenu:find(
+        "HideEmbeddedFader(embeddedPanels.target_general, faderLabel)",
+        1, true)
+    and mainMenu:find(
+        "HideEmbeddedFader(embeddedPanels.target_of_target, faderLabel)",
+        1, true),
+    "目标与目标的目标页面都必须隐藏原生隐藏器")
+assert(not mainMenu:find("RAID_STYLE_PARTY_AND_FRAMES", 1, true),
+    "框体菜单不能处理小队的同时显示队伍和团队框架设置")
 for _, required in ipairs({
     '{"增益光环", "player_buff_aura"}',
     '{"减益光环", "player_debuff_aura"}',
