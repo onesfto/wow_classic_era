@@ -113,8 +113,15 @@ local trackingButton =
     NewFrame("MiniMapTracking", Minimap, 32, "Button")
 trackingButton:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, 0)
 
-C_Timer = {After = function(_, callback) callback() end}
-C_PetBattles = {IsInBattle = function() return false end}
+local petBattle = false
+local scheduledDelays = {}
+C_Timer = {
+    After = function(delay, callback)
+        scheduledDelays[#scheduledDelays + 1] = delay
+        callback()
+    end,
+}
+C_PetBattles = {IsInBattle = function() return petBattle end}
 function InCombatLockdown() return false end
 function UIFrameFadeIn(frame) frame:Show() end
 function UIFrameFadeOut(frame) frame:Hide() end
@@ -142,6 +149,8 @@ assert(loadfile("Minimap/AddonFlyout.lua"))(
 
 local Flyout = assert(addonTable.MinimapAddonFlyout,
     "应导出独立插件悬浮按钮模块")
+local driverFrame = assert(createdFrames[1],
+    "模块应创建事件驱动框")
 local db = Flyout.InitDB()
 assert(db.minimapAddonFlyoutEnabled == true,
     "插件悬浮按钮首次应默认开启")
@@ -195,5 +204,36 @@ assert(addonButton:GetParent() == firstToggle.container,
     "关闭 GW2_UI 小地图时仍应收纳插件按钮")
 assert(createdToggleCount == 1,
     "重新启用仍应复用现有入口")
+
+local adoptedButton =
+    NewFrame("LibDBIcon10_Adopted", firstToggle.container, 32, "Button")
+adoptedButton:SetPoint(
+    "RIGHT", firstToggle.container, "RIGHT", -32, 0)
+Flyout.Apply()
+Flyout.SetEnabled(false)
+assert(adoptedButton:GetParent() == Minimap,
+    "接管已有入口时也应纳管并恢复其中的插件按钮")
+
+Flyout.SetEnabled(true)
+petBattle = true
+Flyout.SetEnabled(false)
+assert(driverFrame.events.PET_BATTLE_CLOSE == true,
+    "宠物对战中延后的操作应监听宠物对战结束")
+petBattle = false
+driverFrame.scripts.OnEvent(driverFrame, "PET_BATTLE_CLOSE")
+assert(adoptedButton:GetParent() == Minimap,
+    "宠物对战结束后应立即应用延后的恢复")
+
+Flyout.SetEnabled(true)
+scheduledDelays = {}
+driverFrame.scripts.OnEvent(driverFrame, "ADDON_LOADED")
+local hasOneSecondScan
+local hasFiveSecondScan
+for _, delay in ipairs(scheduledDelays) do
+    if delay == 1 then hasOneSecondScan = true end
+    if delay == 5 then hasFiveSecondScan = true end
+end
+assert(hasOneSecondScan and hasFiveSecondScan,
+    "插件加载后应安排两次扫描以发现较晚创建的小地图按钮")
 
 print("MinimapAddonFlyout_test: OK")

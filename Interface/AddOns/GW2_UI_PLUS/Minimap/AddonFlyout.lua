@@ -84,6 +84,7 @@ local driver = CreateFrame("Frame")
 local function QueueRefresh()
     pendingRefresh = true
     driver:RegisterEvent("PLAYER_REGEN_ENABLED")
+    driver:RegisterEvent("PET_BATTLE_CLOSE")
 end
 
 local function CapturePoints(button)
@@ -154,18 +155,42 @@ local function SkinButton(button)
     end
 end
 
-local function CaptureButton(button)
+local function CaptureButton(button, restoreToMinimap)
+    if restoreToMinimap then
+        for _, methodName in ipairs(lockedMethods) do
+            if button[methodName] == GW.NoOp then
+                button[methodName] = nil
+            end
+        end
+    end
+
     local methods = {}
     for _, methodName in ipairs(lockedMethods) do
         methods[methodName] = button[methodName]
     end
 
+    local points = CapturePoints(button)
+    local parent = button:GetParent()
+    local width = button:GetWidth()
+    local height = button.GetHeight and button:GetHeight()
+        or width
+    if restoreToMinimap and Minimap then
+        local restoreIndex = #managedButtons
+        parent = Minimap
+        points = {{
+            "TOPLEFT", Minimap, "TOPLEFT",
+            (restoreIndex % 6) * 26,
+            -math.floor(restoreIndex / 6) * 26,
+        }}
+        width = 32
+        height = 32
+    end
+
     local state = {
-        parent = button:GetParent(),
-        points = CapturePoints(button),
-        width = button:GetWidth(),
-        height = button.GetHeight and button:GetHeight()
-            or button:GetWidth(),
+        parent = parent,
+        points = points,
+        width = width,
+        height = height,
         scale = button:GetScale(),
         strata = button:GetFrameStrata(),
         level = button:GetFrameLevel(),
@@ -176,11 +201,22 @@ local function CaptureButton(button)
     SkinButton(button)
 end
 
-local function ScanButtons()
-    if not Minimap or not Minimap.GetChildren then return end
-    for _, child in ipairs({Minimap:GetChildren()}) do
-        if IsCandidate(child) then CaptureButton(child) end
+local function ScanFrameChildren(frame, restoreToMinimap)
+    if not frame or not frame.GetChildren then return end
+    for _, child in ipairs({frame:GetChildren()}) do
+        if IsCandidate(child) then
+            CaptureButton(child, restoreToMinimap)
+        end
     end
+end
+
+local function ScanButtons()
+    ScanFrameChildren(Minimap, false)
+end
+
+local function ScanToggleButtons(toggle)
+    ScanFrameChildren(toggle and toggle.container, true)
+    ScanFrameChildren(toggle, true)
 end
 
 local function SetToggleVisible(toggle, visible)
@@ -257,6 +293,7 @@ local function EnsureToggle()
         end
     end
 
+    ScanToggleButtons(toggle)
     if toggle.GetNumPoints and toggle:GetNumPoints() == 0
         and Minimap then
         toggle:SetPoint(
@@ -338,10 +375,13 @@ GW.UpdateMinimapButtonsSack = Flyout.Refresh
 driver:RegisterEvent("PLAYER_LOGIN")
 driver:RegisterEvent("ADDON_LOADED")
 driver:SetScript("OnEvent", function(self, event)
-    if event == "PLAYER_REGEN_ENABLED" then
+    if event == "PLAYER_REGEN_ENABLED"
+        or event == "PET_BATTLE_CLOSE" then
         self:UnregisterEvent(event)
-        if pendingRefresh then
+        if pendingRefresh and not IsBlocked() then
             pendingRefresh = false
+            self:UnregisterEvent("PLAYER_REGEN_ENABLED")
+            self:UnregisterEvent("PET_BATTLE_CLOSE")
             Flyout.Refresh()
         end
     elseif event == "PLAYER_LOGIN" then
@@ -349,5 +389,6 @@ driver:SetScript("OnEvent", function(self, event)
         C_Timer.After(0, Flyout.Refresh)
     elseif Flyout.IsEnabled() then
         C_Timer.After(1, Flyout.Refresh)
+        C_Timer.After(5, Flyout.Refresh)
     end
 end)
