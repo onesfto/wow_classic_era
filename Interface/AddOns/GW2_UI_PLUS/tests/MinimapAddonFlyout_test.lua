@@ -72,6 +72,7 @@ local function NewFrame(name, parent, width, objectType)
     function frame:GetWidth() return self.width end
     function frame:GetHeight() return self.height end
     function frame:SetWidth(value) self.width = value end
+    function frame:SetHeight(value) self.height = value end
     function frame:SetSize(widthValue, heightValue)
         self.width = widthValue
         self.height = heightValue
@@ -138,6 +139,15 @@ addonButton:AddRegion(roundBorder)
 addonButton:AddRegion(addonIcon)
 local originalPoint, originalRelativeTo, originalRelativePoint,
     originalX, originalY = addonButton:GetPoint(1)
+
+local layoutButtons = {addonButton}
+for index = 2, 9 do
+    local button = NewFrame(
+        "LibDBIcon10_Layout" .. index,
+        Minimap, 32, "Button")
+    button:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 4, -4)
+    layoutButtons[index] = button
+end
 
 local trackingButton =
     NewFrame("MiniMapTracking", Minimap, 32, "Button")
@@ -222,6 +232,20 @@ assert(togglePoint == "LEFT" and toggleRelativeTo == Minimap
     and toggleRelativePoint == "RIGHT"
     and toggleX == 4 and toggleY == 0,
     "悬浮入口应位于小地图右侧正中")
+local _, _, _, firstX, firstY =
+    layoutButtons[1]:GetPoint(1)
+local _, _, _, eighthX, eighthY =
+    layoutButtons[8]:GetPoint(1)
+local _, _, _, ninthX, ninthY =
+    layoutButtons[9]:GetPoint(1)
+assert(firstY == eighthY,
+    "前 8 个按钮应位于同一排")
+assert(ninthX == firstX and ninthY ~= firstY,
+    "第 9 个按钮应从第二排第一列开始")
+assert(firstToggle.container:GetWidth() == 226,
+    "八列容器宽度应为 226")
+assert(firstToggle.container:GetHeight() == 64,
+    "两排容器高度应为 64")
 assert(trackingButton:GetParent() == Minimap,
     "暴雪原生小地图控件不应被收纳")
 

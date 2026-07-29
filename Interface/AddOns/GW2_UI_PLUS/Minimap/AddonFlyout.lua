@@ -293,26 +293,42 @@ local function SetToggleVisible(toggle, visible)
 end
 
 local function UpdateButtons(toggle)
-    local shownCount = 0
+    local shownButtons = {}
     for _, button in ipairs(managedButtons) do
         if button:IsShown() then
-            local state = buttonStates[button]
-            RestoreMethods(button, state)
-            button:SetParent(toggle.container)
-            button:ClearAllPoints()
-            button:SetPoint(
-                "RIGHT", toggle.container, "RIGHT",
-                -5 - (shownCount * 27), 0)
-            button:SetScale(1)
-            button:SetFrameStrata("MEDIUM")
-            button:SetFrameLevel(toggle.container:GetFrameLevel() + 1)
-            LockMethods(button)
-            shownCount = shownCount + 1
+            shownButtons[#shownButtons + 1] = button
         end
     end
 
+    local shownCount = #shownButtons
+    local rowCount = shownCount > 0
+        and math.ceil(shownCount / 8) or 0
+    local maxColumns = math.min(shownCount, 8)
+
+    for index, button in ipairs(shownButtons) do
+        local state = buttonStates[button]
+        local zeroIndex = index - 1
+        local column = zeroIndex % 8
+        local row = math.floor(zeroIndex / 8)
+        local yOffset =
+            ((rowCount - 1) * 27 / 2) - (row * 27)
+
+        RestoreMethods(button, state)
+        button:SetParent(toggle.container)
+        button:ClearAllPoints()
+        button:SetPoint(
+            "RIGHT", toggle.container, "RIGHT",
+            -5 - (column * 27), yOffset)
+        button:SetScale(1)
+        button:SetFrameStrata("MEDIUM")
+        button:SetFrameLevel(toggle.container:GetFrameLevel() + 1)
+        LockMethods(button)
+    end
+
     toggle.container:SetWidth(
-        shownCount > 0 and (shownCount * 27 + 8) or 10)
+        shownCount > 0 and (maxColumns * 27 + 10) or 10)
+    toggle.container:SetHeight(
+        shownCount > 0 and (rowCount * 27 + 10) or 10)
     toggle.gw_Showing = shownCount > 0
     if shownCount > 0 then
         toggle:Show()
