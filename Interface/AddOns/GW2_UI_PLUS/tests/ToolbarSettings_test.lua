@@ -23,6 +23,12 @@ assert(not options:find("战斗记录", 1, true),
     "快捷条设置不得出现战斗记录")
 assert(options:find('"试听语音"', 1, true),
     "快捷条必须提供读秒语音试听")
+for _, removedRule in ipairs({
+    "没有目标时隐藏", "单人时隐藏", "没有标记权限时隐藏",
+}) do
+    assert(not options:find(removedRule, 1, true),
+        "标记条只保留启用、缩放和重置：" .. removedRule)
+end
 
 local performance = assert(options:match(
     'AddGroupHeader%("性能条"%)%s*(.-)%s*return panel'),

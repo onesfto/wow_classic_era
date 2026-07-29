@@ -194,9 +194,12 @@ skins/NovaWorldBuffs_zhCN.lua
 └── 工具条
     ├── 队伍管理  原生入口，仅组队时显示
     ├── 快捷条    离队、传送、转换、重置、时间、职责、就位、倒计时
-    ├── 标记条    八种目标标记与清除
+    ├── 标记条    八种目标标记与清除，启用后常驻
     └── 性能条    FPS、本地延迟、世界延迟
 ```
+
+四个工具条的 mover 始终保留在 GW2_UI 编辑界面中，与功能当前是否启用、
+是否因组队状态隐藏无关；这样单人或功能关闭时也能预先调整位置。
 
 走的是 GW2_UI 的官方外部面板 API，文档在 `GW2_UI/AddonSettingIntegrationReadMe.md`。
 新增一个子面板：写个返回 panel 的 `BuildXxxPanel(parent)`，挂到 `addonTable`，

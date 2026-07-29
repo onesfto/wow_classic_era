@@ -33,9 +33,16 @@ end
 assert(core:find("GW.RegisterMovableFrame", 1, true),
     "四个模块必须通过公共接口注册 mover")
 assert(core:find("GW.ToggleMover", 1, true),
-    "模块开关必须同步 mover")
+    "模块必须同步 mover")
+assert(core:find("GW.ToggleMover(mover, true)", 1, true),
+    "四个 mover 必须始终加入编辑界面")
+assert(not core:find("GW.ToggleMover(mover, enabled == true)", 1, true),
+    "功能关闭时也不能从编辑界面移除 mover")
 assert(core:find("OnProfileChanged", 1, true),
     "切换 GW2_UI 配置档后必须重绑 mover")
+assert(core:find('RegisterEvent("PLAYER_ENTERING_WORLD")', 1, true)
+    and core:find("Toolbar.RefreshAll()", 1, true),
+    "进入世界后必须补建四个框体和 mover")
 
 assert(groupManage:find("GW.CreateRaidControlFrame", 1, true),
     "队伍管理应确保 GW2_UI 原框体已创建")
@@ -85,12 +92,10 @@ end
 assert(not markerBar:find("worldmarker", 1, true)
     and not markerBar:find("PlaceRaidMarker", 1, true),
     "Classic Era 标记条不得创建地面标记")
-for _, key in ipairs({
-    "hideNoTarget", "hideSolo", "hideNoPermission",
-}) do
-    assert(markerBar:find(key, 1, true),
-        "标记条缺少显隐规则：" .. key)
-end
+assert(not markerBar:find("hideNoTarget", 1, true)
+    and not markerBar:find("hideSolo", 1, true)
+    and not markerBar:find("hideNoPermission", 1, true),
+    "标记条启用后必须常驻，不得被自动显隐规则挡住")
 assert(markerBar:find(
         'Toolbar.RegisterMover("markerBar"', 1, true),
     "标记条必须注册独立 mover")
@@ -112,6 +117,9 @@ assert(not performanceBar:find("SetScale", 1, true),
 assert(performanceBar:find(
         'Toolbar.RegisterMover("performanceBar"', 1, true),
     "性能条必须注册独立 mover")
+assert(core:match(
+        'performanceBar%s*=%s*{%s*point%s*=%s*"TOPRIGHT".-xOfs%s*=%s*%-260'),
+    "性能条默认位置必须避开右上角小地图")
 
 local coreAt = assert(toc:find("Toolbar/Core.lua", 1, true))
 local groupAt = assert(toc:find("Toolbar/GroupManage.lua", 1, true))

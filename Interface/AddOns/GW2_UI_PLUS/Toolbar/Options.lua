@@ -178,24 +178,6 @@ local function BuildToolbarPanel(parent)
     panel:AddGroupHeader("标记条")
     AddEnable(panel, "markerBar", "GW2PlusToolbarMarkerBarEnable")
     AddScale(panel, "markerBar", "GW2PlusToolbarMarkerBarScale")
-    for _, rule in ipairs({
-        {"hideNoTarget", "没有目标时隐藏"},
-        {"hideSolo", "单人时隐藏"},
-        {"hideNoPermission", "没有标记权限时隐藏"},
-    }) do
-        local ruleKey = rule[1]
-        panel:AddOption(rule[2], nil, {
-            getter = function()
-                return Toolbar.InitDB().markerBar[ruleKey]
-            end,
-            setter = function(value)
-                Toolbar.markerBar.SetRule(ruleKey, value)
-            end,
-            getDefault = function()
-                return Toolbar.defaults.markerBar[ruleKey]
-            end,
-        })
-    end
     AddReset(panel, "markerBar", {
         "GW2PlusToolbarMarkerBarEnable",
         "GW2PlusToolbarMarkerBarScale",

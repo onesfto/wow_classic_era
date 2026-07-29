@@ -34,9 +34,6 @@ Toolbar.defaults = {
     markerBar = {
         enabled = false,
         scale = 1,
-        hideNoTarget = true,
-        hideSolo = false,
-        hideNoPermission = true,
     },
     performanceBar = {
         enabled = false,
@@ -87,7 +84,7 @@ Toolbar.moverDefaults = {
     performanceBar = {
         point = "TOPRIGHT",
         relativePoint = "TOPRIGHT",
-        xOfs = -20,
+        xOfs = -260,
         yOfs = -20,
         hasMoved = false,
     },
@@ -158,6 +155,14 @@ function Toolbar.EnsureMoverSetting(moduleKey)
     for key, value in pairs(default) do
         if saved[key] == nil then saved[key] = value end
     end
+    if moduleKey == "performanceBar"
+        and saved.hasMoved == false
+        and saved.point == "TOPRIGHT"
+        and saved.relativePoint == "TOPRIGHT"
+        and saved.xOfs == -20
+        and saved.yOfs == -20 then
+        saved.xOfs = default.xOfs
+    end
     return true
 end
 
@@ -193,11 +198,12 @@ function Toolbar.RegisterMover(moduleKey, frame, tags)
     return frame.gwMover
 end
 
-function Toolbar.SetMoverEnabled(moduleKey, enabled)
+function Toolbar.SetMoverEnabled(moduleKey)
     local module = Toolbar[moduleKey]
     local mover = module and module.frame and module.frame.gwMover
     if mover and GW and GW.ToggleMover then
-        GW.ToggleMover(mover, enabled == true)
+        -- 功能关闭或因状态隐藏时，mover 仍必须留在编辑界面。
+        GW.ToggleMover(mover, true)
     end
 end
 
@@ -337,4 +343,12 @@ profileDriver:SetScript("OnEvent", function(self)
         GW.globalSettings.RegisterCallback(
             Toolbar, "OnProfileChanged", Toolbar.RefreshAll)
     end
+end)
+
+local worldDriver = CreateFrame("Frame")
+worldDriver:RegisterEvent("PLAYER_ENTERING_WORLD")
+worldDriver:SetScript("OnEvent", function()
+    -- GW2_UI 在 Classic Era 的加载阶段较特殊；进入世界后统一补建一次，
+    -- 避免 PLAYER_LOGIN 时序导致运行框或 mover 漏注册。
+    Toolbar.RefreshAll()
 end)

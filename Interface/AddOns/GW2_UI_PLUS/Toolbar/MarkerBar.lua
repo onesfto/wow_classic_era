@@ -30,11 +30,7 @@ end
 
 local function ShouldShow()
     local db = Toolbar.InitDB().markerBar
-    if not db.enabled then return false end
-    if db.hideNoTarget and not UnitExists("target") then return false end
-    if db.hideSolo and not IsInGroup() then return false end
-    if db.hideNoPermission and not HasPermission() then return false end
-    return true
+    return db.enabled == true
 end
 
 local function ApplyVisibility()
@@ -134,13 +130,6 @@ end
 
 function MarkerBar.SetScale(value)
     Toolbar.InitDB().markerBar.scale = tonumber(value) or 1
-    MarkerBar.Refresh()
-end
-
-function MarkerBar.SetRule(key, value)
-    local db = Toolbar.InitDB().markerBar
-    if db[key] == nil then return end
-    db[key] = value == true
     MarkerBar.Refresh()
 end
 

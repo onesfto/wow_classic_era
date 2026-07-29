@@ -8,6 +8,12 @@
 
 **Tech Stack:** WoW Classic Era Lua 5.1、GW2_UI `GW.RegisterMovableFrame`、安全状态驱动和安全宏按钮、GW2_UI `GwSettingsPanelTmpl`、Lua 静态测试。
 
+> **2026-07-30 运行验收修订（覆盖下文旧实现细节）：**
+> 四个 mover 始终在 GW2_UI 编辑界面启用，不再跟随功能开关隐藏；
+> 标记条启用后常驻，没有目标或权限时仅置灰按钮；
+> 性能条默认 X 偏移改为 -260 以避开右上角小地图；
+> `PLAYER_ENTERING_WORLD` 统一补建四个运行框和 mover。
+
 ---
 
 ## 文件结构
