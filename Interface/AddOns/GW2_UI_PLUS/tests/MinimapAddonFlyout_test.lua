@@ -156,6 +156,14 @@ assert(type(GW2_ADDON.CreateMinimapButtonsSack) == "function",
 assert(type(GW2_ADDON.UpdateMinimapButtonsSack) == "function",
     "应接管 GW2_UI 的悬浮按钮刷新入口")
 
+GW2_UI_PLUS_SV.minimapAddonFlyoutEnabled = false
+GW2_ADDON.CreateMinimapButtonsSack()
+assert(Flyout.GetToggle() ~= nil,
+    "开关关闭时仍须为 GW2_UI 小地图提供兼容入口")
+assert(Flyout.GetToggle():IsShown() == false,
+    "开关关闭时兼容入口必须保持隐藏")
+Flyout.SetEnabled(true)
+
 Flyout.Apply()
 local firstToggle = Flyout.GetToggle()
 assert(firstToggle ~= nil, "开启时应创建插件悬浮入口")

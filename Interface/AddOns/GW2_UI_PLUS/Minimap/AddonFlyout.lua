@@ -304,6 +304,8 @@ function Flyout.Disable()
 end
 
 function Flyout.Apply()
+    local toggle = EnsureToggle()
+    if not toggle then return end
     if not Flyout.IsEnabled() then
         Flyout.Disable()
         return
@@ -313,8 +315,6 @@ function Flyout.Apply()
         return
     end
 
-    local toggle = EnsureToggle()
-    if not toggle then return end
     ScanButtons()
     UpdateButtons(toggle)
 end
