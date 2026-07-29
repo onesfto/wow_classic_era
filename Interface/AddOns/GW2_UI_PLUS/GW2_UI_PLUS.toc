@@ -19,6 +19,7 @@ fixes/Fixes.lua
 fixes/Spellbook.lua
 fixes/Diagnostics.lua
 alaGearMan/alaGearMan.xml
+Minimap/AddonFlyout.lua
 ChatBar/ChatBar.lua
 ChatBar/Options.lua
 ChatWindow/ChatWindow.lua
