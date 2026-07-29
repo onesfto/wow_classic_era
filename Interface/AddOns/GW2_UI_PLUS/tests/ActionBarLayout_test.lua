@@ -108,6 +108,9 @@ local function NewText(initialText)
     function text:SetFont(path, size, flags)
         self.fontPath, self.fontSize, self.fontFlags = path, size, flags
     end
+    function text:SetDrawLayer(layer, subLevel)
+        self.drawLayer, self.drawSubLevel = layer, subLevel
+    end
     return text
 end
 
@@ -124,6 +127,23 @@ local function NewButton()
     function button:CreateFontString() return NewText() end
     return button
 end
+
+local mainButton = NewButton()
+mainButton.hkBg = {}
+function mainButton.hkBg:ClearAllPoints() self.point = nil end
+function mainButton.hkBg:SetPoint(...) self.point = {...} end
+
+Layout.ApplyTextPosition(mainButton.HotKey, mainButton,
+    "BOTTOM", 0, 0, 12, true)
+assert(mainButton.HotKey.gwPlusProxy.drawLayer == "OVERLAY"
+    and mainButton.HotKey.gwPlusProxy.drawSubLevel == 7,
+    "主动作条快捷键代理必须固定在背景之上的绘制层级")
+
+local otherButton = NewButton()
+Layout.ApplyTextPosition(otherButton.HotKey, otherButton,
+    "TOPLEFT", 0, 0, 12, true)
+assert(otherButton.HotKey.gwPlusProxy.drawLayer == nil,
+    "没有快捷键背景的其他动作条不得应用主动作条专用层级")
 
 local frame = {gw_Buttons = {}}
 for index = 1, 12 do frame.gw_Buttons[index] = NewButton() end

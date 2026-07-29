@@ -118,6 +118,7 @@ local function EnsureTextProxy(source, button)
 
     -- 主动作条的快捷键背景锚在原生文字层上，跟着代理走
     if button.hkBg and source == button.HotKey then
+        if proxy.SetDrawLayer then proxy:SetDrawLayer("OVERLAY", 7) end
         button.hkBg:ClearAllPoints()
         button.hkBg:SetPoint("CENTER", proxy, "CENTER", 0, 0)
     end
