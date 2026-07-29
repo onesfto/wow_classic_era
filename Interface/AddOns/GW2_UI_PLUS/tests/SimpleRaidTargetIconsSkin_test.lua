@@ -1,5 +1,6 @@
 local optionsHook
 local fontHooks = {}
+local menuHooks = {}
 local bodyText
 local model
 local unrelatedButton
@@ -16,6 +17,7 @@ local function NewFont(path, size, flags)
         fontPath = path,
         fontSize = size,
         fontFlags = flags,
+        text = "",
     }
     function font:GetFont()
         return self.fontPath, self.fontSize, self.fontFlags
@@ -29,6 +31,15 @@ local function NewFont(path, size, flags)
         self.fontPath = fontObject.path
         self.fontSize = fontObject.size
         self.fontFlags = fontObject.flags
+    end
+    function font:SetText(text)
+        self.text = text
+    end
+    function font:GetText()
+        return self.text
+    end
+    function font:SetTextColor(r, g, b, a)
+        self.textColor = { r, g, b, a }
     end
     return font
 end
@@ -51,8 +62,14 @@ local function NewFrame(regions, children, objectType)
     return frame
 end
 
-local function NewButton()
-    return NewFrame({}, {}, "Button")
+local function NewButton(text)
+    local button = NewFrame({}, {}, "Button")
+    button.fontString = NewFont("ButtonFont", 12, "")
+    button.fontString:SetText(text or "")
+    function button:GetFontString()
+        return self.fontString
+    end
+    return button
 end
 
 local function NewCheckBox()
@@ -90,6 +107,8 @@ function hooksecurefunc(target, method, func)
         optionsHook = func
     elseif method == "SetFontObject" then
         fontHooks[target] = func
+    elseif target == SRTI.menu then
+        menuHooks[method] = func
     else
         error("unexpected hook: " .. tostring(method))
     end
@@ -97,6 +116,13 @@ end
 
 SRTI = {}
 function SRTI:Options()
+    SRTISaved = {
+        ctrl = true,
+        alt = false,
+        shift = false,
+        double = false,
+    }
+
     bodyText = NewFont("OriginalFont", 12, "OUTLINE")
     model = NewFrame()
     unrelatedButton = NewButton()
@@ -130,6 +156,20 @@ function SRTI:Options()
     menu.test = testFrame
     menu.thirdparty = thirdParty
     menu.thirdPartyCheck = thirdPartyCheck
+    menu.title = NewFont("OriginalFont", 14, "")
+    menu.optionheader = NewFont("OriginalFont", 12, "")
+    menu.singletext = NewFont("OriginalFont", 12, "")
+    menu.modifiertext = NewFont("OriginalFont", 12, "")
+    menu.doubletext = NewFont("OriginalFont", 12, "")
+    menu.bindingtext = NewFont("OriginalFont", 12, "")
+    menu.test.help = NewFont("OriginalFont", 11, "")
+
+    SRTIcb4Text = NewFont("OriginalFont", 12, "")
+    SRTIcb6Text = NewFont("OriginalFont", 12, "")
+    SRTIslider1Text = NewFont("OriginalFont", 12, "")
+    SRTIslider1Low = NewFont("OriginalFont", 11, "")
+    SRTIslider1High = NewFont("OriginalFont", 11, "")
+
     menu.closebutton = NewButton()
     menu.shift = NewCheckBox()
     menu.ctrl = NewCheckBox()
@@ -141,10 +181,13 @@ function SRTI:Options()
     menu.doublespeed = NewSlider()
     menu.hovertime = NewSlider()
     menu.radialscale = NewSlider()
-    menu.bindingkey1 = NewButton()
-    menu.bindingkey2 = NewButton()
+    menu.bindingkey1 = NewButton("|cffffd200未设置|r")
+    menu.bindingkey2 = NewButton("|cffffd200未设置|r")
     menu.unbindingkey1 = NewButton()
     menu.unbindingkey2 = NewButton()
+    menu.UpdateCB = function() end
+    menu.UpdateDouble = function() end
+    menu.UpdateBindings = function() end
     self.menu = menu
 end
 
@@ -187,6 +230,44 @@ assert(menu.unbindingkey1.closeSkinCalls == 1
 assert(not unrelatedButton.buttonSkinCalls and not unrelatedButton.closeSkinCalls,
     "无关按钮不得被误处理")
 assert(not model.frameSkinCalls, "角色模型不得应用面板皮肤")
+
+local function AssertColor(fontString, r, g, b, message)
+    local color = assert(fontString.textColor, message .. "：未设置颜色")
+    local epsilon = 0.001
+    assert(math.abs(color[1] - r) < epsilon
+        and math.abs(color[2] - g) < epsilon
+        and math.abs(color[3] - b) < epsilon, message)
+end
+
+AssertColor(menu.title, 1, 0.945, 0.8196, "窗口标题应使用暖白色")
+AssertColor(bodyText, 0.9, 0.9, 0.9, "普通正文应使用浅灰白色")
+AssertColor(menu.singletext, 1, 0.945, 0.8196,
+    "启用的单击分组标题应使用暖白色")
+AssertColor(menu.doubletext, 0.5, 0.5, 0.5,
+    "禁用的双击分组标题应使用灰色")
+AssertColor(menu.test.help, 0.5, 0.5, 0.5,
+    "测试说明应使用灰色")
+AssertColor(menu.bindingkey1:GetFontString(), 0.95, 0.95, 0.95,
+    "按键按钮文字应使用亮灰白色")
+assert(menu.bindingkey1:GetFontString():GetText() == "未设置",
+    "按键按钮文字应移除原生黄色颜色标签")
+
+SRTISaved.ctrl = false
+menuHooks.UpdateCB(menu)
+AssertColor(menu.singletext, 0.5, 0.5, 0.5,
+    "关闭全部修饰键后单击分组标题应变为禁用色")
+
+SRTISaved.double = true
+menuHooks.UpdateDouble(menu)
+AssertColor(menu.doubletext, 1, 0.945, 0.8196,
+    "启用双击后分组标题应恢复暖白色")
+AssertColor(SRTIcb6Text, 0.9, 0.9, 0.9,
+    "启用双击后相关选项应恢复正文色")
+
+menu.bindingkey1:GetFontString():SetText("|cffffd200未设置|r")
+menuHooks.UpdateBindings(menu)
+assert(menu.bindingkey1:GetFontString():GetText() == "未设置",
+    "按键刷新后仍应移除原生黄色颜色标签")
 
 assert(bodyText.fontPath == UNIT_NAME_FONT and bodyText.fontSize == 12
     and bodyText.fontFlags == "OUTLINE",
