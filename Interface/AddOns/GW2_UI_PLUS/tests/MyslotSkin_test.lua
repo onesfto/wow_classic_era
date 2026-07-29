@@ -124,7 +124,17 @@ local wrongProgress = NewFrame("Frame", 360, 70, {}, {
 })
 function wrongProgress:GetFrameStrata() return "DIALOG" end
 
+local invalidChild = {
+    GetSize = function()
+        error("calling 'GetSize' on bad self")
+    end,
+    GetFrameStrata = function()
+        return "FULLSCREEN_DIALOG"
+    end,
+}
+
 UIParent = NewFrame("Frame", 0, 0, {}, {
+    invalidChild,
     mainFrame,
     progressFrame,
     wrongProgress,

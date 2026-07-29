@@ -11,6 +11,12 @@ local function Rounded(value)
     return value and math.floor(value + 0.5)
 end
 
+local function GetSize(frame)
+    if not frame or not frame.GetSize then return end
+    local ok, width, height = pcall(frame.GetSize, frame)
+    if ok then return width, height end
+end
+
 local function GetChildren(frame)
     if not frame or not frame.GetChildren then return {} end
     return { frame:GetChildren() }
@@ -95,10 +101,10 @@ local function FindStatusBar(frame)
 end
 
 local function IsProgressFrame(frame)
-    if not frame or not frame.GetSize or not frame.GetFrameStrata then
+    if not frame or not frame.GetFrameStrata then
         return false
     end
-    local width, height = frame:GetSize()
+    local width, height = GetSize(frame)
     return Rounded(width) == 360
         and Rounded(height) == 70
         and frame:GetFrameStrata() == "FULLSCREEN_DIALOG"
@@ -128,8 +134,7 @@ local function CountDirectButtons(frame)
 end
 
 local function IsMainFrame(frame)
-    if not frame or not frame.GetSize then return false end
-    local width, height = frame:GetSize()
+    local width, height = GetSize(frame)
     return Rounded(width) == 650
         and Rounded(height) == 600
         and CountDirectButtons(frame) >= 4
