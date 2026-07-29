@@ -26,7 +26,7 @@
 - Create: `Minimap/AddonFlyout.lua`
 - Modify: `GW2_UI_PLUS.toc`
 
-- [ ] **Step 1: 写失败测试**
+- [x] **Step 1: 写失败测试**
 
 在测试桩中提供 `GW2_ADDON.settings.MINIMAP_ENABLED = false`、`CreateFrame` 和最小
 事件对象，加载模块后断言：
@@ -43,14 +43,14 @@ assert(Flyout.IsEnabled() == true)
 并断言 `GW2_ADDON.CreateMinimapButtonsSack` 与
 `GW2_ADDON.UpdateMinimapButtonsSack` 已被 PLUS 接管。
 
-- [ ] **Step 2: 运行测试并确认正确失败**
+- [x] **Step 2: 运行测试并确认正确失败**
 
 Run: `lua tests/MinimapAddonFlyout_test.lua`
 
 Expected: FAIL，原因是 `Minimap/AddonFlyout.lua` 尚不存在或
 `addonTable.MinimapAddonFlyout` 未定义。
 
-- [ ] **Step 3: 编写最小实现**
+- [x] **Step 3: 编写最小实现**
 
 在 `Minimap/AddonFlyout.lua` 中建立：
 
@@ -83,13 +83,13 @@ Minimap/AddonFlyout.lua
 Minimap/Options.lua
 ```
 
-- [ ] **Step 4: 运行测试并确认通过**
+- [x] **Step 4: 运行测试并确认通过**
 
 Run: `lua tests/MinimapAddonFlyout_test.lua`
 
 Expected: PASS，并输出 `MinimapAddonFlyout_test: OK`。
 
-- [ ] **Step 5: 提交**
+- [x] **Step 5: 提交**
 
 ```bash
 git add GW2_UI_PLUS.toc Minimap/AddonFlyout.lua tests/MinimapAddonFlyout_test.lua
@@ -102,7 +102,7 @@ git commit -m "功能：建立独立插件悬浮按钮模块"
 - Modify: `tests/MinimapAddonFlyout_test.lua`
 - Modify: `Minimap/AddonFlyout.lua`
 
-- [ ] **Step 1: 扩展失败测试**
+- [x] **Step 1: 扩展失败测试**
 
 在测试中构造一个符合条件的 `LibDBIcon` 按钮和一个应忽略的
 `MiniMapTracking`，依次断言：
@@ -126,13 +126,13 @@ assert(addonButton:GetPoint(1) == originalPoint)
 
 再断言 `GW2_ADDON.settings.MINIMAP_ENABLED` 在 `false` 与 `true` 时上述行为一致。
 
-- [ ] **Step 2: 运行测试并确认正确失败**
+- [x] **Step 2: 运行测试并确认正确失败**
 
 Run: `lua tests/MinimapAddonFlyout_test.lua`
 
 Expected: FAIL，原因是 `Apply` 尚未收纳按钮，或 `SetEnabled` 尚未恢复按钮。
 
-- [ ] **Step 3: 实现入口生命周期**
+- [x] **Step 3: 实现入口生命周期**
 
 实现并暴露：
 
@@ -165,7 +165,7 @@ end
 `CreateFrame("Button", "GwAddonToggle", UIParent, "GwAddonToggle")` 创建；只绑定一次
 PLUS 的点击和事件脚本，并在缺少外部定位时锚定到 `Minimap` 左侧。
 
-- [ ] **Step 4: 实现按钮识别、状态保存与恢复**
+- [x] **Step 4: 实现按钮识别、状态保存与恢复**
 
 沿用上游明确的忽略名单、名称过滤和尺寸过滤。首次接管按钮时保存：
 
@@ -181,7 +181,7 @@ state.methods = CaptureMethods(button)
 收纳时将按钮放入 `toggle.container`，按 27 像素间隔横向排列并锁定定位方法；
 `Disable` 时解锁方法、恢复保存状态、清除模块接管表、隐藏入口和容器。
 
-- [ ] **Step 5: 实现事件与战斗延迟**
+- [x] **Step 5: 实现事件与战斗延迟**
 
 模块加载时创建驱动框：
 
@@ -200,13 +200,13 @@ end)
 若 `InCombatLockdown()` 或正在宠物对战，设置待处理标记并监听
 `PLAYER_REGEN_ENABLED`，脱战后再次应用。
 
-- [ ] **Step 6: 运行测试并确认通过**
+- [x] **Step 6: 运行测试并确认通过**
 
 Run: `lua tests/MinimapAddonFlyout_test.lua`
 
 Expected: PASS，并输出 `MinimapAddonFlyout_test: OK`。
 
-- [ ] **Step 7: 提交**
+- [x] **Step 7: 提交**
 
 ```bash
 git add Minimap/AddonFlyout.lua tests/MinimapAddonFlyout_test.lua
@@ -220,7 +220,7 @@ git commit -m "功能：实现插件按钮收纳与恢复"
 - Modify: `core.lua`
 - Modify: `tests/SettingsStructure_test.lua`
 
-- [ ] **Step 1: 写失败结构测试**
+- [x] **Step 1: 写失败结构测试**
 
 在 `tests/SettingsStructure_test.lua` 中读取新文件并断言：
 
@@ -233,13 +233,13 @@ assert(core:find("BuildMinimapAddonFlyoutPanel", 1, true))
 assert(core:find('name = "插件悬浮按钮"', 1, true))
 ```
 
-- [ ] **Step 2: 运行测试并确认正确失败**
+- [x] **Step 2: 运行测试并确认正确失败**
 
 Run: `lua tests/SettingsStructure_test.lua`
 
 Expected: FAIL，原因是 `Minimap/Options.lua` 或设置页注册尚不存在。
 
-- [ ] **Step 3: 实现设置页**
+- [x] **Step 3: 实现设置页**
 
 `Minimap/Options.lua` 创建 `GwSettingsPanelTmpl` 子页，标题为“插件悬浮按钮”，并添加：
 
@@ -258,7 +258,7 @@ option.optionName = "GW2PlusMinimapAddonFlyout_Enable"
 
 通过 `addonTable.BuildMinimapAddonFlyoutPanel = BuildPanel` 暴露构建函数。
 
-- [ ] **Step 4: 注册子页**
+- [x] **Step 4: 注册子页**
 
 在 `core.lua` 构造 `subPanels` 后加入：
 
@@ -273,13 +273,13 @@ if addonTable.BuildMinimapAddonFlyoutPanel then
 end
 ```
 
-- [ ] **Step 5: 运行结构测试并确认通过**
+- [x] **Step 5: 运行结构测试并确认通过**
 
 Run: `lua tests/SettingsStructure_test.lua`
 
 Expected: PASS，并输出 `SettingsStructure_test: OK`。
 
-- [ ] **Step 6: 提交**
+- [x] **Step 6: 提交**
 
 ```bash
 git add Minimap/Options.lua core.lua tests/SettingsStructure_test.lua
@@ -291,7 +291,7 @@ git commit -m "设置：添加插件悬浮按钮独立开关"
 **Files:**
 - Modify: `docs/superpowers/plans/2026-07-29-minimap-addon-flyout.md`
 
-- [ ] **Step 1: 运行全部 Lua 测试**
+- [x] **Step 1: 运行全部 Lua 测试**
 
 Run:
 
@@ -303,7 +303,10 @@ done
 
 Expected: 每个脚本退出码为 0，并输出对应的 `OK`。
 
-- [ ] **Step 2: 运行静态检查**
+Result: 本功能两项测试及其余测试通过；既有
+`SettingsStructure_test.lua` 因动作条 `GetCastbarScale` 断言失败，与本次变更无关。
+
+- [x] **Step 2: 运行静态检查**
 
 Run:
 
@@ -314,7 +317,7 @@ git diff --check
 
 Expected: 两条命令均无输出且退出码为 0。
 
-- [ ] **Step 3: 核对范围**
+- [x] **Step 3: 核对范围**
 
 Run:
 
@@ -325,7 +328,7 @@ git diff --stat HEAD~3 -- GW2_UI_PLUS.toc Minimap core.lua tests
 
 Expected: 仅包含本功能计划列出的文件，不包含对 GW2_UI 本体的修改。
 
-- [ ] **Step 4: 更新计划勾选并提交**
+- [x] **Step 4: 更新计划勾选并提交**
 
 将本计划所有完成步骤改为 `[x]`，随后运行：
 
