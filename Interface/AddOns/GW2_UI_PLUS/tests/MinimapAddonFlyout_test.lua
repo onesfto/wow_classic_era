@@ -11,10 +11,28 @@ local function RemoveChild(parent, child)
     end
 end
 
-local function NewTexture()
+local function NewTexture(texture)
     return {
         alpha = 1,
+        texture = texture,
+        points = {},
+        drawLayer = nil,
         SetAlpha = function(self, value) self.alpha = value end,
+        GetTexture = function(self) return self.texture end,
+        GetTextureFileID = function(self)
+            return type(self.texture) == "number"
+                and self.texture or nil
+        end,
+        SetTexture = function(self, value) self.texture = value end,
+        IsObjectType = function(_, value) return value == "Texture" end,
+        GetParent = function(self) return self.parent end,
+        ClearAllPoints = function(self) self.points = {} end,
+        SetPoint = function(self, ...)
+            self.points[#self.points + 1] = {...}
+        end,
+        SetDrawLayer = function(self, value)
+            self.drawLayer = value
+        end,
     }
 end
 
@@ -27,6 +45,7 @@ local function NewFrame(name, parent, width, objectType)
         scripts = {},
         hooks = {},
         points = {},
+        regions = {},
         width = width or 25,
         height = width or 25,
         scale = 1,
@@ -67,7 +86,12 @@ local function NewFrame(name, parent, width, objectType)
         return value == self.objectType
             or (self.objectType == "Button" and value == "Frame")
     end
-    function frame:GetNumRegions() return 0 end
+    function frame:GetNumRegions() return #self.regions end
+    function frame:GetRegions() return unpackValues(self.regions) end
+    function frame:AddRegion(region)
+        region.parent = self
+        self.regions[#self.regions + 1] = region
+    end
     function frame:GetNumPoints() return #self.points end
     function frame:GetPoint(index)
         return unpackValues(self.points[index or 1])
@@ -106,6 +130,12 @@ Minimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -20, -20)
 
 local addonButton = NewFrame("LibDBIcon10_Test", Minimap, 32, "Button")
 addonButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 4, -4)
+local roundBorder =
+    NewTexture("Interface/Minimap/UI-Minimap-Border")
+local addonIcon =
+    NewTexture("Interface/AddOns/Test/icon")
+addonButton:AddRegion(roundBorder)
+addonButton:AddRegion(addonIcon)
 local originalPoint, originalRelativeTo, originalRelativePoint,
     originalX, originalY = addonButton:GetPoint(1)
 
@@ -178,6 +208,20 @@ local firstToggle = Flyout.GetToggle()
 assert(firstToggle ~= nil, "开启时应创建插件悬浮入口")
 assert(addonButton:GetParent() == firstToggle.container,
     "符合条件的插件按钮应收纳进悬浮栏")
+assert(addonButton:GetWidth() == 25
+    and addonButton:GetHeight() == 25,
+    "收纳按钮应统一为 25 × 25")
+assert(roundBorder.texture == nil and roundBorder.alpha == 0,
+    "第三方圆形边框应被清除并隐藏")
+assert(addonIcon.drawLayer == "ARTWORK"
+    and #addonIcon.points == 2,
+    "插件图标应使用 GW2_UI 的内缩布局")
+local togglePoint, toggleRelativeTo, toggleRelativePoint,
+    toggleX, toggleY = firstToggle:GetPoint(1)
+assert(togglePoint == "LEFT" and toggleRelativeTo == Minimap
+    and toggleRelativePoint == "RIGHT"
+    and toggleX == 4 and toggleY == 0,
+    "悬浮入口应位于小地图右侧正中")
 assert(trackingButton:GetParent() == Minimap,
     "暴雪原生小地图控件不应被收纳")
 

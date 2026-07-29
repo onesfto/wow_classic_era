@@ -64,6 +64,36 @@ local partialIgnore = {
     "TTMinimapButton",
 }
 
+local removeTextureID = {
+    [136430] = true,
+    [136467] = true,
+    [136468] = true,
+    [130924] = true,
+    [136477] = true,
+}
+
+local removeTextureFile = {
+    ["interface/minimap/minimap-trackingborder"] = true,
+    ["interface/minimap/ui-minimap-border"] = true,
+    ["interface/minimap/ui-minimap-background"] = true,
+}
+
+local function IsIgnoredTexture(texture)
+    if not texture or texture == "" then return false end
+
+    local lower = tostring(texture):lower():gsub("\\", "/")
+    if removeTextureFile[lower] then return true end
+
+    return lower:find("interface/characterframe", 1, true)
+        or (lower:find("interface/minimap", 1, true)
+            and not lower:find(
+                "interface/minimap/tracking/", 1, true))
+        or lower:find("border", 1, true)
+        or lower:find("background", 1, true)
+        or lower:find("alphamask", 1, true)
+        or lower:find("highlight", 1, true)
+end
+
 local lockedMethods = {
     "SetParent",
     "ClearAllPoints",
@@ -149,10 +179,39 @@ end
 
 local function SkinButton(button)
     button:SetSize(25, 25)
+    if button.__gwPlusFlyoutSkinned then return end
+
+    for index = 1, button:GetNumRegions() do
+        local region = select(index, button:GetRegions())
+        if region and region.IsObjectType
+            and region:IsObjectType("Texture") then
+            local textureID = region.GetTextureFileID
+                and region:GetTextureFileID()
+            local texture = region.GetTexture
+                and region:GetTexture()
+
+            if textureID and removeTextureID[textureID] then
+                region:SetTexture(nil)
+                region:SetAlpha(0)
+            elseif IsIgnoredTexture(texture) then
+                region:SetTexture(nil)
+                region:SetAlpha(0)
+            else
+                region:ClearAllPoints()
+                region:SetDrawLayer("ARTWORK")
+                region:SetPoint(
+                    "TOPLEFT", button, "TOPLEFT", 2, -2)
+                region:SetPoint(
+                    "BOTTOMRIGHT", button, "BOTTOMRIGHT", -2, 2)
+            end
+        end
+    end
+
     if button.GwCreateBackdrop and GW.BackdropTemplates then
         button:GwCreateBackdrop(
             GW.BackdropTemplates.DefaultWithSmallBorder)
     end
+    button.__gwPlusFlyoutSkinned = true
 end
 
 local function CaptureButton(button, restoreToMinimap)
@@ -293,10 +352,10 @@ local function EnsureToggle()
         end
     end
 
-    if toggle.GetNumPoints and toggle:GetNumPoints() == 0
-        and Minimap then
+    if Minimap then
+        toggle:ClearAllPoints()
         toggle:SetPoint(
-            "TOPRIGHT", Minimap, "TOPLEFT", -4, 0)
+            "LEFT", Minimap, "RIGHT", 4, 0)
     end
     return toggle
 end
