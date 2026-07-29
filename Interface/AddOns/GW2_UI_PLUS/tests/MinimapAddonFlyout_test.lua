@@ -196,6 +196,14 @@ assert(db.minimapAddonFlyoutEnabled == true,
     "插件悬浮按钮首次应默认开启")
 assert(Flyout.IsEnabled() == true,
     "默认保存值应启用插件悬浮按钮")
+assert(db.minimapAddonFlyoutPosition == "LEFT",
+    "插件悬浮入口首次应默认位于左中")
+assert(Flyout.GetPosition() == "LEFT",
+    "默认位置接口应返回左中")
+GW2_UI_PLUS_SV.minimapAddonFlyoutPosition = "INVALID"
+assert(Flyout.GetPosition() == "LEFT",
+    "无效位置保存值应回退到左中")
+GW2_UI_PLUS_SV.minimapAddonFlyoutPosition = "LEFT"
 
 GW2_ADDON.settings.MINIMAP_ENABLED = true
 assert(Flyout.IsEnabled() == true,
@@ -228,10 +236,35 @@ assert(addonIcon.drawLayer == "ARTWORK"
     "插件图标应使用 GW2_UI 的内缩布局")
 local togglePoint, toggleRelativeTo, toggleRelativePoint,
     toggleX, toggleY = firstToggle:GetPoint(1)
-assert(togglePoint == "LEFT" and toggleRelativeTo == Minimap
-    and toggleRelativePoint == "RIGHT"
-    and toggleX == 4 and toggleY == 0,
-    "悬浮入口应位于小地图右侧正中")
+assert(togglePoint == "RIGHT" and toggleRelativeTo == Minimap
+    and toggleRelativePoint == "LEFT"
+    and toggleX == -4 and toggleY == 0,
+    "悬浮入口默认应位于小地图左侧正中")
+local positionCases = {
+    TOPLEFT = {"TOPRIGHT", "TOPLEFT", -4, 0},
+    TOP = {"BOTTOM", "TOP", 0, 4},
+    TOPRIGHT = {"TOPLEFT", "TOPRIGHT", 4, 0},
+    LEFT = {"RIGHT", "LEFT", -4, 0},
+    RIGHT = {"LEFT", "RIGHT", 4, 0},
+    BOTTOMLEFT = {"BOTTOMRIGHT", "BOTTOMLEFT", -4, 0},
+    BOTTOM = {"TOP", "BOTTOM", 0, -4},
+    BOTTOMRIGHT = {"BOTTOMLEFT", "BOTTOMRIGHT", 4, 0},
+}
+for position, expected in pairs(positionCases) do
+    Flyout.SetPosition(position)
+    local pointValue, relativeToValue, relativePointValue,
+        xValue, yValue = firstToggle:GetPoint(1)
+    assert(GW2_UI_PLUS_SV.minimapAddonFlyoutPosition == position,
+        position .. " 应立即保存")
+    assert(pointValue == expected[1]
+        and relativeToValue == Minimap
+        and relativePointValue == expected[2]
+        and xValue == expected[3] and yValue == expected[4],
+        position .. " 应立即应用正确锚点")
+end
+Flyout.SetPosition("INVALID")
+assert(Flyout.GetPosition() == "LEFT",
+    "接口收到无效位置时应回退到左中")
 local _, _, _, firstX, firstY =
     layoutButtons[1]:GetPoint(1)
 local _, _, _, eighthX, eighthY =

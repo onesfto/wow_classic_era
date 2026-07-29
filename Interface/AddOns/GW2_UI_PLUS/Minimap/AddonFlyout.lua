@@ -15,6 +15,19 @@ local managedButtons = {}
 local buttonStates = {}
 local pendingRefresh = false
 
+local defaultPosition = "LEFT"
+
+local positionAnchors = {
+    TOPLEFT = {"TOPRIGHT", "TOPLEFT", -4, 0},
+    TOP = {"BOTTOM", "TOP", 0, 4},
+    TOPRIGHT = {"TOPLEFT", "TOPRIGHT", 4, 0},
+    LEFT = {"RIGHT", "LEFT", -4, 0},
+    RIGHT = {"LEFT", "RIGHT", 4, 0},
+    BOTTOMLEFT = {"BOTTOMRIGHT", "BOTTOMLEFT", -4, 0},
+    BOTTOM = {"TOP", "BOTTOM", 0, -4},
+    BOTTOMRIGHT = {"BOTTOMLEFT", "BOTTOMRIGHT", 4, 0},
+}
+
 local ignoreButtonLookup = {
     GameTimeFrame = true,
     HelpOpenWebTicketButton = true,
@@ -369,9 +382,11 @@ local function EnsureToggle()
     end
 
     if Minimap then
+        local anchor = positionAnchors[Flyout.GetPosition()]
         toggle:ClearAllPoints()
         toggle:SetPoint(
-            "LEFT", Minimap, "RIGHT", 4, 0)
+            anchor[1], Minimap, anchor[2],
+            anchor[3], anchor[4])
     end
     return toggle
 end
@@ -381,7 +396,20 @@ function Flyout.InitDB()
     if GW2_UI_PLUS_SV.minimapAddonFlyoutEnabled == nil then
         GW2_UI_PLUS_SV.minimapAddonFlyoutEnabled = true
     end
+    if GW2_UI_PLUS_SV.minimapAddonFlyoutPosition == nil then
+        GW2_UI_PLUS_SV.minimapAddonFlyoutPosition =
+            defaultPosition
+    end
     return GW2_UI_PLUS_SV
+end
+
+function Flyout.GetPosition()
+    local position =
+        Flyout.InitDB().minimapAddonFlyoutPosition
+    if not positionAnchors[position] then
+        return defaultPosition
+    end
+    return position
 end
 
 function Flyout.IsEnabled()
@@ -438,6 +466,14 @@ function Flyout.Refresh()
     else
         Flyout.Disable()
     end
+end
+
+function Flyout.SetPosition(position)
+    if not positionAnchors[position] then
+        position = defaultPosition
+    end
+    Flyout.InitDB().minimapAddonFlyoutPosition = position
+    Flyout.Refresh()
 end
 
 function Flyout.SetEnabled(enabled)
