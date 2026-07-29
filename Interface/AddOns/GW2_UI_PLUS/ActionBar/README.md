@@ -48,6 +48,28 @@ MageBar 与 Fader 互相引用（前者建好按钮就登记给后者，后者�
 `GwMultiBarBottomLeft`、`GwStanceBar` 全都还不存在。
 （注意这跟本体设置面板的时序不一样：面板是在 `evPlayerLogin` 里建的，比本插件**早**。）
 
+## 主动作条快捷键
+
+GW2_UI 原生使用 `button.HotKey` 显示快捷键，并将 `button.hkBg` 围绕该文字定位。
+PLUS 不能在“下（`BOTTOM`）”位置用代理替换原生文字，否则会破坏原生文字与背景
+的绘制关系。
+
+- `BOTTOM`：使用原生 `HotKey` 和 `hkBg`。
+- 其他位置：使用 PLUS 代理文字，隐藏 `hkBg.texture`。
+- 切回 `BOTTOM`：隐藏代理、恢复原生 alpha，再调用 GW2_UI 的
+  `updateHotkey` 与 `FixHotKeyPosition`。
+- 非 `BOTTOM`：背景的 `Show` 后处理会立即重新隐藏背景，防止绑定刷新覆盖。
+
+`HotKey.gwPlusUseNative` 记录当前模式；为真时，原生 `Show/Hide` 触发的代理显隐
+同步只会隐藏代理，避免绑定刷新后原生文字和代理文字同时出现。
+
+不要给主动作条快捷键安装“原生文字永远透明”的通用代理钩子，否则从其他位置
+切回 `BOTTOM` 时无法恢复原生文字。宏名称以及没有 `hkBg` 的其他动作条继续使用
+通用代理文字。
+
+游戏内验收：依次选择“下”和其他任意位置；“下”应同时显示白色快捷键与黑色背景，
+其他位置只显示快捷键文字。往返切换不需要 `/reload`。
+
 ---
 
 ## 二、全局渐隐

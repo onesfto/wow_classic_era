@@ -83,12 +83,16 @@ end
 local function SyncProxyShown(source)
     local proxy = source.gwPlusProxy
     if not proxy then return end
+    if source.gwPlusUseNative then
+        proxy:Hide()
+        return
+    end
     -- 原生的显隐表示「这个键位有没有文本」（BUTTON_ASSIGNMENTS_USED_ONLY），
     -- Plus 的开关是独立一层门，两者都要满足才显示
     proxy:SetShown(source.gwPlusTextShown ~= false and source:IsShown())
 end
 
-local function EnsureTextProxy(source, button)
+local function EnsureTextProxy(source, button, sourceRestorable)
     if source.gwPlusProxy then return source.gwPlusProxy end
     if not button.CreateFontString then return end
 
@@ -110,25 +114,21 @@ local function EnsureTextProxy(source, button)
         end
         hooksecurefunc(source, "Show", SyncProxyShown)
         hooksecurefunc(source, "Hide", SyncProxyShown)
-        -- 宏名称的显隐本体用的是 alpha，别让它把原生层显出来
-        hooksecurefunc(source, "SetAlpha", function(self)
-            if self:GetAlpha() ~= 0 then self:SetAlpha(0) end
-        end)
-    end
-
-    -- 主动作条的快捷键背景锚在原生文字层上，跟着代理走
-    if button.hkBg and source == button.HotKey then
-        if proxy.SetDrawLayer then proxy:SetDrawLayer("OVERLAY", 7) end
-        button.hkBg:ClearAllPoints()
-        button.hkBg:SetPoint("CENTER", proxy, "CENTER", 0, 0)
+        if not sourceRestorable then
+            -- 宏名称的显隐本体用的是 alpha，别让它把原生层显出来
+            hooksecurefunc(source, "SetAlpha", function(self)
+                if self:GetAlpha() ~= 0 then self:SetAlpha(0) end
+            end)
+        end
     end
 
     return proxy
 end
 
-function Layout.ApplyTextPosition(fontString, button, position, x, y, size, shown)
+local function ApplyProxyTextPosition(fontString, button, position, x, y,
+                                      size, shown, sourceRestorable)
     if not fontString or not button then return end
-    local proxy = EnsureTextProxy(fontString, button)
+    local proxy = EnsureTextProxy(fontString, button, sourceRestorable)
     if not proxy then return end
 
     local key = NormalizeTextPosition(position)
@@ -147,6 +147,50 @@ function Layout.ApplyTextPosition(fontString, button, position, x, y, size, show
 
     SyncProxyText(fontString)
     SyncProxyShown(fontString)
+    return proxy
+end
+
+function Layout.ApplyTextPosition(fontString, button, position, x, y, size, shown)
+    return ApplyProxyTextPosition(fontString, button, position, x, y,
+        size, shown, false)
+end
+
+local function ProtectMainHotkeyBackground(fontString, button)
+    local background = button.hkBg and button.hkBg.texture
+    if not background then return end
+    if not background.gwPlusVisibilityHooked and hooksecurefunc then
+        background.gwPlusVisibilityHooked = true
+        hooksecurefunc(background, "Show", function(self)
+            if fontString.gwPlusTextPosition ~= "BOTTOM" then self:Hide() end
+        end)
+    end
+    return background
+end
+
+function Layout.ApplyMainHotkey(fontString, button, position, x, y, size, shown)
+    if not fontString or not button then return end
+    local key = NormalizeTextPosition(position)
+    fontString.gwPlusTextPosition = key
+    fontString.gwPlusUseNative = key == "BOTTOM"
+    local background = ProtectMainHotkeyBackground(fontString, button)
+
+    if key == "BOTTOM" then
+        if fontString.gwPlusProxy then fontString.gwPlusProxy:Hide() end
+        fontString:SetAlpha(1)
+        if GW.updateHotkey then GW.updateHotkey(button) end
+        if GW.FixHotKeyPosition then
+            GW.FixHotKeyPosition(button, false, false, true)
+        end
+        if shown == false then
+            fontString:Hide()
+            if background then background:Hide() end
+        end
+        return
+    end
+
+    ApplyProxyTextPosition(fontString, button, key, x, y, size, shown, true)
+    fontString:SetAlpha(0)
+    if background then background:Hide() end
 end
 
 Layout.ApplyHotkeyPosition = Layout.ApplyTextPosition

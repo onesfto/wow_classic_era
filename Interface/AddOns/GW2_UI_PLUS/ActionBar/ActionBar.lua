@@ -373,7 +373,7 @@ local function ApplyMainButtonText(btn, db, layout)
     if not layout then return end
 
     if btn.HotKey then
-        layout.ApplyTextPosition(btn.HotKey, btn,
+        layout.ApplyMainHotkey(btn.HotKey, btn,
             db.mainBarHotkeyPosition,
             db.mainBarHotkeyX or 0, db.mainBarHotkeyY or 0,
             db.mainBarHotkeySize,
