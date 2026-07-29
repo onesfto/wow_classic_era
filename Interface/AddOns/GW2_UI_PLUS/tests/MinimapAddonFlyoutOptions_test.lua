@@ -17,6 +17,34 @@ assert(options:find("isMasterToggle = true", 1, true),
     "插件悬浮按钮开关应为设置页主开关")
 assert(options:find("GW2PlusMinimapAddonFlyout_Enable", 1, true),
     "独立开关应提供稳定的设置项名称")
+assert(options:find("AddOptionDropdown(", 1, true)
+    and options:find('"位置"', 1, true),
+    "设置页应提供插件悬浮入口位置下拉框")
+for _, value in ipairs({
+    "TOPLEFT", "TOP", "TOPRIGHT", "LEFT",
+    "RIGHT", "BOTTOMLEFT", "BOTTOM", "BOTTOMRIGHT",
+}) do
+    assert(options:find('"' .. value .. '"', 1, true),
+        "位置下拉框缺少保存值 " .. value)
+end
+for _, name in ipairs({
+    "左上", "上", "右上", "左中",
+    "右中", "左下", "下", "右下",
+}) do
+    assert(options:find('"' .. name .. '"', 1, true),
+        "位置下拉框缺少显示名称 " .. name)
+end
+assert(options:find("Flyout.GetPosition", 1, true)
+    and options:find("Flyout.SetPosition(value)", 1, true),
+    "位置下拉框应通过运行模块接口立即读写")
+assert(options:find("dependence = {", 1, true)
+    and options:find(
+        '["GW2PlusMinimapAddonFlyout_Enable"] = true',
+        1, true),
+    "位置下拉框应依赖插件悬浮按钮主开关")
+assert(options:find(
+        "GW2PlusMinimapAddonFlyout_Position", 1, true),
+    "位置下拉框应提供稳定的设置项名称")
 assert(not options:find("MINIMAP_ENABLED", 1, true),
     "设置页不得依赖 GW2_UI 小地图开关")
 

@@ -57,6 +57,32 @@ local function BuildMinimapAddonFlyoutPanel(parent)
             "GW2PlusMinimapAddonFlyout_Enable"
     end
 
+    local positionOption = panel:AddOptionDropdown(
+        "位置",
+        "插件悬浮入口位于小地图的哪个方向；切换后立即生效。",
+        {
+            optionsList = {
+                "TOPLEFT", "TOP", "TOPRIGHT", "LEFT",
+                "RIGHT", "BOTTOMLEFT", "BOTTOM", "BOTTOMRIGHT",
+            },
+            optionNames = {
+                "左上", "上", "右上", "左中",
+                "右中", "左下", "下", "右下",
+            },
+            getter = Flyout.GetPosition,
+            setter = function(value)
+                Flyout.SetPosition(value)
+            end,
+            getDefault = function() return "LEFT" end,
+            dependence = {
+                ["GW2PlusMinimapAddonFlyout_Enable"] = true,
+            },
+        })
+    if positionOption then
+        positionOption.optionName =
+            "GW2PlusMinimapAddonFlyout_Position"
+    end
+
     return panel
 end
 
