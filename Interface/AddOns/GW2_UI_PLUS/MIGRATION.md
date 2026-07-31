@@ -1,103 +1,87 @@
-# GW2_UI 改动外迁记录 —— 交接文档
+# GW2_UI 改动外迁与拦截原理 —— 核心交接文档
 
-2026-07-27/28 把原先直接改在 `GW2_UI` 本体里的 35 处改动全部搬进插件，本体已回归与上游
-**10.14.3 逐字节一致**。以后更新 GW2_UI 直接删目录、解压新版即可，不需要任何手工合并或脚本。
+本项目将所有对 `GW2_UI` 的定制、Bug 修复和国服汉化补充全部剥离为了独立的外挂插件。**本体（`GW2_UI`）保持与上游逐字节一致。**
 
-验证命令（应无输出）：
-
-```bash
-cd "Interface/AddOns"
-diff -rq --strip-trailing-cr \
-  "Onesfto/Modules/GW2_UI/GW2_UI_1.15.9" "GW2_UI" | grep -v .DS_Store
-```
-
-原始改动的逐文件补丁存在 `Onesfto/Modules/GW2_UI/patches/`，
-改动版整目录备份在仓库外：`~/wow-addon-backups/GW2_UI-10.14.3-modified-20260727.zip`。
+本指南主要讲解：**当我们需要干预一个封装好的巨型插件时，我们是如何在不动它源码的前提下，通过外部拦截达到目的的。**
 
 ---
 
-## 两个插件文件夹，各自干什么
+## 一、主插件 (`GW2_UI_PLUS`) 文件搬迁来源
 
-### `!GW2_UI_PLUS_Early/` —— 先行加载
+以下是我们从原先的“源码魔改版”中抽离出来的核心修改点，以及它们现在在外挂插件中的存放位置：
 
-只有一件事：**在 GW2_UI 之前**用 AceLocale 注册 380 条补充汉化词条。
-
-为什么必须单独一个文件夹：经典旧世下 GW2_UI 在它**自己的 ADDON_LOADED** 里就跑完了
-`evPlayerLogin`，把整个设置窗口连同几百条 `L["..."]` 文本一次性建好。而 `GW2_UI_PLUS`
-声明了 `Dependencies: GW2_UI`，必然更晚加载——那时再往 L 表里补词条，界面文字早就定死成
-英文了。`!` 开头保证排序在 `GW2_UI` 之前。
-
-自带 LibStub 与 AceLocale-3.0 的副本（共 184 行，与 GW2_UI 里的同版本）。LibStub 会按版本
-去重，两边共用同一个 `AceLocale.apps` 注册表；而默认语言包 enUS 用的 `writedefaultproxy`
-**明确拒绝覆盖已有值**，所以我们先写进去的中文能保住。
-
-### `GW2_UI_PLUS/` —— 主插件
-
-| 文件 | 原来在哪 | 怎么外挂的 |
+| 新外挂位置 | 原来在本体的哪里 | 拦截/搬迁策略 |
 |---|---|---|
-| `locale/Hardcoded.lua` | advanced_stats.lua / talents.xml / panel_objectives.lua | 三处不走语言包的写死英文，改成建好之后覆盖文本 |
-| `fixes/Fixes.lua` | gossip / popupFrame / ImmersiveQuestingFrame / aurabar / objectives / utils / inventory / 9 个 panel_* | 见下 |
-| `fixes/Spellbook.lua` | spellbook.lua | 事后重设翻页 snippet 与按钮施法属性 |
-| `fixes/Diagnostics.lua` | slashcommands.lua | `/gw2 escdebug` 改成 `/gw2plus escdebug` |
-| `social/*.lua`（6+1） | Games/Shared/Social/*.lua | 整体搬迁，覆盖 `GW.LoadSocialFrame` 等 6 个公开函数，自行驱动 |
-| `skins/TradeSkill.lua` | 自建的 tradeskill.lua（上游没有这个文件） | 原样搬家，开关改用 `GW2_UI_PLUS_SV` |
-| `skins/Mail.lua` | Games/Shared/Immersive/Skins/mail.lua | 整文件搬迁，自行驱动 |
-| `skins/QuestLog.lua` | Games/Classic/Immersive/Skins/questLog.lua | 整文件搬迁，覆盖 `GW.LoadQuestLogFrameSkin`，由上游调用 |
-| `skins/Options.lua` | panel_skins.lua / panel_interface_features.lua | 三个被上游 hidden 挡掉的开关，在 PLUS 面板重开 |
-
-`fixes/Fixes.lua` 里的六件事：ESC 键失灵（三个窗口）、光环改右键取消、Questie 等级前缀去重、
-按需加载窗口 `/reload` 后整个看不见、补上游 Classic 分支漏掉的 `GW.SkinBagSearchBox`、
-设置面板中文标题被截断（一段遍历覆盖上游散落的 30 处）。
+| `locale/Hardcoded.lua` | advanced_stats.lua / talents.xml 等 | **事后文本覆盖**：三处写死英文、不走语言包的文本。等界面建好之后强行覆盖文本。 |
+| `Core/Fixes.lua` | gossip / aurabar / objectives 等 | **生命周期极早的 Hook**：ESC 失灵修复、光环改右键取消、中文标题被截断等 6 处底层补丁。 |
+| `Core/Spellbook.lua` | spellbook.lua | **事后重设属性**：法术书点击失效修复。等本体建好法术书后，重设翻页 snippet 与按钮的 secure 属性。 |
+| `Core/Diagnostics.lua` | slashcommands.lua | **覆盖注册**：把 `/gw2 escdebug` 改成 `/gw2plus escdebug`。 |
+| `Modules/social/*.lua` | Games/Shared/Social/*.lua | **整目录搬迁与拦截**：拦截并覆盖 `GW.LoadSocialFrame` 等公开函数，由我们的脚本自行驱动。 |
+| `Modules/skins/Mail.lua` | Games/Shared/Immersive/Skins/mail.lua | **整文件搬迁**：拦截并自行驱动原生邮件皮肤（因为原版被锁死了不在旧世生效）。 |
+| `Modules/skins/QuestLog.lua`| Games/Classic/Immersive/Skins/questLog.lua | **整文件搬迁（被动加载）**：覆盖 `GW.LoadQuestLogFrameSkin`，但**不自行驱动**，等待上游来调用我们的版本。 |
+| `Modules/skins/Options.lua` | panel_skins.lua 等 | **重新注册开关**：三个被上游 hidden 挡掉的开关，在我们的面板重开独立设置项。 |
 
 ---
 
-## 三条让外挂成立的关键事实
+## 二、让“外挂”成立的三根支柱
 
-1. **`GW2_ADDON = GW`**（`GW2_UI/core/init.lua:7`）——整个命名空间全局可读可写，
-   `function GW.XXX()` 写在 PLUS 里就等于覆盖上游同名函数。
-2. **`Gw*` 皮肤方法挂在 widget 元表上**（`core/API/toolkit.lua` 的 `addapi()`）——
-   任意插件的任意 frame 都能直接 `:GwSkinButton()`。
-3. **官方外部设置面板 API**（`GW2_UI/AddonSettingIntegrationReadMe.md`）——
-   `GW.GetSettingsTabFrame()` + `AddSettingsPanel`，PLUS 的设置面板走的就是这条。
+我们之所以能不碰源码就魔改 GW2_UI，全靠以下三个后门：
 
-## 一个必须记住的时序陷阱
-
-经典旧世下 `evPlayerLogin` 在 GW2_UI **自己的 ADDON_LOADED** 就跑了
-（`core/GW2_ui.lua:955-959`，为了规避硬核服的脚本预算），**早于 PLUS 的任何代码**。
-所以：
-
-- `GW.LoadCharacter()`（法术书、天赋、角色窗口）、`GW.BuildSettingsWindow()`（全部设置面板）
-  在 PLUS 加载前就建好了 → 只能事后修，不能覆盖构建函数
-- 但 `evLoadSkins` 走 PLAYER_LOGIN 里的 `C_Timer.After(0, ...)`，比 PLUS 晚 →
-  皮肤类函数（questLog 等）可以放心覆盖，上游会调到我们的版本
-
-判断「能不能覆盖」时先查这个函数是在 `evPlayerLogin` 还是 `evLoadSkins` 里被调用的。
-
-## 为什么不会双跑
-
-`LoadSocialFrame` / `LoadMailSkin` 上游在经典旧世被 `if GW.Retail or GW.TBC` 这类条件挡住，
-**从来不会被调用**，PLUS 覆盖后自己驱动，只跑一次。
-`LoadQuestLogFrameSkin` 上游会调用，所以 PLUS 只覆盖、不自己驱动。
-改动这块时务必确认清楚是哪一种，否则会跑两遍。
+1. **`GW2_ADDON = GW`**（`core/init.lua:7`）：整个插件的命名空间是**全局暴露可写的**。我们在 PLUS 里写 `function GW.LoadSocialFrame()`，就等同于覆盖了上游的同名函数。
+2. **`Gw*` 皮肤方法挂在元表上**（`core/API/toolkit.lua`）：任意插件的任意 Frame，都能直接调用 `:GwSkinButton()`，这意味着我们可以随意创建新皮肤而不需要引入它的工具库。
+3. **官方外部设置面板 API**：`GW.GetSettingsTabFrame():AddSettingsPanel(...)` 允许我们将 PLUS 的所有设置无缝嵌入到原生设置窗口中。
 
 ---
 
-## 有意放弃的两处
+## 三、最大的深坑：时序陷阱 (`evPlayerLogin` vs `evLoadSkins`)
 
-- `panel_skins.lua` 里把邮件开关从 general 组挪到 gameFrames 组：纯 UI 位置调整，
-  外部只能「隐藏旧控件 + 新增一个」，会破坏面板自动排版和搜索索引，不值当。
-  功能性效果（经典旧世启用邮件皮肤）由 `skins/Mail.lua` 保证，开关放在 PLUS 自己的面板。
-- 往 GW2_UI 原生「皮肤」面板里插入新开关：`XXX_SKIN_ENABLED` 是 `defaults2.lua` 里的
-  硬编码表，没有给外部留注册接口。所以专业面板的开关用 `GW2_UI_PLUS_SV` 自己存。
+在决定用哪种方式干预本体时，**你必须先查明你想改的那个原生函数是在哪一步被调用的。** 经典旧世的 GW2_UI 加载时序极其反直觉：
 
-## 升级 GW2_UI 之后要复验什么
+| 阶段 | 触发时机 | 相对本外挂加载期 | 典型内容 | 拦截策略 |
+|---|---|---|---|---|
+| **`evPlayerLogin`** | **GW2_UI 自己的 ADDON_LOADED** | **早于我们**（拦截不到）| 设置面板构建、法术书、角色窗口、宠物框体。 | **【事后修改】** 框体在我们的代码执行前就已经建好了。只能等它建完，我们再去 `SetPoint` 或重写属性（例如 `Core/Spellbook.lua`）。 |
+| **`evPlayerLoginLate`**| `PLAYER_LOGIN` 事件 | **晚于我们** | 所有的**动作条**（主条、姿态条、微型菜单）、聊天窗。 | **【事件等待】** 我们的代码加载时，动作条还不存在。必须用 `PLAYER_ENTERING_WORLD` 延后执行我们的修改（例如 `Modules/ActionBar`）。 |
+| **`evLoadSkins`** | `PLAYER_LOGIN` 中的 `C_Timer.After(0)` | **最晚执行** | 大部分皮肤（questLog、gossip、世界地图）。 | **【直接覆盖函数】** 在文件加载期直接 `function GW.XXX = 我们自己的函数`。因为执行得很晚，它一定会调到我们盖过的版本。 |
 
-10.15.0 做了**背包与银行的完全重构**，重点看：
+*注：作者之所以把 `evPlayerLogin` 提早到 `ADDON_LOADED` 阶段，是为了规避硬核服（Hardcore）严格的脚本运算时间预算（Script Execution Time Budget）。*
 
-1. `fixes/Fixes.lua` 里的 `GW.SkinBagSearchBox` 兜底实现——它是照抄上游 Classic 分支的
-   `reskinSearchBox`，如果上游重写了搜索框，这段要跟着更新。
-   消费者是 `BetterBags/themes/gw2.lua` 和 GW2_UI 自己的 whoList 皮肤。
-2. `core/GW2_ui.lua` 的 `evPlayerLogin` / `evLoadSkins` 分工有没有变（见上面的时序陷阱）。
-3. `social/` 和 `skins/Mail.lua` 是整文件搬迁的，上游若改了这些文件，
-   需要拿新版重新走一遍搬迁（改文件头 + 加驱动），而不是继续用旧副本。
-   对比基线换成新版本的纯净副本即可。
+### 怎么防止“双跑”（代码跑两遍）？
+覆盖同名函数之前，一定要确认上游在旧世版本**到底会不会调用它**：
+- `LoadSocialFrame`：上游用 `if GW.Retail or GW.TBC` 挡住了，**永远不会被调用**。所以我们覆盖后，必须**自己驱动**。
+- `LoadQuestLogFrameSkin`：上游**会调用**。所以我们**只覆盖，绝对不能自己驱动**，否则就会挂载两遍导致报错。
+
+---
+
+## 四、“常数够不着，但结果够得着”的艺术
+
+如果在本体文件里有一个 `local SIZE = 48` 导致我们无法修改它，该怎么办？
+答案是：**只要它最终是通过某个导出函数写进框体的，我们就让本体先按它的老规矩跑完，然后再把结果强行“掰回来”。**
+
+例如 `Modules/ActionBar` 修改主动作条的尺寸：
+1. 本体调用了 `ApplyMainBarLayout()`，使用了死板的 48 像素。
+2. 我们用 `hooksecurefunc(按钮, "SetPoint")` 挂载一个监听。
+3. 一旦发现它被设置成了错误的位置或大小，我们就立刻拦截并重新赋予我们在面板中设定的尺寸，配上一个布尔锁防止递归死循环。
+4. 这个套路只适用于**只影响外观（尺寸、位置、颜色）**的常数。如果它影响了逻辑分支（比如决定注册哪个事件），那就只能走“整文件搬迁”了。
+
+---
+
+## 五、升级 GW2_UI 之后的复验工作
+
+当你下载了全新的 GW2_UI 覆盖后（注意删除旧的整个目录再解压，切勿直接覆盖文件）：
+
+1. **背包与银行检查**：`Core/Fixes.lua` 里的 `GW.SkinBagSearchBox` 兜底实现是照抄旧版的。如果上游重写了搜索框，这段要跟着更新，否则 BetterBags 会报错。
+2. **生命周期检查**：检查 `core/GW2_ui.lua` 里的三个生命周期函数（上面第三节）分工有没有巨变。
+3. **原生皮肤**：看上游有没有新增 `Games/Classic/Immersive/Skins/tradeskill.lua`。如果原作者做了专业面板皮肤，我们 `Modules/skins/TradeSkill.lua` 就可以光荣退休了。
+4. **硬编码校验**：`Modules/ActionBar` 抄了本体主条换行的像素魔法常数 `108`。如果上游改了排版，这里需要跟着调。
+
+### 验收清单表
+
+| 模块 | 验收标准 |
+|---|---|
+| **汉化** | 属性提示框显示“未命中率”；天赋面板显示“天赋预览”；设置菜单正常。 |
+| **ESC 退出** | 对话 NPC、弹窗、沉浸任务窗，关掉后按 ESC 还能开出原生的主菜单。 |
+| **光环** | 左键点击自己身上的 buff 不会取消，必须右键才能取消。 |
+| **法术书** | 带等级法术左键能施放；连续翻页不跳回第一页；战斗中打开法术书无报错。 |
+| **聊天窗口** | 改滑块尺寸即时生效；`/reload` 后仍在原位；输入栏置顶正常；黑名单生效。 |
+| **动作条** | 主条尺寸滑块即时生效且血球空隙正常；全局渐隐正常。 |
+| **专业面板** | 成为双栏宽面板，且标题栏可拖动。 |
