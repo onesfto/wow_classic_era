@@ -45,7 +45,7 @@ Expected: FAIL，第一条断言得到 `nil` 或 `true`，证明当前实现没�
 ### Task 2: 实现参与动作条的 Bling 同步
 
 **Files:**
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/Fader.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Fader.lua`
 - Test: `Interface/AddOns/GW2_UI_PLUS/tests/FaderBling_test.lua`
 
 - [ ] **Step 1: 增加按钮遍历与状态同步**
@@ -110,7 +110,7 @@ Expected: exit code 0，无输出。
 ### Task 3: 文档与最终核验
 
 **Files:**
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/README.md`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/README.md`
 
 - [ ] **Step 1: 记录与 NDui/ElvUI 一致的 Bling 阈值**
 

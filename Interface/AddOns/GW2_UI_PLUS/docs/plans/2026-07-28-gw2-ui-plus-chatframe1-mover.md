@@ -15,9 +15,9 @@
 ## 文件结构
 
 - 新建 `Interface/AddOns/GW2_UI_PLUS/tests/ChatWindowMover_test.lua`：验证 mover 接入结构以及没有启用缩放。
-- 修改 `Interface/AddOns/GW2_UI_PLUS/ChatWindow/ChatWindow.lua`：注册并驱动 `ChatFrame1` mover。
-- 修改 `Interface/AddOns/GW2_UI_PLUS/ChatWindow/Options.lua`：边距设置改为主动移动 mover。
-- 修改 `Interface/AddOns/GW2_UI_PLUS/ChatWindow/README.md`：更新位置所有权和编辑模式说明。
+- 修改 `Interface/AddOns/GW2_UI_PLUS/Modules/ChatWindow/ChatWindow.lua`：注册并驱动 `ChatFrame1` mover。
+- 修改 `Interface/AddOns/GW2_UI_PLUS/Modules/ChatWindow/Options.lua`：边距设置改为主动移动 mover。
+- 修改 `Interface/AddOns/GW2_UI_PLUS/Modules/ChatWindow/README.md`：更新位置所有权和编辑模式说明。
 
 ### 任务一：用失败测试约束原生 mover 接入
 
@@ -80,7 +80,7 @@ git commit -m "测试：约束主聊天窗口编辑框"
 ### 任务二：按动作条 1 模式注册 ChatFrame1 mover
 
 **文件：**
-- 修改：`Interface/AddOns/GW2_UI_PLUS/ChatWindow/ChatWindow.lua`
+- 修改：`Interface/AddOns/GW2_UI_PLUS/Modules/ChatWindow/ChatWindow.lua`
 - 测试：`Interface/AddOns/GW2_UI_PLUS/tests/ChatWindowMover_test.lua`
 
 - [ ] **步骤 1：补充 GW 引用、mover 设置和默认位置**
@@ -232,14 +232,14 @@ lua tests/ChatWindowMover_test.lua
 - [ ] **步骤 6：提交核心实现**
 
 ```bash
-git add Interface/AddOns/GW2_UI_PLUS/ChatWindow/ChatWindow.lua
+git add Interface/AddOns/GW2_UI_PLUS/Modules/ChatWindow/ChatWindow.lua
 git commit -m "功能：将主聊天窗口加入 GWUI 编辑界面"
 ```
 
 ### 任务三：让现有边距设置驱动 mover
 
 **文件：**
-- 修改：`Interface/AddOns/GW2_UI_PLUS/ChatWindow/Options.lua`
+- 修改：`Interface/AddOns/GW2_UI_PLUS/Modules/ChatWindow/Options.lua`
 - 测试：`Interface/AddOns/GW2_UI_PLUS/tests/ChatWindowMover_test.lua`
 
 - [ ] **步骤 1：修改两个边距滑块回调**
@@ -271,14 +271,14 @@ lua tests/ChatWindowMover_test.lua
 - [ ] **步骤 3：提交设置页接线**
 
 ```bash
-git add Interface/AddOns/GW2_UI_PLUS/ChatWindow/Options.lua
+git add Interface/AddOns/GW2_UI_PLUS/Modules/ChatWindow/Options.lua
 git commit -m "功能：同步聊天窗口边距与编辑框"
 ```
 
 ### 任务四：更新说明并完成全量验证
 
 **文件：**
-- 修改：`Interface/AddOns/GW2_UI_PLUS/ChatWindow/README.md`
+- 修改：`Interface/AddOns/GW2_UI_PLUS/Modules/ChatWindow/README.md`
 - 测试：`Interface/AddOns/GW2_UI_PLUS/tests/*.lua`
 
 - [ ] **步骤 1：更新聊天窗口交接说明**
@@ -319,6 +319,6 @@ git diff -- Interface/AddOns/GW2_UI_PLUS/ChatWindow Interface/AddOns/GW2_UI_PLUS
 - [ ] **步骤 4：提交文档**
 
 ```bash
-git add Interface/AddOns/GW2_UI_PLUS/ChatWindow/README.md
+git add Interface/AddOns/GW2_UI_PLUS/Modules/ChatWindow/README.md
 git commit -m "文档：说明聊天窗口编辑框"
 ```

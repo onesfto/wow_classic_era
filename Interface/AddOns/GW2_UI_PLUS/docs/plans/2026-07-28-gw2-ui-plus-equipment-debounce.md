@@ -27,9 +27,9 @@
 ### Task 2: 防抖模块
 
 **Files:**
-- Create: `Interface/AddOns/GW2_UI_PLUS/ActionBar/Equipment.lua`
+- Create: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Equipment.lua`
 - Modify: `Interface/AddOns/GW2_UI_PLUS/GW2_UI_PLUS.toc`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/ActionBar.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/ActionBar.lua`
 
 - [ ] 实现 GW2 UI 动作条事件框体指纹识别。
 - [ ] 只取消匹配框体的 `PLAYER_EQUIPMENT_CHANGED`。
@@ -41,7 +41,7 @@
 ### Task 3: 验证
 
 **Files:**
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/README.md`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/README.md`
 
 - [ ] 记录运行时事件接管和失败回退行为。
 - [ ] 运行 `lua tests/EquipmentDebounce_test.lua`。

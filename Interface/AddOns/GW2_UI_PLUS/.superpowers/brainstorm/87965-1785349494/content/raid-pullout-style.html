@@ -1,0 +1,128 @@
+<h2>拖出职业窗口：GW2 风格方案</h2>
+<p class="subtitle">三种方案都按当前宽度的 1.5 倍设计。点击你更喜欢的方案。</p>
+
+<style>
+  .cards { grid-template-columns: repeat(3, minmax(220px, 1fr)); }
+  .game-scene {
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(rgba(5, 26, 23, .28), rgba(4, 14, 13, .45)),
+      radial-gradient(circle at 72% 20%, #416452 0, #18342c 38%, #081713 100%);
+    overflow: hidden;
+  }
+  .pullout {
+    width: 177px;
+    color: #f4f1df;
+    font-family: Arial, "Microsoft YaHei", sans-serif;
+    text-shadow: 1px 1px 1px #000;
+  }
+  .gw-frame {
+    padding: 5px;
+    background: linear-gradient(115deg, rgba(42, 38, 29, .94), rgba(8, 17, 18, .96));
+    border: 1px solid #171713;
+    box-shadow: 0 0 0 2px #777062, 0 0 0 3px #111, 0 4px 14px #000;
+  }
+  .title {
+    color: #ffd800;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+  }
+  .member {
+    display: grid;
+    grid-template-columns: 1fr 26px;
+    align-items: center;
+    height: 30px;
+    padding: 0 7px;
+    color: #18d8ef;
+    font-size: 17px;
+    background: linear-gradient(#172329, #0b1114);
+    border: 1px solid #504c42;
+    box-shadow: inset 0 0 0 1px #0a0a08;
+  }
+  .bars { display: grid; gap: 2px; }
+  .bar { height: 5px; background: #2fb743; border: 1px solid #090909; }
+  .bar.mana { background: #334fdb; }
+  .header-strip {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffd800;
+    font-size: 18px;
+    background: linear-gradient(90deg, #573913, #171a16 72%);
+    border-bottom: 1px solid #080807;
+  }
+  .minimal-title {
+    color: #ffd800;
+    font-size: 18px;
+    padding: 0 0 5px 5px;
+  }
+  .minimal-member {
+    border-left: 3px solid #c6aa67;
+    background: rgba(7, 14, 16, .92);
+  }
+  .card.recommended { outline: 2px solid #d9b85b; }
+  .badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    color: #1b170c;
+    background: #d9b85b;
+    font-size: 11px;
+  }
+</style>
+
+<div class="cards">
+  <div class="card recommended" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image game-scene">
+      <div class="pullout gw-frame">
+        <div class="title">法师</div>
+        <div class="member">
+          <span>法德迦</span>
+          <span class="bars"><i class="bar"></i><i class="bar mana"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A · 统一小框 <span class="badge">推荐</span></h3>
+      <p>整个拉出窗口使用 PLUS 小边框和深色背景，成员条使用同一套小边框。最接近当前团队页面。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image game-scene">
+      <div class="pullout gw-frame" style="padding:0 5px 5px">
+        <div class="header-strip" style="margin:0 -5px 5px">法师</div>
+        <div class="member">
+          <span>法德迦</span>
+          <span class="bars"><i class="bar"></i><i class="bar mana"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B · 独立标题条</h3>
+      <p>标题更突出，使用类似社交窗口的棕黑渐变。辨识度高，但小窗口会稍显厚重。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image game-scene">
+      <div class="pullout">
+        <div class="minimal-title">法师</div>
+        <div class="member minimal-member">
+          <span>法德迦</span>
+          <span class="bars"><i class="bar"></i><i class="bar mana"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C · 极简无外框</h3>
+      <p>只美化标题和成员条，占用最少，但与 PLUS 其他弹窗的统一程度较弱。</p>
+    </div>
+  </div>
+</div>

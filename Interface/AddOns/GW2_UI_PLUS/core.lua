@@ -205,6 +205,11 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
         table.insert(subPanels, {name = "频道按钮", frame = chatBarFrame, icon = "Interface\\Icons\\INV_Letter_15"})
     end
 
+    if addonTable.BuildCooldownPulsePanel then
+        local cooldownPulseFrame = addonTable.BuildCooldownPulsePanel(p)
+        table.insert(subPanels, {name = "冷却闪烁", frame = cooldownPulseFrame, icon = "Interface\\Icons\\Spell_Nature_Earthbind"})
+    end
+
     if addonTable.BuildChatWindowPanel then
         local chatWindowFrame = addonTable.BuildChatWindowPanel(p)
         table.insert(subPanels, {name = "聊天窗口", frame = chatWindowFrame, icon = "Interface\\Icons\\INV_Scroll_03"})

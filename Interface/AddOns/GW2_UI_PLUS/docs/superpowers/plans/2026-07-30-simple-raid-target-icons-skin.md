@@ -422,7 +422,7 @@ Run:
 
 ```bash
 git diff --check HEAD^..HEAD -- \
-    Interface/AddOns/GW2_UI_PLUS/skins/SimpleRaidTargetIcons.lua \
+    Interface/AddOns/GW2_UI_PLUS/Modules/skins/SimpleRaidTargetIcons.lua \
     Interface/AddOns/GW2_UI_PLUS/tests/SimpleRaidTargetIconsSkin_test.lua \
     Interface/AddOns/GW2_UI_PLUS/GW2_UI_PLUS.toc
 git status --short -- \

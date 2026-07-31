@@ -453,7 +453,7 @@ Run:
 
 ```bash
 git diff --check HEAD^..HEAD -- \
-    Interface/AddOns/GW2_UI_PLUS/skins/Myslot.lua \
+    Interface/AddOns/GW2_UI_PLUS/Modules/skins/Myslot.lua \
     Interface/AddOns/GW2_UI_PLUS/tests/MyslotSkin_test.lua \
     Interface/AddOns/GW2_UI_PLUS/GW2_UI_PLUS.toc
 git status --short -- \

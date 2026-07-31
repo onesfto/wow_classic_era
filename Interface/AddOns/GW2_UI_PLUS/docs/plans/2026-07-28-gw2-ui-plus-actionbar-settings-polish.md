@@ -17,8 +17,8 @@
 **Files:**
 - Modify: `Interface/AddOns/GW2_UI_PLUS/tests/SettingsStructure_test.lua`
 - Modify: `Interface/AddOns/GW2_UI_PLUS/tests/ActionBarFollowup_test.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/ActionBar.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/ActionBar.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua`
 
 - [ ] **Step 1: 写失败测试**
 
@@ -48,8 +48,8 @@ Expected: 两项均输出 `OK`。
 
 **Files:**
 - Modify: `Interface/AddOns/GW2_UI_PLUS/tests/ActionBarLayout_test.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/ActionBar.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/Layout.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/ActionBar.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Layout.lua`
 
 - [ ] **Step 1: 写失败测试**
 
@@ -75,9 +75,9 @@ Expected: `ActionBarLayout_test: OK`。
 
 **Files:**
 - Create: `Interface/AddOns/GW2_UI_PLUS/tests/MageBar_test.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/MageBar.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/ActionBar.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/MageBar.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/ActionBar.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua`
 
 - [ ] **Step 1: 写失败测试**
 

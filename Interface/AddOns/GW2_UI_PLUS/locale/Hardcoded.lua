@@ -1,11 +1,11 @@
--- GW2_UI_PLUS 硬编码文本汉化 (Hardcoded)
+-- GW2_UI_PLUS 原生漏译与硬编码文本汉化 (Hardcoded)
 --
--- GW2_UI 有三处英文没走 L 表，是直接写死在代码/XML 里的，补词条救不了。
--- 以前靠 一键汉化GW2.py 改源码，现在改成运行时覆盖。
+-- GW2_UI 有些中文词条缺失，另有英文直接写死在代码/XML 里。
 --
---   1. 角色高级属性提示框的 Miss-Chance / 各系暴击缩写（advanced_stats.lua 内联拼字符串）
---   2. 天赋面板的 "Talent Preview"（talents.xml 的 FontString text 属性）
---   3. 设置菜单里的「目标」（panel_objectives.lua 用了暴雪常量 OBJECTIVES_TRACKER_LABEL，
+--   1. 小队框体的排列方向与框体间距（zhCN 语言包缺少对应词条）
+--   2. 角色高级属性提示框的 Miss-Chance / 各系暴击缩写（advanced_stats.lua 内联拼字符串）
+--   3. 天赋面板的 "Talent Preview"（talents.xml 的 FontString text 属性）
+--   4. 设置菜单里的「目标」（panel_objectives.lua 用了暴雪常量 OBJECTIVES_TRACKER_LABEL，
 --      在这个语境下容易和「当前选中目标」混淆）
 
 local _, addonTable = ...
@@ -16,55 +16,117 @@ if not GW then return end
 local L = GW.L
 
 --------------------------------------------------------------------------------
--- 一、高级属性提示框
+-- 一、原生简体中文语言包漏译
 --------------------------------------------------------------------------------
--- 提示框是 local 函数拼出来的，拿不到。改成等它显示出来之后重写文本行。
--- 用首行标题做闸门，保证只碰这一个提示框，不影响游戏里其它所有 tooltip。
 
-local MISS_CHANCE_BOSS = L["Miss-Chance (Level + 3):"]
-local MISS_CHANCE = L["Miss-Chance:"]
-local CRIT_TEXT = L["Crit"]
+local PARTY_SETTINGS_TEXT = {
+    PARTY_FRAME_ORIENTATION = {
+        sourceName = "Orientation",
+        name = "排列方向",
+        sourceDesc =
+            "Choose whether party frames are arranged vertically or horizontally.",
+        desc = "选择小队框体按垂直或水平方向排列。",
+    },
+    PARTY_FRAME_SPACING = {
+        sourceName = "Frame Spacing",
+        name = "框体间距",
+    },
+}
 
--- 这条不走 L 表：GW2_UI 源码里根本没有这个 key，
--- 往 AceLocale 表里塞一个它永远不会读的键没意义，直接写在这儿。
-local OBJECTIVES_MENU_NAME = "任务目标"
+for _, text in pairs(PARTY_SETTINGS_TEXT) do
+    L[text.sourceName] = text.name
+    if text.sourceDesc then
+        L[text.sourceDesc] = text.desc
+    end
+end
 
-local function TranslateAdvancedStatsTooltip()
-    if not GameTooltip.gwPlusTranslating then
-        local title = _G.GameTooltipTextLeft1 and _G.GameTooltipTextLeft1:GetText()
-        if title ~= (ADVANCED_LABEL .. " " .. STAT_CATEGORY_ATTRIBUTES) then return end
+-- 原生设置页在 PLUS 加载前已经把 L 表结果复制进 option，
+-- 所以除了补 L 表，还必须刷新现有 option 和已经创建的 widget。
+local function TranslatePartySettings()
+    local settingsTab = GW.GetSettingsTabFrame and GW.GetSettingsTabFrame()
+    local scrollBox = settingsTab and settingsTab.menu
+        and settingsTab.menu.ScrollBox
+    local dataProvider = scrollBox and scrollBox:GetDataProvider()
+    if not dataProvider or not dataProvider.ForEach then return end
 
-        local changed = false
-        for i = 1, GameTooltip:NumLines() do
-            local fs = _G["GameTooltipTextLeft" .. i]
-            local text = fs and fs:GetText()
-            if text then
-                local new = text
-                -- 带括号的那条要先换，否则会被短的那条先吃掉前缀
-                new = new:gsub("Miss%-Chance %(Level %+ 3%):", MISS_CHANCE_BOSS)
-                new = new:gsub("Miss%-Chance:", MISS_CHANCE)
-                -- CRIT_ABBR 是暴雪常量，不同客户端语言不一样，只在跟我们要的不一致时才换
-                if CRIT_ABBR and CRIT_ABBR ~= "" and CRIT_ABBR ~= CRIT_TEXT then
-                    new = new:gsub(CRIT_ABBR:gsub("(%W)", "%%%1"), CRIT_TEXT)
-                end
-                if new ~= text then
-                    fs:SetText(new)
-                    changed = true
+    local partyPanel
+    dataProvider:ForEach(function(elementData)
+        local frame = elementData and elementData.isSubCat
+            and elementData.itemData and elementData.itemData.frame
+        if frame and frame.panelId == "party_general" then
+            partyPanel = frame
+            return true
+        end
+    end)
+    if not partyPanel then return end
+
+    for _, option in ipairs(partyPanel.gwOptions or {}) do
+        local text = PARTY_SETTINGS_TEXT[option.optionName]
+        if text then
+            option.name = text.name
+            option.desc = text.desc or ""
+
+            local widget = option.__widget
+            if widget then
+                widget.name = option.name
+                widget.displayName = option.name
+                widget.desc = option.desc
+                if widget.title then widget.title:SetText(option.name) end
+
+                local entry = widget.__gwRegEntry
+                if entry then
+                    entry.title = option.name
+                    entry.titleNorm = option.name:lower()
+                    entry.desc = option.desc
+                    entry.descNorm = option.desc:lower()
                 end
             end
-        end
-
-        -- 文本变了要重新排一次版，否则提示框还是按英文宽度撑着
-        if changed then
-            GameTooltip.gwPlusTranslating = true
-            GameTooltip:Show()
-            GameTooltip.gwPlusTranslating = false
         end
     end
 end
 
 --------------------------------------------------------------------------------
--- 二、天赋面板的「天赋预览」
+-- 二、高级属性提示框
+--------------------------------------------------------------------------------
+-- 提示框是 local 函数拼出来的，拿不到。用首行标题标记这一次构建，
+-- 在每条 AddDoubleLine 完成后立刻重写刚加入的左栏文本。
+
+local MISS_CHANCE_BOSS = "未命中率（等级 +3）："
+local MISS_CHANCE = "未命中率："
+local CRIT_TEXT = "暴击"
+
+-- 这条不走 L 表：GW2_UI 源码里根本没有这个 key，
+-- 往 AceLocale 表里塞一个它永远不会读的键没意义，直接写在这儿。
+local OBJECTIVES_MENU_NAME = "任务目标"
+
+local function TranslateAdvancedStatsText(text)
+    if not text then return text end
+
+    local translated = text
+    -- 带括号的那条要先换，否则会被短的那条先吃掉前缀
+    translated = translated:gsub(
+        "Miss%-Chance %(Level %+ 3%):", MISS_CHANCE_BOSS)
+    translated = translated:gsub("Miss%-Chance:", MISS_CHANCE)
+    if CRIT_ABBR and CRIT_ABBR ~= "" and CRIT_ABBR ~= CRIT_TEXT then
+        local crit = CRIT_ABBR:gsub("(%W)", "%%%1")
+        translated = translated:gsub(crit .. ":", CRIT_TEXT .. "：")
+    end
+    return translated
+end
+
+local function TranslateAdvancedStatsLastLine(self)
+    if self ~= GameTooltip or not self.gwPlusAdvancedStats then return end
+
+    local line = _G["GameTooltipTextLeft" .. self:NumLines()]
+    local text = line and line:GetText()
+    local translated = TranslateAdvancedStatsText(text)
+    if line and translated ~= text then
+        line:SetText(translated)
+    end
+end
+
+--------------------------------------------------------------------------------
+-- 三、天赋面板的「天赋预览」
 --------------------------------------------------------------------------------
 -- 文本写在 talents.xml 的 FontString text 属性里，框体建好后直接改就行。
 -- Era 下 GW2_UI 在自己的 ADDON_LOADED 就建好了角色窗口，所以这里一定拿得到。
@@ -80,7 +142,7 @@ local function TranslateTalentPreview()
 end
 
 --------------------------------------------------------------------------------
--- 三、设置菜单里的「目标」
+-- 四、设置菜单里的「目标」
 --------------------------------------------------------------------------------
 -- 菜单项文本来自 AddSettingsPanel 存进去的 itemData.name。
 -- itemData 是共享表，改它比改按钮上的 FontString 管用——重新渲染也不会被刷回去。
@@ -113,7 +175,7 @@ local function TranslateObjectivesMenuEntry()
 end
 
 --------------------------------------------------------------------------------
--- 四、HUD 编辑界面的硬编码英文
+-- 五、HUD 编辑界面的硬编码英文
 --------------------------------------------------------------------------------
 
 local HUD_TEXT = {
@@ -176,11 +238,25 @@ f:RegisterEvent("PLAYER_ENTERING_WORLD")
 f:SetScript("OnEvent", function(self)
     self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 
-    GameTooltip:HookScript("OnShow", TranslateAdvancedStatsTooltip)
+    hooksecurefunc(GameTooltip, "ClearLines", function(tooltip)
+        if tooltip == GameTooltip then
+            tooltip.gwPlusAdvancedStats = false
+        end
+    end)
+    hooksecurefunc(GameTooltip, "SetText", function(tooltip, text)
+        if tooltip == GameTooltip then
+            tooltip.gwPlusAdvancedStats =
+                text == (ADVANCED_LABEL .. " " .. STAT_CATEGORY_ATTRIBUTES)
+        end
+    end)
+    hooksecurefunc(
+        GameTooltip, "AddDoubleLine", TranslateAdvancedStatsLastLine)
+    TranslatePartySettings()
     TranslateTalentPreview()
     TranslateObjectivesMenuEntry()
     C_Timer.After(0, TranslateMoveHud)
 end)
 
+addonTable.TranslatePartySettings = TranslatePartySettings
 addonTable.TranslateObjectivesMenuEntry = TranslateObjectivesMenuEntry
 addonTable.TranslateMoveHud = TranslateMoveHud

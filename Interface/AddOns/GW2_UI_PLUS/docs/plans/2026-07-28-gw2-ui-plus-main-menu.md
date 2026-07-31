@@ -14,21 +14,21 @@
 
 ## 文件结构
 
-- 新建 `Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua`：查找原生页面、保存/恢复页面状态、构建主菜单标签。
-- 新建 `Interface/AddOns/GW2_UI_PLUS/MainMenu/SettingsIcon.lua`：只替换原“设置/配置”标签按钮图标。
+- 新建 `Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/MainMenu.lua`：查找原生页面、保存/恢复页面状态、构建主菜单标签。
+- 新建 `Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/SettingsIcon.lua`：只替换原“设置/配置”标签按钮图标。
 - 新建 `Interface/AddOns/GW2_UI_PLUS/tests/MainMenu_test.lua`：验证页面定位、迁移、恢复、菜单选择及注册。
 - 新建 `Interface/AddOns/GW2_UI_PLUS/tests/SettingsIcons_test.lua`：验证三个标签图标及文件边界。
 - 修改 `Interface/AddOns/GW2_UI_PLUS/GW2_UI_PLUS.toc`：在 `core.lua` 前加载两个主菜单模块。
 - 修改 `Interface/AddOns/GW2_UI_PLUS/core.lua`：构建 Action Bar 后构建主菜单并应用配置图标。
-- 修改 `Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua`：仅替换 Action Bar 标签纹理。
+- 修改 `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua`：仅替换 Action Bar 标签纹理。
 
 ### 任务 1：先锁定标签图标与模块加载边界
 
 **文件：**
 - 新建：`Interface/AddOns/GW2_UI_PLUS/tests/SettingsIcons_test.lua`
 - 修改：`Interface/AddOns/GW2_UI_PLUS/GW2_UI_PLUS.toc`
-- 新建：`Interface/AddOns/GW2_UI_PLUS/MainMenu/SettingsIcon.lua`
-- 修改：`Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua:1282`
+- 新建：`Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/SettingsIcon.lua`
+- 修改：`Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua:1282`
 - 修改：`Interface/AddOns/GW2_UI_PLUS/core.lua:218-224`
 
 - [ ] **步骤 1：编写失败测试**
@@ -122,10 +122,10 @@ end
 - [ ] **步骤 5：提交图标改动**
 
 ```bash
-git add Interface/AddOns/GW2_UI_PLUS/MainMenu/SettingsIcon.lua \
+git add Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/SettingsIcon.lua \
   Interface/AddOns/GW2_UI_PLUS/tests/SettingsIcons_test.lua \
   Interface/AddOns/GW2_UI_PLUS/GW2_UI_PLUS.toc \
-  Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua \
+  Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua \
   Interface/AddOns/GW2_UI_PLUS/core.lua
 git commit -m "功能：调整设置标签图标"
 ```
@@ -134,7 +134,7 @@ git commit -m "功能：调整设置标签图标"
 
 **文件：**
 - 新建：`Interface/AddOns/GW2_UI_PLUS/tests/MainMenu_test.lua`
-- 新建：`Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua`
+- 新建：`Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/MainMenu.lua`
 - 修改：`Interface/AddOns/GW2_UI_PLUS/GW2_UI_PLUS.toc`
 
 - [ ] **步骤 1：编写失败测试的框体与数据源替身**
@@ -413,7 +413,7 @@ MainMenu/MainMenu.lua
 - [ ] **步骤 8：提交主菜单核心**
 
 ```bash
-git add Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua \
+git add Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/MainMenu.lua \
   Interface/AddOns/GW2_UI_PLUS/tests/MainMenu_test.lua \
   Interface/AddOns/GW2_UI_PLUS/GW2_UI_PLUS.toc
 git commit -m "功能：新增主菜单设置框体"

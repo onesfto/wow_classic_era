@@ -1,0 +1,78 @@
+<h2>拖出职业窗口：成员条布局确认</h2>
+<p class="subtitle">宽度保持为当前的 1.5 倍；血条和蓝条横向铺满，名字居中覆盖在血条上。</p>
+
+<style>
+  .preview {
+    min-height: 390px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(rgba(5, 26, 23, .24), rgba(4, 14, 13, .42)),
+      radial-gradient(circle at 70% 18%, #416452 0, #18342c 38%, #081713 100%);
+  }
+  .pullout {
+    width: 177px;
+    padding: 5px;
+    color: #f4f1df;
+    font-family: Arial, "Microsoft YaHei", sans-serif;
+    text-shadow: 1px 1px 1px #000;
+    background: linear-gradient(115deg, rgba(42, 38, 29, .94), rgba(8, 17, 18, .96));
+    border: 1px solid #171713;
+    box-shadow: 0 0 0 2px #777062, 0 0 0 3px #111, 0 4px 14px #000;
+  }
+  .title {
+    color: #ffd800;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+  }
+  .unit {
+    overflow: hidden;
+    border: 1px solid #504c42;
+    box-shadow: inset 0 0 0 1px #090908;
+    background: #060909;
+  }
+  .health {
+    position: relative;
+    height: 25px;
+    background: linear-gradient(#37ba4a, #1c7328);
+    border-bottom: 1px solid #090909;
+  }
+  .name {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f7f4e7;
+    font-size: 17px;
+  }
+  .mana {
+    height: 8px;
+    background: linear-gradient(#4269ef, #253b9e);
+  }
+  .note {
+    max-width: 520px;
+    margin: 24px auto 0;
+    text-align: center;
+    color: var(--text-secondary);
+  }
+</style>
+
+<div class="mockup">
+  <div class="mockup-header">推荐方案 · PLUS 统一小框</div>
+  <div class="mockup-body preview">
+    <div class="pullout">
+      <div class="title">法师</div>
+      <div class="unit">
+        <div class="health">
+          <span class="name">法德迦</span>
+        </div>
+        <div class="mana"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="note">实际游戏里血量和法力值会继续按原生数据实时变化；这里只调整尺寸、位置和材质，不改团队窗口功能。</p>

@@ -6,7 +6,7 @@
 
 **目标：** 在“框体”标签的玩家菜单下加入“综合、资源条、光环”子菜单，并把“目标的目标”的非隐藏器设置追加到目标面板。
 
-**架构：** 继续只在 `GW2_UI_PLUS/MainMenu/MainMenu.lua` 中复用原生设置页面。玩家菜单通过静态按钮层级控制三个原生页面；目标页通过合并原生 `gwOptions` 并重建目标滚动数据源来显示“目标的目标”设置，所有原生 getter、setter、依赖和回调保持不变。
+**架构：** 继续只在 `GW2_UI_PLUS/Modules/MainMenu/MainMenu.lua` 中复用原生设置页面。玩家菜单通过静态按钮层级控制三个原生页面；目标页通过合并原生 `gwOptions` 并重建目标滚动数据源来显示“目标的目标”设置，所有原生 getter、setter、依赖和回调保持不变。
 
 **技术栈：** Lua 5.1、World of Warcraft Frame API、GW2_UI 设置面板和 ScrollBox 数据源。
 
@@ -15,7 +15,7 @@
 ### 任务一：扩充原生页面发现范围
 
 **文件：**
-- 修改：`Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua`
+- 修改：`Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/MainMenu.lua`
 
 - [ ] **步骤 1：扩充页面定义**
 
@@ -48,7 +48,7 @@ local PLAYER_PAGE_DEFINITIONS = {
 运行：
 
 ```bash
-luac -p Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua
+luac -p Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/MainMenu.lua
 ```
 
 预期：命令无输出并以状态码 0 结束。
@@ -56,7 +56,7 @@ luac -p Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua
 ### 任务二：合并“目标的目标”设置
 
 **文件：**
-- 修改：`Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua`
+- 修改：`Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/MainMenu.lua`
 
 - [ ] **步骤 1：添加数据源构建辅助函数**
 
@@ -128,7 +128,7 @@ addonTable.PrepareUnitFrameSettings(settingsTab)
 ### 任务三：实现玩家子菜单
 
 **文件：**
-- 修改：`Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua`
+- 修改：`Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/MainMenu.lua`
 
 - [ ] **步骤 1：建立菜单项列表**
 
@@ -178,7 +178,7 @@ end
 ### 任务四：静态验证
 
 **文件：**
-- 验证：`Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua`
+- 验证：`Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/MainMenu.lua`
 - 验证：`Interface/AddOns/GW2_UI_PLUS/core.lua`
 
 - [ ] **步骤 1：检查 Lua 语法**
@@ -186,7 +186,7 @@ end
 运行：
 
 ```bash
-luac -p Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua \
+luac -p Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/MainMenu.lua \
     Interface/AddOns/GW2_UI_PLUS/core.lua
 ```
 
@@ -198,7 +198,7 @@ luac -p Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua \
 
 ```bash
 git diff --check -- \
-    Interface/AddOns/GW2_UI_PLUS/MainMenu/MainMenu.lua \
+    Interface/AddOns/GW2_UI_PLUS/Modules/MainMenu/MainMenu.lua \
     Interface/AddOns/GW2_UI_PLUS/core.lua
 ```
 

@@ -3,7 +3,7 @@
 ## Title-zhCN: GW2 UI Plus
 ## Title-zhTW: GW2 UI Plus
 ## SavedVariablesPerCharacter: 
-## SavedVariables: alaGearManSV, GW2_UI_PLUS_SV, GW2_UI_PLUS_ChatBarSV, GW2_UI_PLUS_ChatWindowSV, GW2_UI_PLUS_ActionBarSV, GW2_UI_PLUS_PlayerStatusSV
+## SavedVariables: alaGearManSV, GW2_UI_PLUS_SV, GW2_UI_PLUS_ChatBarSV, GW2_UI_PLUS_ChatWindowSV, GW2_UI_PLUS_ActionBarSV, GW2_UI_PLUS_PlayerStatusSV, GW2_UI_PLUS_CooldownPulseSV
 ## Notes: alaGearMan
 ## Dependencies: GW2_UI
 ## OptionalDependencies: 
@@ -13,55 +13,57 @@
 ## Author-zhCN: |cff00ff00ALA|r
 ## Author-zhTW: |cff00ff00ALA|r
 ## Version: 404r.260331
-## IconTexture: Interface\AddOns\GW2_UI_PLUS\gwlogo-red.png
+## IconTexture: Interface\AddOns\GW2_UI_PLUS\Assets\gwlogo-red.png
 locale/Hardcoded.lua
-fixes/Fixes.lua
-fixes/Spellbook.lua
-fixes/Diagnostics.lua
-alaGearMan/alaGearMan.xml
-Toolbar/Core.lua
-Toolbar/GroupManage.lua
-Toolbar/QuickBar.lua
-Toolbar/MarkerBar.lua
-Toolbar/PerformanceBar.lua
-Toolbar/Options.lua
-Minimap/AddonFlyout.lua
-Minimap/Options.lua
-ChatBar/ChatBar.lua
-ChatBar/Options.lua
-ChatWindow/ChatWindow.lua
-ChatWindow/MsgTrim.lua
-ChatWindow/Filter.lua
-ChatWindow/ClassColor.lua
-ChatWindow/EditBox.lua
-ChatWindow/Options.lua
-ActionBar/ActionBar.lua
-ActionBar/Layout.lua
-ActionBar/Equipment.lua
-ActionBar/MageBar.lua
-ActionBar/Fader.lua
-ActionBar/Options.lua
-MainMenu/EnergyTicker.lua
-MainMenu/PlayerResources.lua
-MainMenu/PlayerAuras.lua
-MainMenu/MainMenu.lua
-MainMenu/SettingsIcon.lua
-social/friendsFrame.lua
-social/friendsList.lua
-social/guildList.lua
-social/ignoreList.lua
-social/raidList.lua
-social/whoList.lua
-social/Social.lua
-skins/TradeSkill.lua
-skins/Mail.lua
-skins/QuestLog.lua
-skins/Options.lua
+Core/Fixes.lua
+Core/Spellbook.lua
+Core/Diagnostics.lua
+Libs/alaGearMan/alaGearMan.xml
+Modules/Toolbar/Core.lua
+Modules/Toolbar/GroupManage.lua
+Modules/Toolbar/QuickBar.lua
+Modules/Toolbar/MarkerBar.lua
+Modules/Toolbar/PerformanceBar.lua
+Modules/Toolbar/Options.lua
+Modules/Minimap/AddonFlyout.lua
+Modules/Minimap/Options.lua
+Modules/ChatBar/ChatBar.lua
+Modules/ChatBar/Options.lua
+Modules/CooldownPulse/CooldownPulse.lua
+Modules/CooldownPulse/Options.lua
+Modules/ChatWindow/ChatWindow.lua
+Modules/ChatWindow/MsgTrim.lua
+Modules/ChatWindow/Filter.lua
+Modules/ChatWindow/ClassColor.lua
+Modules/ChatWindow/EditBox.lua
+Modules/ChatWindow/Options.lua
+Modules/ActionBar/ActionBar.lua
+Modules/ActionBar/Layout.lua
+Modules/ActionBar/Equipment.lua
+Modules/ActionBar/MageBar.lua
+Modules/ActionBar/Fader.lua
+Modules/ActionBar/Options.lua
+Modules/MainMenu/EnergyTicker.lua
+Modules/MainMenu/PlayerResources.lua
+Modules/MainMenu/PlayerAuras.lua
+Modules/MainMenu/MainMenu.lua
+Modules/MainMenu/SettingsIcon.lua
+Modules/social/friendsFrame.lua
+Modules/social/friendsList.lua
+Modules/social/guildList.lua
+Modules/social/ignoreList.lua
+Modules/social/raidList.lua
+Modules/social/whoList.lua
+Modules/social/Social.lua
+Modules/skins/TradeSkill.lua
+Modules/skins/Mail.lua
+Modules/skins/QuestLog.lua
+Modules/skins/Options.lua
 core.lua
-skins/Core.lua
-skins/BugSack.lua
-skins/SimpleRaidTargetIcons.lua
-skins/Myslot.lua
-skins/MailLogger.lua
-skins/NovaWorldBuffs.lua
-skins/NovaWorldBuffs_zhCN.lua
+Modules/skins/Core.lua
+Modules/skins/BugSack.lua
+Modules/skins/SimpleRaidTargetIcons.lua
+Modules/skins/Myslot.lua
+Modules/skins/MailLogger.lua
+Modules/skins/NovaWorldBuffs.lua
+Modules/skins/NovaWorldBuffs_zhCN.lua

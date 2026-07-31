@@ -154,10 +154,10 @@
 
 主要文件：
 
-- `Interface/AddOns/GW2_UI_PLUS/ActionBar/ActionBar.lua`
-- `Interface/AddOns/GW2_UI_PLUS/ActionBar/Layout.lua`
-- `Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua`
-- `Interface/AddOns/GW2_UI_PLUS/fixes/Diagnostics.lua`
+- `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/ActionBar.lua`
+- `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Layout.lua`
+- `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua`
+- `Interface/AddOns/GW2_UI_PLUS/Core/Diagnostics.lua`
 
 `Layout.ApplyTextPosition(fontString, button, position, x, y)`：
 

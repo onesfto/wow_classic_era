@@ -14,15 +14,15 @@
 
 ## 文件结构
 
-- 修改 `Interface/AddOns/GW2_UI_PLUS/ActionBar/ActionBar.lua`
+- 修改 `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/ActionBar.lua`
   - 统一尺寸常量和核心默认值。
   - 在主动作条应用快捷键与宏名称文字布局。
   - 更新 HUD 编辑面板的范围和“行按钮数”标签。
-- 修改 `Interface/AddOns/GW2_UI_PLUS/ActionBar/Layout.lua`
+- 修改 `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Layout.lua`
   - 提供共享文字位置函数。
   - 注入动作条 2–8 宏名称位置和宠物条尺寸默认值。
   - 应用多动作条宏名称位置与宠物按钮尺寸。
-- 修改 `Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua`
+- 修改 `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua`
   - 更新所有标签、范围、默认值和恢复默认逻辑。
   - 添加主动作条快捷键、主动作条宏位置、多动作条宏位置和宠物尺寸控件。
 - 修改 `Interface/AddOns/GW2_UI_PLUS/tests/ActionBarLayout_test.lua`
@@ -39,7 +39,7 @@
 **Files:**
 - Modify: `Interface/AddOns/GW2_UI_PLUS/tests/ActionBarFollowup_test.lua`
 - Modify: `Interface/AddOns/GW2_UI_PLUS/tests/SettingsStructure_test.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/ActionBar.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/ActionBar.lua`
 
 - [ ] **Step 1: 写入失败测试**
 
@@ -118,7 +118,7 @@ Expected: `ActionBarFollowup_test: OK`
 - [ ] **Step 5: 提交**
 
 ```bash
-git add Interface/AddOns/GW2_UI_PLUS/ActionBar/ActionBar.lua \
+git add Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/ActionBar.lua \
   Interface/AddOns/GW2_UI_PLUS/tests/ActionBarFollowup_test.lua \
   Interface/AddOns/GW2_UI_PLUS/tests/SettingsStructure_test.lua
 git commit -m "动作条：统一尺寸范围与行按钮数命名"
@@ -128,7 +128,7 @@ git commit -m "动作条：统一尺寸范围与行按钮数命名"
 
 **Files:**
 - Modify: `Interface/AddOns/GW2_UI_PLUS/tests/ActionBarLayout_test.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/Layout.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Layout.lua`
 
 - [ ] **Step 1: 写入失败测试**
 
@@ -210,7 +210,7 @@ Expected: `ActionBarLayout_test: OK`，语法检查无输出且退出码为 0。
 - [ ] **Step 5: 提交**
 
 ```bash
-git add Interface/AddOns/GW2_UI_PLUS/ActionBar/Layout.lua \
+git add Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Layout.lua \
   Interface/AddOns/GW2_UI_PLUS/tests/ActionBarLayout_test.lua
 git commit -m "动作条：共享快捷键与宏名称定位器"
 ```
@@ -219,8 +219,8 @@ git commit -m "动作条：共享快捷键与宏名称定位器"
 
 **Files:**
 - Modify: `Interface/AddOns/GW2_UI_PLUS/tests/ActionBarLayout_test.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/Layout.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Layout.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua`
 
 - [ ] **Step 1: 写入失败测试**
 
@@ -314,8 +314,8 @@ Expected: 两个测试均输出 `OK`，语法检查退出码为 0。
 - [ ] **Step 6: 提交**
 
 ```bash
-git add Interface/AddOns/GW2_UI_PLUS/ActionBar/Layout.lua \
-  Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua \
+git add Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Layout.lua \
+  Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua \
   Interface/AddOns/GW2_UI_PLUS/tests/ActionBarLayout_test.lua
 git commit -m "动作条：增加多动作条宏名称位置"
 ```
@@ -324,8 +324,8 @@ git commit -m "动作条：增加多动作条宏名称位置"
 
 **Files:**
 - Modify: `Interface/AddOns/GW2_UI_PLUS/tests/ActionBarFollowup_test.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/ActionBar.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/ActionBar.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua`
 
 - [ ] **Step 1: 写入失败测试**
 
@@ -422,8 +422,8 @@ Expected: 测试均输出 `OK`，语法检查退出码为 0。
 - [ ] **Step 6: 提交**
 
 ```bash
-git add Interface/AddOns/GW2_UI_PLUS/ActionBar/ActionBar.lua \
-  Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua \
+git add Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/ActionBar.lua \
+  Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua \
   Interface/AddOns/GW2_UI_PLUS/tests/ActionBarFollowup_test.lua
 git commit -m "动作条：增加主动作条快捷键与宏名称位置"
 ```
@@ -433,8 +433,8 @@ git commit -m "动作条：增加主动作条快捷键与宏名称位置"
 **Files:**
 - Modify: `Interface/AddOns/GW2_UI_PLUS/tests/ActionBarLayout_test.lua`
 - Modify: `Interface/AddOns/GW2_UI_PLUS/tests/SettingsStructure_test.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/Layout.lua`
-- Modify: `Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Layout.lua`
+- Modify: `Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua`
 
 - [ ] **Step 1: 写入失败测试**
 
@@ -521,8 +521,8 @@ Expected: 三个测试均输出 `OK`，语法检查退出码为 0。
 - [ ] **Step 6: 提交**
 
 ```bash
-git add Interface/AddOns/GW2_UI_PLUS/ActionBar/Layout.lua \
-  Interface/AddOns/GW2_UI_PLUS/ActionBar/Options.lua \
+git add Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Layout.lua \
+  Interface/AddOns/GW2_UI_PLUS/Modules/ActionBar/Options.lua \
   Interface/AddOns/GW2_UI_PLUS/tests/ActionBarLayout_test.lua \
   Interface/AddOns/GW2_UI_PLUS/tests/SettingsStructure_test.lua
 git commit -m "动作条：增加宠物尺寸并统一设置范围"
