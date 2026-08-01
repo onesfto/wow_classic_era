@@ -112,7 +112,7 @@ local driver = CreateFrame("Frame")
 local microbarState
 local microbarHooked = false
 local pendingMicrobarRefresh = false
-local microbarArrowOffset = 6
+local microbarArrowOffset = 3
 local function QueueRefresh()
     pendingRefresh = true
     driver:RegisterEvent("PLAYER_REGEN_ENABLED")
@@ -408,9 +408,20 @@ local function GetMicrobarEndpoints(microbar, toggle)
     end
     return first and first.button, last and last.button
 end
+local function GetMicrobarFirstButton(microbar)
+    local firstButton = _G.GwCharacterMicroButton
+        or _G.CharacterMicroButton
+    if firstButton and firstButton:IsShown()
+        and firstButton:GetParent() == microbar then
+        return firstButton
+    end
+    return GetMicrobarEndpoints(microbar)
+end
 local function RestoreMicrobarLayout()
     if not microbarState then return end
     if microbarState.first and microbarState.firstPoints then
+        microbarState.first.GwSetAnchorPoint =
+            microbarState.firstAnchorPoint
         microbarState.first:ClearAllPoints()
         for _, point in ipairs(microbarState.firstPoints) do
             microbarState.first:SetPoint(unpackValues(point))
@@ -428,6 +439,9 @@ local function ApplyMicrobarPosition(toggle, position)
     local microbar, frame = GetMicrobar()
     if not microbar or not frame then return false end
     local first, last = GetMicrobarEndpoints(microbar, toggle)
+    if position == "MICROBAR_LEFT" then
+        first = GetMicrobarFirstButton(microbar)
+    end
     if not first or not last then return false end
     if not microbarState then
         microbarState = {
@@ -435,6 +449,7 @@ local function ApplyMicrobarPosition(toggle, position)
             width = frame:GetWidth(),
             first = first,
             firstPoints = CapturePoints(first),
+            firstAnchorPoint = first.GwSetAnchorPoint,
         }
     end
     frame:SetWidth(microbarState.width + 28)
@@ -445,13 +460,17 @@ local function ApplyMicrobarPosition(toggle, position)
     local opensDown = not centerY
         or centerY > UIParent:GetHeight() / 2
     local verticalOffset = opensDown
-        and microbarArrowOffset or -microbarArrowOffset
+        and -microbarArrowOffset or microbarArrowOffset
     if position == "MICROBAR_LEFT" then
         SetPointWithYOffset(
             toggle, microbarState.firstPoints[1], verticalOffset)
-        first:ClearAllPoints()
-        first:SetPoint(
-            "BOTTOMLEFT", toggle, "BOTTOMRIGHT", 4, -verticalOffset)
+        first.GwSetAnchorPoint = function(self)
+            self:ClearAllPoints()
+            self:SetPoint(
+                "BOTTOMLEFT", toggle, "BOTTOMRIGHT", 4,
+                -verticalOffset)
+        end
+        first:GwSetAnchorPoint()
     else
         toggle:SetPoint(
             "BOTTOMLEFT", last, "BOTTOMRIGHT", 4, verticalOffset)
@@ -495,7 +514,8 @@ local function EnsureToggle()
     local toggle = _G[toggleName]
     if not toggle then
         toggle = CreateFrame(
-            "Button", toggleName, UIParent, "GwAddonToggle")
+            "Button", toggleName, UIParent,
+            "SecureHandlerClickTemplate,GwAddonToggle")
     end
     if not toggle or not toggle.container then return nil end
     if not toggle.__gwPlusFlyoutOwned then

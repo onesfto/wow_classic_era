@@ -1,13 +1,13 @@
 
 WhisperPopDB = {
-["ignoreTags"] = 1,
+["applyFilters"] = 1,
 ["listHeight"] = 320,
 ["notifyButton"] = 1,
 ["showRealm"] = 1,
-["listScale"] = 100,
-["listWidth"] = 200,
+["ignoreTags"] = 1,
+["save"] = 1,
 ["timeFormat"] = 2,
-["applyFilters"] = 1,
+["listScale"] = 100,
 ["buttonScale"] = 100,
 ["history"] = {
 {
@@ -233,8 +233,7 @@ WhisperPopDB = {
 ["time"] = 1,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["save"] = 1,
-["sound"] = 1,
+["listWidth"] = 200,
 ["positions"] = {
 ["WhisperPopFrame"] = {
 "TOPLEFT",
@@ -251,4 +250,5 @@ WhisperPopDB = {
 253,
 },
 },
+["sound"] = 1,
 }

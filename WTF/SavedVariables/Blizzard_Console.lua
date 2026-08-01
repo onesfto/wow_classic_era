@@ -1,9 +1,20 @@
 
 Blizzard_Console_SavedVars = {
 ["version"] = 3,
-["height"] = 299.9999084472656,
 ["messageHistory"] = {
 {
+"CGast - CGItemStatsSummary::ParseSpellRec is being called for spellID: 28869, effect aura: 123, which is wrong",
+0,
+},
+{
+"CGast - CGItemStatsSummary::ParseSpellRec is being called for spellID: 18057, effect aura: 13, which is wrong",
+0,
+},
+{
+"CGast - CGItemStatsSummary::ParseSpellRec is being called for spellID: 18057, effect aura: 135, which is wrong",
+0,
+},
+{
 "CGast - CGItemStatsSummary::ParseSpellRec is being called for spellID: 17493, effect aura: 13, which is wrong",
 0,
 },
@@ -204,11 +215,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 16m 19s",
+"Total: 115d 14h 43m 14s",
 0,
 },
 {
-"Level: 102d 19h 44m 4s",
+"Level: 102d 20h 10m 59s",
 0,
 },
 {
@@ -216,11 +227,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 16m 20s",
+"Total: 115d 14h 43m 15s",
 0,
 },
 {
-"Level: 102d 19h 44m 5s",
+"Level: 102d 20h 11m 0s",
 0,
 },
 {
@@ -1196,10 +1207,6 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Value out of range (1.000000 - 4.000000)\n",
-0,
-},
-{
 "Interface/AddOns/InboxMailBag/InboxMailBag.xml:126 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnLoad in element OnLoad",
 3,
 },
@@ -1464,11 +1471,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 19m 22s",
+"Total: 115d 14h 47m 32s",
 0,
 },
 {
-"Level: 102d 19h 47m 7s",
+"Level: 102d 20h 15m 17s",
 0,
 },
 {
@@ -1476,11 +1483,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 19m 23s",
+"Total: 115d 14h 47m 33s",
 0,
 },
 {
-"Level: 102d 19h 47m 8s",
+"Level: 102d 20h 15m 18s",
 0,
 },
 {
@@ -2456,10 +2463,6 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Value out of range (1.000000 - 4.000000)\n",
-0,
-},
-{
 "Interface/AddOns/InboxMailBag/InboxMailBag.xml:126 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnLoad in element OnLoad",
 3,
 },
@@ -2724,11 +2727,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 20m 35s",
+"Total: 115d 14h 51m 22s",
 0,
 },
 {
-"Level: 102d 19h 48m 20s",
+"Level: 102d 20h 19m 7s",
 0,
 },
 {
@@ -2736,11 +2739,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 20m 36s",
+"Total: 115d 14h 51m 23s",
 0,
 },
 {
-"Level: 102d 19h 48m 21s",
+"Level: 102d 20h 19m 8s",
 0,
 },
 {
@@ -3716,10 +3719,6 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Value out of range (1.000000 - 4.000000)\n",
-0,
-},
-{
 "Interface/AddOns/InboxMailBag/InboxMailBag.xml:126 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnLoad in element OnLoad",
 3,
 },
@@ -3984,11 +3983,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 21m 58s",
+"Total: 115d 14h 52m 40s",
 0,
 },
 {
-"Level: 102d 19h 49m 43s",
+"Level: 102d 20h 20m 25s",
 0,
 },
 {
@@ -3996,11 +3995,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 21m 59s",
+"Total: 115d 14h 52m 41s",
 0,
 },
 {
-"Level: 102d 19h 49m 44s",
+"Level: 102d 20h 20m 26s",
 0,
 },
 {
@@ -4976,10 +4975,6 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Value out of range (1.000000 - 4.000000)\n",
-0,
-},
-{
 "Interface/AddOns/InboxMailBag/InboxMailBag.xml:126 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnLoad in element OnLoad",
 3,
 },
@@ -5244,11 +5239,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 24m 42s",
+"Total: 115d 14h 54m 31s",
 0,
 },
 {
-"Level: 102d 19h 52m 27s",
+"Level: 102d 20h 22m 16s",
 0,
 },
 {
@@ -5256,16 +5251,17 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 24m 43s",
+"Total: 115d 14h 54m 32s",
 0,
 },
 {
-"Level: 102d 19h 52m 28s",
+"Level: 102d 20h 22m 17s",
 0,
 },
 },
-["isShown"] = false,
+["height"] = 299.9999084472656,
 ["fontHeight"] = 14,
+["isShown"] = false,
 ["commandHistory"] = {
 },
 }

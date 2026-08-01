@@ -1,7 +1,5 @@
 
 WhisperPopDB = {
-["sound"] = 1,
-["listHeight"] = 320,
 ["positions"] = {
 ["WhisperPopFrame"] = {
 "TOPLEFT",
@@ -18,9 +16,11 @@ WhisperPopDB = {
 253,
 },
 },
+["listHeight"] = 320,
+["sound"] = 1,
 ["showRealm"] = 1,
-["listWidth"] = 200,
 ["save"] = 1,
+["listWidth"] = 200,
 ["timeFormat"] = 2,
 ["time"] = 1,
 ["buttonScale"] = 100,
@@ -245,10 +245,10 @@ WhisperPopDB = {
 ["name"] = "遵娣-哈霍兰",
 },
 },
-["applyFilters"] = 1,
+["listScale"] = 100,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["listScale"] = 100,
-["notifyButton"] = 1,
 ["ignoreTags"] = 1,
+["notifyButton"] = 1,
+["applyFilters"] = 1,
 }
