@@ -20,6 +20,14 @@ local L = GW.L
 --------------------------------------------------------------------------------
 
 local PARTY_SETTINGS_TEXT = {
+    RAID_STYLE_PARTY_AND_FRAMES = {
+        sourceName = "Show both party frames and party grid",
+        name = "团队中也显示小队",
+        sourceDesc =
+            "If enabled, this will show both the stylised party frames as well as the grid frame. This setting has no effect if '%s' is enabled.",
+        desc =
+            "启用后，在团队中显示玩家所在小队的小队框体。无需启用团队框架；若启用“使用团队样式的小队框架”，此选项不会生效。",
+    },
     PARTY_FRAME_ORIENTATION = {
         sourceName = "Orientation",
         name = "排列方向",
@@ -86,7 +94,54 @@ local function TranslatePartySettings()
 end
 
 --------------------------------------------------------------------------------
--- 二、高级属性提示框
+-- 二、单位框体设置的漏译
+--------------------------------------------------------------------------------
+
+L["Own aura size"] = "自身光环大小"
+
+local UNITFRAME_AURA_TEXT = {
+    targetAuraBigSize = "自身光环大小",
+    focusAuraBigSize = "自身光环大小",
+}
+
+local function TranslateUnitFrameAuraSettings()
+    local settingsTab = GW.GetSettingsTabFrame and GW.GetSettingsTabFrame()
+    local scrollBox = settingsTab and settingsTab.menu
+        and settingsTab.menu.ScrollBox
+    local dataProvider = scrollBox and scrollBox:GetDataProvider()
+    if not dataProvider or not dataProvider.ForEach then return end
+
+    dataProvider:ForEach(function(elementData)
+        local frame = elementData and elementData.isSubCat
+            and elementData.itemData and elementData.itemData.frame
+        if not frame or (frame.panelId ~= "target_general"
+            and frame.panelId ~= "focus_general") then
+            return
+        end
+
+        for _, option in ipairs(frame.gwOptions or {}) do
+            local name = UNITFRAME_AURA_TEXT[option.optionName]
+            if name then
+                option.name = name
+                local widget = option.__widget
+                if widget then
+                    widget.name = name
+                    widget.displayName = name
+                    if widget.title then widget.title:SetText(name) end
+
+                    local entry = widget.__gwRegEntry
+                    if entry then
+                        entry.title = name
+                        entry.titleNorm = name:lower()
+                    end
+                end
+            end
+        end
+    end)
+end
+
+--------------------------------------------------------------------------------
+-- 三、高级属性提示框
 --------------------------------------------------------------------------------
 -- 提示框是 local 函数拼出来的，拿不到。用首行标题标记这一次构建，
 -- 在每条 AddDoubleLine 完成后立刻重写刚加入的左栏文本。
@@ -126,7 +181,7 @@ local function TranslateAdvancedStatsLastLine(self)
 end
 
 --------------------------------------------------------------------------------
--- 三、天赋面板的「天赋预览」
+-- 四、天赋面板的「天赋预览」
 --------------------------------------------------------------------------------
 -- 文本写在 talents.xml 的 FontString text 属性里，框体建好后直接改就行。
 -- Era 下 GW2_UI 在自己的 ADDON_LOADED 就建好了角色窗口，所以这里一定拿得到。
@@ -142,7 +197,7 @@ local function TranslateTalentPreview()
 end
 
 --------------------------------------------------------------------------------
--- 四、设置菜单里的「目标」
+-- 五、设置菜单里的「目标」
 --------------------------------------------------------------------------------
 -- 菜单项文本来自 AddSettingsPanel 存进去的 itemData.name。
 -- itemData 是共享表，改它比改按钮上的 FontString 管用——重新渲染也不会被刷回去。
@@ -175,7 +230,7 @@ local function TranslateObjectivesMenuEntry()
 end
 
 --------------------------------------------------------------------------------
--- 五、HUD 编辑界面的硬编码英文
+-- 六、HUD 编辑界面的硬编码英文
 --------------------------------------------------------------------------------
 
 local HUD_TEXT = {
@@ -252,6 +307,7 @@ f:SetScript("OnEvent", function(self)
     hooksecurefunc(
         GameTooltip, "AddDoubleLine", TranslateAdvancedStatsLastLine)
     TranslatePartySettings()
+    TranslateUnitFrameAuraSettings()
     TranslateTalentPreview()
     TranslateObjectivesMenuEntry()
     C_Timer.After(0, TranslateMoveHud)

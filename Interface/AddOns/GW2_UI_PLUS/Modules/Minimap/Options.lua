@@ -29,7 +29,7 @@ local function BuildMinimapAddonFlyoutPanel(parent)
             panel.breadcrumb:SetTextColor(
                 GW.Colors.TextColors.LightHeader:GetRGB())
         end
-        panel.breadcrumb:SetText("插件悬浮按钮")
+        panel.breadcrumb:SetText("插件收纳")
     end
     if panel.sub then
         panel.sub:SetFont(
@@ -68,6 +68,7 @@ local function BuildMinimapAddonFlyoutPanel(parent)
                 "右中", "左下", "下", "右下",
                 "系统菜单左边", "系统菜单右边",
             },
+            maxButtons = 11,
             getter = Flyout.GetPosition,
             setter = function(value)
                 Flyout.SetPosition(value)

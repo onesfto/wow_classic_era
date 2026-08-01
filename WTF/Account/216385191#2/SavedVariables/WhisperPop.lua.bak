@@ -26,17 +26,17 @@ WhisperPopDB = {
 ["buttonScale"] = 100,
 ["history"] = {
 {
+["class"] = "ROGUE",
 ["messages"] = {
 "1[T1785514336]我没",
 },
-["class"] = "ROGUE",
 ["name"] = "赤紅十三-哈霍兰",
 },
 {
+["class"] = "PALADIN",
 ["messages"] = {
 "1[T1785513518]你ma si 了 快回家看看",
 },
-["class"] = "PALADIN",
 ["name"] = "违规通知-哈霍兰",
 },
 {
@@ -245,10 +245,10 @@ WhisperPopDB = {
 ["name"] = "遵娣-哈霍兰",
 },
 },
-["listScale"] = 100,
+["applyFilters"] = 1,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["ignoreTags"] = 1,
+["listScale"] = 100,
 ["notifyButton"] = 1,
-["applyFilters"] = 1,
+["ignoreTags"] = 1,
 }

@@ -1,0 +1,10 @@
+# Salt source: salt://roles/wiki-manager/files/config/robots.txt.j2
+
+User-agent: *
+Disallow: /index.php
+Disallow: /api.php
+Disallow: /load.php
+Disallow: /wiki/Special:*
+Disallow: /wiki/Spezial:*
+Disallow: /wiki/Spécial:*
+Disallow: /wiki/Especial:*

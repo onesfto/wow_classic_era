@@ -3,7 +3,7 @@
 ## Title-zhCN: GW2 UI Plus
 ## Title-zhTW: GW2 UI Plus
 ## SavedVariablesPerCharacter: 
-## SavedVariables: alaGearManSV, GW2_UI_PLUS_SV, GW2_UI_PLUS_ChatBarSV, GW2_UI_PLUS_ChatWindowSV, GW2_UI_PLUS_ActionBarSV, GW2_UI_PLUS_PlayerStatusSV, GW2_UI_PLUS_CooldownPulseSV
+## SavedVariables: alaGearManSV, GW2_UI_PLUS_SV, GW2_UI_PLUS_ChatBarSV, GW2_UI_PLUS_ChatWindowSV, GW2_UI_PLUS_ActionBarSV, GW2_UI_PLUS_PlayerStatusSV, GW2_UI_PLUS_PlayerFaderSV, GW2_UI_PLUS_TargetFaderSV, GW2_UI_PLUS_CooldownPulseSV
 ## Notes: alaGearMan
 ## Dependencies: GW2_UI
 ## OptionalDependencies: 
@@ -56,9 +56,14 @@ Modules/ActionBar/Options.lua
 Modules/UnitFrames/EnergyTicker.lua
 Modules/UnitFrames/PlayerResources.lua
 Modules/UnitFrames/PlayerAuras.lua
+Modules/UnitFrames/PartyInRaid.lua
 Modules/Settings/HideNativeSettings.lua
 Modules/Settings/Settings.lua
 Modules/Settings/SettingsIcon.lua
+Modules/Settings/PartyTab.lua
+Modules/Settings/ComponentsTab.lua
+Modules/Settings/EditModeTab.lua
+Modules/Settings/EditModeVehicleLeaveButton.lua
 Modules/Social/friendsFrame.lua
 Modules/Social/friendsList.lua
 Modules/Social/guildList.lua

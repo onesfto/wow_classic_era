@@ -16,6 +16,8 @@
 
 ## 📖 其他文档
 
+- **[GW2_UI_PLUS_Early.md](GW2_UI_PLUS_Early.md)** - `!GW2_UI_PLUS_Early` 配套先行加载组件说明
+
 根目录下的模块 README：
 - `Modules/ActionBar/README.md` - 动作条扩展
 - `Modules/ChatBar/README.md` - 频道按钮条

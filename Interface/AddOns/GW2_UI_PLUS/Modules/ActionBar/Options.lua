@@ -338,7 +338,7 @@ local function BuildActionBarTab(settingsTab, settingsWindow)
         buttons[index] = button
     end
     tab.callbackOnClose = function() end
-    settingsWindow:AddTab("Interface/AddOns/GW2_UI/textures/character/tabicon-glyph.png", tab)
+    settingsWindow:AddTab("Interface/AddOns/GW2_UI_PLUS/Assets/icons/tabs/tabicon_action.png", tab)
     local tabButton = settingsWindow.tabButtons[#settingsWindow.tabButtons]
     if tabButton and tabButton.icon then
         tabButton.icon:SetTexCoord(0.505, 1, 0, 0.625)

@@ -240,7 +240,7 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
         local minimapFlyoutFrame = addonTable.BuildMinimapAddonFlyoutPanel(p)
         if minimapFlyoutFrame then
             table.insert(subPanels, {
-                name = "插件悬浮按钮",
+                name = "插件收纳",
                 frame = minimapFlyoutFrame,
                 icon = "Interface\\AddOns\\GW2_UI\\textures\\icons\\addondropout.png",
             })
@@ -262,6 +262,10 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
         end
     end
 
+    addonTable.PlusAddonSubPanels = subPanels
+    -- 通过原生 AddSettingsPanel 触发 GW2_UI 的 InitOptionPanel，
+    -- 使各子面板的 ScrollBox 获得 DataProvider，否则内容为空。
+    -- HideNativeSettings 会将该条目从原生设置菜单中过滤掉。
     settingsTab:AddSettingsPanel(p, "附加组件", "额外附加组件", subPanels, true)
 
     if addonTable.BuildActionBarTab then
@@ -274,6 +278,18 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
 
     if addonTable.BuildMainMenuTab then
         addonTable.BuildMainMenuTab(settingsTab, _G.GwSettingsWindow)
+    end
+
+    if addonTable.BuildPartyTab then
+        addonTable.BuildPartyTab(settingsTab, _G.GwSettingsWindow)
+    end
+
+    if addonTable.BuildComponentsTab then
+        addonTable.BuildComponentsTab(settingsTab, _G.GwSettingsWindow)
+    end
+
+    if addonTable.BuildEditModeTab then
+        addonTable.BuildEditModeTab(settingsTab, _G.GwSettingsWindow)
     end
 
     if addonTable.ApplyProfileTabIcon then

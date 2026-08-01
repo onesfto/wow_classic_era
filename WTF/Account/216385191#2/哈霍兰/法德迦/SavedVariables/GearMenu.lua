@@ -47,8 +47,8 @@ GearMenuConfiguration = {
 ["showCooldowns"] = true,
 ["orientation"] = 1,
 ["position"] = {
-["point"] = "CENTER",
 ["posX"] = 425.1387634277344,
+["point"] = "CENTER",
 ["posY"] = -209.963134765625,
 ["relativePoint"] = "CENTER",
 },
@@ -58,8 +58,8 @@ GearMenuConfiguration = {
 },
 ["frames"] = {
 ["GM_TrinketMenuFrame"] = {
-["point"] = "RIGHT",
 ["relativePoint"] = "RIGHT",
+["point"] = "RIGHT",
 ["posY"] = -209.3778381347656,
 ["posX"] = -256.3271789550781,
 },

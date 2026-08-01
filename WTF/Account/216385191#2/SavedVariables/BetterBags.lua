@@ -1075,14 +1075,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["战场"] = {
+["A-AD"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "战场",
+["name"] = "A-AD",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1119,14 +1119,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-AD"] = {
+["A-非专业"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-AD",
+["name"] = "A-非专业",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1174,14 +1174,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-非专业"] = {
+["战场"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-非专业",
+["name"] = "战场",
 ["save"] = true,
 ["note"] = "",
 },

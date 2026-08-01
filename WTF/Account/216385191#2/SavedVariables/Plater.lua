@@ -36,8 +36,8 @@ PlaterDB = {
 ["npcID"] = 12057,
 },
 [8137] = {
-["type"] = "DEBUFF",
 ["source"] = "格里什异种蝎",
+["type"] = "DEBUFF",
 ["event"] = "SPELL_AURA_APPLIED",
 ["npcID"] = 6551,
 },
@@ -153,11 +153,13 @@ PlaterDB = {
 ["event"] = "SPELL_CAST_SUCCESS",
 ["encounterID"] = 617,
 },
-[22817] = {
-["event"] = "SPELL_AURA_APPLIED",
-["type"] = "BUFF",
-["source"] = "卫兵芬古斯",
-["npcID"] = 14321,
+[22642] = {
+["encounterName"] = "奈法利安",
+["source"] = "青铜龙兽",
+["npcID"] = 14263,
+["isChanneled"] = false,
+["event"] = "SPELL_CAST_SUCCESS",
+["encounterID"] = 617,
 },
 [22681] = {
 ["encounterName"] = "奈法利安",
@@ -183,13 +185,11 @@ PlaterDB = {
 ["event"] = "SPELL_CAST_SUCCESS",
 ["encounterID"] = 617,
 },
-[22642] = {
-["encounterName"] = "奈法利安",
-["source"] = "青铜龙兽",
-["npcID"] = 14263,
-["isChanneled"] = false,
-["event"] = "SPELL_CAST_SUCCESS",
-["encounterID"] = 617,
+[22817] = {
+["event"] = "SPELL_AURA_APPLIED",
+["type"] = "BUFF",
+["source"] = "卫兵芬古斯",
+["npcID"] = 14321,
 },
 [23364] = {
 ["encounterName"] = "奈法利安",
@@ -207,12 +207,12 @@ PlaterDB = {
 ["event"] = "SPELL_CAST_SUCCESS",
 ["encounterID"] = 617,
 },
-[1604] = {
+[22687] = {
 ["encounterName"] = "奈法利安",
-["type"] = "DEBUFF",
-["source"] = "青铜龙兽",
-["npcID"] = 14263,
-["event"] = "SPELL_AURA_APPLIED",
+["source"] = "奈法利安",
+["npcID"] = 11583,
+["isChanneled"] = false,
+["event"] = "SPELL_CAST_SUCCESS",
 ["encounterID"] = 617,
 },
 [22436] = {
@@ -231,12 +231,12 @@ PlaterDB = {
 ["event"] = "SPELL_CAST_SUCCESS",
 ["encounterID"] = 617,
 },
-[22561] = {
+[1604] = {
 ["encounterName"] = "奈法利安",
-["source"] = "绿色龙兽",
-["npcID"] = 14262,
-["isChanneled"] = false,
-["event"] = "SPELL_CAST_SUCCESS",
+["type"] = "DEBUFF",
+["source"] = "青铜龙兽",
+["npcID"] = 14263,
+["event"] = "SPELL_AURA_APPLIED",
 ["encounterID"] = 617,
 },
 [22313] = {
@@ -253,10 +253,10 @@ PlaterDB = {
 ["source"] = "卫兵摩尔达",
 ["npcID"] = 14326,
 },
-[22687] = {
+[22561] = {
 ["encounterName"] = "奈法利安",
-["source"] = "奈法利安",
-["npcID"] = 11583,
+["source"] = "绿色龙兽",
+["npcID"] = 14262,
 ["isChanneled"] = false,
 ["event"] = "SPELL_CAST_SUCCESS",
 ["encounterID"] = 617,
@@ -388,7 +388,7 @@ PlaterDB = {
 ["nameplateShowFriendlyNPCs"] = "[C]: ?\n[C]: in function 'SetCVar'\n[Interface/AddOns/Blizzard_SharedXMLBase/CvarUtil.lua]:98: in function 'SetValue'\n[Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Setting.lua]:286: in function 'SetValueDerived'\n[Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Setting.lua]:132: in function 'ApplyValue'\n[Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Setting.lua]:108: in function 'SetValue'\n[Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Settings.lua]:228: in function 'SetValue'\n[FRIENDNAMEPLATES]:4: in function <[string \"FRIENDNAMEPLATES\"]:1>\n",
 ["nameplateSelectedScale"] = "Interface/AddOns/Plater/Plater.lua:1656",
 ["nameplateShowFriendlyPlayers"] = "[C]: ?\n[C]: in function 'SetCVar'\n[Interface/AddOns/Blizzard_SharedXMLBase/CvarUtil.lua]:98: in function 'SetValue'\n[Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Setting.lua]:286: in function 'SetValueDerived'\n[Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Setting.lua]:132: in function 'ApplyValue'\n[Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Setting.lua]:108: in function 'SetValue'\n[Interface/AddOns/Blizzard_Settings_Shared/Blizzard_Settings.lua]:228: in function 'SetValue'\n[FRIENDNAMEPLATES]:3: in function <[string \"FRIENDNAMEPLATES\"]:1>\n",
-["nameplateStackingTypes"] = "Interface/AddOns/Plater/Plater.lua:4533",
+["nameplateStackingTypes"] = "Interface/AddOns/Plater/Plater.lua:4571",
 ["nameplateSelfTopInset"] = "Interface\\AddOns\\Plater\\Plater.lua:1938",
 ["nameplateSelfAlpha"] = "Interface\\AddOns\\Plater\\Plater.lua:1938",
 ["nameplateMinAlphaDistance"] = "Interface/AddOns/Plater/Plater.lua:4884",
@@ -4081,9 +4081,9 @@ PlaterDB = {
 "伊米亚黑暗萨满祭司",
 "乌特加德之巅",
 },
-[15510] = {
-"顽强的范克瑞斯",
-"安其拉神殿",
+[35545] = {
+"复生的嘉伦·誓日",
+"冠军的试炼",
 "zhCN",
 },
 [37124] = {
@@ -4100,18 +4100,18 @@ PlaterDB = {
 "祖尔格拉布",
 "zhCN",
 },
-[28965] = {
-"泰坦神铁轰鸣者",
-"闪电大厅",
-},
-[35545] = {
-"复生的嘉伦·誓日",
-"冠军的试炼",
-"zhCN",
-},
 [26918] = {
 "混乱裂隙",
 "魔枢",
+},
+[15510] = {
+"顽强的范克瑞斯",
+"安其拉神殿",
+"zhCN",
+},
+[28965] = {
+"泰坦神铁轰鸣者",
+"闪电大厅",
 },
 [11352] = {
 "古拉巴什狂暴者",
@@ -4213,19 +4213,19 @@ PlaterDB = {
 "审讯者达库斯",
 "魔环",
 },
-[37125] = {
-"鲁伯特上尉",
-"冰冠堡垒",
-"zhCN",
+[27960] = {
+"黑暗符文战士",
+"岩石大厅",
 },
 [15146] = {
 "未知目标",
 "祖尔格拉布",
 "zhCN",
 },
-[27960] = {
-"黑暗符文战士",
-"岩石大厅",
+[37125] = {
+"鲁伯特上尉",
+"冰冠堡垒",
+"zhCN",
 },
 [29829] = {
 "达卡莱震地者",
@@ -4272,23 +4272,22 @@ PlaterDB = {
 "冠军的试炼",
 "zhCN",
 },
-[12056] = {
-"迦顿男爵",
-"熔火之心",
+[13996] = {
+"黑翼技师",
+"黑翼之巢",
 "zhCN",
 },
 [17899] = {
 "阴暗通灵师",
 "海加尔山之战",
 },
-[13996] = {
-"黑翼技师",
-"黑翼之巢",
-"zhCN",
-},
 [16150] = {
 "鬼灵骑兵",
 "纳克萨玛斯",
+},
+[30245] = {
+"未知目标",
+"永恒之眼",
 },
 [30277] = {
 "安卡哈切碎者",
@@ -4606,10 +4605,9 @@ PlaterDB = {
 "复活的达卡莱训练者",
 "达克萨隆要塞",
 },
-[11353] = {
-"古拉巴什饮血者",
-"祖尔格拉布",
-"zhCN",
+[15447] = {
+"空气之怒图腾",
+"风暴要塞",
 },
 [26536] = {
 "无脑的仆从",
@@ -4641,13 +4639,14 @@ PlaterDB = {
 "法师猎手新兵",
 "魔枢",
 },
+[11353] = {
+"古拉巴什饮血者",
+"祖尔格拉布",
+"zhCN",
+},
 [26792] = {
 "晶化保卫者",
 "魔枢",
-},
-[15447] = {
-"空气之怒图腾",
-"风暴要塞",
 },
 [30918] = {
 "未知目标",
@@ -5131,18 +5130,19 @@ PlaterDB = {
 "势不可挡的憎恶",
 "纳克萨玛斯",
 },
-[26730] = {
-"法师杀手",
-"魔枢",
+[37068] = {
+"萌萌的露小露",
+"映像大厅",
+"zhCN",
 },
 [15240] = {
 "维克尼爬行者",
 "安其拉神殿",
 "zhCN",
 },
-[24683] = {
-"炎刃魔法卫兵",
-"魔导师平台",
+[26730] = {
+"法师杀手",
+"魔枢",
 },
 [34445] = {
 "莉安德拉·唤日者",
@@ -5184,10 +5184,9 @@ PlaterDB = {
 "冰冠堡垒",
 "zhCN",
 },
-[37068] = {
-"萌萌的露小露",
-"映像大厅",
-"zhCN",
+[24683] = {
+"炎刃魔法卫兵",
+"魔导师平台",
 },
 [11338] = {
 "哈卡暗影法师",
@@ -5425,13 +5424,14 @@ PlaterDB = {
 "未知目标",
 "达克萨隆要塞",
 },
-[34447] = {
-"严肃的凯普斯",
-"十字军的试炼",
-},
 [24396] = {
 "森林蛙",
 "祖阿曼",
+},
+[36494] = {
+"熔炉之主加弗斯特",
+"萨隆深渊",
+"zhCN",
 },
 [14265] = {
 "黑色龙兽",
@@ -5624,10 +5624,9 @@ PlaterDB = {
 "碧蓝缚法者",
 "魔环",
 },
-[36494] = {
-"熔炉之主加弗斯特",
-"萨隆深渊",
-"zhCN",
+[34447] = {
+"严肃的凯普斯",
+"十字军的试炼",
 },
 [22951] = {
 "女公爵玛兰德",
@@ -6185,13 +6184,14 @@ PlaterDB = {
 "畸形的淤泥怪",
 "岩石大厅",
 },
+[12056] = {
+"迦顿男爵",
+"熔火之心",
+"zhCN",
+},
 [30284] = {
 "碾骨者",
 "安卡赫特：古代王国",
-},
-[30245] = {
-"未知目标",
-"永恒之眼",
 },
 [17842] = {
 "阿兹加洛",
@@ -6656,16 +6656,16 @@ nil,
 ["Fixate"] = 11,
 ["Aura While Casting [P]"] = 1,
 ["Cast - Big Alert"] = 14,
+["Cast - Stop Casting"] = 4,
+["Color Change"] = 1,
 ["Countdown"] = 12,
 ["Auto Set Skull"] = 11,
-["Cast - On Going Cast [P]"] = 2,
 ["Spiteful Affix"] = 3,
-["Color Change"] = 1,
 ["Cast - Tank Interrupt"] = 12,
 ["Add - Non Elite Trash [P]"] = 4,
 ["Relics 9.2 M Dungeons"] = 2,
 ["Aura Border Color"] = 1,
-["Cast - Stop Casting"] = 4,
+["Cast - On Going Cast [P]"] = 2,
 ["Fixate by Unit Buff [P]"] = 2,
 ["Cast - Frontal Cone"] = 15,
 ["Add - Explode on Die [P]"] = 1,
@@ -6783,7 +6783,7 @@ nil,
 ["ShowClassColorInNameplate"] = "1",
 ["nameplatePersonalShowAlways"] = "1",
 },
-["login_counter"] = 22012,
+["login_counter"] = 22020,
 ["click_space_friendly"] = {
 122,
 },
@@ -6891,14 +6891,13 @@ nil,
 0.10588235294118,
 1,
 },
-["mana"] = {
-nil,
-4,
-},
+["actorname_text_size"] = 11,
 ["power_percent_text_font"] = "Accidental Presidency",
 ["actorname_use_friends_color"] = false,
 ["percent_text_ooc"] = true,
-["percent_show_health"] = true,
+["actorname_text_anchor"] = {
+["y"] = 0.22999572753906,
+},
 ["spellpercent_text_enabled"] = true,
 ["percent_text_enabled"] = true,
 ["percent_text_font"] = "Accidental Presidency",
@@ -6908,7 +6907,7 @@ nil,
 0.95294117647059,
 [3] = 0.9921568627451,
 },
-["level_text_alpha"] = 1,
+["percent_show_health"] = true,
 ["quest_color_enabled"] = true,
 ["health_incombat"] = {
 106,
@@ -6918,11 +6917,12 @@ nil,
 106,
 13,
 },
-["actorname_text_size"] = 11,
-["big_actorname_text_font"] = "EUI",
-["actorname_text_anchor"] = {
-["y"] = 0.22999572753906,
+["mana"] = {
+nil,
+4,
 },
+["big_actorname_text_font"] = "EUI",
+["level_text_alpha"] = 1,
 ["level_text_enabled"] = true,
 },
 ["global_health_width"] = 106,
@@ -8341,6 +8341,11 @@ false,
 false,
 "magenta",
 },
+[134629] = {
+false,
+false,
+"navajowhite",
+},
 [129529] = {
 false,
 false,
@@ -8350,11 +8355,6 @@ false,
 false,
 false,
 "paleturquoise",
-},
-[134629] = {
-false,
-false,
-"navajowhite",
 },
 [135204] = {
 false,
@@ -17144,10 +17144,8 @@ false,
 ["Options"] = {
 },
 ["Author"] = "Tecno-Azralon",
-["Name"] = "Fixate On You [Plater]",
-["OnShowCode"] = "function (self, unitId, unitFrame, envTable)\n    \nend\n\n\n",
 ["version"] = -1,
-["Prio"] = 99,
+["OnShowCode"] = "function (self, unitId, unitFrame, envTable)\n    \nend\n\n\n",
 ["SpellIds"] = {
 "spawn of g'huun",
 "smuggled crawg",
@@ -17159,6 +17157,8 @@ false,
 "crawler mine",
 "rezan",
 },
+["Prio"] = 99,
+["Name"] = "Fixate On You [Plater]",
 ["PlaterCore"] = 1,
 ["Temp_UpdateCode"] = "function (self, unitId, unitFrame, envTable)\n    \n    --swap this to true when it is fixated\n    local isFixated = false\n    \n    --check the debuffs the player has and see if any of these debuffs has been placed by this unit\n    local auras = Plater.GetUnitAuras(unitFrame)\n    for id, aura in pairs(auras) do\n        local name, caster = aura.name, aura.sourceUnit\n        \n        --check if the owner of the debuff is this unit\n        if (envTable.FixateDebuffs [name] and caster and UnitIsUnit (caster, unitId)) then\n            --the debuff the player has, has been placed by this unit, set the name above the unit name\n            envTable.FixateTarget:SetText (envTable.TextAboveNameplate)\n            envTable.FixateTarget:Show()\n            Plater.SetNameplateColor (unitFrame,  envTable.NameplateColor)\n            isFixated = true\n            \n            if (not envTable.IsFixated) then\n                envTable.IsFixated = true\n                Plater.FlashNameplateBody (unitFrame, \"fixate\", .2)\n            end\n            break\n        end\n        \n    end\n    \n    --check if the nameplate color is changed but isn't fixated any more\n    if (not isFixated and envTable.IsFixated) then\n        --refresh the nameplate color\n        Plater.RefreshNameplateColor (unitFrame)\n        --reset the text\n        envTable.FixateTarget:SetText (\"\")\n        \n        envTable.IsFixated = false\n    end\n    \nend\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
 ["Desc"] = "When an enemy places a debuff and starts to chase you. This script changes the nameplate color and place your name above the nameplate as well.",
@@ -21019,8 +21019,8 @@ nil,
 [9613] = {
 ["npcID"] = 19411,
 },
-[32707] = {
-["npcID"] = 24978,
+[40066] = {
+["npcID"] = 22877,
 },
 [59001] = {
 ["npcID"] = 26637,
@@ -21033,8 +21033,8 @@ nil,
 [48894] = {
 ["npcID"] = 26639,
 },
-[40066] = {
-["npcID"] = 22877,
+[32707] = {
+["npcID"] = 24978,
 },
 [59257] = {
 ["npcID"] = 31009,
@@ -21049,17 +21049,17 @@ nil,
 ["event"] = "SPELL_CAST_START",
 ["npcID"] = 32857,
 },
+[64692] = {
+["event"] = "SPELL_CAST_START",
+["source"] = "机械侏儒作战坦克",
+["npcID"] = 34164,
+},
 [22664] = {
 ["encounterName"] = "奈法利安",
 ["source"] = "维克多·奈法里奥斯",
 ["npcID"] = 10162,
 ["event"] = "SPELL_CAST_START",
 ["encounterID"] = 617,
-},
-[64692] = {
-["event"] = "SPELL_CAST_START",
-["source"] = "机械侏儒作战坦克",
-["npcID"] = 34164,
 },
 [45248] = {
 ["encounterName"] = "艾瑞达双子",
@@ -21271,15 +21271,15 @@ nil,
 [38204] = {
 ["npcID"] = 33422,
 },
+[50832] = {
+["npcID"] = 27235,
+},
 [65647] = {
 ["encounterName"] = "米米尔隆",
 ["source"] = "空中指挥单位",
 ["encounterID"] = 754,
 ["event"] = "SPELL_CAST_START",
 ["npcID"] = 33670,
-},
-[50832] = {
-["npcID"] = 27235,
 },
 [54333] = {
 ["npcID"] = 16385,
@@ -21324,9 +21324,6 @@ nil,
 [52926] = {
 ["npcID"] = 29001,
 },
-[28614] = {
-["npcID"] = 15979,
-},
 [69583] = {
 ["event"] = "SPELL_CAST_START",
 ["source"] = "伊米亚拥火者",
@@ -21334,6 +21331,13 @@ nil,
 },
 [59259] = {
 ["npcID"] = 28579,
+},
+[71405] = {
+["encounterName"] = "鲜血议会",
+["source"] = "凯雷塞斯王子",
+["encounterID"] = 852,
+["event"] = "SPELL_CAST_START",
+["npcID"] = 37972,
 },
 [54369] = {
 ["encounterName"] = "Zuramat",
@@ -21507,13 +21511,13 @@ nil,
 ["encounterID"] = 1191,
 ["npcID"] = 23578,
 },
+[21971] = {
+["npcID"] = 26607,
+},
 [70512] = {
 ["event"] = "SPELL_CAST_START",
 ["source"] = "希尔瓦娜斯·风行者",
 ["npcID"] = 36990,
-},
-[21971] = {
-["npcID"] = 26607,
 },
 [63802] = {
 ["encounterName"] = "尤格-萨隆",
@@ -21884,15 +21888,15 @@ nil,
 [37257] = {
 ["npcID"] = 20049,
 },
-[71029] = {
-["event"] = "SPELL_CAST_START",
-["source"] = "王座仆从",
-["npcID"] = 36724,
-},
 [28280] = {
 ["encounterName"] = "阿努布雷坎",
 ["encounterID"] = 1107,
 ["npcID"] = 15931,
+},
+[71029] = {
+["event"] = "SPELL_CAST_START",
+["source"] = "王座仆从",
+["npcID"] = 36724,
 },
 [16247] = {
 ["source"] = "狂乱的德鲁伊之魂",
@@ -21951,27 +21955,27 @@ nil,
 [57408] = {
 ["npcID"] = 29323,
 },
-[39369] = {
-["encounterName"] = "阿克蒙德",
-["encounterID"] = 622,
-["npcID"] = 17968,
-},
-[49348] = {
-["npcID"] = 27677,
-},
-[43527] = {
-["npcID"] = 24179,
-},
 [20716] = {
 ["npcID"] = 26277,
 },
-[51587] = {
-["npcID"] = 28410,
+[49348] = {
+["npcID"] = 27677,
 },
 [59839] = {
 ["encounterName"] = "斯拉德兰",
 ["encounterID"] = 383,
 ["npcID"] = 29304,
+},
+[43527] = {
+["npcID"] = 24179,
+},
+[51587] = {
+["npcID"] = 28410,
+},
+[39369] = {
+["encounterName"] = "阿克蒙德",
+["encounterID"] = 622,
+["npcID"] = 17968,
 },
 [66552] = {
 ["encounterName"] = "银色勇士",
@@ -21998,8 +22002,8 @@ nil,
 [56065] = {
 ["npcID"] = 15981,
 },
-[54338] = {
-["npcID"] = 16020,
+[40088] = {
+["npcID"] = 22875,
 },
 [62334] = {
 ["encounterName"] = "托里姆",
@@ -22008,8 +22012,8 @@ nil,
 ["event"] = "SPELL_CAST_START",
 ["npcID"] = 33110,
 },
-[40088] = {
-["npcID"] = 22875,
+[54338] = {
+["npcID"] = 16020,
 },
 [39945] = {
 ["encounterName"] = "阿卡玛之影",
@@ -22191,10 +22195,10 @@ nil,
 [58817] = {
 ["npcID"] = 28341,
 },
-[44872] = {
-["encounterName"] = "布鲁塔卢斯",
-["encounterID"] = 725,
-["npcID"] = 24895,
+[69882] = {
+["event"] = "SPELL_CAST_START",
+["source"] = "破天号圣职者",
+["npcID"] = 37027,
 },
 [66683] = {
 ["encounterName"] = "诺森德猛兽",
@@ -22206,13 +22210,15 @@ nil,
 [59009] = {
 ["npcID"] = 26638,
 },
+[44872] = {
+["encounterName"] = "布鲁塔卢斯",
+["encounterID"] = 725,
+["npcID"] = 24895,
+},
 [59521] = {
 ["encounterName"] = "Ichoron",
 ["encounterID"] = 2660,
 ["npcID"] = 29313,
-},
-[61568] = {
-["npcID"] = 30111,
 },
 [69242] = {
 ["encounterName"] = "巫妖王",
@@ -22240,10 +22246,8 @@ nil,
 ["source"] = "灵魂掠夺者",
 ["npcID"] = 11359,
 },
-[69882] = {
-["event"] = "SPELL_CAST_START",
-["source"] = "破天号圣职者",
-["npcID"] = 37027,
+[61568] = {
+["npcID"] = 30111,
 },
 [49350] = {
 ["npcID"] = 27611,
@@ -23172,12 +23176,8 @@ nil,
 ["source"] = "血帆法师",
 ["npcID"] = 1562,
 },
-[71405] = {
-["encounterName"] = "鲜血议会",
-["source"] = "凯雷塞斯王子",
-["encounterID"] = 852,
-["event"] = "SPELL_CAST_START",
-["npcID"] = 37972,
+[28614] = {
+["npcID"] = 15979,
 },
 [63568] = {
 ["event"] = "SPELL_CAST_START",
@@ -23709,6 +23709,14 @@ PlaterLanguage = {
 }
 PlaterLogs = {
 ["_general_logs"] = {
+"2026-08-01 23:21:43 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
+"2026-08-01 23:19:00 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
+"2026-08-01 23:17:36 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
+"2026-08-01 23:16:23 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
+"2026-08-01 23:13:21 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
+"2026-08-01 23:10:46 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
+"2026-08-01 23:03:14 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
+"2026-08-01 22:58:22 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
 "2026-08-01 09:25:14 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
 "2026-07-31 23:02:49 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
 "2026-07-31 23:00:14 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
@@ -23720,14 +23728,6 @@ PlaterLogs = {
 "2026-07-31 16:16:04 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
 "2026-07-31 15:50:24 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
 "2026-07-31 15:48:00 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
-"2026-07-31 15:23:42 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
-"2026-07-31 15:23:26 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
-"2026-07-31 14:44:56 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
-"2026-07-31 14:40:17 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
-"2026-07-31 14:35:07 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
-"2026-07-31 05:54:55 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
-"2026-07-31 05:43:49 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 法德迦",
-"2026-07-31 05:41:17 | INIT | Plater-v648-Vanilla | Framework v752 | 1.15.9 | zhCN | 德加和尚",
 },
 ["_error_logs"] = {
 },

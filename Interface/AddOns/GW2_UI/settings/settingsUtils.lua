@@ -328,6 +328,7 @@ function GwSettingsPanelMixin:AddOptionDropdown(name, desc, values)
     opt.tooltipType = values.tooltipType
     opt.hasSound = values.hasSound
     opt.noNewLine = values.noNewLine
+    opt.maxButtons = values.maxButtons
 
     return opt
 end
@@ -1135,7 +1136,7 @@ local function SettingsInitOptionWidget(of, v, panel)
 
         of.dropDown:SetupMenu(function(drowpdown, rootDescription)
             local buttonSize = 20
-            local maxButtons = 10
+            local maxButtons = v.maxButtons or 10
             rootDescription:SetScrollMode(buttonSize * maxButtons)
 
             for idx, option in pairs(v.optionsList) do

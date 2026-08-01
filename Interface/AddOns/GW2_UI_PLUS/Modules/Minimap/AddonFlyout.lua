@@ -112,6 +112,7 @@ local driver = CreateFrame("Frame")
 local microbarState
 local microbarHooked = false
 local pendingMicrobarRefresh = false
+local microbarArrowOffset = 6
 local function QueueRefresh()
     pendingRefresh = true
     driver:RegisterEvent("PLAYER_REGEN_ENABLED")
@@ -123,6 +124,11 @@ local function CapturePoints(button)
         points[index] = {button:GetPoint(index)}
     end
     return points
+end
+local function SetPointWithYOffset(frame, point, yOffset)
+    frame:SetPoint(
+        point[1], point[2], point[3], point[4],
+        (point[5] or 0) + yOffset)
 end
 local function RestoreMethods(button, state)
     for _, methodName in ipairs(lockedMethods) do
@@ -330,6 +336,56 @@ local function SetToggleSize(toggle, size)
         if texture then texture:SetSize(size, size) end
     end
 end
+local function SetToggleArrowDirection(toggle, rotation)
+    for _, getter in ipairs({
+        "GetNormalTexture", "GetHighlightTexture", "GetPushedTexture",
+    }) do
+        local texture = toggle[getter] and toggle[getter](toggle)
+        if texture then
+            texture:SetTexCoord(0, 1, 0, 1)
+            texture:SetRotation(rotation)
+        end
+    end
+end
+local function SetToggleContainerLayout(toggle, layout)
+    toggle.container:ClearAllPoints()
+    toggle.container:SetPoint(
+        layout[1], toggle, layout[2], layout[3], layout[4])
+    SetToggleArrowDirection(toggle, layout[5])
+end
+local function ApplyMinimapContainerLayout(toggle)
+    local centerX = Minimap:GetCenter()
+    local opensRight = not centerX
+        or centerX < UIParent:GetWidth() / 2
+    if opensRight then
+        SetToggleContainerLayout(toggle, {
+            "LEFT", "RIGHT", 4, 0, math.pi,
+        })
+    else
+        SetToggleContainerLayout(toggle, {
+            "RIGHT", "LEFT", -4, 0, 0,
+        })
+    end
+end
+local function ApplyMicrobarContainerLayout(toggle, position)
+    local _, centerY = toggle:GetCenter()
+    local opensDown = not centerY
+        or centerY > UIParent:GetHeight() / 2
+    local isRight = position == "MICROBAR_RIGHT"
+    if opensDown then
+        SetToggleContainerLayout(toggle, {
+            isRight and "TOPRIGHT" or "TOPLEFT",
+            isRight and "BOTTOMRIGHT" or "BOTTOMLEFT",
+            0, -4, math.pi / 2,
+        })
+    else
+        SetToggleContainerLayout(toggle, {
+            isRight and "BOTTOMRIGHT" or "BOTTOMLEFT",
+            isRight and "TOPRIGHT" or "TOPLEFT",
+            0, 4, -math.pi / 2,
+        })
+    end
+end
 local function GetMicrobar()
     local frame = _G.Gw2MicroBarFrame
     return frame and frame.cf, frame
@@ -354,6 +410,12 @@ local function GetMicrobarEndpoints(microbar, toggle)
 end
 local function RestoreMicrobarLayout()
     if not microbarState then return end
+    if microbarState.first and microbarState.firstPoints then
+        microbarState.first:ClearAllPoints()
+        for _, point in ipairs(microbarState.firstPoints) do
+            microbarState.first:SetPoint(unpackValues(point))
+        end
+    end
     local frame = microbarState.frame
     if frame then frame:SetWidth(microbarState.width) end
     microbarState = nil
@@ -362,28 +424,39 @@ local function RestoreMicrobarLayout()
     end
 end
 local function ApplyMicrobarPosition(toggle, position)
+    RestoreMicrobarLayout()
     local microbar, frame = GetMicrobar()
     if not microbar or not frame then return false end
     local first, last = GetMicrobarEndpoints(microbar, toggle)
     if not first or not last then return false end
     if not microbarState then
-        microbarState = {frame = frame, width = frame:GetWidth()}
+        microbarState = {
+            frame = frame,
+            width = frame:GetWidth(),
+            first = first,
+            firstPoints = CapturePoints(first),
+        }
     end
     frame:SetWidth(microbarState.width + 28)
     SetToggleSize(toggle, 24)
     toggle:SetParent(microbar)
     toggle:ClearAllPoints()
+    local _, centerY = frame:GetCenter()
+    local opensDown = not centerY
+        or centerY > UIParent:GetHeight() / 2
+    local verticalOffset = opensDown
+        and microbarArrowOffset or -microbarArrowOffset
     if position == "MICROBAR_LEFT" then
-        toggle:SetPoint("BOTTOMLEFT", microbar, "BOTTOMLEFT", 0, 0)
+        SetPointWithYOffset(
+            toggle, microbarState.firstPoints[1], verticalOffset)
         first:ClearAllPoints()
-        first:SetPoint("BOTTOMLEFT", toggle, "BOTTOMRIGHT", 4, 0)
-        toggle.container:ClearAllPoints()
-        toggle.container:SetPoint("TOPLEFT", toggle, "BOTTOMLEFT", 0, -4)
+        first:SetPoint(
+            "BOTTOMLEFT", toggle, "BOTTOMRIGHT", 4, -verticalOffset)
     else
-        toggle:SetPoint("BOTTOMLEFT", last, "BOTTOMRIGHT", 4, 0)
-        toggle.container:ClearAllPoints()
-        toggle.container:SetPoint("TOPRIGHT", toggle, "BOTTOMRIGHT", 0, -4)
+        toggle:SetPoint(
+            "BOTTOMLEFT", last, "BOTTOMRIGHT", 4, verticalOffset)
     end
+    ApplyMicrobarContainerLayout(toggle, position)
     return true
 end
 local function ApplyMinimapPosition(toggle, position)
@@ -394,8 +467,7 @@ local function ApplyMinimapPosition(toggle, position)
     toggle:SetParent(UIParent)
     toggle:ClearAllPoints()
     toggle:SetPoint(anchor[1], Minimap, anchor[2], anchor[3], anchor[4])
-    toggle.container:ClearAllPoints()
-    toggle.container:SetPoint("RIGHT", toggle, "LEFT")
+    ApplyMinimapContainerLayout(toggle)
     return true
 end
 local function QueueMicrobarRefresh()
@@ -539,7 +611,22 @@ function Flyout.SetEnabled(enabled)
     Flyout.InitDB().minimapAddonFlyoutEnabled = enabled == true
     Flyout.Refresh()
 end
-GW.CreateMinimapButtonsSack = Flyout.Apply
+local function EnsureNativeMinimapToggle()
+    local toggle = _G.GwAddonToggle
+    if toggle then return toggle end
+    toggle = CreateFrame(
+        "Button", "GwAddonToggle", UIParent, "GwAddonToggle")
+    if toggle then
+        toggle.gw_Showing = false
+        if toggle.container then toggle.container:Hide() end
+        toggle:Hide()
+    end
+    return toggle
+end
+GW.CreateMinimapButtonsSack = function()
+    EnsureNativeMinimapToggle()
+    Flyout.Apply()
+end
 GW.UpdateMinimapButtonsSack = Flyout.Refresh
 driver:RegisterEvent("PLAYER_LOGIN")
 driver:RegisterEvent("ADDON_LOADED")

@@ -1,13 +1,13 @@
 
 WhisperPopDB = {
-["applyFilters"] = 1,
+["ignoreTags"] = 1,
 ["listHeight"] = 320,
 ["notifyButton"] = 1,
 ["showRealm"] = 1,
-["ignoreTags"] = 1,
+["listScale"] = 100,
 ["listWidth"] = 200,
 ["timeFormat"] = 2,
-["listScale"] = 100,
+["applyFilters"] = 1,
 ["buttonScale"] = 100,
 ["history"] = {
 {

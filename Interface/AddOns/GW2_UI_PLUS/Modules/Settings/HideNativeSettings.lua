@@ -11,6 +11,17 @@ local NATIVE_ACTIONBAR_PANEL_IDS = {
     actionbar_stance = true,
 }
 
+local NATIVE_RAID_PANEL_IDS = {
+    raid_general = true,
+    raid40 = true,
+    raid25 = true,
+    raid10 = true,
+    raid_pet = true,
+    raid_maintank = true,
+    raid_party = true,
+    party_pet = true,
+}
+
 local function RemoveArrayValue(list, value)
     if not list then return end
     for index = #list, 1, -1 do
@@ -41,7 +52,9 @@ end
 
 local function IsFaderOption(option, faderLabel)
     return option.fader == faderLabel
-        or (option.groupHeaderName and option.groupHeaderName == faderLabel)
+        or (option.groupHeaderName and (
+            option.groupHeaderName == faderLabel
+            or option.groupHeaderName == "隐藏器"))
 end
 
 -- 隐藏嵌入在面板中的渐隐选项组
@@ -162,16 +175,138 @@ local function HideNativeActionBarSettings(settingsTab)
     scrollBox:SetDataProvider(filtered, ScrollBoxConstants.RetainScrollPosition)
 end
 
--- 准备单位框架设置：隐藏原生的渐隐选项和其他面板，它们已被我们的综合设置替代
+-- 隐藏"附加组件"父条目及其子条目（ComponentsTab 已替代该入口）
+local function HideAddonSubPanelsFromNativeMenu(settingsTab)
+    local scrollBox = settingsTab and settingsTab.menu and settingsTab.menu.ScrollBox
+    local provider = scrollBox and scrollBox:GetDataProvider()
+    if not provider then return end
+    local addonParent
+    provider:ForEach(function(data)
+        if not data.isSubCat and data.itemData and data.itemData.isAddon then
+            addonParent = data.itemData
+        end
+    end)
+    if not addonParent then return end
+    local filtered = CreateDataProvider()
+    provider:ForEach(function(data)
+        if data.itemData ~= addonParent and data.parent ~= addonParent then
+            filtered:Insert(data)
+        end
+    end)
+    scrollBox:SetDataProvider(filtered, ScrollBoxConstants.RetainScrollPosition)
+end
+
+-- 隐藏"单位框体光环"父条目及其子条目（PartyTab 已替代该入口）
+-- 同时将光环面板存入 gwPlusEmbeddedPanels 供 FindNativePages 捕获
+local function HideAurasPanelsFromNativeMenu(settingsTab)
+    local scrollBox = settingsTab and settingsTab.menu and settingsTab.menu.ScrollBox
+    local provider = scrollBox and scrollBox:GetDataProvider()
+    if not provider then return end
+
+    local AURA_PANEL_IDS = {
+        auras_general = true,
+        auras_indicators = true,
+        auras_missing = true,
+    }
+
+    local aurasParent
+    provider:ForEach(function(data)
+        if data.isSubCat and data.itemData and data.itemData.frame
+            and AURA_PANEL_IDS[data.itemData.frame.panelId] then
+            aurasParent = data.parent
+            -- 顺手存入 gwPlusEmbeddedPanels，供 FindNativePages 捕获
+            if not settingsTab.gwPlusEmbeddedPanels then
+                settingsTab.gwPlusEmbeddedPanels = {}
+            end
+            settingsTab.gwPlusEmbeddedPanels[data.itemData.frame.panelId] =
+                data.itemData.frame
+        end
+    end)
+    if not aurasParent then return end
+
+    local filtered = CreateDataProvider()
+    provider:ForEach(function(data)
+        if data.itemData ~= aurasParent and data.parent ~= aurasParent then
+            filtered:Insert(data)
+        end
+    end)
+    scrollBox:SetDataProvider(filtered, ScrollBoxConstants.RetainScrollPosition)
+end
+
+-- 隐藏原生“玩家”父条目及其全部子条目，并保留 Plus 设置页所需的面板引用
+local function HideNativePlayerSettings(settingsTab, embeddedPanels)
+    local scrollBox = settingsTab and settingsTab.menu and settingsTab.menu.ScrollBox
+    local provider = scrollBox and scrollBox:GetDataProvider()
+    if not provider then return end
+    local playerParent
+    provider:ForEach(function(data)
+        local frame = data.isSubCat and data.itemData and data.itemData.frame
+        if frame and frame.panelId == "player_general" then
+            playerParent = data.parent
+        end
+    end)
+    if not playerParent then return provider end
+
+    local filtered = CreateDataProvider()
+    provider:ForEach(function(data)
+        local frame = data.isSubCat and data.itemData and data.itemData.frame
+        if data.itemData ~= playerParent and data.parent ~= playerParent then
+            filtered:Insert(data)
+        elseif frame and frame.panelId then
+            embeddedPanels[frame.panelId] = frame
+            if frame.panelId == "player_totem"
+                and GW2_ADDON.SettingsWidgetRegistry
+                and GW2_ADDON.SettingsWidgetRegistry.byPanel then
+                GW2_ADDON.SettingsWidgetRegistry.byPanel[frame] = nil
+            end
+        end
+    end)
+    return filtered
+end
+
+-- 隐藏原生“团队框架”父条目及其全部子条目，并保留队伍页所需的面板引用
+local function HideNativeRaidSettings(settingsTab, embeddedPanels, provider)
+    if not provider then
+        local scrollBox = settingsTab and settingsTab.menu
+            and settingsTab.menu.ScrollBox
+        provider = scrollBox and scrollBox:GetDataProvider()
+    end
+    if not provider then return end
+
+    local raidParent
+    provider:ForEach(function(data)
+        local frame = data.isSubCat and data.itemData and data.itemData.frame
+        if frame and NATIVE_RAID_PANEL_IDS[frame.panelId] then
+            raidParent = data.parent
+        end
+    end)
+    if not raidParent then return provider end
+
+    local filtered = CreateDataProvider()
+    provider:ForEach(function(data)
+        local frame = data.isSubCat and data.itemData and data.itemData.frame
+        if data.itemData ~= raidParent and data.parent ~= raidParent then
+            filtered:Insert(data)
+        elseif frame and frame.panelId then
+            embeddedPanels[frame.panelId] = frame
+        end
+    end)
+    return filtered
+end
+
+-- 准备单位框架设置：隐藏已迁移的面板和重复选项
 local function PrepareUnitFrameSettings(settingsTab)
     -- 首先隐藏原生动作条设置
     HideNativeActionBarSettings(settingsTab)
+    -- 隐藏"附加组件"（ComponentsTab 已替代）
+    HideAddonSubPanelsFromNativeMenu(settingsTab)
 
     local scrollBox = settingsTab and settingsTab.menu
         and settingsTab.menu.ScrollBox
-    local provider = scrollBox and scrollBox:GetDataProvider()
-    if not provider then return end
     local embeddedPanels = {}
+    local provider = HideNativePlayerSettings(settingsTab, embeddedPanels)
+    provider = HideNativeRaidSettings(settingsTab, embeddedPanels, provider)
+    if not provider then return end
     local filtered = CreateDataProvider()
     provider:ForEach(function(data)
         local frame = data.isSubCat and data.itemData
@@ -205,11 +340,8 @@ local function PrepareUnitFrameSettings(settingsTab)
         end
     end)
     scrollBox:SetDataProvider(filtered)
-    local faderLabel = "渐隐"
+    local faderLabel = "显隐"
     HideEmbeddedFader(embeddedPanels.player_general, faderLabel)
-    HideEmbeddedFader(embeddedPanels.target_general, faderLabel)
-    HideEmbeddedFader(embeddedPanels.target_of_target, faderLabel)
-    HideEmbeddedFader(embeddedPanels.player_pet, faderLabel)
 
     -- 隐藏界面设置-综合面板中的特定选项
     if embeddedPanels.hud_general then
