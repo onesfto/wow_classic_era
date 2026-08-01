@@ -225,7 +225,7 @@ local function CopyMap(source)
     end
     return copy
 end
-local PANEL_BREADCRUMB_GAP = 36
+local PANEL_BREADCRUMB_GAP = 24
 
 local function SetPanelText(panel, header, breadcrumb, sub)
     if not panel then return end

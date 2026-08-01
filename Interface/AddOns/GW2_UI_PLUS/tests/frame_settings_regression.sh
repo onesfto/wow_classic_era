@@ -30,7 +30,7 @@ if grep -F 'HideEmbeddedFader(embeddedPanels.player_pet' "$hide_native_file" >/d
     exit 1
 fi
 grep -F 'entry.panelId == panelId and not entry.isParent' "$settings_file" >/dev/null
-grep -F 'local PANEL_BREADCRUMB_GAP = 36' "$settings_file" >/dev/null
+grep -F 'local PANEL_BREADCRUMB_GAP = 24' "$settings_file" >/dev/null
 grep -F 'panel.header:GetUnboundedStringWidth()' "$settings_file" >/dev/null
 grep -F 'panel.breadcrumb:ClearAllPoints()' "$settings_file" >/dev/null
 grep -F 'panel.breadcrumb:SetPoint(' "$settings_file" >/dev/null
