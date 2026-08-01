@@ -22,14 +22,6 @@ local NATIVE_RAID_PANEL_IDS = {
     party_pet = true,
 }
 
-local NATIVE_UNITFRAME_PANEL_IDS = {
-    unitframes_general = true,
-    player_pet = true,
-    target_general = true,
-    target_of_target = true,
-    party_general = true,
-}
-
 local function RemoveArrayValue(list, value)
     if not list then return end
     for index = #list, 1, -1 do
@@ -272,37 +264,6 @@ local function HideNativePlayerSettings(settingsTab, embeddedPanels)
     return filtered
 end
 
--- 隐藏原生“单位框体”父条目及其全部子条目，并保留框体页所需的面板引用
-local function HideNativeUnitFrameSettings(settingsTab, embeddedPanels, provider)
-    if not provider then
-        local scrollBox = settingsTab and settingsTab.menu
-            and settingsTab.menu.ScrollBox
-        provider = scrollBox and scrollBox:GetDataProvider()
-    end
-    if not provider then return end
-
-    local unitFrameParent
-    provider:ForEach(function(data)
-        local frame = data.isSubCat and data.itemData and data.itemData.frame
-        if frame and NATIVE_UNITFRAME_PANEL_IDS[frame.panelId] then
-            unitFrameParent = data.parent
-        end
-    end)
-    if not unitFrameParent then return provider end
-
-    local filtered = CreateDataProvider()
-    provider:ForEach(function(data)
-        local frame = data.isSubCat and data.itemData and data.itemData.frame
-        if data.itemData ~= unitFrameParent
-            and data.parent ~= unitFrameParent then
-            filtered:Insert(data)
-        elseif frame and frame.panelId then
-            embeddedPanels[frame.panelId] = frame
-        end
-    end)
-    return filtered
-end
-
 -- 隐藏原生“团队框架”父条目及其全部子条目，并保留队伍页所需的面板引用
 local function HideNativeRaidSettings(settingsTab, embeddedPanels, provider)
     if not provider then
@@ -344,8 +305,6 @@ local function PrepareUnitFrameSettings(settingsTab)
         and settingsTab.menu.ScrollBox
     local embeddedPanels = {}
     local provider = HideNativePlayerSettings(settingsTab, embeddedPanels)
-    provider = HideNativeUnitFrameSettings(
-        settingsTab, embeddedPanels, provider)
     provider = HideNativeRaidSettings(settingsTab, embeddedPanels, provider)
     if not provider then return end
     local filtered = CreateDataProvider()

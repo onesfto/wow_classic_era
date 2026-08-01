@@ -79,13 +79,7 @@ local function BuildPartyTab(settingsTab, settingsWindow)
 
     local function SetPanelText(panel, header, breadcrumb, sub)
         if not panel then return end
-        if panel.header then
-            panel.header:SetText(header)
-            panel.header:SetWidth(panel.header:GetStringWidth() + 36)
-        end
-        if panel.breadcrumb then
-            panel.breadcrumb:SetText(breadcrumb)
-        end
+        addonTable.SetPanelTitle(panel, header, breadcrumb)
         if panel.sub then
             panel.sub:SetText(sub)
         end

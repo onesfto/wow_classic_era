@@ -5,7 +5,6 @@ local _, addonTable = ...
 local MAIN_MENU_ICON =
     "Interface/AddOns/GW2_UI_PLUS/Assets/icons/tabs/tabicon_profile.png"
 local REQUIRED_PAGE_IDS = {
-    "unitframes_general",
     "player_general",
     "player_classpower",
     "player_aura",
@@ -110,7 +109,6 @@ local PET_VIEW_DEFINITIONS = {
     },
 }
 local FRAME_PANEL_TEXT = {
-    unitframes_general = {header = "框体", breadcrumb = "框体颜色", sub = "编辑全局单位框体颜色。"},
     player_general = {header = "玩家", breadcrumb = "综合", sub = "编辑玩家设置。"},
     player_classpower = {header = "玩家", breadcrumb = "状态条", sub = "编辑玩家设置。"},
     player_fader = {header = "玩家", breadcrumb = "渐隐", sub = "编辑玩家设置。"},
@@ -225,25 +223,9 @@ local function CopyMap(source)
     end
     return copy
 end
-local PANEL_BREADCRUMB_GAP = 24
-
 local function SetPanelText(panel, header, breadcrumb, sub)
     if not panel then return end
-    if panel.header then
-        panel.header:SetText(header)
-        local width = panel.header.GetUnboundedStringWidth
-            and panel.header:GetUnboundedStringWidth()
-            or panel.header:GetStringWidth()
-        panel.header:SetWidth(width)
-    end
-    if panel.breadcrumb then
-        panel.breadcrumb:SetText(breadcrumb or "")
-        panel.breadcrumb:ClearAllPoints()
-        if breadcrumb and breadcrumb ~= "" and panel.header then
-            panel.breadcrumb:SetPoint(
-                "LEFT", panel.header, "RIGHT", PANEL_BREADCRUMB_GAP, 0)
-        end
-    end
+    addonTable.SetPanelTitle(panel, header, breadcrumb)
     if panel.sub then
         panel.sub:SetText(sub)
     end
@@ -1653,7 +1635,6 @@ local function BuildMainMenuTab(settingsTab, settingsWindow)
     for _, definition in ipairs(PET_PAGE_DEFINITIONS) do
         CreateMenuButton(definition[1], definition[2], false, "pet")
     end
-    CreateMenuButton("框体颜色", "unitframes_general", false)
     tab:SetScript("OnShow", function()
         SelectPage(selectedPanelId)
     end)

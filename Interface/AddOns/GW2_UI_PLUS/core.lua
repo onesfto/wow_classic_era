@@ -37,6 +37,7 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
             end
             p.header:SetText("附加组件")
         end
+        addonTable.SetPanelTitle(p, "附加组件")
         
         if p.sub then
             p.sub:SetFont(UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF", 12)
@@ -54,8 +55,6 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
                 gearManFrame.header:SetTextColor(GW2_ADDON.Colors.TextColors.LightHeader:GetRGB())
             end
             gearManFrame.header:SetText("附加组件")
-            -- adjust width for breadcrumb
-            gearManFrame.header:SetWidth(gearManFrame.header:GetStringWidth() + 10)
         end
         
         if gearManFrame.breadcrumb then
@@ -65,6 +64,7 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
             end
             gearManFrame.breadcrumb:SetText("一键换装")
         end
+        addonTable.SetPanelTitle(gearManFrame, "附加组件", "一键换装")
         
         if gearManFrame.sub then
             gearManFrame.sub:SetFont(UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF", 12)

@@ -16,6 +16,7 @@
 ## IconTexture: Interface\AddOns\GW2_UI_PLUS\Assets\gwlogo-red.png
 Locale/Hardcoded.lua
 Core/Fixes.lua
+Core/PanelTitle.lua
 Core/Spellbook.lua
 Core/Diagnostics.lua
 Libs/alaGearMan/alaGearMan.xml

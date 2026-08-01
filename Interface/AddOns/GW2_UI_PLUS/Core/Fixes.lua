@@ -190,9 +190,10 @@ end
 --------------------------------------------------------------------------------
 -- 六、设置面板标题被截断
 --------------------------------------------------------------------------------
--- 上游用 header:SetWidth(header:GetStringWidth()) 定宽，中文字体下 GetStringWidth
--- 量出来偏窄，标题尾字被裁掉、面包屑也贴得太近。统一加 10px 余量。
--- 上游 30 处散落在 9 个 panel_*.lua 里，外部一段遍历就全覆盖了，
+-- 原生 GW2_UI 仍用 header:GetStringWidth() 定宽，中文字体下可能偏窄；
+-- 仅为未由 Plus 标题工具管理的原生面板补 10 像素余量。
+-- Plus 自建面板由 Core/PanelTitle.lua 负责完整标题宽度与面包屑间距。
+-- 上游 30 处散落在 9 个 panel_*.lua 里，外部一段遍历就能覆盖，
 -- 顺带把 panel_player.lua 里 classpower 误用 fader 宽度那个上游 bug 也修了。
 -- 反复执行无副作用（GetStringWidth 只跟文本有关，与当前宽度无关）。
 
@@ -202,7 +203,11 @@ local function FixPanelHeaderWidths(frame, depth)
     for _, child in ipairs({frame:GetChildren()}) do
         local header = child.header
         -- GetStringWidth 只有 FontString 有，用它把非面板的 .header 挡掉
-        if header and header.GetStringWidth and header.SetWidth then
+        if child.__gwPlusTitleManaged and addonTable.SetPanelTitle then
+            addonTable.SetPanelTitle(
+                child, header and header:GetText(),
+                child.breadcrumb and child.breadcrumb:GetText())
+        elseif header and header.GetStringWidth and header.SetWidth then
             local text = header:GetText()
             if text and text ~= "" then
                 header:SetWidth(header:GetStringWidth() + 10)

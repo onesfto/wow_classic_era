@@ -20,7 +20,6 @@ local function BuildMinimapAddonFlyoutPanel(parent)
                 GW.Colors.TextColors.LightHeader:GetRGB())
         end
         panel.header:SetText("附加组件")
-        panel.header:SetWidth(panel.header:GetStringWidth() + 10)
     end
     if panel.breadcrumb then
         panel.breadcrumb:SetFont(
@@ -31,6 +30,7 @@ local function BuildMinimapAddonFlyoutPanel(parent)
         end
         panel.breadcrumb:SetText("插件收纳")
     end
+    addonTable.SetPanelTitle(panel, "附加组件", "插件收纳")
     if panel.sub then
         panel.sub:SetFont(
             UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF", 12)

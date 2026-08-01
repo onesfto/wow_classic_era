@@ -29,7 +29,6 @@ local function BuildPanel(parent)
             panel.header:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
         end
         panel.header:SetText("附加组件")
-        panel.header:SetWidth(panel.header:GetStringWidth() + 10)
     end
     if panel.breadcrumb then
         panel.breadcrumb:SetFont(DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 12)
@@ -38,6 +37,7 @@ local function BuildPanel(parent)
         end
         panel.breadcrumb:SetText("聊天窗口")
     end
+    addonTable.SetPanelTitle(panel, "附加组件", "聊天窗口")
     if panel.sub then
         panel.sub:SetFont(UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF", 12)
         panel.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)

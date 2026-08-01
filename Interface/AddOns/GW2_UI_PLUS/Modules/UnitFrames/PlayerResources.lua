@@ -425,12 +425,12 @@ local function CreateStatusPanel(
     panel.header:SetTextColor(
         GW.Colors.TextColors.LightHeader:GetRGB())
     panel.header:SetText("玩家")
-    panel.header:SetWidth(panel.header:GetStringWidth() + 10)
     panel.breadcrumb:SetFont(
         DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 12)
     panel.breadcrumb:SetTextColor(
         GW.Colors.TextColors.LightHeader:GetRGB())
     panel.breadcrumb:SetText("状态条")
+    addonTable.SetPanelTitle(panel, "玩家", "状态条")
     panel.sub:SetFont(UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF", 12)
     panel.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
     panel.sub:SetText("调整玩家的血球、施法条、能量条和资源条。")
