@@ -2,7 +2,7 @@ local _, addonTable = ...
 local CooldownPulse = {}
 addonTable.CooldownPulse = CooldownPulse
 local GW = _G.GW2_ADDON
-local fadeInTime, fadeOutTime, maxAlpha, animScale, iconSize, holdTime, showSpellName, ignoredSpells, invertIgnored, remainingCooldownWhenNotified
+local fadeInTime, fadeOutTime, maxAlpha, animScale, iconSize, holdTime, showSpellName, spellNamePosition, ignoredSpells, invertIgnored, remainingCooldownWhenNotified
 local cooldowns, animating, watching, itemSpells = {}, {}, {}, {}
 local GetTime = GetTime
 local defaults = {
@@ -15,6 +15,7 @@ local defaults = {
     holdTime = 0,
     petOverlay = {1, 1, 1},
     showSpellName = false,
+    spellNamePosition = "TOP",
     x = 0,
     y = 0,
     remainingCooldownWhenNotified = 0,
@@ -39,6 +40,9 @@ end
 CooldownPulse.InitDB = InitDB
 local DCP = CreateFrame("Frame", "GW2Plus_CooldownPulseFrame", UIParent)
 DCP:SetFrameStrata("HIGH")
+if GW and GW.BackdropTemplates and DCP.GwCreateBackdrop then
+    DCP:GwCreateBackdrop(GW.BackdropTemplates.DefaultWithSmallBorder)
+end
 DCP:SetMovable(true)
 DCP:RegisterForDrag("LeftButton")
 DCP:SetScript("OnDragStart", function(self)
@@ -57,12 +61,13 @@ end)
 DCP.TextFrame = DCP:CreateFontString(nil, "ARTWORK")
 DCP.TextFrame:SetFont(STANDARD_TEXT_FONT, 14, "OUTLINE")
 DCP.TextFrame:SetShadowOffset(2, -2)
-DCP.TextFrame:SetPoint("CENTER", DCP, "CENTER")
 DCP.TextFrame:SetWidth(185)
 DCP.TextFrame:SetJustifyH("CENTER")
 DCP.TextFrame:SetTextColor(1, 1, 1)
 local DCPT = DCP:CreateTexture(nil, "BACKGROUND")
-DCPT:SetAllPoints(DCP)
+DCPT:SetPoint("TOPLEFT", DCP, "TOPLEFT", 3, -3)
+DCPT:SetPoint("BOTTOMRIGHT", DCP, "BOTTOMRIGHT", -3, 3)
+DCPT:SetTexCoord(0.08, 0.92, 0.08, 0.92)
 CooldownPulse.DCP = DCP
 local function tcount(tab)
     local n = 0
@@ -94,6 +99,16 @@ local function GetPetActionIndexByName(name)
     end
     return nil
 end
+local function UpdateSpellNamePosition()
+    DCP.TextFrame:ClearAllPoints()
+    if spellNamePosition == "CENTER" then
+        DCP.TextFrame:SetPoint("CENTER", DCP, "CENTER")
+    elseif spellNamePosition == "BOTTOM" then
+        DCP.TextFrame:SetPoint("TOP", DCP, "BOTTOM", 0, -4)
+    else
+        DCP.TextFrame:SetPoint("BOTTOM", DCP, "TOP", 0, 4)
+    end
+end
 local function RefreshLocals()
     local db = GW2_UI_PLUS_CooldownPulseSV
     fadeInTime = db.fadeInTime
@@ -103,12 +118,14 @@ local function RefreshLocals()
     iconSize = db.iconSize
     holdTime = db.holdTime
     showSpellName = db.showSpellName
+    spellNamePosition = db.spellNamePosition
     invertIgnored = db.invertIgnored
     remainingCooldownWhenNotified = db.remainingCooldownWhenNotified
     ignoredSpells = {}
     for _, v in ipairs({strsplit(",", db.ignoredSpells)}) do
         ignoredSpells[strtrim(v)] = true
     end
+    UpdateSpellNamePosition()
 end
 CooldownPulse.RefreshLocals = RefreshLocals
 local function TrackItemSpell(itemID)

@@ -98,11 +98,26 @@ local function BuildPanel(parent)
         dependence = dep,
     })
     if optFadeOut then optFadeOut.optionName = "GW2PlusCooldownPulse_FadeOutTime" end
-    panel:AddOption("显示技能名称", "在闪烁的图标上方显示技能名称", {
+    local optShowSpellName = panel:AddOption("显示技能名称", "在闪烁的图标旁显示技能名称", {
         getter = function() return db.showSpellName end,
         setter = function(value) db.showSpellName = value; CooldownPulse.RefreshLocals() end,
         getDefault = function() return CooldownPulse.defaults.showSpellName end,
         dependence = dep,
+    })
+    if optShowSpellName then optShowSpellName.optionName = "GW2PlusCooldownPulse_ShowSpellName" end
+    panel:AddOptionDropdown("技能名称位置", "设置技能名称相对闪烁图标的位置。", {
+        optionsList = {"TOP", "CENTER", "BOTTOM"},
+        optionNames = {"上方", "居中", "下方"},
+        getter = function() return db.spellNamePosition end,
+        setter = function(value)
+            db.spellNamePosition = value
+            CooldownPulse.RefreshLocals()
+        end,
+        getDefault = function() return CooldownPulse.defaults.spellNamePosition end,
+        dependence = {
+            ["GW2PlusCooldownPulse_Enable"] = true,
+            ["GW2PlusCooldownPulse_ShowSpellName"] = true,
+        },
     })
     return panel
 end
