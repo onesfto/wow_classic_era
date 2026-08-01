@@ -1,5 +1,7 @@
 
 WhisperPopDB = {
+["sound"] = 1,
+["listHeight"] = 320,
 ["positions"] = {
 ["WhisperPopFrame"] = {
 "TOPLEFT",
@@ -16,11 +18,9 @@ WhisperPopDB = {
 253,
 },
 },
-["listHeight"] = 320,
-["sound"] = 1,
 ["showRealm"] = 1,
-["save"] = 1,
 ["listWidth"] = 200,
+["save"] = 1,
 ["timeFormat"] = 2,
 ["time"] = 1,
 ["buttonScale"] = 100,

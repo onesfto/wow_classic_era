@@ -58,6 +58,15 @@ Modules/UnitFrames/EnergyTicker.lua
 Modules/UnitFrames/PlayerResources.lua
 Modules/UnitFrames/PlayerAuras.lua
 Modules/UnitFrames/PartyInRaid.lua
+Modules/WorldMap/Settings.lua
+Modules/WorldMap/Data.lua
+Modules/WorldMap/RevealData.lua
+Modules/WorldMap/IconData.lua
+Modules/WorldMap/WorldMap.xml
+Modules/WorldMap/Core.lua
+Modules/WorldMap/Battlefield.lua
+Modules/WorldMap/Coordinates.lua
+Modules/WorldMap/Options.lua
 Modules/Settings/HideNativeSettings.lua
 Modules/Settings/Settings.lua
 Modules/Settings/SettingsIcon.lua

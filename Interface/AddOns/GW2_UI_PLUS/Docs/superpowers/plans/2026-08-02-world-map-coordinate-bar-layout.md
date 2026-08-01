@@ -21,7 +21,8 @@
 在已有坐标组件断言之后加入：
 
 ```sh
-grep -F 'frame:SetPoint("BOTTOM", WorldMapFrame.ScrollContainer, "BOTTOM", 0, 8)' Modules/WorldMap/Coordinates.lua >/dev/null
+grep -F 'frame:SetPoint("BOTTOMLEFT", WorldMapFrame.ScrollContainer, "BOTTOMLEFT", 0, 8)' Modules/WorldMap/Coordinates.lua >/dev/null
+grep -F 'frame:SetPoint("BOTTOMRIGHT", WorldMapFrame.ScrollContainer, "BOTTOMRIGHT", 0, 8)' Modules/WorldMap/Coordinates.lua >/dev/null
 grep -F 'frame.cursor:SetPoint("LEFT", frame, "LEFT", 6, 0)' Modules/WorldMap/Coordinates.lua >/dev/null
 grep -F 'frame.player:SetPoint("RIGHT", frame, "RIGHT", -6, 0)' Modules/WorldMap/Coordinates.lua >/dev/null
 grep -F 'AddToggle(panel, "启用坐标", "showCoordinates", nil)' Modules/WorldMap/Options.lua >/dev/null
@@ -42,10 +43,11 @@ grep -F 'AddToggle(panel, "启用坐标", "showCoordinates", nil)' Modules/World
 
 - [ ] **Step 1: 替换坐标框尺寸和文字锚点**
 
-在 `Initialize` 中以左右锚点替换 `frame:SetSize(170, 38)`，使容器横跨滚动容器的底部；高度设为 `20`。保留：
+在 `Initialize` 中以底部左右锚点替换 `frame:SetSize(170, 38)`，使容器横跨滚动容器的底部；高度设为 `20`。使用：
 
 ```lua
-frame:SetPoint("BOTTOM", WorldMapFrame.ScrollContainer, "BOTTOM", 0, 8)
+frame:SetPoint("BOTTOMLEFT", WorldMapFrame.ScrollContainer, "BOTTOMLEFT", 0, 8)
+frame:SetPoint("BOTTOMRIGHT", WorldMapFrame.ScrollContainer, "BOTTOMRIGHT", 0, 8)
 ```
 
 将两段文字改为同一行的两端锚定：

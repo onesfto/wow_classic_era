@@ -202,6 +202,11 @@ function Utils.InitializePanel(panel)
                     8, -8 - (data.topPadding or 0))
                 widget:SetPoint("BOTTOMLEFT", row, "BOTTOMLEFT", 8, 8)
                 widget:SetWidth(550)
+            elseif data.widgets and widget.optionType == "button" then
+                -- 原生布局为 40 高的行保留上下各 8 像素，按钮实际高度为 24。
+                widget:SetPoint("TOPLEFT", row, "TOPLEFT",
+                    8 + ((column - 1) * width), -8 - (data.topPadding or 0))
+                widget:SetSize(width, 24)
             else
                 widget:SetPoint("TOPLEFT", row, "TOPLEFT",
                     8 + ((column - 1) * width), -3 - (data.topPadding or 0))

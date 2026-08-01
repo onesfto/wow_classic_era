@@ -4,6 +4,7 @@ if not Toolbar then return end
 local PerformanceBar = {}
 Toolbar.performanceBar = PerformanceBar
 local updateElapsed = 0
+local METRIC_WIDTH = 70
 local function AddMetric(frame, key)
     local text = frame:CreateFontString(nil, "OVERLAY")
     text:SetFont(UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF", 11, "OUTLINE")
@@ -24,12 +25,17 @@ local function Layout()
         PerformanceBar.metrics[key]:SetShown(show)
         if show then visible[#visible + 1] = PerformanceBar.metrics[key] end
     end
-    local itemWidth = db.width / math.max(1, #visible)
+    local itemWidth = math.min(METRIC_WIDTH, db.width / math.max(1, #visible))
+    local contentWidth = itemWidth * #visible
+    local startX = db.alignment == "LEFT" and 0
+        or db.alignment == "RIGHT" and db.width - contentWidth
+        or (db.width - contentWidth) / 2
     for index, text in ipairs(visible) do
         text:ClearAllPoints()
         text:SetPoint("LEFT", frame, "LEFT",
-            (index - 0.5) * itemWidth, 0)
+            startX + (index - 1) * itemWidth, 0)
         text:SetWidth(itemWidth)
+        text:SetJustifyH(db.alignment)
     end
 end
 local function UpdateText()
@@ -82,6 +88,11 @@ function PerformanceBar.SetSize(key, value)
         db.height = math.max(18, math.min(60, tonumber(value) or 24))
     end
     PerformanceBar.Refresh()
+end
+function PerformanceBar.SetAlignment(value)
+    if value ~= "LEFT" and value ~= "RIGHT" then value = "CENTER" end
+    Toolbar.InitDB().performanceBar.alignment = value
+    Layout()
 end
 function PerformanceBar.SetMetric(key, value)
     local db = Toolbar.InitDB().performanceBar

@@ -350,6 +350,8 @@ local function PrepareUnitFrameSettings(settingsTab)
             "HUD_BACKGROUND",      -- 动作条贴图
             "HUD_SPELL_SWAP",      -- 血球贴图
             "QUEST_XP_PERCENT",    -- 任务经验值百分比
+            "FADE_GROUP_MANAGE_FRAME", -- 队伍管理栏渐隐（移至工具条）
+            "ROLE_BAR",            -- 角色职责列（移至工具条）
         })
     end
 

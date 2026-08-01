@@ -501,6 +501,8 @@ local function InitOptionPanel(panel)
     panel.scroll.ScrollBox:SetDataProvider(BuildOptionsDataProvider(panel), ScrollBoxConstants.RetainScrollPosition)
 end
 
+GW.RefreshSettingsPanel = InitOptionPanel
+
 -- =========================
 -- Menu + Panel-Switch
 -- =========================

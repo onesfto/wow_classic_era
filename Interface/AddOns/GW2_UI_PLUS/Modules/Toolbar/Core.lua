@@ -13,7 +13,6 @@ Toolbar.defaults = {
         scale = 1,
         buttons = {
             leave = true,
-            teleport = true,
             convert = true,
             reset = true,
             timer = true,
@@ -31,14 +30,19 @@ Toolbar.defaults = {
     markerBar = {
         enabled = false,
         scale = 1,
+        hideBackground = false,
     },
     performanceBar = {
         enabled = false,
         width = 210,
         height = 24,
+        alignment = "CENTER",
         showFPS = true,
         showHome = true,
         showWorld = true,
+    },
+    roleBar = {
+        lastVisibility = "IN_RAID",
     },
 }
 Toolbar.moverNames = {
@@ -178,11 +182,57 @@ function Toolbar.RegisterMover(moduleKey, frame, tags)
     end)
     return frame.gwMover
 end
-function Toolbar.SetMoverEnabled(moduleKey)
+local function GetComponentMover(moduleKey)
+    if moduleKey == "roleBar" then
+        local frame = _G.GW_RaidCounter_Frame
+        return frame and frame.gwMover
+    end
+    local module = Toolbar[moduleKey]
+    return module and module.frame and module.frame.gwMover
+end
+
+local function SetComponentMoverLocked(mover, locked)
+    if not mover then return end
+    mover.gwPlusUnlocked = not locked
+    mover:EnableMouse(not locked)
+    if locked then mover:Hide() else mover:Show() end
+end
+
+function Toolbar.ToggleComponentMover(moduleKey)
+    if InCombatLockdown and InCombatLockdown() then
+        if GW and GW.Notice then GW.Notice("战斗中无法移动组件。") end
+        return
+    end
+    local mover = GetComponentMover(moduleKey)
+    if not mover then
+        if GW and GW.Notice then GW.Notice("该组件尚未加载。") end
+        return
+    end
+
+    if mover.gwPlusUnlocked then
+        SetComponentMoverLocked(mover, true)
+        Toolbar.activeComponentMover = nil
+        if GW and GW.Notice then GW.Notice("组件已锁定。") end
+        return
+    end
+
+    SetComponentMoverLocked(Toolbar.activeComponentMover, true)
+    Toolbar.activeComponentMover = mover
+    SetComponentMoverLocked(mover, false)
+    if GW and GW.Notice then GW.Notice("组件已解锁，可直接拖动。") end
+end
+
+function Toolbar.SetMoverEnabled(moduleKey, enabled)
     local module = Toolbar[moduleKey]
     local mover = module and module.frame and module.frame.gwMover
     if mover and GW and GW.ToggleMover then
-        GW.ToggleMover(mover, true)
+        GW.ToggleMover(mover, enabled ~= false)
+    end
+    if enabled == false and mover and mover.gwPlusUnlocked then
+        SetComponentMoverLocked(mover, true)
+        if Toolbar.activeComponentMover == mover then
+            Toolbar.activeComponentMover = nil
+        end
     end
 end
 function Toolbar.ResetMover(moduleKey)
@@ -234,8 +284,18 @@ function Toolbar.RefreshAll()
     end
 end
 function Toolbar.RedrawOption(optionName)
-    local widget = GW and GW.FindSettingsWidgetByOption
-        and GW.FindSettingsWidgetByOption(optionName)
+    local widget
+    for _, option in ipairs((Toolbar.optionsPanel
+        and Toolbar.optionsPanel.gwOptions) or {}) do
+        if option.optionName == optionName and option.__gwPlusWidget then
+            widget = option.__gwPlusWidget
+            break
+        end
+    end
+    if not widget then
+        widget = GW and GW.FindSettingsWidgetByOption
+            and GW.FindSettingsWidgetByOption(optionName)
+    end
     if not widget or not widget.get then return end
     local value = widget.get()
     if widget.optionType == "slider" then

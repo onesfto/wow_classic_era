@@ -1,20 +1,9 @@
 
 Blizzard_Console_SavedVars = {
 ["version"] = 3,
+["height"] = 299.9999084472656,
 ["messageHistory"] = {
 {
-"CGast - CGItemStatsSummary::ParseSpellRec is being called for spellID: 28869, effect aura: 123, which is wrong",
-0,
-},
-{
-"CGast - CGItemStatsSummary::ParseSpellRec is being called for spellID: 18057, effect aura: 13, which is wrong",
-0,
-},
-{
-"CGast - CGItemStatsSummary::ParseSpellRec is being called for spellID: 18057, effect aura: 135, which is wrong",
-0,
-},
-{
 "CGast - CGItemStatsSummary::ParseSpellRec is being called for spellID: 17493, effect aura: 13, which is wrong",
 0,
 },
@@ -215,11 +204,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 43m 14s",
+"Total: 115d 16h 2m 16s",
 0,
 },
 {
-"Level: 102d 20h 10m 59s",
+"Level: 102d 21h 30m 1s",
 0,
 },
 {
@@ -227,11 +216,23 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 43m 15s",
+"Total: 115d 16h 2m 17s",
 0,
 },
 {
-"Level: 102d 20h 11m 0s",
+"Level: 102d 21h 30m 2s",
+0,
+},
+{
+"CGast - CGItemStatsSummary::ParseSpellRec is being called for spellID: 14127, effect aura: 13, which is wrong",
+0,
+},
+{
+"CGast - CGItemStatsSummary::ParseSpellRec is being called for spellID: 14127, effect aura: 135, which is wrong",
+0,
+},
+{
+"CGast - CGItemStatsSummary::ParseSpellRec is being called for spellID: 17900, effect aura: 13, which is wrong",
 0,
 },
 {
@@ -1471,11 +1472,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 47m 32s",
+"Total: 115d 16h 4m 25s",
 0,
 },
 {
-"Level: 102d 20h 15m 17s",
+"Level: 102d 21h 32m 10s",
 0,
 },
 {
@@ -1483,11 +1484,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 47m 33s",
+"Total: 115d 16h 4m 26s",
 0,
 },
 {
-"Level: 102d 20h 15m 18s",
+"Level: 102d 21h 32m 11s",
 0,
 },
 {
@@ -2727,11 +2728,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 51m 22s",
+"Total: 115d 16h 4m 59s",
 0,
 },
 {
-"Level: 102d 20h 19m 7s",
+"Level: 102d 21h 32m 44s",
 0,
 },
 {
@@ -2739,11 +2740,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 51m 23s",
+"Total: 115d 16h 5m 0s",
 0,
 },
 {
-"Level: 102d 20h 19m 8s",
+"Level: 102d 21h 32m 45s",
 0,
 },
 {
@@ -3983,11 +3984,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 52m 40s",
+"Total: 115d 16h 16m 26s",
 0,
 },
 {
-"Level: 102d 20h 20m 25s",
+"Level: 102d 21h 44m 11s",
 0,
 },
 {
@@ -3995,11 +3996,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 52m 41s",
+"Total: 115d 16h 16m 27s",
 0,
 },
 {
-"Level: 102d 20h 20m 26s",
+"Level: 102d 21h 44m 12s",
 0,
 },
 {
@@ -5239,11 +5240,11 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 54m 31s",
+"Total: 115d 16h 18m 37s",
 0,
 },
 {
-"Level: 102d 20h 22m 16s",
+"Level: 102d 21h 46m 22s",
 0,
 },
 {
@@ -5251,17 +5252,16 @@ Blizzard_Console_SavedVars = {
 0,
 },
 {
-"Total: 115d 14h 54m 32s",
+"Total: 115d 16h 18m 38s",
 0,
 },
 {
-"Level: 102d 20h 22m 17s",
+"Level: 102d 21h 46m 23s",
 0,
 },
 },
-["height"] = 299.9999084472656,
-["fontHeight"] = 14,
 ["isShown"] = false,
+["fontHeight"] = 14,
 ["commandHistory"] = {
 },
 }

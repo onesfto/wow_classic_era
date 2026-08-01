@@ -45,7 +45,7 @@ function AB.ResetMoverPosition(frame)
         AB.RefreshNativeBarLayout()
     end
     local queueName = "resetActionBarMover" .. (mover.setting or "")
-    if not QueueOutOfCombat(queueName, ApplyReset) then
+    if not AB.QueueOutOfCombat(queueName, ApplyReset) then
         ApplyReset()
     end
 end
@@ -113,7 +113,7 @@ local function SyncMultiBarButtonSizes()
     end
 end
 function AB.ApplyMultiBarSizes()
-    if QueueOutOfCombat("multibarSize", AB.ApplyMultiBarSizes) then return end
+    if AB.QueueOutOfCombat("multibarSize", AB.ApplyMultiBarSizes) then return end
     SyncMultiBarButtonSizes()
     if GW.UpdateMultibarButtons and _G.MainActionBar and _G.MainActionBar.gw_Bar1 then
         GW.UpdateMultibarButtons()
@@ -183,7 +183,7 @@ end
 function AB.ApplyMainBarLayout()
     local bar = _G.MainActionBar
     if not bar or not bar.gw_Buttons or not GW.settings then return end
-    if QueueOutOfCombat("mainBarLayout", AB.ApplyMainBarLayout) then return end
+    if AB.QueueOutOfCombat("mainBarLayout", AB.ApplyMainBarLayout) then return end
     local db = InitDB()
     local size = db.mainBarSize
     local margin = GW.settings.MAINBAR_MARGIIN or 5

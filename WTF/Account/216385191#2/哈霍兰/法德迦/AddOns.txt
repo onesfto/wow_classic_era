@@ -10,7 +10,7 @@ DBM-PvP: enabled
 DBM-VPRurutia: enabled
 Accountant_Classic: enabled
 BuyEmAll: enabled
-MeetingHorn: enabled
+MeetingHorn: disabled
 alaTradeSkill: disabled
 TalentEmu: enabled
 alaCalendar: disabled

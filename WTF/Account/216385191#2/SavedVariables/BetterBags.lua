@@ -376,14 +376,14 @@ true,
 },
 ["name"] = "A-合剂",
 },
-["垃圾"] = {
+["容器"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "垃圾",
+["name"] = "容器",
 ["dynamic"] = true,
 },
 ["商品"] = {
@@ -396,23 +396,23 @@ true,
 ["name"] = "商品",
 ["dynamic"] = true,
 },
-["A-非专业"] = {
+["A-AD"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-非专业",
+["name"] = "A-AD",
 },
-["容器"] = {
+["垃圾"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "容器",
+["name"] = "垃圾",
 ["dynamic"] = true,
 },
 ["装备-防御"] = {
@@ -424,14 +424,14 @@ true,
 },
 ["name"] = "装备-防御",
 },
-["A-AD"] = {
+["A-非专业"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-AD",
+["name"] = "A-非专业",
 },
 ["材料"] = {
 ["enabled"] = {
@@ -681,22 +681,22 @@ nil,
 ["首饰-法系"] = {
 ["shown"] = true,
 },
-["垃圾"] = {
+["容器"] = {
 ["shown"] = true,
 },
 ["商品"] = {
 ["shown"] = true,
 },
-["A-非专业"] = {
+["A-AD"] = {
 ["shown"] = true,
 },
-["容器"] = {
+["垃圾"] = {
 ["shown"] = true,
 },
 ["装备-防御"] = {
 ["shown"] = true,
 },
-["A-AD"] = {
+["A-非专业"] = {
 ["shown"] = true,
 },
 ["材料"] = {

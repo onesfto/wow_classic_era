@@ -36,6 +36,13 @@ local function ApplyVisibility()
     end
     MarkerBar.frame:SetShown(ShouldShow())
 end
+local function ApplyBackground()
+    local db = Toolbar.InitDB().markerBar
+    MarkerBar.frame:SetBackdropColor(
+        0.03, 0.05, 0.045, db.hideBackground and 0 or 0.86)
+    MarkerBar.frame:SetBackdropBorderColor(
+        0.2, 0.32, 0.27, db.hideBackground and 0 or 0.95)
+end
 local function EnsureFrame()
     if MarkerBar.frame then return true end
     local width = BAR_PADDING * 2 + #MARKERS * BUTTON_SIZE
@@ -104,6 +111,7 @@ function MarkerBar.Refresh()
     Toolbar.SetMoverEnabled("markerBar", db.enabled)
     Toolbar.QueueOutOfCombat(
         "GW2PlusToolbarMarkerBarVisibility", ApplyVisibility)
+    ApplyBackground()
 end
 function MarkerBar.SetEnabled(value)
     Toolbar.InitDB().markerBar.enabled = value == true
@@ -112,6 +120,10 @@ end
 function MarkerBar.SetScale(value)
     Toolbar.InitDB().markerBar.scale = tonumber(value) or 1
     MarkerBar.Refresh()
+end
+function MarkerBar.SetHideBackground(value)
+    Toolbar.InitDB().markerBar.hideBackground = value == true
+    ApplyBackground()
 end
 function MarkerBar.Reset()
     local db = Toolbar.InitDB().markerBar

@@ -5,7 +5,7 @@ WhisperPopDB = {
 ["notifyButton"] = 1,
 ["showRealm"] = 1,
 ["ignoreTags"] = 1,
-["save"] = 1,
+["listWidth"] = 200,
 ["timeFormat"] = 2,
 ["listScale"] = 100,
 ["buttonScale"] = 100,
@@ -233,7 +233,8 @@ WhisperPopDB = {
 ["time"] = 1,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["listWidth"] = 200,
+["save"] = 1,
+["sound"] = 1,
 ["positions"] = {
 ["WhisperPopFrame"] = {
 "TOPLEFT",
@@ -250,5 +251,4 @@ WhisperPopDB = {
 253,
 },
 },
-["sound"] = 1,
 }

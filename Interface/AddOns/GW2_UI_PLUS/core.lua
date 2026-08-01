@@ -249,8 +249,9 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
         end
     end
 
+    local toolbarFrame
     if addonTable.BuildToolbarPanel then
-        local toolbarFrame = addonTable.BuildToolbarPanel(p)
+        toolbarFrame = addonTable.BuildToolbarPanel(p)
         if toolbarFrame then
             table.insert(subPanels, {
                 name = "工具条",
@@ -268,12 +269,21 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
     -- HideNativeSettings 会将该条目从原生设置菜单中过滤掉。
     settingsTab:AddSettingsPanel(p, "附加组件", "额外附加组件", subPanels, true)
 
+    -- 工具条需要按需求在同一行显示 2、3 或 4 个控件；原生面板仅支持两列。
+    if toolbarFrame and addonTable.ActionBarOptionsUtils then
+        addonTable.ActionBarOptionsUtils.InitializePanel(toolbarFrame)
+    end
+
     if addonTable.BuildActionBarTab then
         addonTable.BuildActionBarTab(settingsTab, _G.GwSettingsWindow)
     end
 
     if addonTable.PrepareUnitFrameSettings then
         addonTable.PrepareUnitFrameSettings(settingsTab)
+    end
+
+    if addonTable.BuildWorldMapOptions then
+        addonTable.BuildWorldMapOptions(settingsTab)
     end
 
     if addonTable.BuildMainMenuTab then

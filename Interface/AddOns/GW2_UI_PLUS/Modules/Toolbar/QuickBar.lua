@@ -8,7 +8,6 @@ local BUTTON_GAP = 3
 local BAR_PADDING = 3
 local BUTTON_ORDER = {
     "leave",
-    "teleport",
     "convert",
     "reset",
     "timer",
@@ -18,7 +17,6 @@ local BUTTON_ORDER = {
 }
 local ICONS = {
     leave = "Interface/Buttons/UI-GroupLoot-Pass-Up",
-    teleport = "Interface/Icons/Spell_Arcane_TeleportStormWind",
     convert = "Interface/Icons/INV_Misc_GroupLooking",
     reset = "Interface/Icons/Spell_Holy_Resurrection",
     timer = "Interface/Icons/INV_Misc_PocketWatch_01",
@@ -28,7 +26,6 @@ local ICONS = {
 }
 local TOOLTIPS = {
     leave = "左键：离开队伍\n右键：离开随机副本队伍",
-    teleport = "进入或离开随机副本",
     convert = "小队与团队互相转换",
     reset = "重置所有副本",
     timer = "左键：重置战斗计时\n右键：打开时间设置",
@@ -51,6 +48,9 @@ local function SetButtonEnabled(button, enabled)
     button:SetEnabled(enabled)
     button.icon:SetDesaturated(not enabled)
     button:SetAlpha(enabled and 1 or 0.45)
+end
+local function ClampCountdownSeconds(value)
+    return math.max(3, math.min(10, math.floor(tonumber(value) or 10)))
 end
 local function FormatElapsed(seconds)
     seconds = math.max(0, math.floor(seconds or 0))
@@ -77,19 +77,6 @@ local function LeaveGroup(mouseButton)
         C_PartyInfo.LeaveParty()
     elseif _G.LeaveParty then
         _G.LeaveParty()
-    end
-end
-local function TeleportDungeon()
-    if not IsAllowedToUserTeleport or not IsAllowedToUserTeleport() then return end
-    if IsInLFDBattlefield and IsInLFDBattlefield() then
-        local _, instanceType = IsInInstance()
-        if instanceType ~= "arena" and instanceType ~= "pvp" then
-            LFGTeleport(false)
-        end
-    elseif IsInLFGDungeon and IsInLFGDungeon() then
-        LFGTeleport(true)
-    else
-        LFGTeleport(false)
     end
 end
 local function ConvertGroup()
@@ -168,8 +155,6 @@ end
 local function HandleButtonClick(key, mouseButton)
     if key == "leave" then
         LeaveGroup(mouseButton)
-    elseif key == "teleport" then
-        TeleportDungeon()
     elseif key == "convert" then
         ConvertGroup()
     elseif key == "reset" then
@@ -307,6 +292,7 @@ end
 function QuickBar.Refresh()
     if not EnsureFrame() then return end
     local db = Toolbar.InitDB().quickBar
+    db.countdownSeconds = ClampCountdownSeconds(db.countdownSeconds)
     QuickBar.frame:SetScale(db.scale)
     QuickBar.Layout()
     QuickBar.frame:SetShown(db.enabled)
@@ -319,9 +305,6 @@ function QuickBar.Refresh()
     SetButtonEnabled(QuickBar.buttons.role, controller)
     SetButtonEnabled(QuickBar.buttons.ready, controller)
     SetButtonEnabled(QuickBar.buttons.countdown, controller)
-    local canTeleport = IsAllowedToUserTeleport
-        and IsAllowedToUserTeleport()
-    SetButtonEnabled(QuickBar.buttons.teleport, canTeleport == true)
     QuickBar.buttons.convert.tooltip = IsInRaid()
         and "转换为小队" or "转换为团队"
     QuickBar.buttons.timer:SetBackdropColor(
@@ -360,8 +343,7 @@ function QuickBar.SetHideTimerBackground(value)
     QuickBar.Refresh()
 end
 function QuickBar.SetCountdownSeconds(value)
-    Toolbar.InitDB().quickBar.countdownSeconds =
-        math.max(3, math.min(180, math.floor(tonumber(value) or 10)))
+    Toolbar.InitDB().quickBar.countdownSeconds = ClampCountdownSeconds(value)
 end
 function QuickBar.SetCountdownVoice(value)
     Toolbar.InitDB().quickBar.countdownVoice = value == true

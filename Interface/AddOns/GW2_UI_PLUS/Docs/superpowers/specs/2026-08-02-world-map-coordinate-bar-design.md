@@ -6,7 +6,7 @@
 
 ## 范围
 
-- 坐标栏锚定 `WorldMapFrame.ScrollContainer` 的 `BOTTOM, 0, 8`，不增加、不读取也不保存位置或偏移设置。
+- 坐标栏以 `WorldMapFrame.ScrollContainer` 的 `BOTTOMLEFT` 和 `BOTTOMRIGHT`（纵向偏移均为 `8`）横跨底部，不增加、不读取也不保存位置或偏移设置。
 - 底栏横跨地图内容区：光标坐标左对齐，玩家坐标右对齐，二者同一行显示。
 - 保留现有鼠标与玩家坐标取值，以及每 0.2 秒更新的节流逻辑。
 - 将设置文本从「显示双行坐标」改为「启用坐标」。
