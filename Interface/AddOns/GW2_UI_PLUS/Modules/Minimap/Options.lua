@@ -56,15 +56,17 @@ local function BuildMinimapAddonFlyoutPanel(parent)
     end
     local positionOption = panel:AddOptionDropdown(
         "位置",
-        "插件悬浮入口位于小地图的哪个方向；切换后立即生效。",
+        "插件悬浮入口的位置；可置于小地图周围或插入系统菜单。",
         {
             optionsList = {
                 "TOPLEFT", "TOP", "TOPRIGHT", "LEFT",
                 "RIGHT", "BOTTOMLEFT", "BOTTOM", "BOTTOMRIGHT",
+                "MICROBAR_LEFT", "MICROBAR_RIGHT",
             },
             optionNames = {
                 "左上", "上", "右上", "左中",
                 "右中", "左下", "下", "右下",
+                "系统菜单左边", "系统菜单右边",
             },
             getter = Flyout.GetPosition,
             setter = function(value)

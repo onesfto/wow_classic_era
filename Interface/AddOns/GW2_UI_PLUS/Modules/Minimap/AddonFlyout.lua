@@ -9,6 +9,11 @@ local managedButtons = {}
 local buttonStates = {}
 local pendingRefresh = false
 local defaultPosition = "LEFT"
+local toggleName = "GwPlusAddonFlyoutToggle"
+local microbarPositions = {
+    MICROBAR_LEFT = true,
+    MICROBAR_RIGHT = true,
+}
 local positionAnchors = {
     TOPLEFT = {"TOPRIGHT", "TOPLEFT", -4, 0},
     TOP = {"BOTTOM", "TOP", 0, 4},
@@ -104,6 +109,9 @@ local function IsBlocked()
         or (C_PetBattles and C_PetBattles.IsInBattle())
 end
 local driver = CreateFrame("Frame")
+local microbarState
+local microbarHooked = false
+local pendingMicrobarRefresh = false
 local function QueueRefresh()
     pendingRefresh = true
     driver:RegisterEvent("PLAYER_REGEN_ENABLED")
@@ -313,11 +321,109 @@ local function ToggleContainer(toggle)
         toggle.container:Show()
     end
 end
+local function SetToggleSize(toggle, size)
+    toggle:SetSize(size, size)
+    for _, getter in ipairs({
+        "GetNormalTexture", "GetHighlightTexture", "GetPushedTexture",
+    }) do
+        local texture = toggle[getter] and toggle[getter](toggle)
+        if texture then texture:SetSize(size, size) end
+    end
+end
+local function GetMicrobar()
+    local frame = _G.Gw2MicroBarFrame
+    return frame and frame.cf, frame
+end
+local function GetMicrobarEndpoints(microbar, toggle)
+    local first, last
+    for _, child in ipairs({microbar:GetChildren()}) do
+        if child ~= toggle and child:IsShown()
+            and child.IsObjectType and child:IsObjectType("Button") then
+            local left, right = child:GetLeft(), child:GetRight()
+            if left and right then
+                if not first or left < first.left then
+                    first = {button = child, left = left}
+                end
+                if not last or right > last.right then
+                    last = {button = child, right = right}
+                end
+            end
+        end
+    end
+    return first and first.button, last and last.button
+end
+local function RestoreMicrobarLayout()
+    if not microbarState then return end
+    local frame = microbarState.frame
+    if frame then frame:SetWidth(microbarState.width) end
+    microbarState = nil
+    if type(_G.UpdateMicroButtons) == "function" then
+        _G.UpdateMicroButtons()
+    end
+end
+local function ApplyMicrobarPosition(toggle, position)
+    local microbar, frame = GetMicrobar()
+    if not microbar or not frame then return false end
+    local first, last = GetMicrobarEndpoints(microbar, toggle)
+    if not first or not last then return false end
+    if not microbarState then
+        microbarState = {frame = frame, width = frame:GetWidth()}
+    end
+    frame:SetWidth(microbarState.width + 28)
+    SetToggleSize(toggle, 24)
+    toggle:SetParent(microbar)
+    toggle:ClearAllPoints()
+    if position == "MICROBAR_LEFT" then
+        toggle:SetPoint("BOTTOMLEFT", microbar, "BOTTOMLEFT", 0, 0)
+        first:ClearAllPoints()
+        first:SetPoint("BOTTOMLEFT", toggle, "BOTTOMRIGHT", 4, 0)
+        toggle.container:ClearAllPoints()
+        toggle.container:SetPoint("TOPLEFT", toggle, "BOTTOMLEFT", 0, -4)
+    else
+        toggle:SetPoint("BOTTOMLEFT", last, "BOTTOMRIGHT", 4, 0)
+        toggle.container:ClearAllPoints()
+        toggle.container:SetPoint("TOPRIGHT", toggle, "BOTTOMRIGHT", 0, -4)
+    end
+    return true
+end
+local function ApplyMinimapPosition(toggle, position)
+    RestoreMicrobarLayout()
+    if not Minimap then return false end
+    local anchor = positionAnchors[position]
+    SetToggleSize(toggle, 38)
+    toggle:SetParent(UIParent)
+    toggle:ClearAllPoints()
+    toggle:SetPoint(anchor[1], Minimap, anchor[2], anchor[3], anchor[4])
+    toggle.container:ClearAllPoints()
+    toggle.container:SetPoint("RIGHT", toggle, "LEFT")
+    return true
+end
+local function QueueMicrobarRefresh()
+    if not Flyout.IsEnabled()
+        or not microbarPositions[Flyout.GetPosition()] then return end
+    if IsBlocked() then
+        QueueRefresh()
+        return
+    end
+    if pendingMicrobarRefresh then return end
+    pendingMicrobarRefresh = true
+    C_Timer.After(0, function()
+        pendingMicrobarRefresh = false
+        Flyout.Refresh()
+    end)
+end
+local function HookMicrobarUpdate()
+    if microbarHooked or type(_G.UpdateMicroButtons) ~= "function" then
+        return
+    end
+    hooksecurefunc("UpdateMicroButtons", QueueMicrobarRefresh)
+    microbarHooked = true
+end
 local function EnsureToggle()
-    local toggle = _G.GwAddonToggle
+    local toggle = _G[toggleName]
     if not toggle then
         toggle = CreateFrame(
-            "Button", "GwAddonToggle", UIParent, "GwAddonToggle")
+            "Button", toggleName, UIParent, "GwAddonToggle")
     end
     if not toggle or not toggle.container then return nil end
     if not toggle.__gwPlusFlyoutOwned then
@@ -330,13 +436,6 @@ local function EnsureToggle()
             toggle.container:GwCreateBackdrop(
                 GW.BackdropTemplates.DefaultWithSmallBorder, true)
         end
-    end
-    if Minimap then
-        local anchor = positionAnchors[Flyout.GetPosition()]
-        toggle:ClearAllPoints()
-        toggle:SetPoint(
-            anchor[1], Minimap, anchor[2],
-            anchor[3], anchor[4])
     end
     return toggle
 end
@@ -354,7 +453,8 @@ end
 function Flyout.GetPosition()
     local position =
         Flyout.InitDB().minimapAddonFlyoutPosition
-    if not positionAnchors[position] then
+    if not positionAnchors[position]
+        and not microbarPositions[position] then
         return defaultPosition
     end
     return position
@@ -363,7 +463,7 @@ function Flyout.IsEnabled()
     return Flyout.InitDB().minimapAddonFlyoutEnabled ~= false
 end
 function Flyout.GetToggle()
-    return _G.GwAddonToggle
+    return _G[toggleName]
 end
 function Flyout.Disable()
     if IsBlocked() then
@@ -384,16 +484,29 @@ function Flyout.Disable()
         SetToggleVisible(toggle, false)
         toggle:Hide()
     end
+    RestoreMicrobarLayout()
 end
 function Flyout.Apply()
-    local toggle = EnsureToggle()
-    if not toggle then return end
     if not Flyout.IsEnabled() then
         Flyout.Disable()
         return
     end
     if IsBlocked() then
         QueueRefresh()
+        return
+    end
+    local toggle = EnsureToggle()
+    if not toggle then return end
+    local position = Flyout.GetPosition()
+    local positioned
+    if microbarPositions[position] then
+        HookMicrobarUpdate()
+        positioned = ApplyMicrobarPosition(toggle, position)
+    else
+        positioned = ApplyMinimapPosition(toggle, position)
+    end
+    if not positioned then
+        toggle:Hide()
         return
     end
     ScanToggleButtons(toggle)
@@ -409,7 +522,15 @@ function Flyout.Refresh()
 end
 function Flyout.SetPosition(position)
     if not positionAnchors[position] then
-        position = defaultPosition
+        if not microbarPositions[position] then
+            position = defaultPosition
+        end
+    end
+    local currentPosition = Flyout.GetPosition()
+    if currentPosition ~= position
+        and microbarPositions[currentPosition]
+        and not IsBlocked() then
+        RestoreMicrobarLayout()
     end
     Flyout.InitDB().minimapAddonFlyoutPosition = position
     Flyout.Refresh()
