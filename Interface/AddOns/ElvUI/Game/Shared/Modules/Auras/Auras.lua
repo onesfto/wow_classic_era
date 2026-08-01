@@ -604,20 +604,11 @@ function A:LoopChildren(header, key, func, ...)
 	end
 end
 
-function A:LoopIndex(header, key, count, func, ...)
-	for index = 1, count do
-		local child = header:GetAttribute(key..index)
-		if child then
-			func(header, child, index, ...)
-		end
-	end
-end
-
 function A:ForEachChild(func, ...)
 	if not func then return end
 
 	A:LoopChildren(self, 'child', func, ...)
-	A:LoopIndex(self, 'tempEnchant', 3, func, ...)
+	A:LoopChildren(self, 'tempEnchant', func, ...)
 end
 
 function A:CreateAuraHeader(filter)
@@ -680,6 +671,10 @@ function A:Initialize()
 
 		if _G.DebuffFrame then
 			_G.DebuffFrame:Kill()
+		end
+
+		if E.Classic then
+			_G.TemporaryEnchantFrame:Kill()
 		end
 	end
 

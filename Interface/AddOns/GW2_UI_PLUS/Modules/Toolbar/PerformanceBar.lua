@@ -1,13 +1,9 @@
 local _, addonTable = ...
-
 local Toolbar = addonTable.Toolbar
 if not Toolbar then return end
-
 local PerformanceBar = {}
 Toolbar.performanceBar = PerformanceBar
-
 local updateElapsed = 0
-
 local function AddMetric(frame, key)
     local text = frame:CreateFontString(nil, "OVERLAY")
     text:SetFont(UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF", 11, "OUTLINE")
@@ -16,14 +12,11 @@ local function AddMetric(frame, key)
     PerformanceBar.metrics[key] = text
     return text
 end
-
 local function Layout()
     local frame = PerformanceBar.frame
     if not frame then return end
-
     local db = Toolbar.InitDB().performanceBar
     frame:SetSize(db.width, db.height)
-
     local visible = {}
     for _, key in ipairs({"fps", "home", "world"}) do
         local show = db[key == "fps" and "showFPS" or
@@ -31,7 +24,6 @@ local function Layout()
         PerformanceBar.metrics[key]:SetShown(show)
         if show then visible[#visible + 1] = PerformanceBar.metrics[key] end
     end
-
     local itemWidth = db.width / math.max(1, #visible)
     for index, text in ipairs(visible) do
         text:ClearAllPoints()
@@ -40,7 +32,6 @@ local function Layout()
         text:SetWidth(itemWidth)
     end
 end
-
 local function UpdateText()
     if not PerformanceBar.frame or not PerformanceBar.frame:IsShown() then
         return
@@ -51,10 +42,8 @@ local function UpdateText()
     PerformanceBar.metrics.home:SetText(string.format("本地 %dms", home or 0))
     PerformanceBar.metrics.world:SetText(string.format("世界 %dms", world or 0))
 end
-
 local function EnsureFrame()
     if PerformanceBar.frame then return true end
-
     local db = Toolbar.InitDB().performanceBar
     local frame = Toolbar.CreateBarFrame(
         "GwPlusToolbarPerformanceBar", db.width, db.height)
@@ -63,7 +52,6 @@ local function EnsureFrame()
     AddMetric(frame, "fps")
     AddMetric(frame, "home")
     AddMetric(frame, "world")
-
     Toolbar.RegisterMover("performanceBar", frame, "Widgets")
     frame:SetScript("OnUpdate", function(_, elapsed)
         updateElapsed = updateElapsed + elapsed
@@ -74,7 +62,6 @@ local function EnsureFrame()
     end)
     return true
 end
-
 function PerformanceBar.Refresh()
     if not EnsureFrame() then return end
     local db = Toolbar.InitDB().performanceBar
@@ -83,12 +70,10 @@ function PerformanceBar.Refresh()
     Layout()
     UpdateText()
 end
-
 function PerformanceBar.SetEnabled(value)
     Toolbar.InitDB().performanceBar.enabled = value == true
     PerformanceBar.Refresh()
 end
-
 function PerformanceBar.SetSize(key, value)
     local db = Toolbar.InitDB().performanceBar
     if key == "width" then
@@ -98,7 +83,6 @@ function PerformanceBar.SetSize(key, value)
     end
     PerformanceBar.Refresh()
 end
-
 function PerformanceBar.SetMetric(key, value)
     local db = Toolbar.InitDB().performanceBar
     if db[key] == nil then return end
@@ -115,7 +99,6 @@ function PerformanceBar.SetMetric(key, value)
     db[key] = value == true
     PerformanceBar.Refresh()
 end
-
 function PerformanceBar.Reset()
     local db = Toolbar.InitDB().performanceBar
     local defaults = Toolbar.defaults.performanceBar
@@ -123,7 +106,6 @@ function PerformanceBar.Reset()
     Toolbar.ResetMover("performanceBar")
     PerformanceBar.Refresh()
 end
-
 local driver = CreateFrame("Frame")
 driver:RegisterEvent("PLAYER_LOGIN")
 driver:SetScript("OnEvent", function(self)

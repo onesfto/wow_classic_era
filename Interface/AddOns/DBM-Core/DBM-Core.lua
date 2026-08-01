@@ -79,16 +79,16 @@ local function showRealDate(curseDate)
 	end
 end
 
-DBM.Revision = parseCurseDate("20260626163357")
+DBM.Revision = parseCurseDate("20260725001740")
 DBM.TaintedByTests = false -- Tests may mess with some internal state, you probably don't want to rely on DBM for an important boss fight after running it in test mode
 
 private.fakeBWVersion, private.fakeBWHash = 416, "1888a1e"--416.0
 
 -- The string that is shown as version
-DBM.DisplayVersion = "12.0.54"--Core version
+DBM.DisplayVersion = "12.1.0"--Core version
 DBM.classicSubVersion = 0
 DBM.dungeonSubVersion = 0
-DBM.ReleaseRevision = releaseDate(2026, 6, 26) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
+DBM.ReleaseRevision = releaseDate(2026, 7, 24) -- the date of the latest stable version that is available, optionally pass hours, minutes, and seconds for multiple releases in one day
 DBM.HighestRelease = DBM.ReleaseRevision --Updated if newer version is detected, used by update nags to reflect critical fixes user is missing on boss pulls
 
 -- support for github downloads, which doesn't support curse keyword expansion
@@ -483,18 +483,27 @@ DBM.DefaultOptions = {
 	IgnoreBlizzAPI = false,
 	fixBlizzApi = false,
 	DisableSWSound = false,
-	--Private Aura Frame Options
+	--Aura Frame Options
 	--Player
 	PrivateAurasPlayerEnabled = true,
 	PrivateAurasPlayerHideBorder = false,
 	PrivateAurasPlayerHideTooltip = false,
 	PrivateAurasPlayerUpscaleDuration = true,
 	PrivateAurasPlayerScale = 3,
-	PrivateAurasPlayerSpacing = -1,
+	PrivateAurasPlayerSpacing2 = 1,
 	PrivateAurasPlayerLimit = 5,
 	PrivateAurasPlayerGrowDirection = "RIGHT",
-	PrivateAurasPlayerWidth = 60,
-	PrivateAurasPlayerHeight = 60,
+	PrivateAurasPlayerWidth = 65,
+	PrivateAurasPlayerHeight = 65,
+	PrivateAurasPlayerTextFont = "standardFont",
+	PrivateAurasPlayerTextFontStyle = "OUTLINE",
+	PrivateAurasPlayerDurationFontSize = 22,
+	PrivateAurasPlayerStackFontSize = 25,
+	PrivateAurasPlayerStackColor = {r = 1, g = 1, b = 1},
+	PrivateAurasPlayerStackXOffset = -1,
+	PrivateAurasPlayerStackYOffset = 1,
+	PrivateAurasPlayerShowStacks = true,
+	PrivateAurasPlayerShowDispelBorder = true,
 	PrivateAurasPlayerAnchor = "CENTER",--NYI
 	PrivateAurasPlayerRelativeTo = "CENTER",--NYI
 	PrivateAurasPlayerXOffset = 185,--Partial (drag and drop only, no UI slider/editbox)
@@ -505,11 +514,20 @@ DBM.DefaultOptions = {
 	PrivateAurasCoTankHideTooltip = false,
 	PrivateAurasCoTankUpscaleDuration = true,
 	PrivateAurasCoTankScale = 3,
-	PrivateAurasCoTankSpacing = -1,
+	PrivateAurasCoTankSpacing2 = 1,
 	PrivateAurasCoTankLimit = 5,
 	PrivateAurasCoTankGrowDirection = "LEFT",
-	PrivateAurasCoTankWidth = 60,
-	PrivateAurasCoTankHeight = 60,
+	PrivateAurasCoTankWidth = 65,
+	PrivateAurasCoTankHeight = 65,
+	PrivateAurasCoTankTextFont = "standardFont",
+	PrivateAurasCoTankTextFontStyle = "OUTLINE",
+	PrivateAurasCoTankDurationFontSize = 22,
+	PrivateAurasCoTankStackFontSize = 25,
+	PrivateAurasCoTankStackColor = {r = 1, g = 1, b = 1},
+	PrivateAurasCoTankStackXOffset = -1,
+	PrivateAurasCoTankStackYOffset = 1,
+	PrivateAurasCoTankShowStacks = true,
+	PrivateAurasCoTankShowDispelBorder = true,
 	PrivateAurasCoTankAnchor = "CENTER",--NYI
 	PrivateAurasCoTankRelativeTo = "CENTER",--NYI
 	PrivateAurasCoTankXOffset = -196,--Partial (drag and drop only, no UI slider/editbox)
@@ -565,10 +583,15 @@ local inCombatTrash = {}
 -- False variables
 local targetEventsRegistered, combatInitialized, healthCombatInitialized, watchFrameRestore, questieWatchRestore, bossuIdFound, timerRequestInProgress = false, false, false, false, false, false, false
 -- Nil variables
-local currentSpecID, currentSpecName, currentSpecGroup, loadOptions, checkWipe, checkBossHealth, checkCustomBossHealth, fireEvent, AddMsg, delayedFunction, lastGroupLeader, syncZonePASounds
+local currentSpecID, currentSpecName, currentSpecGroup, loadOptions, checkWipe, checkBossHealth, checkCustomBossHealth, fireEvent, AddMsg, delayedFunction, lastGroupLeader, syncZoneAuraSounds
 local pendingPASoundZoneSync, pendingPAAnchorCheck = nil, 0
 -- 0 variables
 local LastInstanceMapID = -1
+
+---@param priority number?
+function DBM:QueueAuraAnchorUpdate(priority)
+	pendingPAAnchorCheck = math.max(pendingPAAnchorCheck, priority or 1)
+end
 
 local deprecatedMods = { -- a list of "banned" (meaning they are replaced by another mod or discontinued). These mods will not be loaded by DBM (and they wont show up in the GUI)
 	"DBM-Battlegrounds", --replaced by DBM-PvP
@@ -729,7 +752,7 @@ local function checkForSafeSender(sender, checkFriends, checkGuild, filterRaid, 
 				local accountInfo = C_BattleNet.GetAccountInfoByID(sender)
 				if accountInfo and accountInfo.gameAccountInfo then--game account info means they are logged into a bnet game
 					local toonName, client = accountInfo.gameAccountInfo.characterName, accountInfo.gameAccountInfo.clientProgram or ""
-					if toonName and client == BNET_CLIENT_WOW and DBM:GetRaidUnitId(toonName) then--Check if toon name exists and if client is wow and if toonName is in raid.
+					if toonName and client == BNET_CLIENT_WOW and DBM:GetRaidUnitId(toonName, true) then--Check if toon name exists and if client is wow and if toonName is in raid.
 						return false--just set sender as unsafe
 					end
 				end
@@ -745,7 +768,7 @@ local function checkForSafeSender(sender, checkFriends, checkGuild, filterRaid, 
 					--Check if it's a bnet friend sending a non bnet whisper
 					if toonName and client == BNET_CLIENT_WOW then--Check if toon name exists and if client is wow. If yes to both, we found right client
 						if toonName == sender then--Now simply see if this is sender
-							return not (filterRaid and DBM:GetRaidUnitId(toonName)) -- Person is in raid group and filter raid enabled
+							return not (filterRaid and DBM:GetRaidUnitId(toonName, true)) -- Person is in raid group and filter raid enabled
 						end
 					end
 				end
@@ -754,7 +777,7 @@ local function checkForSafeSender(sender, checkFriends, checkGuild, filterRaid, 
 		--Check if it's a non bnet friend
 		local friendInfo = C_FriendList.GetFriendInfo(sender)
 		if friendInfo then
-			return not (filterRaid and DBM:GetRaidUnitId(friendInfo.name)) -- Person is in raid group and filter raid enabled
+			return not (filterRaid and DBM:GetRaidUnitId(friendInfo.name, true)) -- Person is in raid group and filter raid enabled
 		end
 	end
 	--Check Guildies (not used by whisper syncs, but used by status whispers)
@@ -768,7 +791,7 @@ local function checkForSafeSender(sender, checkFriends, checkGuild, filterRaid, 
 				if not name then break end
 				name = Ambiguate(name, "none")
 				if name == sender then
-					return not (filterRaid and DBM:GetRaidUnitId(name))
+					return not (filterRaid and DBM:GetRaidUnitId(name, true))
 				end
 			end
 		end
@@ -2322,6 +2345,18 @@ do
 							})
 							if self.AddOns[#self.AddOns].subTabs then
 								local subTabs = self.AddOns[#self.AddOns].subTabs
+								-- Remove SoD-only raid subtabs on Classic Era
+								if private.isClassic and not private.currentSeason then
+									local sodOnlyRaids = {[48]=true, [90]=true, [109]=true, [2856]=true}
+									local sodOnlyDungeons = {[2784]=true, [2875]=true}
+									local filter = addonName == "DBM-Raids-Vanilla" and sodOnlyRaids or sodOnlyDungeons
+									for k = #subTabs, 1, -1 do
+										local id = tonumber(subTabs[k])
+										if id and filter[id] then
+											tremove(subTabs, k)
+										end
+									end
+								end
 								for k, _ in ipairs(subTabs) do
 									--Ugly hack to inject custom string text into auto localized zone name sub cats
 									if subTabs[k]:find("|") then
@@ -2935,7 +2970,22 @@ do
 	local inRaid = false
 
 	local raidGuids = {}
+	local raidUnitIds = {}
 	local iconSeter = {}
+
+	---@param uId string
+	---@return table?
+	local function getRaidMemberByUnitId(uId)
+		local name = GetUnitName(uId, true)
+		-- A visible identity is authoritative: this avoids using stale metadata when a roster token changed or disappeared mid-fight.
+		if not DBM:issecretvalue(name) then
+			return name and raid[name]
+		end
+		-- During identity restrictions, retain the last known roster member for this stable token.
+		local cachedName = raidUnitIds[uId]
+		return cachedName and raid[cachedName]
+	end
+	private.getRaidMemberByUnitId = getRaidMemberByUnitId
 
 	--	save playerinfo into raid table on load. (for solo raid)
 	DBM:RegisterOnLoadCallback(function()
@@ -2947,6 +2997,7 @@ do
 				raid[playerName].guid = UnitGUID("player")
 				raid[playerName].rank = 0
 				raid[playerName].class = playerClass
+				raid[playerName].role = UnitGroupRolesAssigned("player")
 				raid[playerName].id = "player"
 				raid[playerName].groupId = 0
 				raid[playerName].revision = DBM.Revision
@@ -2958,6 +3009,7 @@ do
 				raid[playerName].dungeonSubVers = DBM.dungeonSubVersion
 				raid[playerName].locale = GetLocale()
 				raid[playerName].enabledIcons = tostring(not DBM.Options.DontSetIcons)
+				raidUnitIds.player = playerName
 				raidGuids[UnitGUID("player") or ""] = playerName
 			end
 		end)
@@ -2967,6 +3019,7 @@ do
 	---@param self DBM
 	local function updateAllRoster(self)
 		if IsInRaid() then
+			twipe(raidUnitIds)
 			if not inRaid then
 				self:ResetVersionCheck()
 				inRaid = true
@@ -2987,6 +3040,7 @@ do
 					local id = "raid" .. i
 					local shortname = UnitName(id)
 					local guid = UnitGUID(id)
+					local role = UnitGroupRolesAssigned(id)
 					if self:issecretvalue(guid) then
 						guid = nil
 					end
@@ -2999,11 +3053,13 @@ do
 					raid[name].rank = rank
 					raid[name].subgroup = subgroup
 					raid[name].class = className
+					raid[name].role = role
 					raid[name].id = id
 					raid[name].groupId = i
 					raid[name].guid = guid or ""
 					raid[name].updated = true
 					raid[name].isOnline = isOnline
+					raidUnitIds[id] = name
 					if guid then
 						raidGuids[guid] = name
 					end
@@ -3011,6 +3067,9 @@ do
 						lastGroupLeader = name
 					end
 				end
+			end
+			if raid[playerName] then
+				raidUnitIds.player = playerName
 			end
 			private.enableIcons = false
 			twipe(iconSeter)
@@ -3056,6 +3115,7 @@ do
 				end
 			end
 		elseif IsInGroup() then
+			twipe(raidUnitIds)
 			if not inRaid then
 				-- joined a new party
 				self:ResetVersionCheck()
@@ -3080,6 +3140,7 @@ do
 				local shortname = UnitName(id)
 				local rank = UnitIsGroupLeader(id) and 2 or 0
 				local _, className = UnitClass(id)
+				local role = UnitGroupRolesAssigned(id)
 				local isOnline = UnitIsConnected(id)
 				if (not raid[name]) and inRaid then
 					fireEvent("DBM_partyJoin", name)
@@ -3090,10 +3151,12 @@ do
 				raid[name].guid = UnitGUID(id) or ""
 				raid[name].rank = rank
 				raid[name].class = className
+				raid[name].role = role
 				raid[name].id = id
 				raid[name].groupId = i
 				raid[name].updated = true
 				raid[name].isOnline = isOnline
+				raidUnitIds[id] = name
 				raidGuids[UnitGUID(id) or ""] = name
 				if rank >= 1 then
 					lastGroupLeader = name
@@ -3136,6 +3199,7 @@ do
 			private.enableIcons = true
 			fireEvent("DBM_raidLeave", playerName)
 			twipe(raid)
+			twipe(raidUnitIds)
 			self:ResetVersionCheck()
 			-- restore playerinfo into raid table on raidleave. (for solo raid)
 			raid[playerName] = {}
@@ -3144,6 +3208,7 @@ do
 			raid[playerName].guid = UnitGUID("player")
 			raid[playerName].rank = 0
 			raid[playerName].class = playerClass
+			raid[playerName].role = UnitGroupRolesAssigned("player")
 			raid[playerName].id = "player"
 			raid[playerName].groupId = 0
 			raid[playerName].revision = DBM.Revision
@@ -3154,15 +3219,20 @@ do
 			end
 			raid[playerName].dungeonSubVers = DBM.dungeonSubVersion
 			raid[playerName].locale = GetLocale()
+			raidUnitIds.player = playerName
 			raidGuids[UnitGUID("player")] = playerName
 			lastGroupLeader = nil
 		end
 		if private.isRetail then
-			local succeeded = self.PrivateAuras:UpdatePrivateAuraAnchors()
-			if not succeeded then
-				pendingPAAnchorCheck = 2
-			else
-				pendingPAAnchorCheck = 0
+			local auraHandler = DBM.Auras
+			if auraHandler then
+				local updateMethod = auraHandler.UpdateAuraAnchors or auraHandler.UpdatePrivateAuraAnchors
+				local succeeded = updateMethod and updateMethod(auraHandler)
+				if not succeeded then
+					pendingPAAnchorCheck = 2
+				else
+					pendingPAAnchorCheck = 0
+				end
 			end
 		end
 	end
@@ -3294,13 +3364,44 @@ do
 		end
 	end
 
+	local fullPlayerUids = {
+		"player", "party1", "party2", "party3", "party4",
+		"raid1", "raid2", "raid3", "raid4", "raid5", "raid6", "raid7", "raid8", "raid9", "raid10",
+		"raid11", "raid12", "raid13", "raid14", "raid15", "raid16", "raid17", "raid18", "raid19", "raid20",
+		"raid21", "raid22", "raid23", "raid24", "raid25", "raid26", "raid27", "raid28", "raid29", "raid30",
+		"raid31", "raid32", "raid33", "raid34", "raid35", "raid36", "raid37", "raid38", "raid39", "raid40"
+	}
+
+	local fullEnemyUids = {
+		"boss1", "boss2", "boss3", "boss4", "boss5", "boss6", "boss7", "boss8", "boss9", "boss10",
+		"mouseover", "target", "focus", "focustarget", "targettarget", "mouseovertarget",
+		"party1target", "party2target", "party3target", "party4target",
+		"raid1target", "raid2target", "raid3target", "raid4target", "raid5target", "raid6target", "raid7target", "raid8target", "raid9target", "raid10target",
+		"raid11target", "raid12target", "raid13target", "raid14target", "raid15target", "raid16target", "raid17target", "raid18target", "raid19target", "raid20target",
+		"raid21target", "raid22target", "raid23target", "raid24target", "raid25target", "raid26target", "raid27target", "raid28target", "raid29target", "raid30target",
+		"raid31target", "raid32target", "raid33target", "raid34target", "raid35target", "raid36target", "raid37target", "raid38target", "raid39target", "raid40target",
+		"nameplate1", "nameplate2", "nameplate3", "nameplate4", "nameplate5", "nameplate6", "nameplate7", "nameplate8", "nameplate9", "nameplate10",
+		"nameplate11", "nameplate12", "nameplate13", "nameplate14", "nameplate15", "nameplate16", "nameplate17", "nameplate18", "nameplate19", "nameplate20",
+		"nameplate21", "nameplate22", "nameplate23", "nameplate24", "nameplate25", "nameplate26", "nameplate27", "nameplate28", "nameplate29", "nameplate30",
+		"nameplate31", "nameplate32", "nameplate33", "nameplate34", "nameplate35", "nameplate36", "nameplate37", "nameplate38", "nameplate39", "nameplate40"
+	}
+
+	local bossTargetuIds = {
+		"boss1", "boss2", "boss3", "boss4", "boss5", "boss6", "boss7", "boss8", "boss9", "boss10"
+	}
+
 	---This is primarily used for cached player unitIds by name lookup
 	---<br>Rarely, it's also used for boss checks by name since it simplifies code in mod.
-	---@param skipBoss boolean?
-	function DBM:GetRaidUnitId(name, skipBoss)
-		if not skipBoss and not (self:IsPostMidnight() and IsInInstance()) then
-			for i = 1, 10 do
-				local unitId = "boss" .. i
+	---@param name string
+	---@param skipEnemy boolean?
+	function DBM:GetRaidUnitId(name, skipEnemy)
+		if not skipEnemy and not self:MidRestrictionsActive(true, true, true) then
+			local usedTable = (private.isClassic or private.isBCC) and fullEnemyUids or bossTargetuIds
+			for _, unitId in ipairs(usedTable) do
+				if self:issecretunit(unitId) then
+					--Any secret unit found even after above midnight check, abort enemy loop
+					break
+				end
 				local bossName = UnitName(unitId)
 				if bossName and bossName == name then
 					return unitId
@@ -3309,14 +3410,6 @@ do
 		end
 		return raid[name] and raid[name].id
 	end
-
-	local fullPlayerUids = {
-		"player", "party1", "party2", "party3", "party4",
-		"raid1", "raid2", "raid3", "raid4", "raid5", "raid6", "raid7", "raid8", "raid9", "raid10",
-		"raid11", "raid12", "raid13", "raid14", "raid15", "raid16", "raid17", "raid18", "raid19", "raid20",
-		"raid21", "raid22", "raid23", "raid24", "raid25", "raid26", "raid27", "raid28", "raid29", "raid30",
-		"raid31", "raid32", "raid33", "raid34", "raid35", "raid36", "raid37", "raid38", "raid39", "raid40"
-	}
 
 	---Used Strictly to look up Player UnitId by GUID
 	---@param self DBMModOrDBM
@@ -3338,24 +3431,6 @@ do
 			end
 		end
 	end
-
-	local fullEnemyUids = {
-		"boss1", "boss2", "boss3", "boss4", "boss5", "boss6", "boss7", "boss8", "boss9", "boss10",
-		"mouseover", "target", "focus", "focustarget", "targettarget", "mouseovertarget",
-		"party1target", "party2target", "party3target", "party4target",
-		"raid1target", "raid2target", "raid3target", "raid4target", "raid5target", "raid6target", "raid7target", "raid8target", "raid9target", "raid10target",
-		"raid11target", "raid12target", "raid13target", "raid14target", "raid15target", "raid16target", "raid17target", "raid18target", "raid19target", "raid20target",
-		"raid21target", "raid22target", "raid23target", "raid24target", "raid25target", "raid26target", "raid27target", "raid28target", "raid29target", "raid30target",
-		"raid31target", "raid32target", "raid33target", "raid34target", "raid35target", "raid36target", "raid37target", "raid38target", "raid39target", "raid40target",
-		"nameplate1", "nameplate2", "nameplate3", "nameplate4", "nameplate5", "nameplate6", "nameplate7", "nameplate8", "nameplate9", "nameplate10",
-		"nameplate11", "nameplate12", "nameplate13", "nameplate14", "nameplate15", "nameplate16", "nameplate17", "nameplate18", "nameplate19", "nameplate20",
-		"nameplate21", "nameplate22", "nameplate23", "nameplate24", "nameplate25", "nameplate26", "nameplate27", "nameplate28", "nameplate29", "nameplate30",
-		"nameplate31", "nameplate32", "nameplate33", "nameplate34", "nameplate35", "nameplate36", "nameplate37", "nameplate38", "nameplate39", "nameplate40"
-	}
-
-	local bossTargetuIds = {
-		"boss1", "boss2", "boss3", "boss4", "boss5", "boss6", "boss7", "boss8", "boss9", "boss10"
-	}
 
 	---Used Strictly to look up Enemy UnitId by GUID
 	---@param self DBMModOrDBM
@@ -3490,7 +3565,11 @@ do
 	---@return number
 	function DBM:GetGroupId(name, higher)
 		local raidMember = raid[name] or raid[self:GetUnitFullName(name) or ""]
-		return raidMember and raidMember.groupId or UnitInRaid(name) or higher and 99 or 0
+		local groupId = UnitInRaid(name)
+		if self:issecretvalue(groupId) then
+			groupId = nil
+		end
+		return raidMember and raidMember.groupId or groupId or higher and 99 or 0
 	end
 end
 
@@ -3620,7 +3699,7 @@ function DBM:CheckNearby(range, targetname)
 	if not targetname and DBM.RangeCheck:GetDistanceAll(range) then--Do not use self on this function, because self might be bossModPrototype
 		return true--No target name means check if anyone is near self, period
 	elseif targetname then
-		local uId = DBM:GetRaidUnitId(targetname)--Do not use self on this function, because self might be bossModPrototype
+		local uId = DBM:GetRaidUnitId(targetname, true)--Do not use self on this function, because self might be bossModPrototype
 		if uId and not UnitIsUnit("player", uId) then
 			local restrictionsActive = private.isRetail and DBM:HasMapRestrictions()
 			local inRange = DBM.RangeCheck:GetDistance(uId)--Do not use self on this function, because self might be bossModPrototype
@@ -4669,7 +4748,7 @@ do
 
 	---@param self DBM
 	---@param mapID number
-	syncZonePASounds = function(self, mapID)
+	syncZoneAuraSounds = function(self, mapID)
 		if not private.isRetail then
 			return
 		end
@@ -4679,10 +4758,10 @@ do
 		end
 		pendingPASoundZoneSync = nil
 		for _, mod in ipairs(DBM.Mods) do
-			mod:DisablePrivateAuraSounds()
+			mod:DisableAuraSounds()
 		end
 		for _, mod in ipairs(DBM.Mods) do
-			mod:RegisterZonePASounds(mapID)
+			mod:RegisterZoneAuraSounds(mapID)
 		end
 	end
 
@@ -4739,12 +4818,16 @@ do
 		end
 		if private.isRetail then
 			--Handle private aura sounds and anchors
-			syncZonePASounds(self, mapID)
-			local succeeded = self.PrivateAuras:UpdatePrivateAuraAnchors()
-			if not succeeded then
-				pendingPAAnchorCheck = 1
-			else
-				pendingPAAnchorCheck = 0
+			syncZoneAuraSounds(self, mapID)
+			local auraHandler = DBM.Auras
+			if auraHandler then
+				local updateMethod = auraHandler.UpdateAuraAnchors or auraHandler.UpdatePrivateAuraAnchors
+				local succeeded = updateMethod and updateMethod(auraHandler)
+				if not succeeded then
+					pendingPAAnchorCheck = 1
+				else
+					pendingPAAnchorCheck = 0
+				end
 			end
 		end
 		self:UpdateMapRestrictions()
@@ -5179,12 +5262,16 @@ do
 		end
 		if private.isRetail then
 			if pendingPASoundZoneSync then
-				syncZonePASounds(self, pendingPASoundZoneSync)
+				syncZoneAuraSounds(self, pendingPASoundZoneSync)
 			end
 			if pendingPAAnchorCheck > 0 then
-				local succeeded = self.PrivateAuras:UpdatePrivateAuraAnchors()
-				if succeeded then
-					pendingPAAnchorCheck = 0
+				local auraHandler = DBM.Auras
+				if auraHandler then
+					local updateMethod = auraHandler.UpdateAuraAnchors or auraHandler.UpdatePrivateAuraAnchors
+					local succeeded = updateMethod and updateMethod(auraHandler)
+					if succeeded then
+						pendingPAAnchorCheck = 0
+					end
 				end
 			end
 		end
@@ -6325,7 +6412,7 @@ do
 				self:TransitionToDungeonBGM(false, true)
 				self:Schedule(22, self.TransitionToDungeonBGM, self)
 				if private.isRetail and pendingPASoundZoneSync then
-					syncZonePASounds(self, pendingPASoundZoneSync)
+					syncZoneAuraSounds(self, pendingPASoundZoneSync)
 				end
 				--module cleanup
 				private:ClearModuleTasks()
@@ -6740,12 +6827,12 @@ end
 
 do
 	--Handle new spell name requesting with wrapper, to make api changes easier to handle
-	local GetSpellInfo, GetSpellTexture, GetSpellCooldown, GetSpellName
+	local GetSpellInfo, GetSpellTexture, GetSpellCooldown, GetSpellName, DoesSpellExist
 	local halfAssedClassicPath
 	if C_Spell and C_Spell.GetSpellInfo then
-		GetSpellInfo, GetSpellTexture, GetSpellName = C_Spell.GetSpellInfo, C_Spell.GetSpellTexture, C_Spell.GetSpellName
+		GetSpellInfo, GetSpellTexture, GetSpellName, DoesSpellExist = C_Spell.GetSpellInfo, C_Spell.GetSpellTexture, C_Spell.GetSpellName, C_Spell.DoesSpellExist
 		--Blizzard forgot to sync GetSpellCooldown to C Space with other spells in all classic versions (cata and vanilla and wrath alike)
-		--This is what happens when you do half assed syncs that can't even maintain parity properly during rebases
+		--DoesSpellExist likely has same probelm with titan wrath client but any apis using it won't be used there so safe to exclude, maybe
 		if not C_Spell.GetSpellCooldown then
 			---@diagnostic disable-next-line: undefined-field
 			GetSpellCooldown = _G.GetSpellCooldown
@@ -6792,6 +6879,12 @@ do
 		if not spellId then return end--Unlike 10.x and older, 11.x now errors if called without a spellId
 		local spellName = GetSpellName(spellId)
 		return spellName
+	end
+
+	function DBM:DoesSpellExist(spellId)
+		if not spellId then return false end
+		local spellExists = DoesSpellExist(spellId)
+		return spellExists
 	end
 
 	---Wrapper for Blizzard GetSpellCooldown global that converts new table returns to old arg returns
@@ -7301,32 +7394,46 @@ do
 	function DBM:HideBlizzardEvents(toggle, custom)
 		if toggle == 1 then
 			if (self.Options.HideBossEmoteFrame2 or custom) and not private.testBuild then
-				DisableEvent(RaidBossEmoteFrame, "RAID_BOSS_EMOTE")
-				DisableEvent(RaidBossEmoteFrame, "RAID_BOSS_WHISPER")
-				DisableEvent(RaidBossEmoteFrame, "CLEAR_BOSS_EMOTES")
+				if RaidBossEmoteFrame then
+					DisableEvent(RaidBossEmoteFrame, "RAID_BOSS_EMOTE")
+					DisableEvent(RaidBossEmoteFrame, "RAID_BOSS_WHISPER")
+					DisableEvent(RaidBossEmoteFrame, "CLEAR_BOSS_EMOTES")
+				end
+				if RaidWarningFrame then
+					DisableEvent(RaidWarningFrame, "RAID_BOSS_EMOTE")
+					DisableEvent(RaidWarningFrame, "RAID_BOSS_WHISPER")
+					DisableEvent(RaidWarningFrame, "CLEAR_BOSS_EMOTES")
+				end
 				MuteSoundFile(567394) -- SOUNDKIT.RAID_BOSS_EMOTE_WARNING
 				MuteSoundFile(876098) -- SOUNDKIT.UI_RAID_BOSS_WHISPER_WARNING
 			end
-			if self.Options.HideGarrisonToasts or custom then
+			if (self.Options.HideGarrisonToasts or custom) and AlertFrame then
 				DisableEvent(AlertFrame, "GARRISON_MISSION_FINISHED")
 				DisableEvent(AlertFrame, "GARRISON_BUILDING_ACTIVATABLE")
 			end
-			if self.Options.HideGuildChallengeUpdates or custom then
+			if (self.Options.HideGuildChallengeUpdates or custom) and AlertFrame then
 				DisableEvent(AlertFrame, "GUILD_CHALLENGE_COMPLETED")
 			end
 		elseif toggle == 0 then
 			if (self.Options.HideBossEmoteFrame2 or custom) and not private.testBuild then
-				EnableEvent(RaidBossEmoteFrame, "RAID_BOSS_EMOTE")
-				EnableEvent(RaidBossEmoteFrame, "RAID_BOSS_WHISPER")
-				EnableEvent(RaidBossEmoteFrame, "CLEAR_BOSS_EMOTES")
+				if RaidBossEmoteFrame then
+					EnableEvent(RaidBossEmoteFrame, "RAID_BOSS_EMOTE")
+					EnableEvent(RaidBossEmoteFrame, "RAID_BOSS_WHISPER")
+					EnableEvent(RaidBossEmoteFrame, "CLEAR_BOSS_EMOTES")
+				end
+				if RaidWarningFrame then
+					EnableEvent(RaidWarningFrame, "RAID_BOSS_EMOTE")
+					EnableEvent(RaidWarningFrame, "RAID_BOSS_WHISPER")
+					EnableEvent(RaidWarningFrame, "CLEAR_BOSS_EMOTES")
+				end
 				UnmuteSoundFile(567394) -- SOUNDKIT.RAID_BOSS_EMOTE_WARNING
 				UnmuteSoundFile(876098) -- SOUNDKIT.UI_RAID_BOSS_WHISPER_WARNING
 			end
-			if self.Options.HideGarrisonToasts then
+			if self.Options.HideGarrisonToasts and AlertFrame then
 				EnableEvent(AlertFrame, "GARRISON_MISSION_FINISHED")
 				EnableEvent(AlertFrame, "GARRISON_BUILDING_ACTIVATABLE")
 			end
-			if self.Options.HideGuildChallengeUpdates then
+			if self.Options.HideGuildChallengeUpdates and AlertFrame then
 				EnableEvent(AlertFrame, "GUILD_CHALLENGE_COMPLETED")
 			end
 		end
@@ -7443,6 +7550,7 @@ end
 AddMsg = DBM.AddMsg
 
 do
+	local demoDuration = 62
 	local testMod
 	local testWarning1, testWarning2, testWarning3
 	local testTimer1, testTimer2, testTimer3, testTimer4, testTimer5, testTimer6, testTimer7, testTimer8
@@ -7498,7 +7606,7 @@ do
 			testSpecialWarning3:Cancel()
 			testSpecialWarning3:CancelVoice()
 			testWarning1:Show("Test-mode started...")
-			testWarning1:Schedule(62, "Test-mode finished!")
+			testWarning1:Schedule(demoDuration, "Test-mode finished!")
 			testWarning3:Schedule(50, "Boom in 10 sec!")
 			testWarning3:Schedule(20, "Pew Pew Laser Owl!")
 			testWarning2:Schedule(38, "Evil Spell in 5 sec!")
@@ -7511,6 +7619,7 @@ do
 			testSpecialWarning3:Schedule(60, "Boom!")
 			testSpecialWarning3:ScheduleVoice(60, "defensive")
 		end
+		return demoDuration
 	end
 end
 
@@ -7747,21 +7856,32 @@ do
 	---@param uId playerUUIDs?
 	function bossModPrototype:IsMeleeDps(uId)
 		if uId then--This version includes ONLY melee dps
-			local name = GetUnitName(uId, true)
+			local raidMember = private.getRaidMemberByUnitId(uId)
 			--First we check if we have acccess to specID (ie remote player is using DBM or Bigwigs)
-			if (private.isRetail or private.isCata or private.isMop) and raid[name] and raid[name].specID then--We know their specId
-				local specID = raid[name].specID
+			if (private.isRetail or private.isCata or private.isMop) and raidMember and raidMember.specID then--We know their specId
+				local specID = raidMember.specID
 				return private.specRoleTable[specID]["MeleeDps"]
 			else
 				--Role checks are second best thing
-				local role = UnitGroupRolesAssigned(uId)
-				if private.isRetail and (role == "HEALER" or role == "TANK") or GetPartyAssignment("MAINTANK", uId, true) then--Auto filter healer/tank from dps check, can't filter healers in classic
+				local secretUnit = self:issecretunit(uId)
+				local role = raidMember and raidMember.role
+				if not role and not secretUnit then
+					role = UnitGroupRolesAssigned(uId)
+				end
+				if private.isRetail and (role == "HEALER" or role == "TANK") or not secretUnit and GetPartyAssignment("MAINTANK", uId, true) then--Auto filter healer/tank from dps check, can't filter healers in classic
 					return false
 				end
 				--Class checks for things that are a sure thing anywyas
-				local _, class = UnitClass(uId)
+				local class = raidMember and raidMember.class
+				if not class and not secretUnit then
+					local _, unitClass = UnitClass(uId)
+					class = unitClass
+				end
 				if class == "WARRIOR" or class == "ROGUE" or class == "DEATHKNIGHT" or class == "DEMONHUNTER" then
 					return true
+				end
+				if secretUnit then
+					return false
 				end
 				--Now we do the ugly checks thanks to Inspect throttle
 				if class == "DRUID" or class == "SHAMAN" or class == "PALADIN" or class == "MONK" then
@@ -7793,17 +7913,25 @@ do
 	---@param uId playerUUIDs?
 	function DBM:IsMelee(uId)
 		if uId then--This version includes monk healers as melee and tanks as melee
+			local raidMember = private.getRaidMemberByUnitId(uId)
+			local secretUnit = self:issecretunit(uId)
 			--Class checks performed first on classes that are absolutely definitive (cause they'll work even if user doesn't have DBM or BW)
-			local _, class = UnitClass(uId)
+			local class = raidMember and raidMember.class
+			if not class and not secretUnit then
+				local _, unitClass = UnitClass(uId)
+				class = unitClass
+			end
 			if class == "WARRIOR" or class == "ROGUE" or class == "DEATHKNIGHT" or class == "MONK" or class == "DEMONHUNTER" or class == "PALADIN" then
 				return true
 			end
 			--Now we check if we have acccess to specID (ie remote player is using DBM or Bigwigs)
-			local name = GetUnitName(uId, true)
-			if (private.isRetail or private.isCata or private.isMop) and raid[name] and raid[name].specID then--We know their specId
-				local specID = raid[name].specID
+			if (private.isRetail or private.isCata or private.isMop) and raidMember and raidMember.specID then--We know their specId
+				local specID = raidMember.specID
 				return private.specRoleTable[specID]["Melee"]
 			else
+				if secretUnit then
+					return false
+				end
 				--Now we do the ugly checks thanks to Inspect throttle
 				if (class == "DRUID" or class == "SHAMAN") then
 					local unitMaxPower = UnitPowerMax(uId)
@@ -7891,6 +8019,13 @@ end
 ---@param uId string? Used for querying external unit. If nil, queries "player"
 function bossModPrototype:UnitClass(uId)
 	if uId then--Return unit requested
+		local raidMember = private.getRaidMemberByUnitId(uId)
+		if raidMember then
+			return raidMember.class
+		end
+		if self:issecretunit(uId) then
+			return
+		end
 		local _, class = UnitClass(uId)
 		return class
 	end
@@ -7932,7 +8067,14 @@ function bossModPrototype:IsDps(uId)
 	if uId then--External unit call.
 		--no SpecID checks because SpecID is only availalbe with DBM/Bigwigs, but both DBM/Bigwigs auto set DAMAGER/HEALER/TANK roles anyways so it'd be redundant
 		--This check is VERY problematic in classic if raid doesn't set main tanks correctly cause it'll also flag tanks as dps without question
-		return (private.isRetail or private.isMop) and UnitGroupRolesAssigned(uId) == "DAMAGER" or not GetPartyAssignment("MAINTANK", uId, true)
+		local raidMember = private.getRaidMemberByUnitId(uId)
+		if private.isRetail or private.isMop then
+			if raidMember then
+				return raidMember.role == "DAMAGER"
+			end
+			return not self:issecretunit(uId) and UnitGroupRolesAssigned(uId) == "DAMAGER"
+		end
+		return not self:issecretunit(uId) and not GetPartyAssignment("MAINTANK", uId, true)
 	end
 	if (not currentSpecID or currentSpecID == 0) then
 		DBM:SetCurrentSpecInfo()
@@ -7954,7 +8096,11 @@ function DBM:IsHealer(uId)
 			return false
 		end
 		--no SpecID checks because SpecID is only availalbe with DBM/Bigwigs, but both DBM/Bigwigs auto set DAMAGER/HEALER/TANK roles anyways so it'd be redundant
-		return UnitGroupRolesAssigned(uId) == "HEALER"
+		local raidMember = private.getRaidMemberByUnitId(uId)
+		if raidMember then
+			return raidMember.role == "HEALER"
+		end
+		return not self:issecretunit(uId) and UnitGroupRolesAssigned(uId) == "HEALER"
 	end
 	if (not currentSpecID or currentSpecID == 0) then
 		DBM:SetCurrentSpecInfo()
@@ -7975,7 +8121,7 @@ end
 bossModPrototype.IsHealer = DBM.IsHealer
 
 ---@param self DBMModOrDBM
----@param playerUnitID playerUUIDs|targetUIDs? unitID of requested unit. this or isName must be provided
+---@param playerUnitID playerUUIDs|targetUIDs|enemyUIDs? unitID of requested unit. this or isName must be provided
 ---@param enemyUnitID enemyUIDs|targetUIDs? unitID of tanked unit we're checking. This or enemyGUID must be provided
 ---@param isName string? name of the requested unit. This or playerUnitID must be provided
 ---@param onlyRequested boolean? true if tight search, false if loose search that will return ALL tank specs
@@ -7986,12 +8132,14 @@ bossModPrototype.IsHealer = DBM.IsHealer
 function DBM:IsTanking(playerUnitID, enemyUnitID, isName, onlyRequested, enemyGUID, includeTarget, onlyS3)
 	--Didn't have playerUnitID so combat log name was passed
 	if isName then
-		playerUnitID = DBM:GetRaidUnitId(isName)
+		playerUnitID = DBM:GetRaidUnitId(isName, true)
 	end
 	if not playerUnitID then
 		DBM:Debug("IsTanking passed with invalid unit", 2, nil, nil, true)
 		return false
 	end
+	local raidMember = private.getRaidMemberByUnitId(playerUnitID)
+	local secretUnit = self:issecretunit(playerUnitID)
 	--If we don't know enemy unit token, but know it's GUID
 	if not enemyUnitID and enemyGUID then
 		enemyUnitID = self:GetUnitIdFromGUID(enemyGUID)
@@ -8022,12 +8170,15 @@ function DBM:IsTanking(playerUnitID, enemyUnitID, isName, onlyRequested, enemyGU
 	--if onlyRequested is false/nil, it means we also accept anyone that's a tank role or tanking any boss unit
 	if not onlyRequested then
 		--Use these as fallback if threat target not found
-		if GetPartyAssignment("MAINTANK", playerUnitID, true) then
+		if not secretUnit and GetPartyAssignment("MAINTANK", playerUnitID, true) then
 			return true
 		end
 		if not private.isClassic and not private.isBCC then--Allow boss checks in wrath and later
 			--no SpecID checks because SpecID is only availalbe with DBM/Bigwigs, but both DBM/Bigwigs auto set DAMAGER/HEALER/TANK roles anyways so it'd be redundant
-			if UnitGroupRolesAssigned and UnitGroupRolesAssigned(playerUnitID) == "TANK" then
+			if raidMember and raidMember.role == "TANK" then
+				return true
+			end
+			if not secretUnit and UnitGroupRolesAssigned and UnitGroupRolesAssigned(playerUnitID) == "TANK" then
 				return true
 			end
 			if not self:MidRestrictionsActive() then
@@ -8066,7 +8217,11 @@ function bossModPrototype:GetNumAliveTanks()
 	local count = 0
 	local uId = (IsInRaid() and "raid") or "party"
 	for i = 1, DBM:GetNumRealGroupMembers() do
-		if (private.isRetail and UnitGroupRolesAssigned(uId .. i) == "TANK" or GetPartyAssignment("MAINTANK", uId .. i, true)) and not UnitIsDeadOrGhost(uId .. i) then
+		local unitId = uId .. i
+		local raidMember = private.getRaidMemberByUnitId(unitId)
+		local secretUnit = DBM:issecretunit(unitId)
+		local isTank = private.isRetail and (raidMember and raidMember.role == "TANK" or not raidMember and not secretUnit and UnitGroupRolesAssigned(unitId) == "TANK") or not secretUnit and GetPartyAssignment("MAINTANK", unitId, true)
+		if isTank and not UnitIsDeadOrGhost(unitId) then
 			count = count + 1
 		end
 	end
@@ -8642,7 +8797,7 @@ function bossModPrototype:ReceiveSync(event, sender, revision, ...)
 	end
 end
 
----@param revision number|string Either a number in the format "202101010000" (year, month, day, hour, minute) or string "20260626163013" to be auto set by packager
+---@param revision number|string Either a number in the format "202101010000" (year, month, day, hour, minute) or string "20260725001740" to be auto set by packager
 function bossModPrototype:SetRevision(revision)
 	revision = parseCurseDate(revision or "")
 	if not revision or type(revision) == "string" then

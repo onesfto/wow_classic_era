@@ -1,13 +1,5 @@
--- GW2_UI_PLUS 社交窗口 —— guildList.lua
---
--- 公会列表。经典旧世的公会界面属于 FrameXML，不是按需加载，所以直接skin 即可。
---
--- 原先直接改在 GW2_UI/Games/Shared/Social/guildList.lua 里，现在整体搬进 PLUS。
--- 下面的 function GW.XXX 是写进 GW2_ADDON 这张共享表的，等于覆盖掉上游的同名函数。
-
 local GW = _G.GW2_ADDON
 if not GW then return end
-
 local Headers = {
     "GuildFrameColumnHeader1",
     "GuildFrameColumnHeader2",
@@ -18,7 +10,6 @@ local Headers = {
     "GuildFrameGuildStatusColumnHeader3",
     "GuildFrameGuildStatusColumnHeader4",
 }
-
 local CLASSIC_GUILD_MEMBERS_TO_DISPLAY = 22
 local CLASSIC_GUILD_COLUMN_GAP = -2
 local CLASSIC_GUILD_TEXT_INSET = 9
@@ -34,7 +25,6 @@ local CLASSIC_GUILD_STATUS_COLUMNS = {
     {header = "GuildFrameGuildStatusColumnHeader3", field = "Note", width = 125, justify = "LEFT"},
     {header = "GuildFrameGuildStatusColumnHeader4", field = "Online", width = 80, justify = "LEFT"},
 }
-
 local function UpdateGuildStatus()
 	if FriendsFrame.playerStatusFrame then
 		local playerZone = GW.Libs.GW2Lib:GetPlayerLocationZoneText()
@@ -56,7 +46,6 @@ local function UpdateGuildStatus()
 						if levelText then
 							levelText:SetTextColor(levelTextColor.r, levelTextColor.g, levelTextColor.b)
 						end
-
 						if zoneText then
 							if zone == playerZone then
 								zoneText:SetTextColor(0, 1, 0)
@@ -65,7 +54,6 @@ local function UpdateGuildStatus()
 							end
 						end
 					end
-
 					if button.icon then
 						GW.SetClassIcon(button.icon, classFilename)
 					end
@@ -93,10 +81,8 @@ local function UpdateGuildStatus()
 		end
 	end
 end
-
 local function SkinHeader(frame)
     if not frame then return end
-
     frame:GwStripTextures()
     local regions = {frame:GetRegions()}
     for _, region in pairs(regions) do
@@ -106,12 +92,10 @@ local function SkinHeader(frame)
     end
     GW.HandleScrollFrameHeaderButton(frame)
 end
-
 local function GetGuildButtonField(button, field)
     local buttonName = button and button:GetName()
     return buttonName and _G[buttonName .. field]
 end
-
 local function GetGuildColumnsWidth(columns)
     local width = 0
     for index, column in ipairs(columns) do
@@ -122,7 +106,6 @@ local function GetGuildColumnsWidth(columns)
     end
     return width
 end
-
 local function LayoutClassicGuildHeaders(columns)
     local previousHeader
     for _, column in ipairs(columns) do
@@ -135,7 +118,6 @@ local function LayoutClassicGuildHeaders(columns)
                 header:SetPoint("TOPLEFT", GuildFrame, "TOPLEFT", 8, -57)
             end
             header:SetWidth(column.width)
-
             local headerName = header:GetName()
             local text = headerName and _G[headerName .. "Text"] or header:GetFontString()
             if text then
@@ -149,7 +131,6 @@ local function LayoutClassicGuildHeaders(columns)
         end
     end
 end
-
 local function LayoutClassicGuildFrameButton(button)
     local columnStart = 0
     for _, column in ipairs(CLASSIC_GUILD_MEMBER_COLUMNS) do
@@ -171,7 +152,6 @@ local function LayoutClassicGuildFrameButton(button)
     end
     button:SetWidth(GetGuildColumnsWidth(CLASSIC_GUILD_MEMBER_COLUMNS))
 end
-
 local function LayoutClassicGuildStatusButton(button)
     local columnStart = 0
     for _, column in ipairs(CLASSIC_GUILD_STATUS_COLUMNS) do
@@ -187,10 +167,8 @@ local function LayoutClassicGuildStatusButton(button)
     end
     button:SetWidth(GetGuildColumnsWidth(CLASSIC_GUILD_STATUS_COLUMNS))
 end
-
 local function EnsureClassicGuildRows()
     if not GW.Classic then return end
-
     GUILDMEMBERS_TO_DISPLAY = CLASSIC_GUILD_MEMBERS_TO_DISPLAY
     for i = 2, CLASSIC_GUILD_MEMBERS_TO_DISPLAY do
         if not _G["GuildFrameButton" .. i] and _G["GuildFrameButton" .. (i - 1)] then
@@ -203,14 +181,11 @@ local function EnsureClassicGuildRows()
         end
     end
 end
-
 local function SkinClassicGuildInfoFrame()
     if not GuildInfoFrame or GuildInfoFrame.gwPlusSkinned then return end
     GuildInfoFrame.gwPlusSkinned = true
-
     GuildInfoFrame:GwStripTextures()
     GuildInfoFrame:GwCreateBackdrop(GW.BackdropTemplates.Default)
-
     if GuildInfoTextBackground then
         GuildInfoTextBackground:GwStripTextures()
         GuildInfoTextBackground:GwCreateBackdrop(GW.BackdropTemplates.DefaultWithSmallBorder, true)
@@ -231,10 +206,8 @@ local function SkinClassicGuildInfoFrame()
         end
     end
 end
-
 local function LayoutClassicGuildList()
     if not GW.Classic or not GuildFrame then return end
-
     if GuildListScrollFrame then
         GuildListScrollFrame:ClearAllPoints()
         GuildListScrollFrame:SetPoint("TOPLEFT", GuildFrame, "TOPLEFT", 10, -60)
@@ -246,10 +219,8 @@ local function LayoutClassicGuildList()
         GuildListScrollFrameScrollBar:SetPoint("TOPLEFT", GuildListScrollFrame, "TOPRIGHT", 3, -15)
         GuildListScrollFrameScrollBar:SetPoint("BOTTOMLEFT", GuildListScrollFrame, "BOTTOMRIGHT", 3, 15)
     end
-
     LayoutClassicGuildHeaders(CLASSIC_GUILD_MEMBER_COLUMNS)
     LayoutClassicGuildHeaders(CLASSIC_GUILD_STATUS_COLUMNS)
-
     for i = 1, CLASSIC_GUILD_MEMBERS_TO_DISPLAY do
         local button = _G["GuildFrameButton" .. i]
         local previousButton = _G["GuildFrameButton" .. (i - 1)]
@@ -262,7 +233,6 @@ local function LayoutClassicGuildList()
             end
             LayoutClassicGuildFrameButton(button)
         end
-
         local statusButton = _G["GuildFrameGuildStatusButton" .. i]
         local previousStatusButton = _G["GuildFrameGuildStatusButton" .. (i - 1)]
         if statusButton then
@@ -275,7 +245,6 @@ local function LayoutClassicGuildList()
             LayoutClassicGuildStatusButton(statusButton)
         end
     end
-
     if GuildFrameLFGButton then
         GuildFrameLFGButton:ClearAllPoints()
         GuildFrameLFGButton:SetPoint("TOPRIGHT", GuildFrame, "TOPRIGHT", -18, -38)
@@ -322,15 +291,11 @@ local function LayoutClassicGuildList()
         GuildFrameControlButton:SetWidth(100)
     end
 end
-
 function GW.SkinGuildList()
     if not (GW.TBC or GW.Wrath or GW.Classic) then return end
-
     EnsureClassicGuildRows()
-
     for i = 1, GUILDMEMBERS_TO_DISPLAY or 0 do
         local button = _G["GuildFrameButton"..i]
-
         if button then
             if not button.icon then
                 button.icon = button:CreateTexture("$parentIcon", "ARTWORK")
@@ -339,7 +304,6 @@ function GW.SkinGuildList()
                 button.icon:SetTexture("Interface/AddOns/GW2_UI/textures/party/classicons.png")
                 button.icon:GwCreateBackdrop(nil, true, nil, nil, nil, nil, nil, button.icon)
             end
-
             local statusButton = _G["GuildFrameGuildStatusButton" .. i]
             if GW.Classic then
                 LayoutClassicGuildFrameButton(button)
@@ -366,7 +330,6 @@ function GW.SkinGuildList()
                     statusName:SetPoint("LEFT", 10, 0)
                 end
             end
-
             if statusButton then
                 local statusHighlight = statusButton:GetHighlightTexture()
                 if statusHighlight then
@@ -381,17 +344,14 @@ function GW.SkinGuildList()
             GW.AddListItemChildHoverTexture(button)
         end
     end
-
     if _G.GuildStatus_Update and not GuildFrame.gwGuildStatusHooked then
         hooksecurefunc("GuildStatus_Update", UpdateGuildStatus)
         GuildFrame.gwGuildStatusHooked = true
     end
-
     if GuildFrameLFGButton then
         GuildFrameLFGButton:GwSkinCheckButton()
         GuildFrameLFGButton:SetSize(15, 15)
     end
-
     if GuildFrameGuildListToggleButton then
         GW.HandleNextPrevButton(GuildFrameGuildListToggleButton, "right")
     end
@@ -410,7 +370,6 @@ function GW.SkinGuildList()
     if GuildMOTDEditButton then
         GuildMOTDEditButton:GwCreateBackdrop(GW.BackdropTemplates.DefaultWithSmallBorder, true)
     end
-
     if GuildFrame then
         GuildFrame:GwStripTextures()
     end
@@ -422,13 +381,11 @@ function GW.SkinGuildList()
     if GuildListScrollFrameScrollBar then
         GuildListScrollFrameScrollBar:GwSkinScrollBar()
     end
-
     if GuildFrameNotesLabel then
         GuildFrameNotesLabel:GwSetFontTemplate(DAMAGE_TEXT_FONT, GW.Enum.TextSizeType.Header)
         GuildFrameNotesLabel:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
         GuildFrameNotesLabel:GwSetFontTemplate(DAMAGE_TEXT_FONT, GW.Enum.TextSizeType.Normal)
     end
-
     if GuildFrameTotals then
         GuildFrameTotals:GwSetFontTemplate(DAMAGE_TEXT_FONT, GW.Enum.TextSizeType.Normal)
     end
@@ -438,18 +395,14 @@ function GW.SkinGuildList()
     if GuildFrameNotesText then
         GuildFrameNotesText:GwSetFontTemplate(DAMAGE_TEXT_FONT, GW.Enum.TextSizeType.Normal)
     end
-
     if GuildFrameLFGFrame then
         GuildFrameLFGFrame:GwStripTextures()
     end
-
     SkinClassicGuildInfoFrame()
-
     for _, object in pairs(Headers) do
         local frame = _G[object]
         SkinHeader(frame)
     end
-
     LayoutClassicGuildList()
     if GW.Classic and _G.GuildStatus_Update and not GuildFrame.gwClassicGuildLayoutHooked then
         hooksecurefunc("GuildStatus_Update", LayoutClassicGuildList)

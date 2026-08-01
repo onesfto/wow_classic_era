@@ -1,15 +1,10 @@
--- GW2_UI_PLUS 动作条独立布局与显示控制
-
 local _, addonTable = ...
-
 local GW = _G.GW2_ADDON
 local AB = addonTable.PlusActionBar
 if not GW or not AB then return end
-
 local Layout = {}
 addonTable.PlusActionBarLayout = Layout
 AB.Layout = Layout
-
 local MULTIBAR_DEFAULT_COLUMNS = {
     [2] = 6,
     [3] = 6,
@@ -19,12 +14,10 @@ local MULTIBAR_DEFAULT_COLUMNS = {
     [7] = 1,
     [8] = 1,
 }
-
 local function Clamp(value, minimum, maximum)
     value = tonumber(value) or minimum
     return math.max(minimum, math.min(maximum, math.floor(value + 0.5)))
 end
-
 local function SetFontSize(fontString, size)
     if AB.SetFontStringSize then
         AB.SetFontStringSize(fontString, size)
@@ -33,7 +26,6 @@ local function SetFontSize(fontString, size)
     local path, _, flags = fontString:GetFont()
     if path then fontString:SetFont(path, size or 12, flags) end
 end
-
 local TEXT_POSITIONS = {
     TOPLEFT = {
         point = "TOPLEFT",
@@ -64,22 +56,14 @@ local TEXT_POSITIONS = {
         justifyH = "RIGHT", justifyV = "BOTTOM",
     },
 }
-
 local function NormalizeTextPosition(position)
     return TEXT_POSITIONS[position] and position or "TOPRIGHT"
 end
-
--- GW2 UI 在 FixHotKeyPosition、updateMacroName、setActionButtonStyle 三条路径里
--- 都会重设原生文字层的锚点、宽度和对齐，跟它抢同一个对象抢不过（早先的
--- SetPoint 后处理最终都停在 updateMacroName 的 TOPLEFT 上）。改成不抢：原生文字层
--- 透明留在原地，Plus 自己建一层代理文字，位置和字号完全自己说了算，只从原生那边
--- 同步文本内容和显示状态。
 local function SyncProxyText(source)
     local proxy = source.gwPlusProxy
     if not proxy then return end
     proxy:SetText(source:GetText() or "")
 end
-
 local function SyncProxyShown(source)
     local proxy = source.gwPlusProxy
     if not proxy then return end
@@ -87,15 +71,11 @@ local function SyncProxyShown(source)
         proxy:Hide()
         return
     end
-    -- 原生的显隐表示「这个键位有没有文本」（BUTTON_ASSIGNMENTS_USED_ONLY），
-    -- Plus 的开关是独立一层门，两者都要满足才显示
     proxy:SetShown(source.gwPlusTextShown ~= false and source:IsShown())
 end
-
 local function EnsureTextProxy(source, button, sourceRestorable)
     if source.gwPlusProxy then return source.gwPlusProxy end
     if not button.CreateFontString then return end
-
     local proxy = button:CreateFontString(nil, "OVERLAY")
     if proxy.SetWordWrap then proxy:SetWordWrap(false) end
     if proxy.SetNonSpaceWrap then proxy:SetNonSpaceWrap(false) end
@@ -103,10 +83,8 @@ local function EnsureTextProxy(source, button, sourceRestorable)
     if path then proxy:SetFont(path, size or 12, flags) end
     proxy:SetTextColor(source:GetTextColor())
     proxy:SetText(source:GetText() or "")
-
     source.gwPlusProxy = proxy
     source:SetAlpha(0)
-
     if hooksecurefunc then
         hooksecurefunc(source, "SetText", SyncProxyText)
         if source.SetFormattedText then
@@ -115,46 +93,37 @@ local function EnsureTextProxy(source, button, sourceRestorable)
         hooksecurefunc(source, "Show", SyncProxyShown)
         hooksecurefunc(source, "Hide", SyncProxyShown)
         if not sourceRestorable then
-            -- 宏名称的显隐本体用的是 alpha，别让它把原生层显出来
             hooksecurefunc(source, "SetAlpha", function(self)
                 if self:GetAlpha() ~= 0 then self:SetAlpha(0) end
             end)
         end
     end
-
     return proxy
 end
-
 local function ApplyProxyTextPosition(fontString, button, position, x, y,
                                       size, shown, sourceRestorable)
     if not fontString or not button then return end
     local proxy = EnsureTextProxy(fontString, button, sourceRestorable)
     if not proxy then return end
-
     local key = NormalizeTextPosition(position)
     local alignment = TEXT_POSITIONS[key]
     fontString.gwPlusTextPosition = key
     fontString.gwPlusTextX, fontString.gwPlusTextY = x or 0, y or 0
     if shown ~= nil then fontString.gwPlusTextShown = shown end
     if size then SetFontSize(proxy, size) end
-
-    -- 单锚点、不限宽：X=0/Y=0 就是所选锚点的准确位置，文字从那里向按钮内侧展开
     proxy:ClearAllPoints()
     proxy:SetPoint(alignment.point, button, alignment.point,
         tonumber(x) or 0, tonumber(y) or 0)
     if proxy.SetJustifyH then proxy:SetJustifyH(alignment.justifyH) end
     if proxy.SetJustifyV then proxy:SetJustifyV(alignment.justifyV) end
-
     SyncProxyText(fontString)
     SyncProxyShown(fontString)
     return proxy
 end
-
 function Layout.ApplyTextPosition(fontString, button, position, x, y, size, shown)
     return ApplyProxyTextPosition(fontString, button, position, x, y,
         size, shown, false)
 end
-
 local function ProtectMainHotkeyBackground(fontString, button)
     local background = button.hkBg and button.hkBg.texture
     if not background then return end
@@ -166,14 +135,12 @@ local function ProtectMainHotkeyBackground(fontString, button)
     end
     return background
 end
-
 function Layout.ApplyMainHotkey(fontString, button, position, x, y, size, shown)
     if not fontString or not button then return end
     local key = NormalizeTextPosition(position)
     fontString.gwPlusTextPosition = key
     fontString.gwPlusUseNative = key == "BOTTOM"
     local background = ProtectMainHotkeyBackground(fontString, button)
-
     if key == "BOTTOM" then
         if fontString.gwPlusProxy then fontString.gwPlusProxy:Hide() end
         fontString:SetAlpha(1)
@@ -187,14 +154,11 @@ function Layout.ApplyMainHotkey(fontString, button, position, x, y, size, shown)
         end
         return
     end
-
     ApplyProxyTextPosition(fontString, button, key, x, y, size, shown, true)
     fontString:SetAlpha(0)
     if background then background:Hide() end
 end
-
 Layout.ApplyHotkeyPosition = Layout.ApplyTextPosition
-
 local function FormatHotkeyPoints(fontString)
     if not fontString.GetNumPoints or not fontString.GetPoint then return "无法读取" end
     local points = {}
@@ -205,7 +169,6 @@ local function FormatHotkeyPoints(fontString)
     end
     return #points > 0 and table.concat(points, ",") or "无"
 end
-
 local function PrintTextState(notice, label, storedPosition, button, regionKey)
     local fontString = button and button[regionKey or "HotKey"]
     if not fontString then
@@ -213,7 +176,6 @@ local function PrintTextState(notice, label, storedPosition, button, regionKey)
             label, tostring(storedPosition)))
         return
     end
-
     local proxy = fontString.gwPlusProxy
     if not proxy then
         notice(string.format("  %s：存档=%s 应用=%s，代理文字层未创建",
@@ -221,7 +183,6 @@ local function PrintTextState(notice, label, storedPosition, button, regionKey)
             tostring(fontString.gwPlusTextPosition)))
         return
     end
-
     local justifyH = proxy.GetJustifyH and proxy:GetJustifyH() or "无法读取"
     local justifyV = proxy.GetJustifyV and proxy:GetJustifyV() or "无法读取"
     local _, size = proxy:GetFont()
@@ -233,13 +194,11 @@ local function PrintTextState(notice, label, storedPosition, button, regionKey)
         tostring(proxy:GetText() or ""), tostring(proxy:IsShown()),
         FormatHotkeyPoints(proxy)))
 end
-
 function Layout.PrintHotkeyDiagnostics()
     local notice = GW.Notice or function(message)
         DEFAULT_CHAT_FRAME:AddMessage(message)
     end
     local db = AB.InitDB()
-
     notice("动作条文字位置诊断：")
     local mainFrame = _G.MainActionBar
     local mainButton = mainFrame and mainFrame.gw_Buttons and mainFrame.gw_Buttons[1]
@@ -254,7 +213,6 @@ function Layout.PrintHotkeyDiagnostics()
         PrintTextState(notice, "动作条 " .. index .. " 宏名称",
             db["bar" .. index .. "MacroPosition"], button, "Name")
     end
-
     local stance = _G.GwStanceBar
     PrintTextState(notice, "姿态条快捷键", db.stanceBarHotkeyPosition,
         stance and stance.buttons and stance.buttons[1])
@@ -262,18 +220,15 @@ function Layout.PrintHotkeyDiagnostics()
     PrintTextState(notice, "宠物动作条快捷键", db.petBarHotkeyPosition,
         pet and pet.buttons and pet.buttons[1])
 end
-
 function Layout.ClampGrid(buttonCount, columns, maximum)
     buttonCount = Clamp(buttonCount, 1, maximum or 12)
     columns = Clamp(columns, 1, buttonCount)
     return columns, math.ceil(buttonCount / columns), buttonCount
 end
-
 function Layout.CalculateGrid(buttonCount, columns, size, spacing, invert)
     columns, _, buttonCount = Layout.ClampGrid(buttonCount, columns, buttonCount)
     size = tonumber(size) or 1
     spacing = tonumber(spacing) or 0
-
     local points = {}
     for slot = 1, buttonCount do
         local row = math.floor((slot - 1) / columns)
@@ -284,25 +239,20 @@ function Layout.CalculateGrid(buttonCount, columns, size, spacing, invert)
             y = row * (size + spacing),
         }
     end
-
     local usedColumns = math.min(columns, buttonCount)
     local rows = math.ceil(buttonCount / columns)
     local width = usedColumns * size + math.max(usedColumns - 1, 0) * spacing
     local height = rows * size + math.max(rows - 1, 0) * spacing
     return points, width, height
 end
-
 local originalInitDB = AB.InitDB
-
 local function EnsureValue(db, key, value)
     if db[key] == nil then db[key] = value end
 end
-
 local function GetActionBarTogglesCompat()
     if not GetActionBarToggles then return {} end
     return {GetActionBarToggles()}
 end
-
 local function EnsureLayoutDefaults(db)
     local toggles = GetActionBarTogglesCompat()
     local stanceShown = not GW.settings or not GW.settings.StanceBar
@@ -326,7 +276,6 @@ local function EnsureLayoutDefaults(db)
     EnsureValue(db, "petBarHotkeyX", 0)
     EnsureValue(db, "petBarHotkeyY", 0)
     EnsureValue(db, "petBarHotkeySize", 12)
-
     for index = 2, 8 do
         local prefix = "bar" .. index
         local info = AB.MULTIBARS[index]
@@ -352,14 +301,11 @@ local function EnsureLayoutDefaults(db)
         EnsureValue(db, prefix .. "MacroY", 0)
         EnsureValue(db, prefix .. "MacroSize", 12)
     end
-
     return db
 end
-
 function AB.InitDB()
     return EnsureLayoutDefaults(originalInitDB())
 end
-
 function AB.IsBarShown(barKey)
     local db = AB.InitDB()
     if barKey == "bar1" then return db.mainBarShown ~= false end
@@ -369,10 +315,8 @@ function AB.IsBarShown(barKey)
     local index = tonumber(type(barKey) == "string" and barKey:match("^bar(%d+)$"))
     return index and db["bar" .. index .. "Shown"] ~= false or false
 end
-
 function AB.IsBarActive(barKey)
     if not AB.IsBarShown(barKey) then return false end
-
     local frame
     if barKey == "bar1" then
         frame = _G.MainActionBar
@@ -388,10 +332,8 @@ function AB.IsBarActive(barKey)
         local info = index and AB.MULTIBARS[index]
         frame = info and _G[info.frame]
     end
-
     return frame ~= nil and (not frame.IsShown or frame:IsShown())
 end
-
 local function ApplyText(button, prefix, db)
     if button.HotKey then
         Layout.ApplyTextPosition(button.HotKey, button,
@@ -401,9 +343,6 @@ local function ApplyText(button, prefix, db)
             db[prefix .. "ShowHotkey"] ~= false)
     end
     if button.Name then
-        -- 关掉本体的宏名称分支：它会对原生文字层做 SetPoint + SetWidth(按钮宽度)
-        -- + SetFont，这几步是「开宏名称按钮变大」的来源。文本本身由暴雪的
-        -- ActionButton 更新流程写入，我们只从那里同步到代理层。
         button.showMacroName = false
         Layout.ApplyTextPosition(button.Name, button,
             db[prefix .. "MacroPosition"],
@@ -412,9 +351,7 @@ local function ApplyText(button, prefix, db)
             db[prefix .. "ShowMacro"] == true)
     end
 end
-
 local applyingMultibars = false
-
 function Layout.ApplyMultiBarText(index)
     local info = AB.MULTIBARS[index]
     local frame = info and _G[info.frame]
@@ -427,14 +364,12 @@ function Layout.ApplyMultiBarText(index)
         if button then ApplyText(button, prefix, db) end
     end
 end
-
 function Layout.ApplyMultiBar(index)
     if AB.QueueOutOfCombat("actionBarMultiLayout" .. tostring(index),
         function() Layout.ApplyMultiBar(index) end) then return end
     local info = AB.MULTIBARS[index]
     local frame = info and _G[info.frame]
     if not frame or not frame.gw_Buttons then return end
-
     local db = AB.InitDB()
     local prefix = "bar" .. index
     local shown = db[prefix .. "Shown"] ~= false
@@ -445,11 +380,9 @@ function Layout.ApplyMultiBar(index)
     local native = GW.settings and GW.settings[info.setting]
     local invert = native and native.invert == true
     local points, width, height = Layout.CalculateGrid(count, columns, size, spacing, invert)
-
     db[prefix .. "Count"] = count
     db[prefix .. "Columns"] = columns
     if native then native.ButtonsPerRow = columns end
-
     applyingMultibars = true
     for buttonIndex = 1, 12 do
         local button = frame.gw_Buttons[buttonIndex]
@@ -476,15 +409,8 @@ function Layout.ApplyMultiBar(index)
     frame:SetShown(shown)
     applyingMultibars = false
 end
-
--- SetActionBarToggles 被本体 hook 了：LoadActionBars 里
--- hooksecurefunc("SetActionBarToggles", function() C_Timer.After(1, trackBarChanges) end)，
--- 而 trackBarChanges 会走到 UpdateMultibarButtons，我们又 hook 了它去调
--- ApplyMultiBars——无条件调用就成了回环，每次都把 2–8 条整体重排一遍。
--- 所以只在开关状态真的和游戏当前值不一致时才调。
 local function SyncActionBarToggles(db)
     if not SetActionBarToggles then return end
-
     local current = GetActionBarTogglesCompat()
     local toggles, changed = {}, false
     for index = 2, 8 do
@@ -494,18 +420,15 @@ local function SyncActionBarToggles(db)
     end
     if changed then SetActionBarToggles(unpack(toggles)) end
 end
-
 function Layout.ApplyMultiBars()
     if AB.QueueOutOfCombat("actionBarMultiLayout", Layout.ApplyMultiBars) then return end
     SyncActionBarToggles(AB.InitDB())
     for index = 2, 8 do Layout.ApplyMultiBar(index) end
 end
-
 local function ApplySimpleHotkey(button, show, position, x, y, size)
     if not button or not button.HotKey then return end
     Layout.ApplyTextPosition(button.HotKey, button, position, x, y, size, show)
 end
-
 function Layout.ApplyStanceBar()
     if AB.QueueOutOfCombat("actionBarStanceLayout", Layout.ApplyStanceBar) then return end
     local frame = _G.GwStanceBar
@@ -520,7 +443,6 @@ function Layout.ApplyStanceBar()
     local holder = count == 1 and frame or (frame.container or frame)
     local direction = GW.settings and GW.settings.StanceBar
         and GW.settings.StanceBar.growDirection or "UP"
-
     for index, button in ipairs(frame.buttons) do
         local visible = db.stanceBarShown ~= false and index <= count
         button:SetShown(visible)
@@ -550,7 +472,6 @@ function Layout.ApplyStanceBar()
     end
     frame:SetShown(db.stanceBarShown ~= false and count > 0)
 end
-
 function Layout.ApplyPetBar()
     if AB.QueueOutOfCombat("actionBarPetLayout", Layout.ApplyPetBar) then return end
     local petFrame = _G.GwPlayerPetFrame
@@ -563,7 +484,6 @@ function Layout.ApplyPetBar()
     local size = Clamp(db.petBarSize, AB.SIZE_MIN, AB.SIZE_MAX)
     local points = Layout.CalculateGrid(count, columns, size, spacing)
     db.petBarSize = size
-
     for index, button in ipairs(petFrame.buttons) do
         local visible = db.petBarShown ~= false and index <= count
         button:SetShown(visible)
@@ -589,12 +509,10 @@ function Layout.ApplyPetBar()
         end
     end
 end
-
 function Layout.ApplyVisibility()
     if AB.QueueOutOfCombat("actionBarVisibility", Layout.ApplyVisibility) then return end
     local db = AB.InitDB()
     if _G.MainActionBar then _G.MainActionBar:SetShown(db.mainBarShown ~= false) end
-
     if GW.settings and GW.settings.StanceBar then
         GW.settings.StanceBar.enabled = db.stanceBarShown ~= false
     end
@@ -604,7 +522,6 @@ function Layout.ApplyVisibility()
     if addonTable.PlusMageBar then addonTable.PlusMageBar.Toggle() end
     if addonTable.PlusFader then addonTable.PlusFader.Refresh() end
 end
-
 function Layout.NormalizeNativeFaders()
     if not GW.settings then return end
     for index = 1, 8 do
@@ -615,17 +532,14 @@ function Layout.NormalizeNativeFaders()
         GW.settings.StanceBar.mouseOver = false
     end
 end
-
 function Layout.RefreshAll()
     Layout.NormalizeNativeFaders()
     AB.ApplyMainBarLayout()
     Layout.ApplyVisibility()
 end
-
 function Layout.Init()
     AB.InitDB()
     Layout.RefreshAll()
-
     if GW.UpdateMultibarButtons and not Layout.multibarHooked then
         Layout.multibarHooked = true
         hooksecurefunc(GW, "UpdateMultibarButtons", function()
@@ -638,7 +552,6 @@ function Layout.Init()
     if _G.GwPlayerPetFrame and _G.GwPlayerPetFrame.SetActionButtonPositionAndStyle then
         hooksecurefunc(_G.GwPlayerPetFrame, "SetActionButtonPositionAndStyle", Layout.ApplyPetBar)
     end
-
     if not Layout.bindingWatcher then
         Layout.bindingWatcher = CreateFrame("Frame")
         Layout.bindingWatcher:RegisterEvent("UPDATE_BINDINGS")

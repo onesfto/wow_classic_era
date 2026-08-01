@@ -1,24 +1,15 @@
--- GW2_UI_PLUS 频道按钮条 —— 设置面板
--- 挂在 GW2_UI 设置窗口的「附加组件 → 频道按钮」下。
-
 local _, addonTable = ...
-
 local GW = _G.GW2_ADDON
 if not GW or not GW.GetSettingsTabFrame then return end
-
 local ChatBar = addonTable.ChatBar
 if not ChatBar then return end
-
 local IsLoaded = (_G.C_AddOns and _G.C_AddOns.IsAddOnLoaded) or _G.IsAddOnLoaded
-
--- 按钮显隐分组：与 ChatBar.BUTTONS 的 key 对应
 local GROUPS = {
     {header = "频道按钮", keys = {"SAY", "YELL", "GUILD", "PARTY", "RAID", "INSTANCE_CHAT",
                                   "GENERAL", "TRADE", "LOOK_FOR_GROUP", "PIG", "BIGFOOTWORLD"}},
     {header = "功能按钮", keys = {"EMOJI", "ROLL", "MACRO"}},
     {header = "插件快捷", keys = {"DBM", "ATLASLOOT", "BIAOGE", "MEETINGHORN", "MRT"}},
 }
-
 local BUTTON_LABEL = {
     SAY = "说", YELL = "喊", GUILD = "会", PARTY = "队", RAID = "团", INSTANCE_CHAT = "战",
     GENERAL = "综", TRADE = "交", LOOK_FOR_GROUP = "组",
@@ -27,20 +18,15 @@ local BUTTON_LABEL = {
     DBM = "距（DBM 测距）", ATLASLOOT = "掉（AtlasLoot）", BIAOGE = "金（表格）",
     MEETINGHORN = "集（集结号）", MRT = "M（MRT 团队检查）",
 }
-
 local function GetDef(key)
     for _, def in ipairs(ChatBar.BUTTONS) do
         if def.key == key then return def end
     end
 end
-
 local function BuildPanel(parent)
-    -- 本面板可能先于 ChatBar 的入世事件构建，这里保证配置表已就绪
     ChatBar.InitDB()
-
     local panel = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = "gw2_ui_plus_chatbar"
-
     if panel.header then
         panel.header:SetFont(DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 20)
         if GW.Colors and GW.Colors.TextColors then
@@ -61,25 +47,17 @@ local function BuildPanel(parent)
         panel.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
         panel.sub:SetText("聊天栏频道快捷切换与插件快捷入口")
     end
-
     local db = GW2_UI_PLUS_ChatBarSV
-
-    -- 1. 主开关
     local optEnable = panel:AddOption("启用", "在聊天栏旁显示频道按钮条。切换后需要重载界面。", {
         getter = function() return db.enable end,
         setter = function(value) db.enable = value end,
         getDefault = function() return true end,
-        -- 重载标记必须在 callback 里设，GW2_UI 只在这一层检测
         callback = function() GW.ShowRlPopup = true end,
         isMasterToggle = true,
     })
     if optEnable then optEnable.optionName = "GW2PlusChatBar_Enable" end
-
     local dep = {["GW2PlusChatBar_Enable"] = true}
-
-    -- 2. 位置与外观
     panel:AddGroupHeader("位置与外观")
-
     panel:AddOptionDropdown("附着位置", "按钮条相对聊天栏的位置", {
         optionsList = {1, 2},
         optionNames = {"附着于聊天栏上方", "附着于聊天栏下方"},
@@ -89,7 +67,6 @@ local function BuildPanel(parent)
         callback = function() ChatBar.UpdatePoint() end,
         dependence = dep,
     })
-
     local optX = panel:AddOptionSlider("X 偏移", "按钮条的水平偏移", {
         min = -200, max = 200, step = 1, decimalNumbers = 0,
         getter = function() return db.offsetX end,
@@ -99,7 +76,6 @@ local function BuildPanel(parent)
         dependence = dep,
     })
     if optX then optX.optionName = "GW2PlusChatBar_OffsetX" end
-
     local optY = panel:AddOptionSlider("Y 偏移", "按钮条的垂直偏移", {
         min = -200, max = 200, step = 1, decimalNumbers = 0,
         getter = function() return db.offsetY end,
@@ -109,7 +85,6 @@ local function BuildPanel(parent)
         dependence = dep,
     })
     if optY then optY.optionName = "GW2PlusChatBar_OffsetY" end
-
     local optScale = panel:AddOptionSlider("缩放", "按钮条的整体缩放", {
         min = 0.8, max = 1.6, step = 0.01, decimalNumbers = 2,
         getter = function() return db.scale end,
@@ -119,8 +94,6 @@ local function BuildPanel(parent)
         dependence = dep,
     })
     if optScale then optScale.optionName = "GW2PlusChatBar_Scale" end
-
-    -- 重置后滑块不会自己重绘，手动把 widget 的显示值拉回来
     local function RedrawSlider(optionName)
         local widget = GW.FindSettingsWidgetByOption and GW.FindSettingsWidgetByOption(optionName)
         if not widget or widget.optionType ~= "slider" or not widget.get then return end
@@ -130,7 +103,6 @@ local function BuildPanel(parent)
             widget.inputFrame.input:SetText(string.format("%." .. (widget.decimalNumbers or 0) .. "f", value))
         end
     end
-
     panel:AddOptionButton("重置位置与缩放", "把偏移和缩放恢复为默认值", {
         callback = function()
             db.offsetX = ChatBar.defaults.offsetX
@@ -145,7 +117,6 @@ local function BuildPanel(parent)
         isNegativeButton = true,
         dependence = dep,
     })
-
     panel:AddOption("鼠标离开渐隐", "鼠标离开聊天栏和按钮条时淡出", {
         getter = function() return db.fadeOnLeave end,
         setter = function(value) db.fadeOnLeave = value end,
@@ -153,7 +124,6 @@ local function BuildPanel(parent)
         callback = function() ChatBar.UpdateFade() end,
         dependence = dep,
     })
-
     panel:AddOption("动态显隐", "不在公会/队伍/团队/战场时，自动隐藏对应的频道按钮", {
         getter = function() return db.autoHide end,
         setter = function(value) db.autoHide = value end,
@@ -161,8 +131,6 @@ local function BuildPanel(parent)
         callback = function() ChatBar.UpdateLayout() end,
         dependence = dep,
     })
-
-    -- 3. 频道屏蔽控制窗口
     local windows = ChatBar.GetChatWindowList()
     if #windows > 0 then
         panel:AddOptionDropdown("频道屏蔽控制窗口", "右键屏蔽频道时，作用于哪个聊天窗口", {
@@ -175,13 +143,10 @@ local function BuildPanel(parent)
             dependence = dep,
         })
     end
-
-    -- 4. 按钮显隐
     for _, group in ipairs(GROUPS) do
         local added = false
         for _, key in ipairs(group.keys) do
             local def = GetDef(key)
-            -- 依赖的插件没装，按钮本身不存在，设置里也不列出来
             if def and (not def.addon or IsLoaded(def.addon)) then
                 if not added then
                     panel:AddGroupHeader(group.header)
@@ -197,8 +162,6 @@ local function BuildPanel(parent)
             end
         end
     end
-
     return panel
 end
-
 addonTable.BuildChatBarPanel = BuildPanel

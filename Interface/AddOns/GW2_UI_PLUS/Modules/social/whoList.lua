@@ -1,13 +1,5 @@
--- GW2_UI_PLUS 社交窗口 —— whoList.lua
---
--- 「谁在线」列表。为经典旧世重写了整套四列布局（列宽/对齐/内缩/滚动区/搜索框/底部按钮）。
---
--- 原先直接改在 GW2_UI/Games/Shared/Social/whoList.lua 里，现在整体搬进 PLUS。
--- 下面的 function GW.XXX 是写进 GW2_ADDON 这张共享表的，等于覆盖掉上游的同名函数。
-
 local GW = _G.GW2_ADDON
 if not GW then return end
-
 local CLASSIC_WHO_MEMBERS_TO_DISPLAY = 29
 local CLASSIC_WHO_LIST_LAYOUT = {
     defaultContentLeft = 40,
@@ -24,18 +16,15 @@ local CLASSIC_WHO_LIST_LAYOUT = {
         {header = "WhoFrameColumnHeader4", field = "Class", width = 120, justify = "LEFT"},
     },
 }
-
 local function GetWhoFrameButtonField(button, field)
     return button[field] or button:GetName() and _G[button:GetName() .. field]
 end
-
 local function ReskinWhoFrameButton(button)
     if not button.isSkinned then
         local name = GetWhoFrameButtonField(button, "Name")
         local variable = GetWhoFrameButtonField(button, "Variable")
         local level = GetWhoFrameButtonField(button, "Level")
         local class = GetWhoFrameButtonField(button, "Class")
-
         if name then
             name:GwSetFontTemplate(UNIT_NAME_FONT, GW.Enum.TextSizeType.Small)
         end
@@ -52,44 +41,34 @@ local function ReskinWhoFrameButton(button)
         button.isSkinned = true
     end
 end
-
 local function GetClassicWhoContentLeft()
     local searchMiddle = WhoFrameEditBox and WhoFrameEditBox.Middle
     local frameLeft = WhoFrame and WhoFrame:GetLeft()
     local searchLeft = searchMiddle and searchMiddle:GetLeft()
-
     if frameLeft and searchLeft then
         return searchLeft - frameLeft
     end
-
     return CLASSIC_WHO_LIST_LAYOUT.defaultContentLeft
 end
-
 local function GetClassicWhoColumnsWidth()
     local width = 0
-
     for index, column in ipairs(CLASSIC_WHO_LIST_LAYOUT.columns) do
         width = width + column.width
         if index > 1 then
             width = width + CLASSIC_WHO_LIST_LAYOUT.columnGap
         end
     end
-
     return width
 end
-
 local function GetClassicWhoSearchLeftInset()
     local editBoxLeft = WhoFrameEditBox and WhoFrameEditBox:GetLeft()
     local searchMiddle = WhoFrameEditBox and WhoFrameEditBox.Middle
     local searchLeft = searchMiddle and searchMiddle:GetLeft()
-
     if editBoxLeft and searchLeft then
         return searchLeft - editBoxLeft
     end
-
     return CLASSIC_WHO_LIST_LAYOUT.defaultSearchLeftInset
 end
-
 local function LayoutClassicWhoHeader(header, previousHeader, column, contentLeft)
     header:ClearAllPoints()
     if previousHeader then
@@ -98,7 +77,6 @@ local function LayoutClassicWhoHeader(header, previousHeader, column, contentLef
         header:SetPoint("TOPLEFT", WhoFrame, "TOPLEFT", contentLeft, CLASSIC_WHO_LIST_LAYOUT.headerTop)
     end
     header:SetWidth(column.width)
-
     local headerName = header:GetName()
     local text = headerName and _G[header:GetName() .. "Text"] or header:GetFontString()
     if text then
@@ -109,10 +87,8 @@ local function LayoutClassicWhoHeader(header, previousHeader, column, contentLef
         text:SetJustifyH(column.justify)
     end
 end
-
 local function LayoutClassicWhoFrameButton(button)
     local columnStart = 0
-
     for _, column in ipairs(CLASSIC_WHO_LIST_LAYOUT.columns) do
         local field = GetWhoFrameButtonField(button, column.field)
         if field then
@@ -125,17 +101,13 @@ local function LayoutClassicWhoFrameButton(button)
         columnStart = columnStart + column.width + CLASSIC_WHO_LIST_LAYOUT.columnGap
     end
 end
-
 local function LayoutClassicWhoList()
     if not GW.Classic then return end
     if not WhoFrame or not WhoListScrollFrame then return end
-
     local contentLeft = GetClassicWhoContentLeft()
-
     if WhoFrameListInset then
         WhoFrameListInset:SetAlpha(0)
     end
-
     local previousHeader
     for _, column in ipairs(CLASSIC_WHO_LIST_LAYOUT.columns) do
         local header = _G[column.header]
@@ -144,24 +116,20 @@ local function LayoutClassicWhoList()
             previousHeader = header
         end
     end
-
     if WhoFrameDropdown and WhoFrameColumnHeader2 then
         WhoFrameDropdown:ClearAllPoints()
         WhoFrameDropdown:SetPoint("LEFT", WhoFrameColumnHeader2, "LEFT", CLASSIC_WHO_LIST_LAYOUT.classicDropdownInset, 0)
         WhoFrameDropdown:SetWidth(CLASSIC_WHO_LIST_LAYOUT.columns[2].width - CLASSIC_WHO_LIST_LAYOUT.classicDropdownInset)
     end
-
     WhoListScrollFrame:ClearAllPoints()
     WhoListScrollFrame:SetPoint("TOPLEFT", WhoFrame, "TOPLEFT", CLASSIC_WHO_LIST_LAYOUT.scrollLeft, -87)
     WhoListScrollFrame:SetPoint("BOTTOMRIGHT", WhoFrame, "BOTTOMRIGHT", -25, 78)
-
     if WhoListScrollFrameScrollBar then
         WhoListScrollFrameScrollBar:ClearAllPoints()
         WhoListScrollFrameScrollBar:SetWidth(12)
         WhoListScrollFrameScrollBar:SetPoint("TOPLEFT", WhoListScrollFrame, "TOPRIGHT", 3, -15)
         WhoListScrollFrameScrollBar:SetPoint("BOTTOMLEFT", WhoListScrollFrame, "BOTTOMRIGHT", 3, 15)
     end
-
     if WhoFrameEditBox then
         WhoFrameEditBox:ClearAllPoints()
         WhoFrameEditBox:SetPoint("BOTTOMLEFT", WhoFrame, "BOTTOMLEFT", 15, 42)
@@ -183,7 +151,6 @@ local function LayoutClassicWhoList()
         WhoFrameGroupInviteButton:SetPoint("LEFT", WhoFrameAddFriendButton or WhoFrame, WhoFrameAddFriendButton and "RIGHT" or "BOTTOMLEFT", WhoFrameAddFriendButton and 4 or 340, WhoFrameAddFriendButton and 0 or 8)
         WhoFrameGroupInviteButton:SetWidth(100)
     end
-
     for i = 1, WHOS_TO_DISPLAY or 0 do
         local button = _G["WhoFrameButton" .. i]
         if button then
@@ -199,7 +166,6 @@ local function LayoutClassicWhoList()
         end
     end
 end
-
 function GW.SkinWhoList()
     if WhoFrameTotals then
         WhoFrameTotals:SetTextColor(1, 1, 1)
@@ -207,11 +173,9 @@ function GW.SkinWhoList()
     if WhoFrameListInset then
         WhoFrameListInset:SetAlpha(0)
     end
-
     if GW.Retail then
         GW.HandleTrimScrollBar(WhoFrame.ScrollBar)
         GW.HandleScrollControls(WhoFrame)
-
         hooksecurefunc(WhoFrame.ScrollBox, "Update", GW.HandleItemListScrollBoxHover)
         hooksecurefunc(WhoFrame.ScrollBox, "Update", function(scrollBox)
             scrollBox:ForEachFrame(ReskinWhoFrameButton)
@@ -225,7 +189,6 @@ function GW.SkinWhoList()
                 button:SetPoint("TOP", _G["WhoFrameButton"..(i-1)], "BOTTOM")
             end
         end
-
         if WhoListScrollFrame then
             WhoListScrollFrame:GwStripTextures()
             WhoListScrollFrame:GwSkinScrollFrame()
@@ -234,7 +197,6 @@ function GW.SkinWhoList()
             WhoListScrollFrameScrollBar:GwSkinScrollBar()
         end
         LayoutClassicWhoList()
-
         if WhoFrameListInset then
             WhoFrameListInset:SetAlpha(0)
         end
@@ -243,7 +205,6 @@ function GW.SkinWhoList()
             WhoFrame.gwWhoListUpdateHooked = true
         end
     end
-
     if WhoFrameEditBox and WhoFrameEditBox.Backdrop then
         WhoFrameEditBox.Backdrop:SetTexture("Interface/AddOns/GW2_UI/textures/bag/bagsearchbg.png")
     end
@@ -255,7 +216,6 @@ function GW.SkinWhoList()
         end
         GW.SkinBagSearchBox(WhoFrameEditBox)
     end
-
     for _, frame in ipairs({WhoFrameColumnHeader1, WhoFrameColumnHeader2, WhoFrameColumnHeader3, WhoFrameColumnHeader4}) do
         if frame then
             frame:GwStripTextures()
@@ -267,13 +227,11 @@ function GW.SkinWhoList()
             end
         end
     end
-
     for _, object in pairs({WhoFrameColumnHeader1, WhoFrameColumnHeader2, WhoFrameColumnHeader3, WhoFrameColumnHeader4}) do
         if object then
             GW.HandleScrollFrameHeaderButton(object, GW.Classic and object == WhoFrameColumnHeader4)
         end
     end
-
     if WhoFrameDropdown then
         WhoFrameDropdown:GwStripTextures()
         if WhoFrameDropdown.Arrow then
@@ -303,7 +261,6 @@ function GW.SkinWhoList()
             WhoFrameDropdown.Background:Hide()
         end
     end
-
     if WhoFrameColumnHeader1 and WhoFrameListInset and not GW.Classic then
         WhoFrameColumnHeader1:SetPoint("BOTTOMLEFT", WhoFrameListInset, "TOPLEFT", 5, 0)
     end

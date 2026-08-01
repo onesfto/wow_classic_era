@@ -1,5 +1,5 @@
 
 InnGramophoneDB = {
-["mode"] = "shuffle",
 ["skin"] = "Default",
+["mode"] = "shuffle",
 }

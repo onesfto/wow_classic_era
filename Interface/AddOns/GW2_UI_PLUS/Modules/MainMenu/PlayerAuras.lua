@@ -1,25 +1,17 @@
--- GW2_UI_PLUS 玩家增益、减益光环独立显隐。
-
 local _, addonTable = ...
-
 local Auras = {}
 addonTable.PlusPlayerAuras = Auras
-
 local SETTING_KEYS = {
     buff = "playerBuffAurasEnabled",
     debuff = "playerDebuffAurasEnabled",
 }
-
 local FRAME_NAMES = {
     buff = "GW2UIPlayerBuffs",
     debuff = "GW2UIPlayerDebuffs",
 }
-
 local eventFrame = CreateFrame("Frame")
-
 function Auras.InitDB()
     GW2_UI_PLUS_SV = GW2_UI_PLUS_SV or {}
-
     local inherited = not (
         GW2_ADDON
         and GW2_ADDON.settings
@@ -29,21 +21,17 @@ function Auras.InitDB()
             GW2_UI_PLUS_SV[key] = inherited
         end
     end
-
     return GW2_UI_PLUS_SV
 end
-
 function Auras.GetEnabled(kind)
     local key = assert(SETTING_KEYS[kind])
     return Auras.InitDB()[key] == true
 end
-
 function Auras.ApplyVisibility()
     if InCombatLockdown and InCombatLockdown() then
         eventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
         return false
     end
-
     eventFrame:UnregisterEvent("PLAYER_REGEN_ENABLED")
     for kind, frameName in pairs(FRAME_NAMES) do
         local frame = _G[frameName]
@@ -53,11 +41,9 @@ function Auras.ApplyVisibility()
     end
     return true
 end
-
 function Auras.SetEnabled(kind, enabled)
     local key = assert(SETTING_KEYS[kind])
     Auras.InitDB()[key] = enabled == true
-
     local settings = GW2_ADDON and GW2_ADDON.settings
     if enabled and settings and not settings.PLAYER_BUFFS_ENABLED then
         settings.PLAYER_BUFFS_ENABLED = true
@@ -70,10 +56,8 @@ function Auras.SetEnabled(kind, enabled)
         end
         return false
     end
-
     return Auras.ApplyVisibility()
 end
-
 function Auras.CreateToggleOption(panel, kind)
     local key = assert(SETTING_KEYS[kind])
     local option = panel:AddOption(
@@ -97,7 +81,6 @@ function Auras.CreateToggleOption(panel, kind)
     end
     return option
 end
-
 eventFrame:SetScript("OnEvent", function(self, event)
     if event == "PLAYER_ENTERING_WORLD" then
         self:UnregisterEvent(event)

@@ -1,18 +1,12 @@
--- GW2_UI_PLUS 插件悬浮按钮设置
-
 local _, addonTable = ...
-
 local GW = _G.GW2_ADDON
 local Flyout = addonTable.MinimapAddonFlyout
 if not GW or not GW.GetSettingsTabFrame or not Flyout then return end
-
 local function BuildMinimapAddonFlyoutPanel(parent)
     Flyout.InitDB()
-
     local panel =
         CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = "gw2_ui_plus_minimap_addon_flyout"
-
     if panel.header then
         panel.header:SetFont(
             DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 20)
@@ -40,7 +34,6 @@ local function BuildMinimapAddonFlyoutPanel(parent)
         panel.sub:SetText(
             "独立收纳小地图周围的第三方插件按钮")
     end
-
     local option = panel:AddOption(
         "启用",
         "收纳小地图周围的插件按钮；此设置不受 GW2_UI 小地图开关影响。",
@@ -56,7 +49,6 @@ local function BuildMinimapAddonFlyoutPanel(parent)
         option.optionName =
             "GW2PlusMinimapAddonFlyout_Enable"
     end
-
     local positionOption = panel:AddOptionDropdown(
         "位置",
         "插件悬浮入口位于小地图的哪个方向；切换后立即生效。",
@@ -82,9 +74,7 @@ local function BuildMinimapAddonFlyoutPanel(parent)
         positionOption.optionName =
             "GW2PlusMinimapAddonFlyout_Position"
     end
-
     return panel
 end
-
 addonTable.BuildMinimapAddonFlyoutPanel =
     BuildMinimapAddonFlyoutPanel

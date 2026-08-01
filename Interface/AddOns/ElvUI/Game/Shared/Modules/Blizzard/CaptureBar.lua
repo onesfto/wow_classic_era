@@ -23,9 +23,5 @@ function BL:CaptureBarUpdate()
 end
 
 function BL:PositionCaptureBar()
-	if _G.ManageFramePositions then
-		hooksecurefunc('ManageFramePositions', BL.CaptureBarUpdate)
-	elseif _G.UIParent_ManageFramePositions then
-		hooksecurefunc('UIParent_ManageFramePositions', BL.CaptureBarUpdate)
-	end
+	hooksecurefunc('UIParent_ManageFramePositions', BL.CaptureBarUpdate)
 end

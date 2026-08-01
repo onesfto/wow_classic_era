@@ -1,19 +1,10 @@
--- GW2_UI_PLUS 冷却闪烁模块
--- 移植自 Doom_CooldownPulse，核心逻辑保持不变，设置改用 GW2_UI_PLUS_CooldownPulseSV 并在 GW2_UI 中呈现。
-
 local _, addonTable = ...
 local CooldownPulse = {}
 addonTable.CooldownPulse = CooldownPulse
-
 local GW = _G.GW2_ADDON
-
 local fadeInTime, fadeOutTime, maxAlpha, animScale, iconSize, holdTime, showSpellName, ignoredSpells, invertIgnored, remainingCooldownWhenNotified
 local cooldowns, animating, watching, itemSpells = {}, {}, {}, {}
 local GetTime = GetTime
-
---------------------------------------------------------------------------------
--- 一、默认配置
---------------------------------------------------------------------------------
 local defaults = {
     enable = true,
     fadeInTime = 0.3,
@@ -24,48 +15,37 @@ local defaults = {
     holdTime = 0,
     petOverlay = {1, 1, 1},
     showSpellName = false,
-    x = 0, -- 相对居中点
+    x = 0,
     y = 0,
     remainingCooldownWhenNotified = 0,
     ignoredSpells = "",
     invertIgnored = false
 }
 CooldownPulse.defaults = defaults
-
 local function InitDB()
     GW2_UI_PLUS_CooldownPulseSV = GW2_UI_PLUS_CooldownPulseSV or {}
     local db = GW2_UI_PLUS_CooldownPulseSV
-
     for k, v in pairs(defaults) do
         if db[k] == nil then
             db[k] = (type(v) == "table") and CopyTable(v) or v
         end
     end
-    
-    -- 若还没有 x y 则居中
     if db.x == 0 and db.y == 0 then
         db.x = UIParent:GetWidth() * UIParent:GetEffectiveScale() / 2
         db.y = UIParent:GetHeight() * UIParent:GetEffectiveScale() / 2
     end
-    
     return db
 end
 CooldownPulse.InitDB = InitDB
-
---------------------------------------------------------------------------------
--- 二、界面与核心框架
---------------------------------------------------------------------------------
 local DCP = CreateFrame("Frame", "GW2Plus_CooldownPulseFrame", UIParent)
 DCP:SetFrameStrata("HIGH")
 DCP:SetMovable(true)
 DCP:RegisterForDrag("LeftButton")
-
 DCP:SetScript("OnDragStart", function(self)
     if not self.isLocked then
         self:StartMoving()
     end
 end)
-
 DCP:SetScript("OnDragStop", function(self)
     self:StopMovingOrSizing()
     local db = GW2_UI_PLUS_CooldownPulseSV
@@ -74,7 +54,6 @@ DCP:SetScript("OnDragStop", function(self)
     self:ClearAllPoints()
     self:SetPoint("CENTER", UIParent, "BOTTOMLEFT", db.x, db.y)
 end)
-
 DCP.TextFrame = DCP:CreateFontString(nil, "ARTWORK")
 DCP.TextFrame:SetFont(STANDARD_TEXT_FONT, 14, "OUTLINE")
 DCP.TextFrame:SetShadowOffset(2, -2)
@@ -82,15 +61,9 @@ DCP.TextFrame:SetPoint("CENTER", DCP, "CENTER")
 DCP.TextFrame:SetWidth(185)
 DCP.TextFrame:SetJustifyH("CENTER")
 DCP.TextFrame:SetTextColor(1, 1, 1)
-
 local DCPT = DCP:CreateTexture(nil, "BACKGROUND")
 DCPT:SetAllPoints(DCP)
-
 CooldownPulse.DCP = DCP
-
---------------------------------------------------------------------------------
--- 三、工具函数
---------------------------------------------------------------------------------
 local function tcount(tab)
     local n = 0
     for _ in pairs(tab) do
@@ -98,7 +71,6 @@ local function tcount(tab)
     end
     return n
 end
-
 local function memoize(f)
     local cache = nil
     local memoized = {}
@@ -114,7 +86,6 @@ local function memoize(f)
     setmetatable(memoized, {__call = get})
     return memoized
 end
-
 local function GetPetActionIndexByName(name)
     for i=1, NUM_PET_ACTION_SLOTS, 1 do
         if (GetPetActionInfo(i) == name) then
@@ -123,7 +94,6 @@ local function GetPetActionIndexByName(name)
     end
     return nil
 end
-
 local function RefreshLocals()
     local db = GW2_UI_PLUS_CooldownPulseSV
     fadeInTime = db.fadeInTime
@@ -135,14 +105,12 @@ local function RefreshLocals()
     showSpellName = db.showSpellName
     invertIgnored = db.invertIgnored
     remainingCooldownWhenNotified = db.remainingCooldownWhenNotified
-
     ignoredSpells = {}
     for _, v in ipairs({strsplit(",", db.ignoredSpells)}) do
         ignoredSpells[strtrim(v)] = true
     end
 end
 CooldownPulse.RefreshLocals = RefreshLocals
-
 local function TrackItemSpell(itemID)
     local _, spellID = GetItemSpell(itemID)
     if (spellID) then
@@ -152,7 +120,6 @@ local function TrackItemSpell(itemID)
         return false
     end
 end
-
 local function IsAnimatingCooldownByName(name)
     for i, details in pairs(animating) do
         if details[3] == name then
@@ -161,10 +128,6 @@ local function IsAnimatingCooldownByName(name)
     end
     return false
 end
-
---------------------------------------------------------------------------------
--- 四、主循环 OnUpdate
---------------------------------------------------------------------------------
 local elapsed = 0
 local runtimer = 0
 local function OnUpdate(_, update)
@@ -209,7 +172,6 @@ local function OnUpdate(_, update)
                         }
                     end)
                 end
-
                 local cooldown = getCooldownDetails()
                 if ((ignoredSpells[cooldown.name] ~= nil or ignoredSpells[tostring(id)] ~= nil) ~= invertIgnored) then
                     watching[id] = nil
@@ -239,14 +201,12 @@ local function OnUpdate(_, update)
                 cooldowns[i] = nil
             end
         end
-
         elapsed = 0
         if (#animating == 0 and tcount(watching) == 0 and tcount(cooldowns) == 0) then
             DCP:SetScript("OnUpdate", nil)
             return
         end
     end
-
     if (#animating > 0) then
         runtimer = runtimer + update
         if (runtimer > (fadeInTime + holdTime + fadeOutTime)) then
@@ -279,15 +239,9 @@ local function OnUpdate(_, update)
     end
 end
 CooldownPulse.OnUpdate = OnUpdate
-
---------------------------------------------------------------------------------
--- 五、事件监听
---------------------------------------------------------------------------------
 local EventFrame = CreateFrame("Frame")
-
 EventFrame:SetScript("OnEvent", function(self, event, ...)
     if not GW2_UI_PLUS_CooldownPulseSV or not GW2_UI_PLUS_CooldownPulseSV.enable then return end
-    
     if event == "SPELL_UPDATE_COOLDOWN" then
         for i, getCooldownDetails in pairs(cooldowns) do
             getCooldownDetails.resetCache()
@@ -303,7 +257,6 @@ EventFrame:SetScript("OnEvent", function(self, event, ...)
             else
                 watching[spellID] = {GetTime(), "spell", spellID}
             end
-
             if (not DCP:IsMouseEnabled()) then
                 DCP:SetScript("OnUpdate", OnUpdate)
             end
@@ -341,18 +294,13 @@ EventFrame:SetScript("OnEvent", function(self, event, ...)
         end
     end
 end)
-
--- 六、初始化
 local function Initialize()
     local db = InitDB()
     RefreshLocals()
-    
     DCP.isLocked = true
     DCP:EnableMouse(false)
     DCP:SetPoint("CENTER", UIParent, "BOTTOMLEFT", db.x, db.y)
-
     if not db.enable then return end
-
     EventFrame:RegisterEvent("SPELL_UPDATE_COOLDOWN")
     EventFrame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
     EventFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
@@ -360,7 +308,6 @@ local function Initialize()
     if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
         EventFrame:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
     end
-
     hooksecurefunc("UseAction", function(slot)
         local actionType, itemID = GetActionInfo(slot)
         if (actionType == "item" and not TrackItemSpell(itemID)) then
@@ -368,7 +315,6 @@ local function Initialize()
             watching[itemID] = {GetTime(), "item", texture}
         end
     end)
-
     hooksecurefunc("UseInventoryItem", function(slot)
         local itemID = GetInventoryItemID("player", slot);
         if (itemID and not TrackItemSpell(itemID)) then
@@ -376,7 +322,6 @@ local function Initialize()
             watching[itemID] = {GetTime(), "item", texture}
         end
     end)
-
     hooksecurefunc(C_Container, "UseContainerItem", function(bag, slot)
         local itemID = C_Container.GetContainerItemID(bag, slot)
         if (itemID and not TrackItemSpell(itemID)) then
@@ -385,21 +330,14 @@ local function Initialize()
         end
     end)
 end
-
--- 由于 GW2_UI_PLUS 在 PLAYER_LOGIN 时可以确保 SavedVariables 载入，使用事件监听
 local initFrame = CreateFrame("Frame")
 initFrame:RegisterEvent("PLAYER_LOGIN")
 initFrame:SetScript("OnEvent", function()
     Initialize()
 end)
-
---------------------------------------------------------------------------------
--- 七、测试与解锁功能
---------------------------------------------------------------------------------
 function CooldownPulse.TestAndUnlock()
     local db = GW2_UI_PLUS_CooldownPulseSV
     if DCP.isLocked then
-        -- 解锁
         DCP.isLocked = false
         DCP:EnableMouse(true)
         RefreshLocals()
@@ -411,21 +349,16 @@ function CooldownPulse.TestAndUnlock()
         DCP:SetScript("OnUpdate", nil)
         print("|cffffcc00[GW2 UI PLUS]|r 冷却闪烁已解锁，可以拖动图标。输入 /dcp 锁定。")
     else
-        -- 锁定
         DCP.isLocked = true
         DCP:EnableMouse(false)
         DCP.TextFrame:SetText(nil)
         DCPT:SetTexture(nil)
-        
-        -- 发送一个测试动画
         RefreshLocals()
         tinsert(animating, {"Interface\\Icons\\Spell_Nature_Earthbind", nil, "测试技能"})
         DCP:SetScript("OnUpdate", OnUpdate)
         print("|cffffcc00[GW2 UI PLUS]|r 冷却闪烁已锁定，播放了一次测试动画。")
     end
 end
-
--- 注册斜杠命令
 SlashCmdList["GW2PLUS_COOLDOWNPULSE"] = CooldownPulse.TestAndUnlock
 SLASH_GW2PLUS_COOLDOWNPULSE1 = "/dcp"
 SLASH_GW2PLUS_COOLDOWNPULSE2 = "/cooldownpulse"

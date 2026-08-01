@@ -41,13 +41,19 @@ function M:RaidMarkCanMark()
 end
 
 function M:RaidMarkUpdateKeyDown(keydown)
-	if InCombatLockdown() then return end -- we cant change the attribute during combat
-
 	local marker = M.RaidMarkFrame
 	if not marker or not marker.buttons then return end
 
+	if E.hasEditMode and InCombatLockdown() then
+		return -- we cant change the attribute during combat
+	end
+
 	for _, button in next, marker.buttons do
-		button:SetAttribute('useOnKeyDown', keydown)
+		if E.hasEditMode then
+			button:SetAttribute('useOnKeyDown', keydown)
+		else
+			button:RegisterForClicks(keydown and 'AnyDown' or 'AnyUp')
+		end
 	end
 end
 
@@ -108,12 +114,18 @@ do
 
 			tinsert(marker.buttons, button)
 
-			button:SetAttribute('type1', 'macro')
-			button:SetAttribute('type2', 'macro')
-			button:SetAttribute('macrotext1', tm)
-			button:SetAttribute('macrotext2', tm)
-			button:SetAttribute('useOnKeyDown', keydown)
-			button:RegisterForClicks('AnyDown', 'AnyUp')
+			if E.hasEditMode then
+				button:SetAttribute('type1', 'macro')
+				button:SetAttribute('type2', 'macro')
+				button:SetAttribute('macrotext1', tm)
+				button:SetAttribute('macrotext2', tm)
+				button:SetAttribute('useOnKeyDown', keydown)
+				button:RegisterForClicks('AnyDown', 'AnyUp')
+			else -- should follow RegisterClicks check but use AnyDown
+				button:SetAttribute('type', 'macro')
+				button:SetAttribute('macrotext', tm)
+				button:RegisterForClicks(keydown and 'AnyDown' or 'AnyUp')
+			end
 
 			button:Size(40)
 			button:SetID(i)

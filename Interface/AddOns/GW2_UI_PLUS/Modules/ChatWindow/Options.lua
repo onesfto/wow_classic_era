@@ -1,15 +1,8 @@
--- GW2_UI_PLUS 聊天窗口 —— 设置面板
--- 挂在 GW2_UI 设置窗口的「附加组件 → 聊天窗口」下。
-
 local _, addonTable = ...
-
 local GW = _G.GW2_ADDON
 if not GW or not GW.GetSettingsTabFrame then return end
-
 local ChatWindow = addonTable.ChatWindow
 if not ChatWindow then return end
-
--- 改了配置值滑块不会自己重绘，手动把 widget 的显示值拉回来
 local function RedrawSlider(optionName)
     local widget = GW.FindSettingsWidgetByOption and GW.FindSettingsWidgetByOption(optionName)
     if not widget or widget.optionType ~= "slider" or not widget.get then return end
@@ -19,15 +12,11 @@ local function RedrawSlider(optionName)
         widget.inputFrame.input:SetText(string.format("%." .. (widget.decimalNumbers or 0) .. "f", value))
     end
 end
-
 local function BuildPanel(parent)
-    -- 本面板可能先于 ChatWindow 的入世事件构建，这里保证配置表已就绪
     local db = ChatWindow.InitDB()
     local defaults = ChatWindow.defaults
-
     local panel = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = "gw2_ui_plus_chatwindow"
-
     if panel.header then
         panel.header:SetFont(DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 20)
         if GW.Colors and GW.Colors.TextColors then
@@ -48,23 +37,15 @@ local function BuildPanel(parent)
         panel.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
         panel.sub:SetText("主聊天窗的位置、外观与消息过滤")
     end
-
-    ----------------------------------------------------------------------------
-    -- 一、位置与大小
-    ----------------------------------------------------------------------------
-
     local optEnable = panel:AddOption("固定位置与大小", "由本插件接管主聊天窗的位置和大小，每次登录都强制应用。关闭后交还给暴雪的默认行为，切换需要重载界面。", {
         getter = function() return db.enable end,
         setter = function(value) db.enable = value end,
         getDefault = function() return defaults.enable end,
-        -- 重载标记必须在 callback 里设，GW2_UI 只在这一层检测
         callback = function() GW.ShowRlPopup = true end,
         isMasterToggle = true,
     })
     if optEnable then optEnable.optionName = "GW2PlusChatWindow_Enable" end
-
     local dep = {["GW2PlusChatWindow_Enable"] = true}
-
     local optW = panel:AddOptionSlider("宽度", "主聊天窗的宽度（像素）", {
         min = 200, max = 1200, step = 1, decimalNumbers = 0,
         getter = function() return db.width end,
@@ -74,7 +55,6 @@ local function BuildPanel(parent)
         dependence = dep,
     })
     if optW then optW.optionName = "GW2PlusChatWindow_Width" end
-
     local optH = panel:AddOptionSlider("高度", "主聊天窗的高度（像素）", {
         min = 100, max = 800, step = 1, decimalNumbers = 0,
         getter = function() return db.height end,
@@ -84,7 +64,6 @@ local function BuildPanel(parent)
         dependence = dep,
     })
     if optH then optH.optionName = "GW2PlusChatWindow_Height" end
-
     local optX = panel:AddOptionSlider("左边距", "聊天窗左边到屏幕左边的距离，0 为紧贴", {
         min = 0, max = 800, step = 1, decimalNumbers = 0,
         getter = function() return db.offsetX end,
@@ -94,7 +73,6 @@ local function BuildPanel(parent)
         dependence = dep,
     })
     if optX then optX.optionName = "GW2PlusChatWindow_OffsetX" end
-
     local optY = panel:AddOptionSlider("下边距", "聊天窗底边到屏幕底边的距离。输入栏挂在聊天窗下方，所以这里要留出输入栏的高度；开了「输入栏移到顶部」之后就可以调到 0 紧贴。", {
         min = 0, max = 800, step = 1, decimalNumbers = 0,
         getter = function() return db.offsetY end,
@@ -104,7 +82,6 @@ local function BuildPanel(parent)
         dependence = dep,
     })
     if optY then optY.optionName = "GW2PlusChatWindow_OffsetY" end
-
     panel:AddOptionButton("恢复默认", "宽 400、高 200、位置 37 / 46", {
         callback = function()
             db.width, db.height = defaults.width, defaults.height
@@ -118,34 +95,19 @@ local function BuildPanel(parent)
         isNegativeButton = true,
         dependence = dep,
     })
-
-    ----------------------------------------------------------------------------
-    -- 二、外观
-    ----------------------------------------------------------------------------
-
     panel:AddGroupHeader("外观")
-
     panel:AddOption("玩家名用职业颜色", "聊天里的发言人名字按职业着色。和本体的「提及时用职业色」不是一回事——那个管的是消息正文里提到的名字。", {
         getter = function() return db.classColor end,
         setter = function(value) db.classColor = value end,
         getDefault = function() return defaults.classColor end,
         callback = function() ChatWindow.ApplyClassColor() end,
     })
-
     panel:AddOption("输入栏移到顶部", "把聊天输入框从聊天窗下方挪到窗口顶端。挪上去之后「下边距」就可以调到 0 让聊天窗紧贴屏幕底边。切换需要重载界面。", {
         getter = function() return db.editBoxTop end,
         setter = function(value) db.editBoxTop = value end,
         getDefault = function() return defaults.editBoxTop end,
         callback = function() GW.ShowRlPopup = true end,
     })
-
-    -- 下拉框必须排在本组最后。GW2_UI 给下拉按钮提了两级 frameLevel
-    -- （toolkit.lua:686 GwHandleDropDownBox 里的 SetFrameLevel(+2)），而按钮是靠右
-    -- 摆的、宽 260，正好压住下一行右半列复选框的方块，那个勾就点不动了
-    -- （标题文字还能点，因为文字不在按钮底下）。排在最后，下面只剩不可点的分组标题。
-    --
-    -- 这一项是 GW2_UI 本体的设置（原本在「聊天」面板里），读写的是同一个值，
-    -- 在这儿只是多开一个入口。
     panel:AddOptionDropdown("聊天按钮位置", "聊天控制按钮（菜单、频道、社交）放在哪。选「顶部」或「右侧」会把它们收进一条悬浮小条，聊天窗就能贴住屏幕边缘。与本体「聊天」面板里的是同一个设置。", {
         optionsList = {"LEFT", "TOP", "RIGHT"},
         optionNames = {"左侧", "顶部", "右侧"},
@@ -158,32 +120,23 @@ local function BuildPanel(parent)
             if GW.UpdateChatButtonsPosition then GW.UpdateChatButtonsPosition() end
         end,
     })
-
-    ----------------------------------------------------------------------------
-    -- 三、消息过滤
-    ----------------------------------------------------------------------------
-
     panel:AddGroupHeader("消息过滤")
-
     panel:AddOption("不显示进入/离开频道信息", "屏蔽「XXX 加入了频道」「XXX 离开了频道」这类刷屏。", {
         getter = function() return db.hideJoinLeave end,
         setter = function(value) db.hideJoinLeave = value end,
         getDefault = function() return defaults.hideJoinLeave end,
     })
-
     panel:AddOption("重复符号、词、句裁减", "把频道消息里连续重复的符号、叠字、整段复读压掉。物品链接不受影响。只作用于编号频道。", {
         getter = function() return db.trimRepeat end,
         setter = function(value) db.trimRepeat = value end,
         getDefault = function() return defaults.trimRepeat end,
     })
-
     local optBlack = panel:AddOption("启用关键词黑名单", "消息正文或发送者名字里出现下面任一关键词，整条消息就不显示。作用于编号频道、说话和大喊。", {
         getter = function() return db.blacklistEnable end,
         setter = function(value) db.blacklistEnable = value end,
         getDefault = function() return defaults.blacklistEnable end,
     })
     if optBlack then optBlack.optionName = "GW2PlusChatWindow_BlacklistEnable" end
-
     panel:AddOptionText("关键词", "多个关键词用逗号隔开，中英文逗号都认，不区分大小写。\n\n例如：\n代练, 金币, 出售账号", {
         getter = function() return db.blacklist end,
         setter = function(value) db.blacklist = value end,
@@ -191,14 +144,11 @@ local function BuildPanel(parent)
         callback = function() ChatWindow.RebuildBlacklist() end,
         dependence = {["GW2PlusChatWindow_BlacklistEnable"] = true},
     })
-
     panel:AddOption("不显示「界面错误太多」提示", "屏蔽 BugGrabber 的洪水保护警告（「用户界面有太多的错误……」）。这条消息响起来的时候 BugGrabber 已经停止记录错误了，屏蔽的只是提示、不是错误本身——真有插件在疯狂报错还是得去 BugSack 里看。", {
         getter = function() return db.hideBugGrabberSpam end,
         setter = function(value) db.hideBugGrabberSpam = value end,
         getDefault = function() return defaults.hideBugGrabberSpam end,
     })
-
     return panel
 end
-
 addonTable.BuildChatWindowPanel = BuildPanel

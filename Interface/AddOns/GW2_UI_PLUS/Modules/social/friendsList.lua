@@ -1,24 +1,13 @@
--- GW2_UI_PLUS 社交窗口 —— friendsList.lua
---
--- 好友列表。相对上游主要是经典旧世的空值保护，以及标签页/状态下拉/
--- BN 栏/按钮/滚动条的专用排版。
---
--- 原先直接改在 GW2_UI/Games/Shared/Social/friendsList.lua 里，现在整体搬进 PLUS。
--- 下面的 function GW.XXX 是写进 GW2_ADDON 这张共享表的，等于覆盖掉上游的同名函数。
-
 local GW = _G.GW2_ADDON
 if not GW then return end
-
 local WOW_PROJECT_BURNING_CRUSADE_CLASSIC = 5
 local WOW_PROJECT_CLASSIC = 2
 local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 local WOW_PROJECT_WRATH_CLASSIC = 11
 local WOW_PROJECT_CATACLYSM_CLASSIC = 14
 local WOW_PROJECT_MISTS_CLASSIC = 19
-
 local MediaPath = "Interface/AddOns/GW2_UI/Textures/social/"
 local delimiter = format("|cff%s | |r", "979fad")
-
 GW.friendsList = {}
 GW.friendsList.projectCodes = {
     ["ANBS"] = "Diablo Immortal",
@@ -42,7 +31,6 @@ GW.friendsList.projectCodes = {
     ["PRO"] = "Overwatch",
     ["PRO-ZHCN"] = "Overwatch",
 }
-
 GW.friendsList.clientData = {
     ["Diablo Immortal"] = {
         color = { r = 0.768, g = 0.121, b = 0.231 },
@@ -102,11 +90,9 @@ GW.friendsList.clientData = {
         color = { r = 1, g = 1, b = 1 },
     },
 }
-
 GW.friendsList.timerunningSeasonIcon = {
     [2] = MediaPath .. "GameIcons/WOW_LEG",
 }
-
 GW.friendsList.expansionData = {
     [WOW_PROJECT_MAINLINE] = {
         name = "Retail",
@@ -145,12 +131,10 @@ GW.friendsList.expansionData = {
         icon = MediaPath .. "GameIcons/WOW_MoP",
     },
 }
-
 GW.friendsList.factionIcons = {
     ["Alliance"] = MediaPath .. "GameIcons/Alliance",
     ["Horde"] = MediaPath .. "GameIcons/Horde",
 }
-
 GW.friendsList.statusIcons = {
     default = {
         Online = FRIENDS_TEXTURE_ONLINE,
@@ -171,7 +155,6 @@ GW.friendsList.statusIcons = {
         AFK     = { Color = {1, 1, 0} },
     },
 }
-
 local function HandleInviteTexNormal(self)
     self:SetTexture("Interface/AddOns/GW2_UI/textures/icons/lfdmicrobutton-down.png")
     self:SetTexCoord(0, 1, 0, 1)
@@ -180,7 +163,6 @@ local function HandleInviteTexNormal(self)
     self:SetPoint("CENTER")
     self:SetVertexColor(1, 1, 1, 1)
 end
-
 local function HandleInviteTexDisabled(self)
     self:SetTexture("Interface/AddOns/GW2_UI/textures/icons/lfdmicrobutton-down.png")
     self:SetTexCoord(0, 1, 0, 1)
@@ -190,7 +172,6 @@ local function HandleInviteTexDisabled(self)
     self:SetVertexColor(0.4, 0.4, 0.4, 1)
     self:SetDesaturated(true)
 end
-
 local function UpdateFriendButton(button)
     if not button.isSkinned then
         local normal = button.travelPassButton:GetNormalTexture()
@@ -200,7 +181,6 @@ local function UpdateFriendButton(button)
         normal:ClearAllPoints()
         normal:SetPoint("CENTER")
         normal:SetVertexColor(1, 1, 1, 1)
-
         local disabled = button.travelPassButton:GetDisabledTexture()
         disabled:SetTexture("Interface/AddOns/GW2_UI/textures/icons/lfdmicrobutton-down.png")
         disabled:SetTexCoord(0, 1, 0, 1)
@@ -209,7 +189,6 @@ local function UpdateFriendButton(button)
         disabled:SetPoint("CENTER")
         disabled:SetVertexColor(0.4, 0.4, 0.4, 1)
         disabled:SetDesaturated(true)
-
         local highlight = button.travelPassButton:GetHighlightTexture()
         highlight:SetTexture("Interface/AddOns/GW2_UI/textures/icons/lfdmicrobutton-up.png")
         highlight:SetTexCoord(0, 1, 0, 1)
@@ -217,24 +196,17 @@ local function UpdateFriendButton(button)
         highlight:ClearAllPoints()
         highlight:SetPoint("CENTER")
         highlight:SetVertexColor(1, 1, 1, 1)
-
         if GW.Retail then
             hooksecurefunc(button.travelPassButton.NormalTexture, "SetAtlas", HandleInviteTexNormal)
             hooksecurefunc(button.travelPassButton.DisabledTexture, "SetAtlas", HandleInviteTexDisabled)
         end
-
         button.isSkinned = true
     end
-
-
     if button.buttonType == FRIENDS_BUTTON_TYPE_DIVIDER then
         return
     end
-
     local gameName, realID, name, server, class, area, level, faction, status, wowID, timerunningSeasonID
-
     if button.buttonType == FRIENDS_BUTTON_TYPE_WOW then
-        -- WoW friends
         wowID = WOW_PROJECT_MAINLINE
         gameName = GW.friendsList.projectCodes["WOW"]
         local friendInfo = C_FriendList.GetFriendInfoByIndex(button.id)
@@ -243,7 +215,6 @@ local function UpdateFriendButton(button)
         class = friendInfo.className
         area = friendInfo.area
         faction = GW.myfaction
-
         if friendInfo.connected then
             if friendInfo.afk then
                 status = "AFK"
@@ -256,14 +227,11 @@ local function UpdateFriendButton(button)
             status = "Offline"
         end
     elseif button.buttonType == FRIENDS_BUTTON_TYPE_BNET and BNConnected() then
-        -- Battle.net friends
         local friendAccountInfo = C_BattleNet.GetFriendAccountInfo(button.id)
         if friendAccountInfo then
             realID = friendAccountInfo.accountName
-
             local gameAccountInfo = friendAccountInfo.gameAccountInfo
             gameName = GW.friendsList.projectCodes[strupper(gameAccountInfo.clientProgram)]
-
             if gameAccountInfo.isOnline then
                 if friendAccountInfo.isAFK or gameAccountInfo.isGameAFK then
                     status = "AFK"
@@ -275,8 +243,6 @@ local function UpdateFriendButton(button)
             else
                 status = "Offline"
             end
-
-            -- Fetch version if friend playing WoW
             if gameName == "World of Warcraft" then
                 wowID = gameAccountInfo.wowProjectID
                 name = gameAccountInfo.characterName or ""
@@ -285,45 +251,34 @@ local function UpdateFriendButton(button)
                 class = gameAccountInfo.className or ""
                 area = gameAccountInfo.areaName or ""
                 timerunningSeasonID = gameAccountInfo.timerunningSeasonID or ""
-
                 if wowID and wowID ~= 1 and GW.friendsList.expansionData[wowID] then
                     local suffix = GW.friendsList.expansionData[wowID].suffix and " (" .. GW.friendsList.expansionData[wowID].suffix .. ")" or ""
                     local serverStrings = { strsplit(" - ", gameAccountInfo.richPresence) }
                     server = (serverStrings[#serverStrings] or BNET_FRIEND_TOOLTIP_WOW_CLASSIC) .. suffix .. "*"
                 elseif wowID and wowID == 1 and name == "" then
-                    server = gameAccountInfo.richPresence -- Plunderstorm
+                    server = gameAccountInfo.richPresence
                 else
                     server = gameAccountInfo.realmDisplayName or ""
                 end
             end
         end
     end
-
     if status then
         button.status:SetTexture(GW.friendsList.statusIcons.square[status])
     end
-
     button.gameIcon:SetTexCoord(0, 1, 0, 1)
-
     if gameName then
         local buttonTitle, buttonText
-
-        -- real ID
         local clientColor = GW.friendsList.clientData[gameName] and GW.friendsList.clientData[gameName].color
         local realIDString = realID and clientColor and GW.StringWithRGB(realID, clientColor) or realID
-
-        -- name
         local classColor = GW.GWGetClassColor(GW.UnlocalizedClassName(class), true, true, true)
         local nameString = name and classColor and GW.StringWithRGB(name, classColor) or name
         if TimerunningUtil and timerunningSeasonID and timerunningSeasonID ~= "" and nameString ~= nil then
-            nameString = TimerunningUtil.AddSmallIcon(nameString) or nameString -- add timerunning tag
+            nameString = TimerunningUtil.AddSmallIcon(nameString) or nameString
         end
-
         if wowID and GW.friendsList.expansionData[wowID] and level and level ~= 0 then
             nameString = nameString .. GW.StringWithRGB(delimiter .. level, GetQuestDifficultyColor(level))
         end
-
-        -- combine Real ID and Name
         if nameString and nameString ~= "" and realIDString and realIDString ~= "" then
             buttonTitle = realIDString .. delimiter .. nameString
         elseif nameString and nameString ~= "" then
@@ -331,10 +286,7 @@ local function UpdateFriendButton(button)
         else
             buttonTitle = realIDString or ""
         end
-
         button.name:SetText(buttonTitle)
-
-        -- area
         if area then
             if area ~= "" and server and server ~= "" and server ~= GW.myrealm then
                 buttonText = GW.StringWithRGB(area .. " - " .. server, {r = 1, g = 1, b = 1})
@@ -343,11 +295,8 @@ local function UpdateFriendButton(button)
             else
                 buttonText = server or ""
             end
-
             button.info:SetText(buttonText)
         end
-
-        -- game icon
         local texOrAtlas
         if wowID and GW.friendsList.expansionData[wowID] then
             texOrAtlas = GW.friendsList.expansionData[wowID].icon
@@ -355,34 +304,26 @@ local function UpdateFriendButton(button)
                 texOrAtlas = GW.friendsList.timerunningSeasonIcon[timerunningSeasonID]
             end
         end
-
         if texOrAtlas == nil and faction and GW.friendsList.factionIcons[faction] then
             texOrAtlas = GW.friendsList.factionIcons[faction]
         end
-
         if texOrAtlas then
             button.gameIcon:SetAlpha(1)
             button.gameIcon:SetTexture(texOrAtlas)
             button.gameIcon:SetTexCoord(0.15, 0.85, 0.15, 0.85)
         end
     end
-
     button.name:GwSetFontTemplate(UNIT_NAME_FONT, GW.Enum.TextSizeType.Normal)
     button.info:GwSetFontTemplate(UNIT_NAME_FONT, GW.Enum.TextSizeType.Small, nil, -1)
-
     if button.Favorite and button.Favorite:IsShown() then
         button.Favorite:ClearAllPoints()
         button.Favorite:SetPoint("LEFT", button.name, "LEFT", button.name:GetStringWidth(), 0)
     end
-
     button:SetSize(460, 34)
     button.name:SetWidth(400)
 end
-
-
 local function HideClassicFriendsScrollTrack(scrollFrame)
     if not GW.Classic or not scrollFrame then return end
-
     local frameName = scrollFrame:GetName()
     local trackTextures = {
         scrollFrame.scrollBorderMiddle,
@@ -392,7 +333,6 @@ local function HideClassicFriendsScrollTrack(scrollFrame)
         frameName and _G[frameName .. "ScrollBar"] and _G[frameName .. "ScrollBar"].Middle,
         frameName and _G[frameName .. "ScrollBar"] and _G[frameName .. "ScrollBar"].Background
     }
-
     for _, texture in pairs(trackTextures) do
         if texture then
             if texture.SetTexture then
@@ -407,8 +347,6 @@ local function HideClassicFriendsScrollTrack(scrollFrame)
         end
     end
 end
-
-
 function GW.SkinFriendList()
     if GW.Retail then
         for i = 1, 3 do
@@ -434,7 +372,6 @@ function GW.SkinFriendList()
             FriendsTabHeaderTab2:SetPoint("LEFT", FriendsTabHeaderTab1 or FriendsFrame, FriendsTabHeaderTab1 and "RIGHT" or "TOPLEFT", FriendsTabHeaderTab1 and 0 or 100, FriendsTabHeaderTab1 and 0 or -63)
         end
     end
-
     if FriendsFrameStatusDropdown then
         FriendsFrameStatusDropdown:GwHandleDropDownBox()
         FriendsFrameStatusDropdown:SetWidth(55)
@@ -453,7 +390,6 @@ function GW.SkinFriendList()
             FriendsFrameStatusDropdown:SetPoint("TOPLEFT", FriendsFrame.gwHeader or FriendsFrame, FriendsFrame.gwHeader and "BOTTOMLEFT" or "TOPLEFT", 5, FriendsFrame.gwHeader and 0 or -38)
         end
     end
-
     if GW.Retail then
         GW.HandleTrimScrollBar(FriendsListFrame.ScrollBar)
         GW.HandleScrollControls(FriendsListFrame)
@@ -464,14 +400,12 @@ function GW.SkinFriendList()
         FriendsFrameFriendsScrollFrame:SetPoint("BOTTOMRIGHT", FriendsFrame, -25, 35)
         FriendsFrameFriendsScrollFrame:SetHeight(480)
         HybridScrollFrame_CreateButtons(FriendsFrameFriendsScrollFrame, "FriendsFrameButtonTemplate")
-
         if FriendsFrameFriendsScrollFrameScrollBar then
             FriendsFrameFriendsScrollFrameScrollBar:GwSkinScrollBar()
         end
         FriendsFrameFriendsScrollFrame:GwSkinScrollFrame()
         HideClassicFriendsScrollTrack(FriendsFrameFriendsScrollFrame)
     end
-
     if FriendsFrameAddFriendButton then
         FriendsFrameAddFriendButton:GwSkinButton(false, true)
         if GW.Classic then
@@ -491,8 +425,6 @@ function GW.SkinFriendList()
     if _G.FriendsFrame_UpdateFriendButton then
         hooksecurefunc("FriendsFrame_UpdateFriendButton", UpdateFriendButton)
     end
-
-    --View Friends BN Frame
     local button
     if FriendsFrameBattlenetFrame then
         button = CreateFrame("Button", nil, FriendsFrameBattlenetFrame)
@@ -501,7 +433,6 @@ function GW.SkinFriendList()
         if not GW.Classic then
             button:GwSkinButton(false, false, true)
         end
-
         button.Tag = button:CreateFontString(nil, "OVERLAY")
         button.Tag:SetPoint("CENTER", button, "CENTER")
         button.Tag:SetTextColor(0.345, 0.667, 0.867)
@@ -512,7 +443,6 @@ function GW.SkinFriendList()
             button.hover.b = FRIENDS_BNET_BACKGROUND_COLOR.b
         end
     end
-
     if FriendsFriendsFrame then
         FriendsFriendsFrame:GwStripTextures()
         FriendsFriendsFrame:GwCreateBackdrop(GW.BackdropTemplates.Default)
@@ -520,21 +450,17 @@ function GW.SkinFriendList()
     if FriendsFriendsFrameDropdown then
         FriendsFriendsFrameDropdown:GwHandleDropDownBox()
     end
-
     if GW.Retail then
         FriendsFriendsFrame.ScrollFrameBorder:Hide()
         FriendsFriendsFrame.SendRequestButton:GwSkinButton(false, true)
         FriendsFriendsFrame.CloseButton:GwSkinButton(false, true)
-
         GW.HandleTrimScrollBar(FriendsFriendsFrame.ScrollBar)
         GW.HandleScrollControls(FriendsFriendsFrame)
-
         FriendsFrameBattlenetFrame.ContactsMenuButton:SetPoint("TOPRIGHT", FriendsFrame.gwHeader, "BOTTOMRIGHT", 5, 0)
         FriendsFrameBattlenetFrame.ContactsMenuButton:GwHandleDropDownBox(GW.BackdropTemplates.ColorableBorderOnly, nil, nil, 32)
         FriendsFrameBattlenetFrame.ContactsMenuButton.backdrop:SetBackdropBorderColor(0, 0, 0, 0)
         FriendsFrameBattlenetFrame.ContactsMenuButton.gw2Arrow:SetPoint("CENTER")
         FriendsFrameBattlenetFrame.ContactsMenuButton.gw2Arrow:SetSize(28, 28)
-
         button:SetScript("OnClick", function() FriendsFrameBattlenetFrame.BroadcastFrame:ToggleFrame() end)
     elseif GW.TBC or GW.Wrath or GW.Classic then
         if FriendsFriendsSendRequestButton then
@@ -543,7 +469,6 @@ function GW.SkinFriendList()
         if FriendsFriendsCloseButton then
             FriendsFriendsCloseButton:GwSkinButton(false, true)
         end
-
         if button and FriendsFrameBattlenetFrame and FriendsFrameBattlenetFrame.BroadcastFrame then
             button:SetScript("OnClick", function()
                 PlaySound(SOUNDKIT.IG_CHAT_EMOTE_BUTTON)
@@ -555,7 +480,6 @@ function GW.SkinFriendList()
             end)
         end
     end
-
     if FriendsFrameBattlenetFrame then
         FriendsFrameBattlenetFrame:ClearAllPoints()
         FriendsFrameBattlenetFrame:SetPoint("TOP", FriendsFrame.gwHeader or FriendsFrame, FriendsFrame.gwHeader and "BOTTOM" or "TOP", 0, FriendsFrame.gwHeader and 0 or -34)
@@ -565,7 +489,6 @@ function GW.SkinFriendList()
             FriendsFrameBattlenetFrame.Tag:GwKill()
         end
     end
-
     if button then
         button:HookScript("OnEnter", function(self)
             if self.Tag then
@@ -581,7 +504,6 @@ function GW.SkinFriendList()
             end
             self.animationValue = 0
         end)
-
         if _G.FriendsFrame_CheckBattlenetStatus then
             hooksecurefunc("FriendsFrame_CheckBattlenetStatus", function()
                 button.Tag:Hide()
@@ -595,7 +517,6 @@ function GW.SkinFriendList()
             end)
         end
     end
-
     if FriendsFrameBattlenetFrame and FriendsFrameBattlenetFrame.BroadcastFrame then
         FriendsFrameBattlenetFrame.BroadcastFrame:GwStripTextures()
         FriendsFrameBattlenetFrame.BroadcastFrame:GwCreateBackdrop(GW.BackdropTemplates.Default)
@@ -621,7 +542,6 @@ function GW.SkinFriendList()
                     broadcastEditBox:SetPoint("LEFT", FriendsFrameBattlenetFrameScrollFrame, "LEFT", 4, 0)
                     broadcastEditBox:SetPoint("RIGHT", FriendsFrameBattlenetFrameScrollFrame, "RIGHT", -4, 0)
                     broadcastEditBox:SetHeight(16)
-
                     if broadcastEditBox.PromptText then
                         broadcastEditBox.PromptText:ClearAllPoints()
                         broadcastEditBox.PromptText:SetPoint("LEFT", broadcastEditBox, "LEFT", 0, 0)
@@ -636,7 +556,6 @@ function GW.SkinFriendList()
             end
         end
     end
-
     if AddFriendFrame then
         AddFriendFrame:GwStripTextures()
         AddFriendFrame:GwCreateBackdrop(GW.BackdropTemplates.Default)

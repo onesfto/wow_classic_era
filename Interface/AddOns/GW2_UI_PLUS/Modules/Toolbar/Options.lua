@@ -1,14 +1,11 @@
 local _, addonTable = ...
-
 local GW = _G.GW2_ADDON
 local Toolbar = addonTable.Toolbar
 if not GW or not GW.GetSettingsTabFrame or not Toolbar then return end
-
 local function SetOptionName(option, name)
     if option then option.optionName = name end
     return option
 end
-
 local function AddEnable(panel, moduleKey, optionName)
     local module = Toolbar[moduleKey]
     local option = panel:AddOption("启用", nil, {
@@ -21,7 +18,6 @@ local function AddEnable(panel, moduleKey, optionName)
     })
     SetOptionName(option, optionName)
 end
-
 local function AddScale(panel, moduleKey, optionName)
     local module = Toolbar[moduleKey]
     local option = panel:AddOptionSlider("缩放", nil, {
@@ -33,7 +29,6 @@ local function AddScale(panel, moduleKey, optionName)
     })
     SetOptionName(option, optionName)
 end
-
 local function AddReset(panel, moduleKey, optionNames)
     panel:AddOptionButton("重置", "恢复本组默认设置并移回默认位置。", {
         callback = function()
@@ -45,11 +40,9 @@ local function AddReset(panel, moduleKey, optionNames)
         isNegativeButton = true,
     })
 end
-
 local function BuildToolbarPanel(parent)
     local panel = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = "gw2_ui_plus_toolbar"
-
     if panel.header then
         panel.header:SetFont(
             DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 20)
@@ -75,9 +68,7 @@ local function BuildToolbarPanel(parent)
         panel.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
         panel.sub:SetText("队伍、快捷操作、目标标记与性能信息")
     end
-
     Toolbar.InitDB()
-
     panel:AddGroupHeader("队伍管理")
     AddEnable(
         panel, "groupManage", "GW2PlusToolbarGroupManageEnable")
@@ -87,11 +78,9 @@ local function BuildToolbarPanel(parent)
         "GW2PlusToolbarGroupManageEnable",
         "GW2PlusToolbarGroupManageScale",
     })
-
     panel:AddGroupHeader("快捷条")
     AddEnable(panel, "quickBar", "GW2PlusToolbarQuickBarEnable")
     AddScale(panel, "quickBar", "GW2PlusToolbarQuickBarScale")
-
     local buttonNames = {
         leave = "离开队伍",
         teleport = "随机副本传送",
@@ -159,7 +148,6 @@ local function BuildToolbarPanel(parent)
         "GW2PlusToolbarQuickBarEnable",
         "GW2PlusToolbarQuickBarScale",
     })
-    -- GW2_UI 的下拉框按钮会覆盖下一行右列控件，统一放在本组末尾。
     panel:AddOptionDropdown("时间模式", nil, {
         optionsList = {"COMBAT", "CLOCK", "DYNAMIC"},
         optionNames = {"战斗计时", "本地时间", "动态"},
@@ -174,7 +162,6 @@ local function BuildToolbarPanel(parent)
         setter = function(value) Toolbar.quickBar.SetVoiceType(value) end,
         getDefault = function() return 0 end,
     })
-
     panel:AddGroupHeader("标记条")
     AddEnable(panel, "markerBar", "GW2PlusToolbarMarkerBarEnable")
     AddScale(panel, "markerBar", "GW2PlusToolbarMarkerBarScale")
@@ -182,7 +169,6 @@ local function BuildToolbarPanel(parent)
         "GW2PlusToolbarMarkerBarEnable",
         "GW2PlusToolbarMarkerBarScale",
     })
-
     panel:AddGroupHeader("性能条")
     AddEnable(
         panel, "performanceBar", "GW2PlusToolbarPerformanceBarEnable")
@@ -230,8 +216,6 @@ local function BuildToolbarPanel(parent)
         "GW2PlusToolbarPerformanceBarWidth",
         "GW2PlusToolbarPerformanceBarHeight",
     })
-
     return panel
 end
-
 addonTable.BuildToolbarPanel = BuildToolbarPanel

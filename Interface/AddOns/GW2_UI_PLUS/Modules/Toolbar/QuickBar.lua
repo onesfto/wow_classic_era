@@ -1,15 +1,11 @@
 local _, addonTable = ...
-
 local Toolbar = addonTable.Toolbar
 if not Toolbar then return end
-
 local QuickBar = {}
 Toolbar.quickBar = QuickBar
-
 local BUTTON_SIZE = 24
 local BUTTON_GAP = 3
 local BAR_PADDING = 3
-
 local BUTTON_ORDER = {
     "leave",
     "teleport",
@@ -20,7 +16,6 @@ local BUTTON_ORDER = {
     "ready",
     "countdown",
 }
-
 local ICONS = {
     leave = "Interface/Buttons/UI-GroupLoot-Pass-Up",
     teleport = "Interface/Icons/Spell_Arcane_TeleportStormWind",
@@ -31,7 +26,6 @@ local ICONS = {
     ready = 136814,
     countdown = 516773,
 }
-
 local TOOLTIPS = {
     leave = "左键：离开队伍\n右键：离开随机副本队伍",
     teleport = "进入或离开随机副本",
@@ -42,27 +36,22 @@ local TOOLTIPS = {
     ready = "发起就位确认",
     countdown = "左键：按默认时长倒计时\n右键：选择倒计时时长",
 }
-
 local PRESET_SECONDS = {3, 5, 10, 30, 60, 180, 300, 600}
-
 local loginStartedAt = GetServerTime()
 local instanceStartedAt = GetServerTime()
 local combatElapsed = 0
 local inCombat = InCombatLockdown and InCombatLockdown() or false
 local updateElapsed = 0
-
 local function IsGroupController()
     return UnitIsGroupLeader("player")
         or UnitIsGroupAssistant("player")
         or (IsInGroup() and not IsInRaid())
 end
-
 local function SetButtonEnabled(button, enabled)
     button:SetEnabled(enabled)
     button.icon:SetDesaturated(not enabled)
     button:SetAlpha(enabled and 1 or 0.45)
 end
-
 local function FormatElapsed(seconds)
     seconds = math.max(0, math.floor(seconds or 0))
     local hours = math.floor(seconds / 3600)
@@ -73,7 +62,6 @@ local function FormatElapsed(seconds)
     end
     return string.format("%02d:%02d", minutes, remain)
 end
-
 local function StartCountdown(seconds)
     if C_PartyInfo and C_PartyInfo.DoCountdown then
         C_PartyInfo.DoCountdown(seconds)
@@ -82,7 +70,6 @@ local function StartCountdown(seconds)
     end
 end
 QuickBar.StartCountdown = StartCountdown
-
 local function LeaveGroup(mouseButton)
     if mouseButton == "RightButton" and ConfirmOrLeaveLFGParty then
         ConfirmOrLeaveLFGParty()
@@ -92,10 +79,8 @@ local function LeaveGroup(mouseButton)
         _G.LeaveParty()
     end
 end
-
 local function TeleportDungeon()
     if not IsAllowedToUserTeleport or not IsAllowedToUserTeleport() then return end
-
     if IsInLFDBattlefield and IsInLFDBattlefield() then
         local _, instanceType = IsInInstance()
         if instanceType ~= "arena" and instanceType ~= "pvp" then
@@ -107,7 +92,6 @@ local function TeleportDungeon()
         LFGTeleport(false)
     end
 end
-
 local function ConvertGroup()
     if IsInRaid() then
         if C_PartyInfo and C_PartyInfo.ConvertToParty then
@@ -123,11 +107,9 @@ local function ConvertGroup()
         end
     end
 end
-
 local function UpdateTimerText()
     local button = QuickBar.buttons and QuickBar.buttons.timer
     if not button or not button.timerText then return end
-
     local mode = Toolbar.InitDB().quickBar.timerMode
     if mode == "CLOCK" or (mode == "DYNAMIC" and not inCombat) then
         button.timerText:SetText(GameTime_GetLocalTime())
@@ -140,12 +122,10 @@ local function UpdateTimerText()
             0.2)
     end
 end
-
 local function ResetCombatTimer()
     combatElapsed = 0
     UpdateTimerText()
 end
-
 local function OpenTimeManager()
     if TimeManagerClockButton_OnClick and TimeManagerClockButton then
         TimeManagerClockButton_OnClick(TimeManagerClockButton)
@@ -153,7 +133,6 @@ local function OpenTimeManager()
         ToggleTimeManager()
     end
 end
-
 local function SpeakCountdown(number)
     local db = Toolbar.InitDB().quickBar
     if not db.countdownVoice
@@ -163,7 +142,6 @@ local function SpeakCountdown(number)
         or not C_VoiceChat.SpeakText then
         return
     end
-
     local voiceID = C_TTSSettings.GetVoiceOptionID(db.voiceType or 0)
     if not voiceID then return end
     pcall(
@@ -175,7 +153,6 @@ local function SpeakCountdown(number)
         true)
 end
 QuickBar.SpeakCountdown = SpeakCountdown
-
 local function ShowCountdownMenu(button)
     if not MenuUtil or not MenuUtil.CreateContextMenu then return end
     MenuUtil.CreateContextMenu(button, function(_, rootDescription)
@@ -188,7 +165,6 @@ local function ShowCountdownMenu(button)
         end
     end)
 end
-
 local function HandleButtonClick(key, mouseButton)
     if key == "leave" then
         LeaveGroup(mouseButton)
@@ -216,7 +192,6 @@ local function HandleButtonClick(key, mouseButton)
         end
     end
 end
-
 local function TimerTooltip(tooltip)
     tooltip:AddLine("本次登录：" .. FormatElapsed(
         GetServerTime() - loginStartedAt), 0.8, 0.8, 0.8)
@@ -225,7 +200,6 @@ local function TimerTooltip(tooltip)
             GetServerTime() - instanceStartedAt), 0.8, 0.8, 0.8)
     end
 end
-
 local function CreateButton(key)
     local button = Toolbar.CreateIconButton(QuickBar.frame, BUTTON_SIZE)
     button.key = key
@@ -234,7 +208,6 @@ local function CreateButton(key)
     button:SetScript("OnClick", function(_, mouseButton)
         HandleButtonClick(key, mouseButton)
     end)
-
     if key == "timer" then
         button.timerText = button:CreateFontString(nil, "OVERLAY")
         button.timerText:SetFont(
@@ -245,10 +218,8 @@ local function CreateButton(key)
     end
     return button
 end
-
 local function EnsureFrame()
     if QuickBar.frame then return true end
-
     local frame = Toolbar.CreateBarFrame(
         "GwPlusToolbarQuickBar",
         BAR_PADDING * 2 + #BUTTON_ORDER * BUTTON_SIZE
@@ -256,13 +227,10 @@ local function EnsureFrame()
         BUTTON_SIZE + BAR_PADDING * 2)
     QuickBar.frame = frame
     QuickBar.buttons = {}
-
     for _, key in ipairs(BUTTON_ORDER) do
         QuickBar.buttons[key] = CreateButton(key)
     end
-
     Toolbar.RegisterMover("quickBar", frame, "Group,Widgets")
-
     frame:RegisterEvent("PLAYER_ENTERING_WORLD")
     frame:RegisterEvent("GROUP_ROSTER_UPDATE")
     frame:RegisterEvent("PLAYER_REGEN_DISABLED")
@@ -282,7 +250,6 @@ local function EnsureFrame()
         end
         QuickBar.Refresh()
     end)
-
     frame:SetScript("OnUpdate", function(_, elapsed)
         if inCombat then combatElapsed = combatElapsed + elapsed end
         updateElapsed = updateElapsed + elapsed
@@ -293,7 +260,6 @@ local function EnsureFrame()
     end)
     return true
 end
-
 function QuickBar.StartVoiceWatcher()
     if not QuickBar.voiceWatcher then
         QuickBar.voiceWatcher = CreateFrame("Frame")
@@ -313,13 +279,11 @@ function QuickBar.StartVoiceWatcher()
         end
     end)
 end
-
 function QuickBar.Layout()
     if not EnsureFrame() then return end
     local db = Toolbar.InitDB().quickBar
     local previous
     local visibleCount = 0
-
     for _, key in ipairs(BUTTON_ORDER) do
         local button = QuickBar.buttons[key]
         button:ClearAllPoints()
@@ -335,24 +299,19 @@ function QuickBar.Layout()
             previous = button
         end
     end
-
     local width = BAR_PADDING * 2
         + math.max(1, visibleCount) * BUTTON_SIZE
         + math.max(0, visibleCount - 1) * BUTTON_GAP
     QuickBar.frame:SetSize(width, BUTTON_SIZE + BAR_PADDING * 2)
 end
-
 function QuickBar.Refresh()
     if not EnsureFrame() then return end
     local db = Toolbar.InitDB().quickBar
-
     QuickBar.frame:SetScale(db.scale)
     QuickBar.Layout()
     QuickBar.frame:SetShown(db.enabled)
     Toolbar.SetMoverEnabled("quickBar", db.enabled)
-
     SetCVar("timeMgrUseMilitaryTime", db.use24Hour and "1" or "0")
-
     local grouped = IsInGroup()
     local controller = grouped and IsGroupController()
     SetButtonEnabled(QuickBar.buttons.leave, grouped)
@@ -360,11 +319,9 @@ function QuickBar.Refresh()
     SetButtonEnabled(QuickBar.buttons.role, controller)
     SetButtonEnabled(QuickBar.buttons.ready, controller)
     SetButtonEnabled(QuickBar.buttons.countdown, controller)
-
     local canTeleport = IsAllowedToUserTeleport
         and IsAllowedToUserTeleport()
     SetButtonEnabled(QuickBar.buttons.teleport, canTeleport == true)
-
     QuickBar.buttons.convert.tooltip = IsInRaid()
         and "转换为小队" or "转换为团队"
     QuickBar.buttons.timer:SetBackdropColor(
@@ -372,25 +329,21 @@ function QuickBar.Refresh()
         db.hideTimerBackground and 0 or 0.85)
     UpdateTimerText()
 end
-
 function QuickBar.SetEnabled(value)
     Toolbar.InitDB().quickBar.enabled = value == true
     QuickBar.Refresh()
 end
-
 function QuickBar.SetScale(value)
     local db = Toolbar.InitDB().quickBar
     db.scale = tonumber(value) or 1
     QuickBar.Refresh()
 end
-
 function QuickBar.SetButtonShown(key, value)
     local db = Toolbar.InitDB().quickBar
     if db.buttons[key] == nil then return end
     db.buttons[key] = value == true
     QuickBar.Layout()
 end
-
 function QuickBar.SetTimerMode(value)
     if value ~= "COMBAT" and value ~= "CLOCK" and value ~= "DYNAMIC" then
         value = "COMBAT"
@@ -398,34 +351,27 @@ function QuickBar.SetTimerMode(value)
     Toolbar.InitDB().quickBar.timerMode = value
     UpdateTimerText()
 end
-
 function QuickBar.SetUse24Hour(value)
     Toolbar.InitDB().quickBar.use24Hour = value == true
     QuickBar.Refresh()
 end
-
 function QuickBar.SetHideTimerBackground(value)
     Toolbar.InitDB().quickBar.hideTimerBackground = value == true
     QuickBar.Refresh()
 end
-
 function QuickBar.SetCountdownSeconds(value)
     Toolbar.InitDB().quickBar.countdownSeconds =
         math.max(3, math.min(180, math.floor(tonumber(value) or 10)))
 end
-
 function QuickBar.SetCountdownVoice(value)
     Toolbar.InitDB().quickBar.countdownVoice = value == true
 end
-
 function QuickBar.SetVoiceType(value)
     Toolbar.InitDB().quickBar.voiceType = tonumber(value) or 0
 end
-
 function QuickBar.PreviewVoice()
     SpeakCountdown(5)
 end
-
 function QuickBar.Reset()
     local db = Toolbar.InitDB().quickBar
     local defaults = Toolbar.defaults.quickBar
@@ -436,7 +382,6 @@ function QuickBar.Reset()
     Toolbar.ResetMover("quickBar")
     QuickBar.Refresh()
 end
-
 local driver = CreateFrame("Frame")
 driver:RegisterEvent("PLAYER_LOGIN")
 driver:SetScript("OnEvent", function(self)

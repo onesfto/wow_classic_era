@@ -2,6 +2,7 @@ if GetLocale() ~= "koKR" then return end
 if not DBM_CORE_L then DBM_CORE_L = {} end
 
 local L = DBM_CORE_L
+L.AURA_FONT_RESET = "Invalid aura text font settings were detected and reset to defaults."
 
 local dateTable = date("*t")
 if dateTable.day and dateTable.month and dateTable.day == 1 and dateTable.month == 4 then
@@ -602,10 +603,10 @@ L.AUTO_INFO_FRAME_OPTION_TEXT2		= "전투 전반에 관한 사항을 정보 창�
 L.AUTO_INFO_FRAME_OPTION_TEXT3		= "$spell:%s|1을;를; 정보 창에 표시 (%%s의 제한 수치 이상인 경우)"
 L.AUTO_READY_CHECK_OPTION_TEXT		= "보스가 풀링되면 전투 준비 효과음 듣기 (보스를 대상으로 잡지 않아도 재생)"
 L.AUTO_SPEEDCLEAR_OPTION_TEXT		= "이 지역의 완료 신기록 타이머 표시"
-L.AUTO_PRIVATEAURA_OPTION_TEXT		= "이 전투에서 프라이빗 오라 $spell:%s에 DBM 경고 효과음을 재생합니다."--Generic (most common)
-L.AUTO_PRIVATEAURA_OPTION_TARGET_TEXT	= "나에게 $spell:%s|1이;가; 시전될 때 DBM 프라이빗 오라 경고 효과음을 재생합니다."
-L.AUTO_PRIVATEAURA_OPTION_GTFO_TEXT		= "$spell:%s1으로;로;부터 도망가야 할 때 DBM 프라이빗 오라 경고 효과음을 재생합니다."
-L.AUTO_PRIVATEAURA_OPTION_POST_TEXT		= "$spell:%s의 효과가 지속되는 동안 DBM 프라이빗 오라 경고 효과음을 재생합니다."
+L.AUTO_PRIVATEAURA_OPTION_TEXT		= "이 전투에서 $spell:%s 오라에 DBM 경고 효과음을 재생합니다."--Generic (most common)
+L.AUTO_PRIVATEAURA_OPTION_TARGET_TEXT	= "나에게 $spell:%s|1이;가; 시전될 때 DBM 오라 경고 효과음을 재생합니다."
+L.AUTO_PRIVATEAURA_OPTION_GTFO_TEXT		= "$spell:%s1으로;로;부터 도망가야 할 때 DBM 오라 경고 효과음을 재생합니다."
+L.AUTO_PRIVATEAURA_OPTION_POST_TEXT		= "$spell:%s의 효과가 지속되는 동안 DBM 오라 경고 효과음을 재생합니다."
 L.AUTO_CUSTOMTIMER_OPTION_TEXT			= "$spell:%s 타이머 보기"--Used for Midnight timeline timers (ie we have no context of what type of timer it is, just a generic timer)
 L.AUTO_CUSTOMALERT_OPTION_TEXT			= "$spell:%s|1이;가; 시전되려 할 때 경고 효과음 설정"--Used for Midnight custom alerts (ie we have no context of what type of alert it is, just a generic alert)
 
@@ -620,7 +621,7 @@ L.MOVE_SPECIAL_WARNING_BAR		= "특수 알림 이동"
 L.MOVE_SPECIAL_WARNING_TEXT		= "특수 알림"
 
 L.MOVE_PRIVATE_AURA_TEXT				= "<secret value>가 당신에게 <secret value> 주문을 시전합니다"
-L.MOVE_PRIVATE_AURA_DISABLED			= "미리보기는 설정에서 프라이빗 오라 프레임이 비활성화되서 사용할 수 없습니다."
+L.MOVE_PRIVATE_AURA_DISABLED			= "미리보기는 설정에서 오라 프레임이 비활성화되서 사용할 수 없습니다."
 
 L.HUD_INVALID_TYPE			= "올바르지 않은 HUD 형식이 정의되었습니다"
 L.HUD_INVALID_TARGET			= "HUD에 올바른 대상이 주어지지 않았습니다"

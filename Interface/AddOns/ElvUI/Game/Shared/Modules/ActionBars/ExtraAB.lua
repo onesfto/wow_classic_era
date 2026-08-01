@@ -2,7 +2,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local AB = E:GetModule('ActionBars')
 
 local _G = _G
-local next = next
+local pairs = pairs
 local tinsert = tinsert
 
 local CreateFrame = CreateFrame
@@ -127,7 +127,7 @@ end
 function AB:ExtraButtons_UpdateAlpha()
 	if not E.private.actionbar.enable then return end
 
-	for _, button in next, extraBtns do
+	for _, button in pairs(extraBtns) do
 		AB:ExtraButtons_BossAlpha(button)
 	end
 
@@ -220,7 +220,12 @@ function AB:ExtraButtons_SetupBoss()
 
 	ExtraActionBarFrame:ClearAllPoints()
 	ExtraActionBarFrame:SetAllPoints()
-	ExtraActionBarFrame.ignoreInLayout = true
+
+	if E.Retail then
+		ExtraActionBarFrame.ignoreInLayout = true
+	elseif _G.UIPARENT_MANAGED_FRAME_POSITIONS then
+		_G.UIPARENT_MANAGED_FRAME_POSITIONS.ExtraActionBarFrame = nil
+	end
 end
 
 function AB:ExtraButtons_SetupZone()
@@ -302,7 +307,7 @@ end
 function AB:UpdateExtraBindings()
 	_G.ExtraActionBarFrame.db = E.db.actionbar.extraActionButton
 
-	for _, button in next, extraBtns do
+	for _, button in pairs(extraBtns) do
 		button.HotKey:SetText(GetBindingKey(button.commandName))
 
 		AB:FixKeybindText(button)

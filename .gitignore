@@ -90,3 +90,7 @@ Thumbs.db
 
 # 技能学习提示
 /Interface/AddOns/WhatsTraining/
+
+# Claude Code 临时文件
+.superpowers/
+.claude/

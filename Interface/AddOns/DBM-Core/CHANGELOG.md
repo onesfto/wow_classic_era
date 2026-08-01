@@ -1,35 +1,37 @@
 # DBM - Core
 
-## [12.0.54](https://github.com/DeadlyBossMods/DeadlyBossMods/tree/12.0.54) (2026-06-26)
-[Full Changelog](https://github.com/DeadlyBossMods/DeadlyBossMods/compare/12.0.53...12.0.54) [Previous Releases](https://github.com/DeadlyBossMods/DeadlyBossMods/releases)
+## [12.1.0](https://github.com/DeadlyBossMods/DeadlyBossMods/tree/12.1.0) (2026-07-25)
+[Full Changelog](https://github.com/DeadlyBossMods/DeadlyBossMods/compare/12.0.55...12.1.0) [Previous Releases](https://github.com/DeadlyBossMods/DeadlyBossMods/releases)
 
-- Update RU locale (#2122)  
-- Update koKR (#2120)  
-    Co-authored-by: Adam <MysticalOS@users.noreply.github.com>  
-    Co-authored-by: anon1231823 <67269448+anon1231823@users.noreply.github.com>  
 - prep new tag  
-- Push finished The Coiled Altar  
-- Midnight season 2 dungeons support.  
-- Add new mythic ability to twin fangs  
-- Fully upgrade Nekzali to hardcoded module  
-- Fix guild combat messages reporting mythic flex as normal  
-- Add guard against leaving fight mid encounter that would result in blizzard sending empty boss HP data since you aren't present to recieve it (but still getting an ENCOUNTER\_END event)  
-- And add Twin Fangs as well  
-- Add Sszorak as well  
-- Add Vashnik to completed mods  
-- Add Venomous Abyss Raid module  
-     - Thursdays test bosses already completed: Nek'zali the Soulcoiler, Entombed Sentinels, The Lost Explorers  
-     - Fridays bosses still WIP and will be completed by Wed night.  
-- Add preliminary Nymrissa Wavecaller module  
-- also throw some default renames at rotmire while at it  
-- Fix bug  
-- Fix missed stuff  
-- begin work to split out lair bosses to own category since we'll likely get two per tier. one launching as a "world boss" and one in a .7 patch cycle. we'll deprecate out world bosses in name on retail by last titan.  
-- adjust zone order now that sporefall is out.  
-- somehow got left out of commit  
-- Large data update for midnight difficulties and zones  
-    Fix bug causing brez timer not showing in sporefall raid  
-- Add Sporefall to difficulties table.  
-- Fix/autohide infoframe (#2118)  
+- Fix emote frame errors on 12.1 ptr. added guards to it for future proofing as well in case other frames change  
+- enable kite as valid media  
+- Fix auras aborting early on 12.1  
+- More ptr 7 aura fixes  
+- Update RU locale (#2136)  
+- Translations updates (#2137)  
+- Fastest Clear GUI (#2140)  
+- Remove SoD raids from Era on the Raid list (#2139)  
+- Frost barrage was scrapped and replaced with chilling frost on Nymrissa  
+- aura container migrations  
+- Allow an aura to register multiple sound types at once (ie any combination of added, applications increased, removed)  
+- Improve luaLS diagnostics some  
+- rename and update sound apis for ptr 6  
+- Impliment more unit idenity caching to prep for 12.1 ptr 7  
+- fix auras errors on ptr  
+- make outline default font flags for auras  
+- made ALL demo/preview/move modes collapse GUI automatically.  
+    fix pixel height of 12.1 auras  
+- Patch 78146 (#2134)  
+    Co-authored-by: BlueNightSky <afan1128@hotmail.com>  
     Co-authored-by: Adam <MysticalOS@users.noreply.github.com>  
-- add taunt swap warning to rotmire  
+- Update localization.tw.lua (Core) (#2132)  
+- Update localization.tw.lua (GUI) (#2131)  
+- Translations update auras (#2129)  
+- Patch 147639 (#2133)  
+    Co-authored-by: BlueNightSky <afan1128@hotmail.com>  
+- Update Private Auras anchor to Auras Anchor with 12.1 support (#2135)  
+    - now supports all auras not just magic private auras  
+    - now has dispel border for dispellable auras  
+    - now has more control knobs like font size  
+- bump alpha  

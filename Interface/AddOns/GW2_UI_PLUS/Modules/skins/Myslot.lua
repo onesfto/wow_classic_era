@@ -1,38 +1,30 @@
--- Myslot 导入/导出主窗口轻量皮肤。
-
 local _, addonTable = ...
 local Skin = addonTable.Skin
 if not Skin then return end
 local GW = _G.GW2_ADDON
-
 local STATUS_BAR_TEXTURE =
     "Interface/AddOns/GW2_UI/textures/uistuff/gwstatusbar.png"
 local EXPAND_ARROW_TEXTURE = "Interface\\ChatFrame\\ChatFrameExpandArrow"
 local dropDownProxies = {}
 local dropDownTextHooked
-
 local function Rounded(value)
     return value and math.floor(value + 0.5)
 end
-
 local function GetSize(frame)
     if not frame or not frame.GetSize then return end
     local ok, width, height = pcall(frame.GetSize, frame)
     if ok then return width, height end
 end
-
 local function GetChildren(frame)
     if not frame or not frame.GetChildren then return {} end
     return { frame:GetChildren() }
 end
-
 local function ApplyDefaultFont(object)
     if not object or not object.GetFont or not object.SetFont then return end
     local _, size, flags = object:GetFont()
     if not size then return end
     object:SetFont(UNIT_NAME_FONT, size, flags)
 end
-
 local function ApplyFonts(frame)
     if not frame then return end
     ApplyDefaultFont(frame)
@@ -45,7 +37,6 @@ local function ApplyFonts(frame)
         ApplyFonts(child)
     end
 end
-
 local function FindDirectChild(frame, objectType)
     for _, child in ipairs(GetChildren(frame)) do
         if child.GetObjectType and child:GetObjectType() == objectType then
@@ -53,13 +44,11 @@ local function FindDirectChild(frame, objectType)
         end
     end
 end
-
 local function IsDropDown(frame)
     return frame and frame.GetObjectType
         and frame:GetObjectType() == "Frame"
         and frame.Button and (frame.Left or frame.Middle or frame.Right)
 end
-
 local function GetDropDownText(dropDown)
     if dropDown and dropDown.Text and dropDown.Text.GetText then
         return dropDown.Text:GetText()
@@ -68,7 +57,6 @@ local function GetDropDownText(dropDown)
         return _G.UIDropDownMenu_GetText(dropDown)
     end
 end
-
 local function RegisterDropDownProxy(legacyDropDown, dropDown)
     dropDownProxies[legacyDropDown] = dropDown
     if dropDownTextHooked
@@ -76,17 +64,14 @@ local function RegisterDropDownProxy(legacyDropDown, dropDown)
         or type(_G.UIDropDownMenu_SetText) ~= "function" then
         return
     end
-
     dropDownTextHooked = true
     _G.hooksecurefunc("UIDropDownMenu_SetText", function(source, text)
         local proxy = dropDownProxies[source]
         if proxy then proxy:SetText(text or "") end
     end)
 end
-
 local function CreateDropDownProxy(frame, legacyDropDown)
     if legacyDropDown.__gwMyslotDropDownProxy then return end
-
     local legacyWidth = legacyDropDown.GetWidth
         and legacyDropDown:GetWidth() or 240
     local width = math.max(1, legacyWidth - 40)
@@ -114,7 +99,6 @@ local function CreateDropDownProxy(frame, legacyDropDown)
         self:SetText(GetDropDownText(legacyDropDown) or "")
     end)
     RegisterDropDownProxy(legacyDropDown, dropDown)
-
     legacyDropDown:SetAlpha(0)
     legacyDropDown:EnableMouse(false)
     if legacyDropDown.Button then
@@ -122,7 +106,6 @@ local function CreateDropDownProxy(frame, legacyDropDown)
     end
     legacyDropDown.__gwMyslotDropDownProxy = dropDown
 end
-
 local function PromoteExpandArrow(button)
     if not button or not button.GetRegions then return end
     for _, region in ipairs({ button:GetRegions() }) do
@@ -132,7 +115,6 @@ local function PromoteExpandArrow(button)
         end
     end
 end
-
 local function SkinTextArea(frame)
     local scrollFrame = FindDirectChild(frame, "ScrollFrame")
     if not scrollFrame then return false end
@@ -141,7 +123,6 @@ local function SkinTextArea(frame)
     if editBox and editBox.GetFont then
         _, editSize, editFlags = editBox:GetFont()
     end
-
     Skin.SkinFrame(frame)
     if scrollFrame.GwSkinScrollFrame then
         scrollFrame:GwSkinScrollFrame()
@@ -153,11 +134,9 @@ local function SkinTextArea(frame)
     end
     return true
 end
-
 local function SkinMainFrame(frame)
     if not frame or frame.__gwMyslotSkinned then return end
     frame.__gwMyslotSkinned = true
-
     Skin.SkinFrame(frame)
     for _, child in ipairs(GetChildren(frame)) do
         local objectType = child.GetObjectType and child:GetObjectType()
@@ -172,11 +151,9 @@ local function SkinMainFrame(frame)
     end
     ApplyFonts(frame)
 end
-
 local function FindStatusBar(frame)
     return FindDirectChild(frame, "StatusBar")
 end
-
 local function IsProgressFrame(frame)
     if not frame or not frame.GetFrameStrata then
         return false
@@ -187,7 +164,6 @@ local function IsProgressFrame(frame)
         and frame:GetFrameStrata() == "FULLSCREEN_DIALOG"
         and FindStatusBar(frame) ~= nil
 end
-
 local function SkinProgressFrames()
     for _, frame in ipairs(GetChildren(_G.UIParent)) do
         if IsProgressFrame(frame) and not frame.__gwMyslotProgressSkinned then
@@ -199,7 +175,6 @@ local function SkinProgressFrames()
         end
     end
 end
-
 local function CountDirectButtons(frame)
     local count = 0
     for _, child in ipairs(GetChildren(frame)) do
@@ -209,28 +184,23 @@ local function CountDirectButtons(frame)
     end
     return count
 end
-
 local function IsMainFrame(frame)
     local width, height = GetSize(frame)
     return Rounded(width) == 650
         and Rounded(height) == 600
         and CountDirectButtons(frame) >= 4
 end
-
 local function FindMainFrame()
     local lib = _G.LibStub and _G.LibStub.GetLibrary
         and _G.LibStub:GetLibrary("Myslot-5.0", true)
     if lib and lib.MainFrame then return lib.MainFrame end
-
     for _, frame in ipairs(GetChildren(_G.UIParent)) do
         if IsMainFrame(frame) then return frame end
     end
 end
-
 Skin.Register("Myslot", function()
     local frame = FindMainFrame()
     if not frame then return end
-
     if not frame.__gwMyslotShowHooked then
         frame.__gwMyslotShowHooked = true
         frame:HookScript("OnShow", function(self)
@@ -238,7 +208,6 @@ Skin.Register("Myslot", function()
             SkinProgressFrames()
         end)
     end
-
     SkinProgressFrames()
     if frame.IsShown and frame:IsShown() then
         SkinMainFrame(frame)

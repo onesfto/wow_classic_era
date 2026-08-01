@@ -2,15 +2,18 @@
 BetterBagsDB = {
 ["profileKeys"] = {
 ["黑龙守护者 - 哈霍兰"] = "Default",
-["绿龙守护者 - 哈霍兰"] = "Default",
-["灞波儿奔壹世 - 硬汉"] = "Default",
-["哈霍兰大格格 - 哈霍兰"] = "Default",
-["德加和尚 - 哈霍兰"] = "Default",
 ["法德迦 - 哈霍兰"] = "Default",
+["德加和尚 - 哈霍兰"] = "Default",
+["哈霍兰大格格 - 哈霍兰"] = "Default",
+["灞波儿奔壹世 - 硬汉"] = "Default",
+["绿龙守护者 - 哈霍兰"] = "Default",
 },
 ["profiles"] = {
 ["Default"] = {
-["__profileSystemMigrated"] = true,
+["groupCounter"] = {
+1,
+[0] = 3,
+},
 ["groups"] = {
 {
 {
@@ -18,8 +21,8 @@ BetterBagsDB = {
 ["name"] = "银行",
 ["id"] = 1,
 ["kind"] = 1,
-["isDefault"] = true,
 ["order"] = 1,
+["isDefault"] = true,
 },
 },
 [0] = {
@@ -264,14 +267,14 @@ true,
 },
 ["name"] = "T3",
 },
-["装备-暗抗"] = {
+["B-皮"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "装备-暗抗",
+["name"] = "B-皮",
 },
 ["装备-特殊"] = {
 ["enabled"] = {
@@ -282,15 +285,14 @@ true,
 },
 ["name"] = "装备-特殊",
 },
-["武器"] = {
+["B-草"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "武器",
-["dynamic"] = true,
+["name"] = "B-草",
 },
 ["B-布"] = {
 ["enabled"] = {
@@ -301,32 +303,32 @@ true,
 },
 ["name"] = "B-布",
 },
-["A-红蓝"] = {
+["装备-冰抗"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-红蓝",
+["name"] = "装备-冰抗",
 },
-["首饰-防御"] = {
+["A-AP"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "首饰-防御",
+["name"] = "A-AP",
 },
-["消耗品"] = {
+["任务"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "消耗品",
+["name"] = "任务",
 ["dynamic"] = true,
 },
 ["A-属性"] = {
@@ -347,14 +349,14 @@ true,
 },
 ["name"] = "首饰-治疗",
 },
-["首饰"] = {
+["武器-单手"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "首饰",
+["name"] = "武器-单手",
 },
 ["T2.5"] = {
 ["enabled"] = {
@@ -374,25 +376,6 @@ true,
 },
 ["name"] = "A-合剂",
 },
-["A-非专业"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "A-非专业",
-},
-["最近物品"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "最近物品",
-["dynamic"] = true,
-},
 ["容器"] = {
 ["enabled"] = {
 true,
@@ -401,6 +384,16 @@ true,
 ["itemList"] = {
 },
 ["name"] = "容器",
+["dynamic"] = true,
+},
+["商品"] = {
+["enabled"] = {
+true,
+[0] = true,
+},
+["itemList"] = {
+},
+["name"] = "商品",
 ["dynamic"] = true,
 },
 ["A-AD"] = {
@@ -412,15 +405,6 @@ true,
 },
 ["name"] = "A-AD",
 },
-["装备-防御"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "装备-防御",
-},
 ["垃圾"] = {
 ["enabled"] = {
 true,
@@ -431,6 +415,24 @@ true,
 ["name"] = "垃圾",
 ["dynamic"] = true,
 },
+["装备-防御"] = {
+["enabled"] = {
+true,
+[0] = true,
+},
+["itemList"] = {
+},
+["name"] = "装备-防御",
+},
+["A-非专业"] = {
+["enabled"] = {
+true,
+[0] = true,
+},
+["itemList"] = {
+},
+["name"] = "A-非专业",
+},
 ["材料"] = {
 ["enabled"] = {
 true,
@@ -440,14 +442,14 @@ true,
 },
 ["name"] = "材料",
 },
-["商品"] = {
+["最近物品"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "商品",
+["name"] = "最近物品",
 ["dynamic"] = true,
 },
 ["装备-披风"] = {
@@ -468,14 +470,14 @@ true,
 },
 ["name"] = "坐骑宠物玩具",
 },
-["武器-单手"] = {
+["首饰"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "武器-单手",
+["name"] = "首饰",
 },
 ["B-矿"] = {
 ["enabled"] = {
@@ -486,51 +488,52 @@ true,
 },
 ["name"] = "B-矿",
 },
-["任务"] = {
+["消耗品"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "任务",
+["name"] = "消耗品",
 ["dynamic"] = true,
 },
-["A-AP"] = {
+["首饰-防御"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-AP",
+["name"] = "首饰-防御",
 },
-["装备-冰抗"] = {
+["A-红蓝"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "装备-冰抗",
+["name"] = "A-红蓝",
 },
-["B-草"] = {
+["武器"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "B-草",
+["name"] = "武器",
+["dynamic"] = true,
 },
-["B-皮"] = {
+["装备-暗抗"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "B-皮",
+["name"] = "装备-暗抗",
 },
 },
 ["categoryFilters"] = {
@@ -543,10 +546,10 @@ true,
 },
 ["itemLevelColor"] = {
 ["maxItemLevelByCharacter"] = {
-["法德迦-哈霍兰"] = 92,
+["哈霍兰大格格-哈霍兰"] = 92,
 ["绿龙守护者-哈霍兰"] = 6,
 ["黑龙守护者-哈霍兰"] = 56,
-["哈霍兰大格格-哈霍兰"] = 92,
+["法德迦-哈霍兰"] = 92,
 ["灞波儿奔壹世-硬汉"] = 13,
 ["德加和尚-哈霍兰"] = 92,
 },
@@ -569,20 +572,7 @@ nil,
 },
 },
 ["__bankDefaultTabsFixed"] = true,
-["positions"] = {
-{
-["y"] = -85.0859375,
-["x"] = 284.5997314453125,
-["point"] = "TOPLEFT",
-["scale"] = 1,
-},
-[0] = {
-["y"] = 167.4267883300781,
-["x"] = -227.873291015625,
-["point"] = "RIGHT",
-["scale"] = 1,
-},
-},
+["theme"] = "SimpleDark",
 ["firstTimeMenu"] = false,
 ["__groupsScopedByKind"] = true,
 ["categoryOptions"] = {
@@ -655,25 +645,25 @@ nil,
 ["T3"] = {
 ["shown"] = true,
 },
-["装备-暗抗"] = {
+["B-皮"] = {
 ["shown"] = true,
 },
 ["装备-特殊"] = {
 ["shown"] = true,
 },
-["武器"] = {
+["B-草"] = {
 ["shown"] = true,
 },
 ["B-布"] = {
 ["shown"] = true,
 },
-["装备-冰抗"] = {
+["A-红蓝"] = {
 ["shown"] = true,
 },
-["首饰-防御"] = {
+["武器-单手"] = {
 ["shown"] = true,
 },
-["消耗品"] = {
+["A-AP"] = {
 ["shown"] = true,
 },
 ["A-属性"] = {
@@ -682,7 +672,7 @@ nil,
 ["首饰-治疗"] = {
 ["shown"] = true,
 },
-["首饰"] = {
+["任务"] = {
 ["shown"] = true,
 },
 ["T2.5"] = {
@@ -691,28 +681,28 @@ nil,
 ["首饰-法系"] = {
 ["shown"] = true,
 },
-["A-非专业"] = {
-["shown"] = true,
-},
-["最近物品"] = {
-["shown"] = true,
-},
 ["容器"] = {
+["shown"] = true,
+},
+["商品"] = {
 ["shown"] = true,
 },
 ["A-AD"] = {
 ["shown"] = true,
 },
+["垃圾"] = {
+["shown"] = true,
+},
 ["装备-防御"] = {
 ["shown"] = true,
 },
-["垃圾"] = {
+["A-非专业"] = {
 ["shown"] = true,
 },
 ["材料"] = {
 ["shown"] = true,
 },
-["商品"] = {
+["最近物品"] = {
 ["shown"] = true,
 },
 ["装备-披风"] = {
@@ -721,25 +711,25 @@ nil,
 ["坐骑宠物玩具"] = {
 ["shown"] = true,
 },
-["任务"] = {
+["首饰"] = {
 ["shown"] = true,
 },
 ["B-矿"] = {
 ["shown"] = true,
 },
-["A-AP"] = {
+["消耗品"] = {
 ["shown"] = true,
 },
-["武器-单手"] = {
+["首饰-防御"] = {
 ["shown"] = true,
 },
-["A-红蓝"] = {
+["装备-冰抗"] = {
 ["shown"] = true,
 },
-["B-草"] = {
+["武器"] = {
 ["shown"] = true,
 },
-["B-皮"] = {
+["装备-暗抗"] = {
 ["shown"] = true,
 },
 },
@@ -1008,14 +998,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["首饰-法系"] = {
+["B-草"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "首饰-法系",
+["name"] = "B-草",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1030,25 +1020,25 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["装备-冰抗"] = {
+["A-红蓝"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "装备-冰抗",
+["name"] = "A-红蓝",
 ["save"] = true,
 ["note"] = "",
 },
-["装备-火抗"] = {
+["装备-暗抗"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "装备-火抗",
+["name"] = "装备-暗抗",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1063,14 +1053,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["装备-法系"] = {
+["B-皮"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "装备-法系",
+["name"] = "B-皮",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1085,36 +1075,36 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-AD"] = {
+["战场"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-AD",
+["name"] = "战场",
 ["save"] = true,
 ["note"] = "",
 },
-["A-治疗"] = {
+["坐骑宠物玩具"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-治疗",
+["name"] = "坐骑宠物玩具",
 ["save"] = true,
 ["note"] = "",
 },
-["B-鱼"] = {
+["材料"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "B-鱼",
+["name"] = "材料",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1129,25 +1119,25 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-非专业"] = {
+["A-AD"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-非专业",
+["name"] = "A-AD",
 ["save"] = true,
 ["note"] = "",
 },
-["材料"] = {
+["B-鱼"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "材料",
+["name"] = "B-鱼",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1173,25 +1163,25 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["坐骑宠物玩具"] = {
+["A-治疗"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "坐骑宠物玩具",
+["name"] = "A-治疗",
 ["save"] = true,
 ["note"] = "",
 },
-["战场"] = {
+["A-非专业"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "战场",
+["name"] = "A-非专业",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1206,47 +1196,47 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["B-皮"] = {
+["装备-法系"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "B-皮",
+["name"] = "装备-法系",
 ["save"] = true,
 ["note"] = "",
 },
-["装备-暗抗"] = {
+["装备-火抗"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "装备-暗抗",
+["name"] = "装备-火抗",
 ["save"] = true,
 ["note"] = "",
 },
-["A-红蓝"] = {
+["装备-冰抗"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-红蓝",
+["name"] = "装备-冰抗",
 ["save"] = true,
 ["note"] = "",
 },
-["B-草"] = {
+["首饰-法系"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "B-草",
+["name"] = "首饰-法系",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1262,11 +1252,21 @@ true,
 ["note"] = "",
 },
 },
-["groupCounter"] = {
-1,
-[0] = 3,
+["__profileSystemMigrated"] = true,
+["positions"] = {
+{
+["y"] = -85.0859375,
+["x"] = 284.5997314453125,
+["point"] = "TOPLEFT",
+["scale"] = 1,
 },
-["theme"] = "SimpleDark",
+[0] = {
+["y"] = 167.4267883300781,
+["x"] = -227.873291015625,
+["point"] = "RIGHT",
+["scale"] = 1,
+},
+},
 ["stacking"] = {
 {
 ["mergeUnstackable"] = false,

@@ -1,32 +1,18 @@
--- GW2_UI_PLUS 社交窗口 —— ignoreList.lua
---
--- 屏蔽列表。经典旧世原生按钮不够，这里补到 30 个并重排滚动区。
---
--- 原先直接改在 GW2_UI/Games/Shared/Social/ignoreList.lua 里，现在整体搬进 PLUS。
--- 下面的 function GW.XXX 是写进 GW2_ADDON 这张共享表的，等于覆盖掉上游的同名函数。
-
 local GW = _G.GW2_ADDON
 if not GW then return end
-
 local CLASSIC_IGNORES_TO_DISPLAY = 30
-
 local function AlignClassicIgnoreScrollBar()
     if not GW.Classic or not FriendsFrameIgnoreScrollFrame or not FriendsFrameIgnoreScrollFrameScrollBar then return end
-
     FriendsFrameIgnoreScrollFrameScrollBar:ClearAllPoints()
     FriendsFrameIgnoreScrollFrameScrollBar:SetWidth(12)
     FriendsFrameIgnoreScrollFrameScrollBar:SetPoint("TOPLEFT", FriendsFrameIgnoreScrollFrame, "TOPRIGHT", 3, -15)
     FriendsFrameIgnoreScrollFrameScrollBar:SetPoint("BOTTOMLEFT", FriendsFrameIgnoreScrollFrame, "BOTTOMRIGHT", 3, 15)
 end
-
 local function CreateClassicIgnoreButtons()
     if not GW.Classic or not FriendsFrameIgnoreScrollFrame then return end
-
     IGNORES_TO_DISPLAY = CLASSIC_IGNORES_TO_DISPLAY
-
     local firstButton = FriendsFrameIgnoreButton1
     if not firstButton then return end
-
     local parent = firstButton:GetParent()
     for i = 1, CLASSIC_IGNORES_TO_DISPLAY do
         local button = _G["FriendsFrameIgnoreButton" .. i]
@@ -34,7 +20,6 @@ local function CreateClassicIgnoreButtons()
             button = CreateFrame("Button", "FriendsFrameIgnoreButton" .. i, parent, "FriendsFrameIgnoreButtonTemplate")
             button:SetID(i)
         end
-
         button:ClearAllPoints()
         if i == 1 then
             button:SetPoint("TOPLEFT", FriendsFrameIgnoreScrollFrame, "TOPLEFT", 0, 0)
@@ -49,7 +34,6 @@ local function CreateClassicIgnoreButtons()
         end
     end
 end
-
 function GW.SkinIgnoreList()
     local IgnoreWindow = FriendsFrame.IgnoreListWindow
     if IgnoreWindow then
@@ -63,12 +47,10 @@ function GW.SkinIgnoreList()
             IgnoreWindow.CloseButton:GwSkinButton(true)
         end
     end
-
     if GW.TBC or GW.Wrath or GW.Classic then
         if IgnoreListFrameTop then IgnoreListFrameTop:Hide() end
         if IgnoreListFrameMiddle then IgnoreListFrameMiddle:Hide() end
         if IgnoreListFrameBottom then IgnoreListFrameBottom:Hide() end
-
         if FriendsFrameIgnorePlayerButton then
             FriendsFrameIgnorePlayerButton:GwSkinButton(false, true)
             if GW.Classic then

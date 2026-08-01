@@ -1,35 +1,23 @@
--- GW2_UI_PLUS 频道按钮条
--- 独立实现：自带 SavedVariables，不读写 !Pig 的任何数据，可与 !Pig 并存。
--- 视觉直接套 GW2_UI 风格，不提供样式切换。
-
 local _, addonTable = ...
-
 local ChatBar = {}
 addonTable.ChatBar = ChatBar
-_G.GW2Plus_ChatBar = ChatBar -- 方便调试与设置面板访问
-
+_G.GW2Plus_ChatBar = ChatBar
 local GW = _G.GW2_ADDON
 local MEDIA = "Interface/AddOns/GW2_UI/textures/emoji/"
 local BUTTON_SIZE = 25
 local IsLoaded = (_G.C_AddOns and _G.C_AddOns.IsAddOnLoaded) or _G.IsAddOnLoaded
-
---------------------------------------------------------------------------------
--- 一、默认配置
---------------------------------------------------------------------------------
-
 local defaults = {
     enable = true,
-    hidden = {},        -- [按钮 key] = true 表示隐藏
-    anchor = 1,         -- 1 = 聊天栏上方，2 = 聊天栏下方
+    hidden = {},
+    anchor = 1,
     offsetX = -26,
     offsetY = 10,
     scale = 1.0,
-    fadeOnLeave = false, -- 鼠标离开渐隐
-    autoHide = true,     -- 动态显隐：不在队伍/团队/战场时隐藏对应按钮
-    banWindow = nil,     -- 频道屏蔽控制窗口名，nil 表示第一个聊天窗口
+    fadeOnLeave = false,
+    autoHide = true,
+    banWindow = nil,
 }
-ChatBar.defaults = defaults -- 暴露给设置面板做单一数据源（默认值/重置都引用它）
-
+ChatBar.defaults = defaults
 local function InitDB()
     GW2_UI_PLUS_ChatBarSV = GW2_UI_PLUS_ChatBarSV or {}
     local db = GW2_UI_PLUS_ChatBarSV
@@ -41,13 +29,6 @@ local function InitDB()
     return db
 end
 ChatBar.InitDB = InitDB
-
---------------------------------------------------------------------------------
--- 二、表情数据
---------------------------------------------------------------------------------
--- 直接用 GW2_UI 的表情资源与表情码。点击插入 :name: 后由 GW2_UI 的聊天模块
--- 渲染成图标（需要 GW2_UI 设置里的「聊天表情」开着）。
-
 local EmojiData = {
     {":smile:", MEDIA .. "smile.png"},           {":grin:", MEDIA .. "grin.png"},
     {":joy:", MEDIA .. "joy.png"},               {":wink:", MEDIA .. "wink.png"},
@@ -66,22 +47,6 @@ local EmojiData = {
     {":poop:", MEDIA .. "poop.png"},
 }
 ChatBar.EmojiData = EmojiData
-
---------------------------------------------------------------------------------
--- 三、按钮定义
---------------------------------------------------------------------------------
--- kind      = "chat"    内置聊天类型，左键用斜杠命令切换输入框
---             "channel" 编号频道，左键需要先确保已加入
---             "tool"    功能按钮
--- cmd       左键斜杠命令
--- rightCmd  右键斜杠命令；设了它右键就是发言，不再是屏蔽
--- noRight   右键无屏蔽行为（若设了 onRight 则右键执行 onRight）
--- onRight   右键自定义回调（优先级最高，chat 类按钮生效）
--- rightTip  tooltip 中对右键动作的说明文字（配合 onRight 使用）
--- msgGroup  右键屏蔽/取消屏蔽时要操作的消息组，缺省用 key
--- visible   动态显隐判定，返回 false 时该按钮让位
--- addon     依赖的插件，未安装则整个按钮不创建
-
 local BUTTONS = {
     {key = "SAY",   text = "说", kind = "chat", cmd = "s",  color = {1, 1, 1},           noRight = true,
         onRight = function() ReloadUI() end, rightTip = "重载界面"},
@@ -92,19 +57,15 @@ local BUTTONS = {
         visible = function() return IsInGroup() end},
     {key = "RAID",  text = "团", kind = "chat", cmd = "ra", color = {1, 0.498, 0},       rightCmd = "rw",
         visible = function() return IsInRaid() end},
-    -- 战场频道：Classic Era 用 /bg。右键发战场通知，命令同 /rw
     {key = "INSTANCE_CHAT", text = "战", kind = "chat", cmd = "bg", color = {1, 0.498, 0}, rightCmd = "rw",
         visible = function() return IsInRaid(LE_PARTY_CATEGORY_INSTANCE or 2) end},
-
     {key = "GENERAL",        text = "综", kind = "channel", color = {0.888, 0.668, 0.668}},
     {key = "TRADE",          text = "交", kind = "channel", color = {0.888, 0.668, 0.668}},
     {key = "LOOK_FOR_GROUP", text = "组", kind = "channel", color = {0.888, 0.668, 0.668}},
-    -- 下面两个不是暴雪的内置频道，频道名写死；GetChannelIndex 会自动兼容 PIG1..PIG5 这类后缀
     {key = "PIG",            text = "P", kind = "channel", color = {0.888, 0.668, 0.668},
         channelName = "PIG"},
     {key = "BIGFOOTWORLD",   text = "世", kind = "channel", color = {0.888, 0.668, 0.668},
         channelName = "大脚世界频道"},
-
     {key = "EMOJI", text = "表", kind = "tool", color = {1, 0.82, 0},
         tip = "点击展开表情面板"},
     {key = "ROLL",  text = "骰", kind = "tool", color = {1, 0.82, 0},
@@ -129,7 +90,6 @@ local BUTTONS = {
                 ShowMacroFrame()
             end
         end},
-
     {key = "DBM", text = "距", kind = "tool", color = {0.6, 0.9, 1}, addon = "DBM-Core",
         tip = "DBM 距离检测",
         onClick = function()
@@ -163,18 +123,10 @@ local BUTTONS = {
         end},
 }
 ChatBar.BUTTONS = BUTTONS
-
---------------------------------------------------------------------------------
--- 四、频道辅助
---------------------------------------------------------------------------------
-
 function ChatBar.Print(msg)
     DEFAULT_CHAT_FRAME:AddMessage("|cffFFaa00[频道按钮]|r " .. msg)
 end
-
--- 编号频道支持 名称/名称1..5 的变体（部分服务器会拆分世界频道）
 local CHANNEL_SUFFIX_MAX = 5
-
 local function GetChannelIndex(name)
     if not name then return 0 end
     local function find(target)
@@ -192,8 +144,6 @@ local function GetChannelIndex(name)
     end
     return 0
 end
-
--- 屏蔽控制作用于哪个聊天窗口
 local function GetBanChatFrame()
     local db = GW2_UI_PLUS_ChatBarSV
     if db and db.banWindow then
@@ -207,8 +157,6 @@ local function GetBanChatFrame()
     return ChatFrame1, 1
 end
 ChatBar.GetBanChatFrame = GetBanChatFrame
-
--- 列出所有聊天窗口名，供设置面板下拉使用
 function ChatBar.GetChatWindowList()
     local list = {}
     for i = 1, NUM_CHAT_WINDOWS do
@@ -219,16 +167,12 @@ function ChatBar.GetChatWindowList()
     end
     return list
 end
-
 local function AddChannelToFrame(frame, channel)
     if frame.AddChannel then frame:AddChannel(channel) else ChatFrame_AddChannel(frame, channel) end
 end
-
 local function RemoveChannelFromFrame(frame, channel)
     if frame.RemoveChannel then frame:RemoveChannel(channel) else ChatFrame_RemoveChannel(frame, channel) end
 end
-
--- 内置聊天类型当前是否显示在屏蔽控制窗口里
 local function IsMessageShown(msgType)
     local _, index = GetBanChatFrame()
     for _, v in ipairs({GetChatWindowMessages(index)}) do
@@ -236,8 +180,6 @@ local function IsMessageShown(msgType)
     end
     return false
 end
-
--- 编号频道当前是否显示在屏蔽控制窗口里
 local function IsChannelShown(channelName)
     local _, index = GetBanChatFrame()
     local channels = {GetChatWindowChannels(index)}
@@ -246,8 +188,6 @@ local function IsChannelShown(channelName)
     end
     return false
 end
-
--- 把文本塞进输入框，前面挂上斜杠命令
 local function PrefixEditBox(prefix)
     local editBox = ChatEdit_ChooseBoxForSend()
     local text = editBox:GetText()
@@ -256,21 +196,13 @@ local function PrefixEditBox(prefix)
     end
     editBox:SetText(prefix .. " " .. text)
 end
-
---------------------------------------------------------------------------------
--- 五、按钮外观（GW2 风格）
---------------------------------------------------------------------------------
-
 local function SkinButton(button)
-    -- 底色兜底：GwCreateBackdrop 只画边框，没有它按钮会是全透明的
     button.bg = button:CreateTexture(nil, "BACKGROUND")
     button.bg:SetAllPoints()
     button.bg:SetColorTexture(0, 0, 0, 0.55)
-
     if GW and button.GwCreateBackdrop then
         button:GwCreateBackdrop(GW.BackdropTemplates and GW.BackdropTemplates.Default)
     end
-
     button.hover = button:CreateTexture(nil, "ARTWORK")
     button.hover:SetAllPoints()
     button.hover:SetColorTexture(1, 1, 1, 0.12)
@@ -278,7 +210,6 @@ local function SkinButton(button)
     button:HookScript("OnEnter", function(self) self.hover:Show() end)
     button:HookScript("OnLeave", function(self) self.hover:Hide() end)
 end
-
 local function SkinFont(fs)
     if GW and fs.GwSetFontTemplate then
         fs:GwSetFontTemplate(UNIT_NAME_FONT, GW.Enum.TextSizeType.Normal, "OUTLINE")
@@ -287,13 +218,7 @@ local function SkinFont(fs)
         fs:SetFont(UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
     end
 end
-
---------------------------------------------------------------------------------
--- 六、表情面板
---------------------------------------------------------------------------------
-
 local EMOJI_PER_ROW = 10
-
 local function BuildEmojiPanel(button)
     local rows = math.ceil(#EmojiData / EMOJI_PER_ROW)
     local panel = CreateFrame("Frame", nil, button, "BackdropTemplate")
@@ -305,8 +230,6 @@ local function BuildEmojiPanel(button)
     if GW and panel.GwCreateBackdrop then
         panel:GwCreateBackdrop(GW.BackdropTemplates and GW.BackdropTemplates.Default)
     end
-
-    -- 鼠标移开 1.5 秒后自动收起
     panel.fadeTimer = 0
     panel:SetScript("OnUpdate", function(self, elapsed)
         if not self.counting then return end
@@ -327,7 +250,6 @@ local function BuildEmojiPanel(button)
     end
     panel:SetScript("OnEnter", StopCountdown)
     panel:SetScript("OnLeave", StartCountdown)
-
     local cells = {}
     for i, data in ipairs(EmojiData) do
         local cell = CreateFrame("Button", nil, panel)
@@ -340,12 +262,10 @@ local function BuildEmojiPanel(button)
         else
             cell:SetPoint("LEFT", cells[i - 1], "RIGHT", 2, 0)
         end
-
         cell.tex = cell:CreateTexture(nil, "ARTWORK")
         cell.tex:SetTexture(data[2])
         cell.tex:SetPoint("CENTER")
         cell.tex:SetSize(BUTTON_SIZE - 4, BUTTON_SIZE - 4)
-
         cell.emojiPanel = panel
         cell:SetScript("OnEnter", StopCountdown)
         cell:SetScript("OnLeave", StartCountdown)
@@ -359,18 +279,10 @@ local function BuildEmojiPanel(button)
             panel.counting = false
         end)
     end
-
     button.emojiPanel = panel
     return panel
 end
-
---------------------------------------------------------------------------------
--- 七、按钮条
---------------------------------------------------------------------------------
-
 local bar
-
--- 屏蔽状态：不再显示图标，改为把按钮文字置灰
 local BLOCKED_COLOR = {0.5, 0.5, 0.5}
 local function SetBlockedState(button, blocked)
     if not button or not button.Text then return end
@@ -380,34 +292,26 @@ local function SetBlockedState(button, blocked)
         button.Text:SetTextColor(unpack(button.def.color))
     end
 end
-
 local function CreateChannelButton(def)
     local button = CreateFrame("Button", nil, bar)
     button:SetSize(BUTTON_SIZE, BUTTON_SIZE)
     button:RegisterForClicks("LeftButtonUp", "RightButtonUp")
     button.def = def
     SkinButton(button)
-
-    -- 必须给一个继承模板：FontString 没有字体对象时 SetText 什么都不显示，
-    -- 之后 SkinFont 再换成 GW2 字体
     button.Text = button:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     button.Text:SetPoint("CENTER")
     button.Text:SetText(def.text)
     SkinFont(button.Text)
     button.Text:SetTextColor(unpack(def.color))
-
     button:SetScript("OnMouseDown", function(self) self.Text:SetPoint("CENTER", 1, -1) end)
     button:SetScript("OnMouseUp", function(self) self.Text:SetPoint("CENTER", 0, 0) end)
-
     button:HookScript("OnEnter", function(self)
         bar:FadeIn()
         GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT", 0, 0)
         if def.tip then
             GameTooltip:SetText(def.tip)
         else
-            -- 左键：chat 类切到该频道发言；channel 类切换/加入编号频道
             local leftText = (def.kind == "channel") and "切换频道" or "发言"
-            -- 右键：通知(rightCmd) / 自定义(onRight) / 无(noRight) / 屏蔽
             local rightText
             if def.rightCmd then
                 rightText = "通知"
@@ -428,17 +332,12 @@ local function CreateChannelButton(def)
         bar:FadeOut()
         GameTooltip:Hide()
     end)
-
     return button
 end
-
--- 内置聊天类型的点击
 local function OnChatClick(self, click)
     local def = self.def
-    -- 可屏蔽的 chat（喊/会）：无 rightCmd/noRight/onRight
     local canBlock = not def.rightCmd and not def.noRight and not def.onRight
     if click == "LeftButton" then
-        -- 左键顺带取消屏蔽：若可屏蔽且当前被屏蔽，恢复显示、颜色与提示
         if canBlock and not IsMessageShown(def.key) then
             local frame = GetBanChatFrame()
             for _, g in ipairs(def.msgGroup or {def.key}) do ChatFrame_AddMessageGroup(frame, g) end
@@ -448,15 +347,12 @@ local function OnChatClick(self, click)
         PrefixEditBox("/" .. def.cmd)
         return
     end
-    -- 右键：自定义回调优先（如「说」按钮右键重载界面）
     if def.onRight then def.onRight() return end
     if def.noRight then return end
     if def.rightCmd then
         PrefixEditBox("/" .. def.rightCmd)
         return
     end
-
-    -- 右键：只屏蔽（取消屏蔽请用左键打开）
     if IsMessageShown(def.key) then
         local frame = GetBanChatFrame()
         for _, g in ipairs(def.msgGroup or {def.key}) do ChatFrame_RemoveMessageGroup(frame, g) end
@@ -466,17 +362,13 @@ local function OnChatClick(self, click)
         ChatBar.Print((_G[def.key] or def.text) .. " 频道已是屏蔽状态")
     end
 end
-
--- 编号频道的点击
 local function OnChannelClick(self, click)
     local channelName = self.def.channelName or _G[self.def.key]
     if not channelName then return end
     local frame, index = GetBanChatFrame()
-
     if click == "LeftButton" then
         local id = GetChannelIndex(channelName)
         if id == 0 then
-            -- 尚未加入，先加进来
             JoinTemporaryChannel(channelName, nil, index, 1)
             C_Timer.After(1, function()
                 if GetChannelIndex(channelName) > 0 then
@@ -489,7 +381,6 @@ local function OnChannelClick(self, click)
             end)
             return
         end
-        -- 已加入频道：左键切过去。若之前被屏蔽(未显示)，顺带恢复显示、颜色与提示
         local wasHidden = not IsChannelShown(channelName)
         AddChannelToFrame(frame, channelName)
         SetBlockedState(self, false)
@@ -499,8 +390,6 @@ local function OnChannelClick(self, click)
         PrefixEditBox("/" .. id)
         return
     end
-
-    -- 右键：只屏蔽（取消屏蔽请用左键打开）
     if GetChannelIndex(channelName) == 0 then
         ChatBar.Print("尚未加入 " .. channelName .. " 频道")
         return
@@ -513,8 +402,6 @@ local function OnChannelClick(self, click)
         ChatBar.Print(channelName .. " 频道已是屏蔽状态")
     end
 end
-
--- 刷新所有频道按钮的屏蔽标记
 local function UpdateBlockedIcons()
     if not bar then return end
     for _, button in ipairs(bar.buttons) do
@@ -528,11 +415,6 @@ local function UpdateBlockedIcons()
     end
 end
 ChatBar.UpdateBlockedIcons = UpdateBlockedIcons
-
---------------------------------------------------------------------------------
--- 八、布局与显隐
---------------------------------------------------------------------------------
-
 function ChatBar.UpdateLayout()
     if not bar then return end
     local db = GW2_UI_PLUS_ChatBarSV
@@ -540,7 +422,6 @@ function ChatBar.UpdateLayout()
     for _, button in ipairs(bar.buttons) do
         local def = button.def
         local show = not db.hidden[def.key]
-        -- 动态显隐只作用于频道按钮
         if show and db.autoHide and def.visible and not def.visible() then
             show = false
         end
@@ -555,7 +436,6 @@ function ChatBar.UpdateLayout()
     end
     bar:SetWidth(math.max(BUTTON_SIZE, index * BUTTON_SIZE))
 end
-
 function ChatBar.UpdatePoint()
     if not bar then return end
     local db = GW2_UI_PLUS_ChatBarSV
@@ -566,40 +446,28 @@ function ChatBar.UpdatePoint()
         bar:SetPoint("BOTTOMLEFT", ChatFrame1, "TOPLEFT", db.offsetX, 28 + db.offsetY)
     end
 end
-
 function ChatBar.UpdateScale()
     if not bar then return end
     bar:SetScale(GW2_UI_PLUS_ChatBarSV.scale)
 end
-
 function ChatBar.UpdateFade()
     if not bar then return end
     bar:FadeOut()
 end
-
---------------------------------------------------------------------------------
--- 九、构建
---------------------------------------------------------------------------------
-
 local function Build()
     bar = CreateFrame("Frame", "GW2PlusChatBar", UIParent)
     bar:SetSize(BUTTON_SIZE, BUTTON_SIZE)
-    -- MEDIUM：LOW 会被 GW2_UI 的聊天框背景盖住
     bar:SetFrameStrata("MEDIUM")
     bar.buttons = {}
     ChatBar.bar = bar
-
     function bar:FadeIn() self:SetAlpha(1) end
     function bar:FadeOut()
         if GW2_UI_PLUS_ChatBarSV.fadeOnLeave then self:SetAlpha(0.06) else self:SetAlpha(1) end
     end
-
     for _, def in ipairs(BUTTONS) do
-        -- 依赖的插件没装就不创建这个按钮
         if not def.addon or IsLoaded(def.addon) then
             local button = CreateChannelButton(def)
             table.insert(bar.buttons, button)
-
             if def.kind == "chat" then
                 button:SetScript("OnClick", OnChatClick)
             elseif def.kind == "channel" then
@@ -621,8 +489,6 @@ local function Build()
             end
         end
     end
-
-    -- 鼠标滑过聊天窗口时也让按钮条亮起来
     for i = 1, NUM_CHAT_WINDOWS do
         for _, f in ipairs({_G["ChatFrame" .. i], _G["ChatFrame" .. i .. "Tab"]}) do
             if f then
@@ -631,34 +497,24 @@ local function Build()
             end
         end
     end
-
     ChatBar.UpdateScale()
     ChatBar.UpdatePoint()
     ChatBar.UpdateLayout()
     ChatBar.UpdateFade()
-
     bar:RegisterEvent("GROUP_ROSTER_UPDATE")
     bar:RegisterEvent("PLAYER_GUILD_UPDATE")
     bar:SetScript("OnEvent", function(self)
         if self.updateTimer then self.updateTimer:Cancel() end
         self.updateTimer = C_Timer.NewTimer(0.4, ChatBar.UpdateLayout)
     end)
-
-    -- 频道订阅状态要等聊天系统就绪，分几次补刷
     for _, delay in ipairs({3, 5, 10}) do
         C_Timer.After(delay, UpdateBlockedIcons)
     end
 end
-
---------------------------------------------------------------------------------
--- 十、诊断命令 /gwcb
---------------------------------------------------------------------------------
-
 SLASH_GW2PLUSCHATBAR1 = "/gwcb"
 SlashCmdList["GW2PLUSCHATBAR"] = function(msg)
     local db = GW2_UI_PLUS_ChatBarSV
     local p = ChatBar.Print
-
     if msg == "test" then
         if not bar then p("按钮条不存在，无法定位") return end
         bar:ClearAllPoints()
@@ -670,7 +526,6 @@ SlashCmdList["GW2PLUSCHATBAR"] = function(msg)
         p("用 |cff00ff00/gwcb reset|r 恢复。")
         return
     end
-
     if msg == "reset" then
         if not bar then p("按钮条不存在") return end
         bar:SetFrameStrata("MEDIUM")
@@ -680,8 +535,7 @@ SlashCmdList["GW2PLUSCHATBAR"] = function(msg)
         p("已恢复正常位置。")
         return
     end
-
-    p("---- 频道按钮诊断 ----")
+    p("
     p(("配置 enable = %s"):format(tostring(db and db.enable)))
     if not bar then
         p("|cffff0000按钮条未创建|r（Build 没跑，或 enable 为 false）")
@@ -703,7 +557,6 @@ SlashCmdList["GW2PLUSCHATBAR"] = function(msg)
     p(("锚定目标 ChatFrame1：可见=%s"):format(tostring(ChatFrame1 and ChatFrame1:IsShown())))
     p("看不见就跑 |cff00ff00/gwcb test|r 把它移到屏幕正中确认。")
 end
-
 local loader = CreateFrame("Frame")
 loader:RegisterEvent("PLAYER_ENTERING_WORLD")
 loader:SetScript("OnEvent", function(self)

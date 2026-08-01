@@ -1,18 +1,12 @@
--- GW2_UI_PLUS 玩家状态条设置
--- 综合页只筛选原生选项；状态条使用 Plus 多列面板，不修改原生设置页面。
-
 local _, addonTable = ...
-
 local GW = _G.GW2_ADDON
 local AB = addonTable.PlusActionBar
 local SettingsLayout = addonTable.PlusSettingsLayout
 if not GW or not AB or not SettingsLayout then return end
-
 local STATUS_DEFAULTS = {
     energyBarShowValue = true,
     resourceBarShowValue = true,
 }
-
 local MOVED_GENERAL_OPTION_NAMES = {
     HEALTHGLOBE_ENABLED = true,
     POWERBAR_ENABLED = true,
@@ -20,7 +14,6 @@ local MOVED_GENERAL_OPTION_NAMES = {
     showDodgebar = true,
     PLAYER_TRACKED_DODGEBAR_SPELL = true,
 }
-
 local FORCE_NEW_LINE_TYPES = {
     slider = true,
     dropdown = true,
@@ -31,12 +24,10 @@ local FORCE_NEW_LINE_TYPES = {
     header = true,
     subHeader = true,
 }
-
 local statusPanel
 local hooksInstalled = false
 local profileHookInstalled = false
 local RefreshStatusPanel
-
 local function InitStatusDB()
     GW2_UI_PLUS_PlayerStatusSV = GW2_UI_PLUS_PlayerStatusSV or {}
     for key, value in pairs(STATUS_DEFAULTS) do
@@ -46,7 +37,6 @@ local function InitStatusDB()
     end
     return GW2_UI_PLUS_PlayerStatusSV
 end
-
 local function ResolveForceNewLine(option)
     if option.forceNewLine ~= nil then
         return option.forceNewLine
@@ -57,15 +47,12 @@ local function ResolveForceNewLine(option)
     end
     return FORCE_NEW_LINE_TYPES[option.optionType] == true
 end
-
 local function IsMasterToggle(option)
     return option and option.isMasterToggle == true
 end
-
 local function PackOptionsIntoRows(options)
     local rows = {}
     local index = 1
-
     local function AddMasterToggleSeparatorIfNeeded(lastIndex)
         if IsMasterToggle(options[lastIndex])
             and options[lastIndex + 1]
@@ -73,7 +60,6 @@ local function PackOptionsIntoRows(options)
             rows[#rows + 1] = {kind = "masterToggleSeparator"}
         end
     end
-
     while index <= #options do
         local left = options[index]
         if ResolveForceNewLine(left) then
@@ -94,10 +80,8 @@ local function PackOptionsIntoRows(options)
             end
         end
     end
-
     return rows
 end
-
 local function BuildOptionsDataProvider(panel)
     local provider = CreateDataProvider()
     for index, row in ipairs(PackOptionsIntoRows(panel.gwOptions or {})) do
@@ -110,7 +94,6 @@ local function BuildOptionsDataProvider(panel)
     end
     return provider
 end
-
 local function FindOption(options, optionName)
     for _, option in ipairs(options or {}) do
         if option.optionName == optionName then
@@ -118,11 +101,9 @@ local function FindOption(options, optionName)
         end
     end
 end
-
 local function CloneOption(
     source, name, groupName, columns, dependence)
     if not source then return end
-
     local clone = {}
     for key, value in pairs(source) do
         if key ~= "__widget" and key ~= "__gwPlusWidget" then
@@ -137,10 +118,8 @@ local function CloneOption(
     end
     return clone
 end
-
 local function RemoveOptionDependency(option, dependencyName)
     if not option then return end
-
     local dependence = option.dependence
     if dependence then
         dependence[dependencyName] = nil
@@ -148,7 +127,6 @@ local function RemoveOptionDependency(option, dependencyName)
             option.dependence = nil
         end
     end
-
     local widget = option.__widget
     if widget then
         local widgetDependence = widget.dependence
@@ -161,10 +139,8 @@ local function RemoveOptionDependency(option, dependencyName)
         widget.dependenciesInfo = nil
     end
 end
-
 local function PrepareGeneralPanel(playerGeneral)
     if playerGeneral.__gwPlusGeneralPrepared then return end
-
     local kept = {}
     for _, option in ipairs(playerGeneral.gwOptions or {}) do
         if not MOVED_GENERAL_OPTION_NAMES[option.optionName] then
@@ -176,7 +152,6 @@ local function PrepareGeneralPanel(playerGeneral)
             end
         end
     end
-
     local normalPlayerFrame = playerGeneral:AddOption(
         "启用", "只控制普通玩家框体，不影响球状血条。", {
             getter = AB.IsNormalPlayerFrameEnabled,
@@ -196,7 +171,6 @@ local function PrepareGeneralPanel(playerGeneral)
             end,
             isMasterToggle = true,
         })
-
     playerGeneral.gwOptions = {normalPlayerFrame}
     for _, option in ipairs(kept) do
         playerGeneral.gwOptions[#playerGeneral.gwOptions + 1] = option
@@ -206,13 +180,11 @@ local function PrepareGeneralPanel(playerGeneral)
         ScrollBoxConstants.RetainScrollPosition)
     playerGeneral.__gwPlusGeneralPrepared = true
 end
-
 local function ClearBarText(bar)
     if not bar then return end
     if bar.label then bar.label:SetText("") end
     if bar.powerBarString then bar.powerBarString:SetText("") end
 end
-
 local function ApplyEnergyValueVisibility()
     local show = InitStatusDB().energyBarShowValue == true
     local bars = {
@@ -230,12 +202,10 @@ local function ApplyEnergyValueVisibility()
         end
     end
 end
-
 local function ApplyResourceValueVisibility()
     local show = InitStatusDB().resourceBarShowValue == true
     local classPower = _G.GwPlayerClassPower
     if not classPower then return end
-
     local bars = {
         classPower.exbar,
         classPower.lmb,
@@ -250,7 +220,6 @@ local function ApplyResourceValueVisibility()
             if not show then ClearBarText(bar) end
         end
     end
-
     if show then
         if classPower.exbar and classPower.exbar.UpdatePowerData then
             classPower.exbar:UpdatePowerData()
@@ -270,15 +239,12 @@ local function ApplyResourceValueVisibility()
         end
     end
 end
-
 local function ApplyValueVisibility()
     ApplyEnergyValueVisibility()
     ApplyResourceValueVisibility()
 end
-
 local function SyncAdditionalEnergyBar()
     if not GW.settings then return end
-
     GW.settings.PLAYER_AS_TARGET_FRAME_SHOW_RESSOURCEBAR =
         GW.settings.POWERBAR_ENABLED == true
     if _G.GwPlayerPowerBar and _G.GwPlayerPowerBar.ToggleBar then
@@ -291,7 +257,6 @@ local function SyncAdditionalEnergyBar()
         addonTable.PlusEnergyTicker.Refresh()
     end
 end
-
 local function QueueValueRefresh()
     C_Timer.After(0, function()
         ApplyValueVisibility()
@@ -300,11 +265,9 @@ local function QueueValueRefresh()
         end
     end)
 end
-
 local function InstallValueHooks()
     if hooksInstalled then return end
     hooksInstalled = true
-
     if _G.GwPlayerPowerBarMixin
         and _G.GwPlayerPowerBarMixin.ToggleSettings then
         hooksecurefunc(
@@ -323,7 +286,6 @@ local function InstallValueHooks()
             GW, "UpdateClassPowerExtraManabar", QueueValueRefresh)
     end
 end
-
 local function InstallProfileHook()
     if profileHookInstalled
         or not GW.globalSettings
@@ -338,7 +300,6 @@ local function InstallProfileHook()
             if RefreshStatusPanel then RefreshStatusPanel() end
         end)
 end
-
 local function GetSettingByPath(path)
     local value = GW.settings
     for key in string.gmatch(path or "", "[^%.]+") do
@@ -347,10 +308,8 @@ local function GetSettingByPath(path)
     end
     return value
 end
-
 local function SetWidgetEnabled(widget, enabled)
     if not widget or not widget.title then return end
-
     widget:SetAlpha(enabled and 1 or 0.55)
     if widget.isMasterToggle then
         widget.title:SetTextColor(
@@ -361,7 +320,6 @@ local function SetWidgetEnabled(widget, enabled)
             enabled and 1 or 0.4,
             enabled and 1 or 0.4)
     end
-
     if widget.optionType == "boolean" and widget.checkbutton then
         if enabled then
             widget.checkbutton:Enable()
@@ -386,7 +344,6 @@ local function SetWidgetEnabled(widget, enabled)
         widget.inputFrame.input:SetEnabled(enabled)
     end
 end
-
 local function DependencyMatches(current, expected)
     if type(expected) ~= "table" then return current == expected end
     for _, value in ipairs(expected) do
@@ -394,7 +351,6 @@ local function DependencyMatches(current, expected)
     end
     return false
 end
-
 local function ApplyPanelDependencies(panel)
     local byOptionName = {}
     for _, widget in ipairs(panel.gwPlusWidgets or {}) do
@@ -402,7 +358,6 @@ local function ApplyPanelDependencies(panel)
             byOptionName[widget.optionName] = widget
         end
     end
-
     for _, widget in ipairs(panel.gwPlusWidgets or {}) do
         local enabled = true
         for settingName, expected in pairs(widget.dependence or {}) do
@@ -421,7 +376,6 @@ local function ApplyPanelDependencies(panel)
         SetWidgetEnabled(widget, enabled)
     end
 end
-
 local function WrapRefreshCallback(panel, option)
     local original = option.callback
     option.callback = function(...)
@@ -434,7 +388,6 @@ local function WrapRefreshCallback(panel, option)
     end
     return option
 end
-
 local function AddClonedOption(
     panel, source, name, groupName, columns, dependence, refresh)
     local option = CloneOption(
@@ -444,17 +397,14 @@ local function AddClonedOption(
     panel.gwOptions[#panel.gwOptions + 1] = option
     return option
 end
-
 local function SetOptionColumns(option, columns, optionName)
     if not option then return end
     option.gwPlusColumns = columns
     if optionName then option.optionName = optionName end
 end
-
 local function AddGroupHeader(panel, name)
     return panel:AddGroupHeader(name)
 end
-
 local function CreateStatusPanel(
     playerGeneral, resourcePanel, castbarPanel, options)
     local panel = CreateFrame(
@@ -474,7 +424,6 @@ local function CreateStatusPanel(
     panel.sub:SetFont(UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF", 12)
     panel.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
     panel.sub:SetText("调整玩家的血球、施法条、能量条和资源条。")
-
     AddGroupHeader(panel, "血球和贴图")
     local globeEnabled = panel:AddOption(
         "启用",
@@ -488,9 +437,6 @@ local function CreateStatusPanel(
         })
     SetOptionColumns(globeEnabled, 2, "GW2PlusGlobeEnabled")
     WrapRefreshCallback(panel, globeEnabled)
-
-
-
     local globeScale = panel:AddOptionSlider(
         "缩放", nil, {
             min = 0.5,
@@ -506,7 +452,6 @@ local function CreateStatusPanel(
             dependence = {GW2PlusGlobeEnabled = true},
             groupHeaderName = "血球和贴图",
         })
-
     local optHudBg = panel:AddOption(
         "动作条贴图",
         "在不同状态下（战斗、低血量、水中、灵魂状态等）动作条背景会改变颜色",
@@ -522,7 +467,6 @@ local function CreateStatusPanel(
         }
     )
     SetOptionColumns(optHudBg, 2, "HUD_BACKGROUND")
-
     local dynamicHud = panel:AddOption(
         "血球贴图",
         "动态更改 HUD 背景",
@@ -537,14 +481,12 @@ local function CreateStatusPanel(
         }
     )
     SetOptionColumns(dynamicHud, 2, "HUD_SPELL_SWAP")
-
     AddClonedOption(
         panel, options.dodgeBar, "显示位移条", "血球和贴图", 2,
         {GW2PlusGlobeEnabled = true}, true)
     AddClonedOption(
         panel, options.dodgeAbility, "位移条技能", "血球和贴图", 2,
         {GW2PlusGlobeEnabled = true, showDodgebar = true})
-
     AddGroupHeader(panel, "施法条")
     AddClonedOption(
         panel, options.castEnabled, "启用", "施法条", 2, nil, true)
@@ -556,7 +498,6 @@ local function CreateStatusPanel(
     AddClonedOption(
         panel, options.spellQueue, "显示法术队列窗口",
         "施法条", 2)
-
     local castWidth = panel:AddOptionSlider(
         "宽度", nil, {
             min = 100,
@@ -574,7 +515,6 @@ local function CreateStatusPanel(
             forceNewLine = false,
         })
     SetOptionColumns(castWidth, 2, "castbarWidth")
-
     local castHeight = panel:AddOptionSlider(
         "高度", nil, {
             min = 10,
@@ -592,7 +532,6 @@ local function CreateStatusPanel(
             forceNewLine = false,
         })
     SetOptionColumns(castHeight, 2, "castbarHeight")
-
     AddGroupHeader(panel, "经验槽")
     local xpEnabled = panel:AddOption(
         "启用",
@@ -609,7 +548,6 @@ local function CreateStatusPanel(
         }
     )
     SetOptionColumns(xpEnabled, 2, "GW2PlusXpEnabled")
-
     local xpQuestPercent = panel:AddOption(
         "任务经验值百分比",
         "显示任务奖励经验所占升级经验的百分比",
@@ -624,7 +562,6 @@ local function CreateStatusPanel(
         }
     )
     SetOptionColumns(xpQuestPercent, 2, "QUEST_XP_PERCENT")
-
     AddGroupHeader(panel, "能量条")
     AddClonedOption(
         panel, options.energyTicker, "能量/法力回复提示",
@@ -636,7 +573,6 @@ local function CreateStatusPanel(
         panel, options.energyTickerCombat,
         "仅在战斗中显示能量/法力回复提示", "能量条", nil,
         {PLAYER_ENERGY_MANA_TICK = true})
-
     local energyEnabled = AddClonedOption(
         panel, options.powerBar, "启用额外能量条",
         "能量条", 2, nil, true)
@@ -646,7 +582,6 @@ local function CreateStatusPanel(
         SyncAdditionalEnergyBar()
         QueueValueRefresh()
     end
-
     local energyValue = panel:AddOption(
         "在条上显示数值", nil, {
             getter = function()
@@ -663,7 +598,6 @@ local function CreateStatusPanel(
             groupHeaderName = "能量条",
         })
     SetOptionColumns(energyValue, 2, "GW2PlusEnergyShowValue")
-
     AddGroupHeader(panel, "资源条")
     AddClonedOption(
         panel, options.classPowerEnabled, "启用",
@@ -698,7 +632,6 @@ local function CreateStatusPanel(
     AddClonedOption(
         panel, options.classPowerCombat,
         "仅在战斗中显示", "资源条", nil)
-
     SettingsLayout.InitializePanel(panel)
     statusPanel = panel
     RefreshStatusPanel = function()
@@ -710,10 +643,8 @@ local function CreateStatusPanel(
     end
     panel:HookScript("OnShow", RefreshStatusPanel)
     panel:Hide()
-
     return panel
 end
-
 local function CollectRequiredOptions(
     generalOptions, resourceOptions, castOptions)
     local options = {
@@ -721,20 +652,17 @@ local function CollectRequiredOptions(
         dodgeBar = FindOption(generalOptions, "showDodgebar"),
         dodgeAbility = FindOption(
             generalOptions, "PLAYER_TRACKED_DODGEBAR_SPELL"),
-
         castEnabled = FindOption(castOptions, "CASTINGBAR_ENABLED"),
         advancedCast = FindOption(castOptions, "CASTINGBAR_DATA"),
         spellQueue = FindOption(
             castOptions, "PLAYER_CASTBAR_SHOW_SPELL_QUEUEWINDOW"),
         ticks = FindOption(castOptions, "showPlayerCastBarTicks"),
-
         energyTicker = FindOption(
             resourceOptions, "PLAYER_ENERGY_MANA_TICK"),
         fiveSecondRule = FindOption(
             resourceOptions, "PLAYER_5SR_TIMER"),
         energyTickerCombat = FindOption(
             resourceOptions, "PLAYER_ENERGY_MANA_TICK_HIDE_OFC"),
-
         classPowerEnabled = FindOption(resourceOptions, "CLASS_POWER"),
         anchor = FindOption(
             resourceOptions, "CLASSPOWER_ANCHOR_MODE"),
@@ -749,7 +677,6 @@ local function CollectRequiredOptions(
         classPowerCombat = FindOption(
             resourceOptions, "CLASSPOWER_ONLY_SHOW_IN_COMBAT"),
     }
-
     for _, key in ipairs({
         "powerBar",
         "dodgeBar",
@@ -773,34 +700,28 @@ local function CollectRequiredOptions(
     end
     return options
 end
-
 local function PreparePlayerResourcePanel(
     playerGeneral, resourcePanel, castbarPanel)
     if statusPanel then return statusPanel end
     if not playerGeneral or not resourcePanel or not castbarPanel then
         return
     end
-
     local generalOptions = playerGeneral.gwOptions or {}
     local resourceOptions = resourcePanel.gwOptions or {}
     local castOptions = castbarPanel.gwOptions or {}
     local options = CollectRequiredOptions(
         generalOptions, resourceOptions, castOptions)
     if not options then return end
-
     InitStatusDB()
     PrepareGeneralPanel(playerGeneral)
     local panel = CreateStatusPanel(
         playerGeneral, resourcePanel, castbarPanel, options)
     if not panel then return end
-
     InstallValueHooks()
     InstallProfileHook()
     SyncAdditionalEnergyBar()
     QueueValueRefresh()
     if RefreshStatusPanel then RefreshStatusPanel() end
-
     return panel
 end
-
 addonTable.PreparePlayerResourcePanel = PreparePlayerResourcePanel

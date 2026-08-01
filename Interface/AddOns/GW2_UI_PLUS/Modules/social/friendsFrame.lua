@@ -1,17 +1,7 @@
--- GW2_UI_PLUS 社交窗口 —— friendsFrame.lua
---
--- 社交窗口主入口。上游只在正式服/TBC 调用 GW.LoadSocialFrame，
--- 经典旧世下从不调用，所以这里覆盖它、由 Social.lua 自己驱动，不会和本体双跑。
---
--- 原先直接改在 GW2_UI/Games/Shared/Social/friendsFrame.lua 里，现在整体搬进 PLUS。
--- 下面的 function GW.XXX 是写进 GW2_ADDON 这张共享表的，等于覆盖掉上游的同名函数。
-
 local GW = _G.GW2_ADDON
 if not GW then return end
-
 local CLASSIC_GUILD_TAB_ICON = "Interface/AddOns/GW2_UI/textures/uistuff/tabicon_stats.png"
 local friendsFrameTabsAdded = 0
-
 local function AddExistingDetailBackgrounds(detailBackgrounds, ...)
     for i = 1, select("#", ...) do
         local frame = select(i, ...)
@@ -20,10 +10,8 @@ local function AddExistingDetailBackgrounds(detailBackgrounds, ...)
         end
     end
 end
-
 local function LayoutClassicSocialFrame()
     if not GW.Classic or not FriendsFrame then return end
-
     FriendsFrame:SetSize(500, 627)
     if FriendsFrameCloseButton then
         FriendsFrameCloseButton:ClearAllPoints()
@@ -44,16 +32,13 @@ local function LayoutClassicSocialFrame()
         FriendsFrameBattlenetFrame:SetSize(260, 28)
     end
 end
-
 local function LayoutClassicSideTab(tab)
     local idx = tab.gwSideTabIndex
     if not idx then return end
-
     tab:ClearAllPoints()
     tab:SetPoint("TOPRIGHT", FriendsFrame.LeftSidePanel, "TOPLEFT", 1, -32 + (-40 * (idx - 1)))
     tab:SetSize(64, 40)
 end
-
 local function LayoutClassicSideTabs()
     for _, tab in ipairs({FriendsFrameTab1, FriendsFrameTab2, FriendsFrameTab3, FriendsFrameTab4}) do
         if tab then
@@ -61,7 +46,6 @@ local function LayoutClassicSideTabs()
         end
     end
 end
-
 local function HandleTabs()
     for idx, tab in ipairs({FriendsFrameTab1, FriendsFrameTab2, FriendsFrameTab3, FriendsFrameTab4}) do
         if not tab then
@@ -80,10 +64,8 @@ local function HandleTabs()
                 end
                 iconTexture = "Interface/AddOns/GW2_UI/textures/social/" .. iconName .. ".png"
             end
-
             GW.SkinSideTabButton(tab, iconTexture, tab:GetText())
         end
-
         tab:SetParent(FriendsFrame.LeftSidePanel)
         if GW.Classic then
             tab.gwSideTabIndex = idx
@@ -98,7 +80,6 @@ local function HandleTabs()
             tab:SetSize(64, 40)
         end
         friendsFrameTabsAdded = friendsFrameTabsAdded + 1
-
         if GW.TBC or GW.Wrath then
             hooksecurefunc("FriendsFrame_UpdateGuildTabVisibility", function()
                 if not FriendsFrameTab4 then return end
@@ -110,17 +91,14 @@ local function HandleTabs()
                 end
             end)
         end
-
         if idx == 4 and GW.Retail then
             tab.GwNotifyRed = tab:CreateTexture(nil, "ARTWORK", nil, 7)
             tab.GwNotifyText = tab:CreateFontString(nil, "OVERLAY")
-
             tab.GwNotifyRed:SetSize(18, 18)
             tab.GwNotifyRed:SetPoint("CENTER", tab, "BOTTOM", 23, 7)
             tab.GwNotifyRed:SetTexture("Interface/AddOns/GW2_UI/textures/hud/notification-backdrop.png")
             tab.GwNotifyRed:SetVertexColor(0.7, 0, 0, 0.7)
             tab.GwNotifyRed:Hide()
-
             tab.GwNotifyText:SetSize(24, 24)
             tab.GwNotifyText:SetPoint("CENTER", tab, "BOTTOM", 23, 7)
             tab.GwNotifyText:GwSetFontTemplate(UNIT_NAME_FONT, GW.Enum.TextSizeType.Small)
@@ -129,16 +107,13 @@ local function HandleTabs()
             tab.GwNotifyText:Hide()
         end
     end
-
     if GW.Classic and not FriendsFrame.gwClassicSideTabsUpdateHooked then
         hooksecurefunc("FriendsFrame_Update", LayoutClassicSideTabs)
         FriendsFrame.gwClassicSideTabsUpdateHooked = true
     end
 end
-
 function GW.LoadSocialFrame()
     if not GW.settings.USE_SOCIAL_WINDOW then return end
-
     GW.HandlePortraitFrame(FriendsFrame)
     if FriendsFrameIcon then
         FriendsFrameIcon:SetAlpha(0)
@@ -146,7 +121,6 @@ function GW.LoadSocialFrame()
     if FriendsFrameCloseButton then
         FriendsFrameCloseButton:SetPoint("TOPRIGHT", -5, -2)
     end
-
     local detailBackgrounds = {}
     AddExistingDetailBackgrounds(
         detailBackgrounds,
@@ -159,9 +133,7 @@ function GW.LoadSocialFrame()
         WhoListScrollFrame,
         QuickJoinFrame and QuickJoinFrame.ScrollBox
     )
-
     GW.CreateFrameHeaderWithBody(FriendsFrame, FriendsFrameTitleText, "Interface/AddOns/GW2_UI/textures/social/social-windowheader.png", detailBackgrounds, nil, true, true)
-
     HandleTabs()
     FriendsFrame.gwHeader.windowIcon:ClearAllPoints()
     FriendsFrame.gwHeader.windowIcon:SetPoint("CENTER", FriendsFrame.gwHeader, "BOTTOMLEFT", -26, 35)
@@ -171,7 +143,6 @@ function GW.LoadSocialFrame()
     FriendsFrame:SetClampedToScreen(true)
     FriendsFrame:SetClampRectInsets(-40, 0, FriendsFrame.gwHeader:GetHeight() - 30, 0)
     FriendsFrame:SetSize(500, 627)
-
     FriendsFrame:SetScale(GW.settings.SOCIAL_POSITION_SCALE)
     FriendsFrame:SetMovable(true)
     FriendsFrame:RegisterForDrag("LeftButton")
@@ -181,7 +152,6 @@ function GW.LoadSocialFrame()
     FriendsFrame:SetScript("OnDragStop", function()
         FriendsFrame:StopMovingOrSizing()
         FriendsFrame:SetUserPlaced(false)
-        -- Save map frame position
         local pos = GW.settings.SOCIAL_POSITION
         if pos then
             wipe(pos)
@@ -199,9 +169,7 @@ function GW.LoadSocialFrame()
         end
         LayoutClassicSocialFrame()
     end)
-
     LayoutClassicSocialFrame()
-
     GW.SkinFriendList()
     GW.SkinIgnoreList()
     if not GW.Classic then

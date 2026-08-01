@@ -1,15 +1,44 @@
 
 WhisperPopDB = {
-["listScale"] = 100,
+["sound"] = 1,
 ["listHeight"] = 320,
-["notifyButton"] = 1,
+["positions"] = {
+["WhisperPopFrame"] = {
+"TOPLEFT",
+"UIParent",
+"TOPLEFT",
+426,
+-147,
+},
+["WhisperPopNotifyButton"] = {
+"BOTTOMLEFT",
+"UIParent",
+"BOTTOMLEFT",
+423,
+253,
+},
+},
 ["showRealm"] = 1,
-["applyFilters"] = 1,
+["listWidth"] = 200,
 ["save"] = 1,
 ["timeFormat"] = 2,
-["ignoreTags"] = 1,
+["time"] = 1,
 ["buttonScale"] = 100,
 ["history"] = {
+{
+["messages"] = {
+"1[T1785514336]我没",
+},
+["class"] = "ROGUE",
+["name"] = "赤紅十三-哈霍兰",
+},
+{
+["messages"] = {
+"1[T1785513518]你ma si 了 快回家看看",
+},
+["class"] = "PALADIN",
+["name"] = "违规通知-哈霍兰",
+},
 {
 ["class"] = "HUNTER",
 ["messages"] = {
@@ -216,25 +245,10 @@ WhisperPopDB = {
 ["name"] = "遵娣-哈霍兰",
 },
 },
-["time"] = 1,
+["listScale"] = 100,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["listWidth"] = 200,
-["positions"] = {
-["WhisperPopFrame"] = {
-"TOPLEFT",
-"UIParent",
-"TOPLEFT",
-426,
--147,
-},
-["WhisperPopNotifyButton"] = {
-"BOTTOMLEFT",
-"UIParent",
-"BOTTOMLEFT",
-423,
-253,
-},
-},
-["sound"] = 1,
+["ignoreTags"] = 1,
+["notifyButton"] = 1,
+["applyFilters"] = 1,
 }

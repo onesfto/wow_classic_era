@@ -1,18 +1,9 @@
--- GW2_UI_PLUS 社交窗口 —— raidList.lua
---
--- 团队列表。相对上游几乎全是正式服专属控件的空值保护。
---
--- 原先直接改在 GW2_UI/Games/Shared/Social/raidList.lua 里，现在整体搬进 PLUS。
--- 下面的 function GW.XXX 是写进 GW2_ADDON 这张共享表的，等于覆盖掉上游的同名函数。
-
 local GW = _G.GW2_ADDON
 if not GW then return end
-
 local  raidInit = false
 local RAID_PULLOUT_WIDTH_SCALE = 1.5
 local GW_HEALTHBAR_TEXTURE = "Interface/AddOns/GW2_UI/textures/bartextures/statusbar.png"
 local GW_STATUSBAR_TEXTURE = "Interface/AddOns/GW2_UI/textures/uistuff/gwstatusbar.png"
-
 local StripAllTextures = {
     "RaidGroup1",
     "RaidGroup2",
@@ -23,26 +14,21 @@ local StripAllTextures = {
     "RaidGroup7",
     "RaidGroup8",
 }
-
 local function SkinRaidClassButtons()
     for i = 1, 15 do
         local button = _G["RaidClassButton" .. i]
         local icon = _G["RaidClassButton" .. i .. "IconTexture"]
-
         if button and icon then
             for _, region in ipairs({button:GetRegions()}) do
                 if region ~= icon and region:IsObjectType("Texture") then
                     region:SetTexture(nil)
                 end
             end
-
             button:SetSize(24, 24)
             button:GwCreateBackdrop(GW.BackdropTemplates.DefaultWithSmallBorder, true)
-
             icon:ClearAllPoints()
             icon:SetPoint("CENTER", button, "CENTER", 0, 0)
             icon:SetSize(18, 18)
-
             local coords = button.fileName and CLASS_ICON_TCOORDS and CLASS_ICON_TCOORDS[button.fileName]
             if coords then
                 icon:SetTexture("Interface\\WorldStateFrame\\Icons-Classes")
@@ -50,14 +36,12 @@ local function SkinRaidClassButtons()
             else
                 icon:SetTexCoord(0.12, 0.88, 0.12, 0.88)
             end
-
             button:SetHighlightTexture("Interface/Buttons/ButtonHilight-Square", "ADD")
             local highlight = button:GetHighlightTexture()
             if highlight then
                 highlight:ClearAllPoints()
                 highlight:SetAllPoints(icon)
             end
-
             if not button:GetScript("OnDragStart") then
                 button:SetScript("OnDragStart", function(self)
                     if self.fileName and self.class then
@@ -68,16 +52,13 @@ local function SkinRaidClassButtons()
         end
     end
 end
-
 local function SkinRaidPulloutMember(button)
     if not button then return end
-
     local buttonName = button:GetName()
     local healthBar = button.healthbar or _G[buttonName .. "HealthBar"]
     local manaBar = button.manabar or _G[buttonName .. "ManaBar"]
     local nameText = button.nameLabel or _G[buttonName .. "Name"]
     if not healthBar or not manaBar or not nameText then return end
-
     if not button.gwPlusSkinned then
         button.gwPlusSkinned = true
         healthBar:GwStripTextures()
@@ -93,9 +74,7 @@ local function SkinRaidPulloutMember(button)
             self:SetStatusBarColor(color.r, color.g, color.b)
         end)
     end
-
     button:SetWidth(button:GetParent():GetWidth() - 10)
-
     healthBar:ClearAllPoints()
     healthBar:SetPoint("TOP", button, "TOP", 0, 0)
     healthBar:SetPoint("LEFT", button, "LEFT", 0, 0)
@@ -103,7 +82,6 @@ local function SkinRaidPulloutMember(button)
     healthBar:SetHeight(17)
     healthBar:SetStatusBarTexture(GW_HEALTHBAR_TEXTURE)
     healthBar:SetStatusBarColor(GW.Colors.UnitFrameReactionColors.Friendly:GetRGB())
-
     manaBar:ClearAllPoints()
     manaBar:SetPoint("TOP", healthBar, "BOTTOM", 0, -1)
     manaBar:SetPoint("LEFT", button, "LEFT", 0, 0)
@@ -112,22 +90,18 @@ local function SkinRaidPulloutMember(button)
     manaBar:SetStatusBarTexture(GW_STATUSBAR_TEXTURE)
     local manaColor = GW.Colors.PowerBarCustomColors.MANA
     manaBar:SetStatusBarColor(manaColor.r, manaColor.g, manaColor.b)
-
     nameText:ClearAllPoints()
     nameText:SetPoint("CENTER", healthBar, "CENTER", 0, 0)
     nameText:SetSize(button:GetWidth() - 4, 17)
     nameText:SetJustifyH("CENTER")
     nameText:SetDrawLayer("OVERLAY", 7)
 end
-
 local function SkinRaidPulloutFrame(pullout)
     if not pullout then return end
-
     local menuBackdrop = _G[pullout:GetName() .. "MenuBackdrop"]
     if not pullout.gwPlusSkinned then
         pullout.gwPlusSkinned = true
         pullout.gwOriginalWidth = pullout:GetWidth()
-
         pullout:GwStripTextures()
         pullout:GwCreateBackdrop(GW.BackdropTemplates.DefaultWithSmallBorder, true)
         if menuBackdrop then
@@ -139,28 +113,23 @@ local function SkinRaidPulloutFrame(pullout)
             end)
         end
     end
-
     if menuBackdrop then
         menuBackdrop:SetAlpha(0)
     end
     if pullout.backdrop then
         pullout.backdrop:SetShown(not menuBackdrop or menuBackdrop:IsShown())
     end
-
     pullout:SetWidth(pullout.gwOriginalWidth * RAID_PULLOUT_WIDTH_SCALE)
-
     if pullout.label then
         pullout.label:ClearAllPoints()
         pullout.label:SetPoint("TOP", pullout, "TOP", 0, -2)
         pullout.label:SetFontObject("GameFontNormal")
     end
-
     local firstButton = pullout.buttons and pullout.buttons[1]
     if firstButton then
         firstButton:ClearAllPoints()
         firstButton:SetPoint("TOP", pullout, "TOP", 0, -24)
     end
-
     local visibleButtons = 0
     for i = 1, (pullout.numPulloutButtons or 0) do
         local button = pullout.buttons[i]
@@ -174,7 +143,6 @@ local function SkinRaidPulloutFrame(pullout)
         pullout:SetHeight((visibleButtons * buttonHeight) + 27)
     end
 end
-
 local function LoadRaidFrame()
     if raidInit then return end
     if InCombatLockdown() then
@@ -182,7 +150,6 @@ local function LoadRaidFrame()
         return
     end
     raidInit = true
-
     for _, object in pairs(StripAllTextures) do
         local obj = _G[object]
         if obj then
@@ -207,13 +174,11 @@ local function LoadRaidFrame()
         RaidGroup1:ClearAllPoints()
         RaidGroup1:SetPoint("TOPLEFT", RaidFrame, "TOPLEFT", 3, -83)
     end
-
     for i = 1, (_G.MAX_RAID_GROUPS or 0) * 5 do
         local button = _G["RaidGroupButton" .. i]
         local name = _G["RaidGroupButton" .. i .. "Name"]
         local level = _G["RaidGroupButton" .. i .. "Level"]
         local class = _G["RaidGroupButton" .. i .. "Class"]
-
         if button then
             button:SetSize(220, 22)
             button:GwSkinButton(false, true, true)
@@ -237,13 +202,11 @@ local function LoadRaidFrame()
             class:SetSize(80, 19)
         end
     end
-
     hooksecurefunc("RaidGroupFrame_Update", function()
         for i = 1, (MAX_RAID_GROUPS or 0) * 5 do
             local _, rank, _, _, _, _, _, _, _, role = GetRaidRosterInfo(i)
             local rankTexture = _G["RaidGroupButton" .. i .. "RankTexture"]
             local roleTexture = _G["RaidGroupButton" .. i .. "RoleTexture"]
-
             if rankTexture then
                 if rank == 2 then
                     rankTexture:SetTexture("Interface/AddOns/GW2_UI/textures/party/icon-groupleader.png")
@@ -253,7 +216,6 @@ local function LoadRaidFrame()
                     rankTexture:SetTexture("")
                 end
             end
-
             if roleTexture then
                 if role == "MAINTANK" then
                     roleTexture:SetTexture("Interface/AddOns/GW2_UI/textures/party/icon-maintank.png")
@@ -265,25 +227,20 @@ local function LoadRaidFrame()
             end
         end
     end)
-
     hooksecurefunc("RaidPullout_GetFrame", function()
         for i = 1, (_G.NUM_RAID_PULLOUT_FRAMES or 0) do
             SkinRaidPulloutFrame(_G["RaidPullout" .. i])
         end
     end)
     hooksecurefunc("RaidPullout_Update", SkinRaidPulloutFrame)
-
     for i = 1, (_G.NUM_RAID_PULLOUT_FRAMES or 0) do
         SkinRaidPulloutFrame(_G["RaidPullout" .. i])
     end
-
     SkinRaidClassButtons()
 end
-
 local function UpdateRaidInfoScrollBarVisibility(scrollFrame, _, verticalRange)
     local scrollBar = RaidInfoScrollFrameScrollBar
     if not scrollFrame or not scrollBar then return end
-
     verticalRange = verticalRange or scrollFrame:GetVerticalScrollRange() or 0
     if verticalRange > 0 then
         scrollBar:Show()
@@ -291,21 +248,17 @@ local function UpdateRaidInfoScrollBarVisibility(scrollFrame, _, verticalRange)
         scrollBar:Hide()
     end
 end
-
 local function SkinClassicRaidInfoFrame()
     if not (GW.Classic or GW.TBC or GW.Wrath) then return end
     if not RaidInfoFrame or RaidInfoFrame.gwPlusSkinned then return end
     RaidInfoFrame.gwPlusSkinned = true
-
     RaidInfoFrame:GwStripTextures()
     RaidInfoFrame:GwCreateBackdrop(GW.BackdropTemplates.Default)
-
     for _, frame in pairs({RaidInfoInstanceLabel, RaidInfoIDLabel}) do
         if frame and frame.GwStripTextures then
             frame:GwStripTextures()
         end
     end
-
     if RaidInfoFrame.ScrollBox and RaidInfoFrame.ScrollBar then
         RaidInfoFrame.ScrollBox:GwStripTextures()
         GW.HandleScrollControls(RaidInfoFrame)
@@ -315,10 +268,8 @@ local function SkinClassicRaidInfoFrame()
         RaidInfoScrollFrame:GwStripTextures()
         RaidInfoScrollFrame:GwSkinScrollFrame()
         RaidInfoScrollFrame:GwCreateBackdrop(GW.BackdropTemplates.DefaultWithSmallBorder, true)
-
         if RaidInfoScrollFrameScrollBar then
             RaidInfoScrollFrameScrollBar:GwSkinScrollBar()
-
             for _, texture in pairs({
                 RaidInfoScrollFrameScrollBarBG,
                 RaidInfoScrollFrameScrollBarTop,
@@ -328,13 +279,11 @@ local function SkinClassicRaidInfoFrame()
                 texture:Hide()
                 texture:SetTexture(nil)
             end
-
             local track = RaidInfoScrollFrameScrollBar:CreateTexture(nil, "BACKGROUND")
             track:SetTexture("Interface/AddOns/GW2_UI/textures/uistuff/scrollbg.png")
             track:SetWidth(3)
             track:SetPoint("TOP", RaidInfoScrollFrameScrollBar, "TOP", 0, -12)
             track:SetPoint("BOTTOM", RaidInfoScrollFrameScrollBar, "BOTTOM", 0, 12)
-
             RaidInfoScrollFrame:HookScript("OnScrollRangeChanged", UpdateRaidInfoScrollBarVisibility)
             RaidInfoFrame:HookScript("OnShow", function()
                 UpdateRaidInfoScrollBarVisibility(RaidInfoScrollFrame)
@@ -351,7 +300,6 @@ local function SkinClassicRaidInfoFrame()
         end
     end
 end
-
 function GW.SkinRaidList()
     if RaidFrameNotInRaid and RaidFrameNotInRaid.ScrollingDescription then
         RaidFrameNotInRaid.ScrollingDescription:ClearAllPoints()
@@ -366,7 +314,6 @@ function GW.SkinRaidList()
             end
         end
     end
-
     if RaidFrameAllAssistCheckButton then
         RaidFrameAllAssistCheckButton:ClearAllPoints()
         RaidFrameAllAssistCheckButton:SetPoint("TOPLEFT", 10, -33)
@@ -376,11 +323,9 @@ function GW.SkinRaidList()
             RaidFrameAllAssistCheckButton.text:SetText(ALL .. " |TInterface/AddOns/GW2_UI/textures/party/icon-assist.png:25:25:0:-3|t")
         end
     end
-
     if RaidFrame and RaidFrame.RoleCount then
         RaidFrame.RoleCount:ClearAllPoints()
         RaidFrame.RoleCount:SetPoint("TOP", -80, -33)
-
         if RaidFrame.RoleCount.TankIcon then
             RaidFrame.RoleCount.TankIcon:SetTexture("Interface/AddOns/GW2_UI/textures/party/roleicon-tank.png")
         end
@@ -392,16 +337,13 @@ function GW.SkinRaidList()
             RaidFrame.RoleCount.DamagerIcon:SetSize(20, 20)
         end
     end
-
     if RaidFrameAllAssistCheckButton then
         RaidFrameAllAssistCheckButton:GwSkinCheckButton()
         RaidFrameAllAssistCheckButton:SetSize(18, 18)
     end
-
     if RaidFrameReadyCheckButton then
         RaidFrameReadyCheckButton:GwSkinButton(false, true)
     end
-
     if RaidFrameConvertToRaidButton then
         RaidFrameConvertToRaidButton:GwSkinButton(false, true)
     end
@@ -409,9 +351,7 @@ function GW.SkinRaidList()
         RaidFrameRaidInfoButton:GwSkinButton(false, true)
         RaidFrameRaidInfoButton:SetPoint("TOPRIGHT", -7, -33)
     end
-
     SkinClassicRaidInfoFrame()
-
     if GW.settings.USE_CHARACTER_WINDOW and (GW.Retail or GW.Mists) and RaidFrameRaidInfoButton then
         RaidFrameRaidInfoButton:SetScript("OnClick", function()
             if InCombatLockdown() then return end
@@ -423,7 +363,6 @@ function GW.SkinRaidList()
             GWCurrencyMenu.items.raidinfo:Click()
         end)
     end
-
     if _G.RaidFrame_LoadUI and RaidFrame and not RaidFrame.gwRaidFrameHooked then
         hooksecurefunc("RaidFrame_LoadUI", LoadRaidFrame)
         RaidFrame.gwRaidFrameHooked = true
