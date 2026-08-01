@@ -1,59 +1,91 @@
 local _, addonTable = ...
-local GW = _G.GW2_ADDON
-if not GW or not GW.GetSettingsTabFrame then return end
-local AB = addonTable.PlusActionBar
-if not AB then return end
+-- 模块级变量，延迟初始化避免顶层依赖检查失败
+local GW, AB, Utils, General, MainBar, MultiBar, SimpleBar, MageBar, TotemBar
+local HOTKEY_POSITION_VALUES, HOTKEY_POSITION_NAMES
+local RefreshPanel, ApplyFader, ApplyLayout, NativeDefault
+local AddResetButton, ResetMover, RedrawSlider
+local InitializePanel, CreatePanel
 
-local Utils = addonTable.ActionBarOptionsUtils
-local General = addonTable.ActionBarOptionsGeneral
-local MainBar = addonTable.ActionBarOptionsMainBar
-local MultiBar = addonTable.ActionBarOptionsMultiBar
-local SimpleBar = addonTable.ActionBarOptionsSimpleBar
-local MageBar = addonTable.ActionBarOptionsMageBar
-local TotemBar = addonTable.ActionBarOptionsTotemBar
+-- NATIVE_ACTIONBAR_PANEL_IDS 和 HideNativeActionBarSettings 已迁移到 Settings/HideNativeSettings.lua
 
-if not Utils or not General then
-    print("GW2_UI_PLUS ActionBar Options: 缺少依赖模块")
-    return
+-- 延迟初始化函数，在需要时才检查依赖
+local function EnsureDeps()
+    if GW then return true end -- 已初始化
+
+    GW = _G.GW2_ADDON
+    if not GW or not GW.GetSettingsTabFrame then
+        DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS ActionBar Options: GW2_ADDON 不可用")
+        return false
+    end
+
+    AB = addonTable.PlusActionBar
+    if not AB then
+        DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS ActionBar Options: PlusActionBar 模块未加载")
+        return false
+    end
+
+    Utils = addonTable.ActionBarOptionsUtils
+    General = addonTable.ActionBarOptionsGeneral
+    MainBar = addonTable.ActionBarOptionsMainBar
+    MultiBar = addonTable.ActionBarOptionsMultiBar
+    SimpleBar = addonTable.ActionBarOptionsSimpleBar
+    MageBar = addonTable.ActionBarOptionsMageBar
+    TotemBar = addonTable.ActionBarOptionsTotemBar
+
+    if not Utils or not General then
+        DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS ActionBar Options: 缺少依赖模块")
+        return false
+    end
+
+    -- 从 Utils 获取辅助函数
+    HOTKEY_POSITION_VALUES = Utils.HOTKEY_POSITION_VALUES
+    HOTKEY_POSITION_NAMES = Utils.HOTKEY_POSITION_NAMES
+    RefreshPanel = Utils.RefreshPanel
+    ApplyFader = Utils.ApplyFader
+    ApplyLayout = Utils.ApplyLayout
+    NativeDefault = Utils.NativeDefault
+    AddResetButton = Utils.AddResetButton
+    ResetMover = Utils.ResetMover
+    RedrawSlider = Utils.RedrawSlider
+    InitializePanel = Utils.InitializePanel
+    CreatePanel = Utils.CreatePanel
+
+    return true
 end
 
-local HOTKEY_POSITION_VALUES = Utils.HOTKEY_POSITION_VALUES
-local HOTKEY_POSITION_NAMES = Utils.HOTKEY_POSITION_NAMES
-local RefreshPanel = Utils.RefreshPanel
-local ApplyFader = Utils.ApplyFader
-local ApplyLayout = Utils.ApplyLayout
-local NativeDefault = Utils.NativeDefault
-local AddResetButton = Utils.AddResetButton
-local ResetMover = Utils.ResetMover
-local RedrawSlider = Utils.RedrawSlider
-
-local function RedrawSlider(optionName)
-    Utils.RedrawSlider(optionName)
+-- 辅助函数包装器（调用子模块的函数）
+local function AddGeneralOptions(panel)
+    if General and General.AddGeneralOptions then
+        General.AddGeneralOptions(panel)
+    end
 end
 
-local _, addonTable = ...
-local GW = _G.GW2_ADDON
-if not GW or not GW.GetSettingsTabFrame then return end
-local AB = addonTable.PlusActionBar
-if not AB then return end
-local Utils = addonTable.ActionBarOptionsUtils
-local General = addonTable.ActionBarOptionsGeneral
-local HOTKEY_POSITION_VALUES = Utils.HOTKEY_POSITION_VALUES
-local HOTKEY_POSITION_NAMES = Utils.HOTKEY_POSITION_NAMES
-local RefreshPanel = Utils.RefreshPanel
-local ApplyFader = Utils.ApplyFader
-local ApplyLayout = Utils.ApplyLayout
-local NativeDefault = Utils.NativeDefault
-local AddResetButton = Utils.AddResetButton
-local ResetMover = Utils.ResetMover
-local RedrawSlider = Utils.RedrawSlider
-local function RedrawSlider(optionName)
-    Utils.RedrawSlider(optionName)
+local function AddMainBarOptions(panel)
+    if MainBar and MainBar.AddMainBarOptions then
+        MainBar.AddMainBarOptions(panel)
+    end
 end
+
+local function AddMultiBarOptions(panel)
+    if MultiBar and MultiBar.AddMultiBarOptions then
+        MultiBar.AddMultiBarOptions(panel)
+    end
+end
+
+local function AddTotemBarOptions(panel)
+    if TotemBar and TotemBar.AddTotemBarOptions then
+        TotemBar.AddTotemBarOptions(panel)
+    end
+end
+
+local function AddMageOptions(panel)
+    if MageBar and MageBar.AddMageOptions then
+        MageBar.AddMageOptions(panel)
+    end
+end
+
 local function BuildPanel(parent)
-    local db = AB.InitDB()
-    local defaults = AB.defaults
-    local isMage = select(2, UnitClass("player")) == "MAGE"
+    if not EnsureDeps() then return end
     local panel = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = "gw2_ui_plus_actionbar"
     if panel.header then
@@ -260,31 +292,10 @@ local function BuildPanel(parent)
     end
     return panel
 end
-local function HideNativeActionBarSettings(settingsTab)
-    local scrollBox = settingsTab and settingsTab.menu and settingsTab.menu.ScrollBox
-    local provider = scrollBox and scrollBox:GetDataProvider()
-    if not provider then return end
-    local nativeParent
-    provider:ForEach(function(data)
-        if data.isSubCat and data.itemData and data.itemData.frame
-            and NATIVE_ACTIONBAR_PANEL_IDS[data.itemData.frame.panelId] then
-            nativeParent = data.parent
-        end
-    end)
-    if not nativeParent then return end
-    local filtered = CreateDataProvider()
-    provider:ForEach(function(data)
-        if data.itemData ~= nativeParent and data.parent ~= nativeParent then
-            filtered:Insert(data)
-        elseif data.isSubCat and data.itemData and data.itemData.frame
-            and GW.SettingsWidgetRegistry and GW.SettingsWidgetRegistry.byPanel then
-            GW.SettingsWidgetRegistry.byPanel[data.itemData.frame] = nil
-        end
-    end)
-    scrollBox:SetDataProvider(filtered, ScrollBoxConstants.RetainScrollPosition)
-end
 local function BuildActionBarTab(settingsTab, settingsWindow)
+    if not EnsureDeps() then return end
     if not settingsWindow or settingsWindow.gwPlusActionBarTab then return end
+
     local tab = CreateFrame("Frame", nil, settingsWindow, "GwSettingsSettingsTabTemplate")
     tab.name = "GwSettingsActionBar"
     tab.headerBreadcrumbText = "动作条"
@@ -311,6 +322,7 @@ local function BuildActionBarTab(settingsTab, settingsWindow)
     end
     for index, definition in ipairs(pageDefinitions) do
         local panel = CreatePanel(tab, definition[2], definition[1], definition[3])
+        if not panel then return end
         definition[4](panel)
         InitializePanel(panel)
         panels[index] = panel
@@ -335,13 +347,7 @@ local function BuildActionBarTab(settingsTab, settingsWindow)
     settingsWindow.gwPlusActionBarTab = tab
     SelectPage(1)
     tab:Hide()
-    HideNativeActionBarSettings(settingsTab)
-    if not settingsTab.gwPlusActionBarFilterHooked then
-        settingsTab.gwPlusActionBarFilterHooked = true
-        hooksecurefunc(settingsTab, "AddSettingsPanel", function()
-            C_Timer.After(0, function() HideNativeActionBarSettings(settingsTab) end)
-        end)
-    end
+    -- HideNativeActionBarSettings 已迁移到 Settings/HideNativeSettings.lua，由 PrepareUnitFrameSettings 统一调用
 end
 addonTable.PlusSettingsLayout = addonTable.PlusSettingsLayout or {}
 addonTable.PlusSettingsLayout.InitializePanel = InitializePanel

@@ -535,7 +535,7 @@ SlashCmdList["GW2PLUSCHATBAR"] = function(msg)
         p("已恢复正常位置。")
         return
     end
-    p("
+    p("=== ChatBar 调试信息 ===")
     p(("配置 enable = %s"):format(tostring(db and db.enable)))
     if not bar then
         p("|cffff0000按钮条未创建|r（Build 没跑，或 enable 为 false）")

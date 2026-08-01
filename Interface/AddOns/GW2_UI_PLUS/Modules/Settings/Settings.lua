@@ -1,4 +1,7 @@
 local _, addonTable = ...
+-- 设置面板主逻辑：构建框体标签页和排列设置标签
+-- 隐藏原生设置的逻辑已移至 HideNativeSettings.lua
+
 local MAIN_MENU_ICON =
     "Interface/AddOns/GW2_UI/textures/uistuff/tabicon_profiles.png"
 local REQUIRED_PAGE_IDS = {
@@ -215,6 +218,8 @@ local function PreparePlayerAuraPanel(panel)
     }
     panel.__gwPlusAuraPrepared = true
 end
+-- PreparePlayerAuraPanel 导出，供 HideNativeSettings.lua 使用
+addonTable.PreparePlayerAuraPanel = PreparePlayerAuraPanel
 local function ShowPlayerAuraPanelView(panel, definition)
     PreparePlayerAuraPanel(panel)
     if not panel or not panel.__gwPlusAuraViews then return end
@@ -262,58 +267,7 @@ local function RestorePlayerAuraPanel(panel)
         GW2_ADDON.CheckDependencies()
     end
 end
-local function PrepareUnitFrameSettings(settingsTab)
-    local scrollBox = settingsTab and settingsTab.menu
-        and settingsTab.menu.ScrollBox
-    local provider = scrollBox and scrollBox:GetDataProvider()
-    if not provider then return end
-    local embeddedPanels = {}
-    local filtered = CreateDataProvider()
-    provider:ForEach(function(data)
-        local frame = data.isSubCat and data.itemData
-            and data.itemData.frame
-        if frame and (frame.panelId == "player_general"
-            or frame.panelId == "player_classpower"
-            or frame.panelId == "player_castbar"
-            or frame.panelId == "player_aura"
-            or frame.panelId == "target_general"
-            or frame.panelId == "target_of_target"
-            or frame.panelId == "player_pet"
-            or frame.panelId == "hud_microbar"
-            or frame.panelId == "hud_minimap"
-            or frame.panelId == "hud_worldmap") then
-            embeddedPanels[frame.panelId] = frame
-        end
-        if frame and (frame.panelId == "player_fader" or frame.panelId == "player_totem") then
-            if GW2_ADDON.SettingsWidgetRegistry
-                and GW2_ADDON.SettingsWidgetRegistry.byPanel then
-                GW2_ADDON.SettingsWidgetRegistry.byPanel[frame] = nil
-            end
-        elseif frame and (frame.panelId == "player_castbar" or frame.panelId == "player_aura" or frame.panelId == "player_classpower") then
-        else
-            filtered:Insert(data)
-        end
-    end)
-    scrollBox:SetDataProvider(
-        filtered, ScrollBoxConstants.RetainScrollPosition)
-    local faderLabel = GW2_ADDON.L and GW2_ADDON.L["Fader"]
-        or "隐藏器"
-    HideEmbeddedFader(embeddedPanels.target_general, faderLabel)
-    HideEmbeddedFader(embeddedPanels.target_of_target, faderLabel)
-    HideEmbeddedFader(embeddedPanels.player_pet, faderLabel)
-    PreparePlayerAuraPanel(embeddedPanels.player_aura)
-    if addonTable.PreparePlayerResourcePanel then
-        local panel = addonTable.PreparePlayerResourcePanel(
-            embeddedPanels.player_general,
-            embeddedPanels.player_classpower,
-            embeddedPanels.player_castbar)
-        if panel then
-            settingsTab.gwPlusPlayerStatusPanel = panel
-        end
-    end
-    settingsTab.gwPlusEmbeddedPanels = embeddedPanels
-end
-addonTable.PrepareUnitFrameSettings = PrepareUnitFrameSettings
+-- PrepareUnitFrameSettings 已移至 HideNativeSettings.lua
 local function FindNativePages(settingsTab)
     local found = {}
     if settingsTab.gwPlusEmbeddedPanels then

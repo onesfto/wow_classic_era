@@ -1,15 +1,21 @@
 local _, addonTable = ...
-local GW = _G.GW2_ADDON
-if not GW or not GW.GetSettingsTabFrame then return end
-local AB = addonTable.PlusActionBar
-if not AB then return end
-local Utils = addonTable.ActionBarOptionsUtils
-if not Utils then return end
+-- 注意：不在顶层检查 GW2_ADDON，避免模块加载失败
 
 local MultiBar = {}
 addonTable.ActionBarOptionsMultiBar = MultiBar
 
 function MultiBar.AddMultiBarOptions(panel)
+    -- 延迟获取依赖
+    local GW = _G.GW2_ADDON
+    if not GW then return end
+    local AB = addonTable.PlusActionBar
+    if not AB then return end
+    local Utils = addonTable.ActionBarOptionsUtils
+    if not Utils then return end
+
+    local HOTKEY_POSITION_VALUES = Utils.HOTKEY_POSITION_VALUES
+    local HOTKEY_POSITION_NAMES = Utils.HOTKEY_POSITION_NAMES
+
     local db = AB.InitDB()
     local selectedBar = 2
     local layout = addonTable.PlusActionBarLayout

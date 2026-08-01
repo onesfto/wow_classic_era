@@ -1,6 +1,6 @@
 local _, addonTable = ...
-local GW = _G.GW2_ADDON
-if not GW or not GW.GetSettingsTabFrame then return end
+-- 注意：不在顶层检查 GW2_ADDON，因为此时它可能还未初始化
+
 local function EnsureDB()
     GW2_UI_PLUS_SV = GW2_UI_PLUS_SV or {}
     if GW2_UI_PLUS_SV.TRADESKILL_SKIN_ENABLED == nil then
@@ -8,7 +8,12 @@ local function EnsureDB()
     end
     return GW2_UI_PLUS_SV
 end
+
 local function BuildPanel(parent)
+    -- 延迟检查，确保在调用时才验证依赖
+    local GW = _G.GW2_ADDON
+    if not GW or not GW.GetSettingsTabFrame then return end
+
     local db = EnsureDB()
     local panel = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = "gw2_ui_plus_skins"

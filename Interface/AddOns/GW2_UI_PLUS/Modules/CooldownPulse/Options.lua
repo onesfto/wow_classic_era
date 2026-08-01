@@ -1,9 +1,13 @@
 local _, addonTable = ...
-local GW = _G.GW2_ADDON
-if not GW or not GW.GetSettingsTabFrame then return end
-local CooldownPulse = addonTable.CooldownPulse
-if not CooldownPulse then return end
+-- 注意：不在顶层检查 GW2_ADDON，因为此时它可能还未初始化
+
 local function BuildPanel(parent)
+    -- 延迟检查，确保在调用时才验证依赖
+    local GW = _G.GW2_ADDON
+    if not GW or not GW.GetSettingsTabFrame then return end
+    local CooldownPulse = addonTable.CooldownPulse
+    if not CooldownPulse then return end
+
     CooldownPulse.InitDB()
     local panel = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = "gw2_ui_plus_cooldownpulse"

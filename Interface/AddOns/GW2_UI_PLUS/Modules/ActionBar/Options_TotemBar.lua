@@ -1,15 +1,18 @@
 local _, addonTable = ...
-local GW = _G.GW2_ADDON
-if not GW or not GW.GetSettingsTabFrame then return end
-local AB = addonTable.PlusActionBar
-if not AB then return end
-local Utils = addonTable.ActionBarOptionsUtils
-if not Utils then return end
+-- 注意：不在顶层检查 GW2_ADDON，避免模块加载失败
 
 local TotemBar = {}
 addonTable.ActionBarOptionsTotemBar = TotemBar
 
 function TotemBar.AddTotemBarOptions(panel)
+    -- 延迟获取依赖
+    local GW = _G.GW2_ADDON
+    if not GW then return end
+    local AB = addonTable.PlusActionBar
+    if not AB then return end
+    local Utils = addonTable.ActionBarOptionsUtils
+    if not Utils then return end
+
     local applyVisibility = function()
         if _G.GwTotemBar then _G.GwTotemBar:UpdateVisibility() end
         if addonTable.PlusFader then addonTable.PlusFader.Refresh() end

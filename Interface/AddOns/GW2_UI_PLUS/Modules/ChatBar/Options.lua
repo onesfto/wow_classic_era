@@ -1,8 +1,7 @@
 local _, addonTable = ...
-local GW = _G.GW2_ADDON
-if not GW or not GW.GetSettingsTabFrame then return end
-local ChatBar = addonTable.ChatBar
-if not ChatBar then return end
+-- 注意：不在顶层检查 GW2_ADDON，因为此时它可能还未初始化
+-- 改为在 BuildPanel 函数内部检查
+
 local IsLoaded = (_G.C_AddOns and _G.C_AddOns.IsAddOnLoaded) or _G.IsAddOnLoaded
 local GROUPS = {
     {header = "频道按钮", keys = {"SAY", "YELL", "GUILD", "PARTY", "RAID", "INSTANCE_CHAT",
@@ -18,12 +17,32 @@ local BUTTON_LABEL = {
     DBM = "距（DBM 测距）", ATLASLOOT = "掉（AtlasLoot）", BIAOGE = "金（表格）",
     MEETINGHORN = "集（集结号）", MRT = "M（MRT 团队检查）",
 }
+
 local function GetDef(key)
+    local ChatBar = addonTable.ChatBar
+    if not ChatBar then return end
     for _, def in ipairs(ChatBar.BUTTONS) do
         if def.key == key then return def end
     end
 end
+
 local function BuildPanel(parent)
+    -- 延迟检查，确保在调用时才验证依赖
+    local GW = _G.GW2_ADDON
+    if not GW then
+        DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS ChatBar: GW2_ADDON 不存在")
+        return
+    end
+    if not GW.GetSettingsTabFrame then
+        DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS ChatBar: GetSettingsTabFrame 不存在")
+        return
+    end
+    local ChatBar = addonTable.ChatBar
+    if not ChatBar then
+        DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS ChatBar: addonTable.ChatBar 不存在")
+        return
+    end
+
     ChatBar.InitDB()
     local panel = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = "gw2_ui_plus_chatbar"

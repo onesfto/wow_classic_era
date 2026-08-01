@@ -1,12 +1,14 @@
 local _, addonTable = ...
-local GW = _G.GW2_ADDON
-local Toolbar = addonTable.Toolbar
-if not GW or not GW.GetSettingsTabFrame or not Toolbar then return end
+-- 注意：不在顶层检查 GW2_ADDON，因为此时它可能还未初始化
+
 local function SetOptionName(option, name)
     if option then option.optionName = name end
     return option
 end
+
 local function AddEnable(panel, moduleKey, optionName)
+    local Toolbar = addonTable.Toolbar
+    if not Toolbar then return end
     local module = Toolbar[moduleKey]
     local option = panel:AddOption("启用", nil, {
         getter = function() return Toolbar.InitDB()[moduleKey].enabled end,
@@ -18,7 +20,10 @@ local function AddEnable(panel, moduleKey, optionName)
     })
     SetOptionName(option, optionName)
 end
+
 local function AddScale(panel, moduleKey, optionName)
+    local Toolbar = addonTable.Toolbar
+    if not Toolbar then return end
     local module = Toolbar[moduleKey]
     local option = panel:AddOptionSlider("缩放", nil, {
         min = 0.5, max = 2, step = 0.05, decimalNumbers = 2,
@@ -40,7 +45,14 @@ local function AddReset(panel, moduleKey, optionNames)
         isNegativeButton = true,
     })
 end
+
 local function BuildToolbarPanel(parent)
+    -- 延迟检查，确保在调用时才验证依赖
+    local GW = _G.GW2_ADDON
+    if not GW or not GW.GetSettingsTabFrame then return end
+    local Toolbar = addonTable.Toolbar
+    if not Toolbar then return end
+
     local panel = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = "gw2_ui_plus_toolbar"
     if panel.header then

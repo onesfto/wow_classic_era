@@ -1,23 +1,34 @@
 local _, addonTable = ...
-local GW = _G.GW2_ADDON
-if not GW then return end
+-- 注意：不在顶层检查 GW2_ADDON，函数内延迟获取依赖
+
 local AB = addonTable.PlusActionBar
 if not AB then return end
+
+local GLOBE_BASE_SCALE = 1.1
+
 function AB.GetMultiBarSize(index)
-    local info = MULTIBARS[index]
+    local GW = _G.GW2_ADDON
+    if not GW then return end
+    local info = AB.MULTIBARS and AB.MULTIBARS[index]
     if not info then return end
     local settings = GW.settings and GW.settings[info.setting]
     return settings and settings.size or 36
 end
+
 function AB.SetMultiBarSize(index, size)
-    local info = MULTIBARS[index]
-    if not info or not GW.settings then return end
+    local GW = _G.GW2_ADDON
+    if not GW or not GW.settings then return end
+    local info = AB.MULTIBARS and AB.MULTIBARS[index]
+    if not info then return end
     local settings = GW.settings[info.setting]
     settings.size = size
     GW.settings[info.setting] = settings
 end
+
 local function SyncMultiBarButtonSizes()
-    for index, info in pairs(MULTIBARS) do
+    local GW = _G.GW2_ADDON
+    if not GW or not AB.MULTIBARS then return end
+    for index, info in pairs(AB.MULTIBARS) do
         local bar = _G[info.frame]
         if bar and bar.gw_Buttons then
             local size = AB.GetMultiBarSize(index)
@@ -32,16 +43,19 @@ local function SyncMultiBarButtonSizes()
     end
 end
 function AB.ApplyMultiBarSizes()
-    if QueueOutOfCombat("multibarSize", AB.ApplyMultiBarSizes) then return end
+    local GW = _G.GW2_ADDON
+    if not GW then return end
+    if AB.QueueOutOfCombat("multibarSize", AB.ApplyMultiBarSizes) then return end
     SyncMultiBarButtonSizes()
     if GW.UpdateMultibarButtons and _G.MainActionBar and _G.MainActionBar.gw_Bar1 then
         GW.UpdateMultibarButtons()
     end
 end
 local function GetGlobeGap(bar)
-    local gap = InitDB().mainBarGlobeGap
+    local GW = _G.GW2_ADDON
+    local gap = AB.InitDB().mainBarGlobeGap
     if not gap or gap == 0 then return 0 end
-    if GW.settings and GW.settings.PLAYER_AS_TARGET_FRAME then
+    if GW and GW.settings and GW.settings.PLAYER_AS_TARGET_FRAME then
         return 0
     end
     return gap
@@ -93,17 +107,18 @@ function AB.ApplyMainBarText()
     local bar = _G.MainActionBar
     local layout = addonTable.PlusActionBarLayout
     if not bar or not bar.gw_Buttons or not layout then return end
-    local db = InitDB()
+    local db = AB.InitDB()
     for i = 1, math.min(db.mainBarCount or 12, 12) do
         local btn = bar.gw_Buttons[i]
         if btn then ApplyMainButtonText(btn, db, layout) end
     end
 end
 function AB.ApplyMainBarLayout()
+    local GW = _G.GW2_ADDON
     local bar = _G.MainActionBar
-    if not bar or not bar.gw_Buttons or not GW.settings then return end
-    if QueueOutOfCombat("mainBarLayout", AB.ApplyMainBarLayout) then return end
-    local db = InitDB()
+    if not bar or not bar.gw_Buttons or not GW or not GW.settings then return end
+    if AB.QueueOutOfCombat("mainBarLayout", AB.ApplyMainBarLayout) then return end
+    local db = AB.InitDB()
     local size = db.mainBarSize
     local margin = GW.settings.MAINBAR_MARGIIN or 5
     local gap = GetGlobeGap(bar)
@@ -178,9 +193,10 @@ function AB.ApplyCastbarSize()
     end
 end
 function AB.ApplyGlobeScale()
+    local GW = _G.GW2_ADDON
     local hg = _G.GW2_PlayerFrame
-    if not hg then return end
-    local db = InitDB()
+    if not hg or not GW then return end
+    local db = AB.InitDB()
     local globeScale = tonumber(db.globeScale) or 1
     local hudScale = tonumber(GW.settings and GW.settings.HUD_SCALE) or 1
     hg.gwScaleMulti = GLOBE_BASE_SCALE * globeScale
@@ -207,7 +223,8 @@ local MOVER_OPTION_HEIGHT = 45
 local function GetMoverBarIndex(mover)
     if not mover then return end
     if mover.parent == _G.MainActionBar then return 1 end
-    for index, info in pairs(MULTIBARS) do
+    if not AB.MULTIBARS then return end
+    for index, info in pairs(AB.MULTIBARS) do
         if mover.parent == _G[info.frame] then return index end
     end
 end
@@ -250,7 +267,9 @@ local function CreateMoverSlider(parent, label, order)
     return row
 end
 local function ApplyMoverOption(barIndex, key, value)
-    local db = InitDB()
+    local GW = _G.GW2_ADDON
+    if not GW then return end
+    local db = AB.InitDB()
     if barIndex == 1 then
         if key == "size" then
             db.mainBarSize = value
@@ -281,7 +300,7 @@ local function ApplyMoverOption(barIndex, key, value)
     end
 end
 local function GetMoverOptionValue(barIndex, key)
-    local db = InitDB()
+    local db = AB.InitDB()
     if barIndex == 1 then
         if key == "size" then return db.mainBarSize end
         if key == "spacing" then return GW.settings.MAINBAR_MARGIIN or 5 end
@@ -398,22 +417,26 @@ function AB.InitMoverOptions()
     if addonTable.TranslateMoveHud then addonTable.TranslateMoveHud() end
 end
 function AB.IsNormalPlayerFrameEnabled()
-    return InitDB().normalPlayerFrameEnabled ~= false
+    return AB.InitDB().normalPlayerFrameEnabled ~= false
 end
 function AB.SetNormalPlayerFrameEnabled(value)
-    InitDB().normalPlayerFrameEnabled = value == true
+    AB.InitDB().normalPlayerFrameEnabled = value == true
 end
 function AB.IsGlobeStyleEnabled()
+    local GW = _G.GW2_ADDON
+    if not GW then return false end
     return GW.settings and not GW.settings.PLAYER_AS_TARGET_FRAME
 end
 function AB.SyncPlayerHudEnabled()
-    if not GW.settings then return end
+    local GW = _G.GW2_ADDON
+    if not GW or not GW.settings then return end
     GW.settings.HEALTHGLOBE_ENABLED =
         AB.IsNormalPlayerFrameEnabled()
         or AB.IsGlobeStyleEnabled()
 end
 function AB.SetGlobeStyleEnabled(value)
-    if not GW.settings then return end
+    local GW = _G.GW2_ADDON
+    if not GW or not GW.settings then return end
     GW.settings.PLAYER_AS_TARGET_FRAME = not value
     AB.SyncPlayerHudEnabled()
     if GW.updateSettingsFrameSettingsValue then
@@ -425,7 +448,7 @@ function AB.SetGlobeStyleEnabled(value)
     end
 end
 function AB.ApplyNormalPlayerFrameVisibility()
-    if QueueOutOfCombat(
+    if AB.QueueOutOfCombat(
         "normalPlayerFrame", AB.ApplyNormalPlayerFrameVisibility) then
         return
     end
@@ -448,6 +471,8 @@ function AB.ApplyNormalPlayerFrameVisibility()
     end
 end
 function AB.EnsureNormalPlayerFrame()
+    local GW = _G.GW2_ADDON
+    if not GW then return end
     if AB.IsNormalPlayerFrameEnabled()
         and AB.IsGlobeStyleEnabled()
         and not _G.GwPlayerUnitFrame

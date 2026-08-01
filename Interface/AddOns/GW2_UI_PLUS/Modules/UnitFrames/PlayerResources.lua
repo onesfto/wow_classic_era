@@ -1,8 +1,18 @@
 local _, addonTable = ...
-local GW = _G.GW2_ADDON
-local AB = addonTable.PlusActionBar
-local SettingsLayout = addonTable.PlusSettingsLayout
-if not GW or not AB or not SettingsLayout then return end
+-- 模块级变量，延迟初始化避免顶层依赖检查失败
+local GW, AB, Utils
+
+local function EnsureDeps()
+    if GW then return true end -- 已初始化
+    GW = _G.GW2_ADDON
+    AB = addonTable.PlusActionBar
+    Utils = addonTable.ActionBarOptionsUtils
+    if not GW or not AB or not Utils then
+        return false
+    end
+    return true
+end
+
 local STATUS_DEFAULTS = {
     energyBarShowValue = true,
     resourceBarShowValue = true,
@@ -632,10 +642,10 @@ local function CreateStatusPanel(
     AddClonedOption(
         panel, options.classPowerCombat,
         "仅在战斗中显示", "资源条", nil)
-    SettingsLayout.InitializePanel(panel)
+    Utils.InitializePanel(panel)
     statusPanel = panel
     RefreshStatusPanel = function()
-        SettingsLayout.RefreshPanel(panel)
+        Utils.RefreshPanel(panel)
         ApplyPanelDependencies(panel)
         if addonTable.PlusEnergyTicker then
             addonTable.PlusEnergyTicker.Refresh()
@@ -702,6 +712,12 @@ local function CollectRequiredOptions(
 end
 local function PreparePlayerResourcePanel(
     playerGeneral, resourcePanel, castbarPanel)
+    -- 延迟获取依赖
+    if not EnsureDeps() then
+        DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS PlayerResources: 依赖未就绪")
+        return
+    end
+
     if statusPanel then return statusPanel end
     if not playerGeneral or not resourcePanel or not castbarPanel then
         return

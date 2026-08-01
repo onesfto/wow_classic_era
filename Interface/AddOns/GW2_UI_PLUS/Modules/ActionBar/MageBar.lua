@@ -404,7 +404,7 @@ function MageBar.Toggle()
     if not bar then return end
     if db.mageBarEnable then
         MageBar.Update()
-        eventFrame:RegisterEvent("LEARNED_SPELL_IN_TAB")
+        -- eventFrame:RegisterEvent("LEARNED_SPELL_IN_TAB") -- 经典版不存在此事件
         eventFrame:RegisterEvent("SPELLS_CHANGED")
         eventFrame:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
         eventFrame:RegisterEvent("BAG_UPDATE_DELAYED")
@@ -493,7 +493,7 @@ function MageBar.Init()
     end)
     eventFrame = CreateFrame("Frame")
     eventFrame:SetScript("OnEvent", function(_, event)
-        if event == "LEARNED_SPELL_IN_TAB" or event == "SPELLS_CHANGED" then
+        if event == "SPELLS_CHANGED" then
             MageBar.Update()
         elseif event == "SPELL_UPDATE_USABLE" then
             Bar_UpdateUsable()

@@ -202,41 +202,64 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
 
     if addonTable.BuildChatBarPanel then
         local chatBarFrame = addonTable.BuildChatBarPanel(p)
-        table.insert(subPanels, {name = "频道按钮", frame = chatBarFrame, icon = "Interface\\Icons\\INV_Letter_15"})
+        if chatBarFrame then
+            table.insert(subPanels, {name = "频道按钮", frame = chatBarFrame, icon = "Interface\\Icons\\INV_Letter_15"})
+        else
+            DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS: BuildChatBarPanel 返回 nil")
+        end
     end
 
     if addonTable.BuildCooldownPulsePanel then
         local cooldownPulseFrame = addonTable.BuildCooldownPulsePanel(p)
-        table.insert(subPanels, {name = "冷却闪烁", frame = cooldownPulseFrame, icon = "Interface\\Icons\\Spell_Nature_Earthbind"})
+        if cooldownPulseFrame then
+            table.insert(subPanels, {name = "冷却闪烁", frame = cooldownPulseFrame, icon = "Interface\\Icons\\Spell_Nature_Earthbind"})
+        else
+            DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS: BuildCooldownPulsePanel 返回 nil")
+        end
     end
 
     if addonTable.BuildChatWindowPanel then
         local chatWindowFrame = addonTable.BuildChatWindowPanel(p)
-        table.insert(subPanels, {name = "聊天窗口", frame = chatWindowFrame, icon = "Interface\\Icons\\INV_Scroll_03"})
+        if chatWindowFrame then
+            table.insert(subPanels, {name = "聊天窗口", frame = chatWindowFrame, icon = "Interface\\Icons\\INV_Scroll_03"})
+        else
+            DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS: BuildChatWindowPanel 返回 nil")
+        end
     end
 
     if addonTable.BuildSkinsPanel then
         local skinsFrame = addonTable.BuildSkinsPanel(p)
-        table.insert(subPanels, {name = "界面皮肤", frame = skinsFrame, icon = "Interface\\Icons\\Trade_Engineering"})
+        if skinsFrame then
+            table.insert(subPanels, {name = "界面皮肤", frame = skinsFrame, icon = "Interface\\Icons\\Trade_Engineering"})
+        else
+            DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS: BuildSkinsPanel 返回 nil")
+        end
     end
 
     if addonTable.BuildMinimapAddonFlyoutPanel then
-        local minimapFlyoutFrame =
-            addonTable.BuildMinimapAddonFlyoutPanel(p)
-        table.insert(subPanels, {
-            name = "插件悬浮按钮",
-            frame = minimapFlyoutFrame,
-            icon = "Interface\\AddOns\\GW2_UI\\textures\\icons\\addondropout.png",
-        })
+        local minimapFlyoutFrame = addonTable.BuildMinimapAddonFlyoutPanel(p)
+        if minimapFlyoutFrame then
+            table.insert(subPanels, {
+                name = "插件悬浮按钮",
+                frame = minimapFlyoutFrame,
+                icon = "Interface\\AddOns\\GW2_UI\\textures\\icons\\addondropout.png",
+            })
+        else
+            DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS: BuildMinimapAddonFlyoutPanel 返回 nil")
+        end
     end
 
     if addonTable.BuildToolbarPanel then
         local toolbarFrame = addonTable.BuildToolbarPanel(p)
-        table.insert(subPanels, {
-            name = "工具条",
-            frame = toolbarFrame,
-            icon = "Interface\\Icons\\INV_Misc_Tool_01",
-        })
+        if toolbarFrame then
+            table.insert(subPanels, {
+                name = "工具条",
+                frame = toolbarFrame,
+                icon = "Interface\\Icons\\INV_Misc_Tool_01",
+            })
+        else
+            DEFAULT_CHAT_FRAME:AddMessage("GW2_UI_PLUS: BuildToolbarPanel 返回 nil")
+        end
     end
 
     settingsTab:AddSettingsPanel(p, "附加组件", "额外附加组件", subPanels, true)

@@ -1,8 +1,13 @@
 local _, addonTable = ...
-local GW = _G.GW2_ADDON
-local Flyout = addonTable.MinimapAddonFlyout
-if not GW or not GW.GetSettingsTabFrame or not Flyout then return end
+-- 注意：不在顶层检查 GW2_ADDON，因为此时它可能还未初始化
+
 local function BuildMinimapAddonFlyoutPanel(parent)
+    -- 延迟检查，确保在调用时才验证依赖
+    local GW = _G.GW2_ADDON
+    if not GW or not GW.GetSettingsTabFrame then return end
+    local Flyout = addonTable.MinimapAddonFlyout
+    if not Flyout then return end
+
     Flyout.InitDB()
     local panel =
         CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")

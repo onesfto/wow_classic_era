@@ -1,9 +1,9 @@
 local _, addonTable = ...
-local GW = _G.GW2_ADDON
-if not GW or not GW.GetSettingsTabFrame then return end
-local ChatWindow = addonTable.ChatWindow
-if not ChatWindow then return end
+-- 注意：不在顶层检查 GW2_ADDON，因为此时它可能还未初始化
+
 local function RedrawSlider(optionName)
+    local GW = _G.GW2_ADDON
+    if not GW then return end
     local widget = GW.FindSettingsWidgetByOption and GW.FindSettingsWidgetByOption(optionName)
     if not widget or widget.optionType ~= "slider" or not widget.get then return end
     local value = widget.get()
@@ -12,7 +12,13 @@ local function RedrawSlider(optionName)
         widget.inputFrame.input:SetText(string.format("%." .. (widget.decimalNumbers or 0) .. "f", value))
     end
 end
+
 local function BuildPanel(parent)
+    -- 延迟检查，确保在调用时才验证依赖
+    local GW = _G.GW2_ADDON
+    if not GW or not GW.GetSettingsTabFrame then return end
+    local ChatWindow = addonTable.ChatWindow
+    if not ChatWindow then return end
     local db = ChatWindow.InitDB()
     local defaults = ChatWindow.defaults
     local panel = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")

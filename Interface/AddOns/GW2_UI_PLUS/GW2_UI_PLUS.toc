@@ -53,11 +53,12 @@ Modules/ActionBar/Options_SimpleBar.lua
 Modules/ActionBar/Options_MageBar.lua
 Modules/ActionBar/Options_TotemBar.lua
 Modules/ActionBar/Options.lua
-Modules/MainMenu/EnergyTicker.lua
-Modules/MainMenu/PlayerResources.lua
-Modules/MainMenu/PlayerAuras.lua
-Modules/MainMenu/MainMenu.lua
-Modules/MainMenu/SettingsIcon.lua
+Modules/UnitFrames/EnergyTicker.lua
+Modules/UnitFrames/PlayerResources.lua
+Modules/UnitFrames/PlayerAuras.lua
+Modules/Settings/HideNativeSettings.lua
+Modules/Settings/Settings.lua
+Modules/Settings/SettingsIcon.lua
 Modules/Social/friendsFrame.lua
 Modules/Social/friendsList.lua
 Modules/Social/guildList.lua
