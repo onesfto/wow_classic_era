@@ -225,14 +225,24 @@ local function CopyMap(source)
     end
     return copy
 end
+local PANEL_BREADCRUMB_GAP = 36
+
 local function SetPanelText(panel, header, breadcrumb, sub)
     if not panel then return end
     if panel.header then
         panel.header:SetText(header)
-        panel.header:SetWidth(panel.header:GetStringWidth() + 36)
+        local width = panel.header.GetUnboundedStringWidth
+            and panel.header:GetUnboundedStringWidth()
+            or panel.header:GetStringWidth()
+        panel.header:SetWidth(width)
     end
     if panel.breadcrumb then
-        panel.breadcrumb:SetText(breadcrumb)
+        panel.breadcrumb:SetText(breadcrumb or "")
+        panel.breadcrumb:ClearAllPoints()
+        if breadcrumb and breadcrumb ~= "" and panel.header then
+            panel.breadcrumb:SetPoint(
+                "LEFT", panel.header, "RIGHT", PANEL_BREADCRUMB_GAP, 0)
+        end
     end
     if panel.sub then
         panel.sub:SetText(sub)
