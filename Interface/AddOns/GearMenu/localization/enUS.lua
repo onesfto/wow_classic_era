@@ -12,6 +12,7 @@ rggm.L["opt"] = "|cFFFFC300opt|r - display Optionsmenu"
 rggm.L["reload"] = "|cFFFFC300reload|r - reload UI"
 rggm.L["info_title"] = "|cFF00FFB0GearMenu:|r"
 rggm.L["invalid_argument"] = "Invalid argument passed"
+rggm.L["update_available"] = "New version |cFFFFC300%s|r is available - |cFF00FFB0consider updating!|r"
 
 -- about
 rggm.L["author"] = "Author: Michael Wiesendanger"
@@ -20,8 +21,8 @@ rggm.L["version"] = "Version: " .. C_AddOns.GetAddOnMetadata(RGGM_CONSTANTS.ADDO
 rggm.L["issues"] = "Issues: https://github.com/RagedUnicorn/wow-classic-gearmenu/issues"
 
 -- general
-rggm.L["general_category_name"] = "General"
-rggm.L["general_title"] = "General Configuration"
+rggm.L["general_category_name"] = "Options"
+rggm.L["general_title"] = "Options"
 rggm.L["enable_tooltips"] = "Enable Tooltips"
 rggm.L["enable_tooltips_tooltip"] = "Whether to show a tooltip when hovering an item or not"
 rggm.L["enable_simple_tooltips"] = "Display Simple Tooltips"
@@ -36,6 +37,10 @@ rggm.L["enable_unequip_slot_tooltip"] = "Enables an empty slot to be added to th
   .. " This allows for easier unequipping of items"
 rggm.L["enable_rune_slots"] = "Enable Rune Slots"
 rggm.L["enable_rune_slots_tooltip"] = "Enables the display of rune slots in the gearBar"
+rggm.L["enable_fallback_to_base_item"] = "Fallback to Base Item"
+rggm.L["enable_fallback_to_base_item_tooltip"] = "When the exact enchanted/engraved copy of an item cannot be"
+  .. " found in your bags, equip a plain copy of the same item instead."
+  .. " A warning is shown in chat whenever a substitute copy is equipped"
 rggm.L["filter_item_quality"] = "Filter Item Quality:"
 rggm.L["item_quality_poor"] = "Poor (Grey)"
 rggm.L["item_quality_common"] = "Common (White)"
@@ -142,6 +147,8 @@ rggm.L["gear_bar_max_amount_of_gear_slots_reached"] =
 
 -- add/remove slots
 rggm.L["gear_bar_configuration_add_gearslot"] = "Add Gearslot"
+rggm.L["gear_bar_configuration_add_gearslot_combat"] =
+  "Unable to add a Gearslot while in combat. Please try again after combat"
 rggm.L["gear_bar_configuration_remove_gearslot"] = "-"
 rggm.L["gear_bar_configuration_delete_gearbar"] = "Delete GearBar"
 -- gearbar scrollmenu
@@ -159,3 +166,48 @@ rggm.L["gear_bar_configuration_key_binding_user_error"] = "Failed to set new Key
 -- macro bridge user errors
 rggm.L["unable_to_find_equipslot"] = "Unable to find a matching slot for itemId %s"
 rggm.L["unable_to_find_item"] = "Unable to find any itemInfo for itemId %s"
+rggm.L["macro_invalid_argument"] = "bad argument #%s to '%s' (expected number got %s)"
+rggm.L["macro_invalid_listener"] = "bad argument #1 to '%s' (expected function got %s)"
+
+-- swap failure user errors
+rggm.L["swap_failure_item_not_found"] = "Unable to switch to item %s - the item could not be found in your bags"
+rggm.L["swap_failure_item_locked"] = "Unable to switch to item %s - the item is currently locked"
+rggm.L["swap_failure_cursor_busy"] = "Unable to switch to item %s - another item is currently on the cursor"
+rggm.L["swap_failure_spell_targeting"] = "Unable to switch to item %s - a spell is currently requesting a target"
+rggm.L["swap_failure_no_bag_space"] = "Unable to unequip item %s - there is no free space in your bags"
+rggm.L["swap_fallback_to_base_item"] = "Equipped a substitute copy of %s - no copy matching the exact"
+  .. " enchant/rune was found in your bags"
+
+-- profile
+rggm.L["profile_category_name"] = "Profiles"
+rggm.L["profile_title"] = "Profiles"
+rggm.L["profile_list_label"] = "Saved Profiles"
+rggm.L["profile_string_label"] = "Profile String (Export / Import)"
+rggm.L["profile_save_button"] = "Save current as..."
+rggm.L["profile_apply_button"] = "Apply"
+rggm.L["profile_rename_button"] = "Rename"
+rggm.L["profile_delete_button"] = "Delete"
+rggm.L["profile_export_button"] = "Export"
+rggm.L["profile_import_button"] = "Import"
+rggm.L["profile_name_prompt"] = "Enter a name for the new profile:"
+rggm.L["profile_rename_prompt"] = "Enter a new name for the profile:"
+rggm.L["profile_import_name_prompt"] = "Enter a name to save the imported profile under:"
+rggm.L["profile_apply_confirm"] = "Apply profile \"%s\"? This overwrites your current settings and reloads the UI."
+rggm.L["profile_delete_confirm"] = "Delete profile \"%s\"?"
+rggm.L["profile_save_success"] = "Saved profile \"%s\""
+rggm.L["profile_apply_success"] = "Applied profile \"%s\""
+rggm.L["profile_import_success"] = "Imported profile \"%s\""
+rggm.L["profile_delete_success"] = "Deleted profile \"%s\""
+rggm.L["profile_rename_success"] = "Renamed profile to \"%s\""
+rggm.L["profile_error_empty"] = "There is no profile string to import"
+rggm.L["profile_error_invalid"] = "The profile string is invalid or could not be read"
+rggm.L["profile_error_checksum"] = "The profile string is corrupt (checksum mismatch)"
+rggm.L["profile_error_wrong_addon"] = "This profile string was not created by GearMenu"
+rggm.L["profile_error_version"] = "This profile string was created by a newer version of GearMenu"
+rggm.L["profile_error_name_empty"] = "The profile name cannot be empty"
+rggm.L["profile_error_name_exists"] = "A profile with that name already exists"
+rggm.L["profile_error_name_too_long"] = "The profile name cannot be longer than %d characters"
+rggm.L["profile_error_no_selection"] = "No profile selected"
+rggm.L["profile_error_default_cannot_be_deleted"] = "The \"%s\" profile cannot be deleted"
+rggm.L["profile_error_default_cannot_be_renamed"] = "The \"%s\" profile cannot be renamed"
+rggm.L["profile_error_default_cannot_be_overwritten"] = "The \"%s\" profile cannot be overwritten"

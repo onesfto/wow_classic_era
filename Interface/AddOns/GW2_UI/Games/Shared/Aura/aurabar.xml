@@ -3,7 +3,7 @@
 
     <Button name="GwAuraSecureTmpl" inherits="SecureActionButtonTemplate" virtual="true">
         <Attributes>
-            <Attribute name="type2" value="cancelaura"/>
+            <Attribute name="type" value="cancelaura"/>
         </Attributes>
         <Frames>
             <Frame parentKey="border" frameLevel="1">

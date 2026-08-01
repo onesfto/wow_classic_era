@@ -11,6 +11,8 @@ local GetItemInfo=GetItemInfo or C_Item and C_Item.GetItemInfo
 --------------------
 local TooltipUI = CreateFrame("GameTooltip", "PIG_TooltipUI", UIParent, "GameTooltipTemplate")
 TooltipUI:SetOwner(UIParent, "ANCHOR_NONE")
+local TooltipGetItemLevel = CreateFrame("GameTooltip", "PIG_TooltipGetItemLevel", UIParent, "GameTooltipTemplate")
+TooltipGetItemLevel:SetOwner(UIParent, "ANCHOR_NONE")
 -----------------
 local function GetItemLinkJJ(ItemLink)
     local msg = "";
@@ -219,24 +221,24 @@ end
 local function _GetItemLevel(ly,info,GetTaoZ)
     local stopfun,ItemLevelV,taodata=_GetDetailedItemLevelInfo(ly,info,GetTaoZ)
     if stopfun then return ItemLevelV,taodata end  
-    TooltipUI:SetOwner(UIParent, "ANCHOR_NONE")
-    TooltipUI:ClearLines();
+    TooltipGetItemLevel:SetOwner(UIParent, "ANCHOR_NONE")
+    TooltipGetItemLevel:ClearLines();
     local Iteminfo
     if ly=="bag" then
         if info[1]==-1 then
-            Iteminfo = TooltipUI:SetInventoryItem("player", BankButtonIDToInvSlotID(info[2]));
+            Iteminfo = TooltipGetItemLevel:SetInventoryItem("player", BankButtonIDToInvSlotID(info[2]));
         else
-            Iteminfo = TooltipUI:SetBagItem(info[1], info[2])
+            Iteminfo = TooltipGetItemLevel:SetBagItem(info[1], info[2])
         end
     elseif ly=="link" then
-        Iteminfo = TooltipUI:SetHyperlink(info[1])
+        Iteminfo = TooltipGetItemLevel:SetHyperlink(info[1])
     elseif _IsLyunit(ly) then
-        Iteminfo = TooltipUI:SetInventoryItem(ly, info[1])
+        Iteminfo = TooltipGetItemLevel:SetInventoryItem(ly, info[1])
     end
-    TooltipUI:Show()
-    if TooltipUI.GetTooltipData then
+    TooltipGetItemLevel:Show()
+    if TooltipGetItemLevel.GetTooltipData then
         if not Iteminfo then return end
-        local t_lsit = Iteminfo and TooltipUI:GetTooltipData()
+        local t_lsit = Iteminfo and TooltipGetItemLevel:GetTooltipData()
         if t_lsit then
             local text1 = t_lsit.lines[1]
             local errorText = text1 and text1.leftText
@@ -263,7 +265,7 @@ local function _GetItemLevel(ly,info,GetTaoZ)
                         end
                     end
                 end
-                TooltipUI:Hide()
+                TooltipGetItemLevel:Hide()
                 return itemLevel_1,taodata
             else
                 local colormode = GetCVarBool('colorblindmode')
@@ -273,7 +275,7 @@ local function _GetItemLevel(ly,info,GetTaoZ)
                     if text and text.leftText and text.leftText ~= '' then
                         local itemLevel = text.leftText:match(MATCH_ITEM_LEVEL_ALT) or text.leftText:match(MATCH_ITEM_LEVEL)
                         if itemLevel then
-                            TooltipUI:Hide()
+                            TooltipGetItemLevel:Hide()
                             return tonumber(itemLevel)
                         end
                     end
@@ -281,9 +283,9 @@ local function _GetItemLevel(ly,info,GetTaoZ)
             end
         end
     else
-        local txtNum = TooltipUI:NumLines()
+        local txtNum = TooltipGetItemLevel:NumLines()
         if not txtNum or txtNum and txtNum==0 then return end
-        local hangname = TooltipUI:GetName()
+        local hangname = TooltipGetItemLevel:GetName()
         local text = _G[hangname.."TextLeft" .. 1]:GetText()
         if text == RETRIEVING_ITEM_INFO then
             return "RETRIEVING"
@@ -313,7 +315,7 @@ local function _GetItemLevel(ly,info,GetTaoZ)
                     end
                 end
             end
-            TooltipUI:Hide()
+            TooltipGetItemLevel:Hide()
             return itemLevel_1,taodata
         else
             local colormode = GetCVarBool('colorblindmode')
@@ -323,7 +325,7 @@ local function _GetItemLevel(ly,info,GetTaoZ)
                 if text and text ~= '' then
                     local itemLevel = text:match(MATCH_ITEM_LEVEL_ALT) or text:match(MATCH_ITEM_LEVEL)
                     if itemLevel then
-                        TooltipUI:Hide()
+                        TooltipGetItemLevel:Hide()
                         return tonumber(itemLevel)
                     end
                 end

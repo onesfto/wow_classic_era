@@ -34,37 +34,48 @@ mod.configuration = me
 
 me.tag = "Configuration"
 
-GearMenuConfiguration = {
-  ["addonVersion"] = nil,
+--[[
+  The single source of truth for the default value of every persisted configuration
+  field. me.SetupConfiguration backfills the live GearMenuConfiguration from this
+  list, so adding a configurable option is a one-line change here. Deliberately
+  excludes addonVersion (bookkeeping handled by me.SetAddonVersion).
+
+  Each entry is a { ["name"], ["default"] } record, matching the metadata-record idiom
+  used elsewhere (see gearSlots in code/GearManager.lua and PROFILE_FIELD_SPEC in
+  code/Profile.lua). Table defaults are merged recursively -- a saved table gains any
+  key it lacks but keeps every value it holds. Entries marked ["userOwned"] = true are
+  collections whose content is created by the player (or by migration paths); for those
+  the merge only guarantees the container exists and never descends into it.
+]]--
+local CONFIGURATION_DEFAULTS = {
   --[[
     Whether the first time initialization was already done
   ]]--
-  ["firstTimeInitializationDone"] = false,
+  { ["name"] = "firstTimeInitializationDone", ["default"] = false },
   --[[
     Whether to enable tooltips
   ]]--
-  ["enableTooltips"] = true,
+  { ["name"] = "enableTooltips", ["default"] = true },
   --[[
     Whether simple tooltips (single line) are enabled or not
   ]]--
-  ["enableSimpleTooltips"] = false,
+  { ["name"] = "enableSimpleTooltips", ["default"] = false },
   --[[
     Whether to disable drag and drop between and onto GearMenu itemslots
   ]]--
-  ["enableDragAndDrop"] = true,
+  { ["name"] = "enableDragAndDrop", ["default"] = true },
   --[[
     Whether fastpress is enabled or not. If fastpress is activated actions will be
     triggered as soon as a key is pressed down instead of waiting for the keyup event
   ]]--
-  ["enableFastPress"] = false,
+  { ["name"] = "enableFastPress", ["default"] = false },
   --[[
     Whether an empty slot that enables unequipping items is displayed or not
   ]]--
-  ["enableUnequipSlot"] = true,
+  { ["name"] = "enableUnequipSlot", ["default"] = true },
   --[[
     Itemquality to filter items by their quality. Everything that is below the settings value
     will not be considered a valid item to display when building the changemenu.
-    By default all items are allowed
 
     0 Poor (gray)
     1 Common (white)
@@ -73,7 +84,7 @@ GearMenuConfiguration = {
     4 Epic (purple)
     5 Legendary (orange)
   ]]--
-  ["filterItemQuality"] = 2,
+  { ["name"] = "filterItemQuality", ["default"] = 2 },
   --[[
     Stores all relevant metadata for the users gearBars. It does only store data that should be persisted. This
     does not include references to ui elements.
@@ -110,7 +121,7 @@ GearMenuConfiguration = {
         e.g. {"LEFT", 150, 0}
     }
   ]]--
-  ["gearBars"] = nil,
+  { ["name"] = "gearBars", ["default"] = {}, ["userOwned"] = true },
   --[[
     example
     {
@@ -129,7 +140,7 @@ GearMenuConfiguration = {
       ["delay"] = {number} -- delay in seconds
     }
   ]]--
-  ["quickChangeRules"] = {},
+  { ["name"] = "quickChangeRules", ["default"] = {}, ["userOwned"] = true },
   --[[
     Framepositions for user draggable Frames
     frames = {
@@ -142,75 +153,111 @@ GearMenuConfiguration = {
       ...
     }
   ]]--
-  ["frames"] = {},
+  { ["name"] = "frames", ["default"] = {}, ["userOwned"] = true },
   --[[
     Whether the trinketMenu is enabled or not
   ]]--
-  ["enableTrinketMenu"] = true,
+  { ["name"] = "enableTrinketMenu", ["default"] = true },
   --[[
     Whether the trinketMenuFrame is locked or not
   ]]--
-  ["lockTrinketMenuFrame"] = false,
+  { ["name"] = "lockTrinketMenuFrame", ["default"] = false },
   --[[
     Whether to show item cooldowns in the trinketMenu or not
   ]]--
-  ["trinketMenuShowCooldowns"] = true,
+  { ["name"] = "trinketMenuShowCooldowns", ["default"] = true },
   --[[
     The amount of columns to use when displaying the trinketMenu
   ]]--
-  ["trinketMenuColumns"] = RGGM_CONSTANTS.TRINKET_MENU_DEFAULT_COLUMN_AMOUNT,
+  { ["name"] = "trinketMenuColumns", ["default"] = RGGM_CONSTANTS.TRINKET_MENU_DEFAULT_COLUMN_AMOUNT },
   --[[
     Configurable size of the trinketMenu slots
   ]]--
-  ["trinketMenuSlotSize"] = RGGM_CONSTANTS.TRINKET_MENU_DEFAULT_SLOT_SIZE,
+  { ["name"] = "trinketMenuSlotSize", ["default"] = RGGM_CONSTANTS.TRINKET_MENU_DEFAULT_SLOT_SIZE },
   --[[
     Whether to use custom or classic style for gearMenu ui elements (gearBar, changeMenu and trinketMenu)
   ]]--
-  ["uiTheme"] = RGGM_CONSTANTS.UI_THEME_CUSTOM,
+  { ["name"] = "uiTheme", ["default"] = RGGM_CONSTANTS.UI_THEME_CUSTOM },
   --[[
     Whether to enable rune slots or not (this is an SOD specific feature)
   ]]--
-  ["enableRuneSlots"] = true
+  { ["name"] = "enableRuneSlots", ["default"] = true },
+  --[[
+    Whether a swap may fall back to any bag copy of the requested itemId when no copy
+    with the exact enchantId/runeAbilityId can be found. Off by default to preserve
+    strict matching
+  ]]--
+  { ["name"] = "enableFallbackToBaseItem", ["default"] = false },
+  --[[
+    Named configuration profiles keyed by the user given name. Each entry is a
+    snapshot of the configurable fields (see code/Profile.lua me.PROFILE_FIELDS)
+  ]]--
+  { ["name"] = "profiles", ["default"] = {}, ["userOwned"] = true },
+  --[[
+    Highest version the update notifier (code/Comm.lua) already announced to the
+    user - bookkeeping like addonVersion, deliberately not part of profiles.
+    Empty string means no version was announced yet
+  ]]--
+  { ["name"] = "lastNotifiedVersion", ["default"] = "" }
 }
+
+--[[
+  Populated by me.SetupConfiguration() on the first PLAYER_ENTERING_WORLD, from
+  CONFIGURATION_DEFAULTS. Nothing may read GearMenuConfiguration fields before then.
+]]--
+GearMenuConfiguration = GearMenuConfiguration or {}
+
+--[[
+  Lazily built fieldName -> default value map, derived from CONFIGURATION_DEFAULTS. See
+  me.GetDefaults
+]]--
+local defaultsByName
+
+-- forward declarations
+local ApplyConfigurationDefaults
+
+--[[
+  Recursively backfill missing keys of target with a fresh deep copy of the matching
+  defaults value. A key is missing only when its value is nil -- false is a real value
+  and is never overwritten. When both sides hold a table the merge descends instead of
+  replacing, so a saved subtable keeps the player's values and only gains keys it lacks.
+
+  @param {table} target
+  @param {table} defaults
+]]--
+function me.MergeDefaults(target, defaults)
+  for key, value in pairs(defaults) do
+    if target[key] == nil then
+      target[key] = mod.common.Clone(value)
+    elseif type(target[key]) == "table" and type(value) == "table" then
+      me.MergeDefaults(target[key], value)
+    end
+  end
+end
+
+--[[
+  Fill any missing field of the live GearMenuConfiguration with a fresh deep copy of
+  its default. Seeds a brand-new config and backfills fields a saved config from an
+  older addon version is missing. Table fields merge recursively so a newly added
+  nested default reaches upgrading players -- except userOwned collections, whose
+  content belongs to the player and is never touched beyond creating the container.
+]]--
+ApplyConfigurationDefaults = function()
+  for _, entry in ipairs(CONFIGURATION_DEFAULTS) do
+    if GearMenuConfiguration[entry.name] == nil then
+      GearMenuConfiguration[entry.name] = mod.common.Clone(entry.default)
+    elseif not entry.userOwned and type(entry.default) == "table"
+      and type(GearMenuConfiguration[entry.name]) == "table" then
+      me.MergeDefaults(GearMenuConfiguration[entry.name], entry.default)
+    end
+  end
+end
 
 --[[
   Set default values if property is nil. This might happen after an addon upgrade
 ]]--
 function me.SetupConfiguration()
-  if GearMenuConfiguration.enableTooltips == nil then
-    mod.logger.LogInfo(me.tag, "enableTooltips has unexpected nil value")
-    GearMenuConfiguration.enableTooltips = true
-  end
-
-  if GearMenuConfiguration.enableSimpleTooltips == nil then
-    mod.logger.LogInfo(me.tag, "enableSimpleTooltips has unexpected nil value")
-    GearMenuConfiguration.enableSimpleTooltips = false
-  end
-
-  if GearMenuConfiguration.enableDragAndDrop == nil then
-    mod.logger.LogInfo(me.tag, "enableDragAndDrop has unexpected nil value")
-    GearMenuConfiguration.enableDragAndDrop = true
-  end
-
-  if GearMenuConfiguration.enableFastPress == nil then
-    mod.logger.LogInfo(me.tag, "enableFastPress has unexpected nil value")
-    GearMenuConfiguration.enableFastPress = false
-  end
-
-  if GearMenuConfiguration.enableUnequipSlot == nil then
-    mod.logger.LogInfo(me.tag, "enableUnequipSlot has unexpected nil value")
-    GearMenuConfiguration.enableUnequipSlot = false
-  end
-
-  if GearMenuConfiguration.filterItemQuality == nil then
-    mod.logger.LogInfo(me.tag, "filterItemQuality has unexpected nil value")
-    GearMenuConfiguration.filterItemQuality = 0
-  end
-
-  if GearMenuConfiguration.gearBars == nil then
-    mod.logger.LogInfo(me.tag, "gearBars has unexpected nil value")
-    GearMenuConfiguration.gearBars = {}
-  end
+  ApplyConfigurationDefaults()
 
   for _, gearBar in pairs(GearMenuConfiguration.gearBars) do
     if gearBar.orientation == nil then
@@ -225,56 +272,34 @@ function me.SetupConfiguration()
     end
   end
 
-  if GearMenuConfiguration.quickChangeRules == nil then
-    mod.logger.LogInfo(me.tag, "quickChangeRules has unexpected nil value")
-    GearMenuConfiguration.quickChangeRules = {}
-  end
-
-  if GearMenuConfiguration.frames == nil then
-    mod.logger.LogInfo(me.tag, "frames has unexpected nil value")
-    GearMenuConfiguration.frames = {}
-  end
-
-  if GearMenuConfiguration.enableTrinketMenu == nil then
-    mod.logger.LogInfo(me.tag, "enableTrinketMenu has unexpected nil value")
-    GearMenuConfiguration.enableTrinketMenu = true
-  end
-
-  if GearMenuConfiguration.lockTrinketMenuFrame == nil then
-    mod.logger.LogInfo(me.tag, "lockTrinketMenuFrame has unexpected nil value")
-    GearMenuConfiguration.lockTrinketMenuFrame = false
-  end
-
-  if GearMenuConfiguration.trinketMenuShowCooldowns == nil then
-    mod.logger.LogInfo(me.tag, "trinketMenuShowCooldowns has unexpected nil value")
-    GearMenuConfiguration.trinketMenuShowCooldowns = true
-  end
-
-  if GearMenuConfiguration.trinketMenuColumns == nil then
-    mod.logger.LogInfo(me.tag, "trinketMenuColumns has unexpected nil value")
-    GearMenuConfiguration.trinketMenuColumns = RGGM_CONSTANTS.TRINKET_MENU_DEFAULT_COLUMN_AMOUNT
-  end
-
-  if GearMenuConfiguration.trinketMenuSlotSize == nil then
-    mod.logger.LogInfo(me.tag, "trinketMenuSlotSize has unexpected nil value")
-    GearMenuConfiguration.trinketMenuSlotSize = RGGM_CONSTANTS.TRINKET_MENU_DEFAULT_SLOT_SIZE
-  end
-
-  if GearMenuConfiguration.uiTheme == nil then
-    mod.logger.LogInfo(me.tag, "uiTheme has unexpected nil value")
-    GearMenuConfiguration.uiTheme = RGGM_CONSTANTS.UI_THEME_CUSTOM
-  end
-
-  if GearMenuConfiguration.enableRuneSlots == nil then
-    mod.logger.LogInfo(me.tag, "enableRuneSlots has unexpected nil value")
-    GearMenuConfiguration.enableRuneSlots = true
-  end
-
   --[[
     Set saved variables with addon version. This can be used later to determine whether
     a migration path applies to the current saved variables or not
   ]]--
   me.SetAddonVersion()
+end
+
+--[[
+  Read access to the shipped default values, keyed by field name. Used by code/Profile.lua
+  to seed the default profile with a pristine baseline instead of whatever the live
+  GearMenuConfiguration happens to hold at seed time.
+
+  The returned table holds the module's own default values - callers must treat it as
+  read-only and copy anything they intend to keep.
+
+  @return {table}
+    map of fieldName -> default value
+]]--
+function me.GetDefaults()
+  if defaultsByName == nil then
+    defaultsByName = {}
+
+    for _, entry in ipairs(CONFIGURATION_DEFAULTS) do
+      defaultsByName[entry.name] = entry.default
+    end
+  end
+
+  return defaultsByName
 end
 
 --[[
@@ -304,6 +329,33 @@ function me.MigrationPath()
   me.UpgradeToV1_3_0()
   me.UpgradeToV1_4_0()
   me.UpgradeToV2_0_0()
+end
+
+--[[
+  Whether version is strictly older than otherVersion. Versions are SemVer strings
+  with an optional leading "v" (e.g. "v2.7.0"). An unparseable version on either
+  side compares as "not before".
+
+  @param {string} version
+  @param {string} otherVersion
+
+  @return {boolean}
+    true - if version is older than otherVersion
+    false - otherwise
+]]--
+function me.IsVersionBefore(version, otherVersion)
+  local major, minor, patch = string.match(version or "", "^v?(%d+)%.(%d+)%.(%d+)")
+  local otherMajor, otherMinor, otherPatch = string.match(otherVersion or "", "^v?(%d+)%.(%d+)%.(%d+)")
+
+  if major == nil or otherMajor == nil then return false end
+
+  major, minor, patch = tonumber(major), tonumber(minor), tonumber(patch)
+  otherMajor, otherMinor, otherPatch = tonumber(otherMajor), tonumber(otherMinor), tonumber(otherPatch)
+
+  if major ~= otherMajor then return major < otherMajor end
+  if minor ~= otherMinor then return minor < otherMinor end
+
+  return patch < otherPatch
 end
 
 --[[
@@ -796,6 +848,29 @@ end
 ]]--
 function me.IsRuneSlotsEnabled()
   return GearMenuConfiguration.enableRuneSlots
+end
+
+--[[
+  Enable falling back to the base itemId when the exact enchant/rune copy is missing
+]]--
+function me.EnableFallbackToBaseItem()
+  GearMenuConfiguration.enableFallbackToBaseItem = true
+end
+
+--[[
+  Disable falling back to the base itemId when the exact enchant/rune copy is missing
+]]--
+function me.DisableFallbackToBaseItem()
+  GearMenuConfiguration.enableFallbackToBaseItem = false
+end
+
+--[[
+  @return {boolean}
+    true - if falling back to the base itemId is enabled
+    false - if falling back to the base itemId is disabled
+]]--
+function me.IsFallbackToBaseItemEnabled()
+  return GearMenuConfiguration.enableFallbackToBaseItem
 end
 
 

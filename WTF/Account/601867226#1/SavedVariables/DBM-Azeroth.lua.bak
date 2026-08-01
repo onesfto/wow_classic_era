@@ -1,8 +1,8 @@
 
 DBMAzeroth_AllSavedVars = {
-["六扇门沈小梅-哈霍兰"] = {
+["哈霍兰大格格-哈霍兰"] = {
 ["KazzakClassicVanilla"] = {
-[2] = {
+{
 ["Enabled"] = true,
 ["announce21341spell"] = true,
 ["timer_berserkCVoice"] = 0,
@@ -15,7 +15,7 @@ DBMAzeroth_AllSavedVars = {
 },
 },
 ["YsondreVanilla"] = {
-[2] = {
+{
 ["Timer1214136cast"] = true,
 ["Timer24819cdTColor"] = 3,
 ["SpecWarn24814dodgeSWNote"] = true,
@@ -40,9 +40,9 @@ DBMAzeroth_AllSavedVars = {
 ["Timer24814cd"] = true,
 },
 },
-["talent2"] = "MAGE2",
+["talent1"] = "PALADIN1",
 ["EmerissVanilla"] = {
-[2] = {
+{
 ["Enabled"] = true,
 ["SpecWarn24814dodge"] = true,
 ["SpecWarn24814dodgeSWNote"] = true,
@@ -54,7 +54,7 @@ DBMAzeroth_AllSavedVars = {
 },
 },
 ["TaerarVanilla"] = {
-[2] = {
+{
 ["Enabled"] = true,
 ["SpecWarn24814dodge"] = true,
 ["SpecWarn24814dodgeSWNote"] = true,
@@ -66,7 +66,7 @@ DBMAzeroth_AllSavedVars = {
 },
 },
 ["LethonVanilla"] = {
-[2] = {
+{
 ["Enabled"] = true,
 ["SpecWarn24814dodge"] = true,
 ["SpecWarn24814dodgeSWNote"] = true,
@@ -78,15 +78,15 @@ DBMAzeroth_AllSavedVars = {
 },
 },
 ["AzuregosVanilla"] = {
-[2] = {
+{
 ["Enabled"] = true,
-["SpecWarn22067spellSWNote"] = true,
-["SpecWarn21147spell"] = true,
 ["SpecWarn22067spell"] = true,
+["SpecWarn21147spell"] = true,
+["SpecWarn22067spellSWNote"] = true,
 ["SpecWarn22067spellSWSound"] = 1,
-["announce21099spell"] = true,
-["SpecWarn21147spellSWSound"] = 2,
 ["SpecWarn21147spellSWNote"] = true,
+["SpecWarn21147spellSWSound"] = 2,
+["announce21099spell"] = true,
 },
 },
 },
@@ -94,23 +94,23 @@ DBMAzeroth_AllSavedVars = {
 ["AzuregosVanilla"] = {
 [3] = {
 ["Enabled"] = true,
-["announce21099spell"] = true,
-["SpecWarn22067spell"] = true,
 ["SpecWarn21147spellSWNote"] = true,
+["SpecWarn21147spell"] = true,
+["announce21099spell"] = true,
 ["SpecWarn22067spellSWSound"] = 1,
 ["SpecWarn22067spellSWNote"] = true,
 ["SpecWarn21147spellSWSound"] = 2,
-["SpecWarn21147spell"] = true,
+["SpecWarn22067spell"] = true,
 },
 [2] = {
 ["Enabled"] = true,
-["SpecWarn21147spellSWNote"] = true,
-["SpecWarn21147spell"] = true,
 ["announce21099spell"] = true,
+["SpecWarn22067spell"] = true,
+["SpecWarn21147spellSWNote"] = true,
 ["SpecWarn22067spellSWSound"] = 1,
 ["SpecWarn22067spellSWNote"] = true,
 ["SpecWarn21147spellSWSound"] = 2,
-["SpecWarn22067spell"] = true,
+["SpecWarn21147spell"] = true,
 },
 },
 ["talent2"] = "MAGE2",
@@ -325,13 +325,13 @@ DBMAzeroth_AllSavedVars = {
 ["AzuregosVanilla"] = {
 [0] = {
 ["Enabled"] = true,
-["SpecWarn21147spell"] = true,
 ["SpecWarn22067spell"] = true,
+["SpecWarn21147spell"] = true,
 ["SpecWarn22067spellSWNote"] = true,
 ["SpecWarn22067spellSWSound"] = 1,
-["announce21099spell"] = true,
-["SpecWarn21147spellSWSound"] = 2,
 ["SpecWarn21147spellSWNote"] = true,
+["SpecWarn21147spellSWSound"] = 2,
+["announce21099spell"] = true,
 },
 },
 },
@@ -379,13 +379,13 @@ DBMAzeroth_AllSavedVars = {
 ["AzuregosVanilla"] = {
 {
 ["Enabled"] = true,
-["SpecWarn21147spellSWNote"] = true,
-["SpecWarn21147spell"] = true,
 ["announce21099spell"] = true,
+["SpecWarn22067spell"] = true,
+["SpecWarn21147spellSWNote"] = true,
 ["SpecWarn22067spellSWSound"] = 1,
 ["SpecWarn22067spellSWNote"] = true,
 ["SpecWarn21147spellSWSound"] = 2,
-["SpecWarn22067spell"] = true,
+["SpecWarn21147spell"] = true,
 },
 },
 ["TaerarVanilla"] = {

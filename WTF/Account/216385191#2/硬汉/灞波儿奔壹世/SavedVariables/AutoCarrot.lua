@@ -1,0 +1,22 @@
+
+AutoCarrotDB = {
+["swimBelt"] = true,
+["bootsLink"] = "item:22500:911:",
+["buttonScale"] = 0.96,
+["wasAutoDisabled"] = false,
+["button"] = true,
+["beltId"] = 22730,
+["enchantBootsLink"] = "item:19131:464:",
+["enabled"] = false,
+["handsLink"] = "item:21585:2616:",
+["headId"] = 22498,
+["instance"] = true,
+["trinketId"] = 18820,
+["OnesftoInitialized"] = true,
+["enchantHandsLink"] = "item:16440:930:",
+["swimHelm"] = true,
+["mithrilSpurs"] = true,
+["hideButtonInInstance"] = true,
+["ridingGloves"] = true,
+["trinketSlot1"] = true,
+}

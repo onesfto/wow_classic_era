@@ -444,9 +444,6 @@ function GwAuraTmpl_OnLoad(self)
         self.instant = true
     end
 
-    self:RegisterForClicks("RightButtonUp", "RightButtonDown")
-    self:SetAttribute("type2", "cancelaura")
-
     self.cooldown:SetDrawBling(false)
     self.cooldown:SetDrawEdge(false)
     self.cooldown:SetDrawSwipe(true)

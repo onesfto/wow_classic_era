@@ -228,8 +228,10 @@ local function TradeSkillFunc()
 					if ElvUI then
 						SlotDropDown:ClearAllPoints()
 						SlotDropDown:SetPoint("TOPLEFT", TradeSkillFrame, "TOPLEFT", 530, -30)
-						self.backdrop:SetPoint("TOPLEFT",self,"TOPLEFT",0,0);
-						self.backdrop:SetPoint("BOTTOMRIGHT",self,"BOTTOMRIGHT",-32,42);
+						if self.backdrop then
+							self.backdrop:SetPoint("TOPLEFT",self,"TOPLEFT",0,0);
+							self.backdrop:SetPoint("BOTTOMRIGHT",self,"BOTTOMRIGHT",-32,42);
+						end
 					end	
 				end);
 			else

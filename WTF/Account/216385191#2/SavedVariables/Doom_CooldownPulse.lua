@@ -7,7 +7,7 @@ DCP_Saved = {
 1,
 },
 ["holdTime"] = 0,
-["fadeOutTime"] = 0.2868355214595795,
+["fadeOutTime"] = 1.5,
 ["maxAlpha"] = 0.8087682723999023,
 ["x"] = 683.7333831787109,
 ["showSpellName"] = true,

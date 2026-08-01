@@ -120,3 +120,4 @@ WeakAurasCompanion: enabled
 MissingTradeSkillsList_TBC_Data: enabled
 Blizzard_CombatText: enabled
 Blizzard_ObjectiveTracker: enabled
+OPie_Classic: disabled

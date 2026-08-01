@@ -4,9 +4,9 @@ CellCharacterDB = {
 ["layoutAutoSwitch"] = {
 {
 ["raid_instance"] = "团队输出",
-["party"] = "小队",
+["party"] = "hide",
 ["solo"] = "hide",
-["arena"] = "小队",
+["arena"] = "hide",
 ["battleground"] = "团队输出",
 ["raid_outdoor"] = "团队输出",
 },

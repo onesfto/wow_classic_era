@@ -771,15 +771,6 @@ local function CreateFrameHeaderWithBody(frame, titleText, icon, detailBackgroun
                 bgMask:SetPoint("BOTTOMRIGHT", frame.tex, "BOTTOMLEFT", frame.tex:GetWidth() + 200 , 0)
             end)
         end)
-        
-        -- Fix for /reload while frame is open: OnShow doesn't fire, so mask stays collapsed and hides everything.
-        if frame:IsVisible() then
-            C_Timer.After(0.05, function()
-                if frame.tex and frame:GetAlpha() >= 1 then
-                    bgMask:SetPoint("BOTTOMRIGHT", frame.tex, "BOTTOMLEFT", frame.tex:GetWidth() + 200, 0)
-                end
-            end)
-        end
     end
 
     UpdateFrameHeaderBodyLayout()

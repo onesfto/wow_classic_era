@@ -1,0 +1,13 @@
+## Interface: 11508
+## Title: GW2 UI Plus |cFF888888(先行加载)|r
+## Title-zhCN: GW2 UI Plus |cFF888888(先行加载)|r
+## Notes: GW2 UI Plus 的先行加载组件，必须在 GW2_UI 之前加载。目前只做汉化词条注册。
+## Notes-zhCN: GW2 UI Plus 的先行加载组件，必须在 GW2_UI 之前加载。目前只做汉化词条注册。
+## Author: onesfto
+## Version: 1.0
+## DefaultState: enabled
+## LoadOnDemand: 0
+## IconTexture: Interface\AddOns\GW2_UI_PLUS\gwlogo-red.png
+Libs\LibStub\LibStub.lua
+Libs\AceLocale-3.0\AceLocale-3.0.lua
+zhCN.lua

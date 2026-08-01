@@ -8,10 +8,14 @@ GearMenuConfiguration = {
 ["enableTrinketMenu"] = true,
 ["lockTrinketMenuFrame"] = false,
 ["enableFastPress"] = false,
+["enableFallbackToBaseItem"] = false,
 ["enableSimpleTooltips"] = true,
+["lastNotifiedVersion"] = "",
 ["enableTooltips"] = true,
 ["enableUnequipSlot"] = true,
 ["enableRuneSlots"] = true,
+["quickChangeRules"] = {
+},
 ["gearBars"] = {
 {
 ["showKeyBindings"] = true,
@@ -75,17 +79,39 @@ GearMenuConfiguration = {
 ["gearSlotSize"] = 48,
 },
 },
-["quickChangeRules"] = {
+["frames"] = {
+["GM_TrinketMenuFrame"] = {
+["posX"] = -161.3750762939453,
+["posY"] = -74.60986328125,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
+},
 },
 ["uiTheme"] = 2,
 ["trinketMenuColumns"] = 5,
+["addonVersion"] = "v2.8.0",
+["profiles"] = {
+["Default"] = {
+["enableDragAndDrop"] = true,
+["trinketMenuSlotSize"] = 40,
+["trinketMenuShowCooldowns"] = true,
+["filterItemQuality"] = 2,
 ["frames"] = {
-["GM_TrinketMenuFrame"] = {
-["relativePoint"] = "RIGHT",
-["point"] = "RIGHT",
-["posY"] = -194.8446350097656,
-["posX"] = -74.95642852783203,
+},
+["enableTrinketMenu"] = true,
+["lockTrinketMenuFrame"] = false,
+["enableFastPress"] = false,
+["enableFallbackToBaseItem"] = false,
+["quickChangeRules"] = {
+},
+["enableTooltips"] = true,
+["enableUnequipSlot"] = true,
+["enableRuneSlots"] = true,
+["gearBars"] = {
+},
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 4,
+["enableSimpleTooltips"] = false,
 },
 },
-["addonVersion"] = "v2.7.0",
 }

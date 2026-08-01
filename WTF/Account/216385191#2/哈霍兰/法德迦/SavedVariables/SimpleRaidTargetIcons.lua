@@ -1,12 +1,12 @@
 
 SRTISaved = {
-["alt"] = false,
-["bindinghover"] = false,
-["radialscale"] = 1,
+["alt"] = true,
+["bindinghover"] = true,
+["radialscale"] = 1.600000023841858,
 ["double"] = true,
 ["ctrl"] = true,
 ["hovertime"] = 0.2000000029802322,
-["shift"] = false,
+["shift"] = true,
 ["doublehover"] = false,
 ["speed"] = 0.25,
 ["singlehover"] = false,

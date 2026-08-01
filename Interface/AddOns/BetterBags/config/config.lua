@@ -24,9 +24,6 @@ local bucket = addon:GetModule('Bucket')
 ---@class Form: AceModule
 local form = addon:GetModule('Form')
 
----@class Localization: AceModule
-local L = addon:GetModule('Localization')
-
 ---@class CategoryPane: AceModule
 local categoryPane = addon:GetModule('CategoryPane')
 
@@ -103,8 +100,8 @@ function config:CreateConfig()
   })
 
   f:AddCheckbox({
-    title = L:G('Enable Bank Bags'),
-    description = L:G('Enable BetterBags for bank. If disabled, the default Blizzard bank UI will be used. Requires a UI reload to take effect.'),
+    title = 'Enable Bank Bags',
+    description = 'Enable BetterBags for bank. If disabled, the default Blizzard bank UI will be used. Requires a UI reload to take effect.',
     getValue = function(_)
       return db:GetEnableBankBag()
     end,
@@ -199,8 +196,8 @@ function config:CreateConfig()
   for _, bagType in ipairs(bagTypes) do
 
     f:AddSection({
-      title = L:G(bagType.name),
-      description = string.format(L:G('Settings for the %s.'), L:G(bagType.name)),
+      title = bagType.name,
+      description = 'Settings for the ' .. string.lower(bagType.name) .. '.',
     })
     local sectionOrders = {
       ["Alphabetically"] = const.SECTION_SORT_TYPE.ALPHABETICALLY,
@@ -209,7 +206,7 @@ function config:CreateConfig()
     }
     f:AddDropdown({
       title = 'Section Order',
-      description = string.format(L:G('The order of sections in the %s when not pinned.'), L:G(bagType.name)),
+      description = 'The order of sections in the ' .. string.lower(bagType.name) .. ' when not pinned.',
       items = {'Alphabetically', 'Size Descending', 'Size Ascending'},
       getValue = function(_, value)
         return sectionOrders[value] == db:GetSectionSortType(bagType.kind, db:GetBagView(bagType.kind))
@@ -257,7 +254,7 @@ function config:CreateConfig()
 
     f:AddInlineSubSection({
       title = 'Categories',
-      description = string.format(L:G('Settings for Blizzard item categories in the %s.'), L:G(bagType.name)),
+      description = 'Settings for Blizzard item categories in the ' .. string.lower(bagType.name) .. '.',
     })
 
     f:AddLabel({
@@ -350,7 +347,7 @@ function config:CreateConfig()
 
     f:AddInlineSubSection({
       title = 'Item Stacking',
-      description = string.format(L:G('Settings for item stacking in the %s.'), L:G(bagType.name)),
+      description = 'Settings for item stacking in the ' .. string.lower(bagType.name) .. '.',
     })
 
     f:AddCheckbox({
@@ -377,7 +374,7 @@ function config:CreateConfig()
 
     f:AddCheckbox({
       title = 'Merge Stacks',
-      description = string.format(L:G('Stackable items will merge into a single item button in your %s.'), L:G(bagType.name)),
+      description = 'Stackable items will merge into a single item button in your ' .. string.lower(bagType.name) .. '.',
       getValue = function(_)
         return db:GetStackingOptions(bagType.kind).mergeStacks
       end,
@@ -389,7 +386,7 @@ function config:CreateConfig()
 
     f:AddCheckbox({
       title = 'Merge Unstackable',
-      description = string.format(L:G('Unstackable items, such as armor and weapons, will merge into a single item button in your %s.'), L:G(bagType.name)),
+      description = 'Unstackable items, such as armor and weapons, will merge into a single item button in your ' .. string.lower(bagType.name) .. '.',
       getValue = function(_)
         return db:GetStackingOptions(bagType.kind).mergeUnstackable
       end,
@@ -413,7 +410,7 @@ function config:CreateConfig()
 
     f:AddCheckbox({
       title = "Split Transmogged Items",
-      description = string.format(L:G('Transmogged items will be split into a separate, stackable button in your %s.'), L:G(bagType.name)),
+      description = 'Transmogged items will be split into a separate, stackable button in your ' .. string.lower(bagType.name) .. '.',
       getValue = function(_)
         return db:GetStackingOptions(bagType.kind).dontMergeTransmog
       end,
@@ -437,12 +434,12 @@ function config:CreateConfig()
 
     f:AddInlineSubSection({
       title = 'Item Level',
-      description = string.format(L:G('Settings for item level in the %s.'), L:G(bagType.name)),
+      description = 'Settings for item level in the ' .. string.lower(bagType.name) .. '.',
     })
 
     f:AddCheckbox({
       title = 'Show Item Level',
-      description = string.format(L:G('Show the item level on item buttons in the %s.'), L:G(bagType.name)),
+      description = 'Show the item level on item buttons in the ' .. string.lower(bagType.name) .. '.',
       getValue = function(_)
         return db:GetItemLevelOptions(bagType.kind).enabled
       end,
@@ -454,7 +451,7 @@ function config:CreateConfig()
 
     f:AddCheckbox({
       title = 'Show Item Level Color',
-      description = string.format(L:G('Show the item level in color on item buttons in the %s.'), L:G(bagType.name)),
+      description = 'Show the item level in color on item buttons in the ' .. string.lower(bagType.name) .. '.',
       getValue = function(_)
         return db:GetItemLevelOptions(bagType.kind).color
       end,
@@ -466,7 +463,7 @@ function config:CreateConfig()
 
     f:AddInlineSubSection({
       title = 'Display',
-      description = string.format(L:G('Settings that adjust layout and visual aspects of the %s.'), L:G(bagType.name)),
+      description = 'Settings that adjust layout and visual aspects of the ' .. string.lower(bagType.name) .. '.',
     })
 
     f:AddCheckbox({
@@ -483,7 +480,7 @@ function config:CreateConfig()
 
     f:AddCheckbox({
       title = 'Show All Free Space Slots',
-      description = string.format(L:G('Show all free space slots, individually, at the bottom of the %s.'), L:G(bagType.name)),
+      description = 'Show all free space slots, individually, at the bottom of the ' .. string.lower(bagType.name) .. '.',
       getValue = function(_)
         return db:GetShowAllFreeSpace(bagType.kind)
       end,
@@ -524,7 +521,7 @@ function config:CreateConfig()
 
     f:AddSlider({
       title = 'Columns',
-      description = string.format(L:G('The number of columns in the %s.'), L:G(bagType.name)),
+      description = 'The number of columns in the ' .. string.lower(bagType.name) .. '.',
       min = 1,
       max = 20,
       step = 1,
@@ -541,7 +538,7 @@ function config:CreateConfig()
 
     f:AddSlider({
       title = 'Opacity',
-      description = string.format(L:G('The opacity of the background of the %s.'), L:G(bagType.name)),
+      description = 'The opacity of the background of the ' .. string.lower(bagType.name) .. '.',
       min = 0,
       max = 100,
       step = 1,
@@ -556,7 +553,7 @@ function config:CreateConfig()
 
     f:AddSlider({
       title = 'Scale',
-      description = string.format(L:G('The scale of the %s.'), L:G(bagType.name)),
+      description = 'The scale of the ' .. string.lower(bagType.name) .. '.',
       min = 50,
       max = 200,
       step = 1,
@@ -574,7 +571,7 @@ function config:CreateConfig()
 
     f:AddPaneLink({
       title = 'Categories',
-      description = string.format(L:G('Manage and reorder categories for the %s.'), L:G(bagType.name)),
+      description = 'Manage and reorder categories for the ' .. string.lower(bagType.name) .. '.',
       createPane = function(parent, kind)
         return categoryPane:Create(parent, kind)
       end,
@@ -600,7 +597,7 @@ function config:CreateConfig()
       -- Title
       local title = pane:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
       title:SetPoint("TOPLEFT", 10, -10)
-      title:SetText(L:G("QuickFind Integration"))
+      title:SetText("QuickFind Integration")
 
       -- Description
       local desc = pane:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
@@ -608,19 +605,19 @@ function config:CreateConfig()
       desc:SetPoint("RIGHT", pane, "RIGHT", -10, 0)
       desc:SetWordWrap(true)
       desc:SetJustifyH("LEFT")
-      desc:SetText(L:G("BetterBags integrates with the QuickFind addon to make your items searchable."))
+      desc:SetText("BetterBags integrates with the QuickFind addon to make your items searchable.")
 
       -- How it works section
       local howItWorksTitle = pane:CreateFontString(nil, "OVERLAY", "GameFontNormal")
       howItWorksTitle:SetPoint("TOPLEFT", desc, "BOTTOMLEFT", 0, -20)
-      howItWorksTitle:SetText(L:G("How It Works:"))
+      howItWorksTitle:SetText("How It Works:")
 
       local howItWorksText = pane:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
       howItWorksText:SetPoint("TOPLEFT", howItWorksTitle, "BOTTOMLEFT", 0, -10)
       howItWorksText:SetPoint("RIGHT", pane, "RIGHT", -10, 0)
       howItWorksText:SetWordWrap(true)
       howItWorksText:SetJustifyH("LEFT")
-      howItWorksText:SetText(L:G("• All items in your backpack and bank are registered as a QuickFind source\n\n• When you press Enter on an item in QuickFind, BetterBags will:\n  - Open the appropriate bag (backpack or bank)\n  - Switch to the tab containing the item\n  - Fill the search box with the item's name\n\n• Items are tagged with their type, category, and location for easy filtering"))
+      howItWorksText:SetText("• All items in your backpack and bank are registered as a QuickFind source\n\n• When you press Enter on an item in QuickFind, BetterBags will:\n  - Open the appropriate bag (backpack or bank)\n  - Switch to the tab containing the item\n  - Fill the search box with the item's name\n\n• Items are tagged with their type, category, and location for easy filtering")
 
       return pane
     end
@@ -921,11 +918,11 @@ function config:CreateConfig()
   -- ============================================================
   f:AddSection({
     title = 'Import/Export',
-    description = L:G('Export your category configuration to share with others or import category configurations from another user.'),
+    description = 'Export your category configuration to share with others or import category configurations from another user.',
   })
 
   f:AddLabel({
-    description = L:G('Export your current category configuration to a string that can be copied and shared. Import a category configuration string to apply another user\'s bag organization. Note: Only category settings are included - general settings like themes, sizes, and display options are not affected.'),
+    description = 'Export your current category configuration to a string that can be copied and shared. Import a category configuration string to apply another user\'s bag organization. Note: Only category settings are included - general settings like themes, sizes, and display options are not affected.',
   })
 
   -- Spacer for button positioning
@@ -940,7 +937,7 @@ function config:CreateConfig()
   f:AddButtonGroup({
     ButtonOptions = {
       {
-        title = L:G('Export Category Configuration'),
+        title = 'Export Category Configuration',
         onClick = function(_)
           local exportString = db:ExportSettings()
           if config.exportTextBox then
@@ -955,7 +952,7 @@ function config:CreateConfig()
 
   f:AddTextArea({
     title = 'Exported Category Configuration',
-    description = L:G('Copy this text to share your category configuration. Click in the box and press Ctrl+A to select all, then Ctrl+C to copy.'),
+    description = 'Copy this text to share your category configuration. Click in the box and press Ctrl+A to select all, then Ctrl+C to copy.',
     getValue = function(_)
       return ""
     end,

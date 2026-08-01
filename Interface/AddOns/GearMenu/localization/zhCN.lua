@@ -13,6 +13,7 @@ if (GetLocale() == "zhCN") then
   rggm.L["reload"] = "|cFFFFC300reload|r - 重置UI"
   rggm.L["info_title"] = "|cFF00FFB0GearMenu:|r"
   rggm.L["invalid_argument"] = "参数无效"
+  rggm.L["update_available"] = "新版本 |cFFFFC300%s|r 已发布 - |cFF00FFB0建议更新！|r"
 
   -- about
   rggm.L["author"] = "Author: Michael Wiesendanger"
@@ -21,8 +22,8 @@ if (GetLocale() == "zhCN") then
   rggm.L["issues"] = "Issues: https://github.com/RagedUnicorn/wow-classic-gearmenu/issues"
 
   -- general
-  rggm.L["general_category_name"] = "一般"
-  rggm.L["general_title"] = "一般配置"
+  rggm.L["general_category_name"] = "选项"
+  rggm.L["general_title"] = "选项"
   rggm.L["enable_tooltips"] = "鼠标提示"
   rggm.L["enable_tooltips_tooltip"] = "悬停物品时是否显示工具提示"
   rggm.L["enable_simple_tooltips"] = "简单鼠标提示"
@@ -35,6 +36,8 @@ if (GetLocale() == "zhCN") then
   rggm.L["enable_unequip_slot_tooltip"] = "允许将一个空插槽添加到changeMenu。这样可以更轻松地取消装备"
   rggm.L["enable_rune_slots"] = "启用符文插槽"
   rggm.L["enable_rune_slots_tooltip"] = "在GearBar中启用符文插槽的显示"
+  rggm.L["enable_fallback_to_base_item"] = "回退到基础物品"
+  rggm.L["enable_fallback_to_base_item_tooltip"] = "当背包中找不到附魔/铭刻完全一致的物品时，改为装备同一物品的普通副本。装备替代副本时会在聊天框中显示警告"
   rggm.L["filter_item_quality"] = "过滤物品品质:"
   rggm.L["item_quality_poor"] = "灰色"
   rggm.L["item_quality_common"] = "白色"
@@ -141,6 +144,8 @@ if (GetLocale() == "zhCN") then
 
   -- add/remove slots
   rggm.L["gear_bar_configuration_add_gearslot"] = "添加装备条"
+  rggm.L["gear_bar_configuration_add_gearslot_combat"] =
+    "战斗中无法添加装备栏。请在战斗结束后重试"
   rggm.L["gear_bar_configuration_remove_gearslot"] = "-"
   rggm.L["gear_bar_configuration_delete_gearbar"] = "删除装备条"
   -- gearbar scrollmenu
@@ -159,4 +164,48 @@ if (GetLocale() == "zhCN") then
   -- macro bridge user errors
   rggm.L["unable_to_find_equipslot"] = "无法为物品Id找到匹配的槽位 %s"
   rggm.L["unable_to_find_item"] = "无法为物品Id找到指定的物品信息 %s"
+  rggm.L["macro_invalid_argument"] = "参数 #%s 传递给 '%s' 无效（应为数字，实为 %s）"
+  rggm.L["macro_invalid_listener"] = "参数 #1 传递给 '%s' 无效（应为函数，实为 %s）"
+
+  -- swap failure user errors
+  rggm.L["swap_failure_item_not_found"] = "无法切换到物品 %s - 在背包中找不到该物品"
+  rggm.L["swap_failure_item_locked"] = "无法切换到物品 %s - 该物品当前被锁定"
+  rggm.L["swap_failure_cursor_busy"] = "无法切换到物品 %s - 光标上有其他物品"
+  rggm.L["swap_failure_spell_targeting"] = "无法切换到物品 %s - 有法术正在等待目标"
+  rggm.L["swap_failure_no_bag_space"] = "无法卸下物品 %s - 背包中没有空余空间"
+  rggm.L["swap_fallback_to_base_item"] = "已装备 %s 的替代副本 - 背包中找不到附魔/符文完全一致的副本"
+
+  -- profile
+  rggm.L["profile_category_name"] = "配置文件"
+  rggm.L["profile_title"] = "配置文件"
+  rggm.L["profile_list_label"] = "已保存的配置文件"
+  rggm.L["profile_string_label"] = "配置文件字符串(导出 / 导入)"
+  rggm.L["profile_save_button"] = "将当前保存为..."
+  rggm.L["profile_apply_button"] = "应用"
+  rggm.L["profile_rename_button"] = "重命名"
+  rggm.L["profile_delete_button"] = "删除"
+  rggm.L["profile_export_button"] = "导出"
+  rggm.L["profile_import_button"] = "导入"
+  rggm.L["profile_name_prompt"] = "为新配置文件输入一个名称:"
+  rggm.L["profile_rename_prompt"] = "为配置文件输入一个新名称:"
+  rggm.L["profile_import_name_prompt"] = "输入用于保存导入配置文件的名称:"
+  rggm.L["profile_apply_confirm"] = "应用配置文件\"%s\"?这将覆盖你当前的设置并重新加载界面。"
+  rggm.L["profile_delete_confirm"] = "删除配置文件\"%s\"?"
+  rggm.L["profile_save_success"] = "已保存配置文件\"%s\""
+  rggm.L["profile_apply_success"] = "已应用配置文件\"%s\""
+  rggm.L["profile_import_success"] = "已导入配置文件\"%s\""
+  rggm.L["profile_delete_success"] = "已删除配置文件\"%s\""
+  rggm.L["profile_rename_success"] = "已将配置文件重命名为\"%s\""
+  rggm.L["profile_error_empty"] = "没有可导入的配置文件字符串"
+  rggm.L["profile_error_invalid"] = "配置文件字符串无效或无法读取"
+  rggm.L["profile_error_checksum"] = "配置文件字符串已损坏(校验和不匹配)"
+  rggm.L["profile_error_wrong_addon"] = "此配置文件字符串不是由GearMenu创建的"
+  rggm.L["profile_error_version"] = "此配置文件字符串是由更新版本的GearMenu创建的"
+  rggm.L["profile_error_name_empty"] = "配置文件名称不能为空"
+  rggm.L["profile_error_name_exists"] = "已存在同名的配置文件"
+  rggm.L["profile_error_name_too_long"] = "配置文件名称不能超过%d个字符"
+  rggm.L["profile_error_no_selection"] = "未选择配置文件"
+  rggm.L["profile_error_default_cannot_be_deleted"] = "无法删除“%s”配置文件"
+  rggm.L["profile_error_default_cannot_be_renamed"] = "无法重命名“%s”配置文件"
+  rggm.L["profile_error_default_cannot_be_overwritten"] = "无法覆盖“%s”配置文件"
 end

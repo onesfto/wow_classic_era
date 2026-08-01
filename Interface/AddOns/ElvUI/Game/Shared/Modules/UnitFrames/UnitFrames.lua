@@ -17,7 +17,7 @@ local CreateFrame = CreateFrame
 local GameTooltip = GameTooltip
 local GetInstanceInfo = GetInstanceInfo
 local GetInventoryItemLink = GetInventoryItemLink
-local GetInventorySlotInfo = GetInventorySlotInfo
+local GetInventorySlotInfo = C_PaperDollInfo and C_PaperDollInfo.GetInventorySlotInfo or GetInventorySlotInfo
 local IsInInstance = IsInInstance
 local PlaySound = PlaySound
 local RegisterStateDriver = RegisterStateDriver
@@ -28,9 +28,6 @@ local UnitIsEnemy = UnitIsEnemy
 local UnitIsFriend = UnitIsFriend
 local UnregisterStateDriver = UnregisterStateDriver
 
-local CastingBarFrame_OnLoad = CastingBarFrame_OnLoad
-local CastingBarFrame_SetUnit = CastingBarFrame_SetUnit
-local PetCastingBarFrame_OnLoad = PetCastingBarFrame_OnLoad
 local CompactRaidFrameManager_SetSetting = CompactRaidFrameManager_SetSetting
 
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
@@ -1854,17 +1851,9 @@ do
 					end
 				end
 
-				if E.hasEditMode then
-					if disable.castbar then
-						HideFrame(_G.PlayerCastingBarFrame)
-						HideFrame(_G.PetCastingBarFrame)
-					end
-				elseif disable.castbar then
-					CastingBarFrame_SetUnit(_G.CastingBarFrame)
-					CastingBarFrame_SetUnit(_G.PetCastingBarFrame)
-				else
-					CastingBarFrame_OnLoad(_G.CastingBarFrame, 'player', true, false)
-					PetCastingBarFrame_OnLoad(_G.PetCastingBarFrame)
+				if disable.castbar then
+					HideFrame(_G.PlayerCastingBarFrame)
+					HideFrame(_G.PetCastingBarFrame)
 				end
 			elseif disable.player and unit == 'pet' then
 				HideFrame(_G.PetFrame)
@@ -1905,11 +1894,28 @@ do
 			elseif not disabledArena and disable.arena and strmatch(unit, 'arena%d*$') then
 				disabledArena = true
 
-				if _G.CompactArenaFrame then -- Retail
-					HideFrame(_G.CompactArenaFrame, 1)
+				local compactArena = _G.CompactArenaFrame
+				if compactArena then -- Retail
+					HideFrame(compactArena, 1)
 
-					for _, frame in next, _G.CompactArenaFrame.memberUnitFrames do
-						HideFrame(frame, true)
+					local compactUnitframes = compactArena.memberUnitFrames
+					if compactUnitframes then
+						for _, frame in next, compactUnitframes do
+							HideFrame(frame, true)
+						end
+					end
+
+					-- Old Arena Frames, they're still used for flag carriers etc in battlegrounds
+					local arenaContainer = _G.ArenaEnemyMatchFramesContainer
+					if arenaContainer then
+						HideFrame(arenaContainer)
+
+						local arenaUnitframes = arenaContainer.UnitFrames
+						if arenaUnitframes then
+							for _, frame in next, arenaUnitframes do
+								HideFrame(frame, true)
+							end
+						end
 					end
 				elseif _G.ArenaEnemyFrames then
 					_G.ArenaEnemyFrames:UnregisterAllEvents()
@@ -2228,10 +2234,13 @@ function UF:Style(unit)
 	UF:Construct_UF(self, unit)
 end
 
-function UF:Setup()
+function UF:Setup(_, addon)
+	if addon ~= 'ElvUI' then return end
+
 	ElvUF:RegisterInitCallback(UF.AfterStyleCallback)
 	ElvUF:RegisterStyle('ElvUF', UF.Style)
 	ElvUF:SetActiveStyle('ElvUF')
+	ElvUF:DisableFactory() -- we want to turn off ADDON_LOADED
 
 	UF:LoadUnits()
 	UF:Update_FontStrings()
@@ -2260,12 +2269,7 @@ function UF:Initialize()
 
 	UF:RegisterEvent('SPELLS_CHANGED', 'UpdateRangeSpells')
 	UF:RegisterEvent('CHARACTER_POINTS_CHANGED', 'UpdateRangeSpells')
-
-	if E.hasEditMode then
-		UF:RegisterEvent('LEARNED_SPELL_IN_SKILL_LINE', 'UpdateRangeSpells')
-	else
-		UF:RegisterEvent('LEARNED_SPELL_IN_TAB', 'UpdateRangeSpells')
-	end
+	UF:RegisterEvent('LEARNED_SPELL_IN_SKILL_LINE', 'UpdateRangeSpells')
 
 	if E.Retail or E.Wrath or E.Mists then
 		UF:RegisterEvent('PLAYER_TALENT_UPDATE', 'UpdateRangeSpells')

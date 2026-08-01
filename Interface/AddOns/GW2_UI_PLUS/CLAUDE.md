@@ -1,0 +1,5 @@
+# CLAUDE.md
+
+## 索引
+
+- 必读通用规范：[docs/DEV-GAME-WOW-LUA-GUIDE-GENERAL.md](docs/DEV-GAME-WOW-LUA-GUIDE-GENERAL.md)

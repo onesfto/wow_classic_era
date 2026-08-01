@@ -6,6 +6,7 @@ local Private = select(2, ...)
 
 local SharedMedia = LibStub("LibSharedMedia-3.0");
 local L = WeakAuras.L;
+local FontStringScaleAnimationMode = Enum and Enum.FontStringScaleAnimationMode
 
 local defaultFont = WeakAuras.defaultFont
 local defaultFontSize = WeakAuras.defaultFontSize
@@ -82,6 +83,8 @@ Private.regionPrototype.AddProperties(properties, default);
 --- @field SetTextHeight fun(self: TextRegion, size: number)
 --- @field ChangeText fun(self: TextRegion, msg: string)
 
+local fontObjectCounter = 0
+
 local function create(parent)
   local region = CreateFrame("Frame", nil, parent);
   region.regionType = "text"
@@ -92,6 +95,11 @@ local function create(parent)
   text:SetWordWrap(true);
   text:SetNonSpaceWrap(true);
 
+  local fontObject = CreateFont("WeakAuras-Text-Font" .. fontObjectCounter)
+  fontObjectCounter =  fontObjectCounter + 1
+  region.text:SetFontObject(fontObject)
+  region.fontObject = fontObject
+
   Private.regionPrototype.create(region);
 
   return region;
@@ -101,13 +109,19 @@ end
 local function modify(parent, region, data)
   Private.regionPrototype.modify(parent, region, data);
   local text = region.text;
+  local fontObject = region.fontObject
 
   local fontPath = SharedMedia:Fetch("font", data.font);
   local outline = data.outline == "None" and "" or data.outline
+  local slugFont = data.outline == "SLUG" or data.outline == "OUTLINE|SLUG"
+  if text.SetScaleAnimationMode and FontStringScaleAnimationMode then
+    text:SetScaleAnimationMode(slugFont and FontStringScaleAnimationMode.Vertex or FontStringScaleAnimationMode.FontSize)
+  end
+  if text.SetSmoothScaling then
+    text:SetSmoothScaling(data.smoothScaling or false) -- doesn't accept nil
+  end
   text:SetFont(fontPath, data.fontSize, outline);
   if not text:GetFont() and fontPath then -- workaround font not loading correctly
-    local objectName = "WeakAuras-Font-" .. data.font
-    local fontObject = _G[objectName] or CreateFont(objectName)
     fontObject:SetFont(fontPath, data.fontSize, outline)
     text:SetFontObject(fontObject)
   end
@@ -115,7 +129,7 @@ local function modify(parent, region, data)
     text:SetFont(STANDARD_TEXT_FONT, data.fontSize, outline);
   end
 
-  text:SetJustifyH(data.justify);
+  fontObject:SetJustifyH(data.justify);
   text:SetText("")
 
   text:ClearAllPoints();
@@ -143,8 +157,12 @@ local function modify(parent, region, data)
   end
 
   text:SetTextHeight(data.fontSize);
-  text:SetShadowColor(unpack(data.shadowColor))
-  text:SetShadowOffset(data.shadowXOffset, data.shadowYOffset)
+  fontObject:SetShadowColor(unpack(data.shadowColor))
+  if data.outline == "OUTLINE|SLUG" then
+    fontObject:SetShadowOffset(0, 0)
+  else
+    fontObject:SetShadowOffset(data.shadowXOffset, data.shadowYOffset)
+  end
 
   text:ClearAllPoints();
   text:SetPoint(data.justify, region, data.justify);

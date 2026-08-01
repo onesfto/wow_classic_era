@@ -3,7 +3,7 @@
 ## Notes: HUD Replacement addon
 ## Notes-deDE: Ersetzt die Benutzeroberfläche
 ## OptionalDeps: Details, MoveAnything, _DebugLog, BugSack, !Stragglers, ACU, Masque, HonorSpy, TitanClassic, Clique, TotemTimers
-## Version: 10.14.3
+## Version: 10.15.1
 ## X-Website: https://www.curseforge.com/wow/addons/gw2-ui
 ## X-Curse-Project-ID: 94310
 ## X-Wago-ID: Mj6jXpGR

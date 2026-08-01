@@ -1,48 +1,5 @@
 
 DBMPvP_AllSavedVars = {
-["德加和尚-哈霍兰"] = {
-["z489"] = {
-{
-["Enabled"] = true,
-},
-},
-["talent1"] = "PRIEST1",
-["PvPGeneral"] = {
-{
-["TimerFlagCVoice"] = 0,
-["TimerStartTColor"] = 0,
-["ShowBasesToWin"] = true,
-["TimerFlagTColor"] = 0,
-["HideBossEmoteFrame"] = false,
-["TimerWinCVoice"] = 0,
-["TimerWinTColor"] = 0,
-["TimerCapCVoice"] = 0,
-["TimerFlag"] = true,
-["TimerStartCVoice"] = 0,
-["Enabled"] = true,
-["TimerCap"] = true,
-["TimerWin"] = true,
-["TimerCapTColor"] = 0,
-["ShowRelativeGameTime"] = true,
-["AutoSpirit"] = false,
-["TimerStart"] = true,
-},
-},
-["z529"] = {
-{
-["Enabled"] = true,
-},
-},
-["z30"] = {
-{
-["Enabled"] = true,
-["TimerBossTColor"] = 0,
-["TimerBoss"] = true,
-["AutoTurnIn"] = true,
-["TimerBossCVoice"] = 0,
-},
-},
-},
 ["萌萌的露小露-阿拉希盆地"] = {
 ["z529"] = {
 {
@@ -60,18 +17,18 @@ DBMPvP_AllSavedVars = {
 ["TimerFlag"] = true,
 ["TimerFlagCVoice"] = 0,
 ["TimerCapCVoice"] = 0,
-["AutoSpirit"] = false,
 ["TimerCap"] = true,
+["HideBossEmoteFrame"] = false,
 ["TimerWinCVoice"] = 0,
 ["TimerWinTColor"] = 0,
 ["ShowRelativeGameTime"] = true,
 ["TimerStartCVoice"] = 0,
-["TimerWin"] = true,
-["TimerStartTColor"] = 0,
 ["Enabled"] = true,
+["TimerStartTColor"] = 0,
+["TimerWin"] = true,
 ["TimerCapTColor"] = 0,
 ["TimerFlagTColor"] = 0,
-["HideBossEmoteFrame"] = false,
+["AutoSpirit"] = false,
 ["TimerStart"] = true,
 },
 },
@@ -126,10 +83,10 @@ DBMPvP_AllSavedVars = {
 ["TimerCap"] = true,
 ["TimerStartCVoice"] = 0,
 ["TimerWinCVoice"] = 0,
-["TimerFlag"] = true,
+["TimerWin"] = true,
 ["ShowRelativeGameTime"] = true,
 ["TimerCapTColor"] = 0,
-["TimerWin"] = true,
+["TimerFlag"] = true,
 ["AutoSpirit"] = false,
 ["TimerStart"] = true,
 },
@@ -145,10 +102,10 @@ DBMPvP_AllSavedVars = {
 ["TimerFlag"] = true,
 ["TimerStartCVoice"] = 0,
 ["Enabled"] = true,
-["ShowRelativeGameTime"] = true,
+["TimerCap"] = true,
 ["TimerWin"] = true,
 ["TimerCapTColor"] = 0,
-["TimerCap"] = true,
+["ShowRelativeGameTime"] = true,
 ["AutoSpirit"] = false,
 ["TimerStart"] = true,
 },
@@ -203,10 +160,10 @@ DBMPvP_AllSavedVars = {
 ["TimerFlag"] = true,
 ["TimerStartCVoice"] = 0,
 ["TimerStartTColor"] = 0,
-["TimerCap"] = true,
+["TimerWin"] = true,
 ["TimerWinCVoice"] = 0,
 ["TimerCapTColor"] = 0,
-["TimerWin"] = true,
+["TimerCap"] = true,
 ["AutoSpirit"] = false,
 ["TimerStart"] = true,
 },
@@ -232,9 +189,32 @@ DBMPvP_AllSavedVars = {
 [2] = {
 ["Enabled"] = true,
 },
+[3] = {
+["Enabled"] = true,
 },
+},
+["talent3"] = "MAGE3",
 ["PvPGeneral"] = {
 [2] = {
+["TimerFlagCVoice"] = 0,
+["TimerStartTColor"] = 0,
+["ShowBasesToWin"] = true,
+["TimerFlagTColor"] = 0,
+["HideBossEmoteFrame"] = false,
+["TimerWinCVoice"] = 0,
+["TimerWinTColor"] = 0,
+["TimerCapCVoice"] = 0,
+["TimerFlag"] = true,
+["TimerStartCVoice"] = 0,
+["Enabled"] = true,
+["TimerCap"] = true,
+["TimerWin"] = true,
+["TimerCapTColor"] = 0,
+["ShowRelativeGameTime"] = true,
+["AutoSpirit"] = false,
+["TimerStart"] = true,
+},
+[3] = {
 ["TimerFlagCVoice"] = 0,
 ["TimerStartTColor"] = 0,
 ["ShowBasesToWin"] = true,
@@ -259,9 +239,19 @@ DBMPvP_AllSavedVars = {
 [2] = {
 ["Enabled"] = true,
 },
+[3] = {
+["Enabled"] = true,
+},
 },
 ["z30"] = {
 [2] = {
+["Enabled"] = true,
+["TimerBossTColor"] = 0,
+["TimerBoss"] = true,
+["AutoTurnIn"] = true,
+["TimerBossCVoice"] = 0,
+},
+[3] = {
 ["Enabled"] = true,
 ["TimerBossTColor"] = 0,
 ["TimerBoss"] = true,
@@ -290,10 +280,10 @@ DBMPvP_AllSavedVars = {
 ["TimerFlag"] = true,
 ["TimerStartCVoice"] = 0,
 ["Enabled"] = true,
-["ShowRelativeGameTime"] = true,
+["TimerCap"] = true,
 ["TimerWin"] = true,
 ["TimerCapTColor"] = 0,
-["TimerCap"] = true,
+["ShowRelativeGameTime"] = true,
 ["AutoSpirit"] = false,
 ["TimerStart"] = true,
 },
@@ -331,17 +321,17 @@ DBMPvP_AllSavedVars = {
 ["TimerFlagCVoice"] = 0,
 ["TimerCapCVoice"] = 0,
 ["TimerWinTColor"] = 0,
-["HideBossEmoteFrame"] = true,
+["AutoSpirit"] = false,
 ["TimerFlag"] = true,
-["TimerStartTColor"] = 0,
 ["ShowRelativeGameTime"] = true,
+["TimerStartTColor"] = 0,
 ["TimerStartCVoice"] = 0,
-["Enabled"] = true,
-["TimerCap"] = true,
 ["TimerWin"] = true,
+["TimerCap"] = true,
+["Enabled"] = true,
 ["TimerCapTColor"] = 0,
 ["TimerFlagTColor"] = 0,
-["AutoSpirit"] = false,
+["HideBossEmoteFrame"] = true,
 ["TimerStart"] = true,
 },
 },
@@ -360,14 +350,15 @@ DBMPvP_AllSavedVars = {
 },
 },
 },
-["六扇门沈小梅-哈霍兰"] = {
+["德加和尚-哈霍兰"] = {
 ["z489"] = {
-[2] = {
+{
 ["Enabled"] = true,
 },
 },
+["talent1"] = "PRIEST1",
 ["PvPGeneral"] = {
-[2] = {
+{
 ["TimerFlagCVoice"] = 0,
 ["TimerStartTColor"] = 0,
 ["ShowBasesToWin"] = true,
@@ -387,14 +378,13 @@ DBMPvP_AllSavedVars = {
 ["TimerStart"] = true,
 },
 },
-["talent2"] = "MAGE2",
 ["z529"] = {
-[2] = {
+{
 ["Enabled"] = true,
 },
 },
 ["z30"] = {
-[2] = {
+{
 ["Enabled"] = true,
 ["TimerBossTColor"] = 0,
 ["TimerBoss"] = true,

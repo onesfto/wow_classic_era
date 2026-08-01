@@ -14,6 +14,7 @@ if (GetLocale() == "deDE") then
   rggm.L["reload"] = "|cFFFFC300reload|r - UI neu laden"
   rggm.L["info_title"] = "|cFF00FFB0GearMenu:|r"
   rggm.L["invalid_argument"] = "Ungültiges Argument übergeben"
+  rggm.L["update_available"] = "Neue Version |cFFFFC300%s|r ist verfügbar - |cFF00FFB0Update empfohlen!|r"
 
   -- about tab
   rggm.L["author"] = "Autor: Michael Wiesendanger"
@@ -22,8 +23,8 @@ if (GetLocale() == "deDE") then
   rggm.L["issues"] = "Probleme: https://github.com/RagedUnicorn/wow-classic-gearmenu/issues"
 
   -- general
-  rggm.L["general_category_name"] = "Allgemein"
-  rggm.L["general_title"] = "Allgemeine Konfiguration"
+  rggm.L["general_category_name"] = "Optionen"
+  rggm.L["general_title"] = "Optionen"
   rggm.L["enable_tooltips"] = "Aktiviere KurzInfo"
   rggm.L["enable_tooltips_tooltip"] = "Aktiviere Kurzinfo für markierte Items"
   rggm.L["enable_simple_tooltips"] = "Zeige Simple Kurzinfo"
@@ -37,6 +38,10 @@ if (GetLocale() == "deDE") then
     .. " Dies erlaubt es einfacher items auszuziehen"
   rggm.L["enable_rune_slots"] = "Aktiviere Runenslots"
   rggm.L["enable_rune_slots_tooltip"] = "Aktiviert die Anzeige von Runenslots im GearBar"
+  rggm.L["enable_fallback_to_base_item"] = "Ersatzkopie ausrüsten"
+  rggm.L["enable_fallback_to_base_item_tooltip"] = "Wenn die exakt verzauberte/gravierte Kopie eines"
+    .. " Gegenstands nicht in den Taschen gefunden werden kann, wird stattdessen eine einfache Kopie"
+    .. " desselben Gegenstands ausgerüstet. Beim Ausrüsten einer Ersatzkopie wird eine Warnung im Chat angezeigt"
   rggm.L["filter_item_quality"] = "Filtere Gegenstandsqualität:"
   rggm.L["item_quality_poor"] = "Arm (Grau)"
   rggm.L["item_quality_common"] = "Gewöhnlich (Weiss)"
@@ -150,6 +155,8 @@ if (GetLocale() == "deDE") then
     "Du hast das maximum von " .. RGGM_CONSTANTS.MAX_GEAR_BAR_SLOTS .. " GearBar Slots erreicht"
   -- add/remove slots
   rggm.L["gear_bar_configuration_add_gearslot"] = "Erstelle Gearslot"
+  rggm.L["gear_bar_configuration_add_gearslot_combat"] =
+    "Im Kampf kann kein Gearslot hinzugefügt werden. Bitte versuche es nach dem Kampf erneut"
   rggm.L["gear_bar_configuration_remove_gearslot"] = "-"
   rggm.L["gear_bar_configuration_delete_gearbar"] = "Lösche GearBar"
   -- gearbar scrollmenu
@@ -169,4 +176,52 @@ if (GetLocale() == "deDE") then
   -- macro bridge user errors
   rggm.L["unable_to_find_equipslot"] = "Konnte keinen passenden slot für itemdId %s finden"
   rggm.L["unable_to_find_item"] = "Konnte keine Iteminformationen für itemId %s finden"
+  rggm.L["macro_invalid_argument"] = "Ungültiges Argument #%s an '%s' (Zahl erwartet, %s erhalten)"
+  rggm.L["macro_invalid_listener"] = "Ungültiges Argument #1 an '%s' (Funktion erwartet, %s erhalten)"
+
+  -- swap failure user errors
+  rggm.L["swap_failure_item_not_found"] = "Konnte nicht zu Gegenstand %s wechseln - der Gegenstand wurde nicht "
+    .. "in den Taschen gefunden"
+  rggm.L["swap_failure_item_locked"] = "Konnte nicht zu Gegenstand %s wechseln - der Gegenstand ist gerade gesperrt"
+  rggm.L["swap_failure_cursor_busy"] = "Konnte nicht zu Gegenstand %s wechseln - ein anderer Gegenstand befindet "
+    .. "sich am Cursor"
+  rggm.L["swap_failure_spell_targeting"] = "Konnte nicht zu Gegenstand %s wechseln - ein Zauber wartet auf ein Ziel"
+  rggm.L["swap_failure_no_bag_space"] = "Konnte Gegenstand %s nicht ablegen - kein freier Platz in den Taschen"
+  rggm.L["swap_fallback_to_base_item"] = "Ersatzkopie von %s ausgerüstet - keine Kopie mit der exakten"
+    .. " Verzauberung/Rune in den Taschen gefunden"
+
+  -- profile
+  rggm.L["profile_category_name"] = "Profile"
+  rggm.L["profile_title"] = "Profile"
+  rggm.L["profile_list_label"] = "Gespeicherte Profile"
+  rggm.L["profile_string_label"] = "Profilzeichenkette (Export / Import)"
+  rggm.L["profile_save_button"] = "Aktuelles speichern als..."
+  rggm.L["profile_apply_button"] = "Anwenden"
+  rggm.L["profile_rename_button"] = "Umbenennen"
+  rggm.L["profile_delete_button"] = "Löschen"
+  rggm.L["profile_export_button"] = "Exportieren"
+  rggm.L["profile_import_button"] = "Importieren"
+  rggm.L["profile_name_prompt"] = "Gib einen Namen für das neue Profil ein:"
+  rggm.L["profile_rename_prompt"] = "Gib einen neuen Namen für das Profil ein:"
+  rggm.L["profile_import_name_prompt"] = "Gib einen Namen ein, unter dem das importierte Profil gespeichert wird:"
+  rggm.L["profile_apply_confirm"] = "Profil \"%s\" anwenden? Dies überschreibt deine aktuellen Einstellungen "
+    .. "und lädt die Benutzeroberfläche neu."
+  rggm.L["profile_delete_confirm"] = "Profil \"%s\" löschen?"
+  rggm.L["profile_save_success"] = "Profil \"%s\" gespeichert"
+  rggm.L["profile_apply_success"] = "Profil \"%s\" angewendet"
+  rggm.L["profile_import_success"] = "Profil \"%s\" importiert"
+  rggm.L["profile_delete_success"] = "Profil \"%s\" gelöscht"
+  rggm.L["profile_rename_success"] = "Profil umbenannt in \"%s\""
+  rggm.L["profile_error_empty"] = "Es gibt keine Profilzeichenkette zum Importieren"
+  rggm.L["profile_error_invalid"] = "Die Profilzeichenkette ist ungültig oder konnte nicht gelesen werden"
+  rggm.L["profile_error_checksum"] = "Die Profilzeichenkette ist beschädigt (Prüfsummenfehler)"
+  rggm.L["profile_error_wrong_addon"] = "Diese Profilzeichenkette wurde nicht von GearMenu erstellt"
+  rggm.L["profile_error_version"] = "Diese Profilzeichenkette wurde von einer neueren Version von GearMenu erstellt"
+  rggm.L["profile_error_name_empty"] = "Der Profilname darf nicht leer sein"
+  rggm.L["profile_error_name_exists"] = "Ein Profil mit diesem Namen existiert bereits"
+  rggm.L["profile_error_name_too_long"] = "Der Profilname darf nicht länger als %d Zeichen sein"
+  rggm.L["profile_error_no_selection"] = "Kein Profil ausgewählt"
+  rggm.L["profile_error_default_cannot_be_deleted"] = "Das Profil \"%s\" kann nicht gelöscht werden"
+  rggm.L["profile_error_default_cannot_be_renamed"] = "Das Profil \"%s\" kann nicht umbenannt werden"
+  rggm.L["profile_error_default_cannot_be_overwritten"] = "Das Profil \"%s\" kann nicht überschrieben werden"
 end

@@ -168,6 +168,7 @@ BG.Init(function()
             local frame = CreateFrame("Frame", nil, f)
             frame:SetSize(1, 1)
             local scroll = CreateFrame("ScrollFrame", nil, f, "UIPanelScrollFrameTemplate")
+            local frameName = "Frame" .. name
             scroll:SetPoint("TOPLEFT", SettingsPanel.Container, 15, -70)
             scroll:SetPoint("BOTTOMRIGHT", SettingsPanel.Container, -35, 10)
             scroll.ScrollBar.scrollStep = BG.scrollStep
@@ -175,6 +176,18 @@ BG.Init(function()
             BG.HookScrollBarShowOrHide(scroll)
             scroll:SetScrollChild(frame)
             frame.scroll = scroll
+            BiaoGe.options.optionsScrollPosition = BiaoGe.options.optionsScrollPosition or {}
+            scroll:HookScript("OnVerticalScroll", function(self, offset)
+                BiaoGe.options.optionsScrollPosition[frameName] = offset
+            end)
+            f:HookScript("OnShow", function()
+                BG.After(0, function()
+                    if not f:IsShown() then return end
+                    local offset = BiaoGe.options.optionsScrollPosition[frameName] or 0
+                    local _, maxOffset = scroll.ScrollBar:GetMinMaxValues()
+                    scroll:SetVerticalScroll(min(offset, maxOffset))
+                end)
+            end)
 
             return frame
         end
@@ -3225,6 +3238,9 @@ BG.Init(function()
                         local info = LibBG:UIDropDownMenu_CreateInfo()
                         info.text = v.text
                         info.func = function()
+                            if v.key == "custom" and BG.InitializeRoleOverviewCustomSort then
+                                BG.InitializeRoleOverviewCustomSort()
+                            end
                             BiaoGe.options[name] = v.key
                             LibBG:UIDropDownMenu_SetText(dropDown, SetText(BiaoGe.options[name]))
                             if BiaoGe.options[name] ~= "custom" then
@@ -4079,45 +4095,6 @@ BG.Init(function()
             end
             h = h + 45
         end
-
-        -- 历史表格汇总
---[=[         do
-            local text = others:CreateFontString()
-            text:SetFont(BIAOGE_TEXT_FONT, 15, "OUTLINE")
-            text:SetPoint("TOPLEFT", width, height - h)
-            text:SetText(BG.STC_g1(L["历史表格汇总"]))
-            height = height - height_jiange
-
-            O.CreateLine(others, height - h + line_height)
-
-            do
-                local name = "historySummaryAutoStart"
-                BG.options[name .. "reset"] = 1
-                if BiaoGe.options[name] == nil then
-                    BiaoGe.options[name] = BG.options[name .. "reset"]
-                end
-                local ontext = {
-                    L["保存表格时，自动进行汇总"],
-                }
-                O.CreateCheckButton(name, L["保存表格时，自动进行汇总"], others, 15, height - h, ontext, true)
-            end
-
-            h = h + 30
-
-            do
-                local name = "historySummaryMouseTips"
-                BG.options[name .. "reset"] = 0
-                if BiaoGe.options[name] == nil then
-                    BiaoGe.options[name] = BG.options[name .. "reset"]
-                end
-                local ontext = {
-                    L["鼠标悬停在玩家时，显示其历史总消费金额和跟团次数"],
-                }
-                O.CreateCheckButton(name, L["鼠标悬停在玩家时，显示其历史总消费金额和跟团次数"], others, 15, height - h, ontext, true)
-            end
-
-            h = h + 45
-        end ]=]
 
         -- AtlasLoot
         BG.Init2(function()

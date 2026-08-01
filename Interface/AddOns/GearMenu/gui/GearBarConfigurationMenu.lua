@@ -24,7 +24,6 @@
 ]]--
 
 -- luacheck: globals STANDARD_TEXT_FONT CreateFrame StaticPopupDialogs StaticPopup_Show
--- luacheck: globals FauxScrollFrame_Update FauxScrollFrame_GetOffset
 
 --[[
   The gearBarMenu (GM_GearBarConfigurationMenu) module has some similarities to the gearBar (GM_GearBar) module.
@@ -73,6 +72,7 @@ StaticPopupDialogs["RGGM_CHOOSE_GEAR_BAR_NAME"] = {
     if editBox ~= nil and button1 ~= nil then
       button1:Disable()
       editBox:SetText("") -- reset text to empty
+      editBox:SetFocus()
     end
   end,
   OnAccept = function(dialog)
@@ -106,6 +106,7 @@ StaticPopupDialogs["RGGM_GEAR_BAR_CONFIRM_DELETE"] = {
   button2 = rggm.L["gear_bar_confirm_delete_no_button"],
   OnAccept = function()
     if deleteGearBarId then
+      mod.ticker.UnregisterForTickerRangeCheck(deleteGearBarId)
       mod.gearBarManager.RemoveGearBar(deleteGearBarId)
       mod.gearBarStorage.RemoveGearBar(deleteGearBarId)
       me.GearBarListOnUpdate(gearBarList)
@@ -129,15 +130,9 @@ StaticPopupDialogs["RGGM_GEAR_BAR_CONFIRM_DELETE"] = {
 function me.BuildUi(parentFrame)
   if builtMenu then return end
 
-  local gearBarConfigurationContentFrame = CreateFrame(
-    "Frame", RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_MENU, parentFrame)
-  gearBarConfigurationContentFrame:SetWidth(RGGM_CONSTANTS.INTERFACE_PANEL_CONTENT_FRAME_WIDTH)
-  gearBarConfigurationContentFrame:SetHeight(RGGM_CONSTANTS.INTERFACE_PANEL_CONTENT_FRAME_HEIGHT)
-  gearBarConfigurationContentFrame:SetPoint("TOPLEFT", parentFrame, 5, -7)
-
-  me.CreateConfigurationMenuTitle(gearBarConfigurationContentFrame)
-  me.CreateNewGearBarButton(gearBarConfigurationContentFrame)
-  gearBarList = me.CreateGearBarList(gearBarConfigurationContentFrame)
+  me.CreateConfigurationMenuTitle(parentFrame)
+  me.CreateNewGearBarButton(parentFrame)
+  gearBarList = me.CreateGearBarList(parentFrame)
   me.GearBarListOnUpdate(gearBarList)
 
   builtMenu = true
@@ -148,10 +143,9 @@ end
 ]]--
 function me.CreateConfigurationMenuTitle(contentFrame)
   local titleFontString = contentFrame:CreateFontString(
-    RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_MENU_TITLE, "OVERLAY")
-  titleFontString:SetFont(STANDARD_TEXT_FONT, 20)
-  titleFontString:SetPoint("TOP", 0, -20)
-  titleFontString:SetSize(contentFrame:GetWidth(), 20)
+    RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_MENU_TITLE, "OVERLAY", "GameFontNormalLarge")
+  titleFontString:SetPoint("TOPLEFT", 16, -16)
+  mod.uiHelper.SetColor(titleFontString, RGGM_CONSTANTS.COLOR.TITLE_GOLD)
   titleFontString:SetText(rggm.L["gear_bar_configuration_category_name"])
 end
 
@@ -241,58 +235,36 @@ end
   @param {table} parentFrame
 
   @return {table}
-    The created scrollFrame
+    The created list container
 ]]--
 function me.CreateGearBarList(parentFrame)
-  local scrollFrame = CreateFrame(
-    "ScrollFrame",
+  local listContainer = mod.uiHelper.CreateScrollList(
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_LIST,
     parentFrame,
-    "FauxScrollFrameTemplate"
+    {"TOPLEFT", 20, -120},
+    RGGM_CONSTANTS.GEAR_BAR_LIST_WIDTH,
+    RGGM_CONSTANTS.GEAR_BAR_LIST_ROW_HEIGHT * RGGM_CONSTANTS.GEAR_BAR_LIST_MAX_ROWS
   )
 
-  scrollFrame:SetWidth(RGGM_CONSTANTS.GEAR_BAR_LIST_WIDTH)
-  scrollFrame:SetHeight(
-    RGGM_CONSTANTS.GEAR_BAR_LIST_ROW_HEIGHT
-    * RGGM_CONSTANTS.GEAR_BAR_LIST_MAX_ROWS
-  )
-  scrollFrame:SetPoint("TOPLEFT", 20, -120)
-  scrollFrame:EnableMouseWheel(true)
+  listContainer.rows = {}
 
-  scrollFrame:SetScript("OnVerticalScroll", me.GearBarListOnVerticalScroll)
-
-  parentFrame.rows = {}
-
-  for i = 1, RGGM_CONSTANTS.GEAR_BAR_LIST_MAX_ROWS do
-    table.insert(parentFrame.rows, me.CreateGearBarListRowFrame(scrollFrame, i))
-  end
-
-  return scrollFrame
+  return listContainer
 end
 
 --[[
-  OnVerticalScroll callback for scrollable slots list
-
-  @param {table} self
-  @param {number} offset
-]]--
-function me.GearBarListOnVerticalScroll(self, offset)
-  self.ScrollBar:SetValue(offset)
-  self.offset = math.floor(offset / RGGM_CONSTANTS.GEAR_BAR_LIST_ROW_HEIGHT + 0.5)
-  me.GearBarListOnUpdate(self)
-end
-
---[[
-  @param {table} frame
+  @param {table} contentFrame
   @param {number} position
 
   @return {table}
     The created row
 ]]--
-function me.CreateGearBarListRowFrame(frame, position)
-  local row = CreateFrame("Button",  RGGM_CONSTANTS.ELEMENT_GEAR_BAR_ROW_FRAME .. position, frame, "BackdropTemplate")
-  row:SetSize(frame:GetWidth(), RGGM_CONSTANTS.GEAR_BAR_LIST_ROW_HEIGHT)
-  row:SetPoint("TOPLEFT", frame, 0, (position -1) * RGGM_CONSTANTS.GEAR_BAR_LIST_ROW_HEIGHT * -1)
+function me.CreateGearBarListRowFrame(contentFrame, position)
+  local rowOffset = (position - 1) * RGGM_CONSTANTS.GEAR_BAR_LIST_ROW_HEIGHT * -1
+  local row = CreateFrame(
+    "Button", RGGM_CONSTANTS.ELEMENT_GEAR_BAR_ROW_FRAME .. position, contentFrame, "BackdropTemplate")
+  row:SetHeight(RGGM_CONSTANTS.GEAR_BAR_LIST_ROW_HEIGHT)
+  row:SetPoint("TOPLEFT", contentFrame, "TOPLEFT", 0, rowOffset)
+  row:SetPoint("TOPRIGHT", contentFrame, "TOPRIGHT", 0, rowOffset)
   row:SetBackdrop({
     bgFile = "Interface\\AddOns\\GearMenu\\assets\\ui_slot_background",
     insets = {left = 0, right = 0, top = 0, bottom = 0},
@@ -374,37 +346,32 @@ function me.CreateRemoveGearBarButton(row, parentFrame, position)
 end
 
 --[[
-  Update a scrollable list holding configuration frames for gearBar slots
+  Update the gearBar list rows to reflect the configured gearBars. Rows are created
+  lazily - one per gearBar - and surplus rows are hidden.
 
-  @param {table} scrollFrame
+  @param {table} listContainer
 ]]--
-function me.GearBarListOnUpdate(scrollFrame)
-  local rows = scrollFrame:GetParent().rows
+function me.GearBarListOnUpdate(listContainer)
+  local rows = listContainer.rows
   local gearBars = mod.gearBarManager.GetGearBars()
-  local maxValue = #gearBars or 0
 
-  if maxValue <= RGGM_CONSTANTS.GEAR_BAR_LIST_MAX_ROWS then
-    maxValue = RGGM_CONSTANTS.GEAR_BAR_LIST_MAX_ROWS + 1
-  end
-  -- Note: maxValue needs to be at least max_rows + 1
-  FauxScrollFrame_Update(
-    scrollFrame,
-    maxValue,
-    RGGM_CONSTANTS.GEAR_BAR_LIST_MAX_ROWS,
-    RGGM_CONSTANTS.GEAR_BAR_LIST_ROW_HEIGHT
-  )
+  for index = 1, math.max(#gearBars, #rows) do
+    if index <= #gearBars and rows[index] == nil then
+      rows[index] = me.CreateGearBarListRowFrame(listContainer.content, index)
+    end
 
-  local offset = FauxScrollFrame_GetOffset(scrollFrame)
-  for index = 1, RGGM_CONSTANTS.GEAR_BAR_LIST_MAX_ROWS do
-    local rowPosition = index + offset
+    local row = rows[index]
 
-    if rowPosition <= #gearBars then
-      local row = rows[index]
-      row.gearBarName:SetText(gearBars[rowPosition].displayName)
-      row.removeGearBarButton.id = gearBars[rowPosition].id
+    if index <= #gearBars then
+      row.gearBarName:SetText(gearBars[index].displayName)
+      row.removeGearBarButton.id = gearBars[index].id
       row:Show()
     else
-      rows[index]:Hide()
+      row:Hide()
     end
   end
+
+  listContainer.content:SetHeight(
+    math.max(#gearBars, RGGM_CONSTANTS.GEAR_BAR_LIST_MAX_ROWS) * RGGM_CONSTANTS.GEAR_BAR_LIST_ROW_HEIGHT
+  )
 end

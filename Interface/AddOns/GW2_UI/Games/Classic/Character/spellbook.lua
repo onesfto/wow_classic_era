@@ -189,36 +189,9 @@ local function setButtonStyle(ispassive, spellID, skillType, icon, spellbookInde
         btn:SetAttribute("shift-type2", "modifiedClick")
     elseif not btn.isFuture then
         btn:SetAttribute("ispickable", true)
-        
-        local realName, realSubtext = GetSpellBookItemName(spellbookIndex, booktype)
-        local castStr = name
-        if realName and realName ~= "" then
-            castStr = realName:match("^%s*(.-)%s*$")
-        end
-        
-        if realSubtext and realSubtext ~= "" then
-            local trimSub = realSubtext:match("^%s*(.-)%s*$")
-            if string.find(trimSub, "%d") then
-                -- 在 type="spell" 模式下，CastSpellByName 会直接查底层数据库
-                -- 数据库里原本就是带有空格的，例如 "等级 1"，所以不能去空格！
-                castStr = castStr .. "(" .. trimSub .. ")"
-            end
-        end
-        
-        -- 彻底回归安全的 spell 模式，避免宏文本不执行的黑洞
-        btn:SetAttribute("type", "spell")
         btn:SetAttribute("type1", "spell")
         btn:SetAttribute("type2", "spell")
-        
-        btn:SetAttribute("spell", castStr)
-        
-        -- 彻底清理可能的复用宏残留
-        btn:SetAttribute("macrotext", nil)
-        btn:SetAttribute("macrotext1", nil)
-        btn:SetAttribute("macrotext2", nil)
-        btn:SetAttribute("*macrotext1", nil)
-        btn:SetAttribute("*macrotext2", nil)
-        
+        btn:SetAttribute("spell", spellID)
         btn:SetAttribute("shift-type1", "modifiedClick")
         btn:SetAttribute("shift-type2", "modifiedClick")
     else
@@ -276,16 +249,12 @@ end
 local function setUpPaging(self)
     self.left:SetFrameRef('tab', self.attrDummy)
     self.left:SetAttribute("_onclick", [=[
-        local tab = self:GetFrameRef('tab')
-        local cp = tab:GetAttribute('currentPage') or 1
-        tab:SetAttribute('currentPage', cp - 1)
+        self:GetFrameRef('tab'):SetAttribute('page', 'left')
     ]=])
 
     self.right:SetFrameRef('tab', self.attrDummy)
     self.right:SetAttribute("_onclick", [=[
-        local tab = self:GetFrameRef('tab')
-        local cp = tab:GetAttribute('currentPage') or 1
-        tab:SetAttribute('currentPage', cp + 1)
+        self:GetFrameRef('tab'):SetAttribute('page', 'right')
     ]=])
 
     self.attrDummy:SetFrameRef('container1', self.container1)
@@ -298,7 +267,7 @@ local function setUpPaging(self)
     self.attrDummy:SetFrameRef('left', self.left)
     self.attrDummy:SetFrameRef('right', self.right)
     self.attrDummy:SetAttribute('_onattributechanged', ([=[
-        if name ~= 'currentpage' then return end
+        if name ~= 'page' then return end
 
         local p1 = self:GetFrameRef('container1')
         local p2 = self:GetFrameRef('container2')
@@ -310,43 +279,75 @@ local function setUpPaging(self)
         local left = self:GetFrameRef('left')
         local right = self:GetFrameRef('right')
         local numPages = %s
-        local currentPage = tonumber(value) or 1
+        local currentPage = 1
 
-        local targetPage = currentPage
-        if targetPage < 1 then targetPage = 1 end
-        if targetPage > numPages then targetPage = numPages end
-        
-        if targetPage ~= currentPage then
-            self:SetAttribute('currentPage', targetPage)
-            return
+        if value == "left" then
+            if p7:IsVisible() then
+                p7:Hide()
+                p6:Show()
+                currentPage = 6
+            elseif p6:IsVisible() then
+                p6:Hide()
+                p5:Show()
+                currentPage = 5
+            elseif p5:IsVisible() then
+                p5:Hide()
+                p4:Show()
+                currentPage = 4
+            elseif p4:IsVisible() then
+                p4:Hide()
+                p3:Show()
+                currentPage = 3
+            elseif p3:IsVisible() then
+                p3:Hide()
+                p2:Show()
+                currentPage = 2
+            elseif p2:IsVisible() then
+                p2:Hide()
+                p1:Show()
+                currentPage = 1
+            end
+        end
+        if value == "right" then
+            if p1:IsVisible()  then
+                p1:Hide()
+                p2:Show()
+                currentPage = 2
+            elseif p2:IsVisible() then
+                p2:Hide()
+                p3:Show()
+                currentPage = 3
+            elseif p3:IsVisible() then
+                p3:Hide()
+                p4:Show()
+                currentPage = 4
+            elseif p4:IsVisible() then
+                p4:Hide()
+                p5:Show()
+                currentPage = 5
+            elseif p5:IsVisible() then
+                p5:Hide()
+                p6:Show()
+                currentPage = 6
+            elseif p6:IsVisible() then
+                p6:Hide()
+                p7:Show()
+                currentPage = 7
+            end
         end
 
-        p1:Hide() p2:Hide() p3:Hide() p4:Hide() p5:Hide() p6:Hide() p7:Hide()
-
-        if targetPage == 7 then p7:Show()
-        elseif targetPage == 6 then p6:Show()
-        elseif targetPage == 5 then p5:Show()
-        elseif targetPage == 4 then p4:Show()
-        elseif targetPage == 3 then p3:Show()
-        elseif targetPage == 2 then p2:Show()
-        elseif targetPage == 1 then p1:Show()
-        end
-
-        if targetPage >= numPages then
+        if currentPage >= numPages then
             right:Hide()
         else
             right:Show()
         end
-        if targetPage == 1 then
+        if currentPage == 1 then
             left:Hide()
         else
             left:Show()
         end
     ]=]):format(self.tabs))
-    
-    local current = self.attrDummy:GetAttribute('currentPage') or 1
-    self.attrDummy:SetAttribute('currentPage', 0) -- Force trigger
-    self.attrDummy:SetAttribute('currentPage', current)
+    self.attrDummy:SetAttribute('page', 'left')
 end
 
 local function getUnknownSpellItem(index)
@@ -846,7 +847,7 @@ local function LoadSpellBook(tabContainer)
             f.rank:GwSetFontTemplate(DAMAGE_TEXT_FONT, GW.Enum.TextSizeType.Small, "OUTLINE")
             f.rank:SetTextColor(0.9, 0.9, 0.8, 1)
             f:SetPoint('TOPLEFT', container, 'TOPLEFT', (50 * x), (-70) + (-50 * y))
-            f:RegisterForClicks("AnyUp", "AnyDown")
+            f:RegisterForClicks("AnyUp")
             f:RegisterForDrag("LeftButton")
             f:RegisterEvent("SPELL_UPDATE_COOLDOWN")
             f:RegisterEvent("PET_BAR_UPDATE")

@@ -108,9 +108,9 @@ local L = WeakAuras.L
 	--[[Translation missing --]]
 	L["|cFFffcc00Extra:|r %s and %s %s"] = "|cFFffcc00Extra:|r %s and %s %s"
 	--[[Translation missing --]]
-	L["|cFFffcc00Font Flags:|r |cFFFF0000%s|r and shadow |c%sColor|r with offset |cFFFF0000%s/%s|r%s%s"] = "|cFFffcc00Font Flags:|r |cFFFF0000%s|r and shadow |c%sColor|r with offset |cFFFF0000%s/%s|r%s%s"
+	L["|cFFffcc00Font Flags:|r"] = "|cFFffcc00Font Flags:|r"
 	--[[Translation missing --]]
-	L["|cFFffcc00Font Flags:|r |cFFFF0000%s|r and shadow |c%sColor|r with offset |cFFFF0000%s/%s|r%s%s%s"] = "|cFFffcc00Font Flags:|r |cFFFF0000%s|r and shadow |c%sColor|r with offset |cFFFF0000%s/%s|r%s%s%s"
+	L["|cFFffcc00Font Flags:|r none"] = "|cFFffcc00Font Flags:|r none"
 	--[[Translation missing --]]
 	L["|cffffcc00Format Options|r"] = "|cffffcc00Format Options|r"
 	--[[Translation missing --]]
@@ -171,6 +171,10 @@ Enable this setting if you want this timer to be hidden, or when using a WeakAur
 	--[[Translation missing --]]
 	L["Affected Unit Filters and Info"] = "Affected Unit Filters and Info"
 	L["Align"] = "Ausrichtung"
+	--[[Translation missing --]]
+	L["Aligned left"] = "Aligned left"
+	--[[Translation missing --]]
+	L["Aligned right"] = "Aligned right"
 	L["Alignment"] = "Ausrichtung"
 	--[[Translation missing --]]
 	L["All maintainers of the libraries we use, especially:"] = "All maintainers of the libraries we use, especially:"
@@ -186,12 +190,14 @@ Enable this setting if you want this timer to be hidden, or when using a WeakAur
 	L["and"] = "und"
 	--[[Translation missing --]]
 	L["and %s"] = "and %s"
-	L["and aligned left"] = "und links ausgerichtet"
-	L["and aligned right"] = "und rechts ausgerichtet"
 	--[[Translation missing --]]
 	L["And our Patreons, Discord Regulars and Subscribers, and Friends of the Addon:"] = "And our Patreons, Discord Regulars and Subscribers, and Friends of the Addon:"
 	L["and rotated left"] = "und nach links gedreht"
 	L["and rotated right"] = "und nach rechts gedreht"
+	--[[Translation missing --]]
+	L["and shadow |c%sColor|r with offset |cFFFF0000%s/%s|r"] = "and shadow |c%sColor|r with offset |cFFFF0000%s/%s|r"
+	--[[Translation missing --]]
+	L["and smooth scaling"] = "and smooth scaling"
 	--[[Translation missing --]]
 	L["and with width |cFFFF0000%s|r and %s"] = "and with width |cFFFF0000%s|r and %s"
 	L["Angle"] = "Winkel"
@@ -1027,6 +1033,10 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	L["Rotate In"] = "Nach innen rotieren"
 	L["Rotate Out"] = "Nach außen rotieren"
 	L["Rotate Text"] = "Text rotieren"
+	--[[Translation missing --]]
+	L["Rotated left"] = "Rotated left"
+	--[[Translation missing --]]
+	L["Rotated right"] = "Rotated right"
 	L["Rotation Mode"] = "Rotationsmodus"
 	L["Row Space"] = "Zeilenabstand"
 	L["Row Width"] = "Zeilenbreite"
@@ -1064,6 +1074,8 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	--[[Translation missing --]]
 	L["Sets the anchored frame as the aura's parent, causing the aura to inherit attributes such as visibility and scale."] = "Sets the anchored frame as the aura's parent, causing the aura to inherit attributes such as visibility and scale."
 	L["Settings"] = "Einstellungen"
+	--[[Translation missing --]]
+	L["Shadow |c%sColor|r with offset |cFFFF0000%s/%s|r"] = "Shadow |c%sColor|r with offset |cFFFF0000%s/%s|r"
 	L["Shadow Color"] = "Schattenfarbe"
 	--[[Translation missing --]]
 	L["Shadow X Offset"] = "Shadow X Offset"
@@ -1147,7 +1159,13 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	L["Slider Step Size"] = "Slider Step Size"
 	L["Small Icon"] = "Kleines Symbol"
 	--[[Translation missing --]]
+	L["Smooth Font"] = "Smooth Font"
+	--[[Translation missing --]]
 	L["Smooth Progress"] = "Smooth Progress"
+	--[[Translation missing --]]
+	L["Smooth scaling"] = "Smooth scaling"
+	--[[Translation missing --]]
+	L["Smooths text height, preventing it from snapping to the nearest whole number when scaled."] = "Smooths text height, preventing it from snapping to the nearest whole number when scaled."
 	--[[Translation missing --]]
 	L["Snippets"] = "Snippets"
 	--[[Translation missing --]]
@@ -1399,6 +1417,8 @@ Read more on our Patreon page https://patreon.com/WeakAuras]=]
 	L["What do you want to do?"] = "What do you want to do?"
 	--[[Translation missing --]]
 	L["Whole Area"] = "Whole Area"
+	--[[Translation missing --]]
+	L["Width |cFFFF0000%s|r and %s"] = "Width |cFFFF0000%s|r and %s"
 	--[[Translation missing --]]
 	L["wrapping"] = "wrapping"
 	L["X Offset"] = "X-Versatz"

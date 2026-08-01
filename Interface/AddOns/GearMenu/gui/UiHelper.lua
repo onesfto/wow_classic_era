@@ -23,7 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT Settings MinimalSliderWithSteppersMixin
+-- luacheck: globals CreateFrame STANDARD_TEXT_FONT Settings MinimalSliderWithSteppersMixin ScrollUtil GameTooltip
 
 local mod = rggm
 local me = {}
@@ -33,25 +33,101 @@ mod.uiHelper = me
 me.tag = "UiHelper"
 
 local CreateSliderOptions
-local SetupSliderTooltips
 
 --[[
-  Create a dropdown button for a dropdown menu
+  Apply one of the RGGM_CONSTANTS.COLOR { r, g, b } tokens to a font string.
 
-  @param {string} text
-  @param {string} value
-  @param {function} callback
-
-  @return {table} button
+  @param {table} fontString
+  @param {table} color
 ]]--
-function me.CreateDropdownButton(text, value, callback)
-  local button = mod.libUiDropDownMenu.UiDropDownMenu_CreateInfo()
+function me.SetColor(fontString, color)
+  fontString:SetTextColor(color[1], color[2], color[3])
+end
 
-  button.text = text
-  button.value = value
-  button.func = callback
+--[[
+  Apply the shared bordered box backdrop used by panel content containers. The frame
+  must have been created with the "BackdropTemplate" mixin.
 
-  return button
+  @param {table} frame
+]]--
+function me.ApplyBorderBackdrop(frame)
+  frame:SetBackdrop({
+    bgFile = "Interface\\ChatFrame\\ChatFrameBackground",
+    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+    tile = true,
+    tileSize = 16,
+    edgeSize = 12,
+    insets = { left = 3, right = 3, top = 3, bottom = 3 }
+  })
+  frame:SetBackdropColor(0, 0, 0, 0.4)
+  frame:SetBackdropBorderColor(0.6, 0.6, 0.6, 1)
+end
+
+--[[
+  Create a bordered, scrollable list container in the style of the stock configuration
+  menus. Rows attach to the returned container's content frame - a scroll child driven
+  by a MinimalScrollBar. The consumer is responsible for updating the content frame's
+  height to the amount of rows it holds (scroll range = content height - visible height).
+
+  @param {string} listName
+    Name for the container frame; may use $parent which resolves against the passed parent.
+    The content frame is named after the resolved container name suffixed with "Content"
+  @param {table} parent
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+  @param {number} listWidth
+  @param {number} listHeight
+
+  @return {table}
+    The created container with .scrollFrame and .content attached
+]]--
+function me.CreateScrollList(listName, parent, position, listWidth, listHeight)
+  local listContainer = CreateFrame("Frame", listName, parent, "BackdropTemplate")
+  listContainer:SetSize(listWidth, listHeight)
+  listContainer:SetPoint(unpack(position))
+  me.ApplyBorderBackdrop(listContainer)
+
+  local scrollFrame = CreateFrame("ScrollFrame", nil, listContainer)
+  scrollFrame:SetPoint("TOPLEFT", 6, -6)
+  scrollFrame:SetPoint("BOTTOMRIGHT", -22, 6)
+
+  local scrollBar = CreateFrame("EventFrame", nil, listContainer, "MinimalScrollBar")
+  scrollBar:SetPoint("TOPLEFT", scrollFrame, "TOPRIGHT", 8, 0)
+  scrollBar:SetPoint("BOTTOMLEFT", scrollFrame, "BOTTOMRIGHT", 8, 0)
+  ScrollUtil.InitScrollFrameWithScrollBar(scrollFrame, scrollBar)
+
+  local contentFrame = CreateFrame("Frame", listContainer:GetName() .. "Content", scrollFrame)
+  contentFrame:SetSize(listWidth - 28, listHeight)
+  scrollFrame:SetScrollChild(contentFrame)
+
+  listContainer.scrollFrame = scrollFrame
+  listContainer.content = contentFrame
+
+  return listContainer
+end
+
+--[[
+  Create a dropdown in the dark style of the stock configuration menus (WowStyle2, without
+  the stepper buttons the settings panel adds around some of its dropdowns)
+
+  @param {string} frameName
+  @param {table} parent
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+  @param {number} width
+  @param {function} menuGenerator
+    Menu generator passed to SetupMenu - receives (dropdown, rootDescription)
+
+  @return {table}
+    The created dropdown
+]]--
+function me.CreateSettingsDropdown(frameName, parent, position, width, menuGenerator)
+  local dropdown = CreateFrame("DropdownButton", frameName, parent, "WowStyle2DropdownTemplate")
+  dropdown:SetPoint(unpack(position))
+  dropdown:SetWidth(width)
+  dropdown:SetupMenu(menuGenerator)
+
+  return dropdown
 end
 
 --[[
@@ -63,57 +139,44 @@ end
   @param {function} onShowCallback
   @param {function} onClickCallback
   @param {table} checkBoxMetadata
-    A table of {elementName, checkBoxTextLabel, tooltipText}
+    A table of {elementName, checkBoxTextLabel, description}
 ]]--
 function me.BuildCheckButtonOption(
     parentFrame, optionFrameName, position, onShowCallback, onClickCallback, checkBoxMetadata)
 
-  local checkButtonOptionFrame = CreateFrame("CheckButton", optionFrameName, parentFrame, "UICheckButtonTemplate")
+  local checkButtonOptionFrame = CreateFrame("CheckButton", optionFrameName, parentFrame, "SettingsCheckboxTemplate")
   checkButtonOptionFrame:SetSize(
     RGGM_CONSTANTS.CHECK_OPTION_SIZE,
     RGGM_CONSTANTS.CHECK_OPTION_SIZE
   )
   checkButtonOptionFrame:SetPoint(unpack(position))
 
-  for _, region in ipairs({checkButtonOptionFrame:GetRegions()}) do
-    if string.find(region:GetName() or "", "Text$") and region:IsObjectType("FontString") then
-      region:SetFont(STANDARD_TEXT_FONT, 15)
-      region:SetTextColor(.95, .95, .95)
-      region:SetText(checkBoxMetadata[2])
-      break
-    end
-  end
+  --[[ the template's inherited hover scripts drive the settings-list row highlight and
+       misbehave outside that list - remove them ]]--
+  checkButtonOptionFrame:SetScript("OnEnter", nil)
+  checkButtonOptionFrame:SetScript("OnLeave", nil)
 
-  checkButtonOptionFrame:SetScript("OnEnter", function(self)
-    me.OptTooltipOnEnter(self, checkBoxMetadata)
-  end)
-  checkButtonOptionFrame:SetScript("OnLeave", function(self)
-    me.OptTooltipOnLeave(self)
-  end)
+  --[[ the template ships no label - the settings list rows normally provide it ]]--
+  local labelFontString = checkButtonOptionFrame:CreateFontString(nil, "OVERLAY")
+  labelFontString:SetFont(STANDARD_TEXT_FONT, 15)
+  me.SetColor(labelFontString, RGGM_CONSTANTS.COLOR.BODY)
+  labelFontString:SetPoint("LEFT", checkButtonOptionFrame, "RIGHT", 5, 0)
+  labelFontString:SetText(checkBoxMetadata[2])
+  checkButtonOptionFrame.text = labelFontString
+
+  local descriptionFontString = checkButtonOptionFrame:CreateFontString(nil, "OVERLAY")
+  descriptionFontString:SetFont(STANDARD_TEXT_FONT, 12)
+  me.SetColor(descriptionFontString, RGGM_CONSTANTS.COLOR.SUBNOTE)
+  descriptionFontString:SetPoint("TOPLEFT", checkButtonOptionFrame, "BOTTOMLEFT", 4, -2)
+  descriptionFontString:SetWidth(RGGM_CONSTANTS.CHECK_OPTION_DESCRIPTION_WIDTH)
+  descriptionFontString:SetJustifyH("LEFT")
+  descriptionFontString:SetText(checkBoxMetadata[3])
+  checkButtonOptionFrame.description = descriptionFontString
+
   checkButtonOptionFrame:SetScript("OnShow", onShowCallback)
   checkButtonOptionFrame:SetScript("OnClick", onClickCallback)
   -- load initial state
   onShowCallback(checkButtonOptionFrame)
-end
-
---[[
-  OnEnter callback for checkbuttons - show tooltip
-
-  @param {table} self
-]]--
-function me.OptTooltipOnEnter(self, checkBoxMetadata)
-  local name = self:GetName()
-
-  if not name then return end
-
-  mod.tooltip.BuildTooltipForOption(checkBoxMetadata[2], checkBoxMetadata[3])
-end
-
---[[
-  OnEnter callback for checkbuttons - hide tooltip
-]]--
-function me.OptTooltipOnLeave()
-  _G[RGGM_CONSTANTS.ELEMENT_TOOLTIP]:Hide()
 end
 
 --[[
@@ -140,38 +203,21 @@ CreateSliderOptions = function(minValue, maxValue, title)
 end
 
 --[[
-  Setup tooltips for a MinimalSliderWithSteppersTemplate slider frame and its sub-elements
+  Create an always visible description below a slider
 
   @param {table} sliderFrame
-  @param {string} title
-  @param {string} tooltip
+  @param {string} description
 ]]--
-SetupSliderTooltips = function(sliderFrame, title, tooltip)
-  local function ShowTooltip()
-    mod.tooltip.BuildTooltipForOption(title, tooltip)
-  end
-
-  local function HideTooltip()
-    _G[RGGM_CONSTANTS.ELEMENT_TOOLTIP]:Hide()
-  end
-
-  sliderFrame:SetScript("OnEnter", ShowTooltip)
-  sliderFrame:SetScript("OnLeave", HideTooltip)
-
-  if sliderFrame.Slider then
-    sliderFrame.Slider:SetScript("OnEnter", ShowTooltip)
-    sliderFrame.Slider:SetScript("OnLeave", HideTooltip)
-  end
-
-  if sliderFrame.Back then
-    sliderFrame.Back:SetScript("OnEnter", ShowTooltip)
-    sliderFrame.Back:SetScript("OnLeave", HideTooltip)
-  end
-
-  if sliderFrame.Forward then
-    sliderFrame.Forward:SetScript("OnEnter", ShowTooltip)
-    sliderFrame.Forward:SetScript("OnLeave", HideTooltip)
-  end
+function me.CreateSliderDescription(sliderFrame, description)
+  local descriptionFontString = sliderFrame:CreateFontString(nil, "OVERLAY")
+  descriptionFontString:SetFont(STANDARD_TEXT_FONT, 12)
+  me.SetColor(descriptionFontString, RGGM_CONSTANTS.COLOR.SUBNOTE)
+  -- the template renders its min/max value labels below the frame - clear them
+  descriptionFontString:SetPoint("TOPLEFT", sliderFrame, "BOTTOMLEFT", 4, -16)
+  descriptionFontString:SetWidth(sliderFrame:GetWidth())
+  descriptionFontString:SetJustifyH("LEFT")
+  descriptionFontString:SetText(description)
+  sliderFrame.description = descriptionFontString
 end
 
 --[[
@@ -185,11 +231,11 @@ end
   @param {number} sliderMaxValue
   @param {number} defaultValue
   @param {string} sliderTitle
-  @param {string} sliderTooltip
+  @param {string} sliderDescription
   @param {function} onValueChangedCallback
 ]]--
 function me.CreateSizeSlider(parentFrame, sliderName, position, sliderMinValue, sliderMaxValue, defaultValue,
-    sliderTitle, sliderTooltip, onValueChangedCallback)
+    sliderTitle, sliderDescription, onValueChangedCallback)
 
   local sliderOptions = CreateSliderOptions(sliderMinValue, sliderMaxValue, sliderTitle)
 
@@ -213,7 +259,7 @@ function me.CreateSizeSlider(parentFrame, sliderName, position, sliderMinValue, 
     sliderFrame:RegisterCallback("OnValueChanged", onValueChangedCallback, sliderFrame)
   end
 
-  SetupSliderTooltips(sliderFrame, sliderTitle, sliderTooltip)
+  me.CreateSliderDescription(sliderFrame, sliderDescription)
 
   return sliderFrame
 end
@@ -234,25 +280,157 @@ function me.CreateItemTexture(slot, slotSize)
 end
 
 --[[
-  Create a container wrapper for textures to be able to capture mouse events
+  Create a framed item icon with a tooltip showing the hovered item. The displayed
+  itemId is stored on the iconHolder by the consuming list's row update.
 
-  @param {string} frameName
   @param {table} parentFrame
+  @param {table} position
+    An object containing configuration parameters for a SetPoint function call
+  @param {number} iconSize
 
-  @return {table} containerFrame
+  @return {table}
+    The created icon texture (its holder frame is reachable via icon.iconHolder)
 ]]--
-function me.CreateMouseOverEventContainer(frameName, parentFrame, position)
-  local containerFrame = CreateFrame(
-    "Frame",
-    frameName,
-    parentFrame
+function me.CreateItemIconHolder(parentFrame, position, iconSize)
+  local iconHolder = CreateFrame("Frame", nil, parentFrame, "BackdropTemplate")
+  iconHolder:SetSize(
+    iconSize + 5,
+    iconSize + 5
   )
-  containerFrame:SetPoint(unpack(position))
-  containerFrame:SetSize(
-    16,
-    16
-  )
-  containerFrame:EnableMouse(true)
+  iconHolder:SetPoint(unpack(position))
+  iconHolder:EnableMouse(true)
+  iconHolder:SetScript("OnEnter", function(self)
+    if self.itemId ~= nil then
+      GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+      GameTooltip:SetItemByID(self.itemId)
+      GameTooltip:Show()
+    end
+  end)
+  iconHolder:SetScript("OnLeave", function()
+    GameTooltip:Hide()
+  end)
 
-  return containerFrame
+  local itemIcon = iconHolder:CreateTexture(nil, "ARTWORK")
+  itemIcon.iconHolder = iconHolder
+  itemIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
+  itemIcon:SetPoint("CENTER", 0, 0)
+  itemIcon:SetSize(
+    iconSize,
+    iconSize
+  )
+
+  local backdrop = {
+    bgFile = "Interface\\AddOns\\GearMenu\\assets\\ui_slot_background",
+    edgeFile = "Interface\\AddOns\\GearMenu\\assets\\ui_slot_background",
+    tile = false,
+    tileSize = 32,
+    edgeSize = 20,
+    insets = {
+      left = 12,
+      right = 12,
+      top = 12,
+      bottom = 12
+    }
+  }
+
+  iconHolder:SetBackdrop(backdrop)
+  iconHolder:SetBackdropColor(0.15, 0.15, 0.15, 1)
+  iconHolder:SetBackdropBorderColor(0, 0.96, 0.83, 1)
+
+  return itemIcon
+end
+
+--[[
+  Create a pool of lazily created, index-addressed frames. The pool only manages
+  creation, lookup, iteration and hiding - anchoring and per-frame content stay
+  with the consumer.
+
+  @param {function} createFrame
+    Invoked as createFrame(index) the first time an index is acquired; must return the frame
+
+  @return {table} pool
+]]--
+function me.CreateFramePool(createFrame)
+  local pool = {}
+  local frames = {}
+
+  --[[
+    Get the frame at the passed index, creating it on first access
+
+    @param {number} index
+    @return {table}
+  ]]--
+  function pool.Acquire(index)
+    if frames[index] == nil then
+      frames[index] = createFrame(index)
+    end
+
+    return frames[index]
+  end
+
+  --[[
+    @return {number} the amount of created frames
+  ]]--
+  function pool.GetSize()
+    return #frames
+  end
+
+  --[[
+    Iterate all created frames in index order
+
+    @param {function} callback
+      Invoked as callback(frame, index)
+  ]]--
+  function pool.ForEach(callback)
+    for index = 1, #frames do
+      callback(frames[index], index)
+    end
+  end
+
+  --[[
+    Hide all created frames from the passed index onwards
+
+    @param {number} startIndex
+    @param {function} resetFrame
+      Optional; invoked as resetFrame(frame) after the frame was hidden
+  ]]--
+  function pool.ReleaseFrom(startIndex, resetFrame)
+    for index = startIndex, #frames do
+      frames[index]:Hide()
+
+      if resetFrame then
+        resetFrame(frames[index])
+      end
+    end
+  end
+
+  --[[
+    Hide all created frames
+
+    @param {function} resetFrame
+      Optional; invoked as resetFrame(frame) after the frame was hidden
+  ]]--
+  function pool.ReleaseAll(resetFrame)
+    pool.ReleaseFrom(1, resetFrame)
+  end
+
+  return pool
+end
+
+--[[
+  Calculate the x/y offset of a 1-based index in a grid that is columnAmount wide
+  and grows row by row
+
+  @param {number} index
+  @param {number} columnAmount
+  @param {number} slotSize
+
+  @return {number} xPos
+  @return {number} yPos
+]]--
+function me.CalculateGridPosition(index, columnAmount, slotSize)
+  local row = math.floor((index - 1) / columnAmount)
+  local column = (index - 1) % columnAmount
+
+  return column * slotSize, row * slotSize
 end

@@ -4,6 +4,7 @@
 ## Author: Onesfto
 ## OptionalDeps: WhisperPop, NDui_Plus, NDui, ElvUI, BetterBags, AtlasLootClassic, GW2_UI
 
+Modules/QuestieTimerFix.lua
 Modules/WhisperPop.lua
 Modules/alaGearMan.lua
 Modules/NovaWorldBuffs.lua
@@ -14,3 +15,4 @@ Modules/tdInspect.lua
 Modules/SexyMap.lua
 Modules/BetterBags.lua
 Modules/AutoCarrot.lua
+Modules/MeetingHornFix.lua

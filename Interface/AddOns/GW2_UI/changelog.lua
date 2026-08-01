@@ -13,6 +13,21 @@ AddChange(string addonVersion, table changeList)
   }
 ]]
 
+addChange("10.15.1", {
+    {GW.Enum.ChangelogType.bug, [=[Bags (Retail): fixed "AddOn 'GW2_UI' tried to call the protected function 'UseContainerItem()'" when using an item from the bags or selling it to a vendor, after which the bags stopped responding until a reload - the bag id was stored on the item buttons under the same field name Blizzards own item button mixin reads, so Blizzard got our value instead of its own and refused the interaction; the item state fields go through Blizzards setters now]=]},
+    {GW.Enum.ChangelogType.bug, [=[Chat: fixed an error when switching chat tabs while a chat frame had lines that Blizzard had not laid out yet]=]},
+})
+
+addChange("10.15.0", {
+    {GW.Enum.ChangelogType.change, [=[Bags & Bank: complete rework on every game version - bags and bank use their own item buttons now instead of taking Blizzards multi purpose buttons, which ends the fights with Blizzards layout and update code (anchor errors, misplaced buttons); Blizzards container and bank frames are made inert at load, so they no longer update in the background or play their own open/close sounds. All behavior, settings and the resize handling stay the same]=]},
+    {GW.Enum.ChangelogType.change, [=[Bags & Bank: the per game version duplicated code moved into one shared implementation - fixes only need to be made once now; the bag bar uses Blizzards real bag slot buttons everywhere, one central item button skin marks quest items with the same golden quest icon on every flavor, and flavor extras (currency display, azerite/corruption/scrap, equipment set names) plug in as small modules]=]},
+    {GW.Enum.ChangelogType.feature, [=[Bank: own icon size and slot spacing settings on every game version, previously shared with the bags; the current bag values are carried over once so nothing changes visually]=]},
+    {GW.Enum.ChangelogType.feature, [=[Bank (Classic/TBC/Wrath/Mists): new "Separate bags" option like the bags already have it - the main bank and each bank bag get their own section with a collapsible header that can be renamed via right click; the "Reverse Bag Order" toggle also applies immediately again]=]},
+    {GW.Enum.ChangelogType.feature, [=[Bags: new "Separate keyring" (Classic/TBC/Wrath) and "Separate reagent bag" (Retail) options - in the combined bag view the keyring or reagent bag starts on its own row with a gap as separation, so it is visible that these slots do not belong to the bags]=]},
+    {GW.Enum.ChangelogType.feature, [=[Bags: the profession bag coloring wins over an items quality color on every flavor by default now; the new option "Show Quality Color for Profession Bags" flips that around]=]},
+    {GW.Enum.ChangelogType.change, [=[Bags: retail niceties for every game version - the retail styled money icons, the localized gold number format, the skinned stack split popup and a uniform minimum frame size; the watched currency displays (Retail/Mists) fill the available bag width instead of showing a fixed number]=]},
+})
+
 addChange("10.14.3", {
     {GW.Enum.ChangelogType.bug, [=[Bags (Classic/TBC/Wrath/Mists): fixed "SetPoint would result in anchor family connection" errors after opening the bags multiple times; the taken container item buttons are reset to a single clean anchor right away, since Blizzards container code only adds anchor points and the leftover mixed anchors bridged our bag frames with the container frames]=]},
     {GW.Enum.ChangelogType.bug, [=[Bags (Classic Era): the bag slot buttons sit above the keyring button again; Blizzards new bags bar relayouts the backpack button on login and on edit mode updates and pulled it out of our bag bar]=]},

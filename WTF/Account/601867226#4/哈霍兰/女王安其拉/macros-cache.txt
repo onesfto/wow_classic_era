@@ -1,3 +1,8 @@
+VER 3 0100000000000012 " " "INV_Misc_QuestionMark"
+#showtooltip [stance:1]反击风暴;[stance:2]盾墙;[stance:3]鲁莽
+/equip [stance:2]死亡的面孔
+/施放 [stance:1]反击风暴;[stance:2]盾墙;[stance:3]鲁莽
+END
 VER 3 0100000000000001 "保护" "INV_Misc_QuestionMark"
 #showtooltip 保护祝福
 /cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead] 保护祝福
@@ -7,9 +12,72 @@ VER 3 0100000000000002 "光明" "INV_Misc_QuestionMark"
 /cast [nostance:1] 光明圣印
 /cast 审判
 END
+VER 3 0100000000000013 "冲锋" "INV_Misc_QuestionMark"
+#showtooltip 冲锋
+/cast 战斗姿态
+/cast 冲锋
+END
+VER 3 0100000000000014 "切换" "INV_Misc_QuestionMark"
+#showtooltips 
+/equipslot [nomod,noequipped:盾牌] 17 死亡的面孔
+/equipslot [nomod,equipped:盾牌] 17 饥饿之寒
+/equipslot [equipped:双手] 16 雷霆之怒，逐风者的祝福之剑
+/equipslot [equipped:双手] 17 死亡的面孔
+/equipslot [mod] 16 米奈希尔之力
+END
 VER 3 0100000000000003 "制裁" "INV_Misc_QuestionMark"
 #showtooltip 制裁之锤
 /cast [@mouseover,harm,nodead][harm,nodead] 制裁之锤
+END
+VER 3 0100000000000015 "剑盾" "135331"
+/equipslot [noequipped:双手] 16 堕落的灰烬使者
+/equipslot [equipped:双手] 16 格雷希尔，毁灭之黎明
+/equipslot [equipped:双手] 17 死亡的面孔
+END
+VER 3 0100000000000016 "副王" "135372"
+/equipslot 17 饥饿之寒
+END
+VER 3 0100000000000017 "压制" "INV_Misc_QuestionMark"
+#showtooltip 压制
+/startattack
+/cast 战斗姿态
+/cast 压制
+END
+VER 3 0100000000000018 "双手" "133502"
+/equipslot [noequipped:双手] 16 米奈希尔之力
+/equipslot [equipped:双手] 16 格雷希尔，毁灭之黎明
+/equipslot [equipped:双手] 17 饥饿之寒
+/equipslot [mod] 16 雷霆之怒，逐风者的祝福之剑
+/equipslot [mod] 17 死亡的面孔
+END
+VER 3 010000000000001A "嗜血" "INV_Misc_QuestionMark"
+#showtooltip 嗜血
+/cast  嗜血
+/startattack
+END
+VER 3 0100000000000019 "嗜血" "INV_Misc_QuestionMark"
+#showtooltip 嗜血
+/cast  嗜血
+/startattack
+/cancelaura 保护祝福
+/cancelaura 拯救祝福
+/cancelaura 驱除疾病
+/cancelaura 精神祷言
+/cancelaura 奥术光辉
+/cancelaura 强效拯救祝福
+END
+VER 3 010000000000001B "嘲讽" "INV_Misc_QuestionMark"
+#showtooltip [mod]挑战怒吼;[stance:1]惩戒痛击;[stance:2]嘲讽;[stance:3]猛击
+/startattack
+/施放 [mod:alt] 挑战怒吼
+/施放 [nomod,stance:1]惩戒痛击;[nomod,stance:2]嘲讽;[nomod,stance:3]猛击
+END
+VER 3 010000000000001C "回血" "133474"
+/equipslot 16 虚妄预言者节杖
+/equipslot 17 扭曲虚空之锤
+/use [equipped:锤] 亡者之眼
+/use [equipped:锤] 钻石水瓶
+/equipslot [noequipped:双手] 16 堕落的灰烬使者
 END
 VER 3 0100000000000004 "圣五" "INV_Misc_QuestionMark"
 #showtooltip 圣光术(等级 5)
@@ -39,9 +107,18 @@ VER 3 0100000000000009 "审判" "INV_Misc_QuestionMark"
 /stopcasting
 /cast [@mouseover,harm,nodead][harm,nodead] 审判
 END
+VER 3 010000000000001D "怒气" "INV_Misc_QuestionMark"
+#showtooltip
+/use [mod]特效治疗石;强效怒气药水
+END
 VER 3 010000000000000A "愤怒" "INV_Misc_QuestionMark"
 #showtooltip 愤怒之锤
 /cast [@mouseover,harm,nodead][harm,nodead] 愤怒之锤
+END
+VER 3 010000000000001E "打断" "INV_Misc_QuestionMark"
+#showtooltip [equipped:盾牌,stance:1/2]盾击;拳击
+/startattack
+/施放 [equipped:盾牌,stance:1/2]盾击;[noequipped:盾牌,stance:1/2]狂暴姿态;[stance:3]拳击
 END
 VER 3 010000000000000B "无敌" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 有限无敌药水; 圣盾术

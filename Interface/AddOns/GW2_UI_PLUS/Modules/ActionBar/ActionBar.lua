@@ -75,7 +75,7 @@ local defaults = {
     mainBarSize = MAINBAR_DEFAULT_SIZE,
     mainBarCount = 12,
     mainBarColumns = 12,
-    mainBarGlobeGap = true, -- 主条中间为血球留出空隙
+    mainBarGlobeGap = 108, -- 主条中间为血球留出空隙
     mainBarShowHotkey = true,
     mainBarHotkeyPosition = "BOTTOM",
     mainBarHotkeyX = 0,
@@ -109,6 +109,12 @@ local function InitDB()
             db[k] = v
         end
     end
+    
+    -- Migrate old boolean mainBarGlobeGap to numerical value
+    if type(db.mainBarGlobeGap) == "boolean" then
+        db.mainBarGlobeGap = db.mainBarGlobeGap and 108 or 0
+    end
+    
     return db
 end
 AB.InitDB = InitDB
@@ -333,20 +339,13 @@ end
 
 -- 血球和主条各自有缩放，把血球宽度换算到主条的坐标系里再算空隙
 local function GetGlobeGap(bar)
-    if not InitDB().mainBarGlobeGap then
-        return 0 -- 用户自己关了（比如把主条拖到别处去了，中间那个洞就没意义了）
-    end
+    local gap = InitDB().mainBarGlobeGap
+    if not gap or gap == 0 then return 0 end
     if GW.settings and GW.settings.PLAYER_AS_TARGET_FRAME then
         return 0 -- 用传统玩家框体时中间没有血球，按钮连续排
     end
 
-    local hg = _G.GW2_PlayerFrame
-    if not hg then return GLOBE_DEFAULT_GAP end
-
-    local barScale = bar:GetEffectiveScale()
-    if not barScale or barScale <= 0 then return GLOBE_DEFAULT_GAP end
-
-    return (hg:GetWidth() * hg:GetEffectiveScale()) / barScale + GLOBE_GAP_PADDING
+    return gap
 end
 
 -- 位置由我们说了算之后，本体任何一次重排都要被纠正回来。
@@ -494,18 +493,28 @@ end
 -- 七、施法条缩放
 --------------------------------------------------------------------------------
 
-function AB.GetCastbarScale()
-    return tonumber(GW.settings and GW.settings.castingbar_pos_scale) or 1
-end
-
-function AB.ApplyCastbarScale()
+function AB.ApplyCastbarSize()
     local castbar = _G.GwCastingBarPlayer
     if not castbar then return end
 
-    local scale = AB.GetCastbarScale()
-    castbar:SetScale(scale)
+    local width = AB.InitDB().castbarWidth or 250
+    local height = AB.InitDB().castbarHeight or 24
+
+    castbar:SetSize(width, height)
+    castbar.progress:SetSize(width, height)
     if castbar.gwMover then
-        castbar.gwMover:SetScale(scale)
+        if castbar.showDetails then
+            castbar.gwMover:SetSize(width + castbar.icon:GetWidth(), math.max(height, castbar.icon:GetHeight()))
+            castbar:SetPoint("CENTER", castbar.gwMover, castbar.icon:GetWidth() / 2, -(castbar.icon:GetHeight() / 4))
+        else
+            castbar.gwMover:SetSize(width, height)
+            castbar:SetPoint("CENTER", castbar.gwMover)
+        end
+    end
+    -- Reset scale in case it was changed previously
+    castbar:SetScale(1)
+    if castbar.gwMover then
+        castbar.gwMover:SetScale(1)
     end
 end
 
@@ -887,6 +896,7 @@ local function Init()
         AB.ApplyGlobeScale()
         AB.ApplyMainBarLayout()
         AB.ApplyMultiBarSizes()
+        AB.ApplyCastbarSize()
     end)
 
     if addonTable.PlusActionBarLayout then

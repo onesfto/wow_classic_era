@@ -8,5 +8,4 @@
     <Script file="flightmap.lua"/>
     <Script file="questLog.lua"/>
     <Script file="questTimers.lua"/>
-    <Script file="tradeskill.lua"/>
 </Ui>

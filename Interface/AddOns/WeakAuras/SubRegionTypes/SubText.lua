@@ -6,6 +6,7 @@ local Private = select(2, ...)
 
 local SharedMedia = LibStub("LibSharedMedia-3.0");
 local L = WeakAuras.L;
+local FontStringScaleAnimationMode = Enum and Enum.FontStringScaleAnimationMode
 
 local screenWidth, screenHeight = math.ceil(GetScreenWidth() / 20) * 20, math.ceil(GetScreenHeight() / 20) * 20
 
@@ -169,6 +170,8 @@ local function getRotateOffset(object, degrees, point)
   end
 end
 
+local fontObjectCounter = 0
+
 local function create()
   local region = CreateFrame("Frame", nil, UIParent);
 
@@ -186,6 +189,11 @@ local function create()
   text:SetWordWrap(true)
   text:SetNonSpaceWrap(true)
 
+  local fontObject = CreateFont("WeakAuras-SubText-Font" .. fontObjectCounter)
+  fontObjectCounter =  fontObjectCounter + 1
+  region.text:SetFontObject(fontObject)
+  region.fontObject = fontObject
+
   return region;
 end
 
@@ -200,13 +208,19 @@ end
 local function modify(parent, region, parentData, data, first)
   region:SetParent(parent)
   local text = region.text;
+  local fontObject = region.fontObject
 
   local fontPath = SharedMedia:Fetch("font", data.text_font);
   local fontType = data.text_fontType == "None" and "" or data.text_fontType
+  local slugFont = data.text_fontType == "SLUG" or data.text_fontType == "OUTLINE|SLUG"
+  if text.SetScaleAnimationMode and FontStringScaleAnimationMode then
+    text:SetScaleAnimationMode(slugFont and FontStringScaleAnimationMode.Vertex or FontStringScaleAnimationMode.FontSize)
+  end
+  if text.SetSmoothScaling then
+    text:SetSmoothScaling(data.text_smoothScaling or false) -- doesn't accept nil
+  end
   text:SetFont(fontPath, data.text_fontSize, fontType);
   if not text:GetFont() and fontPath then -- workaround font not loading correctly
-    local objectName = "WeakAuras-Font-" .. data.text_font
-    local fontObject = _G[objectName] or CreateFont(objectName)
     fontObject:SetFont(fontPath, data.text_fontSize, fontType)
     text:SetFontObject(fontObject)
   end
@@ -214,14 +228,19 @@ local function modify(parent, region, parentData, data, first)
     text:SetFont(STANDARD_TEXT_FONT, data.text_fontSize, fontType);
   end
   if text:GetFont() then
+    text:SetText("") -- SetJustifyH is broken unless the text changes
     text:SetText(WeakAuras.ReplaceRaidMarkerSymbols(data.text_text));
   end
 
   text:SetTextHeight(data.text_fontSize);
 
-  text:SetShadowColor(unpack(data.text_shadowColor))
-  text:SetShadowOffset(data.text_shadowXOffset, data.text_shadowYOffset)
-  text:SetJustifyH(data.text_justify or "CENTER")
+  fontObject:SetShadowColor(unpack(data.text_shadowColor))
+  if data.text_fontType == "OUTLINE|SLUG" then
+    fontObject:SetShadowOffset(0, 0)
+  else
+    fontObject:SetShadowOffset(data.text_shadowXOffset, data.text_shadowYOffset)
+  end
+  fontObject:SetJustifyH(data.text_justify or "CENTER")
 
   if (data.text_automaticWidth == "Fixed") then
     if (data.text_wordWrap == "WordWrap") then

@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WA Manager — WeakAuras 管理器</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#c9aa71;--gold-bright:#f0c040;--gold-dim:rgba(201,170,113,0.12);
+  --gold-glow:rgba(240,192,64,0.25);
+  --bg-0:#07070e;--bg-1:#0d0d18;--bg-2:#141420;--bg-3:#1c1c2c;--bg-4:#242436;--bg-hover:#2c2c44;
+  --text-0:#f0e6c8;--text-1:#b0a080;--text-2:#70604a;--text-3:#403830;
+  --border:rgba(201,170,113,0.1);--border-md:rgba(201,170,113,0.22);--border-strong:rgba(201,170,113,0.38);
+  --t-icon:#4a9eff;--t-group:#f0c040;--t-aurabar:#4aff9a;--t-text:#c084fc;
+  --t-dgroup:#ff9a4a;--t-texture:#ff6b6b;--t-prog:#22d3ee;
+  --green:#4aff9a;--red:#ff5555;--blue:#4a9eff;
+  --sidebar-w:340px;
+}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg-0);color:var(--text-0);display:flex;flex-direction:column;font-size:13px;line-height:1.5}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(201,170,113,0.2);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+/* Header */
+#app-header{height:52px;flex-shrink:0;background:linear-gradient(90deg,#09091a 0%,#0f0f20 50%,#09091a 100%);border-bottom:1px solid var(--border-strong);display:flex;align-items:center;padding:0 16px;gap:16px;position:relative;z-index:10}
+#app-header::after{content:'';position:absolute;bottom:-1px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold-bright),transparent);opacity:0.4}
+.logo{font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:var(--gold-bright);text-shadow:0 0 18px var(--gold-glow);letter-spacing:0.04em;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.logo-sub{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:var(--text-2);letter-spacing:0}
+.h-stats{display:flex;gap:14px;font-size:11.5px}
+.h-stat{color:var(--text-2)}.h-stat b{color:var(--gold);font-weight:600}
+.h-actions{margin-left:auto;display:flex;gap:6px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:4px;border:1px solid transparent;cursor:pointer;font-family:inherit;font-size:12px;font-weight:500;transition:all 0.15s;white-space:nowrap;line-height:1.4}
+.btn:disabled{opacity:0.35;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.btn-gold{background:linear-gradient(135deg,#7a5c0e,#c9aa71);color:#0a0808;border-color:var(--gold)}
+.btn-gold:hover:not(:disabled){background:linear-gradient(135deg,#9a7010,#f0c040);transform:translateY(-1px);box-shadow:0 4px 12px var(--gold-glow)}
+.btn-sec{background:var(--bg-3);color:var(--text-0);border-color:var(--border-md)}
+.btn-sec:hover:not(:disabled){background:var(--bg-hover);border-color:var(--gold)}
+.btn-danger{background:rgba(255,85,85,0.08);color:#ff6b6b;border-color:rgba(255,85,85,0.25)}
+.btn-danger:hover:not(:disabled){background:rgba(255,85,85,0.18);border-color:#ff5555}
+.btn-ghost{background:transparent;color:var(--text-1);border-color:transparent}
+.btn-ghost:hover:not(:disabled){background:var(--bg-hover);color:var(--text-0)}
+.btn-sm{padding:3px 9px;font-size:11px}
+
+/* Layout */
+#main{display:flex;flex:1;overflow:hidden}
+
+/* Sidebar */
+#sidebar{width:var(--sidebar-w);min-width:220px;max-width:520px;background:var(--bg-1);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0}
+.sidebar-top{padding:10px 12px;background:var(--bg-2);border-bottom:1px solid var(--border);flex-shrink:0}
+.search-wrap{position:relative}
+.search-wrap svg{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:13px;height:13px;color:var(--text-2);pointer-events:none}
+#search-input{width:100%;padding:6px 8px 6px 26px;background:var(--bg-0);border:1px solid var(--border-md);border-radius:4px;color:var(--text-0);font-family:inherit;font-size:12px;outline:none;transition:border-color 0.15s}
+#search-input:focus{border-color:var(--gold)}
+#search-input::placeholder{color:var(--text-3)}
+.filter-row{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
+.chip{padding:2px 8px;border-radius:10px;font-size:10.5px;cursor:pointer;border:1px solid transparent;transition:all 0.12s;background:var(--bg-4);color:var(--text-2);user-select:none}
+.chip:hover{color:var(--text-1)}
+.chip.on{background:var(--gold-dim);border-color:var(--border-md);color:var(--gold)}
+.chip-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px;vertical-align:middle}
+
+/* Tree */
+#tree{flex:1;overflow-y:auto;padding:4px 0}
+.tree-row{display:flex;align-items:center;gap:5px;padding:4px 12px;cursor:pointer;transition:background 0.08s;position:relative;user-select:none}
+.tree-row:hover{background:var(--bg-hover)}
+.tree-row.selected{background:var(--gold-dim)}
+.tree-row.selected::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold)}
+.tree-row.child{padding-left:28px}
+.tree-row.grandchild{padding-left:44px}
+.expand-btn{width:13px;height:13px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--text-2);font-size:8px;transition:transform 0.15s}
+.expand-btn.open{transform:rotate(90deg)}
+.expand-ph{width:13px;flex-shrink:0}
+.row-check{width:13px;height:13px;border:1px solid var(--border-md);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.1s}
+.row-check:hover{border-color:var(--gold)}
+.row-check.chk{background:var(--gold);border-color:var(--gold)}
+.row-check.chk::after{content:'✓';font-size:8px;color:#0a0808;font-weight:800}
+.row-check.partial{background:rgba(201,170,113,0.3);border-color:var(--gold)}
+.row-check.partial::after{content:'—';font-size:8px;color:var(--gold);font-weight:700}
+.row-ti{width:15px;text-align:center;font-size:10px;flex-shrink:0}
+.row-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+.row-badge{font-size:10px;padding:0 5px;border-radius:8px;background:var(--bg-4);color:var(--text-2);flex-shrink:0;border:1px solid var(--border)}
+.row-sz{font-size:10px;color:var(--text-3);flex-shrink:0}
+.highlight{background:rgba(240,192,64,0.25);border-radius:2px;padding:0 1px}
+
+/* Resizer */
+#resizer{width:4px;background:var(--border);cursor:col-resize;flex-shrink:0;transition:background 0.15s;position:relative;z-index:5}
+#resizer:hover,#resizer.dragging{background:var(--gold)}
+
+/* Content */
+#content{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg-1)}
+
+/* Welcome */
+#welcome{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px}
+.welcome-icon{font-size:56px;filter:drop-shadow(0 0 20px var(--gold-glow))}
+.welcome-title{font-family:'Cinzel',serif;font-size:22px;color:var(--gold-bright);text-align:center}
+.welcome-desc{color:var(--text-1);text-align:center;max-width:380px;line-height:1.7;font-size:12.5px}
+.drop-zone{border:2px dashed var(--border-strong);border-radius:10px;padding:36px 56px;text-align:center;cursor:pointer;transition:all 0.2s}
+.drop-zone:hover,.drop-zone.drag-over{border-color:var(--gold);background:var(--gold-dim)}
+.dz-text{color:var(--text-2);font-size:12px;margin-top:10px}
+
+/* Loading */
+#loading{flex:1;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:40px}
+.spinner{width:38px;height:38px;border:3px solid var(--bg-3);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-lbl{color:var(--text-1);font-size:12px}
+
+/* Stats bar */
+#stats-bar{display:none;flex-shrink:0;background:var(--bg-2);border-bottom:1px solid var(--border);padding:10px 16px;gap:12px;flex-wrap:wrap;align-items:center}
+.scard{background:var(--bg-3);border:1px solid var(--border);border-radius:6px;padding:8px 12px;min-width:85px}
+.scard-val{font-size:20px;font-weight:600;color:var(--gold);line-height:1}
+.scard-lbl{font-size:10.5px;color:var(--text-2);margin-top:3px}
+
+/* Detail */
+#detail{flex:1;overflow-y:auto;padding:0;display:none}
+#empty-detail{flex:1;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--text-3);font-size:12px}
+
+.detail-content{padding:20px}
+.d-header{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.d-name{font-family:'Cinzel',serif;font-size:17px;color:var(--gold-bright);margin-bottom:8px;word-break:break-all;line-height:1.3}
+.d-tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{padding:2px 8px;border-radius:10px;font-size:10.5px;border:1px solid;display:inline-flex;align-items:center;gap:4px}
+.sec-h{font-size:10.5px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.09em;margin:16px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.fg{display:grid;grid-template-columns:130px 1fr;gap:5px 12px;font-size:12px}
+.fl{color:var(--text-2);font-weight:500;padding-top:1px}
+.fv{color:var(--text-0);word-break:break-all}
+.fv.mono{font-family:'SF Mono','Fira Code',monospace;font-size:10.5px;color:var(--text-1)}
+.fv a{color:var(--blue);text-decoration:none}
+.fv a:hover{text-decoration:underline}
+.ch-list{display:flex;flex-direction:column;gap:3px}
+.ch-row{padding:5px 10px;background:var(--bg-2);border-radius:4px;font-size:11.5px;border:1px solid var(--border);display:flex;align-items:center;gap:7px;cursor:pointer;transition:all 0.1s}
+.ch-row:hover{background:var(--bg-hover);border-color:var(--border-md)}
+
+/* Bulk */
+#bulk-panel{flex:1;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px}
+.bulk-ct{font-family:'Cinzel',serif;font-size:28px;color:var(--gold-bright)}
+.bulk-lbl{color:var(--text-1);font-size:13px}
+.bulk-acts{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+.bulk-sz{font-size:11px;color:var(--text-2)}
+
+/* Bottom bar */
+#bottom-bar{height:44px;flex-shrink:0;background:var(--bg-2);border-top:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:12px}
+.bb-info{flex:1;font-size:12px;color:var(--text-2)}
+.bb-info b{color:var(--gold)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.2s}
+.modal-overlay.show{opacity:1;pointer-events:all}
+.modal{background:var(--bg-3);border:1px solid var(--border-strong);border-radius:8px;width:540px;max-width:92vw;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.7)}
+.modal-h{padding:14px 18px;border-bottom:1px solid var(--border);font-family:'Cinzel',serif;font-size:14px;color:var(--gold);display:flex;align-items:center;justify-content:space-between}
+.modal-close{background:none;border:none;cursor:pointer;color:var(--text-2);font-size:18px;line-height:1;transition:color 0.1s;padding:2px}
+.modal-close:hover{color:var(--text-0)}
+.modal-body{padding:18px;overflow-y:auto;flex:1;font-size:12.5px;line-height:1.6}
+.modal-foot{padding:10px 18px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.eo{padding:10px 12px;border:1px solid var(--border);border-radius:6px;cursor:pointer;transition:all 0.12s;background:var(--bg-4);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px}
+.eo:hover{border-color:var(--border-md);background:var(--bg-hover)}
+.eo.active{border-color:var(--gold);background:var(--gold-dim)}
+.eo input[type=radio]{margin-top:3px;accent-color:var(--gold);flex-shrink:0}
+.eo-title{font-weight:500;color:var(--text-0);font-size:12.5px}
+.eo-desc{font-size:11px;color:var(--text-2);margin-top:2px}
+.name-input{width:100%;padding:7px 10px;background:var(--bg-0);border:1px solid var(--border-md);border-radius:4px;color:var(--text-0);font-family:inherit;font-size:12px;outline:none;margin-top:10px}
+.name-input:focus{border-color:var(--gold)}
+
+/* Toast */
+#toast-ct{position:fixed;bottom:60px;right:16px;z-index:200;display:flex;flex-direction:column;gap:6px}
+.toast{padding:9px 14px;background:var(--bg-3);border:1px solid var(--border-md);border-radius:6px;font-size:12px;box-shadow:0 4px 16px rgba(0,0,0,0.5);animation:tIn 0.2s ease;display:flex;align-items:center;gap:8px;max-width:320px}
+.toast.ok{border-left:3px solid var(--green)}.toast.err{border-left:3px solid var(--red)}.toast.info{border-left:3px solid var(--gold)}
+@keyframes tIn{from{transform:translateX(16px);opacity:0}to{transform:translateX(0);opacity:1}}
+
+/* Type classes */
+.c-icon{color:var(--t-icon)}.c-group{color:var(--t-group)}.c-aurabar{color:var(--t-aurabar)}
+.c-text{color:var(--t-text)}.c-dgroup{color:var(--t-dgroup)}.c-texture{color:var(--t-texture)}.c-prog{color:var(--t-prog)}
+</style>
+<!-- wa_data.js: 由 sync.py 生成，包含 WeakAuras.lua 原始内容 -->
+<!-- 若不存在则页面显示欢迎界面（手动选择文件） -->
+<script src="./wa_data.js"></script>
+</head>
+<body>
+
+<header id="app-header">
+  <div class="logo">
+    ⚡ WA Manager
+    <span class="logo-sub">WeakAuras 管理器</span>
+  </div>
+  <div class="h-stats" id="h-stats" style="display:none">
+    <div class="h-stat">文件 <b id="hs-size">—</b></div>
+    <div class="h-stat">共 <b id="hs-total">—</b> 条</div>
+    <div class="h-stat">分组 <b id="hs-groups">—</b></div>
+    <div class="h-stat">已选 <b id="hs-sel">0</b></div>
+  </div>
+  <div class="h-actions">
+    <button class="btn btn-gold" id="btn-open">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      打开文件
+    </button>
+    <button class="btn btn-sec" id="btn-export" disabled>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      导出
+    </button>
+    <button class="btn btn-ghost btn-sm" id="btn-selall" disabled>全选</button>
+    <button class="btn btn-ghost btn-sm" id="btn-selclear" disabled>清空</button>
+  </div>
+</header>
+
+<div id="main">
+  <aside id="sidebar">
+    <div class="sidebar-top">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="search-input" type="text" placeholder="搜索 Aura 名称…" autocomplete="off">
+      </div>
+      <div class="filter-row" id="filter-row">
+        <div class="chip on" data-type="all">全部</div>
+        <div class="chip" data-type="group"><span class="chip-dot" style="background:var(--t-group)"></span>Group</div>
+        <div class="chip" data-type="dynamicgroup"><span class="chip-dot" style="background:var(--t-dgroup)"></span>Dynamic</div>
+        <div class="chip" data-type="icon"><span class="chip-dot" style="background:var(--t-icon)"></span>Icon</div>
+        <div class="chip" data-type="aurabar"><span class="chip-dot" style="background:var(--t-aurabar)"></span>Bar</div>
+        <div class="chip" data-type="text"><span class="chip-dot" style="background:var(--t-text)"></span>Text</div>
+        <div class="chip" data-type="texture"><span class="chip-dot" style="background:var(--t-texture)"></span>Texture</div>
+      </div>
+    </div>
+    <div id="tree"></div>
+  </aside>
+
+  <div id="resizer"></div>
+
+  <section id="content">
+    <div id="welcome">
+      <div class="welcome-icon">⚡</div>
+      <div class="welcome-title">WeakAuras 管理器</div>
+      <div class="welcome-desc">载入你的 WeakAuras.lua 文件，浏览、搜索、选择并导出指定 Aura 配置。</div>
+      <div class="drop-zone" id="drop-zone">
+        <div style="font-size:32px">📂</div>
+        <div class="dz-text">点击选择 WeakAuras.lua<br>或将文件拖拽至此</div>
+      </div>
+      <div style="font-size:11px;color:var(--text-3)">路径：WTF / Account / [账号] / SavedVariables / WeakAuras.lua</div>
+    </div>
+
+    <div id="loading">
+      <div class="spinner"></div>
+      <div class="loading-lbl" id="loading-lbl">正在解析文件…</div>
+    </div>
+
+    <div id="stats-bar">
+      <div class="scard"><div class="scard-val" id="sc-total">0</div><div class="scard-lbl">Aura 总数</div></div>
+      <div class="scard"><div class="scard-val" id="sc-roots">0</div><div class="scard-lbl">根节点</div></div>
+      <div class="scard"><div class="scard-val" id="sc-groups">0</div><div class="scard-lbl">分组</div></div>
+      <div class="scard"><div class="scard-val" id="sc-icons">0</div><div class="scard-lbl">图标</div></div>
+      <div class="scard"><div class="scard-val" id="sc-size">—</div><div class="scard-lbl">文件大小</div></div>
+    </div>
+
+    <div id="empty-detail">
+      <div style="font-size:24px">←</div>
+      <div>从左侧点击 Aura 查看详情</div>
+    </div>
+
+    <div id="detail"><div class="detail-content" id="detail-content"></div></div>
+
+    <div id="bulk-panel">
+      <div class="bulk-ct" id="bulk-ct">0</div>
+      <div class="bulk-lbl">条 Aura 已选中</div>
+      <div class="bulk-sz" id="bulk-sz"></div>
+      <div class="bulk-acts">
+        <button class="btn btn-gold" id="bulk-exp-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          导出为新 Profile
+        </button>
+        <button class="btn btn-danger" id="bulk-rm-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg>
+          从当前数据移除
+        </button>
+        <button class="btn btn-sec" id="bulk-clr-btn">取消选择</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="bottom-bar">
+  <div class="bb-info" id="bb-info">就绪 — 请打开 WeakAuras.lua</div>
+</div>
+
+<div id="toast-ct"></div>
+
+<!-- Export Modal -->
+<div class="modal-overlay" id="exp-modal">
+  <div class="modal">
+    <div class="modal-h">
+      导出 Aura 配置
+      <button class="modal-close" onclick="closeModal('exp-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="color:var(--text-1);margin-bottom:14px;font-size:12px">
+        已选 <b id="exp-sel-ct" style="color:var(--gold)">0</b> 条，
+        含子项共 <b id="exp-all-ct" style="color:var(--gold)">0</b> 条，
+        预计大小 <b id="exp-sz" style="color:var(--gold)">—</b>
+      </p>
+      <div class="eo active" id="eo-profile" onclick="setExportMode('profile')">
+        <input type="radio" name="em" value="profile" checked>
+        <div>
+          <div class="eo-title">导出为新 Profile（推荐）</div>
+          <div class="eo-desc">生成只包含选中 Aura 的 WeakAuras.lua，适合按场景切换配置</div>
+        </div>
+      </div>
+      <div class="eo" id="eo-trim" onclick="setExportMode('trim')">
+        <input type="radio" name="em" value="trim">
+        <div>
+          <div class="eo-title">精简模式（移除选中项）</div>
+          <div class="eo-desc">生成去掉选中 Aura 的精简版，用于减小文件体积</div>
+        </div>
+      </div>
+      <input type="text" class="name-input" id="exp-fname" placeholder="文件名（不含扩展名）" value="WeakAuras_Profile">
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal('exp-modal')">取消</button>
+      <button class="btn btn-gold" id="exp-ok-btn">下载文件</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="file-input" accept=".lua,.old" style="display:none">
+
+<script>
+'use strict';
+
+/* ====== WAParser ====== */
+const WAParser = {
+  parse(source) {
+    const displays = new Map();
+    const DK = '["displays"] = {';
+    let pos = source.indexOf(DK);
+    if (pos === -1) return { displays, error: 'No ["displays"] section found' };
+    pos += DK.length;
+    const total = source.length;
+    while (pos < total) {
+      while (pos < total && this._ws(source[pos])) pos++;
+      if (pos >= total || source[pos] === '}') break;
+      if (source[pos] !== '[') { while (pos < total && source[pos] !== '\n') pos++; continue; }
+      const [key, p1] = this._key(source, pos); pos = p1;
+      while (pos < total && source[pos] !== '=' && source[pos] !== '\n') pos++;
+      if (source[pos] === '\n') continue;
+      pos++;
+      while (pos < total && this._ws(source[pos])) pos++;
+      if (source[pos] !== '{') { while (pos < total && source[pos] !== '\n') pos++; continue; }
+      const bStart = pos, bEnd = this._blockEnd(source, pos);
+      const bt = source.slice(bStart, bEnd);
+      if (key) displays.set(key, { ...this._meta(key, bt), _raw: bt, _bytes: bt.length });
+      pos = bEnd;
+      while (pos < total && (source[pos] === ',' || this._ws(source[pos]))) pos++;
+    }
+    return { displays };
+  },
+  _ws(c) { return c===' '||c==='\t'||c==='\r'||c==='\n'; },
+  _key(src, pos) {
+    pos++;
+    if (src[pos] !== '"') { while (pos < src.length && src[pos] !== ']') pos++; return [null, pos+1]; }
+    pos++; let n='';
+    while (pos < src.length && src[pos] !== '"') {
+      if (src[pos]==='\\') { pos++; n+=src[pos]; } else n+=src[pos]; pos++;
+    }
+    return [n, pos+2];
+  },
+  _blockEnd(src, pos) {
+    let d=1; pos++;
+    while (pos < src.length && d>0) {
+      const c=src[pos];
+      if (c==='{') { d++; pos++; }
+      else if (c==='}') { d--; pos++; }
+      else if (c==='"') {
+        pos++;
+        while (pos < src.length) {
+          if (src[pos]==='\\') { pos+=2; continue; }
+          if (src[pos]==='"') { pos++; break; }
+          pos++;
+        }
+      } else pos++;
+    }
+    return pos;
+  },
+  _meta(name, bt) {
+    // Depth-aware string extractor: only match at depth=1 (top-level of this aura's table)
+    // Fixes: nested tables (triggers, actions) may also contain ["parent"], ["regionType"] etc.
+    const topStr = (key) => {
+      const needle = `["${key}"] = "`;
+      let pos = 1, d = 1; // start after opening {
+      while (pos < bt.length) {
+        if (d === 1 && bt.startsWith(needle, pos)) {
+          pos += needle.length;
+          let v = '';
+          while (pos < bt.length && bt[pos] !== '"') {
+            if (bt[pos] === '\\') { pos++; if (pos < bt.length) v += bt[pos]; }
+            else v += bt[pos];
+            pos++;
+          }
+          return v || null;
+        }
+        const c = bt[pos];
+        if (c === '{') { d++; pos++; }
+        else if (c === '}') { d--; if (d < 1) break; pos++; }
+        else if (c === '"') {
+          pos++;
+          while (pos < bt.length) {
+            if (bt[pos] === '\\') { pos += 2; continue; }
+            if (bt[pos] === '"') { pos++; break; }
+            pos++;
+          }
+        } else pos++;
+      }
+      return null;
+    };
+    const topNum = (key) => {
+      const needle = `["${key}"] = `;
+      let pos = 1, d = 1;
+      while (pos < bt.length) {
+        if (d === 1 && bt.startsWith(needle, pos)) {
+          pos += needle.length;
+          let v = '';
+          while (pos < bt.length && /[-\d.]/.test(bt[pos])) { v += bt[pos]; pos++; }
+          return v ? parseFloat(v) : null;
+        }
+        const c = bt[pos];
+        if (c === '{') { d++; pos++; }
+        else if (c === '}') { d--; if (d < 1) break; pos++; }
+        else if (c === '"') {
+          pos++;
+          while (pos < bt.length) {
+            if (bt[pos] === '\\') { pos += 2; continue; }
+            if (bt[pos] === '"') { pos++; break; }
+            pos++;
+          }
+        } else pos++;
+      }
+      return null;
+    };
+    // children array (controlledChildren is always top-level and unique)
+    const children = [];
+    const ci = bt.indexOf('["controlledChildren"] = {');
+    if (ci !== -1) {
+      let cp = ci + '["controlledChildren"] = {'.length;
+      while (cp < bt.length) {
+        while (cp < bt.length && this._ws(bt[cp])) cp++;
+        if (bt[cp] === '}') break;
+        if (bt[cp] === '"') {
+          cp++; let cn = '';
+          while (cp < bt.length && bt[cp] !== '"') { if (bt[cp] === '\\') { cp++; cn += bt[cp]; } else cn += bt[cp]; cp++; }
+          cp++; children.push(cn);
+          while (cp < bt.length && (bt[cp] === ',' || this._ws(bt[cp]))) cp++;
+        } else cp++;
+      }
+    }
+    return {
+      id: topStr('id') || name,
+      regionType: topStr('regionType'),
+      parent: topStr('parent'),
+      wagoID: topStr('wagoID'),
+      desc: topStr('desc'),
+      url: topStr('url'),
+      version: topNum('version'),
+      internalVersion: topNum('internalVersion'),
+      children,
+      loadClass: null,
+    };
+  }
+};
+
+/* ====== State ====== */
+const S = {
+  raw:null, parsed:null, fileName:null, fileSize:0,
+  selected:new Set(), expanded:new Set(), activeKey:null,
+  filter:'all', search:'', rootKeys:[], childMap:new Map()
+};
+
+/* ====== Helpers ====== */
+const TC = {icon:'var(--t-icon)',group:'var(--t-group)',dynamicgroup:'var(--t-dgroup)',aurabar:'var(--t-aurabar)',text:'var(--t-text)',texture:'var(--t-texture)',progresstexture:'var(--t-prog)'};
+const TI = {icon:'🔷',group:'🟡',dynamicgroup:'🟠',aurabar:'🟢',text:'💜',texture:'🔴',progresstexture:'🔵'};
+const TCl = {icon:'c-icon',group:'c-group',dynamicgroup:'c-dgroup',aurabar:'c-aurabar',text:'c-text',texture:'c-texture',progresstexture:'c-prog'};
+function tc(rt){return TC[rt]||'var(--text-2)'}
+function ti(rt){return TI[rt]||'⚪'}
+function tcl(rt){return TCl[rt]||''}
+function fmtSz(b){if(b<1024)return b+' B';if(b<1048576)return(b/1024).toFixed(1)+' KB';return(b/1048576).toFixed(2)+' MB'}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+/* ====== Load ====== */
+function loadFile(file) {
+  showScreen('loading'); setLbl('正在读取文件 ('+fmtSz(file.size)+')…');
+  const r=new FileReader();
+  r.onload=e=>loadText(e.target.result, file.name, file.size);
+  r.readAsText(file,'utf-8');
+}
+
+function loadText(text, name, size) {
+  S.fileName=name; S.fileSize=size||text.length;
+  setLbl('正在解析 Aura 数据（'+fmtSz(S.fileSize)+'）…');
+  setTimeout(()=>{
+    try {
+      S.raw=text;
+      S.parsed=WAParser.parse(text);
+      buildDerived();
+      showScreen('app');
+      renderTree();
+      updateStats();
+      toast('解析完成 — '+S.parsed.displays.size+' 条 Aura','ok');
+    } catch(err) {
+      showScreen('welcome');
+      toast('解析失败: '+err.message,'err');
+      console.error(err);
+    }
+  },50);
+}
+
+async function autoLoad() {
+  // Priority 1: pre-bundled data from wa_data.js (works with file:// protocol)
+  if (window.__WA_DATA__) {
+    showScreen('loading');
+    setLbl('已检测到预加载数据，正在解析 Aura…');
+    setTimeout(() => loadText(window.__WA_DATA__, 'WeakAuras.lua', window.__WA_DATA__.length), 80);
+    return;
+  }
+  // Priority 2: fetch from same origin (works when served via HTTP)
+  if (location.protocol === 'http:' || location.protocol === 'https:') {
+    showScreen('loading');
+    setLbl('正在自动加载 WeakAuras.lua…');
+    try {
+      const resp = await fetch('./WeakAuras.lua');
+      if (!resp.ok) throw new Error('HTTP '+resp.status);
+      const text = await resp.text();
+      loadText(text, 'WeakAuras.lua', text.length);
+      return;
+    } catch(e) {
+      console.warn('Auto-load via fetch failed:', e);
+    }
+  }
+  // Fallback: manual file selection
+  showScreen('welcome');
+}
+
+function buildDerived() {
+  const {displays}=S.parsed;
+  S.childMap.clear(); S.rootKeys=[];
+  displays.forEach((m,k)=>{
+    if(m.parent&&displays.has(m.parent)) {
+      if(!S.childMap.has(m.parent)) S.childMap.set(m.parent,[]);
+      if(!S.childMap.get(m.parent).includes(k)) S.childMap.get(m.parent).push(k);
+    }
+  });
+  displays.forEach((m,k)=>{
+    if(m.children&&m.children.length>0) {
+      if(!S.childMap.has(k)) S.childMap.set(k,[]);
+      m.children.forEach(ch=>{
+        if(displays.has(ch)&&!S.childMap.get(k).includes(ch)) S.childMap.get(k).push(ch);
+      });
+    }
+  });
+  displays.forEach((m,k)=>{ if(!m.parent||!displays.has(m.parent)) S.rootKeys.push(k); });
+}
+
+/* ====== Tree ====== */
+function renderTree() {
+  const tree=document.getElementById('tree');
+  const {displays}=S.parsed;
+  const q=S.search.toLowerCase();
+  const ft=S.filter;
+
+  function matches(key) {
+    const m=displays.get(key); if(!m) return false;
+    if(ft!=='all'&&m.regionType!==ft) return false;
+    if(q) return key.toLowerCase().includes(q)||(m.desc||'').toLowerCase().includes(q);
+    return true;
+  }
+
+  const vis=new Set();
+  displays.forEach((_,k)=>{ if(matches(k)) vis.add(k); });
+  if(q||ft!=='all') {
+    vis.forEach(k=>{ let m=displays.get(k); while(m&&m.parent&&displays.has(m.parent)){ vis.add(m.parent); m=displays.get(m.parent); } });
+  }
+
+  const roots=[...S.rootKeys].sort((a,b)=>{
+    const ta=displays.get(a)?.regionType||'', tb=displays.get(b)?.regionType||'';
+    const ga=(ta==='group'||ta==='dynamicgroup')?0:1, gb=(tb==='group'||tb==='dynamicgroup')?0:1;
+    return ga!==gb?ga-gb:a.localeCompare(b,'zh');
+  });
+
+  const rows=[];
+  function renderRow(key,depth) {
+    const m=displays.get(key); if(!m) return;
+    if(!vis.has(key)) return;
+    const children=S.childMap.get(key)||[];
+    const isExp=S.expanded.has(key)||(q&&children.length>0);
+    const isSel=S.selected.has(key);
+    const isAct=S.activeKey===key;
+    let chk=isSel?'chk':'';
+    if(!isSel&&children.length>0){
+      const sc=children.filter(c=>S.selected.has(c)).length;
+      if(sc>0&&sc<children.length) chk='partial';
+      else if(sc===children.length&&children.length>0) chk='chk';
+    }
+    const dc=depth===0?'':depth===1?' child':' grandchild';
+    const nh=q?hlMatch(esc(key),q):esc(key);
+    rows.push(`<div class="tree-row${dc}${isAct?' selected':''}" data-key="${esc(key)}">
+      ${children.length>0?`<div class="expand-btn${isExp?' open':''}" data-expand="${esc(key)}">▶</div>`:`<div class="expand-ph"></div>`}
+      <div class="row-check ${chk}" data-chk="${esc(key)}"></div>
+      <div class="row-ti ${tcl(m.regionType)}">${ti(m.regionType)}</div>
+      <div class="row-name" title="${esc(key)}">${nh}</div>
+      ${children.length>0?`<div class="row-badge">${children.length}</div>`:''}
+      <div class="row-sz">${fmtSz(m._bytes)}</div>
+    </div>`);
+    if(isExp) children.forEach(ck=>renderRow(ck,depth+1));
+  }
+  roots.forEach(k=>renderRow(k,0));
+
+  if(!rows.length) {
+    tree.innerHTML=`<div style="padding:30px;text-align:center;color:var(--text-2);font-size:12px">${q?'🔍 无匹配结果':'暂无数据'}</div>`;
+    return;
+  }
+  tree.innerHTML=rows.join('');
+
+  // Events
+  tree.querySelectorAll('.tree-row').forEach(row=>{
+    row.addEventListener('click',e=>{
+      if(e.target.closest('[data-expand]')||e.target.closest('[data-chk]')) return;
+      selectAura(row.dataset.key);
+    });
+  });
+  tree.querySelectorAll('[data-expand]').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const k=btn.dataset.expand;
+      if(S.expanded.has(k)) S.expanded.delete(k); else S.expanded.add(k);
+      renderTree();
+    });
+  });
+  tree.querySelectorAll('[data-chk]').forEach(c=>{
+    c.addEventListener('click',e=>{ e.stopPropagation(); toggleSel(c.dataset.chk); });
+  });
+}
+
+function hlMatch(str,q) {
+  const i=str.toLowerCase().indexOf(q.toLowerCase());
+  if(i===-1) return str;
+  return str.slice(0,i)+'<span class="highlight">'+str.slice(i,i+q.length)+'</span>'+str.slice(i+q.length);
+}
+
+/* ====== Selection ====== */
+function collectDesc(key) {
+  const r=new Set([key]);
+  (S.childMap.get(key)||[]).forEach(c=>collectDesc(c).forEach(k=>r.add(k)));
+  return r;
+}
+function toggleSel(key) {
+  const all=collectDesc(key);
+  const allSel=[...all].every(k=>S.selected.has(k));
+  if(allSel) all.forEach(k=>S.selected.delete(k)); else all.forEach(k=>S.selected.add(k));
+  renderTree(); updateSelUI();
+}
+function updateSelUI() {
+  const n=S.selected.size;
+  document.getElementById('hs-sel').textContent=n;
+  document.getElementById('btn-export').disabled=n===0;
+  document.getElementById('btn-selclear').disabled=n===0;
+  if(n===0) { if(S.activeKey) showDetail(S.activeKey); else showCP('empty-detail'); }
+  else if(n===1&&S.selected.has(S.activeKey)) showDetail(S.activeKey);
+  else showBulk(n);
+  updateBB();
+}
+function selectAura(key) {
+  S.activeKey=key;
+  document.querySelectorAll('.tree-row').forEach(r=>r.classList.remove('selected'));
+  document.querySelector(`.tree-row[data-key="${CSS.escape(key)}"]`)?.classList.add('selected');
+  showDetail(key);
+}
+
+/* ====== Detail ====== */
+function showDetail(key) {
+  const {displays}=S.parsed;
+  const m=displays.get(key); if(!m) return;
+  showCP('detail');
+  const children=S.childMap.get(key)||[];
+  let html=`<div class="d-header">
+    <div class="d-name">${esc(key)}</div>
+    <div class="d-tags">
+      ${m.regionType?`<div class="tag" style="color:${tc(m.regionType)};border-color:${tc(m.regionType)}40">${ti(m.regionType)} ${m.regionType}</div>`:''}
+      ${m.parent?`<div class="tag" style="color:var(--text-1);border-color:var(--border-md)">子项</div>`:''}
+      ${children.length>0?`<div class="tag" style="color:var(--gold);border-color:var(--border-md)">${children.length} 个子项</div>`:''}
+      <div class="tag" style="color:var(--text-2);border-color:var(--border)">${fmtSz(m._bytes)}</div>
+    </div>
+  </div>
+  <div class="sec-h">基本信息</div>
+  <div class="fg">
+    <div class="fl">ID</div><div class="fv mono">${esc(m.id||key)}</div>
+    <div class="fl">类型</div><div class="fv" style="color:${tc(m.regionType)}">${m.regionType||'—'}</div>
+    <div class="fl">父级</div><div class="fv">${m.parent?`<span style="cursor:pointer;color:var(--blue)" onclick="selectAura(${JSON.stringify(m.parent)})">${esc(m.parent)}</span>`:'<span style="color:var(--text-3)">（根节点）</span>'}</div>
+    <div class="fl">版本</div><div class="fv mono">${m.version??'—'} / ${m.internalVersion??'—'}</div>
+    ${m.loadClass?`<div class="fl">职业限制</div><div class="fv">${esc(m.loadClass)}</div>`:''}
+    ${m.wagoID?`<div class="fl">Wago ID</div><div class="fv"><a href="https://wago.io/${esc(m.wagoID)}" target="_blank">${esc(m.wagoID)}</a></div>`:''}
+    ${m.url?`<div class="fl">URL</div><div class="fv mono" style="font-size:10px">${esc(m.url.slice(0,60))}${m.url.length>60?'…':''}</div>`:''}
+    <div class="fl">原始大小</div><div class="fv">${fmtSz(m._bytes)}</div>
+  </div>`;
+  if(m.desc) html+=`<div class="sec-h">描述</div><div style="font-size:12px;color:var(--text-1);background:var(--bg-2);padding:10px;border-radius:4px;line-height:1.6;border:1px solid var(--border)">${esc(m.desc)}</div>`;
+  if(children.length>0) {
+    html+=`<div class="sec-h">子项（${children.length}）</div><div class="ch-list">`;
+    children.forEach(ck=>{
+      const cm=displays.get(ck);
+      html+=`<div class="ch-row" onclick="selectAura(${JSON.stringify(ck)})">
+        <span class="${tcl(cm?.regionType)}">${ti(cm?.regionType)}</span>
+        <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(ck)}</span>
+        <span style="font-size:10px;color:var(--text-2)">${cm?.regionType||'?'}</span>
+        <span style="font-size:10px;color:var(--text-3)">${cm?fmtSz(cm._bytes):''}</span>
+      </div>`;
+    });
+    html+=`</div>`;
+  }
+  document.getElementById('detail-content').innerHTML=html;
+}
+
+/* ====== Bulk panel ====== */
+function showBulk(n) {
+  showCP('bulk-panel');
+  document.getElementById('bulk-ct').textContent=n;
+  const all=new Set(); S.selected.forEach(k=>collectDesc(k).forEach(d=>all.add(d)));
+  let b=0; all.forEach(k=>{const m=S.parsed.displays.get(k);if(m)b+=m._bytes;});
+  document.getElementById('bulk-sz').textContent=`含子项共 ${all.size} 条，约 ${fmtSz(b)}`;
+}
+
+/* ====== Screen management ====== */
+function showScreen(name) {
+  document.getElementById('welcome').style.display=name==='welcome'?'flex':'none';
+  document.getElementById('loading').style.display=name==='loading'?'flex':'none';
+  document.getElementById('stats-bar').style.display=name==='app'?'flex':'none';
+  if(name==='app') showCP('empty-detail');
+  else ['empty-detail','detail','bulk-panel'].forEach(id=>document.getElementById(id).style.display='none');
+}
+function showCP(which) {
+  ['empty-detail','detail','bulk-panel'].forEach(id=>{
+    document.getElementById(id).style.display=id===which?(id==='detail'?'block':'flex'):'none';
+  });
+}
+function setLbl(t){document.getElementById('loading-lbl').textContent=t;}
+
+/* ====== Stats ====== */
+function updateStats() {
+  const {displays}=S.parsed;
+  let g=0,ic=0; displays.forEach(m=>{ if(m.regionType==='group'||m.regionType==='dynamicgroup') g++; if(m.regionType==='icon') ic++; });
+  document.getElementById('h-stats').style.display='flex';
+  document.getElementById('hs-size').textContent=fmtSz(S.fileSize);
+  document.getElementById('hs-total').textContent=displays.size;
+  document.getElementById('hs-groups').textContent=g;
+  document.getElementById('sc-total').textContent=displays.size;
+  document.getElementById('sc-roots').textContent=S.rootKeys.length;
+  document.getElementById('sc-groups').textContent=g;
+  document.getElementById('sc-icons').textContent=ic;
+  document.getElementById('sc-size').textContent=fmtSz(S.fileSize);
+  document.getElementById('btn-selall').disabled=false;
+  document.getElementById('btn-selclear').disabled=false;
+  updateBB();
+}
+function updateBB() {
+  const n=S.selected.size, total=S.parsed?.displays.size||0;
+  const info=document.getElementById('bb-info');
+  if(n>0){
+    const all=new Set(); S.selected.forEach(k=>collectDesc(k).forEach(d=>all.add(d)));
+    let b=0; all.forEach(k=>{const m=S.parsed.displays.get(k);if(m)b+=m._bytes;});
+    info.innerHTML=`已选 <b>${n}</b> 条（含子项 ${all.size} 条，约 <b>${fmtSz(b)}</b>）— 点击"导出"生成新文件`;
+  } else if(total>0) {
+    info.innerHTML=`共 <b>${total}</b> 条 Aura — 勾选复选框批量操作，或点击行查看详情`;
+  } else {
+    info.innerHTML='就绪 — 请打开 WeakAuras.lua';
+  }
+}
+
+/* ====== Export ====== */
+function openExpModal() {
+  const all=new Set(); S.selected.forEach(k=>collectDesc(k).forEach(d=>all.add(d)));
+  let b=0; all.forEach(k=>{const m=S.parsed.displays.get(k);if(m)b+=m._bytes;});
+  document.getElementById('exp-sel-ct').textContent=S.selected.size;
+  document.getElementById('exp-all-ct').textContent=all.size;
+  document.getElementById('exp-sz').textContent=fmtSz(b);
+  openModal('exp-modal');
+}
+function setExportMode(mode) {
+  document.querySelectorAll('.eo').forEach(e=>e.classList.remove('active'));
+  document.getElementById('eo-'+mode).classList.add('active');
+  document.querySelector(`input[value="${mode}"]`).checked=true;
+}
+function doExport() {
+  const mode=document.querySelector('input[name="em"]:checked').value;
+  const fname=(document.getElementById('exp-fname').value.trim()||'WeakAuras_Profile')+'.lua';
+  const {displays}=S.parsed;
+  const allSel=new Set(); S.selected.forEach(k=>collectDesc(k).forEach(d=>allSel.add(d)));
+  const keys=mode==='profile'?allSel:new Set([...displays.keys()].filter(k=>!allSel.has(k)));
+  const lua=buildLua(keys);
+  dlText(lua,fname);
+  closeModal('exp-modal');
+  toast(`已下载 ${fname}（${fmtSz(lua.length)}）`,'ok');
+}
+function buildLua(keySet) {
+  const {displays}=S.parsed;
+  const DK='["displays"] = {';
+  const dki=S.raw.indexOf(DK);
+  const header=dki!==-1?S.raw.slice(0,dki+DK.length):'WeakAurasSaved = {\r\n["displays"] = {';
+  const parts=[header,'\r\n'];
+  keySet.forEach(key=>{
+    const m=displays.get(key); if(!m) return;
+    const safeKey=key.replace(/\\/g,'\\\\').replace(/"/g,'\\"');
+    parts.push(`["${safeKey}"] = ${m._raw},\r\n`);
+  });
+  parts.push('},\r\n}\r\n');
+  return parts.join('');
+}
+function doRemove() {
+  const {displays}=S.parsed;
+  const all=new Set(); S.selected.forEach(k=>collectDesc(k).forEach(d=>all.add(d)));
+  all.forEach(k=>displays.delete(k));
+  buildDerived(); S.selected.clear(); S.activeKey=null;
+  renderTree(); updateStats(); showCP('empty-detail'); updateSelUI();
+  toast(`已移除 ${all.size} 条 Aura（仅内存，请导出文件后覆盖原文件）`,'info');
+}
+function dlText(text,fname) {
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));
+  a.download=fname; document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+}
+
+/* ====== Modal ====== */
+function openModal(id){document.getElementById(id).classList.add('show')}
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+
+/* ====== Toast ====== */
+function toast(msg,type='info') {
+  const icon=type==='ok'?'✅':type==='err'?'❌':'ℹ️';
+  const el=document.createElement('div');
+  el.className='toast '+type;
+  el.innerHTML=`<span>${icon}</span><span>${esc(msg)}</span>`;
+  document.getElementById('toast-ct').appendChild(el);
+  setTimeout(()=>el.style.opacity='0',2800);
+  setTimeout(()=>el.remove(),3100);
+}
+
+/* ====== Resize sidebar ====== */
+(()=>{
+  const rs=document.getElementById('resizer'),sb=document.getElementById('sidebar');
+  let drag=false,sx=0,sw=0;
+  rs.addEventListener('mousedown',e=>{drag=true;sx=e.clientX;sw=sb.offsetWidth;rs.classList.add('dragging');document.body.style.cursor='col-resize';document.body.style.userSelect='none'});
+  document.addEventListener('mousemove',e=>{if(!drag)return;sb.style.width=Math.max(220,Math.min(600,sw+e.clientX-sx))+'px'});
+  document.addEventListener('mouseup',()=>{if(drag){drag=false;rs.classList.remove('dragging');document.body.style.cursor='';document.body.style.userSelect=''}});
+})();
+
+/* ====== Events ====== */
+const fi=document.getElementById('file-input');
+document.getElementById('btn-open').addEventListener('click',()=>fi.click());
+document.getElementById('drop-zone').addEventListener('click',()=>fi.click());
+fi.addEventListener('change',e=>{if(e.target.files[0])loadFile(e.target.files[0])});
+
+const dz=document.getElementById('drop-zone');
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag-over')});
+dz.addEventListener('dragleave',()=>dz.classList.remove('drag-over'));
+dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag-over');if(e.dataTransfer.files[0])loadFile(e.dataTransfer.files[0])});
+document.addEventListener('dragover',e=>e.preventDefault());
+document.addEventListener('drop',e=>{e.preventDefault();const f=e.dataTransfer.files[0];if(f)loadFile(f)});
+
+document.getElementById('search-input').addEventListener('input',e=>{S.search=e.target.value;renderTree()});
+document.getElementById('filter-row').addEventListener('click',e=>{
+  const chip=e.target.closest('.chip'); if(!chip) return;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+  chip.classList.add('on'); S.filter=chip.dataset.type; renderTree();
+});
+
+document.getElementById('btn-selall').addEventListener('click',()=>{
+  if(S.selected.size===S.parsed.displays.size) S.selected.clear();
+  else S.parsed.displays.forEach((_,k)=>S.selected.add(k));
+  renderTree(); updateSelUI();
+});
+document.getElementById('btn-selclear').addEventListener('click',()=>{S.selected.clear();renderTree();updateSelUI()});
+document.getElementById('btn-export').addEventListener('click',openExpModal);
+document.getElementById('bulk-exp-btn').addEventListener('click',openExpModal);
+document.getElementById('bulk-rm-btn').addEventListener('click',()=>{
+  if(confirm(`确认从当前数据中移除 ${S.selected.size} 条 Aura？\n此操作仅影响内存，请在移除后导出覆盖原文件。`)) doRemove();
+});
+document.getElementById('bulk-clr-btn').addEventListener('click',()=>{S.selected.clear();renderTree();updateSelUI()});
+document.getElementById('exp-ok-btn').addEventListener('click',doExport);
+document.getElementById('exp-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal('exp-modal')});
+
+autoLoad();
+</script>
+</body>
+</html>

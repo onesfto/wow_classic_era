@@ -1,0 +1,10 @@
+--- Onesfto/Modules/GW2_UI/GW2_UI_1.15.9/settings/panels/panel_objectives.lua	2026-07-26 13:19:34
++++ GW2_UI/settings/panels/panel_objectives.lua	2026-07-25 21:05:20
+@@ -127,6 +127,6 @@
+ 
+     p:AddOptionDropdown(L["Quest Tracker Sorting"], nil, { getterSetter = "QUESTTRACKER_SORTING", callback = function() GwQuesttrackerContainerQuests:UpdateLayout() end, optionsList = {"DEFAULT", "LEVEL", "ZONE"}, optionNames = {DEFAULT, GUILD_RECRUITMENT_LEVEL, ZONE .. L[" |cFF888888(required Questie)|r"]}, dependence = {["QUESTTRACKER_ENABLED"] = true}, hidden = GW.Retail})
+ 
+-    sWindow:AddSettingsPanel(p, OBJECTIVES_TRACKER_LABEL, L["Edit objectives settings."])
++    sWindow:AddSettingsPanel(p, "任务目标", L["Edit objectives settings."])
+ end
+ GW.LoadObjectivesPanel = LoadObjectivesPanel

@@ -1,12 +1,13 @@
-## Interface: 11508, 20505, 50504
+## Interface: 11509, 20506, 50504
 ## Title: GearMenu
 ## Author: Michael Wiesendanger <michael.wiesendanger@gmail.com>
 ## Notes: Addon to manage and keybind usable gear
-## Version: v2.7.0
+## Version: v2.8.0
 ## SavedVariablesPerCharacter: GearMenuConfiguration
 ## X-Category: Action Bars Combat PvP
 ## X-Curse-Project-ID: 345496
 ## X-Wago-ID: kaNeybN2
+## IconTexture: Interface\AddOns\GearMenu\assets\gearmenu_icon
 # THIS FILE IS AUTO-GENERATED. ALL CHANGES ARE OVERWRITTEN
 
 # constant values
@@ -20,10 +21,11 @@ localization/deDE.lua
 localization/zhCN.lua
 localization/ruRU.lua
 
+code/Event.lua
 code/Core.lua
+code/Filter.lua
 code/Logger.lua
 code/Cmd.lua
-code/Filter.lua
 code/Ticker.lua
 code/Common.lua
 code/Season.lua
@@ -31,20 +33,19 @@ code/Tooltip.lua
 code/Target.lua
 code/GearManager.lua
 code/GearBarManager.lua
+code/ItemLocationCache.lua
 code/ItemManager.lua
 code/CombatQueue.lua
 code/QuickChange.lua
 code/Configuration.lua
+code/Serializer.lua
+code/Encoder.lua
+code/Profile.lua
+code/Comm.lua
 code/Macro.lua
 code/Engrave.lua
 
 # gui
-# custom blizzard dropdown impl
-libs/LibUiDropDownMenu/LibUiDropDownMenu.lua
-libs/LibUiDropDownMenu/LibUiDropDownMenu.xml
-libs/LibUiDropDownMenu/LibUiDropDownMenuTemplates.lua
-libs/LibUiDropDownMenu/LibUiDropDownMenuTemplates.xml
-
 gui/Frame.xml
 gui/UiHelper.lua
 gui/GearBar.lua
@@ -57,6 +58,7 @@ gui/Cooldown.lua
 gui/GearBarStorage.lua
 gui/GearBarConfigurationMenu.lua
 gui/GearBarConfigurationSubMenu.lua
+gui/ProfileMenu.lua
 gui/AddonConfiguration.lua
 gui/AboutContent.lua
 gui/GeneralMenu.lua

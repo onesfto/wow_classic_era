@@ -28,6 +28,10 @@
 RGGM_CONSTANTS = {
   ADDON_NAME = "GearMenu",
   --[[
+    Addon message prefix for the version broadcast (max 16 characters)
+  ]]--
+  ADDON_MESSAGE_PREFIX = "RGGM_VER",
+  --[[
     Unit ids
   ]]--
   UNIT_ID_PLAYER = "player",
@@ -68,10 +72,19 @@ RGGM_CONSTANTS = {
   --[[
     Update Intervals for tickers
   ]]--
-  CHANGE_MENU_UPDATE_INTERVAL = 0.01,
+  CHANGE_MENU_UPDATE_INTERVAL = 0.1,
   COMBAT_QUEUE_UPDATE_INTERVAL = 0.1,
   RANGE_CHECK_UPDATE_INTERVAL = 0.1,
   KEYBIND_UPDATE_DELAY = 1.0,
+  BAG_UPDATE_DEBOUNCE_DELAY = 0.1,
+  --[[
+    Public swap-lifecycle event names passed to third-party listeners registered through
+    GM_RegisterSwapListener. Part of the public API contract (see README) - renaming
+    silently breaks consumers
+  ]]--
+  SWAP_EVENT_QUEUED = "queued",
+  SWAP_EVENT_UNQUEUED = "unqueued",
+  SWAP_EVENT_COMPLETED = "completed",
   --[[
     Addon configuration
   ]]--
@@ -132,14 +145,28 @@ RGGM_CONSTANTS = {
   ELEMENT_GEAR_BAR_CONFIG_QUICK_CHANGE_FRAME = "GM_GearBarConfigQuickChangeFrame",
   ELEMENT_GEAR_BAR_CONFIG_GEAR_BAR_CONFIG_FRAME = "GM_GearBarConfigGearBarConfigFrame",
   ELEMENT_GEAR_BAR_CONFIG_GEAR_BAR_SUB_CONFIG_FRAME = "GM_GearBarConfigGearBarSubConfigFrame_",
+  ELEMENT_GEAR_BAR_CONFIG_PROFILE_FRAME = "GM_GearBarConfigProfileFrame",
   --[[
     Addon Configuration General Elements
   ]]--
-  CHECK_OPTION_SIZE = 32,
+  --[[
+    Design colour tokens as { r, g, b } in the 0-1 range. Mirrors Pulse's COLOR table
+    (derived from Quartermaster, with BODY / SUBNOTE brightened for the lighter stock
+    settings canvas these panels render on).
+  ]]--
+  COLOR = {
+    TITLE_GOLD = { 1.0, 0.819, 0.0 },       -- #ffd100 panel titles
+    SECTION_GOLD = { 0.851, 0.647, 0.129 }, -- #d9a521 section headers
+    BODY = { 0.91, 0.87, 0.80 },            -- #e8decc body text / option labels (warm near-white)
+    MUTED = { 0.541, 0.486, 0.392 },        -- #8a7c64 idle / dim text
+    DISABLED = { 0.45, 0.41, 0.35 },        -- disabled control labels
+    SUBNOTE = { 0.66, 0.60, 0.50 }          -- #a89980 option descriptions (warm mid gray)
+  },
+  CHECK_OPTION_SIZE = 24,
+  -- keeps two-column option layouts from bleeding into the neighboring column
+  CHECK_OPTION_DESCRIPTION_WIDTH = 230,
   BUTTON_DEFAULT_PADDING = 20,
   BUTTON_DEFAULT_HEIGHT = 25,
-  INTERFACE_PANEL_CONTENT_FRAME_WIDTH = 580,
-  INTERFACE_PANEL_CONTENT_FRAME_HEIGHT = 552,
   --[[
     About Menu
   ]]--
@@ -151,7 +178,6 @@ RGGM_CONSTANTS = {
   --[[
     General Menu
   ]]--
-  ELEMENT_GENERAL_MENU = "GM_GeneralMenu",
   ELEMENT_GENERAL_MENU_TITLE = "$parentTitle",
   ELEMENT_GENERAL_OPT_ENABLE_TOOLTIPS = "GM_OptEnableTooltips",
   ELEMENT_GENERAL_OPT_ENABLE_SIMPLE_TOOLTIPS = "GM_OptEnableSimpleTooltips",
@@ -159,6 +185,7 @@ RGGM_CONSTANTS = {
   ELEMENT_GENERAL_OPT_ENABLE_FASTPRESS = "GM_OptEnableFastPress",
   ELEMENT_GENERAL_OPT_ENABLE_UNEQUIP_SLOT = "GM_OptEnableUnequipSlot",
   ELEMENT_GENERAL_OPT_ENABLE_RUNE_SLOTS = "GM_OptEnableRuneSlots",
+  ELEMENT_GENERAL_OPT_ENABLE_FALLBACK_TO_BASE_ITEM = "GM_OptEnableFallbackToBaseItem",
   ELEMENT_GENERAL_OPT_FILTER_ITEM_QUALITY = "GM_OptFilterItemQuality",
   ELEMENT_GENERAL_LABEL_FILTER_ITEM_QUALITY = "GM_LabelFilterItemQuality",
   ELEMENT_GENERAL_LABEL_CHOOSE_THEME = "GM_LabelChooseTheme",
@@ -166,7 +193,6 @@ RGGM_CONSTANTS = {
   --[[
     Trinket Menu
   ]]--
-  ELEMENT_TRINKET_MENU = "GM_TrinketMenu",
   ELEMENT_TRINKET_MENU_TITLE = "$parentTitle",
   ELEMENT_TRINKET_MENU_OPT = "GM_Opt",
   ELEMENT_TRINKET_MENU_OPT_ENABLE_MENU = "GM_OptEnableTrinketMenu",
@@ -175,7 +201,6 @@ RGGM_CONSTANTS = {
   --[[
     QuickChange
   ]]--
-  ELEMENT_QUICK_CHANGE_MENU = "GM_QuickChangeMenu",
   ELEMENT_QUICK_CHANGE_MENU_TITLE = "$parentTitle",
   ELEMENT_QUICK_CHANGE_MENU_INVENTORY_TYPE_DROPDOWN = "GM_QuickChangeMenuChooseCategory",
   QUICK_CHANGE_BUTTON_MARGIN = 15,
@@ -183,18 +208,15 @@ RGGM_CONSTANTS = {
     QuickChange Shared
   ]]--
   ELEMENT_QUICK_CHANGE_CONTENT_FRAME_ROW = "$parentRow",
-  ELEMENT_QUICK_CHANGE_CONTENT_FRAME_HIGHLIGHT = "$parentHighlight",
-  QUICK_CHANGE_MAX_ROWS = 5,
-  QUICK_CHANGE_ROW_HEIGHT = 25,
+  QUICK_CHANGE_MAX_ROWS = 4,
+  QUICK_CHANGE_ROW_HEIGHT = 40,
+  QUICK_CHANGE_ICON_SIZE = 32,
   CATEGORY_DROPDOWN_DEFAULT_VALUE = INVSLOT_HEAD,
   --[[
     QuickChange Rule Frame
   ]]--
   ELEMENT_QUICK_CHANGE_RULES_SCROLL_FRAME = "$parentRulesScrollFrame",
   ELEMENT_QUICK_CHANGE_RULES_ROW = "$parentRow",
-  ELEMENT_QUICK_CHANGE_RULES_MOUSEOVER_CONTAINER_LEFT = "left",
-  ELEMENT_QUICK_CHANGE_RULES_MOUSEOVER_CONTAINER_RIGHT = "right",
-  ELEMENT_QUICK_CHANGE_RULES_ROW_HIGHLIGHT = "$parentHighlight",
   QUICK_CHANGE_RULES_CONTENT_FRAME_WIDTH = 560,
   --[[
     QuickChange Change From Frame
@@ -225,7 +247,6 @@ RGGM_CONSTANTS = {
   --[[
     GearBar configuration menu
   ]]--
-  ELEMENT_GEAR_BAR_CONFIGURATION_MENU = "GM_GearBarConfigurationMenu",
   ELEMENT_GEAR_BAR_CONFIGURATION_MENU_TITLE = "$parentTitle",
   ELEMENT_GEAR_BAR_CONFIGURATION_CREATE_BUTTON = "$parentCreateButton",
   ELEMENT_GEAR_BAR_LIST = "$parentGearBarList",
@@ -242,7 +263,6 @@ RGGM_CONSTANTS = {
   --[[
     GearBar Configuration Sub Menu
   ]]--
-  ELEMENT_GEAR_BAR_CONFIGURATION_SUB_MENU = "GM_GearBarConfigurationSubMenu_",
   ELEMENT_GEAR_BAR_CONFIGURATION_SUB_MENU_TITLE = "$parentTitle",
   ELEMENT_GEAR_BAR_CONFIGURATION_ADD_SLOT_BUTTON = "$parentAddSlotButton",
   ELEMENT_GEAR_BAR_CONFIGURATION_REMOVE_SLOT_BUTTON = "$parentRemoveSlotButton",
@@ -259,7 +279,7 @@ RGGM_CONSTANTS = {
   ELEMENT_GEAR_BAR_CONFIGURATION_ORIENTATION_DROPDOWN = "GM_GearBarOrientationDropdown_",
   ELEMENT_GEAR_BAR_CONFIGURATION_CHANGE_MENU_DIRECTION_DROPDOWN = "GM_GearBarChangeMenuDirectionDropdown_",
   GEAR_BAR_CONFIGURATION_SLOTS_KEY_BINDING_TEXT_WIDTH = 150,
-  GEAR_BAR_CONFIGURATION_SIZE_SLIDER_WIDTH = 450,
+  GEAR_BAR_CONFIGURATION_SIZE_SLIDER_WIDTH = 260,
   GEAR_BAR_CONFIGURATION_SIZE_SLIDER_MIN = 24,
   GEAR_BAR_CONFIGURATION_SIZE_SLIDER_MAX = 64,
   GEAR_BAR_CONFIGURATION_SIZE_SLIDER_STEP = 1,
@@ -285,5 +305,38 @@ RGGM_CONSTANTS = {
   TRINKET_MENU_COLUMN_AMOUNT_SLIDER_MAX = 20,
   ELEMENT_TRINKET_MENU_SLOT_SIZE_SLIDER = "GM_TrinketMenuSlotSizeSlider",
   TRINKET_MENU_SLOT_SIZE_SLIDER_MIN = 24,
-  TRINKET_MENU_SLOT_SIZE_SLIDER_MAX = 64
+  TRINKET_MENU_SLOT_SIZE_SLIDER_MAX = 64,
+  --[[
+    Profile Menu
+  ]]--
+  --[[
+    Upper bound for a user chosen profile name, counted in characters (not bytes) so a
+    localized name is not cut short. Keeps the name readable in the profile list and in
+    the chat messages that quote it
+  ]]--
+  PROFILE_NAME_MAX_LENGTH = 30,
+  --[[
+    Name of the reserved profile that is seeded on every login and can neither be
+    deleted, renamed nor overwritten. Deliberately not localized - it is a saved variable
+    key that also travels inside export strings, so it has to read the same everywhere
+  ]]--
+  DEFAULT_PROFILE_NAME = "Default",
+  ELEMENT_PROFILE_TITLE = "$parentTitle",
+  ELEMENT_PROFILE_LIST_SCROLL_FRAME = "GM_ProfileListScrollFrame",
+  ELEMENT_PROFILE_LIST_ROW = "GM_ProfileListRow", -- suffixed with the row index
+  ELEMENT_PROFILE_SAVE_BUTTON = "GM_ProfileSaveButton",
+  ELEMENT_PROFILE_APPLY_BUTTON = "GM_ProfileApplyButton",
+  ELEMENT_PROFILE_RENAME_BUTTON = "GM_ProfileRenameButton",
+  ELEMENT_PROFILE_DELETE_BUTTON = "GM_ProfileDeleteButton",
+  ELEMENT_PROFILE_EXPORT_BUTTON = "GM_ProfileExportButton",
+  ELEMENT_PROFILE_IMPORT_BUTTON = "GM_ProfileImportButton",
+  ELEMENT_PROFILE_STRING_SCROLL_FRAME = "GM_ProfileStringScrollFrame",
+  ELEMENT_PROFILE_STRING_EDIT_BOX = "GM_ProfileStringEditBox",
+  ELEMENT_PROFILE_LIST_WIDTH = 280,
+  ELEMENT_PROFILE_LIST_HEIGHT = 160,
+  ELEMENT_PROFILE_LIST_ROW_HEIGHT = 20,
+  ELEMENT_PROFILE_BUTTON_WIDTH = 150,
+  ELEMENT_PROFILE_BUTTON_HEIGHT = 24,
+  ELEMENT_PROFILE_STRING_WIDTH = 540,
+  ELEMENT_PROFILE_STRING_HEIGHT = 90
 }

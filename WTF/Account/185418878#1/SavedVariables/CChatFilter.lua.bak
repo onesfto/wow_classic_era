@@ -45,5 +45,6 @@ BFWC_Filter_SavedConfigs_G = {
 "飞行",
 "航空",
 "接送",
+"附魔",
 },
 }

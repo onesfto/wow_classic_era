@@ -148,3 +148,26 @@ end
 function me.PrintUserChatError(message)
   PrintLogMessage(me.colors.error, userMessageTag, message)
 end
+
+--[[
+  Display a user facing warning message in the default chat frame. Unlike the Log*
+  functions this is always shown - it is not gated by the log level - and is meant
+  for direct feedback on an action that succeeded with a caveat (e.g. a swap that
+  equipped a substitute copy of the requested item).
+
+  @param {string} message
+]]--
+function me.PrintUserChatWarn(message)
+  PrintLogMessage(me.colors.warn, userMessageTag, message)
+end
+
+--[[
+  Display a user facing informational message in the default chat frame. Unlike
+  the Log* functions this is always shown - it is not gated by the log level - and
+  is meant for direct feedback on a user action (e.g. saving or applying a profile).
+
+  @param {string} message
+]]--
+function me.PrintUserMessage(message)
+  PrintLogMessage(me.colors.info, userMessageTag, message)
+end

@@ -22,8 +22,7 @@
   SOFTWARE.
 ]]--
 
--- luacheck: globals CreateFrame STANDARD_TEXT_FONT FauxScrollFrame_Update FauxScrollFrame_GetOffset Settings
--- luacheck: globals MinimalSliderWithSteppersMixin
+-- luacheck: globals CreateFrame STANDARD_TEXT_FONT Settings MinimalSliderWithSteppersMixin
 
 local mod = rggm
 local me = {}
@@ -85,12 +84,12 @@ local quickchangeRule = {
 }
 -- track whether the menu was already built
 local builtMenu = false
--- reference to rules scrollFrame
-local rulesScrollFrame
--- reference to from scrollFrame
-local fromScrollFrame
--- reference to to scrollFrame
-local toScrollFrame
+-- reference to the rules list container
+local rulesList
+-- reference to the from list container
+local fromList
+-- reference to the to list container
+local toList
 
 --[[
   Build the ui for the quickchange menu
@@ -101,45 +100,28 @@ local toScrollFrame
 function me.BuildUi(parentFrame)
   if builtMenu then return end
 
-  local quickChangeContentFrame = me.CreateQuickChangeContentFrame(parentFrame)
-  me.CreateQuickChangeMenuTitle(quickChangeContentFrame)
+  me.CreateQuickChangeMenuTitle(parentFrame)
   --[[
     Create input elements
   ]]--
-  local delaySlider = me.CreateDelaySlider(quickChangeContentFrame)
+  local delaySlider = me.CreateDelaySlider(parentFrame)
   me.CreateAddRuleButton(delaySlider)
-  me.CreateRemoveRuleButton(quickChangeContentFrame)
-  me.CreateInventoryTypeDropdown(quickChangeContentFrame)
+  me.CreateRemoveRuleButton(parentFrame)
+  me.CreateInventoryTypeDropdown(parentFrame)
   --[[
     Create item lists
   ]]--
-  rulesScrollFrame = me.CreateRulesList(quickChangeContentFrame)
+  rulesList = me.CreateRulesList(parentFrame)
   -- initial load of rule list
-  me.RulesScrollFrameOnUpdate(rulesScrollFrame)
-  fromScrollFrame = me.CreateFromItemList(quickChangeContentFrame)
+  me.RulesListOnUpdate(rulesList)
+  fromList = me.CreateFromItemList(parentFrame)
   -- initial load of from list
-  me.FromFauxScrollFrameOnUpdate(fromScrollFrame)
-  toScrollFrame = me.CreateToItemList(quickChangeContentFrame)
+  me.FromListOnUpdate(fromList)
+  toList = me.CreateToItemList(parentFrame)
   -- initial load of to list
-  me.ToFauxScrollFrameOnUpdate(toScrollFrame)
+  me.ToListOnUpdate(toList)
 
   builtMenu = true
-end
-
---[[
-  @param {table} parentFrame
-
-  @return {table}
-   The created quickchange content frame
-]]--
-function me.CreateQuickChangeContentFrame(parentFrame)
-  local quickChangeContentFrame = CreateFrame(
-    "Frame", RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_MENU, parentFrame)
-  quickChangeContentFrame:SetWidth(RGGM_CONSTANTS.INTERFACE_PANEL_CONTENT_FRAME_WIDTH)
-  quickChangeContentFrame:SetHeight(RGGM_CONSTANTS.INTERFACE_PANEL_CONTENT_FRAME_HEIGHT)
-  quickChangeContentFrame:SetPoint("TOPLEFT", parentFrame, 5, -7)
-
-  return quickChangeContentFrame
 end
 
 --[[
@@ -147,10 +129,9 @@ end
 ]]--
 function me.CreateQuickChangeMenuTitle(contentFrame)
   local titleFontString = contentFrame:CreateFontString(
-    RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_MENU_TITLE, "OVERLAY")
-  titleFontString:SetFont(STANDARD_TEXT_FONT, 20)
-  titleFontString:SetPoint("TOP", 0, -20)
-  titleFontString:SetSize(contentFrame:GetWidth(), 20)
+    RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_MENU_TITLE, "OVERLAY", "GameFontNormalLarge")
+  titleFontString:SetPoint("TOPLEFT", 16, -16)
+  mod.uiHelper.SetColor(titleFontString, RGGM_CONSTANTS.COLOR.TITLE_GOLD)
   titleFontString:SetText(rggm.L["quick_change_title"])
 end
 
@@ -187,7 +168,7 @@ function me.CreateDelaySlider(frame)
     "MinimalSliderWithSteppersTemplate"
   )
   delaySlider:SetWidth(RGGM_CONSTANTS.QUICK_CHANGE_DELAY_SLIDER_WIDTH)
-  delaySlider:SetPoint("TOPLEFT", 15, -450)
+  delaySlider:SetPoint("TOPLEFT", 15, -500)
   delaySlider:Init(
     sliderMin,
     sliderOptions.minValue,
@@ -196,35 +177,7 @@ function me.CreateDelaySlider(frame)
     sliderOptions.formatters
   )
 
-  -- Setup tooltips on the frame and all interactive sub-elements
-  local sliderTitle = rggm.L["quick_change_slider_title"]
-  local sliderTooltip = rggm.L["quick_change_slider_tooltip"]
-
-  local function ShowTooltip()
-    mod.tooltip.BuildTooltipForOption(sliderTitle, sliderTooltip)
-  end
-
-  local function HideTooltip()
-    _G[RGGM_CONSTANTS.ELEMENT_TOOLTIP]:Hide()
-  end
-
-  delaySlider:SetScript("OnEnter", ShowTooltip)
-  delaySlider:SetScript("OnLeave", HideTooltip)
-
-  if delaySlider.Slider then
-    delaySlider.Slider:SetScript("OnEnter", ShowTooltip)
-    delaySlider.Slider:SetScript("OnLeave", HideTooltip)
-  end
-
-  if delaySlider.Back then
-    delaySlider.Back:SetScript("OnEnter", ShowTooltip)
-    delaySlider.Back:SetScript("OnLeave", HideTooltip)
-  end
-
-  if delaySlider.Forward then
-    delaySlider.Forward:SetScript("OnEnter", ShowTooltip)
-    delaySlider.Forward:SetScript("OnLeave", HideTooltip)
-  end
+  mod.uiHelper.CreateSliderDescription(delaySlider, rggm.L["quick_change_slider_tooltip"])
 
   return delaySlider
 end
@@ -285,9 +238,9 @@ function me.AddRuleOnClick(self)
   me.ResetSelectedItems()
   me.ResetDelaySlider(delaySlider)
   -- update items in 'from', 'to' and the rules list
-  me.FromFauxScrollFrameOnUpdate(fromScrollFrame)
-  me.ToFauxScrollFrameOnUpdate(toScrollFrame)
-  me.RulesScrollFrameOnUpdate(rulesScrollFrame)
+  me.FromListOnUpdate(fromList)
+  me.ToListOnUpdate(toList)
+  me.RulesListOnUpdate(rulesList)
 end
 
 --[[
@@ -302,7 +255,7 @@ function me.CreateRemoveRuleButton(frame)
     frame,
     "UIPanelButtonTemplate"
   )
-  removeRuleButton:SetPoint("TOPLEFT", 480, -200)
+  removeRuleButton:SetPoint("TOPLEFT", 480, -220)
   removeRuleButton:SetText(rggm.L["quick_change_remove_rule"])
 
   local buttonSize = removeRuleButton:GetTextWidth() + RGGM_CONSTANTS.QUICK_CHANGE_BUTTON_MARGIN
@@ -326,7 +279,7 @@ function me.RemoveRuleOnClick()
 
   mod.quickChange.RemoveQuickChangeRule(quickchangeRule)
   me.ResetSelectedRule()
-  me.RulesScrollFrameOnUpdate(rulesScrollFrame)
+  me.RulesListOnUpdate(rulesList)
 end
 
 --[[
@@ -360,23 +313,26 @@ end
   @param {table} frame
 ]]--
 function me.CreateInventoryTypeDropdown(frame)
-  local chooseCategoryDropdownMenu = mod.libUiDropDownMenu.CreateUiDropDownMenu(
+  local chooseCategoryDropdownMenu = mod.uiHelper.CreateSettingsDropdown(
     RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_MENU_INVENTORY_TYPE_DROPDOWN,
-    frame
+    frame,
+    {"TOPLEFT", 10, -285},
+    120,
+    me.InitializeInventoryTypeDropdownMenu
   )
-
-  chooseCategoryDropdownMenu:SetPoint("TOPLEFT", 0, -250)
-
-  mod.libUiDropDownMenu.UiDropDownMenu_SetWidth(chooseCategoryDropdownMenu, 100)
-  mod.libUiDropDownMenu.UiDropDownMenu_Initialize(chooseCategoryDropdownMenu, me.InitializeInventoryTypeDropdownMenu)
+  -- generate once so the button shows the current selection before the menu was ever opened
+  chooseCategoryDropdownMenu:GenerateMenu()
 end
 
 --[[
-  Initialize dropdownmenu for inventory types
+  Menu generator for the inventory type dropdown - fills the root description with a radio
+  entry per distinct inventory type
 
-  @param {table} self
+  @param {table} _
+    The dropdown the menu is generated for (unused)
+  @param {table} rootDescription
 ]]--
-function me.InitializeInventoryTypeDropdownMenu(self)
+function me.InitializeInventoryTypeDropdownMenu(_, rootDescription)
   local gearSlots = mod.gearManager.GetGearSlots()
   local registeredInventoryTypes = {}
 
@@ -386,46 +342,43 @@ function me.InitializeInventoryTypeDropdownMenu(self)
       as upper and lower trinket have the same texture and are thus only added once
     ]]--
     if registeredInventoryTypes[gearSlot.inventoryTypeId] == nil then
-      local button
+      local slotName = gearSlot.simplifiedName or gearSlot.name
 
-      if gearSlot.simplifiedName ~= nil then
-        button = mod.uiHelper.CreateDropdownButton(
-          rggm.L[gearSlot.simplifiedName],
-          gearSlot.slotId,
-          me.InventoryTypeDropDownMenuCallback
-        )
-      else
-        button = mod.uiHelper.CreateDropdownButton(
-          rggm.L[gearSlot.name],
-          gearSlot.slotId,
-          me.InventoryTypeDropDownMenuCallback
-        )
-      end
-
-      mod.libUiDropDownMenu.UiDropDownMenu_AddButton(button)
+      rootDescription:CreateRadio(
+        rggm.L[slotName],
+        me.IsInventoryTypeSelected,
+        me.OnInventoryTypeSelect,
+        gearSlot.slotId
+      )
       registeredInventoryTypes[gearSlot.inventoryTypeId] = true
     end
-  end
-
-  if mod.libUiDropDownMenu.UiDropDownMenu_GetSelectedValue(self) == nil then
-    mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(self, RGGM_CONSTANTS.CATEGORY_DROPDOWN_DEFAULT_VALUE)
   end
 end
 
 --[[
-  Callback for optionsmenu dropdowns
+  Whether the passed slotId is the currently selected inventory type
 
-  @param {table} self
-]]
-function me.InventoryTypeDropDownMenuCallback(self)
-  mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(self:GetParent().dropdown, self.value)
+  @param {number} slotId
 
+  @return {boolean}
+]]--
+function me.IsInventoryTypeSelected(slotId)
+  return currentSelectedSlotId == slotId
+end
+
+--[[
+  Callback for when an inventory type is selected
+
+  @param {number} slotId
+    The slotId of the selected inventory type
+]]--
+function me.OnInventoryTypeSelect(slotId)
   me.ResetSelectedItems()
 
   -- update items in both 'from' and 'to' list
-  me.FromFauxScrollFrameOnUpdate(fromScrollFrame, self.value)
-  me.ToFauxScrollFrameOnUpdate(toScrollFrame, self.value)
-  currentSelectedSlotId = self.value -- update currently selected slot after both scrollframes where updated
+  me.FromListOnUpdate(fromList, slotId)
+  me.ToListOnUpdate(toList, slotId)
+  currentSelectedSlotId = slotId -- update currently selected slot after both scrollframes where updated
 end
 
 --[[
@@ -434,116 +387,114 @@ end
   @param {table} frame
 
   @return {table}
-    The created rulesScrollFrame
+    The created rulesList container
 ]]--
 function me.CreateRulesList(frame)
-  local scrollFrame = CreateFrame(
-    "ScrollFrame",
+  return mod.uiHelper.CreateScrollList(
     RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULES_SCROLL_FRAME,
     frame,
-    "FauxScrollFrameTemplate, BackdropTemplate"
-  )
-  scrollFrame:SetWidth(RGGM_CONSTANTS.QUICK_CHANGE_RULES_CONTENT_FRAME_WIDTH)
-  scrollFrame:SetHeight(
+    {"TOPLEFT", 10, -50},
+    RGGM_CONSTANTS.QUICK_CHANGE_RULES_CONTENT_FRAME_WIDTH,
     RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT * RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS
   )
-  scrollFrame:SetPoint("TOPLEFT", 10, -50)
-  scrollFrame:EnableMouseWheel(true)
-  scrollFrame:SetBackdrop({
-    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background"
-  })
-
-  scrollFrame:SetScript("OnVerticalScroll", me.RuleListOnVerticalScroll)
-
-  for i = 1, RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS do
-    table.insert(rulesRows, me.CreateRuleRowFrame(scrollFrame, i))
-  end
-
-  return scrollFrame
 end
 
 --[[
-  OnVerticalScroll callback for scrollable rule list
-
-  @param {table} self
-  @param {number} offset
-]]--
-function me.RuleListOnVerticalScroll(self, offset)
-  self.ScrollBar:SetValue(offset)
-  self.offset = math.floor(offset / RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT + 0.5)
-  me.RulesScrollFrameOnUpdate(self)
-end
-
---[[
-  @param {table} frame
+  @param {table} contentFrame
   @param {number} position
 
   @return {table}
     The created row
 ]]--
-function me.CreateRuleRowFrame(frame, position)
-  local row = CreateFrame("Button", RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULES_ROW .. position, frame)
-  row:SetSize(frame:GetWidth() -5, RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT)
-  row:SetPoint("TOPLEFT", frame, 8, (position -1) * RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT * -1)
-
-  local fromContainerFrame = mod.uiHelper.CreateMouseOverEventContainer(
-    RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULES_MOUSEOVER_CONTAINER_LEFT,
-    row,
-    { "LEFT", 0, 0 }
+function me.CreateRuleRowFrame(contentFrame, position)
+  local rowOffset = (position - 1) * RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT * -1
+  local row = CreateFrame(
+    "Button",
+    RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULES_ROW .. position,
+    contentFrame,
+    "BackdropTemplate"
   )
+  row:SetHeight(RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT)
+  row:SetPoint("TOPLEFT", contentFrame, "TOPLEFT", 0, rowOffset)
+  row:SetPoint("TOPRIGHT", contentFrame, "TOPRIGHT", 0, rowOffset)
+  me.ApplyRowBackdrop(row, position)
 
-  local fromItemIcon = fromContainerFrame:CreateTexture(nil, "ARTWORK")
-  fromItemIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
-  fromItemIcon:SetAllPoints()
+  local fromItemIcon = mod.uiHelper.CreateItemIconHolder(
+    row,
+    { "LEFT", 5, 0 },
+    RGGM_CONSTANTS.QUICK_CHANGE_ICON_SIZE
+  )
   row.fromItemIcon = fromItemIcon
 
   local fromItemName = row:CreateFontString(nil, "OVERLAY")
   fromItemName:SetFont(STANDARD_TEXT_FONT, 14)
-  fromItemName:SetPoint("LEFT", row.fromItemIcon, 0, 0)
-  fromItemName:SetWidth(250)
+  mod.uiHelper.SetColor(fromItemName, RGGM_CONSTANTS.COLOR.BODY)
+  fromItemName:SetPoint("LEFT", fromItemIcon.iconHolder, "RIGHT", 5, 0)
+  fromItemName:SetWidth(200)
+  fromItemName:SetJustifyH("LEFT")
   row.fromItemName = fromItemName
 
-  local toContainerFrame = mod.uiHelper.CreateMouseOverEventContainer(
-    RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULES_MOUSEOVER_CONTAINER_RIGHT,
+  local toItemIcon = mod.uiHelper.CreateItemIconHolder(
     row,
-    { "RIGHT", row.fromItemName, 50, 0 }
+    { "LEFT", fromItemName, "RIGHT", 5, 0 },
+    RGGM_CONSTANTS.QUICK_CHANGE_ICON_SIZE
   )
-
-  local toItemIcon = toContainerFrame:CreateTexture(nil, "ARTWORK")
-  toItemIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
-  toItemIcon:SetAllPoints()
   row.toItemIcon = toItemIcon
 
   local toItemName = row:CreateFontString(nil, "OVERLAY")
   toItemName:SetFont(STANDARD_TEXT_FONT, 14)
-  toItemName:SetPoint("LEFT", row.toItemIcon, 0, 0)
-  toItemName:SetWidth(250)
+  mod.uiHelper.SetColor(toItemName, RGGM_CONSTANTS.COLOR.BODY)
+  toItemName:SetPoint("LEFT", toItemIcon.iconHolder, "RIGHT", 5, 0)
+  toItemName:SetWidth(200)
+  toItemName:SetJustifyH("LEFT")
   row.toItemName = toItemName
 
   local delay = row:CreateFontString(nil, "OVERLAY")
   delay:SetFont(STANDARD_TEXT_FONT, 14)
+  mod.uiHelper.SetColor(delay, RGGM_CONSTANTS.COLOR.BODY)
   delay:SetPoint("RIGHT", 0, 0)
   delay:SetWidth(50)
   row.delay = delay
 
-  local highlightTexture = row:CreateTexture(RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULES_ROW_HIGHLIGHT, "BACKGROUND")
-  highlightTexture:SetSize(row:GetWidth(), row:GetHeight())
-  highlightTexture:SetPoint("TOPLEFT")
-  highlightTexture:SetTexture("Interface\\QuestFrame\\UI-QuestLogTitleHighlight")
-  highlightTexture:SetBlendMode("ADD")
-  highlightTexture:Hide()
+  local selectedTexture = row:CreateTexture(nil, "BACKGROUND")
+  selectedTexture:SetAllPoints()
+  selectedTexture:SetColorTexture(1, 0.82, 0, 0.25)
+  selectedTexture:Hide()
+  row.selectedTexture = selectedTexture
+
+  local hoverTexture = row:CreateTexture(nil, "HIGHLIGHT")
+  hoverTexture:SetAllPoints()
+  hoverTexture:SetColorTexture(1, 1, 1, 0.15)
 
   me.SetupRowEvents(row)
-  me.SetupContainerEvents(fromContainerFrame)
-  me.SetupContainerEvents(toContainerFrame)
 
   return row
 end
 
 --[[
-  Check if a rule is matching
+  Apply the striped list row backdrop shared by all quickchange lists
+
+  @param {table} row
+  @param {number} position
+]]--
+function me.ApplyRowBackdrop(row, position)
+  row:SetBackdrop({
+    bgFile = "Interface\\AddOns\\GearMenu\\assets\\ui_slot_background",
+    insets = {left = 0, right = 0, top = 0, bottom = 0},
+  })
+
+  if math.fmod(position, 2) == 0 then
+    row:SetBackdropColor(0.37, 0.37, 0.37, .3)
+  else
+    row:SetBackdropColor(.25, .25, .25, .9)
+  end
+end
+
+--[[
+  Whether the passed row shows the currently selected quickchange rule
 
   @param {table} rule
+    The currently selected quickchange rule ({from, to} with itemId/enchantId/runeAbilityId)
   @param {table} row
 ]]--
 function me.IsRuleMatching(rule, row)
@@ -563,40 +514,33 @@ function me.IsRuleMatching(rule, row)
 end
 
 --[[
-  Update the quickchange rules list
+  Update the quickchange rules list. Rows are created lazily - one per rule - and
+  surplus rows are hidden.
 
-  @param {table} scrollFrame
+  @param {table} listContainer
 ]]--
-function me.RulesScrollFrameOnUpdate(scrollFrame)
+function me.RulesListOnUpdate(listContainer)
   local quickChangeRules = mod.configuration.GetQuickChangeRules()
-  local maxValue = #quickChangeRules or 0
 
-  if maxValue <= RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS then
-    maxValue = RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS + 1
-  end
-  -- Note: maxValue needs to be at least max_rows + 1
-  FauxScrollFrame_Update(
-    scrollFrame,
-    maxValue,
-    RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS,
-    RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT
-  )
+  for index = 1, math.max(#quickChangeRules, #rulesRows) do
+    if index <= #quickChangeRules and rulesRows[index] == nil then
+      rulesRows[index] = me.CreateRuleRowFrame(listContainer.content, index)
+    end
 
-  local offset = FauxScrollFrame_GetOffset(scrollFrame)
-  for index = 1, RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS do
-    local value = index + offset
+    local row = rulesRows[index]
 
-    if value <= #quickChangeRules then
-      local ruleData = quickChangeRules[value]
-      local row = rulesRows[index]
+    if index <= #quickChangeRules then
+      local ruleData = quickChangeRules[index]
 
       row.fromItemIcon:SetTexture(ruleData.changeFromItemIcon)
+      row.fromItemIcon.iconHolder.itemId = ruleData.changeFromItemId
       row.fromItemName:SetText(ruleData.changeFromName)
       row.fromItemId = ruleData.changeFromItemId
       row.fromItemEnchantId = ruleData.changeFromItemEnchantId
       row.fromRuneAbilityId = ruleData.changeFromRuneAbilityId
       row.fromRuneName = ruleData.changeFromRuneName
       row.toItemIcon:SetTexture(ruleData.changeToItemIcon)
+      row.toItemIcon.iconHolder.itemId = ruleData.changeToItemId
       row.toItemName:SetText(ruleData.changeToName)
       row.toItemId = ruleData.changeToItemId
       row.toItemEnchantId = ruleData.changeToItemEnchantId
@@ -604,7 +548,7 @@ function me.RulesScrollFrameOnUpdate(scrollFrame)
       row.toRuneName = ruleData.changeToRuneName
       row.delay:SetText(ruleData.delay)
 
-      if me.IsRuleMatching(ruleData, row) then
+      if me.IsRuleMatching(quickchangeRule, row) then
         me.ShowHighLight(row)
       else
         me.HideHighlight(row)
@@ -612,42 +556,41 @@ function me.RulesScrollFrameOnUpdate(scrollFrame)
 
       row:Show()
     else
-      rulesRows[index]:Hide()
+      row:Hide()
     end
   end
+
+  listContainer.content:SetHeight(
+    math.max(#quickChangeRules, RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS) * RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT
+  )
 end
 
 --[[
   @param {table} frame
 
   @return {table}
-    The created fromScrollFrame
+    The created fromList container
 ]]--
 function me.CreateFromItemList(frame)
-  local scrollFrame = me.CreateFauxScrollFrame(
+  return mod.uiHelper.CreateScrollList(
     RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_FROM_SCROLL_FRAME,
     frame,
+    {"TOPLEFT", 5, -320},
     RGGM_CONSTANTS.QUICK_CHANGE_FROM_CONTENT_FRAME_WIDTH,
-    me.FromFauxScrollFrameOnUpdate,
-    fromRows
+    RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT * RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS
   )
-
-  scrollFrame:ClearAllPoints()
-  scrollFrame:SetPoint("TOPLEFT", frame, 5, -300)
-
-  return scrollFrame
 end
 
 --[[
-  Update the item to switch scrollframe on vertical scroll events. Gathers all items for
-  the currently selected inventory type and displays them. This only includes items that
-  have an on use effect.
+  Update the item to switch from list. Gathers all items for the currently selected
+  inventory type and displays them. This only includes items that have an on use effect.
+  Rows are created lazily - one per item - and surplus rows are hidden.
 
-  @param {table} scrollFrame
+  @param {table} listContainer
   @param {number} slotId
     Optional slotId
 ]]--
-function me.FromFauxScrollFrameOnUpdate(scrollFrame, slotId)
+function me.FromListOnUpdate(listContainer, slotId)
   local selectedSlotId
 
   if slotId ~= nil then
@@ -665,33 +608,21 @@ function me.FromFauxScrollFrameOnUpdate(scrollFrame, slotId)
       me.tag, "Invalidated 'from' cached item list and updated items for new slotId: " .. selectedSlotId)
   end
 
-  local maxValue = #fromCachedQuickChangeItems or 0
+  for i = 1, math.max(#fromCachedQuickChangeItems, #fromRows) do
+    if i <= #fromCachedQuickChangeItems and fromRows[i] == nil then
+      fromRows[i] = me.CreateRowFrames(listContainer.content, i)
+    end
 
-  if maxValue <= RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS then
-    maxValue = RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS + 1
-  end
-  -- Note: maxValue needs to be at least max_rows + 1
-  FauxScrollFrame_Update(
-    scrollFrame,
-    maxValue,
-    RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS,
-    RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT
-  )
+    local row = fromRows[i]
 
-  local offset = FauxScrollFrame_GetOffset(scrollFrame)
-
-  for i = 1, RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS do
-    local value = i + offset
-
-    if value <= #fromCachedQuickChangeItems then
-      local row = fromRows[i]
-
-      row.icon:SetTexture(fromCachedQuickChangeItems[value].texture)
-      row.name:SetText(fromCachedQuickChangeItems[value].name)
-      row.itemId = fromCachedQuickChangeItems[value].id
-      row.enchantId = fromCachedQuickChangeItems[value].enchantId or nil
-      row.runeAbilityId = fromCachedQuickChangeItems[value].runeAbilityId or nil
-      row.runeName = fromCachedQuickChangeItems[value].runeName or nil
+    if i <= #fromCachedQuickChangeItems then
+      row.icon:SetTexture(fromCachedQuickChangeItems[i].texture)
+      row.icon.iconHolder.itemId = fromCachedQuickChangeItems[i].id
+      row.name:SetText(fromCachedQuickChangeItems[i].name)
+      row.itemId = fromCachedQuickChangeItems[i].id
+      row.enchantId = fromCachedQuickChangeItems[i].enchantId or nil
+      row.runeAbilityId = fromCachedQuickChangeItems[i].runeAbilityId or nil
+      row.runeName = fromCachedQuickChangeItems[i].runeName or nil
       row.side = RGGM_CONSTANTS.QUICK_CHANGE_SIDE_FROM
 
       local isMatchingFromRule =
@@ -708,41 +639,42 @@ function me.FromFauxScrollFrameOnUpdate(scrollFrame, slotId)
 
       row:Show()
     else
-      fromRows[i]:Hide()
+      row:Hide()
     end
   end
+
+  listContainer.content:SetHeight(
+    math.max(#fromCachedQuickChangeItems, RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS)
+    * RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT
+  )
 end
 
 --[[
   @param {table} frame
 
   @return {table}
-    The created toScrollFrame
+    The created toList container
 ]]--
 function me.CreateToItemList(frame)
-  local scrollFrame = me.CreateFauxScrollFrame(
+  return mod.uiHelper.CreateScrollList(
     RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_TO_SCROLL_FRAME,
     frame,
+    {"TOPLEFT", 310, -320},
     RGGM_CONSTANTS.QUICK_CHANGE_TO_CONTENT_FRAME_WIDTH,
-    me.ToFauxScrollFrameOnUpdate,
-    toRows
+    RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT * RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS
   )
-
-  scrollFrame:ClearAllPoints()
-  scrollFrame:SetPoint("TOPLEFT", frame, 310, -300)
-
-  return scrollFrame
 end
 
 --[[
-  Update the item to switch scrollframe on vertical scroll events. Gathers all items for
-  the currently selected inventory type and displays them.
+  Update the item to switch to list. Gathers all items for the currently selected
+  inventory type and displays them. Rows are created lazily - one per item - and
+  surplus rows are hidden.
 
-  @param {table} scrollFrame
+  @param {table} listContainer
   @param {number} slotId
     Optional slotId
 ]]--
-function me.ToFauxScrollFrameOnUpdate(scrollFrame, slotId)
+function me.ToListOnUpdate(listContainer, slotId)
   local selectedSlotId
 
   if slotId ~= nil then
@@ -760,33 +692,21 @@ function me.ToFauxScrollFrameOnUpdate(scrollFrame, slotId)
       me.tag, "Invalidated 'to' cached item list and updated items for new slotId: " .. selectedSlotId)
   end
 
-  local maxValue = #toCachedQuickChangeItems or 0
+  for i = 1, math.max(#toCachedQuickChangeItems, #toRows) do
+    if i <= #toCachedQuickChangeItems and toRows[i] == nil then
+      toRows[i] = me.CreateRowFrames(listContainer.content, i)
+    end
 
-  if maxValue <= RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS then
-    maxValue = RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS + 1
-  end
-  -- Note: maxValue needs to be at least max_rows + 1
-  FauxScrollFrame_Update(
-    scrollFrame,
-    maxValue,
-    RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS,
-    RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT
-  )
+    local row = toRows[i]
 
-  local offset = FauxScrollFrame_GetOffset(scrollFrame)
-
-  for i = 1, RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS do
-    local value = i + offset
-
-    if value <= #toCachedQuickChangeItems then
-      local row = toRows[i]
-
-      row.icon:SetTexture(toCachedQuickChangeItems[value].texture)
-      row.name:SetText(toCachedQuickChangeItems[value].name)
-      row.itemId = toCachedQuickChangeItems[value].id
-      row.enchantId = toCachedQuickChangeItems[value].enchantId or nil
-      row.runeAbilityId = toCachedQuickChangeItems[value].runeAbilityId or nil
-      row.runeName = toCachedQuickChangeItems[value].runeName or nil
+    if i <= #toCachedQuickChangeItems then
+      row.icon:SetTexture(toCachedQuickChangeItems[i].texture)
+      row.icon.iconHolder.itemId = toCachedQuickChangeItems[i].id
+      row.name:SetText(toCachedQuickChangeItems[i].name)
+      row.itemId = toCachedQuickChangeItems[i].id
+      row.enchantId = toCachedQuickChangeItems[i].enchantId or nil
+      row.runeAbilityId = toCachedQuickChangeItems[i].runeAbilityId or nil
+      row.runeName = toCachedQuickChangeItems[i].runeName or nil
       row.side = RGGM_CONSTANTS.QUICK_CHANGE_SIDE_TO
 
       local isMatchingToRule =
@@ -803,138 +723,75 @@ function me.ToFauxScrollFrameOnUpdate(scrollFrame, slotId)
 
       row:Show()
     else
-      toRows[i]:Hide()
+      row:Hide()
     end
   end
+
+  listContainer.content:SetHeight(
+    math.max(#toCachedQuickChangeItems, RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS)
+    * RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT
+  )
 end
 
 --[[
-  @param {string} scrollFrameName
-  @param {table} frame
-  @param {number} width
-  @param {function} callback
-    OnVerticalScroll callback function
-  @param {table} storage
-    Storage for the created rows
-
-  @return {table}
-    The created scrollFrame
-]]--
-function me.CreateFauxScrollFrame(scrollFrameName, frame, width, callback, storage)
-  local scrollFrame = CreateFrame("ScrollFrame", scrollFrameName, frame, "FauxScrollFrameTemplate, BackdropTemplate")
-  scrollFrame:SetWidth(width)
-  scrollFrame:SetHeight(RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT * RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS)
-  scrollFrame:EnableMouseWheel(true)
-  scrollFrame:SetBackdrop({
-    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background"
-  })
-
-  scrollFrame:SetScript("OnVerticalScroll", function(self, offset)
-    self.ScrollBar:SetValue(offset)
-    self.offset = math.floor(offset / RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT + 0.5)
-    callback(self)
-  end)
-
-  for i = 1, RGGM_CONSTANTS.QUICK_CHANGE_MAX_ROWS do
-    table.insert(storage, me.CreateRowFrames(scrollFrame, i))
-  end
-
-  return scrollFrame
-end
-
---[[
-  @param {table} frame
+  @param {table} contentFrame
   @param {number} position
 
   @return {table}
     The created row
 ]]--
-function me.CreateRowFrames(frame, position)
-  local row = CreateFrame("Button", RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_CONTENT_FRAME_ROW .. position, frame)
-  row:SetSize(frame:GetWidth(), RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT)
-  row:SetPoint("TOPLEFT", frame, 0, (position -1) * RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT * -1)
-
-  local containerFrame = mod.uiHelper.CreateMouseOverEventContainer(
-    nil,
-    row,
-    { "LEFT", 5, 0 }
+function me.CreateRowFrames(contentFrame, position)
+  local rowOffset = (position - 1) * RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT * -1
+  local row = CreateFrame(
+    "Button",
+    RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_CONTENT_FRAME_ROW .. position,
+    contentFrame,
+    "BackdropTemplate"
   )
+  row:SetHeight(RGGM_CONSTANTS.QUICK_CHANGE_ROW_HEIGHT)
+  row:SetPoint("TOPLEFT", contentFrame, "TOPLEFT", 0, rowOffset)
+  row:SetPoint("TOPRIGHT", contentFrame, "TOPRIGHT", 0, rowOffset)
+  me.ApplyRowBackdrop(row, position)
 
-  local itemIcon = containerFrame:CreateTexture(nil, "ARTWORK")
-  itemIcon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
-  itemIcon:SetAllPoints()
+  local itemIcon = mod.uiHelper.CreateItemIconHolder(
+    row,
+    { "LEFT", 5, 0 },
+    RGGM_CONSTANTS.QUICK_CHANGE_ICON_SIZE
+  )
   row.icon = itemIcon
 
   local itemNameFontString = row:CreateFontString(nil, "OVERLAY")
   itemNameFontString:SetFont(STANDARD_TEXT_FONT, 14)
-  itemNameFontString:SetPoint("LEFT", 16 + 5, 0)
-  itemNameFontString:SetWidth(row:GetWidth() - 16 - 5)
+  mod.uiHelper.SetColor(itemNameFontString, RGGM_CONSTANTS.COLOR.BODY)
+  itemNameFontString:SetPoint("LEFT", itemIcon.iconHolder, "RIGHT", 5, 0)
+  itemNameFontString:SetWidth(
+    contentFrame:GetWidth() - RGGM_CONSTANTS.QUICK_CHANGE_ICON_SIZE - 20
+  )
+  itemNameFontString:SetJustifyH("LEFT")
   row.name = itemNameFontString
 
-  local highlightTexture = row:CreateTexture(RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_CONTENT_FRAME_HIGHLIGHT, "BACKGROUND")
-  highlightTexture:SetSize(row:GetWidth(), row:GetHeight())
-  highlightTexture:SetPoint("LEFT")
-  highlightTexture:SetTexture("Interface\\QuestFrame\\UI-QuestLogTitleHighlight")
-  highlightTexture:SetBlendMode("ADD")
-  highlightTexture:Hide()
+  local selectedTexture = row:CreateTexture(nil, "BACKGROUND")
+  selectedTexture:SetAllPoints()
+  selectedTexture:SetColorTexture(1, 0.82, 0, 0.25)
+  selectedTexture:Hide()
+  row.selectedTexture = selectedTexture
+
+  local hoverTexture = row:CreateTexture(nil, "HIGHLIGHT")
+  hoverTexture:SetAllPoints()
+  hoverTexture:SetColorTexture(1, 1, 1, 0.15)
 
   me.SetupRowEvents(row)
-  me.SetupContainerEvents(containerFrame)
 
   return row
 end
 
 --[[
-  Setup script handlers for a row
+  Setup script handlers for a row. Hovering is handled by the row's HIGHLIGHT layer
+  texture - only the click selection needs a handler.
 
   @param {table} row
 ]]--
 function me.SetupRowEvents(row)
-  row:SetScript("OnEnter", function(self)
-    me.ShowHighLight(self)
-  end)
-
-  row:SetScript("OnLeave", function(self)
-    if self.side == RGGM_CONSTANTS.QUICK_CHANGE_SIDE_FROM then
-      if selectedRule.from == nil or selectedRule.from.itemId ~= self.itemId then
-        me.HideHighlight(self)
-      elseif selectedRule.from.enchantId ~= self.enchantId then
-        me.HideHighlight(self)
-      elseif selectedRule.from.runeAbilityId ~= self.runeAbilityId then
-        me.HideHighlight(self)
-      end
-
-      return
-    end
-
-    if self.side == RGGM_CONSTANTS.QUICK_CHANGE_SIDE_TO then
-      if selectedRule.to == nil or selectedRule.to.itemId ~= self.itemId then
-        me.HideHighlight(self)
-      elseif selectedRule.to.enchantId ~= self.enchantId then
-        me.HideHighlight(self)
-      elseif selectedRule.to.runeAbilityId ~= self.runeAbilityId then
-        me.HideHighlight(self)
-      end
-
-      return
-    end
-
-    if self.side == nil then
-      if quickchangeRule.from == nil or quickchangeRule.to == nil or
-          quickchangeRule.from.itemId ~= self.fromItemId or quickchangeRule.to.itemId ~= self.toItemId then
-        me.HideHighlight(self)
-      elseif quickchangeRule.from.enchantId ~= self.fromItemEnchantId
-          or quickchangeRule.to.enchantId ~= self.toItemEnchantId then
-        me.HideHighlight(self)
-      elseif quickchangeRule.from.runeAbilityId ~= self.fromRuneAbilityId
-          or quickchangeRule.to.runeAbilityId ~= self.toRuneAbilityId then
-        me.HideHighlight(self)
-      end
-
-      return
-    end
-  end)
-
   row:SetScript("OnClick", function(self)
     if self.side == RGGM_CONSTANTS.QUICK_CHANGE_SIDE_FROM then
       selectedRule.from = {
@@ -944,7 +801,7 @@ function me.SetupRowEvents(row)
         ["runeName"] = self.runeName or nil
       }
 
-      me.FromFauxScrollFrameOnUpdate(fromScrollFrame)
+      me.FromListOnUpdate(fromList)
     elseif self.side == RGGM_CONSTANTS.QUICK_CHANGE_SIDE_TO then
       selectedRule.to = {
         ["itemId"] = self.itemId,
@@ -952,7 +809,7 @@ function me.SetupRowEvents(row)
         ["runeAbilityId"] = self.runeAbilityId or nil,
         ["runeName"] = self.runeName or nil
       }
-      me.ToFauxScrollFrameOnUpdate(toScrollFrame)
+      me.ToListOnUpdate(toList)
     else
       quickchangeRule.from = {
         ["itemId"] = self.fromItemId,
@@ -967,67 +824,25 @@ function me.SetupRowEvents(row)
         ["runeName"] = self.toRuneName or nil
       }
 
-      me.RulesScrollFrameOnUpdate(rulesScrollFrame)
+      me.RulesListOnUpdate(rulesList)
     end
   end)
 end
 
 --[[
-  Setup script handlers for a container frame
-
-  @param {table} containerFrame
-]]--
-function me.SetupContainerEvents(containerFrame)
-  containerFrame:SetScript("OnEnter", function(self)
-    local parentFrame = self:GetParent()
-    local item
-
-    if self:GetName() == RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULES_MOUSEOVER_CONTAINER_LEFT then
-      item = {
-        ["itemId"] = parentFrame.fromItemId,
-        ["enchantId"] = parentFrame.fromItemEnchantId,
-        ["runeAbilityId"] = parentFrame.fromRuneAbilityId,
-        ["runeName"] = parentFrame.fromRuneName
-      }
-    elseif self:GetName() == RGGM_CONSTANTS.ELEMENT_QUICK_CHANGE_RULES_MOUSEOVER_CONTAINER_RIGHT then
-      item = {
-        ["itemId"] = parentFrame.toItemId,
-        ["enchantId"] = parentFrame.toItemEnchantId,
-        ["runeAbilityId"] = parentFrame.toRuneAbilityId,
-        ["runeName"] = parentFrame.toRuneName
-      }
-    else
-      item = {
-        ["itemId"] = parentFrame.itemId,
-        ["enchantId"] = parentFrame.enchantId,
-        ["runeAbilityId"] = parentFrame.runeAbilityId,
-        ["runeName"] = parentFrame.runeName
-      }
-    end
-
-    mod.tooltip.UpdateTooltipForItem(item)
-    me.ShowHighLight(containerFrame:GetParent())
-  end)
-
-  containerFrame:SetScript("OnLeave", function()
-    mod.tooltip.TooltipClear()
-  end)
-end
-
---[[
-  Show the highlight of a row
+  Show the selection highlight of a row
 
   @param {table} row
 ]]--
 function me.ShowHighLight(row)
-  _G[row:GetName() .. "Highlight"]:Show()
+  row.selectedTexture:Show()
 end
 
 --[[
-  Hide the highlight of a row
+  Hide the selection highlight of a row
 
   @param {table} row
 ]]--
 function me.HideHighlight(row)
-  _G[row:GetName() .. "Highlight"]:Hide()
+  row.selectedTexture:Hide()
 end

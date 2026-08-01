@@ -11,6 +11,16 @@ def main():
     print("    GW2_UI 一键汉化脚本 (by Onesfto)    ")
     print("======================================\n")
 
+    print("!! 本脚本已于 2026-07-27 停用，不需要再跑了。\n")
+    print("汉化已经搬进 GW2_UI_PLUS 插件，改成游戏内运行时注入：")
+    print("  GW2_UI_PLUS/locale/zhCN.lua       380 条补充词条")
+    print("  GW2_UI_PLUS/locale/Hardcoded.lua  三处硬编码文本")
+    print("\n跑这个脚本会改写 GW2_UI 源码，让本体重新偏离上游，")
+    print("下次更新插件时又要手工合并——正是我们要摆脱的事。\n")
+    if input("确定还要继续吗？（输入 yes 继续，回车退出）: ").strip().lower() != "yes":
+        print("已取消。")
+        return
+
     # 获取脚本所在目录
     script_dir = os.path.dirname(os.path.abspath(__file__))
     

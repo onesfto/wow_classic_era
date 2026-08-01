@@ -314,14 +314,19 @@ local function PrepareUnitFrameSettings(settingsTab)
             or frame.panelId == "player_aura"
             or frame.panelId == "target_general"
             or frame.panelId == "target_of_target"
-            or frame.panelId == "player_pet") then
+            or frame.panelId == "player_pet"
+            or frame.panelId == "hud_microbar"
+            or frame.panelId == "hud_minimap"
+            or frame.panelId == "hud_worldmap") then
             embeddedPanels[frame.panelId] = frame
         end
-        if frame and frame.panelId == "player_fader" then
+        if frame and (frame.panelId == "player_fader" or frame.panelId == "player_totem") then
             if GW2_ADDON.SettingsWidgetRegistry
                 and GW2_ADDON.SettingsWidgetRegistry.byPanel then
                 GW2_ADDON.SettingsWidgetRegistry.byPanel[frame] = nil
             end
+        elseif frame and (frame.panelId == "player_castbar" or frame.panelId == "player_aura" or frame.panelId == "player_classpower") then
+            -- DO NOT remove from registry, just skip inserting to menu
         else
             filtered:Insert(data)
         end
@@ -344,12 +349,19 @@ local function PrepareUnitFrameSettings(settingsTab)
             settingsTab.gwPlusPlayerStatusPanel = panel
         end
     end
+    settingsTab.gwPlusEmbeddedPanels = embeddedPanels
 end
 
 addonTable.PrepareUnitFrameSettings = PrepareUnitFrameSettings
 
 local function FindNativePages(settingsTab)
     local found = {}
+    if settingsTab.gwPlusEmbeddedPanels then
+        for k, v in pairs(settingsTab.gwPlusEmbeddedPanels) do
+            found[k] = v
+        end
+    end
+
     local scrollBox = settingsTab and settingsTab.menu
         and settingsTab.menu.ScrollBox
     local provider = scrollBox and scrollBox:GetDataProvider()
@@ -538,6 +550,9 @@ local function BuildMainMenuTab(settingsTab, settingsWindow)
     CreateMenuButton("目标的目标", "target_of_target", false, false)
     CreateMenuButton("宠物", "player_pet", false, false)
     CreateMenuButton("小队", "party_general", false, false)
+    CreateMenuButton("微型系统菜单", "hud_microbar", false, false)
+    CreateMenuButton("微缩地图", "hud_minimap", false, false)
+    CreateMenuButton("世界地图", "hud_worldmap", false, false)
 
     tab:SetScript("OnShow", function()
         SelectPage(selectedPanelId)

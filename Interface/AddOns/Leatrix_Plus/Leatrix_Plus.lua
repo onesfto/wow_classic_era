@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 1.15.146 (22nd July 2026)
+-- 	Leatrix Plus 1.15.148 (29th July 2026)
 ----------------------------------------------------------------------
 
 --	01:Functions 02:Locks   03:Restart 40:Player   45:Rest
@@ -19,7 +19,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "1.15.146"
+	LeaPlusLC["AddonVer"] = "1.15.148"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -5561,7 +5561,8 @@
 				C_Timer.After(0.1, function()
 					MiniMapTracking:SetScale(0.60)
 					miniFrame.ClearAllPoints(MiniMapTracking)
-					MiniMapTracking:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -24, -24) -- SetLookingForGroupUIAvailable
+					MiniMapTracking:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -22, -24) -- SetLookingForGroupUIAvailable
+					MiniMapTracking:SetParent(Minimap)
 					MiniMapTracking:SetFrameLevel(4)
 				end)
 

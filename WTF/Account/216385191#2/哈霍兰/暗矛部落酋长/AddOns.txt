@@ -125,3 +125,4 @@ NDui: enabled
 NDui_Plus: enabled
 AllTheThings: enabled
 GW2_UI_PLUS: enabled
+OPie_Classic: disabled

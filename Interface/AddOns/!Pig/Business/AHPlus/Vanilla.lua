@@ -1045,6 +1045,7 @@ function BusinessInfo.AHPlus_Vanilla()
 	UIDropDownMenu_SetWidth(PriceDropDown, 140)
 	PriceDropDown:ClearAllPoints();
 	PriceDropDown:SetPoint("TOPLEFT",AuctionFrameAuctions,"TOPLEFT",30,-174);
+	CASTING_BAR_ALPHA_STEP=CASTING_BAR_ALPHA_STEP or 0.05;
 	--价格
 	StartPrice:ClearAllPoints();
 	StartPrice:SetPoint("TOPLEFT",AuctionFrameAuctions,"TOPLEFT",33,-214);

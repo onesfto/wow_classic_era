@@ -682,7 +682,7 @@ local function evPlayerLogin(self)
 
     GW.LoadCharacter()
 
-    if GW.Retail or GW.TBC or GW.Classic then
+    if GW.Retail or GW.TBC then
         GW.LoadSocialFrame()
     end
 
@@ -907,15 +907,14 @@ local function evLoadSkins()
         GW.LoadCalendarSkin()
     else
         GW.LoadQuestLogFrameSkin()
-        if GW.LoadTradeSkillFrameSkin then GW.LoadTradeSkillFrameSkin() end
         GW.LoadQuestTimersSkin()
     end
 
     if not (GW.Classic or GW.TBC) then
         GW.MakeAltPowerBarMovable()
         GW.LoadLFGSkins()
+        GW.LoadMailSkin()
     end
-    GW.LoadMailSkin()
 
     if not (GW.Classic or GW.TBC or GW.Wrath) then
         GW.LoadSocketUISkin()

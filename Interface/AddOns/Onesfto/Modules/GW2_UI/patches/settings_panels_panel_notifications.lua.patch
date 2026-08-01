@@ -1,0 +1,11 @@
+--- Onesfto/Modules/GW2_UI/GW2_UI_1.15.9/settings/panels/panel_notifications.lua	2026-07-26 13:19:34
++++ GW2_UI/settings/panels/panel_notifications.lua	2026-07-26 14:19:30
+@@ -11,7 +11,7 @@
+     p.header:SetFont(DAMAGE_TEXT_FONT, 20)
+     p.header:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
+     p.header:SetText(COMMUNITIES_NOTIFICATION_SETTINGS_DIALOG_SETTINGS_LABEL)
+-    p.header:SetWidth(p.header:GetStringWidth())
++    p.header:SetWidth(p.header:GetStringWidth() + 10)
+     p.sub:SetFont(UNIT_NAME_FONT, 12)
+     p.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
+     p.sub:SetText(nil)

@@ -54,7 +54,7 @@ Details_Vanguard: enabled
 Doom_CooldownPulse: enabled
 ElvUI: disabled
 ElvUI_Libraries: disabled
-ElvUI_Options: disabled
+ElvUI_Options: enabled
 GFW_FeedOMatic: enabled
 GatherMate2: enabled
 GatherMate2_Data: enabled
@@ -62,8 +62,8 @@ GTFO: enabled
 HandyNotes: disabled
 HandyNotes_DungeonLocations (Classic): disabled
 HandyNotes_NPCs (Classic): disabled
-HidingBar: enabled
-HidingBar_Options: enabled
+HidingBar: disabled
+HidingBar_Options: disabled
 Immersion: enabled
 InboxMailBag: enabled
 Leatrix_Maps: enabled
@@ -118,8 +118,8 @@ kExtraBossFrames: disabled
 MissingTradeSkillsList_TBC_Data: enabled
 Blizzard_CombatText: enabled
 WeakAurasCompanion: enabled
-NDui_Plus: enabled
-NDui: enabled
+NDui_Plus: disabled
+NDui: disabled
 Tukui: enabled
 Masque: enabled
 DBM-Raids-Vanilla: enabled
@@ -219,3 +219,8 @@ Clique: enabled
 LibSFDropDown: enabled
 AllTheThings: enabled
 GW2_UI_PLUS: enabled
+OPie_Classic: disabled
+!GW2_UI_PLUS_Early: enabled
+OPie: enabled
+LocalMusicPlayer: enabled
+InnGramophone: enabled

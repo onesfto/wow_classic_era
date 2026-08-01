@@ -947,6 +947,24 @@ local function OnPlayerLogin()
     local bb = AceAddon:GetAddon("BetterBags", true)
     if not bb then return end
 
+    -- 隐藏原生背包条
+    local bagBarFrames = {
+        "MainMenuBarBackpackButton",
+        "CharacterBag0Slot",
+        "CharacterBag1Slot",
+        "CharacterBag2Slot",
+        "CharacterBag3Slot",
+        "KeyRingButton"
+    }
+    for _, frameName in ipairs(bagBarFrames) do
+        local frame = _G[frameName]
+        if frame then
+            frame:Hide()
+            frame.Show = function() end
+            frame:UnregisterAllEvents()
+        end
+    end
+
     local categories = bb:GetModule("Categories", true)
     if not categories then return end
 

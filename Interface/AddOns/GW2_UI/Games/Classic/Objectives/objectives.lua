@@ -127,11 +127,7 @@ local function UpdateBlockInternal(self, parent, quest)
     self.questLogIndex = quest.questLogIndex
     self.sourceItemId = quest.sourceItemId
     self.title = quest.title
-    
-    -- 兼容 Questie 等级前缀：如果 Questie 已经修改了 quest.title 加上了类似 "[60R]"，
-    -- 我们就剥离掉它原本的前缀，使用纯净的标题与 GW2_UI 的样式组合，或者直接使用 Questie 的标题
-    local cleanTitle = quest.title:gsub("^%[%d+[^%]]*%]%s*", "")
-    self.Header:SetText(text .. cleanTitle)
+    self.Header:SetText(text .. quest.title)
 
     GW.CombatQueue:Queue(nil, self.UpdateObjectiveActionButton, {self})
 

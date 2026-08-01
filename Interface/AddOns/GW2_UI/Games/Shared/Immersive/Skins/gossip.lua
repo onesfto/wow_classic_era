@@ -640,7 +640,7 @@ local function LoadGossipSkin()
     hooksecurefunc(GossipFrame, "Update", function()
         updateModelFrame(portraitFrame)
     end)
-    local titleText = GW.Classic and GossipFrameTitleText or (GW.Mists  or GW.TBC or GW.Wrath) and GossipFrame.TitleText or GossipFrame.TitleContainer.TitleText
+    local titleText = GW.Retail and GossipFrame.TitleContainer.TitleText or GossipFrame.TitleText
     hooksecurefunc(titleText, "SetText", function(_, txt)
         portraitFrame.npcNameText:SetText(txt)
     end)
@@ -708,13 +708,7 @@ local function LoadGossipSkin()
         setGreetingsTextPaging(-1)
     end)
 
-    local function RestoreGossipKeyboardInput()
-        if not InCombatLockdown() then
-            GossipFrame:SetPropagateKeyboardInput(true)
-        end
-    end
-
-    RestoreGossipKeyboardInput()
+    GossipFrame:SetPropagateKeyboardInput(true)
     GossipFrame:HookScript("OnKeyDown", function(_, key)
         --Brut force the key to number.
         --Downside if butto name contains a number it will be used. example JoyStick1
@@ -730,7 +724,6 @@ local function LoadGossipSkin()
     end)
 
     GossipFrame:HookScript("OnShow", function()
-        RestoreGossipKeyboardInput()
         GossipFrame.CloseButton:Hide()
 
         GW.AddToAnimation("GOSSIP_FRAME_FADE", 0, 1, GetTime(), 0.4,
@@ -746,7 +739,6 @@ local function LoadGossipSkin()
             end
         )
     end)
-    GossipFrame:HookScript("OnHide", RestoreGossipKeyboardInput)
 
     local GreetingPanelFirstLoad = true
     hooksecurefunc(GossipFrame.GreetingPanel.ScrollBox, "Update", function(frame)

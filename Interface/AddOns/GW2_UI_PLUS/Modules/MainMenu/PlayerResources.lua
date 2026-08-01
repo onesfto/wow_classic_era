@@ -170,6 +170,10 @@ local function PrepareGeneralPanel(playerGeneral)
         if not MOVED_GENERAL_OPTION_NAMES[option.optionName] then
             RemoveOptionDependency(option, "PLAYER_AS_TARGET_FRAME")
             kept[#kept + 1] = option
+        else
+            if option.__widget then
+                option.__widget:Hide()
+            end
         end
     end
 
@@ -471,7 +475,7 @@ local function CreateStatusPanel(
     panel.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
     panel.sub:SetText("调整玩家的血球、施法条、能量条和资源条。")
 
-    AddGroupHeader(panel, "球状血条")
+    AddGroupHeader(panel, "血球和贴图")
     local globeEnabled = panel:AddOption(
         "启用",
         "普通玩家框体由“综合 → 启用”独立控制。切换后需要重新加载界面。",
@@ -480,25 +484,12 @@ local function CreateStatusPanel(
             setter = AB.SetGlobeStyleEnabled,
             getDefault = function() return true end,
             callback = function() GW.ShowRlPopup = true end,
-            groupHeaderName = "球状血条",
+            groupHeaderName = "血球和贴图",
         })
     SetOptionColumns(globeEnabled, 2, "GW2PlusGlobeEnabled")
     WrapRefreshCallback(panel, globeEnabled)
 
-    local globeGap = panel:AddOption(
-        "为血球预留中间空隙", nil, {
-            getter = function() return AB.InitDB().mainBarGlobeGap end,
-            setter = function(value)
-                AB.InitDB().mainBarGlobeGap = value
-            end,
-            getDefault = function()
-                return AB.defaults.mainBarGlobeGap
-            end,
-            callback = AB.ApplyMainBarLayout,
-            dependence = {GW2PlusGlobeEnabled = true},
-            groupHeaderName = "球状血条",
-        })
-    SetOptionColumns(globeGap, 2)
+
 
     local globeScale = panel:AddOptionSlider(
         "缩放", nil, {
@@ -513,41 +504,126 @@ local function CreateStatusPanel(
             getDefault = function() return AB.defaults.globeScale end,
             callback = AB.ApplyGlobeScale,
             dependence = {GW2PlusGlobeEnabled = true},
-            groupHeaderName = "球状血条",
+            groupHeaderName = "血球和贴图",
         })
+
+    local optHudBg = panel:AddOption(
+        "动作条贴图",
+        "在不同状态下（战斗、低血量、水中、灵魂状态等）动作条背景会改变颜色",
+        {
+            getter = function() return GW.settings.HUD_BACKGROUND end,
+            setter = function(value)
+                GW.settings.HUD_BACKGROUND = value
+                if GW.ToggleHudBackground then GW.ToggleHudBackground() end
+            end,
+            getDefault = function() return true end,
+            groupHeaderName = "血球和贴图",
+            dependence = {GW2PlusGlobeEnabled = true},
+        }
+    )
+    SetOptionColumns(optHudBg, 2, "HUD_BACKGROUND")
+
+    local dynamicHud = panel:AddOption(
+        "血球贴图",
+        "动态更改 HUD 背景",
+        {
+            getter = function() return GW.settings.HUD_SPELL_SWAP end,
+            setter = function(value)
+                GW.settings.HUD_SPELL_SWAP = value
+            end,
+            getDefault = function() return true end,
+            groupHeaderName = "血球和贴图",
+            dependence = {GW2PlusGlobeEnabled = true},
+        }
+    )
+    SetOptionColumns(dynamicHud, 2, "HUD_SPELL_SWAP")
+
     AddClonedOption(
-        panel, options.dodgeBar, "显示位移条", "球状血条", 2,
+        panel, options.dodgeBar, "显示位移条", "血球和贴图", 2,
         {GW2PlusGlobeEnabled = true}, true)
     AddClonedOption(
-        panel, options.dodgeAbility, "位移条技能", "球状血条", 2,
+        panel, options.dodgeAbility, "位移条技能", "血球和贴图", 2,
         {GW2PlusGlobeEnabled = true, showDodgebar = true})
 
     AddGroupHeader(panel, "施法条")
     AddClonedOption(
         panel, options.castEnabled, "启用", "施法条", 2, nil, true)
     AddClonedOption(
+        panel, options.ticks, "跳数", "施法条", 2)
+    AddClonedOption(
         panel, options.advancedCast, "高级施法条",
         "施法条", 2, nil, true)
     AddClonedOption(
         panel, options.spellQueue, "显示法术队列窗口",
         "施法条", 2)
-    AddClonedOption(
-        panel, options.ticks, "跳数", "施法条", 2)
-    panel:AddOptionSlider(
-        "缩放", nil, {
-            min = 0.5,
-            max = 2,
-            step = 0.05,
-            decimalNumbers = 2,
-            getter = AB.GetCastbarScale,
+
+    local castWidth = panel:AddOptionSlider(
+        "宽度", nil, {
+            min = 100,
+            max = 600,
+            step = 1,
+            decimalNumbers = 0,
+            getter = function() return AB.InitDB().castbarWidth or 250 end,
             setter = function(value)
-                GW.settings.castingbar_pos_scale = value
+                AB.InitDB().castbarWidth = value
             end,
-            getDefault = function() return 1 end,
-            callback = AB.ApplyCastbarScale,
+            getDefault = function() return 250 end,
+            callback = AB.ApplyCastbarSize,
             dependence = {CASTINGBAR_ENABLED = true},
             groupHeaderName = "施法条",
+            forceNewLine = false,
         })
+    SetOptionColumns(castWidth, 2, "castbarWidth")
+
+    local castHeight = panel:AddOptionSlider(
+        "高度", nil, {
+            min = 10,
+            max = 100,
+            step = 1,
+            decimalNumbers = 0,
+            getter = function() return AB.InitDB().castbarHeight or 24 end,
+            setter = function(value)
+                AB.InitDB().castbarHeight = value
+            end,
+            getDefault = function() return 24 end,
+            callback = AB.ApplyCastbarSize,
+            dependence = {CASTINGBAR_ENABLED = true},
+            groupHeaderName = "施法条",
+            forceNewLine = false,
+        })
+    SetOptionColumns(castHeight, 2, "castbarHeight")
+
+    AddGroupHeader(panel, "经验槽")
+    local xpEnabled = panel:AddOption(
+        "启用",
+        "显示经验槽",
+        {
+            getter = function() return GW.settings.XPBAR_ENABLED end,
+            setter = function(value)
+                GW.settings.XPBAR_ENABLED = value
+                GW.ShowRlPopup = true
+            end,
+            getDefault = function() return true end,
+            groupHeaderName = "经验槽",
+            isMasterToggle = true,
+        }
+    )
+    SetOptionColumns(xpEnabled, 2, "GW2PlusXpEnabled")
+
+    local xpQuestPercent = panel:AddOption(
+        "任务经验值百分比",
+        "显示任务奖励经验所占升级经验的百分比",
+        {
+            getter = function() return GW.settings.QUEST_XP_PERCENT end,
+            setter = function(value)
+                GW.settings.QUEST_XP_PERCENT = value
+            end,
+            getDefault = function() return false end,
+            groupHeaderName = "经验槽",
+            dependence = {GW2PlusXpEnabled = true},
+        }
+    )
+    SetOptionColumns(xpQuestPercent, 2, "QUEST_XP_PERCENT")
 
     AddGroupHeader(panel, "能量条")
     AddClonedOption(

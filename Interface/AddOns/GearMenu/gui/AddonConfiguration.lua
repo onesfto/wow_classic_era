@@ -42,6 +42,23 @@ local mainCategoryId
   {number}
 ]]--
 local gearBarSubCategoryId
+--[[
+  Holds the id reference to a stable, addon-owned subcategory (the general options
+  panel) used purely as a bounce target in me.UpdateAddonPanel to force the Blizzard
+  settings panel to rebuild its cached category tree after a gearBar subcategory is
+  removed. Using an addon-owned id keeps the refresh independent of Blizzard's
+  built-in category ordering.
+  {number}
+]]--
+local settingsRefreshBounceCategoryId
+--[[
+  Category ids captured at registration, keyed by a stable name ("main", "general",
+  "trinketMenu", "quickChange", "profile", "gearBar"). Settings.OpenToCategory requires
+  the numeric id - category names error on Classic Era - so callers resolve through
+  me.GetCategoryId instead of hardcoding ids.
+  {table}
+]]--
+local categoryIds = {}
 
 --[[
   Retrieve a reference to the main category of the addon
@@ -76,6 +93,20 @@ function me.GetGearBarSubCategory()
 end
 
 --[[
+  Retrieve the numeric settings category id registered under a key. Intended for
+  programmatic navigation via Settings.OpenToCategory, which accepts only numeric ids.
+
+  @param {string} key
+    One of "main", "general", "trinketMenu", "quickChange", "profile" or "gearBar"
+
+  @return {number | nil}
+    The category id or nil for an unknown key or before SetupAddonConfiguration ran
+]]--
+function me.GetCategoryId(key)
+  return categoryIds[key]
+end
+
+--[[
   Create addon configuration menu(s)
 ]]--
 function me.SetupAddonConfiguration()
@@ -83,25 +114,37 @@ function me.SetupAddonConfiguration()
   local category, menu = me.BuildCategory(RGGM_CONSTANTS.ELEMENT_ADDON_PANEL, nil, rggm.L["addon_name"])
   -- add about content into main category
   mod.aboutContent.BuildAboutContent(menu)
+  categoryIds.main = category.ID
 
-  me.BuildCategory(
+  local generalSubCategory = me.BuildCategory(
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIG_GENERAL_OPTIONS_FRAME,
     category,
     rggm.L["general_category_name"],
     mod.generalMenu.BuildUi
   )
-  me.BuildCategory(
+  settingsRefreshBounceCategoryId = generalSubCategory.ID
+  categoryIds.general = generalSubCategory.ID
+  local trinketMenuSubCategory = me.BuildCategory(
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIG_TRINKET_MENU_FRAME,
     category,
     rggm.L["trinket_menu_category_name"],
     mod.trinketConfigurationMenu.BuildUi
   )
-  me.BuildCategory(
+  categoryIds.trinketMenu = trinketMenuSubCategory.ID
+  local quickChangeSubCategory = me.BuildCategory(
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIG_QUICK_CHANGE_FRAME,
     category,
     rggm.L["quick_change_category_name"],
     mod.quickChangeMenu.BuildUi
   )
+  categoryIds.quickChange = quickChangeSubCategory.ID
+  local profileSubCategory = me.BuildCategory(
+    RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIG_PROFILE_FRAME,
+    category,
+    rggm.L["profile_category_name"],
+    mod.profileMenu.BuildUi
+  )
+  categoryIds.profile = profileSubCategory.ID
   local gearBarConfigurationSubCategory = me.BuildCategory(
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIG_GEAR_BAR_CONFIG_FRAME,
     category,
@@ -109,6 +152,7 @@ function me.SetupAddonConfiguration()
     mod.gearBarConfigurationMenu.BuildUi
   )
   gearBarSubCategoryId = gearBarConfigurationSubCategory.ID
+  categoryIds.gearBar = gearBarConfigurationSubCategory.ID
   --[[
    load configured gearBars after the menu RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIG_GEAR_BAR_CONFIG_FRAME was
    created to attach to
@@ -203,10 +247,17 @@ end
 
 --[[
     This is a workaround to force a refresh of the interface addon panel after a gearBar was deleted.
-    Moving to another category in the Blizzard settings and back to the addon panel will refresh the
-    panel and show the updated gearBar list.
+    The Blizzard settings panel caches its category tree, so moving to another category and back to
+    the addon panel rebuilds the list and shows the updated gearBars.
+
+    The bounce target is the addon's own general options subcategory rather than a hardcoded built-in
+    category id. It is always registered, is never the panel the delete is triggered from (so the
+    navigation is a genuine transition), and stays independent of Blizzard's category ordering.
   ]]--
 function me.UpdateAddonPanel()
-  Settings.OpenToCategory(11)
+  if settingsRefreshBounceCategoryId ~= nil then
+    Settings.OpenToCategory(settingsRefreshBounceCategoryId)
+  end
+
   me.OpenMainCategory()
 end

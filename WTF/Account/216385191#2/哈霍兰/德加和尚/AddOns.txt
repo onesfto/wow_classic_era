@@ -210,3 +210,4 @@ SinStats: enabled
 SharedMedia_Rurutia: enabled
 AllTheThings: enabled
 GW2_UI_PLUS: enabled
+OPie_Classic: disabled

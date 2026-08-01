@@ -1,9 +1,11 @@
 
 BetterBagsDB = {
 ["profileKeys"] = {
-["德加和尚 - 哈霍兰"] = "Default",
+["黑龙守护者 - 哈霍兰"] = "Default",
+["绿龙守护者 - 哈霍兰"] = "Default",
+["灞波儿奔壹世 - 硬汉"] = "Default",
 ["哈霍兰大格格 - 哈霍兰"] = "Default",
-["女王安其拉 - 哈霍兰"] = "Default",
+["德加和尚 - 哈霍兰"] = "Default",
 ["法德迦 - 哈霍兰"] = "Default",
 },
 ["profiles"] = {
@@ -198,16 +200,6 @@ true,
 },
 ["name"] = "工具",
 },
-["弹药"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "弹药",
-["dynamic"] = true,
-},
 ["武器-双手"] = {
 ["enabled"] = {
 true,
@@ -272,24 +264,6 @@ true,
 },
 ["name"] = "T3",
 },
-["首饰-防御"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "首饰-防御",
-},
-["首饰-物理"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "首饰-物理",
-},
 ["装备-特殊"] = {
 ["enabled"] = {
 true,
@@ -298,15 +272,6 @@ true,
 ["itemList"] = {
 },
 ["name"] = "装备-特殊",
-},
-["A-红蓝"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "A-红蓝",
 },
 ["B-布"] = {
 ["enabled"] = {
@@ -317,32 +282,24 @@ true,
 },
 ["name"] = "B-布",
 },
-["首饰-治疗"] = {
+["首饰-防御"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "首饰-治疗",
+["name"] = "首饰-防御",
 },
-["首饰"] = {
+["消耗品"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "首饰",
-},
-["A-AP"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "A-AP",
+["name"] = "消耗品",
+["dynamic"] = true,
 },
 ["A-属性"] = {
 ["enabled"] = {
@@ -353,23 +310,23 @@ true,
 },
 ["name"] = "A-属性",
 },
-["A-合剂"] = {
+["A-红蓝"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-合剂",
+["name"] = "A-红蓝",
 },
-["武器-单手"] = {
+["首饰-治疗"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "武器-单手",
+["name"] = "首饰-治疗",
 },
 ["T2.5"] = {
 ["enabled"] = {
@@ -380,6 +337,34 @@ true,
 },
 ["name"] = "T2.5",
 },
+["首饰"] = {
+["enabled"] = {
+true,
+[0] = true,
+},
+["itemList"] = {
+},
+["name"] = "首饰",
+},
+["A-合剂"] = {
+["enabled"] = {
+true,
+[0] = true,
+},
+["itemList"] = {
+},
+["name"] = "A-合剂",
+},
+["容器"] = {
+["enabled"] = {
+true,
+[0] = true,
+},
+["itemList"] = {
+},
+["name"] = "容器",
+["dynamic"] = true,
+},
 ["A-非专业"] = {
 ["enabled"] = {
 true,
@@ -389,24 +374,24 @@ true,
 },
 ["name"] = "A-非专业",
 },
-["商品"] = {
+["A-AD"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "商品",
+["name"] = "A-AD",
+},
+["最近物品"] = {
+["enabled"] = {
+true,
+[0] = true,
+},
+["itemList"] = {
+},
+["name"] = "最近物品",
 ["dynamic"] = true,
-},
-["B-鱼"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "B-鱼",
 },
 ["垃圾"] = {
 ["enabled"] = {
@@ -418,33 +403,6 @@ true,
 ["name"] = "垃圾",
 ["dynamic"] = true,
 },
-["A-AD"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "A-AD",
-},
-["装备-防御"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "装备-防御",
-},
-["战场"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "战场",
-},
 ["材料"] = {
 ["enabled"] = {
 true,
@@ -454,14 +412,14 @@ true,
 },
 ["name"] = "材料",
 },
-["最近物品"] = {
+["商品"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "最近物品",
+["name"] = "商品",
 ["dynamic"] = true,
 },
 ["装备-披风"] = {
@@ -482,15 +440,14 @@ true,
 },
 ["name"] = "坐骑宠物玩具",
 },
-["任务"] = {
+["武器-单手"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "任务",
-["dynamic"] = true,
+["name"] = "武器-单手",
 },
 ["B-矿"] = {
 ["enabled"] = {
@@ -501,24 +458,24 @@ true,
 },
 ["name"] = "B-矿",
 },
-["B-草"] = {
+["任务"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "B-草",
-},
-["消耗品"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "消耗品",
+["name"] = "任务",
 ["dynamic"] = true,
+},
+["A-AP"] = {
+["enabled"] = {
+true,
+[0] = true,
+},
+["itemList"] = {
+},
+["name"] = "A-AP",
 },
 ["装备-冰抗"] = {
 ["enabled"] = {
@@ -529,6 +486,15 @@ true,
 },
 ["name"] = "装备-冰抗",
 },
+["B-草"] = {
+["enabled"] = {
+true,
+[0] = true,
+},
+["itemList"] = {
+},
+["name"] = "B-草",
+},
 ["B-皮"] = {
 ["enabled"] = {
 true,
@@ -537,15 +503,6 @@ true,
 ["itemList"] = {
 },
 ["name"] = "B-皮",
-},
-["装备-物理"] = {
-["enabled"] = {
-true,
-[0] = true,
-},
-["itemList"] = {
-},
-["name"] = "装备-物理",
 },
 },
 ["categoryFilters"] = {
@@ -558,10 +515,12 @@ true,
 },
 ["itemLevelColor"] = {
 ["maxItemLevelByCharacter"] = {
-["德加和尚-哈霍兰"] = 92,
 ["法德迦-哈霍兰"] = 92,
+["绿龙守护者-哈霍兰"] = 6,
+["黑龙守护者-哈霍兰"] = 56,
 ["哈霍兰大格格-哈霍兰"] = 92,
-["女王安其拉-哈霍兰"] = 92,
+["灞波儿奔壹世-硬汉"] = 13,
+["德加和尚-哈霍兰"] = 92,
 },
 },
 ["inBagSearch"] = false,
@@ -582,7 +541,20 @@ nil,
 },
 },
 ["__bankDefaultTabsFixed"] = true,
-["theme"] = "elvui",
+["positions"] = {
+{
+["y"] = -68.3218994140625,
+["x"] = 119.0570449829102,
+["point"] = "TOPLEFT",
+["scale"] = 1,
+},
+[0] = {
+["y"] = -223.4339599609375,
+["x"] = 58.2025146484375,
+["point"] = "TOP",
+["scale"] = 1,
+},
+},
 ["firstTimeMenu"] = false,
 ["__groupsScopedByKind"] = true,
 ["categoryOptions"] = {
@@ -634,9 +606,6 @@ nil,
 ["工具"] = {
 ["shown"] = true,
 },
-["弹药"] = {
-["shown"] = true,
-},
 ["武器-双手"] = {
 ["shown"] = true,
 },
@@ -658,67 +627,55 @@ nil,
 ["T3"] = {
 ["shown"] = true,
 },
+["装备-特殊"] = {
+["shown"] = true,
+},
+["B-布"] = {
+["shown"] = true,
+},
 ["首饰-防御"] = {
 ["shown"] = true,
 },
 ["消耗品"] = {
 ["shown"] = true,
 },
-["装备-特殊"] = {
+["A-属性"] = {
 ["shown"] = true,
 },
 ["装备-冰抗"] = {
 ["shown"] = true,
 },
-["B-布"] = {
-["shown"] = true,
-},
 ["首饰-治疗"] = {
-["shown"] = true,
-},
-["首饰"] = {
-["shown"] = true,
-},
-["武器-单手"] = {
-["shown"] = true,
-},
-["A-属性"] = {
-["shown"] = true,
-},
-["首饰-法系"] = {
-["shown"] = true,
-},
-["任务"] = {
 ["shown"] = true,
 },
 ["T2.5"] = {
 ["shown"] = true,
 },
+["首饰"] = {
+["shown"] = true,
+},
+["首饰-法系"] = {
+["shown"] = true,
+},
+["容器"] = {
+["shown"] = true,
+},
 ["A-非专业"] = {
-["shown"] = true,
-},
-["商品"] = {
-["shown"] = true,
-},
-["B-鱼"] = {
-["shown"] = true,
-},
-["垃圾"] = {
 ["shown"] = true,
 },
 ["A-AD"] = {
 ["shown"] = true,
 },
-["装备-防御"] = {
+["最近物品"] = {
 ["shown"] = true,
 },
-["战场"] = {
+["垃圾"] = {
 ["shown"] = true,
 },
 ["材料"] = {
 ["shown"] = true,
 },
-["最近物品"] = {
+["商品"] = {
 ["shown"] = true,
 },
 ["装备-披风"] = {
@@ -727,25 +684,25 @@ nil,
 ["坐骑宠物玩具"] = {
 ["shown"] = true,
 },
-["A-AP"] = {
+["任务"] = {
 ["shown"] = true,
 },
 ["B-矿"] = {
 ["shown"] = true,
 },
-["B-草"] = {
+["A-AP"] = {
 ["shown"] = true,
 },
-["首饰-物理"] = {
+["武器-单手"] = {
 ["shown"] = true,
 },
 ["A-红蓝"] = {
 ["shown"] = true,
 },
-["B-皮"] = {
+["B-草"] = {
 ["shown"] = true,
 },
-["装备-物理"] = {
+["B-皮"] = {
 ["shown"] = true,
 },
 },
@@ -1091,14 +1048,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-非专业"] = {
+["A-AD"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-非专业",
+["name"] = "A-AD",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1135,14 +1092,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["战场"] = {
+["A-非专业"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "战场",
+["name"] = "A-非专业",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1190,14 +1147,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-AD"] = {
+["战场"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-AD",
+["name"] = "战场",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1272,20 +1229,7 @@ true,
 1,
 [0] = 3,
 },
-["positions"] = {
-{
-["y"] = 89.536376953125,
-["x"] = 121.2041091918945,
-["point"] = "LEFT",
-["scale"] = 1,
-},
-[0] = {
-["y"] = -138.1085205078125,
-["x"] = 190.2855529785156,
-["point"] = "TOP",
-["scale"] = 1,
-},
-},
+["theme"] = "SimpleDark",
 ["stacking"] = {
 {
 ["mergeUnstackable"] = false,

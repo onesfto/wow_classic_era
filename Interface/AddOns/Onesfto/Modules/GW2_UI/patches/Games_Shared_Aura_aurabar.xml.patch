@@ -1,0 +1,11 @@
+--- Onesfto/Modules/GW2_UI/GW2_UI_1.15.9/Games/Shared/Aura/aurabar.xml	2026-07-26 13:19:34
++++ GW2_UI/Games/Shared/Aura/aurabar.xml	2026-07-26 04:05:33
+@@ -3,7 +3,7 @@
+ 
+     <Button name="GwAuraSecureTmpl" inherits="SecureActionButtonTemplate" virtual="true">
+         <Attributes>
+-            <Attribute name="type" value="cancelaura"/>
++            <Attribute name="type2" value="cancelaura"/>
+         </Attributes>
+         <Frames>
+             <Frame parentKey="border" frameLevel="1">

@@ -23,7 +23,7 @@
   WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ]]--
 
--- luacheck: globals STANDARD_TEXT_FONT CreateFrame FauxScrollFrame_Update FauxScrollFrame_GetOffset CloseMenus
+-- luacheck: globals STANDARD_TEXT_FONT CreateFrame InCombatLockdown
 
 --[[
   The gearBarMenu (GM_GearBarConfigurationMenu) module has some similarities to the gearBar (GM_GearBar) module.
@@ -138,17 +138,11 @@ end
     The contentFrame for the gearBar
 ]]
 function me.BuildGearBarConfigurationSubMenu(parentFrame)
-  local gearBarConfigurationContentFrame = CreateFrame(
-    "Frame", RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_SUB_MENU .. parentFrame.gearBarId, parentFrame)
-  gearBarConfigurationContentFrame:SetWidth(RGGM_CONSTANTS.INTERFACE_PANEL_CONTENT_FRAME_WIDTH)
-  gearBarConfigurationContentFrame:SetHeight(RGGM_CONSTANTS.INTERFACE_PANEL_CONTENT_FRAME_HEIGHT)
-  gearBarConfigurationContentFrame:SetPoint("TOPLEFT", parentFrame, 5, -7)
-
-  gearBarConfigurationContentFrame.subMenuTitle = me.CreateConfigurationMenuTitle(gearBarConfigurationContentFrame)
-  me.CreateAddGearSlotButton(gearBarConfigurationContentFrame)
+  parentFrame.subMenuTitle = me.CreateConfigurationMenuTitle(parentFrame)
+  me.CreateAddGearSlotButton(parentFrame)
 
   mod.uiHelper.BuildCheckButtonOption(
-    gearBarConfigurationContentFrame,
+    parentFrame,
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_OPT_LOCK_GEAR_BAR .. parentFrame.gearBarId,
     {"TOPLEFT", 20, -50},
     me.LockWindowGearBarOnShow,
@@ -157,27 +151,27 @@ function me.BuildGearBarConfigurationSubMenu(parentFrame)
   )
 
   mod.uiHelper.BuildCheckButtonOption(
-    gearBarConfigurationContentFrame,
+    parentFrame,
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_OPT_SHOW_KEY_BINDINGS .. parentFrame.gearBarId,
-    {"TOPLEFT", 20, -80},
+    {"TOPLEFT", 20, -110},
     me.ShowKeyBindingsOnShow,
     me.ShowKeyBindingsOnClick,
     showKeyBindingsMetaData
   )
 
   mod.uiHelper.BuildCheckButtonOption(
-    gearBarConfigurationContentFrame,
+    parentFrame,
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_OPT_SHOW_COOLDOWNS .. parentFrame.gearBarId,
-    {"TOPLEFT", 20, -110},
+    {"TOPLEFT", 20, -170},
     me.ShowCooldownsOnShow,
     me.ShowCooldownsOnClick,
     showCooldownsMetaData
   )
 
   mod.uiHelper.CreateSizeSlider(
-    gearBarConfigurationContentFrame,
+    parentFrame,
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_GEAR_SLOT_SIZE_SLIDER .. parentFrame.gearBarId,
-    {"TOPLEFT", 20, -150},
+    {"TOPLEFT", 300, -130},
     RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SIZE_SLIDER_MIN,
     RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SIZE_SLIDER_MAX,
     mod.gearBarManager.GetGearSlotSize(parentFrame.gearBarId),
@@ -187,9 +181,9 @@ function me.BuildGearBarConfigurationSubMenu(parentFrame)
   )
 
   mod.uiHelper.CreateSizeSlider(
-    gearBarConfigurationContentFrame,
+    parentFrame,
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_CHANGE_SLOT_SIZE_SLIDER .. parentFrame.gearBarId,
-    {"TOPLEFT", 20, -200},
+    {"TOPLEFT", 300, -205},
     RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SIZE_SLIDER_MIN,
     RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SIZE_SLIDER_MAX,
     mod.gearBarManager.GetChangeSlotSize(parentFrame.gearBarId),
@@ -198,18 +192,18 @@ function me.BuildGearBarConfigurationSubMenu(parentFrame)
     me.ChangeSlotSizeSliderOnValueChanged
   )
 
-  me.CreateOrientationLabel(gearBarConfigurationContentFrame)
-  gearBarConfigurationContentFrame.orientationDropdown =
-    me.CreateOrientationDropdown(gearBarConfigurationContentFrame, parentFrame.gearBarId)
+  me.CreateOrientationLabel(parentFrame)
+  parentFrame.orientationDropdown =
+    me.CreateOrientationDropdown(parentFrame, parentFrame.gearBarId)
 
-  me.CreateChangeMenuDirectionLabel(gearBarConfigurationContentFrame)
-  gearBarConfigurationContentFrame.changeMenuDirectionDropdown =
-    me.CreateChangeMenuDirectionDropdown(gearBarConfigurationContentFrame, parentFrame.gearBarId)
+  me.CreateChangeMenuDirectionLabel(parentFrame)
+  parentFrame.changeMenuDirectionDropdown =
+    me.CreateChangeMenuDirectionDropdown(parentFrame, parentFrame.gearBarId)
 
-  local scrollFrame = me.CreateGearBarConfigurationSlotsList(gearBarConfigurationContentFrame)
-  me.GearBarConfigurationSlotsListOnUpdate(scrollFrame)
+  local slotsList = me.CreateGearBarConfigurationSlotsList(parentFrame)
+  me.GearBarConfigurationSlotsListOnUpdate(slotsList)
 
-  return gearBarConfigurationContentFrame
+  return parentFrame
 end
 
 --[[
@@ -220,10 +214,9 @@ end
 ]]--
 function me.CreateConfigurationMenuTitle(contentFrame)
   local titleFontString = contentFrame:CreateFontString(
-    RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_SUB_MENU_TITLE, "OVERLAY")
-  titleFontString:SetFont(STANDARD_TEXT_FONT, 20)
-  titleFontString:SetPoint("TOP", 0, -20)
-  titleFontString:SetSize(contentFrame:GetWidth(), 20)
+    RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_SUB_MENU_TITLE, "OVERLAY", "GameFontNormalLarge")
+  titleFontString:SetPoint("TOPLEFT", 16, -16)
+  mod.uiHelper.SetColor(titleFontString, RGGM_CONSTANTS.COLOR.TITLE_GOLD)
 
   if RGGM_ENVIRONMENT.DEBUG then
     titleFontString:SetText(gearBarConfiguration.displayName .. "_" .. gearBarConfiguration.id)
@@ -271,6 +264,13 @@ end
   Add a new gearSlot to a gearBar based on the gearBarId on the clicked button
 ]]--
 function me.AddGearSlot()
+  if InCombatLockdown() then
+    -- Adding a slot creates a SecureActionButton (SetAttribute), which is blocked in combat.
+    mod.logger.PrintUserError(rggm.L["gear_bar_configuration_add_gearslot_combat"])
+
+    return
+  end
+
   local gearBar = mod.gearBarManager.GetGearBar(gearBarConfiguration.id)
 
   if #gearBar.slots >= RGGM_CONSTANTS.MAX_GEAR_BAR_SLOTS then
@@ -300,7 +300,7 @@ end
   @param {table} self
 ]]--
 function me.LockWindowGearBarOnShow(self)
-  if mod.gearBarManager.IsGearBarLocked(self:GetParent():GetParent().gearBarId) then
+  if mod.gearBarManager.IsGearBarLocked(self:GetParent().gearBarId) then
     self:SetChecked(true)
   else
     self:SetChecked(false)
@@ -314,7 +314,7 @@ end
 ]]--
 function me.LockWindowGearBarOnClick(self)
   local enabled = self:GetChecked()
-  local gearBarId = self:GetParent():GetParent().gearBarId
+  local gearBarId = self:GetParent().gearBarId
 
   if enabled then
     mod.gearBarManager.LockGearBar(gearBarId)
@@ -329,7 +329,7 @@ end
   @param {table} self
 ]]--
 function me.ShowKeyBindingsOnShow(self)
-  if mod.gearBarManager.IsShowKeyBindingsEnabled(self:GetParent():GetParent().gearBarId) then
+  if mod.gearBarManager.IsShowKeyBindingsEnabled(self:GetParent().gearBarId) then
     self:SetChecked(true)
   else
     self:SetChecked(false)
@@ -343,7 +343,7 @@ end
 ]]--
 function me.ShowKeyBindingsOnClick(self)
   local enabled = self:GetChecked()
-  local gearBarId = self:GetParent():GetParent().gearBarId
+  local gearBarId = self:GetParent().gearBarId
 
   if enabled then
     mod.gearBarManager.EnableShowKeyBindings(gearBarId)
@@ -358,7 +358,7 @@ end
   @param {table} self
 ]]--
 function me.ShowCooldownsOnShow(self)
-  if mod.gearBarManager.IsShowCooldownsEnabled(self:GetParent():GetParent().gearBarId) then
+  if mod.gearBarManager.IsShowCooldownsEnabled(self:GetParent().gearBarId) then
     self:SetChecked(true)
   else
     self:SetChecked(false)
@@ -372,7 +372,7 @@ end
 ]]--
 function me.ShowCooldownsOnClick(self)
   local enabled = self:GetChecked()
-  local gearBarId = self:GetParent():GetParent().gearBarId
+  local gearBarId = self:GetParent().gearBarId
 
   if enabled then
     mod.gearBarManager.EnableShowCooldowns(gearBarId)
@@ -388,7 +388,7 @@ end
   @param {number} value
 ]]--
 function me.GearSlotSizeSliderOnValueChanged(self, value)
-  local gearBarId = self:GetParent():GetParent().gearBarId
+  local gearBarId = self:GetParent().gearBarId
 
   mod.gearBarManager.SetGearSlotSize(gearBarId, value)
 end
@@ -400,7 +400,7 @@ end
   @param {number} value
 ]]--
 function me.ChangeSlotSizeSliderOnValueChanged(self, value)
-  local gearBarId = self:GetParent():GetParent().gearBarId
+  local gearBarId = self:GetParent().gearBarId
 
   mod.gearBarManager.SetChangeSlotSize(gearBarId, value)
 end
@@ -412,9 +412,10 @@ end
 ]]--
 function me.CreateOrientationLabel(parentFrame)
   local orientationLabel = parentFrame:CreateFontString(nil, "OVERLAY")
-  orientationLabel:SetPoint("TOPLEFT", 230, -52)
-  orientationLabel:SetFont(STANDARD_TEXT_FONT, 12)
-  orientationLabel:SetTextColor(1, 1, 1)
+  -- clears the 230px wide checkbox descriptions in the left column (they end at x ~254)
+  orientationLabel:SetPoint("TOPLEFT", 260, -52)
+  orientationLabel:SetFont(STANDARD_TEXT_FONT, 15)
+  mod.uiHelper.SetColor(orientationLabel, RGGM_CONSTANTS.COLOR.BODY)
   orientationLabel:SetText(rggm.L["gearbar_orientation"])
 end
 
@@ -430,21 +431,25 @@ end
     The created dropdown menu
 ]]--
 function me.CreateOrientationDropdown(parentFrame, gearBarId)
-  local orientationDropdownMenu = mod.libUiDropDownMenu.CreateUiDropDownMenu(
+  local orientationDropdownMenu = mod.uiHelper.CreateSettingsDropdown(
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_ORIENTATION_DROPDOWN .. gearBarId,
-    parentFrame
+    parentFrame,
+    {"TOPLEFT", 260, -72},
+    150,
+    function(_, rootDescription)
+      me.BuildOrientationRadios(rootDescription, gearBarId, parentFrame)
+    end
   )
 
   orientationDropdownMenu.gearBarId = gearBarId
-  orientationDropdownMenu:SetPoint("TOPLEFT", 210, -72)
+  -- generate once so the button shows the current selection before the menu was ever opened
+  orientationDropdownMenu:GenerateMenu()
 
-  mod.libUiDropDownMenu.UiDropDownMenu_SetWidth(orientationDropdownMenu, 150)
-  mod.libUiDropDownMenu.UiDropDownMenu_Initialize(orientationDropdownMenu, me.InitializeOrientationDropdownMenu)
-
-  orientationDropdownMenu:SetScript("OnEnter", function()
+  --[[ hooked instead of set so the template's hover state visuals stay intact ]]--
+  orientationDropdownMenu:HookScript("OnEnter", function()
     mod.tooltip.BuildTooltipForOption(rggm.L["gearbar_orientation"], rggm.L["gearbar_orientation_tooltip"])
   end)
-  orientationDropdownMenu:SetScript("OnLeave", function()
+  orientationDropdownMenu:HookScript("OnLeave", function()
     _G[RGGM_CONSTANTS.ELEMENT_TOOLTIP]:Hide()
   end)
 
@@ -452,48 +457,33 @@ function me.CreateOrientationDropdown(parentFrame, gearBarId)
 end
 
 --[[
-  Initialize the orientation dropdown menu with the horizontal and vertical entries
+  Fill the orientation dropdown root description with a radio entry per orientation
 
-  @param {table} self
+  @param {table} rootDescription
+  @param {number} gearBarId
+    The id of the gearBar the dropdown configures
+  @param {table} contentFrame
+    The gearBar configuration content frame holding the dropdown references
 ]]--
-function me.InitializeOrientationDropdownMenu(self)
-  local button
+function me.BuildOrientationRadios(rootDescription, gearBarId, contentFrame)
+  local orientations = {
+    { value = RGGM_CONSTANTS.GEAR_BAR_ORIENTATION_HORIZONTAL, text = rggm.L["orientation_horizontal"] },
+    { value = RGGM_CONSTANTS.GEAR_BAR_ORIENTATION_VERTICAL, text = rggm.L["orientation_vertical"] }
+  }
 
-  button = mod.uiHelper.CreateDropdownButton(
-    rggm.L["orientation_horizontal"],
-    RGGM_CONSTANTS.GEAR_BAR_ORIENTATION_HORIZONTAL,
-    me.OrientationDropdownMenuCallback
-  )
-  mod.libUiDropDownMenu.UiDropDownMenu_AddButton(button)
-
-  button = mod.uiHelper.CreateDropdownButton(
-    rggm.L["orientation_vertical"],
-    RGGM_CONSTANTS.GEAR_BAR_ORIENTATION_VERTICAL,
-    me.OrientationDropdownMenuCallback
-  )
-  mod.libUiDropDownMenu.UiDropDownMenu_AddButton(button)
-
-  if mod.libUiDropDownMenu.UiDropDownMenu_GetSelectedValue(self) == nil then
-    mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(
-      self, mod.gearBarManager.GetGearBarOrientation(self.gearBarId))
+  for _, orientation in ipairs(orientations) do
+    rootDescription:CreateRadio(
+      orientation.text,
+      function(value) return mod.gearBarManager.GetGearBarOrientation(gearBarId) == value end,
+      function(value)
+        mod.gearBarManager.SetGearBarOrientation(gearBarId, value)
+        -- the available change menu directions depend on the orientation - refresh that dropdown so it
+        -- shows the correct entries and the (possibly normalized) selected direction
+        me.RefreshChangeMenuDirectionDropdown(contentFrame)
+      end,
+      orientation.value
+    )
   end
-end
-
---[[
-  Callback for the orientation dropdown
-
-  @param {table} self
-]]--
-function me.OrientationDropdownMenuCallback(self)
-  local orientationDropdown = self:GetParent().dropdown
-  local gearBarId = orientationDropdown.gearBarId
-
-  mod.gearBarManager.SetGearBarOrientation(gearBarId, self.value)
-  mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(orientationDropdown, self.value)
-
-  -- the available change menu directions depend on the orientation - refresh that dropdown so it
-  -- shows the correct entries and the (possibly normalized) selected direction
-  me.RefreshChangeMenuDirectionDropdown(orientationDropdown:GetParent())
 end
 
 --[[
@@ -504,8 +494,8 @@ end
 function me.CreateChangeMenuDirectionLabel(parentFrame)
   local changeMenuDirectionLabel = parentFrame:CreateFontString(nil, "OVERLAY")
   changeMenuDirectionLabel:SetPoint("TOPLEFT", 420, -52)
-  changeMenuDirectionLabel:SetFont(STANDARD_TEXT_FONT, 12)
-  changeMenuDirectionLabel:SetTextColor(1, 1, 1)
+  changeMenuDirectionLabel:SetFont(STANDARD_TEXT_FONT, 15)
+  mod.uiHelper.SetColor(changeMenuDirectionLabel, RGGM_CONSTANTS.COLOR.BODY)
   changeMenuDirectionLabel:SetText(rggm.L["change_menu_direction"])
 end
 
@@ -521,22 +511,25 @@ end
     The created dropdown menu
 ]]--
 function me.CreateChangeMenuDirectionDropdown(parentFrame, gearBarId)
-  local changeMenuDirectionDropdownMenu = mod.libUiDropDownMenu.CreateUiDropDownMenu(
+  local changeMenuDirectionDropdownMenu = mod.uiHelper.CreateSettingsDropdown(
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_CHANGE_MENU_DIRECTION_DROPDOWN .. gearBarId,
-    parentFrame
+    parentFrame,
+    {"TOPLEFT", 420, -72},
+    150,
+    function(_, rootDescription)
+      me.BuildChangeMenuDirectionRadios(rootDescription, gearBarId)
+    end
   )
 
   changeMenuDirectionDropdownMenu.gearBarId = gearBarId
-  changeMenuDirectionDropdownMenu:SetPoint("TOPLEFT", 400, -72)
+  -- generate once so the button shows the current selection before the menu was ever opened
+  changeMenuDirectionDropdownMenu:GenerateMenu()
 
-  mod.libUiDropDownMenu.UiDropDownMenu_SetWidth(changeMenuDirectionDropdownMenu, 150)
-  mod.libUiDropDownMenu.UiDropDownMenu_Initialize(
-    changeMenuDirectionDropdownMenu, me.InitializeChangeMenuDirectionDropdownMenu)
-
-  changeMenuDirectionDropdownMenu:SetScript("OnEnter", function()
+  --[[ hooked instead of set so the template's hover state visuals stay intact ]]--
+  changeMenuDirectionDropdownMenu:HookScript("OnEnter", function()
     mod.tooltip.BuildTooltipForOption(rggm.L["change_menu_direction"], rggm.L["change_menu_direction_tooltip"])
   end)
-  changeMenuDirectionDropdownMenu:SetScript("OnLeave", function()
+  changeMenuDirectionDropdownMenu:HookScript("OnLeave", function()
     _G[RGGM_CONSTANTS.ELEMENT_TOOLTIP]:Hide()
   end)
 
@@ -544,47 +537,36 @@ function me.CreateChangeMenuDirectionDropdown(parentFrame, gearBarId)
 end
 
 --[[
-  Initialize the change menu direction dropdown menu. The available entries depend on the gearBar
-  orientation - horizontal gearBars offer up/down, vertical gearBars offer left/right.
+  Fill the change menu direction dropdown root description with a radio entry per available
+  direction. The available entries depend on the gearBar orientation - horizontal gearBars
+  offer up/down, vertical gearBars offer left/right.
 
-  @param {table} self
+  @param {table} rootDescription
+  @param {number} gearBarId
+    The id of the gearBar the dropdown configures
 ]]--
-function me.InitializeChangeMenuDirectionDropdownMenu(self)
-  local button
+function me.BuildChangeMenuDirectionRadios(rootDescription, gearBarId)
+  local directions
 
-  if mod.gearBarManager.GetGearBarOrientation(self.gearBarId) == RGGM_CONSTANTS.GEAR_BAR_ORIENTATION_VERTICAL then
-    button = mod.uiHelper.CreateDropdownButton(
-      rggm.L["change_menu_direction_right"],
+  if mod.gearBarManager.GetGearBarOrientation(gearBarId) == RGGM_CONSTANTS.GEAR_BAR_ORIENTATION_VERTICAL then
+    directions = {
       RGGM_CONSTANTS.GEAR_BAR_CHANGE_MENU_DIRECTION_RIGHT,
-      me.ChangeMenuDirectionDropdownMenuCallback
-    )
-    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(button)
-
-    button = mod.uiHelper.CreateDropdownButton(
-      rggm.L["change_menu_direction_left"],
-      RGGM_CONSTANTS.GEAR_BAR_CHANGE_MENU_DIRECTION_LEFT,
-      me.ChangeMenuDirectionDropdownMenuCallback
-    )
-    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(button)
+      RGGM_CONSTANTS.GEAR_BAR_CHANGE_MENU_DIRECTION_LEFT
+    }
   else
-    button = mod.uiHelper.CreateDropdownButton(
-      rggm.L["change_menu_direction_up"],
+    directions = {
       RGGM_CONSTANTS.GEAR_BAR_CHANGE_MENU_DIRECTION_UP,
-      me.ChangeMenuDirectionDropdownMenuCallback
-    )
-    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(button)
-
-    button = mod.uiHelper.CreateDropdownButton(
-      rggm.L["change_menu_direction_down"],
-      RGGM_CONSTANTS.GEAR_BAR_CHANGE_MENU_DIRECTION_DOWN,
-      me.ChangeMenuDirectionDropdownMenuCallback
-    )
-    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(button)
+      RGGM_CONSTANTS.GEAR_BAR_CHANGE_MENU_DIRECTION_DOWN
+    }
   end
 
-  if mod.libUiDropDownMenu.UiDropDownMenu_GetSelectedValue(self) == nil then
-    mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(
-      self, mod.gearBarManager.GetChangeMenuDirection(self.gearBarId))
+  for _, direction in ipairs(directions) do
+    rootDescription:CreateRadio(
+      rggm.L[me.GetChangeMenuDirectionLocaleKey(direction)],
+      function(value) return mod.gearBarManager.GetChangeMenuDirection(gearBarId) == value end,
+      function(value) mod.gearBarManager.SetChangeMenuDirection(gearBarId, value) end,
+      direction
+    )
   end
 end
 
@@ -608,9 +590,9 @@ function me.GetChangeMenuDirectionLocaleKey(changeMenuDirection)
 end
 
 --[[
-  Refresh the change menu direction dropdown after the orientation changed so its visible selection
-  reflects the (possibly normalized) stored direction. The dropdown rebuilds its entries for the new
-  orientation the next time it is opened.
+  Refresh the change menu direction dropdown after the orientation changed. Regenerating rebuilds
+  the entries for the new orientation and updates the shown selection to the (possibly normalized)
+  stored direction.
 
   @param {table} contentFrame
     The gearBar configuration content frame holding the dropdown reference
@@ -620,90 +602,53 @@ function me.RefreshChangeMenuDirectionDropdown(contentFrame)
 
   if dropdown == nil then return end
 
-  local direction = mod.gearBarManager.GetChangeMenuDirection(dropdown.gearBarId)
-  mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(dropdown, direction)
-  mod.libUiDropDownMenu.UiDropDownMenu_SetText(dropdown, rggm.L[me.GetChangeMenuDirectionLocaleKey(direction)])
-end
-
---[[
-  Callback for the change menu direction dropdown
-
-  @param {table} self
-]]--
-function me.ChangeMenuDirectionDropdownMenuCallback(self)
-  local gearBarId = self:GetParent().dropdown.gearBarId
-
-  mod.gearBarManager.SetChangeMenuDirection(gearBarId, self.value)
-  mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(self:GetParent().dropdown, self.value)
+  dropdown:GenerateMenu()
 end
 
 --[[
   @param {table} parentFrame
 
   @return {table}
-    The created scrollFrame
+    The created list container
 ]]--
 function me.CreateGearBarConfigurationSlotsList(parentFrame)
-  local scrollFrame = CreateFrame(
-    "ScrollFrame",
+  local listContainer = mod.uiHelper.CreateScrollList(
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_SLOTS_SCROLL_FRAME,
     parentFrame,
-    "FauxScrollFrameTemplate"
-  )
-
-  --[[
-    Store reference of the scroll container for all slot configurations
-    on gearBar configuration container
-  ]]--
-  parentFrame.scrollFrame = scrollFrame
-
-  scrollFrame:SetWidth(RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_WIDTH)
-  scrollFrame:SetHeight(
+    {"TOPLEFT", 20, -290},
+    RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_WIDTH,
     RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_ROW_HEIGHT
     * RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_MAX_ROWS
   )
-  scrollFrame:SetPoint("TOPLEFT", 20, -290)
-  scrollFrame:EnableMouseWheel(true)
-  scrollFrame:SetScript("OnVerticalScroll", me.GearBarConfigurationSlotsListOnVerticalScroll)
 
-  parentFrame.rows = {}
+  --[[
+    Store reference of the list container for all slot configurations
+    on gearBar configuration container
+  ]]--
+  parentFrame.slotsList = listContainer
+  listContainer.rows = {}
 
-  for i = 1, RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_MAX_ROWS do
-    table.insert(parentFrame.rows, me.CreateGearBarConfigurationSlotsListRowFrame(scrollFrame, i))
-  end
-
-  return scrollFrame
+  return listContainer
 end
 
 --[[
-  OnVerticalScroll callback for scrollable slots list
-
-  @param {table} self
-  @param {number} offset
-]]--
-function me.GearBarConfigurationSlotsListOnVerticalScroll(self, offset)
-  CloseMenus()
-  self.ScrollBar:SetValue(offset)
-  self.offset = math.floor(offset / RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_ROW_HEIGHT + 0.5)
-  me.GearBarConfigurationSlotsListOnUpdate()
-end
-
---[[
-  @param {table} frame
+  @param {table} contentFrame
   @param {number} position
 
   @return {table}
     The created row
 ]]--
-function me.CreateGearBarConfigurationSlotsListRowFrame(frame, position)
+function me.CreateGearBarConfigurationSlotsListRowFrame(contentFrame, position)
+  local rowOffset = (position - 1) * RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_ROW_HEIGHT * -1
   local row = CreateFrame(
     "Button",
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_SLOTS_ROW_FRAME .. position,
-    frame,
+    contentFrame,
     "BackdropTemplate"
   )
-  row:SetSize(frame:GetWidth(), RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_ROW_HEIGHT)
-  row:SetPoint("TOPLEFT", frame, 0, (position -1) * RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_ROW_HEIGHT * -1)
+  row:SetHeight(RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_ROW_HEIGHT)
+  row:SetPoint("TOPLEFT", contentFrame, "TOPLEFT", 0, rowOffset)
+  row:SetPoint("TOPRIGHT", contentFrame, "TOPRIGHT", 0, rowOffset)
   row:SetBackdrop({
     bgFile = "Interface\\AddOns\\GearMenu\\assets\\ui_slot_background",
     insets = {left = 0, right = 0, top = 0, bottom = 0},
@@ -775,53 +720,66 @@ end
     The created dropdown menu
 ]]--
 function me.CreateGearBarConfigurationSlotDropdown(row, position)
-  local gearSlotDropdownMenu = mod.libUiDropDownMenu.CreateUiDropDownMenu(
+  local gearSlotDropdownMenu = mod.uiHelper.CreateSettingsDropdown(
     RGGM_CONSTANTS.ELEMENT_GEAR_BAR_CONFIGURATION_SLOTS_GEAR_SLOT_DROPDOWN .. position,
-    row
+    row,
+    {"LEFT", 50, 0},
+    140,
+    me.InitializeGearSlotDropdownMenu
   )
 
   gearSlotDropdownMenu.position = position
-  gearSlotDropdownMenu:SetPoint("TOPLEFT", 30, -10)
-
-  mod.libUiDropDownMenu.UiDropDownMenu_Initialize(gearSlotDropdownMenu, me.InitializeDropdownMenu)
 
   return gearSlotDropdownMenu
 end
 
 --[[
-  Initialize dropdownmenus for slotpositions
+  Menu generator for a slot row dropdown - fills the root description with a radio entry
+  per available gearSlot
 
-  @param {table} self
+  @param {table} dropdown
+    The dropdown the menu is generated for
+  @param {table} rootDescription
 ]]--
-function me.InitializeDropdownMenu(self)
+function me.InitializeGearSlotDropdownMenu(dropdown, rootDescription)
   local gearSlots = mod.gearManager.GetGearSlots()
 
   for _, gearSlot in pairs(gearSlots) do
-    local button = mod.uiHelper.CreateDropdownButton(
+    rootDescription:CreateRadio(
       rggm.L[gearSlot.name],
-      gearSlot.slotId,
-      me.DropDownMenuCallback
+      function(slotId) return me.IsGearSlotSelected(dropdown, slotId) end,
+      function(slotId) me.OnGearSlotSelect(dropdown, slotId) end,
+      gearSlot.slotId
     )
-    mod.libUiDropDownMenu.UiDropDownMenu_AddButton(button)
-  end
-
-  if mod.libUiDropDownMenu.UiDropDownMenu_GetSelectedValue(self) == nil then
-    mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(self, RGGM_CONSTANTS.GEAR_BAR_GEAR_SLOT_DEFAULT_VALUE)
   end
 end
 
 --[[
-  Callback for optionsmenu dropdowns
+  Whether the passed slotId is the one configured for the row the dropdown belongs to
 
-  @param {table} self
-]]
-function me.DropDownMenuCallback(self)
-  -- retrieve offset in scrollable list
-  local offset = self:GetParent().dropdown:GetParent():GetParent().offset
-  -- get position in visible slots (GEAR_BAR_CONFIGURATION_SLOTS_LIST_MAX_ROWS)
-  local position = self:GetParent().dropdown.position
-  local gearSlotMetaData = mod.gearManager.GetGearSlotForSlotId(self.value)
-  local currentMetaData = mod.gearBarManager.GetGearSlot(gearBarConfiguration.id, position + offset)
+  @param {table} dropdown
+  @param {number} slotId
+
+  @return {boolean}
+]]--
+function me.IsGearSlotSelected(dropdown, slotId)
+  local gearSlotMetaData = mod.gearBarManager.GetGearSlot(gearBarConfiguration.id, dropdown:GetParent().position)
+
+  return gearSlotMetaData ~= nil and gearSlotMetaData.slotId == slotId
+end
+
+--[[
+  Callback for when a gearSlot is selected in a slot row dropdown
+
+  @param {table} dropdown
+  @param {number} slotId
+    The slotId of the selected gearSlot
+]]--
+function me.OnGearSlotSelect(dropdown, slotId)
+  -- the row position was updated to the actual gearSlot position (including scroll offset)
+  local position = dropdown:GetParent().position
+  local gearSlotMetaData = mod.gearManager.GetGearSlotForSlotId(slotId)
+  local currentMetaData = mod.gearBarManager.GetGearSlot(gearBarConfiguration.id, position)
 
   --[[
     Preserve keyBinding text if one is present. Note: this is only the text that is displayed. The keyBind itself
@@ -832,9 +790,7 @@ function me.DropDownMenuCallback(self)
     gearSlotMetaData.keyBinding = currentMetaData.keyBinding
   end
 
-  -- include offset to position to get the actual position
-  mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(self:GetParent().dropdown, self.value)
-  mod.gearBarManager.UpdateGearSlot(gearBarConfiguration.id, position + offset, gearSlotMetaData)
+  mod.gearBarManager.UpdateGearSlot(gearBarConfiguration.id, position, gearSlotMetaData)
   me.GearBarConfigurationSlotsListOnUpdate()
 end
 
@@ -956,42 +912,31 @@ function me.RemoveGearSlot(self)
 end
 
 --[[
-  Update a scrollable list holding configuration frames for gearBar slots
+  Update the slots list rows to reflect the configured gearSlots. Rows are created
+  lazily - one per gearSlot - and surplus rows are hidden.
 
-  @param {table} optional scrollFrameReference
-    The scrollFrameReference to update
+  @param {table} optional listContainerReference
+    The list container to update; defaults to the one of the currently active gearBar
 ]]--
-function me.GearBarConfigurationSlotsListOnUpdate(scrollFrameReference)
-  local scrollFrame = scrollFrameReference or me.GetCurrentContentFrame().scrollFrame
-  local rows = scrollFrame:GetParent().rows
-  local maxValue = #gearBarConfiguration.slots or 0
+function me.GearBarConfigurationSlotsListOnUpdate(listContainerReference)
+  local listContainer = listContainerReference or me.GetCurrentContentFrame().slotsList
+  local rows = listContainer.rows
+  local slots = gearBarConfiguration.slots
 
-  if maxValue <= RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_MAX_ROWS then
-    maxValue = RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_MAX_ROWS + 1
-  end
-  -- Note: maxValue needs to be at least max_rows + 1
-  FauxScrollFrame_Update(
-    scrollFrame,
-    maxValue,
-    RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_MAX_ROWS,
-    RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_ROW_HEIGHT
-  )
+  for index = 1, math.max(#slots, #rows) do
+    if index <= #slots and rows[index] == nil then
+      rows[index] = me.CreateGearBarConfigurationSlotsListRowFrame(listContainer.content, index)
+    end
 
-  local offset = FauxScrollFrame_GetOffset(scrollFrame)
-  for index = 1, RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_MAX_ROWS do
-    local gearSlotPosition = index + offset
+    local row = rows[index]
 
-    if gearSlotPosition <= #gearBarConfiguration.slots then
-      local row = rows[index]
-      local slot = gearBarConfiguration.slots[gearSlotPosition]
+    if index <= #slots then
+      local slot = slots[index]
 
-      if slot == nil then return end -- no more slots available for that gearBar
-
-      row.position = gearSlotPosition -- add actual gearSlot position
+      row.position = index -- rows are never re-purposed - position always matches the gearSlot position
       row.slotIcon:SetTexture(slot.textureId)
-      -- update preselected dropdown value for the slot
-      mod.libUiDropDownMenu.UiDropDownMenu_SetSelectedValue(row.gearSlot, slot.slotId)
-      mod.libUiDropDownMenu.UiDropDownMenu_SetText(row.gearSlot, rggm.L[slot.name])
+      -- regenerate so the dropdown text reflects the slot configured for this row
+      row.gearSlot:GenerateMenu()
       -- update keybinding text
       if slot.keyBinding ~= nil then
         row.keyBindText:SetText(slot.keyBinding)
@@ -1001,9 +946,14 @@ function me.GearBarConfigurationSlotsListOnUpdate(scrollFrameReference)
 
       row:Show()
     else
-      rows[index]:Hide()
+      row:Hide()
     end
   end
+
+  listContainer.content:SetHeight(
+    math.max(#slots, RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_MAX_ROWS)
+    * RGGM_CONSTANTS.GEAR_BAR_CONFIGURATION_SLOTS_LIST_ROW_HEIGHT
+  )
 end
 
 --[[

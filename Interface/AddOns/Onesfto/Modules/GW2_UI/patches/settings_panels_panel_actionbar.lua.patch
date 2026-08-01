@@ -1,0 +1,38 @@
+--- Onesfto/Modules/GW2_UI/GW2_UI_1.15.9/settings/panels/panel_actionbar.lua	2026-07-26 13:19:34
++++ GW2_UI/settings/panels/panel_actionbar.lua	2026-07-26 14:19:30
+@@ -26,7 +26,7 @@
+     general.sub:GwSetFontTemplate(UNIT_NAME_FONT, GW.Enum.TextSizeType.Small)
+     general.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
+     general.sub:SetText(ACTIONBARS_SUBTEXT)
+-    general.header:SetWidth(general.header:GetStringWidth())
++    general.header:SetWidth(general.header:GetStringWidth() + 10)
+     general.breadcrumb:SetFont(DAMAGE_TEXT_FONT, 12)
+     general.breadcrumb:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
+     general.breadcrumb:SetText(GENERAL)
+@@ -36,7 +36,7 @@
+     mainBar.header:SetFont(DAMAGE_TEXT_FONT, 20)
+     mainBar.header:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
+     mainBar.header:SetText(BINDING_HEADER_ACTIONBAR)
+-    mainBar.header:SetWidth(mainBar.header:GetStringWidth())
++    mainBar.header:SetWidth(mainBar.header:GetStringWidth() + 10)
+     mainBar.breadcrumb:SetFont(DAMAGE_TEXT_FONT, 12)
+     mainBar.breadcrumb:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
+     mainBar.breadcrumb:SetText(L["Main Action Bar"])
+@@ -52,7 +52,7 @@
+     extraBars.sub:GwSetFontTemplate(UNIT_NAME_FONT, GW.Enum.TextSizeType.Small)
+     extraBars.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
+     extraBars.sub:SetText("")
+-    extraBars.header:SetWidth(extraBars.header:GetStringWidth())
++    extraBars.header:SetWidth(extraBars.header:GetStringWidth() + 10)
+     extraBars.breadcrumb:SetFont(DAMAGE_TEXT_FONT, 12)
+     extraBars.breadcrumb:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
+     extraBars.breadcrumb:SetText(BINDING_HEADER_MULTIACTIONBAR)
+@@ -66,7 +66,7 @@
+     stanceBar.sub:GwSetFontTemplate(UNIT_NAME_FONT, GW.Enum.TextSizeType.Small)
+     stanceBar.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
+     stanceBar.sub:SetText("")
+-    stanceBar.header:SetWidth(stanceBar.header:GetStringWidth())
++    stanceBar.header:SetWidth(stanceBar.header:GetStringWidth() + 10)
+     stanceBar.breadcrumb:SetFont(DAMAGE_TEXT_FONT, 12)
+     stanceBar.breadcrumb:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
+     stanceBar.breadcrumb:SetText(HUD_EDIT_MODE_STANCE_BAR_LABEL or L["Stance Bar"])

@@ -1,0 +1,11 @@
+--- Onesfto/Modules/GW2_UI/GW2_UI_1.15.9/Games/Wrath/Character/talents.xml	2026-07-26 13:19:34
++++ GW2_UI/Games/Wrath/Character/talents.xml	2026-07-25 21:05:20
+@@ -515,7 +515,7 @@
+                         </Anchors>
+                         <Layers>
+                             <Layer level="OVERLAY" textureSubLevel="2">
+-                                <FontString parentKey="title" text="Talent Preview" inherits="ChatBubbleFont" justifyH="RIGHT">
++                                <FontString parentKey="title" text="天赋预览" inherits="ChatBubbleFont" justifyH="RIGHT">
+                                     <Size x="250" y="30"/>
+                                     <Color r="1" b="1" g="1"/>
+                                     <Anchors>

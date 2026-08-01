@@ -18,7 +18,7 @@ local function LoadInterfaceFeaturesPanel(sWindow)
     p:AddOption(TALENTS, L["Enable the talents, specialization, and spellbook replacement."], {getterSetter = "USE_TALENT_WINDOW", callback = function() GW.ShowRlPopup = true end, groupHeaderName = L["UI Windows"], hidden = GW.Retail, isMasterToggle = true})
     p:AddOption(SPELLBOOK_ABILITIES_BUTTON, nil, {getterSetter = "USE_SPELLBOOK_WINDOW", callback = function() GW.ShowRlPopup = true end, groupHeaderName = L["UI Windows"], hidden = GW.Retail, isMasterToggle = true})
     p:AddOption(TRADE_SKILLS, L["Enable the profession replacement."], {getterSetter = "USE_PROFESSION_WINDOW", callback = function() GW.ShowRlPopup = true end, groupHeaderName = L["UI Windows"], hidden = not GW.Retail, isMasterToggle = true})
-    p:AddOption(FRIENDS, nil, {getterSetter = "USE_SOCIAL_WINDOW", callback = function() GW.ShowRlPopup = true end, groupHeaderName = L["UI Windows"], hidden = not (GW.Retail or GW.TBC or GW.Classic), isMasterToggle = true})
+    p:AddOption(FRIENDS, nil, {getterSetter = "USE_SOCIAL_WINDOW", callback = function() GW.ShowRlPopup = true end, groupHeaderName = L["UI Windows"], hidden = not (GW.Retail or GW.TBC), isMasterToggle = true})
 
     p:AddGroupHeader(L["Components"])
     p:AddOption(INVENTORY_TOOLTIP, L["Enable the unified inventory interface."], {getterSetter = "BAGS_ENABLED", callback = function() GW.ShowRlPopup = true end, groupHeaderName = L["Components"], incompatibleAddons = "Inventory", isMasterToggle = true})

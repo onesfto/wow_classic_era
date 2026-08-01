@@ -152,8 +152,10 @@ local function BuildPanel(parent)
         })
     end
 
+
+
     ----------------------------------------------------------------------------
-    -- 二、按钮尺寸
+    -- 三、按钮尺寸
     ----------------------------------------------------------------------------
 
     panel:AddGroupHeader("按钮尺寸")
@@ -703,7 +705,16 @@ local function AddMainBarOptions(panel)
         groupHeaderName = "按钮",
     })
     if mainColumns then mainColumns.gwPlusColumns = 2 end
-    panel:AddOptionDropdown("范围提示", nil, {
+    local mainGlobeGap = panel:AddOptionSlider("中间空隙", nil, {
+        min = 0, max = 400, step = 1,
+        getter = function() return db.mainBarGlobeGap or 0 end,
+        setter = function(value) db.mainBarGlobeGap = value end,
+        getDefault = function() return defaults.mainBarGlobeGap end,
+        callback = AB.ApplyMainBarLayout,
+        groupHeaderName = "按钮",
+    })
+    if mainGlobeGap then mainGlobeGap.gwPlusColumns = 2 end
+    local rangeIndicator = panel:AddOptionDropdown("范围提示", nil, {
         optionsList = {"RED_INDICATOR", "RED_OVERLAY", "BOTH", "NONE"},
         optionNames = {"红点", "红色覆盖", "两者", "无"},
         getter = function() return GW.settings.MAINBAR_RANGEINDICATOR end,
@@ -712,6 +723,7 @@ local function AddMainBarOptions(panel)
         callback = function() if GW.UpdateMainBarHot then GW.UpdateMainBarHot() end end,
         groupHeaderName = "按钮",
     })
+    if rangeIndicator then rangeIndicator.gwPlusColumns = 2 end
     panel:AddGroupHeader("快捷键")
     panel:AddOption("显示快捷键", nil, {
         getter = function() return db.mainBarShowHotkey end,
@@ -1224,6 +1236,72 @@ local function AddMageOptions(panel)
     if resetOption then resetOption.gwPlusDisabled = not isMage end
 end
 
+local function AddTotemBarOptions(panel)
+    local applyVisibility = function()
+        if _G.GwTotemBar then _G.GwTotemBar:UpdateVisibility() end
+        if addonTable.PlusFader then addonTable.PlusFader.Refresh() end
+    end
+    local applyLayout = function()
+        if _G.GwTotemBar then _G.GwTotemBar:PositionAndSizeUpdate() end
+    end
+
+    panel:AddOption("显示图腾条", nil, {
+        getter = function() return GW.settings.TotemBar.enabled end,
+        setter = function(value) GW.settings.TotemBar.enabled = value end,
+        getDefault = function() return true end,
+        callback = applyVisibility,
+        isMasterToggle = true,
+    })
+
+    panel:AddOptionDropdown("增长方向", nil, {
+        optionsList = {"HORIZONTAL", "VERTICAL"},
+        optionNames = {"水平", "垂直"},
+        getter = function() return GW.settings.TotemBar.growDirection end,
+        setter = function(value) GW.settings.TotemBar.growDirection = value end,
+        getDefault = function() return "HORIZONTAL" end,
+        callback = applyLayout,
+    })
+    
+    panel:AddOptionDropdown("排序方向", nil, {
+        optionsList = {"ASC", "DSC"},
+        optionNames = {"升序", "降序"},
+        getter = function() return GW.settings.TotemBar.sortDirection end,
+        setter = function(value) GW.settings.TotemBar.sortDirection = value end,
+        getDefault = function() return "ASC" end,
+        callback = applyLayout,
+    })
+
+    local sizeOption = panel:AddOptionSlider("尺寸", nil, {
+        min = AB.SIZE_MIN, max = AB.SIZE_MAX, step = 1, decimalNumbers = 0,
+        getter = function() return GW.settings.TotemBar.buttonSize end,
+        setter = function(value) GW.settings.TotemBar.buttonSize = value end,
+        getDefault = function() return 32 end,
+        callback = applyLayout,
+    })
+    if sizeOption then sizeOption.gwPlusColumns = 2 end
+
+    local spacingOption = panel:AddOptionSlider("间距", nil, {
+        min = 0, max = 20, step = 1, decimalNumbers = 0,
+        getter = function() return GW.settings.TotemBar.spacing end,
+        setter = function(value) GW.settings.TotemBar.spacing = value end,
+        getDefault = function() return 2 end,
+        callback = applyLayout,
+    })
+    if spacingOption then spacingOption.gwPlusColumns = 2 end
+
+    AddResetButton(panel, function()
+        local totemDefaults = NativeDefault("TotemBar", {})
+        GW.settings.TotemBar.enabled = true
+        GW.settings.TotemBar.growDirection = totemDefaults.growDirection or "HORIZONTAL"
+        GW.settings.TotemBar.sortDirection = totemDefaults.sortDirection or "ASC"
+        GW.settings.TotemBar.buttonSize = totemDefaults.buttonSize or 32
+        GW.settings.TotemBar.spacing = totemDefaults.spacing or 2
+        applyVisibility()
+        applyLayout()
+        ResetMover(_G.GwTotemBar)
+    end)
+end
+
 local NATIVE_ACTIONBAR_PANEL_IDS = {
     actionbar_general = true,
     actionbar_main = true,
@@ -1273,6 +1351,7 @@ local function BuildActionBarTab(settingsTab, settingsWindow)
         {"多动作条", "gw2_plus_actionbar_multi", "动作条 2–8 独立布局", AddMultiBarOptions},
         {"姿态条", "gw2_plus_actionbar_stance", "姿态动作按钮", function(panel) AddSimpleBarOptions(panel, "stance") end},
         {"宠物动作条", "gw2_plus_actionbar_pet", "仅调整宠物动作按钮", function(panel) AddSimpleBarOptions(panel, "pet") end},
+        {"图腾条", "gw2_plus_actionbar_totem", "图腾动作按钮", AddTotemBarOptions},
     }
     pageDefinitions[#pageDefinitions + 1] =
         {"法师动作条", "gw2_plus_actionbar_mage", "法师专属法术分组", AddMageOptions}

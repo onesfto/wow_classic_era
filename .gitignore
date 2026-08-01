@@ -51,9 +51,7 @@ Thumbs.db
 /Interface/AddOns/MacroToolkit/
 /Interface/AddOns/MacroToolkitIcons/
 
-# NDui 轻量级界面增强
-/Interface/AddOns/NDui/
-/Interface/AddOns/NDui_Plus/
+
 
 # 小地图美化
 /Interface/AddOns/SexyMap/
@@ -86,3 +84,9 @@ Thumbs.db
 
 # ala专业技能面板
 /Interface/AddOns/alaTradeSkill/
+
+# 聊天过滤
+/Interface/AddOns/CChatFilter/
+
+# 技能学习提示
+/Interface/AddOns/WhatsTraining/

@@ -126,9 +126,6 @@ Private.big_number_types = {
   ["AbbreviateLargeNumbers"] = L["AbbreviateLargeNumbers (Blizzard)"],
   ["BreakUpLargeNumbers"] = L["BreakUpLargeNumbers (Blizzard)"],
 }
-if WeakAuras.IsClassicEra() then
-  Private.big_number_types.BreakUpLargeNumbers = nil
-end
 ---@type table<string, string>
 Private.big_number_types_with_disable = CopyTable(Private.big_number_types)
 Private.big_number_types_with_disable["disable"] = L["Disabled"]
@@ -183,61 +180,6 @@ end
 
 timeFormatter.GetMaxInterval = function(self)
   return #timeFormatIntervalDescriptionFixed
-end
-
-local AbbreviateNumbers = AbbreviateNumbers
-local gameLocale = GetLocale()
-if gameLocale == "koKR" or gameLocale == "zhCN" or gameLocale == "zhTW" then
-  -- Work around https://github.com/Stanzilla/WoWUIBugs/issues/515
-  --
-  local NUMBER_ABBREVIATION_DATA_FIXED={
-    [1]={
-      breakpoint = 10000 * 10000,
-      significandDivisor = 10000 * 10000,
-      abbreviation = SECOND_NUMBER_CAP_NO_SPACE,
-      fractionDivisor = 1
-    },
-    [2]={
-      breakpoint = 1000 * 10000,
-      significandDivisor = 1000 * 10000,
-      abbreviation = SECOND_NUMBER_CAP_NO_SPACE,
-      fractionDivisor = 10
-    },
-    [3]={
-      breakpoint = 10000,
-      significandDivisor = 1000,
-      abbreviation = FIRST_NUMBER_CAP_NO_SPACE,
-      fractionDivisor = 10
-    }
-  }
-
-  AbbreviateNumbers = function(value)
-    for i, data in ipairs(NUMBER_ABBREVIATION_DATA_FIXED) do
-      if value >= data.breakpoint then
-              local finalValue = math.floor(value / data.significandDivisor) / data.fractionDivisor;
-              return finalValue .. data.abbreviation;
-      end
-    end
-    return tostring(value);
-  end
-elseif WeakAuras.IsClassicEra() or WeakAuras.IsWrathOrCataOrMists() then
-  local NUMBER_ABBREVIATION_DATA_FIXED = {
-        -- Work around another bug in NUMBER_ABBREVIATION_DATA, https://github.com/WeakAuras/WeakAuras2/issues/6061
-        { breakpoint = 10000000,        abbreviation = SECOND_NUMBER_CAP_NO_SPACE,      significandDivisor = 1000000,   fractionDivisor = 1 },
-        { breakpoint = 1000000,         abbreviation = SECOND_NUMBER_CAP_NO_SPACE,      significandDivisor = 100000,            fractionDivisor = 10 },
-        { breakpoint = 10000,           abbreviation = FIRST_NUMBER_CAP_NO_SPACE,       significandDivisor = 1000,              fractionDivisor = 1 },
-        { breakpoint = 1000,            abbreviation = FIRST_NUMBER_CAP_NO_SPACE,       significandDivisor = 100,               fractionDivisor = 10 }
-  }
-
-  AbbreviateNumbers = function(value)
-    for i, data in ipairs(NUMBER_ABBREVIATION_DATA_FIXED) do
-      if value >= data.breakpoint then
-              local finalValue = math.floor(value / data.significandDivisor) / data.fractionDivisor;
-              return finalValue .. data.abbreviation;
-      end
-    end
-    return tostring(value);
-  end
 end
 
 local simpleFormatters = {
@@ -1561,8 +1503,10 @@ Private.tick_placement_modes = {
 ---@type table<string, string>
 Private.font_flags = {
   None = L["None"],
+  ["SLUG"] = WeakAuras.newFeatureString .. L["Slug"],
   MONOCHROME = L["Monochrome"],
   OUTLINE = L["Outline"],
+  ["OUTLINE|SLUG"] = WeakAuras.newFeatureString .. L["Slug Outline"],
   THICKOUTLINE  = L["Thick Outline"],
   ["MONOCHROME|OUTLINE"] = L["Monochrome Outline"],
   ["MONOCHROME|THICKOUTLINE"] = L["Monochrome Thick Outline"]

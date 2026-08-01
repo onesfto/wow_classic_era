@@ -10,7 +10,7 @@ NDuiADB = {
 ["NumberFormat"] = 1,
 ["IgnoredButtons"] = "",
 ["Changelog"] = {
-["Version"] = "1.52.4",
+["Version"] = "1.53.1",
 },
 ["ChatFilterList"] = "%*",
 ["Help"] = {
@@ -28,46 +28,7 @@ NDuiADB = {
 },
 ["ChatFilterWhiteList"] = "",
 ["UIScale"] = 0.71,
-["GuildSortOrder"] = true,
-["RaidAuraWatch"] = {
-},
-["BWRequest"] = true,
-["SkadaRequest"] = true,
-["MajorSpells"] = {
-},
-["totalGold"] = {
-["哈霍兰"] = {
-["法德迦"] = {
-173793401,
-"MAGE",
-},
-},
-},
-["VersionCheck"] = true,
-["NameplateFilter"] = {
-{
-},
-{
-},
-},
-["ClickSets"] = {
-["MAGE"] = {
-["MWU"] = 475,
-["MWD"] = 1460,
-},
-},
-["RaidDebuffs"] = {
-},
-["AutoRecycle"] = false,
-["LockUIScale"] = false,
-["TexStyle"] = 2,
-["ProfileIndex"] = {
-["女王安其拉-哈霍兰"] = 1,
-["黑龙守护者-哈霍兰"] = 1,
-["哈霍兰大格格-哈霍兰"] = 1,
-["法德迦-哈霍兰"] = 1,
-["德加和尚-哈霍兰"] = 1,
-},
+["ShowCoords"] = false,
 ["ProfileNames"] = {
 "角色配置",
 "共享配置1",
@@ -78,6 +39,48 @@ NDuiADB = {
 },
 ["ContactList"] = {
 },
+["ProfileIndex"] = {
+["哈霍兰大格格-哈霍兰"] = 1,
+["绿龙守护者-哈霍兰"] = 1,
+["黑龙守护者-哈霍兰"] = 1,
+["法德迦-哈霍兰"] = 1,
+["灞波儿奔壹世-硬汉"] = 1,
+["德加和尚-哈霍兰"] = 1,
+},
+["AutoRecycle"] = false,
+["MajorSpells"] = {
+},
+["TexStyle"] = 2,
+["VersionCheck"] = true,
+["NameplateFilter"] = {
+{
+},
+{
+},
+},
+["totalGold"] = {
+["哈霍兰"] = {
+["法德迦"] = {
+173793401,
+"MAGE",
+},
+},
+},
+["RaidDebuffs"] = {
+},
+["DetectVersion"] = "1.53.1",
+["ClickSets"] = {
+["MAGE"] = {
+["MWD"] = 1460,
+["MWU"] = 475,
+},
+},
+["LockUIScale"] = false,
+["SkadaRequest"] = true,
+["BWRequest"] = true,
+["RaidAuraWatch"] = {
+},
+["GuildSortOrder"] = true,
 }
 NDuiPDB = {
 {

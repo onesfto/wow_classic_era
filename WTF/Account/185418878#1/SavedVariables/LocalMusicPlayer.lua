@@ -1,0 +1,4 @@
+
+LocalMusicPlayerDB = {
+["mode"] = "shuffle",
+}

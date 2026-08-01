@@ -197,8 +197,8 @@ end
 local AudioData=FramePlusfun.AudioData
 local QuestsEndFrameUI = CreateFrame("Frame");
 QuestsEndFrameUI.EndList={}
-local function PIG_PlaySoundAudio(ok,questID)										
-	if ok and not QuestsEndFrameUI.initialize and not QuestsEndFrameUI.EndList[questID] then
+local function PIG_PlaySoundAudio(ok,questID)							
+	if ok and not QuestsEndFrameUI.initialize and not QuestsEndFrameUI.EndList[questID] then	
 		PIG_PlaySoundFile(AudioData[PIGA["Common"]["QuestsEndAudio"]])
 	end
 	QuestsEndFrameUI.EndList[questID]=ok
@@ -248,7 +248,6 @@ local function GetQuestsInfo(event)
 			end
 		end
 	end
-	
 end
 QuestsEndFrameUI:SetScript("OnEvent", function(self,event)
 	if event == "PLAYER_ENTERING_WORLD" then

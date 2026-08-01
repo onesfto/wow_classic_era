@@ -1,6 +1,6 @@
 
 ACP_Data = {
-["sorter"] = "默认",
+["sorter"] = "名称",
 ["NoRecurse"] = false,
 ["NoChildren"] = true,
 ["AddonSet"] = {

@@ -1,0 +1,10 @@
+--- Onesfto/Modules/GW2_UI/GW2_UI_1.15.9/settings/defaults2.lua	2026-07-26 13:19:34
++++ GW2_UI/settings/defaults2.lua	2026-07-26 07:26:59
+@@ -1315,6 +1315,7 @@
+         WORLDMAP_SKIN_ENABLED= true,
+         GOSSIP_SKIN_ENABLED= true,
+         QUESTLOG_SKIN_ENABLED = true,
++        TRADESKILL_SKIN_ENABLED = true,
+         ITEMUPGRADE_SKIN_ENABLED= true,
+         TIMEMANAGER_SKIN_ENABLED= true,
+         MERCHANT_SKIN_ENABLED= true,

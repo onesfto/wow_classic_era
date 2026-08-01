@@ -117,37 +117,44 @@ end
 function CVarsfun.Shaman_Blue()
 	if PIG_MaxTocversion(20000,true) then return end  
 	if not PIGA["CVars"]["Shaman_Blue"] then return end  
-    local classColorTable = {r=0,g=0.44,b=0.87,colorStr = "ff0070DD"}
-    PIG_CLASS_COLORS["SHAMAN"] = {r=classColorTable.r, g=classColorTable.g, b=classColorTable.b, colorStr=classColorTable.colorStr}
-    local old_GetColoredName=GetColoredName
-    GetColoredName=function(event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12)
-        if ( arg12 and arg12 ~= "" ) then
-            local localizedClass, englishClass, localizedRace, englishRace, sex = GetPlayerInfoByGUID(arg12)
-            if ( englishClass ) then
-             if englishClass=="SHAMAN" then
-                local chatType = strsub(event, 10);
-                if ( strsub(chatType, 1, 7) == "WHISPER" ) then
-                    chatType = "WHISPER";
-                end
-                if ( strsub(chatType, 1, 7) == "CHANNEL" ) then
-                    chatType = "CHANNEL"..arg8;
-                end
-                local info = ChatTypeInfo[chatType];
-                if (chatType == "GUILD") then
-                    arg2 = Ambiguate(arg2, "guild")
-                else
-                    arg2 = Ambiguate(arg2, "none")
-                end
-                if ( info and info.colorNameByClass ) then
-                    return string.format("\124cff%.2x%.2x%.2x", classColorTable.r*255, classColorTable.g*255, classColorTable.b*255)..arg2.."\124r"
-                end
-             else
-                 old_GetColoredName(event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12)
-             end
-            end
-        end
-        return old_GetColoredName(event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12)
-    end
+    local color = PIG_CLASS_COLORS["SHAMAN"];
+    function ChatFrameUtil.GetDecoratedSenderName(event, ...)
+		local text, senderName, languageName, channelName, playerName2, specialFlags, zoneChannelID, channelIndex, channelBaseName, languageID, lineID, senderGUID, bnSenderID, isMobile = ...;
+		local chatType = string.sub(event, 10);
+		if string.find(chatType, "^WHISPER") then
+			chatType = "WHISPER";
+		end
+		if string.find(chatType, "^CHANNEL") then
+			chatType = "CHANNEL" .. channelIndex;
+		end
+		local chatTypeInfo = ChatTypeInfo[chatType];
+		local decoratedPlayerName = senderName;
+		if Ambiguate then
+			if chatType == "GUILD" then
+				decoratedPlayerName = Ambiguate(decoratedPlayerName, "guild");
+			else
+				decoratedPlayerName = Ambiguate(decoratedPlayerName, "none");
+			end
+		end
+		if senderGUID and C_ChatInfo.IsTimerunningPlayer(senderGUID) then
+			decoratedPlayerName = TimerunningUtil.AddSmallIcon(decoratedPlayerName);
+		end
+		if senderGUID and chatTypeInfo and ChatFrameUtil.ShouldColorChatByClass(chatTypeInfo) and GetPlayerInfoByGUID ~= nil then
+			local localizedClass, englishClass, localizedRace, englishRace, sex = GetPlayerInfoByGUID(senderGUID);
+
+			if englishClass then
+				local classColor = RAID_CLASS_COLORS[englishClass];
+				if englishClass=="SHAMAN" then
+					classColor = PIG_CLASS_COLORS["SHAMAN"]
+				end
+				if classColor then
+					decoratedPlayerName = classColor:WrapTextInColorCode(decoratedPlayerName);
+				end
+			end
+		end
+		decoratedPlayerName = ChatFrameUtil.ProcessSenderNameFilters(event, decoratedPlayerName, ...);
+		return decoratedPlayerName;
+	end
     hooksecurefunc("CompactUnitFrame_UpdateHealthColor", function(frame)
         local unitIsConnected = UnitIsConnected(frame.unit);
         local unitIsDead = unitIsConnected and UnitIsDead(frame.unit);
@@ -157,9 +164,9 @@ function CVarsfun.Shaman_Blue()
             local localizedClass, englishClass = UnitClass(frame.unit);
             if englishClass=="SHAMAN" then
                 if ( (frame.optionTable.allowClassColorsForNPCs or UnitIsPlayer(frame.unit)) and frame.optionTable.useClassColors ) then
-                    frame.healthBar:SetStatusBarColor(classColorTable.r, classColorTable.g, classColorTable.b);
+                    frame.healthBar:SetStatusBarColor(color.r, color.g, color.b);
                     if (frame.optionTable.colorHealthWithExtendedColors) then
-                        frame.selectionHighlight:SetVertexColor(classColorTable.r, classColorTable.g, classColorTable.b);
+                        frame.selectionHighlight:SetVertexColor(color.r, color.g, color.b);
                     end
                 end
             end
@@ -290,19 +297,20 @@ function PD.addOptions_CVars()
 		    end  
 		end
 		EaseUseF.F.Show_Checked()
-
-		EaseUseF.F.debuffSizeV = PIGSlider(EaseUseF.F,{"TOPLEFT",EaseUseF.F,"BOTTOMLEFT",2,0},{21,40,1,{["Right"]=SHOW_DYNAMIC_BUFF_SIZE.."%d (默认21)"}})
-		function EaseUseF.F.debuffSizeV:PIGOnValueChange(arg1)
-			LARGE_AURA_SIZE=arg1
-			if arg1==old_LARGE_AURA_SIZE then 
-				PIGA["CVars"]["debuffSizeV"]=nil
-			else
-				PIGA["CVars"]["debuffSizeV"]=arg1
+		if GetCVarDefault("showDynamicBuffSize") then
+			SHOW_DYNAMIC_BUFF_SIZE=SHOW_DYNAMIC_BUFF_SIZE or "自身增减益放大"
+			EaseUseF.F.debuffSizeV = PIGSlider(EaseUseF.F,{"TOPLEFT",EaseUseF.F,"BOTTOMLEFT",2,0},{21,40,1,{["Right"]=SHOW_DYNAMIC_BUFF_SIZE.."%d (默认21)"}})
+			function EaseUseF.F.debuffSizeV:PIGOnValueChange(arg1)
+				LARGE_AURA_SIZE=arg1
+				if arg1==old_LARGE_AURA_SIZE then 
+					PIGA["CVars"]["debuffSizeV"]=nil
+				else
+					PIGA["CVars"]["debuffSizeV"]=arg1
+				end
+				SetBigDeBuffVV()
 			end
-			SetBigDeBuffVV()
+			EaseUseF.F.debuffSizeV:PIGSetValue(LARGE_AURA_SIZE)
 		end
-		EaseUseF.F.debuffSizeV:PIGSetValue(LARGE_AURA_SIZE)
-		
 		-----------
 		EaseUseF.diyF=PIGFrame(EaseUseF,{"TOPLEFT", EaseUseF, "TOPLEFT", 10, -340})
 		EaseUseF.diyF:SetPoint("BOTTOMRIGHT", EaseUseF, "BOTTOMRIGHT", -10, 10);
@@ -624,133 +632,109 @@ function PD.addOptions_CVars()
 		combattextF.RF.OPENcombattext:SetChecked(GetCVar(enableFloatingCombatText)=="1");
 	end)
 	---姓名板===
-	if PIG_MaxTocversion(50000) then
-		local xingmingbanF =PIGOptionsList_R(RTabFrame,L["CVAR_TABNAME2"],70)
-		xingmingbanF:HookScript("OnShow", function (self)
-			if self.yiok then return end
-			self.yiok=true
-			local xingmingList = {
-				{SHOW..SHOW_TARGET_CASTBAR_IN_V_KEY,"nameplateShowOnlyNames","0","1",nil,true},
-				{UNIT_NAME_FRIENDLY..SHOW_TARGET_CASTBAR_IN_V_KEY..SHOW_CLASS_COLOR,"ShowClassColorInFriendlyNameplate","1","0",nil,true},
-				{COMBATLOG_FILTER_STRING_HOSTILE_PLAYERS..SHOW_TARGET_CASTBAR_IN_V_KEY..SHOW_CLASS_COLOR,"ShowClassColorInNameplate","1","0",nil,true},
-				{TARGET..SHOW_TARGET_CASTBAR_IN_V_KEY..LOCK.."在屏幕内","clampTargetNameplateToScreen","1","0",nil,false},
-			}
-			for i=1,#xingmingList do
-				local CVarsCB = PIGCheckbutton_R(xingmingbanF,{xingmingList[i][1],xingmingList[i][5] or xingmingList[i][1]},true)
-				if xingmingList[i][6] then
-					ADD_tishi(CVarsCB,xingmingList[i][1],-2,0)
-				end
-				CVarsCB:SetScript("OnClick", function (self)
-					if self:GetChecked() then
-						SetCVar(xingmingList[i][2], xingmingList[i][3])
-					else
-						SetCVar(xingmingList[i][2], xingmingList[i][4])
-					end
-					if xingmingList[i][6] then
-						PIG_OptionsUI.RLUI:Show()
-					end
-					if xingmingList[i][2]=="clampTargetNameplateToScreen" then
-						xingmingbanF.Update_SetUI()
-					end
-				end)
-				CVarsCB:SetChecked(GetCVar(xingmingList[i][2])==xingmingList[i][3]);
+	local xingmingbanF =PIGOptionsList_R(RTabFrame,L["CVAR_TABNAME2"],70)
+	xingmingbanF:HookScript("OnShow", function (self)
+		if self.yiok then return end
+		self.yiok=true
+		local enemyTooltip = Settings.WrapTooltipWithBinding(OPTION_TOOLTIP_UNIT_NAMEPLATES_SHOW_ENEMIES, "NAMEPLATES");
+		local friendlyTooltip = Settings.WrapTooltipWithBinding(OPTION_TOOLTIP_UNIT_NAMEPLATES_SHOW_FRIENDS, "FRIENDNAMEPLATES");
+		local xingmingList = {
+			{false,"nameplateShowAll","1","0",UNIT_NAMEPLATES_AUTOMODE,OPTION_TOOLTIP_UNIT_NAMEPLATES_AUTOMODE},
+			{false,"nameplateShowEnemies","1","0",BINDING_NAME_NAMEPLATES, enemyTooltip()},
+			{false,"nameplateShowFriendlyPlayers","1","0",BINDING_NAME_FRIENDNAMEPLATES, friendlyTooltip()},
+			{false,"nameplateShowClassColor","1","0",OPTION_TOOLTIP_UNIT_NAMEPLATES_SHOW_ENEMIES..SHOW_CLASS_COLOR, UNIT_NAMEPLATES_CLASS_COLOR_FRIENDLY_TOOLTIP},--SHOW_CLASS_COLOR
+			{false,"nameplateShowFriendlyClassColor","1","0",OPTION_TOOLTIP_UNIT_NAMEPLATES_SHOW_FRIENDS..SHOW_CLASS_COLOR, UNIT_NAMEPLATES_CLASS_COLOR_ENEMY_TOOLTIP},
+			{false,"nameplateShowOffscreen","1","0",UNIT_NAMEPLATES_SHOW_OFFSCREEN, UNIT_NAMEPLATES_SHOW_OFFSCREEN_TOOLTIP},
+			--{false,"clampTargetNameplateToScreen","1","0",TARGET..SHOW_TARGET_CASTBAR_IN_V_KEY..LOCK.."在屏幕内"},
+		}
+		for i=1,#xingmingList do
+			local CVarsCB = PIGCheckbutton_R(xingmingbanF,{xingmingList[i][5],xingmingList[i][6] or xingmingList[i][5]},true)
+			if xingmingList[i][1] then
+				ADD_tishi(CVarsCB,xingmingList[i][5],-2,0)
 			end
-			-- xingmingbanF.nameplatebiaoti = PIGFontString(xingmingbanF,{"TOPLEFT",xingmingbanF,"TOPLEFT",40,-170},"锁定距离");
-			-- xingmingbanF.CZ = PIGButton(xingmingbanF,{"LEFT",xingmingbanF.nameplatebiaoti,"RIGHT",10,0},{60,22},RESET);  
-			-- xingmingbanF.CZ:SetScript("OnClick", function ()
-			-- 	SetCVar("nameplateOtherTopInset",0.08)
-			-- 	SetCVar("nameplateOtherBottomInset",0.1)
-			-- 	xingmingbanF.Update_SetUI()
-			-- end)
-			-- xingmingbanF.nameplateTop=PIGSlider(xingmingbanF,{"TOPLEFT",xingmingbanF.nameplatebiaoti,"BOTTOMLEFT",0,-10},{0,0.2,0.01,{["Right"]="顶部距离%s%%屏幕尺寸"}})
-			-- function xingmingbanF.nameplateTop:PIGOnValueChange(arg1)
-			-- 	SetCVar("nameplateOtherTopInset",arg1)
-			-- end
-			
-			-- xingmingbanF.nameplateBottom=PIGSlider(xingmingbanF,{"TOPLEFT",xingmingbanF.nameplateTop,"BOTTOMLEFT",0,-10},{0,0.2,0.01,{["Right"]="底部距离%s%%屏幕尺寸"}})
-			-- function xingmingbanF.nameplateBottom:PIGOnValueChange(arg1)
-			-- 	SetCVar("nameplateOtherBottomInset",arg1)
-			-- end
-			-- function xingmingbanF.Update_SetUI()
-			-- 	xingmingbanF.CZ:SetEnabled(GetCVar("clampTargetNameplateToScreen")=="1")
-			-- 	xingmingbanF.nameplateTop:SetEnabled(GetCVar("clampTargetNameplateToScreen")=="1")
-			-- 	xingmingbanF.nameplateBottom:SetEnabled(GetCVar("clampTargetNameplateToScreen")=="1")
-			-- 	xingmingbanF.nameplateTop:PIGSetValue(GetCVar("nameplateOtherTopInset"))
-			-- 	xingmingbanF.nameplateBottom:PIGSetValue(GetCVar("nameplateOtherBottomInset"))
-			-- end
-			-- xingmingbanF.Update_SetUI()
-		end);
-		--自身高亮
-		-- local gaoliangF =PIGOptionsList_R(RTabFrame,L["CVAR_TABNAME3"],90)
-		-- local gaoliangmoshiName = {
-		--     [0]=OFF,
-		--     [1]=SELF_HIGHLIGHT_MODE_CIRCLE,
-		--     [2]=SELF_HIGHLIGHT_MODE_ICON,
-		--     [3]=SELF_HIGHLIGHT_MODE_CIRCLE_AND_ICON,
-		-- }
-		-- gaoliangF.findYourMode =PIGDownMenu(gaoliangF,{"TOPLEFT",gaoliangF,"TOPLEFT",20,-20},{150,nil})
-		-- local function findGetValue()
-		--     local circleOn = GetCVarBool("findYourselfModeCircle");
-		--     local iconOn = GetCVarBool("findYourselfModeIcon");
-		--     local value = (circleOn and 1 or 0) + (iconOn and 2 or 0); 
-		--     return value;
-		-- end
-		-- local function findSetValue(value)
-		--     local NUM_COMBINATIONS = 4;
-		--     SetCVar("findYourselfAnywhere", value > 0 and value < NUM_COMBINATIONS)
-		--     SetCVar("findYourselfModeIcon", value >= 2);
-		--     if (value >= 2) then
-		--         value = value - 2;
-		--     end
-		--     SetCVar("findYourselfModeCircle", value >= 1);
-		-- end
-		-- function gaoliangF.findYourMode:PIGDownMenu_Update_But()
-		--     local info = {}
-		--     info.func = self.PIGDownMenu_SetValue
-		--     for i=0,3 do
-		--         info.text, info.arg1 = gaoliangmoshiName[i],i
-		--         info.checked = i == findGetValue()
-		--         self:PIGDownMenu_AddButton(info)
-		--     end
-		-- end
-		-- function gaoliangF.findYourMode:PIGDownMenu_SetValue(value,arg1)
-		--     self:PIGDownMenu_SetText(gaoliangmoshiName[arg1]) 
-		--     findSetValue(arg1)
-		--     PIGCloseDropDownMenus()
-		-- end
-		-- gaoliangF.findYourMode:PIGDownMenu_SetText(gaoliangmoshiName[findGetValue()])
-		--旧版高亮
-		-- local gaoliangmoshiName = {["-1"]=CLOSE,["0"]=SELF_HIGHLIGHT_MODE_CIRCLE,["1"]=SELF_HIGHLIGHT_MODE_CIRCLE_AND_OUTLINE,["2"]=SELF_HIGHLIGHT_MODE_OUTLINE}
-		-- ADD_DownMenu(gaoliangF,-1,2,gaoliangmoshiName,"findYourselfMode","高亮模式",{"TOPLEFT",gaoliangF,"TOPLEFT",90,-20},150)
-		-- local gaoliangList = {
-		-- 	{SELF_HIGHLIGHT_ON,"findYourselfAnywhere","1","0",SELF_HIGHLIGHT_ON},
-		-- 	{OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG_COMBAT,"findYourselfAnywhereOnlyInCombat","1","0",OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG_COMBAT},
-		-- 	{OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_RAID,"findYourselfInRaid","1","0",OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_RAID},
-		-- 	{OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_RAID_COMBAT,"findYourselfInRaidOnlyInCombat","1","0",OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_RAID_COMBAT},
-		-- 	{OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG,"findYourselfInBG","1","0",OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG},
-		-- 	{OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG_COMBAT,"findYourselfInBGOnlyInCombat","1","0",OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG_COMBAT},	
-		-- }
-		-- for i=1,#gaoliangList do
-		-- 	local CVarsCB = PIGCheckbutton(gaoliangF,nil,{gaoliangList[i][1],gaoliangList[i][5]})
-		-- 	if i==1 then
-		-- 		CVarsCB:SetPoint("TOPLEFT",gaoliangF,"TOPLEFT",50,-60);
-		-- 	else
-		-- 		if i==4 or i==6 then
-		-- 			CVarsCB:SetPoint("TOPLEFT",gaoliangF,"TOPLEFT",50+40,-40*i-20);
-		-- 		else
-		-- 			CVarsCB:SetPoint("TOPLEFT",gaoliangF,"TOPLEFT",50+20,-40*i-20);
-		-- 		end
-		-- 	end
-		-- 	CVarsCB:SetScript("OnClick", function (self)
-		-- 		if self:GetChecked() then
-		-- 			SetCVar(gaoliangList[i][2], gaoliangList[i][3])
-		-- 		else
-		-- 			SetCVar(gaoliangList[i][2], gaoliangList[i][4])
-		-- 		end
-		-- 	end);
-		-- 	CVarsCB:SetChecked(GetCVar(gaoliangList[i][2])==gaoliangList[i][3]);
-		-- end
-	end
+			CVarsCB:SetScript("OnClick", function (self)
+				if self:GetChecked() then
+					SetCVar(xingmingList[i][2], xingmingList[i][3])
+				else
+					SetCVar(xingmingList[i][2], xingmingList[i][4])
+				end
+				if xingmingList[i][1] then
+					PIG_OptionsUI.RLUI:Show()
+				end
+			end)
+			CVarsCB:SetChecked(GetCVar(xingmingList[i][2])==xingmingList[i][3]);
+		end
+	end);
+	--自身高亮
+	-- local gaoliangF =PIGOptionsList_R(RTabFrame,L["CVAR_TABNAME3"],90)
+	-- local gaoliangmoshiName = {
+	--     [0]=OFF,
+	--     [1]=SELF_HIGHLIGHT_MODE_CIRCLE,
+	--     [2]=SELF_HIGHLIGHT_MODE_ICON,
+	--     [3]=SELF_HIGHLIGHT_MODE_CIRCLE_AND_ICON,
+	-- }
+	-- gaoliangF.findYourMode =PIGDownMenu(gaoliangF,{"TOPLEFT",gaoliangF,"TOPLEFT",20,-20},{150,nil})
+	-- local function findGetValue()
+	--     local circleOn = GetCVarBool("findYourselfModeCircle");
+	--     local iconOn = GetCVarBool("findYourselfModeIcon");
+	--     local value = (circleOn and 1 or 0) + (iconOn and 2 or 0); 
+	--     return value;
+	-- end
+	-- local function findSetValue(value)
+	--     local NUM_COMBINATIONS = 4;
+	--     SetCVar("findYourselfAnywhere", value > 0 and value < NUM_COMBINATIONS)
+	--     SetCVar("findYourselfModeIcon", value >= 2);
+	--     if (value >= 2) then
+	--         value = value - 2;
+	--     end
+	--     SetCVar("findYourselfModeCircle", value >= 1);
+	-- end
+	-- function gaoliangF.findYourMode:PIGDownMenu_Update_But()
+	--     local info = {}
+	--     info.func = self.PIGDownMenu_SetValue
+	--     for i=0,3 do
+	--         info.text, info.arg1 = gaoliangmoshiName[i],i
+	--         info.checked = i == findGetValue()
+	--         self:PIGDownMenu_AddButton(info)
+	--     end
+	-- end
+	-- function gaoliangF.findYourMode:PIGDownMenu_SetValue(value,arg1)
+	--     self:PIGDownMenu_SetText(gaoliangmoshiName[arg1]) 
+	--     findSetValue(arg1)
+	--     PIGCloseDropDownMenus()
+	-- end
+	-- gaoliangF.findYourMode:PIGDownMenu_SetText(gaoliangmoshiName[findGetValue()])
+	--旧版高亮
+	-- local gaoliangmoshiName = {["-1"]=CLOSE,["0"]=SELF_HIGHLIGHT_MODE_CIRCLE,["1"]=SELF_HIGHLIGHT_MODE_CIRCLE_AND_OUTLINE,["2"]=SELF_HIGHLIGHT_MODE_OUTLINE}
+	-- ADD_DownMenu(gaoliangF,-1,2,gaoliangmoshiName,"findYourselfMode","高亮模式",{"TOPLEFT",gaoliangF,"TOPLEFT",90,-20},150)
+	-- local gaoliangList = {
+	-- 	{SELF_HIGHLIGHT_ON,"findYourselfAnywhere","1","0",SELF_HIGHLIGHT_ON},
+	-- 	{OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG_COMBAT,"findYourselfAnywhereOnlyInCombat","1","0",OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG_COMBAT},
+	-- 	{OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_RAID,"findYourselfInRaid","1","0",OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_RAID},
+	-- 	{OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_RAID_COMBAT,"findYourselfInRaidOnlyInCombat","1","0",OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_RAID_COMBAT},
+	-- 	{OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG,"findYourselfInBG","1","0",OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG},
+	-- 	{OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG_COMBAT,"findYourselfInBGOnlyInCombat","1","0",OPTION_TOOLTIP_SELF_HIGHLIGHT_IN_BG_COMBAT},	
+	-- }
+	-- for i=1,#gaoliangList do
+	-- 	local CVarsCB = PIGCheckbutton(gaoliangF,nil,{gaoliangList[i][1],gaoliangList[i][5]})
+	-- 	if i==1 then
+	-- 		CVarsCB:SetPoint("TOPLEFT",gaoliangF,"TOPLEFT",50,-60);
+	-- 	else
+	-- 		if i==4 or i==6 then
+	-- 			CVarsCB:SetPoint("TOPLEFT",gaoliangF,"TOPLEFT",50+40,-40*i-20);
+	-- 		else
+	-- 			CVarsCB:SetPoint("TOPLEFT",gaoliangF,"TOPLEFT",50+20,-40*i-20);
+	-- 		end
+	-- 	end
+	-- 	CVarsCB:SetScript("OnClick", function (self)
+	-- 		if self:GetChecked() then
+	-- 			SetCVar(gaoliangList[i][2], gaoliangList[i][3])
+	-- 		else
+	-- 			SetCVar(gaoliangList[i][2], gaoliangList[i][4])
+	-- 		end
+	-- 	end);
+	-- 	CVarsCB:SetChecked(GetCVar(gaoliangList[i][2])==gaoliangList[i][3]);
+	-- end
 
 	-----
 	local gaojiF =PIGOptionsList_R(RTabFrame,L["CVAR_TABNAME4"],60)

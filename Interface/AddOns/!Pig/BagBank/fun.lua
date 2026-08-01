@@ -380,34 +380,6 @@ function BagBankfun.addSetbut(fujiui,point,Rneirong,tabbut)
 	return shezhi
 end
 --装备管理显示
-local function add_Eqicon(fujiui)
-	if fujiui.Eqicon then return end
-	local iconww=fujiui:GetWidth()*0.5
-	fujiui.Eqicon = fujiui:CreateTexture();
-	fujiui.Eqicon:SetSize(iconww,iconww);
-	fujiui.Eqicon:SetPoint("BOTTOMLEFT", 0, -1);
-	fujiui.Eqicon:SetTexture("interface/timer/bigtimernumbers.blp");
-	fujiui.Eqicon1 = fujiui:CreateTexture();
-	fujiui.Eqicon1:SetTexture("interface/timer/bigtimernumbers.blp");
-	fujiui.Eqicon1:SetSize(iconww,iconww);
-	fujiui.Eqicon1:SetPoint("LEFT",fujiui.Eqicon,"RIGHT", 0, 0);
-	fujiui.Eqname = fujiui:CreateFontString();
-	fujiui.Eqname:SetPoint("LEFT", fujiui.Eqicon, "RIGHT", 0, 0);
-	fujiui.Eqname:SetFont(ChatFontNormal:GetFont(), 14, "OUTLINE")
-	fujiui.Eqicon:Hide()
-	fujiui.Eqicon1:Hide()
-	fujiui.Eqname:Hide()
-	fujiui:HookScript("OnHide", function(self)
-		self.Eqicon:Hide()
-		self.Eqicon1:Hide()
-		--self.Eqname:Hide()
-	end);
-end
-local function HideEqiconEqname(self)
-	self.Eqicon:Hide()
-	self.Eqicon1:Hide()
-	--self.Eqname:Hide()
-end
 local function GetBagIDFun(self)
 	if self.GetBagID then
 		return self:GetBagID()
@@ -457,51 +429,80 @@ local function GetEqiconName(framef,ItemLink)
 		end
 	end
 end
-local function update_iconname(framef)
-	HideEqiconEqname(framef)
-	local slotID = framef:GetID()
-	if slotID>0 then
-		local BagID,slotID = GetBagIDFun(framef),framef:GetID()
-		local itemID=PIGGetContainerItemID(BagID,slotID)
-		if itemID then
-			local itemID, itemType, itemSubType, itemEquipLoc, icon, classID, subclassID = PIGGetItemInfoInstant(itemID)
-			if classID==2 or classID==4 then
-				if PIG_MaxTocversion(30000) then
-					local ItemLink=PIGGetContainerItemLink(BagID,slotID)
-					if ItemLink then
-						if GetEqiconName(framef,ItemLink) then return end
-					end
-				elseif PIG_MaxTocversion() then
-					PIG_TooltipUI:ClearLines();
-					PIG_TooltipUI:SetBagItem(BagID,slotID);
-				    local hangname = PIG_TooltipUI:GetName()
-				    local txtNum = PIG_TooltipUI:NumLines()
-				    if txtNum then
-				    	for g = 2, txtNum do
-					    	local text = _G[hangname.."TextLeft" .. g]:GetText() or ""
-					    	if IseizhiguanKEYFun(framef,text) then
-								return
-					    	end
-					    end
-					end
-				else
-					local tooltipData = C_TooltipInfo.GetBagItem(BagID,slotID)
-					for _, line in ipairs(tooltipData.lines) do
-						if IseizhiguanKEYFun(framef,line.leftText) then
-							return
-				    	end
+local function add_Eqicon(fujiui,ly)
+	if not fujiui.Eqicon then
+		local iconww=fujiui:GetWidth()*0.5
+		fujiui.Eqicon = fujiui:CreateTexture();
+		fujiui.Eqicon:SetSize(iconww,iconww);
+		fujiui.Eqicon:SetPoint("BOTTOMLEFT", 0, -1);
+		fujiui.Eqicon:SetTexture("interface/timer/bigtimernumbers.blp");
+		fujiui.Eqicon1 = fujiui:CreateTexture();
+		fujiui.Eqicon1:SetTexture("interface/timer/bigtimernumbers.blp");
+		fujiui.Eqicon1:SetSize(iconww,iconww);
+		fujiui.Eqicon1:SetPoint("LEFT",fujiui.Eqicon,"RIGHT", 0, 0);
+		fujiui.Eqname = fujiui:CreateFontString();
+		fujiui.Eqname:SetPoint("LEFT", fujiui.Eqicon, "RIGHT", 0, 0);
+		fujiui.Eqname:SetFont(ChatFontNormal:GetFont(), 14, "OUTLINE")
+		fujiui.Eqicon:Hide()
+		fujiui.Eqicon1:Hide()
+		fujiui.Eqname:Hide()
+		function fujiui:HideEqiconEqname()
+			self.Eqicon:Hide()
+			self.Eqicon1:Hide()
+			--self.Eqname:Hide()
+		end
+		fujiui:HookScript("OnHide", function(self)
+			self:HideEqiconEqname()
+		end);
+		function fujiui:Update_iconname(ly)
+			if ly=="Hide" then self:HideEqiconEqname() return end
+			local slotID = self:GetID()
+			if slotID>0 then
+				local BagID,slotID = GetBagIDFun(self),self:GetID()
+				local itemID=PIGGetContainerItemID(BagID,slotID)
+				if itemID then
+					local itemID, itemType, itemSubType, itemEquipLoc, icon, classID, subclassID = PIGGetItemInfoInstant(itemID)
+					if classID==2 or classID==4 then
+						if PIG_MaxTocversion(30000) then
+							local ItemLink=PIGGetContainerItemLink(BagID,slotID)
+							if ItemLink then
+								if GetEqiconName(self,ItemLink) then return end
+							end
+						elseif PIG_MaxTocversion() then
+							PIG_TooltipUI:ClearLines();
+							PIG_TooltipUI:SetBagItem(BagID,slotID);
+						    local hangname = PIG_TooltipUI:GetName()
+						    local txtNum = PIG_TooltipUI:NumLines()
+						    if txtNum then
+						    	for g = 2, txtNum do
+							    	local text = _G[hangname.."TextLeft" .. g]:GetText() or ""
+							    	if IseizhiguanKEYFun(self,text) then
+										return
+							    	end
+							    end
+							end
+						else
+							local tooltipData = C_TooltipInfo.GetBagItem(BagID,slotID)
+							for _, line in ipairs(tooltipData.lines) do
+								if IseizhiguanKEYFun(self,line.leftText) then
+									return
+						    	end
+							end
+						end
 					end
 				end
 			end
 		end
 	end
+	fujiui:Update_iconname(ly)
 end
-local function fun_bagitems(setfun)
+
+local function Updata_bagitems(ly)
 	if GetCVar("combinedBags")=="1" and ContainerFrameCombinedBags then
 		local butnum =ContainerFrameCombinedBags.size or 0
 		for ff=1,butnum do
 			local framef = ContainerFrameCombinedBags.Items[ff]
-			setfun(framef)
+			add_Eqicon(framef,ly)
 		end
 	else
 		for bagx=1,NUM_CONTAINER_FRAMES do
@@ -511,13 +512,13 @@ local function fun_bagitems(setfun)
 					local butnum =#ContainerF.Items
 					for ff=1,butnum do
 						local framef = ContainerF.Items[ff]
-						setfun(framef)
+						add_Eqicon(framef,ly)
 					end
 				else
 					for solt=1,MAX_CONTAINER_ITEMS do
 						local framef=_G["ContainerFrame"..bagx.."Item"..solt]
 						if framef then
-							setfun(framef)
+							add_Eqicon(framef,ly)
 						end
 					end
 				end
@@ -548,20 +549,19 @@ function BagBankfun.addEquipmentbut(fujiui,point)
 		self.Tex:Show();
 		self.Tex1:Hide();
 	end);
+	eqbut:SetScript("OnClick",  function (self)
+		PlaySoundFile(567463, "Master")
+		fujiui.eqbutaddok=true
+		Updata_bagitems("Click")
+	end)
 	fujiui:RegisterEvent("PLAYER_ENTERING_WORLD")
 	fujiui:HookScript("OnEvent", function(self,event)
-		if not eqbut.addok then return end
+		if not fujiui.eqbutaddok then return end
 		if event=="BAG_UPDATE" then
 			if self:IsShown() then
-				fun_bagitems(HideEqiconEqname)
+				Updata_bagitems("Hide")
 			end
 		end
 	end);
-	--
-	eqbut:SetScript("OnClick",  function (self)
-		PlaySoundFile(567463, "Master")
-		if not eqbut.addok then eqbut.addok=true fun_bagitems(add_Eqicon) end
-		fun_bagitems(update_iconname)
-	end)
 	return eqbut
 end

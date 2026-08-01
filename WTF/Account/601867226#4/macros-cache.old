@@ -1,0 +1,56 @@
+VER 3 0000000000000001 "Decursive" "INV_MISC_QUESTIONMARK"
+/script DecursiveRootTable.Dcr:Println('没有相关技能')
+END
+VER 3 0000000000000002 "YY" "4777763"
+/RA YY：881411，下跳对应频道^_^
+END
+VER 3 0000000000000003 "假人" "INV_Misc_QuestionMark"
+#showtooltip 高级活动假人
+/use [combat] 高级活动假人
+END
+VER 3 0000000000000004 "化石" "INV_Misc_QuestionMark"
+#showtooltip 化石合剂
+/use [combat] 化石合剂
+END
+VER 3 0000000000000005 "圣水" "INV_Misc_QuestionMark"
+#showtooltip 斯坦索姆圣水
+/use [mod:shift] 斯坦索姆圣水
+/use [combat,@player,nomod] 斯坦索姆圣水
+END
+VER 3 0000000000000006 "无敌" "INV_Misc_QuestionMark"
+#showtooltip 有限无敌药水
+/use [combat] 有限无敌药水
+END
+VER 3 0000000000000007 "炸弹" "INV_Misc_QuestionMark"
+#showtooltip 致密炸弹
+/use [combat] 致密炸弹
+END
+VER 3 0000000000000008 "炸药" "INV_Misc_QuestionMark"
+#showtooltip  [mod:shift] 致密炸弹;地精工兵炸药
+/use [combat] 地精工兵炸药
+/use [combat,@player] 致密炸弹
+END
+VER 3 0000000000000009 "钓" "INV_Misc_QuestionMark"
+#showtooltip 钓鱼
+/equip 奥金钓鱼竿
+/cast 钓鱼
+END
+VER 3 000000000000000A "饰一" "INV_Misc_QuestionMark"
+#showtooltip 13
+/use 13
+END
+VER 3 000000000000000B "饰二" "INV_Misc_QuestionMark"
+#showtooltip 14
+/use 14
+END
+VER 3 000000000000000C "饰品" "INV_Misc_QuestionMark"
+#showtooltip [mod:shift] 14; 13
+/use 13
+/use 14
+END
+VER 3 000000000000000D "麻风病" "INV_Misc_QuestionMark"
+#showtooltip 退化射线
+/stopcasting
+/use [@mouseover,harm,nodead] 退化射线
+/use [harm,nodead] 退化射线
+END

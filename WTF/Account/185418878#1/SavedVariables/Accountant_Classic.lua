@@ -1,1784 +1,23 @@
 
 Accountant_ClassicSaveData = {
-["法琳娜"] = {
-["瑟银零件"] = {
+["铁血"] = {
+["暗矛部落酋长"] = {
 ["options"] = {
-["totalcash"] = 2750,
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "WARLOCK",
-["month"] = "06",
-["lastsessiondate"] = "27/12/25",
-["prvmonth"] = "05",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["faction"] = "Alliance",
-["curryear"] = "2026",
-["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["prvday"] = "29/06/26",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 590,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 590,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 300,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 300,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 3,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 3,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-},
-},
-["寒脊山小郡主"] = {
-["options"] = {
-["prvday"] = "29/06/26",
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "MAGE",
-["month"] = "06",
-["lastsessiondate"] = "07/06/26",
-["prvmonth"] = "05",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["faction"] = "Alliance",
-["totalcash"] = 1186,
-["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["curryear"] = "2026",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 10000,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 10000,
-["Out"] = 0,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 1,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 1,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 4200,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 4200,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 4200,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 1159195,
-["Out"] = 1163480,
-},
-["Month"] = {
-["In"] = 1159195,
-["Out"] = 1162730,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 330,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 1159195,
-["Out"] = 1162730,
-},
-["Total"] = {
-["In"] = 1159195,
-["Out"] = 1163810,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-},
-},
-["雪球女士"] = {
-["options"] = {
-["prvday"] = "29/06/26",
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "PALADIN",
-["faction"] = "Alliance",
-["totalcash"] = 4063,
-["prvmonth"] = "05",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["month"] = "06",
-["curryear"] = "2026",
-["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["lastsessiondate"] = "07/06/26",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 99960,
-["Out"] = 17050210,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 17050210,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 17050000,
-},
-["PrvYear"] = {
-["In"] = 99960,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 17050000,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 220229,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 220229,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 220229,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 220229,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 16737404,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 16737404,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 16737404,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 16737404,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 3320,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 3320,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-},
-},
-["艾尔文小公主"] = {
-["options"] = {
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "ROGUE",
-["prvmonth"] = "05",
 ["totalcash"] = 0,
-["prvday"] = "29/06/26",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["faction"] = "Alliance",
-["lastsessiondate"] = "03/02/26",
-["curryear"] = "2026",
-["prvdateweek"] = "06/21/26",
-["month"] = "06",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-},
-},
-["幽影谷小帝姬"] = {
-["options"] = {
 ["weekdate"] = "",
 ["weekstart"] = 1,
 ["date"] = "30/06/26",
-["class"] = "DRUID",
+["class"] = "PRIEST",
 ["month"] = "06",
+["lastsessiondate"] = "04/12/25",
 ["prvday"] = "29/06/26",
-["dateweek"] = "06/28/26",
+["dateweek"] = "06/25/26",
 ["version"] = "v2.12.30",
-["faction"] = "Alliance",
-["lastsessiondate"] = "06/06/26",
+["faction"] = "Horde",
 ["curryear"] = "2026",
-["prvdateweek"] = "06/21/26",
-["totalcash"] = 0,
+["prvyear"] = "2025",
+["prvdateweek"] = "06/18/26",
+["prvmonth"] = "05",
 },
 ["data"] = {
 ["TRAIN"] = {
@@ -1790,7 +29,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -1818,7 +57,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Total"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -1832,7 +71,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -1860,7 +99,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Total"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -1874,7 +113,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -1902,7 +141,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Total"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -1916,7 +155,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -1944,7 +183,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Total"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -1958,7 +197,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -1986,7 +225,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Total"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2000,7 +239,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2028,91 +267,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
 ["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2126,7 +281,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2154,7 +309,91 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["AH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
 ["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2168,7 +407,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2196,7 +435,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Total"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2205,23 +444,23 @@ Accountant_ClassicSaveData = {
 },
 },
 ["哈霍兰"] = {
-["瑟银零件"] = {
+["法德迦"] = {
 ["options"] = {
-["totalcash"] = 0,
+["prvmonth"] = "05",
 ["weekdate"] = "",
 ["weekstart"] = 1,
 ["date"] = "30/06/26",
-["class"] = "ROGUE",
-["month"] = "06",
-["curryear"] = "2026",
-["prvday"] = "29/06/26",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
+["class"] = "MAGE",
 ["faction"] = "Alliance",
-["lastsessiondate"] = "10/12/25",
+["totalcash"] = 959839,
+["prvday"] = "29/06/26",
+["dateweek"] = "06/25/26",
+["version"] = "v2.12.30",
+["month"] = "06",
+["lastsessiondate"] = "30/06/26",
+["curryear"] = "2026",
+["prvdateweek"] = "06/18/26",
 ["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["prvmonth"] = "05",
 },
 ["data"] = {
 ["TRAIN"] = {
@@ -2233,7 +472,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Day"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2241,7 +480,448 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 1104052,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 1104052,
+},
+},
+["TAXI"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 3424,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
 ["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 2248,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 27501,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 8665,
+},
+["PrvYear"] = {
+["In"] = 53625,
+["Out"] = 138157,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 53625,
+["Out"] = 165658,
+},
+},
+["TRADE"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 52,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 10000000,
+},
+["Year"] = {
+["In"] = 375,
+["Out"] = 10000400,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 10000052,
+},
+["PrvYear"] = {
+["In"] = 468,
+["Out"] = 494615669,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 843,
+["Out"] = 504616069,
+},
+},
+["OTHER"] = {
+["PrvWeek"] = {
+["In"] = 87976512,
+["Out"] = 54280129,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 100000,
+},
+["Day"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 11033926,
+["Out"] = 787458,
+},
+["Year"] = {
+["In"] = 711631415,
+["Out"] = 600610848,
+},
+["Month"] = {
+["In"] = 109164726,
+["Out"] = 59271962,
+},
+["PrvYear"] = {
+["In"] = 8551289163,
+["Out"] = 7655710284,
+},
+["PrvMonth"] = {
+["In"] = 857801,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 9262920578,
+["Out"] = 8256321132,
+},
+},
+["REPAIRS"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 149845,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 264525,
+},
+["Year"] = {
+["In"] = 919,
+["Out"] = 985970,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 504699,
+},
+["PrvYear"] = {
+["In"] = 71248,
+["Out"] = 2850958,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 72167,
+["Out"] = 3836928,
+},
+},
+["LOOT"] = {
+["PrvWeek"] = {
+["In"] = 207653,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 636472,
+["Out"] = 113,
+},
+["Year"] = {
+["In"] = 3711064,
+["Out"] = 120963,
+},
+["Month"] = {
+["In"] = 1087780,
+["Out"] = 123,
+},
+["PrvYear"] = {
+["In"] = 9987570,
+["Out"] = 402884,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 13698634,
+["Out"] = 523847,
+},
+},
+["MERCH"] = {
+["PrvWeek"] = {
+["In"] = 377698,
+["Out"] = 62100,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 58100,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 800,
+["Out"] = 142340,
+},
+["Year"] = {
+["In"] = 1199106,
+["Out"] = 15876570,
+},
+["Month"] = {
+["In"] = 467668,
+["Out"] = 367640,
+},
+["PrvYear"] = {
+["In"] = 2613283,
+["Out"] = 12386087,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 3812389,
+["Out"] = 28262657,
+},
+},
+["AH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 5104597,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 10208000,
+},
+["Year"] = {
+["In"] = 12592,
+["Out"] = 28035689,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 18553919,
+},
+["PrvYear"] = {
+["In"] = 36915491,
+["Out"] = 364644510,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 36928083,
+["Out"] = 392680199,
+},
+},
+["MAIL"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 20000570,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 180,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 870,
+},
+["Year"] = {
+["In"] = 10258159,
+["Out"] = 138889390,
+},
+["Month"] = {
+["In"] = 1160000,
+["Out"] = 23005580,
+},
+["PrvYear"] = {
+["In"] = 131783222,
+["Out"] = 145557548,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 142041381,
+["Out"] = 284446938,
+},
+},
+["QUEST"] = {
+["PrvWeek"] = {
+["In"] = 38500,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 39400,
+["Out"] = 60,
+},
+["Month"] = {
+["In"] = 38500,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 659123,
+["Out"] = 50742,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 698523,
+["Out"] = 50802,
+},
+},
+},
+},
+["绿龙守护者"] = {
+["options"] = {
+["prvday"] = "29/06/26",
+["weekdate"] = "",
+["weekstart"] = 1,
+["date"] = "30/06/26",
+["class"] = "DRUID",
+["faction"] = "Alliance",
+["lastsessiondate"] = "19/06/26",
+["prvmonth"] = "05",
+["dateweek"] = "06/25/26",
+["version"] = "v2.12.30",
+["month"] = "06",
+["curryear"] = "2026",
+["totalcash"] = 965825,
+["prvdateweek"] = "06/18/26",
+["prvyear"] = "2025",
+},
+["data"] = {
+["TRAIN"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2275,7 +955,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Day"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2283,7 +963,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Day"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2317,7 +997,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Day"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2325,7 +1005,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Day"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2359,7 +1039,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Day"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2367,17 +1047,17 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Day"] = {
+["Year"] = {
 ["In"] = 0,
-["Out"] = 0,
+["Out"] = 8563010,
 },
 ["Month"] = {
 ["In"] = 0,
-["Out"] = 0,
+["Out"] = 8562716,
 },
 ["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
+["In"] = 150120000,
+["Out"] = 159000000,
 },
 ["PrvMonth"] = {
 ["In"] = 0,
@@ -2388,8 +1068,8 @@ Accountant_ClassicSaveData = {
 ["Out"] = 0,
 },
 ["Total"] = {
-["In"] = 0,
-["Out"] = 0,
+["In"] = 150120000,
+["Out"] = 167563010,
 },
 },
 ["REPAIRS"] = {
@@ -2401,7 +1081,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Day"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2409,7 +1089,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Day"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2443,7 +1123,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Day"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2451,7 +1131,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Day"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2485,7 +1165,196 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
 ["Year"] = {
+["In"] = 94,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 47,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 4700,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 4794,
+["Out"] = 0,
+},
+},
+["AH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 141233230,
+["Out"] = 895534,
+},
+["Month"] = {
+["In"] = 128556392,
+["Out"] = 469408,
+},
+["PrvYear"] = {
+["In"] = 10605826,
+["Out"] = 1471320,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 151839056,
+["Out"] = 2366854,
+},
+},
+["MAIL"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 19000030,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 26466627,
+["Out"] = 157900150,
+},
+["Month"] = {
+["In"] = 24178268,
+["Out"] = 157900150,
+},
+["PrvYear"] = {
+["In"] = 366982,
+["Out"] = 1620,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 19000030,
+},
+["Total"] = {
+["In"] = 26833609,
+["Out"] = 157901770,
+},
+},
+["QUEST"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+},
+},
+["黑龙守护者"] = {
+["options"] = {
+["prvmonth"] = "05",
+["weekdate"] = "",
+["weekstart"] = 1,
+["date"] = "30/06/26",
+["class"] = "WARRIOR",
+["month"] = "06",
+["totalcash"] = 1860206,
+["prvday"] = "29/06/26",
+["dateweek"] = "06/25/26",
+["version"] = "v2.12.30",
+["faction"] = "Alliance",
+["lastsessiondate"] = "29/06/26",
+["curryear"] = "2026",
+["prvdateweek"] = "06/18/26",
+["prvyear"] = "2025",
+},
+["data"] = {
+["TRAIN"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2513,9 +1382,702 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["TAXI"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
 ["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["TRADE"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["OTHER"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 928104062,
+["Out"] = 1108120316,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 17660000,
+},
+["PrvYear"] = {
+["In"] = 928104062,
+["Out"] = 1090460076,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 30,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 17660240,
+},
+},
+["REPAIRS"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["LOOT"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["MAIL"] = {
+["PrvWeek"] = {
+["In"] = 8534,
+["Out"] = 25000300,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 45413753,
+["Out"] = 105798900,
+},
+["Week"] = {
+["In"] = 75029,
+["Out"] = 390,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 16657135,
+["Out"] = 54551560,
+},
+["PrvYear"] = {
+["In"] = 27021055,
+["Out"] = 46023410,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 18392698,
+["Out"] = 59775490,
+},
+},
+["AH"] = {
+["PrvWeek"] = {
+["In"] = 269560,
+["Out"] = 10192,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 5188,
+},
+["Total"] = {
+["In"] = 238068292,
+["Out"] = 26934672,
+},
+["Week"] = {
+["In"] = 723041,
+["Out"] = 5188,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 55643684,
+["Out"] = 407363,
+},
+["PrvYear"] = {
+["In"] = 177048691,
+["Out"] = 25868475,
+},
+["PrvMonth"] = {
+["In"] = 1639652,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 5188,
+},
+["Year"] = {
+["In"] = 61019601,
+["Out"] = 1066197,
+},
+},
+["MERCH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 1018091,
+["Out"] = 200100,
+},
+["Week"] = {
+["In"] = 3121,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 53221,
+["Out"] = 100,
+},
+["PrvYear"] = {
+["In"] = 455123,
+["Out"] = 100000,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 562968,
+["Out"] = 100100,
+},
+},
+["QUEST"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+},
+},
+["德加和尚"] = {
+["options"] = {
+["prvmonth"] = "05",
+["weekdate"] = "",
+["weekstart"] = 1,
+["date"] = "30/06/26",
+["class"] = "PRIEST",
+["faction"] = "Alliance",
+["totalcash"] = 3185008,
+["prvday"] = "29/06/26",
+["dateweek"] = "06/25/26",
+["version"] = "v2.12.30",
+["month"] = "06",
+["lastsessiondate"] = "26/06/26",
+["curryear"] = "2026",
+["prvdateweek"] = "06/18/26",
+["prvyear"] = "2025",
+},
+["data"] = {
+["TRAIN"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 1000000,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 1900080,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 2900080,
+},
+},
+["TAXI"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 1712,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 15379,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 1712,
+},
+["PrvYear"] = {
+["In"] = 280965,
+["Out"] = 264136,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 280965,
+["Out"] = 279515,
+},
+},
+["TRADE"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 736696226,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 1000000,
+["Out"] = 5838508,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 1000000,
+["Out"] = 742534734,
+},
+},
+["OTHER"] = {
+["PrvWeek"] = {
+["In"] = 15215312,
+["Out"] = 354999,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 2411712649,
+["Out"] = 1681474541,
+},
+["Week"] = {
+["In"] = 288520,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 20098386,
+["Out"] = 356392,
+},
+["PrvYear"] = {
+["In"] = 5341780143,
+["Out"] = 5427553635,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 219241,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 7753492792,
+["Out"] = 7109028176,
+},
+},
+["REPAIRS"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 59076,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 25345,
+["Out"] = 1159676,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 141636,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 450659,
+},
+["PrvYear"] = {
+["In"] = 434,
+["Out"] = 2582938,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 141636,
+},
+["Total"] = {
+["In"] = 25779,
+["Out"] = 3742614,
+},
+},
+["LOOT"] = {
+["PrvWeek"] = {
+["In"] = 475731,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 4674939,
+["Out"] = 157598,
+},
+["Week"] = {
+["In"] = 414404,
+["Out"] = 42911,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 994702,
+["Out"] = 76312,
+},
+["PrvYear"] = {
+["In"] = 12084145,
+["Out"] = 423850,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 48354,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 16759084,
+["Out"] = 581448,
+},
+},
+["MERCH"] = {
+["PrvWeek"] = {
+["In"] = 4525,
+["Out"] = 101600,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 1920175,
+["Out"] = 15948937,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 134620,
+["Out"] = 181600,
+},
+["PrvYear"] = {
+["In"] = 811221,
+["Out"] = 3237166,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 2731396,
+["Out"] = 19186103,
 },
 },
 ["AH"] = {
@@ -2529,6 +2091,153 @@ Accountant_ClassicSaveData = {
 },
 ["Year"] = {
 ["In"] = 0,
+["Out"] = 23545349,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 714148,
+["Out"] = 18483038,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 714148,
+["Out"] = 42028387,
+},
+},
+["MAIL"] = {
+["PrvWeek"] = {
+["In"] = 2000000,
+["Out"] = 15000360,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 17000000,
+["Out"] = 24555820,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 2000000,
+["Out"] = 19001020,
+},
+["PrvYear"] = {
+["In"] = 41287999,
+["Out"] = 9494829,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 58287999,
+["Out"] = 34050649,
+},
+},
+["QUEST"] = {
+["PrvWeek"] = {
+["In"] = 900,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 124200,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 900,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 562755,
+["Out"] = 421,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 686955,
+["Out"] = 421,
+},
+},
+},
+},
+["是德东东"] = {
+["options"] = {
+["totalcash"] = 0,
+["weekdate"] = "",
+["weekstart"] = 1,
+["date"] = "30/06/26",
+["class"] = "WARRIOR",
+["month"] = "06",
+["lastsessiondate"] = "07/12/25",
+["prvday"] = "29/06/26",
+["dateweek"] = "06/25/26",
+["version"] = "v2.12.30",
+["faction"] = "Alliance",
+["curryear"] = "2026",
+["prvyear"] = "2025",
+["prvdateweek"] = "06/18/26",
+["prvmonth"] = "05",
+},
+["data"] = {
+["TRAIN"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
 ["Out"] = 0,
 },
 ["Week"] = {
@@ -2555,7 +2264,217 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["TAXI"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
 ["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["TRADE"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["OTHER"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["REPAIRS"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["LOOT"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2569,7 +2488,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2597,7 +2516,91 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["AH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
 ["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2611,7 +2614,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Total"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -2639,1793 +2642,1354 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Total"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
 },
 },
 },
-["津巴布韦公主"] = {
+["哈霍兰大格格"] = {
 ["options"] = {
-["totalcash"] = 87172,
+["prvmonth"] = "05",
+["weekdate"] = "",
+["weekstart"] = 1,
+["date"] = "30/06/26",
+["class"] = "PALADIN",
+["month"] = "06",
+["totalcash"] = 1354243,
+["prvday"] = "29/06/26",
+["dateweek"] = "06/25/26",
+["version"] = "v2.12.30",
+["faction"] = "Alliance",
+["curryear"] = "2026",
+["lastsessiondate"] = "28/06/26",
+["prvdateweek"] = "06/18/26",
+["prvyear"] = "2025",
+},
+["data"] = {
+["TRAIN"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 138383,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 6300,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 6300,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 2320220,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 2458603,
+},
+},
+["TAXI"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 366,
+["Out"] = 53843,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 99,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 198,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 8260,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 366,
+["Out"] = 62103,
+},
+},
+["TRADE"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 5000283,
+["Out"] = 19606483,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 73655534,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 78655817,
+["Out"] = 19606483,
+},
+},
+["OTHER"] = {
+["PrvWeek"] = {
+["In"] = 5156833,
+["Out"] = 5044916,
+},
+["PrvDay"] = {
+["In"] = 48669,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 1099504199,
+["Out"] = 1524126234,
+},
+["Week"] = {
+["In"] = 130132,
+["Out"] = 45072,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 13541149,
+["Out"] = 41182070,
+},
+["PrvYear"] = {
+["In"] = 486784406,
+["Out"] = 438807821,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 286830000,
+},
+["Session"] = {
+["In"] = 48918,
+["Out"] = 133,
+},
+["Total"] = {
+["In"] = 1586288605,
+["Out"] = 1962934055,
+},
+},
+["REPAIRS"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 76167,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 59368,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 1107526,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 80485,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 215584,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 183525,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 59368,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 1291051,
+},
+},
+["LOOT"] = {
+["PrvWeek"] = {
+["In"] = 753910,
+["Out"] = 138,
+},
+["PrvDay"] = {
+["In"] = 137335,
+["Out"] = 103,
+},
+["Year"] = {
+["In"] = 4765645,
+["Out"] = 244975,
+},
+["Week"] = {
+["In"] = 605548,
+["Out"] = 35734,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 1415473,
+["Out"] = 64305,
+},
+["PrvYear"] = {
+["In"] = 2871060,
+["Out"] = 29565,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 138184,
+["Out"] = 103,
+},
+["Total"] = {
+["In"] = 7636705,
+["Out"] = 274540,
+},
+},
+["MERCH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 4860,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 876084,
+["Out"] = 16533896,
+},
+["Week"] = {
+["In"] = 73852,
+["Out"] = 228735,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 282162,
+["Out"] = 264825,
+},
+["PrvYear"] = {
+["In"] = 354481,
+["Out"] = 86080,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 1230565,
+["Out"] = 16619976,
+},
+},
+["AH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 42541732,
+["Out"] = 11410303,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 8272,
+},
+["PrvYear"] = {
+["In"] = 31631000,
+["Out"] = 8185097,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 74172732,
+["Out"] = 19595400,
+},
+},
+["MAIL"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 355089535,
+["Out"] = 23943620,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 330,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 21432400,
+},
+["PrvYear"] = {
+["In"] = 4946073,
+["Out"] = 58667892,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 360035608,
+["Out"] = 82611512,
+},
+},
+["QUEST"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 1003947,
+["Out"] = 44,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 98,
+["Out"] = 44,
+},
+["PrvYear"] = {
+["In"] = 483240,
+["Out"] = 1800000,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 1487187,
+["Out"] = 1800044,
+},
+},
+},
+},
+["大叔大婶多少"] = {
+["options"] = {
+["totalcash"] = 0,
+["weekdate"] = "",
+["weekstart"] = 1,
+["date"] = "30/06/26",
+["class"] = "WARRIOR",
+["month"] = "06",
+["lastsessiondate"] = "07/12/25",
+["prvday"] = "29/06/26",
+["dateweek"] = "06/25/26",
+["version"] = "v2.12.30",
+["faction"] = "Alliance",
+["curryear"] = "2026",
+["prvyear"] = "2025",
+["prvdateweek"] = "06/18/26",
+["prvmonth"] = "05",
+},
+["data"] = {
+["TRAIN"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["TAXI"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["TRADE"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["OTHER"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["REPAIRS"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["LOOT"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["MAIL"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["AH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+},
+},
+["蓝龙守护者"] = {
+["options"] = {
+["prvday"] = "29/06/26",
+["weekdate"] = "",
+["weekstart"] = 1,
+["date"] = "30/06/26",
+["class"] = "HUNTER",
+["faction"] = "Alliance",
+["totalcash"] = 7870,
+["prvmonth"] = "05",
+["dateweek"] = "06/25/26",
+["version"] = "v2.12.30",
+["month"] = "06",
+["lastsessiondate"] = "13/06/26",
+["curryear"] = "2026",
+["prvdateweek"] = "06/18/26",
+["prvyear"] = "2025",
+},
+["data"] = {
+["TRAIN"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["TAXI"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["TRADE"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["OTHER"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 60007107,
+["Out"] = 67104202,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 3992,
+},
+["PrvYear"] = {
+["In"] = 60007107,
+["Out"] = 67100000,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 4202,
+},
+},
+["REPAIRS"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["LOOT"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+["MAIL"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 11759591,
+["Out"] = 50661830,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 2936119,
+["Out"] = 48860420,
+},
+["PrvYear"] = {
+["In"] = 8000000,
+["Out"] = 1380,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 3759591,
+["Out"] = 50660450,
+},
+},
+["AH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 46098045,
+["Out"] = 90888,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 41793831,
+["Out"] = 78896,
+},
+["PrvYear"] = {
+["In"] = 1010326,
+["Out"] = 6992,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 45087719,
+["Out"] = 83896,
+},
+},
+["MERCH"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 47,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 47,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+["PrvWeek"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvDay"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Total"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Week"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Day"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Month"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvYear"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["PrvMonth"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Session"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+["Year"] = {
+["In"] = 0,
+["Out"] = 0,
+},
+},
+},
+},
+},
+["法琳娜"] = {
+["寒脊山大郡主"] = {
+["options"] = {
+["totalcash"] = 0,
 ["weekdate"] = "",
 ["weekstart"] = 1,
 ["date"] = "30/06/26",
 ["class"] = "WARLOCK",
 ["month"] = "06",
-["lastsessiondate"] = "25/06/26",
-["prvmonth"] = "05",
-["dateweek"] = "06/28/26",
+["curryear"] = "2026",
+["prvday"] = "29/06/26",
+["dateweek"] = "06/25/26",
 ["version"] = "v2.12.30",
 ["faction"] = "Alliance",
-["curryear"] = "2026",
+["lastsessiondate"] = "27/12/25",
 ["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["prvday"] = "29/06/26",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 193131,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 1377620,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 1570751,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 31414,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 7830,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 39244,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 546564,
-["Out"] = 10525264,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 519,
-["Out"] = 325,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 547083,
-["Out"] = 10525589,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 461484,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 560735988,
-["Out"] = 551235067,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 32514,
-["Out"] = 3964472,
-},
-["PrvYear"] = {
-["In"] = 15307539,
-["Out"] = 1572121,
-},
-["PrvMonth"] = {
-["In"] = 29507,
-["Out"] = 1494,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 461484,
-},
-["Total"] = {
-["In"] = 576043527,
-["Out"] = 552807188,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 736639,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 1449,
-["Out"] = 53994,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 62714,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 1449,
-["Out"] = 790633,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 4565292,
-["Out"] = 326403,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 47421,
-["Out"] = 291,
-},
-["PrvYear"] = {
-["In"] = 2174415,
-["Out"] = 40459,
-},
-["PrvMonth"] = {
-["In"] = 154912,
-["Out"] = 1291,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 6739707,
-["Out"] = 366862,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 446873,
-["Out"] = 585914,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 32057,
-["Out"] = 10632,
-},
-["PrvMonth"] = {
-["In"] = 142362,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 478930,
-["Out"] = 596546,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 1288774,
-["Out"] = 12614693,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 1436593,
-["Out"] = 4309272,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 2725367,
-["Out"] = 16923965,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 6505598,
-["Out"] = 8440,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 210,
-},
-["PrvYear"] = {
-["In"] = 20450000,
-["Out"] = 30135037,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 150,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 26955598,
-["Out"] = 30143477,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 1024929,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 495335,
-["Out"] = 300000,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 1520264,
-["Out"] = 300000,
-},
-},
-},
-},
-["熊心猫爪"] = {
-["options"] = {
-["totalcash"] = 47,
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "DRUID",
-["month"] = "06",
-["lastsessiondate"] = "15/12/25",
-["prvmonth"] = "05",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["faction"] = "Alliance",
-["curryear"] = "2026",
-["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["prvday"] = "29/06/26",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 1374754,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 1374754,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 85405,
-["Out"] = 30,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 85405,
-["Out"] = 30,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 311650,
-["Out"] = 50728511,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 311650,
-["Out"] = 50728511,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 737371,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 512503,
-["Out"] = 1435954,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 512503,
-["Out"] = 1435954,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 120000,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 120000,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-},
-},
-["魔女桑德兰"] = {
-["options"] = {
-["totalcash"] = 6927485,
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "HUNTER",
-["month"] = "06",
-["lastsessiondate"] = "26/06/26",
-["prvmonth"] = "05",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["faction"] = "Alliance",
-["curryear"] = "2026",
-["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["prvday"] = "29/06/26",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 174503,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 2640,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 171863,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 1018,
-["Out"] = 239477,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 24114,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 4738,
-},
-["PrvYear"] = {
-["In"] = 1018,
-["Out"] = 215363,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 12000172,
-["Out"] = 16760000,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 12000172,
-["Out"] = 16760000,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 5545317,
-["Out"] = 19559,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 3238327992,
-["Out"] = 3265640673,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 128545582,
-["Out"] = 80153207,
-},
-["Month"] = {
-["In"] = 90004553,
-["Out"] = 49170332,
-},
-["PrvYear"] = {
-["In"] = 3109782410,
-["Out"] = 3185487466,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 1148095,
-},
-["Session"] = {
-["In"] = 5338717,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 135458,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 126875,
-["Out"] = 4331645,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 665737,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 155578,
-},
-["PrvYear"] = {
-["In"] = 126875,
-["Out"] = 3665908,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 135458,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 187708,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 10419785,
-["Out"] = 255981,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 649063,
-["Out"] = 681,
-},
-["Month"] = {
-["In"] = 337667,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 9770722,
-["Out"] = 255300,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 38717,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 61915883,
-["Out"] = 66645149,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 10000000,
-["Out"] = 42016150,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 37900570,
-},
-["PrvYear"] = {
-["In"] = 51915883,
-["Out"] = 24628999,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 239285,
-["Out"] = 38106746,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 24143512,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 1439600,
-},
-["PrvYear"] = {
-["In"] = 239285,
-["Out"] = 13963234,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 10369558,
-["Out"] = 5176576,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 1739343,
-["Out"] = 258520,
-},
-["Month"] = {
-["In"] = 8360,
-["Out"] = 30900,
-},
-["PrvYear"] = {
-["In"] = 8630215,
-["Out"] = 4918056,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 11267362,
-["Out"] = 1220534,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 468900,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 361500,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 10798462,
-["Out"] = 1220534,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-},
-},
-["巨龙守护者"] = {
-["options"] = {
-["totalcash"] = 2706189,
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "WARRIOR",
-["month"] = "06",
-["lastsessiondate"] = "30/06/26",
-["prvmonth"] = "05",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["faction"] = "Alliance",
-["curryear"] = "2026",
-["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["prvday"] = "29/06/26",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 160000,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 160000,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 2616,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 50362,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 2616,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 2616,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 45378,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 4984,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 444440000,
-["Out"] = 10704894,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 444440000,
-["Out"] = 10668136,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 36758,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 2854214269,
-["Out"] = 3209156511,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 1328,
-},
-["PrvYear"] = {
-["In"] = 2844375548,
-["Out"] = 3201755276,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 9838721,
-["Out"] = 7401235,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 2359,
-},
-["Total"] = {
-["In"] = 2736,
-["Out"] = 2271908,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 2359,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 6990,
-},
-["PrvYear"] = {
-["In"] = 2736,
-["Out"] = 2185865,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 86043,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 7037205,
-["Out"] = 288370,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 6874532,
-["Out"] = 288283,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 162673,
-["Out"] = 87,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 9021,
-["Out"] = 32247902,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 810,
-},
-["PrvYear"] = {
-["In"] = 9021,
-["Out"] = 32243912,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 3990,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 47853868,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 47853868,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 1606409,
-["Out"] = 2132712,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 21283,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 1454661,
-["Out"] = 2132712,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 151748,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 42400,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 1094757,
-["Out"] = 639067,
-},
-["Week"] = {
-["In"] = 42400,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 42400,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 1052357,
-["Out"] = 639067,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 42400,
-["Out"] = 0,
-},
-},
-},
-},
-["红龙守护者"] = {
-["options"] = {
-["curryear"] = "2026",
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "PRIEST",
-["month"] = "06",
-["totalcash"] = 78734,
-["prvday"] = "29/06/26",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["faction"] = "Alliance",
-["lastsessiondate"] = "14/06/26",
-["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
+["prvdateweek"] = "06/18/26",
 ["prvmonth"] = "05",
 },
 ["data"] = {
@@ -4574,15 +4138,15 @@ Accountant_ClassicSaveData = {
 },
 ["Year"] = {
 ["In"] = 0,
-["Out"] = 15870000,
+["Out"] = 0,
 },
 ["Month"] = {
 ["In"] = 0,
-["Out"] = 3820000,
+["Out"] = 0,
 },
 ["PrvYear"] = {
-["In"] = 163080391,
-["Out"] = 165318381,
+["In"] = 0,
+["Out"] = 0,
 },
 ["PrvMonth"] = {
 ["In"] = 0,
@@ -4593,8 +4157,8 @@ Accountant_ClassicSaveData = {
 ["Out"] = 0,
 },
 ["Total"] = {
-["In"] = 163080391,
-["Out"] = 181188381,
+["In"] = 0,
+["Out"] = 0,
 },
 },
 ["REPAIRS"] = {
@@ -4741,1770 +4305,6 @@ Accountant_ClassicSaveData = {
 ["Out"] = 0,
 },
 ["Year"] = {
-["In"] = 14614818,
-["Out"] = 59676,
-},
-["Month"] = {
-["In"] = 3045090,
-["Out"] = 9520,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 14614818,
-["Out"] = 59676,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 658501,
-["Out"] = 870,
-},
-["Month"] = {
-["In"] = 24191,
-["Out"] = 570,
-},
-["PrvYear"] = {
-["In"] = 2976111,
-["Out"] = 2160,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 3634612,
-["Out"] = 3030,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-},
-},
-["院长安娜"] = {
-["options"] = {
-["prvday"] = "29/06/26",
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "PRIEST",
-["faction"] = "Alliance",
-["totalcash"] = 0,
-["prvmonth"] = "05",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["month"] = "06",
-["curryear"] = "2026",
-["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["lastsessiondate"] = "02/03/26",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-},
-},
-["护士长玛利亚"] = {
-["options"] = {
-["totalcash"] = 16768854,
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "DRUID",
-["faction"] = "Alliance",
-["lastsessiondate"] = "30/06/26",
-["prvday"] = "29/06/26",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["month"] = "06",
-["curryear"] = "2026",
-["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["prvmonth"] = "05",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 674398,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 322148,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 352250,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 103883,
-["Out"] = 59296,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 567,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 567,
-},
-["Month"] = {
-["In"] = 2136,
-["Out"] = 5263,
-},
-["PrvYear"] = {
-["In"] = 101623,
-["Out"] = 35061,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 1134,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 2260,
-["Out"] = 24235,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 821811379,
-["Out"] = 47423395,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 7500878,
-["Out"] = 47423395,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 814310501,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 170045,
-["Out"] = 136317,
-},
-["Total"] = {
-["In"] = 10239827096,
-["Out"] = 10963299021,
-},
-["Week"] = {
-["In"] = 8192385,
-["Out"] = 1688657,
-},
-["Day"] = {
-["In"] = 7032340,
-["Out"] = 1552340,
-},
-["Month"] = {
-["In"] = 21572216,
-["Out"] = 52290186,
-},
-["PrvYear"] = {
-["In"] = 8081364390,
-["Out"] = 7856521223,
-},
-["PrvMonth"] = {
-["In"] = 891585375,
-["Out"] = 912917691,
-},
-["Session"] = {
-["In"] = 7032340,
-["Out"] = 1552340,
-},
-["Year"] = {
-["In"] = 2158462706,
-["Out"] = 3106777798,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 58203,
-},
-["Total"] = {
-["In"] = 22455,
-["Out"] = 3509091,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 145795,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 207349,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 2255836,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 22455,
-["Out"] = 1253255,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 503195,
-["Out"] = 15,
-},
-["Total"] = {
-["In"] = 19790146,
-["Out"] = 935691,
-},
-["Week"] = {
-["In"] = 555535,
-["Out"] = 15,
-},
-["Day"] = {
-["In"] = 52340,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 570012,
-["Out"] = 35,
-},
-["PrvYear"] = {
-["In"] = 12336391,
-["Out"] = 589271,
-},
-["PrvMonth"] = {
-["In"] = 110249,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 52340,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 7453755,
-["Out"] = 346420,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 10000000,
-["Out"] = 60,
-},
-["Total"] = {
-["In"] = 105124277,
-["Out"] = 36719312,
-},
-["Week"] = {
-["In"] = 10000000,
-["Out"] = 60,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 10000000,
-["Out"] = 240,
-},
-["PrvYear"] = {
-["In"] = 28464277,
-["Out"] = 26713282,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 420,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 76660000,
-["Out"] = 10006030,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 4044914,
-["Out"] = 106788979,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 4044914,
-["Out"] = 103496327,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 3292652,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 170100,
-},
-["Total"] = {
-["In"] = 2903623,
-["Out"] = 18965528,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 170100,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 170100,
-},
-["PrvYear"] = {
-["In"] = 2130764,
-["Out"] = 3120319,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 15047700,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 772859,
-["Out"] = 15845209,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 2498818,
-["Out"] = 602,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 2106274,
-["Out"] = 602,
-},
-["PrvMonth"] = {
-["In"] = 14721,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 392544,
-["Out"] = 0,
-},
-},
-},
-},
-["青铜龙守护者"] = {
-["options"] = {
-["totalcash"] = 977,
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "MAGE",
-["month"] = "06",
-["curryear"] = "2026",
-["prvmonth"] = "05",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["faction"] = "Alliance",
-["lastsessiondate"] = "14/06/26",
-["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["prvday"] = "29/06/26",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 474110000,
-["Out"] = 310361560,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 310360000,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 120000,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 360000,
-},
-["Total"] = {
-["In"] = 474110000,
-["Out"] = 310481560,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 9490,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 9490,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 70159376,
-["Out"] = 4359083,
-},
-["Month"] = {
-["In"] = 22571914,
-["Out"] = 41392,
-},
-["PrvYear"] = {
-["In"] = 3426259,
-["Out"] = 2393156,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 73585635,
-["Out"] = 6752239,
-},
-},
-["MAIL"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 12903054,
-["Out"] = 243003030,
-},
-["Month"] = {
-["In"] = 1380144,
-["Out"] = 1590,
-},
-["PrvYear"] = {
-["In"] = 14525908,
-["Out"] = 14904440,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 27428962,
-["Out"] = 257907470,
-},
-},
-["QUEST"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-},
-},
-["打撒是的哇"] = {
-["options"] = {
-["totalcash"] = 0,
-["weekdate"] = "",
-["weekstart"] = 1,
-["date"] = "30/06/26",
-["class"] = "WARRIOR",
-["month"] = "06",
-["curryear"] = "2026",
-["prvday"] = "29/06/26",
-["dateweek"] = "06/28/26",
-["version"] = "v2.12.30",
-["faction"] = "Alliance",
-["lastsessiondate"] = "07/12/25",
-["prvyear"] = "2025",
-["prvdateweek"] = "06/21/26",
-["prvmonth"] = "05",
-},
-["data"] = {
-["TRAIN"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TAXI"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["TRADE"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["REPAIRS"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Month"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvYear"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvMonth"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Session"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Total"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["PrvWeek"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["PrvDay"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Year"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Week"] = {
-["In"] = 0,
-["Out"] = 0,
-},
-["Day"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -6538,7 +4338,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Day"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -6546,7 +4346,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Day"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -6580,7 +4380,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Year"] = {
+["Day"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -6588,7 +4388,7 @@ Accountant_ClassicSaveData = {
 ["In"] = 0,
 ["Out"] = 0,
 },
-["Day"] = {
+["Year"] = {
 ["In"] = 0,
 ["Out"] = 0,
 },
@@ -6619,33 +4419,29 @@ Accountant_ClassicSaveData = {
 }
 Accountant_ClassicDB = {
 ["profileKeys"] = {
-["津巴布韦公主 - 哈霍兰"] = "Default",
-["院长安娜 - 哈霍兰"] = "Default",
-["雪球女士 - 法琳娜"] = "Default",
-["巨龙守护者 - 哈霍兰"] = "Default",
-["寒脊山小郡主 - 法琳娜"] = "Default",
-["熊心猫爪 - 哈霍兰"] = "Default",
-["瑟银零件 - 哈霍兰"] = "Default",
-["幽影谷小帝姬 - 法琳娜"] = "Default",
-["魔女桑德兰 - 哈霍兰"] = "Default",
-["艾尔文小公主 - 法琳娜"] = "Default",
-["瑟银零件 - 法琳娜"] = "Default",
-["青铜龙守护者 - 哈霍兰"] = "Default",
-["打撒是的哇 - 哈霍兰"] = "Default",
-["护士长玛利亚 - 哈霍兰"] = "Default",
-["红龙守护者 - 哈霍兰"] = "Default",
+["德加和尚 - 哈霍兰"] = "Default",
+["寒脊山大郡主 - 法琳娜"] = "Default",
+["哈霍兰大格格 - 哈霍兰"] = "Default",
+["法德迦 - 哈霍兰"] = "Default",
+["黑龙守护者 - 哈霍兰"] = "Default",
+["是德东东 - 哈霍兰"] = "Default",
+["蓝龙守护者 - 哈霍兰"] = "Default",
+["大叔大婶多少 - 哈霍兰"] = "Default",
+["暗矛部落酋长 - 铁血"] = "Default",
+["绿龙守护者 - 哈霍兰"] = "Default",
 },
 ["profiles"] = {
 ["Default"] = {
 ["showmoneyinfo"] = false,
 ["oprofileCopied"] = true,
+["weekstart"] = 5,
 },
 },
 }
 Accountant_Classic_NewDB = nil
 Accountant_ClassicZoneDB = {
-["法琳娜"] = {
-["瑟银零件"] = {
+["铁血"] = {
+["暗矛部落酋长"] = {
 ["data"] = {
 ["PrvWeek"] = {
 ["REPAIRS"] = {
@@ -6656,15 +4452,15 @@ Accountant_ClassicZoneDB = {
 },
 ["OTHER"] = {
 },
-["AH"] = {
-},
-["LOOT"] = {
+["TRAIN"] = {
 },
 ["MERCH"] = {
 },
+["AH"] = {
+},
 ["MAIL"] = {
 },
-["TRAIN"] = {
+["LOOT"] = {
 },
 ["QUEST"] = {
 },
@@ -6699,62 +4495,6 @@ Accountant_ClassicZoneDB = {
 ["TRADE"] = {
 },
 ["MAIL"] = {
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 300,
-},
-},
-["OTHER"] = {
-[""] = {
-["In"] = 0,
-["Out"] = 590,
-},
-},
-["MERCH"] = {
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 3,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
 },
 ["OTHER"] = {
 },
@@ -6765,762 +4505,6 @@ Accountant_ClassicZoneDB = {
 ["AH"] = {
 },
 ["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Month"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvYear"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-[""] = {
-["In"] = 0,
-["Out"] = 590,
-},
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 300,
-},
-},
-["MERCH"] = {
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 3,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-},
-},
-["寒脊山小郡主"] = {
-["data"] = {
-["PrvWeek"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvDay"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
-},
-["QUEST"] = {
-},
-},
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1159195,
-["Out"] = 1163480,
-},
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 4200,
-},
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Month"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1159195,
-["Out"] = 1162730,
-},
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 4200,
-},
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvYear"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 10000,
-["Out"] = 0,
-},
-},
-["TRAIN"] = {
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 330,
-},
-},
-["AH"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1159195,
-["Out"] = 1162730,
-},
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Total"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1159195,
-["Out"] = 1163810,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 10000,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1,
-["Out"] = 0,
-},
-},
-["TRAIN"] = {
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 4200,
-},
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-},
-},
-["雪球女士"] = {
-["data"] = {
-["PrvWeek"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvDay"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
-},
-["QUEST"] = {
-},
-},
-["Total"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 220229,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 99960,
-["Out"] = 17050000,
-},
-[""] = {
-["In"] = 0,
-["Out"] = 210,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 3320,
-},
-},
-["LOOT"] = {
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 16737404,
-["Out"] = 0,
-},
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 220229,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-[""] = {
-["In"] = 0,
-["Out"] = 210,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 17050000,
-},
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 16737404,
-["Out"] = 0,
-},
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Month"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 220229,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 17050000,
-},
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 16737404,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvYear"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 99960,
-["Out"] = 0,
-},
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 3320,
-},
-},
-["QUEST"] = {
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 220229,
-["Out"] = 0,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 17050000,
-},
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 16737404,
-["Out"] = 0,
-},
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-},
-},
-["艾尔文小公主"] = {
-["data"] = {
-["PrvWeek"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvDay"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
 },
 ["QUEST"] = {
 },
@@ -7598,15 +4582,15 @@ Accountant_ClassicZoneDB = {
 },
 ["TRADE"] = {
 },
-["MAIL"] = {
-},
 ["OTHER"] = {
-},
-["MERCH"] = {
 },
 ["TRAIN"] = {
 },
+["MERCH"] = {
+},
 ["AH"] = {
+},
+["MAIL"] = {
 },
 ["LOOT"] = {
 },
@@ -7622,15 +4606,15 @@ Accountant_ClassicZoneDB = {
 },
 ["OTHER"] = {
 },
-["AH"] = {
-},
-["LOOT"] = {
+["TRAIN"] = {
 },
 ["MERCH"] = {
 },
+["AH"] = {
+},
 ["MAIL"] = {
 },
-["TRAIN"] = {
+["LOOT"] = {
 },
 ["QUEST"] = {
 },
@@ -7648,240 +4632,16 @@ Accountant_ClassicZoneDB = {
 },
 ["MERCH"] = {
 },
-["TRAIN"] = {
+["LOOT"] = {
 },
 ["AH"] = {
 },
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Total"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
 ["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-},
-},
-["幽影谷小帝姬"] = {
-["data"] = {
-["PrvWeek"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvDay"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
 },
 ["QUEST"] = {
 },
 },
 ["Year"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Month"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvYear"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Total"] = {
 ["REPAIRS"] = {
 },
 ["TAXI"] = {
@@ -7907,4984 +4667,860 @@ Accountant_ClassicZoneDB = {
 },
 },
 ["哈霍兰"] = {
-["瑟银零件"] = {
+["法德迦"] = {
 ["data"] = {
 ["PrvWeek"] = {
 ["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvDay"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Month"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvYear"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["TRAIN"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["MAIL"] = {
-},
-["AH"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Total"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-},
-},
-["津巴布韦公主"] = {
-["data"] = {
-["PrvWeek"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-[""] = {
-["In"] = 0,
-["Out"] = 461484,
-},
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvDay"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 44958,
-},
-["安其拉"] = {
-["In"] = 0,
-["Out"] = 72562,
-},
-["勇士大厅"] = {
-["In"] = 0,
-["Out"] = 23697,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 0,
-["Out"] = 33922,
-},
-["纳克萨玛斯"] = {
-["In"] = 0,
-["Out"] = 16249,
-},
 ["暴风城 - 贸易区"] = {
 ["In"] = 0,
-["Out"] = 532735,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 12516,
-},
-},
-["TAXI"] = {
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 0,
-["Out"] = 189,
-},
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 0,
-["Out"] = 11952,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 918,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 297,
-},
-["赤脊山"] = {
-["In"] = 0,
-["Out"] = 747,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 11916,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 639,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 1836,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 2920,
-},
-},
-["TRADE"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 1500000,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 0,
-["Out"] = 3900000,
-},
-["黑翼之巢"] = {
-["In"] = 46375,
-["Out"] = 46083,
-},
-["祖尔格拉布"] = {
-["In"] = 500189,
-["Out"] = 5000139,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 79042,
-},
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 6505598,
-["Out"] = 7780,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 660,
-},
-},
-["OTHER"] = {
-[""] = {
-["In"] = 27194749,
-["Out"] = 24513698,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 27770000,
-["Out"] = 35658356,
-},
-["艾萨拉"] = {
-["In"] = 1104750,
-["Out"] = 0,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["荆棘谷 - 祖尔格拉布"] = {
-["In"] = 245,
-["Out"] = 127,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 35072,
-["Out"] = 33,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 22499861,
-["Out"] = 11700447,
-},
-["暴风城 - 法师区"] = {
-["In"] = 374894560,
-["Out"] = 373039238,
-},
-["纳克萨玛斯"] = {
-["In"] = 263396,
-["Out"] = 126647,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 799,
-["Out"] = 500000,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 100,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 840205,
-["Out"] = 3353558,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 1800,
-},
-["熔火之心"] = {
-["In"] = 27859,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 105773720,
-["Out"] = 98841163,
-},
-["安其拉"] = {
-["In"] = 330672,
-["Out"] = 3000000,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 427952,
-["Out"] = 26572,
-},
-["勇士大厅"] = {
-["In"] = 0,
-["Out"] = 529626,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 15181,
-["Out"] = 0,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 3740,
-["Out"] = 1816,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 0,
-["Out"] = 27900,
-},
-},
-["LOOT"] = {
-["燃烧平原"] = {
-["In"] = 1185,
-["Out"] = 0,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 472,
-["Out"] = 0,
-},
-["燃烧平原 - 巨槌石"] = {
-["In"] = 650,
-["Out"] = 0,
-},
-["荆棘谷 - 祖尔格拉布"] = {
-["In"] = 1106,
-["Out"] = 0,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 2283,
-["Out"] = 0,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 4478,
-["Out"] = 0,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 231,
-["Out"] = 0,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 61945,
-["Out"] = 0,
-},
-["燃烧平原 - 龙翼小径"] = {
-["In"] = 4350,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 1924998,
-["Out"] = 165701,
-},
-["纳克萨玛斯"] = {
-["In"] = 546284,
-["Out"] = 28203,
-},
-["熔火之心"] = {
-["In"] = 155733,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 649633,
-["Out"] = 130844,
-},
-["安其拉"] = {
-["In"] = 1211944,
-["Out"] = 1655,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1288774,
-["Out"] = 10417927,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 2196766,
-},
-},
-["TRAIN"] = {
-["暴风城 - 运河"] = {
-["In"] = 0,
-["Out"] = 61258,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 1800,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 101700,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 0,
-["Out"] = 28373,
-},
-},
-["QUEST"] = {
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 47760,
-["Out"] = 0,
-},
-["千针石林 - 沙漠赛道"] = {
-["In"] = 11700,
-["Out"] = 0,
-},
-["希利苏斯 - 甲虫之墙"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["暴风城 - 暴风要塞"] = {
-["In"] = 22380,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 48600,
-["Out"] = 0,
-},
-["湖畔镇大厅"] = {
-["In"] = 45900,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 177789,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 288000,
-["Out"] = 0,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 118800,
-["Out"] = 0,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 2400,
-["Out"] = 0,
-},
-["塔纳利斯 - 时光之穴"] = {
-["In"] = 222000,
-["Out"] = 0,
-},
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Month"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 210,
-},
-},
-["OTHER"] = {
-[""] = {
-["In"] = 0,
-["Out"] = 964472,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 3000000,
-},
-["安其拉"] = {
-["In"] = 32514,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-["安其拉"] = {
-["In"] = 47421,
-["Out"] = 291,
-},
-},
-["QUEST"] = {
-},
-},
-["PrvYear"] = {
-["REPAIRS"] = {
-["纳克萨玛斯"] = {
-["In"] = 0,
-["Out"] = 15326,
-},
-["希尔斯布莱德丘陵"] = {
-["In"] = 0,
-["Out"] = 16263,
-},
-["艾尔文森林 - 北郡山谷"] = {
-["In"] = 0,
-["Out"] = 15,
-},
-["黑翼之巢"] = {
-["In"] = 0,
-["Out"] = 22373,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 84,
-["Out"] = 17,
-},
-["安其拉"] = {
-["In"] = 1365,
-["Out"] = 0,
+["Out"] = 149845,
 },
 },
 ["TAXI"] = {
 ["暴风城 - 贸易区"] = {
 ["In"] = 0,
-["Out"] = 3310,
-},
-["灼热峡谷 - 瑟银哨塔"] = {
-["In"] = 0,
-["Out"] = 830,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 660,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 2370,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 660,
-},
-},
-["TRADE"] = {
-["纳克萨玛斯"] = {
-["In"] = 519,
-["Out"] = 325,
-},
-},
-["OTHER"] = {
-[""] = {
-["In"] = 2269815,
-["Out"] = 332963,
-},
-["辛特兰"] = {
-["In"] = 62777,
-["Out"] = 0,
-},
-["辛特兰 - 瑟拉丹"] = {
-["In"] = 11937223,
-["Out"] = 0,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 40,
-},
-["暴风城 - 已宰的羔羊"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 38193,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 292406,
-["Out"] = 67193,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 437,
-["Out"] = 500000,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 320,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 326911,
-["Out"] = 171882,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 61028,
-["Out"] = 0,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 131813,
-["Out"] = 0,
-},
-["艾萨拉"] = {
-["In"] = 132123,
-["Out"] = 43,
-},
-["安其拉"] = {
-["In"] = 54493,
-["Out"] = 0,
-},
-},
-["TRAIN"] = {
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 0,
-["Out"] = 100,
-},
-["暴风城 - 已宰的羔羊"] = {
-["In"] = 0,
-["Out"] = 1377410,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 110,
-},
-},
-["MERCH"] = {
-["铁炉堡 - 大锻炉"] = {
-["In"] = 340,
-["Out"] = 0,
-},
-["艾尔文森林 - 北郡山谷"] = {
-["In"] = 5,
-["Out"] = 0,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 51,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 21155,
-["Out"] = 10592,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 6,
-["Out"] = 40,
-},
-["安其拉"] = {
-["In"] = 10500,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["暮色森林 - 黎明森林"] = {
-["In"] = 61028,
-["Out"] = 0,
-},
-["辛特兰"] = {
-["In"] = 62777,
-["Out"] = 0,
-},
-["艾萨拉"] = {
-["In"] = 90824,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 1164540,
-["Out"] = 40361,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 101685,
-["Out"] = 0,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 1465,
-["Out"] = 0,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 1198,
-["Out"] = 98,
-},
-["黑翼之巢"] = {
-["In"] = 405016,
-["Out"] = 0,
-},
-["泰达希尔 - 幽影谷"] = {
-["In"] = 67,
-["Out"] = 0,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 131813,
-["Out"] = 0,
-},
-["艾尔文森林"] = {
-["In"] = 6,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 153996,
-["Out"] = 0,
-},
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 30001110,
-},
-["达纳苏斯"] = {
-["In"] = 5550000,
-["Out"] = 210,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 0,
-["Out"] = 132367,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 14900000,
-["Out"] = 1080,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 270,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1436593,
-["Out"] = 4309272,
-},
-},
-["QUEST"] = {
-["铁炉堡 - 王座厅"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["黑石山 - 熔岩之桥"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["铁炉堡 - 图书馆"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["泰达希尔 - 幽影谷"] = {
-["In"] = 35,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 无草洞"] = {
-["In"] = 9900,
-["Out"] = 0,
-},
-["黑手大厅"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 305400,
-["Out"] = 300000,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 93000,
-["Out"] = 0,
-},
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 62714,
-},
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-[""] = {
-["In"] = 0,
-["Out"] = 1494,
-},
-["安其拉"] = {
-["In"] = 29507,
-["Out"] = 0,
-},
-},
-["AH"] = {
-},
-["LOOT"] = {
-["安其拉"] = {
-["In"] = 154912,
-["Out"] = 1291,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 142362,
-["Out"] = 0,
-},
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 150,
-},
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-[""] = {
-["In"] = 0,
-["Out"] = 461484,
-},
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Total"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 532735,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 84,
-["Out"] = 17,
-},
-["安其拉"] = {
-["In"] = 1365,
-["Out"] = 72562,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 44958,
-},
-["希尔斯布莱德丘陵"] = {
-["In"] = 0,
-["Out"] = 16263,
-},
-["艾尔文森林 - 北郡山谷"] = {
-["In"] = 0,
-["Out"] = 15,
-},
-["黑翼之巢"] = {
-["In"] = 0,
-["Out"] = 22373,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 0,
-["Out"] = 33922,
-},
-["纳克萨玛斯"] = {
-["In"] = 0,
-["Out"] = 31575,
-},
-["勇士大厅"] = {
-["In"] = 0,
-["Out"] = 23697,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 12516,
-},
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 15226,
-},
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 0,
-["Out"] = 11952,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 3288,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 1299,
-},
-["灼热峡谷 - 瑟银哨塔"] = {
-["In"] = 0,
-["Out"] = 830,
-},
-["赤脊山"] = {
-["In"] = 0,
-["Out"] = 747,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 0,
-["Out"] = 189,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 957,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 1836,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 2920,
-},
-},
-["TRADE"] = {
-["纳克萨玛斯"] = {
-["In"] = 519,
-["Out"] = 325,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 0,
-["Out"] = 3900000,
-},
-["黑翼之巢"] = {
-["In"] = 46375,
-["Out"] = 46083,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 1500000,
-},
-["祖尔格拉布"] = {
-["In"] = 500189,
-["Out"] = 5000139,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 79042,
-},
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 6505598,
-["Out"] = 30008890,
-},
-["达纳苏斯"] = {
-["In"] = 5550000,
-["Out"] = 210,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 0,
-["Out"] = 132367,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 14900000,
-["Out"] = 1080,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 930,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 27770000,
-["Out"] = 35658396,
-},
-["辛特兰"] = {
-["In"] = 62777,
-["Out"] = 0,
-},
-["辛特兰 - 瑟拉丹"] = {
-["In"] = 11937223,
-["Out"] = 0,
-},
-["暴风城 - 法师区"] = {
-["In"] = 374894560,
-["Out"] = 373039238,
-},
-["纳克萨玛斯"] = {
-["In"] = 555802,
-["Out"] = 193840,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 22631674,
-["Out"] = 11700447,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 61028,
-["Out"] = 0,
-},
-["暴风城 - 已宰的羔羊"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["艾萨拉"] = {
-["In"] = 1236873,
-["Out"] = 43,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 1800,
-},
-["荆棘谷 - 祖尔格拉布"] = {
-["In"] = 245,
-["Out"] = 127,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 73265,
-["Out"] = 33,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 1236,
-["Out"] = 1000000,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 420,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 1167116,
-["Out"] = 3525440,
-},
-[""] = {
-["In"] = 29464564,
-["Out"] = 24846661,
-},
-["熔火之心"] = {
-["In"] = 27859,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 105773720,
-["Out"] = 98841163,
-},
-["安其拉"] = {
-["In"] = 385165,
-["Out"] = 3000000,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 427958,
-["Out"] = 26612,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 51,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 21155,
-["Out"] = 10592,
-},
-["艾尔文森林 - 北郡山谷"] = {
-["In"] = 5,
-["Out"] = 0,
-},
-["勇士大厅"] = {
-["In"] = 0,
-["Out"] = 529626,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 15181,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 10500,
-["Out"] = 0,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 4080,
-["Out"] = 1816,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 0,
-["Out"] = 27900,
-},
-},
-["TRAIN"] = {
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 110,
-},
-["暴风城 - 已宰的羔羊"] = {
-["In"] = 0,
-["Out"] = 1377410,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 0,
-["Out"] = 100,
-},
-["暴风城 - 运河"] = {
-["In"] = 0,
-["Out"] = 61258,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 1800,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 101700,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 0,
-["Out"] = 28373,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 2725367,
-["Out"] = 14727199,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 2196766,
-},
-},
-["LOOT"] = {
-["燃烧平原"] = {
-["In"] = 1185,
-["Out"] = 0,
-},
-["辛特兰"] = {
-["In"] = 62777,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 1710824,
-["Out"] = 68564,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 193758,
-["Out"] = 0,
-},
-["燃烧平原 - 龙翼小径"] = {
-["In"] = 4350,
-["Out"] = 0,
-},
-["泰达希尔 - 幽影谷"] = {
-["In"] = 67,
-["Out"] = 0,
-},
-["燃烧平原 - 巨槌石"] = {
-["In"] = 650,
-["Out"] = 0,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 61028,
-["Out"] = 0,
-},
-["艾萨拉"] = {
-["In"] = 90824,
-["Out"] = 0,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 472,
-["Out"] = 0,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 101916,
-["Out"] = 0,
-},
-["艾尔文森林"] = {
-["In"] = 6,
-["Out"] = 0,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 3748,
-["Out"] = 0,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 5676,
-["Out"] = 98,
-},
-["黑翼之巢"] = {
-["In"] = 2330014,
-["Out"] = 165701,
-},
-["荆棘谷 - 祖尔格拉布"] = {
-["In"] = 1106,
-["Out"] = 0,
-},
-["熔火之心"] = {
-["In"] = 155733,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 649633,
-["Out"] = 130844,
-},
-["安其拉"] = {
-["In"] = 1365940,
-["Out"] = 1655,
-},
-},
-["QUEST"] = {
-["铁炉堡 - 王座厅"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["黑手大厅"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 305400,
-["Out"] = 300000,
-},
-["奥特兰克山脉 - 无草洞"] = {
-["In"] = 9900,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 48600,
-["Out"] = 0,
-},
-["泰达希尔 - 幽影谷"] = {
-["In"] = 35,
-["Out"] = 0,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 2400,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 93000,
-["Out"] = 0,
-},
-["千针石林 - 沙漠赛道"] = {
-["In"] = 11700,
-["Out"] = 0,
-},
-["希利苏斯 - 甲虫之墙"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["暴风城 - 暴风要塞"] = {
-["In"] = 22380,
-["Out"] = 0,
-},
-["铁炉堡 - 图书馆"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["黑石山 - 熔岩之桥"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 177789,
-["Out"] = 0,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 118800,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 288000,
-["Out"] = 0,
-},
-["湖畔镇大厅"] = {
-["In"] = 45900,
-["Out"] = 0,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 47760,
-["Out"] = 0,
-},
-["塔纳利斯 - 时光之穴"] = {
-["In"] = 222000,
-["Out"] = 0,
-},
-},
-},
-},
-},
-["熊心猫爪"] = {
-["data"] = {
-["PrvWeek"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvDay"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
-},
-["QUEST"] = {
-},
-},
-["Total"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 311650,
-["Out"] = 50728511,
-},
-},
-["OTHER"] = {
-[""] = {
-["In"] = 1374754,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 120000,
-},
-},
-["LOOT"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 85405,
-["Out"] = 30,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 512503,
-["Out"] = 1435954,
-},
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Month"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvYear"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-[""] = {
-["In"] = 1374754,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 512503,
-["Out"] = 1435954,
-},
-},
-["LOOT"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 85405,
-["Out"] = 30,
-},
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 311650,
-["Out"] = 50728511,
-},
-},
-["MERCH"] = {
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 120000,
-},
-},
-["QUEST"] = {
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 737371,
-},
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-},
-},
-["魔女桑德兰"] = {
-["data"] = {
-["PrvWeek"] = {
-["REPAIRS"] = {
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 135458,
-},
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-[""] = {
-["In"] = 141525,
-["Out"] = 0,
-},
-["暴风城 - 法师区"] = {
-["In"] = 5300000,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 103792,
-["Out"] = 19559,
-},
-},
-["AH"] = {
-},
-["LOOT"] = {
-["安其拉"] = {
-["In"] = 187708,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvDay"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
-},
-["QUEST"] = {
-},
-},
-["Total"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 50415,
-["Out"] = 1688092,
-},
-["贫瘠之地"] = {
-["In"] = 0,
-["Out"] = 12252,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 2604,
-["Out"] = 36132,
-},
-["灰谷 - 银风避难所"] = {
-["In"] = 0,
-["Out"] = 2047,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 410256,
-},
-["奥特兰克山谷"] = {
-["In"] = 0,
-["Out"] = 40817,
-},
-["荆棘谷 - 港务局"] = {
-["In"] = 0,
-["Out"] = 66026,
-},
-["诅咒之地 - 守望堡"] = {
-["In"] = 0,
-["Out"] = 14090,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 17666,
-["Out"] = 277159,
-},
-["暮色森林 - 夜色镇"] = {
-["In"] = 0,
-["Out"] = 50446,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 0,
-["Out"] = 2928,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 0,
-["Out"] = 4026,
-},
-["荆棘谷 - 奈辛瓦里远征队营地"] = {
-["In"] = 6389,
-["Out"] = 36849,
-},
-["荒芜之地 - 巨牙谷"] = {
-["In"] = 4530,
-["Out"] = 11082,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 9030,
-["Out"] = 27961,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 13884,
-["Out"] = 179580,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 0,
-["Out"] = 4734,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 10454,
-["Out"] = 4410,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 48558,
-},
-["灼热峡谷 - 瑟银哨塔"] = {
-["In"] = 0,
-["Out"] = 7346,
-},
-["勇士大厅"] = {
-["In"] = 0,
-["Out"] = 15038,
-},
-["湿地 - 米奈希尔港"] = {
-["In"] = 0,
-["Out"] = 3042,
-},
-["千针石林 - 沙漠赛道"] = {
-["In"] = 0,
-["Out"] = 12347,
-},
-["安其拉"] = {
-["In"] = 0,
-["Out"] = 139980,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 11903,
-["Out"] = 732684,
-},
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 0,
-["Out"] = 2264,
-},
-["荆棘谷 - 尤亚姆巴岛"] = {
-["In"] = 0,
-["Out"] = 85346,
-},
-["燃烧平原 - 烈焰峰"] = {
-["In"] = 0,
-["Out"] = 3321,
-},
-["艾萨拉 - 塔伦迪斯营地"] = {
-["In"] = 0,
-["Out"] = 1594,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 41240,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 265932,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 0,
-["Out"] = 5025,
-},
-["西瘟疫之地 - 凯尔达隆"] = {
-["In"] = 0,
-["Out"] = 29223,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 0,
-["Out"] = 1385,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 0,
-["Out"] = 9067,
-},
-["厄运之槌"] = {
-["In"] = 0,
-["Out"] = 22495,
-},
-["纳克萨玛斯"] = {
-["In"] = 0,
-["Out"] = 36871,
-},
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 40735,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 0,
-["Out"] = 3200,
-},
-["诅咒之地 - 巨槌要塞"] = {
-["In"] = 428,
-["Out"] = 204,
-},
-["诅咒之地 - 守望堡"] = {
-["In"] = 0,
-["Out"] = 5946,
-},
-["玛拉顿"] = {
-["In"] = 69,
-["Out"] = 0,
-},
-["辛特兰 - 鹰巢山"] = {
-["In"] = 0,
-["Out"] = 1359,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 309,
-["Out"] = 0,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 0,
-["Out"] = 1696,
-},
-["月光林地"] = {
-["In"] = 0,
-["Out"] = 3976,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 0,
-["Out"] = 3465,
-},
-["贫瘠之地 - 棘齿城"] = {
-["In"] = 0,
-["Out"] = 1521,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 0,
-["Out"] = 6568,
-},
-["洛克莫丹 - 塞尔萨玛"] = {
-["In"] = 0,
-["Out"] = 99,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 0,
-["Out"] = 9368,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 4312,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 3192,
-},
-["灼热峡谷 - 瑟银哨塔"] = {
-["In"] = 0,
-["Out"] = 5376,
+["Out"] = 1992,
 },
 ["泰达希尔 - 鲁瑟兰村"] = {
 ["In"] = 0,
-["Out"] = 23880,
-},
-["湿地 - 米奈希尔港"] = {
-["In"] = 0,
-["Out"] = 2768,
-},
-["赤脊山"] = {
-["In"] = 0,
-["Out"] = 264,
+["Out"] = 584,
 },
 ["塔纳利斯 - 加基森"] = {
 ["In"] = 0,
-["Out"] = 32024,
-},
-["石爪山脉 - 石爪峰"] = {
-["In"] = 0,
-["Out"] = 2040,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 0,
-["Out"] = 6726,
-},
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 0,
-["Out"] = 14031,
-},
-["尘泥沼泽 - 巨龙沼泽"] = {
-["In"] = 96,
-["Out"] = 0,
-},
-["暮色森林 - 夜色镇"] = {
-["In"] = 0,
-["Out"] = 928,
-},
-["阿塔哈卡神庙"] = {
-["In"] = 116,
-["Out"] = 0,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 29083,
-},
-["费伍德森林 - 刺枝林地"] = {
-["In"] = 0,
-["Out"] = 584,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 0,
-["Out"] = 1584,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 24895,
-},
-["灰谷 - 阿斯特兰纳"] = {
-["In"] = 0,
-["Out"] = 3944,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 0,
-["Out"] = 2344,
-},
-["阿塔哈卡神庙 - 面具大厅"] = {
-["In"] = 0,
-["Out"] = 80,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 3285,
+["Out"] = 848,
 },
 },
 ["TRADE"] = {
-["暴风城 - 贸易区"] = {
+["诅咒之地 - 腐烂之痕"] = {
 ["In"] = 0,
-["Out"] = 2100000,
+["Out"] = 52,
 },
-["希利苏斯 - 甲虫之墙"] = {
-["In"] = 0,
-["Out"] = 500000,
 },
-["纳克萨玛斯"] = {
-["In"] = 172,
+["OTHER"] = {
+["灰谷 - 大树荫"] = {
+["In"] = 69254,
+["Out"] = 129,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 85940052,
+["Out"] = 54180000,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 41418,
 ["Out"] = 0,
 },
-["祖尔格拉布"] = {
-["In"] = 12000000,
-["Out"] = 4160000,
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 100000,
 },
-["安其拉"] = {
+[""] = {
+["In"] = 1925788,
+["Out"] = 0,
+},
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 377698,
+["Out"] = 6400,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 35000,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 11900,
+},
+["达纳苏斯"] = {
+["In"] = 0,
+["Out"] = 8800,
+},
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 5104597,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 540,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 20000030,
+},
+},
+["LOOT"] = {
+["灰谷 - 大树荫"] = {
+["In"] = 69493,
+["Out"] = 0,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 38941,
+["Out"] = 0,
+},
+["艾萨拉"] = {
+["In"] = 57760,
+["Out"] = 0,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 41459,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+["暴风城 - 运河"] = {
+["In"] = 38500,
+["Out"] = 0,
+},
+},
+},
+["PrvDay"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 100000,
+},
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["TRAIN"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 180,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 32000,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 26100,
+},
+},
+["QUEST"] = {
+},
+},
+["Day"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+["暮色森林 - 黎明森林"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+["暮色森林 - 黎明森林"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Week"] = {
+["REPAIRS"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 6924,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 47351,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 159880,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 50370,
+},
+},
+["TAXI"] = {
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 816,
+},
+["泰达希尔 - 鲁瑟兰村"] = {
+["In"] = 0,
+["Out"] = 584,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 848,
+},
+},
+["TRADE"] = {
+["暴风城 - 法师区"] = {
 ["In"] = 0,
 ["Out"] = 10000000,
 },
 },
 ["MAIL"] = {
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 120,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 750,
+},
+},
+["OTHER"] = {
+["纳克萨玛斯"] = {
+["In"] = 426806,
+["Out"] = 183258,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 100000,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 4200,
+},
+["暴风城 - 法师区"] = {
+["In"] = 10550000,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 32000,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 26100,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 84240,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 800,
+["Out"] = 0,
+},
+},
+["TRAIN"] = {
+},
+["AH"] = {
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 10208000,
+},
+},
+["LOOT"] = {
+["纳克萨玛斯"] = {
+["In"] = 579352,
+["Out"] = 113,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+},
+},
+["Year"] = {
+["REPAIRS"] = {
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 222,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 919,
+["Out"] = 144877,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 538614,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 251887,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 50370,
+},
+},
+["TAXI"] = {
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 3224,
+},
+["泰达希尔 - 鲁瑟兰村"] = {
+["In"] = 0,
+["Out"] = 4088,
+},
+["尘泥沼泽 - 塞拉摩岛"] = {
+["In"] = 0,
+["Out"] = 1611,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 7304,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 8376,
+},
 ["贫瘠之地 - 棘齿城"] = {
+["In"] = 0,
+["Out"] = 2898,
+},
+},
+["TRADE"] = {
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 0,
+["Out"] = 52,
+},
+["祖尔格拉布"] = {
+["In"] = 375,
+["Out"] = 348,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 10000000,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 1161691,
+["Out"] = 115883810,
+},
+["暴风城 - 旧城区"] = {
+["In"] = 0,
+["Out"] = 120,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 600,
+},
+["暴风城 - 法师区"] = {
+["In"] = 9050000,
+["Out"] = 23003960,
+},
+["纳克萨玛斯"] = {
+["In"] = 46468,
+["Out"] = 0,
+},
+["达纳苏斯"] = {
+["In"] = 0,
+["Out"] = 120,
+},
+["诅咒之地 - 守望堡"] = {
 ["In"] = 0,
 ["Out"] = 30,
 },
-["菲拉斯 - 羽月要塞"] = {
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 330,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 420,
+},
+},
+["OTHER"] = {
+[""] = {
+["In"] = 99116653,
+["Out"] = 1138610,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 41418,
+["Out"] = 0,
+},
+["暴风城 - 法师区"] = {
+["In"] = 89771844,
+["Out"] = 178016000,
+},
+["纳克萨玛斯"] = {
+["In"] = 1384887,
+["Out"] = 499966,
+},
+["安其拉废墟"] = {
+["In"] = 16777072,
+["Out"] = 13700000,
+},
+["厄运之槌"] = {
+["In"] = 257,
+["Out"] = 500000,
+},
+["通灵学院"] = {
+["In"] = 912,
+["Out"] = 465,
+},
+["希利苏斯"] = {
+["In"] = 0,
+["Out"] = 1000000,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+["斯坦索姆"] = {
+["In"] = 462,
+["Out"] = 399,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 141000000,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 69254,
+["Out"] = 129,
+},
+["奥妮克希亚的巢穴"] = {
+["In"] = 5000338,
+["Out"] = 3500091,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 50,
+["Out"] = 500000,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 4200,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 393560000,
+["Out"] = 191490000,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 88642689,
+["Out"] = 54233038,
+},
+["祖尔格拉布"] = {
+["In"] = 17050578,
+["Out"] = 12026811,
+},
+["安其拉"] = {
+["In"] = 157881,
+["Out"] = 3001139,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 1181783,
+["Out"] = 139730,
+},
+["暴风城 - 旧城区"] = {
+["In"] = 0,
+["Out"] = 9600,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 16000,
+},
+["暴风城 - 运河"] = {
+["In"] = 0,
+["Out"] = 1600,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 3302,
+["Out"] = 15000000,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 192240,
+},
+["暴风城 - 法师区"] = {
+["In"] = 11000,
+["Out"] = 206968,
+},
+["勇士大厅"] = {
+["In"] = 0,
+["Out"] = 53132,
+},
+["达纳苏斯"] = {
+["In"] = 0,
+["Out"] = 8800,
+},
+["奥特兰克山谷"] = {
+["In"] = 0,
+["Out"] = 112000,
+},
+["荆棘谷 - 水手之家旅店"] = {
+["In"] = 522,
+["Out"] = 0,
+},
+["荆棘谷 - 港务局"] = {
+["In"] = 0,
+["Out"] = 14000,
+},
+["厄运之槌"] = {
+["In"] = 1699,
+["Out"] = 85100,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 800,
+["Out"] = 18200,
+},
+["铁炉堡 - 侏儒区"] = {
+["In"] = 0,
+["Out"] = 19200,
+},
+},
+["TRAIN"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 12592,
+["Out"] = 17594399,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 10441290,
+},
+},
+["LOOT"] = {
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 41459,
+["Out"] = 0,
+},
+["祖尔法拉克"] = {
+["In"] = 1193,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 2299117,
+["Out"] = 35434,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 280489,
+["Out"] = 60380,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 57156,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 6205,
+["Out"] = 0,
+},
+["通灵学院"] = {
+["In"] = 5890,
+["Out"] = 10,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+["斯坦索姆"] = {
+["In"] = 2930,
+["Out"] = 0,
+},
+["尘泥沼泽 - 恐惧海岸"] = {
+["In"] = 1764,
+["Out"] = 0,
+},
+["费伍德森林 - 魔爪村"] = {
+["In"] = 1613,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 69493,
+["Out"] = 0,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 972,
+["Out"] = 0,
+},
+["奥妮克希亚的巢穴"] = {
+["In"] = 183366,
+["Out"] = 0,
+},
+["艾萨拉"] = {
+["In"] = 96477,
+["Out"] = 0,
+},
+["安其拉废墟"] = {
+["In"] = 204463,
+["Out"] = 1679,
+},
+["祖尔格拉布"] = {
+["In"] = 79531,
+["Out"] = 23460,
+},
+["安其拉"] = {
+["In"] = 321826,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 900,
+["Out"] = 0,
+},
+["暴风城 - 运河"] = {
+["In"] = 38500,
+["Out"] = 0,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 60,
+},
+},
+},
+["Month"] = {
+["REPAIRS"] = {
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 115155,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 179294,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 159880,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 50370,
+},
+},
+["TAXI"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 2656,
+},
+["泰达希尔 - 鲁瑟兰村"] = {
+["In"] = 0,
+["Out"] = 1168,
+},
+["尘泥沼泽 - 塞拉摩岛"] = {
+["In"] = 0,
+["Out"] = 657,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 2704,
+},
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 1480,
+},
+},
+["TRADE"] = {
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 0,
+["Out"] = 52,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 10000000,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 1160000,
+["Out"] = 1320,
+},
+["荆棘谷 - 藏宝海湾"] = {
 ["In"] = 0,
 ["Out"] = 360,
 },
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 510,
-},
 ["暴风城 - 法师区"] = {
 ["In"] = 0,
-["Out"] = 4110060,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 420,
-},
-["凄凉之地 - 尼耶尔前哨站"] = {
-["In"] = 0,
-["Out"] = 150,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 0,
-["Out"] = 450,
-},
-["冬泉谷 - 永望镇"] = {
-["In"] = 0,
-["Out"] = 180,
-},
-["诅咒之地 - 守望堡"] = {
-["In"] = 0,
-["Out"] = 660,
+["Out"] = 23003300,
 },
 ["塔纳利斯 - 加基森"] = {
 ["In"] = 0,
-["Out"] = 1290,
+["Out"] = 300,
 },
 ["铁炉堡 - 铁炉堡"] = {
-["In"] = 51710000,
-["Out"] = 10290,
-},
-["暴风城 - 旧城区"] = {
 ["In"] = 0,
-["Out"] = 720,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 10003510,
-},
-["阿塔哈卡神庙"] = {
-["In"] = 1048,
-["Out"] = 829,
-},
-["暮色森林 - 夜色镇"] = {
-["In"] = 0,
-["Out"] = 480,
-},
-["灰谷 - 阿斯特兰纳"] = {
-["In"] = 0,
-["Out"] = 180,
-},
-["黑手大厅"] = {
-["In"] = 50,
-["Out"] = 0,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 10204785,
-["Out"] = 52513710,
-},
-["达纳苏斯"] = {
-["In"] = 0,
-["Out"] = 690,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 0,
-["Out"] = 630,
+["Out"] = 300,
 },
 },
 ["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1995000000,
-["Out"] = 581800000,
+[""] = {
+["In"] = 1925788,
+["Out"] = 634781,
 },
-["狮王之傲旅店"] = {
-["In"] = 0,
-["Out"] = 12800,
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 41418,
+["Out"] = 0,
 },
-["黑手大厅"] = {
-["In"] = 7356,
-["Out"] = 1073,
+["暮色森林 - 黎明森林"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 69254,
+["Out"] = 129,
 },
 ["暴风城 - 法师区"] = {
-["In"] = 220520341,
-["Out"] = 1391916392,
-},
-["诅咒之地 - 巨槌要塞"] = {
-["In"] = 155,
-["Out"] = 317,
-},
-["奥特兰克山谷"] = {
-["In"] = 1006,
-["Out"] = 715,
-},
-["费伍德森林 - 碧火小径"] = {
-["In"] = 954,
-["Out"] = 384,
-},
-["厄运之槌"] = {
-["In"] = 898,
-["Out"] = 1200000,
-},
-["东瘟疫之地 - 恐惧谷"] = {
-["In"] = 164,
-["Out"] = 66,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 160,
-},
-["艾萨拉"] = {
-["In"] = 92956,
-["Out"] = 9036233,
-},
-["希利苏斯 - 暮光营地废墟"] = {
-["In"] = 50000000,
-["Out"] = 15000000,
-},
-["暴风城 - 运河"] = {
-["In"] = 40000000,
-["Out"] = 0,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 176,
-["Out"] = 500238,
-},
-["黑翼之巢"] = {
-["In"] = 135693,
-["Out"] = 38708,
-},
-["熔火之心"] = {
-["In"] = 2510000,
-["Out"] = 20000000,
-},
-["安其拉"] = {
-["In"] = 513464828,
-["Out"] = 8276105,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 0,
-["Out"] = 4000,
-},
-["祖尔法拉克"] = {
-["In"] = 98,
-["Out"] = 0,
-},
-["逆风小径 - 罪恶谷"] = {
-["In"] = 77,
-["Out"] = 0,
-},
-["安其拉废墟"] = {
-["In"] = 2032201,
-["Out"] = 13800000,
-},
-["血色修道院 - 大门廊"] = {
-["In"] = 144,
-["Out"] = 0,
-},
-["通灵学院"] = {
-["In"] = 668,
-["Out"] = 499,
-},
-["斯坦索姆"] = {
-["In"] = 3116,
-["Out"] = 769,
-},
-["奥妮克希亚的巢穴"] = {
-["In"] = 3991544,
-["Out"] = 8111544,
-},
-["暴风城 - 巫师圣殿"] = {
-["In"] = 0,
-["Out"] = 4110000,
-},
-["荆棘谷 - 水手之家旅店"] = {
-["In"] = 222220000,
-["Out"] = 33000000,
-},
-[""] = {
-["In"] = 14171583,
-["Out"] = 1012030945,
-},
-["诅咒之地 - 污染者高地"] = {
-["In"] = 645,
-["Out"] = 0,
-},
-["阿塔哈卡神庙"] = {
-["In"] = 321,
-["Out"] = 165,
-},
-["奥达曼"] = {
-["In"] = 1007,
-["Out"] = 365,
+["In"] = 10550000,
+["Out"] = 16000,
 },
 ["纳克萨玛斯"] = {
-["In"] = 982781,
-["Out"] = 591958,
+["In"] = 426806,
+["Out"] = 183258,
 },
 ["诅咒之地 - 腐烂之痕"] = {
-["In"] = 14763635,
-["Out"] = 0,
+["In"] = 86833090,
+["Out"] = 54233038,
 },
-["血色修道院"] = {
-["In"] = 2238,
-["Out"] = 1706,
-},
-["费伍德森林 - 魔爪村"] = {
-["In"] = 142,
-["Out"] = 0,
-},
-["荆棘谷 - 野人海岸"] = {
+["东瘟疫之地 - 病木林"] = {
 ["In"] = 0,
 ["Out"] = 500000,
 },
-["祖尔格拉布"] = {
-["In"] = 158423265,
-["Out"] = 164705531,
-},
-["希利苏斯 - 甲虫之墙"] = {
+["塔纳利斯 - 加基森"] = {
 ["In"] = 0,
-["Out"] = 500000,
+["Out"] = 4200,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 4260000,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 200000,
+},
+["通灵学院"] = {
+["In"] = 912,
+["Out"] = 465,
+},
+["奥妮克希亚的巢穴"] = {
+["In"] = 5000338,
+["Out"] = 3500091,
 },
 },
 ["MERCH"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 4495542,
-["Out"] = 142128,
+["In"] = 465698,
+["Out"] = 38400,
 },
-["狮王之傲旅店"] = {
-["In"] = 0,
-["Out"] = 28960,
-},
-["艾萨拉 - 风暴海湾"] = {
-["In"] = 360,
-["Out"] = 0,
-},
-["哀嚎洞穴"] = {
-["In"] = 11856,
-["Out"] = 35,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 80437,
-["Out"] = 0,
-},
-["灰谷 - 银风避难所"] = {
-["In"] = 2562,
-["Out"] = 0,
-},
-["凄凉之地 - 尼耶尔前哨站"] = {
-["In"] = 27533,
-["Out"] = 0,
-},
-["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 4714,
-["Out"] = 0,
-},
-["冬泉谷 - 永望镇"] = {
-["In"] = 41029,
-["Out"] = 80000,
-},
-["诅咒之地 - 守望堡"] = {
-["In"] = 17457,
-["Out"] = 0,
-},
-["塔纳利斯 - 热砂港"] = {
-["In"] = 29110,
-["Out"] = 72223,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 44,
-["Out"] = 6944,
-},
-["暴风城 - 运河"] = {
-["In"] = 0,
-["Out"] = 16,
-},
-["艾尔文森林"] = {
-["In"] = 298,
-["Out"] = 6400,
-},
-["凄凉之地"] = {
-["In"] = 33307,
-["Out"] = 0,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 4694,
-["Out"] = 58,
-},
-["荆棘谷 - 奈辛瓦里远征队营地"] = {
-["In"] = 60128,
-["Out"] = 0,
-},
-["荒芜之地 - 巨牙谷"] = {
-["In"] = 94628,
-["Out"] = 0,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 28162,
-["Out"] = 12800,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 2250,
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 648,
 ["Out"] = 0,
 },
 ["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 144859,
-["Out"] = 0,
-},
-["铁炉堡 - 荒弃的洞穴"] = {
-["In"] = 7405,
-["Out"] = 0,
-},
-["荆棘谷 - 水手之家旅店"] = {
-["In"] = 78313,
-["Out"] = 5250,
-},
-["湿地 - 米奈希尔港"] = {
-["In"] = 9056,
-["Out"] = 0,
-},
-["赤脊山 - 湖畔镇"] = {
-["In"] = 577,
-["Out"] = 0,
-},
-["千针石林 - 沙漠赛道"] = {
-["In"] = 20914,
-["Out"] = 0,
-},
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 99735,
-["Out"] = 9954,
-},
-["灰谷 - 阿斯特兰纳"] = {
-["In"] = 57801,
-["Out"] = 462,
-},
-["黑海岸 - 古树之林"] = {
-["In"] = 1776,
-["Out"] = 0,
-},
-["贫瘠之地"] = {
-["In"] = 4771,
-["Out"] = 0,
-},
-["铁炉堡 - 军事区"] = {
-["In"] = 4000,
-["Out"] = 17120,
+["In"] = 0,
+["Out"] = 84240,
 },
 ["暴风城 - 法师区"] = {
-["In"] = 654692,
-["Out"] = 0,
+["In"] = 0,
+["Out"] = 144000,
 },
-["荆棘谷 - 港务局"] = {
-["In"] = 67108,
+["达纳苏斯"] = {
+["In"] = 0,
+["Out"] = 8800,
+},
+["荆棘谷 - 水手之家旅店"] = {
+["In"] = 522,
 ["Out"] = 0,
 },
 ["厄运之槌"] = {
-["In"] = 78385,
-["Out"] = 92446,
-},
-["菲拉斯 - 双塔山"] = {
-["In"] = 35337,
-["Out"] = 2375,
-},
-["荆棘谷 - 反抗军营地"] = {
-["In"] = 44326,
-["Out"] = 0,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 106100,
-["Out"] = 20603,
-},
-["贫瘠之地 - 棘齿城"] = {
-["In"] = 51397,
-["Out"] = 0,
-},
-["荆棘谷 - 蛮荒海岸"] = {
-["In"] = 22277,
-["Out"] = 0,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 40133,
-["Out"] = 31307,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 161041,
-["Out"] = 0,
-},
-["燃烧平原 - 烈焰峰"] = {
-["In"] = 10866,
-["Out"] = 0,
+["In"] = 0,
+["Out"] = 61100,
 },
 ["塔纳利斯 - 加基森"] = {
-["In"] = 412197,
-["Out"] = 114381,
-},
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 0,
-["Out"] = 220000,
-},
-["灼热峡谷 - 瑟银哨塔"] = {
-["In"] = 66464,
-["Out"] = 0,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 3114,
-["Out"] = 0,
-},
-["菲拉斯 - 被遗忘的海岸"] = {
-["In"] = 39685,
-["Out"] = 144,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 201344,
-["Out"] = 11520,
-},
-["血鸦旅店"] = {
-["In"] = 12233,
-["Out"] = 1136,
-},
-["安其拉废墟"] = {
-["In"] = 9500,
-["Out"] = 0,
-},
-["铁炉堡 - 秘法区"] = {
-["In"] = 38921,
-["Out"] = 12800,
-},
-["勇士大厅"] = {
-["In"] = 10285,
-["Out"] = 3133155,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 361437,
-["Out"] = 882,
-},
-["石爪山脉 - 石爪峰"] = {
-["In"] = 3203,
-["Out"] = 0,
-},
-["达纳苏斯"] = {
-["In"] = 68868,
-["Out"] = 66,
-},
-["费伍德森林 - 刺枝林地"] = {
-["In"] = 56708,
-["Out"] = 0,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 65862,
-["Out"] = 0,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 128364,
-["Out"] = 90200,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 1571230,
-["Out"] = 860,
-},
-["艾萨拉 - 塔伦迪斯营地"] = {
-["In"] = 8984,
-["Out"] = 112,
-},
-["暮色森林 - 夜色镇"] = {
-["In"] = 30885,
-["Out"] = 106,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 3489,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 468880,
-["Out"] = 13209,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 3043,
-["Out"] = 158080,
-},
-["湿地 - 深水旅店"] = {
-["In"] = 7802,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 87500,
-["Out"] = 866560,
+["In"] = 800,
+["Out"] = 11900,
 },
 ["铁炉堡 - 侏儒区"] = {
-["In"] = 74580,
-["Out"] = 24284,
+["In"] = 0,
+["Out"] = 19200,
+},
+},
+["TRAIN"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 8345919,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 10208000,
 },
 },
 ["LOOT"] = {
-["阿拉希高地 - 落锤镇"] = {
-["In"] = 1096,
+["暮色森林 - 黎明森林"] = {
+["In"] = 57120,
 ["Out"] = 0,
 },
-["阿拉希高地 - 枯木村"] = {
-["In"] = 5488,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 达伦德农场"] = {
-["In"] = 2311,
-["Out"] = 0,
-},
-["暴风城监狱"] = {
-["In"] = 103,
-["Out"] = 0,
-},
-["诅咒之地 - 巨槌要塞"] = {
-["In"] = 8281,
-["Out"] = 0,
-},
-["阿拉希高地 - 激流堡"] = {
-["In"] = 21924,
-["Out"] = 0,
-},
-["贫瘠之地 - 鬼雾峰"] = {
-["In"] = 20,
-["Out"] = 0,
-},
-["荆棘谷 - 加尼罗哨站"] = {
-["In"] = 1515,
-["Out"] = 0,
-},
-["东瘟疫之地 - 玛兹拉罗"] = {
-["In"] = 928,
-["Out"] = 0,
-},
-["黑暗深渊"] = {
-["In"] = 3079,
-["Out"] = 0,
-},
-["费伍德森林 - 血毒瀑布"] = {
-["In"] = 713,
-["Out"] = 0,
-},
-["凄凉之地"] = {
-["In"] = 122,
-["Out"] = 0,
-},
-["黑海岸 - 主宰之剑"] = {
-["In"] = 245,
-["Out"] = 0,
-},
-["熔火之心"] = {
-["In"] = 93305,
-["Out"] = 0,
-},
-["灰谷 - 法拉希姆湖"] = {
-["In"] = 346,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 2401572,
-["Out"] = 897,
-},
-["诅咒之地"] = {
-["In"] = 4876,
-["Out"] = 0,
-},
-["阿拉希高地 - 内禁锢法阵"] = {
-["In"] = 376,
-["Out"] = 0,
-},
-["费伍德森林 - 铁木山洞"] = {
-["In"] = 4861,
-["Out"] = 0,
-},
-["燃烧平原 - 龙翼小径"] = {
-["In"] = 1696,
-["Out"] = 0,
-},
-["血色修道院 - 大门廊"] = {
-["In"] = 144,
-["Out"] = 0,
-},
-["阿拉希高地 - 石拳大厅"] = {
-["In"] = 329,
-["Out"] = 0,
-},
-["荒芜之地 - 雾气平原"] = {
-["In"] = 1318,
-["Out"] = 0,
-},
-["千针石林"] = {
-["In"] = 62,
-["Out"] = 0,
-},
-["荒芜之地 - 苦痛堡垒"] = {
-["In"] = 1290,
-["Out"] = 0,
-},
-["菲拉斯 - 恐怖之岛"] = {
-["In"] = 1837,
-["Out"] = 0,
-},
-["荒芜之地 - 瓦格营地"] = {
-["In"] = 496,
-["Out"] = 0,
-},
-["辛特兰 - 沙德拉洛"] = {
-["In"] = 115,
-["Out"] = 0,
-},
-["黑石山 - 碾石场"] = {
-["In"] = 2346,
-["Out"] = 0,
-},
-["荆棘谷 - 暗礁海"] = {
-["In"] = 5887,
-["Out"] = 0,
-},
-["黑手大厅"] = {
-["In"] = 58559,
-["Out"] = 457,
-},
-["荒芜之地 - 铁趾挖掘场"] = {
-["In"] = 2314,
-["Out"] = 0,
-},
-["塔纳利斯 - 灌木谷"] = {
-["In"] = 6735,
-["Out"] = 0,
-},
-["灰谷 - 萨维亚"] = {
-["In"] = 3170,
-["Out"] = 0,
-},
-["费伍德森林 - 暗影堡"] = {
-["In"] = 21405,
-["Out"] = 0,
-},
-["贫瘠之地 - 甜水绿洲"] = {
-["In"] = 12,
-["Out"] = 0,
-},
-["费伍德森林 - 碎痕谷"] = {
-["In"] = 146,
-["Out"] = 0,
-},
-["灼热峡谷 - 熔渣之池"] = {
-["In"] = 6561,
-["Out"] = 0,
-},
-["阿拉希高地 - 格沙克农场"] = {
-["In"] = 221,
-["Out"] = 0,
-},
-["燃烧平原"] = {
-["In"] = 9975,
-["Out"] = 0,
-},
-["荆棘谷 - 阿博拉兹废墟"] = {
-["In"] = 5879,
-["Out"] = 0,
-},
-["哀嚎洞穴 - 迷雾洞穴"] = {
-["In"] = 72,
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 41459,
 ["Out"] = 0,
 },
 ["祖尔法拉克"] = {
-["In"] = 44181,
-["Out"] = 18,
-},
-["荒芜之地 - 莱瑟罗峡谷"] = {
-["In"] = 12610,
-["Out"] = 0,
-},
-["安其拉废墟"] = {
-["In"] = 75341,
-["Out"] = 0,
-},
-["悲伤沼泽 - 流沙泥潭"] = {
-["In"] = 642,
-["Out"] = 0,
-},
-["冬泉谷"] = {
-["In"] = 20697,
-["Out"] = 0,
-},
-["西瘟疫之地 - 嚎哭鬼屋"] = {
-["In"] = 7320,
-["Out"] = 0,
-},
-["荆棘谷 - 朱布瓦尔废墟"] = {
-["In"] = 4028,
-["Out"] = 0,
-},
-["安戈洛环形山 - 拉卡利油沼"] = {
-["In"] = 12070,
-["Out"] = 0,
-},
-["阿塔哈卡神庙"] = {
-["In"] = 33657,
-["Out"] = 16,
-},
-["暮色森林 - 荒弃鬼屋"] = {
-["In"] = 1663,
-["Out"] = 0,
-},
-["菲拉斯 - 木爪岭"] = {
-["In"] = 253,
-["Out"] = 0,
-},
-["荆棘谷 - 伽什废墟"] = {
-["In"] = 1780,
-["Out"] = 0,
-},
-["东瘟疫之地 - 墓室"] = {
-["In"] = 4702,
-["Out"] = 0,
-},
-["荆棘谷 - 巴拉尔废墟"] = {
-["In"] = 2102,
-["Out"] = 0,
-},
-["辛特兰 - 亚戈瓦萨"] = {
-["In"] = 463,
-["Out"] = 0,
-},
-["凄凉之地 - 玛诺洛克集会所"] = {
-["In"] = 4062,
-["Out"] = 0,
-},
-["石爪山脉 - 焦炭谷"] = {
-["In"] = 571,
-["Out"] = 0,
-},
-["辛特兰 - 辛萨罗"] = {
-["In"] = 3219,
-["Out"] = 0,
-},
-["暮色森林 - 烂果园"] = {
-["In"] = 154,
-["Out"] = 0,
-},
-["凄凉之地 - 萨格隆"] = {
-["In"] = 3575,
-["Out"] = 0,
-},
-["阿拉希高地 - 枯须峡谷"] = {
-["In"] = 6011,
-["Out"] = 0,
-},
-["血色修道院"] = {
-["In"] = 21665,
-["Out"] = 328,
-},
-["冬泉谷 - 丹曼达尔"] = {
-["In"] = 679,
-["Out"] = 0,
-},
-["艾萨拉 - 哈达尔营地"] = {
-["In"] = 2165,
-["Out"] = 0,
-},
-["塔纳利斯 - 流沙岗哨"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 7121,
-["Out"] = 0,
-},
-["塔纳利斯 - 清泉平原"] = {
-["In"] = 7531,
-["Out"] = 0,
-},
-["灰谷 - 伊瑞斯湖"] = {
-["In"] = 14,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 索菲亚高地"] = {
-["In"] = 39,
-["Out"] = 0,
-},
-["费伍德森林 - 铁木森林"] = {
-["In"] = 5652,
-["Out"] = 0,
-},
-["暮色森林 - 静谧花园墓场"] = {
-["In"] = 1215,
-["Out"] = 0,
-},
-["悲伤沼泽"] = {
-["In"] = 4401,
-["Out"] = 0,
-},
-["荆棘谷 - 巴里亚曼废墟"] = {
-["In"] = 4199,
-["Out"] = 0,
-},
-["斯坦索姆"] = {
-["In"] = 162805,
-["Out"] = 823,
-},
-["贫瘠之地 - 石矿洞"] = {
-["In"] = 1383,
-["Out"] = 0,
-},
-["荆棘谷 - 莫什奥格食人魔山"] = {
-["In"] = 6703,
-["Out"] = 0,
-},
-["西瘟疫之地 - 盖罗恩农场"] = {
-["In"] = 4969,
-["Out"] = 0,
-},
-["奥妮克希亚的巢穴"] = {
-["In"] = 203007,
-["Out"] = 0,
-},
-["希尔斯布莱德丘陵 - 达隆山"] = {
-["In"] = 2101,
-["Out"] = 0,
-},
-["荆棘谷 - 风险投资公司工作中心"] = {
-["In"] = 1027,
-["Out"] = 0,
-},
-["灰谷 - 坠星湖"] = {
-["In"] = 46,
-["Out"] = 0,
-},
-["石爪山脉 - 峭壁湖"] = {
-["In"] = 27,
-["Out"] = 0,
-},
-["荆棘谷 - 血帆营地"] = {
-["In"] = 1153,
-["Out"] = 0,
-},
-["燃烧平原 - 灰烬之柱"] = {
-["In"] = 6752,
-["Out"] = 0,
-},
-["黑海岸 - 巴莎兰"] = {
-["In"] = 3,
-["Out"] = 0,
-},
-["东瘟疫之地 - 达隆郡"] = {
-["In"] = 498,
-["Out"] = 0,
-},
-["艾萨拉"] = {
-["In"] = 94383,
-["Out"] = 0,
-},
-["希尔斯布莱德丘陵 - 西部海岸"] = {
-["In"] = 2220,
-["Out"] = 0,
-},
-["冬泉谷 - 冰蓟岭"] = {
-["In"] = 25100,
-["Out"] = 0,
-},
-["暮色森林 - 腐草农场"] = {
-["In"] = 113,
-["Out"] = 0,
-},
-["艾萨拉 - 影歌神殿"] = {
-["In"] = 2155,
-["Out"] = 0,
-},
-["悲伤沼泽 - 忧伤湿地"] = {
-["In"] = 1839,
-["Out"] = 0,
-},
-["黑海岸 - 奥萨拉克斯之塔"] = {
-["In"] = 47,
-["Out"] = 0,
-},
-["荆棘谷 - 荆棘谷海角"] = {
-["In"] = 3577,
-["Out"] = 0,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 527,
-["Out"] = 0,
-},
-["塔纳利斯 - 破浪海滩"] = {
-["In"] = 339,
-["Out"] = 0,
-},
-["艾萨拉 - 萨拉斯营地"] = {
-["In"] = 4483,
-["Out"] = 0,
-},
-["荆棘谷 - 纳克迈尼圣泉"] = {
-["In"] = 4224,
-["Out"] = 0,
-},
-["荒芜之地 - 埃格蒙德的营地"] = {
-["In"] = 8245,
-["Out"] = 0,
-},
-["荆棘谷 - 祖昆达废墟"] = {
-["In"] = 593,
-["Out"] = 0,
-},
-["诅咒之地 - 污染者高地"] = {
-["In"] = 722,
-["Out"] = 0,
-},
-["凄凉之地 - 玛格拉姆村"] = {
-["In"] = 618,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 破碎岭城堡"] = {
-["In"] = 290,
-["Out"] = 0,
-},
-["奥达曼 - 一号挖掘场"] = {
-["In"] = 3627,
-["Out"] = 0,
-},
-["奥达曼 - 封印大厅"] = {
-["In"] = 2210,
-["Out"] = 0,
-},
-["诅咒之地 - 黑暗之门"] = {
-["In"] = 6060,
-["Out"] = 0,
-},
-["燃烧平原 - 德拉考达尔"] = {
-["In"] = 338,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 3165,
-["Out"] = 0,
-},
-["灰谷 - 巴斯兰鬼屋"] = {
-["In"] = 139,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 绞刑场"] = {
-["In"] = 2858,
-["Out"] = 0,
-},
-["燃烧平原 - 巨槌石"] = {
-["In"] = 10474,
-["Out"] = 0,
-},
-["塔纳利斯 - 热砂港"] = {
-["In"] = 158,
-["Out"] = 0,
-},
-["荆棘谷 - 水晶海岸"] = {
-["In"] = 657,
-["Out"] = 0,
-},
-["悲伤沼泽 - 泪水之池"] = {
-["In"] = 1200,
-["Out"] = 0,
-},
-["西瘟疫之地"] = {
-["In"] = 8794,
-["Out"] = 0,
-},
-["暮色森林 - 密斯特曼托庄园"] = {
-["In"] = 5659,
-["Out"] = 0,
-},
-["菲拉斯 - 鸦风废墟"] = {
-["In"] = 1893,
-["Out"] = 0,
-},
-["凄凉之地 - 白骨之谷"] = {
-["In"] = 176,
-["Out"] = 0,
-},
-["暮色森林 - 罗兰之墓"] = {
-["In"] = 170,
-["Out"] = 0,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 180751,
-["Out"] = 0,
-},
-["冬泉谷 - 冰火温泉"] = {
-["In"] = 41621,
-["Out"] = 0,
-},
-["西部荒野 - 月溪镇"] = {
-["In"] = 66,
-["Out"] = 0,
-},
-["菲拉斯 - 深痕谷"] = {
-["In"] = 7201,
-["Out"] = 0,
-},
-["诅咒之地 - 盘蛇谷"] = {
-["In"] = 14301,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 斯坦恩布莱德"] = {
-["In"] = 605,
-["Out"] = 0,
-},
-["荆棘谷 - 风险投资公司营地"] = {
-["In"] = 2990,
-["Out"] = 0,
-},
-["阿拉希高地 - 水下暗礁"] = {
-["In"] = 484,
-["Out"] = 0,
-},
-["奥达曼 - 挖掘中心"] = {
-["In"] = 2192,
-["Out"] = 0,
-},
-["阿塔哈卡神庙 - 面具大厅"] = {
-["In"] = 36,
-["Out"] = 0,
-},
-["灼热峡谷 - 煤渣挖掘场"] = {
-["In"] = 4915,
-["Out"] = 0,
-},
-["悲伤沼泽 - 芦苇海滩"] = {
-["In"] = 496,
-["Out"] = 0,
-},
-["凄凉之地 - 长矛谷"] = {
-["In"] = 10699,
-["Out"] = 0,
-},
-["剃刀高地"] = {
-["In"] = 3537,
-["Out"] = 0,
-},
-["奥达曼"] = {
-["In"] = 48946,
-["Out"] = 99,
-},
-["灰谷 - 夜道谷"] = {
-["In"] = 1840,
-["Out"] = 0,
-},
-["凄凉之地 - 雷斧堡垒"] = {
-["In"] = 1803,
-["Out"] = 0,
-},
-["东瘟疫之地 - 恐惧谷"] = {
-["In"] = 6538,
-["Out"] = 0,
-},
-["安戈洛环形山"] = {
-["In"] = 1677,
-["Out"] = 0,
-},
-["荆棘谷 - 赞塔加废墟"] = {
-["In"] = 1312,
-["Out"] = 0,
-},
-["暮色森林 - 乌鸦岭墓地"] = {
-["In"] = 1045,
-["Out"] = 0,
-},
-["灰谷 - 黑暗深渊"] = {
-["In"] = 3238,
-["Out"] = 0,
-},
-["凄凉之地 - 拉纳加尔岛"] = {
-["In"] = 5223,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 340793,
-["Out"] = 156,
-},
-["塔纳利斯 - 落帆海湾"] = {
-["In"] = 18116,
-["Out"] = 0,
-},
-["凄凉之地 - 科尔卡村"] = {
-["In"] = 8578,
-["Out"] = 0,
-},
-["贫瘠之地 - 商旅海岸"] = {
-["In"] = 59,
-["Out"] = 0,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 139,
-["Out"] = 0,
-},
-["费伍德森林 - 加德纳尔"] = {
-["In"] = 6481,
-["Out"] = 0,
-},
-["阿拉希高地 - 诺斯弗德农场"] = {
-["In"] = 504,
-["Out"] = 0,
-},
-["菲拉斯"] = {
-["In"] = 9646,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 高地"] = {
-["In"] = 1992,
-["Out"] = 0,
-},
-["荒芜之地 - 博夫营地"] = {
-["In"] = 1152,
-["Out"] = 0,
-},
-["黑石深渊"] = {
-["In"] = 16896,
-["Out"] = 0,
-},
-["尘泥沼泽 - 巨龙沼泽"] = {
-["In"] = 96,
-["Out"] = 6,
-},
-["悲伤沼泽 - 迷雾谷"] = {
-["In"] = 4742,
-["Out"] = 0,
-},
-["费伍德森林"] = {
-["In"] = 810,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 1990956,
-["Out"] = 224648,
-},
-["凄凉之地 - 萨瑟里斯海岸"] = {
-["In"] = 481,
-["Out"] = 0,
-},
-["西瘟疫之地 - 达尔松之泪"] = {
-["In"] = 16469,
-["Out"] = 0,
-},
-["哀嚎洞穴"] = {
-["In"] = 731,
-["Out"] = 0,
-},
-["辛特兰 - 西利瓦萨"] = {
-["In"] = 178,
-["Out"] = 0,
-},
-["东瘟疫之地 - 剧毒林地"] = {
-["In"] = 1834,
-["Out"] = 0,
-},
-["阿拉希高地 - 阿拉索之塔"] = {
-["In"] = 583,
-["Out"] = 0,
-},
-["灰谷 - 奥迪拉兰废墟"] = {
-["In"] = 657,
-["Out"] = 0,
-},
-["沙尔扎鲁之巢"] = {
-["In"] = 2865,
-["Out"] = 0,
-},
-["灰谷 - 朵丹尼尔兽穴"] = {
-["In"] = 518,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 60,
-},
-["灰谷"] = {
-["In"] = 39,
-["Out"] = 0,
-},
-["暴风城 - 运河"] = {
-["In"] = 73,
-["Out"] = 0,
-},
-["黑海岸 - 壁泉河"] = {
-["In"] = 58,
-["Out"] = 0,
-},
-["灰谷 - 蓟皮村"] = {
-["In"] = 19,
-["Out"] = 0,
-},
-["东瘟疫之地 - 考林路口"] = {
-["In"] = 1945,
-["Out"] = 0,
-},
-["菲拉斯 - 索兰萨尔废墟"] = {
-["In"] = 5194,
-["Out"] = 0,
-},
-["诅咒之地 - 风暴祭坛"] = {
-["In"] = 1097,
-["Out"] = 0,
-},
-["西瘟疫之地 - 壁炉谷"] = {
-["In"] = 5290,
-["Out"] = 0,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 104,
-["Out"] = 0,
-},
-["荆棘谷 - 储藏室"] = {
-["In"] = 6267,
-["Out"] = 0,
-},
-["灰谷 - 夜歌森林"] = {
-["In"] = 547,
-["Out"] = 0,
-},
-["暮色森林"] = {
-["In"] = 2484,
-["Out"] = 0,
-},
-["菲拉斯 - 高原荒野"] = {
-["In"] = 1136,
-["Out"] = 0,
-},
-["塔纳利斯"] = {
-["In"] = 1393,
-["Out"] = 0,
-},
-["菲拉斯 - 萨尔多岛"] = {
-["In"] = 685,
-["Out"] = 0,
-},
-["费伍德森林 - 魔爪村"] = {
-["In"] = 20167,
-["Out"] = 0,
-},
-["东瘟疫之地 - 玛瑞斯农场"] = {
-["In"] = 192,
-["Out"] = 0,
-},
-["塔纳利斯 - 热影废墟"] = {
-["In"] = 251,
-["Out"] = 0,
-},
-["冬泉谷 - 寒水村"] = {
-["In"] = 11279,
-["Out"] = 0,
-},
-["黑海岸 - 亚米萨兰"] = {
-["In"] = 272,
-["Out"] = 0,
-},
-["灰谷 - 阿斯特兰纳"] = {
-["In"] = 341,
-["Out"] = 0,
-},
-["东瘟疫之地 - 祖玛沙尔"] = {
-["In"] = 2837,
-["Out"] = 0,
-},
-["通灵学院"] = {
-["In"] = 40912,
-["Out"] = 121,
-},
-["艾萨拉 - 破碎海岸"] = {
-["In"] = 1809,
-["Out"] = 0,
-},
-["费伍德森林 - 血毒河"] = {
-["In"] = 411,
-["Out"] = 0,
-},
-["湿地 - 米奈希尔海湾"] = {
-["In"] = 762,
-["Out"] = 0,
-},
-["灰谷 - 火痕神殿"] = {
-["In"] = 61,
-["Out"] = 0,
-},
-["西瘟疫之地 - 费尔斯通农场"] = {
-["In"] = 18379,
-["Out"] = 0,
-},
-["怒痕堡"] = {
-["In"] = 4269,
-["Out"] = 0,
-},
-["灼热峡谷 - 观火岭"] = {
-["In"] = 28646,
-["Out"] = 0,
-},
-["艾尔文森林 - 东谷伐木场"] = {
-["In"] = 17,
-["Out"] = 0,
-},
-["塔纳利斯 - 砂槌营地"] = {
-["In"] = 5951,
-["Out"] = 0,
-},
-["贫瘠之地"] = {
-["In"] = 1598,
-["Out"] = 0,
-},
-["辛特兰"] = {
-["In"] = 3504,
-["Out"] = 0,
-},
-["荆棘谷 - 库尔森的营地"] = {
-["In"] = 7378,
-["Out"] = 0,
-},
-["辛特兰 - 祖瓦沙"] = {
-["In"] = 868,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 奥特兰克废墟"] = {
-["In"] = 12462,
-["Out"] = 0,
-},
-["冬泉谷 - 木喉岗哨"] = {
-["In"] = 10727,
-["Out"] = 0,
-},
-["菲拉斯 - 被遗忘的海岸"] = {
-["In"] = 7628,
-["Out"] = 0,
-},
-["贫瘠之地 - 淤泥沼泽"] = {
-["In"] = 81,
-["Out"] = 0,
-},
-["费伍德森林 - 欺诈者神祠"] = {
-["In"] = 2469,
-["Out"] = 0,
-},
-["悲伤沼泽 - 农田避难所"] = {
-["In"] = 3081,
-["Out"] = 0,
-},
-["阿塔哈卡神庙 - 仪式大厅"] = {
-["In"] = 1357,
-["Out"] = 0,
-},
-["费伍德森林 - 死木村"] = {
-["In"] = 6892,
-["Out"] = 0,
-},
-["贫瘠之地 - 棘齿城"] = {
-["In"] = 1027,
-["Out"] = 0,
-},
-["东瘟疫之地 - 布洛米尔"] = {
-["In"] = 7861,
-["Out"] = 0,
-},
-["荆棘谷 - 反抗军营地"] = {
-["In"] = 73,
-["Out"] = 0,
-},
-["玛拉顿"] = {
-["In"] = 12529,
-["Out"] = 48,
-},
-["尘泥沼泽 - 女巫岭"] = {
-["In"] = 3252,
-["Out"] = 0,
-},
-["燃烧平原 - 索瑞森废墟"] = {
-["In"] = 1031,
-["Out"] = 0,
-},
-["荆棘谷"] = {
-["In"] = 8986,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 考兰之匕"] = {
-["In"] = 62,
-["Out"] = 0,
-},
-["厄运之槌"] = {
-["In"] = 23303,
-["Out"] = 118,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 8293,
-["Out"] = 0,
-},
-["暮色森林 - 沃古尔食人魔山"] = {
-["In"] = 93,
+["In"] = 1193,
 ["Out"] = 0,
 },
 ["纳克萨玛斯"] = {
-["In"] = 3542787,
-["Out"] = 27987,
+["In"] = 579352,
+["Out"] = 113,
 },
-["艾萨拉 - 赫塔拉的巢穴"] = {
-["In"] = 4548,
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 92147,
 ["Out"] = 0,
 },
-["灰谷 - 佐拉姆海岸"] = {
-["In"] = 819,
+["灰谷 - 大树荫"] = {
+["In"] = 69493,
 ["Out"] = 0,
 },
-["黑石山 - 石匠区"] = {
-["In"] = 4437,
+["艾萨拉"] = {
+["In"] = 57760,
 ["Out"] = 0,
 },
-["费伍德森林 - 碧火谷"] = {
-["In"] = 8362,
+["通灵学院"] = {
+["In"] = 5890,
+["Out"] = 10,
+},
+["奥妮克希亚的巢穴"] = {
+["In"] = 183366,
 ["Out"] = 0,
-},
-["荆棘谷 - 蛮荒海岸"] = {
-["In"] = 13315,
-["Out"] = 0,
-},
-["剃刀沼泽"] = {
-["In"] = 819,
-["Out"] = 0,
-},
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 11129,
-["Out"] = 0,
-},
-["西瘟疫之地 - 北山伐木场"] = {
-["In"] = 1646,
-["Out"] = 0,
-},
-["灼热峡谷"] = {
-["In"] = 14406,
-["Out"] = 0,
-},
-["荆棘谷 - 南野人海岸"] = {
-["In"] = 7404,
-["Out"] = 0,
-},
-["逆风小径 - 罪恶谷"] = {
-["In"] = 77,
-["Out"] = 0,
-},
-["荒芜之地 - 造物者遗迹"] = {
-["In"] = 8407,
-["Out"] = 0,
-},
-["塔纳利斯 - 天涯海滩"] = {
-["In"] = 4496,
-["Out"] = 0,
-},
-["西瘟疫之地 - 悔恨岭"] = {
-["In"] = 10695,
-["Out"] = 0,
-},
-["冬泉谷 - 枭翼树丛"] = {
-["In"] = 10283,
-["Out"] = 0,
-},
-["艾萨拉 - 辛玛洛神殿"] = {
-["In"] = 707,
-["Out"] = 0,
-},
-["安戈洛环形山 - 沼泽地"] = {
-["In"] = 2439,
-["Out"] = 0,
-},
-["费伍德森林 - 碧火小径"] = {
-["In"] = 92581,
-["Out"] = 199,
-},
-["燃烧平原 - 滑石"] = {
-["In"] = 1036,
-["Out"] = 0,
-},
-["石爪山脉 - 黑狼河"] = {
-["In"] = 29,
-["Out"] = 0,
-},
-["尘泥沼泽 - 恐惧海岸"] = {
-["In"] = 5244,
-["Out"] = 0,
-},
-["菲拉斯 - 怒痕堡"] = {
-["In"] = 5136,
-["Out"] = 0,
-},
-["辛特兰 - 祖尔祭坛"] = {
-["In"] = 591,
-["Out"] = 0,
-},
-["阿拉希高地"] = {
-["In"] = 2003,
-["Out"] = 0,
-},
-["尘泥沼泽 - 尘泥海湾"] = {
-["In"] = 556,
-["Out"] = 0,
-},
-["菲拉斯 - 伊斯迪尔废墟"] = {
-["In"] = 7212,
-["Out"] = 0,
-},
-["东瘟疫之地"] = {
-["In"] = 2479,
-["Out"] = 0,
-},
-["荆棘谷 - 祖玛维废墟"] = {
-["In"] = 8573,
-["Out"] = 0,
-},
-["晨光之林墓穴"] = {
-["In"] = 73,
-["Out"] = 0,
-},
-["灼热峡谷 - 大熔炉"] = {
-["In"] = 6993,
-["Out"] = 0,
-},
-["灰谷 - 绿爪村"] = {
-["In"] = 77,
-["Out"] = 0,
-},
-["费伍德森林 - 克斯特拉斯废墟"] = {
-["In"] = 14277,
-["Out"] = 0,
-},
-["艾萨拉 - 亚考兰神殿"] = {
-["In"] = 1613,
-["Out"] = 0,
-},
-["辛特兰 - 爬虫废墟"] = {
-["In"] = 6423,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 239285,
-["Out"] = 26969912,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 135000,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 11001834,
-},
-},
-["TRAIN"] = {
-["铁炉堡 - 侏儒区"] = {
-["In"] = 0,
-["Out"] = 40163,
-},
-["铁炉堡 - 武器大厅"] = {
-["In"] = 0,
-["Out"] = 50000,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 81700,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 0,
-["Out"] = 2640,
 },
 },
 ["QUEST"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 300,
-["Out"] = 0,
-},
-["狮王之傲旅店"] = {
-["In"] = 330,
-["Out"] = 0,
-},
-["艾萨拉 - 风暴海湾"] = {
-["In"] = 272800,
-["Out"] = 0,
-},
-["灰谷 - 银风避难所"] = {
-["In"] = 2760,
-["Out"] = 0,
-},
-["凄凉之地 - 尼耶尔前哨站"] = {
-["In"] = 40490,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 127661,
-["Out"] = 0,
-},
-["荆棘谷 - 储藏室"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["诅咒之地 - 守望堡"] = {
-["In"] = 22350,
-["Out"] = 0,
-},
-["塔纳利斯 - 热砂港"] = {
-["In"] = 167930,
-["Out"] = 0,
-},
-["月光林地 - 永夜港"] = {
-["In"] = 8400,
-["Out"] = 0,
-},
-["暴风城 - 已宰的羔羊"] = {
-["In"] = 4000,
-["Out"] = 0,
-},
-["东瘟疫之地 - 奎尔林斯小屋"] = {
-["In"] = 105600,
-["Out"] = 0,
-},
-["月光林地 - 雷姆洛斯神殿"] = {
-["In"] = 22200,
-["Out"] = 0,
-},
-["凄凉之地"] = {
-["In"] = 18500,
-["Out"] = 0,
-},
-["灰谷 - 密斯特拉湖"] = {
-["In"] = 2520,
-["Out"] = 0,
-},
-["黑海岸 - 主宰之剑"] = {
-["In"] = 2070,
-["Out"] = 0,
-},
-["夜色镇大厅"] = {
-["In"] = 7860,
-["Out"] = 0,
-},
-["灰谷 - 法拉希姆湖"] = {
-["In"] = 900,
-["Out"] = 0,
-},
-["荒芜之地 - 巨牙谷"] = {
-["In"] = 8340,
-["Out"] = 0,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 159000,
-["Out"] = 0,
-},
-["塔纳利斯 - 破碎石柱"] = {
-["In"] = 12840,
-["Out"] = 0,
-},
-["安戈洛环形山 - 火羽山"] = {
-["In"] = 16800,
-["Out"] = 0,
-},
-["阿拉希高地 - 内禁锢法阵"] = {
-["In"] = 3840,
-["Out"] = 0,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 83240,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 1023700,
-["Out"] = 0,
-},
-["铁炉堡 - 荒弃的洞穴"] = {
-["In"] = 6900,
-["Out"] = 0,
-},
-["铁炉堡 - 图书馆"] = {
-["In"] = 186570,
-["Out"] = 0,
-},
-["西部荒野 - 月溪镇"] = {
-["In"] = 720,
-["Out"] = 0,
-},
-["菲拉斯 - 拉瑞斯小亭"] = {
-["In"] = 64000,
-["Out"] = 0,
-},
-["菲拉斯 - 深痕谷"] = {
-["In"] = 2340,
-["Out"] = 0,
-},
-["暴风城 - 皇家图书馆"] = {
-["In"] = 12960,
-["Out"] = 0,
-},
-["灰谷 - 月亮井"] = {
-["In"] = 3360,
-["Out"] = 0,
-},
-["诅咒之地 - 盘蛇谷"] = {
-["In"] = 36563,
-["Out"] = 0,
-},
-["尘泥沼泽 - 塞拉摩堡垒"] = {
-["In"] = 7140,
-["Out"] = 0,
-},
-["洛克莫丹 - 国王谷"] = {
-["In"] = 5940,
-["Out"] = 0,
-},
-["辛特兰 - 拉普索迪营地"] = {
-["In"] = 3240,
-["Out"] = 0,
-},
-["西瘟疫之地 - 玛登霍尔德城堡"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 96000,
-["Out"] = 0,
-},
-["灼热峡谷 - 煤渣挖掘场"] = {
-["In"] = 5490,
-["Out"] = 0,
-},
-["辛特兰 - 沙德拉洛"] = {
-["In"] = 23700,
-["Out"] = 0,
-},
-["费伍德森林 - 翡翠圣地"] = {
-["In"] = 471790,
-["Out"] = 0,
-},
-["暮色森林"] = {
-["In"] = 3330,
-["Out"] = 0,
-},
-["西瘟疫之地 - 费尔斯通农场"] = {
-["In"] = 57000,
-["Out"] = 0,
-},
-["暴风城 - 法师区"] = {
-["In"] = 105090,
-["Out"] = 0,
-},
-["灰谷 - 林歌神殿"] = {
-["In"] = 47520,
-["Out"] = 0,
-},
-["费伍德森林 - 暗影堡"] = {
-["In"] = 60900,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡银行"] = {
-["In"] = 240,
-["Out"] = 1000000,
-},
-["厄运之槌"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["塔纳利斯 - 天涯海滩"] = {
-["In"] = 110,
-["Out"] = 0,
-},
-["悲伤沼泽 - 伊萨里奥斯的洞穴"] = {
-["In"] = 3300,
-["Out"] = 0,
-},
-["菲拉斯 - 双塔山"] = {
-["In"] = 11760,
-["Out"] = 0,
-},
-["安戈洛环形山"] = {
-["In"] = 157900,
-["Out"] = 0,
-},
-["灼热峡谷 - 熔渣之池"] = {
-["In"] = 46259,
-["Out"] = 0,
-},
-["暮色森林 - 乌鸦岭墓地"] = {
-["In"] = 10410,
-["Out"] = 0,
-},
-["荒芜之地 - 漫尘盆地"] = {
-["In"] = 14880,
-["Out"] = 0,
-},
-["暮色森林 - 约根农场"] = {
-["In"] = 600,
-["Out"] = 0,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 1860,
-["Out"] = 0,
-},
-["阿拉希高地 - 格沙克农场"] = {
-["In"] = 4200,
-["Out"] = 0,
-},
-["悲伤沼泽 - 避难营"] = {
-["In"] = 3060,
-["Out"] = 0,
-},
-["西瘟疫之地"] = {
-["In"] = 59700,
-["Out"] = 0,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 518090,
-["Out"] = 0,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 8700,
-["Out"] = 0,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 12380,
-["Out"] = 0,
-},
-["辛特兰 - 望海崖"] = {
-["In"] = 7200,
-["Out"] = 0,
-},
-["尘泥沼泽 - 鲜血沼泽墓穴"] = {
-["In"] = 2160,
-["Out"] = 0,
-},
-["黑手大厅"] = {
-["In"] = 49800,
-["Out"] = 0,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 46660,
-["Out"] = 0,
-},
-["灼热峡谷 - 瑟银哨塔"] = {
-["In"] = 82700,
-["Out"] = 0,
-},
-["悲伤沼泽 - 流沙泥潭"] = {
-["In"] = 10240,
-["Out"] = 0,
-},
-["菲拉斯"] = {
-["In"] = 3840,
-["Out"] = 0,
-},
-["西瘟疫之地 - 嚎哭鬼屋"] = {
-["In"] = 79800,
-["Out"] = 0,
-},
-["血鸦旅店"] = {
-["In"] = 5040,
-["Out"] = 0,
-},
-["黑海岸 - 暮光谷"] = {
-["In"] = 2560,
-["Out"] = 0,
-},
-["东瘟疫之地 - 恐惧谷"] = {
-["In"] = 115800,
-["Out"] = 0,
-},
-["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 64480,
-["Out"] = 0,
-},
-["达纳苏斯 - 月神殿"] = {
-["In"] = 29560,
-["Out"] = 0,
-},
-["石爪山脉 - 石爪峰"] = {
-["In"] = 1740,
-["Out"] = 0,
-},
-["安戈洛环形山 - 拉卡利油沼"] = {
-["In"] = 39700,
-["Out"] = 0,
-},
-["安戈洛环形山 - 蘑菇石"] = {
-["In"] = 23700,
-["Out"] = 0,
-},
-["暴风城 - 祈愿室"] = {
-["In"] = 88420,
-["Out"] = 0,
-},
-["诅咒之地 - 污染者高地"] = {
-["In"] = 33900,
-["Out"] = 0,
-},
-["阿塔哈卡神庙"] = {
-["In"] = 30177,
-["Out"] = 242,
-},
-["艾萨拉 - 塔伦迪斯营地"] = {
-["In"] = 17040,
-["Out"] = 0,
-},
-["菲拉斯 - 木爪岭"] = {
-["In"] = 1680,
-["Out"] = 0,
-},
-["冬泉谷 - 麦索瑞尔"] = {
-["In"] = 43500,
-["Out"] = 0,
-},
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 124200,
-["Out"] = 0,
-},
-["灼热峡谷"] = {
-["In"] = 88741,
-["Out"] = 0,
-},
-["东瘟疫之地 - 墓室"] = {
-["In"] = 48600,
-["Out"] = 0,
-},
-["铁炉堡 - 武器大厅"] = {
-["In"] = 2400,
-["Out"] = 0,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 74730,
-["Out"] = 20000,
-},
-["西瘟疫之地 - 达尔松之泪"] = {
-["In"] = 101200,
-["Out"] = 0,
-},
-["湿地 - 米奈希尔海湾"] = {
-["In"] = 360,
-["Out"] = 0,
-},
-["阿拉希高地 - 法迪尔海湾"] = {
-["In"] = 14220,
-["Out"] = 0,
-},
-["哀嚎洞穴"] = {
-["In"] = 6520,
-["Out"] = 0,
-},
-["荆棘谷 - 南野人海岸"] = {
-["In"] = 5500,
-["Out"] = 0,
-},
-["凄凉之地 - 瑟卡布斯库的营地"] = {
-["In"] = 4620,
-["Out"] = 0,
-},
-["凄凉之地 - 拉纳加尔岛"] = {
-["In"] = 13180,
-["Out"] = 0,
-},
-["西瘟疫之地 - 悔恨岭"] = {
-["In"] = 47100,
-["Out"] = 0,
-},
-["贫瘠之地 - 提度斯阶梯"] = {
-["In"] = 6000,
-["Out"] = 0,
-},
-["凄凉之地 - 艾瑟雷索"] = {
-["In"] = 13580,
-["Out"] = 0,
-},
-["冬泉谷 - 永望镇"] = {
-["In"] = 215200,
-["Out"] = 0,
-},
-["尘泥沼泽"] = {
-["In"] = 19000,
-["Out"] = 0,
-},
-["艾萨拉 - 废墟海岸"] = {
-["In"] = 6000,
-["Out"] = 0,
-},
-["凄凉之地 - 雷斧堡垒"] = {
-["In"] = 3240,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 达拉然"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["燃烧平原 - 滑石"] = {
-["In"] = 26100,
-["Out"] = 0,
-},
-["费伍德森林 - 木喉要塞"] = {
-["In"] = 37200,
-["Out"] = 0,
-},
-["灰谷"] = {
-["In"] = 4200,
-["Out"] = 0,
-},
-["冬泉谷 - 丹曼达尔"] = {
-["In"] = 38400,
-["Out"] = 0,
-},
-["灼热峡谷 - 尘火谷"] = {
-["In"] = 2640,
-["Out"] = 0,
-},
 ["暴风城 - 运河"] = {
-["In"] = 13680,
-["Out"] = 0,
-},
-["达纳苏斯"] = {
-["In"] = 42300,
-["Out"] = 0,
-},
-["冬泉谷 - 坠星村"] = {
-["In"] = 82200,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 288000,
-["Out"] = 0,
-},
-["灰谷 - 迈斯特拉岗哨"] = {
-["In"] = 15940,
-["Out"] = 0,
-},
-["黑海岸 - 雷姆塔维尔挖掘场"] = {
-["In"] = 720,
-["Out"] = 0,
-},
-["冬泉谷 - 枭翼树丛"] = {
-["In"] = 18000,
-["Out"] = 0,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 34820,
-["Out"] = 0,
-},
-["塔纳利斯 - 奥丹姆"] = {
-["In"] = 5640,
-["Out"] = 0,
-},
-["黑海岸 - 薄雾海"] = {
-["In"] = 5500,
-["Out"] = 0,
-},
-["荆棘谷 - 奈辛瓦里远征队营地"] = {
-["In"] = 26520,
-["Out"] = 0,
-},
-["冬泉谷 - 凯斯利尔废墟"] = {
-["In"] = 27900,
-["Out"] = 0,
-},
-["暴风城 - 教堂广场"] = {
-["In"] = 15900,
-["Out"] = 0,
-},
-["贫瘠之地 - 淤泥沼泽"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["冬泉谷"] = {
-["In"] = 357502,
-["Out"] = 292,
-},
-["剃刀高地"] = {
-["In"] = 2760,
-["Out"] = 0,
-},
-["尘泥沼泽 - 水光庄园"] = {
-["In"] = 8120,
-["Out"] = 0,
-},
-["塔纳利斯 - 时光之穴"] = {
-["In"] = 321300,
-["Out"] = 0,
-},
-["辛特兰 - 蛮锤城堡"] = {
-["In"] = 21790,
-["Out"] = 0,
-},
-["凄凉之地 - 考米克小屋"] = {
-["In"] = 4530,
-["Out"] = 0,
-},
-["贫瘠之地"] = {
-["In"] = 2820,
-["Out"] = 0,
-},
-["菲拉斯 - 索兰萨尔废墟"] = {
-["In"] = 1620,
-["Out"] = 0,
-},
-["南海镇大厅"] = {
-["In"] = 15480,
-["Out"] = 0,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["暴风城 - 光明大教堂"] = {
-["In"] = 2940,
-["Out"] = 0,
-},
-["安戈洛环形山 - 葛拉卡温泉"] = {
-["In"] = 33900,
-["Out"] = 0,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 221410,
-["Out"] = 150000,
-},
-["悲伤沼泽"] = {
-["In"] = 216480,
-["Out"] = 0,
-},
-["暴风城 - 暴风要塞"] = {
-["In"] = 160920,
-["Out"] = 0,
-},
-["斯坦索姆"] = {
-["In"] = 39027,
-["Out"] = 0,
-},
-["西瘟疫之地 - 北山伐木场"] = {
-["In"] = 155300,
-["Out"] = 0,
-},
-["荒芜之地"] = {
-["In"] = 15300,
-["Out"] = 0,
-},
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 21460,
-["Out"] = 0,
-},
-["荆棘谷 - 尤亚姆巴岛"] = {
-["In"] = 138900,
-["Out"] = 0,
-},
-["黑暗深渊"] = {
-["In"] = 1440,
-["Out"] = 0,
-},
-["石爪山脉 - 狂风矿洞"] = {
-["In"] = 1320,
-["Out"] = 0,
-},
-["灰谷 - 阿斯特兰纳"] = {
-["In"] = 22550,
-["Out"] = 0,
-},
-["铁炉堡 - 探险者大厅"] = {
-["In"] = 34770,
-["Out"] = 0,
-},
-["西瘟疫之地 - 凯尔达隆"] = {
-["In"] = 195900,
-["Out"] = 0,
-},
-["西瘟疫之地 - 盖罗恩农场"] = {
-["In"] = 37200,
-["Out"] = 0,
-},
-["艾萨拉 - 亚考兰神殿"] = {
-["In"] = 100900,
-["Out"] = 0,
-},
-["尘泥沼泽 - 泥潭沼泽"] = {
-["In"] = 10100,
-["Out"] = 0,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 73200,
-["Out"] = 0,
-},
-["燃烧平原 - 烈焰峰"] = {
-["In"] = 115440,
-["Out"] = 0,
-},
-["铁炉堡 - 王座厅"] = {
-["In"] = 51300,
-["Out"] = 0,
-},
-["石爪山脉 - 狂风峭壁"] = {
-["In"] = 6220,
-["Out"] = 0,
-},
-["丹莫罗 - 卡拉诺斯"] = {
-["In"] = 3300,
-["Out"] = 0,
-},
-["阿拉希高地 - 枯须峡谷"] = {
-["In"] = 1740,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 45720,
-["Out"] = 50000,
-},
-["暴风城"] = {
-["In"] = 119400,
-["Out"] = 0,
-},
-["铁炉堡 - 军事区"] = {
-["In"] = 1500,
-["Out"] = 0,
-},
-["菲拉斯 - 被遗忘的海岸"] = {
-["In"] = 20900,
-["Out"] = 0,
-},
-["荆棘谷 - 库尔森的营地"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["希利苏斯 - 勇士之墓"] = {
-["In"] = 16800,
-["Out"] = 0,
-},
-["尘泥沼泽 - 废弃哨塔"] = {
-["In"] = 1740,
-["Out"] = 0,
-},
-["暮色森林 - 荒弃鬼屋"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["艾萨拉 - 雷加什营地"] = {
-["In"] = 64200,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 101187,
-["Out"] = 0,
-},
-["西部荒野 - 匕首岭"] = {
-["In"] = 58040,
-["Out"] = 0,
-},
-["黑海岸 - 巴莎兰"] = {
-["In"] = 1920,
-["Out"] = 0,
-},
-["费伍德森林 - 摩罗萨兰"] = {
-["In"] = 84300,
-["Out"] = 0,
-},
-["东瘟疫之地 - 达隆郡"] = {
-["In"] = 129600,
-["Out"] = 0,
-},
-["暮色森林 - 夜色镇"] = {
-["In"] = 38645,
-["Out"] = 0,
-},
-["诅咒之地 - 巨槌要塞"] = {
-["In"] = 14100,
-["Out"] = 0,
-},
-["荆棘谷 - 反抗军营地"] = {
-["In"] = 20830,
-["Out"] = 0,
-},
-["玛拉顿"] = {
-["In"] = 5490,
-["Out"] = 0,
-},
-["荆棘谷 - 哈圭罗岛"] = {
-["In"] = 10440,
-["Out"] = 0,
-},
-["奥达曼"] = {
-["In"] = 10520,
-["Out"] = 0,
-},
-["荆棘谷"] = {
-["In"] = 31650,
-["Out"] = 0,
-},
-["千针石林 - 沙漠赛道"] = {
-["In"] = 60270,
-["Out"] = 0,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 75060,
-["Out"] = 0,
-},
-["荆棘谷 - 水手之家旅店"] = {
-["In"] = 47510,
-["Out"] = 0,
-},
-["贫瘠之地 - 剃刀高地"] = {
-["In"] = 9600,
-["Out"] = 0,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 341980,
-["Out"] = 0,
-},
-["菲拉斯 - 痛苦深渊"] = {
-["In"] = 1860,
-["Out"] = 0,
-},
-["黑海岸 - 壁泉河"] = {
-["In"] = 1200,
-["Out"] = 0,
-},
-["贫瘠之地 - 棘齿城"] = {
-["In"] = 63240,
-["Out"] = 0,
-},
-["辛特兰"] = {
-["In"] = 2640,
-["Out"] = 0,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 8730,
-["Out"] = 0,
-},
-["剃刀沼泽"] = {
-["In"] = 1860,
-["Out"] = 0,
-},
-["黑海岸 - 古树之林"] = {
-["In"] = 2860,
-["Out"] = 0,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 203210,
-["Out"] = 0,
-},
-["黑海岸 - 黑木洞穴"] = {
-["In"] = 480,
-["Out"] = 0,
-},
-["辛特兰 - 鹰巢山"] = {
-["In"] = 39060,
-["Out"] = 0,
-},
-["灼热峡谷 - 观火岭"] = {
-["In"] = 270,
-["Out"] = 0,
-},
-["艾尔文森林 - 东谷伐木场"] = {
-["In"] = 1440,
-["Out"] = 0,
-},
-["泰达希尔 - 鲁瑟兰村"] = {
-["In"] = 96600,
-["Out"] = 0,
-},
-["黑海岸"] = {
-["In"] = 4390,
-["Out"] = 0,
-},
-["暮色森林 - 乌鸦岭"] = {
-["In"] = 2520,
-["Out"] = 0,
-},
-["灰谷 - 艾森娜神殿"] = {
-["In"] = 11960,
-["Out"] = 0,
-},
-["安戈洛环形山 - 沼泽地"] = {
-["In"] = 3000,
-["Out"] = 0,
-},
-["铁炉堡 - 秘法区"] = {
-["In"] = 25650,
-["Out"] = 0,
-},
-["石爪山脉 - 蛛网小径"] = {
-["In"] = 12510,
-["Out"] = 0,
-},
-["荒芜之地 - 埃格蒙德的营地"] = {
-["In"] = 6300,
-["Out"] = 0,
-},
-["凄凉之地 - 吉尔吉斯村"] = {
-["In"] = 9720,
-["Out"] = 0,
-},
-["凄凉之地 - 科多兽坟场"] = {
-["In"] = 11760,
-["Out"] = 0,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 97500,
-["Out"] = 0,
-},
-["阿拉希高地"] = {
-["In"] = 4350,
-["Out"] = 0,
-},
-["费伍德森林 - 魔爪村"] = {
-["In"] = 26100,
-["Out"] = 0,
-},
-["菲拉斯 - 鸦风废墟"] = {
-["In"] = 4860,
-["Out"] = 0,
-},
-["灰谷 - 萨维亚"] = {
-["In"] = 1560,
-["Out"] = 0,
-},
-["东瘟疫之地 - 索多里尔河"] = {
-["In"] = 220650,
-["Out"] = 0,
-},
-["黑石山 - 铸铁之墓"] = {
-["In"] = 1200,
-["Out"] = 0,
-},
-["塔纳利斯"] = {
-["In"] = 2640,
-["Out"] = 0,
-},
-["暮色森林 - 寂静河岸"] = {
-["In"] = 8900,
-["Out"] = 0,
-},
-["湿地 - 深水旅店"] = {
-["In"] = 5520,
-["Out"] = 0,
-},
-["希利苏斯 - 暮光营地废墟"] = {
-["In"] = 119400,
-["Out"] = 0,
-},
-["希利苏斯 - 甲虫之墙"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 252178,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 165291,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 24748,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 223520,
-},
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 1592,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 0,
-["Out"] = 816,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 6048,
-},
-["灼热峡谷 - 瑟银哨塔"] = {
-["In"] = 0,
-["Out"] = 1328,
-},
-["泰达希尔 - 鲁瑟兰村"] = {
-["In"] = 0,
-["Out"] = 1168,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 0,
-["Out"] = 1168,
-},
-["诅咒之地 - 守望堡"] = {
-["In"] = 0,
-["Out"] = 664,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 10016,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 1314,
-},
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 10000000,
-["Out"] = 37903330,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 0,
-["Out"] = 180,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 4110060,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 0,
-["Out"] = 240,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 720,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 0,
-["Out"] = 90,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 90,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 1440,
-},
-},
-["OTHER"] = {
-["暴风城 - 巫师圣殿"] = {
-["In"] = 0,
-["Out"] = 4110000,
-},
-["希利苏斯 - 暮光营地废墟"] = {
-["In"] = 50000000,
-["Out"] = 15000000,
-},
-["暴风城 - 法师区"] = {
-["In"] = 11441770,
-["Out"] = 2400000,
-},
-[""] = {
-["In"] = 12840726,
-["Out"] = 19903570,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 20000000,
-["Out"] = 1800000,
-},
-["厄运之槌"] = {
-["In"] = 546,
-["Out"] = 700000,
-},
-["熔火之心"] = {
-["In"] = 2510000,
-["Out"] = 20000000,
-},
-["祖尔格拉布"] = {
-["In"] = 11000164,
-["Out"] = 8000078,
-},
-["安其拉"] = {
-["In"] = 20752376,
-["Out"] = 8239559,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 963647,
-["Out"] = 66290,
-},
-["艾萨拉 - 风暴海湾"] = {
-["In"] = 360,
-["Out"] = 0,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 0,
-["Out"] = 14,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 716895,
-["Out"] = 800,
-},
-["暴风城 - 法师区"] = {
-["In"] = 50133,
-["Out"] = 0,
-},
-["艾尔文森林"] = {
-["In"] = 0,
-["Out"] = 6400,
-},
-["奥特兰克山谷"] = {
-["In"] = 0,
-["Out"] = 124320,
-},
-["荆棘谷 - 水手之家旅店"] = {
-["In"] = 2308,
-["Out"] = 3750,
-},
-["厄运之槌"] = {
-["In"] = 0,
-["Out"] = 26146,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 2250,
-["Out"] = 30800,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 3750,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["菲拉斯 - 萨尔多岛"] = {
-["In"] = 255,
-["Out"] = 0,
-},
-["熔火之心"] = {
-["In"] = 93305,
-["Out"] = 0,
-},
-["菲拉斯 - 被遗忘的海岸"] = {
-["In"] = 814,
-["Out"] = 0,
-},
-["厄运之槌"] = {
-["In"] = 1006,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 56654,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 497029,
-["Out"] = 681,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 23090528,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 1052984,
-},
-},
-["TRAIN"] = {
-["暴风城 - 矮人区"] = {
-["In"] = 0,
-["Out"] = 2640,
-},
-},
-["QUEST"] = {
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 67800,
-["Out"] = 0,
-},
-["希利苏斯 - 暮光营地废墟"] = {
-["In"] = 119400,
-["Out"] = 0,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 79200,
-["Out"] = 0,
-},
-["艾萨拉 - 风暴海湾"] = {
-["In"] = 119400,
-["Out"] = 0,
-},
-["希利苏斯 - 甲虫之墙"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["塔纳利斯 - 时光之穴"] = {
-["In"] = 43500,
-["Out"] = 0,
-},
-},
-},
-["Month"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 20120,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 135458,
-},
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 392,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 0,
-["Out"] = 584,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 2448,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 1314,
-},
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 37900330,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 0,
-["Out"] = 240,
-},
-},
-["OTHER"] = {
-[""] = {
-["In"] = 1090597,
-["Out"] = 1950695,
-},
-["安其拉"] = {
-["In"] = 103792,
-["Out"] = 19559,
-},
-["希利苏斯 - 暮光营地废墟"] = {
-["In"] = 50000000,
-["Out"] = 15000000,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 20000000,
-["Out"] = 1800000,
-},
-["熔火之心"] = {
-["In"] = 2510000,
-["Out"] = 20000000,
-},
-["祖尔格拉布"] = {
-["In"] = 11000164,
-["Out"] = 8000078,
-},
-["暴风城 - 法师区"] = {
-["In"] = 5300000,
-["Out"] = 2400000,
-},
-},
-["MERCH"] = {
-["艾尔文森林"] = {
-["In"] = 0,
-["Out"] = 6400,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 8000,
-["Out"] = 0,
-},
-["艾萨拉 - 风暴海湾"] = {
-["In"] = 360,
-["Out"] = 0,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 24500,
-},
-},
-["TRAIN"] = {
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 1439600,
-},
-},
-["LOOT"] = {
-["熔火之心"] = {
-["In"] = 93305,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 56654,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 187708,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-["艾萨拉 - 风暴海湾"] = {
-["In"] = 119400,
-["Out"] = 0,
-},
-["希利苏斯 - 暮光营地废墟"] = {
-["In"] = 119400,
-["Out"] = 0,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["希利苏斯 - 甲虫之墙"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["塔纳利斯 - 时光之穴"] = {
-["In"] = 43500,
+["In"] = 38500,
 ["Out"] = 0,
 },
 },
@@ -12892,4434 +5528,1008 @@ Accountant_ClassicZoneDB = {
 ["PrvYear"] = {
 ["REPAIRS"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 50415,
-["Out"] = 1435914,
-},
-["贫瘠之地"] = {
-["In"] = 0,
-["Out"] = 12252,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 2604,
-["Out"] = 36132,
-},
-["灰谷 - 银风避难所"] = {
-["In"] = 0,
-["Out"] = 2047,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 186736,
-},
-["奥特兰克山谷"] = {
-["In"] = 0,
-["Out"] = 40817,
-},
-["荆棘谷 - 港务局"] = {
-["In"] = 0,
-["Out"] = 66026,
-},
-["诅咒之地 - 守望堡"] = {
-["In"] = 0,
-["Out"] = 14090,
+["In"] = 68026,
+["Out"] = 1762795,
 },
 ["铁炉堡 - 铁炉堡"] = {
-["In"] = 17666,
-["Out"] = 277159,
-},
-["暮色森林 - 夜色镇"] = {
 ["In"] = 0,
-["Out"] = 50446,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 0,
-["Out"] = 2928,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 0,
-["Out"] = 4026,
-},
-["荆棘谷 - 奈辛瓦里远征队营地"] = {
-["In"] = 6389,
-["Out"] = 36849,
-},
-["荒芜之地 - 巨牙谷"] = {
-["In"] = 4530,
-["Out"] = 11082,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 9030,
-["Out"] = 27961,
+["Out"] = 174376,
 },
 ["西瘟疫之地 - 寒风营地"] = {
-["In"] = 13884,
-["Out"] = 179580,
+["In"] = 0,
+["Out"] = 105639,
 },
 ["暴风城 - 矮人区"] = {
 ["In"] = 0,
-["Out"] = 4734,
+["Out"] = 26670,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 87598,
 },
 ["菲拉斯 - 羽月要塞"] = {
-["In"] = 10454,
-["Out"] = 4410,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
 ["In"] = 0,
-["Out"] = 48558,
+["Out"] = 21017,
 },
-["灼热峡谷 - 瑟银哨塔"] = {
+["铁炉堡 - 大锻炉"] = {
 ["In"] = 0,
-["Out"] = 7346,
+["Out"] = 14585,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 260243,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 52333,
+},
+["艾尔文森林 - 东谷伐木场"] = {
+["In"] = 0,
+["Out"] = 17010,
+},
+["奥特兰克山谷"] = {
+["In"] = 0,
+["Out"] = 59995,
 },
 ["勇士大厅"] = {
 ["In"] = 0,
-["Out"] = 15038,
-},
-["湿地 - 米奈希尔港"] = {
-["In"] = 0,
-["Out"] = 3042,
-},
-["千针石林 - 沙漠赛道"] = {
-["In"] = 0,
-["Out"] = 12347,
-},
-["安其拉"] = {
-["In"] = 0,
-["Out"] = 139980,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 11903,
-["Out"] = 567393,
-},
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 0,
-["Out"] = 2264,
-},
-["荆棘谷 - 尤亚姆巴岛"] = {
-["In"] = 0,
-["Out"] = 85346,
-},
-["燃烧平原 - 烈焰峰"] = {
-["In"] = 0,
-["Out"] = 3321,
-},
-["艾萨拉 - 塔伦迪斯营地"] = {
-["In"] = 0,
-["Out"] = 1594,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 41240,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 241184,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 0,
-["Out"] = 5025,
-},
-["西瘟疫之地 - 凯尔达隆"] = {
-["In"] = 0,
-["Out"] = 29223,
+["Out"] = 4870,
 },
 ["奥特兰克山脉 - 山头营地"] = {
 ["In"] = 0,
-["Out"] = 1385,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 0,
-["Out"] = 9067,
-},
-["厄运之槌"] = {
-["In"] = 0,
-["Out"] = 22495,
-},
-["纳克萨玛斯"] = {
-["In"] = 0,
-["Out"] = 36871,
-},
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 39143,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 0,
-["Out"] = 3200,
-},
-["诅咒之地 - 巨槌要塞"] = {
-["In"] = 428,
-["Out"] = 204,
+["Out"] = 10796,
 },
 ["诅咒之地 - 守望堡"] = {
-["In"] = 0,
-["Out"] = 5282,
-},
-["玛拉顿"] = {
-["In"] = 69,
-["Out"] = 0,
-},
-["辛特兰 - 鹰巢山"] = {
-["In"] = 0,
-["Out"] = 1359,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 309,
-["Out"] = 0,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 0,
-["Out"] = 528,
-},
-["月光林地"] = {
-["In"] = 0,
-["Out"] = 3976,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 0,
-["Out"] = 3465,
-},
-["贫瘠之地 - 棘齿城"] = {
-["In"] = 0,
-["Out"] = 1521,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 0,
-["Out"] = 5752,
-},
-["洛克莫丹 - 塞尔萨玛"] = {
-["In"] = 0,
-["Out"] = 99,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 0,
-["Out"] = 9368,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 4312,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 3192,
-},
-["灼热峡谷 - 瑟银哨塔"] = {
-["In"] = 0,
-["Out"] = 4048,
-},
-["泰达希尔 - 鲁瑟兰村"] = {
-["In"] = 0,
-["Out"] = 22712,
-},
-["湿地 - 米奈希尔港"] = {
-["In"] = 0,
-["Out"] = 2768,
-},
-["赤脊山"] = {
-["In"] = 0,
-["Out"] = 264,
+["In"] = 3222,
+["Out"] = 4525,
 },
 ["塔纳利斯 - 加基森"] = {
 ["In"] = 0,
-["Out"] = 22008,
-},
-["石爪山脉 - 石爪峰"] = {
-["In"] = 0,
-["Out"] = 2040,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 0,
-["Out"] = 6726,
-},
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 0,
-["Out"] = 14031,
-},
-["尘泥沼泽 - 巨龙沼泽"] = {
-["In"] = 96,
-["Out"] = 0,
-},
-["暮色森林 - 夜色镇"] = {
-["In"] = 0,
-["Out"] = 928,
-},
-["阿塔哈卡神庙"] = {
-["In"] = 116,
-["Out"] = 0,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 29083,
-},
-["费伍德森林 - 刺枝林地"] = {
-["In"] = 0,
-["Out"] = 584,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 0,
-["Out"] = 1584,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 18847,
-},
-["灰谷 - 阿斯特兰纳"] = {
-["In"] = 0,
-["Out"] = 3944,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 0,
-["Out"] = 2344,
-},
-["阿塔哈卡神庙 - 面具大厅"] = {
-["In"] = 0,
-["Out"] = 80,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 1971,
-},
-},
-["TRADE"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 2100000,
-},
-["希利苏斯 - 甲虫之墙"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["纳克萨玛斯"] = {
-["In"] = 172,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 12000000,
-["Out"] = 4160000,
+["Out"] = 127594,
 },
 ["安其拉"] = {
 ["In"] = 0,
-["Out"] = 10000000,
+["Out"] = 120912,
 },
 },
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1975000000,
-["Out"] = 580000000,
-},
-["狮王之傲旅店"] = {
-["In"] = 0,
-["Out"] = 12800,
-},
-["黑手大厅"] = {
-["In"] = 7356,
-["Out"] = 1073,
-},
-["暴风城 - 法师区"] = {
-["In"] = 209078571,
-["Out"] = 1389516392,
-},
-["诅咒之地 - 巨槌要塞"] = {
-["In"] = 155,
-["Out"] = 317,
-},
-["奥特兰克山谷"] = {
-["In"] = 1006,
-["Out"] = 715,
-},
-["费伍德森林 - 碧火小径"] = {
-["In"] = 954,
-["Out"] = 384,
-},
-["厄运之槌"] = {
-["In"] = 352,
-["Out"] = 500000,
-},
-["东瘟疫之地 - 恐惧谷"] = {
-["In"] = 164,
-["Out"] = 66,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 160,
-},
-["艾萨拉"] = {
-["In"] = 92956,
-["Out"] = 9036233,
-},
-["暴风城 - 运河"] = {
-["In"] = 40000000,
-["Out"] = 0,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 176,
-["Out"] = 500238,
-},
-["黑翼之巢"] = {
-["In"] = 135693,
-["Out"] = 38708,
-},
-["安其拉"] = {
-["In"] = 492712452,
-["Out"] = 36546,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 0,
-["Out"] = 4000,
-},
-["祖尔法拉克"] = {
-["In"] = 98,
-["Out"] = 0,
-},
-["逆风小径 - 罪恶谷"] = {
-["In"] = 77,
-["Out"] = 0,
-},
-["安其拉废墟"] = {
-["In"] = 2032201,
-["Out"] = 13800000,
-},
-["血色修道院 - 大门廊"] = {
-["In"] = 144,
-["Out"] = 0,
-},
-["通灵学院"] = {
-["In"] = 668,
-["Out"] = 499,
-},
-["斯坦索姆"] = {
-["In"] = 3116,
-["Out"] = 769,
-},
-["奥妮克希亚的巢穴"] = {
-["In"] = 3991544,
-["Out"] = 8111544,
-},
-["荆棘谷 - 水手之家旅店"] = {
-["In"] = 222220000,
-["Out"] = 33000000,
-},
-[""] = {
-["In"] = 1330857,
-["Out"] = 992127375,
-},
-["诅咒之地 - 污染者高地"] = {
-["In"] = 645,
-["Out"] = 0,
-},
-["阿塔哈卡神庙"] = {
-["In"] = 321,
-["Out"] = 165,
-},
-["奥达曼"] = {
-["In"] = 1007,
-["Out"] = 365,
-},
-["纳克萨玛斯"] = {
-["In"] = 982781,
-["Out"] = 591958,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 14763635,
-["Out"] = 0,
-},
-["血色修道院"] = {
-["In"] = 2238,
-["Out"] = 1706,
-},
-["荆棘谷 - 野人海岸"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["费伍德森林 - 魔爪村"] = {
-["In"] = 142,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 147423101,
-["Out"] = 156705453,
-},
-["希利苏斯 - 甲虫之墙"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 239285,
-["Out"] = 3879384,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 135000,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 9948850,
-},
-},
-["LOOT"] = {
-["阿拉希高地 - 落锤镇"] = {
-["In"] = 1096,
-["Out"] = 0,
-},
-["阿拉希高地 - 枯木村"] = {
-["In"] = 5488,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 达伦德农场"] = {
-["In"] = 2311,
-["Out"] = 0,
-},
-["暴风城监狱"] = {
-["In"] = 103,
-["Out"] = 0,
-},
-["诅咒之地 - 巨槌要塞"] = {
-["In"] = 8281,
-["Out"] = 0,
-},
-["阿拉希高地 - 激流堡"] = {
-["In"] = 21924,
-["Out"] = 0,
-},
-["贫瘠之地 - 鬼雾峰"] = {
-["In"] = 20,
-["Out"] = 0,
-},
-["荆棘谷 - 加尼罗哨站"] = {
-["In"] = 1515,
-["Out"] = 0,
-},
-["东瘟疫之地 - 玛兹拉罗"] = {
-["In"] = 928,
-["Out"] = 0,
-},
-["黑暗深渊"] = {
-["In"] = 3079,
-["Out"] = 0,
-},
-["费伍德森林 - 血毒瀑布"] = {
-["In"] = 713,
-["Out"] = 0,
-},
-["凄凉之地"] = {
-["In"] = 122,
-["Out"] = 0,
-},
-["黑海岸 - 主宰之剑"] = {
-["In"] = 245,
-["Out"] = 0,
-},
-["灰谷 - 法拉希姆湖"] = {
-["In"] = 346,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 1904543,
-["Out"] = 216,
-},
-["诅咒之地"] = {
-["In"] = 4876,
-["Out"] = 0,
-},
-["阿拉希高地 - 内禁锢法阵"] = {
-["In"] = 376,
-["Out"] = 0,
-},
-["费伍德森林 - 铁木山洞"] = {
-["In"] = 4861,
-["Out"] = 0,
-},
-["燃烧平原 - 龙翼小径"] = {
-["In"] = 1696,
-["Out"] = 0,
-},
-["血色修道院 - 大门廊"] = {
-["In"] = 144,
-["Out"] = 0,
-},
-["阿拉希高地 - 石拳大厅"] = {
-["In"] = 329,
-["Out"] = 0,
-},
-["荒芜之地 - 雾气平原"] = {
-["In"] = 1318,
-["Out"] = 0,
-},
-["千针石林"] = {
-["In"] = 62,
-["Out"] = 0,
-},
-["荒芜之地 - 苦痛堡垒"] = {
-["In"] = 1290,
-["Out"] = 0,
-},
-["菲拉斯 - 恐怖之岛"] = {
-["In"] = 1837,
-["Out"] = 0,
-},
-["荒芜之地 - 瓦格营地"] = {
-["In"] = 496,
-["Out"] = 0,
-},
-["辛特兰 - 沙德拉洛"] = {
-["In"] = 115,
-["Out"] = 0,
-},
-["黑石山 - 碾石场"] = {
-["In"] = 2346,
-["Out"] = 0,
-},
-["荆棘谷 - 暗礁海"] = {
-["In"] = 5887,
-["Out"] = 0,
-},
-["黑手大厅"] = {
-["In"] = 58559,
-["Out"] = 457,
-},
-["荒芜之地 - 铁趾挖掘场"] = {
-["In"] = 2314,
-["Out"] = 0,
-},
-["塔纳利斯 - 灌木谷"] = {
-["In"] = 6735,
-["Out"] = 0,
-},
-["灰谷 - 萨维亚"] = {
-["In"] = 3170,
-["Out"] = 0,
-},
-["费伍德森林 - 暗影堡"] = {
-["In"] = 21405,
-["Out"] = 0,
-},
-["贫瘠之地 - 甜水绿洲"] = {
-["In"] = 12,
-["Out"] = 0,
-},
-["费伍德森林 - 碎痕谷"] = {
-["In"] = 146,
-["Out"] = 0,
-},
-["灼热峡谷 - 熔渣之池"] = {
-["In"] = 6561,
-["Out"] = 0,
-},
-["阿拉希高地 - 格沙克农场"] = {
-["In"] = 221,
-["Out"] = 0,
-},
-["燃烧平原"] = {
-["In"] = 9975,
-["Out"] = 0,
-},
-["荆棘谷 - 阿博拉兹废墟"] = {
-["In"] = 5879,
-["Out"] = 0,
-},
-["哀嚎洞穴 - 迷雾洞穴"] = {
-["In"] = 72,
-["Out"] = 0,
-},
-["祖尔法拉克"] = {
-["In"] = 44181,
-["Out"] = 18,
-},
-["荒芜之地 - 莱瑟罗峡谷"] = {
-["In"] = 12610,
-["Out"] = 0,
-},
-["安其拉废墟"] = {
-["In"] = 75341,
-["Out"] = 0,
-},
-["悲伤沼泽 - 流沙泥潭"] = {
-["In"] = 642,
-["Out"] = 0,
-},
-["冬泉谷"] = {
-["In"] = 20697,
-["Out"] = 0,
-},
-["西瘟疫之地 - 嚎哭鬼屋"] = {
-["In"] = 7320,
-["Out"] = 0,
-},
-["荆棘谷 - 朱布瓦尔废墟"] = {
-["In"] = 4028,
-["Out"] = 0,
-},
-["安戈洛环形山 - 拉卡利油沼"] = {
-["In"] = 12070,
-["Out"] = 0,
-},
-["阿塔哈卡神庙"] = {
-["In"] = 33657,
-["Out"] = 16,
-},
-["暮色森林 - 荒弃鬼屋"] = {
-["In"] = 1663,
-["Out"] = 0,
-},
-["菲拉斯 - 木爪岭"] = {
-["In"] = 253,
-["Out"] = 0,
-},
-["荆棘谷 - 伽什废墟"] = {
-["In"] = 1780,
-["Out"] = 0,
-},
-["东瘟疫之地 - 墓室"] = {
-["In"] = 4702,
-["Out"] = 0,
-},
-["荆棘谷 - 巴拉尔废墟"] = {
-["In"] = 2102,
-["Out"] = 0,
-},
-["辛特兰 - 亚戈瓦萨"] = {
-["In"] = 463,
-["Out"] = 0,
-},
-["凄凉之地 - 玛诺洛克集会所"] = {
-["In"] = 4062,
-["Out"] = 0,
-},
-["石爪山脉 - 焦炭谷"] = {
-["In"] = 571,
-["Out"] = 0,
-},
-["辛特兰 - 辛萨罗"] = {
-["In"] = 3219,
-["Out"] = 0,
-},
-["暮色森林 - 烂果园"] = {
-["In"] = 154,
-["Out"] = 0,
-},
-["凄凉之地 - 萨格隆"] = {
-["In"] = 3575,
-["Out"] = 0,
-},
-["阿拉希高地 - 枯须峡谷"] = {
-["In"] = 6011,
-["Out"] = 0,
-},
-["血色修道院"] = {
-["In"] = 21665,
-["Out"] = 328,
-},
-["冬泉谷 - 丹曼达尔"] = {
-["In"] = 679,
-["Out"] = 0,
-},
-["艾萨拉 - 哈达尔营地"] = {
-["In"] = 2165,
-["Out"] = 0,
-},
-["塔纳利斯 - 流沙岗哨"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 7121,
-["Out"] = 0,
-},
-["塔纳利斯 - 清泉平原"] = {
-["In"] = 7531,
-["Out"] = 0,
-},
-["灰谷 - 伊瑞斯湖"] = {
-["In"] = 14,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 索菲亚高地"] = {
-["In"] = 39,
-["Out"] = 0,
-},
-["费伍德森林 - 铁木森林"] = {
-["In"] = 5652,
-["Out"] = 0,
-},
-["暮色森林 - 静谧花园墓场"] = {
-["In"] = 1215,
-["Out"] = 0,
-},
-["悲伤沼泽"] = {
-["In"] = 4401,
-["Out"] = 0,
-},
-["荆棘谷 - 巴里亚曼废墟"] = {
-["In"] = 4199,
-["Out"] = 0,
-},
-["斯坦索姆"] = {
-["In"] = 162805,
-["Out"] = 823,
-},
-["贫瘠之地 - 石矿洞"] = {
-["In"] = 1383,
-["Out"] = 0,
-},
-["荆棘谷 - 莫什奥格食人魔山"] = {
-["In"] = 6703,
-["Out"] = 0,
-},
-["西瘟疫之地 - 盖罗恩农场"] = {
-["In"] = 4969,
-["Out"] = 0,
-},
-["奥妮克希亚的巢穴"] = {
-["In"] = 203007,
-["Out"] = 0,
-},
-["希尔斯布莱德丘陵 - 达隆山"] = {
-["In"] = 2101,
-["Out"] = 0,
-},
-["荆棘谷 - 风险投资公司工作中心"] = {
-["In"] = 1027,
-["Out"] = 0,
-},
-["灰谷 - 坠星湖"] = {
-["In"] = 46,
-["Out"] = 0,
-},
-["石爪山脉 - 峭壁湖"] = {
-["In"] = 27,
-["Out"] = 0,
-},
-["荆棘谷 - 血帆营地"] = {
-["In"] = 1153,
-["Out"] = 0,
-},
-["燃烧平原 - 灰烬之柱"] = {
-["In"] = 6752,
-["Out"] = 0,
-},
-["黑海岸 - 巴莎兰"] = {
-["In"] = 3,
-["Out"] = 0,
-},
-["东瘟疫之地 - 达隆郡"] = {
-["In"] = 498,
-["Out"] = 0,
-},
-["艾萨拉"] = {
-["In"] = 94383,
-["Out"] = 0,
-},
-["希尔斯布莱德丘陵 - 西部海岸"] = {
-["In"] = 2220,
-["Out"] = 0,
-},
-["冬泉谷 - 冰蓟岭"] = {
-["In"] = 25100,
-["Out"] = 0,
-},
-["暮色森林 - 腐草农场"] = {
-["In"] = 113,
-["Out"] = 0,
-},
-["艾萨拉 - 影歌神殿"] = {
-["In"] = 2155,
-["Out"] = 0,
-},
-["悲伤沼泽 - 忧伤湿地"] = {
-["In"] = 1839,
-["Out"] = 0,
-},
-["黑海岸 - 奥萨拉克斯之塔"] = {
-["In"] = 47,
-["Out"] = 0,
-},
-["荆棘谷 - 荆棘谷海角"] = {
-["In"] = 3577,
-["Out"] = 0,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 527,
-["Out"] = 0,
-},
-["塔纳利斯 - 破浪海滩"] = {
-["In"] = 339,
-["Out"] = 0,
-},
-["艾萨拉 - 萨拉斯营地"] = {
-["In"] = 4483,
-["Out"] = 0,
-},
-["荆棘谷 - 纳克迈尼圣泉"] = {
-["In"] = 4224,
-["Out"] = 0,
-},
-["荒芜之地 - 埃格蒙德的营地"] = {
-["In"] = 8245,
-["Out"] = 0,
-},
-["荆棘谷 - 祖昆达废墟"] = {
-["In"] = 593,
-["Out"] = 0,
-},
-["诅咒之地 - 污染者高地"] = {
-["In"] = 722,
-["Out"] = 0,
-},
-["凄凉之地 - 玛格拉姆村"] = {
-["In"] = 618,
+["TAXI"] = {
+["黑石山 - 石匠区"] = {
+["In"] = 603,
 ["Out"] = 0,
 },
-["奥特兰克山脉 - 破碎岭城堡"] = {
+["辛特兰 - 瑟拉丹"] = {
 ["In"] = 290,
 ["Out"] = 0,
 },
-["奥达曼 - 一号挖掘场"] = {
-["In"] = 3627,
-["Out"] = 0,
-},
-["奥达曼 - 封印大厅"] = {
-["In"] = 2210,
-["Out"] = 0,
-},
-["诅咒之地 - 黑暗之门"] = {
-["In"] = 6060,
-["Out"] = 0,
-},
-["燃烧平原 - 德拉考达尔"] = {
-["In"] = 338,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 3165,
-["Out"] = 0,
-},
-["灰谷 - 巴斯兰鬼屋"] = {
-["In"] = 139,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 绞刑场"] = {
-["In"] = 2858,
-["Out"] = 0,
-},
-["燃烧平原 - 巨槌石"] = {
-["In"] = 10474,
-["Out"] = 0,
-},
-["塔纳利斯 - 热砂港"] = {
-["In"] = 158,
-["Out"] = 0,
-},
-["荆棘谷 - 水晶海岸"] = {
-["In"] = 657,
-["Out"] = 0,
-},
-["悲伤沼泽 - 泪水之池"] = {
-["In"] = 1200,
-["Out"] = 0,
-},
-["西瘟疫之地"] = {
-["In"] = 8794,
-["Out"] = 0,
-},
-["暮色森林 - 密斯特曼托庄园"] = {
-["In"] = 5659,
-["Out"] = 0,
-},
-["菲拉斯 - 鸦风废墟"] = {
-["In"] = 1893,
-["Out"] = 0,
-},
-["凄凉之地 - 白骨之谷"] = {
-["In"] = 176,
-["Out"] = 0,
-},
-["暮色森林 - 罗兰之墓"] = {
-["In"] = 170,
-["Out"] = 0,
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 0,
+["Out"] = 824,
 },
 ["诅咒之地 - 腐烂之痕"] = {
-["In"] = 180751,
-["Out"] = 0,
-},
-["冬泉谷 - 冰火温泉"] = {
-["In"] = 41621,
-["Out"] = 0,
-},
-["西部荒野 - 月溪镇"] = {
-["In"] = 66,
-["Out"] = 0,
-},
-["菲拉斯 - 深痕谷"] = {
-["In"] = 7201,
-["Out"] = 0,
-},
-["诅咒之地 - 盘蛇谷"] = {
-["In"] = 14301,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 斯坦恩布莱德"] = {
-["In"] = 605,
-["Out"] = 0,
-},
-["荆棘谷 - 风险投资公司营地"] = {
-["In"] = 2990,
-["Out"] = 0,
-},
-["阿拉希高地 - 水下暗礁"] = {
-["In"] = 484,
-["Out"] = 0,
-},
-["奥达曼 - 挖掘中心"] = {
-["In"] = 2192,
-["Out"] = 0,
-},
-["阿塔哈卡神庙 - 面具大厅"] = {
-["In"] = 36,
-["Out"] = 0,
-},
-["灼热峡谷 - 煤渣挖掘场"] = {
-["In"] = 4915,
-["Out"] = 0,
-},
-["悲伤沼泽 - 芦苇海滩"] = {
-["In"] = 496,
-["Out"] = 0,
-},
-["凄凉之地 - 长矛谷"] = {
-["In"] = 10699,
-["Out"] = 0,
-},
-["剃刀高地"] = {
-["In"] = 3537,
-["Out"] = 0,
-},
-["奥达曼"] = {
-["In"] = 48946,
-["Out"] = 99,
-},
-["灰谷 - 夜道谷"] = {
-["In"] = 1840,
-["Out"] = 0,
-},
-["凄凉之地 - 雷斧堡垒"] = {
-["In"] = 1803,
-["Out"] = 0,
-},
-["东瘟疫之地 - 恐惧谷"] = {
-["In"] = 6538,
-["Out"] = 0,
-},
-["安戈洛环形山"] = {
-["In"] = 1677,
-["Out"] = 0,
-},
-["荆棘谷 - 赞塔加废墟"] = {
-["In"] = 1312,
-["Out"] = 0,
-},
-["暮色森林 - 乌鸦岭墓地"] = {
-["In"] = 1045,
-["Out"] = 0,
-},
-["灰谷 - 黑暗深渊"] = {
-["In"] = 3238,
-["Out"] = 0,
-},
-["凄凉之地 - 拉纳加尔岛"] = {
-["In"] = 5223,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 340793,
-["Out"] = 156,
-},
-["塔纳利斯 - 落帆海湾"] = {
-["In"] = 18116,
-["Out"] = 0,
-},
-["凄凉之地 - 科尔卡村"] = {
-["In"] = 8578,
-["Out"] = 0,
-},
-["贫瘠之地 - 商旅海岸"] = {
-["In"] = 59,
-["Out"] = 0,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 139,
-["Out"] = 0,
-},
-["费伍德森林 - 加德纳尔"] = {
-["In"] = 6481,
-["Out"] = 0,
-},
-["阿拉希高地 - 诺斯弗德农场"] = {
-["In"] = 504,
-["Out"] = 0,
-},
-["菲拉斯"] = {
-["In"] = 9646,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 高地"] = {
-["In"] = 1992,
-["Out"] = 0,
-},
-["荒芜之地 - 博夫营地"] = {
-["In"] = 1152,
-["Out"] = 0,
-},
-["黑石深渊"] = {
-["In"] = 16896,
-["Out"] = 0,
-},
-["尘泥沼泽 - 巨龙沼泽"] = {
-["In"] = 96,
-["Out"] = 6,
-},
-["悲伤沼泽 - 迷雾谷"] = {
-["In"] = 4742,
-["Out"] = 0,
-},
-["费伍德森林"] = {
-["In"] = 810,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 1934302,
-["Out"] = 224648,
-},
-["凄凉之地 - 萨瑟里斯海岸"] = {
-["In"] = 481,
-["Out"] = 0,
-},
-["西瘟疫之地 - 达尔松之泪"] = {
-["In"] = 16469,
-["Out"] = 0,
-},
-["哀嚎洞穴"] = {
-["In"] = 731,
-["Out"] = 0,
-},
-["辛特兰 - 西利瓦萨"] = {
-["In"] = 178,
-["Out"] = 0,
-},
-["东瘟疫之地 - 剧毒林地"] = {
-["In"] = 1834,
-["Out"] = 0,
-},
-["阿拉希高地 - 阿拉索之塔"] = {
-["In"] = 583,
-["Out"] = 0,
-},
-["灰谷 - 奥迪拉兰废墟"] = {
-["In"] = 657,
-["Out"] = 0,
-},
-["沙尔扎鲁之巢"] = {
-["In"] = 2865,
-["Out"] = 0,
-},
-["灰谷 - 朵丹尼尔兽穴"] = {
-["In"] = 518,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 60,
-},
-["灰谷"] = {
-["In"] = 39,
-["Out"] = 0,
-},
-["暴风城 - 运河"] = {
-["In"] = 73,
-["Out"] = 0,
-},
-["黑海岸 - 壁泉河"] = {
-["In"] = 58,
-["Out"] = 0,
-},
-["灰谷 - 蓟皮村"] = {
-["In"] = 19,
-["Out"] = 0,
-},
-["东瘟疫之地 - 考林路口"] = {
-["In"] = 1945,
-["Out"] = 0,
-},
-["菲拉斯 - 索兰萨尔废墟"] = {
-["In"] = 5194,
-["Out"] = 0,
-},
-["诅咒之地 - 风暴祭坛"] = {
-["In"] = 1097,
-["Out"] = 0,
-},
-["西瘟疫之地 - 壁炉谷"] = {
-["In"] = 5290,
-["Out"] = 0,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 104,
-["Out"] = 0,
-},
-["荆棘谷 - 储藏室"] = {
-["In"] = 6267,
-["Out"] = 0,
-},
-["灰谷 - 夜歌森林"] = {
-["In"] = 547,
-["Out"] = 0,
-},
-["暮色森林"] = {
-["In"] = 2484,
-["Out"] = 0,
-},
-["菲拉斯 - 高原荒野"] = {
-["In"] = 1136,
-["Out"] = 0,
-},
-["塔纳利斯"] = {
-["In"] = 1393,
-["Out"] = 0,
-},
-["菲拉斯 - 萨尔多岛"] = {
-["In"] = 430,
-["Out"] = 0,
-},
-["费伍德森林 - 魔爪村"] = {
-["In"] = 20167,
-["Out"] = 0,
-},
-["东瘟疫之地 - 玛瑞斯农场"] = {
-["In"] = 192,
-["Out"] = 0,
-},
-["塔纳利斯 - 热影废墟"] = {
-["In"] = 251,
-["Out"] = 0,
-},
-["冬泉谷 - 寒水村"] = {
-["In"] = 11279,
-["Out"] = 0,
-},
-["黑海岸 - 亚米萨兰"] = {
-["In"] = 272,
-["Out"] = 0,
-},
-["灰谷 - 阿斯特兰纳"] = {
-["In"] = 341,
-["Out"] = 0,
-},
-["东瘟疫之地 - 祖玛沙尔"] = {
-["In"] = 2837,
-["Out"] = 0,
-},
-["通灵学院"] = {
-["In"] = 40912,
-["Out"] = 121,
-},
-["艾萨拉 - 破碎海岸"] = {
-["In"] = 1809,
-["Out"] = 0,
-},
-["费伍德森林 - 血毒河"] = {
-["In"] = 411,
-["Out"] = 0,
-},
-["湿地 - 米奈希尔海湾"] = {
-["In"] = 762,
-["Out"] = 0,
-},
-["灰谷 - 火痕神殿"] = {
-["In"] = 61,
-["Out"] = 0,
-},
-["西瘟疫之地 - 费尔斯通农场"] = {
-["In"] = 18379,
-["Out"] = 0,
-},
-["怒痕堡"] = {
-["In"] = 4269,
-["Out"] = 0,
-},
-["灼热峡谷 - 观火岭"] = {
-["In"] = 28646,
-["Out"] = 0,
-},
-["艾尔文森林 - 东谷伐木场"] = {
-["In"] = 17,
-["Out"] = 0,
-},
-["塔纳利斯 - 砂槌营地"] = {
-["In"] = 5951,
-["Out"] = 0,
-},
-["贫瘠之地"] = {
-["In"] = 1598,
-["Out"] = 0,
-},
-["辛特兰"] = {
-["In"] = 3504,
-["Out"] = 0,
-},
-["荆棘谷 - 库尔森的营地"] = {
-["In"] = 7378,
-["Out"] = 0,
-},
-["辛特兰 - 祖瓦沙"] = {
-["In"] = 868,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 奥特兰克废墟"] = {
-["In"] = 12462,
-["Out"] = 0,
-},
-["冬泉谷 - 木喉岗哨"] = {
-["In"] = 10727,
-["Out"] = 0,
-},
-["菲拉斯 - 被遗忘的海岸"] = {
-["In"] = 6814,
-["Out"] = 0,
-},
-["贫瘠之地 - 淤泥沼泽"] = {
-["In"] = 81,
-["Out"] = 0,
-},
-["费伍德森林 - 欺诈者神祠"] = {
-["In"] = 2469,
-["Out"] = 0,
-},
-["悲伤沼泽 - 农田避难所"] = {
-["In"] = 3081,
-["Out"] = 0,
-},
-["阿塔哈卡神庙 - 仪式大厅"] = {
-["In"] = 1357,
-["Out"] = 0,
-},
-["费伍德森林 - 死木村"] = {
-["In"] = 6892,
-["Out"] = 0,
-},
-["贫瘠之地 - 棘齿城"] = {
-["In"] = 1027,
-["Out"] = 0,
-},
-["东瘟疫之地 - 布洛米尔"] = {
-["In"] = 7861,
-["Out"] = 0,
-},
-["荆棘谷 - 反抗军营地"] = {
-["In"] = 73,
-["Out"] = 0,
-},
-["玛拉顿"] = {
-["In"] = 12529,
-["Out"] = 48,
-},
-["尘泥沼泽 - 女巫岭"] = {
-["In"] = 3252,
-["Out"] = 0,
-},
-["燃烧平原 - 索瑞森废墟"] = {
-["In"] = 1031,
-["Out"] = 0,
-},
-["荆棘谷"] = {
-["In"] = 8986,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 考兰之匕"] = {
-["In"] = 62,
-["Out"] = 0,
-},
-["厄运之槌"] = {
-["In"] = 22297,
-["Out"] = 118,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 8293,
-["Out"] = 0,
-},
-["暮色森林 - 沃古尔食人魔山"] = {
-["In"] = 93,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 3542787,
-["Out"] = 27987,
-},
-["艾萨拉 - 赫塔拉的巢穴"] = {
-["In"] = 4548,
-["Out"] = 0,
-},
-["灰谷 - 佐拉姆海岸"] = {
-["In"] = 819,
-["Out"] = 0,
-},
-["黑石山 - 石匠区"] = {
-["In"] = 4437,
-["Out"] = 0,
-},
-["费伍德森林 - 碧火谷"] = {
-["In"] = 8362,
-["Out"] = 0,
-},
-["荆棘谷 - 蛮荒海岸"] = {
-["In"] = 13315,
-["Out"] = 0,
-},
-["剃刀沼泽"] = {
-["In"] = 819,
-["Out"] = 0,
-},
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 11129,
-["Out"] = 0,
-},
-["西瘟疫之地 - 北山伐木场"] = {
-["In"] = 1646,
-["Out"] = 0,
-},
-["灼热峡谷"] = {
-["In"] = 14406,
-["Out"] = 0,
-},
-["荆棘谷 - 南野人海岸"] = {
-["In"] = 7404,
-["Out"] = 0,
-},
-["逆风小径 - 罪恶谷"] = {
-["In"] = 77,
-["Out"] = 0,
-},
-["荒芜之地 - 造物者遗迹"] = {
-["In"] = 8407,
-["Out"] = 0,
-},
-["塔纳利斯 - 天涯海滩"] = {
-["In"] = 4496,
-["Out"] = 0,
-},
-["西瘟疫之地 - 悔恨岭"] = {
-["In"] = 10695,
-["Out"] = 0,
-},
-["冬泉谷 - 枭翼树丛"] = {
-["In"] = 10283,
-["Out"] = 0,
-},
-["艾萨拉 - 辛玛洛神殿"] = {
-["In"] = 707,
-["Out"] = 0,
-},
-["安戈洛环形山 - 沼泽地"] = {
-["In"] = 2439,
-["Out"] = 0,
-},
-["费伍德森林 - 碧火小径"] = {
-["In"] = 92581,
-["Out"] = 199,
-},
-["燃烧平原 - 滑石"] = {
-["In"] = 1036,
-["Out"] = 0,
-},
-["石爪山脉 - 黑狼河"] = {
-["In"] = 29,
-["Out"] = 0,
-},
-["尘泥沼泽 - 恐惧海岸"] = {
-["In"] = 5244,
-["Out"] = 0,
-},
-["菲拉斯 - 怒痕堡"] = {
-["In"] = 5136,
-["Out"] = 0,
-},
-["辛特兰 - 祖尔祭坛"] = {
-["In"] = 591,
-["Out"] = 0,
-},
-["阿拉希高地"] = {
-["In"] = 2003,
-["Out"] = 0,
-},
-["尘泥沼泽 - 尘泥海湾"] = {
-["In"] = 556,
-["Out"] = 0,
-},
-["菲拉斯 - 伊斯迪尔废墟"] = {
-["In"] = 7212,
-["Out"] = 0,
-},
-["东瘟疫之地"] = {
-["In"] = 2479,
-["Out"] = 0,
-},
-["荆棘谷 - 祖玛维废墟"] = {
-["In"] = 8573,
-["Out"] = 0,
-},
-["晨光之林墓穴"] = {
-["In"] = 73,
-["Out"] = 0,
-},
-["灼热峡谷 - 大熔炉"] = {
-["In"] = 6993,
-["Out"] = 0,
-},
-["灰谷 - 绿爪村"] = {
-["In"] = 77,
-["Out"] = 0,
-},
-["费伍德森林 - 克斯特拉斯废墟"] = {
-["In"] = 14277,
-["Out"] = 0,
-},
-["艾萨拉 - 亚考兰神殿"] = {
-["In"] = 1613,
-["Out"] = 0,
-},
-["辛特兰 - 爬虫废墟"] = {
-["In"] = 6423,
-["Out"] = 0,
-},
-},
-["TRAIN"] = {
-["铁炉堡 - 武器大厅"] = {
-["In"] = 0,
-["Out"] = 50000,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 81700,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 0,
-["Out"] = 40163,
-},
-},
-["MAIL"] = {
-["贫瘠之地 - 棘齿城"] = {
-["In"] = 0,
-["Out"] = 30,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 0,
-["Out"] = 270,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 510,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 420,
-},
-["凄凉之地 - 尼耶尔前哨站"] = {
-["In"] = 0,
-["Out"] = 150,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 0,
-["Out"] = 210,
-},
-["冬泉谷 - 永望镇"] = {
-["In"] = 0,
-["Out"] = 180,
-},
-["诅咒之地 - 守望堡"] = {
-["In"] = 0,
-["Out"] = 660,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 1200,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 51710000,
-["Out"] = 8850,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 0,
-["Out"] = 720,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 10002790,
-},
-["阿塔哈卡神庙"] = {
-["In"] = 1048,
-["Out"] = 829,
-},
-["暮色森林 - 夜色镇"] = {
-["In"] = 0,
-["Out"] = 480,
-},
-["灰谷 - 阿斯特兰纳"] = {
-["In"] = 0,
-["Out"] = 180,
-},
-["黑手大厅"] = {
-["In"] = 50,
-["Out"] = 0,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 204785,
-["Out"] = 14610380,
-},
-["达纳苏斯"] = {
-["In"] = 0,
-["Out"] = 690,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 0,
-["Out"] = 450,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 3531895,
-["Out"] = 75838,
-},
-["狮王之傲旅店"] = {
-["In"] = 0,
-["Out"] = 28960,
-},
-["哀嚎洞穴"] = {
-["In"] = 11856,
-["Out"] = 35,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 80437,
-["Out"] = 0,
-},
-["灰谷 - 银风避难所"] = {
-["In"] = 2562,
-["Out"] = 0,
-},
-["凄凉之地 - 尼耶尔前哨站"] = {
-["In"] = 27533,
-["Out"] = 0,
-},
-["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 4714,
-["Out"] = 0,
-},
-["冬泉谷 - 永望镇"] = {
-["In"] = 41029,
-["Out"] = 80000,
-},
-["诅咒之地 - 守望堡"] = {
-["In"] = 17457,
-["Out"] = 0,
-},
-["塔纳利斯 - 热砂港"] = {
-["In"] = 29110,
-["Out"] = 72223,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 44,
-["Out"] = 6944,
-},
-["暴风城 - 运河"] = {
-["In"] = 0,
-["Out"] = 16,
-},
-["艾尔文森林"] = {
-["In"] = 298,
-["Out"] = 0,
-},
-["凄凉之地"] = {
-["In"] = 33307,
-["Out"] = 0,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 4694,
-["Out"] = 58,
-},
-["荆棘谷 - 奈辛瓦里远征队营地"] = {
-["In"] = 60128,
-["Out"] = 0,
-},
-["荒芜之地 - 巨牙谷"] = {
-["In"] = 94628,
-["Out"] = 0,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 28162,
-["Out"] = 12800,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 2250,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 144859,
-["Out"] = 0,
-},
-["铁炉堡 - 荒弃的洞穴"] = {
-["In"] = 7405,
-["Out"] = 0,
-},
-["荆棘谷 - 水手之家旅店"] = {
-["In"] = 76005,
-["Out"] = 1500,
-},
-["湿地 - 米奈希尔港"] = {
-["In"] = 9056,
-["Out"] = 0,
-},
-["赤脊山 - 湖畔镇"] = {
-["In"] = 577,
-["Out"] = 0,
-},
-["千针石林 - 沙漠赛道"] = {
-["In"] = 20914,
-["Out"] = 0,
-},
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 99735,
-["Out"] = 9954,
-},
-["灰谷 - 阿斯特兰纳"] = {
-["In"] = 57801,
-["Out"] = 462,
-},
-["黑海岸 - 古树之林"] = {
-["In"] = 1776,
-["Out"] = 0,
-},
-["贫瘠之地"] = {
-["In"] = 4771,
-["Out"] = 0,
-},
-["铁炉堡 - 军事区"] = {
-["In"] = 4000,
-["Out"] = 17120,
-},
-["暴风城 - 法师区"] = {
-["In"] = 604559,
-["Out"] = 0,
-},
-["荆棘谷 - 港务局"] = {
-["In"] = 67108,
-["Out"] = 0,
-},
-["厄运之槌"] = {
-["In"] = 78385,
-["Out"] = 66300,
-},
-["菲拉斯 - 双塔山"] = {
-["In"] = 35337,
-["Out"] = 2375,
-},
-["荆棘谷 - 反抗军营地"] = {
-["In"] = 44326,
-["Out"] = 0,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 106100,
-["Out"] = 20603,
-},
-["贫瘠之地 - 棘齿城"] = {
-["In"] = 51397,
-["Out"] = 0,
-},
-["荆棘谷 - 蛮荒海岸"] = {
-["In"] = 22277,
-["Out"] = 0,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 40133,
-["Out"] = 31293,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 161041,
-["Out"] = 0,
-},
-["燃烧平原 - 烈焰峰"] = {
-["In"] = 10866,
-["Out"] = 0,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 409947,
-["Out"] = 83581,
-},
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 0,
-["Out"] = 220000,
-},
-["灼热峡谷 - 瑟银哨塔"] = {
-["In"] = 66464,
-["Out"] = 0,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 3114,
-["Out"] = 0,
-},
-["菲拉斯 - 被遗忘的海岸"] = {
-["In"] = 39685,
-["Out"] = 144,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 197594,
-["Out"] = 11520,
-},
-["血鸦旅店"] = {
-["In"] = 12233,
-["Out"] = 1136,
-},
-["安其拉废墟"] = {
-["In"] = 9500,
-["Out"] = 0,
-},
-["铁炉堡 - 秘法区"] = {
-["In"] = 38921,
-["Out"] = 12800,
-},
-["勇士大厅"] = {
-["In"] = 10285,
-["Out"] = 3133155,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 361437,
-["Out"] = 882,
-},
-["石爪山脉 - 石爪峰"] = {
-["In"] = 3203,
-["Out"] = 0,
-},
-["达纳苏斯"] = {
-["In"] = 68868,
-["Out"] = 66,
-},
-["费伍德森林 - 刺枝林地"] = {
-["In"] = 56708,
-["Out"] = 0,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 65862,
-["Out"] = 0,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 128364,
-["Out"] = 90200,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 854335,
-["Out"] = 60,
-},
-["艾萨拉 - 塔伦迪斯营地"] = {
-["In"] = 8984,
-["Out"] = 112,
-},
-["暮色森林 - 夜色镇"] = {
-["In"] = 30885,
-["Out"] = 106,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 3489,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 468880,
-["Out"] = 13209,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 3043,
-["Out"] = 158080,
-},
-["湿地 - 深水旅店"] = {
-["In"] = 7802,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 87500,
-["Out"] = 742240,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 74580,
-["Out"] = 24284,
-},
-},
-["QUEST"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 300,
-["Out"] = 0,
-},
-["狮王之傲旅店"] = {
-["In"] = 330,
-["Out"] = 0,
-},
-["艾萨拉 - 风暴海湾"] = {
-["In"] = 153400,
-["Out"] = 0,
-},
-["灰谷 - 银风避难所"] = {
-["In"] = 2760,
-["Out"] = 0,
-},
-["凄凉之地 - 尼耶尔前哨站"] = {
-["In"] = 40490,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 127661,
-["Out"] = 0,
-},
-["荆棘谷 - 储藏室"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["诅咒之地 - 守望堡"] = {
-["In"] = 22350,
-["Out"] = 0,
-},
-["塔纳利斯 - 热砂港"] = {
-["In"] = 167930,
-["Out"] = 0,
-},
-["月光林地 - 永夜港"] = {
-["In"] = 8400,
-["Out"] = 0,
-},
-["暴风城 - 已宰的羔羊"] = {
-["In"] = 4000,
-["Out"] = 0,
-},
-["东瘟疫之地 - 奎尔林斯小屋"] = {
-["In"] = 105600,
-["Out"] = 0,
-},
-["月光林地 - 雷姆洛斯神殿"] = {
-["In"] = 22200,
-["Out"] = 0,
-},
-["凄凉之地"] = {
-["In"] = 18500,
-["Out"] = 0,
-},
-["灰谷 - 密斯特拉湖"] = {
-["In"] = 2520,
-["Out"] = 0,
-},
-["黑海岸 - 主宰之剑"] = {
-["In"] = 2070,
-["Out"] = 0,
-},
-["夜色镇大厅"] = {
-["In"] = 7860,
-["Out"] = 0,
-},
-["灰谷 - 法拉希姆湖"] = {
-["In"] = 900,
-["Out"] = 0,
-},
-["荒芜之地 - 巨牙谷"] = {
-["In"] = 8340,
-["Out"] = 0,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 159000,
-["Out"] = 0,
-},
-["塔纳利斯 - 破碎石柱"] = {
-["In"] = 12840,
-["Out"] = 0,
-},
-["安戈洛环形山 - 火羽山"] = {
-["In"] = 16800,
-["Out"] = 0,
-},
-["阿拉希高地 - 内禁锢法阵"] = {
-["In"] = 3840,
-["Out"] = 0,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 83240,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 1023700,
-["Out"] = 0,
-},
-["铁炉堡 - 荒弃的洞穴"] = {
-["In"] = 6900,
-["Out"] = 0,
-},
-["铁炉堡 - 图书馆"] = {
-["In"] = 186570,
-["Out"] = 0,
-},
-["西部荒野 - 月溪镇"] = {
-["In"] = 720,
-["Out"] = 0,
-},
-["菲拉斯 - 拉瑞斯小亭"] = {
-["In"] = 64000,
-["Out"] = 0,
-},
-["菲拉斯 - 深痕谷"] = {
-["In"] = 2340,
-["Out"] = 0,
-},
-["暴风城 - 皇家图书馆"] = {
-["In"] = 12960,
-["Out"] = 0,
-},
-["灰谷 - 月亮井"] = {
-["In"] = 3360,
-["Out"] = 0,
-},
-["诅咒之地 - 盘蛇谷"] = {
-["In"] = 36563,
-["Out"] = 0,
-},
-["尘泥沼泽 - 塞拉摩堡垒"] = {
-["In"] = 7140,
-["Out"] = 0,
-},
-["洛克莫丹 - 国王谷"] = {
-["In"] = 5940,
-["Out"] = 0,
-},
-["辛特兰 - 拉普索迪营地"] = {
-["In"] = 3240,
-["Out"] = 0,
-},
-["西瘟疫之地 - 玛登霍尔德城堡"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 16800,
-["Out"] = 0,
-},
-["灼热峡谷 - 煤渣挖掘场"] = {
-["In"] = 5490,
-["Out"] = 0,
-},
-["辛特兰 - 沙德拉洛"] = {
-["In"] = 23700,
-["Out"] = 0,
-},
-["费伍德森林 - 翡翠圣地"] = {
-["In"] = 471790,
-["Out"] = 0,
-},
-["暮色森林"] = {
-["In"] = 3330,
-["Out"] = 0,
-},
-["西瘟疫之地 - 费尔斯通农场"] = {
-["In"] = 57000,
-["Out"] = 0,
-},
-["暴风城 - 法师区"] = {
-["In"] = 105090,
-["Out"] = 0,
-},
-["灰谷 - 林歌神殿"] = {
-["In"] = 47520,
-["Out"] = 0,
-},
-["费伍德森林 - 暗影堡"] = {
-["In"] = 60900,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡银行"] = {
-["In"] = 240,
-["Out"] = 1000000,
-},
-["厄运之槌"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["塔纳利斯 - 天涯海滩"] = {
-["In"] = 110,
-["Out"] = 0,
-},
-["悲伤沼泽 - 伊萨里奥斯的洞穴"] = {
-["In"] = 3300,
-["Out"] = 0,
-},
-["菲拉斯 - 双塔山"] = {
-["In"] = 11760,
-["Out"] = 0,
-},
-["安戈洛环形山"] = {
-["In"] = 157900,
-["Out"] = 0,
-},
-["灼热峡谷 - 熔渣之池"] = {
-["In"] = 46259,
-["Out"] = 0,
-},
-["暮色森林 - 乌鸦岭墓地"] = {
-["In"] = 10410,
-["Out"] = 0,
-},
-["荒芜之地 - 漫尘盆地"] = {
-["In"] = 14880,
-["Out"] = 0,
-},
-["暮色森林 - 约根农场"] = {
-["In"] = 600,
-["Out"] = 0,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 1860,
-["Out"] = 0,
-},
-["阿拉希高地 - 格沙克农场"] = {
-["In"] = 4200,
-["Out"] = 0,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 450290,
-["Out"] = 0,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 8700,
-["Out"] = 0,
-},
-["黑手大厅"] = {
-["In"] = 49800,
-["Out"] = 0,
-},
-["西瘟疫之地"] = {
-["In"] = 59700,
-["Out"] = 0,
-},
-["尘泥沼泽 - 鲜血沼泽墓穴"] = {
-["In"] = 2160,
-["Out"] = 0,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 12380,
-["Out"] = 0,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 46660,
-["Out"] = 0,
-},
-["灼热峡谷 - 瑟银哨塔"] = {
-["In"] = 82700,
-["Out"] = 0,
-},
-["悲伤沼泽 - 流沙泥潭"] = {
-["In"] = 10240,
-["Out"] = 0,
-},
-["菲拉斯"] = {
-["In"] = 3840,
-["Out"] = 0,
-},
-["西瘟疫之地 - 嚎哭鬼屋"] = {
-["In"] = 79800,
-["Out"] = 0,
-},
-["血鸦旅店"] = {
-["In"] = 5040,
-["Out"] = 0,
-},
-["辛特兰 - 望海崖"] = {
-["In"] = 7200,
-["Out"] = 0,
-},
-["东瘟疫之地 - 索多里尔河"] = {
-["In"] = 220650,
-["Out"] = 0,
-},
-["黑海岸 - 暮光谷"] = {
-["In"] = 2560,
-["Out"] = 0,
-},
-["达纳苏斯 - 月神殿"] = {
-["In"] = 29560,
-["Out"] = 0,
-},
-["石爪山脉 - 石爪峰"] = {
-["In"] = 1740,
-["Out"] = 0,
-},
-["安戈洛环形山 - 拉卡利油沼"] = {
-["In"] = 39700,
-["Out"] = 0,
-},
-["东瘟疫之地 - 恐惧谷"] = {
-["In"] = 115800,
-["Out"] = 0,
-},
-["暴风城 - 祈愿室"] = {
-["In"] = 88420,
-["Out"] = 0,
-},
-["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 64480,
-["Out"] = 0,
-},
-["阿塔哈卡神庙"] = {
-["In"] = 30177,
-["Out"] = 242,
-},
-["艾萨拉 - 塔伦迪斯营地"] = {
-["In"] = 17040,
-["Out"] = 0,
-},
-["菲拉斯 - 木爪岭"] = {
-["In"] = 1680,
-["Out"] = 0,
-},
-["安戈洛环形山 - 蘑菇石"] = {
-["In"] = 23700,
-["Out"] = 0,
-},
-["诅咒之地 - 污染者高地"] = {
-["In"] = 33900,
-["Out"] = 0,
-},
-["灼热峡谷"] = {
-["In"] = 88741,
-["Out"] = 0,
-},
-["东瘟疫之地 - 墓室"] = {
-["In"] = 48600,
-["Out"] = 0,
-},
-["铁炉堡 - 武器大厅"] = {
-["In"] = 2400,
-["Out"] = 0,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 74730,
-["Out"] = 20000,
-},
-["西瘟疫之地 - 达尔松之泪"] = {
-["In"] = 101200,
-["Out"] = 0,
-},
-["湿地 - 米奈希尔海湾"] = {
-["In"] = 360,
-["Out"] = 0,
-},
-["阿拉希高地 - 法迪尔海湾"] = {
-["In"] = 14220,
-["Out"] = 0,
-},
-["哀嚎洞穴"] = {
-["In"] = 6520,
-["Out"] = 0,
-},
-["荆棘谷 - 南野人海岸"] = {
-["In"] = 5500,
-["Out"] = 0,
-},
-["凄凉之地 - 吉尔吉斯村"] = {
-["In"] = 9720,
-["Out"] = 0,
-},
-["凄凉之地 - 拉纳加尔岛"] = {
-["In"] = 13180,
-["Out"] = 0,
-},
-["西瘟疫之地 - 悔恨岭"] = {
-["In"] = 47100,
-["Out"] = 0,
-},
-["凄凉之地 - 瑟卡布斯库的营地"] = {
-["In"] = 4620,
-["Out"] = 0,
-},
-["贫瘠之地 - 提度斯阶梯"] = {
-["In"] = 6000,
-["Out"] = 0,
-},
-["艾萨拉 - 废墟海岸"] = {
-["In"] = 6000,
-["Out"] = 0,
-},
-["尘泥沼泽"] = {
-["In"] = 19000,
-["Out"] = 0,
-},
-["冬泉谷 - 永望镇"] = {
-["In"] = 215200,
-["Out"] = 0,
-},
-["灰谷 - 艾森娜神殿"] = {
-["In"] = 11960,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 达拉然"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["燃烧平原 - 滑石"] = {
-["In"] = 26100,
-["Out"] = 0,
-},
-["凄凉之地 - 雷斧堡垒"] = {
-["In"] = 3240,
-["Out"] = 0,
-},
-["灰谷"] = {
-["In"] = 4200,
-["Out"] = 0,
-},
-["冬泉谷 - 丹曼达尔"] = {
-["In"] = 38400,
-["Out"] = 0,
-},
-["灼热峡谷 - 尘火谷"] = {
-["In"] = 2640,
-["Out"] = 0,
-},
-["暴风城 - 运河"] = {
-["In"] = 13680,
-["Out"] = 0,
-},
-["达纳苏斯"] = {
-["In"] = 42300,
-["Out"] = 0,
-},
-["费伍德森林 - 木喉要塞"] = {
-["In"] = 37200,
-["Out"] = 0,
-},
-["灰谷 - 迈斯特拉岗哨"] = {
-["In"] = 15940,
-["Out"] = 0,
-},
-["辛特兰 - 鹰巢山"] = {
-["In"] = 39060,
-["Out"] = 0,
-},
-["黑海岸 - 雷姆塔维尔挖掘场"] = {
-["In"] = 720,
-["Out"] = 0,
-},
-["黑海岸 - 黑木洞穴"] = {
-["In"] = 480,
-["Out"] = 0,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 34820,
-["Out"] = 0,
-},
-["塔纳利斯 - 奥丹姆"] = {
-["In"] = 5640,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 288000,
-["Out"] = 0,
-},
-["荆棘谷 - 奈辛瓦里远征队营地"] = {
-["In"] = 26520,
-["Out"] = 0,
-},
-["冬泉谷 - 凯斯利尔废墟"] = {
-["In"] = 27900,
-["Out"] = 0,
-},
-["冬泉谷 - 枭翼树丛"] = {
-["In"] = 18000,
-["Out"] = 0,
-},
-["剃刀高地"] = {
-["In"] = 2760,
-["Out"] = 0,
-},
-["暴风城 - 教堂广场"] = {
-["In"] = 15900,
-["Out"] = 0,
-},
-["贫瘠之地 - 淤泥沼泽"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["冬泉谷"] = {
-["In"] = 357502,
-["Out"] = 292,
-},
-["黑海岸 - 壁泉河"] = {
-["In"] = 1200,
-["Out"] = 0,
-},
-["辛特兰 - 蛮锤城堡"] = {
-["In"] = 21790,
-["Out"] = 0,
-},
-["塔纳利斯 - 时光之穴"] = {
-["In"] = 277800,
-["Out"] = 0,
-},
-["南海镇大厅"] = {
-["In"] = 15480,
-["Out"] = 0,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["贫瘠之地 - 剃刀高地"] = {
-["In"] = 9600,
-["Out"] = 0,
-},
-["荆棘谷 - 水手之家旅店"] = {
-["In"] = 47510,
-["Out"] = 0,
-},
-["暴风城 - 光明大教堂"] = {
-["In"] = 2940,
-["Out"] = 0,
-},
-["安戈洛环形山 - 葛拉卡温泉"] = {
-["In"] = 33900,
-["Out"] = 0,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 221410,
-["Out"] = 150000,
-},
-["悲伤沼泽"] = {
-["In"] = 216480,
-["Out"] = 0,
-},
-["凄凉之地 - 考米克小屋"] = {
-["In"] = 4530,
-["Out"] = 0,
-},
-["斯坦索姆"] = {
-["In"] = 39027,
-["Out"] = 0,
-},
-["贫瘠之地"] = {
-["In"] = 2820,
-["Out"] = 0,
-},
-["暴风城 - 暴风要塞"] = {
-["In"] = 160920,
-["Out"] = 0,
-},
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 21460,
-["Out"] = 0,
-},
-["荆棘谷 - 尤亚姆巴岛"] = {
-["In"] = 138900,
-["Out"] = 0,
-},
-["西瘟疫之地 - 北山伐木场"] = {
-["In"] = 155300,
-["Out"] = 0,
-},
-["石爪山脉 - 狂风矿洞"] = {
-["In"] = 1320,
-["Out"] = 0,
-},
-["灰谷 - 阿斯特兰纳"] = {
-["In"] = 22550,
-["Out"] = 0,
-},
-["西瘟疫之地 - 凯尔达隆"] = {
-["In"] = 195900,
-["Out"] = 0,
-},
-["铁炉堡 - 探险者大厅"] = {
-["In"] = 34770,
-["Out"] = 0,
-},
-["西瘟疫之地 - 盖罗恩农场"] = {
-["In"] = 37200,
-["Out"] = 0,
-},
-["诅咒之地 - 巨槌要塞"] = {
-["In"] = 14100,
-["Out"] = 0,
-},
-["尘泥沼泽 - 泥潭沼泽"] = {
-["In"] = 10100,
-["Out"] = 0,
-},
-["暮色森林 - 夜色镇"] = {
-["In"] = 38645,
-["Out"] = 0,
-},
-["石爪山脉 - 狂风峭壁"] = {
-["In"] = 6220,
-["Out"] = 0,
-},
-["铁炉堡 - 王座厅"] = {
-["In"] = 51300,
-["Out"] = 0,
-},
-["燃烧平原 - 烈焰峰"] = {
-["In"] = 115440,
-["Out"] = 0,
-},
-["艾萨拉 - 亚考兰神殿"] = {
-["In"] = 100900,
-["Out"] = 0,
-},
-["阿拉希高地 - 枯须峡谷"] = {
-["In"] = 1740,
-["Out"] = 0,
-},
-["西部荒野 - 匕首岭"] = {
-["In"] = 58040,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 101187,
-["Out"] = 0,
-},
-["铁炉堡 - 军事区"] = {
-["In"] = 1500,
-["Out"] = 0,
-},
-["暴风城"] = {
-["In"] = 119400,
-["Out"] = 0,
-},
-["荆棘谷 - 库尔森的营地"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 45720,
-["Out"] = 50000,
-},
-["菲拉斯 - 被遗忘的海岸"] = {
-["In"] = 20900,
-["Out"] = 0,
-},
-["希利苏斯 - 勇士之墓"] = {
-["In"] = 16800,
-["Out"] = 0,
-},
-["艾萨拉 - 雷加什营地"] = {
-["In"] = 64200,
-["Out"] = 0,
-},
-["暮色森林 - 荒弃鬼屋"] = {
-["In"] = 840,
-["Out"] = 0,
-},
-["尘泥沼泽 - 废弃哨塔"] = {
-["In"] = 1740,
-["Out"] = 0,
-},
-["黑海岸 - 巴莎兰"] = {
-["In"] = 1920,
-["Out"] = 0,
-},
-["费伍德森林 - 摩罗萨兰"] = {
-["In"] = 84300,
-["Out"] = 0,
-},
-["东瘟疫之地 - 达隆郡"] = {
-["In"] = 129600,
-["Out"] = 0,
-},
-["丹莫罗 - 卡拉诺斯"] = {
-["In"] = 3300,
-["Out"] = 0,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 73200,
-["Out"] = 0,
-},
-["荆棘谷 - 反抗军营地"] = {
-["In"] = 20830,
-["Out"] = 0,
-},
-["玛拉顿"] = {
-["In"] = 5490,
-["Out"] = 0,
-},
-["黑暗深渊"] = {
-["In"] = 1440,
-["Out"] = 0,
-},
-["荒芜之地"] = {
-["In"] = 15300,
-["Out"] = 0,
-},
-["荆棘谷"] = {
-["In"] = 31650,
-["Out"] = 0,
-},
-["荆棘谷 - 哈圭罗岛"] = {
-["In"] = 10440,
-["Out"] = 0,
-},
-["奥达曼"] = {
-["In"] = 10520,
-["Out"] = 0,
-},
-["千针石林 - 沙漠赛道"] = {
-["In"] = 60270,
-["Out"] = 0,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 75060,
-["Out"] = 0,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 341980,
-["Out"] = 0,
-},
-["菲拉斯 - 痛苦深渊"] = {
-["In"] = 1860,
-["Out"] = 0,
-},
-["菲拉斯 - 索兰萨尔废墟"] = {
-["In"] = 1620,
-["Out"] = 0,
-},
-["贫瘠之地 - 棘齿城"] = {
-["In"] = 63240,
-["Out"] = 0,
-},
-["辛特兰"] = {
-["In"] = 2640,
-["Out"] = 0,
-},
-["尘泥沼泽 - 水光庄园"] = {
-["In"] = 8120,
-["Out"] = 0,
-},
-["剃刀沼泽"] = {
-["In"] = 1860,
-["Out"] = 0,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 8730,
-["Out"] = 0,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 203210,
-["Out"] = 0,
-},
-["黑海岸 - 古树之林"] = {
-["In"] = 2860,
-["Out"] = 0,
-},
-["黑海岸 - 薄雾海"] = {
-["In"] = 5500,
-["Out"] = 0,
-},
-["灼热峡谷 - 观火岭"] = {
-["In"] = 270,
-["Out"] = 0,
-},
-["艾尔文森林 - 东谷伐木场"] = {
-["In"] = 1440,
+["In"] = 24,
 ["Out"] = 0,
 },
 ["泰达希尔 - 鲁瑟兰村"] = {
-["In"] = 96600,
-["Out"] = 0,
-},
-["冬泉谷 - 坠星村"] = {
-["In"] = 82200,
-["Out"] = 0,
-},
-["暮色森林 - 乌鸦岭"] = {
-["In"] = 2520,
-["Out"] = 0,
-},
-["黑海岸"] = {
-["In"] = 4390,
-["Out"] = 0,
-},
-["安戈洛环形山 - 沼泽地"] = {
-["In"] = 3000,
-["Out"] = 0,
-},
-["铁炉堡 - 秘法区"] = {
-["In"] = 25650,
-["Out"] = 0,
-},
-["凄凉之地 - 艾瑟雷索"] = {
-["In"] = 13580,
-["Out"] = 0,
-},
-["荒芜之地 - 埃格蒙德的营地"] = {
-["In"] = 6300,
-["Out"] = 0,
-},
-["石爪山脉 - 蛛网小径"] = {
-["In"] = 12510,
-["Out"] = 0,
-},
-["凄凉之地 - 科多兽坟场"] = {
-["In"] = 11760,
-["Out"] = 0,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 97500,
-["Out"] = 0,
-},
-["阿拉希高地"] = {
-["In"] = 4350,
-["Out"] = 0,
-},
-["费伍德森林 - 魔爪村"] = {
-["In"] = 26100,
-["Out"] = 0,
-},
-["冬泉谷 - 麦索瑞尔"] = {
-["In"] = 43500,
-["Out"] = 0,
-},
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 124200,
-["Out"] = 0,
-},
-["菲拉斯 - 鸦风废墟"] = {
-["In"] = 4860,
-["Out"] = 0,
-},
-["灰谷 - 萨维亚"] = {
-["In"] = 1560,
-["Out"] = 0,
-},
-["塔纳利斯"] = {
-["In"] = 2640,
-["Out"] = 0,
-},
-["暮色森林 - 寂静河岸"] = {
-["In"] = 8900,
-["Out"] = 0,
-},
-["湿地 - 深水旅店"] = {
-["In"] = 5520,
-["Out"] = 0,
-},
-["黑石山 - 铸铁之墓"] = {
-["In"] = 1200,
-["Out"] = 0,
-},
-["悲伤沼泽 - 避难营"] = {
-["In"] = 3060,
-["Out"] = 0,
-},
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-[""] = {
-["In"] = 0,
-["Out"] = 1148095,
-},
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 135458,
-},
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-["暴风城 - 法师区"] = {
-["In"] = 5300000,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 38717,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-["安其拉"] = {
-["In"] = 38717,
-["Out"] = 0,
-},
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-},
-},
-["巨龙守护者"] = {
-["data"] = {
-["PrvWeek"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvDay"] = {
-["REPAIRS"] = {
-["贫瘠之地"] = {
-["In"] = 0,
-["Out"] = 2359,
-},
-},
-["TAXI"] = {
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 0,
-["Out"] = 264,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 1408,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 0,
-["Out"] = 128,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 816,
-},
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
-},
-["QUEST"] = {
-["铁炉堡 - 探险者大厅"] = {
-["In"] = 42400,
-["Out"] = 0,
-},
-},
-},
-["Total"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 2071,
-["Out"] = 786969,
-},
-["贫瘠之地"] = {
-["In"] = 0,
-["Out"] = 2359,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 0,
-["Out"] = 25639,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 0,
-["Out"] = 101913,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 0,
-["Out"] = 1322,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 27870,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 197912,
-},
-["奥特兰克山谷"] = {
-["In"] = 665,
-["Out"] = 0,
-},
-["勇士大厅"] = {
-["In"] = 0,
-["Out"] = 181508,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 210540,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 1263,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 0,
-["Out"] = 27998,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 289100,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 19808,
-},
-["黑翼之巢"] = {
-["In"] = 0,
-["Out"] = 56594,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 22196,
-},
-["安其拉"] = {
-["In"] = 0,
-["Out"] = 318917,
-},
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 24836,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 0,
-["Out"] = 264,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 2214,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 2880,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 0,
-["Out"] = 128,
-},
-["泰达希尔 - 鲁瑟兰村"] = {
-["In"] = 0,
-["Out"] = 5368,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 0,
-["Out"] = 584,
-},
-["月光林地"] = {
-["In"] = 0,
-["Out"] = 816,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 0,
-["Out"] = 1584,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 11031,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 657,
-},
-},
-["TRADE"] = {
-["暴风城 - 巫师圣殿"] = {
-["In"] = 0,
-["Out"] = 44349,
-},
-["安其拉之门"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["纳克萨玛斯"] = {
-["In"] = 0,
-["Out"] = 42618,
-},
-["暴风城 - 运河"] = {
-["In"] = 444440000,
-["Out"] = 0,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 0,
-["Out"] = 41642,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 0,
-["Out"] = 10000000,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 76285,
-},
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 9021,
-["Out"] = 32049597,
-},
-["达纳苏斯"] = {
-["In"] = 0,
-["Out"] = 60,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 197555,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 150,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 0,
-["Out"] = 150,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 390,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 2096100000,
-["Out"] = 2345700072,
-},
-["辛特兰 - 瑟拉丹"] = {
-["In"] = 6720821,
-["Out"] = 8357525,
-},
-["黑手大厅"] = {
-["In"] = 129,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 5000000,
-["Out"] = 0,
-},
-["暴风城 - 法师区"] = {
-["In"] = 457774735,
-["Out"] = 640147176,
-},
-["纳克萨玛斯"] = {
-["In"] = 648202,
-["Out"] = 13225687,
-},
-["达纳苏斯"] = {
-["In"] = 2000000,
-["Out"] = 0,
-},
-["莫高雷 - 血蹄村"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["通灵学院"] = {
-["In"] = 1733,
-["Out"] = 840,
-},
-["斯坦索姆"] = {
-["In"] = 410,
-["Out"] = 233,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["暴风城 - 运河"] = {
-["In"] = 5000000,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 148524117,
-["Out"] = 63026790,
-},
-["厄运之槌"] = {
-["In"] = 913,
-["Out"] = 200000,
-},
-["艾萨拉"] = {
-["In"] = 107745,
-["Out"] = 10051227,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 0,
-["Out"] = 1000000,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 17770000,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 9416556,
-["Out"] = 30036322,
-},
-[""] = {
-["In"] = 63586445,
-["Out"] = 9141622,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 20245276,
-["Out"] = 47224771,
-},
-["祖尔格拉布"] = {
-["In"] = 93032,
-["Out"] = 21891,
-},
-["奥妮克希亚的巢穴"] = {
-["In"] = 21224155,
-["Out"] = 39522355,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1304414,
-["Out"] = 2579,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 0,
-["Out"] = 496,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 147,
-["Out"] = 0,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 6889,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 8192,
-["Out"] = 104760,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 64,
-["Out"] = 0,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 3600,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 78631,
-["Out"] = 0,
-},
-["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 2618,
-["Out"] = 10400,
-},
-["勇士大厅"] = {
-["In"] = 170858,
-["Out"] = 1990177,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 26322,
-["Out"] = 0,
-},
-["厄运之槌"] = {
-["In"] = 0,
-["Out"] = 20200,
-},
-["奥特兰克山谷"] = {
-["In"] = 1024,
-["Out"] = 500,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 7250,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-["燃烧平原"] = {
-["In"] = 722,
-["Out"] = 0,
-},
-["辛特兰 - 瑟拉丹"] = {
-["In"] = 170855,
-["Out"] = 0,
-},
-["祖尔法拉克"] = {
-["In"] = 159,
-["Out"] = 0,
-},
-["黑手大厅"] = {
-["In"] = 15647,
-["Out"] = 0,
-},
-["影牙城堡"] = {
-["In"] = 61,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 3360944,
-["Out"] = 97049,
-},
-["塔纳利斯 - 灌木谷"] = {
-["In"] = 3336,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 1006,
-["Out"] = 0,
-},
-["泰达希尔 - 幽影谷"] = {
-["In"] = 26,
-["Out"] = 0,
-},
-["冬泉谷 - 凯斯利尔废墟"] = {
-["In"] = 409,
-["Out"] = 0,
-},
-["厄运之槌"] = {
-["In"] = 4368,
-["Out"] = 87,
-},
-["安戈洛环形山 - 沼泽地"] = {
-["In"] = 21142,
-["Out"] = 0,
-},
-["艾萨拉 - 辛玛洛神殿"] = {
-["In"] = 237,
-["Out"] = 0,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 60568,
-["Out"] = 0,
-},
-["斯坦索姆"] = {
-["In"] = 36874,
-["Out"] = 10,
-},
-["艾萨拉"] = {
-["In"] = 107745,
-["Out"] = 0,
-},
-["安戈洛环形山 - 拉卡利油沼"] = {
-["In"] = 2821,
-["Out"] = 0,
-},
-["安戈洛环形山"] = {
-["In"] = 22638,
-["Out"] = 0,
-},
-["冬泉谷 - 凯斯利尔湖"] = {
-["In"] = 821,
-["Out"] = 0,
-},
-["通灵学院"] = {
-["In"] = 34973,
-["Out"] = 309,
-},
-["安其拉"] = {
-["In"] = 1603824,
-["Out"] = 1076,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 37683,
-["Out"] = 0,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 349800,
-["Out"] = 0,
-},
-["费伍德森林 - 碧火小径"] = {
-["In"] = 973,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 774419,
-["Out"] = 169589,
-},
-["厄运之槌 - 平民区废墟"] = {
-["In"] = 3164,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 无草洞"] = {
-["In"] = 32,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 184931,
-["Out"] = 20250,
-},
-["奥妮克希亚的巢穴"] = {
-["In"] = 237027,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 27951607,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 18030378,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 1871883,
-},
-},
-["TRAIN"] = {
-["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 0,
-["Out"] = 160000,
-},
-},
-["QUEST"] = {
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 67800,
-["Out"] = 0,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 60,
-["Out"] = 0,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 9000,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 57600,
-["Out"] = 600000,
-},
-["暴风城 - 教堂广场"] = {
-["In"] = 9900,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 无草洞"] = {
-["In"] = 9900,
-["Out"] = 0,
-},
-["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 9960,
-["Out"] = 39067,
-},
-["泰达希尔 - 幽影谷"] = {
-["In"] = 715,
-["Out"] = 0,
-},
-["希利苏斯 - 勇士之墓"] = {
-["In"] = 16800,
-["Out"] = 0,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 10030,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 93000,
-["Out"] = 0,
-},
-["塔纳利斯 - 时光之穴"] = {
-["In"] = 159000,
-["Out"] = 0,
-},
-["月光林地 - 永夜港"] = {
-["In"] = 8400,
-["Out"] = 0,
-},
-["冬泉谷 - 凯斯利尔废墟"] = {
-["In"] = 27900,
-["Out"] = 0,
-},
-["东瘟疫之地 - 奎尔林斯小屋"] = {
-["In"] = 105600,
-["Out"] = 0,
-},
-["泰达希尔 - 奥达希尔"] = {
-["In"] = 210,
-["Out"] = 0,
-},
-["冬泉谷 - 坠星村"] = {
-["In"] = 34800,
-["Out"] = 0,
-},
-["月光林地 - 雷姆洛斯神殿"] = {
-["In"] = 59700,
-["Out"] = 0,
-},
-["铁炉堡 - 图书馆"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["千针石林 - 沙漠赛道"] = {
-["In"] = 11700,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 122002,
-["Out"] = 0,
-},
-["铁炉堡 - 探险者大厅"] = {
-["In"] = 42400,
-["Out"] = 0,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 73200,
-["Out"] = 0,
-},
-["铁炉堡 - 王座厅"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 73280,
-["Out"] = 0,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 900,
-["Out"] = 0,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 79200,
-["Out"] = 0,
-},
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-["贫瘠之地"] = {
-["In"] = 0,
-["Out"] = 2359,
-},
-},
-["TAXI"] = {
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 0,
-["Out"] = 264,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 1408,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 0,
-["Out"] = 128,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 816,
-},
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-["铁炉堡 - 探险者大厅"] = {
-["In"] = 42400,
-["Out"] = 0,
-},
-},
-},
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Month"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 4631,
-},
-["贫瘠之地"] = {
-["In"] = 0,
-["Out"] = 2359,
-},
-},
-["TAXI"] = {
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 0,
-["Out"] = 264,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 1408,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 0,
-["Out"] = 128,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 816,
-},
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 810,
-},
-},
-["OTHER"] = {
-[""] = {
-["In"] = 0,
-["Out"] = 1328,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 21283,
-["Out"] = 0,
-},
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-["铁炉堡 - 探险者大厅"] = {
-["In"] = 42400,
-["Out"] = 0,
-},
-},
-},
-["PrvYear"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 2071,
-["Out"] = 703285,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 1263,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 0,
-["Out"] = 27998,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 0,
-["Out"] = 101913,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 289100,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 0,
-["Out"] = 1322,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 27870,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 197912,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 19808,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 0,
-["Out"] = 25639,
-},
-["奥特兰克山谷"] = {
-["In"] = 665,
-["Out"] = 0,
-},
-["勇士大厅"] = {
-["In"] = 0,
-["Out"] = 181508,
-},
-["黑翼之巢"] = {
-["In"] = 0,
-["Out"] = 56594,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 22196,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 210540,
-},
-["安其拉"] = {
-["In"] = 0,
-["Out"] = 318917,
-},
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 22500,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 2214,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 2880,
-},
-["泰达希尔 - 鲁瑟兰村"] = {
-["In"] = 0,
-["Out"] = 5368,
-},
-["黑海岸 - 奥伯丁"] = {
-["In"] = 0,
-["Out"] = 584,
-},
-["月光林地"] = {
-["In"] = 0,
-["Out"] = 816,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 0,
-["Out"] = 1584,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 8775,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 657,
-},
-},
-["TRADE"] = {
-["暴风城 - 巫师圣殿"] = {
-["In"] = 0,
-["Out"] = 44349,
-},
-["安其拉之门"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["纳克萨玛斯"] = {
-["In"] = 0,
-["Out"] = 42618,
-},
-["暴风城 - 运河"] = {
-["In"] = 444440000,
-["Out"] = 0,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 0,
-["Out"] = 41642,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 0,
-["Out"] = 10000000,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 39527,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 2095220000,
-["Out"] = 2345200072,
-},
-["辛特兰 - 瑟拉丹"] = {
-["In"] = 6720821,
-["Out"] = 8357525,
-},
-["黑手大厅"] = {
-["In"] = 129,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 5000000,
-["Out"] = 0,
-},
-["暴风城 - 法师区"] = {
-["In"] = 457774735,
-["Out"] = 640147176,
-},
-["纳克萨玛斯"] = {
-["In"] = 648202,
-["Out"] = 13225687,
-},
-["达纳苏斯"] = {
-["In"] = 2000000,
-["Out"] = 0,
-},
-["莫高雷 - 血蹄村"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["通灵学院"] = {
-["In"] = 1733,
-["Out"] = 840,
-},
-["斯坦索姆"] = {
-["In"] = 99,
-["Out"] = 27,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["暴风城 - 运河"] = {
-["In"] = 5000000,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 148449160,
-["Out"] = 63026790,
-},
-["厄运之槌"] = {
-["In"] = 0,
-["Out"] = 200000,
-},
-["艾萨拉"] = {
-["In"] = 107745,
-["Out"] = 10051227,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 17770000,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 9416556,
-["Out"] = 30036322,
-},
-[""] = {
-["In"] = 54703905,
-["Out"] = 2740593,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 20245276,
-["Out"] = 47224771,
-},
-["祖尔格拉布"] = {
-["In"] = 93032,
-["Out"] = 21891,
-},
-["奥妮克希亚的巢穴"] = {
-["In"] = 21224155,
-["Out"] = 39522355,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 27951607,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 18030378,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 1871883,
-},
-},
-["LOOT"] = {
-["燃烧平原"] = {
-["In"] = 722,
-["Out"] = 0,
-},
-["辛特兰 - 瑟拉丹"] = {
-["In"] = 170855,
-["Out"] = 0,
-},
-["祖尔法拉克"] = {
-["In"] = 159,
-["Out"] = 0,
-},
-["黑手大厅"] = {
-["In"] = 15647,
-["Out"] = 0,
-},
-["影牙城堡"] = {
-["In"] = 61,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 3360944,
-["Out"] = 97049,
-},
-["塔纳利斯 - 灌木谷"] = {
-["In"] = 3336,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 1006,
-["Out"] = 0,
-},
-["泰达希尔 - 幽影谷"] = {
-["In"] = 26,
-["Out"] = 0,
-},
-["冬泉谷 - 凯斯利尔废墟"] = {
-["In"] = 409,
-["Out"] = 0,
-},
-["安戈洛环形山 - 沼泽地"] = {
-["In"] = 21142,
-["Out"] = 0,
-},
-["艾萨拉 - 辛玛洛神殿"] = {
-["In"] = 237,
-["Out"] = 0,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 60568,
-["Out"] = 0,
-},
-["斯坦索姆"] = {
-["In"] = 34218,
-["Out"] = 10,
-},
-["艾萨拉"] = {
-["In"] = 107745,
-["Out"] = 0,
-},
-["安戈洛环形山 - 拉卡利油沼"] = {
-["In"] = 2821,
-["Out"] = 0,
-},
-["安戈洛环形山"] = {
-["In"] = 22638,
-["Out"] = 0,
-},
-["冬泉谷 - 凯斯利尔湖"] = {
-["In"] = 821,
-["Out"] = 0,
-},
-["通灵学院"] = {
-["In"] = 34973,
-["Out"] = 309,
-},
-["安其拉"] = {
-["In"] = 1448175,
-["Out"] = 1076,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 37683,
-["Out"] = 0,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 349800,
-["Out"] = 0,
-},
-["费伍德森林 - 碧火小径"] = {
-["In"] = 973,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 774419,
-["Out"] = 169589,
-},
-["厄运之槌 - 平民区废墟"] = {
-["In"] = 3164,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 无草洞"] = {
-["In"] = 32,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 184931,
-["Out"] = 20250,
-},
-["奥妮克希亚的巢穴"] = {
-["In"] = 237027,
-["Out"] = 0,
-},
-},
-["TRAIN"] = {
-["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 0,
-["Out"] = 160000,
-},
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 9021,
-["Out"] = 32045607,
-},
-["达纳苏斯"] = {
-["In"] = 0,
-["Out"] = 60,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 197555,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 150,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 0,
-["Out"] = 150,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 390,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1152666,
-["Out"] = 2579,
-},
-["暴风城 - 矮人区"] = {
-["In"] = 0,
-["Out"] = 496,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 147,
-["Out"] = 0,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 6889,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 8192,
-["Out"] = 104760,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 64,
-["Out"] = 0,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 3600,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 78631,
-["Out"] = 0,
-},
-["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 2618,
-["Out"] = 10400,
-},
-["勇士大厅"] = {
-["In"] = 170858,
-["Out"] = 1990177,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 26322,
-["Out"] = 0,
-},
-["厄运之槌"] = {
-["In"] = 0,
-["Out"] = 20200,
-},
-["奥特兰克山谷"] = {
-["In"] = 1024,
-["Out"] = 500,
-},
-["铁炉堡 - 侏儒区"] = {
-["In"] = 7250,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 67800,
-["Out"] = 0,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 60,
-["Out"] = 0,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 9000,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 57600,
-["Out"] = 600000,
-},
-["暴风城 - 教堂广场"] = {
-["In"] = 9900,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 无草洞"] = {
-["In"] = 9900,
-["Out"] = 0,
-},
-["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 9960,
-["Out"] = 39067,
-},
-["泰达希尔 - 幽影谷"] = {
-["In"] = 715,
-["Out"] = 0,
-},
-["希利苏斯 - 勇士之墓"] = {
-["In"] = 16800,
-["Out"] = 0,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 10030,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 93000,
-["Out"] = 0,
-},
-["月光林地 - 永夜港"] = {
-["In"] = 8400,
-["Out"] = 0,
-},
-["冬泉谷 - 凯斯利尔废墟"] = {
-["In"] = 27900,
-["Out"] = 0,
-},
-["东瘟疫之地 - 奎尔林斯小屋"] = {
-["In"] = 105600,
-["Out"] = 0,
-},
-["泰达希尔 - 奥达希尔"] = {
-["In"] = 210,
-["Out"] = 0,
-},
-["冬泉谷 - 坠星村"] = {
-["In"] = 34800,
-["Out"] = 0,
-},
-["月光林地 - 雷姆洛斯神殿"] = {
-["In"] = 59700,
-["Out"] = 0,
-},
-["铁炉堡 - 图书馆"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["千针石林 - 沙漠赛道"] = {
-["In"] = 11700,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 122002,
-["Out"] = 0,
-},
-["塔纳利斯 - 时光之穴"] = {
-["In"] = 159000,
-["Out"] = 0,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 73200,
-["Out"] = 0,
-},
-["铁炉堡 - 王座厅"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 73280,
-["Out"] = 0,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 900,
-["Out"] = 0,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 79200,
-["Out"] = 0,
-},
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-[""] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
 ["In"] = 0,
-["Out"] = 83684,
-},
-["贫瘠之地"] = {
-["In"] = 0,
-["Out"] = 2359,
-},
+["Out"] = 71271,
 },
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
+["冬泉谷 - 永望镇"] = {
 ["In"] = 0,
 ["Out"] = 2336,
 },
 ["塔纳利斯 - 加基森"] = {
 ["In"] = 0,
-["Out"] = 2256,
+["Out"] = 15952,
 },
-["西部荒野 - 哨兵岭"] = {
+["费伍德森林 - 刺枝林地"] = {
 ["In"] = 0,
-["Out"] = 128,
+["Out"] = 1632,
 },
-["阿拉希高地 - 避难谷地"] = {
+["阿拉希高地"] = {
 ["In"] = 0,
-["Out"] = 264,
+["Out"] = 284,
+},
+["费伍德森林 - 魔爪村"] = {
+["In"] = 828,
+["Out"] = 0,
+},
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 19252,
+},
+["冬泉谷 - 麦索瑞尔"] = {
+["In"] = 853,
+["Out"] = 233,
+},
+["阿拉希高地 - 激流堡"] = {
+["In"] = 2233,
+["Out"] = 1916,
+},
+["黑海岸 - 奥伯丁"] = {
+["In"] = 0,
+["Out"] = 1480,
+},
+["月光林地"] = {
+["In"] = 0,
+["Out"] = 584,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 928,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 21292,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 48794,
+["Out"] = 173,
 },
 },
 ["TRADE"] = {
+["暴风城 - 运河"] = {
+["In"] = 0,
+["Out"] = 444440000,
+},
+["黑手大厅"] = {
+["In"] = 0,
+["Out"] = 117,
+},
 ["暴风城 - 法师区"] = {
 ["In"] = 0,
-["Out"] = 36758,
+["Out"] = 50016989,
 },
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
+["诅咒之地 - 腐烂之痕"] = {
 ["In"] = 0,
-["Out"] = 3990,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 880000,
-["Out"] = 500000,
-},
-["斯坦索姆"] = {
-["In"] = 311,
-["Out"] = 206,
+["Out"] = 58110,
 },
 ["东瘟疫之地 - 病木林"] = {
 ["In"] = 0,
+["Out"] = 214,
+},
+["通灵学院"] = {
+["In"] = 387,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 100000,
+},
+["祖尔格拉布"] = {
+["In"] = 81,
+["Out"] = 167,
+},
+["奥特兰克山谷"] = {
+["In"] = 0,
+["Out"] = 72,
+},
+},
+["OTHER"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 5429910000,
+["Out"] = 3009730698,
+},
+["黑手大厅"] = {
+["In"] = 7700,
+["Out"] = 3658,
+},
+["奥达曼"] = {
+["In"] = 6374,
+["Out"] = 5672,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 46452,
+["Out"] = 84,
+},
+["达纳苏斯 - 塞纳里奥区"] = {
+["In"] = 0,
+["Out"] = 1000000,
+},
+["泰达希尔 - 幽影谷"] = {
+["In"] = 57900,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 3175,
+["Out"] = 3100000,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 36,
+},
+["安其拉之门"] = {
+["In"] = 0,
 ["Out"] = 500000,
 },
-["厄运之槌"] = {
-["In"] = 913,
+["艾萨拉"] = {
+["In"] = 7153601,
+["Out"] = 29154842,
+},
+["暴风城 - 运河"] = {
+["In"] = 1530000000,
+["Out"] = 50000000,
+},
+["希利苏斯 - 甲虫之墙"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["冬泉谷 - 麦索瑞尔"] = {
+["In"] = 1113,
+["Out"] = 655,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 539,
+["Out"] = 1000036,
+},
+["黑翼之巢"] = {
+["In"] = 290271,
+["Out"] = 3175058,
+},
+["塔纳利斯 - 落帆海湾"] = {
+["In"] = 135,
+["Out"] = 3,
+},
+["熔火之心"] = {
+["In"] = 58300,
+["Out"] = 26734,
+},
+["暴风城 - 巫师圣殿"] = {
+["In"] = 200000000,
+["Out"] = 6000000,
+},
+["安其拉"] = {
+["In"] = 378729313,
+["Out"] = 57777270,
+},
+["荆棘谷 - 祖尔格拉布"] = {
+["In"] = 625,
 ["Out"] = 0,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 4397,
+["Out"] = 2912,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 52116,
+["Out"] = 1052116,
+},
+["艾尔文森林 - 林边空地"] = {
+["In"] = 12,
+["Out"] = 8,
+},
+["祖尔法拉克"] = {
+["In"] = 960,
+["Out"] = 1075,
+},
+["暴风城 - 法师区"] = {
+["In"] = 768078087,
+["Out"] = 3334284710,
+},
+["湿地 - 龙喉大门"] = {
+["In"] = 1965,
+["Out"] = 1067,
+},
+["冬泉谷"] = {
+["In"] = 2065,
+["Out"] = 983,
+},
+["纳克萨玛斯"] = {
+["In"] = 2152326,
+["Out"] = 1260713,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 24572611,
+["Out"] = 603108175,
+},
+["荆棘谷 - 水手之家旅店"] = {
+["In"] = 33000000,
+["Out"] = 222220050,
+},
+["冬泉谷 - 冰火温泉"] = {
+["In"] = 4267,
+["Out"] = 2991,
 },
 [""] = {
-["In"] = 8882540,
-["Out"] = 6401029,
+["In"] = 15434861,
+["Out"] = 128268563,
 },
-["安其拉"] = {
-["In"] = 74957,
+["西部荒野 - 月溪镇"] = {
+["In"] = 8,
+["Out"] = 6,
+},
+["通灵学院"] = {
+["In"] = 1657,
+["Out"] = 95,
+},
+["铁炉堡 - 秘法区"] = {
+["In"] = 600,
 ["Out"] = 0,
 },
+["暮色森林 - 黎明森林"] = {
+["In"] = 1922168,
+["Out"] = 0,
 },
-["MERCH"] = {
+["黑石深渊"] = {
+["In"] = 4291,
+["Out"] = 3421,
+},
+["奥特兰克山谷"] = {
+["In"] = 95112,
+["Out"] = 86245,
+},
+["达纳苏斯"] = {
+["In"] = 0,
+["Out"] = 2000000,
+},
+["暴风城监狱"] = {
+["In"] = 4882,
+["Out"] = 4670,
+},
+["逆风小径 - 卡拉赞"] = {
+["In"] = 311,
+["Out"] = 48,
+},
+["暴风城 - 暴风要塞"] = {
+["In"] = 64,
+["Out"] = 0,
+},
+["安其拉废墟"] = {
+["In"] = 29213426,
+["Out"] = 42500000,
+},
+["斯坦索姆"] = {
+["In"] = 758,
+["Out"] = 314,
+},
+["塔纳利斯 - 祖尔法拉克"] = {
+["In"] = 251,
+["Out"] = 0,
+},
+["达纳苏斯 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 17770000,
+},
+["死亡矿井"] = {
+["In"] = 2189,
+["Out"] = 2170,
+},
+["黑石山 - 黑石塔"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["铁炉堡 - 武器大厅"] = {
+["In"] = 0,
+["Out"] = 42664,
+},
+["祖尔格拉布"] = {
+["In"] = 130049751,
+["Out"] = 125292912,
+},
+["奥妮克希亚的巢穴"] = {
+["In"] = 424530,
+["Out"] = 15329630,
+},
+},
+["AH"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 151748,
-["Out"] = 0,
+["In"] = 36915491,
+["Out"] = 332389575,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 32254935,
 },
 },
 ["LOOT"] = {
-["斯坦索姆"] = {
-["In"] = 2656,
+["暴风城 - 暴风要塞"] = {
+["In"] = 823,
+["Out"] = 193,
+},
+["奥达曼 - 封印大厅"] = {
+["In"] = 7803,
+["Out"] = 0,
+},
+["荆棘谷 - 南野人海岸"] = {
+["In"] = 382,
+["Out"] = 0,
+},
+["暴风城监狱"] = {
+["In"] = 94896,
+["Out"] = 0,
+},
+["诅咒之地 - 巨槌要塞"] = {
+["In"] = 3048,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 255326,
+["Out"] = 1452,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 481329,
+["Out"] = 0,
+},
+["阿拉希高地 - 激流堡"] = {
+["In"] = 9308,
+["Out"] = 0,
+},
+["血色修道院"] = {
+["In"] = 21235,
+["Out"] = 0,
+},
+["菲拉斯 - 萨尔多岛"] = {
+["In"] = 3838,
+["Out"] = 0,
+},
+["西部荒野"] = {
+["In"] = 77,
+["Out"] = 0,
+},
+["费伍德森林 - 血毒瀑布"] = {
+["In"] = 0,
+["Out"] = 62,
+},
+["冬泉谷 - 麦索瑞尔"] = {
+["In"] = 28555,
+["Out"] = 649,
+},
+["希利苏斯 - 格拉卡隆之骨"] = {
+["In"] = 192,
+["Out"] = 0,
+},
+["黑海岸 - 主宰之剑"] = {
+["In"] = 3030,
+["Out"] = 0,
+},
+["熔火之心"] = {
+["In"] = 58626,
+["Out"] = 0,
+},
+["安其拉"] = {
+["In"] = 1114542,
+["Out"] = 0,
+},
+["艾尔文森林 - 林边空地"] = {
+["In"] = 21,
+["Out"] = 0,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 382903,
+["Out"] = 0,
+},
+["菲拉斯 - 索兰萨尔废墟"] = {
+["In"] = 5714,
+["Out"] = 0,
+},
+["费伍德森林 - 铁木森林"] = {
+["In"] = 905,
+["Out"] = 0,
+},
+["西部荒野 - 月溪镇"] = {
+["In"] = 10,
+["Out"] = 0,
+},
+["通灵学院"] = {
+["In"] = 121292,
+["Out"] = 595,
+},
+["希尔斯布莱德丘陵 - 东部海滩"] = {
+["In"] = 58,
+["Out"] = 0,
+},
+["诅咒之地 - 盘蛇谷"] = {
+["In"] = 4718,
+["Out"] = 0,
+},
+["阿拉希高地 - 水下暗礁"] = {
+["In"] = 61,
+["Out"] = 0,
+},
+["奥达曼 - 挖掘中心"] = {
+["In"] = 6471,
+["Out"] = 0,
+},
+["希利苏斯 - 暮光岗哨"] = {
+["In"] = 2103,
+["Out"] = 0,
+},
+["奥妮克希亚的巢穴"] = {
+["In"] = 425599,
+["Out"] = 0,
+},
+["黑手大厅"] = {
+["In"] = 98922,
+["Out"] = 527,
+},
+["奥达曼"] = {
+["In"] = 28374,
+["Out"] = 6,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 46751,
 ["Out"] = 0,
 },
 ["厄运之槌"] = {
-["In"] = 4368,
-["Out"] = 87,
+["In"] = 4159,
+["Out"] = 161,
+},
+["塔纳利斯 - 天涯海滩"] = {
+["In"] = 5034,
+["Out"] = 0,
+},
+["费伍德森林 - 碎痕谷"] = {
+["In"] = 150,
+["Out"] = 0,
+},
+["艾萨拉"] = {
+["In"] = 331049,
+["Out"] = 55431,
+},
+["安戈洛环形山"] = {
+["In"] = 5142,
+["Out"] = 0,
+},
+["灼热峡谷 - 熔渣之池"] = {
+["In"] = 4380,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 无草洞"] = {
+["In"] = 40,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 49671,
+["Out"] = 0,
+},
+["荆棘谷 - 祖尔格拉布"] = {
+["In"] = 836,
+["Out"] = 0,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 2604,
+["Out"] = 0,
+},
+["黑翼之巢"] = {
+["In"] = 684724,
+["Out"] = 47613,
+},
+["塔纳利斯 - 落帆海湾"] = {
+["In"] = 403,
+["Out"] = 0,
+},
+["斯坦索姆"] = {
+["In"] = 40775,
+["Out"] = 331,
+},
+["艾萨拉 - 赫塔拉的巢穴"] = {
+["In"] = 1324,
+["Out"] = 0,
+},
+["麦索瑞尔"] = {
+["In"] = 740,
+["Out"] = 0,
+},
+["战歌峡谷"] = {
+["In"] = 516,
+["Out"] = 0,
+},
+["祖尔法拉克"] = {
+["In"] = 10401,
+["Out"] = 0,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 52494,
+["Out"] = 187,
+},
+["西瘟疫之地 - 安多哈尔废墟"] = {
+["In"] = 1700,
+["Out"] = 0,
+},
+["艾尔文森林 - 明镜湖"] = {
+["In"] = 5,
+["Out"] = 0,
+},
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 2951,
+["Out"] = 0,
+},
+["湿地 - 龙喉大门"] = {
+["In"] = 10762,
+["Out"] = 0,
+},
+["荒芜之地 - 造物者遗迹"] = {
+["In"] = 7181,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 3809402,
+["Out"] = 111490,
+},
+["达纳苏斯"] = {
+["In"] = 155,
+["Out"] = 0,
+},
+["达纳苏斯 - 塞纳里奥区"] = {
+["In"] = 935,
+["Out"] = 0,
+},
+["冬泉谷"] = {
+["In"] = 17729,
+["Out"] = 0,
+},
+["荆棘谷 - 祖丹亚废墟"] = {
+["In"] = 775,
+["Out"] = 0,
+},
+["安其拉废墟"] = {
+["In"] = 435186,
+["Out"] = 0,
+},
+["安戈洛环形山 - 沼泽地"] = {
+["In"] = 3171,
+["Out"] = 0,
+},
+["尘泥沼泽 - 巨龙沼泽"] = {
+["In"] = 332,
+["Out"] = 0,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 250828,
+["Out"] = 0,
+},
+["黑石深渊"] = {
+["In"] = 11994,
+["Out"] = 0,
+},
+["黑石山 - 石匠区"] = {
+["In"] = 1072,
+["Out"] = 0,
+},
+["逆风小径 - 卡拉赞"] = {
+["In"] = 574,
+["Out"] = 37510,
+},
+["冬泉谷 - 寒水村"] = {
+["In"] = 9047,
+["Out"] = 0,
+},
+["阿拉希高地"] = {
+["In"] = 248,
+["Out"] = 0,
+},
+["费伍德森林 - 魔爪村"] = {
+["In"] = 34069,
+["Out"] = 0,
+},
+["诅咒之地"] = {
+["In"] = 159,
+["Out"] = 0,
+},
+["血色修道院 - 大门廊"] = {
+["In"] = 144,
+["Out"] = 0,
+},
+["塔纳利斯 - 祖尔法拉克"] = {
+["In"] = 251,
+["Out"] = 0,
+},
+["费伍德森林"] = {
+["In"] = 386,
+["Out"] = 0,
+},
+["死亡矿井"] = {
+["In"] = 8905,
+["Out"] = 13,
+},
+["冬泉谷 - 冰火温泉"] = {
+["In"] = 41784,
+["Out"] = 575,
+},
+["艾萨拉 - 南山海滩"] = {
+["In"] = 726,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 935143,
+["Out"] = 146089,
+},
+["奥达曼 - 一号挖掘场"] = {
+["In"] = 602,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 1684014,
+["Out"] = 624057,
+},
+["西瘟疫之地 - 寒风营地"] = {
+["In"] = 38125,
+["Out"] = 0,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 3,
+["Out"] = 70,
 },
 ["安其拉"] = {
-["In"] = 155649,
+["In"] = 1750,
 ["Out"] = 0,
 },
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-["铁炉堡 - 探险者大厅"] = {
-["In"] = 42400,
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 4517,
 ["Out"] = 0,
 },
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 44655,
+["Out"] = 208440,
 },
+["暴风城 - 法师区"] = {
+["In"] = 277382,
+["Out"] = 626632,
 },
+["西瘟疫之地 - 安多哈尔废墟"] = {
+["In"] = 0,
+["Out"] = 1810000,
 },
+["达纳苏斯"] = {
+["In"] = 34929,
+["Out"] = 79200,
 },
-["红龙守护者"] = {
-["data"] = {
-["PrvWeek"] = {
-["REPAIRS"] = {
+["达纳苏斯 - 塞纳里奥区"] = {
+["In"] = 80385,
+["Out"] = 8000000,
 },
-["TAXI"] = {
+["勇士大厅"] = {
+["In"] = 9162,
+["Out"] = 61600,
 },
-["TRADE"] = {
+["冬泉谷 - 永望镇"] = {
+["In"] = 34153,
+["Out"] = 0,
 },
-["OTHER"] = {
+["厄运之槌"] = {
+["In"] = 730,
+["Out"] = 158066,
 },
-["AH"] = {
+["塔纳利斯 - 加基森"] = {
+["In"] = 62192,
+["Out"] = 60922,
 },
-["LOOT"] = {
+["铁炉堡 - 秘法区"] = {
+["In"] = 6250,
+["Out"] = 0,
 },
-["MERCH"] = {
+["诅咒之地 - 守望堡"] = {
+["In"] = 20496,
+["Out"] = 0,
 },
-["MAIL"] = {
+["黑石深渊"] = {
+["In"] = 0,
+["Out"] = 6191,
 },
-["TRAIN"] = {
+["暴风城 - 旧城区"] = {
+["In"] = 0,
+["Out"] = 1416,
 },
-["QUEST"] = {
+["艾萨拉 - 废墟海岸"] = {
+["In"] = 0,
+["Out"] = 36000,
 },
+["暴风城 - 运河"] = {
+["In"] = 28140,
+["Out"] = 0,
 },
-["PrvDay"] = {
-["REPAIRS"] = {
+["荆棘谷 - 港务局"] = {
+["In"] = 0,
+["Out"] = 12000,
 },
-["TAXI"] = {
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 221800,
+["Out"] = 14932,
 },
-["TRADE"] = {
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 36783,
+["Out"] = 66451,
 },
-["OTHER"] = {
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 1038,
 },
-["AH"] = {
+["艾尔文森林 - 闪金镇"] = {
+["In"] = 18405,
+["Out"] = 0,
 },
-["LOOT"] = {
+["尘泥沼泽 - 狂潮湾"] = {
+["In"] = 0,
+["Out"] = 200000,
 },
-["TRAIN"] = {
+["黑海岸 - 奥伯丁"] = {
+["In"] = 715,
+["Out"] = 0,
 },
-["MAIL"] = {
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 0,
+["Out"] = 12800,
 },
-["MERCH"] = {
+["千针石林 - 沙漠赛道"] = {
+["In"] = 3725,
+["Out"] = 0,
 },
-["QUEST"] = {
+["奥特兰克山谷"] = {
+["In"] = 4972,
+["Out"] = 366880,
 },
+["铁炉堡 - 侏儒区"] = {
+["In"] = 0,
+["Out"] = 39392,
 },
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
 },
 ["MAIL"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 658501,
+["In"] = 56993042,
+["Out"] = 92549285,
+},
+["暴风城 - 旧城区"] = {
+["In"] = 0,
+["Out"] = 853,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 46000000,
+["Out"] = 3660,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 660,
+},
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 0,
+["Out"] = 270,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
 ["Out"] = 870,
 },
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 52500000,
+},
+["希利苏斯 - 塞纳里奥要塞"] = {
+["In"] = 0,
+["Out"] = 30,
+},
+["达纳苏斯"] = {
+["In"] = 24000000,
+["Out"] = 780,
+},
+["西部荒野 - 哨兵岭"] = {
+["In"] = 0,
+["Out"] = 30,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 180,
+["Out"] = 0,
+},
+["冬泉谷 - 永望镇"] = {
+["In"] = 0,
+["Out"] = 300,
+},
+["诅咒之地 - 守望堡"] = {
+["In"] = 0,
+["Out"] = 240,
+},
+["暴风城 - 巫师圣殿"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["铁炉堡 - 侏儒区"] = {
+["In"] = 4790000,
+["Out"] = 570,
+},
+},
+["TRAIN"] = {
+["暴风城 - 巫师圣殿"] = {
+["In"] = 0,
+["Out"] = 1104052,
+},
+},
+["QUEST"] = {
+["铁炉堡 - 王座厅"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["诅咒之地"] = {
+["In"] = 50700,
+["Out"] = 0,
+},
+["银松森林 - 格雷迈恩之墙"] = {
+["In"] = 39600,
+["Out"] = 0,
+},
+["暴风城"] = {
+["In"] = 59700,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 无草洞"] = {
+["In"] = 9900,
+["Out"] = 0,
+},
+["铁炉堡 - 图书馆"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 478,
+["Out"] = 426,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 92868,
+["Out"] = 50000,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 2300,
+["Out"] = 0,
+},
+["月光林地 - 雷姆洛斯神殿"] = {
+["In"] = 59700,
+["Out"] = 0,
+},
+["希利苏斯 - 塞纳里奥要塞"] = {
+["In"] = 43500,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 39929,
+["Out"] = 316,
+},
+["塔纳利斯 - 热砂港"] = {
+["In"] = 43500,
+["Out"] = 0,
+},
+["铁炉堡 - 武器大厅"] = {
+["In"] = 125351,
+["Out"] = 0,
+},
+["暴风城 - 暴风要塞"] = {
+["In"] = 59700,
+["Out"] = 0,
+},
+["安其拉"] = {
+["In"] = 20197,
+["Out"] = 0,
+},
+},
+},
+["PrvMonth"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
 },
 ["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 15870000,
-},
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 14614818,
-["Out"] = 59676,
+[""] = {
+["In"] = 857801,
+["Out"] = 0,
 },
 },
 ["TRAIN"] = {
 },
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+},
 ["QUEST"] = {
 },
 },
-["Month"] = {
+["Session"] = {
 ["REPAIRS"] = {
 },
 ["TAXI"] = {
@@ -17327,2567 +6537,1057 @@ Accountant_ClassicZoneDB = {
 ["TRADE"] = {
 },
 ["MAIL"] = {
+},
+["OTHER"] = {
+["暮色森林 - 黎明森林"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+["暮色森林 - 黎明森林"] = {
+["In"] = 57120,
+["Out"] = 0,
+},
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Total"] = {
+["REPAIRS"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 24191,
+["In"] = 68026,
+["Out"] = 2301409,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 174376,
+},
+["西瘟疫之地 - 寒风营地"] = {
+["In"] = 0,
+["Out"] = 105639,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 0,
+["Out"] = 26670,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 919,
+["Out"] = 232475,
+},
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 0,
+["Out"] = 21017,
+},
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 14807,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 310613,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 304220,
+},
+["艾尔文森林 - 东谷伐木场"] = {
+["In"] = 0,
+["Out"] = 17010,
+},
+["奥特兰克山谷"] = {
+["In"] = 0,
+["Out"] = 59995,
+},
+["勇士大厅"] = {
+["In"] = 0,
+["Out"] = 4870,
+},
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 0,
+["Out"] = 10796,
+},
+["诅咒之地 - 守望堡"] = {
+["In"] = 3222,
+["Out"] = 4525,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 127594,
+},
+["安其拉"] = {
+["In"] = 0,
+["Out"] = 120912,
+},
+},
+["TAXI"] = {
+["黑石山 - 石匠区"] = {
+["In"] = 603,
+["Out"] = 0,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 290,
+["Out"] = 0,
+},
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 0,
+["Out"] = 824,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 24,
+["Out"] = 0,
+},
+["泰达希尔 - 鲁瑟兰村"] = {
+["In"] = 0,
+["Out"] = 75359,
+},
+["冬泉谷 - 永望镇"] = {
+["In"] = 0,
+["Out"] = 2336,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 24328,
+},
+["费伍德森林 - 刺枝林地"] = {
+["In"] = 0,
+["Out"] = 1632,
+},
+["尘泥沼泽 - 塞拉摩岛"] = {
+["In"] = 0,
+["Out"] = 1611,
+},
+["阿拉希高地"] = {
+["In"] = 0,
+["Out"] = 284,
+},
+["费伍德森林 - 魔爪村"] = {
+["In"] = 828,
+["Out"] = 0,
+},
+["阿拉希高地 - 激流堡"] = {
+["In"] = 2233,
+["Out"] = 1916,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 48794,
+["Out"] = 173,
+},
+["冬泉谷 - 麦索瑞尔"] = {
+["In"] = 853,
+["Out"] = 233,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 928,
+},
+["黑海岸 - 奥伯丁"] = {
+["In"] = 0,
+["Out"] = 1480,
+},
+["月光林地"] = {
+["In"] = 0,
+["Out"] = 584,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 28596,
+},
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 22476,
+},
+["贫瘠之地 - 棘齿城"] = {
+["In"] = 0,
+["Out"] = 2898,
+},
+},
+["TRADE"] = {
+["暴风城 - 运河"] = {
+["In"] = 0,
+["Out"] = 444440000,
+},
+["黑手大厅"] = {
+["In"] = 0,
+["Out"] = 117,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 60016989,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 0,
+["Out"] = 58162,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 0,
+["Out"] = 214,
+},
+["通灵学院"] = {
+["In"] = 387,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 100000,
+},
+["祖尔格拉布"] = {
+["In"] = 456,
+["Out"] = 515,
+},
+["奥特兰克山谷"] = {
+["In"] = 0,
+["Out"] = 72,
+},
+},
+["MAIL"] = {
+["暴风城 - 巫师圣殿"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 0,
+["Out"] = 270,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 870,
+},
+["暴风城 - 法师区"] = {
+["In"] = 9050000,
+["Out"] = 75503960,
+},
+["纳克萨玛斯"] = {
+["In"] = 46468,
+["Out"] = 0,
+},
+["达纳苏斯"] = {
+["In"] = 24000000,
+["Out"] = 900,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 180,
+["Out"] = 0,
+},
+["冬泉谷 - 永望镇"] = {
+["In"] = 0,
+["Out"] = 300,
+},
+["诅咒之地 - 守望堡"] = {
+["In"] = 0,
+["Out"] = 270,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 330,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 46000000,
+["Out"] = 4080,
+},
+["暴风城 - 旧城区"] = {
+["In"] = 0,
+["Out"] = 973,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 1260,
+},
+["西部荒野 - 哨兵岭"] = {
+["In"] = 0,
+["Out"] = 30,
+},
+["希利苏斯 - 塞纳里奥要塞"] = {
+["In"] = 0,
+["Out"] = 30,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 58154733,
+["Out"] = 208433095,
+},
+["铁炉堡 - 侏儒区"] = {
+["In"] = 4790000,
 ["Out"] = 570,
 },
 },
 ["OTHER"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 3820000,
-},
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 3045090,
-["Out"] = 9520,
-},
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvYear"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 163070000,
-["Out"] = 165318300,
-},
-[""] = {
-["In"] = 391,
-["Out"] = 81,
-},
-["暴风城 - 法师区"] = {
-["In"] = 10000,
-["Out"] = 0,
-},
-},
-["TRAIN"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 2976111,
-["Out"] = 360,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 1800,
-},
-},
-["AH"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Total"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 3634612,
-["Out"] = 1230,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 1800,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 163070000,
-["Out"] = 181188300,
-},
-[""] = {
-["In"] = 391,
-["Out"] = 81,
-},
-["暴风城 - 法师区"] = {
-["In"] = 10000,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 14614818,
-["Out"] = 59676,
-},
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-},
-},
-["院长安娜"] = {
-["data"] = {
-["PrvWeek"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvDay"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
-},
-["QUEST"] = {
-},
-},
-["Total"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Month"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvYear"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-},
-["MERCH"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["QUEST"] = {
-},
-},
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-},
-},
-["护士长玛利亚"] = {
-["data"] = {
-["PrvWeek"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-},
-["MERCH"] = {
-},
-["MAIL"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["PrvDay"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 58203,
-},
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["OTHER"] = {
-["东瘟疫之地 - 病木林"] = {
-["In"] = 180,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 169865,
-["Out"] = 136317,
-},
-},
-["AH"] = {
-},
-["LOOT"] = {
-["东瘟疫之地 - 病木林"] = {
-["In"] = 363,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 502832,
-["Out"] = 15,
-},
-},
-["TRAIN"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 10000000,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 60,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 40500,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 129600,
-},
-},
-["QUEST"] = {
-},
-},
-["Total"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 22455,
-["Out"] = 2456180,
-},
-["安其拉"] = {
-["In"] = 0,
-["Out"] = 238540,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 0,
-["Out"] = 19452,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 0,
-["Out"] = 28056,
-},
-["荆棘谷 - 尤亚姆巴岛"] = {
-["In"] = 0,
-["Out"] = 250,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 24419,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 283301,
-},
-["辛特兰 - 蛮锤城堡"] = {
-["In"] = 0,
-["Out"] = 169,
-},
-["纳克萨玛斯"] = {
-["In"] = 0,
-["Out"] = 308420,
-},
-["奥特兰克山谷"] = {
-["In"] = 0,
-["Out"] = 431,
-},
-["勇士大厅"] = {
-["In"] = 0,
-["Out"] = 5413,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 1518,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 123070,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 17032,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 2840,
-},
-},
-["TAXI"] = {
-["贫瘠之地 - 棘齿城"] = {
-["In"] = 0,
-["Out"] = 1521,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 0,
-["Out"] = 981,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 639,
-},
-["泰达希尔 - 鲁瑟兰村"] = {
-["In"] = 0,
-["Out"] = 1314,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 39684,
-["Out"] = 0,
-},
-["灼热峡谷 - 黑石山"] = {
-["In"] = 849,
-["Out"] = 0,
-},
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 0,
-["Out"] = 1611,
-},
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 1852,
-["Out"] = 1789,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 37574,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 284,
-["Out"] = 0,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 61090,
-["Out"] = 43,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 124,
-["Out"] = 0,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 0,
-["Out"] = 567,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 1134,
-},
-["月光林地"] = {
-["In"] = 0,
-["Out"] = 6183,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 3303,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 0,
-["Out"] = 747,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 1890,
-},
-},
-["TRADE"] = {
-["黑石山 - 石匠区"] = {
-["In"] = 0,
-["Out"] = 900,
-},
-["黑石深渊"] = {
-["In"] = 0,
-["Out"] = 589,
-},
-["暴风城 - 法师区"] = {
-["In"] = 744310000,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 63,
-["Out"] = 0,
-},
-["安其拉废墟"] = {
-["In"] = 3500000,
-["Out"] = 18031906,
-},
-["黑翼之巢"] = {
-["In"] = 393,
-["Out"] = 9000000,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 0,
-["Out"] = 10000000,
-},
-["祖尔格拉布"] = {
-["In"] = 4000923,
-["Out"] = 10390000,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 70000000,
-["Out"] = 0,
-},
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 81927076,
-["Out"] = 23138890,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 0,
-["Out"] = 630,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 150,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 0,
-["Out"] = 1740,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 90,
-},
-["暴风城 - 法师区"] = {
-["In"] = 18660000,
-["Out"] = 13100660,
-},
-["达纳苏斯"] = {
-["In"] = 0,
-["Out"] = 362140,
-},
-["黑翼之巢"] = {
-["In"] = 52211,
-["Out"] = 0,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 0,
-["Out"] = 114052,
-},
-["塔纳利斯 - 加基森"] = {
-["In"] = 0,
-["Out"] = 120,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 4484990,
-["Out"] = 840,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 7219010000,
-["Out"] = 4699580195,
+["In"] = 5823470000,
+["Out"] = 3201220698,
 },
 ["黑手大厅"] = {
-["In"] = 30538,
-["Out"] = 17116679,
+["In"] = 7700,
+["Out"] = 3658,
 },
-["暴风城 - 法师区"] = {
-["In"] = 1512133704,
-["Out"] = 3672261159,
+["奥达曼"] = {
+["In"] = 6374,
+["Out"] = 5672,
 },
 ["菲拉斯 - 梦境之树"] = {
-["In"] = 255255,
-["Out"] = 61226,
+["In"] = 46452,
+["Out"] = 84,
 },
-["奥特兰克山谷"] = {
-["In"] = 14874,
-["Out"] = 54308,
+["达纳苏斯 - 塞纳里奥区"] = {
+["In"] = 0,
+["Out"] = 1000000,
 },
 ["泰达希尔 - 幽影谷"] = {
-["In"] = 0,
-["Out"] = 115851,
+["In"] = 57900,
+["Out"] = 0,
 },
 ["厄运之槌"] = {
+["In"] = 3432,
+["Out"] = 3600000,
+},
+["铁炉堡 - 铁炉堡"] = {
 ["In"] = 0,
-["Out"] = 800000,
+["Out"] = 36,
 },
 ["安其拉之门"] = {
 ["In"] = 0,
 ["Out"] = 500000,
 },
 ["艾萨拉"] = {
-["In"] = 63109496,
-["Out"] = 55280000,
+["In"] = 7153601,
+["Out"] = 29154842,
 },
-["暴风城 - 运河"] = {
-["In"] = 90,
-["Out"] = 0,
-},
-["菲拉斯 - 加德米尔湖"] = {
-["In"] = 43383,
-["Out"] = 0,
-},
-["艾尔文森林"] = {
-["In"] = 0,
-["Out"] = 17630000,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 1277,
-["Out"] = 2500000,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 601,
-["Out"] = 23,
-},
-["黑翼之巢"] = {
-["In"] = 85864584,
-["Out"] = 26971644,
-},
-["塔纳利斯 - 落帆海湾"] = {
-["In"] = 134,
-["Out"] = 2,
-},
-["熔火之心"] = {
-["In"] = 139929,
-["Out"] = 8044698,
-},
-["安其拉"] = {
-["In"] = 191931657,
-["Out"] = 56119662,
-},
-["辛特兰 - 瑟拉丹"] = {
-["In"] = 45721,
-["Out"] = 1045721,
-},
-["纳克萨玛斯"] = {
-["In"] = 6464218,
-["Out"] = 211581232,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 58216380,
-["Out"] = 426791854,
-},
-["冬泉谷 - 冰火温泉"] = {
-["In"] = 1661,
-["Out"] = 1529,
-},
-["莫高雷 - 血蹄村"] = {
+["希利苏斯 - 甲虫之墙"] = {
 ["In"] = 0,
 ["Out"] = 500000,
 },
+["暴风城 - 运河"] = {
+["In"] = 1530000000,
+["Out"] = 50000000,
+},
+["暴风城 - 巫师圣殿"] = {
+["In"] = 200000000,
+["Out"] = 6000000,
+},
+["暴风城监狱"] = {
+["In"] = 4882,
+["Out"] = 4670,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 4397,
+["Out"] = 2912,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 69254,
+["Out"] = 129,
+},
+["冬泉谷 - 麦索瑞尔"] = {
+["In"] = 1113,
+["Out"] = 655,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 589,
+["Out"] = 1500036,
+},
+["黑翼之巢"] = {
+["In"] = 290271,
+["Out"] = 3175058,
+},
+["塔纳利斯 - 落帆海湾"] = {
+["In"] = 135,
+["Out"] = 3,
+},
+["荆棘谷 - 祖尔格拉布"] = {
+["In"] = 625,
+["Out"] = 0,
+},
+["黑石山 - 黑石塔"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["安其拉"] = {
+["In"] = 378887194,
+["Out"] = 60778409,
+},
+[""] = {
+["In"] = 114551514,
+["Out"] = 129407173,
+},
+["达纳苏斯 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 17770000,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 93534,
+["Out"] = 1052116,
+},
+["艾尔文森林 - 林边空地"] = {
+["In"] = 12,
+["Out"] = 8,
+},
+["祖尔法拉克"] = {
+["In"] = 960,
+["Out"] = 1075,
+},
+["奥特兰克山谷"] = {
+["In"] = 95112,
+["Out"] = 86245,
+},
+["湿地 - 龙喉大门"] = {
+["In"] = 1965,
+["Out"] = 1067,
+},
+["冬泉谷 - 冰火温泉"] = {
+["In"] = 4267,
+["Out"] = 2991,
+},
+["纳克萨玛斯"] = {
+["In"] = 3537213,
+["Out"] = 1760679,
+},
+["安其拉废墟"] = {
+["In"] = 45990498,
+["Out"] = 56200000,
+},
 ["通灵学院"] = {
-["In"] = 899,
-["Out"] = 389,
+["In"] = 2569,
+["Out"] = 560,
+},
+["冬泉谷"] = {
+["In"] = 2065,
+["Out"] = 983,
+},
+["斯坦索姆"] = {
+["In"] = 1220,
+["Out"] = 713,
+},
+["西部荒野 - 月溪镇"] = {
+["In"] = 8,
+["Out"] = 6,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 4200,
 },
 ["希利苏斯"] = {
 ["In"] = 0,
 ["Out"] = 1000000,
 },
 ["暮色森林 - 黎明森林"] = {
-["In"] = 14126662,
-["Out"] = 35251666,
+["In"] = 1979288,
+["Out"] = 0,
 },
 ["黑石深渊"] = {
-["In"] = 9378,
-["Out"] = 111112800,
+["In"] = 4291,
+["Out"] = 3421,
+},
+["暴风城 - 暴风要塞"] = {
+["In"] = 64,
+["Out"] = 0,
+},
+["达纳苏斯"] = {
+["In"] = 0,
+["Out"] = 2000000,
 },
 ["荆棘谷 - 藏宝海湾"] = {
 ["In"] = 0,
-["Out"] = 14000000,
+["Out"] = 141000000,
 },
-["希利苏斯 - 甲虫之墙"] = {
+["逆风小径 - 卡拉赞"] = {
+["In"] = 311,
+["Out"] = 48,
+},
+["铁炉堡 - 秘法区"] = {
+["In"] = 600,
+["Out"] = 0,
+},
+["荆棘谷 - 水手之家旅店"] = {
+["In"] = 33000000,
+["Out"] = 222220050,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 113215300,
+["Out"] = 657341213,
+},
+["塔纳利斯 - 祖尔法拉克"] = {
+["In"] = 251,
+["Out"] = 0,
+},
+["暴风城 - 法师区"] = {
+["In"] = 857849931,
+["Out"] = 3512300710,
+},
+["死亡矿井"] = {
+["In"] = 2189,
+["Out"] = 2170,
+},
+["熔火之心"] = {
+["In"] = 58300,
+["Out"] = 26734,
+},
+["铁炉堡 - 武器大厅"] = {
 ["In"] = 0,
-["Out"] = 500000,
-},
-[""] = {
-["In"] = 425501961,
-["Out"] = 1027542431,
-},
-["斯坦索姆"] = {
-["In"] = 1139,
-["Out"] = 322,
-},
-["安其拉废墟"] = {
-["In"] = 86773101,
-["Out"] = 87331840,
-},
-["暴风城 - 巫师圣殿"] = {
-["In"] = 6000000,
-["Out"] = 20000000,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 80394416,
-["Out"] = 75402775,
+["Out"] = 42664,
 },
 ["祖尔格拉布"] = {
-["In"] = 489756038,
-["Out"] = 393701015,
+["In"] = 147100329,
+["Out"] = 137319723,
 },
-["暴风城 - 花园"] = {
-["In"] = 0,
-["Out"] = 500000,
+["奥妮克希亚的巢穴"] = {
+["In"] = 5424868,
+["Out"] = 18829721,
 },
 },
 ["MERCH"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 1998329,
-["Out"] = 985471,
-},
-["狮王之傲旅店"] = {
-["In"] = 37,
-["Out"] = 0,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 200,
-["Out"] = 37107,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 583,
-["Out"] = 3150,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 76837,
-["Out"] = 654000,
-},
-["暴风城 - 法师区"] = {
-["In"] = 632686,
-["Out"] = 34200,
-},
-["辛特兰 - 蛮锤城堡"] = {
-["In"] = 0,
-["Out"] = 39600,
-},
-["达纳苏斯"] = {
-["In"] = 37230,
-["Out"] = 52200,
-},
-["奥特兰克山谷"] = {
-["In"] = 73353,
-["Out"] = 245303,
-},
-["勇士大厅"] = {
-["In"] = 0,
-["Out"] = 1520540,
-},
-["暴风城 - 光明大教堂"] = {
-["In"] = 1210,
-["Out"] = 0,
-},
-["厄运之槌"] = {
-["In"] = 1875,
-["Out"] = 16000,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 264,
-["Out"] = 68,
-},
-["月光林地 - 永夜港"] = {
-["In"] = 0,
-["Out"] = 33600,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 30184,
-["Out"] = 267161,
-},
-["暴风城 - 运河"] = {
-["In"] = 192,
-["Out"] = 3336,
-},
-["艾尔文森林 - 北郡山谷"] = {
-["In"] = 51,
-["Out"] = 0,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 15000000,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 0,
-["Out"] = 20880,
-},
-["纳克萨玛斯"] = {
-["In"] = 180,
-["Out"] = 0,
+["In"] = 2865797,
+["Out"] = 763787,
 },
 ["安其拉"] = {
-["In"] = 50412,
-["Out"] = 52912,
-},
-},
-["LOOT"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 225262,
-["Out"] = 480,
-},
-["黑手大厅"] = {
-["In"] = 89710,
-["Out"] = 0,
-},
-["菲拉斯 - 梦境之树"] = {
-["In"] = 255771,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 45204,
-["Out"] = 345,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 120,
-},
-["艾萨拉"] = {
-["In"] = 259496,
-["Out"] = 48301,
-},
-["艾尔文森林 - 北郡农场"] = {
-["In"] = 1,
-["Out"] = 0,
-},
-["菲拉斯 - 加德米尔湖"] = {
-["In"] = 43603,
-["Out"] = 0,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 323187,
-["Out"] = 0,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 1401,
-["Out"] = 0,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 1988,
-["Out"] = 74,
-},
-["黑翼之巢"] = {
-["In"] = 4669680,
-["Out"] = 419385,
-},
-["塔纳利斯 - 落帆海湾"] = {
-["In"] = 401,
-["Out"] = 0,
-},
-["熔火之心"] = {
-["In"] = 472403,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 3030657,
-["Out"] = 3109,
-},
-["辛特兰 - 瑟拉丹"] = {
-["In"] = 45968,
-["Out"] = 0,
-},
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 4816,
-["Out"] = 0,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 304699,
-["Out"] = 47597,
-},
-["冬泉谷 - 冰火温泉"] = {
-["In"] = 6992,
-["Out"] = 20,
-},
-["通灵学院"] = {
-["In"] = 33718,
-["Out"] = 291,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 313660,
-["Out"] = 0,
-},
-["黑石深渊"] = {
-["In"] = 48012,
-["Out"] = 2127,
-},
-["阿拉希盆地"] = {
-["In"] = 1678,
-["Out"] = 0,
-},
-["逆风小径 - 卡拉赞"] = {
-["In"] = 0,
-["Out"] = 43096,
-},
-["冬泉谷 - 木喉岗哨"] = {
-["In"] = 1783,
-["Out"] = 0,
-},
-["荆棘谷 - 野人海岸"] = {
-["In"] = 450,
-["Out"] = 0,
-},
-["安戈洛环形山 - 拉卡利油沼"] = {
-["In"] = 548,
-["Out"] = 0,
-},
-["斯坦索姆"] = {
-["In"] = 18665,
-["Out"] = 212,
-},
-["西部荒野 - 长滩"] = {
-["In"] = 174,
-["Out"] = 0,
-},
-["安其拉废墟"] = {
-["In"] = 1025362,
-["Out"] = 43,
-},
-["纳克萨玛斯"] = {
-["In"] = 5512002,
-["Out"] = 162179,
-},
-["奥特兰克山脉 - 无草洞"] = {
-["In"] = 39,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 3051967,
-["Out"] = 208312,
-},
-["灼热峡谷 - 黑石山"] = {
-["In"] = 849,
-["Out"] = 0,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1313753,
-["Out"] = 105007633,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 40690,
-["Out"] = 0,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 907371,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 2690471,
-["Out"] = 873975,
-},
-},
-["TRAIN"] = {
-["辛特兰 - 蛮锤城堡"] = {
-["In"] = 0,
-["Out"] = 80280,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 0,
-["Out"] = 8173,
-},
-["暴风城 - 运河"] = {
-["In"] = 0,
-["Out"] = 549,
-},
-["暴风城 - 光明大教堂"] = {
-["In"] = 0,
-["Out"] = 6480,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 0,
-["Out"] = 41535,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 0,
-["Out"] = 18000,
-},
-["暴风城 - 花园"] = {
-["In"] = 0,
-["Out"] = 519381,
-},
-},
-["QUEST"] = {
-["暴风城 - 暴风要塞"] = {
-["In"] = 176024,
-["Out"] = 0,
-},
-["狮王之傲旅店"] = {
-["In"] = 60,
-["Out"] = 0,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 189600,
-["Out"] = 0,
-},
-["暴风城 - 教堂广场"] = {
-["In"] = 9900,
-["Out"] = 0,
-},
-["暴风城"] = {
-["In"] = 59700,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 271500,
-["Out"] = 602,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 92868,
-["Out"] = 0,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 7800,
-["Out"] = 0,
-},
-["艾尔文森林 - 北郡修道院"] = {
-["In"] = 815,
-["Out"] = 0,
-},
-["安戈洛环形山"] = {
-["In"] = 13500,
-["Out"] = 0,
-},
-["艾尔文森林 - 北郡山谷"] = {
-["In"] = 720,
-["Out"] = 0,
-},
-["西部荒野 - 西部荒野灯塔"] = {
-["In"] = 960,
-["Out"] = 0,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 2160,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 272574,
-["Out"] = 0,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 39600,
+["In"] = 1750,
 ["Out"] = 0,
 },
 ["西瘟疫之地 - 寒风营地"] = {
-["In"] = 128700,
+["In"] = 38125,
 ["Out"] = 0,
 },
+["暴风城 - 矮人区"] = {
+["In"] = 3,
+["Out"] = 70,
+},
+["厄运之槌"] = {
+["In"] = 2429,
+["Out"] = 243166,
+},
 ["菲拉斯 - 羽月要塞"] = {
-["In"] = 9900,
+["In"] = 4517,
 ["Out"] = 0,
 },
 ["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 99300,
-["Out"] = 0,
+["In"] = 44655,
+["Out"] = 400680,
 },
-["奥特兰克山脉 - 无草洞"] = {
-["In"] = 9900,
-["Out"] = 0,
+["暴风城 - 法师区"] = {
+["In"] = 288382,
+["Out"] = 833600,
 },
-["铁炉堡 - 图书馆"] = {
-["In"] = 3900,
-["Out"] = 0,
+["西瘟疫之地 - 安多哈尔废墟"] = {
+["In"] = 0,
+["Out"] = 1810000,
 },
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 120,
-["Out"] = 0,
-},
-["黑石深渊"] = {
-["In"] = 35300,
-["Out"] = 0,
-},
-["塔纳利斯 - 时光之穴"] = {
-["In"] = 218100,
-["Out"] = 0,
+["达纳苏斯"] = {
+["In"] = 34929,
+["Out"] = 88000,
 },
 ["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 270,
-["Out"] = 0,
-},
-["荆棘谷 - 尤亚姆巴岛"] = {
-["In"] = 421500,
-["Out"] = 0,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 2340,
-["Out"] = 0,
-},
-["千针石林 - 沙漠赛道"] = {
-["In"] = 11700,
-["Out"] = 0,
-},
-["尘泥沼泽 - 塞拉摩堡垒"] = {
-["In"] = 2340,
-["Out"] = 0,
-},
-["铁炉堡 - 王座厅"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["西瘟疫之地 - 凯尔达隆"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["黑石山 - 铸铁之墓"] = {
-["In"] = 1200,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 288000,
-["Out"] = 0,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 25200,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 67,
-["Out"] = 0,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 59700,
-["Out"] = 0,
-},
-},
-},
-["Week"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 145795,
-},
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 567,
-},
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 10000000,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 60,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 990000,
-["Out"] = 0,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 7032340,
-["Out"] = 1552340,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 180,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 169865,
-["Out"] = 136317,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 40500,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 129600,
-},
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-["纳克萨玛斯"] = {
-["In"] = 502832,
-["Out"] = 15,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 52340,
-["Out"] = 0,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 363,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-},
-},
-["Day"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 567,
-},
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 7032340,
-["Out"] = 1552340,
-},
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 52340,
-["Out"] = 0,
-},
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Month"] = {
-["REPAIRS"] = {
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 2014,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 205335,
-},
-},
-["TAXI"] = {
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 1852,
-["Out"] = 1789,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 0,
-["Out"] = 981,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 284,
-["Out"] = 0,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 2493,
-},
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 10000000,
-["Out"] = 180,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 60,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 990000,
-["Out"] = 50600000,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 7032340,
-["Out"] = 1552340,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 180,
-["Out"] = 0,
-},
-["冬泉谷 - 冰火温泉"] = {
-["In"] = 1661,
-["Out"] = 1529,
-},
-["纳克萨玛斯"] = {
-["In"] = 169865,
-["Out"] = 136317,
-},
-[""] = {
-["In"] = 13378170,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 40500,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 129600,
-},
-},
-["TRAIN"] = {
-},
-["AH"] = {
-},
-["LOOT"] = {
-["冬泉谷 - 木喉岗哨"] = {
-["In"] = 1783,
-["Out"] = 0,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 52340,
-["Out"] = 0,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 1249,
-["Out"] = 0,
-},
-["冬泉谷 - 冰火温泉"] = {
-["In"] = 6992,
-["Out"] = 20,
-},
-["纳克萨玛斯"] = {
-["In"] = 502832,
-["Out"] = 15,
-},
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 4816,
-["Out"] = 0,
-},
-},
-["QUEST"] = {
-},
-},
-["PrvYear"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 1619518,
-},
-["安其拉"] = {
-["In"] = 0,
-["Out"] = 115954,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 0,
-["Out"] = 19452,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 22405,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 205656,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 17032,
-},
-["纳克萨玛斯"] = {
-["In"] = 0,
-["Out"] = 122378,
-},
-["奥特兰克山谷"] = {
-["In"] = 0,
-["Out"] = 431,
+["In"] = 80385,
+["Out"] = 8000000,
 },
 ["勇士大厅"] = {
-["In"] = 0,
-["Out"] = 5413,
+["In"] = 9162,
+["Out"] = 114732,
 },
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 1518,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 123070,
-},
-["辛特兰 - 蛮锤城堡"] = {
-["In"] = 0,
-["Out"] = 169,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 2840,
-},
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 24380,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 567,
-},
-["灼热峡谷 - 黑石山"] = {
-["In"] = 849,
+["冬泉谷 - 永望镇"] = {
+["In"] = 34153,
 ["Out"] = 0,
 },
-["尘泥沼泽 - 塞拉摩岛"] = {
-["In"] = 0,
-["Out"] = 1611,
-},
-["希尔斯布莱德丘陵 - 南海镇"] = {
-["In"] = 0,
-["Out"] = 639,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 61090,
-["Out"] = 43,
-},
-["泰达希尔 - 鲁瑟兰村"] = {
-["In"] = 0,
-["Out"] = 1314,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 39684,
+["诅咒之地 - 守望堡"] = {
+["In"] = 20496,
 ["Out"] = 0,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 0,
-["Out"] = 567,
-},
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 0,
-["Out"] = 747,
-},
-["铁炉堡 - 大锻炉"] = {
-["In"] = 0,
-["Out"] = 3303,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 0,
-["Out"] = 1890,
-},
-},
-["TRADE"] = {
-["黑石山 - 石匠区"] = {
-["In"] = 0,
-["Out"] = 900,
-},
-["黑石深渊"] = {
-["In"] = 0,
-["Out"] = 589,
-},
-["黑翼之巢"] = {
-["In"] = 393,
-["Out"] = 9000000,
-},
-["纳克萨玛斯"] = {
-["In"] = 63,
-["Out"] = 0,
-},
-["安其拉废墟"] = {
-["In"] = 3500000,
-["Out"] = 18031906,
-},
-["祖尔格拉布"] = {
-["In"] = 4000422,
-["Out"] = 10390000,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 0,
-["Out"] = 10000000,
-},
-},
-["OTHER"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 6318020000,
-["Out"] = 4625880195,
-},
-["黑手大厅"] = {
-["In"] = 30538,
-["Out"] = 17116679,
-},
-["暴风城 - 法师区"] = {
-["In"] = 582684482,
-["Out"] = 1950795264,
-},
-["菲拉斯 - 梦境之树"] = {
-["In"] = 198904,
-["Out"] = 61226,
-},
-["奥特兰克山谷"] = {
-["In"] = 14874,
-["Out"] = 54308,
-},
-["泰达希尔 - 幽影谷"] = {
-["In"] = 0,
-["Out"] = 115851,
-},
-["厄运之槌"] = {
-["In"] = 0,
-["Out"] = 600000,
-},
-["安其拉之门"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["艾萨拉"] = {
-["In"] = 213791,
-["Out"] = 5000000,
-},
-["暴风城 - 运河"] = {
-["In"] = 90,
-["Out"] = 0,
-},
-["菲拉斯 - 加德米尔湖"] = {
-["In"] = 43307,
-["Out"] = 0,
-},
-["艾尔文森林"] = {
-["In"] = 0,
-["Out"] = 17630000,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 0,
-["Out"] = 2500000,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 45,
-["Out"] = 23,
-},
-["黑翼之巢"] = {
-["In"] = 84918981,
-["Out"] = 26395134,
-},
-["塔纳利斯 - 落帆海湾"] = {
-["In"] = 134,
-["Out"] = 2,
-},
-["熔火之心"] = {
-["In"] = 109097,
-["Out"] = 8044698,
-},
-["安其拉"] = {
-["In"] = 171501446,
-["Out"] = 54057101,
-},
-["辛特兰 - 瑟拉丹"] = {
-["In"] = 45721,
-["Out"] = 1045721,
-},
-["纳克萨玛斯"] = {
-["In"] = 5485838,
-["Out"] = 46231528,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 51147620,
-["Out"] = 425239514,
-},
-["莫高雷 - 血蹄村"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-["通灵学院"] = {
-["In"] = 899,
-["Out"] = 389,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 14126662,
-["Out"] = 35251666,
-},
-["黑石深渊"] = {
-["In"] = 9378,
-["Out"] = 111112800,
-},
-["希利苏斯 - 甲虫之墙"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-[""] = {
-["In"] = 396883482,
-["Out"] = 94413401,
-},
-["斯坦索姆"] = {
-["In"] = 1139,
-["Out"] = 322,
-},
-["安其拉废墟"] = {
-["In"] = 86773101,
-["Out"] = 87331840,
-},
-["暴风城 - 巫师圣殿"] = {
-["In"] = 6000000,
-["Out"] = 20000000,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 99909,
-["Out"] = 11162775,
-},
-["祖尔格拉布"] = {
-["In"] = 363054952,
-["Out"] = 314480786,
-},
-["暴风城 - 花园"] = {
-["In"] = 0,
-["Out"] = 500000,
-},
-},
-["AH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1313753,
-["Out"] = 101714981,
-},
-["西部荒野 - 哨兵岭"] = {
-["In"] = 40690,
-["Out"] = 0,
-},
-["达纳苏斯 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 907371,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 2690471,
-["Out"] = 873975,
-},
-},
-["LOOT"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 225262,
-["Out"] = 480,
-},
-["辛特兰 - 瑟拉丹"] = {
-["In"] = 45968,
-["Out"] = 0,
-},
-["黑手大厅"] = {
-["In"] = 89710,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 1583218,
-["Out"] = 1109,
-},
-["纳克萨玛斯"] = {
-["In"] = 2718171,
-["Out"] = 39877,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 215939,
-["Out"] = 47597,
-},
-["奥特兰克山谷"] = {
-["In"] = 45204,
-["Out"] = 345,
-},
-["奥特兰克山脉 - 无草洞"] = {
-["In"] = 39,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 0,
-["Out"] = 120,
-},
-["黑石深渊"] = {
-["In"] = 48012,
-["Out"] = 2127,
-},
-["通灵学院"] = {
-["In"] = 33718,
-["Out"] = 291,
-},
-["西部荒野 - 长滩"] = {
-["In"] = 174,
-["Out"] = 0,
-},
-["暮色森林 - 黎明森林"] = {
-["In"] = 313660,
-["Out"] = 0,
-},
-["斯坦索姆"] = {
-["In"] = 18665,
-["Out"] = 212,
-},
-["荆棘谷 - 野人海岸"] = {
-["In"] = 450,
-["Out"] = 0,
-},
-["安戈洛环形山 - 拉卡利油沼"] = {
-["In"] = 548,
-["Out"] = 0,
-},
-["菲拉斯 - 梦境之树"] = {
-["In"] = 199344,
-["Out"] = 0,
-},
-["逆风小径 - 卡拉赞"] = {
-["In"] = 0,
-["Out"] = 43096,
-},
-["艾萨拉"] = {
-["In"] = 213791,
-["Out"] = 2713,
-},
-["菲拉斯 - 加德米尔湖"] = {
-["In"] = 43485,
-["Out"] = 0,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 214690,
-["Out"] = 0,
-},
-["安其拉废墟"] = {
-["In"] = 1025362,
-["Out"] = 43,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 67,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 2288004,
-["Out"] = 279965,
-},
-["塔纳利斯 - 落帆海湾"] = {
-["In"] = 401,
-["Out"] = 0,
-},
-["熔火之心"] = {
-["In"] = 336458,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 2675202,
-["Out"] = 171296,
-},
-["灼热峡谷 - 黑石山"] = {
-["In"] = 849,
-["Out"] = 0,
-},
-},
-["TRAIN"] = {
-["辛特兰 - 蛮锤城堡"] = {
-["In"] = 0,
-["Out"] = 80280,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 0,
-["Out"] = 8173,
-},
-["暴风城 - 运河"] = {
-["In"] = 0,
-["Out"] = 549,
-},
-["暴风城 - 光明大教堂"] = {
-["In"] = 0,
-["Out"] = 6480,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 0,
-["Out"] = 41535,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 0,
-["Out"] = 18000,
-},
-["暴风城 - 花园"] = {
-["In"] = 0,
-["Out"] = 167131,
-},
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 23927076,
-["Out"] = 23132950,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 0,
-["Out"] = 630,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 150,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 0,
-["Out"] = 1740,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 30,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 3100630,
-},
-["达纳苏斯"] = {
-["In"] = 0,
-["Out"] = 362140,
-},
-["黑翼之巢"] = {
-["In"] = 52211,
-["Out"] = 0,
-},
-["泰达希尔 - 多兰纳尔"] = {
-["In"] = 0,
-["Out"] = 114052,
 },
 ["塔纳利斯 - 加基森"] = {
+["In"] = 62992,
+["Out"] = 79122,
+},
+["铁炉堡 - 秘法区"] = {
+["In"] = 6250,
+["Out"] = 0,
+},
+["艾萨拉 - 废墟海岸"] = {
 ["In"] = 0,
-["Out"] = 120,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 4484990,
-["Out"] = 840,
-},
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 1685508,
-["Out"] = 532569,
-},
-["月光林地 - 永夜港"] = {
-["In"] = 0,
-["Out"] = 33600,
-},
-["暴风城 - 旧城区"] = {
-["In"] = 30184,
-["Out"] = 267161,
-},
-["安其拉"] = {
-["In"] = 50412,
-["Out"] = 52912,
-},
-["暴风城 - 运河"] = {
-["In"] = 192,
-["Out"] = 3336,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 0,
-["Out"] = 20880,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 76537,
-["Out"] = 308400,
-},
-["暴风城 - 法师区"] = {
-["In"] = 173416,
-["Out"] = 34200,
-},
-["辛特兰 - 蛮锤城堡"] = {
-["In"] = 0,
-["Out"] = 39600,
-},
-["达纳苏斯"] = {
-["In"] = 37230,
-["Out"] = 52200,
-},
-["奥特兰克山谷"] = {
-["In"] = 73353,
-["Out"] = 245303,
-},
-["勇士大厅"] = {
-["In"] = 0,
-["Out"] = 1520540,
-},
-["暴风城 - 光明大教堂"] = {
-["In"] = 1210,
-["Out"] = 0,
-},
-["厄运之槌"] = {
-["In"] = 1875,
-["Out"] = 6400,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 583,
-["Out"] = 3150,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 264,
-["Out"] = 68,
-},
-},
-["QUEST"] = {
-["燃烧平原 - 摩根的岗哨"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 128700,
-["Out"] = 0,
-},
-["达纳苏斯 - 工匠区"] = {
-["In"] = 2340,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["暴风城 - 教堂广场"] = {
-["In"] = 9900,
-["Out"] = 0,
-},
-["暴风城"] = {
-["In"] = 59700,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 无草洞"] = {
-["In"] = 9900,
-["Out"] = 0,
-},
-["达纳苏斯 - 塞纳里奥区"] = {
-["In"] = 270,
-["Out"] = 0,
-},
-["塔纳利斯 - 时光之穴"] = {
-["In"] = 218100,
-["Out"] = 0,
-},
-["铁炉堡 - 图书馆"] = {
-["In"] = 3900,
-["Out"] = 0,
-},
-["菲拉斯 - 萨兰纳尔"] = {
-["In"] = 25200,
-["Out"] = 0,
-},
-["奥特兰克山脉 - 山头营地"] = {
-["In"] = 288000,
-["Out"] = 0,
-},
-["铁炉堡 - 铁炉堡"] = {
-["In"] = 92868,
-["Out"] = 0,
-},
-["暴风城 - 暴风要塞"] = {
-["In"] = 176024,
-["Out"] = 0,
+["Out"] = 36000,
 },
 ["黑石深渊"] = {
-["In"] = 35300,
-["Out"] = 0,
+["In"] = 0,
+["Out"] = 6191,
 },
-["铁炉堡 - 王座厅"] = {
-["In"] = 3900,
-["Out"] = 0,
+["暴风城 - 旧城区"] = {
+["In"] = 0,
+["Out"] = 11016,
 },
 ["千针石林 - 沙漠赛道"] = {
-["In"] = 11700,
+["In"] = 3725,
 ["Out"] = 0,
 },
-["安戈洛环形山"] = {
-["In"] = 13500,
-["Out"] = 0,
+["暴风城 - 运河"] = {
+["In"] = 28140,
+["Out"] = 1600,
 },
-["荆棘谷 - 尤亚姆巴岛"] = {
-["In"] = 381900,
-["Out"] = 0,
-},
-["尘泥沼泽 - 塞拉摩堡垒"] = {
-["In"] = 2340,
-["Out"] = 0,
-},
-["希利苏斯 - 塞纳里奥要塞"] = {
-["In"] = 59700,
-["Out"] = 0,
-},
-["黑石山 - 铸铁之墓"] = {
-["In"] = 1200,
-["Out"] = 0,
-},
-["奥特兰克山谷"] = {
-["In"] = 271500,
-["Out"] = 602,
-},
-["西瘟疫之地 - 凯尔达隆"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["菲拉斯 - 羽月要塞"] = {
-["In"] = 9900,
-["Out"] = 0,
-},
-["西部荒野 - 西部荒野灯塔"] = {
-["In"] = 960,
-["Out"] = 0,
-},
-["安戈洛环形山 - 马绍尔营地"] = {
-["In"] = 2160,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 67,
-["Out"] = 0,
-},
-["安其拉"] = {
-["In"] = 178445,
-["Out"] = 0,
-},
-},
-},
-["PrvMonth"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
+["荆棘谷 - 港务局"] = {
 ["In"] = 0,
-["Out"] = 1134,
+["Out"] = 26000,
 },
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 221800,
+["Out"] = 30932,
 },
-["TRADE"] = {
+["艾尔文森林 - 闪金镇"] = {
+["In"] = 18405,
+["Out"] = 0,
 },
-["OTHER"] = {
-[""] = {
+["铁炉堡 - 大锻炉"] = {
 ["In"] = 0,
-["Out"] = 802937595,
-},
-["希利苏斯"] = {
-["In"] = 0,
-["Out"] = 500000,
+["Out"] = 1038,
 },
 ["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 14000000,
+["In"] = 40085,
+["Out"] = 15066451,
 },
-["暴风城 - 贸易区"] = {
-["In"] = 800000000,
-["Out"] = 1600000,
-},
-["安其拉"] = {
-["In"] = 28055,
-["Out"] = 96,
-},
-["暴风城 - 法师区"] = {
-["In"] = 91557320,
-["Out"] = 93880000,
-},
-},
-["AH"] = {
-},
-["LOOT"] = {
-["安其拉"] = {
-["In"] = 110249,
-["Out"] = 0,
-},
-},
-["MERCH"] = {
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 15000000,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 47700,
-},
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 420,
-},
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-["安其拉"] = {
-["In"] = 14721,
-["Out"] = 0,
-},
-},
-},
-["Session"] = {
-["REPAIRS"] = {
-},
-["TAXI"] = {
-},
-["TRADE"] = {
-},
-["MAIL"] = {
-},
-["OTHER"] = {
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 7032340,
-["Out"] = 1552340,
-},
-},
-["MERCH"] = {
-},
-["LOOT"] = {
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 52340,
-["Out"] = 0,
-},
-},
-["AH"] = {
-},
-["TRAIN"] = {
-},
-["QUEST"] = {
-},
-},
-["Year"] = {
-["REPAIRS"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 22455,
-["Out"] = 836662,
-},
-["暴风城 - 法师区"] = {
-["In"] = 0,
-["Out"] = 77645,
-},
-["纳克萨玛斯"] = {
-["In"] = 0,
-["Out"] = 186042,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 0,
-["Out"] = 28056,
-},
-["荆棘谷 - 尤亚姆巴岛"] = {
-["In"] = 0,
-["Out"] = 250,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 2014,
-},
-["安其拉"] = {
-["In"] = 0,
-["Out"] = 122586,
-},
-},
-["TAXI"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 13194,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 124,
-["Out"] = 0,
-},
-["西瘟疫之地 - 寒风营地"] = {
-["In"] = 0,
-["Out"] = 981,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 284,
-["Out"] = 0,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 567,
-},
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 1852,
-["Out"] = 1789,
-},
-["月光林地"] = {
-["In"] = 0,
-["Out"] = 6183,
-},
-["贫瘠之地 - 棘齿城"] = {
-["In"] = 0,
-["Out"] = 1521,
-},
-},
-["TRADE"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 70000000,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 501,
-["Out"] = 0,
-},
-["暴风城 - 法师区"] = {
-["In"] = 744310000,
-["Out"] = 0,
-},
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 58000000,
-["Out"] = 5940,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 0,
-["Out"] = 60,
-},
-["暴风城 - 法师区"] = {
-["In"] = 18660000,
-["Out"] = 10000030,
-},
-},
-["OTHER"] = {
-[""] = {
-["In"] = 28618479,
-["Out"] = 933129030,
-},
-["暴风城 - 法师区"] = {
-["In"] = 929449222,
-["Out"] = 1721465895,
-},
-["纳克萨玛斯"] = {
-["In"] = 978380,
-["Out"] = 165349704,
-},
-["菲拉斯 - 梦境之树"] = {
-["In"] = 56351,
-["Out"] = 0,
-},
-["冬泉谷 - 冰火温泉"] = {
-["In"] = 1661,
-["Out"] = 1529,
-},
-["厄运之槌"] = {
+["尘泥沼泽 - 狂潮湾"] = {
 ["In"] = 0,
 ["Out"] = 200000,
 },
-["希利苏斯"] = {
+["黑海岸 - 奥伯丁"] = {
+["In"] = 715,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 山头营地"] = {
 ["In"] = 0,
-["Out"] = 1000000,
+["Out"] = 12800,
 },
-["艾萨拉"] = {
-["In"] = 62895705,
-["Out"] = 50280000,
+["奥特兰克山谷"] = {
+["In"] = 4972,
+["Out"] = 478880,
 },
-["荆棘谷 - 藏宝海湾"] = {
+["荆棘谷 - 水手之家旅店"] = {
+["In"] = 522,
+["Out"] = 0,
+},
+["铁炉堡 - 侏儒区"] = {
 ["In"] = 0,
-["Out"] = 14000000,
-},
-["暴风城 - 贸易区"] = {
-["In"] = 900990000,
-["Out"] = 73700000,
-},
-["菲拉斯 - 加德米尔湖"] = {
-["In"] = 76,
-["Out"] = 0,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 80294507,
-["Out"] = 64240000,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 1277,
-["Out"] = 0,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 556,
-["Out"] = 0,
-},
-["黑翼之巢"] = {
-["In"] = 945603,
-["Out"] = 576510,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 7068760,
-["Out"] = 1552340,
-},
-["熔火之心"] = {
-["In"] = 30832,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 126701086,
-["Out"] = 79220229,
-},
-["安其拉"] = {
-["In"] = 20430211,
-["Out"] = 2062561,
+["Out"] = 58592,
 },
 },
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 312821,
-["Out"] = 452902,
-},
-["狮王之傲旅店"] = {
-["In"] = 37,
-["Out"] = 0,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 200,
-["Out"] = 37107,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 300,
-["Out"] = 345600,
-},
-["暴风城 - 法师区"] = {
-["In"] = 459270,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 180,
-["Out"] = 0,
-},
-["艾尔文森林 - 北郡山谷"] = {
-["In"] = 51,
-["Out"] = 0,
-},
-["厄运之槌"] = {
+["TRAIN"] = {
+["暴风城 - 巫师圣殿"] = {
 ["In"] = 0,
-["Out"] = 9600,
-},
-["荆棘谷 - 藏宝海湾"] = {
-["In"] = 0,
-["Out"] = 15000000,
-},
-},
-["LOOT"] = {
-["西瘟疫之地 - 安多哈尔废墟"] = {
-["In"] = 4816,
-["Out"] = 0,
-},
-["菲拉斯 - 梦境之树"] = {
-["In"] = 56427,
-["Out"] = 0,
-},
-["冬泉谷 - 冰火温泉"] = {
-["In"] = 6992,
-["Out"] = 20,
-},
-["艾萨拉"] = {
-["In"] = 45705,
-["Out"] = 45588,
-},
-["艾尔文森林 - 北郡农场"] = {
-["In"] = 1,
-["Out"] = 0,
-},
-["阿拉希盆地"] = {
-["In"] = 1678,
-["Out"] = 0,
-},
-["纳克萨玛斯"] = {
-["In"] = 2793831,
-["Out"] = 122302,
-},
-["灰谷 - 大树荫"] = {
-["In"] = 108497,
-["Out"] = 0,
-},
-["菲拉斯 - 加德米尔湖"] = {
-["In"] = 118,
-["Out"] = 0,
-},
-["冬泉谷 - 木喉岗哨"] = {
-["In"] = 1783,
-["Out"] = 0,
-},
-["黑石山 - 黑石塔"] = {
-["In"] = 1401,
-["Out"] = 0,
-},
-["东瘟疫之地 - 病木林"] = {
-["In"] = 1921,
-["Out"] = 74,
-},
-["黑翼之巢"] = {
-["In"] = 2381676,
-["Out"] = 139420,
-},
-["诅咒之地 - 腐烂之痕"] = {
-["In"] = 88760,
-["Out"] = 0,
-},
-["熔火之心"] = {
-["In"] = 135945,
-["Out"] = 0,
-},
-["祖尔格拉布"] = {
-["In"] = 376765,
-["Out"] = 37016,
-},
-["安其拉"] = {
-["In"] = 1447439,
-["Out"] = 2000,
+["Out"] = 1104052,
 },
 },
 ["AH"] = {
 ["暴风城 - 贸易区"] = {
+["In"] = 36928083,
+["Out"] = 349983974,
+},
+["铁炉堡 - 铁炉堡"] = {
 ["In"] = 0,
-["Out"] = 3292652,
+["Out"] = 42696225,
 },
 },
-["TRAIN"] = {
-["暴风城 - 花园"] = {
+["LOOT"] = {
+["暴风城 - 暴风要塞"] = {
+["In"] = 823,
+["Out"] = 193,
+},
+["奥达曼 - 封印大厅"] = {
+["In"] = 7803,
+["Out"] = 0,
+},
+["荆棘谷 - 南野人海岸"] = {
+["In"] = 382,
+["Out"] = 0,
+},
+["暴风城监狱"] = {
+["In"] = 94896,
+["Out"] = 0,
+},
+["诅咒之地 - 巨槌要塞"] = {
+["In"] = 3048,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 255326,
+["Out"] = 1452,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 538485,
+["Out"] = 0,
+},
+["阿拉希高地 - 激流堡"] = {
+["In"] = 9308,
+["Out"] = 0,
+},
+["血色修道院"] = {
+["In"] = 21235,
+["Out"] = 0,
+},
+["菲拉斯 - 萨尔多岛"] = {
+["In"] = 3838,
+["Out"] = 0,
+},
+["西部荒野"] = {
+["In"] = 77,
+["Out"] = 0,
+},
+["费伍德森林 - 血毒瀑布"] = {
 ["In"] = 0,
-["Out"] = 352250,
+["Out"] = 62,
 },
+["冬泉谷 - 麦索瑞尔"] = {
+["In"] = 28555,
+["Out"] = 649,
 },
-["QUEST"] = {
-["狮王之傲旅店"] = {
-["In"] = 60,
+["希利苏斯 - 格拉卡隆之骨"] = {
+["In"] = 192,
 ["Out"] = 0,
 },
-["暴风城 - 旧城区"] = {
-["In"] = 7800,
+["黑海岸 - 主宰之剑"] = {
+["In"] = 3030,
 ["Out"] = 0,
 },
-["艾尔文森林 - 北郡修道院"] = {
-["In"] = 815,
-["Out"] = 0,
-},
-["阿拉希高地 - 避难谷地"] = {
-["In"] = 189600,
-["Out"] = 0,
-},
-["荆棘谷 - 尤亚姆巴岛"] = {
-["In"] = 39600,
-["Out"] = 0,
-},
-["东瘟疫之地 - 圣光之愿礼拜堂"] = {
-["In"] = 59700,
-["Out"] = 0,
-},
-["艾尔文森林 - 北郡山谷"] = {
-["In"] = 720,
-["Out"] = 0,
-},
-["艾尔文森林 - 闪金镇"] = {
-["In"] = 120,
+["熔火之心"] = {
+["In"] = 58626,
 ["Out"] = 0,
 },
 ["安其拉"] = {
-["In"] = 94129,
+["In"] = 1436368,
+["Out"] = 0,
+},
+["艾尔文森林 - 林边空地"] = {
+["In"] = 21,
+["Out"] = 0,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 663392,
+["Out"] = 60380,
+},
+["菲拉斯 - 索兰萨尔废墟"] = {
+["In"] = 5714,
+["Out"] = 0,
+},
+["费伍德森林 - 铁木森林"] = {
+["In"] = 905,
+["Out"] = 0,
+},
+["西部荒野 - 月溪镇"] = {
+["In"] = 10,
+["Out"] = 0,
+},
+["通灵学院"] = {
+["In"] = 127182,
+["Out"] = 605,
+},
+["希尔斯布莱德丘陵 - 东部海滩"] = {
+["In"] = 58,
+["Out"] = 0,
+},
+["诅咒之地 - 盘蛇谷"] = {
+["In"] = 4718,
+["Out"] = 0,
+},
+["阿拉希高地 - 水下暗礁"] = {
+["In"] = 61,
+["Out"] = 0,
+},
+["奥达曼 - 挖掘中心"] = {
+["In"] = 6471,
+["Out"] = 0,
+},
+["希利苏斯 - 暮光岗哨"] = {
+["In"] = 2103,
+["Out"] = 0,
+},
+["奥妮克希亚的巢穴"] = {
+["In"] = 608965,
+["Out"] = 0,
+},
+["黑手大厅"] = {
+["In"] = 98922,
+["Out"] = 527,
+},
+["奥达曼"] = {
+["In"] = 28374,
+["Out"] = 6,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 46751,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 10364,
+["Out"] = 161,
+},
+["塔纳利斯 - 天涯海滩"] = {
+["In"] = 5034,
+["Out"] = 0,
+},
+["费伍德森林 - 碎痕谷"] = {
+["In"] = 150,
+["Out"] = 0,
+},
+["艾萨拉"] = {
+["In"] = 427526,
+["Out"] = 55431,
+},
+["安戈洛环形山"] = {
+["In"] = 5142,
+["Out"] = 0,
+},
+["灼热峡谷 - 熔渣之池"] = {
+["In"] = 4380,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 无草洞"] = {
+["In"] = 40,
+["Out"] = 0,
+},
+["荆棘谷 - 祖尔格拉布"] = {
+["In"] = 836,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 119164,
+["Out"] = 0,
+},
+["斯坦索姆"] = {
+["In"] = 43705,
+["Out"] = 331,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 3576,
+["Out"] = 0,
+},
+["黑翼之巢"] = {
+["In"] = 684724,
+["Out"] = 47613,
+},
+["塔纳利斯 - 落帆海湾"] = {
+["In"] = 403,
+["Out"] = 0,
+},
+["麦索瑞尔"] = {
+["In"] = 740,
+["Out"] = 0,
+},
+["艾萨拉 - 赫塔拉的巢穴"] = {
+["In"] = 1324,
+["Out"] = 0,
+},
+["黑石山 - 石匠区"] = {
+["In"] = 1072,
+["Out"] = 0,
+},
+["战歌峡谷"] = {
+["In"] = 516,
+["Out"] = 0,
+},
+["血色修道院 - 大门廊"] = {
+["In"] = 144,
+["Out"] = 0,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 93953,
+["Out"] = 187,
+},
+["祖尔法拉克"] = {
+["In"] = 11594,
+["Out"] = 0,
+},
+["艾尔文森林 - 明镜湖"] = {
+["In"] = 5,
+["Out"] = 0,
+},
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 2951,
+["Out"] = 0,
+},
+["湿地 - 龙喉大门"] = {
+["In"] = 10762,
+["Out"] = 0,
+},
+["达纳苏斯"] = {
+["In"] = 155,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 6108519,
+["Out"] = 146924,
+},
+["荒芜之地 - 造物者遗迹"] = {
+["In"] = 7181,
+["Out"] = 0,
+},
+["达纳苏斯 - 塞纳里奥区"] = {
+["In"] = 935,
+["Out"] = 0,
+},
+["冬泉谷"] = {
+["In"] = 17729,
+["Out"] = 0,
+},
+["荆棘谷 - 祖丹亚废墟"] = {
+["In"] = 775,
+["Out"] = 0,
+},
+["尘泥沼泽 - 巨龙沼泽"] = {
+["In"] = 332,
+["Out"] = 0,
+},
+["安戈洛环形山 - 沼泽地"] = {
+["In"] = 3171,
+["Out"] = 0,
+},
+["安其拉废墟"] = {
+["In"] = 639649,
+["Out"] = 1679,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 307948,
+["Out"] = 0,
+},
+["黑石深渊"] = {
+["In"] = 11994,
+["Out"] = 0,
+},
+["尘泥沼泽 - 恐惧海岸"] = {
+["In"] = 1764,
+["Out"] = 0,
+},
+["逆风小径 - 卡拉赞"] = {
+["In"] = 574,
+["Out"] = 37510,
+},
+["冬泉谷 - 寒水村"] = {
+["In"] = 9047,
+["Out"] = 0,
+},
+["阿拉希高地"] = {
+["In"] = 248,
+["Out"] = 0,
+},
+["费伍德森林 - 魔爪村"] = {
+["In"] = 35682,
+["Out"] = 0,
+},
+["诅咒之地"] = {
+["In"] = 159,
+["Out"] = 0,
+},
+["西瘟疫之地 - 安多哈尔废墟"] = {
+["In"] = 1700,
+["Out"] = 0,
+},
+["塔纳利斯 - 祖尔法拉克"] = {
+["In"] = 251,
+["Out"] = 0,
+},
+["费伍德森林"] = {
+["In"] = 386,
+["Out"] = 0,
+},
+["死亡矿井"] = {
+["In"] = 8905,
+["Out"] = 13,
+},
+["冬泉谷 - 冰火温泉"] = {
+["In"] = 41784,
+["Out"] = 575,
+},
+["艾萨拉 - 南山海滩"] = {
+["In"] = 726,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 1014674,
+["Out"] = 169549,
+},
+["奥达曼 - 一号挖掘场"] = {
+["In"] = 602,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+["铁炉堡 - 王座厅"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["诅咒之地"] = {
+["In"] = 50700,
+["Out"] = 0,
+},
+["银松森林 - 格雷迈恩之墙"] = {
+["In"] = 39600,
+["Out"] = 0,
+},
+["暴风城"] = {
+["In"] = 59700,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 无草洞"] = {
+["In"] = 9900,
+["Out"] = 0,
+},
+["铁炉堡 - 图书馆"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 478,
+["Out"] = 426,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 92868,
+["Out"] = 50060,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 2300,
+["Out"] = 0,
+},
+["月光林地 - 雷姆洛斯神殿"] = {
+["In"] = 59700,
+["Out"] = 0,
+},
+["希利苏斯 - 塞纳里奥要塞"] = {
+["In"] = 43500,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 39929,
+["Out"] = 316,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 900,
+["Out"] = 0,
+},
+["塔纳利斯 - 热砂港"] = {
+["In"] = 43500,
+["Out"] = 0,
+},
+["暴风城 - 暴风要塞"] = {
+["In"] = 59700,
+["Out"] = 0,
+},
+["铁炉堡 - 武器大厅"] = {
+["In"] = 125351,
+["Out"] = 0,
+},
+["暴风城 - 运河"] = {
+["In"] = 38500,
+["Out"] = 0,
+},
+["安其拉"] = {
+["In"] = 20197,
 ["Out"] = 0,
 },
 },
 },
 },
 },
-["青铜龙守护者"] = {
+["绿龙守护者"] = {
 ["data"] = {
 ["PrvWeek"] = {
 ["REPAIRS"] = {
@@ -19898,15 +7598,19 @@ Accountant_ClassicZoneDB = {
 },
 ["OTHER"] = {
 },
-["AH"] = {
-},
-["LOOT"] = {
+["TRAIN"] = {
 },
 ["MERCH"] = {
 },
-["MAIL"] = {
+["AH"] = {
 },
-["TRAIN"] = {
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 19000030,
+},
+},
+["LOOT"] = {
 },
 ["QUEST"] = {
 },
@@ -19986,27 +7690,35 @@ Accountant_ClassicZoneDB = {
 },
 ["MAIL"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 12903054,
-["Out"] = 243003030,
+["In"] = 26466627,
+["Out"] = 157900150,
 },
 },
 ["OTHER"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 474110000,
-["Out"] = 310361560,
+["In"] = 0,
+["Out"] = 8012800,
+},
+[""] = {
+["In"] = 0,
+["Out"] = 550210,
 },
 },
 ["MERCH"] = {
-},
-["LOOT"] = {
-},
-["AH"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 70159376,
-["Out"] = 4359083,
+["In"] = 94,
+["Out"] = 0,
 },
 },
 ["TRAIN"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 141233230,
+["Out"] = 895534,
+},
+},
+["LOOT"] = {
 },
 ["QUEST"] = {
 },
@@ -20020,24 +7732,32 @@ Accountant_ClassicZoneDB = {
 },
 ["MAIL"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 1380144,
-["Out"] = 1590,
+["In"] = 24178268,
+["Out"] = 157900150,
 },
 },
 ["OTHER"] = {
+[""] = {
+["In"] = 0,
+["Out"] = 550000,
+},
 ["暴风城 - 贸易区"] = {
 ["In"] = 0,
-["Out"] = 310360000,
+["Out"] = 8012716,
 },
 },
 ["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 47,
+["Out"] = 0,
+},
 },
 ["TRAIN"] = {
 },
 ["AH"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 22571914,
-["Out"] = 41392,
+["In"] = 128556392,
+["Out"] = 469408,
 },
 },
 ["LOOT"] = {
@@ -20054,31 +7774,31 @@ Accountant_ClassicZoneDB = {
 },
 ["OTHER"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 0,
-["Out"] = 120000,
-},
-},
-["TRAIN"] = {
-},
-["MERCH"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 9490,
-["Out"] = 0,
-},
-},
-["LOOT"] = {
-},
-["MAIL"] = {
-["暴风城 - 贸易区"] = {
-["In"] = 14525908,
-["Out"] = 14904440,
+["In"] = 150120000,
+["Out"] = 159000000,
 },
 },
 ["AH"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 3426259,
-["Out"] = 2393156,
+["In"] = 10605826,
+["Out"] = 1471320,
 },
+},
+["LOOT"] = {
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 4700,
+["Out"] = 0,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 366982,
+["Out"] = 1620,
+},
+},
+["TRAIN"] = {
 },
 ["QUEST"] = {
 },
@@ -20092,15 +7812,15 @@ Accountant_ClassicZoneDB = {
 },
 ["OTHER"] = {
 },
-["AH"] = {
-},
-["LOOT"] = {
+["TRAIN"] = {
 },
 ["MERCH"] = {
 },
+["AH"] = {
+},
 ["MAIL"] = {
 },
-["TRAIN"] = {
+["LOOT"] = {
 },
 ["QUEST"] = {
 },
@@ -20113,12 +7833,12 @@ Accountant_ClassicZoneDB = {
 ["TRADE"] = {
 },
 ["MAIL"] = {
-},
-["OTHER"] = {
 ["暴风城 - 贸易区"] = {
 ["In"] = 0,
-["Out"] = 360000,
+["Out"] = 19000030,
 },
+},
+["OTHER"] = {
 },
 ["MERCH"] = {
 },
@@ -20140,19 +7860,23 @@ Accountant_ClassicZoneDB = {
 },
 ["MAIL"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 27428962,
-["Out"] = 257907470,
+["In"] = 26833609,
+["Out"] = 157901770,
 },
 },
 ["OTHER"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 474110000,
-["Out"] = 310481560,
+["In"] = 150120000,
+["Out"] = 167012800,
+},
+[""] = {
+["In"] = 0,
+["Out"] = 550210,
 },
 },
 ["MERCH"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 9490,
+["In"] = 4794,
 ["Out"] = 0,
 },
 },
@@ -20160,8 +7884,8 @@ Accountant_ClassicZoneDB = {
 },
 ["AH"] = {
 ["暴风城 - 贸易区"] = {
-["In"] = 73585635,
-["Out"] = 6752239,
+["In"] = 151839056,
+["Out"] = 2366854,
 },
 },
 ["LOOT"] = {
@@ -20171,9 +7895,463 @@ Accountant_ClassicZoneDB = {
 },
 },
 },
-["打撒是的哇"] = {
+["黑龙守护者"] = {
 ["data"] = {
 ["PrvWeek"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 269560,
+["Out"] = 10192,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 8534,
+["Out"] = 25000300,
+},
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvDay"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 5188,
+},
+},
+["LOOT"] = {
+},
+["TRAIN"] = {
+},
+["MAIL"] = {
+},
+["MERCH"] = {
+},
+["QUEST"] = {
+},
+},
+["Total"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 45413753,
+["Out"] = 105798900,
+},
+},
+["OTHER"] = {
+[""] = {
+["In"] = 28104062,
+["Out"] = 30020316,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 900000000,
+["Out"] = 1078100000,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 1018091,
+["Out"] = 200000,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 100,
+},
+},
+["LOOT"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 238068292,
+["Out"] = 26934672,
+},
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Week"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 75029,
+["Out"] = 390,
+},
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 3121,
+["Out"] = 0,
+},
+},
+["TRAIN"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 723041,
+["Out"] = 5188,
+},
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["Day"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Month"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 16657135,
+["Out"] = 54551560,
+},
+},
+["OTHER"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 17660000,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 53221,
+["Out"] = 0,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 100,
+},
+},
+["TRAIN"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 55643684,
+["Out"] = 407363,
+},
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvYear"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+[""] = {
+["In"] = 28104062,
+["Out"] = 30020076,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 900000000,
+["Out"] = 1060440000,
+},
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 455123,
+["Out"] = 100000,
+},
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 177048691,
+["Out"] = 25868475,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 27021055,
+["Out"] = 46023410,
+},
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvMonth"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+[""] = {
+["In"] = 0,
+["Out"] = 30,
+},
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 1639652,
+["Out"] = 0,
+},
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["Session"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 5188,
+},
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Year"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 18392698,
+["Out"] = 59775490,
+},
+},
+["OTHER"] = {
+[""] = {
+["In"] = 0,
+["Out"] = 240,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 17660000,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 562968,
+["Out"] = 100000,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 100,
+},
+},
+["TRAIN"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 61019601,
+["Out"] = 1066197,
+},
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+},
+},
+["德加和尚"] = {
+["data"] = {
+["PrvWeek"] = {
+["REPAIRS"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 53838,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 5238,
+},
+},
+["TAXI"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 1712,
+},
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+["灰谷 - 大树荫"] = {
+["In"] = 64363,
+["Out"] = 58852,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 11570016,
+["Out"] = 64353,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 58860,
+["Out"] = 62866,
+},
+["暴风城 - 法师区"] = {
+["In"] = 3400000,
+["Out"] = 0,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 62832,
+["Out"] = 0,
+},
+[""] = {
+["In"] = 0,
+["Out"] = 168928,
+},
+["安其拉"] = {
+["In"] = 59241,
+["Out"] = 0,
+},
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 4525,
+["Out"] = 36800,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 64800,
+},
+},
+["AH"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 15000330,
+},
+["暴风城 - 法师区"] = {
+["In"] = 2000000,
+["Out"] = 30,
+},
+},
+["LOOT"] = {
+["灰谷 - 大树荫"] = {
+["In"] = 64830,
+["Out"] = 0,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 51590,
+["Out"] = 0,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 59102,
+["Out"] = 0,
+},
+["安其拉废墟"] = {
+["In"] = 114287,
+["Out"] = 0,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 62832,
+["Out"] = 0,
+},
+["安其拉"] = {
+["In"] = 123090,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+["暴风城 - 运河"] = {
+["In"] = 900,
+["Out"] = 0,
+},
+},
+},
+["PrvDay"] = {
 ["REPAIRS"] = {
 },
 ["TAXI"] = {
@@ -20186,11 +8364,2145 @@ Accountant_ClassicZoneDB = {
 },
 ["LOOT"] = {
 },
-["MERCH"] = {
+["TRAIN"] = {
 },
 ["MAIL"] = {
 },
+["MERCH"] = {
+},
+["QUEST"] = {
+},
+},
+["Year"] = {
+["REPAIRS"] = {
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 327832,
+},
+["灼热峡谷 - 瑟银哨塔"] = {
+["In"] = 0,
+["Out"] = 197345,
+},
+["奥特兰克山谷"] = {
+["In"] = 0,
+["Out"] = 19428,
+},
+["安其拉"] = {
+["In"] = 0,
+["Out"] = 157908,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 25345,
+["Out"] = 450183,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 6980,
+},
+},
+["TAXI"] = {
+["贫瘠之地 - 棘齿城"] = {
+["In"] = 0,
+["Out"] = 1521,
+},
+["尘泥沼泽 - 塞拉摩岛"] = {
+["In"] = 0,
+["Out"] = 954,
+},
+["费伍德森林 - 刺枝林地"] = {
+["In"] = 0,
+["Out"] = 584,
+},
+["冬泉谷 - 永望镇"] = {
+["In"] = 0,
+["Out"] = 2920,
+},
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 0,
+["Out"] = 928,
+},
+["湿地 - 米奈希尔港"] = {
+["In"] = 0,
+["Out"] = 304,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 8168,
+},
+},
+["TRADE"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 70000000,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 666696226,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 24555430,
+},
+["冬泉谷 - 永望镇"] = {
+["In"] = 0,
+["Out"] = 300,
+},
+["暴风城 - 花园"] = {
+["In"] = 0,
+["Out"] = 30,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 15000000,
+["Out"] = 0,
+},
+["暴风城 - 法师区"] = {
+["In"] = 2000000,
+["Out"] = 60,
+},
+},
+["OTHER"] = {
+[""] = {
+["In"] = 16791218,
+["Out"] = 6222594,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 205687,
+["Out"] = 102308,
+},
+["暴风城 - 法师区"] = {
+["In"] = 184630000,
+["Out"] = 1201012060,
+},
+["纳克萨玛斯"] = {
+["In"] = 1167785,
+["Out"] = 565641,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 22328793,
+["Out"] = 8705930,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 1200000,
+},
+["通灵学院"] = {
+["In"] = 3645,
+["Out"] = 1393,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 9786472,
+["Out"] = 400171390,
+},
+["斯坦索姆"] = {
+["In"] = 451,
+["Out"] = 141,
+},
+["暴风城 - 运河"] = {
+["In"] = 20000000,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 143359,
+["Out"] = 108281,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 367,
+["Out"] = 0,
+},
+["黑翼之巢"] = {
+["In"] = 17815934,
+["Out"] = 44194483,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 2122120000,
+["Out"] = 6800000,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 16520074,
+["Out"] = 12390000,
+},
+["祖尔格拉布"] = {
+["In"] = 32955,
+["Out"] = 0,
+},
+["安其拉"] = {
+["In"] = 165909,
+["Out"] = 320,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 1919594,
+["Out"] = 215917,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 15000000,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 64800,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 123400,
+},
+["纳克萨玛斯"] = {
+["In"] = 196,
+["Out"] = 0,
+},
+["灼热峡谷 - 瑟银哨塔"] = {
+["In"] = 360,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 0,
+["Out"] = 286720,
+},
+["冬泉谷 - 永望镇"] = {
+["In"] = 0,
+["Out"] = 240000,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 17600,
+},
+["暴风城 - 花园"] = {
+["In"] = 25,
+["Out"] = 500,
+},
+},
 ["TRAIN"] = {
+["暴风城 - 光明大教堂"] = {
+["In"] = 0,
+["Out"] = 1000000,
+},
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 23545349,
+},
+},
+["LOOT"] = {
+["暮色森林 - 黎明森林"] = {
+["In"] = 331077,
+["Out"] = 0,
+},
+["斯坦索姆"] = {
+["In"] = 4317,
+["Out"] = 0,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 206400,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 144218,
+["Out"] = 0,
+},
+["通灵学院"] = {
+["In"] = 33482,
+["Out"] = 638,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 139045,
+["Out"] = 0,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 108404,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 2490929,
+["Out"] = 43176,
+},
+["安其拉废墟"] = {
+["In"] = 114287,
+["Out"] = 0,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 367,
+["Out"] = 0,
+},
+["黑翼之巢"] = {
+["In"] = 335703,
+["Out"] = 81021,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 168513,
+["Out"] = 0,
+},
+["熔火之心"] = {
+["In"] = 70994,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 71085,
+["Out"] = 32763,
+},
+["安其拉"] = {
+["In"] = 456118,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+["暴风城 - 运河"] = {
+["In"] = 900,
+["Out"] = 0,
+},
+["月光林地 - 永夜港"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["艾萨拉 - 风暴海湾"] = {
+["In"] = 119400,
+["Out"] = 0,
+},
+},
+},
+["Week"] = {
+["REPAIRS"] = {
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 141636,
+},
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+["纳克萨玛斯"] = {
+["In"] = 117266,
+["Out"] = 0,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 367,
+["Out"] = 0,
+},
+[""] = {
+["In"] = 170887,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+},
+["TRAIN"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+["东瘟疫之地 - 病木林"] = {
+["In"] = 367,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 414037,
+["Out"] = 42911,
+},
+},
+["QUEST"] = {
+},
+},
+["Day"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Month"] = {
+["REPAIRS"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 106440,
+},
+["灼热峡谷 - 瑟银哨塔"] = {
+["In"] = 0,
+["Out"] = 197345,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 141636,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 5238,
+},
+},
+["TAXI"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 1712,
+},
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 19000990,
+},
+["暴风城 - 法师区"] = {
+["In"] = 2000000,
+["Out"] = 30,
+},
+},
+["OTHER"] = {
+[""] = {
+["In"] = 4728841,
+["Out"] = 168928,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 58860,
+["Out"] = 62866,
+},
+["暴风城 - 法师区"] = {
+["In"] = 3400000,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 64363,
+["Out"] = 58852,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 11570016,
+["Out"] = 64353,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 367,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 117266,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 32955,
+["Out"] = 0,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 62832,
+["Out"] = 0,
+},
+["通灵学院"] = {
+["In"] = 3645,
+["Out"] = 1393,
+},
+["安其拉"] = {
+["In"] = 59241,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 134260,
+["Out"] = 36800,
+},
+["灼热峡谷 - 瑟银哨塔"] = {
+["In"] = 360,
+["Out"] = 0,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 64800,
+},
+["冬泉谷 - 永望镇"] = {
+["In"] = 0,
+["Out"] = 80000,
+},
+},
+["TRAIN"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+["暮色森林 - 黎明森林"] = {
+["In"] = 62832,
+["Out"] = 0,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 59102,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 64830,
+["Out"] = 0,
+},
+["安其拉废墟"] = {
+["In"] = 114287,
+["Out"] = 0,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 367,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 414037,
+["Out"] = 42911,
+},
+["通灵学院"] = {
+["In"] = 33482,
+["Out"] = 638,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 51590,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 71085,
+["Out"] = 32763,
+},
+["安其拉"] = {
+["In"] = 123090,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+["暴风城 - 运河"] = {
+["In"] = 900,
+["Out"] = 0,
+},
+},
+},
+["PrvYear"] = {
+["REPAIRS"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 434,
+["Out"] = 1847369,
+},
+["艾尔文森林 - 阿祖拉之塔"] = {
+["In"] = 0,
+["Out"] = 3622,
+},
+["暴风城 - 旧城区"] = {
+["In"] = 0,
+["Out"] = 23209,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 0,
+["Out"] = 21234,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 24258,
+},
+["铁炉堡 - 军事区"] = {
+["In"] = 0,
+["Out"] = 55451,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 56068,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 44871,
+},
+["安其拉"] = {
+["In"] = 0,
+["Out"] = 136169,
+},
+["奥特兰克山谷"] = {
+["In"] = 0,
+["Out"] = 116589,
+},
+["勇士大厅"] = {
+["In"] = 0,
+["Out"] = 125691,
+},
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 0,
+["Out"] = 59725,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 43722,
+},
+["湖畔镇旅店"] = {
+["In"] = 0,
+["Out"] = 24481,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 479,
+},
+},
+["TAXI"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 66822,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 131837,
+["Out"] = 211,
+},
+["希尔斯布莱德丘陵 - 南海镇"] = {
+["In"] = 0,
+["Out"] = 424,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 38328,
+["Out"] = 18,
+},
+["泰达希尔 - 鲁瑟兰村"] = {
+["In"] = 0,
+["Out"] = 137404,
+},
+["冬泉谷 - 永望镇"] = {
+["In"] = 0,
+["Out"] = 6398,
+},
+["赤脊山"] = {
+["In"] = 0,
+["Out"] = 1192,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 109246,
+["Out"] = 0,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 1512,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 138,
+["Out"] = 82,
+},
+["菲拉斯 - 加德米尔湖"] = {
+["In"] = 106,
+["Out"] = 48,
+},
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 42849,
+},
+["暮色森林 - 夜色镇"] = {
+["In"] = 0,
+["Out"] = 168,
+},
+["西部荒野 - 哨兵岭"] = {
+["In"] = 0,
+["Out"] = 168,
+},
+["尘泥沼泽 - 塞拉摩岛"] = {
+["In"] = 0,
+["Out"] = 4896,
+},
+["厄运之槌 - 平民区废墟"] = {
+["In"] = 982,
+["Out"] = 0,
+},
+["菲拉斯 - 萨兰纳尔"] = {
+["In"] = 0,
+["Out"] = 504,
+},
+["艾萨拉 - 塔伦迪斯营地"] = {
+["In"] = 0,
+["Out"] = 1440,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 328,
+["Out"] = 0,
+},
+},
+["TRADE"] = {
+["暴风城 - 暴风要塞"] = {
+["In"] = 0,
+["Out"] = 199,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 0,
+["Out"] = 37897,
+},
+["黑手大厅"] = {
+["In"] = 0,
+["Out"] = 1800412,
+},
+["安其拉废墟"] = {
+["In"] = 1000000,
+["Out"] = 0,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 4000000,
+},
+},
+["OTHER"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 4643069662,
+["Out"] = 4027510554,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 10181971,
+["Out"] = 146613,
+},
+["奥妮克希亚的巢穴"] = {
+["In"] = 103489,
+["Out"] = 83,
+},
+[""] = {
+["In"] = 1882334,
+["Out"] = 1447426,
+},
+["黑手大厅"] = {
+["In"] = 2356,
+["Out"] = 783,
+},
+["奥特兰克山谷"] = {
+["In"] = 83808,
+["Out"] = 77079,
+},
+["暴风城 - 法师区"] = {
+["In"] = 209317450,
+["Out"] = 1160292960,
+},
+["纳克萨玛斯"] = {
+["In"] = 1129257,
+["Out"] = 75558387,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 6369934,
+["Out"] = 120488,
+},
+["灰谷 - 林歌神殿"] = {
+["In"] = 50172,
+["Out"] = 0,
+},
+["安其拉废墟"] = {
+["In"] = 35860000,
+["Out"] = 31140000,
+},
+["暴风城 - 光明大教堂"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["莫高雷 - 血蹄村"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["希利苏斯 - 甲虫之墙"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["赤脊山"] = {
+["In"] = 36,
+["Out"] = 13,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 148266,
+["Out"] = 30055068,
+},
+["安其拉之门"] = {
+["In"] = 0,
+["Out"] = 3000000,
+},
+["艾萨拉"] = {
+["In"] = 5533046,
+["Out"] = 4395264,
+},
+["暴风城 - 暴风要塞"] = {
+["In"] = 0,
+["Out"] = 19,
+},
+["暴风城 - 运河"] = {
+["In"] = 200000000,
+["Out"] = 0,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 88167566,
+["Out"] = 54557,
+},
+["逆风小径 - 罪恶谷"] = {
+["In"] = 77,
+["Out"] = 0,
+},
+["菲拉斯 - 加德米尔湖"] = {
+["In"] = 117,
+["Out"] = 4800000,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 315573,
+["Out"] = 1305372,
+},
+["黑石山 - 黑石塔"] = {
+["In"] = 100000000,
+["Out"] = 1079307,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 33,
+["Out"] = 0,
+},
+["黑翼之巢"] = {
+["In"] = 3991270,
+["Out"] = 7371870,
+},
+["厄运之槌"] = {
+["In"] = 654,
+["Out"] = 1500000,
+},
+["熔火之心"] = {
+["In"] = 10224981,
+["Out"] = 5304900,
+},
+["祖尔格拉布"] = {
+["In"] = 21505259,
+["Out"] = 37851294,
+},
+["安其拉"] = {
+["In"] = 3842832,
+["Out"] = 33041598,
+},
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 297212,
+["Out"] = 18482898,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 416936,
+["Out"] = 140,
+},
+},
+["LOOT"] = {
+["诅咒之地 - 风暴祭坛"] = {
+["In"] = 1198,
+["Out"] = 0,
+},
+["诅咒之地 - 黑暗之门"] = {
+["In"] = 5334,
+["Out"] = 0,
+},
+["黑手大厅"] = {
+["In"] = 9122,
+["Out"] = 306,
+},
+["暴风城监狱"] = {
+["In"] = 1234,
+["Out"] = 0,
+},
+["诅咒之地 - 巨槌要塞"] = {
+["In"] = 3097,
+["Out"] = 0,
+},
+["灰谷 - 林歌神殿"] = {
+["In"] = 50188,
+["Out"] = 0,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 206101,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 1097,
+["Out"] = 0,
+},
+["赤脊山 - 赤脊峡谷"] = {
+["In"] = 983,
+["Out"] = 0,
+},
+["艾萨拉"] = {
+["In"] = 127029,
+["Out"] = 0,
+},
+["湖畔镇旅店"] = {
+["In"] = 4159,
+["Out"] = 0,
+},
+["赤脊山 - 石堡瀑布"] = {
+["In"] = 1528,
+["Out"] = 0,
+},
+["菲拉斯 - 加德米尔湖"] = {
+["In"] = 281,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 386463,
+["Out"] = 0,
+},
+["赤脊山 - 伊尔加拉之塔"] = {
+["In"] = 337,
+["Out"] = 0,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 361,
+["Out"] = 0,
+},
+["黑翼之巢"] = {
+["In"] = 1862755,
+["Out"] = 255040,
+},
+["厄运之槌 - 平民区废墟"] = {
+["In"] = 982,
+["Out"] = 0,
+},
+["荆棘谷 - 祖尔格拉布"] = {
+["In"] = 721,
+["Out"] = 0,
+},
+["安其拉"] = {
+["In"] = 1786176,
+["Out"] = 826,
+},
+["泰达希尔 - 幽影谷"] = {
+["In"] = 40,
+["Out"] = 0,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 380692,
+["Out"] = 0,
+},
+["诅咒之地"] = {
+["In"] = 2826,
+["Out"] = 0,
+},
+["艾尔文森林 - 明镜湖"] = {
+["In"] = 10,
+["Out"] = 0,
+},
+["赤脊山 - 加拉德尔山谷"] = {
+["In"] = 739,
+["Out"] = 0,
+},
+["赤脊山 - 撕裂者之石"] = {
+["In"] = 29,
+["Out"] = 0,
+},
+["赤脊山 - 湖边大道"] = {
+["In"] = 1304,
+["Out"] = 0,
+},
+["逆风小径 - 罪恶谷"] = {
+["In"] = 77,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 无草洞"] = {
+["In"] = 67,
+["Out"] = 0,
+},
+["赤脊山 - 三角路口"] = {
+["In"] = 353,
+["Out"] = 0,
+},
+["冬泉谷 - 冰火温泉"] = {
+["In"] = 2388,
+["Out"] = 0,
+},
+["费伍德森林 - 铁木森林"] = {
+["In"] = 1604,
+["Out"] = 0,
+},
+["诅咒之地 - 巨槌岗哨"] = {
+["In"] = 2331,
+["Out"] = 0,
+},
+["赤脊山 - 止水湖"] = {
+["In"] = 1081,
+["Out"] = 0,
+},
+["赤脊山"] = {
+["In"] = 409,
+["Out"] = 0,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 437861,
+["Out"] = 0,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 478640,
+["Out"] = 0,
+},
+["赤脊山 - 石堡高塔"] = {
+["In"] = 585,
+["Out"] = 0,
+},
+["熔火之心"] = {
+["In"] = 353430,
+["Out"] = 0,
+},
+["赤脊山 - 石堡"] = {
+["In"] = 1781,
+["Out"] = 0,
+},
+["诅咒之地 - 污染者高地"] = {
+["In"] = 2113,
+["Out"] = 0,
+},
+["费伍德森林 - 魔爪村"] = {
+["In"] = 2317,
+["Out"] = 0,
+},
+["诅咒之地 - 盘蛇谷"] = {
+["In"] = 7492,
+["Out"] = 0,
+},
+["赤脊山 - 石堡要塞"] = {
+["In"] = 1591,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 4571756,
+["Out"] = 73236,
+},
+["奥特兰克山谷"] = {
+["In"] = 220884,
+["Out"] = 1249,
+},
+["赤脊山 - 撕裂者山谷"] = {
+["In"] = 813,
+["Out"] = 0,
+},
+["安其拉废墟"] = {
+["In"] = 229738,
+["Out"] = 0,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 325303,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 502874,
+["Out"] = 93193,
+},
+["奥妮克希亚的巢穴"] = {
+["In"] = 103871,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 733658,
+["Out"] = 185917,
+},
+["狮王之傲旅店"] = {
+["In"] = 0,
+["Out"] = 540,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 3,
+["Out"] = 28,
+},
+["暴风城 - 法师区"] = {
+["In"] = 100,
+["Out"] = 697220,
+},
+["达纳苏斯"] = {
+["In"] = 225,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 31005,
+["Out"] = 529012,
+},
+["勇士大厅"] = {
+["In"] = 3103,
+["Out"] = 1596624,
+},
+["赤脊山 - 撕裂者山谷"] = {
+["In"] = 5847,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 70154,
+},
+["赤脊山 - 止水湖"] = {
+["In"] = 3829,
+["Out"] = 0,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 151,
+["Out"] = 22,
+},
+["艾尔文森林 - 阿祖拉之塔"] = {
+["In"] = 2513,
+["Out"] = 0,
+},
+["湖畔镇旅店"] = {
+["In"] = 3938,
+["Out"] = 0,
+},
+["暴风城 - 运河"] = {
+["In"] = 0,
+["Out"] = 652,
+},
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 400,
+["Out"] = 154720,
+},
+["赤脊山 - 湖畔镇"] = {
+["In"] = 25459,
+["Out"] = 1265,
+},
+["艾尔文森林 - 闪金镇"] = {
+["In"] = 990,
+["Out"] = 0,
+},
+["血鸦旅店"] = {
+["In"] = 0,
+["Out"] = 1012,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 41181667,
+["Out"] = 9491068,
+},
+["奥特兰克山谷"] = {
+["In"] = 96,
+["Out"] = 48,
+},
+["艾尔文森林 - 闪金镇"] = {
+["In"] = 0,
+["Out"] = 360,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 90,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 106236,
+["Out"] = 1530,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 1733,
+},
+},
+["TRAIN"] = {
+["暴风城 - 光明大教堂"] = {
+["In"] = 0,
+["Out"] = 1900000,
+},
+["狮王之傲旅店"] = {
+["In"] = 0,
+["Out"] = 80,
+},
+},
+["QUEST"] = {
+["暴风城 - 暴风要塞"] = {
+["In"] = 76800,
+["Out"] = 0,
+},
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 67800,
+["Out"] = 0,
+},
+["暴风城 - 教堂广场"] = {
+["In"] = 9900,
+["Out"] = 0,
+},
+["希利苏斯 - 塞纳里奥要塞"] = {
+["In"] = 59700,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 无草洞"] = {
+["In"] = 9900,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 40046,
+["Out"] = 361,
+},
+["艾尔文森林 - 闪金镇"] = {
+["In"] = 210,
+["Out"] = 0,
+},
+["铁炉堡 - 王座厅"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["赤脊山 - 加拉德尔山谷"] = {
+["In"] = 780,
+["Out"] = 0,
+},
+["赤脊山 - 止水湖"] = {
+["In"] = 840,
+["Out"] = 0,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 93000,
+["Out"] = 0,
+},
+["铁炉堡 - 图书馆"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["艾尔文森林 - 阿祖拉之塔"] = {
+["In"] = 3720,
+["Out"] = 0,
+},
+["赤脊山 - 石堡高塔"] = {
+["In"] = 780,
+["Out"] = 0,
+},
+["湖畔镇旅店"] = {
+["In"] = 810,
+["Out"] = 0,
+},
+["泰达希尔 - 奥达希尔"] = {
+["In"] = 210,
+["Out"] = 0,
+},
+["悲伤沼泽"] = {
+["In"] = 129900,
+["Out"] = 0,
+},
+["艾尔文森林 - 北郡修道院"] = {
+["In"] = 30,
+["Out"] = 0,
+},
+["湖畔镇大厅"] = {
+["In"] = 14640,
+["Out"] = 0,
+},
+["赤脊山 - 三角路口"] = {
+["In"] = 330,
+["Out"] = 0,
+},
+["赤脊山"] = {
+["In"] = 4650,
+["Out"] = 0,
+},
+["西部荒野 - 哨兵岭"] = {
+["In"] = 300,
+["Out"] = 0,
+},
+["泰达希尔 - 幽影谷"] = {
+["In"] = 1195,
+["Out"] = 0,
+},
+["赤脊山 - 湖畔镇"] = {
+["In"] = 24887,
+["Out"] = 0,
+},
+["夜色镇大厅"] = {
+["In"] = 600,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 209,
+["Out"] = 60,
+},
+["安其拉"] = {
+["In"] = 13718,
+["Out"] = 0,
+},
+},
+},
+["PrvMonth"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["Session"] = {
+["REPAIRS"] = {
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 141636,
+},
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+[""] = {
+["In"] = 170887,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 48354,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+},
+["TRAIN"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+["纳克萨玛斯"] = {
+["In"] = 48354,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+},
+},
+["Total"] = {
+["REPAIRS"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 25779,
+["Out"] = 2297552,
+},
+["艾尔文森林 - 阿祖拉之塔"] = {
+["In"] = 0,
+["Out"] = 3622,
+},
+["暴风城 - 旧城区"] = {
+["In"] = 0,
+["Out"] = 23209,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 0,
+["Out"] = 21234,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 24258,
+},
+["安其拉"] = {
+["In"] = 0,
+["Out"] = 294077,
+},
+["铁炉堡 - 军事区"] = {
+["In"] = 0,
+["Out"] = 55451,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 63048,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 372703,
+},
+["灼热峡谷 - 瑟银哨塔"] = {
+["In"] = 0,
+["Out"] = 197345,
+},
+["奥特兰克山谷"] = {
+["In"] = 0,
+["Out"] = 136017,
+},
+["勇士大厅"] = {
+["In"] = 0,
+["Out"] = 125691,
+},
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 0,
+["Out"] = 59725,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 43722,
+},
+["湖畔镇旅店"] = {
+["In"] = 0,
+["Out"] = 24481,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 479,
+},
+},
+["TAXI"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 74990,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 131837,
+["Out"] = 211,
+},
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 0,
+["Out"] = 928,
+},
+["希尔斯布莱德丘陵 - 南海镇"] = {
+["In"] = 0,
+["Out"] = 424,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 38328,
+["Out"] = 18,
+},
+["泰达希尔 - 鲁瑟兰村"] = {
+["In"] = 0,
+["Out"] = 137404,
+},
+["冬泉谷 - 永望镇"] = {
+["In"] = 0,
+["Out"] = 9318,
+},
+["湿地 - 米奈希尔港"] = {
+["In"] = 0,
+["Out"] = 304,
+},
+["赤脊山"] = {
+["In"] = 0,
+["Out"] = 1192,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 109246,
+["Out"] = 0,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 1512,
+},
+["费伍德森林 - 刺枝林地"] = {
+["In"] = 0,
+["Out"] = 584,
+},
+["尘泥沼泽 - 塞拉摩岛"] = {
+["In"] = 0,
+["Out"] = 5850,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 328,
+["Out"] = 0,
+},
+["菲拉斯 - 加德米尔湖"] = {
+["In"] = 106,
+["Out"] = 48,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 138,
+["Out"] = 82,
+},
+["暮色森林 - 夜色镇"] = {
+["In"] = 0,
+["Out"] = 168,
+},
+["西部荒野 - 哨兵岭"] = {
+["In"] = 0,
+["Out"] = 168,
+},
+["艾萨拉 - 塔伦迪斯营地"] = {
+["In"] = 0,
+["Out"] = 1440,
+},
+["厄运之槌 - 平民区废墟"] = {
+["In"] = 982,
+["Out"] = 0,
+},
+["菲拉斯 - 萨兰纳尔"] = {
+["In"] = 0,
+["Out"] = 504,
+},
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 42849,
+},
+["贫瘠之地 - 棘齿城"] = {
+["In"] = 0,
+["Out"] = 1521,
+},
+},
+["TRADE"] = {
+["暴风城 - 暴风要塞"] = {
+["In"] = 0,
+["Out"] = 199,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 0,
+["Out"] = 37897,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 70000000,
+},
+["黑手大厅"] = {
+["In"] = 0,
+["Out"] = 1800412,
+},
+["安其拉废墟"] = {
+["In"] = 1000000,
+["Out"] = 0,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 670696226,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 41181667,
+["Out"] = 34046498,
+},
+["暴风城 - 花园"] = {
+["In"] = 0,
+["Out"] = 30,
+},
+["奥特兰克山谷"] = {
+["In"] = 96,
+["Out"] = 48,
+},
+["艾尔文森林 - 闪金镇"] = {
+["In"] = 0,
+["Out"] = 360,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 15000000,
+["Out"] = 90,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 106236,
+["Out"] = 1530,
+},
+["冬泉谷 - 永望镇"] = {
+["In"] = 0,
+["Out"] = 300,
+},
+["暴风城 - 法师区"] = {
+["In"] = 2000000,
+["Out"] = 1793,
+},
+},
+["OTHER"] = {
+["暴风城 - 暴风要塞"] = {
+["In"] = 0,
+["Out"] = 19,
+},
+["黑手大厅"] = {
+["In"] = 2356,
+["Out"] = 783,
+},
+["暴风城 - 法师区"] = {
+["In"] = 393947450,
+["Out"] = 2361305020,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 28698727,
+["Out"] = 8826418,
+},
+["奥特兰克山谷"] = {
+["In"] = 83808,
+["Out"] = 77079,
+},
+["厄运之槌"] = {
+["In"] = 654,
+["Out"] = 2700000,
+},
+["安其拉之门"] = {
+["In"] = 0,
+["Out"] = 3000000,
+},
+["艾萨拉"] = {
+["In"] = 5533046,
+["Out"] = 4395264,
+},
+["暴风城 - 运河"] = {
+["In"] = 220000000,
+["Out"] = 0,
+},
+["菲拉斯 - 加德米尔湖"] = {
+["In"] = 117,
+["Out"] = 4800000,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 458932,
+["Out"] = 1413653,
+},
+["黑石山 - 黑石塔"] = {
+["In"] = 100000000,
+["Out"] = 1079307,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 400,
+["Out"] = 0,
+},
+["黑翼之巢"] = {
+["In"] = 21807204,
+["Out"] = 51566353,
+},
+["熔火之心"] = {
+["In"] = 10224981,
+["Out"] = 5304900,
+},
+["安其拉"] = {
+["In"] = 4008741,
+["Out"] = 33041918,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 10387658,
+["Out"] = 248921,
+},
+["逆风小径 - 罪恶谷"] = {
+["In"] = 77,
+["Out"] = 0,
+},
+["安其拉废墟"] = {
+["In"] = 35860000,
+["Out"] = 31140000,
+},
+["暴风城 - 光明大教堂"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["莫高雷 - 血蹄村"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["通灵学院"] = {
+["In"] = 3645,
+["Out"] = 1393,
+},
+["赤脊山"] = {
+["In"] = 36,
+["Out"] = 13,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 9934738,
+["Out"] = 430226458,
+},
+["斯坦索姆"] = {
+["In"] = 451,
+["Out"] = 141,
+},
+["奥妮克希亚的巢穴"] = {
+["In"] = 103489,
+["Out"] = 83,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 6765189662,
+["Out"] = 4034310554,
+},
+[""] = {
+["In"] = 18673552,
+["Out"] = 7670020,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 104687640,
+["Out"] = 12444557,
+},
+["灰谷 - 林歌神殿"] = {
+["In"] = 50172,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 2297042,
+["Out"] = 76124028,
+},
+["祖尔格拉布"] = {
+["In"] = 21538214,
+["Out"] = 37851294,
+},
+["希利苏斯 - 甲虫之墙"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 2653252,
+["Out"] = 401834,
+},
+["狮王之傲旅店"] = {
+["In"] = 0,
+["Out"] = 540,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 3,
+["Out"] = 28,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 64800,
+},
+["暴风城 - 法师区"] = {
+["In"] = 100,
+["Out"] = 820620,
+},
+["纳克萨玛斯"] = {
+["In"] = 196,
+["Out"] = 0,
+},
+["达纳苏斯"] = {
+["In"] = 225,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 31005,
+["Out"] = 815732,
+},
+["勇士大厅"] = {
+["In"] = 3103,
+["Out"] = 1596624,
+},
+["赤脊山 - 撕裂者山谷"] = {
+["In"] = 5847,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 87754,
+},
+["赤脊山 - 止水湖"] = {
+["In"] = 3829,
+["Out"] = 0,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 151,
+["Out"] = 22,
+},
+["艾尔文森林 - 阿祖拉之塔"] = {
+["In"] = 2513,
+["Out"] = 0,
+},
+["湖畔镇旅店"] = {
+["In"] = 3938,
+["Out"] = 0,
+},
+["暴风城 - 运河"] = {
+["In"] = 0,
+["Out"] = 652,
+},
+["灼热峡谷 - 瑟银哨塔"] = {
+["In"] = 360,
+["Out"] = 0,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 15000000,
+},
+["血鸦旅店"] = {
+["In"] = 0,
+["Out"] = 1012,
+},
+["冬泉谷 - 永望镇"] = {
+["In"] = 0,
+["Out"] = 240000,
+},
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 400,
+["Out"] = 154720,
+},
+["赤脊山 - 湖畔镇"] = {
+["In"] = 25459,
+["Out"] = 1265,
+},
+["艾尔文森林 - 闪金镇"] = {
+["In"] = 990,
+["Out"] = 0,
+},
+["暴风城 - 花园"] = {
+["In"] = 25,
+["Out"] = 500,
+},
+},
+["TRAIN"] = {
+["暴风城 - 光明大教堂"] = {
+["In"] = 0,
+["Out"] = 2900000,
+},
+["狮王之傲旅店"] = {
+["In"] = 0,
+["Out"] = 80,
+},
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 297212,
+["Out"] = 42028247,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 416936,
+["Out"] = 140,
+},
+},
+["LOOT"] = {
+["诅咒之地 - 风暴祭坛"] = {
+["In"] = 1198,
+["Out"] = 0,
+},
+["诅咒之地 - 黑暗之门"] = {
+["In"] = 5334,
+["Out"] = 0,
+},
+["黑手大厅"] = {
+["In"] = 9122,
+["Out"] = 306,
+},
+["暴风城监狱"] = {
+["In"] = 1234,
+["Out"] = 0,
+},
+["诅咒之地 - 巨槌要塞"] = {
+["In"] = 3097,
+["Out"] = 0,
+},
+["灰谷 - 林歌神殿"] = {
+["In"] = 50188,
+["Out"] = 0,
+},
+["费伍德森林 - 碧火小径"] = {
+["In"] = 374614,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 1097,
+["Out"] = 0,
+},
+["赤脊山 - 赤脊峡谷"] = {
+["In"] = 983,
+["Out"] = 0,
+},
+["艾萨拉"] = {
+["In"] = 127029,
+["Out"] = 0,
+},
+["湖畔镇旅店"] = {
+["In"] = 4159,
+["Out"] = 0,
+},
+["赤脊山 - 石堡瀑布"] = {
+["In"] = 1528,
+["Out"] = 0,
+},
+["菲拉斯 - 加德米尔湖"] = {
+["In"] = 281,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 530681,
+["Out"] = 0,
+},
+["赤脊山 - 伊尔加拉之塔"] = {
+["In"] = 337,
+["Out"] = 0,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 728,
+["Out"] = 0,
+},
+["黑翼之巢"] = {
+["In"] = 2198458,
+["Out"] = 336061,
+},
+["厄运之槌 - 平民区废墟"] = {
+["In"] = 982,
+["Out"] = 0,
+},
+["荆棘谷 - 祖尔格拉布"] = {
+["In"] = 721,
+["Out"] = 0,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 617685,
+["Out"] = 0,
+},
+["安其拉"] = {
+["In"] = 2242294,
+["Out"] = 826,
+},
+["泰达希尔 - 幽影谷"] = {
+["In"] = 40,
+["Out"] = 0,
+},
+["赤脊山 - 加拉德尔山谷"] = {
+["In"] = 739,
+["Out"] = 0,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 587092,
+["Out"] = 0,
+},
+["诅咒之地"] = {
+["In"] = 2826,
+["Out"] = 0,
+},
+["艾尔文森林 - 明镜湖"] = {
+["In"] = 10,
+["Out"] = 0,
+},
+["赤脊山 - 撕裂者之石"] = {
+["In"] = 29,
+["Out"] = 0,
+},
+["赤脊山 - 湖边大道"] = {
+["In"] = 1304,
+["Out"] = 0,
+},
+["通灵学院"] = {
+["In"] = 33482,
+["Out"] = 638,
+},
+["逆风小径 - 罪恶谷"] = {
+["In"] = 77,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 无草洞"] = {
+["In"] = 67,
+["Out"] = 0,
+},
+["赤脊山 - 三角路口"] = {
+["In"] = 353,
+["Out"] = 0,
+},
+["冬泉谷 - 冰火温泉"] = {
+["In"] = 2388,
+["Out"] = 0,
+},
+["费伍德森林 - 铁木森林"] = {
+["In"] = 1604,
+["Out"] = 0,
+},
+["诅咒之地 - 巨槌岗哨"] = {
+["In"] = 2331,
+["Out"] = 0,
+},
+["赤脊山 - 止水湖"] = {
+["In"] = 1081,
+["Out"] = 0,
+},
+["赤脊山"] = {
+["In"] = 409,
+["Out"] = 0,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 768938,
+["Out"] = 0,
+},
+["斯坦索姆"] = {
+["In"] = 4317,
+["Out"] = 0,
+},
+["赤脊山 - 石堡高塔"] = {
+["In"] = 585,
+["Out"] = 0,
+},
+["熔火之心"] = {
+["In"] = 424424,
+["Out"] = 0,
+},
+["赤脊山 - 石堡"] = {
+["In"] = 1781,
+["Out"] = 0,
+},
+["诅咒之地 - 污染者高地"] = {
+["In"] = 2113,
+["Out"] = 0,
+},
+["费伍德森林 - 魔爪村"] = {
+["In"] = 2317,
+["Out"] = 0,
+},
+["诅咒之地 - 盘蛇谷"] = {
+["In"] = 7492,
+["Out"] = 0,
+},
+["赤脊山 - 石堡要塞"] = {
+["In"] = 1591,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 7062685,
+["Out"] = 116412,
+},
+["赤脊山 - 撕裂者山谷"] = {
+["In"] = 813,
+["Out"] = 0,
+},
+["安其拉废墟"] = {
+["In"] = 344025,
+["Out"] = 0,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 433707,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 220884,
+["Out"] = 1249,
+},
+["祖尔格拉布"] = {
+["In"] = 573959,
+["Out"] = 125956,
+},
+["奥妮克希亚的巢穴"] = {
+["In"] = 103871,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+["暴风城 - 暴风要塞"] = {
+["In"] = 76800,
+["Out"] = 0,
+},
+["艾萨拉 - 风暴海湾"] = {
+["In"] = 119400,
+["Out"] = 0,
+},
+["希利苏斯 - 塞纳里奥要塞"] = {
+["In"] = 59700,
+["Out"] = 0,
+},
+["菲拉斯 - 羽月要塞"] = {
+["In"] = 67800,
+["Out"] = 0,
+},
+["铁炉堡 - 王座厅"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["暴风城 - 教堂广场"] = {
+["In"] = 9900,
+["Out"] = 0,
+},
+["赤脊山 - 加拉德尔山谷"] = {
+["In"] = 780,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 无草洞"] = {
+["In"] = 9900,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 40046,
+["Out"] = 361,
+},
+["艾尔文森林 - 闪金镇"] = {
+["In"] = 210,
+["Out"] = 0,
+},
+["铁炉堡 - 图书馆"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["艾尔文森林 - 阿祖拉之塔"] = {
+["In"] = 3720,
+["Out"] = 0,
+},
+["赤脊山 - 止水湖"] = {
+["In"] = 840,
+["Out"] = 0,
+},
+["赤脊山 - 湖畔镇"] = {
+["In"] = 24887,
+["Out"] = 0,
+},
+["暴风城 - 运河"] = {
+["In"] = 900,
+["Out"] = 0,
+},
+["月光林地 - 永夜港"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["赤脊山 - 石堡高塔"] = {
+["In"] = 780,
+["Out"] = 0,
+},
+["湖畔镇旅店"] = {
+["In"] = 810,
+["Out"] = 0,
+},
+["泰达希尔 - 奥达希尔"] = {
+["In"] = 210,
+["Out"] = 0,
+},
+["悲伤沼泽"] = {
+["In"] = 129900,
+["Out"] = 0,
+},
+["艾尔文森林 - 北郡修道院"] = {
+["In"] = 30,
+["Out"] = 0,
+},
+["湖畔镇大厅"] = {
+["In"] = 14640,
+["Out"] = 0,
+},
+["赤脊山 - 三角路口"] = {
+["In"] = 330,
+["Out"] = 0,
+},
+["赤脊山"] = {
+["In"] = 4650,
+["Out"] = 0,
+},
+["西部荒野 - 哨兵岭"] = {
+["In"] = 300,
+["Out"] = 0,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 93000,
+["Out"] = 0,
+},
+["泰达希尔 - 幽影谷"] = {
+["In"] = 1195,
+["Out"] = 0,
+},
+["夜色镇大厅"] = {
+["In"] = 600,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 209,
+["Out"] = 60,
+},
+["安其拉"] = {
+["In"] = 13718,
+["Out"] = 0,
+},
+},
+},
+},
+},
+["是德东东"] = {
+["data"] = {
+["PrvWeek"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
 },
 ["QUEST"] = {
 },
@@ -20217,7 +10529,7 @@ Accountant_ClassicZoneDB = {
 ["QUEST"] = {
 },
 },
-["Year"] = {
+["Total"] = {
 ["REPAIRS"] = {
 },
 ["TAXI"] = {
@@ -20318,16 +10630,2116 @@ Accountant_ClassicZoneDB = {
 },
 ["MERCH"] = {
 },
-["LOOT"] = {
+["AH"] = {
 },
 ["MAIL"] = {
 },
-["AH"] = {
+["LOOT"] = {
 },
 ["QUEST"] = {
 },
 },
 ["PrvMonth"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["Session"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Year"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["TRAIN"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+},
+},
+["哈霍兰大格格"] = {
+["data"] = {
+["PrvWeek"] = {
+["REPAIRS"] = {
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 76167,
+},
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+[""] = {
+["In"] = 0,
+["Out"] = 963,
+},
+["暴风城 - 法师区"] = {
+["In"] = 4892059,
+["Out"] = 4930000,
+},
+["纳克萨玛斯"] = {
+["In"] = 195406,
+["Out"] = 113882,
+},
+["安其拉"] = {
+["In"] = 69368,
+["Out"] = 71,
+},
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 4860,
+},
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+["纳克萨玛斯"] = {
+["In"] = 605180,
+["Out"] = 138,
+},
+["安其拉"] = {
+["In"] = 148730,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+},
+},
+["PrvDay"] = {
+["REPAIRS"] = {
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 59368,
+},
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+["纳克萨玛斯"] = {
+["In"] = 48669,
+["Out"] = 0,
+},
+},
+["AH"] = {
+},
+["LOOT"] = {
+["纳克萨玛斯"] = {
+["In"] = 137335,
+["Out"] = 103,
+},
+},
+["TRAIN"] = {
+},
+["MAIL"] = {
+},
+["MERCH"] = {
+},
+["QUEST"] = {
+},
+},
+["Year"] = {
+["REPAIRS"] = {
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 66499,
+},
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 0,
+["Out"] = 46977,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 32728,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 669874,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 156023,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 135425,
+},
+},
+["TAXI"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 7731,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 366,
+["Out"] = 0,
+},
+["尘泥沼泽 - 塞拉摩岛"] = {
+["In"] = 0,
+["Out"] = 1701,
+},
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 42926,
+},
+["西瘟疫之地 - 寒风营地"] = {
+["In"] = 0,
+["Out"] = 918,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 567,
+},
+},
+["TRADE"] = {
+["黑翼之巢"] = {
+["In"] = 0,
+["Out"] = 66483,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 0,
+["Out"] = 4140000,
+},
+["祖尔格拉布"] = {
+["In"] = 283,
+["Out"] = 15400000,
+},
+["暴风城 - 法师区"] = {
+["In"] = 5000000,
+["Out"] = 0,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 355077480,
+["Out"] = 23942960,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 150,
+},
+["铁炉堡 - 侏儒区"] = {
+["In"] = 0,
+["Out"] = 150,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 360,
+},
+["暴风城 - 法师区"] = {
+["In"] = 12055,
+["Out"] = 0,
+},
+},
+["OTHER"] = {
+[""] = {
+["In"] = 154458584,
+["Out"] = 432988546,
+},
+["安其拉之门"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 12530000,
+["Out"] = 0,
+},
+["安其拉"] = {
+["In"] = 8321351,
+["Out"] = 118021611,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 1110000,
+["Out"] = 508010000,
+},
+["熔火之心"] = {
+["In"] = 85943,
+["Out"] = 0,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 100000,
+},
+["暴风城 - 法师区"] = {
+["In"] = 718836735,
+["Out"] = 297654848,
+},
+["纳克萨玛斯"] = {
+["In"] = 729082,
+["Out"] = 343184,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 23600358,
+["Out"] = 14456420,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 36945,
+["Out"] = 76,
+},
+["黑翼之巢"] = {
+["In"] = 227741,
+["Out"] = 69866,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 41124,
+["Out"] = 36849,
+},
+["荆棘谷 - 祖尔格拉布"] = {
+["In"] = 23000630,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 156525706,
+["Out"] = 151444834,
+},
+["希利苏斯"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 810550,
+["Out"] = 246474,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 15000000,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 216000,
+},
+["纳克萨玛斯"] = {
+["In"] = 332,
+["Out"] = 0,
+},
+["铁炉堡 - 侏儒区"] = {
+["In"] = 160,
+["Out"] = 26280,
+},
+["勇士大厅"] = {
+["In"] = 0,
+["Out"] = 530566,
+},
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 0,
+["Out"] = 492960,
+},
+["厄运之槌"] = {
+["In"] = 3852,
+["Out"] = 0,
+},
+["铁炉堡 - 大锻炉"] = {
+["In"] = 49990,
+["Out"] = 21616,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 11200,
+["Out"] = 0,
+},
+},
+["TRAIN"] = {
+["暴风城 - 光明大教堂"] = {
+["In"] = 0,
+["Out"] = 12690,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 73200,
+},
+["铁炉堡 - 侏儒区"] = {
+["In"] = 0,
+["Out"] = 52493,
+},
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 51732,
+["Out"] = 8942340,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 2467963,
+},
+["暴风城 - 法师区"] = {
+["In"] = 42490000,
+["Out"] = 0,
+},
+},
+["LOOT"] = {
+["暮色森林 - 黎明森林"] = {
+["In"] = 0,
+["Out"] = 2068,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 49027,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 41324,
+["Out"] = 0,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 37228,
+["Out"] = 0,
+},
+["熔火之心"] = {
+["In"] = 85943,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 2365663,
+["Out"] = 68701,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 278488,
+["Out"] = 0,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 569,
+["Out"] = 0,
+},
+["黑翼之巢"] = {
+["In"] = 271243,
+["Out"] = 0,
+},
+["厄运之槌 - 平民区废墟"] = {
+["In"] = 932,
+["Out"] = 0,
+},
+["荆棘谷 - 祖尔格拉布"] = {
+["In"] = 1916,
+["Out"] = 357,
+},
+["祖尔格拉布"] = {
+["In"] = 784066,
+["Out"] = 172739,
+},
+["安其拉"] = {
+["In"] = 849246,
+["Out"] = 1110,
+},
+},
+["QUEST"] = {
+["千针石林 - 沙漠赛道"] = {
+["In"] = 11700,
+["Out"] = 0,
+},
+["荆棘谷 - 尤亚姆巴岛"] = {
+["In"] = 158400,
+["Out"] = 0,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 59700,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 145800,
+["Out"] = 0,
+},
+["铁炉堡 - 侏儒区"] = {
+["In"] = 2400,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 288000,
+["Out"] = 0,
+},
+["铁炉堡 - 秘法区"] = {
+["In"] = 1200,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 98,
+["Out"] = 44,
+},
+["安其拉"] = {
+["In"] = 336649,
+["Out"] = 0,
+},
+},
+},
+["Week"] = {
+["REPAIRS"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 21117,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 59368,
+},
+},
+["TAXI"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 99,
+},
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 330,
+},
+},
+["OTHER"] = {
+["纳克萨玛斯"] = {
+["In"] = 130132,
+["Out"] = 45072,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 73852,
+["Out"] = 12735,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 216000,
+},
+},
+["TRAIN"] = {
+["暴风城 - 光明大教堂"] = {
+["In"] = 0,
+["Out"] = 6300,
+},
+},
+["AH"] = {
+},
+["LOOT"] = {
+["纳克萨玛斯"] = {
+["In"] = 605548,
+["Out"] = 35734,
+},
+},
+["QUEST"] = {
+},
+},
+["Day"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Month"] = {
+["REPAIRS"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 80049,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 135535,
+},
+},
+["TAXI"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 198,
+},
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 21432400,
+},
+},
+["OTHER"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 860000,
+},
+["暴风城 - 法师区"] = {
+["In"] = 4892059,
+["Out"] = 4930000,
+},
+["纳克萨玛斯"] = {
+["In"] = 325538,
+["Out"] = 158954,
+},
+[""] = {
+["In"] = 1225703,
+["Out"] = 32223043,
+},
+["祖尔格拉布"] = {
+["In"] = 7028481,
+["Out"] = 3010002,
+},
+["安其拉"] = {
+["In"] = 69368,
+["Out"] = 71,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 282162,
+["Out"] = 48825,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 216000,
+},
+},
+["TRAIN"] = {
+["暴风城 - 光明大教堂"] = {
+["In"] = 0,
+["Out"] = 6300,
+},
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 8272,
+},
+},
+["LOOT"] = {
+["纳克萨玛斯"] = {
+["In"] = 1210728,
+["Out"] = 35872,
+},
+["祖尔格拉布"] = {
+["In"] = 56015,
+["Out"] = 28433,
+},
+["安其拉"] = {
+["In"] = 148730,
+["Out"] = 0,
+},
+},
+["QUEST"] = {
+["祖尔格拉布"] = {
+["In"] = 98,
+["Out"] = 44,
+},
+},
+},
+["PrvYear"] = {
+["REPAIRS"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 111421,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 0,
+["Out"] = 46911,
+},
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 25160,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 33,
+},
+},
+["TAXI"] = {
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 2420,
+},
+["希尔斯布莱德丘陵 - 南海镇"] = {
+["In"] = 0,
+["Out"] = 330,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 1020,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 4490,
+},
+},
+["TRADE"] = {
+["祖尔格拉布"] = {
+["In"] = 3000034,
+["Out"] = 0,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 70655500,
+["Out"] = 0,
+},
+},
+["OTHER"] = {
+["暮色森林 - 黎明森林"] = {
+["In"] = 0,
+["Out"] = 39365,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 3567767,
+["Out"] = 0,
+},
+[""] = {
+["In"] = 6688206,
+["Out"] = 134371,
+},
+["纳克萨玛斯"] = {
+["In"] = 341632,
+["Out"] = 163890,
+},
+["暴风城 - 法师区"] = {
+["In"] = 289660000,
+["Out"] = 50247770,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 43945,
+["Out"] = 0,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 91802,
+["Out"] = 0,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 21245002,
+["Out"] = 56560000,
+},
+["艾萨拉"] = {
+["In"] = 11532873,
+["Out"] = 9208641,
+},
+["铁炉堡 - 秘法大厅"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 146330000,
+["Out"] = 321800000,
+},
+["祖尔格拉布"] = {
+["In"] = 7153807,
+["Out"] = 153784,
+},
+["安其拉"] = {
+["In"] = 129372,
+["Out"] = 0,
+},
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 6088207,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 28568840,
+["Out"] = 2096890,
+},
+["暴风城 - 法师区"] = {
+["In"] = 3062160,
+["Out"] = 0,
+},
+},
+["LOOT"] = {
+["暮色森林 - 黎明森林"] = {
+["In"] = 125383,
+["Out"] = 0,
+},
+["艾萨拉"] = {
+["In"] = 288208,
+["Out"] = 0,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 450038,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 297262,
+["Out"] = 0,
+},
+["丹莫罗 - 铁环营地"] = {
+["In"] = 45,
+["Out"] = 0,
+},
+["西部荒野 - 匕首岭"] = {
+["In"] = 304,
+["Out"] = 0,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 105359,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 1162393,
+["Out"] = 29565,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 91802,
+["Out"] = 0,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 2184,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 43945,
+["Out"] = 0,
+},
+["黑石山 - 黑石塔"] = {
+["In"] = 345,
+["Out"] = 0,
+},
+["熔火之心"] = {
+["In"] = 85090,
+["Out"] = 0,
+},
+["东瘟疫之地 - 恐惧谷"] = {
+["In"] = 4009,
+["Out"] = 0,
+},
+["安其拉"] = {
+["In"] = 214693,
+["Out"] = 0,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 349126,
+["Out"] = 11000,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 72,
+["Out"] = 0,
+},
+["暴风城 - 教堂广场"] = {
+["In"] = 9,
+["Out"] = 0,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 5274,
+["Out"] = 75080,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 15243387,
+},
+["丹莫罗 - 卡拉诺斯"] = {
+["In"] = 0,
+["Out"] = 222305,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 4831921,
+["Out"] = 43202200,
+},
+["暴风城 - 法师区"] = {
+["In"] = 114152,
+["Out"] = 0,
+},
+},
+["TRAIN"] = {
+["暴风城 - 光明大教堂"] = {
+["In"] = 0,
+["Out"] = 282700,
+},
+["暴风城 - 运河"] = {
+["In"] = 0,
+["Out"] = 10,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 12000,
+},
+["铁炉堡 - 秘法大厅"] = {
+["In"] = 0,
+["Out"] = 2025510,
+},
+},
+["QUEST"] = {
+["铁炉堡 - 王座厅"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["西瘟疫之地 - 寒风营地"] = {
+["In"] = 4500,
+["Out"] = 0,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["黑手大厅"] = {
+["In"] = 39600,
+["Out"] = 0,
+},
+["西部荒野 - 匕首岭"] = {
+["In"] = 1740,
+["Out"] = 0,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 900,
+["Out"] = 0,
+},
+["丹莫罗 - 铁环营地"] = {
+["In"] = 420,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 无草洞"] = {
+["In"] = 9900,
+["Out"] = 0,
+},
+["铁炉堡 - 图书馆"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["黑石山 - 熔岩之桥"] = {
+["In"] = 39600,
+["Out"] = 0,
+},
+["铁炉堡 - 秘法大厅"] = {
+["In"] = 1470,
+["Out"] = 1500000,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 230400,
+["Out"] = 300000,
+},
+["暴风城 - 光明大教堂"] = {
+["In"] = 49200,
+["Out"] = 0,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 93810,
+["Out"] = 0,
+},
+},
+},
+["PrvMonth"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+[""] = {
+["In"] = 0,
+["Out"] = 286830000,
+},
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["Session"] = {
+["REPAIRS"] = {
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 59368,
+},
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+["纳克萨玛斯"] = {
+["In"] = 48918,
+["Out"] = 133,
+},
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+["纳克萨玛斯"] = {
+["In"] = 138184,
+["Out"] = 103,
+},
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Total"] = {
+["REPAIRS"] = {
+["纳克萨玛斯"] = {
+["In"] = 0,
+["Out"] = 181183,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 0,
+["Out"] = 33,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 781295,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 0,
+["Out"] = 46911,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 32728,
+},
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 66499,
+},
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 0,
+["Out"] = 46977,
+},
+["暴风城 - 法师区"] = {
+["In"] = 0,
+["Out"] = 135425,
+},
+},
+["TAXI"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 12221,
+},
+["铁炉堡 - 大锻炉"] = {
+["In"] = 0,
+["Out"] = 45346,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 366,
+["Out"] = 0,
+},
+["尘泥沼泽 - 塞拉摩岛"] = {
+["In"] = 0,
+["Out"] = 1701,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 567,
+},
+["希尔斯布莱德丘陵 - 南海镇"] = {
+["In"] = 0,
+["Out"] = 330,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 1020,
+},
+["西瘟疫之地 - 寒风营地"] = {
+["In"] = 0,
+["Out"] = 918,
+},
+},
+["TRADE"] = {
+["黑翼之巢"] = {
+["In"] = 0,
+["Out"] = 66483,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 70655500,
+["Out"] = 4140000,
+},
+["祖尔格拉布"] = {
+["In"] = 3000317,
+["Out"] = 15400000,
+},
+["暴风城 - 法师区"] = {
+["In"] = 5000000,
+["Out"] = 0,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 355077480,
+["Out"] = 39186347,
+},
+["暴风城 - 法师区"] = {
+["In"] = 126207,
+["Out"] = 0,
+},
+["丹莫罗 - 卡拉诺斯"] = {
+["In"] = 0,
+["Out"] = 222305,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 4831921,
+["Out"] = 43202350,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 360,
+},
+["铁炉堡 - 侏儒区"] = {
+["In"] = 0,
+["Out"] = 150,
+},
+},
+["OTHER"] = {
+[""] = {
+["In"] = 161146790,
+["Out"] = 433122917,
+},
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 16097767,
+["Out"] = 0,
+},
+["暴风城 - 法师区"] = {
+["In"] = 1008496735,
+["Out"] = 347902618,
+},
+["纳克萨玛斯"] = {
+["In"] = 1070714,
+["Out"] = 507074,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 44845360,
+["Out"] = 71016420,
+},
+["铁炉堡 - 秘法大厅"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["厄运之槌"] = {
+["In"] = 0,
+["Out"] = 100000,
+},
+["希利苏斯"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 0,
+["Out"] = 39365,
+},
+["安其拉之门"] = {
+["In"] = 0,
+["Out"] = 500000,
+},
+["艾萨拉"] = {
+["In"] = 11532873,
+["Out"] = 9208641,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 85069,
+["Out"] = 36849,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 147440000,
+["Out"] = 829810000,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 128747,
+["Out"] = 76,
+},
+["黑翼之巢"] = {
+["In"] = 227741,
+["Out"] = 69866,
+},
+["熔火之心"] = {
+["In"] = 85943,
+["Out"] = 0,
+},
+["荆棘谷 - 祖尔格拉布"] = {
+["In"] = 23000630,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 163679513,
+["Out"] = 151598618,
+},
+["安其拉"] = {
+["In"] = 8450723,
+["Out"] = 118021611,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 1159676,
+["Out"] = 257474,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 72,
+["Out"] = 0,
+},
+["荆棘谷 - 藏宝海湾"] = {
+["In"] = 0,
+["Out"] = 15000000,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 0,
+["Out"] = 216000,
+},
+["暴风城 - 教堂广场"] = {
+["In"] = 9,
+["Out"] = 0,
+},
+["铁炉堡 - 大锻炉"] = {
+["In"] = 49990,
+["Out"] = 21616,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 16474,
+["Out"] = 75080,
+},
+["勇士大厅"] = {
+["In"] = 0,
+["Out"] = 530566,
+},
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 0,
+["Out"] = 492960,
+},
+["厄运之槌"] = {
+["In"] = 3852,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 332,
+["Out"] = 0,
+},
+["铁炉堡 - 侏儒区"] = {
+["In"] = 160,
+["Out"] = 26280,
+},
+},
+["TRAIN"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 12000,
+},
+["暴风城 - 光明大教堂"] = {
+["In"] = 0,
+["Out"] = 295390,
+},
+["暴风城 - 运河"] = {
+["In"] = 0,
+["Out"] = 10,
+},
+["铁炉堡 - 秘法大厅"] = {
+["In"] = 0,
+["Out"] = 2025510,
+},
+["塔纳利斯 - 加基森"] = {
+["In"] = 0,
+["Out"] = 73200,
+},
+["铁炉堡 - 侏儒区"] = {
+["In"] = 0,
+["Out"] = 52493,
+},
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 51732,
+["Out"] = 15030547,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 28568840,
+["Out"] = 4564853,
+},
+["暴风城 - 法师区"] = {
+["In"] = 45552160,
+["Out"] = 0,
+},
+},
+["LOOT"] = {
+["辛特兰 - 瑟拉丹"] = {
+["In"] = 499065,
+["Out"] = 0,
+},
+["西部荒野 - 匕首岭"] = {
+["In"] = 304,
+["Out"] = 0,
+},
+["纳克萨玛斯"] = {
+["In"] = 3528056,
+["Out"] = 98266,
+},
+["菲拉斯 - 梦境之树"] = {
+["In"] = 129030,
+["Out"] = 0,
+},
+["东瘟疫之地 - 恐惧谷"] = {
+["In"] = 4009,
+["Out"] = 0,
+},
+["暮色森林 - 黎明森林"] = {
+["In"] = 125383,
+["Out"] = 2068,
+},
+["艾萨拉"] = {
+["In"] = 288208,
+["Out"] = 0,
+},
+["诅咒之地 - 腐烂之痕"] = {
+["In"] = 383847,
+["Out"] = 0,
+},
+["灰谷 - 大树荫"] = {
+["In"] = 85269,
+["Out"] = 0,
+},
+["荆棘谷 - 祖尔格拉布"] = {
+["In"] = 1916,
+["Out"] = 357,
+},
+["丹莫罗 - 铁环营地"] = {
+["In"] = 45,
+["Out"] = 0,
+},
+["黑石山 - 黑石塔"] = {
+["In"] = 345,
+["Out"] = 0,
+},
+["东瘟疫之地 - 病木林"] = {
+["In"] = 2753,
+["Out"] = 0,
+},
+["黑翼之巢"] = {
+["In"] = 271243,
+["Out"] = 0,
+},
+["厄运之槌 - 平民区废墟"] = {
+["In"] = 932,
+["Out"] = 0,
+},
+["熔火之心"] = {
+["In"] = 171033,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 1081328,
+["Out"] = 172739,
+},
+["安其拉"] = {
+["In"] = 1063939,
+["Out"] = 1110,
+},
+},
+["QUEST"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 900,
+["Out"] = 0,
+},
+["西瘟疫之地 - 寒风营地"] = {
+["In"] = 4500,
+["Out"] = 0,
+},
+["暴风城 - 矮人区"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["黑手大厅"] = {
+["In"] = 39600,
+["Out"] = 0,
+},
+["东瘟疫之地 - 圣光之愿礼拜堂"] = {
+["In"] = 290100,
+["Out"] = 300000,
+},
+["奥特兰克山脉 - 无草洞"] = {
+["In"] = 9900,
+["Out"] = 0,
+},
+["铁炉堡 - 图书馆"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["暴风城 - 光明大教堂"] = {
+["In"] = 49200,
+["Out"] = 0,
+},
+["铁炉堡 - 铁炉堡"] = {
+["In"] = 93810,
+["Out"] = 0,
+},
+["千针石林 - 沙漠赛道"] = {
+["In"] = 11700,
+["Out"] = 0,
+},
+["铁炉堡 - 侏儒区"] = {
+["In"] = 2400,
+["Out"] = 0,
+},
+["荆棘谷 - 尤亚姆巴岛"] = {
+["In"] = 158400,
+["Out"] = 0,
+},
+["铁炉堡 - 秘法区"] = {
+["In"] = 1200,
+["Out"] = 0,
+},
+["奥特兰克山谷"] = {
+["In"] = 145800,
+["Out"] = 0,
+},
+["丹莫罗 - 铁环营地"] = {
+["In"] = 420,
+["Out"] = 0,
+},
+["黑石山 - 熔岩之桥"] = {
+["In"] = 39600,
+["Out"] = 0,
+},
+["铁炉堡 - 秘法大厅"] = {
+["In"] = 1470,
+["Out"] = 1500000,
+},
+["西部荒野 - 匕首岭"] = {
+["In"] = 1740,
+["Out"] = 0,
+},
+["奥特兰克山脉 - 山头营地"] = {
+["In"] = 288000,
+["Out"] = 0,
+},
+["铁炉堡 - 王座厅"] = {
+["In"] = 3900,
+["Out"] = 0,
+},
+["祖尔格拉布"] = {
+["In"] = 98,
+["Out"] = 44,
+},
+["安其拉"] = {
+["In"] = 336649,
+["Out"] = 0,
+},
+},
+},
+},
+},
+["大叔大婶多少"] = {
+["data"] = {
+["PrvWeek"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvDay"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["TRAIN"] = {
+},
+["MAIL"] = {
+},
+["MERCH"] = {
+},
+["QUEST"] = {
+},
+},
+["Total"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Week"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["TRAIN"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["Day"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Month"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["TRAIN"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvYear"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvMonth"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["Session"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Year"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["TRAIN"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+},
+},
+["蓝龙守护者"] = {
+["data"] = {
+["PrvWeek"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvDay"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["TRAIN"] = {
+},
+["MAIL"] = {
+},
+["MERCH"] = {
+},
+["QUEST"] = {
+},
+},
+["Total"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 11759591,
+["Out"] = 50661830,
+},
+},
+["OTHER"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 60007107,
+["Out"] = 67103992,
+},
+[""] = {
+["In"] = 0,
+["Out"] = 210,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 47,
+["Out"] = 0,
+},
+},
+["LOOT"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 46098045,
+["Out"] = 90888,
+},
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Week"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["TRAIN"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["Day"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Month"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 2936119,
+["Out"] = 48860420,
+},
+},
+["OTHER"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 3992,
+},
+},
+["MERCH"] = {
+},
+["TRAIN"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 41793831,
+["Out"] = 78896,
+},
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvYear"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 60007107,
+["Out"] = 67100000,
+},
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 1010326,
+["Out"] = 6992,
+},
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 8000000,
+["Out"] = 1380,
+},
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvMonth"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["Session"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Year"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 3759591,
+["Out"] = 50660450,
+},
+},
+["OTHER"] = {
+[""] = {
+["In"] = 0,
+["Out"] = 210,
+},
+["暴风城 - 贸易区"] = {
+["In"] = 0,
+["Out"] = 3992,
+},
+},
+["MERCH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 47,
+["Out"] = 0,
+},
+},
+["TRAIN"] = {
+},
+["AH"] = {
+["暴风城 - 贸易区"] = {
+["In"] = 45087719,
+["Out"] = 83896,
+},
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+},
+},
+},
+["法琳娜"] = {
+["寒脊山大郡主"] = {
+["data"] = {
+["PrvWeek"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvDay"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["TRAIN"] = {
+},
+["MAIL"] = {
+},
+["MERCH"] = {
+},
+["QUEST"] = {
+},
+},
+["Day"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["LOOT"] = {
+},
+["AH"] = {
+},
+["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["Week"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["TRAIN"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["Year"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["TRAIN"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["Month"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["MAIL"] = {
+},
+["OTHER"] = {
+},
+["MERCH"] = {
+},
+["TRAIN"] = {
+},
+["AH"] = {
+},
+["LOOT"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvYear"] = {
 ["REPAIRS"] = {
 },
 ["TAXI"] = {
@@ -20345,6 +12757,28 @@ Accountant_ClassicZoneDB = {
 ["MAIL"] = {
 },
 ["TRAIN"] = {
+},
+["QUEST"] = {
+},
+},
+["PrvMonth"] = {
+["REPAIRS"] = {
+},
+["TAXI"] = {
+},
+["TRADE"] = {
+},
+["OTHER"] = {
+},
+["TRAIN"] = {
+},
+["MERCH"] = {
+},
+["AH"] = {
+},
+["MAIL"] = {
+},
+["LOOT"] = {
 },
 ["QUEST"] = {
 },

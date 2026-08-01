@@ -1,0 +1,29 @@
+--- Onesfto/Modules/GW2_UI/GW2_UI_1.15.9/settings/panels/panel_general.lua	2026-07-26 13:19:34
++++ GW2_UI/settings/panels/panel_general.lua	2026-07-26 14:19:30
+@@ -15,7 +15,7 @@
+     general.sub:SetFont(UNIT_NAME_FONT, 12)
+     general.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
+     general.sub:SetText(nil)
+-    general.header:SetWidth(general.header:GetStringWidth())
++    general.header:SetWidth(general.header:GetStringWidth() + 10)
+     general.breadcrumb:SetFont(DAMAGE_TEXT_FONT, 12)
+     general.breadcrumb:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
+     general.breadcrumb:SetText(GENERAL)
+@@ -28,7 +28,7 @@
+     classcolors.sub:SetFont(UNIT_NAME_FONT, 12)
+     classcolors.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
+     classcolors.sub:SetText(nil)
+-    classcolors.header:SetWidth(classcolors.header:GetStringWidth())
++    classcolors.header:SetWidth(classcolors.header:GetStringWidth() + 10)
+     classcolors.breadcrumb:SetFont(DAMAGE_TEXT_FONT, 12)
+     classcolors.breadcrumb:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
+     classcolors.breadcrumb:SetText(L["Custom Class Colors"])
+@@ -41,7 +41,7 @@
+     blizzardFix.sub:SetFont(UNIT_NAME_FONT, 12)
+     blizzardFix.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
+     blizzardFix.sub:SetText(nil)
+-    blizzardFix.header:SetWidth(blizzardFix.header:GetStringWidth())
++    blizzardFix.header:SetWidth(blizzardFix.header:GetStringWidth() + 10)
+     blizzardFix.breadcrumb:SetFont(DAMAGE_TEXT_FONT, 12)
+     blizzardFix.breadcrumb:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
+     blizzardFix.breadcrumb:SetText(L["Blizzard Fixes"])

@@ -8,44 +8,8 @@ local GW = select(2, ...)
 local moveDistance, socialFrameX, socialFrameY, socialFrameLeft, socialFrameTop, socialFrameNormalScale, socialFrameEffectiveScale = 0, 0, 0, 0, 0, 1, 0
 local friendsFrameTabsAdded = 0
 
-local function AddExistingDetailBackgrounds(detailBackgrounds, ...)
-    for i = 1, select("#", ...) do
-        local frame = select(i, ...)
-        if frame then
-            detailBackgrounds[#detailBackgrounds + 1] = frame
-        end
-    end
-end
-
-local function LayoutClassicSocialFrame()
-    if not GW.Classic or not FriendsFrame then return end
-
-    FriendsFrame:SetSize(500, 627)
-    if FriendsFrameCloseButton then
-        FriendsFrameCloseButton:ClearAllPoints()
-        FriendsFrameCloseButton:SetPoint("TOPRIGHT", FriendsFrame, "TOPRIGHT", -5, -2)
-        FriendsFrameCloseButton:GwSkinButton(true)
-    end
-    if FriendsFrame.gwHeader and FriendsFrame.gwHeader.windowIcon then
-        FriendsFrame.gwHeader.windowIcon:ClearAllPoints()
-        FriendsFrame.gwHeader.windowIcon:SetPoint("CENTER", FriendsFrame.gwHeader, "BOTTOMLEFT", -26, 35)
-    end
-    if FriendsFrameTitleText and FriendsFrame.gwHeader then
-        FriendsFrameTitleText:ClearAllPoints()
-        FriendsFrameTitleText:SetPoint("BOTTOMLEFT", FriendsFrame.gwHeader, "BOTTOMLEFT", 25, 10)
-    end
-    if FriendsFrameBattlenetFrame and FriendsFrame.gwHeader then
-        FriendsFrameBattlenetFrame:ClearAllPoints()
-        FriendsFrameBattlenetFrame:SetPoint("TOP", FriendsFrame.gwHeader, "BOTTOM", 0, 0)
-        FriendsFrameBattlenetFrame:SetSize(260, 28)
-    end
-end
-
 local function HandleTabs()
     for idx, tab in ipairs({FriendsFrameTab1, FriendsFrameTab2, FriendsFrameTab3, FriendsFrameTab4}) do
-        if not tab then
-            return
-        end
         if not tab.isSkinned then
             local iconName
             if GW.Retail then
@@ -66,7 +30,6 @@ local function HandleTabs()
 
         if GW.TBC or GW.Wrath then
             hooksecurefunc("FriendsFrame_UpdateGuildTabVisibility", function()
-                if not FriendsFrameTab4 then return end
                 FriendsFrameTab4:ClearAllPoints()
                 if FriendsFrameTab3:IsShown() then
                     FriendsFrameTab4:SetPoint("TOPRIGHT", FriendsFrame.LeftSidePanel, "TOPLEFT", 1, -32 + (-40 * 3))
@@ -103,24 +66,19 @@ function GW.LoadSocialFrame()
     if FriendsFrameIcon then
         FriendsFrameIcon:SetAlpha(0)
     end
-    if FriendsFrameCloseButton then
-        FriendsFrameCloseButton:SetPoint("TOPRIGHT", -5, -2)
-    end
+    FriendsFrameCloseButton:SetPoint("TOPRIGHT", -5, -2)
 
-    local detailBackgrounds = {}
-    AddExistingDetailBackgrounds(
-        detailBackgrounds,
-        FriendsListFrame and FriendsListFrame.ScrollBox,
+    GW.CreateFrameHeaderWithBody(FriendsFrame, FriendsFrameTitleText, "Interface/AddOns/GW2_UI/textures/social/social-windowheader.png", {
+        FriendsListFrame.ScrollBox,
         FriendsFrameFriendsScrollFrame,
         FriendsFrameIgnoreScrollFrame,
         RecentAlliesFrame and RecentAlliesFrame.List,
-        RecruitAFriendFrame and RecruitAFriendFrame.RecruitList and RecruitAFriendFrame.RecruitList.ScrollBox,
-        WhoFrame and WhoFrame.ScrollBox,
+        RecruitAFriendFrame and RecruitAFriendFrame.RecruitList.ScrollBox,
+        WhoFrame.ScrollBox,
         WhoListScrollFrame,
         QuickJoinFrame and QuickJoinFrame.ScrollBox
-    )
-
-    GW.CreateFrameHeaderWithBody(FriendsFrame, FriendsFrameTitleText, "Interface/AddOns/GW2_UI/textures/social/social-windowheader.png", detailBackgrounds, nil, true, true)
+        }
+        , nil, true, true)
 
     HandleTabs()
     FriendsFrame.gwHeader.windowIcon:ClearAllPoints()
@@ -153,11 +111,8 @@ function GW.LoadSocialFrame()
     end)
     FriendsFrame:HookScript("OnShow", function()
         local pos = GW.settings.SOCIAL_POSITION
-        if pos and pos.point and pos.relativePoint then
-            FriendsFrame:ClearAllPoints()
-            FriendsFrame:SetPoint(pos.point, UIParent, pos.relativePoint, pos.xOfs, pos.yOfs)
-        end
-        LayoutClassicSocialFrame()
+        FriendsFrame:ClearAllPoints()
+        FriendsFrame:SetPoint(pos.point, UIParent, pos.relativePoint, pos.xOfs, pos.yOfs)
     end)
 
     FriendsFrame.sizer = CreateFrame("Frame", nil, FriendsFrame)
@@ -216,18 +171,12 @@ function GW.LoadSocialFrame()
         GW.settings.SOCIAL_POSITION = pos
     end)
 
-    LayoutClassicSocialFrame()
-
     GW.SkinFriendList()
     GW.SkinIgnoreList()
-    if not GW.Classic then
-        GW.SkinRecentAlliesList()
-        GW.SkinRecruitAFriendList()
-    end
+    GW.SkinRecentAlliesList()
+    GW.SkinRecruitAFriendList()
     GW.SkinWhoList()
     GW.SkinRaidList()
-    if not GW.Classic then
-        GW.SkinQuickJoinList()
-    end
+    GW.SkinQuickJoinList()
     GW.SkinGuildList()
 end

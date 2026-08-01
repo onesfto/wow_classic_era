@@ -287,21 +287,54 @@ function QuickChatfun.PIGMessage()
 	    return newText
 	end
 	QuickChatfun.MsgFastCopyShowZb = MsgFastCopyShowZb
-
+	local RGBToHex=Fun.RGBToHex
+	local function FormatGuildLevel(newText,PlayerNamex) return newText end
+    if PIG_MaxTocversion(30000) then
+		FormatGuildLevel=function(newText,PlayerNamex)
+	        if chatONOFF.GuildLevel and newText:match("|Hchannel:GUILD|h") then
+				local myLevel = UnitLevel("player") or 0
+				if MsgPlayerLevel[PlayerNamex] then
+				    local targetLevel = MsgPlayerLevel[PlayerNamex]
+				    local colorInfo = GetRelativeDifficultyColor(myLevel, targetLevel);
+				    local hexColor = RGBToHex(colorInfo)
+				    newText = newText:gsub("(%[|cff%w%w%w%w%w%w)(.-)(|r%])", function(c1, name, c3)
+				        return c1 .. name .. ":|cff" .. hexColor .. targetLevel .. "|r" .. c3
+				    end)
+				end
+			end
+			return newText
+	    end
+    end
+	local function UpdateGuildMemberLevels()
+		local clubId = C_Club.GetGuildClubId()
+		if not clubId then return end
+		local streams = C_Club.GetStreams(clubId)
+		local guildStream = streams and streams[1] and streams[1].streamId
+		if not guildStream then return end
+		local members = C_Club.GetClubMembers(clubId, guildStream)
+		if not members then return end
+		for _,memberID in pairs(members) do
+			local info = C_Club.GetMemberInfo(clubId,memberID)
+			if info.presence ~= Enum.ClubMemberPresence.Offline and info.name and info.name~="" then
+				MsgPlayerLevel[info.name]=info.level or "?"
+			end
+		end
+	end
 	local function PIGFormatMsg(text)
 	    local newText = SimplifyName(text)
 	    if chatONOFF.FastCopy or chatONOFF.ShowZb or chatONOFF.GuildLevel then
-	        local namexShowZb
+	        local PlayerNamex
 	        if GetCVar("chatClassColorOverride") == "0" then
-	            namexShowZb = newText:match("%[|cff%w%w%w%w%w%w(.-)|r%]")
+	            PlayerNamex = newText:match("%[|cff%w%w%w%w%w%w(.-)|r%]")
 	        else
-	            namexShowZb = newText:match("%[.-%].-%[(.-)%]")
+	            PlayerNamex = newText:match("%[.-%].-%[(.-)%]")
 	        end
-	        if namexShowZb then
-	            local entry = PlayerGUIDs[namexShowZb]
+	        if PlayerNamex then
+	            local entry = PlayerGUIDs[PlayerNamex]
 	            if entry and entry.GUID then
 	                newText = MsgFastCopyShowZb(entry.GUID, newText)
 	            end
+	            newText = FormatGuildLevel(newText,PlayerNamex)
 	        end
 	    end
 	    if chatONOFF.ShowLinkIcon or chatONOFF.ShowLinkLV or chatONOFF.ShowLinkSlots or chatONOFF.ShowLinkGem then
@@ -444,8 +477,9 @@ function QuickChatfun.PIGMessage()
     end)
     Get_itemF:SetScript("OnEvent", function(self, event, ...)
         if event == "GUILD_ROSTER_UPDATE" or event == "CLUB_MEMBERS_UPDATED" then
-            -- if self.GuildMemberLevelsTicker then self.GuildMemberLevelsTicker:Cancel() end
-            -- self.GuildMemberLevelsTicker = C_Timer.NewTimer(1, UpdateGuildMemberLevels)
+        	if InCombatLockdown() then return end
+            if self.GuildLevelTicker then self.GuildLevelTicker:Cancel() end
+            self.GuildLevelTicker = C_Timer.NewTimer(1, UpdateGuildMemberLevels)
 		elseif event=="GET_ITEM_INFO_RECEIVED" then
 		    -- local itemId = ...
 		else

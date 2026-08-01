@@ -1,7 +1,8 @@
 
 ACP_Data = {
-["sorter"] = "按名称分组",
+["sorter"] = "名称",
 ["NoRecurse"] = false,
+["NoChildren"] = true,
 ["AddonSet"] = {
 {
 "SpellActivationOverlay",
@@ -109,7 +110,6 @@ ACP_Data = {
 ["name"] = "【露露】团本精简配置",
 },
 },
-["NoChildren"] = true,
 ["collapsed"] = {
 },
 ["ProtectedAddons"] = {

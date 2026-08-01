@@ -1,5 +1,5 @@
-10.14.3
+10.15.1
 
 FIXES
-    - Bags (Classic/TBC/Wrath/Mists): fixed "SetPoint would result in anchor family connection" errors after opening the bags multiple times; the taken container item buttons are reset to a single clean anchor right away, since Blizzards container code only adds anchor points and the leftover mixed anchors bridged our bag frames with the container frames
-    - Bags (Classic Era): the bag slot buttons sit above the keyring button again; Blizzards new bags bar relayouts the backpack button on login and on edit mode updates and pulled it out of our bag bar
+    - Bags (Retail): fixed "AddOn 'GW2_UI' tried to call the protected function 'UseContainerItem()'" when using an item from the bags or selling it to a vendor, after which the bags stopped responding until a reload - the bag id was stored on the item buttons under the same field name Blizzards own item button mixin reads, so Blizzard got our value instead of its own and refused the interaction; the item state fields go through Blizzards setters now
+    - Chat: fixed an error when switching chat tabs while a chat frame had lines that Blizzard had not laid out yet

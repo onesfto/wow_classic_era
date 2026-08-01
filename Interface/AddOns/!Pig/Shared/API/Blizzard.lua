@@ -94,11 +94,7 @@ function PIG_PlaySoundFile(url,index)
 	local voiceTxt = url[2]
 	if url[3]=="AI" then
 		if index then voiceTxt=index end
-		if PIG_MaxTocversion() then
-			C_VoiceChat.SpeakText(voiceID, voiceTxt, 1, 2, 100)
-		else
-			C_VoiceChat.SpeakText(voiceID, voiceTxt, 2, 100, true)
-		end
+		C_VoiceChat.SpeakText(voiceID, voiceTxt, 2, 100, true)
 	else
 		if index then voiceTxt=url[2]:format(index) end
 		PlaySoundFile(voiceTxt, "Master")

@@ -1,0 +1,18 @@
+--- Onesfto/Modules/GW2_UI/GW2_UI_1.15.9/Games/Shared/Immersive/Skins/utils.lua	2026-07-26 13:19:34
++++ GW2_UI/Games/Shared/Immersive/Skins/utils.lua	2026-07-26 04:06:25
+@@ -771,6 +771,15 @@
+                 bgMask:SetPoint("BOTTOMRIGHT", frame.tex, "BOTTOMLEFT", frame.tex:GetWidth() + 200 , 0)
+             end)
+         end)
++        
++        -- Fix for /reload while frame is open: OnShow doesn't fire, so mask stays collapsed and hides everything.
++        if frame:IsVisible() then
++            C_Timer.After(0.05, function()
++                if frame.tex and frame:GetAlpha() >= 1 then
++                    bgMask:SetPoint("BOTTOMRIGHT", frame.tex, "BOTTOMLEFT", frame.tex:GetWidth() + 200, 0)
++                end
++            end)
++        end
+     end
+ 
+     UpdateFrameHeaderBodyLayout()

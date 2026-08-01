@@ -4,28 +4,27 @@ alaCalendarSV = {
 },
 ["_GlobalRef"] = {
 ["cal"] = {
-["SlashCmdList"] = 2.707685248164868e+126,
-["OK"] = 2.707685248164868e+126,
-["Mixin"] = 6.7692131204122e+126,
-["GameTimeFrame"] = 2.707685248164868e+126,
-["hooksecurefunc"] = 1.353842624082434e+126,
-["UnitLevel"] = 6.769543648396564e+126,
-["alaCalendarSV"] = 5.415370496329736e+126,
-["UIParent"] = 5.415370496329736e+126,
-["DAILY"] = 2.707685248164868e+126,
-["GameTimeFrame_UpdateTooltip"] = 1.353842624082434e+126,
-["DONE"] = 2.707685248164868e+126,
-["RESETS_IN"] = 2.707685248164868e+126,
-["UISpecialFrames"] = 4.061527872247316e+126,
-["YES"] = 2.707685248164868e+126,
-["LibStub"] = 4.061527872247316e+126,
-["StaticPopupDialogs"] = 2.707685248164868e+126,
+["SlashCmdList"] = 3.48086594972399e+187,
+["GameTimeFrame"] = 3.48086594972399e+187,
+["Mixin"] = 8.702164874310033e+187,
+["DAILY"] = 3.48086594972399e+187,
+["hooksecurefunc"] = 1.740432974861995e+187,
+["UnitLevel"] = 8.702589784704217e+187,
+["alaCalendarSV"] = 6.96173189944798e+187,
+["UIParent"] = 6.96173189944798e+187,
+["YES"] = 3.48086594972399e+187,
+["GameTimeFrame_UpdateTooltip"] = 1.740432974861995e+187,
+["DONE"] = 3.48086594972399e+187,
+["RESETS_IN"] = 3.48086594972399e+187,
+["UISpecialFrames"] = 5.221298924586004e+187,
+["OK"] = 3.48086594972399e+187,
+["LibStub"] = 5.221298924586004e+187,
+["StaticPopupDialogs"] = 3.48086594972399e+187,
 },
 },
 ["set"] = {
 ["minimapPos"] = 215,
 ["char_list"] = {
-"Player-5376-0EA7E05E",
 "Player-5376-175576B3",
 "Player-5376-1626BB3C",
 "Player-5376-16BEFC08",
@@ -138,6 +137,10 @@ alaCalendarSV = {
 ["Naxxramas"] = {
 },
 ["Molten Core"] = {
+218364411,
+1784761809,
+0,
+0,
 },
 ["Ruins of Ahn'Qiraj"] = {
 },
@@ -179,25 +182,6 @@ alaCalendarSV = {
 },
 ["Ruins of Ahn'Qiraj"] = {
 },
-},
-["Player-5376-0EA7E05E"] = {
-["Zul'Gurub"] = {
-},
-["PLAYER_LEVEL"] = 60,
-["Temple of Ahn'Qiraj"] = {
-},
-["Blackwing Lair"] = {
-},
-["Ruins of Ahn'Qiraj"] = {
-},
-["Onyxia's Lair"] = {
-},
-["Naxxramas"] = {
-},
-["realm_id"] = 5376,
-["Molten Core"] = {
-},
-["realm_name"] = "哈霍兰",
 },
 ["Player-5453-040319F3"] = {
 ["Zul'Gurub"] = {

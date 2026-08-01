@@ -8,10 +8,36 @@ GearMenuConfiguration = {
 ["enableTrinketMenu"] = true,
 ["lockTrinketMenuFrame"] = true,
 ["enableFastPress"] = false,
+["enableFallbackToBaseItem"] = false,
 ["enableSimpleTooltips"] = true,
+["lastNotifiedVersion"] = "",
 ["enableTooltips"] = true,
 ["enableUnequipSlot"] = false,
 ["enableRuneSlots"] = true,
+["profiles"] = {
+["Default"] = {
+["enableDragAndDrop"] = true,
+["trinketMenuSlotSize"] = 40,
+["trinketMenuShowCooldowns"] = true,
+["filterItemQuality"] = 2,
+["frames"] = {
+},
+["enableTrinketMenu"] = true,
+["lockTrinketMenuFrame"] = false,
+["enableFastPress"] = false,
+["enableFallbackToBaseItem"] = false,
+["quickChangeRules"] = {
+},
+["enableTooltips"] = true,
+["enableUnequipSlot"] = true,
+["enableRuneSlots"] = true,
+["gearBars"] = {
+},
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 4,
+["enableSimpleTooltips"] = false,
+},
+},
 ["gearBars"] = {
 {
 ["showKeyBindings"] = true,
@@ -40,30 +66,30 @@ GearMenuConfiguration = {
 },
 ["displayName"] = "饰品",
 ["isLocked"] = true,
-["changeMenuDirection"] = 2,
+["gearSlotSize"] = 40,
 ["showCooldowns"] = true,
 ["orientation"] = 1,
-["position"] = {
-["relativePoint"] = "CENTER",
-["posY"] = -222.1014709472656,
-["point"] = "CENTER",
-["posX"] = 426.2960510253906,
-},
 ["changeSlotSize"] = 40,
-["gearSlotSize"] = 40,
+["position"] = {
+["posY"] = -209.963134765625,
+["relativePoint"] = "CENTER",
+["posX"] = 425.1387634277344,
+["point"] = "CENTER",
 },
-},
-["addonVersion"] = "v2.7.0",
-["uiTheme"] = 2,
-["trinketMenuColumns"] = 8,
-["frames"] = {
-["GM_TrinketMenuFrame"] = {
-["relativePoint"] = "RIGHT",
-["point"] = "RIGHT",
-["posY"] = -222.0956420898438,
-["posX"] = -237.2508697509766,
+["changeMenuDirection"] = 2,
 },
 },
 ["quickChangeRules"] = {
 },
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 8,
+["frames"] = {
+["GM_TrinketMenuFrame"] = {
+["posY"] = -209.3778381347656,
+["posX"] = -256.3271789550781,
+["relativePoint"] = "RIGHT",
+["point"] = "RIGHT",
+},
+},
+["addonVersion"] = "v2.8.0",
 }

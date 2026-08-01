@@ -14,6 +14,7 @@ if (GetLocale() == "ruRU") then
   rggm.L["reload"] = "|cFFFFC300reload|r - перезагрузить интерфейс"
   rggm.L["info_title"] = "|cFF00FFB0GearMenu:|r"
   rggm.L["invalid_argument"] = "Передан неверный аргумент"
+  rggm.L["update_available"] = "Доступна новая версия |cFFFFC300%s|r — |cFF00FFB0рекомендуется обновление!|r"
 
   -- about
   rggm.L["author"] = "Автор: Michael Wiesendanger"
@@ -22,8 +23,8 @@ if (GetLocale() == "ruRU") then
   rggm.L["issues"] = "Баги: https://github.com/RagedUnicorn/wow-classic-gearmenu/issues"
 
   -- general
-  rggm.L["general_category_name"] = "Общие"
-  rggm.L["general_title"] = "Общие настройки"
+  rggm.L["general_category_name"] = "Настройки"
+  rggm.L["general_title"] = "Настройки"
   rggm.L["enable_tooltips"] = "Включить подсказки"
   rggm.L["enable_tooltips_tooltip"] = "Показывать подсказку при наведении на предмет"
   rggm.L["enable_simple_tooltips"] = "Простые подсказки"
@@ -38,6 +39,10 @@ if (GetLocale() == "ruRU") then
     .. " для быстрого снятия предметов"
   rggm.L["enable_rune_slots"] = "Включить слоты рун"
   rggm.L["enable_rune_slots_tooltip"] = "Показывать слоты рун в панели экипировки"
+  rggm.L["enable_fallback_to_base_item"] = "Заменять базовым предметом"
+  rggm.L["enable_fallback_to_base_item_tooltip"] = "Если в сумках нет копии предмета с точно совпадающими"
+    .. " чарами/рунами, будет надета обычная копия того же предмета."
+    .. " При надевании замены в чат выводится предупреждение"
   rggm.L["filter_item_quality"] = "Фильтр качества предметов:"
   rggm.L["item_quality_poor"] = "Хлам (Серый)"
   rggm.L["item_quality_common"] = "Обычное (Белое)"
@@ -147,6 +152,8 @@ if (GetLocale() == "ruRU") then
 
   -- add/remove slots
   rggm.L["gear_bar_configuration_add_gearslot"] = "Добавить слот экипировки"
+  rggm.L["gear_bar_configuration_add_gearslot_combat"] =
+    "Невозможно добавить слот экипировки в бою. Пожалуйста, повторите попытку после боя"
   rggm.L["gear_bar_configuration_remove_gearslot"] = "-"
   rggm.L["gear_bar_configuration_delete_gearbar"] = "Удалить панель экипировки"
   -- gearbar scrollmenu
@@ -165,4 +172,50 @@ if (GetLocale() == "ruRU") then
   -- macro bridge user errors
   rggm.L["unable_to_find_equipslot"] = "Не удается найти подходящий слот для itemId %s"
   rggm.L["unable_to_find_item"] = "Не удается найти информацию о предмете для itemId %s"
+  rggm.L["macro_invalid_argument"] = "неверный аргумент #%s для '%s' (ожидалось число, получено %s)"
+  rggm.L["macro_invalid_listener"] = "неверный аргумент #1 для '%s' (ожидалась функция, получено %s)"
+
+  -- swap failure user errors
+  rggm.L["swap_failure_item_not_found"] = "Не удается переключиться на предмет %s - предмет не найден в сумках"
+  rggm.L["swap_failure_item_locked"] = "Не удается переключиться на предмет %s - предмет сейчас заблокирован"
+  rggm.L["swap_failure_cursor_busy"] = "Не удается переключиться на предмет %s - на курсоре другой предмет"
+  rggm.L["swap_failure_spell_targeting"] = "Не удается переключиться на предмет %s - заклинание ожидает цель"
+  rggm.L["swap_failure_no_bag_space"] = "Не удается снять предмет %s - в сумках нет свободного места"
+  rggm.L["swap_fallback_to_base_item"] = "Надета замена предмета %s - в сумках не найдена копия с точно"
+    .. " совпадающими чарами/рунами"
+
+  -- profile
+  rggm.L["profile_category_name"] = "Профили"
+  rggm.L["profile_title"] = "Профили"
+  rggm.L["profile_list_label"] = "Сохранённые профили"
+  rggm.L["profile_string_label"] = "Строка профиля (Экспорт / Импорт)"
+  rggm.L["profile_save_button"] = "Сохранить текущий как..."
+  rggm.L["profile_apply_button"] = "Применить"
+  rggm.L["profile_rename_button"] = "Переименовать"
+  rggm.L["profile_delete_button"] = "Удалить"
+  rggm.L["profile_export_button"] = "Экспорт"
+  rggm.L["profile_import_button"] = "Импорт"
+  rggm.L["profile_name_prompt"] = "Введите имя для нового профиля:"
+  rggm.L["profile_rename_prompt"] = "Введите новое имя для профиля:"
+  rggm.L["profile_import_name_prompt"] = "Введите имя для сохранения импортированного профиля:"
+  rggm.L["profile_apply_confirm"] = "Применить профиль \"%s\"? Это перезапишет ваши текущие настройки "
+    .. "и перезагрузит интерфейс."
+  rggm.L["profile_delete_confirm"] = "Удалить профиль \"%s\"?"
+  rggm.L["profile_save_success"] = "Профиль \"%s\" сохранён"
+  rggm.L["profile_apply_success"] = "Профиль \"%s\" применён"
+  rggm.L["profile_import_success"] = "Профиль \"%s\" импортирован"
+  rggm.L["profile_delete_success"] = "Профиль \"%s\" удалён"
+  rggm.L["profile_rename_success"] = "Профиль переименован в \"%s\""
+  rggm.L["profile_error_empty"] = "Нет строки профиля для импорта"
+  rggm.L["profile_error_invalid"] = "Строка профиля недействительна или не может быть прочитана"
+  rggm.L["profile_error_checksum"] = "Строка профиля повреждена (несоответствие контрольной суммы)"
+  rggm.L["profile_error_wrong_addon"] = "Эта строка профиля была создана не GearMenu"
+  rggm.L["profile_error_version"] = "Эта строка профиля была создана более новой версией GearMenu"
+  rggm.L["profile_error_name_empty"] = "Имя профиля не может быть пустым"
+  rggm.L["profile_error_name_exists"] = "Профиль с таким именем уже существует"
+  rggm.L["profile_error_name_too_long"] = "Имя профиля не может быть длиннее %d символов"
+  rggm.L["profile_error_no_selection"] = "Профиль не выбран"
+  rggm.L["profile_error_default_cannot_be_deleted"] = "Профиль \"%s\" нельзя удалить"
+  rggm.L["profile_error_default_cannot_be_renamed"] = "Профиль \"%s\" нельзя переименовать"
+  rggm.L["profile_error_default_cannot_be_overwritten"] = "Профиль \"%s\" нельзя перезаписать"
 end

@@ -261,6 +261,189 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
         addonTable.ArrangeSettingsTabs(_G.GwSettingsWindow)
     end
 
+    if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
+        local FORCE_NEW_LINE_TYPES = {
+            slider = true, dropdown = true, list = true, text = true,
+            button = true, colorPicker = true, header = true, subHeader = true
+        }
+
+        local function ResolveForceNewLine(option)
+            if option.forceNewLine ~= nil then return option.forceNewLine end
+            if option.optionType == "dropdown" and option.noNewLine ~= nil then return not option.noNewLine end
+            return FORCE_NEW_LINE_TYPES[option.optionType] == true
+        end
+
+        local function IsMasterToggle(option)
+            return option and option.isMasterToggle == true
+        end
+
+        local function PackOptionsIntoRows(options)
+            local rows, index = {}, 1
+            local function AddMasterToggleSeparatorIfNeeded(lastIndex)
+                if IsMasterToggle(options[lastIndex]) and options[lastIndex + 1] and not IsMasterToggle(options[lastIndex + 1]) then
+                    rows[#rows + 1] = {kind = "masterToggleSeparator"}
+                end
+            end
+            while index <= #options do
+                local left = options[index]
+                if ResolveForceNewLine(left) then
+                    rows[#rows + 1] = {cols = {left}}
+                    AddMasterToggleSeparatorIfNeeded(index)
+                    index = index + 1
+                else
+                    local right = options[index + 1]
+                    if right and not ResolveForceNewLine(right) and IsMasterToggle(left) == IsMasterToggle(right) then
+                        rows[#rows + 1] = {cols = {left, right}}
+                        AddMasterToggleSeparatorIfNeeded(index + 1)
+                        index = index + 2
+                    else
+                        rows[#rows + 1] = {cols = {left}}
+                        AddMasterToggleSeparatorIfNeeded(index)
+                        index = index + 1
+                    end
+                end
+            end
+            return rows
+        end
+
+        local function BuildOptionsDataProvider(panel)
+            local provider = CreateDataProvider()
+            for index, row in ipairs(PackOptionsIntoRows(panel.gwOptions or {})) do
+                provider:Insert({index = index, kind = row.kind, cols = row.cols, panel = panel})
+            end
+            return provider
+        end
+
+        local function ProcessSettings()
+            if not _G.GwSettingsWindow or not _G.GwSettingsWindow.settingsTab or not _G.GwSettingsWindow.settingsTab.AddSettingsPanel then return end
+            local menuItems = nil
+            local i = 1
+            while true do
+                local name, val = debug.getupvalue(_G.GwSettingsWindowSettingsTabMixin.AddSettingsPanel, i)
+                if not name then break end
+                if name == "menuItems" then
+                    menuItems = val
+                    break
+                end
+                i = i + 1
+            end
+            
+            if not menuItems then return end
+            
+            local hudPanel, unitframesPanel, hudGeneralFrame
+            for _, main in ipairs(menuItems) do
+                if main.subFrameData then
+                    for _, sub in ipairs(main.subFrameData) do
+                        if sub.frame then
+                            if sub.frame.panelId == "hud_microbar" then
+                                hudPanel = main
+                            elseif sub.frame.panelId == "unitframes_general" then
+                                unitframesPanel = main
+                            elseif sub.frame.panelId == "hud_general" then
+                                hudGeneralFrame = sub.frame
+                            end
+                        end
+                    end
+                end
+            end
+            
+            if hudGeneralFrame and hudGeneralFrame.gwOptions then
+                local optToRemove = {
+                    HUD_BACKGROUND = true,
+                    HUD_SPELL_SWAP = true,
+                    XPBAR_ENABLED = true,
+                    QUEST_XP_PERCENT = true
+                }
+                
+                local kept = {}
+                local removedAny = false
+                for _, option in ipairs(hudGeneralFrame.gwOptions) do
+                    if not optToRemove[option.optionName] then
+                        kept[#kept + 1] = option
+                    else
+                        removedAny = true
+                    end
+                end
+                
+                if removedAny then
+                    hudGeneralFrame.gwOptions = kept
+                    local dp = hudGeneralFrame.scroll and hudGeneralFrame.scroll.ScrollBox and hudGeneralFrame.scroll.ScrollBox:GetDataProvider()
+                    if dp then
+                        local toRemoveRows = {}
+                        dp:ForEach(function(row)
+                            if row.cols then
+                                local c1 = row.cols[1]
+                                local c2 = row.cols[2]
+                                if (c1 and optToRemove[c1.optionName]) or (c2 and optToRemove[c2.optionName]) then
+                                    if c1 and c2 then
+                                        if optToRemove[c1.optionName] and optToRemove[c2.optionName] then
+                                            table.insert(toRemoveRows, row)
+                                        elseif optToRemove[c1.optionName] then
+                                            row.cols[1] = row.cols[2]
+                                            row.cols[2] = nil
+                                            local w1 = GW2_ADDON.FindSettingsWidgetByOption and GW2_ADDON.FindSettingsWidgetByOption(c1.optionName)
+                                            if w1 then w1:Hide() end
+                                        else
+                                            row.cols[2] = nil
+                                            local w2 = GW2_ADDON.FindSettingsWidgetByOption and GW2_ADDON.FindSettingsWidgetByOption(c2.optionName)
+                                            if w2 then w2:Hide() end
+                                        end
+                                    else
+                                        table.insert(toRemoveRows, row)
+                                    end
+                                end
+                            end
+                        end)
+                        for _, r in ipairs(toRemoveRows) do
+                            dp:Remove(r)
+                            if r.cols then
+                                for i=1,2 do
+                                    if r.cols[i] then
+                                        local w = GW2_ADDON.FindSettingsWidgetByOption and GW2_ADDON.FindSettingsWidgetByOption(r.cols[i].optionName)
+                                        if w then w:Hide() end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            
+            for _, main in ipairs(menuItems) do
+                if main.subFrameData then
+                    local toRemove = { 
+                        player_general = true, player_castbar = true, player_aura = true, player_classpower = true,
+                        hud_microbar = true, hud_minimap = true, hud_worldmap = true,
+                        player_totem = true, player_fader = true
+                    }
+                    local newSubFrames = {}
+                    for _, sub in ipairs(main.subFrameData) do
+                        if sub.frame and toRemove[sub.frame.panelId] then
+                            -- skip inserting to effectively remove from native menu
+                        else
+                            newSubFrames[#newSubFrames + 1] = sub
+                        end
+                    end
+                    main.subFrameData = newSubFrames
+                end
+            end
+            
+            if _G.GwSettingsWindow.settingsTab.menu and _G.GwSettingsWindow.settingsTab.menu.ScrollBox then
+                    local flatData = {}
+                    for _, main in ipairs(menuItems) do
+                        flatData[#flatData + 1] = { isSubCat = false, itemData = main }
+                        if main.isExpanded and main.hasSubFrames then
+                            for _, sub in ipairs(main.subFrameData) do
+                                flatData[#flatData + 1] = { isSubCat = true, itemData = sub }
+                            end
+                        end
+                    end
+                    _G.GwSettingsWindow.settingsTab.menu.ScrollBox:SetDataProvider(CreateDataProvider(flatData), ScrollBoxConstants and ScrollBoxConstants.RetainScrollPosition or 1)
+                end
+        end
+        ProcessSettings()
+    end
+
     end)
 else
     if not GW2_ADDON then

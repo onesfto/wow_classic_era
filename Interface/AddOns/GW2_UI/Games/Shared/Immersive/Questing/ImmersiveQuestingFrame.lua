@@ -311,9 +311,6 @@ function GwImmersiveQuestFrameMixin:OnHide()
     if _G.GwImmersiveQuestDebugFrame then
         _G.GwImmersiveQuestDebugFrame:Hide()
     end
-    if not InCombatLockdown() then
-        self:SetPropagateKeyboardInput(true)
-    end
     self:EnableKeyboard(false)
     self:SetScript("OnKeyDown", nil)
     if self.was_showing then

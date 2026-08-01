@@ -2,22 +2,27 @@
 NRunDB_Global = {
 ["anchors"] = {
 ["main"] = {
-["y"] = -234.6405944824219,
-["x"] = 178.9403533935547,
-["point"] = "TOP",
-["to"] = "TOP",
+["y"] = 265.4723205566406,
+["x"] = -435.4810180664063,
+["to"] = "RIGHT",
+["point"] = "RIGHT",
+},
+["secondary"] = {
+["y"] = -256.54052734375,
+["x"] = 400.7610778808594,
+["to"] = "TOPLEFT",
+["point"] = "TOPLEFT",
 },
 },
+["cooldownsEnabled"] = false,
 ["charspec"] = {
 },
 }
 NugRunningConfigCustom = {
-["HUNTER"] = {
+["MAGE"] = {
 },
 ["WARRIOR"] = {
 },
-["DRUID"] = {
-},
-["MAGE"] = {
+["PRIEST"] = {
 },
 }

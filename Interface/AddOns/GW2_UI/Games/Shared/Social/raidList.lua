@@ -26,11 +26,8 @@ local function LoadRaidFrame()
         if obj then
             obj:SetSize(230, 120)
             obj:GwStripTextures()
-            local label = _G[object .. "Label"]
-            if label then
-                label:SetNormalFontObject("GameFontNormal")
-                label:SetHighlightFontObject("GameFontHighlight")
-            end
+            _G[object .. "Label"]:SetNormalFontObject("GameFontNormal")
+            _G[object .. "Label"]:SetHighlightFontObject("GameFontHighlight")
             for j = 1, 5 do
                 local slot = _G[object .. "Slot" .. j]
                 if slot then
@@ -42,124 +39,85 @@ local function LoadRaidFrame()
         end
     end
 
-    for i = 1, (_G.MAX_RAID_GROUPS or 0) * 5 do
-        local button = _G["RaidGroupButton" .. i]
-        local name = _G["RaidGroupButton" .. i .. "Name"]
-        local level = _G["RaidGroupButton" .. i .. "Level"]
-        local class = _G["RaidGroupButton" .. i .. "Class"]
+    for i = 1, _G.MAX_RAID_GROUPS * 5 do
+        _G["RaidGroupButton" .. i]:SetSize(220, 22)
+        _G["RaidGroupButton" .. i]:GwSkinButton(false, true, true)
+        _G["RaidGroupButton" .. i]:GwStripTextures()
+        _G["RaidGroupButton" .. i]:GwCreateBackdrop(GW.BackdropTemplates.DefaultWithSmallBorder, true)
+        _G["RaidGroupButton" .. i .. "Name"]:SetFont(UNIT_NAME_FONT, 10)
+        _G["RaidGroupButton" .. i .. "Level"]:SetFont(UNIT_NAME_FONT, 10)
 
-        if button then
-            button:SetSize(220, 22)
-            button:GwSkinButton(false, true, true)
-            button:GwStripTextures()
-            button:GwCreateBackdrop(GW.BackdropTemplates.DefaultWithSmallBorder, true)
-        end
-        if name then
-            name:SetFont(UNIT_NAME_FONT, 10)
-            name:SetSize(60, 19)
-        end
-        if level then
-            level:SetFont(UNIT_NAME_FONT, 10)
-            level:SetSize(37, 19)
+        if _G["RaidGroupButton" .. i .. "Class"].SetFont then
+            _G["RaidGroupButton" .. i .. "Class"]:SetFont(UNIT_NAME_FONT, 10)
+        else
+            _G["RaidGroupButton" .. i .. "Class"].text:SetFont(UNIT_NAME_FONT, 10)
         end
 
-        if class then
-            if class.SetFont then
-                class:SetFont(UNIT_NAME_FONT, 10)
-            elseif class.text then
-                class.text:SetFont(UNIT_NAME_FONT, 10)
-            end
-            class:SetSize(80, 19)
-        end
+        _G["RaidGroupButton" .. i .. "Name"]:SetSize(60, 19)
+        _G["RaidGroupButton" .. i .. "Level"]:SetSize(37, 19)
+        _G["RaidGroupButton" .. i .. "Class"]:SetSize(80, 19)
     end
 
     hooksecurefunc("RaidGroupFrame_Update", function()
-        for i = 1, (MAX_RAID_GROUPS or 0) * 5 do
+        for i = 1, MAX_RAID_GROUPS * 5 do
             local _, rank, _, _, _, _, _, _, _, role = GetRaidRosterInfo(i)
-            local rankTexture = _G["RaidGroupButton" .. i .. "RankTexture"]
-            local roleTexture = _G["RaidGroupButton" .. i .. "RoleTexture"]
 
-            if rankTexture then
-                if rank == 2 then
-                    rankTexture:SetTexture("Interface/AddOns/GW2_UI/textures/party/icon-groupleader.png")
-                elseif rank == 1 then
-                    rankTexture:SetTexture("Interface/AddOns/GW2_UI/textures/party/icon-assist.png")
-                else
-                    rankTexture:SetTexture("")
-                end
+            if rank == 2 then
+                _G["RaidGroupButton" .. i .. "RankTexture"]:SetTexture("Interface/AddOns/GW2_UI/textures/party/icon-groupleader.png")
+            elseif rank == 1 then
+                _G["RaidGroupButton" .. i .. "RankTexture"]:SetTexture("Interface/AddOns/GW2_UI/textures/party/icon-assist.png")
+            else
+                _G["RaidGroupButton" .. i .. "RankTexture"]:SetTexture("")
             end
 
-            if roleTexture then
-                if role == "MAINTANK" then
-                    roleTexture:SetTexture("Interface/AddOns/GW2_UI/textures/party/icon-maintank.png")
-                elseif role == "MAINASSIST" then
-                    roleTexture:SetTexture("Interface/AddOns/GW2_UI/textures/party/icon-mainassist.png")
-                else
-                    roleTexture:SetTexture("")
-                end
+            if role == "MAINTANK" then
+                _G["RaidGroupButton" .. i .. "RoleTexture"]:SetTexture("Interface/AddOns/GW2_UI/textures/party/icon-maintank.png")
+            elseif role == "MAINASSIST" then
+                _G["RaidGroupButton" .. i .. "RoleTexture"]:SetTexture("Interface/AddOns/GW2_UI/textures/party/icon-mainassist.png")
+            else
+                _G["RaidGroupButton" .. i .. "RoleTexture"]:SetTexture("")
             end
         end
     end)
 end
 
 function GW.SkinRaidList()
-    if RaidFrameNotInRaid and RaidFrameNotInRaid.ScrollingDescription then
+    if RaidFrameNotInRaid.ScrollingDescription then
         RaidFrameNotInRaid.ScrollingDescription:ClearAllPoints()
         RaidFrameNotInRaid.ScrollingDescription:SetPoint("TOPLEFT", RaidFrameNotInRaid, "TOPLEFT", 0, -73)
         RaidFrameNotInRaid.ScrollingDescription:SetPoint("BOTTOMRIGHT", RaidFrameNotInRaid, "BOTTOMRIGHT", 0, 0)
-        if RaidFrameNotInRaid.ScrollingDescription.ScrollBox and RaidFrameNotInRaid.ScrollingDescription.ScrollBox.FontStringContainer then
-            local fontString = RaidFrameNotInRaid.ScrollingDescription.ScrollBox.FontStringContainer.FontString
-            if fontString then
-                fontString:SetJustifyH("CENTER")
-                fontString:SetJustifyV("TOP")
-                fontString:SetTextColor(1, 1, 1)
-            end
-        end
+        RaidFrameNotInRaid.ScrollingDescription.ScrollBox.FontStringContainer.FontString:SetJustifyH("CENTER")
+        RaidFrameNotInRaid.ScrollingDescription.ScrollBox.FontStringContainer.FontString:SetJustifyV("TOP")
+        RaidFrameNotInRaid.ScrollingDescription.ScrollBox.FontStringContainer.FontString:SetTextColor(1, 1, 1)
     end
 
-    if RaidFrameAllAssistCheckButton then
-        RaidFrameAllAssistCheckButton:ClearAllPoints()
-        RaidFrameAllAssistCheckButton:SetPoint("TOPLEFT", 10, -33)
-        if RaidFrameAllAssistCheckButton.text then
-            RaidFrameAllAssistCheckButton.text:ClearAllPoints()
-            RaidFrameAllAssistCheckButton.text:SetPoint("LEFT", RaidFrameAllAssistCheckButton, "RIGHT", 5, -2)
-            RaidFrameAllAssistCheckButton.text:SetText(ALL .. " |TInterface/AddOns/GW2_UI/textures/party/icon-assist.png:25:25:0:-3|t")
-        end
-    end
+    RaidFrameAllAssistCheckButton:ClearAllPoints()
+    RaidFrameAllAssistCheckButton:SetPoint("TOPLEFT", 10, -33)
+    RaidFrameAllAssistCheckButton.text:ClearAllPoints()
+    RaidFrameAllAssistCheckButton.text:SetPoint("LEFT", RaidFrameAllAssistCheckButton, "RIGHT", 5, -2)
+    RaidFrameAllAssistCheckButton.text:SetText(ALL .. " |TInterface/AddOns/GW2_UI/textures/party/icon-assist.png:25:25:0:-3|t")
 
-    if RaidFrame and RaidFrame.RoleCount then
+    if RaidFrame.RoleCount then
         RaidFrame.RoleCount:ClearAllPoints()
         RaidFrame.RoleCount:SetPoint("TOP", -80, -33)
 
-        if RaidFrame.RoleCount.TankIcon then
-            RaidFrame.RoleCount.TankIcon:SetTexture("Interface/AddOns/GW2_UI/textures/party/roleicon-tank.png")
-        end
-        if RaidFrame.RoleCount.HealerIcon then
-            RaidFrame.RoleCount.HealerIcon:SetTexture("Interface/AddOns/GW2_UI/textures/party/roleicon-healer.png")
-        end
-        if RaidFrame.RoleCount.DamagerIcon then
-            RaidFrame.RoleCount.DamagerIcon:SetTexture("Interface/AddOns/GW2_UI/textures/party/roleicon-dps.png")
-            RaidFrame.RoleCount.DamagerIcon:SetSize(20, 20)
-        end
+        RaidFrame.RoleCount.TankIcon:SetTexture("Interface/AddOns/GW2_UI/textures/party/roleicon-tank.png")
+        RaidFrame.RoleCount.HealerIcon:SetTexture("Interface/AddOns/GW2_UI/textures/party/roleicon-healer.png")
+        RaidFrame.RoleCount.DamagerIcon:SetTexture("Interface/AddOns/GW2_UI/textures/party/roleicon-dps.png")
+        RaidFrame.RoleCount.DamagerIcon:SetSize(20, 20)
     end
 
-    if RaidFrameAllAssistCheckButton then
-        RaidFrameAllAssistCheckButton:GwSkinCheckButton()
-        RaidFrameAllAssistCheckButton:SetSize(18, 18)
-    end
+    RaidFrameAllAssistCheckButton:GwSkinCheckButton()
+    RaidFrameAllAssistCheckButton:SetSize(18, 18)
 
     if RaidFrameReadyCheckButton then
         RaidFrameReadyCheckButton:GwSkinButton(false, true)
     end
 
-    if RaidFrameConvertToRaidButton then
-        RaidFrameConvertToRaidButton:GwSkinButton(false, true)
-    end
-    if RaidFrameRaidInfoButton then
-        RaidFrameRaidInfoButton:GwSkinButton(false, true)
-        RaidFrameRaidInfoButton:SetPoint("TOPRIGHT", -7, -33)
-    end
-    if GW.settings.USE_CHARACTER_WINDOW and (GW.Retail or GW.Mists) and RaidFrameRaidInfoButton then
+    RaidFrameConvertToRaidButton:GwSkinButton(false, true)
+    RaidFrameRaidInfoButton:GwSkinButton(false, true)
+    RaidFrameRaidInfoButton:SetPoint("TOPRIGHT", -7, -33)
+    if GW.settings.USE_CHARACTER_WINDOW and (GW.Retail or GW.Mists) then
         RaidFrameRaidInfoButton:SetScript("OnClick", function()
             if InCombatLockdown() then return end
             if GwCharacterCurrencyRaidInfoFrame.RaidLocks:IsVisible() then
@@ -171,8 +129,5 @@ function GW.SkinRaidList()
         end)
     end
 
-    if _G.RaidFrame_LoadUI and RaidFrame and not RaidFrame.gwRaidFrameHooked then
-        hooksecurefunc("RaidFrame_LoadUI", LoadRaidFrame)
-        RaidFrame.gwRaidFrameHooked = true
-    end
+    hooksecurefunc("RaidFrame_LoadUI", LoadRaidFrame)
 end

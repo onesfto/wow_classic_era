@@ -382,7 +382,7 @@ function categoryPaneProto:ShowEmptyDetail()
 
     local text = self.emptyDetail:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
     text:SetPoint("CENTER", 0, 0)
-    text:SetText(L:G("Select a category to view its settings"))
+    text:SetText("Select a category to view its settings")
     text:SetTextColor(0.5, 0.5, 0.5)
   end
   self.emptyDetail:Show()
@@ -456,15 +456,15 @@ function categoryPaneProto:ShowSearchCategoryDetail(filter)
   self.searchDetail.deleteButton:SetEnabled(canDelete)
 
   if not canRename then
-    self.searchDetail.renameButton:SetText(L:G("Cannot Rename"))
+    self.searchDetail.renameButton:SetText("Cannot Rename")
   else
-    self.searchDetail.renameButton:SetText(L:G("Rename"))
+    self.searchDetail.renameButton:SetText("Rename")
   end
 
   if not canDelete then
-    self.searchDetail.deleteButton:SetText(L:G("Cannot Delete"))
+    self.searchDetail.deleteButton:SetText("Cannot Delete")
   else
-    self.searchDetail.deleteButton:SetText(L:G("Delete Category"))
+    self.searchDetail.deleteButton:SetText("Delete Category")
   end
 
   -- Load item list for the search category
@@ -497,7 +497,7 @@ function categoryPaneProto:CreateSearchDetailPanel()
   -- Query Label
   local queryLabel = self.searchDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   queryLabel:SetPoint("TOPLEFT", 10, yOffset)
-  queryLabel:SetText(L:G("Search Query"))
+  queryLabel:SetText("Search Query")
 
   yOffset = yOffset - 20
 
@@ -587,7 +587,7 @@ function categoryPaneProto:CreateSearchDetailPanel()
   -- Priority Label
   local priorityLabel = self.searchDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   priorityLabel:SetPoint("TOPLEFT", 10, yOffset)
-  priorityLabel:SetText(L:G("Priority (0-99)"))
+  priorityLabel:SetText("Priority (0-99)")
 
   yOffset = yOffset - 20
 
@@ -605,7 +605,7 @@ function categoryPaneProto:CreateSearchDetailPanel()
   -- Group By Label
   local groupByLabel = self.searchDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   groupByLabel:SetPoint("TOPLEFT", 10, yOffset)
-  groupByLabel:SetText(L:G("Group By"))
+  groupByLabel:SetText("Group By")
 
   yOffset = yOffset - 25
 
@@ -666,7 +666,7 @@ function categoryPaneProto:CreateSearchDetailPanel()
   -- Color Label
   local colorLabel = self.searchDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   colorLabel:SetPoint("TOPLEFT", 10, yOffset)
-  colorLabel:SetText(L:G("Color"))
+  colorLabel:SetText("Color")
 
   -- Color Picker
   local colorPicker = CreateFrame("Frame", nil, self.searchDetail)
@@ -707,7 +707,7 @@ function categoryPaneProto:CreateSearchDetailPanel()
   local clearColorButton = CreateFrame("Button", nil, self.searchDetail, "UIPanelButtonTemplate")
   clearColorButton:SetPoint("LEFT", colorPicker, "RIGHT", 5, 0)
   clearColorButton:SetSize(90, 24)
-  clearColorButton:SetText(L:G("Reset Color"))
+  clearColorButton:SetText("Reset Color")
   clearColorButton:SetScript("OnClick", function()
     if not self.selectedCategory then return end
     -- Reset swatch to default yellow
@@ -723,12 +723,12 @@ function categoryPaneProto:CreateSearchDetailPanel()
 
   local showLabel = self.searchDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   showLabel:SetPoint("LEFT", showCheckbox, "RIGHT", 5, 0)
-  showLabel:SetText(L:G("Show Section"))
+  showLabel:SetText("Show Section")
 
   local showDesc = self.searchDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   showDesc:SetPoint("TOPLEFT", showLabel, "BOTTOMLEFT", 0, -5)
   showDesc:SetPoint("RIGHT", self.searchDetail, "RIGHT", -10, 0)
-  showDesc:SetText(L:G("When unchecked, this category will be hidden from the bag view."))
+  showDesc:SetText("When unchecked, this category will be hidden from the bag view.")
   showDesc:SetTextColor(0.6, 0.6, 0.6)
   showDesc:SetFontObject(fonts.UnitFrame12White)
 
@@ -743,7 +743,7 @@ function categoryPaneProto:CreateSearchDetailPanel()
   -- Items Label
   local itemsLabel = self.searchDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   itemsLabel:SetPoint("TOPLEFT", 10, yOffset)
-  itemsLabel:SetText(L:G("Additional Items (drag items here to add)"))
+  itemsLabel:SetText("Additional Items (drag items here to add)")
 
   yOffset = yOffset - 20
 
@@ -751,7 +751,7 @@ function categoryPaneProto:CreateSearchDetailPanel()
   local saveButton = CreateFrame("Button", nil, self.searchDetail, "UIPanelButtonTemplate")
   saveButton:SetPoint("BOTTOMLEFT", self.searchDetail, "BOTTOMLEFT", 10, 10)
   saveButton:SetSize(100, 25)
-  saveButton:SetText(L:G("Save"))
+  saveButton:SetText("Save")
   saveButton:SetScript("OnClick", function()
     self:SaveSearchCategory()
   end)
@@ -761,7 +761,7 @@ function categoryPaneProto:CreateSearchDetailPanel()
   local renameButton = CreateFrame("Button", nil, self.searchDetail, "UIPanelButtonTemplate")
   renameButton:SetPoint("LEFT", saveButton, "RIGHT", 10, 0)
   renameButton:SetSize(100, 25)
-  renameButton:SetText(L:G("Rename"))
+  renameButton:SetText("Rename")
   renameButton:SetScript("OnClick", function()
     if not self.selectedCategory then return end
     self:ShowRenameCategoryDialog(self.selectedCategory)
@@ -772,7 +772,7 @@ function categoryPaneProto:CreateSearchDetailPanel()
   local deleteButton = CreateFrame("Button", nil, self.searchDetail, "UIPanelButtonTemplate")
   deleteButton:SetPoint("LEFT", renameButton, "RIGHT", 10, 0)
   deleteButton:SetSize(120, 25)
-  deleteButton:SetText(L:G("Delete Category"))
+  deleteButton:SetText("Delete Category")
   deleteButton:SetScript("OnClick", function()
     if not self.selectedCategory then return end
     question:YesNo("Delete Category", format("Are you sure you want to delete the category %s?", self.selectedCategory), function()
@@ -911,15 +911,15 @@ function categoryPaneProto:ShowManualCategoryDetail(filter)
   self.manualDetail.deleteButton:SetEnabled(canDelete)
 
   if not canRename then
-    self.manualDetail.renameButton:SetText(L:G("Cannot Rename"))
+    self.manualDetail.renameButton:SetText("Cannot Rename")
   else
-    self.manualDetail.renameButton:SetText(L:G("Rename"))
+    self.manualDetail.renameButton:SetText("Rename")
   end
 
   if not canDelete then
-    self.manualDetail.deleteButton:SetText(L:G("Cannot Delete"))
+    self.manualDetail.deleteButton:SetText("Cannot Delete")
   else
-    self.manualDetail.deleteButton:SetText(L:G("Delete Category"))
+    self.manualDetail.deleteButton:SetText("Delete Category")
   end
 
   -- Load item list
@@ -952,7 +952,7 @@ function categoryPaneProto:CreateManualDetailPanel()
   -- Color Label
   local colorLabel = self.manualDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   colorLabel:SetPoint("TOPLEFT", 10, yOffset)
-  colorLabel:SetText(L:G("Color"))
+  colorLabel:SetText("Color")
 
   -- Color Picker
   local colorPicker = CreateFrame("Frame", nil, self.manualDetail)
@@ -993,7 +993,7 @@ function categoryPaneProto:CreateManualDetailPanel()
   local clearColorButton = CreateFrame("Button", nil, self.manualDetail, "UIPanelButtonTemplate")
   clearColorButton:SetPoint("LEFT", colorPicker, "RIGHT", 5, 0)
   clearColorButton:SetSize(90, 24)
-  clearColorButton:SetText(L:G("Reset Color"))
+  clearColorButton:SetText("Reset Color")
   clearColorButton:SetScript("OnClick", function()
     if not self.selectedCategory then return end
     -- Reset swatch to default yellow
@@ -1005,7 +1005,7 @@ function categoryPaneProto:CreateManualDetailPanel()
   -- Priority Label
   local priorityLabel = self.manualDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   priorityLabel:SetPoint("TOPLEFT", 10, yOffset)
-  priorityLabel:SetText(L:G("Priority (0-99)"))
+  priorityLabel:SetText("Priority (0-99)")
 
   yOffset = yOffset - 20
 
@@ -1027,12 +1027,12 @@ function categoryPaneProto:CreateManualDetailPanel()
 
   local showLabel = self.manualDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   showLabel:SetPoint("LEFT", showCheckbox, "RIGHT", 5, 0)
-  showLabel:SetText(L:G("Show Section"))
+  showLabel:SetText("Show Section")
 
   local showDesc = self.manualDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   showDesc:SetPoint("TOPLEFT", showLabel, "BOTTOMLEFT", 0, -5)
   showDesc:SetPoint("RIGHT", self.manualDetail, "RIGHT", -10, 0)
-  showDesc:SetText(L:G("When unchecked, this category will be hidden from the bag view."))
+  showDesc:SetText("When unchecked, this category will be hidden from the bag view.")
   showDesc:SetTextColor(0.6, 0.6, 0.6)
   showDesc:SetFontObject(fonts.UnitFrame12White)
 
@@ -1047,7 +1047,7 @@ function categoryPaneProto:CreateManualDetailPanel()
   -- Items Label
   local itemsLabel = self.manualDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   itemsLabel:SetPoint("TOPLEFT", 10, yOffset)
-  itemsLabel:SetText(L:G("Items in Category (drag items here to add)"))
+  itemsLabel:SetText("Items in Category (drag items here to add)")
 
   yOffset = yOffset - 20
 
@@ -1055,7 +1055,7 @@ function categoryPaneProto:CreateManualDetailPanel()
   local saveButton = CreateFrame("Button", nil, self.manualDetail, "UIPanelButtonTemplate")
   saveButton:SetPoint("BOTTOMLEFT", self.manualDetail, "BOTTOMLEFT", 10, 10)
   saveButton:SetSize(100, 25)
-  saveButton:SetText(L:G("Save"))
+  saveButton:SetText("Save")
   saveButton:SetScript("OnClick", function()
     self:SaveManualCategory()
   end)
@@ -1065,7 +1065,7 @@ function categoryPaneProto:CreateManualDetailPanel()
   local renameButton = CreateFrame("Button", nil, self.manualDetail, "UIPanelButtonTemplate")
   renameButton:SetPoint("LEFT", saveButton, "RIGHT", 10, 0)
   renameButton:SetSize(100, 25)
-  renameButton:SetText(L:G("Rename"))
+  renameButton:SetText("Rename")
   renameButton:SetScript("OnClick", function()
     if not self.selectedCategory then return end
     self:ShowRenameCategoryDialog(self.selectedCategory)
@@ -1076,7 +1076,7 @@ function categoryPaneProto:CreateManualDetailPanel()
   local deleteButton = CreateFrame("Button", nil, self.manualDetail, "UIPanelButtonTemplate")
   deleteButton:SetPoint("LEFT", renameButton, "RIGHT", 10, 0)
   deleteButton:SetSize(120, 25)
-  deleteButton:SetText(L:G("Delete Category"))
+  deleteButton:SetText("Delete Category")
   deleteButton:SetScript("OnClick", function()
     if not self.selectedCategory then return end
     question:YesNo("Delete Category", format("Are you sure you want to delete the category %s?", self.selectedCategory), function()
@@ -1275,7 +1275,7 @@ function categoryPaneProto:ShowDynamicCategoryDetail(categoryName)
 
     local infoLabel = self.dynamicDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     infoLabel:SetPoint("TOPLEFT", 10, -50)
-    infoLabel:SetText(L:G("This is a dynamic category.\\nIt cannot be edited or deleted."))
+    infoLabel:SetText("This is a dynamic category.\nIt cannot be edited or deleted.")
     infoLabel:SetTextColor(0.7, 0.7, 0.7)
   end
 

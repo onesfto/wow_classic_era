@@ -12,9 +12,6 @@ local animations = addon:GetModule('Animations')
 ---@class (exact) FormLayouts: AceModule
 local layouts = addon:GetModule('FormLayouts')
 
----@class Localization: AceModule
-local L = addon:GetModule('Localization')
-
 ---@class (exact) StackedLayout: FormLayout
 ---@field nextFrame Frame
 ---@field nextIndex Frame
@@ -174,7 +171,7 @@ function stackedLayout:addIndex(title, point, sub)
     local font = indexButton:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
     indexButton:SetFontString(font)
   end
-  indexButton:SetText(sub and "  " .. L:G(title) or L:G(title))
+  indexButton:SetText(sub and "  " .. title or title)
   local fs = indexButton:GetFontString()
   fs:SetTextColor(1, 1, 1)
   fs:ClearAllPoints()
@@ -443,7 +440,7 @@ function stackedLayout:createTitle(container, title, color)
     titleFont:SetTextColor(1, 1, 1)
   end
   titleFont:SetJustifyH("LEFT")
-  titleFont:SetText(L:G(title))
+  titleFont:SetText(title)
   return titleFont
 end
 
@@ -460,7 +457,7 @@ function stackedLayout:createDescription(container, description, color)
     descriptionFont:SetTextColor(1, 1, 1)
   end
   descriptionFont:SetJustifyH("LEFT")
-  descriptionFont:SetText(L:G(description))
+  descriptionFont:SetText(description)
   descriptionFont:SetWordWrap(true)
   descriptionFont:SetNonSpaceWrap(true)
   return descriptionFont
@@ -696,7 +693,7 @@ function stackedLayout:addDropdownRetail(opts)
   container.dropdown:SetupMenu(function(_, root)
     root:SetScrollMode(20 * 20)
     for _, item in ipairs(itemList) do
-      root:CreateCheckbox(L:G(item), function(value)
+      root:CreateCheckbox(item, function(value)
         local ctx = context:New('Dropdown_Get')
         return opts.getValue(ctx, value)
       end,
@@ -752,13 +749,13 @@ function stackedLayout:addDropdownClassic(opts)
   UIDropDownMenu_Initialize(container.classicDropdown, function(_, level, _)
    for _, item in ipairs(itemList) do
     local info = UIDropDownMenu_CreateInfo()
-    info.text = L:G(item)
+    info.text = item
     info.checked = function()
       local ctx = context:New('Dropdown_Get')
       return opts.getValue(ctx, item)
     end
     info.func = function()
-      UIDropDownMenu_SetText(container.classicDropdown, L:G(item))
+      UIDropDownMenu_SetText(container.classicDropdown, item)
       local ctx = context:New('Dropdown_Set')
       opts.setValue(ctx, item)
       self:ReloadAllFormElements()
@@ -771,7 +768,7 @@ function stackedLayout:addDropdownClassic(opts)
     for _, item in ipairs(opts.items) do
       local ctx = context:New('Dropdown_Load')
       if opts.getValue(ctx, item) then
-        UIDropDownMenu_SetText(container.classicDropdown, L:G(item))
+        UIDropDownMenu_SetText(container.classicDropdown, item)
         break
       end
     end
@@ -888,7 +885,7 @@ function stackedLayout:AddButtonGroup(opts)
 
   for _, buttonData in ipairs(opts.ButtonOptions) do
     local button = CreateFrame("Button", nil, container, "UIPanelButtonTemplate") --[[@as Button]]
-    button:SetText(L:G(buttonData.title))
+    button:SetText(buttonData.title)
     local w = button:GetFontString():GetStringWidth()
     button:SetSize(w + 20, 24)
     addon.SetScript(button, "OnClick", function(ctx)
@@ -1254,7 +1251,7 @@ function stackedLayout:AddPaneLink(opts)
   indexButton:SetSize(100, 24)
   local font = indexButton:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   indexButton:SetFontString(font)
-  indexButton:SetText("  " .. L:G(opts.title))
+  indexButton:SetText("  " .. opts.title)
   local fs = indexButton:GetFontString()
   fs:SetTextColor(1, 1, 1)
   fs:ClearAllPoints()

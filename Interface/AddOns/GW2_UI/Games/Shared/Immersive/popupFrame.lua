@@ -4,12 +4,6 @@ local GW = select(2, ...)
 local MAX_FRAMES = 4
 local frames = {}
 
-local function EnsureKeyboardInputPropagates(frame)
-    if frame and frame.SetPropagateKeyboardInput and not InCombatLockdown() then
-        frame:SetPropagateKeyboardInput(true)
-    end
-end
-
 local function EscapePressed()
     local closed = nil
     for _, popup in pairs(frames) do
@@ -203,10 +197,6 @@ end
 
 local function OnHide(self)
     self.isInUse = false
-    EnsureKeyboardInputPropagates(self)
-    if self.input then
-        self.input:ClearFocus()
-    end
     self:SetScript("OnKeyDown", nil)
 end
 

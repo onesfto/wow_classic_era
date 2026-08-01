@@ -230,7 +230,7 @@ local function ADD_chatbut(fuF,name)
 				elseif name=="RAID" or name=="RAID_WARNING" then
 					return IsInRaid()--LE_PARTY_CATEGORY_HOME
 				elseif name=="INSTANCE_CHAT" then
-					return IsInRaid(LE_PARTY_CATEGORY_INSTANCE)
+					return IsInGroup(LE_PARTY_CATEGORY_INSTANCE) or IsInRaid(LE_PARTY_CATEGORY_INSTANCE)
 				else
 					return true
 				end

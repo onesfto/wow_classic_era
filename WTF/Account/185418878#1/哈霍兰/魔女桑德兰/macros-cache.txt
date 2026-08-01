@@ -42,27 +42,27 @@ VER 3 01000000000000E1 "图腾" "310730"
 /petattack [target=灼热图腾][target=图腾]
 /petattack [target=法力之泉图腾][target=图腾]
 END
+VER 3 01000000000000F7 "多重" "INV_Misc_QuestionMark"
+#showtooltip 多重射击
+/cast !自动射击
+/cast 多重射击
+END
 VER 3 01000000000000E2 "多重" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 扰乱射击; 多重射击
 /cast !自动射击
 /cast [mod:shift] 扰乱射击
 /cast 多重射击
 END
-VER 3 01000000000000F7 "多重" "INV_Misc_QuestionMark"
-#showtooltip 多重射击
-/cast !自动射击
-/cast 多重射击
-END
-VER 3 01000000000000E3 "奥" "INV_Misc_QuestionMark"
-#showtooltip 奥术射击
-/cast [@mouseover,harm,nodead][] !自动射击
-/cast [@mouseover,harm,nodead][] 奥术射击
-END
 VER 3 01000000000000F8 "奥" "INV_Misc_QuestionMark"
 #showtooltip 奥术射击
 /cast [@mouseover,harm,nodead][] !自动射击
 /cast [@mouseover,harm,nodead][] 奥术射击
 /petattack [@mouseover,harm,nodead][harm]
+END
+VER 3 01000000000000E3 "奥" "INV_Misc_QuestionMark"
+#showtooltip 奥术射击
+/cast [@mouseover,harm,nodead][] !自动射击
+/cast [@mouseover,harm,nodead][] 奥术射击
 END
 VER 3 01000000000000E4 "守护" "INV_Misc_QuestionMark"
 #showtooltip [mod:alt] 豹群守护; [mod:shift] 猎豹守护; 雄鹰守护
@@ -93,16 +93,16 @@ END
 VER 3 01000000000000E7 "标" "135815"
 /cast [harm] 猎人印记;照明弹
 END
-VER 3 01000000000000FA "毒" "INV_Misc_QuestionMark"
-#showtooltip 毒蛇钉刺
-/cast [@mouseover,harm,nodead][] !自动射击
-/cast [@mouseover,harm,nodead][] 毒蛇钉刺
-END
 VER 3 01000000000000FB "毒" "INV_Misc_QuestionMark"
 #showtooltip 毒蛇钉刺
 /cast [@mouseover,harm,nodead][] !自动射击
 /cast [@mouseover,harm,nodead][] 毒蛇钉刺
 /petattack [@mouseover,harm,nodead][harm]
+END
+VER 3 01000000000000FA "毒" "INV_Misc_QuestionMark"
+#showtooltip 毒蛇钉刺
+/cast [@mouseover,harm,nodead][] !自动射击
+/cast [@mouseover,harm,nodead][] 毒蛇钉刺
 END
 VER 3 01000000000000E8 "火" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 爆炸陷阱; 献祭陷阱

@@ -1305,6 +1305,10 @@ L["Slide to Left"] = "왼쪽으로 슬라이드"
 L["Slide to Right"] = "오른쪽으로 슬라이드"
 L["Slide to Top"] = "위로 슬라이드"
 L["Slider"] = "슬라이더"
+--[[Translation missing --]]
+L["Slug"] = "Slug"
+--[[Translation missing --]]
+L["Slug Outline"] = "Slug Outline"
 L["Small"] = "작음"
 L["Smart Group"] = "스마트 그룹"
 L["Soft Enemy"] = "액션 대상 적"

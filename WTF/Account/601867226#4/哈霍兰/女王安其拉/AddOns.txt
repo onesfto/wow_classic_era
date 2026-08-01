@@ -1,5 +1,5 @@
 LoseControl: enabled
-!Pig: enabled
+!Pig: disabled
 BiaoGe: disabled
 DBM-Core: disabled
 DBM-StatusBarTimers: disabled
@@ -68,14 +68,14 @@ Immersion: enabled
 InboxMailBag: disabled
 Leatrix_Maps: disabled
 Leatrix_Plus: disabled
-LibSharedMedia-3.0: enabled
+LibSharedMedia-3.0: disabled
 LoonBestInSlot: enabled
 MailLogger: disabled
 MerInspect-classic-era: enabled
 MRT: disabled
 MikScrollingBattleText: disabled
 MSBTOptions: disabled
-Myslot: enabled
+Myslot: disabled
 NovaWorldBuffs: disabled
 OmniCC: disabled
 OmniCC_Config: disabled
@@ -207,3 +207,11 @@ SexyMap: disabled
 SimpleRaidTargetIcons: disabled
 SinStats: disabled
 SharedMedia_Rurutia: disabled
+AllTheThings: disabled
+GW2_UI: enabled
+GW2_UI_PLUS: enabled
+OPie_Classic: disabled
+!GW2_UI_PLUS_Early: disabled
+OPie: disabled
+LocalMusicPlayer: disabled
+WoWNES: disabled

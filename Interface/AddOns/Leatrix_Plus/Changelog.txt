@@ -1,4 +1,7 @@
-﻿1.15.146 - 22nd July 2026
+﻿1.15.148 - 29th July 2026
+- For 'Enhance minimap', fixed a minor issue with the tracking button scaling when using a square minimap.
+
+1.15.146 - 22nd July 2026
 - Updated for game patch 1.15.9.
 - The 'Manage frames', 'Manage buffs' and 'Manage durability' options ('Frames') have been removed as they are now included with Edit Mode. 
 - The 'Show character addons' option ('System') has been removed as it's now included in the default UI.

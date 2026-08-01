@@ -4,28 +4,27 @@ alaCalendarSV = {
 },
 ["_GlobalRef"] = {
 ["cal"] = {
-["SlashCmdList"] = 5.415370496329736e+126,
-["OK"] = 5.415370496329736e+126,
-["Mixin"] = 1.35384262408244e+127,
-["GameTimeFrame_UpdateTooltip"] = 2.707685248164868e+126,
-["hooksecurefunc"] = 2.707685248164868e+126,
-["UnitLevel"] = 1.353908729679313e+127,
-["alaCalendarSV"] = 1.083074099265947e+127,
-["UIParent"] = 1.083074099265947e+127,
-["DAILY"] = 5.415370496329736e+126,
-["GameTimeFrame"] = 5.415370496329736e+126,
-["DONE"] = 5.415370496329736e+126,
-["RESETS_IN"] = 5.415370496329736e+126,
-["UISpecialFrames"] = 8.123055744494633e+126,
-["YES"] = 5.415370496329736e+126,
-["LibStub"] = 8.123055744494633e+126,
-["StaticPopupDialogs"] = 5.415370496329736e+126,
+["StaticPopupDialogs"] = 3.48086594972399e+187,
+["UnitLevel"] = 8.702589784704217e+187,
+["Mixin"] = 8.702164874310033e+187,
+["OK"] = 3.48086594972399e+187,
+["hooksecurefunc"] = 1.740432974861995e+187,
+["GameTimeFrame"] = 3.48086594972399e+187,
+["alaCalendarSV"] = 6.96173189944798e+187,
+["UIParent"] = 6.96173189944798e+187,
+["DAILY"] = 3.48086594972399e+187,
+["GameTimeFrame_UpdateTooltip"] = 1.740432974861995e+187,
+["DONE"] = 3.48086594972399e+187,
+["RESETS_IN"] = 3.48086594972399e+187,
+["UISpecialFrames"] = 5.221298924586004e+187,
+["YES"] = 3.48086594972399e+187,
+["LibStub"] = 5.221298924586004e+187,
+["SlashCmdList"] = 3.48086594972399e+187,
 },
 },
 ["set"] = {
 ["minimapPos"] = 215,
 ["char_list"] = {
-"Player-5376-0EA7E05E",
 "Player-5376-175576B3",
 "Player-5376-1626BB3C",
 "Player-5376-16BEFC08",
@@ -139,6 +138,10 @@ alaCalendarSV = {
 },
 ["realm_id"] = 5376,
 ["Molten Core"] = {
+218364411,
+1784761809,
+0,
+0,
 },
 ["realm_name"] = "哈霍兰",
 },
@@ -165,25 +168,6 @@ alaCalendarSV = {
 ["Zul'Gurub"] = {
 },
 ["PLAYER_LEVEL"] = 1,
-["Temple of Ahn'Qiraj"] = {
-},
-["Blackwing Lair"] = {
-},
-["realm_name"] = "哈霍兰",
-["Onyxia's Lair"] = {
-},
-["realm_id"] = 5376,
-["Naxxramas"] = {
-},
-["Molten Core"] = {
-},
-["Ruins of Ahn'Qiraj"] = {
-},
-},
-["Player-5376-0EA7E05E"] = {
-["Zul'Gurub"] = {
-},
-["PLAYER_LEVEL"] = 60,
 ["Temple of Ahn'Qiraj"] = {
 },
 ["Blackwing Lair"] = {

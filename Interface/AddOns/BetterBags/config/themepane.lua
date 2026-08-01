@@ -19,9 +19,6 @@ local fonts = addon:GetModule('Fonts')
 local context = addon:GetModule('Context')
 
 ---@class ThemePane: AceModule
-local L = addon:GetModule('Localization')
-
----@class ThemePane: AceModule
 local themePane = addon:NewModule('ThemePane')
 
 ---@class ThemePaneListButton: Button
@@ -179,7 +176,7 @@ function themePaneProto:ShowEmptyDetail()
 
     local text = self.emptyDetail:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
     text:SetPoint("CENTER", 0, 0)
-    text:SetText(L:G("Select a theme to view its details"))
+    text:SetText("Select a theme to view its details")
     text:SetTextColor(0.5, 0.5, 0.5)
   end
   self.emptyDetail:Show()
@@ -207,20 +204,20 @@ function themePaneProto:ShowThemeDetail(themeKey, theme)
   local isActive = themeKey == currentTheme
 
   if isActive then
-    self.themeDetail.statusLabel:SetText(L:G("Currently Active"))
+    self.themeDetail.statusLabel:SetText("Currently Active")
     self.themeDetail.statusLabel:SetTextColor(0.2, 0.8, 0.2)
     self.themeDetail.applyButton:SetEnabled(false)
-    self.themeDetail.applyButton:SetText(L:G("Active"))
+    self.themeDetail.applyButton:SetText("Active")
   elseif theme.Available then
-    self.themeDetail.statusLabel:SetText(L:G("Available"))
+    self.themeDetail.statusLabel:SetText("Available")
     self.themeDetail.statusLabel:SetTextColor(0.7, 0.7, 0.7)
     self.themeDetail.applyButton:SetEnabled(true)
-    self.themeDetail.applyButton:SetText(L:G("Apply Theme"))
+    self.themeDetail.applyButton:SetText("Apply Theme")
   else
-    self.themeDetail.statusLabel:SetText(L:G("Unavailable"))
+    self.themeDetail.statusLabel:SetText("Unavailable")
     self.themeDetail.statusLabel:SetTextColor(0.6, 0.3, 0.3)
     self.themeDetail.applyButton:SetEnabled(false)
-    self.themeDetail.applyButton:SetText(L:G("Unavailable"))
+    self.themeDetail.applyButton:SetText("Unavailable")
   end
 
   -- Store the key for the apply button
@@ -253,7 +250,7 @@ function themePaneProto:CreateThemeDetailPanel()
   -- Description Label
   local descTitle = self.themeDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   descTitle:SetPoint("TOPLEFT", 10, yOffset)
-  descTitle:SetText(L:G("Description"))
+  descTitle:SetText("Description")
   descTitle:SetTextColor(0.9, 0.9, 0.9)
 
   yOffset = yOffset - 20
@@ -272,7 +269,7 @@ function themePaneProto:CreateThemeDetailPanel()
   -- Status Label
   local statusTitle = self.themeDetail:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   statusTitle:SetPoint("TOPLEFT", 10, yOffset)
-  statusTitle:SetText(L:G("Status:"))
+  statusTitle:SetText("Status:")
   statusTitle:SetTextColor(0.9, 0.9, 0.9)
 
   local statusLabel = self.themeDetail:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
@@ -285,7 +282,7 @@ function themePaneProto:CreateThemeDetailPanel()
   local applyButton = CreateFrame("Button", nil, self.themeDetail, "UIPanelButtonTemplate")
   applyButton:SetPoint("TOPLEFT", 10, yOffset)
   applyButton:SetSize(120, 25)
-  applyButton:SetText(L:G("Apply Theme"))
+  applyButton:SetText("Apply Theme")
   applyButton:SetScript("OnClick", function()
     if self.themeDetail.currentThemeKey then
       local ctx = context:New('ThemePane_ApplyTheme')

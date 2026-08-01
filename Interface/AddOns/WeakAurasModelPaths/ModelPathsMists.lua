@@ -9191,6 +9191,17 @@ WeakAuras.ModelPaths = {
    {
     children = {
      {
+      fileId = "7536799",
+      text = "mothfluffymount.m2",
+      value = "mothfluffymount.m2",
+     },
+    },
+    text = "mothfluffymount",
+    value = "mothfluffymount",
+   },
+   {
+    children = {
+     {
       fileId = "124945",
       text = "mothpet.m2",
       value = "mothpet.m2",
@@ -9198,6 +9209,17 @@ WeakAuras.ModelPaths = {
     },
     text = "mothpet",
     value = "mothpet",
+   },
+   {
+    children = {
+     {
+      fileId = "7536797",
+      text = "mothpet2.m2",
+      value = "mothpet2.m2",
+     },
+    },
+    text = "mothpet2",
+    value = "mothpet2",
    },
    {
     children = {
@@ -99121,17 +99143,6 @@ WeakAuras.ModelPaths = {
       },
       text = "unk_exp11_7320488",
       value = "unk_exp11_7320488",
-     },
-     {
-      children = {
-       {
-        fileId = "7536799",
-        text = "7536799.m2",
-        value = "7536799.m2",
-       },
-      },
-      text = "unk_exp11_7536799",
-      value = "unk_exp11_7536799",
      },
     },
     text = "creature",

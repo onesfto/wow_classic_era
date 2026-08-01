@@ -10,7 +10,7 @@ NDuiADB = {
 ["NumberFormat"] = 1,
 ["IgnoredButtons"] = "",
 ["Changelog"] = {
-["Version"] = "1.52.4",
+["Version"] = "1.53.1",
 },
 ["ChatFilterList"] = "%*",
 ["Help"] = {
@@ -32,9 +32,16 @@ NDuiADB = {
 ["RaidAuraWatch"] = {
 },
 ["BWRequest"] = true,
+["SkadaRequest"] = true,
 ["MajorSpells"] = {
 },
-["SkadaRequest"] = true,
+["AutoRecycle"] = false,
+["ClickSets"] = {
+["MAGE"] = {
+["MWU"] = 475,
+["MWD"] = 1460,
+},
+},
 ["VersionCheck"] = true,
 ["NameplateFilter"] = {
 {
@@ -52,21 +59,18 @@ NDuiADB = {
 },
 ["RaidDebuffs"] = {
 },
-["ClickSets"] = {
-["MAGE"] = {
-["MWU"] = 475,
-["MWD"] = 1460,
-},
-},
-["AutoRecycle"] = false,
-["LockUIScale"] = false,
+["DetectVersion"] = "1.53.1",
 ["TexStyle"] = 2,
+["LockUIScale"] = false,
 ["ProfileIndex"] = {
+["法德迦-哈霍兰"] = 1,
 ["绿龙守护者-哈霍兰"] = 1,
 ["黑龙守护者-哈霍兰"] = 1,
 ["哈霍兰大格格-哈霍兰"] = 1,
-["法德迦-哈霍兰"] = 1,
+["灞波儿奔壹世-硬汉"] = 1,
 ["德加和尚-哈霍兰"] = 1,
+},
+["ContactList"] = {
 },
 ["ProfileNames"] = {
 "角色配置",
@@ -76,8 +80,7 @@ NDuiADB = {
 "共享配置4",
 "共享配置5",
 },
-["ContactList"] = {
-},
+["ShowCoords"] = false,
 }
 NDuiPDB = {
 {

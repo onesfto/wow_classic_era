@@ -86,6 +86,7 @@ function me.AddToQueue(itemId, enchantId, runeAbilityId, slotId)
 
   mod.gearBar.UpdateCombatQueue(itemId, enchantId, runeAbilityId, slotId)
   mod.ticker.StartTickerCombatQueue()
+  mod.macro.FireSwapEvent(RGGM_CONSTANTS.SWAP_EVENT_QUEUED, slotId, itemId)
 end
 
 --[[
@@ -113,6 +114,35 @@ function me.RemoveFromQueue(slotId)
   mod.logger.LogDebug(me.tag, "Removed item with id " .. itemId .. " in slotId "
     .. slotId .. " from combatQueueStore")
   mod.gearBar.UpdateCombatQueue(nil, nil, nil, slotId)
+  mod.macro.FireSwapEvent(RGGM_CONSTANTS.SWAP_EVENT_UNQUEUED, slotId, itemId)
+end
+
+--[[
+  Guard that keeps a queued swap from reporting the same failure reason on every ProcessQueue
+  tick. The first call for a queued slot marks the entry as notified for the passed reason and
+  allows the message; subsequent calls with the same reason are suppressed until the reason
+  changes or the entry is re-queued (AddToQueue creates a fresh entry). For slots without a
+  queued entry there is nothing to deduplicate on and the message is always allowed
+
+  @param {number} slotId
+  @param {string} reason
+
+  @return {boolean}
+    true - if a user message for the reason should be shown
+    false - if the queued entry was already notified for the reason
+]]--
+function me.ShouldNotifySwapFailure(slotId, reason)
+  local queueEntry = slotId and combatQueueStore[slotId] or nil
+
+  if queueEntry == nil then return true end
+
+  if queueEntry.notifiedFailureReason == reason then
+    return false
+  end
+
+  queueEntry.notifiedFailureReason = reason
+
+  return true
 end
 
 --[[
@@ -125,8 +155,9 @@ function me.ProcessQueue()
     return
   end
 
-  -- cannot change gear while player is in combat or is casting
-  if InCombatLockdown() or mod.common.IsPlayerCasting() or mod.common.IsPlayerReallyDead() then return end
+  -- cannot change gear while player is in combat, is casting or is under a blocking loss of control effect
+  if InCombatLockdown() or mod.common.IsPlayerCasting() or mod.common.IsPlayerReallyDead()
+    or me.IsEquipChangeBlocked() then return end
 
   -- update queue for all slot positions
   for _, gearSlot in pairs(mod.gearManager.GetGearSlots()) do

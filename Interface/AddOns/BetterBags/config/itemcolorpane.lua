@@ -12,9 +12,6 @@ local database = addon:GetModule('Database')
 ---@class Context: AceModule
 local context = addon:GetModule('Context')
 
----@class Localization: AceModule
-local L = addon:GetModule('Localization')
-
 ---@class ItemColorPane: AceModule
 local itemColorPane = addon:NewModule('ItemColorPane')
 
@@ -30,13 +27,13 @@ function itemColorPaneProto:UpdateBreakpoints()
   local highPoint = math.floor(maxIlvl * 0.86)
 
   self.breakpointsLabel:SetText(string.format(
-    L:G("Current maximum item level: |cffffffff%d|r\n\n" ..
+    "Current maximum item level: |cffffffff%d|r\n\n" ..
     "Color ranges:\n" ..
     "  • Low: |cff9d9d9d1-%d|r\n" ..
     "  • Mid: |cffffffff%d-%d|r (61%% of max)\n" ..
     "  • High: |cff008dde%d-%d|r (86%% of max)\n" ..
     "  • Max: |cffff8000%d+|r\n\n" ..
-    "These ranges update automatically as you obtain higher item level gear."),
+    "These ranges update automatically as you obtain higher item level gear.",
     maxIlvl,
     midPoint - 1,
     midPoint, highPoint - 1,
@@ -45,10 +42,10 @@ function itemColorPaneProto:UpdateBreakpoints()
   ))
 
   -- Update color picker labels
-  self.colorPickerLabels.low:SetText(L:G("Low Item Level Color") .. " (1-" .. (midPoint - 1) .. ")")
-  self.colorPickerLabels.mid:SetText(L:G("Mid Item Level Color") .. " (" .. midPoint .. "-" .. (highPoint - 1) .. ")")
-  self.colorPickerLabels.high:SetText(L:G("High Item Level Color") .. " (" .. highPoint .. "-" .. (maxIlvl - 1) .. ")")
-  self.colorPickerLabels.max:SetText(L:G("Max Item Level Color") .. " (" .. maxIlvl .. "+)")
+  self.colorPickerLabels.low:SetText("Low Item Level Color (1-" .. (midPoint - 1) .. ")")
+  self.colorPickerLabels.mid:SetText("Mid Item Level Color (" .. midPoint .. "-" .. (highPoint - 1) .. ")")
+  self.colorPickerLabels.high:SetText("High Item Level Color (" .. highPoint .. "-" .. (maxIlvl - 1) .. ")")
+  self.colorPickerLabels.max:SetText("Max Item Level Color (" .. maxIlvl .. "+)")
 end
 
 ---@param parent Frame
@@ -72,7 +69,7 @@ function itemColorPane:Create(parent)
   -- Title
   local title = content:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
   title:SetPoint("TOPLEFT", 0, yOffset)
-  title:SetText(L:G("Dynamic Item Level Colors"))
+  title:SetText("Dynamic Item Level Colors")
   yOffset = yOffset - 30
 
   -- Description
@@ -81,7 +78,7 @@ function itemColorPane:Create(parent)
   desc:SetPoint("RIGHT", content, "RIGHT", 0, 0)
   desc:SetJustifyH("LEFT")
   desc:SetWordWrap(true)
-  desc:SetText(L:G("Configure the colors used for item level display. Color ranges automatically scale based on the highest item level you have seen."))
+  desc:SetText("Configure the colors used for item level display. Color ranges automatically scale based on the highest item level you have seen.")
   yOffset = yOffset - 50
 
   -- Current breakpoints info
@@ -94,7 +91,7 @@ function itemColorPane:Create(parent)
   -- Color pickers section
   local colorsTitle = content:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
   colorsTitle:SetPoint("TOPLEFT", 0, yOffset)
-  colorsTitle:SetText(L:G("Color Configuration"))
+  colorsTitle:SetText("Color Configuration")
   yOffset = yOffset - 30
 
   -- Helper function to create color picker
@@ -155,7 +152,7 @@ function itemColorPane:Create(parent)
   local resetButton = CreateFrame("Button", nil, content, "UIPanelButtonTemplate")
   resetButton:SetPoint("TOPLEFT", 20, yOffset)
   resetButton:SetSize(200, 25)
-  resetButton:SetText(L:G("Reset to Default Colors"))
+  resetButton:SetText("Reset to Default Colors")
   resetButton:SetScript("OnClick", function()
     local ctx = context:New('ItemColorPane_Reset')
     database:ResetItemLevelColors()
@@ -172,7 +169,7 @@ function itemColorPane:Create(parent)
   local resetMaxButton = CreateFrame("Button", nil, content, "UIPanelButtonTemplate")
   resetMaxButton:SetPoint("LEFT", resetButton, "RIGHT", 10, 0)
   resetMaxButton:SetSize(200, 25)
-  resetMaxButton:SetText(L:G("Reset Max Item Level"))
+  resetMaxButton:SetText("Reset Max Item Level")
   resetMaxButton:SetScript("OnClick", function()
     database:ResetMaxItemLevel()
     pane:UpdateBreakpoints()

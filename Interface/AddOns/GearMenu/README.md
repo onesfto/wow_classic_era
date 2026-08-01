@@ -67,7 +67,7 @@ With GearMenu it is easy to switch between items in supported slots. This is esp
 
 ### CombatQueue
 
-Certain items cannot be switched while the player is in combat. Weapons will be switched immediately whether the player is in combat or not. Other items that cannot be switched in combat will be enqueued in the combatqueue and switched as soon as possible. This is especially useful in PvP when you leave combat for a short time.
+Certain items cannot be switched while the player is in combat. While in combat all items, including weapons, are placed in the combatqueue and switched as soon as possible. This is especially useful in PvP when you leave combat for a short time.
 
 ![](docs/gm_combat_queue.gif)
 
@@ -75,13 +75,9 @@ Certain items cannot be switched while the player is in combat. Weapons will be 
 
 ![](docs/gm_combat_queue_cancel.gif)
 
-GearMenu also detects whether an itemswitch is possible even when out of combat. If you're switching an item while you're casting your mount or any other spell it will put the item in the combatqueue. As soon as the cast is over the item will be switched.
+GearMenu also detects whether an itemswitch is possible even when out of combat. If you're switching an item while you're casting your mount or any other spell it will put the item in the combatqueue. As soon as the cast is over the item will be switched. This is also the case if you cancel your cast.
 
 ![](docs/gm_combat_queue_cast.gif)
-
-This is also the case if you cancel your cast.
-
-![](docs/gm_combat_queue_cast_cancel.gif)
 
 ### Quick Change
 
@@ -99,7 +95,7 @@ GearMenu allows to keybind to every slot with a keybinding. Keybindings have to 
 
 ### Drag and drop support
 
-GearMenu allows dragging and dropping items onto slots, removing them from slots, and even swapping items between slots.
+GearMenu allows dragging and dropping items onto slots, removing them from slots, and even swapping items between slots. Drag and drop can be enabled or disabled in the options' menu.
 
 #### Drag and drop between slots
 
@@ -149,7 +145,7 @@ If you prefer having certain items in your actionslots GearMenu can still be of 
 /run GM_AddToCombatQueue(itemId, enchantId, runeAbilityId, slotId)
 
 # Example - Equip Hand of Justice into the lower trinket slot
-/run GM_AddToCombatQueue(233734, 0, 0, 11)
+/run GM_AddToCombatQueue(233734, 0, 0, 14)
 ```
 
 **Note:** The enchantId is optional. If you don't have multiple items with different enchantIds in your inventory, set it to 0.
@@ -183,6 +179,33 @@ The number after item is the itemId we search for.
 For finding the correct slotId refer to the image below. Only InventorySlotIds are valid targets for GearMenu
 
 ![](docs/gm_interface_slots.png)
+
+### Swap Event Notifications for AddOn Authors
+
+Third-party addons (or WeakAuras) can be notified about GearMenu's swap lifecycle. Like the macro-bridge globals above, this surface is part of GearMenu's public API contract.
+
+```lua
+local function MySwapListener(eventName, slotId, itemId)
+  -- eventName is one of "queued", "unqueued" or "completed"
+  print("GearMenu " .. eventName .. " item " .. itemId .. " in slot " .. slotId)
+end
+
+GM_RegisterSwapListener(MySwapListener)
+-- and later, if no longer interested
+GM_UnregisterSwapListener(MySwapListener)
+```
+
+The listener is invoked as `callback(eventName, slotId, itemId)`:
+
+| eventName   | Fired when                                                                          |
+|-------------|-------------------------------------------------------------------------------------|
+| `queued`    | A swap was added to the combatQueue (combat, casting or loss of control)            |
+| `unqueued`  | A queued swap was removed from the combatQueue - cleared by the user, aborted, or because the swap is about to execute |
+| `completed` | A gear swap was executed                                                            |
+
+**Note:** When a queued swap executes, `unqueued` fires directly before `completed`. A swap that never had to queue (executed immediately) fires `completed` only.
+
+**Note:** Listener errors are isolated - a failing listener never breaks the swap itself. The error is logged instead.
 
 ## Configurability
 
@@ -222,17 +245,11 @@ Whether a GearBar should be freely movable or be locked in place can be configur
 
 ![](docs/gm_options_lock_window.gif)
 
-#### GearSlot Size
+#### GearSlot and ChangeMenu Size
 
-Every GearBar can have a different size for its GearSlots. You could, for example, have a GearBar with very big trinkets and another with smaller slots for less important items.
+Every GearBar can have a different size for its GearSlots. You could, for example, have a GearBar with very big trinkets and another with smaller slots for less important items. The size of the ChangeMenu can be configured independently of the GearSlot size.
 
-![](docs/gm_options_gearslot_size.gif)
-
-#### ChangeMenu Size
-
-The size of the ChangeMenu can be configured independently of the GearSlot size.
-
-![](docs/gm_options_changemenu_size.gif)
+![](docs/gm_options_slot_sizes.gif)
 
 #### Orientation
 
@@ -245,6 +262,10 @@ When switching the orientation, you can also choose the direction in which the C
 ![](docs/gm_vertical_and_horizontal_gearbar.png)
 
 ### General Configuration
+
+#### Tooltips
+
+GearMenu can show item tooltips when hovering items in its slots and change menus. Tooltips can be turned off entirely, or set to a simple mode that only displays the item name instead of the full tooltip.
 
 #### FastPress Support
 
@@ -262,11 +283,11 @@ GearMenu supports two different themes for its UI elements. By default, the cust
 
 ##### Custom
 
-![](docs/gm_theme_custom.jpg)
+![](docs/gm_theme_custom.png)
 
 ##### Classic
 
-![](docs/gm_theme_classic.jpg)
+![](docs/gm_theme_classic.png)
 
 ### TrinketMenu Configuration
 
@@ -275,9 +296,36 @@ TrinketMenu supports the following configuration features.
 - Enabling/Disabling TrinketMenu completely
 - Lock/Unlock the TrinketMenu
 - Show or Hide trinket cooldowns
+- Configure the number of columns of the TrinketMenu
 - Adapt size of the TrinketMenu
 
 ![](docs/gm_trinketmenu_configuration.gif)
+
+### Profiles
+
+GearMenu lets you save your entire configuration as named profiles, so you can switch between different setups or carry your settings to another character. Profiles are managed under the **Profiles** tab of the configuration interface (`/rggm opt`).
+
+![](docs/gm_profile_configuration.png)
+
+A profile captures your full GearMenu setup – all of your GearBars (their GearSlots, sizes, orientation, lock state and on-screen position), your QuickChange rules, the TrinketMenu settings, the selected theme and the general options.
+
+- **Save current as...**: Snapshots your current configuration into a new named profile (or overwrites an existing one of the same name).
+- **Apply**: Loads the selected profile, applies its settings and reloads the UI.
+- **Rename**: Renames the selected profile.
+- **Delete**: Removes the selected profile.
+
+#### The Default Profile
+
+Every character starts with a profile named **Default**. It holds GearMenu's shipped settings and is created automatically – you never have to save it yourself. It cannot be deleted, renamed or overwritten, so there is always a clean baseline to go back to: select **Default** and click **Apply** to reset GearMenu to its factory settings. Note that this also removes all of your GearBars and QuickChange rules, exactly like a fresh install. The Rename and Delete buttons are greyed out while it is selected.
+
+#### Sharing Profiles (Export / Import)
+
+Profiles can be shared as portable strings, making it easy to copy a setup between characters or hand it to another player.
+
+- **Export**: Generates a copy-pasteable profile string for the selected profile in the *Profile String* field.
+- **Import**: Paste a profile string into the field and import it as a new profile. Imported strings are validated, so an invalid, corrupted, or non-GearMenu string is rejected without changing any of your settings.
+
+> Note: Profiles are stored per character. Use export/import to move a profile to another character.
 
 ## FAQ
 
@@ -323,7 +371,7 @@ Switching between development and release can be achieved with maven.
 mvn generate-resources -D generate.sources.overwrite=true -P development
 ```
 
-This generates and overwrites `GM_Environment.lua` and `GearMenu.toc`. You need to specifically specify that you want to overwrite the files to prevent data loss. It is also possible to omit the profile because development is the default profile that will be used.
+This generates and overwrites `code/Environment.lua` and `GearMenu.toc`. You need to specifically specify that you want to overwrite the files to prevent data loss. It is also possible to omit the profile because development is the default profile that will be used.
 
 Switching to release can be done as such:
 
@@ -335,7 +383,7 @@ In this case it is mandatory to add the release profile.
 
 **Note:** Switching environments has the effect of changing certain files to match an expected value depending on the environment. To be more specific, this means that, for example, test and debug files are not included when switching to release. It also means that variables such as loglevel change to match the environment.
 
-To avoid changing those files all the time the repository should always stay in the development environment. Do not commit `GearMenu.toc` and `GM_Environment.lua` in their release state. Changes to those files should always be done inside `build-resources` and their respective template files marked with `.tpl`.
+To avoid changing those files all the time the repository should always stay in the development environment. Do not commit `GearMenu.toc` and `code/Environment.lua` in their release state. Changes to those files should always be done inside `build-resources` and their respective template files marked with `.tpl`.
 
 ### Packaging the Addon
 

@@ -127,6 +127,6 @@ local function LoadObjectivesPanel(sWindow)
 
     p:AddOptionDropdown(L["Quest Tracker Sorting"], nil, { getterSetter = "QUESTTRACKER_SORTING", callback = function() GwQuesttrackerContainerQuests:UpdateLayout() end, optionsList = {"DEFAULT", "LEVEL", "ZONE"}, optionNames = {DEFAULT, GUILD_RECRUITMENT_LEVEL, ZONE .. L[" |cFF888888(required Questie)|r"]}, dependence = {["QUESTTRACKER_ENABLED"] = true}, hidden = GW.Retail})
 
-    sWindow:AddSettingsPanel(p, "任务目标", L["Edit objectives settings."])
+    sWindow:AddSettingsPanel(p, OBJECTIVES_TRACKER_LABEL, L["Edit objectives settings."])
 end
 GW.LoadObjectivesPanel = LoadObjectivesPanel

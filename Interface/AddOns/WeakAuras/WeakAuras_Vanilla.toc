@@ -1,7 +1,7 @@
-## Interface: 11508
+## Interface: 11509
 ## Title: WeakAuras
 ## Author: The WeakAuras Team
-## Version: 5.21.8
+## Version: 5.21.9
 ## IconTexture: Interface\AddOns\WeakAuras\Media\Textures\icon.blp
 ## X-Flavor: Vanilla
 ## Notes: A powerful, comprehensive utility for displaying graphics and information based on buffs, debuffs, and other triggers.
