@@ -3,6 +3,7 @@ set -eu
 
 settings_file="Modules/Settings/Settings.lua"
 hide_native_file="Modules/Settings/HideNativeSettings.lua"
+resources_file="Modules/UnitFrames/PlayerResources.lua"
 
 grep -F 'local function HideNativePlayerSettings(settingsTab, embeddedPanels)' "$hide_native_file" >/dev/null
 grep -F 'if data.itemData ~= playerParent and data.parent ~= playerParent then' "$hide_native_file" >/dev/null
@@ -41,6 +42,19 @@ grep -F 'target_TARGET_ENABLED = "启用"' "$settings_file" >/dev/null
 grep -F 'value == "unittarget"' "$settings_file" >/dev/null
 grep -F 'and "目标" or' "$settings_file" >/dev/null
 if grep -F 'CreateMenuButton("小队", "party_general"' "$settings_file" >/dev/null; then
+    exit 1
+fi
+grep -F '{"血球和贴图", "gw2_plus_player_globe"}' "$settings_file" >/dev/null
+grep -F '{"施法条", "gw2_plus_player_castbar"}' "$settings_file" >/dev/null
+grep -F '{"能量条", "gw2_plus_player_energy"}' "$settings_file" >/dev/null
+grep -F '{"资源条", "gw2_plus_player_resource"}' "$settings_file" >/dev/null
+grep -F '{"经验槽", "gw2_plus_player_xp"}' "$settings_file" >/dev/null
+if grep -F '{"状态条", "player_classpower"}' "$settings_file" >/dev/null; then
+    exit 1
+fi
+grep -F 'settingsTab.gwPlusPlayerResourcePanels' "$settings_file" >/dev/null
+grep -F 'option.forceNewLine = true' "$resources_file" >/dev/null
+if grep -F 'AddGroupHeader(panel,' "$resources_file" >/dev/null; then
     exit 1
 fi
 
