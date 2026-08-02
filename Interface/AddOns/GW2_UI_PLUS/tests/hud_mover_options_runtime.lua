@@ -203,21 +203,30 @@ assert(multiValues.one == true and multiValues.two == true,
 assert(multiCallbacks == 1, "多选参数回调次数错误")
 
 local player = definitions[1]
+local playerOptions = player.panelFrame.gwOptions
+local restorePlayer = FindOption(player.panelFrame, "恢复默认")
 player.value = false
 settings[player.setting].hasMoved = true
 _G[player.frame].gwMover.point = {"CENTER"}
 queued = nil
 inCombat = true
-FindOption(player.panelFrame, "恢复默认").callback()
+restorePlayer.callback()
 assert(player.value == false, "战斗中提前恢复了页面参数")
 assert(_G[player.frame].gwMover.point[1] == "CENTER", "战斗中提前恢复了位置")
 assert(queued and queued.name == "GW2PlusRestore" .. player.setting,
     "战斗中未排入恢复队列")
+local otherPageValue = false
+player.panelFrame.gwOptions = {{
+    getDefault = function() return true end,
+    set = function(value) otherPageValue = value end,
+}}
 inCombat = false
 queued.callback(Unpack(queued.args))
 assert(player.value == true, "脱战队列未恢复页面参数")
+assert(otherPageValue == false, "脱战队列错误恢复了切换后的页面")
 assert(_G[player.frame].gwMover.point[1] == profile[player.setting].point,
     "脱战队列未恢复位置")
+player.panelFrame.gwOptions = playerOptions
 
 assert(FindOption(embeddedPanels.hud_microbar, "重置位置"),
     "微型系统菜单不再保留重置位置")

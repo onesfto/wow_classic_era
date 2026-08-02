@@ -123,8 +123,12 @@ end
 local function RestorePanelDefaults(
     panel, frameName, settingName, defaultPoint)
     local GW = _G.GW2_ADDON
+    local options = {}
+    for _, option in ipairs(panel.gwOptions or {}) do
+        options[#options + 1] = option
+    end
     local function Apply()
-        for _, option in ipairs(panel.gwOptions or {}) do
+        for _, option in ipairs(options) do
             RestoreOptionDefault(option)
         end
         ResetHudMover(frameName, settingName, defaultPoint)
