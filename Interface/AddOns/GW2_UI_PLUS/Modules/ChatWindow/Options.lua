@@ -88,7 +88,7 @@ local function BuildPanel(parent)
         dependence = dep,
     })
     if optY then optY.optionName = "GW2PlusChatWindow_OffsetY" end
-    panel:AddOptionButton("恢复默认", "宽 400、高 200、位置 37 / 46", {
+    local optResetPosition = panel:AddOptionButton("恢复默认", "宽 400、高 200、位置 37 / 46", {
         callback = function()
             db.width, db.height = defaults.width, defaults.height
             db.offsetX, db.offsetY = defaults.offsetX, defaults.offsetY
@@ -101,20 +101,29 @@ local function BuildPanel(parent)
         isNegativeButton = true,
         dependence = dep,
     })
+    if optResetPosition then
+        optResetPosition.optionName = "GW2PlusChatWindow_ResetPosition"
+    end
     panel:AddGroupHeader("外观")
-    panel:AddOption("玩家名用职业颜色", "聊天里的发言人名字按职业着色。和本体的「提及时用职业色」不是一回事——那个管的是消息正文里提到的名字。", {
+    local optClassColor = panel:AddOption("玩家名用职业颜色", "聊天里的发言人名字按职业着色。和本体的「提及时用职业色」不是一回事——那个管的是消息正文里提到的名字。", {
         getter = function() return db.classColor end,
         setter = function(value) db.classColor = value end,
         getDefault = function() return defaults.classColor end,
         callback = function() ChatWindow.ApplyClassColor() end,
     })
-    panel:AddOption("输入栏移到顶部", "把聊天输入框从聊天窗下方挪到窗口顶端。挪上去之后「下边距」就可以调到 0 让聊天窗紧贴屏幕底边。切换需要重载界面。", {
+    if optClassColor then
+        optClassColor.optionName = "GW2PlusChatWindow_ClassColor"
+    end
+    local optEditBoxTop = panel:AddOption("输入栏移到顶部", "把聊天输入框从聊天窗下方挪到窗口顶端。挪上去之后「下边距」就可以调到 0 让聊天窗紧贴屏幕底边。切换需要重载界面。", {
         getter = function() return db.editBoxTop end,
         setter = function(value) db.editBoxTop = value end,
         getDefault = function() return defaults.editBoxTop end,
         callback = function() GW.ShowRlPopup = true end,
     })
-    panel:AddOptionDropdown("聊天按钮位置", "聊天控制按钮（菜单、频道、社交）放在哪。选「顶部」或「右侧」会把它们收进一条悬浮小条，聊天窗就能贴住屏幕边缘。与本体「聊天」面板里的是同一个设置。", {
+    if optEditBoxTop then
+        optEditBoxTop.optionName = "GW2PlusChatWindow_EditBoxTop"
+    end
+    local optButtonsPosition = panel:AddOptionDropdown("聊天按钮位置", "聊天控制按钮（菜单、频道、社交）放在哪。选「顶部」或「右侧」会把它们收进一条悬浮小条，聊天窗就能贴住屏幕边缘。与本体「聊天」面板里的是同一个设置。", {
         optionsList = {"LEFT", "TOP", "RIGHT"},
         optionNames = {"左侧", "顶部", "右侧"},
         getter = function() return GW.settings and GW.settings.CHAT_BUTTONS_POSITION end,
@@ -126,35 +135,51 @@ local function BuildPanel(parent)
             if GW.UpdateChatButtonsPosition then GW.UpdateChatButtonsPosition() end
         end,
     })
+    if optButtonsPosition then
+        optButtonsPosition.optionName = "GW2PlusChatWindow_ButtonsPosition"
+    end
     panel:AddGroupHeader("消息过滤")
-    panel:AddOption("不显示进入/离开频道信息", "屏蔽「XXX 加入了频道」「XXX 离开了频道」这类刷屏。", {
+    local optHideJoinLeave = panel:AddOption("不显示进入/离开频道信息", "屏蔽「XXX 加入了频道」「XXX 离开了频道」这类刷屏。", {
         getter = function() return db.hideJoinLeave end,
         setter = function(value) db.hideJoinLeave = value end,
         getDefault = function() return defaults.hideJoinLeave end,
     })
-    panel:AddOption("重复符号、词、句裁减", "把频道消息里连续重复的符号、叠字、整段复读压掉。物品链接不受影响。只作用于编号频道。", {
+    if optHideJoinLeave then
+        optHideJoinLeave.optionName = "GW2PlusChatWindow_HideJoinLeave"
+    end
+    local optTrimRepeat = panel:AddOption("重复符号、词、句裁减", "把频道消息里连续重复的符号、叠字、整段复读压掉。物品链接不受影响。只作用于编号频道。", {
         getter = function() return db.trimRepeat end,
         setter = function(value) db.trimRepeat = value end,
         getDefault = function() return defaults.trimRepeat end,
     })
+    if optTrimRepeat then
+        optTrimRepeat.optionName = "GW2PlusChatWindow_TrimRepeat"
+    end
     local optBlack = panel:AddOption("启用关键词黑名单", "消息正文或发送者名字里出现下面任一关键词，整条消息就不显示。作用于编号频道、说话和大喊。", {
         getter = function() return db.blacklistEnable end,
         setter = function(value) db.blacklistEnable = value end,
         getDefault = function() return defaults.blacklistEnable end,
     })
     if optBlack then optBlack.optionName = "GW2PlusChatWindow_BlacklistEnable" end
-    panel:AddOptionText("关键词", "多个关键词用逗号隔开，中英文逗号都认，不区分大小写。\n\n例如：\n代练, 金币, 出售账号", {
+    local optBlacklist = panel:AddOptionText("关键词", "多个关键词用逗号隔开，中英文逗号都认，不区分大小写。\n\n例如：\n代练, 金币, 出售账号", {
         getter = function() return db.blacklist end,
         setter = function(value) db.blacklist = value end,
         getDefault = function() return defaults.blacklist end,
         callback = function() ChatWindow.RebuildBlacklist() end,
         dependence = {["GW2PlusChatWindow_BlacklistEnable"] = true},
     })
-    panel:AddOption("不显示「界面错误太多」提示", "屏蔽 BugGrabber 的洪水保护警告（「用户界面有太多的错误……」）。这条消息响起来的时候 BugGrabber 已经停止记录错误了，屏蔽的只是提示、不是错误本身——真有插件在疯狂报错还是得去 BugSack 里看。", {
+    if optBlacklist then
+        optBlacklist.optionName = "GW2PlusChatWindow_Blacklist"
+    end
+    local optHideBugGrabberSpam = panel:AddOption("不显示「界面错误太多」提示", "屏蔽 BugGrabber 的洪水保护警告（「用户界面有太多的错误……」）。这条消息响起来的时候 BugGrabber 已经停止记录错误了，屏蔽的只是提示、不是错误本身——真有插件在疯狂报错还是得去 BugSack 里看。", {
         getter = function() return db.hideBugGrabberSpam end,
         setter = function(value) db.hideBugGrabberSpam = value end,
         getDefault = function() return defaults.hideBugGrabberSpam end,
     })
+    if optHideBugGrabberSpam then
+        optHideBugGrabberSpam.optionName =
+            "GW2PlusChatWindow_HideBugGrabberSpam"
+    end
     return panel
 end
 addonTable.BuildChatWindowPanel = BuildPanel
