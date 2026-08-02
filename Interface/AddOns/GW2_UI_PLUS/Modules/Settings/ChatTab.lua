@@ -15,9 +15,18 @@ local function BuildChatTab(settingsTab, settingsWindow)
     if not settingsWindow or settingsWindow.gwPlusChatTab then return end
 
     local pages = addonTable.PlusNativePages
-    local chatPanels = addonTable.PlusChatPanels
-    if not pages or not pages.chat_general or not chatPanels
-        or not chatPanels.chatBar or not chatPanels.chatWindow then
+    local sourcePanels = addonTable.PlusChatPanels
+    local BuildChatCategoryPanels = addonTable.BuildChatCategoryPanels
+    if not pages or not pages.chat_general or not sourcePanels
+        or not sourcePanels.chatBar or not sourcePanels.chatWindow
+        or not BuildChatCategoryPanels then
+        return
+    end
+    local chatPanels = BuildChatCategoryPanels(
+        pages.chat_general, sourcePanels.chatWindow, sourcePanels.chatBar)
+    if not chatPanels or not chatPanels.enhancement
+        or not chatPanels.layout or not chatPanels.chatBar
+        or not chatPanels.messages then
         return
     end
 
@@ -77,16 +86,18 @@ local function BuildChatTab(settingsTab, settingsWindow)
         menuEntries[index] = {button = button, frame = frame}
     end
 
-    SetPanelTitle(pages.chat_general, "综合")
+    SetPanelTitle(chatPanels.enhancement, "聊天增强")
+    SetPanelTitle(chatPanels.layout, "窗口布局")
     SetPanelTitle(chatPanels.chatBar, "频道按钮")
-    SetPanelTitle(chatPanels.chatWindow, "聊天窗口")
+    SetPanelTitle(chatPanels.messages, "消息管理")
 
-    AddMenuEntry("综合", pages.chat_general)
+    AddMenuEntry("聊天增强", chatPanels.enhancement)
+    AddMenuEntry("窗口布局", chatPanels.layout)
     AddMenuEntry("频道按钮", chatPanels.chatBar)
-    AddMenuEntry("聊天窗口", chatPanels.chatWindow)
+    AddMenuEntry("消息管理", chatPanels.messages)
 
     tab:SetScript("OnShow", function()
-        ShowPage(pages.chat_general)
+        ShowPage(chatPanels.enhancement)
     end)
     tab.callbackOnClose = RestoreCurrent
 
