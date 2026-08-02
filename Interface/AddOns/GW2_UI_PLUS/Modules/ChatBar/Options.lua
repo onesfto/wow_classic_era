@@ -4,10 +4,10 @@ local _, addonTable = ...
 
 local IsLoaded = (_G.C_AddOns and _G.C_AddOns.IsAddOnLoaded) or _G.IsAddOnLoaded
 local GROUPS = {
-    {header = "频道按钮", keys = {"SAY", "YELL", "GUILD", "PARTY", "RAID", "INSTANCE_CHAT",
+    {header = "聊天频道", keys = {"SAY", "YELL", "GUILD", "PARTY", "RAID", "INSTANCE_CHAT",
                                   "GENERAL", "TRADE", "LOOK_FOR_GROUP", "PIG", "BIGFOOTWORLD"}},
-    {header = "功能按钮", keys = {"EMOJI", "ROLL", "MACRO"}},
-    {header = "插件快捷", keys = {"DBM", "ATLASLOOT", "BIAOGE", "MEETINGHORN", "MRT"}},
+    {header = "快捷功能", keys = {"EMOJI", "ROLL", "MACRO"}},
+    {header = "插件入口", keys = {"DBM", "ATLASLOOT", "BIAOGE", "MEETINGHORN", "MRT"}},
 }
 local BUTTON_LABEL = {
     SAY = "说", YELL = "喊", GUILD = "会", PARTY = "队", RAID = "团", INSTANCE_CHAT = "战",
@@ -76,6 +76,21 @@ local function BuildPanel(parent)
     })
     if optEnable then optEnable.optionName = "GW2PlusChatBar_Enable" end
     local dep = {["GW2PlusChatBar_Enable"] = true}
+    panel:AddGroupHeader("基本设置")
+    panel:AddOption("鼠标离开渐隐", "鼠标离开聊天栏和按钮条时淡出", {
+        getter = function() return db.fadeOnLeave end,
+        setter = function(value) db.fadeOnLeave = value end,
+        getDefault = function() return false end,
+        callback = function() ChatBar.UpdateFade() end,
+        dependence = dep,
+    })
+    panel:AddOption("动态显隐", "不在公会/队伍/团队/战场时，自动隐藏对应的频道按钮", {
+        getter = function() return db.autoHide end,
+        setter = function(value) db.autoHide = value end,
+        getDefault = function() return true end,
+        callback = function() ChatBar.UpdateLayout() end,
+        dependence = dep,
+    })
     panel:AddGroupHeader("位置与外观")
     panel:AddOptionDropdown("附着位置", "按钮条相对聊天栏的位置", {
         optionsList = {1, 2},
@@ -136,20 +151,7 @@ local function BuildPanel(parent)
         isNegativeButton = true,
         dependence = dep,
     })
-    panel:AddOption("鼠标离开渐隐", "鼠标离开聊天栏和按钮条时淡出", {
-        getter = function() return db.fadeOnLeave end,
-        setter = function(value) db.fadeOnLeave = value end,
-        getDefault = function() return false end,
-        callback = function() ChatBar.UpdateFade() end,
-        dependence = dep,
-    })
-    panel:AddOption("动态显隐", "不在公会/队伍/团队/战场时，自动隐藏对应的频道按钮", {
-        getter = function() return db.autoHide end,
-        setter = function(value) db.autoHide = value end,
-        getDefault = function() return true end,
-        callback = function() ChatBar.UpdateLayout() end,
-        dependence = dep,
-    })
+    panel:AddGroupHeader("聊天频道")
     local windows = ChatBar.GetChatWindowList()
     if #windows > 0 then
         panel:AddOptionDropdown("频道屏蔽控制窗口", "右键屏蔽频道时，作用于哪个聊天窗口", {
@@ -163,7 +165,7 @@ local function BuildPanel(parent)
         })
     end
     for _, group in ipairs(GROUPS) do
-        local added = false
+        local added = group.header == "聊天频道"
         for _, key in ipairs(group.keys) do
             local def = GetDef(key)
             if def and (not def.addon or IsLoaded(def.addon)) then
