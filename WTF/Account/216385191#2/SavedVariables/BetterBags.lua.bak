@@ -374,14 +374,14 @@ true,
 },
 ["name"] = "A-合剂",
 },
-["A-非专业"] = {
+["A-AD"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-非专业",
+["name"] = "A-AD",
 },
 ["最近物品"] = {
 ["enabled"] = {
@@ -393,24 +393,24 @@ true,
 ["name"] = "最近物品",
 ["dynamic"] = true,
 },
-["容器"] = {
+["垃圾"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "容器",
+["name"] = "垃圾",
 ["dynamic"] = true,
 },
-["A-AD"] = {
+["A-非专业"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-AD",
+["name"] = "A-非专业",
 },
 ["装备-防御"] = {
 ["enabled"] = {
@@ -421,14 +421,14 @@ true,
 },
 ["name"] = "装备-防御",
 },
-["垃圾"] = {
+["容器"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "垃圾",
+["name"] = "容器",
 ["dynamic"] = true,
 },
 ["材料"] = {
@@ -577,9 +577,9 @@ nil,
 ["scale"] = 1,
 },
 [0] = {
-["y"] = 167.4267883300781,
-["x"] = -227.873291015625,
-["point"] = "RIGHT",
+["y"] = -165.7039184570313,
+["x"] = -128.491943359375,
+["point"] = "TOPRIGHT",
 ["scale"] = 1,
 },
 },
@@ -691,22 +691,22 @@ nil,
 ["首饰-法系"] = {
 ["shown"] = true,
 },
-["A-非专业"] = {
+["A-AD"] = {
 ["shown"] = true,
 },
 ["最近物品"] = {
 ["shown"] = true,
 },
-["容器"] = {
+["垃圾"] = {
 ["shown"] = true,
 },
-["A-AD"] = {
+["A-非专业"] = {
 ["shown"] = true,
 },
 ["装备-防御"] = {
 ["shown"] = true,
 },
-["垃圾"] = {
+["容器"] = {
 ["shown"] = true,
 },
 ["材料"] = {
@@ -1085,14 +1085,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-AD"] = {
+["战场"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-AD",
+["name"] = "战场",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1129,14 +1129,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-非专业"] = {
+["A-AD"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-非专业",
+["name"] = "A-AD",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1184,14 +1184,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["战场"] = {
+["A-非专业"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "战场",
+["name"] = "A-非专业",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1266,7 +1266,6 @@ true,
 1,
 [0] = 3,
 },
-["theme"] = "SimpleDark",
 ["stacking"] = {
 {
 ["mergeUnstackable"] = false,

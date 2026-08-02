@@ -300,10 +300,13 @@ local function ApplyMoverOption(barIndex, key, value)
     end
 end
 local function GetMoverOptionValue(barIndex, key)
+    local GW = _G.GW2_ADDON
     local db = AB.InitDB()
     if barIndex == 1 then
         if key == "size" then return db.mainBarSize end
-        if key == "spacing" then return GW.settings.MAINBAR_MARGIIN or 5 end
+        if key == "spacing" then
+            return GW and GW.settings and GW.settings.MAINBAR_MARGIIN or 5
+        end
         if key == "count" then return db.mainBarCount end
         return math.min(db.mainBarColumns, db.mainBarCount)
     end
@@ -314,6 +317,8 @@ local function GetMoverOptionValue(barIndex, key)
     return math.min(db[prefix .. "Columns"], db[prefix .. "Count"])
 end
 local function SetupMoverOptionPanel()
+    local GW = _G.GW2_ADDON
+    if not GW then return end
     local container = GW.MoveHudScaleableFrame
     local settingsFrame = container and container.moverSettingsFrame
     local options = settingsFrame and settingsFrame.options
@@ -376,6 +381,8 @@ local function SetupMoverOptionPanel()
     end
 end
 function AB.RefreshMoverOptionPanel()
+    local GW = _G.GW2_ADDON
+    if not GW then return end
     SetupMoverOptionPanel()
     local container = GW.MoveHudScaleableFrame
     local settingsFrame = container and container.moverSettingsFrame
@@ -406,6 +413,8 @@ function AB.RefreshMoverOptionPanel()
     end
 end
 function AB.InitMoverOptions()
+    local GW = _G.GW2_ADDON
+    if not GW then return end
     SetupMoverOptionPanel()
     for _, mover in ipairs(GW.MOVABLE_FRAMES or {}) do
         if not mover.gwPlusActionBarOptionHooked then
@@ -448,6 +457,8 @@ function AB.SetGlobeStyleEnabled(value)
     end
 end
 function AB.ApplyNormalPlayerFrameVisibility()
+    local GW = _G.GW2_ADDON
+    if not GW then return end
     if AB.QueueOutOfCombat(
         "normalPlayerFrame", AB.ApplyNormalPlayerFrameVisibility) then
         return

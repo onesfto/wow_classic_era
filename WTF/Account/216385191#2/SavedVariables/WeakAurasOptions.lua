@@ -42255,12 +42255,12 @@ WeakAurasOptionsSaved = {
 ["version"] = "5.21.9",
 ["lockPositions"] = false,
 ["spellCacheAchivements"] = true,
-["spellCacheStrings"] = true,
 ["frame"] = {
-["xOffset"] = 1824.753173828125,
-["width"] = 1049.4287109375,
+["xOffset"] = 566.6480102539062,
+["width"] = 1049.428833007813,
 ["height"] = 917.619140625,
-["yOffset"] = 1024.021362304688,
+["yOffset"] = 1087.607177734375,
 },
+["spellCacheStrings"] = true,
 ["build"] = "68940",
 }

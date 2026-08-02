@@ -3,6 +3,37 @@ local _, addonTable = ...
 local WorldMap = addonTable.WorldMap
 if not WorldMap then return end
 
+-- 与「组件 -> 工具栏」共用的固定分列布局：连续同列数选项严格同一行。
+local function SetRow(columnCount, ...)
+    for index = 1, select("#", ...) do
+        local option = select(index, ...)
+        if option then option.gwPlusColumns = columnCount end
+    end
+end
+
+local nativeCoordinateOptions = {
+    WORLDMAP_COORDS_TOGGLE = true,
+    WORLDMAP_COORDS_POSITION = true,
+    WORLDMAP_COORDS_X_OFFSET = true,
+    WORLDMAP_COORDS_Y_OFFSET = true,
+}
+
+-- 本体地图坐标允许自由定位；本模块改为固定底部横排，因此移除旧设置组。
+local function RemoveNativeCoordinateOptions(panel)
+    local options = panel and panel.gwOptions
+    if not options then return end
+    for index = #options, 1, -1 do
+        local option = options[index]
+        if option and nativeCoordinateOptions[option.optionName] then
+            table.remove(options, index)
+            local header = options[index - 1]
+            if header and header.optionType == "header" then
+                table.remove(options, index - 1)
+            end
+        end
+    end
+end
+
 local function AddToggle(panel, label, key, desc, dependence, master)
     local option = panel:AddOption(label, desc, {
         getter = function() return WorldMap.Get(key) end,
@@ -12,7 +43,7 @@ local function AddToggle(panel, label, key, desc, dependence, master)
         isMasterToggle = master,
     })
     if option then option.optionName = "GW2PlusWorldMap_" .. key end
-    return option and option.optionName
+    return option
 end
 
 local function AddSlider(panel, label, key, low, high, step, desc, dependence)
@@ -24,6 +55,7 @@ local function AddSlider(panel, label, key, low, high, step, desc, dependence)
         dependence = dependence,
     })
     if option then option.optionName = "GW2PlusWorldMap_" .. key end
+    return option
 end
 
 local function AddExplorationColorPicker(panel, dependence)
@@ -47,6 +79,7 @@ local function AddExplorationColorPicker(panel, dependence)
         dependence = dependence,
     })
     if option then option.optionName = "GW2PlusWorldMap_explorationTint" end
+    return option
 end
 
 local function BuildWorldMapOptions(settingsTab)
@@ -57,48 +90,51 @@ local function BuildWorldMapOptions(settingsTab)
     local panel = pages and pages.hud_worldmap
     if not panel or panel.gwPlusWorldMapOptions then return false end
     panel.gwPlusWorldMapOptions = true
+    RemoveNativeCoordinateOptions(panel)
+
+    panel:AddGroupHeader("地图坐标")
+    AddToggle(panel, "启用", "showCoordinates", "固定显示在地图内容区底部：左侧玩家坐标，右侧光标坐标。")
 
     panel:AddGroupHeader("地图内容")
-    local exploration = AddToggle(panel, "未探索区域", "showExploration", "显示尚未探索的地图区域。", nil, true)
-    local explorationDependence = {[exploration] = true}
-    AddExplorationColorPicker(panel, explorationDependence)
-    AddSlider(panel, "未探索区域透明度", "explorationTintAlpha", 0.1, 1, 0.1, nil, explorationDependence)
-    AddToggle(panel, "副本和团队入口", "showPoiDungeons", nil)
-    AddToggle(panel, "同阵营交通点", "showPoiFriendlyTravel", "飞行点、船、飞艇和地铁。")
-    AddToggle(panel, "敌对阵营交通点", "showPoiOpposingTravel", nil)
-    AddToggle(panel, "灵魂医者", "showPoiSpiritHealers", nil)
-    AddToggle(panel, "区域出口箭头", "showPoiZoneCrossings", nil)
-    AddToggle(panel, "显示区域和副本等级", "showZoneLevels", nil)
-    AddToggle(panel, "显示最低钓鱼技能", "showFishingLevels", nil)
-    AddToggle(panel, "隐藏大陆城镇和城市图标", "hideTownCityIcons", nil)
+    local dungeon = AddToggle(panel, "副本入口", "showPoiDungeons", nil)
+    local spiritHealer = AddToggle(panel, "灵魂医者", "showPoiSpiritHealers", nil)
+    local zoneCrossing = AddToggle(panel, "区域中转点", "showPoiZoneCrossings", nil)
+    SetRow(3, dungeon, spiritHealer, zoneCrossing)
+    local friendlyTravel = AddToggle(panel, "同阵营旅行点", "showPoiFriendlyTravel", "飞行点、船、飞艇和地铁。")
+    local opposingTravel = AddToggle(panel, "对立阵营旅行点", "showPoiOpposingTravel", nil)
+    local classIcons = AddToggle(panel, "队友职业颜色图标", "classIcons", nil)
+    SetRow(3, friendlyTravel, opposingTravel, classIcons)
+    local zoneLevels = AddToggle(panel, "区域等级", "showZoneLevels", nil)
+    local fishingLevels = AddToggle(panel, "钓鱼等级", "showFishingLevels", nil)
+    local townIcons = AddToggle(panel, "隐藏城镇图标", "hideTownCityIcons", nil)
+    SetRow(3, zoneLevels, fishingLevels, townIcons)
+
+    panel:AddGroupHeader("未探索区域")
+    local exploration = AddToggle(panel, "启用", "showExploration", "显示尚未探索的地图区域。", nil, true)
+    local explorationDependence = exploration and {[exploration.optionName] = true} or nil
+    local explorationColor = AddExplorationColorPicker(panel, explorationDependence)
+    local explorationOpacity = AddSlider(panel, "未探索区域透明度", "explorationTintAlpha", 0.1, 1, 0.1, nil, explorationDependence)
+    SetRow(2, explorationColor, explorationOpacity)
 
     panel:AddGroupHeader("地图行为")
-    AddToggle(panel, "自动切换当前区域", "autoChangeZones", nil)
-    AddToggle(panel, "自动居中玩家", "centerOnPlayer", nil)
-    AddToggle(panel, "记住地图内部缩放", "rememberZoom", nil)
-    local increaseZoom = AddToggle(panel, "提高最大缩放", "increaseZoom", nil, nil, true)
-    AddSlider(panel, "最大缩放倍数", "increaseZoomMax", 1, 6, 0.1, nil, {[increaseZoom] = true})
-    AddSlider(panel, "静止时透明度", "stationaryOpacity", 0.1, 1, 0.1)
-    AddSlider(panel, "移动时透明度", "movingOpacity", 0.1, 1, 0.1)
-    AddToggle(panel, "鼠标悬停保持静止透明度", "useStationaryOpacityOnHover", nil)
-
-    panel:AddGroupHeader("图标与坐标")
-    AddToggle(panel, "队伍和团队图标职业染色", "classIcons", nil)
-    AddSlider(panel, "队伍和团队图标大小", "groupIconSize", 12, 80, 1)
-    AddSlider(panel, "玩家箭头大小", "playerArrowSize", 12, 80, 1)
-    AddToggle(panel, "启用坐标", "showCoordinates", nil)
+    local autoChangeZones = AddToggle(panel, "自动切换当前区域", "autoChangeZones", nil)
+    local stationaryOpacity = AddSlider(panel, "站定透明度", "stationaryOpacity", 0.1, 1, 0.1)
+    SetRow(2, autoChangeZones, stationaryOpacity)
+    local hoverCancelsFade = AddToggle(panel, "悬停取消渐隐", "useStationaryOpacityOnHover", nil)
+    local movingOpacity = AddSlider(panel, "移动透明度", "movingOpacity", 0.1, 1, 0.1)
+    SetRow(2, hoverCancelsFade, movingOpacity)
 
     panel:AddGroupHeader("战场地图")
-    local battlefield = AddToggle(panel, "启用战场地图增强", "battlefieldEnabled", nil, nil, true)
-    local battleDependence = {[battlefield] = true}
-    AddToggle(panel, "允许移动和缩放", "battlefieldUnlocked", nil, battleDependence)
-    AddSlider(panel, "战场地图尺寸", "battlefieldSize", 150, 1200, 1, nil, battleDependence)
-    AddSlider(panel, "战场地图透明度", "battlefieldOpacity", 0.1, 1, 0.1, nil, battleDependence)
-    AddSlider(panel, "战场地图最大缩放", "battlefieldMaxZoom", 1, 6, 0.1, nil, battleDependence)
-    AddToggle(panel, "战场地图自动居中玩家", "battlefieldCenterOnPlayer", nil, battleDependence)
-    AddSlider(panel, "战场队友图标大小", "battlefieldGroupIconSize", 12, 80, 1, nil, battleDependence)
-    AddSlider(panel, "战场玩家箭头大小", "battlefieldPlayerArrowSize", 12, 80, 1, nil, battleDependence)
-    if GW.RefreshSettingsPanel then
+    local battlefield = AddToggle(panel, "启用", "battlefieldEnabled", nil, nil, true)
+    local battleDependence = battlefield and {[battlefield.optionName] = true} or nil
+    local battlefieldSize = AddSlider(panel, "尺寸", "battlefieldSize", 150, 1200, 1, nil, battleDependence)
+    SetRow(2, battlefield, battlefieldSize)
+    local battlefieldOpacity = AddSlider(panel, "透明度", "battlefieldOpacity", 0.1, 1, 0.1, nil, battleDependence)
+    local battlefieldZoom = AddSlider(panel, "缩放", "battlefieldMaxZoom", 1, 6, 0.1, nil, battleDependence)
+    SetRow(2, battlefieldOpacity, battlefieldZoom)
+    if addonTable.ActionBarOptionsUtils then
+        addonTable.ActionBarOptionsUtils.InitializePanel(panel)
+    elseif GW.RefreshSettingsPanel then
         GW.RefreshSettingsPanel(panel)
     end
     return true

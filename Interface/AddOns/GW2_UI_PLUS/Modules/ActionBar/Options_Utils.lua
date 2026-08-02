@@ -11,11 +11,13 @@ Utils.WIDGET_TEMPLATES = {
     dropdown = {"Button", "GwOptionBoxDropDownTmpl"},
     text = {"Button", "GwOptionBoxTextTmpl"},
     button = {"Button", "GwButtonTextTmpl"},
+    colorPicker = {"Button", "GwOptionBoxColorPickerTmpl"},
     header = {"Frame", "GwOptionBoxHeader"},
     subHeader = {"Frame", "GwOptionBoxSubHeader"},
 }
 Utils.HEADER_EXTENT = 40
 Utils.HEADER_OPTION_GAP = 8
+Utils.MASTER_TOGGLE_SEPARATOR_EXTENT = 5
 Utils.HOTKEY_POSITION_VALUES = {
     "TOPLEFT", "TOP", "TOPRIGHT", "CENTER",
     "BOTTOMLEFT", "BOTTOM", "BOTTOMRIGHT",
@@ -24,6 +26,77 @@ Utils.HOTKEY_POSITION_NAMES = {
     "左上", "上", "右上", "居中",
     "左下", "下", "右下",
 }
+
+local function UpdateMasterToggleStyle(widget, hovered)
+    if not widget or not widget.isMasterToggle then return end
+    local checked = widget.checkbutton and widget.checkbutton:GetChecked()
+    local r, g, b = GW.Colors.TextColors.LightHeader:GetRGB()
+    if widget.masterToggleBg then
+        local textWidth = widget.title:GetStringWidth()
+        widget.masterToggleBg:SetWidth(math.max(
+            80, math.min(textWidth + 22, widget:GetWidth() - 36)))
+        widget.masterToggleBg:SetColorTexture(
+            r, g, b, hovered and 0.16 or (checked and 0.08 or 0))
+    end
+    widget.masterToggleAccent:SetColorTexture(
+        r, g, b, checked and 0.75 or (hovered and 0.35 or 0))
+end
+
+local function SetupMasterToggleStyle(widget)
+    if not widget or not widget.isMasterToggle
+        or widget.masterToggleStyleHooked then
+        return
+    end
+    widget.masterToggleStyleHooked = true
+    widget.masterToggleBg = widget:CreateTexture(nil, "BACKGROUND")
+    widget.masterToggleBg:SetPoint("LEFT", widget.title, "LEFT", -9, 0)
+    widget.masterToggleBg:SetHeight(24)
+    widget.masterToggleAccent = widget:CreateTexture(nil, "ARTWORK")
+    widget.masterToggleAccent:SetPoint("TOPLEFT", -2, -3)
+    widget.masterToggleAccent:SetPoint("BOTTOMLEFT", -2, 3)
+    widget.masterToggleAccent:SetWidth(2)
+    widget:HookScript("OnEnter", function(self)
+        UpdateMasterToggleStyle(self, true)
+    end)
+    widget:HookScript("OnLeave", function(self)
+        UpdateMasterToggleStyle(self, false)
+    end)
+    widget:HookScript("OnClick", function(self)
+        UpdateMasterToggleStyle(self, self:IsMouseOver())
+    end)
+    if widget.checkbutton then
+        widget.checkbutton:HookScript("OnEnter", function()
+            UpdateMasterToggleStyle(widget, true)
+        end)
+        widget.checkbutton:HookScript("OnLeave", function()
+            UpdateMasterToggleStyle(widget, false)
+        end)
+        widget.checkbutton:HookScript("OnClick", function()
+            UpdateMasterToggleStyle(widget, widget:IsMouseOver())
+        end)
+        hooksecurefunc(widget.checkbutton, "SetChecked", function()
+            UpdateMasterToggleStyle(widget, widget:IsMouseOver())
+        end)
+    end
+    UpdateMasterToggleStyle(widget, false)
+end
+
+local function SetMasterToggleSeparatorShown(row, shown)
+    if shown then
+        if not row.masterToggleSeparator then
+            row.masterToggleSeparator = row:CreateTexture(nil, "ARTWORK")
+            row.masterToggleSeparator:SetTexture(
+                "Interface/AddOns/GW2_UI/textures/hud/levelreward-sep.png")
+            row.masterToggleSeparator:SetTexCoord(0.5, 1, 0, 1)
+            row.masterToggleSeparator:SetSize(275, 2)
+        end
+        row.masterToggleSeparator:ClearAllPoints()
+        row.masterToggleSeparator:SetPoint("TOPLEFT", 8, 5)
+        row.masterToggleSeparator:Show()
+    elseif row.masterToggleSeparator then
+        row.masterToggleSeparator:Hide()
+    end
+end
 function Utils.RedrawSlider(optionName)
     local widget = GW.FindSettingsWidgetByOption and GW.FindSettingsWidgetByOption(optionName)
     if not widget or widget.optionType ~= "slider" or not widget.get then return end
@@ -49,6 +122,10 @@ function Utils.CreatePanel(parent, panelId, breadcrumb, description)
     return panel
 end
 function Utils.CreateOptionWidget(panel, option)
+    if option.__widget then
+        option.__gwPlusWidget = option.__widget
+        return option.__widget
+    end
     local config = Utils.WIDGET_TEMPLATES[option.optionType]
     if not config then return end
     local widget = CreateFrame(config[1], nil, panel, config[2])
@@ -58,8 +135,13 @@ function Utils.CreateOptionWidget(panel, option)
     widget.title:SetFont(DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 12)
     widget.title:SetShadowColor(0, 0, 0, 1)
     widget.title:SetText(widget.displayName or "")
-    widget.title:SetTextColor(1, 1, 1)
+    if option.isMasterToggle then
+        widget.title:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
+    else
+        widget.title:SetTextColor(1, 1, 1)
+    end
     GW.SettingsInitOptionWidget(widget, option, panel)
+    SetupMasterToggleStyle(widget)
     if option.gwPlusDisabled then
         widget:SetAlpha(0.55)
         if widget.optionType == "boolean" and widget.checkbutton then
@@ -145,6 +227,20 @@ local function LayoutCompactText(widget, width)
         "LEFT", widget, "LEFT", edge + titleWidth + gap, 0)
     widget.inputFrame:SetSize(inputWidth, 20)
 end
+local function LayoutCompactColorPicker(widget, width)
+    if not widget.button then return end
+    local edge = 5
+    local titleWidth = 76
+    local gap = 6
+    local buttonWidth = math.max(width - (edge * 2) - titleWidth - gap, 80)
+    widget.title:ClearAllPoints()
+    widget.title:SetPoint("LEFT", widget, "LEFT", edge, 0)
+    widget.title:SetWidth(titleWidth)
+    widget.title:SetJustifyH("LEFT")
+    widget.button:ClearAllPoints()
+    widget.button:SetPoint("LEFT", widget, "LEFT", edge + titleWidth + gap, 0)
+    widget.button:SetSize(buttonWidth, 20)
+end
 function Utils.InitializePanel(panel)
     local options = panel.gwOptions or {}
     local rows = {}
@@ -175,9 +271,18 @@ function Utils.InitializePanel(panel)
             }
             index = index + 1
         end
+        local previous = options[index - 1]
+        local nextOption = options[index]
+        if previous and previous.isMasterToggle and nextOption
+            and not nextOption.isMasterToggle then
+            rows[#rows + 1] = {kind = "masterToggleSeparator"}
+        end
     end
     local view = CreateScrollBoxListLinearView()
     view:SetElementExtentCalculator(function(_, data)
+        if data.kind == "masterToggleSeparator" then
+            return Utils.MASTER_TOGGLE_SEPARATOR_EXTENT
+        end
         local extent = (data.option.optionType == "header"
             or data.option.optionType == "subHeader"
             or data.option.optionType == "button") and Utils.HEADER_EXTENT or 46
@@ -192,6 +297,12 @@ function Utils.InitializePanel(panel)
             end
         end
         row:SetWidth(566)
+        if data.kind == "masterToggleSeparator" then
+            row.gwPlusWidgets = nil
+            SetMasterToggleSeparatorShown(row, true)
+            return
+        end
+        SetMasterToggleSeparatorShown(row, false)
         row.gwPlusWidgets = data.widgets or {data.widget}
         local width = data.widgets and (550 / data.columnCount) or 550
         for column, widget in ipairs(row.gwPlusWidgets) do
@@ -200,6 +311,10 @@ function Utils.InitializePanel(panel)
             if not data.widgets and data.option.optionType == "button" then
                 widget:SetPoint("TOPLEFT", row, "TOPLEFT",
                     8, -8 - (data.topPadding or 0))
+                widget:SetPoint("BOTTOMLEFT", row, "BOTTOMLEFT", 8, 8)
+                widget:SetWidth(550)
+            elseif not data.widgets and widget.isMasterToggle then
+                widget:SetPoint("TOPLEFT", row, "TOPLEFT", 8, -8)
                 widget:SetPoint("BOTTOMLEFT", row, "BOTTOMLEFT", 8, 8)
                 widget:SetWidth(550)
             elseif data.widgets and widget.optionType == "button" then
@@ -221,6 +336,11 @@ function Utils.InitializePanel(panel)
                 LayoutCompactDropdown(widget, width)
             elseif data.widgets and widget.optionType == "text" then
                 LayoutCompactText(widget, width)
+            elseif data.widgets and widget.optionType == "colorPicker" then
+                LayoutCompactColorPicker(widget, width)
+            end
+            if widget.isMasterToggle then
+                UpdateMasterToggleStyle(widget, false)
             end
             widget:Show()
         end
@@ -232,6 +352,7 @@ function Utils.InitializePanel(panel)
             widget:SetParent(panel)
         end
         row.gwPlusWidgets = nil
+        SetMasterToggleSeparatorShown(row, false)
     end)
     ScrollUtil.InitScrollBoxListWithScrollBar(panel.scroll.ScrollBox, panel.scroll.ScrollBar, view)
     GW.HandleTrimScrollBar(panel.scroll.ScrollBar)

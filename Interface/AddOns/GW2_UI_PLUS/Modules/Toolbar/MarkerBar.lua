@@ -24,7 +24,11 @@ local function HasPermission()
 end
 local function ShouldShow()
     local db = Toolbar.InitDB().markerBar
-    return db.enabled == true
+    if not db.enabled then return false end
+    if db.hideWhenSolo and not IsInGroup() then return false end
+    if db.hideWhenNoTarget and not UnitExists("target") then return false end
+    if db.hideWhenNoPermission and not HasPermission() then return false end
+    return true
 end
 local function ApplyVisibility()
     if not MarkerBar.frame then return end
@@ -58,9 +62,9 @@ local function EnsureFrame()
             "Button", nil, frame,
             "SecureActionButtonTemplate,BackdropTemplate")
         button:SetSize(BUTTON_SIZE, BUTTON_SIZE)
-        button:RegisterForClicks("AnyUp")
-        button:SetAttribute("type", "macro")
-        button:SetAttribute("macrotext", "/tm " .. info.index)
+        button:RegisterForClicks("LeftButtonUp", "LeftButtonDown")
+        button:SetAttribute("type1", "macro")
+        button:SetAttribute("macrotext1", "/tm " .. info.index)
         button:SetBackdrop({
             bgFile = "Interface/Buttons/WHITE8X8",
             edgeFile = "Interface/Buttons/WHITE8X8",
@@ -124,6 +128,18 @@ end
 function MarkerBar.SetHideBackground(value)
     Toolbar.InitDB().markerBar.hideBackground = value == true
     ApplyBackground()
+end
+function MarkerBar.SetHideWhenNoPermission(value)
+    Toolbar.InitDB().markerBar.hideWhenNoPermission = value == true
+    MarkerBar.Refresh()
+end
+function MarkerBar.SetHideWhenNoTarget(value)
+    Toolbar.InitDB().markerBar.hideWhenNoTarget = value == true
+    MarkerBar.Refresh()
+end
+function MarkerBar.SetHideWhenSolo(value)
+    Toolbar.InitDB().markerBar.hideWhenSolo = value == true
+    MarkerBar.Refresh()
 end
 function MarkerBar.Reset()
     local db = Toolbar.InitDB().markerBar

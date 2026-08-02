@@ -24,11 +24,13 @@ local function BuildComponentsTab(settingsTab, settingsWindow)
     tab.name = "GwSettingsComponents"
     tab.headerBreadcrumbText = "组件"
     tab.menu.search:Hide()
-    tab.menu.ScrollBox:Hide()
-    tab.menu.ScrollBar:Hide()
+    tab.menu.ScrollBox:ClearAllPoints()
+    tab.menu.ScrollBox:SetPoint("TOPLEFT", tab.menu, "TOPLEFT", 0, 0)
+    tab.menu.ScrollBox:SetPoint("BOTTOMRIGHT", tab.menu, "BOTTOMRIGHT", 0, 10)
 
     local menuEntries = {}
     local currentFrame, currentState
+    local RefreshMenu
 
     local function RestoreCurrent()
         if currentFrame and currentState then
@@ -48,34 +50,63 @@ local function BuildComponentsTab(settingsTab, settingsWindow)
         targetFrame:SetPoint("TOPLEFT", tab, "TOPLEFT", 0, 0)
         targetFrame:SetPoint("BOTTOMRIGHT", tab, "BOTTOMRIGHT", 0, 0)
         targetFrame:Show()
-        for _, entry in ipairs(menuEntries) do
-            entry.button.activeTexture:SetShown(entry.frame == targetFrame)
-        end
+        RefreshMenu()
     end
 
-    local function AddMenuEntry(label, frame)
-        if not frame then return end
+    local function AddMenuEntry(label, frame, children, parent)
+        if not frame and not children then return end
         local index = #menuEntries + 1
-        local button = CreateFrame(
-            "Button", nil, tab.menu,
-            "GwSettingsSettingsTabMenuButtonTemplate")
-        button:SetSize(221, 36)
-        button:SetPoint(
-            "TOPLEFT", tab.menu, "TOPLEFT",
-            0, -8 - (index - 1) * 36)
-        if index % 2 == 1 then
+        local entry = {
+            frame = frame,
+            label = label,
+            index = index,
+            children = children,
+            parent = parent,
+            expanded = false,
+        }
+        menuEntries[index] = entry
+        return entry
+    end
+
+    local function InitializeMenuButton(button, entry)
+        if entry.index % 2 == 1 then
             button:SetNormalTexture(MENU_BACKGROUND)
         else
             button:ClearNormalTexture()
         end
-        button.arrow:Hide()
-        button.text:SetPoint("LEFT", button, "LEFT", 20, 0)
-        button.text:SetText(label)
+        if entry.children then
+            button.arrow:ClearAllPoints()
+            button.arrow:SetPoint("LEFT", 5, 0)
+            button.arrow:SetTexture(
+                "Interface/AddOns/GW2/textures/uistuff/arrow_right.png")
+            button.arrow:SetSize(16, 16)
+            button.arrow:SetRotation(entry.expanded and -1.5707 or 0)
+            button.arrow:Show()
+        else
+            button.arrow:Hide()
+        end
+        button.text:ClearAllPoints()
+        button.text:SetPoint(
+            "LEFT", button, "LEFT", entry.parent and 30 or 20, 0)
+        button.text:SetText(entry.label)
         button.hover:SetTexture(HOVER_TEXTURE)
-        local entry = {button = button, frame = frame}
-        menuEntries[index] = entry
-        button:SetScript("OnClick", function() ShowPage(frame) end)
+        button.activeTexture:SetShown(entry.frame == currentFrame)
+        button:SetScript("OnClick", function()
+            if entry.children then
+                entry.expanded = not entry.expanded
+                if entry.expanded and entry.firstChild then
+                    ShowPage(entry.firstChild.frame)
+                else
+                    RefreshMenu()
+                end
+            else
+                ShowPage(entry.frame)
+            end
+        end)
     end
+
+    -- 综合菜单必须固定为组件页首项。
+    AddMenuEntry("综合", addonTable.PlusGeneralPanel)
 
     -- 微型系统菜单、微缩地图、世界地图（原生面板）
     if pages then
@@ -87,14 +118,46 @@ local function BuildComponentsTab(settingsTab, settingsWindow)
     -- 附加组件子面板
     if addonSubPanels then
         for _, entry in ipairs(addonSubPanels) do
-            AddMenuEntry(entry.name, entry.frame)
+            local parent = AddMenuEntry(entry.name, entry.frame, entry.children)
+            for _, child in ipairs(entry.children or {}) do
+                local childEntry = AddMenuEntry(
+                    child.name, child.frame or child.panel, nil, parent)
+                if parent and not parent.firstChild then
+                    parent.firstChild = childEntry
+                end
+            end
         end
+    end
+
+    local view = CreateScrollBoxListLinearView()
+    view:SetElementExtentCalculator(function() return 36 end)
+    view:SetElementInitializer(
+        "GwSettingsSettingsTabMenuButtonTemplate", InitializeMenuButton)
+    ScrollUtil.InitScrollBoxListWithScrollBar(
+        tab.menu.ScrollBox, tab.menu.ScrollBar, view)
+    local GW = _G.GW2_ADDON
+    if GW then
+        GW.HandleTrimScrollBar(tab.menu.ScrollBar)
+        GW.HandleScrollControls(tab.menu)
+    end
+    tab.menu.ScrollBar:SetHideIfUnscrollable(true)
+
+    RefreshMenu = function()
+        local provider = CreateDataProvider()
+        for _, entry in ipairs(menuEntries) do
+            if not entry.parent or entry.parent.expanded then
+                provider:Insert(entry)
+            end
+        end
+        tab.menu.ScrollBox:SetDataProvider(
+            provider, ScrollBoxConstants.RetainScrollPosition)
     end
 
     tab:SetScript("OnShow", function()
         if menuEntries[1] then ShowPage(menuEntries[1].frame) end
     end)
     tab.callbackOnClose = RestoreCurrent
+    RefreshMenu()
 
     settingsWindow:AddTab(ICON_PATH, tab)
     table.insert(settingsWindow.tabs, tab)

@@ -31,7 +31,7 @@ local function AddEnable(panel, moduleKey, optionName)
         end,
         isMasterToggle = true,
     })
-    return SetInline(SetOptionName(option, optionName))
+    return SetOptionName(option, optionName)
 end
 
 local function AddScale(panel, moduleKey, optionName)
@@ -80,8 +80,9 @@ local function AddMoverToggle(panel, moduleKey)
     return SetInline(option)
 end
 
-local function AddReset(panel, moduleKey, optionNames, callback)
-    local option = panel:AddOptionButton("重置", "恢复本组默认设置并移回默认位置。", {
+local function AddReset(panel, moduleKey, optionNames, callback, label)
+    local option = panel:AddOptionButton(
+        label or "重置", "恢复本组默认设置并移回默认位置。", {
         callback = function()
             local Toolbar = addonTable.Toolbar
             local module = Toolbar and Toolbar[moduleKey]
@@ -136,8 +137,9 @@ local function AddRoleBarOptions(panel)
         getDefault = function()
             return GetNativeDefault(GW, "ROLE_BAR", "IN_RAID") ~= "NEVER"
         end,
+        isMasterToggle = true,
     })
-    enable = SetInline(SetOptionName(enable, "ROLE_BAR"))
+    enable = SetOptionName(enable, "ROLE_BAR")
 
     local scale = panel:AddOptionSlider("缩放", nil, {
         min = 0.5, max = 2, step = 0.05, decimalNumbers = 2,
@@ -189,16 +191,10 @@ local function ResetRoleBar()
     end)
 end
 
-local function BuildToolbarPanel(parent)
-    -- 延迟检查，确保在调用时才验证依赖
+local function CreateToolbarPage(parent, panelId, breadcrumb, description)
     local GW = _G.GW2_ADDON
-    if not GW or not GW.GetSettingsTabFrame then return end
-    local Toolbar = addonTable.Toolbar
-    if not Toolbar then return end
-
     local panel = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
-    panel.panelId = "gw2_ui_plus_toolbar"
-    Toolbar.optionsPanel = panel
+    panel.panelId = panelId
     if panel.header then
         panel.header:SetFont(
             DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 20)
@@ -215,23 +211,34 @@ local function BuildToolbarPanel(parent)
             panel.breadcrumb:SetTextColor(
                 GW.Colors.TextColors.LightHeader:GetRGB())
         end
-        panel.breadcrumb:SetText("工具条")
+        panel.breadcrumb:SetText(breadcrumb)
     end
-    addonTable.SetPanelTitle(panel, "附加组件", "工具条")
+    addonTable.SetPanelTitle(panel, "工具条", breadcrumb)
     if panel.sub then
         panel.sub:SetFont(
             UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF", 12)
         panel.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
-        panel.sub:SetText("队伍、快捷操作、目标标记与性能信息")
+        panel.sub:SetText(description)
     end
-    Toolbar.InitDB()
-    panel:AddGroupHeader("队伍管理")
-    local groupEnabled = AddEnable(
-        panel, "groupManage", "GW2PlusToolbarGroupManageEnable")
-    local groupFade = AddGroupManageFadeOption(panel)
-    local groupScale = AddScale(
-        panel, "groupManage", "GW2PlusToolbarGroupManageScale")
-    SetRow(3, groupEnabled, groupFade, groupScale)
+    return panel
+end
+
+local function InitializeToolbarPage(page)
+    local GW = _G.GW2_ADDON
+    if GW and GW.RefreshSettingsPanel then
+        GW.RefreshSettingsPanel(page)
+    end
+    local Utils = addonTable.ActionBarOptionsUtils
+    if Utils and Utils.InitializePanel then
+        Utils.InitializePanel(page)
+    end
+end
+
+local function AddGroupManageOptions(panel)
+    local Toolbar = addonTable.Toolbar
+    AddEnable(panel, "groupManage", "GW2PlusToolbarGroupManageEnable")
+    AddGroupManageFadeOption(panel)
+    AddScale(panel, "groupManage", "GW2PlusToolbarGroupManageScale")
     local groupMover = AddMoverToggle(panel, "groupManage")
     local groupReset = AddReset(panel, "groupManage", {
         "GW2PlusToolbarGroupManageEnable",
@@ -244,15 +251,15 @@ local function BuildToolbarPanel(parent)
         GW.settings.FADE_GROUP_MANAGE_FRAME =
             defaults.FADE_GROUP_MANAGE_FRAME == true
         if GW.ToggleRaidControllFrame then GW.ToggleRaidControllFrame() end
-    end)
+    end, "重置位置")
     SetRow(2, groupMover, groupReset)
+end
 
-    panel:AddGroupHeader("快捷条")
-    local quickEnabled = AddEnable(
-        panel, "quickBar", "GW2PlusToolbarQuickBarEnable")
+local function AddQuickBarOptions(panel)
+    local Toolbar = addonTable.Toolbar
+    AddEnable(panel, "quickBar", "GW2PlusToolbarQuickBarEnable")
     local quickScale = AddScale(
         panel, "quickBar", "GW2PlusToolbarQuickBarScale")
-    SetRow(2, quickEnabled, quickScale)
     local buttonNames = {
         leave = "离开队伍",
         convert = "小队/团队转换",
@@ -315,7 +322,6 @@ local function BuildToolbarPanel(parent)
         getDefault = function() return "COMBAT" end,
     })
     SetInline(SetOptionName(timerMode, "GW2PlusToolbarQuickBarTimerMode"))
-    SetRow(2, countdownSeconds, timerMode)
     local countdownVoice = panel:AddOption(
         "系统语音读秒", "倒计时最后五秒使用客户端语音。", {
         getter = function()
@@ -348,12 +354,13 @@ local function BuildToolbarPanel(parent)
         "GW2PlusToolbarQuickBarCountdownSeconds",
         "GW2PlusToolbarQuickBarTimerMode",
         "GW2PlusToolbarQuickBarCountdownVoice",
-    })
+    }, nil, "重置位置")
     SetRow(2, quickMover, quickReset)
+end
 
-    panel:AddGroupHeader("标记条")
-    local markerEnabled = AddEnable(
-        panel, "markerBar", "GW2PlusToolbarMarkerBarEnable")
+local function AddMarkerBarOptions(panel)
+    local Toolbar = addonTable.Toolbar
+    AddEnable(panel, "markerBar", "GW2PlusToolbarMarkerBarEnable")
     local hideBackground = panel:AddOption("隐藏背景", nil, {
         getter = function()
             return Toolbar.InitDB().markerBar.hideBackground
@@ -365,20 +372,61 @@ local function BuildToolbarPanel(parent)
     })
     SetInline(SetOptionName(
         hideBackground, "GW2PlusToolbarMarkerBarHideBackground"))
-    local markerScale = AddScale(
-        panel, "markerBar", "GW2PlusToolbarMarkerBarScale")
-    SetRow(3, markerEnabled, hideBackground, markerScale)
+    local hideWhenNoPermission = panel:AddOption("无权限时隐藏", nil, {
+        getter = function()
+            return Toolbar.InitDB().markerBar.hideWhenNoPermission
+        end,
+        setter = function(value)
+            Toolbar.markerBar.SetHideWhenNoPermission(value)
+        end,
+        getDefault = function()
+            return Toolbar.defaults.markerBar.hideWhenNoPermission
+        end,
+    })
+    SetInline(SetOptionName(
+        hideWhenNoPermission, "GW2PlusToolbarMarkerBarHideWhenNoPermission"))
+    local hideWhenNoTarget = panel:AddOption("无目标时隐藏", nil, {
+        getter = function()
+            return Toolbar.InitDB().markerBar.hideWhenNoTarget
+        end,
+        setter = function(value)
+            Toolbar.markerBar.SetHideWhenNoTarget(value)
+        end,
+        getDefault = function()
+            return Toolbar.defaults.markerBar.hideWhenNoTarget
+        end,
+    })
+    SetInline(SetOptionName(
+        hideWhenNoTarget, "GW2PlusToolbarMarkerBarHideWhenNoTarget"))
+    local hideWhenSolo = panel:AddOption("单人时隐藏", nil, {
+        getter = function()
+            return Toolbar.InitDB().markerBar.hideWhenSolo
+        end,
+        setter = function(value)
+            Toolbar.markerBar.SetHideWhenSolo(value)
+        end,
+        getDefault = function()
+            return Toolbar.defaults.markerBar.hideWhenSolo
+        end,
+    })
+    SetInline(SetOptionName(
+        hideWhenSolo, "GW2PlusToolbarMarkerBarHideWhenSolo"))
+    AddScale(panel, "markerBar", "GW2PlusToolbarMarkerBarScale")
     local markerMover = AddMoverToggle(panel, "markerBar")
     local markerReset = AddReset(panel, "markerBar", {
         "GW2PlusToolbarMarkerBarEnable",
         "GW2PlusToolbarMarkerBarScale",
         "GW2PlusToolbarMarkerBarHideBackground",
-    })
+        "GW2PlusToolbarMarkerBarHideWhenNoPermission",
+        "GW2PlusToolbarMarkerBarHideWhenNoTarget",
+        "GW2PlusToolbarMarkerBarHideWhenSolo",
+    }, nil, "重置位置")
     SetRow(2, markerMover, markerReset)
+end
 
-    panel:AddGroupHeader("角色职责列")
-    local roleEnabled, roleScale = AddRoleBarOptions(panel)
-    SetRow(2, roleEnabled, roleScale)
+local function AddRoleBarPageOptions(panel)
+    local Toolbar = addonTable.Toolbar
+    AddRoleBarOptions(panel)
     local roleMover = AddMoverToggle(panel, "roleBar")
     local roleReset = panel:AddOptionButton("重置", "恢复角色职责列的默认设置和位置。", {
         callback = function()
@@ -390,10 +438,11 @@ local function BuildToolbarPanel(parent)
     })
     SetInline(roleReset)
     SetRow(2, roleMover, roleReset)
+end
 
-    panel:AddGroupHeader("性能条")
-    local performanceEnabled = AddEnable(
-        panel, "performanceBar", "GW2PlusToolbarPerformanceBarEnable")
+local function AddPerformanceBarOptions(panel)
+    local Toolbar = addonTable.Toolbar
+    AddEnable(panel, "performanceBar", "GW2PlusToolbarPerformanceBarEnable")
     local alignment = panel:AddOptionDropdown("对齐", nil, {
         optionsList = {"LEFT", "CENTER", "RIGHT"},
         optionNames = {"左对齐", "居中", "右对齐"},
@@ -407,7 +456,6 @@ local function BuildToolbarPanel(parent)
     })
     SetInline(SetOptionName(
         alignment, "GW2PlusToolbarPerformanceBarAlignment"))
-    SetRow(2, performanceEnabled, alignment)
     local width = panel:AddOptionSlider("宽度", nil, {
         min = 120, max = 500, step = 1, decimalNumbers = 0,
         getter = function() return Toolbar.InitDB().performanceBar.width end,
@@ -426,7 +474,6 @@ local function BuildToolbarPanel(parent)
         getDefault = function() return Toolbar.defaults.performanceBar.height end,
     })
     SetInline(SetOptionName(height, "GW2PlusToolbarPerformanceBarHeight"))
-    SetRow(2, width, height)
     local metricOptions = {}
     for _, metric in ipairs({
         {"showFPS", "显示 FPS"},
@@ -449,6 +496,51 @@ local function BuildToolbarPanel(parent)
             metricOption, "GW2PlusToolbarPerformanceBar" .. metricKey))
     end
     SetRow(3, metricOptions[1], metricOptions[2], metricOptions[3])
-    return panel
+    local performanceMover = AddMoverToggle(panel, "performanceBar")
+    local performanceReset = AddReset(panel, "performanceBar", {
+        "GW2PlusToolbarPerformanceBarEnable",
+        "GW2PlusToolbarPerformanceBarAlignment",
+        "GW2PlusToolbarPerformanceBarWidth",
+        "GW2PlusToolbarPerformanceBarHeight",
+        "GW2PlusToolbarPerformanceBarshowFPS",
+        "GW2PlusToolbarPerformanceBarshowHome",
+        "GW2PlusToolbarPerformanceBarshowWorld",
+    }, nil, "重置位置")
+    SetRow(2, performanceMover, performanceReset)
+end
+
+local function BuildToolbarPanel(parent)
+    local GW = _G.GW2_ADDON
+    if not GW or not GW.GetSettingsTabFrame then return end
+    local Toolbar = addonTable.Toolbar
+    if not Toolbar then return end
+
+    local root = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
+    root.panelId = "gw2_ui_plus_toolbar"
+
+    Toolbar.InitDB()
+    local pageDefinitions = {
+        {"标记条", "gw2_ui_plus_toolbar_marker", "目标标记快捷操作", AddMarkerBarOptions},
+        {"快捷条", "gw2_ui_plus_toolbar_quick", "队伍快捷操作与倒计时", AddQuickBarOptions},
+        {"队伍管理", "gw2_ui_plus_toolbar_group", "队伍管理栏显示与位置", AddGroupManageOptions},
+        {"角色职责", "gw2_ui_plus_toolbar_role", "角色职责列显示与位置", AddRoleBarPageOptions},
+        {"性能条", "gw2_ui_plus_toolbar_performance", "帧率与网络延迟信息", AddPerformanceBarOptions},
+    }
+    local pages = {}
+
+    for index, definition in ipairs(pageDefinitions) do
+        local page = CreateToolbarPage(
+            root, definition[2], definition[1], definition[3])
+        definition[4](page)
+        InitializeToolbarPage(page)
+        pages[index] = page
+    end
+
+    root.toolbarPages = {}
+    for index, definition in ipairs(pageDefinitions) do
+        root.toolbarPages[index] = {name = definition[1], panel = pages[index]}
+    end
+    Toolbar.optionsPanels = pages
+    return root
 end
 addonTable.BuildToolbarPanel = BuildToolbarPanel

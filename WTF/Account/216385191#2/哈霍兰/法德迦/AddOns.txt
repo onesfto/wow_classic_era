@@ -1,5 +1,5 @@
 LoseControl: enabled
-!Pig: enabled
+!Pig: disabled
 BiaoGe: disabled
 DBM-Core: disabled
 DBM-StatusBarTimers: enabled
@@ -22,7 +22,7 @@ EKword: enabled
 aBlueShaman: disabled
 ACP: enabled
 AddOnSkins: disabled
-AdvancedInterfaceOptions: disabled
+AdvancedInterfaceOptions: enabled
 AlreadyKnown: disabled
 Atlas: disabled
 Atlas_ClassicWoW: enabled
@@ -66,8 +66,8 @@ HidingBar: disabled
 HidingBar_Options: disabled
 Immersion: enabled
 InboxMailBag: enabled
-Leatrix_Maps: enabled
-Leatrix_Plus: enabled
+Leatrix_Maps: disabled
+Leatrix_Plus: disabled
 LibSharedMedia-3.0: enabled
 LoonBestInSlot: enabled
 MailLogger: enabled
@@ -201,7 +201,7 @@ Cell: enabled
 GearMenu: enabled
 MacroToolkit: disabled
 MacroToolkitIcons: disabled
-Onesfto: enabled
+Onesfto: disabled
 SexyMap: disabled
 SimpleRaidTargetIcons: enabled
 SinStats: enabled
@@ -221,6 +221,6 @@ AllTheThings: enabled
 GW2_UI_PLUS: enabled
 OPie_Classic: disabled
 !GW2_UI_PLUS_Early: enabled
-OPie: enabled
+OPie: disabled
 LocalMusicPlayer: enabled
-InnGramophone: enabled
+InnGramophone: disabled

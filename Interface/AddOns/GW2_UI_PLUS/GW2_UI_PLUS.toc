@@ -17,6 +17,15 @@
 Locale/Hardcoded.lua
 Core/Fixes.lua
 Core/PanelTitle.lua
+Modules/General/Core.lua
+Modules/General/Automation.lua
+Modules/General/Merchant.lua
+Modules/General/BuyEmAllClassic.zhCN.lua
+Modules/General/BuyEmAllClassic.lua
+Modules/General/BuyEmAllClassic.xml
+Modules/General/FastLoot.lua
+Modules/General/Visual.lua
+Modules/General/Options.lua
 Core/Spellbook.lua
 Core/Diagnostics.lua
 Libs/alaGearMan/alaGearMan.xml
@@ -69,6 +78,7 @@ Modules/WorldMap/Coordinates.lua
 Modules/WorldMap/Options.lua
 Modules/Settings/HideNativeSettings.lua
 Modules/Settings/Settings.lua
+Modules/Settings/HudMoverOptions.lua
 Modules/Settings/SettingsIcon.lua
 Modules/Settings/PartyTab.lua
 Modules/Settings/ComponentsTab.lua
@@ -90,6 +100,7 @@ Modules/Skins/QuestLog.lua
 Modules/Skins/Options.lua
 core.lua
 Modules/Skins/Core.lua
+Modules/Skins/BetterBags.lua
 Modules/Skins/BugSack.lua
 Modules/Skins/SimpleRaidTargetIcons.lua
 Modules/Skins/Myslot.lua

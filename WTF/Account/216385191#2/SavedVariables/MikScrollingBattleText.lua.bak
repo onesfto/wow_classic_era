@@ -46,7 +46,7 @@ MSBTProfiles_SavedVars = {
 ["MSBT_TRIGGER_EXECUTE"] = false,
 },
 ["damageColoringDisabled"] = true,
-["hotThrottleDuration"] = 2,
+["critFontName"] = "默认",
 ["critOutlineIndex"] = 2,
 ["animationSpeed"] = 120,
 ["enableBlizzardHealing"] = false,
@@ -290,11 +290,11 @@ MSBTProfiles_SavedVars = {
 ["PET_OUTGOING_DEFLECT"] = {
 ["message"] = "偏转*",
 },
-["NOTIFICATION_HOLY_POWER_CHANGE"] = {
-["disabled"] = true,
+["NOTIFICATION_POWER_GAIN"] = {
 ["scrollArea"] = "Notification",
 },
-["NOTIFICATION_POWER_GAIN"] = {
+["NOTIFICATION_HOLY_POWER_CHANGE"] = {
+["disabled"] = true,
 ["scrollArea"] = "Notification",
 },
 ["PET_OUTGOING_DODGE"] = {
@@ -345,10 +345,10 @@ MSBTProfiles_SavedVars = {
 ["direction"] = "Up",
 ["offsetX"] = -477,
 ["scrollHeight"] = 85,
-["behavior"] = "MSBT_NORMAL",
+["iconAlign"] = "Right",
 ["offsetY"] = -382,
 ["animationStyle"] = "Static",
-["iconAlign"] = "Right",
+["behavior"] = "MSBT_NORMAL",
 },
 ["Custom2"] = {
 ["stickyTextAlignIndex"] = 3,
@@ -417,7 +417,7 @@ MSBTProfiles_SavedVars = {
 ["normalFontSize"] = 27,
 },
 },
-["critFontName"] = "默认",
+["hotThrottleDuration"] = 2,
 },
 },
 }

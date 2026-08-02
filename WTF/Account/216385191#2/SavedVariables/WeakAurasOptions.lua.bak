@@ -5,17 +5,17 @@ WeakAurasOptionsSaved = {
 ["savedSnippets"] = {
 },
 ["spellCacheAchievements"] = true,
-["spellCacheStrings"] = true,
+["frame"] = {
+["xOffset"] = 566.6480102539062,
+["yOffset"] = 1087.607177734375,
+["height"] = 917.619140625,
+["width"] = 1049.428833007813,
+},
 ["locale"] = "zhCN",
 ["needsRebuild"] = false,
 ["version"] = "5.21.9",
 ["lockPositions"] = false,
-["frame"] = {
-["xOffset"] = 530.4945678710938,
-["yOffset"] = 1109.573120117188,
-["height"] = 917.619140625,
-["width"] = 1049.428588867188,
-},
+["spellCacheStrings"] = true,
 ["spellCacheAchivements"] = true,
 ["spellCache"] = {
 ["制造塞雷布拉斯节杖"] = {

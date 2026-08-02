@@ -8,10 +8,7 @@ local floor, ceil, max, min = math.floor, math.ceil, math.max, math.min
 local explorationHooks = setmetatable({}, {__mode = "k"})
 local poiProvider
 local lastMapID, lastPlayerMapID
-local rememberedZoom
-local centerElapsed, zoomHooked = 0, false
 local areaLabelScripts = setmetatable({}, {__mode = "k"})
-local centerFrame = CreateFrame("Frame")
 
 function WorldMap.ShouldShowPoi(pinInfo, db, faction)
     local kind = pinInfo and pinInfo[1]
@@ -129,8 +126,6 @@ function WorldMap.ApplyGroupIcons()
     for pin in WorldMapFrame:EnumeratePinsByTemplate("GroupMembersPinTemplate") do
         local provider = pin.dataProvider
         if provider then
-            local sizes = provider:GetUnitPinSizesTable()
-            sizes.party, sizes.raid, sizes.player = WorldMap.Get("groupIconSize"), WorldMap.Get("groupIconSize"), WorldMap.Get("playerArrowSize")
             pin:SetAppearanceField("party", "useClassColor", WorldMap.Get("classIcons"))
             pin:SetAppearanceField("raid", "useClassColor", WorldMap.Get("classIcons"))
             pin:SynchronizePinSizes()
@@ -142,47 +137,6 @@ function WorldMap.ApplyOpacity()
     if not _G.WorldMapFrame or not _G.PlayerMovementFrameFader then return end
     PlayerMovementFrameFader.AddDeferredFrame(WorldMapFrame, WorldMap.Get("movingOpacity"), WorldMap.Get("stationaryOpacity"), 0.5, function()
         return not WorldMapFrame:IsMouseOver() or not WorldMap.Get("useStationaryOpacityOnHover")
-    end)
-end
-
-local function CenterMapOnPlayer(_, delta)
-    if not WorldMap.Get("centerOnPlayer") or not WorldMapFrame:IsShown() then return end
-    centerElapsed = centerElapsed + delta
-    if centerElapsed < 2 or IsShiftKeyDown() or WorldMapFrame.ScrollContainer:IsPanning() then return end
-    centerElapsed = 0
-    local position = C_Map.GetPlayerMapPosition(WorldMapFrame:GetMapID(), "player")
-    if position then WorldMapFrame.ScrollContainer:SetPanTarget(position.x, position.y) end
-end
-
-function WorldMap.ApplyCenterOnPlayer()
-    centerFrame:SetScript("OnUpdate", CenterMapOnPlayer)
-end
-
-function WorldMap.ApplyZoom()
-    if zoomHooked or not _G.WorldMapFrame then return end
-    zoomHooked = true
-    hooksecurefunc(WorldMapFrame.ScrollContainer, "CreateZoomLevels", function(container)
-        if not WorldMap.Get("increaseZoom") or container.gwPlusZoomUpdating then return end
-        container.gwPlusZoomUpdating = true
-        local layers = C_Map.GetMapArtLayers(container.mapID)
-        if layers then
-            for _, layer in ipairs(layers) do layer.maxScale = layer.maxScale * WorldMap.Get("increaseZoomMax") end
-            container:CreateZoomLevels()
-        end
-        container.gwPlusZoomUpdating = nil
-    end)
-    WorldMapFrame:HookScript("OnHide", function()
-        if WorldMap.Get("rememberZoom") then
-            rememberedZoom = {mapID = WorldMapFrame:GetMapID(), scale = WorldMapFrame.ScrollContainer:GetCanvasScale(), x = WorldMapFrame.ScrollContainer:GetNormalizedHorizontalScroll(), y = WorldMapFrame.ScrollContainer:GetNormalizedVerticalScroll()}
-        end
-    end)
-    WorldMapFrame:HookScript("OnShow", function()
-        if rememberedZoom and WorldMap.Get("rememberZoom") and rememberedZoom.mapID == WorldMapFrame:GetMapID() then
-            C_Timer.After(0, function()
-                WorldMapFrame.ScrollContainer:InstantPanAndZoom(rememberedZoom.scale, rememberedZoom.x, rememberedZoom.y)
-                WorldMapFrame.ScrollContainer:SetPanTarget(rememberedZoom.x, rememberedZoom.y)
-            end)
-        end
     end)
 end
 
@@ -224,7 +178,7 @@ function WorldMap.ApplyZoneLevels()
 end
 
 function WorldMap.Apply()
-    WorldMap.ApplyExploration(); WorldMap.ApplyPoi(); WorldMap.ApplyGroupIcons(); WorldMap.ApplyOpacity(); WorldMap.ApplyCenterOnPlayer(); WorldMap.ApplyZoom(); WorldMap.ApplyZoneLevels()
+    WorldMap.ApplyExploration(); WorldMap.ApplyPoi(); WorldMap.ApplyGroupIcons(); WorldMap.ApplyOpacity(); WorldMap.ApplyZoneLevels()
     if WorldMap.Battlefield then WorldMap.Battlefield.Apply() end
     if WorldMap.Coordinates then WorldMap.Coordinates.Apply() end
 end

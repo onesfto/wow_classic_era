@@ -31,6 +31,9 @@ Toolbar.defaults = {
         enabled = false,
         scale = 1,
         hideBackground = false,
+        hideWhenNoPermission = true,
+        hideWhenNoTarget = true,
+        hideWhenSolo = true,
     },
     performanceBar = {
         enabled = false,
@@ -285,12 +288,14 @@ function Toolbar.RefreshAll()
 end
 function Toolbar.RedrawOption(optionName)
     local widget
-    for _, option in ipairs((Toolbar.optionsPanel
-        and Toolbar.optionsPanel.gwOptions) or {}) do
-        if option.optionName == optionName and option.__gwPlusWidget then
-            widget = option.__gwPlusWidget
-            break
+    for _, panel in ipairs(Toolbar.optionsPanels or {}) do
+        for _, option in ipairs(panel.gwOptions or {}) do
+            if option.optionName == optionName and option.__gwPlusWidget then
+                widget = option.__gwPlusWidget
+                break
+            end
         end
+        if widget then break end
     end
     if not widget then
         widget = GW and GW.FindSettingsWidgetByOption

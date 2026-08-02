@@ -5,9 +5,9 @@ toolbar_options_file="Modules/Toolbar/Options.lua"
 toolbar_core_file="Modules/Toolbar/Core.lua"
 hide_native_file="Modules/Settings/HideNativeSettings.lua"
 
-# The native setting is presented under the toolbar's group-management section
-# and keeps its original storage key, dependency, and runtime callback.
-grep -F 'panel:AddGroupHeader("队伍管理")' "$toolbar_options_file" >/dev/null
+# The native setting is presented on the toolbar's group-management page and
+# keeps its original storage key, dependency, and runtime callback.
+grep -F 'local function AddGroupManageOptions(panel)' "$toolbar_options_file" >/dev/null
 grep -F 'local function AddGroupManageFadeOption(panel)' "$toolbar_options_file" >/dev/null
 grep -F 'GW.settings.FADE_GROUP_MANAGE_FRAME' "$toolbar_options_file" >/dev/null
 grep -F 'GW.ToggleRaidControllFrame()' "$toolbar_options_file" >/dev/null

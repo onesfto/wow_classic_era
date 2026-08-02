@@ -45,6 +45,10 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
             p.sub:SetText("其他插件设置")
         end
 
+        if addonTable.BuildGeneralPanel then
+            addonTable.PlusGeneralPanel = addonTable.BuildGeneralPanel(p)
+        end
+
         -- Create the GearMan sub-panel
         local gearManFrame = CreateFrame("Frame", nil, p, "GwSettingsPanelTmpl")
         gearManFrame.panelId = "gw2_ui_plus_gearman"
@@ -256,6 +260,7 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
             table.insert(subPanels, {
                 name = "工具条",
                 frame = toolbarFrame,
+                children = toolbarFrame.toolbarPages,
                 icon = "Interface\\Icons\\INV_Misc_Tool_01",
             })
         else
@@ -264,15 +269,20 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
     end
 
     addonTable.PlusAddonSubPanels = subPanels
+    local settingsSubPanels = {}
+    if addonTable.PlusGeneralPanel then
+        table.insert(settingsSubPanels, {
+            name = "综合",
+            frame = addonTable.PlusGeneralPanel,
+        })
+    end
+    for _, entry in ipairs(subPanels) do
+        table.insert(settingsSubPanels, entry)
+    end
     -- 通过原生 AddSettingsPanel 触发 GW2_UI 的 InitOptionPanel，
     -- 使各子面板的 ScrollBox 获得 DataProvider，否则内容为空。
     -- HideNativeSettings 会将该条目从原生设置菜单中过滤掉。
-    settingsTab:AddSettingsPanel(p, "附加组件", "额外附加组件", subPanels, true)
-
-    -- 工具条需要按需求在同一行显示 2、3 或 4 个控件；原生面板仅支持两列。
-    if toolbarFrame and addonTable.ActionBarOptionsUtils then
-        addonTable.ActionBarOptionsUtils.InitializePanel(toolbarFrame)
-    end
+    settingsTab:AddSettingsPanel(p, "附加组件", "额外附加组件", settingsSubPanels, true)
 
     if addonTable.BuildActionBarTab then
         addonTable.BuildActionBarTab(settingsTab, _G.GwSettingsWindow)
@@ -284,6 +294,10 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
 
     if addonTable.BuildWorldMapOptions then
         addonTable.BuildWorldMapOptions(settingsTab)
+    end
+
+    if addonTable.BuildHudMoverOptions then
+        addonTable.BuildHudMoverOptions(settingsTab)
     end
 
     if addonTable.BuildMainMenuTab then
@@ -300,6 +314,10 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
 
     if addonTable.BuildEditModeTab then
         addonTable.BuildEditModeTab(settingsTab, _G.GwSettingsWindow)
+    end
+
+    if addonTable.General and addonTable.General.ApplyAll then
+        addonTable.General.ApplyAll()
     end
 
     if addonTable.ApplyProfileTabIcon then

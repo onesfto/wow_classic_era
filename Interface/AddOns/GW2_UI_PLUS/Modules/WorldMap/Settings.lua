@@ -14,26 +14,16 @@ WorldMap.defaults = {
     showZoneLevels = true,
     showFishingLevels = true,
     autoChangeZones = false,
-    centerOnPlayer = false,
-    rememberZoom = true,
-    increaseZoom = false,
-    increaseZoomMax = 2,
     stationaryOpacity = 1,
     movingOpacity = 0.5,
     useStationaryOpacityOnHover = true,
     classIcons = true,
-    groupIconSize = 20,
-    playerArrowSize = 27,
     hideTownCityIcons = true,
     showCoordinates = true,
     battlefieldEnabled = false,
-    battlefieldUnlocked = true,
     battlefieldSize = 300,
     battlefieldOpacity = 1,
     battlefieldMaxZoom = 1,
-    battlefieldCenterOnPlayer = false,
-    battlefieldGroupIconSize = 12,
-    battlefieldPlayerArrowSize = 12,
 }
 
 local function CopyDefault(value)
@@ -62,11 +52,8 @@ function WorldMap.Normalize(key, value)
     if key == "stationaryOpacity" or key == "movingOpacity"
         or key == "battlefieldOpacity" then
         return math.max(0.1, math.min(1, tonumber(value) or 1))
-    elseif key == "increaseZoomMax" or key == "battlefieldMaxZoom" then
+    elseif key == "battlefieldMaxZoom" then
         return math.max(1, math.min(6, tonumber(value) or 1))
-    elseif key == "groupIconSize" or key == "playerArrowSize"
-        or key == "battlefieldGroupIconSize" or key == "battlefieldPlayerArrowSize" then
-        return math.max(12, math.min(80, tonumber(value) or 12))
     elseif key == "battlefieldSize" then
         return math.max(150, math.min(1200, tonumber(value) or 300))
     end

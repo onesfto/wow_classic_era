@@ -741,6 +741,9 @@ function QuestieTBCNpcFixes:Load()
             [npcKeys.spawns] = {[zoneIDs.THE_SHATTERED_HALLS]={{-1,-1}}},
             [npcKeys.zoneID] = zoneIDs.THE_SHATTERED_HALLS,
         },
+        [17307] = { -- Nazan
+            [npcKeys.name] = "Nazan", -- Vazruden the Herald when both NPCs are flying around, Nazan after dismount
+        },
         [17311] = {
             [npcKeys.spawns] = {[zoneIDs.AZUREMYST_ISLE] = {{16.6,94.4}}},
             [npcKeys.zoneID] = zoneIDs.AZUREMYST_ISLE,
@@ -980,6 +983,10 @@ function QuestieTBCNpcFixes:Load()
         [18182] = { -- Gurok the Usurper
             [npcKeys.spawns] = {[zoneIDs.NAGRAND] = {{29.05,25.04}}},
             [npcKeys.zoneID] = zoneIDs.NAGRAND,
+        },
+        [18185] = { -- Feralfen Serpent Spirit
+            [npcKeys.spawns] = {[zoneIDs.ZANGARMARSH] = {{44.29,66.9}}},
+            [npcKeys.zoneID] = zoneIDs.ZANGARMARSH,
         },
         [18238] = {
             [npcKeys.npcFlags] = QuestieDB.npcFlags.QUEST_GIVER,
