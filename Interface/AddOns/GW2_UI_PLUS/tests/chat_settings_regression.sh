@@ -24,6 +24,13 @@ grep -F 'SetPanelTitle(chatPanels.messages, "消息管理")' "$chat_tab_file" >/
 grep -F 'tab.callbackOnClose = RestoreCurrent' "$chat_tab_file" >/dev/null
 grep -F 'addonTable.BuildChatTab = BuildChatTab' "$chat_tab_file" >/dev/null
 
+capture_line=$(grep -n -F 'local CaptureFrame = addonTable.CaptureFrame' "$chat_tab_file" | cut -d: -f1)
+build_line=$(grep -n -F 'local chatPanels = BuildChatCategoryPanels(' "$chat_tab_file" | cut -d: -f1)
+if [ "$capture_line" -ge "$build_line" ]; then
+    echo "聊天分类迁移前必须先验证框体捕获依赖" >&2
+    exit 1
+fi
+
 if grep -F 'AddMenuEntry("综合", pages.chat_general)' "$chat_tab_file" >/dev/null; then
     echo "聊天菜单不应继续显示综合" >&2
     exit 1

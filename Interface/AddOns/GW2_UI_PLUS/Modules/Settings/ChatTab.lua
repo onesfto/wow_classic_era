@@ -22,6 +22,11 @@ local function BuildChatTab(settingsTab, settingsWindow)
         or not BuildChatCategoryPanels then
         return
     end
+
+    local CaptureFrame = addonTable.CaptureFrame
+    local RestoreFrame = addonTable.RestoreFrame
+    if not CaptureFrame or not RestoreFrame then return end
+
     local chatPanels = BuildChatCategoryPanels(
         pages.chat_general, sourcePanels.chatWindow, sourcePanels.chatBar)
     if not chatPanels or not chatPanels.enhancement
@@ -29,10 +34,6 @@ local function BuildChatTab(settingsTab, settingsWindow)
         or not chatPanels.messages then
         return
     end
-
-    local CaptureFrame = addonTable.CaptureFrame
-    local RestoreFrame = addonTable.RestoreFrame
-    if not CaptureFrame or not RestoreFrame then return end
 
     local tab = CreateFrame(
         "Frame", nil, settingsWindow, "GwSettingsSettingsTabTemplate")
