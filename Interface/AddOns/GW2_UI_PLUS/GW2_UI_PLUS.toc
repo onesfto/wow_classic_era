@@ -83,6 +83,7 @@ Modules/Settings/SettingsIcon.lua
 Modules/Settings/PartyTab.lua
 Modules/Settings/ComponentsTab.lua
 Modules/Settings/EditModeTab.lua
+Modules/Settings/EditModeMoverCoordinates.lua
 Modules/Settings/EditModeVehicleLeaveButton.lua
 Modules/Social/friendsFrame.lua
 Modules/Social/friendsList.lua
