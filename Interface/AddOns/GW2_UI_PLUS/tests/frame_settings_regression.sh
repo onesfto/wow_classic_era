@@ -54,6 +54,7 @@ if grep -F '{"状态条", "player_classpower"}' "$settings_file" >/dev/null; the
 fi
 grep -F 'settingsTab.gwPlusPlayerResourcePanels' "$settings_file" >/dev/null
 grep -F 'option.forceNewLine = true' "$resources_file" >/dev/null
+grep -F 'option.gwPlusColumns = nil' "$resources_file" >/dev/null
 if grep -F 'AddGroupHeader(panel,' "$resources_file" >/dev/null; then
     exit 1
 fi
