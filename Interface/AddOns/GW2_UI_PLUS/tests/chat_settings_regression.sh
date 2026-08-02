@@ -69,4 +69,7 @@ grep -F 'local function HideNativeChatSettings(settingsTab, embeddedPanels, prov
 grep -F 'frame.panelId == "chat_general"' "$hide_native_file" >/dev/null
 grep -F 'provider = HideNativeChatSettings(settingsTab, embeddedPanels, provider)' "$hide_native_file" >/dev/null
 
+lua tests/chat_categories_runtime.lua
+lua tests/chat_options_runtime.lua
+
 printf '%s\n' '聊天设置菜单回归检查通过'

@@ -77,22 +77,26 @@ local function BuildPanel(parent)
     if optEnable then optEnable.optionName = "GW2PlusChatBar_Enable" end
     local dep = {["GW2PlusChatBar_Enable"] = true}
     panel:AddGroupHeader("基本设置")
-    panel:AddOption("鼠标离开渐隐", "鼠标离开聊天栏和按钮条时淡出", {
+    local optFadeOnLeave = panel:AddOption("鼠标离开渐隐", "鼠标离开聊天栏和按钮条时淡出", {
         getter = function() return db.fadeOnLeave end,
         setter = function(value) db.fadeOnLeave = value end,
         getDefault = function() return false end,
         callback = function() ChatBar.UpdateFade() end,
         dependence = dep,
     })
-    panel:AddOption("动态显隐", "不在公会/队伍/团队/战场时，自动隐藏对应的频道按钮", {
+    if optFadeOnLeave then
+        optFadeOnLeave.optionName = "GW2PlusChatBar_FadeOnLeave"
+    end
+    local optAutoHide = panel:AddOption("动态显隐", "不在公会/队伍/团队/战场时，自动隐藏对应的频道按钮", {
         getter = function() return db.autoHide end,
         setter = function(value) db.autoHide = value end,
         getDefault = function() return true end,
         callback = function() ChatBar.UpdateLayout() end,
         dependence = dep,
     })
+    if optAutoHide then optAutoHide.optionName = "GW2PlusChatBar_AutoHide" end
     panel:AddGroupHeader("位置与外观")
-    panel:AddOptionDropdown("附着位置", "按钮条相对聊天栏的位置", {
+    local optAnchor = panel:AddOptionDropdown("附着位置", "按钮条相对聊天栏的位置", {
         optionsList = {1, 2},
         optionNames = {"附着于聊天栏上方", "附着于聊天栏下方"},
         getter = function() return db.anchor end,
@@ -101,6 +105,7 @@ local function BuildPanel(parent)
         callback = function() ChatBar.UpdatePoint() end,
         dependence = dep,
     })
+    if optAnchor then optAnchor.optionName = "GW2PlusChatBar_Anchor" end
     local optX = panel:AddOptionSlider("X 偏移", "按钮条的水平偏移", {
         min = -200, max = 200, step = 1, decimalNumbers = 0,
         getter = function() return db.offsetX end,
@@ -137,7 +142,7 @@ local function BuildPanel(parent)
             widget.inputFrame.input:SetText(string.format("%." .. (widget.decimalNumbers or 0) .. "f", value))
         end
     end
-    panel:AddOptionButton("重置位置与缩放", "把偏移和缩放恢复为默认值", {
+    local optReset = panel:AddOptionButton("重置位置与缩放", "把偏移和缩放恢复为默认值", {
         callback = function()
             db.offsetX = ChatBar.defaults.offsetX
             db.offsetY = ChatBar.defaults.offsetY
@@ -151,10 +156,11 @@ local function BuildPanel(parent)
         isNegativeButton = true,
         dependence = dep,
     })
+    if optReset then optReset.optionName = "GW2PlusChatBar_ResetPosition" end
     panel:AddGroupHeader("聊天频道")
     local windows = ChatBar.GetChatWindowList()
     if #windows > 0 then
-        panel:AddOptionDropdown("频道屏蔽控制窗口", "右键屏蔽频道时，作用于哪个聊天窗口", {
+        local optBanWindow = panel:AddOptionDropdown("频道屏蔽控制窗口", "右键屏蔽频道时，作用于哪个聊天窗口", {
             optionsList = windows,
             optionNames = windows,
             getter = function() return db.banWindow or windows[1] end,
@@ -163,6 +169,9 @@ local function BuildPanel(parent)
             callback = function() ChatBar.UpdateBlockedIcons() end,
             dependence = dep,
         })
+        if optBanWindow then
+            optBanWindow.optionName = "GW2PlusChatBar_BanWindow"
+        end
     end
     for _, group in ipairs(GROUPS) do
         local added = group.header == "聊天频道"
@@ -173,13 +182,16 @@ local function BuildPanel(parent)
                     panel:AddGroupHeader(group.header)
                     added = true
                 end
-                panel:AddOption(BUTTON_LABEL[key] or key, nil, {
+                local optButton = panel:AddOption(BUTTON_LABEL[key] or key, nil, {
                     getter = function() return not db.hidden[key] end,
                     setter = function(value) db.hidden[key] = (not value) or nil end,
                     getDefault = function() return true end,
                     callback = function() ChatBar.UpdateLayout() end,
                     dependence = dep,
                 })
+                if optButton then
+                    optButton.optionName = "GW2PlusChatBar_Button_" .. key
+                end
             end
         end
     end
