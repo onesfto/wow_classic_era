@@ -121,9 +121,17 @@ function Utils.CreatePanel(parent, panelId, breadcrumb, description)
     panel.sub:SetText(description or "")
     return panel
 end
+local function RegisterPanelWidget(panel, widget)
+    panel.gwPlusWidgets = panel.gwPlusWidgets or {}
+    for _, registered in ipairs(panel.gwPlusWidgets) do
+        if registered == widget then return end
+    end
+    panel.gwPlusWidgets[#panel.gwPlusWidgets + 1] = widget
+end
 function Utils.CreateOptionWidget(panel, option)
     if option.__widget then
         option.__gwPlusWidget = option.__widget
+        RegisterPanelWidget(panel, option.__widget)
         return option.__widget
     end
     local config = Utils.WIDGET_TEMPLATES[option.optionType]
@@ -158,8 +166,7 @@ function Utils.CreateOptionWidget(panel, option)
         end
     end
     option.__gwPlusWidget = widget
-    panel.gwPlusWidgets = panel.gwPlusWidgets or {}
-    panel.gwPlusWidgets[#panel.gwPlusWidgets + 1] = widget
+    RegisterPanelWidget(panel, widget)
     return widget
 end
 local function GetTopPadding(options, index)
