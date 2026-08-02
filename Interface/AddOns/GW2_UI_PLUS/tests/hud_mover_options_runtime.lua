@@ -1,5 +1,6 @@
 local queued
 local inCombat = false
+local Unpack = table.unpack or unpack
 
 local function Noop() end
 
@@ -213,7 +214,7 @@ assert(_G[player.frame].gwMover.point[1] == "CENTER", "战斗中提前恢复了�
 assert(queued and queued.name == "GW2PlusRestore" .. player.setting,
     "战斗中未排入恢复队列")
 inCombat = false
-queued.callback(unpack(queued.args))
+queued.callback(Unpack(queued.args))
 assert(player.value == true, "脱战队列未恢复页面参数")
 assert(_G[player.frame].gwMover.point[1] == profile[player.setting].point,
     "脱战队列未恢复位置")
