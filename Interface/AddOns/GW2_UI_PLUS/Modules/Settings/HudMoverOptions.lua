@@ -21,6 +21,24 @@ local function CopyTable(source)
     return copy
 end
 
+local function RestoreOptionDefault(option)
+    if not option or option.gwPlusMoverControl
+        or not option.getDefault or not option.set then
+        return
+    end
+    if option.hasCheckbox and type(option.optionsList) == "table" then
+        for _, optionKey in ipairs(option.optionsList) do
+            option.set(option.getDefault(optionKey), optionKey)
+        end
+        if option.callback then option.callback() end
+        return
+    end
+    local value = option.getDefault()
+    if type(value) == "table" then value = CopyTable(value) end
+    option.set(value)
+    if option.callback then option.callback(value, option.optionName) end
+end
+
 local function SetInline(option)
     if option then option.forceNewLine = false end
     return option
@@ -73,12 +91,13 @@ local function ResetHudMover(frameName, settingName, defaultPoint)
     local frame, mover = GetMover(frameName)
     local profile = GW and GW.globalDefault and GW.globalDefault.profile
     local point = defaultPoint or (profile and profile[settingName])
-    if not GW or not GW.settings or not frame or not mover or not point then
+    if not GW or not GW.settings or not point then
         return
     end
     local function Apply()
         local saved = CopyTable(point)
         GW.settings[settingName] = saved
+        if not frame or not mover then return end
         mover.defaultPoint = CopyTable(point)
         mover.savedPoint = CopyTable(point)
         mover:ClearAllPoints()
@@ -101,6 +120,35 @@ local function ResetHudMover(frameName, settingName, defaultPoint)
     end
 end
 
+local function RestorePanelDefaults(
+    panel, frameName, settingName, defaultPoint)
+    local GW = _G.GW2_ADDON
+    local options = {}
+    for _, option in ipairs(panel.gwOptions or {}) do
+        options[#options + 1] = option
+    end
+    local function Apply()
+        for _, option in ipairs(options) do
+            RestoreOptionDefault(option)
+        end
+        ResetHudMover(frameName, settingName, defaultPoint)
+        if GW and GW.RefreshSettingsPanel then
+            GW.RefreshSettingsPanel(panel)
+        end
+        if GW and GW.CheckDependencies then GW.CheckDependencies() end
+    end
+    if InCombatLockdown and InCombatLockdown() then
+        if GW and GW.CombatQueue then
+            GW.CombatQueue:Queue(
+                "GW2PlusRestore" .. settingName, Apply, {})
+        elseif GW and GW.Notice then
+            GW.Notice("战斗中无法恢复组件设置。")
+        end
+        return
+    end
+    Apply()
+end
+
 local function ApplyMinimapDefault()
     local GW = _G.GW2_ADDON
     local profile = GW and GW.globalDefault and GW.globalDefault.profile
@@ -112,7 +160,8 @@ local function ApplyMinimapDefault()
     end
 end
 
-local function AddMoverControls(panel, frameName, settingName, defaultPoint)
+local function AddMoverControls(
+    panel, frameName, settingName, defaultPoint, restorePanel)
     if not panel or panel.gwPlusMoverControls then return end
     panel.gwPlusMoverControls = true
     panel:AddGroupHeader("位置")
@@ -120,13 +169,23 @@ local function AddMoverControls(panel, frameName, settingName, defaultPoint)
         "解锁/锁定", "解锁后可拖动组件；再次点击即可锁定。", {
             callback = function() ToggleHudMover(frameName) end,
         }))
+    if mover then mover.gwPlusMoverControl = true end
+    local resetLabel = restorePanel and "恢复默认" or "重置位置"
     local reset = SetInline(panel:AddOptionButton(
-        "重置位置", "移回默认位置。", {
+        resetLabel,
+        restorePanel and "恢复当前页面的全部参数和位置。"
+            or "移回默认位置。", {
             callback = function()
-                ResetHudMover(frameName, settingName, defaultPoint)
+                if restorePanel then
+                    RestorePanelDefaults(
+                        panel, frameName, settingName, defaultPoint)
+                else
+                    ResetHudMover(frameName, settingName, defaultPoint)
+                end
             end,
             isNegativeButton = true,
         }))
+    if reset then reset.gwPlusMoverControl = true end
     SetRow(2, mover, reset)
     local GW = _G.GW2_ADDON
     if GW and GW.RefreshSettingsPanel then GW.RefreshSettingsPanel(panel) end
@@ -138,6 +197,7 @@ function addonTable.BuildHudMoverOptions(settingsTab)
         and GW.GetSettingsTabFrame())
     local pages = tab and tab.gwPlusEmbeddedPanels
     if not pages then return false end
+    local resources = tab.gwPlusPlayerResourcePanels or {}
     ApplyMinimapDefault()
     local microPanel = pages and pages.hud_microbar
     local minimapPanel = pages and pages.hud_minimap
@@ -145,6 +205,27 @@ function addonTable.BuildHudMoverOptions(settingsTab)
         microPanel, "Gw2MicroBarFrame", "MicromenuPos")
     AddMoverControls(
         minimapPanel, "Minimap", "MinimapPos", MINIMAP_DEFAULT)
+    AddMoverControls(
+        pages.player_general,
+        "GwPlayerUnitFrame", "player_pos", nil, true)
+    AddMoverControls(
+        resources.gw2_plus_player_castbar,
+        "GwCastingBarPlayer", "castingbar_pos", nil, true)
+    AddMoverControls(
+        resources.gw2_plus_player_energy,
+        "GwPlayerPowerBar", "PowerBar_pos", nil, true)
+    AddMoverControls(
+        resources.gw2_plus_player_resource,
+        "GwPlayerClassPower", "ClasspowerBar_pos", nil, true)
+    AddMoverControls(
+        pages.target_general,
+        "GwTargetUnitFrame", "target_pos", nil, true)
+    AddMoverControls(
+        pages.target_of_target,
+        "GwTargetTargetUnitFrame", "targettarget_pos", nil, true)
+    AddMoverControls(
+        pages.player_pet,
+        "GwPlayerPetFrame", "pet_pos", nil, true)
     return true
 end
 
