@@ -24,6 +24,7 @@ grep -F 'decoration.body' "$theme_file" >/dev/null
 grep -F 'OffsetSidebar = function() return 0 end' "$theme_file" >/dev/null
 grep -F 'Tab = function(tab)' "$theme_file" >/dev/null
 grep -F 'themes.CreateDefaultTabDecoration(tab)' "$theme_file" >/dev/null
+grep -F 'SkinMoneyFrame' "$theme_file" >/dev/null
 
 lua - <<'LUA'
 local registrations = {}
@@ -136,6 +137,10 @@ local function NewFrame(objectType, name, parent, template)
   function frame:GetObjectType() return self.objectType end
   function frame:GetName() return self.name end
   function frame:SetAllPoints() end
+  function frame:ClearAllPoints() end
+  function frame:SetSize() end
+  function frame:SetWidth() end
+  function frame:SetHeight() end
   function frame:SetFrameStrata(strata) self.strata = strata end
   function frame:GetFrameStrata() return self.strata or (self.parent and self.parent:GetFrameStrata()) or "DIALOG" end
   function frame:SetFrameLevel(level) self.level = level end
@@ -148,9 +153,12 @@ local function NewFrame(objectType, name, parent, template)
   function frame:SetTexture() end
   function frame:SetVertexColor() end
   function frame:SetDrawLayer() end
+  function frame:SetTexCoord() end
+  function frame:SetAlpha(alpha) self.alpha = alpha end
   function frame:SetScript() end
   function frame:HookScript(event, callback) self.hooks[event] = callback end
   function frame:Show() self.shown = true end
+  function frame:Hide() self.shown = false end
   function frame:IsShown() return self.shown ~= false end
   function frame:IsProtected() return self.protected == true end
   function frame:CreateFontString()
@@ -158,6 +166,23 @@ local function NewFrame(objectType, name, parent, template)
     table.insert(self.regions, font)
     return font
   end
+  function frame:CreateTexture()
+    local texture = NewFrame("Texture", nil, nil)
+    table.insert(self.regions, texture)
+    return texture
+  end
+  function frame:SetNormalTexture()
+    self.normalTexture = self.normalTexture or NewFrame("Texture", nil, nil)
+  end
+  function frame:SetHighlightTexture()
+    self.highlightTexture = self.highlightTexture or NewFrame("Texture", nil, nil)
+  end
+  function frame:SetPushedTexture()
+    self.pushedTexture = self.pushedTexture or NewFrame("Texture", nil, nil)
+  end
+  function frame:GetNormalTexture() return self.normalTexture end
+  function frame:GetHighlightTexture() return self.highlightTexture end
+  function frame:GetPushedTexture() return self.pushedTexture end
   function frame:GetRegions() return self.regions[1], self.regions[2], self.regions[3] end
   function frame:GetChildren()
     return self.children[1], self.children[2], self.children[3], self.children[4],
@@ -221,6 +246,20 @@ end
 local tab = NewFrame("Button", "BetterBagsTabTest", nil)
 local tabDecoration = theme.Tab(tab)
 assert(tabDecoration.template == "BetterBagsSecureBagTabTemplate")
+
+_G.GW2_ADDON.CreateFrameHeaderWithBody = function(decoration)
+  decoration.gwHeader = NewFrame("Frame", "BetterBagsBagTestHeader", decoration)
+  decoration.tex = NewFrame("Texture", nil, nil)
+end
+local bag = NewFrame("Frame", "BetterBagsBagTest", nil)
+bag:SetFrameLevel(500)
+bag.Owner = { kind = 1 }
+theme.Portrait(bag)
+local bagDecoration = bag.children[#bag.children]
+assert(bagDecoration.body)
+assert(bagDecoration:GetFrameStrata() == bag:GetFrameStrata())
+theme.Opacity(bag, 50)
+assert(bagDecoration.body.alpha == 0.5)
 
 _G.__gwBetterBagsCreateCategoryPane = function(parent)
   return NewFrame("Frame", nil, parent)

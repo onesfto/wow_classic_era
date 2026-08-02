@@ -7,6 +7,7 @@ local BAG_ICON = "Interface/AddOns/GW2_UI/textures/bag/bagicon"
 local BAG_BACKGROUND = "Interface/AddOns/GW2_UI/textures/bag/bagbg"
 local BAG_FOOTER = "Interface/AddOns/GW2_UI/textures/bag/bagfooter"
 local BAG_LEFT_PANEL = "Interface/AddOns/GW2_UI/textures/bag/bagleftpanel"
+local BAG_SEPARATOR = "Interface/AddOns/GW2_UI/textures/bag/bag-sep"
 local BAG_BUTTON = "Interface/AddOns/GW2_UI/Textures/icons/bagmicrobutton-up"
 local SORT_BUTTON = "Interface/AddOns/GW2_UI/Textures/icons/microicons/collectionsmicrobutton-up"
 local SETTINGS_BUTTON = "Interface/AddOns/GW2_UI/Textures/icons/microicons/questlogmicrobutton-up"
@@ -40,6 +41,15 @@ local function NewContext(context, name)
     end
 end
 
+local function SkinMoneyFrame(owner)
+    local money = owner and owner.moneyFrame
+    if not money or type(Skin.SkinFont) ~= "function" then return end
+    for _, button in ipairs({ money.goldButton, money.silverButton, money.copperButton }) do
+        local font = button and button.GetFontString and button:GetFontString()
+        if font then Skin.SkinFont(font, "Normal", "OUTLINE") end
+    end
+end
+
 local function AddPanelButton(panel, texture, tooltip, callback)
     local button = CreateFrame("Button", nil, panel)
     button:SetSize(32, 32)
@@ -53,7 +63,7 @@ local function AddPanelButton(panel, texture, tooltip, callback)
     if previous then
         button:SetPoint("TOP", previous, "BOTTOM", 0, -5)
     else
-        button:SetPoint("TOPLEFT", panel, "TOPLEFT", -35, -40)
+        button:SetPoint("TOPLEFT", panel, "TOPLEFT", 4, -40)
     end
     button:SetScript("OnClick", callback)
     button:SetScript("OnEnter", function()
@@ -84,6 +94,8 @@ end
 local function SkinWindowContents(frame)
     local function SkinObject(object, isRoot)
         if not object or object.__gwBetterBagsSkinSkip
+            or (object.IsProtected and object:IsProtected())
+            or object.item or object.rowButton or object.ItemButton
             or (not isRoot and object.__gwBetterBagsSkinned) then return end
         if not isRoot then object.__gwBetterBagsSkinned = true end
 
@@ -106,6 +118,10 @@ local function SkinWindowContents(frame)
         elseif object.GwHandleDropDownBox or object.GwSkinDropDownMenu then
             if type(Skin.SkinDropDown) == "function" then Skin.SkinDropDown(object) end
             skipChildren = true
+        elseif objectType == "Frame" and object.GetScript and object:GetScript("OnMouseDown")
+            and object.GetWidth and object.GetHeight
+            and object:GetWidth() == 24 and object:GetHeight() == 24 then
+            if object.GwCreateBackdrop then object:GwCreateBackdrop() end
         elseif objectType == "Button" then
             if type(Skin.SkinButton) == "function" then Skin.SkinButton(object) end
         end
@@ -130,6 +146,39 @@ local function SkinWindowContents(frame)
             SkinWindowContents(shownFrame)
         end)
     end
+end
+
+local function HookCategoryPane(categoryPane)
+    if not categoryPane or categoryPane.__gwBetterBagsCategoryHooked
+        or type(categoryPane.Create) ~= "function" or type(_G.hooksecurefunc) ~= "function" then
+        return
+    end
+    categoryPane.__gwBetterBagsCategoryHooked = true
+    _G.hooksecurefunc(categoryPane, "Create", function(_, parent)
+        if not parent or not parent.GetChildren then return end
+        local children = { parent:GetChildren() }
+        local pane = children[#children]
+        if not pane or pane.__gwBetterBagsCategoryPane then return end
+        pane.__gwBetterBagsCategoryPane = true
+        local function ApplyPaneSkin()
+            if not pane.IsShown or pane:IsShown() then SkinWindowContents(pane) end
+        end
+        if pane.HookScript then
+            pane:HookScript("OnShow", function()
+                if pane.__gwBetterBagsCategoryDeferred then return end
+                pane.__gwBetterBagsCategoryDeferred = true
+                if C_Timer and type(C_Timer.After) == "function" then
+                    C_Timer.After(0, function()
+                        ApplyPaneSkin()
+                    end)
+                else
+                    ApplyPaneSkin()
+                end
+            end)
+        else
+            ApplyPaneSkin()
+        end
+    end)
 end
 
 local function IsBagSlotWindow(frame)
@@ -157,9 +206,12 @@ local function RegisterTheme()
     local database = GetModule(betterBags, "Database")
     local fonts = GetModule(betterBags, "Fonts")
     local constants = GetModule(betterBags, "Constants")
+    local categoryPane = GetModule(betterBags, "CategoryPane")
     if not themes or type(themes.RegisterTheme) ~= "function" or not searchBox then return end
+    HookCategoryPane(categoryPane)
 
     local decorations = {}
+    local tabDecorations = {}
 
     local function GetDecoration(frame)
         return frame and decorations[frame:GetName()]
@@ -175,6 +227,7 @@ local function RegisterTheme()
 
         decoration = CreateFrame("Frame", name .. "GW2UIPlus", frame)
         decoration:SetAllPoints()
+        decoration:SetFrameStrata(frame:GetFrameStrata())
         SetFrameLevel(decoration, frame)
         decoration.panelButtons = {}
         decoration.title = decoration:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -184,21 +237,27 @@ local function RegisterTheme()
         decoration.gwHeader:SetPoint("BOTTOMRIGHT", decoration, "TOPRIGHT", 0, -25)
         SetTitleFont(decoration.title, GW)
         decoration.title:SetText(themes.titles[name] or "")
+        SkinMoneyFrame(frame.Owner)
 
         if decoration.tex then
             decoration.tex:SetTexture(BAG_BACKGROUND)
             decoration.tex:SetDrawLayer("ARTWORK", 0)
+            decoration.tex:Hide()
         end
-        decoration.footer = decoration:CreateTexture(nil, "BACKGROUND", nil, 1)
+        decoration.body = decoration:CreateTexture(nil, "ARTWORK", nil, 0)
+        decoration.body:SetTexture(BAG_BACKGROUND)
+        decoration.body:SetPoint("TOPLEFT", decoration.gwHeader, "BOTTOMLEFT", 0, 0)
+        decoration.body:SetPoint("BOTTOMRIGHT", decoration, "BOTTOMRIGHT", 0, 0)
+        decoration.footer = decoration:CreateTexture(nil, "ARTWORK", nil, 1)
         decoration.footer:SetTexture(BAG_FOOTER)
         decoration.footer:SetHeight(55)
         decoration.footer:SetPoint("TOPLEFT", decoration, "BOTTOMLEFT", 0, 30)
         decoration.footer:SetPoint("TOPRIGHT", decoration, "BOTTOMRIGHT", -3, 30)
-        decoration.leftPanel = decoration:CreateTexture(nil, "BACKGROUND", nil, 1)
+        decoration.leftPanel = decoration:CreateTexture(nil, "ARTWORK", nil, 1)
         decoration.leftPanel:SetTexture(BAG_LEFT_PANEL)
         decoration.leftPanel:SetWidth(40)
-        decoration.leftPanel:SetPoint("TOPRIGHT", frame, "TOPLEFT", 0, 25)
-        decoration.leftPanel:SetPoint("BOTTOMRIGHT", frame, "BOTTOMLEFT", 0, 25)
+        decoration.leftPanel:SetPoint("TOPLEFT", decoration, "TOPLEFT", 0, -25)
+        decoration.leftPanel:SetPoint("BOTTOMLEFT", decoration, "BOTTOMLEFT", 0, 25)
 
         CreateCloseButton(decoration.gwHeader, decoration.gwHeader, function()
             local owner = frame.Owner
@@ -295,6 +354,43 @@ local function RegisterTheme()
         CreateBackdrop(frame, false)
     end
 
+    local function ApplyTabTexture(texture, r, g, b, a)
+        if not texture then return end
+        texture:SetTexture(BAG_SEPARATOR)
+        texture:SetVertexColor(r, g, b, a)
+    end
+
+    local function CreateTab(tab)
+        local name = tab and tab.GetName and tab:GetName()
+        if not name then return themes.CreateDefaultTabDecoration(tab) end
+        local decoration = tabDecorations[name]
+        if decoration then
+            decoration:Show()
+            return decoration
+        end
+        decoration = themes.CreateDefaultTabDecoration(tab)
+        for _, texture in ipairs({ decoration.Left, decoration.Middle, decoration.Right }) do
+            ApplyTabTexture(texture, 0.08, 0.08, 0.08, 0.95)
+        end
+        for _, texture in ipairs({ decoration.LeftActive, decoration.MiddleActive, decoration.RightActive }) do
+            ApplyTabTexture(texture, 0.42, 0.28, 0.04, 1)
+        end
+        if decoration.Text and type(Skin.SkinFont) == "function" then
+            Skin.SkinFont(decoration.Text, "Normal", "OUTLINE")
+            if decoration.Text.GwSetFontTemplate and type(_G.hooksecurefunc) == "function" then
+                local applyingFont = false
+                _G.hooksecurefunc(decoration.Text, "SetFontObject", function(font)
+                    if applyingFont then return end
+                    applyingFont = true
+                    Skin.SkinFont(font, "Normal", "OUTLINE")
+                    applyingFont = false
+                end)
+            end
+        end
+        tabDecorations[name] = decoration
+        return decoration
+    end
+
     themes:RegisterTheme("GW2UIPlus", {
         Name = "GW2 UI Plus",
         Description = "由 GW2_UI_PLUS 提供的完整 GW2 风格主题。",
@@ -306,6 +402,7 @@ local function RegisterTheme()
             local decoration = GetDecoration(frame)
             if not decoration then return end
             local opacity = (alpha or 100) / 100
+            if decoration.body then decoration.body:SetAlpha(opacity) end
             if decoration.tex then decoration.tex:SetAlpha(opacity) end
             if decoration.footer then decoration.footer:SetAlpha(opacity) end
             if decoration.leftPanel then decoration.leftPanel:SetAlpha(opacity) end
@@ -338,10 +435,14 @@ local function RegisterTheme()
                 bagSlotWindow:SetPoint("BOTTOMLEFT", frame, "TOPLEFT", 8, 16)
             end
         end,
-        OffsetSidebar = function() return -35 end,
+        OffsetSidebar = function() return 0 end,
         GetFlatHeaderHeight = function() return 0 end,
+        Tab = function(tab)
+            return CreateTab(tab)
+        end,
         Reset = function()
             for _, decoration in pairs(decorations) do decoration:Hide() end
+            for _, decoration in pairs(tabDecorations) do decoration:Hide() end
         end,
     })
 end

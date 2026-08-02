@@ -1,13 +1,28 @@
 
 WhisperPopDB = {
-["listScale"] = 100,
+["positions"] = {
+["WhisperPopFrame"] = {
+"TOPLEFT",
+"UIParent",
+"TOPLEFT",
+426,
+-147,
+},
+["WhisperPopNotifyButton"] = {
+"BOTTOMLEFT",
+"UIParent",
+"BOTTOMLEFT",
+423,
+253,
+},
+},
 ["listHeight"] = 320,
-["notifyButton"] = 1,
+["sound"] = 1,
 ["showRealm"] = 1,
-["applyFilters"] = 1,
 ["save"] = 1,
+["listWidth"] = 200,
 ["timeFormat"] = 2,
-["ignoreTags"] = 1,
+["time"] = 1,
 ["buttonScale"] = 100,
 ["history"] = {
 {
@@ -230,25 +245,10 @@ WhisperPopDB = {
 ["name"] = "遵娣-哈霍兰",
 },
 },
-["time"] = 1,
+["applyFilters"] = 1,
 ["version"] = 4.3,
 ["foreignOnly"] = 1,
-["listWidth"] = 200,
-["positions"] = {
-["WhisperPopFrame"] = {
-"TOPLEFT",
-"UIParent",
-"TOPLEFT",
-426,
--147,
-},
-["WhisperPopNotifyButton"] = {
-"BOTTOMLEFT",
-"UIParent",
-"BOTTOMLEFT",
-423,
-253,
-},
-},
-["sound"] = 1,
+["listScale"] = 100,
+["notifyButton"] = 1,
+["ignoreTags"] = 1,
 }

@@ -115,8 +115,8 @@ end
 function Utils.SkinRankFrame(rankFrame)
     if not rankFrame then return end
     rankFrame:GwStripTextures()
-    rankFrame:SetStatusBarTexture(STATUS_BAR)
-    rankFrame:SetStatusBarColor(RANK_BAR_R, RANK_BAR_G, RANK_BAR_B)
+    rankFrame:SetStatusBarTexture(Utils.STATUS_BAR)
+    rankFrame:SetStatusBarColor(Utils.RANK_BAR_R, Utils.RANK_BAR_G, Utils.RANK_BAR_B)
     rankFrame:GwCreateBackdrop(GW.BackdropTemplates.StatusBar, true)
     local name = rankFrame.GetName and rankFrame:GetName()
     Utils.HideRegion(name and _G[name .. "SkillName"])
@@ -152,7 +152,7 @@ function Utils.SkinRankText(fontString, currentRank, maxRank)
     Utils.SetRankText(fontString, currentRank, maxRank)
     Utils.UpdateRankText(fontString)
     if not fontString.gwTradeSkillRankTextHooked then
-        hooksecurefunc(fontString, "SetText", UpdateRankText)
+        hooksecurefunc(fontString, "SetText", Utils.UpdateRankText)
         fontString.gwTradeSkillRankTextHooked = true
     end
 end
@@ -189,7 +189,7 @@ function Utils.MakeFrameMovable(frame)
     frame:SetScript("OnDragStart", function(self) self:StartMoving() end)
     frame:SetScript("OnDragStop", function(self)
         self:StopMovingOrSizing()
-        ClampFrameWithHeader(self)
+            Utils.ClampFrameWithHeader(self)
     end)
     if frame.gwHeader then
         frame.gwHeader:EnableMouse(true)
@@ -197,21 +197,21 @@ function Utils.MakeFrameMovable(frame)
         frame.gwHeader:SetScript("OnDragStart", function() frame:StartMoving() end)
         frame.gwHeader:SetScript("OnDragStop", function()
             frame:StopMovingOrSizing()
-            ClampFrameWithHeader(frame)
+            Utils.ClampFrameWithHeader(frame)
         end)
     end
 end
 function Utils.SetProfessionFrameSize(frame, panelName)
     if not frame then return end
-    frame:SetSize(PANEL_WIDTH, PANEL_HEIGHT)
+    frame:SetSize(Utils.PANEL_WIDTH, Utils.PANEL_HEIGHT)
     if UIPanelWindows and panelName and UIPanelWindows[panelName] then
-        UIPanelWindows[panelName].width = PANEL_WIDTH
-        UIPanelWindows[panelName].height = PANEL_HEIGHT
+        UIPanelWindows[panelName].width = Utils.PANEL_WIDTH
+        UIPanelWindows[panelName].height = Utils.PANEL_HEIGHT
     end
 end
 function Utils.SetupHeader(frame, titleText, detailFrames)
     if frame.gwTradeSkillHeaderReady then return end
-    GW.CreateFrameHeaderWithBody(frame, titleText, ICON, detailFrames, nil, nil, true)
+    GW.CreateFrameHeaderWithBody(frame, titleText, Utils.ICON, detailFrames, nil, nil, true)
     frame.gwTradeSkillHeaderReady = true
 end
 function Utils.SetSearchBoxPoint(editBox, relativeFrame, x, y)
@@ -315,18 +315,18 @@ function Utils.HideLeftSquareArtifacts(frame)
     local minY, maxY = -68, -142
     if frame.GetRegions then
         for _, region in pairs({frame:GetRegions()}) do
-            if region.GetObjectType and region:GetObjectType() == "Texture" and IsRegionInFrameArea(region, frame, minX, maxX, minY, maxY) then
+            if region.GetObjectType and region:GetObjectType() == "Texture" and Utils.IsRegionInFrameArea(region, frame, minX, maxX, minY, maxY) then
                 Utils.HideRegion(region)
             end
         end
     end
     for _, child in pairs({frame:GetChildren()}) do
-        if child ~= TradeSkillCollapseAllButton and child ~= CraftCollapseAllButton and IsRegionInFrameArea(child, frame, minX, maxX, minY, maxY) then
+        if child ~= TradeSkillCollapseAllButton and child ~= CraftCollapseAllButton and Utils.IsRegionInFrameArea(child, frame, minX, maxX, minY, maxY) then
             Utils.HideRegion(child)
         end
         if child.GetRegions then
             for _, region in pairs({child:GetRegions()}) do
-                if region.GetObjectType and region:GetObjectType() == "Texture" and IsRegionInFrameArea(region, frame, minX, maxX, minY, maxY) then
+            if region.GetObjectType and region:GetObjectType() == "Texture" and Utils.IsRegionInFrameArea(region, frame, minX, maxX, minY, maxY) then
                     Utils.HideRegion(region)
                 end
             end

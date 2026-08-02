@@ -191,7 +191,7 @@
 							</Size>
 							<Anchors>
 								<Anchor point="LEFT">
-									<Offset x="48" y="0" />
+									<Offset x="31" y="0" />
 								</Anchor>
 							</Anchors>
 						</Texture>
@@ -201,7 +201,7 @@
 							</Size>
 							<Anchors>
 								<Anchor point="LEFT">
-									<Offset x="116" y="0" />
+									<Offset x="99" y="0" />
 								</Anchor>
 							</Anchors>
 						</Texture>
@@ -210,40 +210,40 @@
 								<AbsDimension x="16" y="16" />
 							</Size>
 							<Anchors>
-								<Anchor point="TOPRIGHT" relativeTo="GW2PlusBuyEmAllMaxButton" relativePoint="TOPRIGHT">
-									<Offset x="0" y="17" />
+								<Anchor point="LEFT">
+									<Offset x="167" y="0" />
 								</Anchor>
 							</Anchors>
 						</Texture>
 					</Layer>
 					<Layer level="OVERLAY">
-						<FontString name="GW2PlusBuyEmAllCurrencyAmt1" inherits="GameFontNormal" text="">
+						<FontString name="GW2PlusBuyEmAllCurrencyAmt1" inherits="GameFontNormal" justifyH="RIGHT" text="">
 							<Size>
 								<AbsDimension x="52" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="LEFT">
-									<Offset x="-2" y="0" />
+								<Anchor point="RIGHT" relativePoint="LEFT">
+									<Offset x="23" y="0" />
 								</Anchor>
 							</Anchors>
 						</FontString>
-						<FontString name="GW2PlusBuyEmAllCurrencyAmt2" inherits="GameFontNormal" text="">
+						<FontString name="GW2PlusBuyEmAllCurrencyAmt2" inherits="GameFontNormal" justifyH="RIGHT" text="">
 							<Size>
 								<AbsDimension x="52" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="LEFT">
-									<Offset x="66" y="0" />
+								<Anchor point="RIGHT" relativePoint="LEFT">
+									<Offset x="91" y="0" />
 								</Anchor>
 							</Anchors>
 						</FontString>
-						<FontString name="GW2PlusBuyEmAllCurrencyAmt3" inherits="GameFontNormal" text="">
+						<FontString name="GW2PlusBuyEmAllCurrencyAmt3" inherits="GameFontNormal" justifyH="RIGHT" text="">
 							<Size>
 								<AbsDimension x="52" y="20" />
 							</Size>
 							<Anchors>
-								<Anchor point="LEFT">
-									<Offset x="134" y="0" />
+								<Anchor point="RIGHT" relativePoint="LEFT">
+									<Offset x="159" y="0" />
 								</Anchor>
 							</Anchors>
 						</FontString>

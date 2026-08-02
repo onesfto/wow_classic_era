@@ -1,7 +1,7 @@
 
 BugGrabberDB = {
-["session"] = 3036,
 ["lastSanitation"] = 3,
+["session"] = 3051,
 ["errors"] = {
 {
 ["message"] = "Interface/AddOns/RXPGuides/Targeting.lua:558: attempt to index field 'text' (a nil value)",
@@ -165,8 +165,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Onesfto/Core.lua:1 Interface/AddOns/Onesfto/Core.lua:205: unexpected symbol near ')'",
-["time"] = 1783377808,
 ["session"] = 1914,
+["time"] = 1783377808,
 ["counter"] = 1,
 },
 {
@@ -291,8 +291,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Onesfto/Modules/tdInspect.lua:1 File Interface/AddOns/Onesfto/Modules/tdInspect.lua is empty.",
-["time"] = 1783542710,
 ["session"] = 2020,
+["time"] = 1783542710,
 ["counter"] = 1,
 },
 {
@@ -329,20 +329,20 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Onesfto/Modules/AutoCarrot.lua:1 Interface/AddOns/Onesfto/Modules/AutoCarrot.lua:168: unexpected symbol near ')'",
-["time"] = 1783623987,
 ["session"] = 2062,
+["time"] = 1783623987,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Error loading WTF/Account/216385191#2/SavedVariables/BetterBags.lua",
-["time"] = 1783631022,
 ["session"] = 2074,
+["time"] = 1783631022,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Onesfto/Modules/BetterBags.lua:1 Interface/AddOns/Onesfto/Modules/BetterBags.lua:673: 'end' expected (to close 'if' at line 557) near '<eof>'",
-["session"] = 2075,
 ["time"] = 1783631190,
+["session"] = 2075,
 ["counter"] = 3,
 },
 {
@@ -363,8 +363,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Onesfto/Onesfto.toc:13 Error loading Interface/AddOns/Onesfto/Modules/PigIcons.lua",
-["session"] = 2111,
 ["time"] = 1783653622,
+["session"] = 2111,
 ["counter"] = 163,
 },
 {
@@ -449,62 +449,62 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Questie/Localization/lookups/Classic/lookupNpcs/lookupNpcs.xml:10 Error loading Interface/AddOns/Questie/Localization/lookups/Classic/lookupNpcs/zhTW.lua",
-["time"] = 1784549308,
 ["session"] = 2238,
+["time"] = 1784549308,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Questie/Questie-Classic.toc:143 Couldn't open Interface/AddOns/Questie/Localization/lookups/Classic/lookupObjects/lookupObjects.xml",
-["time"] = 1784549308,
 ["session"] = 2238,
+["time"] = 1784549308,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Questie/Questie-Classic.toc:144 Couldn't open Interface/AddOns/Questie/Localization/lookups/Classic/lookupQuests/lookupQuests.xml",
-["time"] = 1784549308,
 ["session"] = 2238,
+["time"] = 1784549308,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Questie/Questie-Classic.toc:167 Error loading Interface/AddOns/Questie/Modules/QuestieMenu/ClassTrainers.lua",
-["time"] = 1784549308,
 ["session"] = 2238,
+["time"] = 1784549308,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Questie/Questie-Classic.toc:168 Error loading Interface/AddOns/Questie/Modules/QuestieMenu/Mailboxes.lua",
-["time"] = 1784549308,
 ["session"] = 2238,
+["time"] = 1784549308,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Questie/Questie-Classic.toc:169 Error loading Interface/AddOns/Questie/Modules/QuestieMenu/MeetingStones.lua",
-["time"] = 1784549308,
 ["session"] = 2238,
+["time"] = 1784549308,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Questie/Questie-Classic.toc:170 Error loading Interface/AddOns/Questie/Modules/QuestieMenu/ProfessionTrainers.lua",
-["time"] = 1784549308,
 ["session"] = 2238,
+["time"] = 1784549308,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Questie/Questie-Classic.toc:171 Error loading Interface/AddOns/Questie/Modules/QuestieMenu/QuestieMenu.lua",
-["time"] = 1784549308,
 ["session"] = 2238,
+["time"] = 1784549308,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Questie/Questie-Classic.toc:178 Error loading Interface/AddOns/Questie/Modules/WorldMapButton/WorldMapButton.lua",
-["time"] = 1784549308,
 ["session"] = 2238,
+["time"] = 1784549308,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Questie/Questie-Classic.toc:179 Couldn't open Interface/AddOns/Questie/Modules/WorldMapButton/QuestieWorldMapButtonTemplate.xml",
-["time"] = 1784549308,
 ["session"] = 2238,
+["time"] = 1784549308,
 ["counter"] = 1,
 },
 {
@@ -861,8 +861,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Onesfto/Onesfto.toc:17 Error loading Interface/AddOns/Onesfto/Modules/GW2_UI/SpellbookFix.lua",
-["time"] = 1784982477,
 ["session"] = 2308,
+["time"] = 1784982477,
 ["counter"] = 1,
 },
 {
@@ -883,8 +883,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/GW2_UI/Games/Classic/Character/spellbook.lua:1 Interface/AddOns/GW2_UI/Games/Classic/Character/spellbook.lua:199: 'then' expected near '!'",
-["time"] = 1784987704,
 ["session"] = 2328,
+["time"] = 1784987704,
 ["counter"] = 1,
 },
 {
@@ -1305,86 +1305,86 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/alaGearMan/libs/ala/comm.lua:1 Interface/AddOns/alaGearMan/libs/ala/comm.lua:675: attempt to index field '__DEVGUID' (a nil value)",
-["session"] = 2572,
 ["time"] = 1785040752,
+["session"] = 2572,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/ElvUI_Options/Game/load.lua:1 Interface/AddOns/NDui/Core/Functions.lua:555: attempt to index field 'db' (a nil value)",
-["time"] = 1785040756,
 ["session"] = 2572,
+["time"] = 1785040756,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Binding ALAGEARMAN_QUICK_1 was attempted to be loaded more than once. Source: Interface/AddOns/GW2_UI_PLUS/Bindings.xml",
-["time"] = 1785044140,
 ["session"] = 2588,
+["time"] = 1785044140,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Binding ALAGEARMAN_QUICK_2 was attempted to be loaded more than once. Source: Interface/AddOns/GW2_UI_PLUS/Bindings.xml",
-["time"] = 1785044140,
 ["session"] = 2588,
+["time"] = 1785044140,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Binding ALAGEARMAN_QUICK_3 was attempted to be loaded more than once. Source: Interface/AddOns/GW2_UI_PLUS/Bindings.xml",
-["time"] = 1785044140,
 ["session"] = 2588,
+["time"] = 1785044140,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Binding ALAGEARMAN_QUICK_4 was attempted to be loaded more than once. Source: Interface/AddOns/GW2_UI_PLUS/Bindings.xml",
-["time"] = 1785044140,
 ["session"] = 2588,
+["time"] = 1785044140,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Binding ALAGEARMAN_QUICK_5 was attempted to be loaded more than once. Source: Interface/AddOns/GW2_UI_PLUS/Bindings.xml",
-["time"] = 1785044140,
 ["session"] = 2588,
+["time"] = 1785044140,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Binding ALAGEARMAN_QUICK_6 was attempted to be loaded more than once. Source: Interface/AddOns/GW2_UI_PLUS/Bindings.xml",
-["time"] = 1785044140,
 ["session"] = 2588,
+["time"] = 1785044140,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Binding ALAGEARMAN_QUICK_7 was attempted to be loaded more than once. Source: Interface/AddOns/GW2_UI_PLUS/Bindings.xml",
-["time"] = 1785044140,
 ["session"] = 2588,
+["time"] = 1785044140,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Binding ALAGEARMAN_QUICK_8 was attempted to be loaded more than once. Source: Interface/AddOns/GW2_UI_PLUS/Bindings.xml",
-["time"] = 1785044140,
 ["session"] = 2588,
+["time"] = 1785044140,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Binding ALAGEARMAN_QUICK_9 was attempted to be loaded more than once. Source: Interface/AddOns/GW2_UI_PLUS/Bindings.xml",
-["time"] = 1785044140,
 ["session"] = 2588,
+["time"] = 1785044140,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Binding ALAGEARMAN_QUICK_X was attempted to be loaded more than once. Source: Interface/AddOns/GW2_UI_PLUS/Bindings.xml",
-["time"] = 1785044140,
 ["session"] = 2588,
+["time"] = 1785044140,
 ["counter"] = 3,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/GW2_UI_PLUS/GW2_UI_PLUS-Vanilla.toc:17 Couldn't open Interface/AddOns/GW2_UI_PLUS/alaGearMan.xml",
-["session"] = 2589,
 ["time"] = 1785044247,
+["session"] = 2589,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Couldn't open Interface/AddOns/GW2_UI_PLUS/Bindings.xml",
-["session"] = 2593,
 ["time"] = 1785044549,
+["session"] = 2593,
 ["counter"] = 5,
 },
 {
@@ -1397,8 +1397,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/GW2_UI_PLUS/alaGearMan/alaGearMan.lua:1 Interface/AddOns/GW2_UI_PLUS/alaGearMan/alaGearMan.lua:931: ')' expected near ';'",
-["time"] = 1785050666,
 ["session"] = 2622,
+["time"] = 1785050666,
 ["counter"] = 1,
 },
 {
@@ -1699,8 +1699,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/TalentEmuX/libs/ala/comm.lua:1 Interface/AddOns/TalentEmuX/libs/ala/comm.lua:675: attempt to index field '__DEVGUID' (a nil value)",
-["session"] = 2715,
 ["time"] = 1785166380,
+["session"] = 2715,
 ["counter"] = 5,
 },
 {
@@ -1849,8 +1849,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/!BugGrabber/BugGrabber.lua:-1: insecure scripts exceeded execution limit for addon !BugGrabber",
-["session"] = 2771,
 ["time"] = 1785266752,
+["session"] = 2771,
 ["counter"] = 10,
 },
 {
@@ -2519,14 +2519,14 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Binding header BAR7 was attempted to be loaded more than once. Source: Interface/AddOns/NDui/Bindings.xml",
-["time"] = 1785402624,
 ["session"] = 2852,
+["time"] = 1785402624,
 ["counter"] = 1,
 },
 {
 ["message"] = "LUA_WARNING: Binding header BAR8 was attempted to be loaded more than once. Source: Interface/AddOns/NDui/Bindings.xml",
-["time"] = 1785402624,
 ["session"] = 2852,
+["time"] = 1785402624,
 ["counter"] = 1,
 },
 {
@@ -2690,8 +2690,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/TalentEmuX/Core/init.lua:327: attempt to call a nil value",
-["time"] = 1785405026,
 ["session"] = 2860,
+["time"] = 1785405026,
 ["counter"] = 1,
 },
 {
@@ -2760,8 +2760,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Error loading WTF/Account/216385191#2/SavedVariables/WeakAuras.lua: WTF/Account/216385191#2/SavedVariables/WeakAuras.lua:10751: unfinished string near '\"local e = aura_env'",
-["time"] = 1785408919,
 ["session"] = 2872,
+["time"] = 1785408919,
 ["counter"] = 1,
 },
 {
@@ -2814,8 +2814,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/InnGramophone/BuiltinTracks.lua:1 Interface/AddOns/InnGramophone/BuiltinTracks.lua:438: '}' expected near 'Barrens'",
-["time"] = 1785425200,
 ["session"] = 2884,
+["time"] = 1785425200,
 ["counter"] = 3,
 },
 {
@@ -2852,8 +2852,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/WoWNES/core.lua:1 Interface/AddOns/WoWNES/core.lua:131: 'end' expected (to close 'for' at line 39) near '<eof>'",
-["time"] = 1785427201,
 ["session"] = 2894,
+["time"] = 1785427201,
 ["counter"] = 3,
 },
 {
@@ -2874,8 +2874,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/InnGramophone/BuiltinTracks.lua:1 Interface/AddOns/InnGramophone/BuiltinTracks.lua:4: '}' expected near 'Debug3'",
-["time"] = 1785427470,
 ["session"] = 2896,
+["time"] = 1785427470,
 ["counter"] = 1,
 },
 {
@@ -2904,8 +2904,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/WoWNES/cpu_6502.lua:1 Interface/AddOns/WoWNES/cpu_6502.lua:1: unexpected symbol near '\\'",
-["time"] = 1785429686,
 ["session"] = 2907,
+["time"] = 1785429686,
 ["counter"] = 14,
 },
 {
@@ -2958,8 +2958,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/WoWNES/rom.lua:1 Interface/AddOns/WoWNES/rom.lua:122: unexpected symbol near ')'",
-["time"] = 1785431732,
 ["session"] = 2919,
+["time"] = 1785431732,
 ["counter"] = 12,
 },
 {
@@ -3004,8 +3004,8 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/WoWNES/cpu.lua:1 Interface/AddOns/WoWNES/cpu.lua:450: nesting of [[...]] is deprecated near '['",
-["time"] = 1785431956,
 ["session"] = 2920,
+["time"] = 1785431956,
 ["counter"] = 13,
 },
 {
@@ -3018,44 +3018,44 @@ BugGrabberDB = {
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/alaCalendar/alaCalendar.lua:1 Interface/AddOns/alaCalendar/alaCalendar.lua:11: attempt to call a nil value",
-["session"] = 2922,
 ["time"] = 1785432464,
+["session"] = 2922,
 ["counter"] = 8,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Atlas/Data/Constants.lua:1 Interface/AddOns/Atlas/Data/Constants.lua:43: attempt to call a nil value",
-["session"] = 2922,
 ["time"] = 1785432464,
+["session"] = 2922,
 ["counter"] = 8,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Atlas/Locale/Atlas_GlobalStrings.lua:1 ...nterface/AddOns/Atlas/Locale/Atlas_GlobalStrings.lua:75: attempt to call a nil value",
-["session"] = 2922,
 ["time"] = 1785432464,
+["session"] = 2922,
 ["counter"] = 8,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Atlas/Core/Atlas.lua:1 Interface/AddOns/Atlas/Core/Atlas.lua:80: attempt to call a nil value",
-["session"] = 2922,
 ["time"] = 1785432464,
+["session"] = 2922,
 ["counter"] = 8,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Atlas/Data/DropDownConfig.lua:1 Interface/AddOns/Atlas/Data/DropDownConfig.lua:48: table index is nil",
-["session"] = 2922,
 ["time"] = 1785432464,
+["session"] = 2922,
 ["counter"] = 7,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/AtlasLootClassic/Data/ClassFilter.lua:1 ...terface/AddOns/AtlasLootClassic/Data/ClassFilter.lua:62: table index is nil",
-["session"] = 2922,
 ["time"] = 1785432464,
+["session"] = 2922,
 ["counter"] = 7,
 },
 {
 ["message"] = "LUA_WARNING: Interface/AddOns/Atlas_ClassicWoW/Core/Data-Classic.lua:1 ...erface/AddOns/Atlas_ClassicWoW/Core/Data-Classic.lua:1414: table index is nil",
-["session"] = 2922,
 ["time"] = 1785432464,
+["session"] = 2922,
 ["counter"] = 6,
 },
 {
@@ -3595,14 +3595,6 @@ BugGrabberDB = {
 ["counter"] = 3,
 },
 {
-["message"] = "...terface/AddOns/GW2_UI_PLUS/Modules/WorldMap/Core.lua:165: attempt to concatenate global 'FISHING' (a nil value)",
-["time"] = 1785611755,
-["locals"] = "label=Frame <AreaLabelDataProvider.lua:8>{\n Description=FontString <AreaLabelDataProvider.xml:19>\n labelInfoByType=<table>\n dataProvider=<table>\n Name=FontString <AreaLabelDataProvider.xml:9>\n Texture=Texture <AreaLabelDataProvider.xml:14>\n}\nmap=WorldMapFrame <Blizzard_WorldMap.xml:29>{\n expandedMapInsetsByMapID=<table>\n pinNudgingDirty=false\n ZoneDropdown=WorldMapZoneDropdown <Blizzard_WorldMap.xml:307>\n backgroundMask=MaskTexture <utils.lua:748>\n minimizedHeight=438\n lockReasons=<table>\n MiniBorderFrame=Frame <Blizzard_WorldMap.xml:59>\n callbackTables=<table>\n pinPools=<table>\n dataProviderEventsCount=<table>\n mouseClickHandlers=<table>\n pinTemplateTypes=<table>\n maximizedWidth=1024\n continentInfo=<table>\n deferredCallbacks=<table>\n tex=Texture <utils.lua:731>\n gwHeader=WorldMapFrameHeader <utils.lua:694>\n maximizedHeight=768\n mapArtID=1209\n activeAreaTriggers=<table>\n areDetailLayersDirty=false\n MaximizeMinimizeFrame=Frame <Blizzard_WorldMap.xml:422>\n minimizedWidth=610\n debugAreaTriggers=false\n MinimapDropdown=WorldMapZoneMinimapDropdown <Blizzard_WorldMap.xml:329>\n pinFrameLevelsManager=<table>\n pinsToNudge=<table>\n dataProviders=<table>\n detailLayerPool=<table>\n isUndefinedEventAllowed=true\n executingEvents=<table>\n MaxMinButtonFrame=Frame <Blizzard_WorldMap.xml:422>\n BorderFrame=Frame <Blizzard_WorldMap.xml:121>\n ScrollContainer=ScrollFrame <Blizzard_WorldMap.xml:6>\n BlackoutFrame=Frame <Blizzard_WorldMap.xml:41>\n mapID=1419\n ContinentDropdown=WorldMapContinentDropdown <Blizzard_WorldMap.xml:285>\n}\nmapID=1419\nx=0.971928\ny=0.182226\ninfo=<table>{\n mapType=3\n mapID=1435\n name=\"悲伤沼泽\"\n parentMapID=1415\n}\ndata=<table>{\n minFish=\"130\"\n minLevel=35\n maxLevel=45\n}\nname=\"悲伤沼泽 (35-45)\"\ndescription=nil\n(*temporary)=nil\n(*temporary)=\": 130\"\n(*temporary)=\"130\"\n(*temporary)=true\n(*temporary)=<table>{\n showPoiOpposingTravel=false\n autoChangeZones=false\n showZoneLevels=true\n battlefieldPlayerArrowSize=12\n battlefieldGroupIconSize=12\n centerOnPlayer=false\n playerArrowSize=27\n rememberZoom=true\n battlefieldEnabled=true\n battlefieldMaxZoom=1\n showPoiSpiritHealers=true\n increaseZoom=false\n explorationTint=<table>\n battlefieldOpacity=1\n showPoiDungeons=true\n showFishingLevels=true\n stationaryOpacity=1\n movingOpacity=0.500000\n showPoiFriendlyTravel=true\n useStationaryOpacityOnHover=true\n showCoordinates=true\n hideTownCityIcons=true\n battlefieldUnlocked=true\n increaseZoomMax=2\n showPoiZoneCrossings=true\n showExploration=true\n battlefieldCenterOnPlayer=false\n groupIconSize=20\n classIcons=true\n battlefieldSize=300\n}\n(*temporary)=\"attempt to concatenate global 'FISHING' (a nil value)\"\nWorldMap=<table>{\n defaults=<table>\n Coordinates=<table>\n Battlefield=<table>\n}\nWorldMapData=<table>{\n levels=<table>\n icons=<table>\n reveal=<table>\n}\n",
-["stack"] = "[Interface/AddOns/GW2_UI_PLUS/Modules/WorldMap/Core.lua]:165: in function <...terface/AddOns/GW2_UI_PLUS/Modules/WorldMap/Core.lua:154>\n",
-["session"] = 3020,
-["counter"] = 747,
-},
-{
 ["message"] = "Interface/AddOns/Onesfto/Modules/SexyMap.lua:164: attempt to call a nil value",
 ["time"] = 1785612355,
 ["locals"] = "",
@@ -3651,50 +3643,12 @@ BugGrabberDB = {
 ["counter"] = 78,
 },
 {
-["message"] = "Interface/AddOns/InboxMailBag/InboxMailBag.lua:32: bad argument #1 to 'GetItemClassInfo' (Usage: local result = C_Item.GetItemClassInfo(itemClassID))",
-["time"] = 1785640597,
-["locals"] = "",
-["stack"] = "",
-["session"] = 3036,
-["counter"] = 434,
-},
-{
 ["message"] = "光环 '【露露】彩虹施法条（冰法）' Lua错误 : init\nWeakAuras 版本：5.21.9\n堆栈追踪：\n[string \"return function() _G.CastingBarFrame:Hide()\"]:1: attempt to index field 'CastingBarFrame' (a nil value)",
 ["time"] = 1785640598,
 ["locals"] = "errorMessage=\"[string \"return function() _G.CastingBarFrame:Hide()\"]:1: attempt to index field 'CastingBarFrame' (a nil value)\"\njuicedMessage=<table>{\n 1=\"光环 '【露露】彩虹施法条（冰法）' Lua错误 : init\"\n 2=\"WeakAuras 版本：5.21.9\"\n 3=\"堆栈追踪：\"\n 4=\"[string \"return function() _G.CastingBarFrame:Hide()\"]:1: attempt to index field 'CastingBarFrame' (a nil value)\"\n}\ndata=<table>{\n sparkWidth=12\n sparkOffsetX=0\n uid=\"R7LBJ2D46FQ\"\n parent=\"施法条\"\n adjustedMax=\"\"\n adjustedMin=\"\"\n yOffset=0\n anchorPoint=\"CENTER\"\n iconSource=-1\n authorOptions=<table>\n sparkRotation=360\n sparkRotationMode=\"MANUAL\"\n url=\"\"\n backgroundColor=<table>\n triggers=<table>\n icon_color=<table>\n enableGradient=false\n progressSource=<table>\n selfPoint=\"CENTER\"\n preferToUpdate=true\n customText=\"function()\"\n barColor=<table>\n desaturate=false\n width=418\n xOffset=0\n sparkOffsetY=0\n subRegions=<table>\n gradientOrientation=\"HORIZONTAL\"\n textureSource=\"LSM\"\n load=<table>\n sparkBlendMode=\"ADD\"\n useAdjustededMax=false\n actions=<table>\n source=\"import\"\n toolTipArea=\"ICON\"\n internalVersion=90\n animation=<table>\n sparkMirror=true\n useAdjustededMin=false\n regionType=\"aurabar\"\n desc=\"2022/9/29 更新奥术飞弹、暴风雪、唤醒分段。\"\n barColor2=<table>\n sparkDesaturate=false\n icon=true\n height=32\n sparkHeight=66\n texture=\"!Rurutia14\"\n sparkHidden=\"NEVER\"\n sparkTexture=\"130877\"\n spark=false\n tocversion=20504\n id=\"【露露】彩虹施法条（冰法）\"\n icon_side=\"LEFT\"\n alpha=1\n anchorFrameType=\"SCREEN\"\n sparkColor=<table>\n config=<table>\n inverse=false\n frameStrata=1\n orientation=\"HORIZONTAL\"\n conditions=<table>\n information=<table>\n zoom=0.300000\n}\nversion=nil\ncurrentErrorHandlerId=\"【露露】彩虹施法条（冰法）\"\nWeakAuras=<table>{\n normalWidth=1.300000\n classes_sorted=<table>\n raidUnits=<table>\n buildType=\"release\"\n defaultFont=\"Friz Quadrata TT\"\n BuildInfo=11509\n HiddenFrames=WeakAurasHiddenFrames <WeakAuras.lua:6068>\n class_types=<table>\n spec_types_specific=<table>\n GrowFunctions=<table>\n SortFunctions=<table>\n doubleWidth=2.600000\n buildTime=\"20260729231111\"\n raidpetUnits=<table>\n class_ids=<table>\n genericTriggerTypes=<table>\n item_weapon_types=<table>\n petUnitToUnit=<table>\n defaultFontSize=12\n L=<table>\n partypetUnits=<table>\n StopMotion=<table>\n timer=<table>\n halfWidth=0.650000\n race_types=<table>\n partyUnits=<table>\n unitToPetUnit=<table>\n EJIcons=<table>\n versionString=\"5.21.9\"\n newFeatureString=\"|TInterface\\OptionsFrame\\UI-OptionsFrame-NewFeatureIcon:0|t\"\n}\ncurrentErrorHandlerUid=nil\nPrivate=<table>{\n frame_strata_types=<table>\n combat_event_type=<table>\n regions=<table>\n frameLevels=<table>\n form_types=<table>\n tooltip_count=<table>\n SmoothStatusBarMixin=<table>\n pet_spec_types=<table>\n regionOptions=<table>\n author_option_classes=<table>\n grid_types=<table>\n non_transmissable_fields=<table>\n absorb_modes=<table>\n combatlog_spell_school_types_for_ui=<table>\n pad_types=<table>\n miss_types=<table>\n centered_types_h=<table>\n talent_types=<table>\n money_precision_types=<table>\n reset_swing_spells=<table>\n spec_types_all=<table>\n player_target_events=<table>\n subRegionTypes=<table>\n array_entry_name_types=<table>\n combatlog_spell_school_types=<table>\n blend_types=<table>\n specs_sorted=<table>\n custom_trigger_types=<table>\n group_types=<table>\n subRegionOptions=<table>\n text_rotate_types=<table>\n spec_types=<table>\n anim_ease_types=<table>\n item_slot_types=<table>\n multiUnitUnits=<table>\n anim_color_types=<table>\n loaded=<table>\n sound_channel_types=<table>\n event_prototypes=<table>\n spark_rotation_types=<table>\n unit_types_bufftrigger_2=<table>\n bossmods_timerTypes=<table>\n StopMotionBase=<table>\n TocToExpansion=<table>\n noreset_swing_spells=<table>\n allstatesMetatableLegacy=<table>\n bufftrigger_progress_behavior_types=<table>\n author_option_media_controls=<table>\n chat_message_types=<table>\n precision_types=<table>\n big_number_types_with_disable=<table>\n item_weapon_types=<table>\n LinearProgressTextureBase=<table>\n db=<table>\n grow_types=<table>\n DiscordListK=<table>\n DiscordListCJ=<table>\n DiscordList=<tab",
 ["stack"] = "[Interface/AddOns/WeakAuras/WeakAuras.lua]:128: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:106>\n[return function() _G.CastingBarFrame:Hide()]:1: in function <[string \"return function() _G.CastingBarFrame:Hide()\"]:1>\n[C]: in function 'xpcall'\n[Interface/AddOns/WeakAuras/AuraEnvironment.lua]:400: in function 'ActivateAuraEnvironment'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:1192: in function 'ScanWithFakeEvent'\n[Interface/AddOns/WeakAuras/GenericTrigger.lua]:1553: in function 'LoadDisplays'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:2056: in function 'LoadDisplays'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:1819: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:1646>\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:2030: in function 'Resume'\n[Interface/AddOns/WeakAuras/WeakAuras.lua]:1312: in function <Interface/AddOns/WeakAuras/WeakAuras.lua:1270>\n",
 ["session"] = 3036,
 ["counter"] = 136,
-},
-{
-["message"] = "LUA_WARNING: Interface/AddOns/InboxMailBag/InboxMailBag.xml:126 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnLoad in element OnLoad",
-["session"] = 3036,
-["time"] = 1785640599,
-["counter"] = 385,
-},
-{
-["message"] = "LUA_WARNING: Interface/AddOns/InboxMailBag/InboxMailBag.xml:127 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnShow in element OnShow",
-["session"] = 3036,
-["time"] = 1785640599,
-["counter"] = 385,
-},
-{
-["message"] = "LUA_WARNING: Interface/AddOns/InboxMailBag/InboxMailBag.xml:128 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnHide in element OnHide",
-["session"] = 3036,
-["time"] = 1785640599,
-["counter"] = 384,
-},
-{
-["message"] = "LUA_WARNING: Interface/AddOns/InboxMailBag/InboxMailBag.xml:129 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnEvent in element OnEvent",
-["session"] = 3036,
-["time"] = 1785640599,
-["counter"] = 379,
-},
-{
-["message"] = "LUA_WARNING: Interface/AddOns/InboxMailBag/InboxMailBag.xml:33 Frame InboxMailbagFrameItem1: Unknown function InboxMailbagItem_OnClick in element OnClick",
-["session"] = 3036,
-["time"] = 1785640599,
-["counter"] = 373,
 },
 {
 ["message"] = "...AddOns/GW2_UI_PLUS/Modules/Skins/TradeSkill_Skin.lua:17: attempt to call a nil value",
@@ -3705,20 +3659,78 @@ BugGrabberDB = {
 ["counter"] = 1,
 },
 {
+["message"] = "...terface/AddOns/GW2_UI_PLUS/Modules/WorldMap/Core.lua:165: attempt to concatenate global 'FISHING' (a nil value)",
+["time"] = 1785641014,
+["locals"] = "label=Frame <AreaLabelDataProvider.lua:8>{\n Description=FontString <AreaLabelDataProvider.xml:19>\n labelInfoByType=<table>\n dataProvider=<table>\n Name=FontString <AreaLabelDataProvider.xml:9>\n Texture=Texture <AreaLabelDataProvider.xml:14>\n}\nmap=WorldMapFrame <Blizzard_WorldMap.xml:29>{\n expandedMapInsetsByMapID=<table>\n pinNudgingDirty=false\n ZoneDropdown=WorldMapZoneDropdown <Blizzard_WorldMap.xml:307>\n backgroundMask=MaskTexture <utils.lua:748>\n minimizedHeight=438\n lockReasons=<table>\n MiniBorderFrame=Frame <Blizzard_WorldMap.xml:59>\n callbackTables=<table>\n pinPools=<table>\n dataProviderEventsCount=<table>\n mouseClickHandlers=<table>\n pinTemplateTypes=<table>\n maximizedWidth=1024\n continentInfo=<table>\n deferredCallbacks=<table>\n tex=Texture <utils.lua:731>\n gwHeader=WorldMapFrameHeader <utils.lua:694>\n maximizedHeight=768\n mapArtID=1271\n activeAreaTriggers=<table>\n areDetailLayersDirty=false\n MaximizeMinimizeFrame=Frame <Blizzard_WorldMap.xml:422>\n minimizedWidth=610\n debugAreaTriggers=false\n MinimapDropdown=WorldMapZoneMinimapDropdown <Blizzard_WorldMap.xml:329>\n pinFrameLevelsManager=<table>\n pinsToNudge=<table>\n dataProviders=<table>\n detailLayerPool=<table>\n isUndefinedEventAllowed=true\n executingEvents=<table>\n MaxMinButtonFrame=Frame <Blizzard_WorldMap.xml:422>\n BorderFrame=Frame <Blizzard_WorldMap.xml:121>\n ScrollContainer=ScrollFrame <Blizzard_WorldMap.xml:6>\n BlackoutFrame=Frame <Blizzard_WorldMap.xml:41>\n mapID=1457\n ContinentDropdown=WorldMapContinentDropdown <Blizzard_WorldMap.xml:285>\n}\nmapID=1457\nx=0.868125\ny=0.916495\ninfo=<table>{\n mapType=3\n mapID=1438\n name=\"泰达希尔\"\n parentMapID=1414\n}\ndata=<table>{\n minFish=\"1\"\n minLevel=1\n maxLevel=10\n}\nname=\"泰达希尔 (1-10)\"\ndescription=nil\n(*temporary)=nil\n(*temporary)=\": 1\"\n(*temporary)=\"1\"\n(*temporary)=true\n(*temporary)=<table>{\n showPoiOpposingTravel=false\n autoChangeZones=false\n showZoneLevels=true\n battlefieldPlayerArrowSize=12\n battlefieldGroupIconSize=12\n centerOnPlayer=false\n playerArrowSize=27\n rememberZoom=true\n battlefieldEnabled=true\n battlefieldMaxZoom=1\n showPoiSpiritHealers=true\n increaseZoom=false\n battlefieldSize=300\n showPoiDungeons=true\n battlefieldOpacity=1\n showFishingLevels=true\n groupIconSize=20\n movingOpacity=0.500000\n showPoiFriendlyTravel=true\n battlefieldCenterOnPlayer=false\n showCoordinates=true\n hideTownCityIcons=true\n battlefieldUnlocked=true\n increaseZoomMax=2\n showPoiZoneCrossings=true\n showExploration=true\n useStationaryOpacityOnHover=true\n stationaryOpacity=1\n classIcons=true\n explorationTint=<table>\n}\n(*temporary)=\"attempt to concatenate global 'FISHING' (a nil value)\"\nWorldMap=<table>{\n defaults=<table>\n Coordinates=<table>\n Battlefield=<table>\n}\nWorldMapData=<table>{\n levels=<table>\n icons=<table>\n reveal=<table>\n}\n",
+["stack"] = "[Interface/AddOns/GW2_UI_PLUS/Modules/WorldMap/Core.lua]:165: in function <...terface/AddOns/GW2_UI_PLUS/Modules/WorldMap/Core.lua:154>\n",
+["session"] = 3037,
+["counter"] = 762,
+},
+{
+["message"] = "LUA_WARNING: Interface/AddOns/GW2_UI_PLUS/Modules/General/BuyEmAllClassic.xml:193 GW2PlusBuyEmAllCurrency1: Couldn't find relative frame: GW2PlusBuyEmAllCurrency2",
+["time"] = 1785641441,
+["session"] = 3039,
+["counter"] = 1,
+},
+{
+["message"] = "LUA_WARNING: Interface/AddOns/GW2_UI_PLUS/Modules/General/BuyEmAllClassic.xml:203 GW2PlusBuyEmAllCurrency2: Couldn't find relative frame: GW2PlusBuyEmAllCurrency3",
+["time"] = 1785641441,
+["session"] = 3039,
+["counter"] = 1,
+},
+{
 ["message"] = "FontString:SetFont(): Invalid font asset (Interface\\Addons\\MikScrollingBattleText\\Fonts\\Rurutia.ttf): file not found\nLua Taint: OmniCC",
-["time"] = 1785640698,
-["locals"] = "self=Frame <main.lua:63>{\n activeCooldown=MultiBarBottomRightButton1Cooldown <ActionButtonTemplate.xml:116>\n cooldowns=<table>\n text=FontString <display.lua:36>\n updatingSize=true\n}\nsets=<table>{\n textStyles=<table>\n fontFace=\"Interface\\Addons\\MikScrollingBattleText\\Fonts\\Rurutia.ttf\"\n timerOffset=0\n cooldownOpacity=1\n scaleText=true\n tenthsDuration=3\n fontOutline=\"OUTLINE\"\n minSize=0.430000\n mmSSDuration=180\n enableText=true\n effect=\"shine\"\n fontShadow=<table>\n maxDuration=0\n xOff=0\n name=\"默认\"\n minDuration=2\n anchor=\"CENTER\"\n minEffectDuration=10\n yOff=0\n fontSize=16\n}\ntext=FontString <display.lua:36>\n",
+["time"] = 1785680863,
+["locals"] = "self=Frame <main.lua:63>{\n activeCooldown=ActionButton9Cooldown <ActionButtonTemplate.xml:116>\n cooldowns=<table>\n text=FontString <display.lua:36>\n updatingSize=true\n}\nsets=<table>{\n textStyles=<table>\n fontFace=\"Interface\\Addons\\MikScrollingBattleText\\Fonts\\Rurutia.ttf\"\n timerOffset=0\n cooldownOpacity=1\n scaleText=true\n tenthsDuration=3\n fontOutline=\"OUTLINE\"\n minSize=0.430000\n mmSSDuration=180\n enableText=true\n effect=\"shine\"\n fontShadow=<table>\n maxDuration=0\n xOff=0\n name=\"默认\"\n minDuration=2\n anchor=\"CENTER\"\n minEffectDuration=10\n yOff=0\n fontSize=16\n}\ntext=FontString <display.lua:36>\n",
 ["stack"] = "[Interface/AddOns/OmniCC/core/display.lua]:254: in function 'UpdateCooldownTextFont'\n[Interface/AddOns/OmniCC/core/display.lua]:150: in function 'UpdateActiveCooldown'\n[Interface/AddOns/OmniCC/core/display.lua]:128: in function 'AddCooldown'\n[Interface/AddOns/OmniCC/core/cooldown.lua]:361: in function 'ShowText'\n[Interface/AddOns/OmniCC/core/cooldown.lua]:381: in function 'UpdateText'\n[Interface/AddOns/OmniCC/core/cooldown.lua]:409: in function <Interface/AddOns/OmniCC/core/cooldown.lua:407>\n",
-["session"] = 3036,
-["counter"] = 4557,
+["session"] = 3045,
+["counter"] = 4583,
 },
 {
 ["message"] = "FontString:SetText(): Font not set\nLua Taint: OmniCC",
-["time"] = 1785640698,
-["locals"] = "self=Frame <main.lua:63>{\n timer=<table>\n activeCooldown=MultiBarBottomRightButton1Cooldown <ActionButtonTemplate.xml:116>\n cooldowns=<table>\n text=FontString <display.lua:36>\n updatingSize=true\n}\ntimer=<table>{\n state=\"soon\"\n text=\"3.0\"\n settings=<table>\n subscribers=<table>\n endTime=2220296274\n kind=\"default\"\n key=\"default/2220296274/table: 0xb7a28d9c0\"\n}\ntext=\"3.0\"\n",
+["time"] = 1785680863,
+["locals"] = "self=Frame <main.lua:63>{\n activeCooldown=ActionButton9Cooldown <ActionButtonTemplate.xml:116>\n timer=<table>\n scaleRatio=1\n cooldowns=<table>\n text=FontString <display.lua:36>\n sizeRatio=1.166667\n}\ntimer=<table>{\n state=\"seconds\"\n text=\"13\"\n settings=<table>\n subscribers=<table>\n endTime=2260560476.000001\n kind=\"default\"\n key=\"default/2260560476/table: 0x845223450\"\n}\ntext=\"13\"\n",
 ["stack"] = "[Interface/AddOns/OmniCC/core/display.lua]:78: in function 'OnTimerTextUpdated'\n[Interface/AddOns/OmniCC/core/display.lua]:183: in function 'UpdateTimer'\n[Interface/AddOns/OmniCC/core/display.lua]:157: in function 'UpdateActiveCooldown'\n[Interface/AddOns/OmniCC/core/display.lua]:128: in function 'AddCooldown'\n[Interface/AddOns/OmniCC/core/cooldown.lua]:361: in function 'ShowText'\n[Interface/AddOns/OmniCC/core/cooldown.lua]:381: in function 'UpdateText'\n[Interface/AddOns/OmniCC/core/cooldown.lua]:409: in function <Interface/AddOns/OmniCC/core/cooldown.lua:407>\n",
-["session"] = 3036,
-["counter"] = 11801,
+["session"] = 3045,
+["counter"] = 11834,
+},
+{
+["message"] = "Interface/AddOns/InboxMailBag/InboxMailBag.lua:32: bad argument #1 to 'GetItemClassInfo' (Usage: local result = C_Item.GetItemClassInfo(itemClassID))",
+["time"] = 1785681895,
+["locals"] = "",
+["stack"] = "",
+["session"] = 3051,
+["counter"] = 449,
+},
+{
+["message"] = "LUA_WARNING: Interface/AddOns/InboxMailBag/InboxMailBag.xml:126 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnLoad in element OnLoad",
+["time"] = 1785681897,
+["session"] = 3051,
+["counter"] = 400,
+},
+{
+["message"] = "LUA_WARNING: Interface/AddOns/InboxMailBag/InboxMailBag.xml:127 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnShow in element OnShow",
+["time"] = 1785681897,
+["session"] = 3051,
+["counter"] = 400,
+},
+{
+["message"] = "LUA_WARNING: Interface/AddOns/InboxMailBag/InboxMailBag.xml:128 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnHide in element OnHide",
+["time"] = 1785681897,
+["session"] = 3051,
+["counter"] = 399,
+},
+{
+["message"] = "LUA_WARNING: Interface/AddOns/InboxMailBag/InboxMailBag.xml:129 Frame InboxMailbagFrame: Unknown function InboxMailbag_OnEvent in element OnEvent",
+["time"] = 1785681897,
+["session"] = 3051,
+["counter"] = 394,
+},
+{
+["message"] = "LUA_WARNING: Interface/AddOns/InboxMailBag/InboxMailBag.xml:33 Frame InboxMailbagFrameItem1: Unknown function InboxMailbagItem_OnClick in element OnClick",
+["time"] = 1785681897,
+["session"] = 3051,
+["counter"] = 388,
 },
 },
 }

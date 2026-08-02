@@ -387,6 +387,8 @@ function Layout.ApplyMultiBar(index)
     for buttonIndex = 1, 12 do
         local button = frame.gw_Buttons[buttonIndex]
         if button then
+            button:SetAttribute("showgrid",
+                shown and buttonIndex <= count and 1 or 0)
             button:SetShown(shown and buttonIndex <= count)
             if buttonIndex <= count then
                 local slot
