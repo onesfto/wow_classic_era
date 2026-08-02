@@ -294,6 +294,33 @@ local function HideNativeRaidSettings(settingsTab, embeddedPanels, provider)
     return filtered
 end
 
+-- 隐藏原生“聊天”分类，并保留新聊天标签所需的面板引用。
+local function HideNativeChatSettings(settingsTab, embeddedPanels, provider)
+    if not provider then return end
+    local chatItem
+    provider:ForEach(function(data)
+        local frame = data.isSubCat and data.itemData and data.itemData.frame
+            or data.itemData and data.itemData.basePanel
+        if frame and frame.panelId == "chat_general" then
+            chatItem = data.itemData
+            embeddedPanels[frame.panelId] = frame
+        end
+    end)
+    if not chatItem then return provider end
+
+    local filtered = CreateDataProvider()
+    provider:ForEach(function(data)
+        local frame = data.isSubCat and data.itemData and data.itemData.frame
+            or data.itemData and data.itemData.basePanel
+        if data.itemData ~= chatItem and data.parent ~= chatItem then
+            filtered:Insert(data)
+        elseif frame and frame.panelId then
+            embeddedPanels[frame.panelId] = frame
+        end
+    end)
+    return filtered
+end
+
 -- 准备单位框架设置：隐藏已迁移的面板和重复选项
 local function PrepareUnitFrameSettings(settingsTab)
     -- 首先隐藏原生动作条设置
@@ -306,6 +333,7 @@ local function PrepareUnitFrameSettings(settingsTab)
     local embeddedPanels = {}
     local provider = HideNativePlayerSettings(settingsTab, embeddedPanels)
     provider = HideNativeRaidSettings(settingsTab, embeddedPanels, provider)
+    provider = HideNativeChatSettings(settingsTab, embeddedPanels, provider)
     if not provider then return end
     local filtered = CreateDataProvider()
     provider:ForEach(function(data)
@@ -362,12 +390,12 @@ local function PrepareUnitFrameSettings(settingsTab)
 
     -- 调用 UnitFrames/PlayerResources.lua 导出的 PreparePlayerResourcePanel
     if addonTable.PreparePlayerResourcePanel then
-        local panel = addonTable.PreparePlayerResourcePanel(
+        local panels = addonTable.PreparePlayerResourcePanel(
             embeddedPanels.player_general,
             embeddedPanels.player_classpower,
             embeddedPanels.player_castbar)
-        if panel then
-            settingsTab.gwPlusPlayerStatusPanel = panel
+        if panels then
+            settingsTab.gwPlusPlayerResourcePanels = panels
         end
     end
     settingsTab.gwPlusEmbeddedPanels = embeddedPanels

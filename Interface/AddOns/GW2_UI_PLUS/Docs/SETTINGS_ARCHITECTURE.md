@@ -59,7 +59,12 @@ GW2_UI_PLUS 在 GW2_UI 设置窗口左侧标签栏注入了5个自定义标签�
 ```
 玩家 (可展开)
 ├─ 综合 (player_general)
-├─ 状态条 (player_classpower)
+├─ 血球和贴图 (gw2_plus_player_globe)
+├─ 施法条 (gw2_plus_player_castbar)
+├─ 能量条 (gw2_plus_player_energy)
+├─ 资源条 (gw2_plus_player_resource)
+├─ 经验槽 (gw2_plus_player_xp)
+├─ 渐隐 (player_fader)
 ├─ 增益光环 (player_buff_aura)
 └─ 减益光环 (player_debuff_aura)
 目标 (target_general)
@@ -70,6 +75,7 @@ GW2_UI_PLUS 在 GW2_UI 设置窗口左侧标签栏注入了5个自定义标签�
 
 **技术要点**:
 - 使用 `PreparePlayerAuraPanel` 拆分 `player_aura` 为增益/减益两个视图
+- 玩家状态相关设置使用 5 个独立面板，每个选项独占一行
 - 通过 `CaptureFrame`/`RestoreFrame` 嵌入原生面板
 - 隐藏原生面板中的"渐隐"选项组（已由 GW2_UI 统一管理）
 

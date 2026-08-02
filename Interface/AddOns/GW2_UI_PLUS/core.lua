@@ -204,8 +204,9 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
     -- Register the new panel under settings.
     local subPanels = { {name = "一键换装", frame = gearManFrame, icon = "Interface\\Icons\\INV_Misc_Bag_08"} }
 
+    local chatBarFrame
     if addonTable.BuildChatBarPanel then
-        local chatBarFrame = addonTable.BuildChatBarPanel(p)
+        chatBarFrame = addonTable.BuildChatBarPanel(p)
         if chatBarFrame then
             table.insert(subPanels, {name = "频道按钮", frame = chatBarFrame, icon = "Interface\\Icons\\INV_Letter_15"})
         else
@@ -222,8 +223,9 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
         end
     end
 
+    local chatWindowFrame
     if addonTable.BuildChatWindowPanel then
-        local chatWindowFrame = addonTable.BuildChatWindowPanel(p)
+        chatWindowFrame = addonTable.BuildChatWindowPanel(p)
         if chatWindowFrame then
             table.insert(subPanels, {name = "聊天窗口", frame = chatWindowFrame, icon = "Interface\\Icons\\INV_Scroll_03"})
         else
@@ -269,6 +271,10 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
     end
 
     addonTable.PlusAddonSubPanels = subPanels
+    addonTable.PlusChatPanels = {
+        chatBar = chatBarFrame,
+        chatWindow = chatWindowFrame,
+    }
     local settingsSubPanels = {}
     if addonTable.PlusGeneralPanel then
         table.insert(settingsSubPanels, {
@@ -302,6 +308,10 @@ if GW2_ADDON and GW2_ADDON.GetSettingsTabFrame then
 
     if addonTable.BuildMainMenuTab then
         addonTable.BuildMainMenuTab(settingsTab, _G.GwSettingsWindow)
+    end
+
+    if addonTable.BuildChatTab then
+        addonTable.BuildChatTab(settingsTab, _G.GwSettingsWindow)
     end
 
     if addonTable.BuildPartyTab then

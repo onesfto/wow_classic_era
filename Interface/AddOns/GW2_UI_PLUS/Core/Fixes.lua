@@ -233,6 +233,60 @@ local function ApplyPanelHeaderFix()
 end
 
 --------------------------------------------------------------------------------
+-- 七、微型系统菜单提示缺失或在鼠标离开后残留
+--------------------------------------------------------------------------------
+-- Classic Era 的微型菜单按钮并非都在 OnLeave 时立即隐藏 GameTooltip。
+-- 只隐藏仍由当前按钮持有的提示，避免快速移到相邻按钮时误关新提示。
+
+local function RefreshCustomMicroButtonTooltip(self)
+    if type(_G.MicroButtonTooltipText) ~= "function" then return end
+
+    if self == _G.GwPlayerSpellsMicroButton then
+        self.tooltipText = _G.MicroButtonTooltipText(
+            SPELLBOOK_ABILITIES_BUTTON, "TOGGLESPELLBOOK")
+    elseif self == _G.GwTalentMicroButton then
+        self.tooltipText = _G.MicroButtonTooltipText(
+            TALENTS, "TOGGLETALENTS")
+    end
+end
+
+local function ShowNativeMicroButtonTooltip(self)
+    RefreshCustomMicroButtonTooltip(self)
+    if type(_G.MicroButton_OnEnter) == "function" then
+        _G.MicroButton_OnEnter(self)
+    end
+end
+
+local function HideOwnedMicroButtonTooltip(self)
+    if GameTooltip and GameTooltip:IsOwned(self) then
+        GameTooltip:Hide()
+    end
+end
+
+local function HookNativeMicroButtonTooltip(button)
+    if button and not button.gwPlusTooltipEnterHooked then
+        button.gwPlusTooltipEnterHooked = true
+        button:HookScript("OnEnter", ShowNativeMicroButtonTooltip)
+    end
+end
+
+local function ApplyMicroButtonTooltipFix()
+    local microbar = _G.Gw2MicroBarFrame and _G.Gw2MicroBarFrame.cf
+    if not microbar then return end
+
+    HookNativeMicroButtonTooltip(_G.GwPlayerSpellsMicroButton)
+    HookNativeMicroButtonTooltip(_G.GwTalentMicroButton)
+
+    for _, button in ipairs({microbar:GetChildren()}) do
+        if button.IsObjectType and button:IsObjectType("Button")
+            and not button.gwPlusTooltipLeaveHooked then
+            button.gwPlusTooltipLeaveHooked = true
+            button:HookScript("OnLeave", HideOwnedMicroButtonTooltip)
+        end
+    end
+end
+
+--------------------------------------------------------------------------------
 -- 调度
 --------------------------------------------------------------------------------
 -- Questie 前缀那条必须最早挂（要赶在第一个任务 block 创建之前），所以放在文件加载期直接跑。
@@ -245,4 +299,5 @@ f:SetScript("OnEvent", function(self)
     ApplyEscFixes()
     ApplyAuraRightClickFix()
     ApplyPanelHeaderFix()
+    ApplyMicroButtonTooltipFix()
 end)

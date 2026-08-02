@@ -431,6 +431,20 @@ end
 function AB.SetNormalPlayerFrameEnabled(value)
     AB.InitDB().normalPlayerFrameEnabled = value == true
 end
+function AB.InstallTotemBarSingletonGuard()
+    local GW = _G.GW2_ADDON
+    if not GW or not GW.CreateTotemBar
+        or GW.CreateTotemBar_GW2Plus then
+        return
+    end
+    local createTotemBar = GW.CreateTotemBar
+    GW.CreateTotemBar = function(...)
+        if _G.GwTotemBar then return _G.GwTotemBar end
+        createTotemBar(...)
+        return _G.GwTotemBar
+    end
+    GW.CreateTotemBar_GW2Plus = true
+end
 function AB.IsGlobeStyleEnabled()
     local GW = _G.GW2_ADDON
     if not GW then return false end

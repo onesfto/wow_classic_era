@@ -17,6 +17,7 @@
 ## 📖 其他文档
 
 - **[GW2_UI_PLUS_Early.md](GW2_UI_PLUS_Early.md)** - `!GW2_UI_PLUS_Early` 配套先行加载组件说明
+- **[ACTIONBAR_EMPTY_SLOTS_UNRESOLVED.md](ACTIONBAR_EMPTY_SLOTS_UNRESOLVED.md)** - 动作条空槽与白色圆点异常排查记录（未解决）
 
 根目录下的模块 README：
 - `Modules/ActionBar/README.md` - 动作条扩展

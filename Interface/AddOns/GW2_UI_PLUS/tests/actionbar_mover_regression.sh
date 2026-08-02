@@ -123,4 +123,62 @@ assert(pcall(addonTable.PlusActionBar.RefreshMoverOptionPanel))
 assert(pcall(addonTable.PlusActionBar.ApplyNormalPlayerFrameVisibility))
 LUA
 
+lua - <<'LUA'
+local function NewText(shown)
+    local text = {shown = shown, value = ""}
+    function text:GetText() return self.value end
+    function text:SetText(value) self.value = value end
+    function text:GetFont() return "font", 12, "" end
+    function text:SetFont() end
+    function text:GetTextColor() return 1, 1, 1, 1 end
+    function text:SetTextColor() end
+    function text:SetAlpha() end
+    function text:IsShown() return self.shown end
+    function text:SetShown(value) self.shown = value end
+    function text:Hide() self.shown = false end
+    function text:ClearAllPoints() end
+    function text:SetPoint() end
+    function text:SetJustifyH() end
+    function text:SetJustifyV() end
+    function text:SetWordWrap() end
+    function text:SetNonSpaceWrap() end
+    return text
+end
+
+RANGE_INDICATOR = "dot"
+_G.GW2_ADDON = {
+    settings = {
+        BUTTON_ASSIGNMENTS = true,
+        BUTTON_ASSIGNMENTS_USED_ONLY = false,
+    },
+}
+local addonTable = {PlusActionBar = {}}
+assert(loadfile("Modules/ActionBar/Layout.lua"))("GW2_UI_PLUS", addonTable)
+
+local source = NewText(false)
+local button = {HotKey = source}
+function button:CreateFontString()
+    self.proxy = NewText(false)
+    return self.proxy
+end
+
+addonTable.PlusActionBarLayout.ApplyMainHotkey(
+    source, button, "TOPLEFT", 0, 0, 12, true)
+assert(button.proxy:GetText() == RANGE_INDICATOR)
+assert(button.proxy:IsShown())
+
+button.hasAction = true
+addonTable.PlusActionBarLayout.ApplyMainHotkey(
+    source, button, "TOPLEFT", 0, 0, 12, true)
+assert(button.proxy:GetText() == "")
+assert(not button.proxy:IsShown())
+
+button.hasAction = false
+_G.GW2_ADDON.settings.BUTTON_ASSIGNMENTS_USED_ONLY = true
+addonTable.PlusActionBarLayout.ApplyMainHotkey(
+    source, button, "TOPLEFT", 0, 0, 12, true)
+assert(button.proxy:GetText() == "")
+assert(not button.proxy:IsShown())
+LUA
+
 printf '%s\n' '动作条移动器回归检查通过'

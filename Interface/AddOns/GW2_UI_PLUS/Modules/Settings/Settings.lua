@@ -24,14 +24,27 @@ local REQUIRED_PAGE_IDS = {
     "hud_microbar",
     "hud_minimap",
     "hud_worldmap",
+    "gw2_plus_player_globe",
+    "gw2_plus_player_castbar",
+    "gw2_plus_player_energy",
+    "gw2_plus_player_resource",
+    "gw2_plus_player_xp",
 }
 local PLAYER_PAGE_DEFINITIONS = {
     {"综合", "player_general"},
-    {"状态条", "player_classpower"},
+    {"血球和贴图", "gw2_plus_player_globe"},
+    {"施法条", "gw2_plus_player_castbar"},
+    {"能量条", "gw2_plus_player_energy"},
+    {"资源条", "gw2_plus_player_resource"},
+    {"经验槽", "gw2_plus_player_xp"},
     {"渐隐", "player_fader"},
     {"增益光环", "player_buff_aura"},
     {"减益光环", "player_debuff_aura"},
 }
+local PLAYER_PAGE_IDS = {}
+for _, definition in ipairs(PLAYER_PAGE_DEFINITIONS) do
+    PLAYER_PAGE_IDS[definition[2]] = true
+end
 local TARGET_PAGE_DEFINITIONS = {
     {"综合", "target_general"},
     {"渐隐", "target_fader"},
@@ -110,7 +123,6 @@ local PET_VIEW_DEFINITIONS = {
 }
 local FRAME_PANEL_TEXT = {
     player_general = {header = "玩家", breadcrumb = "综合", sub = "编辑玩家设置。"},
-    player_classpower = {header = "玩家", breadcrumb = "状态条", sub = "编辑玩家设置。"},
     player_fader = {header = "玩家", breadcrumb = "渐隐", sub = "编辑玩家设置。"},
     target_general = {header = "目标", breadcrumb = "综合", sub = "编辑目标设置。"},
     target_fader = {header = "目标", breadcrumb = "渐隐", sub = "编辑目标设置。"},
@@ -137,6 +149,7 @@ local TAB_ORDER = {
     "GwSettingsUnitFrames",
     "GwSettingsActionBar",
     "GwSettingsParty",
+    "GwSettingsChat",
     "GwSettingsComponents",
     "GwSettingsSettings",
     "GwSettingsOverview",
@@ -1380,8 +1393,9 @@ local function FindNativePages(settingsTab)
             found[frame.panelId] = frame
         end
     end)
-    if settingsTab.gwPlusPlayerStatusPanel then
-        found.player_classpower = settingsTab.gwPlusPlayerStatusPanel
+    for panelId, panel in pairs(
+        settingsTab.gwPlusPlayerResourcePanels or {}) do
+        found[panelId] = panel
     end
     for _, panelId in ipairs(REQUIRED_PAGE_IDS) do
         if not found[panelId] then
@@ -1530,11 +1544,7 @@ local function BuildMainMenuTab(settingsTab, settingsWindow)
     local function SelectPage(panelId)
         RestoreCurrent()
         selectedPanelId = panelId
-        playerExpanded = panelId == "player_general"
-            or panelId == "player_classpower"
-            or panelId == "player_fader"
-            or panelId == "player_buff_aura"
-            or panelId == "player_debuff_aura"
+        playerExpanded = PLAYER_PAGE_IDS[panelId] == true
         targetExpanded = panelId == "target_general"
             or panelId == "target_fader"
             or panelId == "target_buff_aura"

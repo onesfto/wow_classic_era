@@ -15,6 +15,7 @@ end
 local function Init()
     AB.InitDB()
     AB.SyncPlayerHudEnabled()
+    AB.InstallTotemBarSingletonGuard()
     SafeRun("主动作条编辑框", AB.RegisterMainBarMover)
     SafeRun("按钮尺寸", function()
         if GW.UpdateMainBarHot and not GW.UpdateMainBarHot_GW2Plus then

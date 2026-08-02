@@ -49,6 +49,11 @@ grep -F '{"施法条", "gw2_plus_player_castbar"}' "$settings_file" >/dev/null
 grep -F '{"能量条", "gw2_plus_player_energy"}' "$settings_file" >/dev/null
 grep -F '{"资源条", "gw2_plus_player_resource"}' "$settings_file" >/dev/null
 grep -F '{"经验槽", "gw2_plus_player_xp"}' "$settings_file" >/dev/null
+grep -F '    "gw2_plus_player_globe",' "$settings_file" >/dev/null
+grep -F '    "gw2_plus_player_castbar",' "$settings_file" >/dev/null
+grep -F '    "gw2_plus_player_energy",' "$settings_file" >/dev/null
+grep -F '    "gw2_plus_player_resource",' "$settings_file" >/dev/null
+grep -F '    "gw2_plus_player_xp",' "$settings_file" >/dev/null
 if grep -F '{"状态条", "player_classpower"}' "$settings_file" >/dev/null; then
     exit 1
 fi

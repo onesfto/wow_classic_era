@@ -81,6 +81,7 @@ Modules/Settings/Settings.lua
 Modules/Settings/HudMoverOptions.lua
 Modules/Settings/SettingsIcon.lua
 Modules/Settings/PartyTab.lua
+Modules/Settings/ChatTab.lua
 Modules/Settings/ComponentsTab.lua
 Modules/Settings/EditModeTab.lua
 Modules/Settings/EditModeMoverCoordinates.lua

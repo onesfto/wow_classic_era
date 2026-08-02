@@ -59,10 +59,19 @@ local TEXT_POSITIONS = {
 local function NormalizeTextPosition(position)
     return TEXT_POSITIONS[position] and position or "TOPRIGHT"
 end
+local function ShouldShowEmptyHotkeyIndicator(button, shown)
+    return shown ~= false and button and button.hasAction ~= true and GW.settings
+        and GW.settings.BUTTON_ASSIGNMENTS ~= false
+        and GW.settings.BUTTON_ASSIGNMENTS_USED_ONLY ~= true
+end
 local function SyncProxyText(source)
     local proxy = source.gwPlusProxy
     if not proxy then return end
-    proxy:SetText(source:GetText() or "")
+    local text = source:GetText() or ""
+    if text == "" and source.gwPlusShowEmptyIndicator then
+        text = RANGE_INDICATOR or ""
+    end
+    proxy:SetText(text)
 end
 local function SyncProxyShown(source)
     local proxy = source.gwPlusProxy
@@ -71,7 +80,8 @@ local function SyncProxyShown(source)
         proxy:Hide()
         return
     end
-    proxy:SetShown(source.gwPlusTextShown ~= false and source:IsShown())
+    proxy:SetShown(source.gwPlusTextShown ~= false
+        and (source:IsShown() or source.gwPlusShowEmptyIndicator))
 end
 local function EnsureTextProxy(source, button, sourceRestorable)
     if source.gwPlusProxy then return source.gwPlusProxy end
@@ -124,6 +134,7 @@ function Layout.ApplyTextPosition(fontString, button, position, x, y, size, show
     return ApplyProxyTextPosition(fontString, button, position, x, y,
         size, shown, false)
 end
+
 local function ProtectMainHotkeyBackground(fontString, button)
     local background = button.hkBg and button.hkBg.texture
     if not background then return end
@@ -140,6 +151,8 @@ function Layout.ApplyMainHotkey(fontString, button, position, x, y, size, shown)
     local key = NormalizeTextPosition(position)
     fontString.gwPlusTextPosition = key
     fontString.gwPlusUseNative = key == "BOTTOM"
+    fontString.gwPlusShowEmptyIndicator = key ~= "BOTTOM"
+        and ShouldShowEmptyHotkeyIndicator(button, shown)
     local background = ProtectMainHotkeyBackground(fontString, button)
     if key == "BOTTOM" then
         if fontString.gwPlusProxy then fontString.gwPlusProxy:Hide() end
@@ -336,6 +349,9 @@ function AB.IsBarActive(barKey)
 end
 local function ApplyText(button, prefix, db)
     if button.HotKey then
+        button.HotKey.gwPlusShowEmptyIndicator =
+            ShouldShowEmptyHotkeyIndicator(button,
+                db[prefix .. "ShowHotkey"] ~= false)
         Layout.ApplyTextPosition(button.HotKey, button,
             db[prefix .. "HotkeyPosition"],
             db[prefix .. "HotkeyX"] or 0, db[prefix .. "HotkeyY"] or 0,
@@ -387,8 +403,6 @@ function Layout.ApplyMultiBar(index)
     for buttonIndex = 1, 12 do
         local button = frame.gw_Buttons[buttonIndex]
         if button then
-            button:SetAttribute("showgrid",
-                shown and buttonIndex <= count and 1 or 0)
             button:SetShown(shown and buttonIndex <= count)
             if buttonIndex <= count then
                 local slot
@@ -429,6 +443,8 @@ function Layout.ApplyMultiBars()
 end
 local function ApplySimpleHotkey(button, show, position, x, y, size)
     if not button or not button.HotKey then return end
+    button.HotKey.gwPlusShowEmptyIndicator =
+        ShouldShowEmptyHotkeyIndicator(button, show)
     Layout.ApplyTextPosition(button.HotKey, button, position, x, y, size, show)
 end
 function Layout.ApplyStanceBar()

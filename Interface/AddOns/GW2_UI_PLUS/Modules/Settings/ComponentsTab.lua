@@ -9,6 +9,11 @@ local HOVER_TEXTURE =
 local MENU_BACKGROUND =
     "Interface/AddOns/GW2_UI/textures/character/menu-bg.png"
 
+local CHAT_PANEL_NAMES = {
+    ["频道按钮"] = true,
+    ["聊天窗口"] = true,
+}
+
 local function BuildComponentsTab(settingsTab, settingsWindow)
     if not settingsWindow or settingsWindow.gwPlusComponentsTab then return end
 
@@ -118,12 +123,14 @@ local function BuildComponentsTab(settingsTab, settingsWindow)
     -- 附加组件子面板
     if addonSubPanels then
         for _, entry in ipairs(addonSubPanels) do
-            local parent = AddMenuEntry(entry.name, entry.frame, entry.children)
-            for _, child in ipairs(entry.children or {}) do
-                local childEntry = AddMenuEntry(
-                    child.name, child.frame or child.panel, nil, parent)
-                if parent and not parent.firstChild then
-                    parent.firstChild = childEntry
+            if not CHAT_PANEL_NAMES[entry.name] then
+                local parent = AddMenuEntry(entry.name, entry.frame, entry.children)
+                for _, child in ipairs(entry.children or {}) do
+                    local childEntry = AddMenuEntry(
+                        child.name, child.frame or child.panel, nil, parent)
+                    if parent and not parent.firstChild then
+                        parent.firstChild = childEntry
+                    end
                 end
             end
         end

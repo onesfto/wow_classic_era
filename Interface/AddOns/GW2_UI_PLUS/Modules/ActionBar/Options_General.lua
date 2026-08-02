@@ -46,6 +46,15 @@ function General.AddGeneralOptions(panel)
         end,
     })
 
+    panel:AddOptionButton("恢复空的动作条槽位",
+        "当暴雪编辑模式隐藏了空动作条槽位时，在全部 8 个动作条上恢复空槽位。", {
+        callback = function()
+            if GW.MakeActionbuttonsVisible then
+                GW.MakeActionbuttonsVisible()
+            end
+        end,
+    })
+
     panel:AddGroupHeader("全局渐隐")
     -- 第一行：启用 | 战斗中不渐隐
     local fadeEnableOption = panel:AddOption("启用", "鼠标离开后统一降低所选动作条的透明度。", {

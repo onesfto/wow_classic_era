@@ -34,10 +34,10 @@ local FORCE_NEW_LINE_TYPES = {
     header = true,
     subHeader = true,
 }
-local statusPanel
+local resourcePanels
 local hooksInstalled = false
 local profileHookInstalled = false
-local RefreshStatusPanel
+local RefreshResourcePanels
 local function InitStatusDB()
     GW2_UI_PLUS_PlayerStatusSV = GW2_UI_PLUS_PlayerStatusSV or {}
     for key, value in pairs(STATUS_DEFAULTS) do
@@ -304,10 +304,10 @@ local function InstallProfileHook()
     end
     profileHookInstalled = true
     GW.globalSettings.RegisterCallback(
-        statusPanel, "OnProfileChanged", function()
+        resourcePanels, "OnProfileChanged", function()
             SyncAdditionalEnergyBar()
             QueueValueRefresh()
-            if RefreshStatusPanel then RefreshStatusPanel() end
+            if RefreshResourcePanels then RefreshResourcePanels() end
         end)
 end
 local function GetSettingByPath(path)
@@ -386,14 +386,16 @@ local function ApplyPanelDependencies(panel)
         SetWidgetEnabled(widget, enabled)
     end
 end
+local function RefreshResourcePanel(panel)
+    Utils.RefreshPanel(panel)
+    ApplyPanelDependencies(panel)
+end
 local function WrapRefreshCallback(panel, option)
     local original = option.callback
     option.callback = function(...)
         if original then original(...) end
         C_Timer.After(0, function()
-            if panel == statusPanel and RefreshStatusPanel then
-                RefreshStatusPanel()
-            end
+            RefreshResourcePanel(panel)
         end)
     end
     return option
@@ -412,14 +414,10 @@ local function SetOptionColumns(option, columns, optionName)
     option.gwPlusColumns = columns
     if optionName then option.optionName = optionName end
 end
-local function AddGroupHeader(panel, name)
-    return panel:AddGroupHeader(name)
-end
-local function CreateStatusPanel(
-    playerGeneral, resourcePanel, castbarPanel, options)
+local function CreateResourcePanel(parent, panelId, breadcrumb, sub)
     local panel = CreateFrame(
-        "Frame", nil, playerGeneral:GetParent(), "GwSettingsPanelTmpl")
-    panel.panelId = "gw2_plus_player_status"
+        "Frame", nil, parent, "GwSettingsPanelTmpl")
+    panel.panelId = panelId
     panel.header:SetFont(
         DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 20)
     panel.header:SetTextColor(
@@ -429,12 +427,46 @@ local function CreateStatusPanel(
         DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 12)
     panel.breadcrumb:SetTextColor(
         GW.Colors.TextColors.LightHeader:GetRGB())
-    panel.breadcrumb:SetText("状态条")
-    addonTable.SetPanelTitle(panel, "玩家", "状态条")
+    panel.breadcrumb:SetText(breadcrumb)
+    addonTable.SetPanelTitle(panel, "玩家", breadcrumb)
     panel.sub:SetFont(UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF", 12)
     panel.sub:SetTextColor(181 / 255, 160 / 255, 128 / 255)
-    panel.sub:SetText("调整玩家的血球、施法条、能量条和资源条。")
-    AddGroupHeader(panel, "血球和贴图")
+    panel.sub:SetText(sub)
+    return panel
+end
+local function InitializeResourcePanel(panel)
+    for _, option in ipairs(panel.gwOptions or {}) do
+        option.forceNewLine = true
+        option.gwPlusColumns = nil
+        option.groupHeaderName = nil
+    end
+    Utils.InitializePanel(panel)
+    panel:HookScript("OnShow", function()
+        RefreshResourcePanel(panel)
+    end)
+    panel:Hide()
+end
+local function CreateResourcePanels(
+    playerGeneral, resourcePanel, castbarPanel, options)
+    local parent = playerGeneral:GetParent()
+    local panels = {
+        gw2_plus_player_globe = CreateResourcePanel(
+            parent, "gw2_plus_player_globe", "血球和贴图",
+            "调整玩家血球、HUD 贴图和位移条。"),
+        gw2_plus_player_castbar = CreateResourcePanel(
+            parent, "gw2_plus_player_castbar", "施法条",
+            "调整玩家施法条。"),
+        gw2_plus_player_energy = CreateResourcePanel(
+            parent, "gw2_plus_player_energy", "能量条",
+            "调整玩家能量条和回复提示。"),
+        gw2_plus_player_resource = CreateResourcePanel(
+            parent, "gw2_plus_player_resource", "资源条",
+            "调整玩家职业资源条。"),
+        gw2_plus_player_xp = CreateResourcePanel(
+            parent, "gw2_plus_player_xp", "经验槽",
+            "调整玩家经验槽。"),
+    }
+    local panel = panels.gw2_plus_player_globe
     local globeEnabled = panel:AddOption(
         "启用",
         "普通玩家框体由“综合 → 启用”独立控制。切换后需要重新加载界面。",
@@ -497,7 +529,7 @@ local function CreateStatusPanel(
     AddClonedOption(
         panel, options.dodgeAbility, "位移条技能", "血球和贴图", 2,
         {GW2PlusGlobeEnabled = true, showDodgebar = true})
-    AddGroupHeader(panel, "施法条")
+    panel = panels.gw2_plus_player_castbar
     AddClonedOption(
         panel, options.castEnabled, "启用", "施法条", 2, nil, true)
     AddClonedOption(
@@ -542,7 +574,7 @@ local function CreateStatusPanel(
             forceNewLine = false,
         })
     SetOptionColumns(castHeight, 2, "castbarHeight")
-    AddGroupHeader(panel, "经验槽")
+    panel = panels.gw2_plus_player_xp
     local xpEnabled = panel:AddOption(
         "启用",
         "显示经验槽",
@@ -572,7 +604,7 @@ local function CreateStatusPanel(
         }
     )
     SetOptionColumns(xpQuestPercent, 2, "QUEST_XP_PERCENT")
-    AddGroupHeader(panel, "能量条")
+    panel = panels.gw2_plus_player_energy
     AddClonedOption(
         panel, options.energyTicker, "能量/法力回复提示",
         "能量条", 2, {}, true)
@@ -608,7 +640,7 @@ local function CreateStatusPanel(
             groupHeaderName = "能量条",
         })
     SetOptionColumns(energyValue, 2, "GW2PlusEnergyShowValue")
-    AddGroupHeader(panel, "资源条")
+    panel = panels.gw2_plus_player_resource
     AddClonedOption(
         panel, options.classPowerEnabled, "启用",
         "资源条", 2, nil, true)
@@ -642,18 +674,19 @@ local function CreateStatusPanel(
     AddClonedOption(
         panel, options.classPowerCombat,
         "仅在战斗中显示", "资源条", nil)
-    Utils.InitializePanel(panel)
-    statusPanel = panel
-    RefreshStatusPanel = function()
-        Utils.RefreshPanel(panel)
-        ApplyPanelDependencies(panel)
+    for _, currentPanel in pairs(panels) do
+        InitializeResourcePanel(currentPanel)
+    end
+    resourcePanels = panels
+    RefreshResourcePanels = function()
+        for _, currentPanel in pairs(resourcePanels) do
+            RefreshResourcePanel(currentPanel)
+        end
         if addonTable.PlusEnergyTicker then
             addonTable.PlusEnergyTicker.Refresh()
         end
     end
-    panel:HookScript("OnShow", RefreshStatusPanel)
-    panel:Hide()
-    return panel
+    return panels
 end
 local function CollectRequiredOptions(
     generalOptions, resourceOptions, castOptions)
@@ -718,7 +751,7 @@ local function PreparePlayerResourcePanel(
         return
     end
 
-    if statusPanel then return statusPanel end
+    if resourcePanels then return resourcePanels end
     if not playerGeneral or not resourcePanel or not castbarPanel then
         return
     end
@@ -730,14 +763,14 @@ local function PreparePlayerResourcePanel(
     if not options then return end
     InitStatusDB()
     PrepareGeneralPanel(playerGeneral)
-    local panel = CreateStatusPanel(
+    local panels = CreateResourcePanels(
         playerGeneral, resourcePanel, castbarPanel, options)
-    if not panel then return end
+    if not panels then return end
     InstallValueHooks()
     InstallProfileHook()
     SyncAdditionalEnergyBar()
     QueueValueRefresh()
-    if RefreshStatusPanel then RefreshStatusPanel() end
-    return panel
+    if RefreshResourcePanels then RefreshResourcePanels() end
+    return panels
 end
 addonTable.PreparePlayerResourcePanel = PreparePlayerResourcePanel
