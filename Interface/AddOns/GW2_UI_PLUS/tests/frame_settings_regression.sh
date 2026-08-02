@@ -60,6 +60,12 @@ fi
 grep -F 'settingsTab.gwPlusPlayerResourcePanels' "$settings_file" >/dev/null
 grep -F 'option.forceNewLine = true' "$resources_file" >/dev/null
 grep -F 'option.gwPlusColumns = nil' "$resources_file" >/dev/null
+grep -F 'PLAYER_AS_TARGET_FRAME_ALT_BACKGROUND = 3,' "$resources_file" >/dev/null
+grep -F 'player_CLASS_COLOR = 3,' "$resources_file" >/dev/null
+grep -F 'PLAYER_SHOW_PVP_INDICATOR = 3,' "$resources_file" >/dev/null
+grep -F 'PLAYER_UNIT_HEALTH = 2,' "$resources_file" >/dev/null
+grep -F 'playerFrameHealthBarTexture = 2,' "$resources_file" >/dev/null
+grep -F 'Utils.InitializePanel(playerGeneral)' "$resources_file" >/dev/null
 if grep -F 'AddGroupHeader(panel,' "$resources_file" >/dev/null; then
     exit 1
 fi

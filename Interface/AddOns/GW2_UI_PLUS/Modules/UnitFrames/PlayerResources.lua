@@ -24,15 +24,12 @@ local MOVED_GENERAL_OPTION_NAMES = {
     showDodgebar = true,
     PLAYER_TRACKED_DODGEBAR_SPELL = true,
 }
-local FORCE_NEW_LINE_TYPES = {
-    slider = true,
-    dropdown = true,
-    list = true,
-    text = true,
-    button = true,
-    colorPicker = true,
-    header = true,
-    subHeader = true,
+local GENERAL_OPTION_COLUMNS = {
+    PLAYER_AS_TARGET_FRAME_ALT_BACKGROUND = 3,
+    player_CLASS_COLOR = 3,
+    PLAYER_SHOW_PVP_INDICATOR = 3,
+    PLAYER_UNIT_HEALTH = 2,
+    playerFrameHealthBarTexture = 2,
 }
 local resourcePanels
 local hooksInstalled = false
@@ -46,63 +43,6 @@ local function InitStatusDB()
         end
     end
     return GW2_UI_PLUS_PlayerStatusSV
-end
-local function ResolveForceNewLine(option)
-    if option.forceNewLine ~= nil then
-        return option.forceNewLine
-    end
-    if option.optionType == "dropdown"
-        and option.noNewLine ~= nil then
-        return not option.noNewLine
-    end
-    return FORCE_NEW_LINE_TYPES[option.optionType] == true
-end
-local function IsMasterToggle(option)
-    return option and option.isMasterToggle == true
-end
-local function PackOptionsIntoRows(options)
-    local rows = {}
-    local index = 1
-    local function AddMasterToggleSeparatorIfNeeded(lastIndex)
-        if IsMasterToggle(options[lastIndex])
-            and options[lastIndex + 1]
-            and not IsMasterToggle(options[lastIndex + 1]) then
-            rows[#rows + 1] = {kind = "masterToggleSeparator"}
-        end
-    end
-    while index <= #options do
-        local left = options[index]
-        if ResolveForceNewLine(left) then
-            rows[#rows + 1] = {cols = {left}}
-            AddMasterToggleSeparatorIfNeeded(index)
-            index = index + 1
-        else
-            local right = options[index + 1]
-            if right and not ResolveForceNewLine(right)
-                and IsMasterToggle(left) == IsMasterToggle(right) then
-                rows[#rows + 1] = {cols = {left, right}}
-                AddMasterToggleSeparatorIfNeeded(index + 1)
-                index = index + 2
-            else
-                rows[#rows + 1] = {cols = {left}}
-                AddMasterToggleSeparatorIfNeeded(index)
-                index = index + 1
-            end
-        end
-    end
-    return rows
-end
-local function BuildOptionsDataProvider(panel)
-    local provider = CreateDataProvider()
-    for index, row in ipairs(PackOptionsIntoRows(panel.gwOptions or {})) do
-        provider:Insert({
-            index = index,
-            kind = row.kind,
-            cols = row.cols,
-            panel = panel,
-        })
-    end
-    return provider
 end
 local function FindOption(options, optionName)
     for _, option in ipairs(options or {}) do
@@ -181,13 +121,13 @@ local function PrepareGeneralPanel(playerGeneral)
             end,
             isMasterToggle = true,
         })
+    normalPlayerFrame.optionName = "GW2PlusNormalPlayerFrameEnabled"
     playerGeneral.gwOptions = {normalPlayerFrame}
     for _, option in ipairs(kept) do
+        option.gwPlusColumns = GENERAL_OPTION_COLUMNS[option.optionName]
         playerGeneral.gwOptions[#playerGeneral.gwOptions + 1] = option
     end
-    playerGeneral.scroll.ScrollBox:SetDataProvider(
-        BuildOptionsDataProvider(playerGeneral),
-        ScrollBoxConstants.RetainScrollPosition)
+    Utils.InitializePanel(playerGeneral)
     playerGeneral.__gwPlusGeneralPrepared = true
 end
 local function ClearBarText(bar)

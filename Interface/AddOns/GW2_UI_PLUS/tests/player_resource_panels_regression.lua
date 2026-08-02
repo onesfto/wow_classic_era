@@ -2,6 +2,7 @@ local addonTable = {}
 local registeredProfileOwner
 local registeredProfileCallback
 local refreshCounts = {}
+local initializedPanels = {}
 
 local function Noop() end
 local function ValueOption(optionName, dependence)
@@ -15,6 +16,12 @@ local function ValueOption(optionName, dependence)
         callback = Noop,
         dependence = dependence,
     }
+end
+
+local function DropdownOption(optionName, dependence)
+    local option = ValueOption(optionName, dependence)
+    option.optionType = "dropdown"
+    return option
 end
 
 local function AddOption(panel, name, _, config)
@@ -55,6 +62,11 @@ playerGeneral.gwOptions = {
     ValueOption("PLAYER_AS_TARGET_FRAME"),
     ValueOption("showDodgebar"),
     ValueOption("PLAYER_TRACKED_DODGEBAR_SPELL"),
+    ValueOption("PLAYER_AS_TARGET_FRAME_ALT_BACKGROUND"),
+    ValueOption("player_CLASS_COLOR"),
+    ValueOption("PLAYER_SHOW_PVP_INDICATOR"),
+    DropdownOption("PLAYER_UNIT_HEALTH"),
+    DropdownOption("playerFrameHealthBarTexture"),
     ValueOption("PLAYER_WIDTH"),
 }
 
@@ -120,7 +132,9 @@ addonTable.PlusActionBar = {
     ApplyCastbarSize = Noop,
 }
 addonTable.ActionBarOptionsUtils = {
-    InitializePanel = Noop,
+    InitializePanel = function(panel)
+        initializedPanels[#initializedPanels + 1] = panel
+    end,
     RefreshPanel = function(panel)
         refreshCounts[panel.panelId] = (refreshCounts[panel.panelId] or 0) + 1
     end,
@@ -140,6 +154,25 @@ chunk("GW2_UI_PLUS", addonTable)
 
 local panels = assert(addonTable.PreparePlayerResourcePanel(
     playerGeneral, resourcePanel, castbarPanel))
+
+assert(initializedPanels[1] == playerGeneral,
+    "玩家综合未使用动作条多栏初始化器")
+local expectedGeneralColumns = {
+    GW2PlusNormalPlayerFrameEnabled = false,
+    PLAYER_AS_TARGET_FRAME_ALT_BACKGROUND = 3,
+    player_CLASS_COLOR = 3,
+    PLAYER_SHOW_PVP_INDICATOR = 3,
+    PLAYER_UNIT_HEALTH = 2,
+    playerFrameHealthBarTexture = 2,
+    PLAYER_WIDTH = false,
+}
+for _, option in ipairs(playerGeneral.gwOptions) do
+    local key = option.optionName or option.name
+    local expectedColumn = expectedGeneralColumns[key]
+    assert(expectedColumn ~= nil, "玩家综合存在未预期选项: " .. key)
+    assert((option.gwPlusColumns or false) == expectedColumn,
+        key .. " 列数错误")
+end
 
 local expected = {
     gw2_plus_player_globe = {
