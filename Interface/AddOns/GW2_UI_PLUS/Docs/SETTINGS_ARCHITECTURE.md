@@ -37,15 +37,16 @@ GW2_UI_PLUS 的设置系统基于 GW2_UI 原生设置框架构建，通过自定
 
 ## 主菜单标签页结构
 
-GW2_UI_PLUS 在 GW2_UI 设置窗口左侧标签栏注入了5个自定义标签页：
+GW2_UI_PLUS 在 GW2_UI 设置窗口左侧标签栏注入了 6 个自定义标签页：
 
 | 序号 | 标签名称 | PanelName | 图标 | 功能 |
 |------|---------|-----------|------|------|
 | 1 | **框体** | `GwSettingsUnitFrames` | `tabicon_profile.png` | 玩家/目标/宠物/小队单位框架设置 |
 | 2 | **动作条** | `GwSettingsActionBar` | `tabicon_action.png` | 动作条布局和按钮配置 |
 | 3 | **队伍** | `GwSettingsParty` | `tabicon_raid.png` | 小队/团队框架设置 |
-| 4 | **组件** | `GwSettingsComponents` | `tabicon_addon.png` | 微型菜单/地图/附加组件 |
-| 5 | **编辑界面** | `GwSettingsEditMode` | `tabicon_pointer.png` | 直接触发 HUD 元素拖动模式 |
+| 4 | **聊天** | `GwSettingsChat` | `tabicon_chat.png` | 聊天增强、布局、频道和消息管理 |
+| 5 | **组件** | `GwSettingsComponents` | `tabicon_addon.png` | 微型菜单/地图/附加组件 |
+| 6 | **编辑界面** | `GwSettingsEditMode` | `tabicon_pointer.png` | 直接触发 HUD 元素拖动模式 |
 
 **原生标签保留**：设置 / 综述 / 配置
 
@@ -104,7 +105,25 @@ GW2_UI_PLUS 在 GW2_UI 设置窗口左侧标签栏注入了5个自定义标签�
 - 使用 `AddMenuEntry` 创建侧菜单按钮
 - `ShowPage()` 处理面板切换和高亮状态
 
-#### 4. 组件 (GwSettingsComponents)
+#### 4. 聊天 (GwSettingsChat)
+
+**文件**: `Modules/Settings/ChatTab.lua`、`Modules/Settings/ChatCategories.lua`
+
+**侧菜单结构**:
+```
+聊天增强 (gw2_ui_plus_chat_enhancement)
+窗口布局 (gw2_ui_plus_chat_layout)
+频道按钮 (gw2_ui_plus_chatbar)
+消息管理 (gw2_ui_plus_chat_messages)
+```
+
+**技术要点**:
+- 将 GW2_UI 原生聊天选项和 GW2_UI_PLUS 聊天窗口选项按职责迁移到三个新页面
+- 注销旧来源面板的控件注册项，保证每个设置只有一个可见入口
+- 跨页面继续使用原 `optionName`、回调和依赖关系
+- 频道按钮保留独立面板，并按基本设置、位置、聊天频道、快捷功能和插件入口分组
+
+#### 5. 组件 (GwSettingsComponents)
 
 **文件**: `Modules/Settings/ComponentsTab.lua` → `BuildComponentsTab()`
 
@@ -114,9 +133,7 @@ GW2_UI_PLUS 在 GW2_UI 设置窗口左侧标签栏注入了5个自定义标签�
 微缩地图 (hud_minimap)
 世界地图 (hud_worldmap)
 一键换装 (gw2_ui_plus_gearman)
-频道按钮 (chatBarFrame)
 冷却闪烁 (cooldownPulseFrame)
-聊天窗口 (chatWindowFrame)
 界面皮肤 (skinsFrame)
 插件悬浮按钮 (minimapFlyoutFrame)
 工具条 (toolbarFrame)
@@ -128,7 +145,7 @@ GW2_UI_PLUS 在 GW2_UI 设置窗口左侧标签栏注入了5个自定义标签�
 - **关键修复**: 必须调用 `settingsTab:AddSettingsPanel(...)` 触发 `InitOptionPanel`，否则子面板 ScrollBox 为空
 - 通过 `HideAddonSubPanelsFromNativeMenu` 隐藏原生"附加组件"菜单项
 
-#### 5. 编辑界面 (GwSettingsEditMode)
+#### 6. 编辑界面 (GwSettingsEditMode)
 
 **文件**: `Modules/Settings/EditModeTab.lua` → `BuildEditModeTab()`
 
