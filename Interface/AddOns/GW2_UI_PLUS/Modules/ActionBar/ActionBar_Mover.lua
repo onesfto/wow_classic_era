@@ -4,13 +4,51 @@ if not GW then return end
 local AB = addonTable.PlusActionBar
 if not AB then return end
 local castbarProfileHooked = false
+local actionBarScaleProfileHooked = false
+local RemoveFromList
+
+local ACTIONBAR_MOVER_SETTINGS = {
+    {frame = "MainActionBar", setting = "MainActionBar_pos"},
+    {frame = "GwMultiBarBottomLeft", setting = "MultiBarBottomLeft"},
+    {frame = "GwMultiBarBottomRight", setting = "MultiBarBottomRight"},
+    {frame = "GwMultiBarRight", setting = "MultiBarRight"},
+    {frame = "GwMultiBarLeft", setting = "MultiBarLeft"},
+    {frame = "GwMultiBar5", setting = "MultiBar5"},
+    {frame = "GwMultiBar6", setting = "MultiBar6"},
+    {frame = "GwMultiBar7", setting = "MultiBar7"},
+    {frame = "GwStanceBar", setting = "StanceBar_pos"},
+    {frame = "GwTotemBar", setting = "TotemBar_pos"},
+    {frame = "GwPlusMageBar", setting = "MageBar_pos"},
+}
+
+local function IsPlusProfileDefault()
+    local defaults = addonTable.PlusProfileDefaults
+    return defaults and defaults.IsPlusProfileDefault
+        and defaults.IsPlusProfileDefault()
+end
+
+local function GetConfiguredMoverDefault(settingName, fallback)
+    local defaults = addonTable.PlusProfileDefaults
+    local getter = IsPlusProfileDefault()
+        and defaults and defaults.GetMoverDefault
+        or defaults and defaults.GetNativeMoverDefault
+    if getter then
+        local value = getter(settingName)
+        if value then return GW.CopyTable(value) end
+    end
+    local profile = GW.globalDefault and GW.globalDefault.profile
+    if profile and profile[settingName] then
+        return GW.CopyTable(profile[settingName])
+    end
+    return fallback and GW.CopyTable(fallback) or nil
+end
+
+AB.GetMoverDefault = GetConfiguredMoverDefault
+
 function AB.EnsureMoverSettings(settingName, default)
     if not GW.settings then return false end
-    if GW.globalDefault and GW.globalDefault.profile and not GW.globalDefault.profile[settingName] then
-        GW.globalDefault.profile[settingName] = GW.CopyTable(default)
-    end
-    local moverDefault = (GW.globalDefault and GW.globalDefault.profile
-        and GW.globalDefault.profile[settingName]) or default
+    local moverDefault = GetConfiguredMoverDefault(settingName, default)
+    if not moverDefault then return false end
     local savedPoint = rawget(GW.settings, settingName)
     if not savedPoint then
         GW.settings[settingName] = GW.CopyTable(moverDefault)
@@ -23,11 +61,33 @@ function AB.EnsureMoverSettings(settingName, default)
     end
     return true
 end
+
+function AB.RegisterMovableFrame(
+    frame, displayName, settingName, tags, size, frameOptions, mhf,
+    postdrag, ignoreParentSize, fallback)
+    local profile = GW.globalDefault and GW.globalDefault.profile
+    local temporaryDefault = profile and not rawget(profile, settingName)
+        and GetConfiguredMoverDefault(settingName, fallback)
+    local result
+
+    -- 原生注册函数只读取 globalDefault；临时提供缺失默认值，调用后立即清理。
+    if temporaryDefault then
+        profile[settingName] = GW.CopyTable(temporaryDefault)
+    end
+    local ok, err = pcall(function()
+        result = {GW.RegisterMovableFrame(
+            frame, displayName, settingName, tags, size, frameOptions,
+            mhf, postdrag, ignoreParentSize)}
+    end)
+    if temporaryDefault then profile[settingName] = nil end
+    if not ok then error(err, 0) end
+    return unpack(result or {})
+end
+
 function AB.ResetMoverPosition(frame)
     local mover = frame and frame.gwMover
-    local profile = GW.globalDefault and GW.globalDefault.profile
-    local defaultPoint = mover and profile and profile[mover.setting]
-        or mover and mover.defaultPoint
+    local defaultPoint = mover and GetConfiguredMoverDefault(
+        mover.setting, mover.defaultPoint)
     if not mover or not defaultPoint then return end
     local function ApplyReset()
         local saved = GW.settings[mover.setting] or {}
@@ -50,6 +110,31 @@ function AB.ResetMoverPosition(frame)
         ApplyReset()
     end
 end
+
+function AB.EnforceActionBarMoverScales()
+    if not GW.settings then return end
+    if not actionBarScaleProfileHooked and GW.globalSettings
+        and GW.globalSettings.RegisterCallback then
+        actionBarScaleProfileHooked = true
+        GW.globalSettings.RegisterCallback(
+            AB, "OnProfileChanged", AB.EnforceActionBarMoverScales)
+    end
+
+    for _, info in ipairs(ACTIONBAR_MOVER_SETTINGS) do
+        local scaleSetting = info.setting .. "_scale"
+        GW.settings[scaleSetting] = 1
+
+        local frame = _G[info.frame]
+        local mover = frame and frame.gwMover
+        if mover then
+            mover.optionScaleable = false
+            RemoveFromList(GW.scaleableFrames, mover)
+            RemoveFromList(GW.scaleableMainHudFrames, mover)
+            mover:SetScale(1)
+        end
+        if frame and frame.SetScale then frame:SetScale(1) end
+    end
+end
 function AB.RefreshNativeBarLayout()
     if InCombatLockdown() then return end
     local layoutManager = (GW.MoveHudScaleableFrame
@@ -70,12 +155,10 @@ function AB.RegisterMainBarMover()
         yOfs = GW.settings.XPBAR_ENABLED and 17 or 14,
         hasMoved = false,
     }
-    if GW.globalDefault and GW.globalDefault.profile then
-        GW.globalDefault.profile[MAINBAR_MOVER_SETTING] = GW.CopyTable(default)
-    end
     if not AB.EnsureMoverSettings(MAINBAR_MOVER_SETTING, default) then return end
-    GW.RegisterMovableFrame(bar, OPTION_SHOW_ACTION_BAR:format(1), MAINBAR_MOVER_SETTING,
-        BINDING_HEADER_ACTIONBAR, nil, {"default"})
+    AB.RegisterMovableFrame(
+        bar, OPTION_SHOW_ACTION_BAR:format(1), MAINBAR_MOVER_SETTING,
+        BINDING_HEADER_ACTIONBAR, nil, {"default"}, nil, nil, nil, default)
     bar:ClearAllPoints()
     bar:SetPoint("TOPLEFT", bar.gwMover)
     hooksecurefunc(bar, "SetPoint", function(_, _, anchor)
@@ -238,7 +321,7 @@ function AB.ApplyMainBarLayout()
     bar.gw_Width = barWidth
     AB.SyncMainBarMoverVisual(bar, margin, topInset, contentWidth, contentHeight)
 end
-local function RemoveFromList(list, value)
+function RemoveFromList(list, value)
     if type(list) ~= "table" then return end
     for index = #list, 1, -1 do
         if list[index] == value then
@@ -255,8 +338,6 @@ function AB.EnforceCastbarScale()
         GW.globalSettings.RegisterCallback(
             AB, "OnProfileChanged", AB.EnforceCastbarScale)
     end
-    local profile = GW.globalDefault and GW.globalDefault.profile
-    if profile then profile.castingbar_pos_scale = 1 end
     if GW.settings then GW.settings.castingbar_pos_scale = 1 end
 
     local mover = castbar.gwMover
@@ -504,5 +585,6 @@ function AB.InitMoverOptions()
             if GetMoverBarIndex(mover) then mover.optionScaleable = false end
         end
     end
+    AB.EnforceActionBarMoverScales()
     if addonTable.TranslateMoveHud then addonTable.TranslateMoveHud() end
 end

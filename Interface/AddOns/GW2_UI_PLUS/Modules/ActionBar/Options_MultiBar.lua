@@ -43,7 +43,10 @@ function MultiBar.AddMultiBarOptions(panel)
     local showBarOption = panel:AddOption("显示动作条", nil, {
         getter = function() return db[Prefix() .. "Shown"] end,
         setter = function(value) db[Prefix() .. "Shown"] = value end,
-        getDefault = function() return selectedBar <= 5 end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "bar" .. selectedBar .. "Shown", selectedBar <= 5)
+        end,
         callback = ApplyCurrent,
         isMasterToggle = true,
     })
@@ -59,7 +62,10 @@ function MultiBar.AddMultiBarOptions(panel)
         min = 1, max = 12, step = 1,
         getter = function() return db[Prefix() .. "Count"] end,
         setter = function(value) db[Prefix() .. "Count"] = value end,
-        getDefault = function() return 12 end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "bar" .. selectedBar .. "Count", 12)
+        end,
         callback = function() ApplyCurrent(); Utils.RefreshPanel(panel) end,
     })
     if countOption then countOption.gwPlusColumns = 2 end
@@ -69,7 +75,11 @@ function MultiBar.AddMultiBarOptions(panel)
             return math.min(db[Prefix() .. "Columns"], db[Prefix() .. "Count"])
         end,
         setter = function(value) db[Prefix() .. "Columns"] = value end,
-        getDefault = function() return selectedBar <= 3 and 6 or 1 end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "bar" .. selectedBar .. "Columns",
+                selectedBar <= 3 and 6 or 1)
+        end,
         callback = ApplyCurrent,
     })
     if columnsOption then columnsOption.gwPlusColumns = 2 end
@@ -77,7 +87,10 @@ function MultiBar.AddMultiBarOptions(panel)
         min = AB.SIZE_MIN, max = AB.SIZE_MAX, step = 1,
         getter = function() return AB.GetMultiBarSize(selectedBar) end,
         setter = function(value) AB.SetMultiBarSize(selectedBar, value) end,
-        getDefault = function() return 36 end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "bar" .. selectedBar .. "Size", 36)
+        end,
         callback = ApplyCurrent,
     })
     if sizeOption then sizeOption.gwPlusColumns = 2 end
@@ -85,7 +98,10 @@ function MultiBar.AddMultiBarOptions(panel)
         min = 0, max = 20, step = 0.1, decimalNumbers = 1,
         getter = function() return db[Prefix() .. "Spacing"] end,
         setter = function(value) db[Prefix() .. "Spacing"] = value end,
-        getDefault = function() return 2 end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "bar" .. selectedBar .. "Spacing", 2)
+        end,
         callback = ApplyCurrent,
     })
     if spacingOption then spacingOption.gwPlusColumns = 2 end
@@ -93,7 +109,10 @@ function MultiBar.AddMultiBarOptions(panel)
     panel:AddOption("显示快捷键", nil, {
         getter = function() return db[Prefix() .. "ShowHotkey"] end,
         setter = function(value) db[Prefix() .. "ShowHotkey"] = value end,
-        getDefault = function() return true end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "bar" .. selectedBar .. "ShowHotkey", true)
+        end,
         callback = ApplyCurrentText,
         groupHeaderName = "快捷键",
     })
@@ -102,7 +121,10 @@ function MultiBar.AddMultiBarOptions(panel)
         optionNames = HOTKEY_POSITION_NAMES,
         getter = function() return db[Prefix() .. "HotkeyPosition"] end,
         setter = function(value) db[Prefix() .. "HotkeyPosition"] = value end,
-        getDefault = function() return "TOPLEFT" end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "bar" .. selectedBar .. "HotkeyPosition", "TOPLEFT")
+        end,
         callback = ApplyCurrentText,
         groupHeaderName = "快捷键",
     })
@@ -111,7 +133,10 @@ function MultiBar.AddMultiBarOptions(panel)
         min = 8, max = 48, step = 1,
         getter = function() return db[Prefix() .. "HotkeySize"] end,
         setter = function(value) db[Prefix() .. "HotkeySize"] = value end,
-        getDefault = function() return 12 end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "bar" .. selectedBar .. "HotkeySize", 12)
+        end,
         callback = ApplyCurrentText,
         groupHeaderName = "快捷键",
     })
@@ -126,7 +151,10 @@ function MultiBar.AddMultiBarOptions(panel)
             min = minimum, max = maximum, step = 1,
             getter = function() return db[Prefix() .. key] end,
             setter = function(value) db[Prefix() .. key] = value end,
-            getDefault = function() return default end,
+            getDefault = function()
+                return Utils.ActionBarDefault(
+                    "bar" .. selectedBar .. key, default)
+            end,
             callback = ApplyCurrentText,
             groupHeaderName = "快捷键",
         })
@@ -136,7 +164,10 @@ function MultiBar.AddMultiBarOptions(panel)
     panel:AddOption("显示宏名称", nil, {
         getter = function() return db[Prefix() .. "ShowMacro"] end,
         setter = function(value) db[Prefix() .. "ShowMacro"] = value end,
-        getDefault = function() return false end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "bar" .. selectedBar .. "ShowMacro", false)
+        end,
         callback = ApplyCurrentText,
         groupHeaderName = "宏名称",
     })
@@ -145,7 +176,10 @@ function MultiBar.AddMultiBarOptions(panel)
         optionNames = HOTKEY_POSITION_NAMES,
         getter = function() return db[Prefix() .. "MacroPosition"] end,
         setter = function(value) db[Prefix() .. "MacroPosition"] = value end,
-        getDefault = function() return "BOTTOM" end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "bar" .. selectedBar .. "MacroPosition", "BOTTOM")
+        end,
         callback = ApplyCurrentText,
         groupHeaderName = "宏名称",
     })
@@ -154,7 +188,10 @@ function MultiBar.AddMultiBarOptions(panel)
         min = 8, max = 48, step = 1,
         getter = function() return db[Prefix() .. "MacroSize"] end,
         setter = function(value) db[Prefix() .. "MacroSize"] = value end,
-        getDefault = function() return 12 end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "bar" .. selectedBar .. "MacroSize", 12)
+        end,
         callback = ApplyCurrentText,
         groupHeaderName = "宏名称",
     })
@@ -169,7 +206,10 @@ function MultiBar.AddMultiBarOptions(panel)
             min = minimum, max = maximum, step = 1,
             getter = function() return db[Prefix() .. key] end,
             setter = function(value) db[Prefix() .. key] = value end,
-            getDefault = function() return default end,
+            getDefault = function()
+                return Utils.ActionBarDefault(
+                    "bar" .. selectedBar .. key, default)
+            end,
             callback = ApplyCurrentText,
             groupHeaderName = "宏名称",
         })
@@ -180,21 +220,38 @@ function MultiBar.AddMultiBarOptions(panel)
         local info = AB.MULTIBARS[selectedBar]
         local native = Native()
         local nativeDefaults = info and Utils.NativeDefault(info.setting, {}) or {}
-        db[prefix .. "Shown"] = selectedBar <= 5
-        db[prefix .. "Count"] = 12
-        db[prefix .. "Columns"] = nativeDefaults.ButtonsPerRow
-            or (selectedBar <= 3 and 6 or 1)
-        db[prefix .. "Spacing"] = Utils.NativeDefault("MULTIBAR_MARGIIN", 2)
-        db[prefix .. "ShowHotkey"] =
-            Utils.NativeDefault("BUTTON_ASSIGNMENTS", true)
-        db[prefix .. "HotkeyPosition"] = "TOPLEFT"
-        db[prefix .. "HotkeyX"], db[prefix .. "HotkeyY"] = 0, 0
-        db[prefix .. "HotkeySize"] = 12
-        db[prefix .. "ShowMacro"] =
-            Utils.NativeDefault("SHOWACTIONBAR_MACRO_NAME_ENABLED", false)
-        db[prefix .. "MacroPosition"] = "BOTTOM"
-        db[prefix .. "MacroX"], db[prefix .. "MacroY"] = 0, 0
-        db[prefix .. "MacroSize"] = 12
+        db[prefix .. "Shown"] = Utils.ActionBarDefault(
+            prefix .. "Shown", selectedBar <= 5)
+        db[prefix .. "Count"] = Utils.ActionBarDefault(
+            prefix .. "Count", 12)
+        db[prefix .. "Columns"] = Utils.ActionBarDefault(
+            prefix .. "Columns",
+            nativeDefaults.ButtonsPerRow or (selectedBar <= 3 and 6 or 1))
+        db[prefix .. "Spacing"] = Utils.ActionBarDefault(
+            prefix .. "Spacing",
+            Utils.NativeDefault("MULTIBAR_MARGIIN", 2))
+        db[prefix .. "ShowHotkey"] = Utils.ActionBarDefault(
+            prefix .. "ShowHotkey",
+            Utils.NativeDefault("BUTTON_ASSIGNMENTS", true))
+        db[prefix .. "HotkeyPosition"] = Utils.ActionBarDefault(
+            prefix .. "HotkeyPosition", "TOPLEFT")
+        db[prefix .. "HotkeyX"] = Utils.ActionBarDefault(
+            prefix .. "HotkeyX", 0)
+        db[prefix .. "HotkeyY"] = Utils.ActionBarDefault(
+            prefix .. "HotkeyY", 0)
+        db[prefix .. "HotkeySize"] = Utils.ActionBarDefault(
+            prefix .. "HotkeySize", 12)
+        db[prefix .. "ShowMacro"] = Utils.ActionBarDefault(
+            prefix .. "ShowMacro",
+            Utils.NativeDefault("SHOWACTIONBAR_MACRO_NAME_ENABLED", false))
+        db[prefix .. "MacroPosition"] = Utils.ActionBarDefault(
+            prefix .. "MacroPosition", "BOTTOM")
+        db[prefix .. "MacroX"] = Utils.ActionBarDefault(
+            prefix .. "MacroX", 0)
+        db[prefix .. "MacroY"] = Utils.ActionBarDefault(
+            prefix .. "MacroY", 0)
+        db[prefix .. "MacroSize"] = Utils.ActionBarDefault(
+            prefix .. "MacroSize", 12)
         if native then native.invert = nativeDefaults.invert == true end
         AB.SetMultiBarSize(selectedBar, 36)
         ApplyCurrent()

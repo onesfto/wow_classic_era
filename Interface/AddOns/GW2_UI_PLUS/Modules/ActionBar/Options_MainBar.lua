@@ -21,7 +21,9 @@ function MainBar.AddMainBarOptions(panel)
     panel:AddOption("显示主动作条", nil, {
         getter = function() return db.mainBarShown end,
         setter = function(value) db.mainBarShown = value end,
-        getDefault = function() return true end,
+        getDefault = function()
+            return Utils.ActionBarDefault("mainBarShown", true)
+        end,
         callback = ApplyLayout,
         isMasterToggle = true,
     })
@@ -30,7 +32,9 @@ function MainBar.AddMainBarOptions(panel)
         min = AB.SIZE_MIN, max = AB.SIZE_MAX, step = 1,
         getter = function() return db.mainBarSize end,
         setter = function(value) db.mainBarSize = value end,
-        getDefault = function() return defaults.mainBarSize end,
+        getDefault = function()
+            return Utils.ActionBarDefault("mainBarSize", defaults.mainBarSize)
+        end,
         callback = AB.ApplyMainBarLayout,
         groupHeaderName = "按钮",
     })
@@ -39,7 +43,10 @@ function MainBar.AddMainBarOptions(panel)
         min = 0, max = 20, step = 0.1, decimalNumbers = 1,
         getter = function() return GW.settings.MAINBAR_MARGIIN or 5 end,
         setter = function(value) GW.settings.MAINBAR_MARGIIN = value end,
-        getDefault = function() return 5 end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "MAINBAR_MARGIIN", Utils.NativeDefault("MAINBAR_MARGIIN", 5))
+        end,
         callback = AB.ApplyMainBarLayout,
         groupHeaderName = "按钮",
     })
@@ -48,7 +55,9 @@ function MainBar.AddMainBarOptions(panel)
         min = 1, max = 12, step = 1,
         getter = function() return db.mainBarCount end,
         setter = function(value) db.mainBarCount = value end,
-        getDefault = function() return defaults.mainBarCount end,
+        getDefault = function()
+            return Utils.ActionBarDefault("mainBarCount", defaults.mainBarCount)
+        end,
         callback = function() AB.ApplyMainBarLayout(); Utils.RefreshPanel(panel) end,
         groupHeaderName = "按钮",
     })
@@ -57,7 +66,10 @@ function MainBar.AddMainBarOptions(panel)
         min = 1, max = 12, step = 1,
         getter = function() return math.min(db.mainBarColumns, db.mainBarCount) end,
         setter = function(value) db.mainBarColumns = value end,
-        getDefault = function() return defaults.mainBarColumns end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "mainBarColumns", defaults.mainBarColumns)
+        end,
         callback = AB.ApplyMainBarLayout,
         groupHeaderName = "按钮",
     })
@@ -66,7 +78,10 @@ function MainBar.AddMainBarOptions(panel)
         min = 0, max = 400, step = 1,
         getter = function() return db.mainBarGlobeGap or 0 end,
         setter = function(value) db.mainBarGlobeGap = value end,
-        getDefault = function() return defaults.mainBarGlobeGap end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "mainBarGlobeGap", defaults.mainBarGlobeGap)
+        end,
         callback = AB.ApplyMainBarLayout,
         groupHeaderName = "按钮",
     })
@@ -76,7 +91,11 @@ function MainBar.AddMainBarOptions(panel)
         optionNames = {"红点", "红色覆盖", "两者", "无"},
         getter = function() return GW.settings.MAINBAR_RANGEINDICATOR end,
         setter = function(value) GW.settings.MAINBAR_RANGEINDICATOR = value end,
-        getDefault = function() return "RED_INDICATOR" end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "MAINBAR_RANGEINDICATOR",
+                Utils.NativeDefault("MAINBAR_RANGEINDICATOR", "RED_INDICATOR"))
+        end,
         callback = function() if GW.UpdateMainBarHot then GW.UpdateMainBarHot() end end,
         groupHeaderName = "按钮",
     })
@@ -85,7 +104,10 @@ function MainBar.AddMainBarOptions(panel)
     panel:AddOption("显示快捷键", nil, {
         getter = function() return db.mainBarShowHotkey end,
         setter = function(value) db.mainBarShowHotkey = value end,
-        getDefault = function() return defaults.mainBarShowHotkey end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "mainBarShowHotkey", defaults.mainBarShowHotkey)
+        end,
         callback = AB.ApplyMainBarText,
         groupHeaderName = "快捷键",
     })
@@ -94,7 +116,10 @@ function MainBar.AddMainBarOptions(panel)
         optionNames = HOTKEY_POSITION_NAMES,
         getter = function() return db.mainBarHotkeyPosition end,
         setter = function(value) db.mainBarHotkeyPosition = value end,
-        getDefault = function() return defaults.mainBarHotkeyPosition end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "mainBarHotkeyPosition", defaults.mainBarHotkeyPosition)
+        end,
         callback = AB.ApplyMainBarText,
         groupHeaderName = "快捷键",
     })
@@ -103,7 +128,10 @@ function MainBar.AddMainBarOptions(panel)
         min = 8, max = 48, step = 1,
         getter = function() return db.mainBarHotkeySize end,
         setter = function(value) db.mainBarHotkeySize = value end,
-        getDefault = function() return defaults.mainBarHotkeySize end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "mainBarHotkeySize", defaults.mainBarHotkeySize)
+        end,
         callback = AB.ApplyMainBarText,
         groupHeaderName = "快捷键",
     })
@@ -117,7 +145,9 @@ function MainBar.AddMainBarOptions(panel)
             min = -20, max = 20, step = 1,
             getter = function() return db[key] end,
             setter = function(value) db[key] = value end,
-            getDefault = function() return defaults[key] end,
+            getDefault = function()
+                return Utils.ActionBarDefault(key, defaults[key])
+            end,
             callback = AB.ApplyMainBarText,
             groupHeaderName = "快捷键",
         })
@@ -127,7 +157,10 @@ function MainBar.AddMainBarOptions(panel)
     panel:AddOption("显示宏名称", nil, {
         getter = function() return db.mainBarShowMacro end,
         setter = function(value) db.mainBarShowMacro = value end,
-        getDefault = function() return defaults.mainBarShowMacro end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "mainBarShowMacro", defaults.mainBarShowMacro)
+        end,
         callback = AB.ApplyMainBarText,
         groupHeaderName = "宏名称",
     })
@@ -136,7 +169,10 @@ function MainBar.AddMainBarOptions(panel)
         optionNames = HOTKEY_POSITION_NAMES,
         getter = function() return db.mainBarMacroPosition end,
         setter = function(value) db.mainBarMacroPosition = value end,
-        getDefault = function() return defaults.mainBarMacroPosition end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "mainBarMacroPosition", defaults.mainBarMacroPosition)
+        end,
         callback = AB.ApplyMainBarText,
         groupHeaderName = "宏名称",
     })
@@ -145,7 +181,10 @@ function MainBar.AddMainBarOptions(panel)
         min = 8, max = 48, step = 1,
         getter = function() return db.mainBarMacroSize end,
         setter = function(value) db.mainBarMacroSize = value end,
-        getDefault = function() return defaults.mainBarMacroSize end,
+        getDefault = function()
+            return Utils.ActionBarDefault(
+                "mainBarMacroSize", defaults.mainBarMacroSize)
+        end,
         callback = AB.ApplyMainBarText,
         groupHeaderName = "宏名称",
     })
@@ -160,7 +199,9 @@ function MainBar.AddMainBarOptions(panel)
             min = minimum, max = maximum, step = 1,
             getter = function() return db[key] end,
             setter = function(value) db[key] = value end,
-            getDefault = function() return defaults[key] end,
+            getDefault = function()
+                return Utils.ActionBarDefault(key, defaults[key])
+            end,
             callback = AB.ApplyMainBarText,
             groupHeaderName = "宏名称",
         })
@@ -168,22 +209,40 @@ function MainBar.AddMainBarOptions(panel)
     end
     Utils.AddResetButton(panel, function()
         db.mainBarShown = true
-        db.mainBarSize = defaults.mainBarSize
-        db.mainBarCount = defaults.mainBarCount
-        db.mainBarColumns = defaults.mainBarColumns
-        db.mainBarShowHotkey = defaults.mainBarShowHotkey
-        db.mainBarHotkeyPosition = defaults.mainBarHotkeyPosition
-        db.mainBarHotkeyX = defaults.mainBarHotkeyX
-        db.mainBarHotkeyY = defaults.mainBarHotkeyY
-        db.mainBarHotkeySize = defaults.mainBarHotkeySize
-        db.mainBarShowMacro = defaults.mainBarShowMacro
-        db.mainBarMacroPosition = defaults.mainBarMacroPosition
-        db.mainBarMacroX = defaults.mainBarMacroX
-        db.mainBarMacroY = defaults.mainBarMacroY
-        db.mainBarMacroSize = defaults.mainBarMacroSize
-        GW.settings.MAINBAR_MARGIIN = Utils.NativeDefault("MAINBAR_MARGIIN", 5)
-        GW.settings.MAINBAR_RANGEINDICATOR =
-            Utils.NativeDefault("MAINBAR_RANGEINDICATOR", "RED_INDICATOR")
+        db.mainBarShown = Utils.ActionBarDefault("mainBarShown", true)
+        db.mainBarSize = Utils.ActionBarDefault(
+            "mainBarSize", defaults.mainBarSize)
+        db.mainBarCount = Utils.ActionBarDefault(
+            "mainBarCount", defaults.mainBarCount)
+        db.mainBarColumns = Utils.ActionBarDefault(
+            "mainBarColumns", defaults.mainBarColumns)
+        db.mainBarGlobeGap = Utils.ActionBarDefault(
+            "mainBarGlobeGap", defaults.mainBarGlobeGap)
+        db.mainBarShowHotkey = Utils.ActionBarDefault(
+            "mainBarShowHotkey", defaults.mainBarShowHotkey)
+        db.mainBarHotkeyPosition = Utils.ActionBarDefault(
+            "mainBarHotkeyPosition", defaults.mainBarHotkeyPosition)
+        db.mainBarHotkeyX = Utils.ActionBarDefault(
+            "mainBarHotkeyX", defaults.mainBarHotkeyX)
+        db.mainBarHotkeyY = Utils.ActionBarDefault(
+            "mainBarHotkeyY", defaults.mainBarHotkeyY)
+        db.mainBarHotkeySize = Utils.ActionBarDefault(
+            "mainBarHotkeySize", defaults.mainBarHotkeySize)
+        db.mainBarShowMacro = Utils.ActionBarDefault(
+            "mainBarShowMacro", defaults.mainBarShowMacro)
+        db.mainBarMacroPosition = Utils.ActionBarDefault(
+            "mainBarMacroPosition", defaults.mainBarMacroPosition)
+        db.mainBarMacroX = Utils.ActionBarDefault(
+            "mainBarMacroX", defaults.mainBarMacroX)
+        db.mainBarMacroY = Utils.ActionBarDefault(
+            "mainBarMacroY", defaults.mainBarMacroY)
+        db.mainBarMacroSize = Utils.ActionBarDefault(
+            "mainBarMacroSize", defaults.mainBarMacroSize)
+        GW.settings.MAINBAR_MARGIIN = Utils.ActionBarDefault(
+            "MAINBAR_MARGIIN", Utils.NativeDefault("MAINBAR_MARGIIN", 5))
+        GW.settings.MAINBAR_RANGEINDICATOR = Utils.ActionBarDefault(
+            "MAINBAR_RANGEINDICATOR",
+            Utils.NativeDefault("MAINBAR_RANGEINDICATOR", "RED_INDICATOR"))
         if _G.MainActionBar then _G.MainActionBar:Show() end
         AB.ApplyMainBarLayout()
         Utils.ApplyFader()

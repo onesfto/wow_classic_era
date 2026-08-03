@@ -52,6 +52,7 @@ Modules/ActionBar/ActionBar_Mover.lua
 Modules/ActionBar/ActionBar_Layout.lua
 Modules/ActionBar/ActionBar.lua
 Modules/ActionBar/Layout.lua
+Modules/UnitFrames/PetFrame.lua
 Modules/ActionBar/Equipment.lua
 Modules/ActionBar/MageBar.lua
 Modules/ActionBar/Fader.lua
@@ -87,6 +88,8 @@ Modules/Settings/ComponentsTab.lua
 Modules/Settings/EditModeTab.lua
 Modules/Settings/EditModeMoverCoordinates.lua
 Modules/Settings/EditModeVehicleLeaveButton.lua
+Modules/Settings/PlusProfileDefaults.lua
+Modules/Settings/PlusProfileCard.lua
 Modules/Social/friendsFrame.lua
 Modules/Social/friendsList.lua
 Modules/Social/guildList.lua

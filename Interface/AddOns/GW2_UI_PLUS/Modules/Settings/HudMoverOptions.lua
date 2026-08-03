@@ -18,7 +18,7 @@ local CASTBAR_DEFAULT = {
     point = "BOTTOM",
     relativePoint = "BOTTOM",
     xOfs = 0,
-    yOfs = 200,
+    yOfs = 180,
     hasMoved = false,
 }
 local PLAYER_BUFF_DEFAULT = {
@@ -28,6 +28,49 @@ local PLAYER_BUFF_DEFAULT = {
     yOfs = 0,
     hasMoved = false,
 }
+local PLAYER_DEBUFF_DEFAULT = {
+    point = "CENTER",
+    relativePoint = "CENTER",
+    xOfs = -308,
+    yOfs = 100,
+    hasMoved = false,
+}
+local CLASS_POWER_DEFAULT = {
+    point = "CENTER",
+    relativePoint = "CENTER",
+    xOfs = 0,
+    yOfs = -160,
+    hasMoved = false,
+}
+local PLAYER_FRAME_DEFAULT = {
+    point = "CENTER",
+    relativePoint = "CENTER",
+    xOfs = -315,
+    yOfs = -160,
+    hasMoved = false,
+}
+local TARGET_FRAME_DEFAULT = {
+    point = "CENTER",
+    relativePoint = "CENTER",
+    xOfs = 315,
+    yOfs = -160,
+    hasMoved = false,
+}
+local PET_HAPPINESS_DEFAULT = {
+    point = "BOTTOM",
+    relativePoint = "BOTTOM",
+    xOfs = -285,
+    yOfs = 205,
+    hasMoved = false,
+}
+local PET_FEED_DEFAULT = {
+    point = "BOTTOM",
+    relativePoint = "BOTTOM",
+    xOfs = -315,
+    yOfs = 205,
+    hasMoved = false,
+}
+local PET_FRAME_DEPENDENCE = {PETBAR_ENABLED = true}
 local PLAYER_BUFFS_DEFAULT = {
     Seperate = 0,
     SortDir = "+",
@@ -56,11 +99,22 @@ local PLAYER_BUFFS_LEGACY_DEFAULT = {
     WrapAfter = 7,
     NewAuraAnimation = true,
 }
-local AURA_SCALE_SETTING = "PlayerBuffFrame_scale"
+local FIXED_SCALE_MOVERS = {
+    {frame = "GW2UIPlayerBuffs", setting = "PlayerBuffFrame"},
+    {frame = "GW2UIPlayerDebuffs", setting = "PlayerDebuffFrame"},
+    {frame = "GwPlayerUnitFrame", setting = "player_pos"},
+    {frame = "GwTargetUnitFrame", setting = "target_pos"},
+}
 
 local activeMover
 local RefreshPanel
 local auraProfileHookInstalled = false
+
+local function IsPlusProfileDefault()
+    return addonTable.PlusProfileDefaults
+        and addonTable.PlusProfileDefaults.IsPlusProfileDefault
+        and addonTable.PlusProfileDefaults.IsPlusProfileDefault()
+end
 
 local function CopyTable(source)
     if _G.GW2_ADDON and _G.GW2_ADDON.CopyTable then
@@ -71,6 +125,102 @@ local function CopyTable(source)
         copy[key] = type(value) == "table" and CopyTable(value) or value
     end
     return copy
+end
+
+local function GetPathValue(root, path)
+    if type(root) ~= "table" or type(path) ~= "string" then
+        return nil
+    end
+    local value = root
+    for key in string.gmatch(path, "[^%.]+") do
+        if type(value) ~= "table" then return nil end
+        value = value[key]
+    end
+    return value
+end
+
+local PLUS_PROFILE_OPTION_ALIASES = {
+    GW2PlusNormalPlayerFrameEnabled = "HEALTHGLOBE_ENABLED",
+}
+local PLUS_SAVED_OPTION_PATHS = {
+    GW2PlusEnergyShowValue = {
+        "GW2_UI_PLUS_PlayerStatusSV", "energyBarShowValue",
+    },
+    GW2PlusResourceShowValue = {
+        "GW2_UI_PLUS_PlayerStatusSV", "resourceBarShowValue",
+    },
+    playerBuffAurasEnabled = {
+        "GW2_UI_PLUS_SV", "playerBuffAurasEnabled",
+    },
+    playerDebuffAurasEnabled = {
+        "GW2_UI_PLUS_SV", "playerDebuffAurasEnabled",
+    },
+    energyBarWidth = {
+        "GW2_UI_PLUS_PlayerStatusSV", "energyBarWidth",
+    },
+    energyBarHeight = {
+        "GW2_UI_PLUS_PlayerStatusSV", "energyBarHeight",
+    },
+    resourceBarWidth = {
+        "GW2_UI_PLUS_PlayerStatusSV", "resourceBarWidth",
+    },
+    castbarWidth = {"GW2_UI_PLUS_ActionBarSV", "castbarWidth"},
+    castbarHeight = {"GW2_UI_PLUS_ActionBarSV", "castbarHeight"},
+}
+
+local function GetPlusOptionDefault(optionName)
+    if not IsPlusProfileDefault() or not optionName then
+        return nil, false
+    end
+
+    local defaults = addonTable.PlusProfileDefaults
+    if not defaults then return nil, false end
+
+    local profilePath = PLUS_PROFILE_OPTION_ALIASES[optionName]
+        or optionName
+    local value = GetPathValue(defaults.Profile, profilePath)
+    if value ~= nil then return CopyTable(value), true end
+
+    local path = PLUS_SAVED_OPTION_PATHS[optionName]
+    if not path then return nil, false end
+    value = defaults.SavedVariables
+    for index = 1, #path do
+        value = value and value[path[index]]
+    end
+    if value == nil then return nil, false end
+    return CopyTable(value), true
+end
+
+local function ApplyOptionValue(option, value)
+    if type(value) == "table" then value = CopyTable(value) end
+    if option.hasCheckbox and type(option.optionsList) == "table"
+        and type(value) == "table" then
+        for _, optionKey in ipairs(option.optionsList) do
+            if value[optionKey] ~= nil then
+                option.set(value[optionKey], optionKey)
+            end
+        end
+        if option.callback then option.callback() end
+        return
+    end
+
+    option.set(value)
+    if not option.callback then return end
+    if option.optionType == "text" then
+        local widget = option.__widget or option.__gwPlusWidget
+        local input = widget and widget.inputFrame and widget.inputFrame.input
+        if input then input:SetText(value or "") end
+        if input then option.callback(input) end
+        return
+    end
+    option.callback(value, option.optionName)
+end
+
+local function GetPlusMoverDefault(settingName, fallback)
+    local defaults = addonTable.PlusProfileDefaults
+    local value = defaults and defaults.Profile
+        and defaults.Profile[settingName]
+    return value or fallback
 end
 
 local function RestoreOptionDefault(option)
@@ -85,18 +235,7 @@ local function RestoreOptionDefault(option)
         if option.callback then option.callback() end
         return
     end
-    local value = option.getDefault()
-    if type(value) == "table" then value = CopyTable(value) end
-    option.set(value)
-    if not option.callback then return end
-    if option.optionType == "text" then
-        local widget = option.__widget or option.__gwPlusWidget
-        local input = widget and widget.inputFrame and widget.inputFrame.input
-        if input then input:SetText(value or "") end
-        if input then option.callback(input) end
-        return
-    end
-    option.callback(value, option.optionName)
+    ApplyOptionValue(option, option.getDefault())
 end
 
 local function SetInline(option)
@@ -151,7 +290,8 @@ local function ResetHudMover(frameName, settingName, defaultPoint)
     local GW = _G.GW2_ADDON
     local frame, mover = GetMover(frameName)
     local profile = GW and GW.globalDefault and GW.globalDefault.profile
-    local point = defaultPoint or (profile and profile[settingName])
+    local point = (IsPlusProfileDefault() and defaultPoint)
+        or (profile and profile[settingName])
     if not GW or not GW.settings or not point then
         return
     end
@@ -188,11 +328,14 @@ end
 
 local function ApplyMoverDefault(frameName, settingName, defaultPoint)
     local GW = _G.GW2_ADDON
-    local profile = GW and GW.globalDefault and GW.globalDefault.profile
-    if not profile or not defaultPoint then return end
+    if not GW or not GW.settings or not IsPlusProfileDefault()
+        or not defaultPoint then
+        return
+    end
 
-    profile[settingName] = CopyTable(defaultPoint)
-    local saved = GW.settings and GW.settings[settingName]
+    local frame, mover = GetMover(frameName)
+    if mover then mover.defaultPoint = CopyTable(defaultPoint) end
+    local saved = rawget(GW.settings, settingName)
     if type(saved) ~= "table" or saved.hasMoved ~= true then
         ResetHudMover(frameName, settingName, defaultPoint)
     end
@@ -207,7 +350,13 @@ local function RestorePanelDefaults(
     end
     local function Apply()
         for _, option in ipairs(options) do
-            RestoreOptionDefault(option)
+            local value, hasPlusDefault =
+                GetPlusOptionDefault(option.optionName)
+            if hasPlusDefault and option.set then
+                ApplyOptionValue(option, value)
+            else
+                RestoreOptionDefault(option)
+            end
         end
         ResetHudMover(frameName, settingName, defaultPoint)
         RefreshPanel(panel)
@@ -238,16 +387,13 @@ end
 
 local function ApplyPlayerBuffSettingsDefault()
     local GW = _G.GW2_ADDON
-    local profile = GW and GW.globalDefault and GW.globalDefault.profile
-    if not profile then return end
+    if not GW or not IsPlusProfileDefault() then return end
 
-    profile.PlayerBuffs = profile.PlayerBuffs or {}
-    for key, value in pairs(PLAYER_BUFFS_DEFAULT) do
-        profile.PlayerBuffs[key] = value
+    local current = rawget(GW.settings, "PlayerBuffs")
+    if type(current) ~= "table" then
+        current = {}
+        GW.settings.PlayerBuffs = current
     end
-
-    local current = GW.settings and GW.settings.PlayerBuffs
-    if type(current) ~= "table" then return end
 
     local changed = false
     for key, value in pairs(PLAYER_BUFFS_DEFAULT) do
@@ -279,11 +425,12 @@ end
 
 local function ApplyPlayerBuffScale()
     local GW = _G.GW2_ADDON
-    local frame = _G.GW2UIPlayerBuffs
-    local profile = GW and GW.globalDefault and GW.globalDefault.profile
-    if profile then profile[AURA_SCALE_SETTING] = 1 end
-    if GW and GW.settings then GW.settings[AURA_SCALE_SETTING] = 1 end
-    if not GW or not frame then return end
+    if GW and GW.settings then
+        for _, info in ipairs(FIXED_SCALE_MOVERS) do
+            GW.settings[info.setting .. "_scale"] = 1
+        end
+    end
+    if not GW then return end
 
     if GW.globalSettings and GW.globalSettings.RegisterCallback
         and not auraProfileHookInstalled then
@@ -292,13 +439,20 @@ local function ApplyPlayerBuffScale()
             addonTable, "OnProfileChanged", ApplyPlayerBuffScale)
     end
 
-    frame:SetScale(1)
-    local mover = frame.gwMover
-    if not mover then return end
-    mover.optionScaleable = false
-    RemoveFromList(GW.scaleableFrames, mover)
-    RemoveFromList(GW.scaleableMainHudFrames, mover)
-    mover:SetScale(1)
+    if InCombatLockdown and InCombatLockdown() then return end
+    for _, info in ipairs(FIXED_SCALE_MOVERS) do
+        local frame = _G[info.frame]
+        if frame then
+            frame:SetScale(1)
+            local mover = frame.gwMover
+            if mover then
+                mover.optionScaleable = false
+                RemoveFromList(GW.scaleableFrames, mover)
+                RemoveFromList(GW.scaleableMainHudFrames, mover)
+                mover:SetScale(1)
+            end
+        end
+    end
 end
 
 function addonTable.RestorePlayerCastbarDefaults(onComplete)
@@ -312,7 +466,8 @@ function addonTable.RestorePlayerCastbarDefaults(onComplete)
     end
     if not panel then return false end
     RestorePanelDefaults(
-        panel, "GwCastingBarPlayer", "castingbar_pos", nil, onComplete)
+        panel, "GwCastingBarPlayer", "castingbar_pos", CASTBAR_DEFAULT,
+        onComplete)
     return true
 end
 
@@ -399,21 +554,20 @@ end
 
 local function ApplyMinimapDefault()
     local GW = _G.GW2_ADDON
-    local profile = GW and GW.globalDefault and GW.globalDefault.profile
-    local saved = GW and GW.settings and GW.settings.MinimapPos
-    if not profile then return end
-    profile.MinimapPos = CopyTable(MINIMAP_DEFAULT)
-    if type(saved) == "table" and saved.hasMoved == false then
+    local saved = GW and GW.settings and rawget(GW.settings, "MinimapPos")
+    if not GW or not IsPlusProfileDefault() then return end
+    if type(saved) ~= "table" or saved.hasMoved ~= true then
         ResetHudMover("Minimap", "MinimapPos", MINIMAP_DEFAULT)
     end
 end
 
 local function CreateMoverControls(
     panel, frameName, settingName, defaultPoint, restorePanel,
-    restoreOptions)
+    restoreOptions, dependence)
     local mover = SetInline(panel:AddOptionButton(
         "解锁/锁定", "解锁后可拖动组件；再次点击即可锁定。", {
             callback = function() ToggleHudMover(frameName) end,
+            dependence = dependence,
         }))
     if mover then mover.gwPlusMoverControl = true end
     local resetLabel = restorePanel and "恢复默认" or "重置位置"
@@ -438,6 +592,7 @@ local function CreateMoverControls(
                 end
             end,
             isNegativeButton = true,
+            dependence = dependence,
         }))
     if reset then reset.gwPlusMoverControl = true end
     return mover, reset
@@ -458,12 +613,13 @@ local function AddMoverControls(
 end
 
 local function AddViewMoverControls(
-    panel, view, frameName, settingName, defaultPoint)
+    panel, view, frameName, settingName, defaultPoint, dependence)
     if not panel or not view or view.gwPlusMoverControls then return end
     local originalOptions = panel.gwOptions
     panel.gwOptions = {}
     local mover, reset = CreateMoverControls(
-        panel, frameName, settingName, defaultPoint, true, view.options)
+        panel, frameName, settingName, defaultPoint, true, view.options,
+        dependence)
     panel.gwOptions = originalOptions
     if not mover or not reset then return end
     view.options[#view.options + 1] = mover
@@ -505,12 +661,28 @@ function addonTable.BuildHudMoverOptions(settingsTab)
     local resources = tab.gwPlusPlayerResourcePanels or {}
     addonTable.gwPlusPlayerCastbarPanel = resources.gw2_plus_player_castbar
     addonTable.gwPlusPlayerEnergyPanel = resources.gw2_plus_player_energy
+    local playerDefault = GetPlusMoverDefault(
+        "player_pos", PLAYER_FRAME_DEFAULT)
+    local debuffDefault = GetPlusMoverDefault(
+        "PlayerDebuffFrame", PLAYER_DEBUFF_DEFAULT)
+    local classPowerDefault = GetPlusMoverDefault(
+        "ClasspowerBar_pos", CLASS_POWER_DEFAULT)
+    local targetDefault = GetPlusMoverDefault(
+        "target_pos", TARGET_FRAME_DEFAULT)
     ApplyMinimapDefault()
     ApplyCastbarDefault()
     ApplyEnergyBarDefault()
     ApplyPlayerBuffSettingsDefault()
     ApplyMoverDefault(
         "GW2UIPlayerBuffs", "PlayerBuffFrame", PLAYER_BUFF_DEFAULT)
+    ApplyMoverDefault(
+        "GW2UIPlayerDebuffs", "PlayerDebuffFrame", debuffDefault)
+    ApplyMoverDefault(
+        "GwPlayerClassPower", "ClasspowerBar_pos", classPowerDefault)
+    ApplyMoverDefault(
+        "GwPlayerUnitFrame", "player_pos", playerDefault)
+    ApplyMoverDefault(
+        "GwTargetUnitFrame", "target_pos", targetDefault)
     ApplyPlayerBuffScale()
     local microPanel = pages and pages.hud_microbar
     local minimapPanel = pages and pages.hud_minimap
@@ -520,32 +692,35 @@ function addonTable.BuildHudMoverOptions(settingsTab)
         minimapPanel, "Minimap", "MinimapPos", MINIMAP_DEFAULT)
     AddMoverControls(
         pages.player_general,
-        "GwPlayerUnitFrame", "player_pos", nil, true, false)
+        "GwPlayerUnitFrame", "player_pos", playerDefault, true, false)
     local auraPanel = pages.player_aura
     local auraViews = auraPanel and auraPanel.__gwPlusAuraViews
     if auraViews then
         AddAuraMoverControls(
             auraPanel, auraViews.buff,
-            "GW2UIPlayerBuffs", "PlayerBuffFrame")
+            "GW2UIPlayerBuffs", "PlayerBuffFrame", PLAYER_BUFF_DEFAULT)
         AddAuraMoverControls(
             auraPanel, auraViews.debuff,
-            "GW2UIPlayerDebuffs", "PlayerDebuffFrame")
+            "GW2UIPlayerDebuffs", "PlayerDebuffFrame", debuffDefault)
     end
     AddMoverControls(
         resources.gw2_plus_player_castbar,
-        "GwCastingBarPlayer", "castingbar_pos", nil, true, false)
+        "GwCastingBarPlayer", "castingbar_pos", CASTBAR_DEFAULT,
+        true, false)
     AddMoverControls(
         resources.gw2_plus_player_energy,
-        "GwPlayerPowerBar", "PowerBar_pos", nil, true, false)
+        "GwPlayerPowerBar", "PowerBar_pos", ENERGY_BAR_DEFAULT,
+        true, false)
     AddMoverControls(
         resources.gw2_plus_player_resource,
-        "GwPlayerClassPower", "ClasspowerBar_pos", nil, true, false)
+        "GwPlayerClassPower", "ClasspowerBar_pos", classPowerDefault,
+        true, false)
     local targetViews = pages.target_general
         and pages.target_general.__gwPlusTargetViews
     AddViewMoverControls(
         pages.target_general,
         targetViews and targetViews.target_general,
-        "GwTargetUnitFrame", "target_pos", nil)
+        "GwTargetUnitFrame", "target_pos", targetDefault)
     local targetTargetState = pages.target_of_target
         and pages.target_of_target.__gwPlusTargetTargetFaderState
     AddViewMoverControls(
@@ -557,7 +732,17 @@ function addonTable.BuildHudMoverOptions(settingsTab)
     AddViewMoverControls(
         pages.player_pet,
         petState and petState.views.general,
-        "GwPlayerPetFrame", "pet_pos", nil)
+        "GwPlayerPetFrame", "pet_pos", nil, PET_FRAME_DEPENDENCE)
+    AddViewMoverControls(
+        pages.player_pet,
+        petState and petState.views.happiness,
+        "GwPlusPetHappiness", "PetHappiness_pos", PET_HAPPINESS_DEFAULT,
+        PET_FRAME_DEPENDENCE)
+    AddViewMoverControls(
+        pages.player_pet,
+        petState and petState.views.feed,
+        "GwPlusPetFeed", "PetFeed_pos", PET_FEED_DEFAULT,
+        PET_FRAME_DEPENDENCE)
     AddPanelRestoreControl(resources.gw2_plus_player_globe)
     return true
 end

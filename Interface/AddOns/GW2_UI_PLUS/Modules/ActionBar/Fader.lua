@@ -11,7 +11,6 @@ local FADE_OUT_TIME = 0.38
 local UPDATE_INTERVAL = 0.1
 local db
 local fader
-local petHolder
 local delayTimer
 local gridShown = false
 local wantShown
@@ -215,31 +214,6 @@ UpdateBlingState = function(alpha)
         end
     end
 end
-local function ReparentPetButtons()
-    if not petHolder then return end
-    if AB.QueueOutOfCombat("petReparent", ReparentPetButtons) then return end
-    for i = 1, (NUM_PET_ACTION_SLOTS or 10) do
-        local button = _G["PetActionButton" .. i]
-        if button and button:GetParent() ~= petHolder then
-            button:SetParent(petHolder)
-        end
-    end
-end
-local function EnsurePetHolder()
-    if petHolder then return petHolder end
-    local petFrame = _G.GwPlayerPetFrame
-    if not petFrame then return end
-    petHolder = CreateFrame("Frame", "GwPlusPetBarHolder", petFrame)
-    petHolder:SetAllPoints(petFrame)
-    petHolder:SetFrameStrata(petFrame:GetFrameStrata())
-    petHolder:SetFrameLevel(petFrame:GetFrameLevel() + 4)
-    petHolder.gwPlusOrigParent = petFrame
-    if petFrame.SetActionButtonPositionAndStyle then
-        hooksecurefunc(petFrame, "SetActionButtonPositionAndStyle", ReparentPetButtons)
-    end
-    ReparentPetButtons()
-    return petHolder
-end
 local CONDITION_EVENTS = {
     keepInCombat = {"PLAYER_REGEN_ENABLED", "PLAYER_REGEN_DISABLED"},
 }
@@ -260,7 +234,8 @@ function Fader.UpdateTargets()
     if AB.QueueOutOfCombat("faderTargets", Fader.UpdateTargets) then return end
     for _, target in ipairs(TARGETS) do
         if target.key == "fadePetBar" and Fader.IsTargetEligible(target) then
-            EnsurePetHolder()
+            local layout = addonTable.PlusActionBarLayout
+            if layout and layout.EnsurePetBar then layout.EnsurePetBar() end
         end
         local frame = _G[target.frame]
         if frame then
@@ -368,7 +343,7 @@ function Fader.PrintDiagnostics()
         tostring(db.fadeEnable), fader:GetAlpha(), db.fadeAlpha, db.fadeDelay))
     Notice(format("  轮询=%s  当前判定=%s  拖拽中=%s",
         fader:GetScript("OnUpdate") and "开" or "|cffcc6666关|r", tostring(wantShown), tostring(gridShown)))
-    Notice(format("  该亮吗：保持全亮条件=%s  鼠标在条上=%s",
+    Notice(format("  该亮吗：战斗中保持显示=%s  鼠标在条上=%s",
         tostring(ShouldKeepShown()), tostring(IsMouseOverAnyBar())))
     for _, target in ipairs(TARGETS) do
         local frame = _G[target.frame]

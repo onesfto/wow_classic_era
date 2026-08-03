@@ -12,6 +12,14 @@ function TotemBar.AddTotemBarOptions(panel)
     if not AB then return end
     local Utils = addonTable.ActionBarOptionsUtils
     if not Utils then return end
+    local function Native(key, fallback)
+        local defaults = Utils.NativeDefault("TotemBar", {})
+        return defaults[key] ~= nil and defaults[key] or fallback
+    end
+    local function Default(key, fallback)
+        return Utils.ActionBarDefault(
+            "TotemBar." .. key, Native(key, fallback))
+    end
 
     local applyVisibility = function()
         if _G.GwTotemBar then _G.GwTotemBar:UpdateVisibility() end
@@ -23,7 +31,7 @@ function TotemBar.AddTotemBarOptions(panel)
     panel:AddOption("显示图腾条", nil, {
         getter = function() return GW.settings.TotemBar.enabled end,
         setter = function(value) GW.settings.TotemBar.enabled = value end,
-        getDefault = function() return true end,
+        getDefault = function() return Default("enabled", true) end,
         callback = applyVisibility,
         isMasterToggle = true,
     })
@@ -32,7 +40,9 @@ function TotemBar.AddTotemBarOptions(panel)
         optionNames = {"水平", "垂直"},
         getter = function() return GW.settings.TotemBar.growDirection end,
         setter = function(value) GW.settings.TotemBar.growDirection = value end,
-        getDefault = function() return "HORIZONTAL" end,
+        getDefault = function()
+            return Default("growDirection", "HORIZONTAL")
+        end,
         callback = applyLayout,
     })
     panel:AddOptionDropdown("排序方向", nil, {
@@ -40,14 +50,14 @@ function TotemBar.AddTotemBarOptions(panel)
         optionNames = {"升序", "降序"},
         getter = function() return GW.settings.TotemBar.sortDirection end,
         setter = function(value) GW.settings.TotemBar.sortDirection = value end,
-        getDefault = function() return "ASC" end,
+        getDefault = function() return Default("sortDirection", "ASC") end,
         callback = applyLayout,
     })
     local sizeOption = panel:AddOptionSlider("尺寸", nil, {
         min = AB.SIZE_MIN, max = AB.SIZE_MAX, step = 1, decimalNumbers = 0,
         getter = function() return GW.settings.TotemBar.buttonSize end,
         setter = function(value) GW.settings.TotemBar.buttonSize = value end,
-        getDefault = function() return 32 end,
+        getDefault = function() return Default("buttonSize", 32) end,
         callback = applyLayout,
     })
     if sizeOption then sizeOption.gwPlusColumns = 2 end
@@ -55,17 +65,18 @@ function TotemBar.AddTotemBarOptions(panel)
         min = 0, max = 20, step = 1, decimalNumbers = 0,
         getter = function() return GW.settings.TotemBar.spacing end,
         setter = function(value) GW.settings.TotemBar.spacing = value end,
-        getDefault = function() return 2 end,
+        getDefault = function() return Default("spacing", 2) end,
         callback = applyLayout,
     })
     if spacingOption then spacingOption.gwPlusColumns = 2 end
     Utils.AddResetButton(panel, function()
-        local totemDefaults = Utils.NativeDefault("TotemBar", {})
-        GW.settings.TotemBar.enabled = true
-        GW.settings.TotemBar.growDirection = totemDefaults.growDirection or "HORIZONTAL"
-        GW.settings.TotemBar.sortDirection = totemDefaults.sortDirection or "ASC"
-        GW.settings.TotemBar.buttonSize = totemDefaults.buttonSize or 32
-        GW.settings.TotemBar.spacing = totemDefaults.spacing or 2
+        GW.settings.TotemBar.enabled = Default("enabled", true)
+        GW.settings.TotemBar.growDirection =
+            Default("growDirection", "HORIZONTAL")
+        GW.settings.TotemBar.sortDirection =
+            Default("sortDirection", "ASC")
+        GW.settings.TotemBar.buttonSize = Default("buttonSize", 32)
+        GW.settings.TotemBar.spacing = Default("spacing", 2)
         applyVisibility()
         applyLayout()
         Utils.ResetMover(_G.GwTotemBar)

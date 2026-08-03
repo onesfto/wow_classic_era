@@ -410,6 +410,18 @@ function Utils.NativeDefault(key, fallback)
     local value = profile and profile[key]
     return value ~= nil and value or fallback
 end
+function Utils.ActionBarDefault(key, fallback)
+    local defaults = addonTable.PlusProfileDefaults
+    if defaults and defaults.IsPlusProfileDefault
+        and defaults.IsPlusProfileDefault()
+        and defaults.GetActionBarDefault then
+        local value = defaults.GetActionBarDefault(key)
+        if value ~= nil then return value end
+    end
+    local value = Utils.NativeDefault(key, nil)
+    if value ~= nil then return value end
+    return fallback
+end
 function Utils.AddResetButton(panel, callback)
     local option = panel:AddOptionButton("恢复默认", "恢复当前页面的设置；有对应动作条时，也会移回默认位置。", {
         callback = function()

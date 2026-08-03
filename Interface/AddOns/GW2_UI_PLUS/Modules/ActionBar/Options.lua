@@ -140,39 +140,6 @@ local function BuildPanel(parent)
         dependence = fadeDep,
     })
     if optDelay then optDelay.optionName = "GW2PlusAB_FadeDelay" end
-    panel:AddSubGroupHeader("这些时候保持全亮")
-    panel:AddOption("战斗中", nil, {
-        getter = function() return db.keepInCombat end,
-        setter = function(value) db.keepInCombat = value end,
-        getDefault = function() return defaults.keepInCombat end,
-        callback = Refresh,
-        dependence = fadeDep,
-        groupHeaderName = "这些时候保持全亮",
-    })
-    panel:AddOption("有目标时", nil, {
-        getter = function() return db.keepOnTarget end,
-        setter = function(value) db.keepOnTarget = value end,
-        getDefault = function() return defaults.keepOnTarget end,
-        callback = Refresh,
-        dependence = fadeDep,
-        groupHeaderName = "这些时候保持全亮",
-    })
-    panel:AddOption("施法或引导时", nil, {
-        getter = function() return db.keepOnCasting end,
-        setter = function(value) db.keepOnCasting = value end,
-        getDefault = function() return defaults.keepOnCasting end,
-        callback = Refresh,
-        dependence = fadeDep,
-        groupHeaderName = "这些时候保持全亮",
-    })
-    panel:AddOption("生命值不满时", nil, {
-        getter = function() return db.keepOnHealth end,
-        setter = function(value) db.keepOnHealth = value end,
-        getDefault = function() return defaults.keepOnHealth end,
-        callback = Refresh,
-        dependence = fadeDep,
-        groupHeaderName = "这些时候保持全亮",
-    })
     panel:AddSubGroupHeader("作用于哪些条")
     local fadeBars = {
         {key = "fadeBar1", name = "动作条 1（主动作条）"},

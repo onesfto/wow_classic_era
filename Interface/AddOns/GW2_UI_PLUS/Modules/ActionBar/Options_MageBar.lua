@@ -16,10 +16,15 @@ function MageBar.AddMageOptions(panel)
     local db, defaults = AB.InitDB(), AB.defaults
     local MageBar = addonTable.PlusMageBar
     local isMage = select(2, UnitClass("player")) == "MAGE"
+    local function Default(key, fallback)
+        return Utils.ActionBarDefault(key, fallback)
+    end
     local enableOption = panel:AddOption("显示法师动作条", nil, {
         getter = function() return isMage and db.mageBarEnable end,
         setter = function(value) db.mageBarEnable = value end,
-        getDefault = function() return defaults.mageBarEnable end,
+        getDefault = function()
+            return Default("mageBarEnable", defaults.mageBarEnable)
+        end,
         callback = function() if MageBar then MageBar.Toggle() end; Utils.ApplyFader() end,
         isMasterToggle = true,
     })
@@ -32,7 +37,9 @@ function MageBar.AddMageOptions(panel)
     local verticalOption = panel:AddOption("竖向排列", nil, {
         getter = function() return db.mageBarVertical end,
         setter = function(value) db.mageBarVertical = value end,
-        getDefault = function() return defaults.mageBarVertical end,
+        getDefault = function()
+            return Default("mageBarVertical", defaults.mageBarVertical)
+        end,
         callback = function() if MageBar then MageBar.Update() end end,
         dependence = mageDep,
     })
@@ -48,7 +55,9 @@ function MageBar.AddMageOptions(panel)
         local option = panel:AddOption(name, nil, {
             getter = function() return db[key] end,
             setter = function(value) db[key] = value end,
-            getDefault = function() return defaults[key] end,
+            getDefault = function()
+                return Default(key, defaults[key])
+            end,
             callback = function() if MageBar then MageBar.Update() end end,
             dependence = mageDep,
         })
@@ -61,7 +70,9 @@ function MageBar.AddMageOptions(panel)
         min = AB.SIZE_MIN, max = AB.SIZE_MAX, step = 1,
         getter = function() return db.mageBarSize end,
         setter = function(value) db.mageBarSize = value end,
-        getDefault = function() return defaults.mageBarSize end,
+        getDefault = function()
+            return Default("mageBarSize", defaults.mageBarSize)
+        end,
         callback = function() if MageBar then MageBar.UpdateSize() end end,
         dependence = mageDep,
     })
@@ -72,7 +83,7 @@ function MageBar.AddMageOptions(panel)
             "mageBarTeleport", "mageBarPortal", "mageBarFood",
             "mageBarWater", "mageBarGem",
         }) do
-            db[key] = defaults[key]
+            db[key] = Default(key, defaults[key])
         end
         if MageBar then MageBar.Update() end
         Utils.ApplyFader()

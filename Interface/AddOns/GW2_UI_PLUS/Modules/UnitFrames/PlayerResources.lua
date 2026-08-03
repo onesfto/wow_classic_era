@@ -18,6 +18,7 @@ local STATUS_DEFAULTS = {
     energyBarWidth = 300,
     energyBarHeight = 15,
     resourceBarShowValue = true,
+    resourceBarWidth = 300,
 }
 local MOVED_GENERAL_OPTION_NAMES = {
     HEALTHGLOBE_ENABLED = true,
@@ -52,6 +53,9 @@ local ApplyEnergyBarSize
 local ApplyEnergyBarScale
 local GetEnergyBarSize
 local SetEnergyBarSize
+local ApplyResourceBarSize
+local GetResourceBarWidth
+local SetResourceBarWidth
 
 local function GetCastbarDefaultWidth()
     return AB and AB.defaults and AB.defaults.castbarWidth or 300
@@ -68,13 +72,24 @@ InitStatusDB = function()
             GW2_UI_PLUS_PlayerStatusSV[key] = value
         end
     end
-    if GW2_UI_PLUS_PlayerStatusSV.energyBarWidth < 100
-        or GW2_UI_PLUS_PlayerStatusSV.energyBarWidth > 600 then
+    local energyWidth = tonumber(GW2_UI_PLUS_PlayerStatusSV.energyBarWidth)
+    if not energyWidth or energyWidth < 100 or energyWidth > 600 then
         GW2_UI_PLUS_PlayerStatusSV.energyBarWidth = STATUS_DEFAULTS.energyBarWidth
+    else
+        GW2_UI_PLUS_PlayerStatusSV.energyBarWidth = energyWidth
     end
-    if GW2_UI_PLUS_PlayerStatusSV.energyBarHeight < 1
-        or GW2_UI_PLUS_PlayerStatusSV.energyBarHeight > 100 then
+    local energyHeight = tonumber(GW2_UI_PLUS_PlayerStatusSV.energyBarHeight)
+    if not energyHeight or energyHeight < 1 or energyHeight > 100 then
         GW2_UI_PLUS_PlayerStatusSV.energyBarHeight = STATUS_DEFAULTS.energyBarHeight
+    else
+        GW2_UI_PLUS_PlayerStatusSV.energyBarHeight = energyHeight
+    end
+    local resourceWidth = tonumber(
+        GW2_UI_PLUS_PlayerStatusSV.resourceBarWidth)
+    if not resourceWidth or resourceWidth < 100 or resourceWidth > 600 then
+        GW2_UI_PLUS_PlayerStatusSV.resourceBarWidth = STATUS_DEFAULTS.resourceBarWidth
+    else
+        GW2_UI_PLUS_PlayerStatusSV.resourceBarWidth = resourceWidth
     end
     return GW2_UI_PLUS_PlayerStatusSV
 end
@@ -205,9 +220,6 @@ ApplyEnergyBarScale = function()
     local bar = _G.GwPlayerPowerBar
     local function Apply()
         if GW.settings then GW.settings.PowerBar_pos_scale = 1 end
-        if GW.globalDefault and GW.globalDefault.profile then
-            GW.globalDefault.profile.PowerBar_pos_scale = 1
-        end
         if not bar then return end
         if bar.SetScale then bar:SetScale(1) end
         if bar.gwMover then
@@ -254,6 +266,87 @@ end
 addonTable.GetPlayerEnergyBarSize = GetEnergyBarSize
 addonTable.SetPlayerEnergyBarSize = SetEnergyBarSize
 addonTable.ApplyPlayerEnergyBarScale = ApplyEnergyBarScale
+
+local function ApplyResourceBarScale()
+    if not GW or not GW.settings then return end
+    GW.settings.ClasspowerBar_pos_scale = 1
+
+    local classPower = _G.GwPlayerClassPower
+    if not classPower then return end
+    classPower:SetScale(1)
+    local mover = classPower.gwMover
+    if not mover then return end
+    mover.optionScaleable = false
+    RemoveFromScaleList(GW.scaleableFrames, mover)
+    RemoveFromScaleList(GW.scaleableMainHudFrames, mover)
+    mover:SetScale(1)
+end
+
+local function GetResourceBars(classPower)
+    local bars = {
+        classPower.defaultResourceBar,
+        classPower.customResourceBar,
+        classPower.exbar,
+        classPower.exbarSecret,
+        classPower.lmb,
+        classPower.lmbSecret,
+    }
+    return bars
+end
+
+local function CaptureResourceBarRatio(bar)
+    if bar.gwPlusResourceBarRatio then
+        return bar.gwPlusResourceBarRatio
+    end
+    local width, height = bar:GetSize()
+    if not width or not height or width <= 0 or height <= 0 then
+        return nil
+    end
+    bar.gwPlusResourceBarRatio = height / width
+    return bar.gwPlusResourceBarRatio
+end
+
+ApplyResourceBarSize = function()
+    local status = InitStatusDB()
+    local width = tonumber(status.resourceBarWidth)
+        or STATUS_DEFAULTS.resourceBarWidth
+    ApplyResourceBarScale()
+
+    local classPower = _G.GwPlayerClassPower
+    if not classPower then return end
+    for _, bar in ipairs(GetResourceBars(classPower)) do
+        if bar then
+            local ratio = CaptureResourceBarRatio(bar)
+            if ratio then
+                local height = math.max(1, width * ratio)
+                bar:SetSize(width, height)
+                if bar.decay then
+                    bar.decay:SetSize(width, height)
+                end
+                if bar.runicmask then
+                    bar.runicmask:SetSize(width, height)
+                end
+            end
+        end
+    end
+end
+
+GetResourceBarWidth = function()
+    return tonumber(InitStatusDB().resourceBarWidth)
+        or STATUS_DEFAULTS.resourceBarWidth
+end
+
+SetResourceBarWidth = function(width, apply)
+    width = tonumber(width)
+    if width then
+        InitStatusDB().resourceBarWidth = math.max(100, math.min(600, width))
+    end
+    if apply ~= false then ApplyResourceBarSize() end
+end
+
+addonTable.GetPlayerResourceBarWidth = GetResourceBarWidth
+addonTable.SetPlayerResourceBarWidth = SetResourceBarWidth
+addonTable.ApplyPlayerResourceBarSize = ApplyResourceBarSize
 local function ApplyEnergyValueVisibility()
     local show = InitStatusDB().energyBarShowValue == true
     local bars = {
@@ -330,6 +423,7 @@ end
 local function QueueValueRefresh()
     C_Timer.After(0, function()
         ApplyEnergyBarSize()
+        ApplyResourceBarSize()
         ApplyValueVisibility()
         if addonTable.PlusEnergyTicker then
             addonTable.PlusEnergyTicker.Refresh()
@@ -791,6 +885,24 @@ local function CreateResourcePanels(
         })
     SetOptionColumns(
         resourceValue, 2, "GW2PlusResourceShowValue")
+    local resourceWidth = panel:AddOptionSlider(
+        "宽度", nil, {
+            min = 100,
+            max = 600,
+            step = 1,
+            decimalNumbers = 0,
+            getter = GetResourceBarWidth,
+            setter = function(value)
+                SetResourceBarWidth(value, false)
+            end,
+            getDefault = function()
+                return STATUS_DEFAULTS.resourceBarWidth
+            end,
+            callback = ApplyResourceBarSize,
+            dependence = {CLASS_POWER = true},
+            groupHeaderName = "资源条",
+        })
+    SetOptionColumns(resourceWidth, nil, "resourceBarWidth")
     AddClonedOption(
         panel, options.anchor, "锚点", "资源条", 2)
     AddClonedOption(
@@ -914,6 +1026,7 @@ local function PreparePlayerResourcePanel(
     InstallValueHooks()
     InstallProfileHook()
     SyncAdditionalEnergyBar()
+    ApplyResourceBarSize()
     QueueValueRefresh()
     if RefreshResourcePanels then RefreshResourcePanels() end
     return panels

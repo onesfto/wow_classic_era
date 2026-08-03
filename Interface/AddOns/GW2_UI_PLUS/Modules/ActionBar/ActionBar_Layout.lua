@@ -817,6 +817,19 @@ end
 local function SetNativeMoverResetHandler(options, mover)
     if not options or not options.default then return end
     local GW = _G.GW2_ADDON
+    local actionBarMover = GetMoverBarIndex(mover)
+        or (mover and (mover.setting == "StanceBar_pos"
+            or mover.setting == "TotemBar_pos"
+            or mover.setting == "MageBar_pos"))
+    if actionBarMover then
+        options.default:SetScript("OnClick", function()
+            if AB.ResetMoverPosition then
+                AB.ResetMoverPosition(mover.parent)
+            end
+            AB.RefreshMoverOptionPanel()
+        end)
+        return
+    end
     if IsEnergyBarMover(mover) then
         options.default:SetScript("OnClick", function()
             local restore = addonTable.RestorePlayerEnergyBarDefaults
@@ -937,6 +950,9 @@ function AB.InitMoverOptions()
                 mover.optionScaleable = false
             end
         end
+    end
+    if AB.EnforceActionBarMoverScales then
+        AB.EnforceActionBarMoverScales()
     end
     if addonTable.TranslateMoveHud then addonTable.TranslateMoveHud() end
 end

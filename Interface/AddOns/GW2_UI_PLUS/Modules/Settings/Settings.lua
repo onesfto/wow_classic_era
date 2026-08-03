@@ -107,7 +107,10 @@ local TARGET_OF_TARGET_VIEW_DEFINITIONS = {
 }
 local PET_PAGE_DEFINITIONS = {
     {"综合", "pet_general"},
+    {"欢乐度", "pet_happiness"},
+    {"喂食", "pet_feed"},
     {"渐隐", "pet_fader"},
+    {"光环", "pet_aura"},
 }
 local PET_VIEW_DEFINITIONS = {
     pet_general = {
@@ -115,10 +118,25 @@ local PET_VIEW_DEFINITIONS = {
         breadcrumb = "综合",
         sub = "编辑宠物设置。",
     },
+    pet_happiness = {
+        kind = "happiness",
+        breadcrumb = "欢乐度",
+        sub = "编辑宠物欢乐度图标设置。",
+    },
+    pet_feed = {
+        kind = "feed",
+        breadcrumb = "喂食",
+        sub = "编辑宠物喂食图标设置。",
+    },
     pet_fader = {
         kind = "fader",
         breadcrumb = "渐隐",
         sub = "编辑宠物设置。",
+    },
+    pet_aura = {
+        kind = "aura",
+        breadcrumb = "光环",
+        sub = "编辑宠物光环设置。",
     },
 }
 local FRAME_PANEL_TEXT = {
@@ -923,6 +941,8 @@ local PET_FADER_CONFIG = {
     end,
     includePlayerTarget = true,
     preserveDynamicFlightVehicle = false,
+    keepGeneralHeaders = true,
+    dependence = {PETBAR_ENABLED = true},
 }
 local function CreateMasterToggleReplacement(panel, originalOption)
     if not panel or not originalOption
@@ -995,6 +1015,7 @@ local function PrepareSplitFaderPanel(panel, config)
             end,
             getDefault = function() return true end,
             isMasterToggle = true,
+            dependence = config.dependence,
         })
     if enabledOption then
         enabledOption.optionName = config.enabledOptionName
@@ -1082,7 +1103,11 @@ local function PrepareSplitFaderPanel(panel, config)
         end
         for _, option in ipairs(originalOptions) do
             local isFader = IsFaderOption(option)
-            if isFader == showFader and option.optionType ~= "header"
+            local keepHeader = config.keepGeneralHeaders
+                and option.__gwPlusKeepGeneralHeader == true
+            if isFader == showFader
+                and (option.optionType ~= "header"
+                    or (keepHeader and not showFader))
                 and option ~= originalGeneralEnabledOption
                 and option ~= originalGeneralMasterOption then
                 wanted[option] = true
@@ -1173,11 +1198,124 @@ end
 local function RestoreTargetOfTargetPanel(panel)
     RestoreSplitFaderPanel(panel, TARGET_OF_TARGET_FADER_CONFIG)
 end
+
+local function IsPetAuraOption(option)
+    local optionName = option and option.optionName
+    return option and (
+        (option.optionType == "header"
+            and (option.name == "光环" or option.name == "Auras"))
+        or option.groupHeaderName == "光环"
+        or option.groupHeaderName == "Auras"
+        or optionName == "PET_AURAS_UNDER"
+        or optionName == "PET_Buff_Filter"
+        or optionName == "PET_Buff_Filter_advanced"
+        or optionName == "PET_Debuff_Filter"
+        or optionName == "PET_Debuff_Filter_advanced")
+end
+
+local function IsPetAuxiliaryOption(option, kind)
+    local optionName = option and option.optionName
+    local groupName = option and option.groupHeaderName
+    if kind == "happiness" then
+        return optionName == "GW2PlusPetHappinessEnabled"
+            or groupName == "欢乐度"
+            or option and option.optionType == "header"
+                and option.name == "欢乐度"
+    elseif kind == "feed" then
+        return optionName == "GW2PlusPetFeedEnabled"
+            or groupName == "喂食"
+            or option and option.optionType == "header"
+                and option.name == "喂食"
+    end
+    return false
+end
+
+local function IsPetFaderOption(option)
+    return HasOptionPrefix(option and option.optionName, "petFrameFader")
+        or option and (option.groupHeaderName == "显隐"
+            or option.groupHeaderName == "Fader"
+            or option.groupHeaderName == "隐藏器")
+        or option and option.optionType == "header"
+            and (option.name == "显隐" or option.name == "Fader"
+                or option.name == "隐藏器")
+end
+
+local function IsPetOptionInView(option, kind)
+    if kind == "aura" then return IsPetAuraOption(option) end
+    if kind == "fader" then return IsPetFaderOption(option) end
+    if kind == "happiness" or kind == "feed" then
+        return IsPetAuxiliaryOption(option, kind)
+    end
+    return not IsPetAuraOption(option)
+        and not IsPetFaderOption(option)
+        and not IsPetAuxiliaryOption(option, "happiness")
+        and not IsPetAuxiliaryOption(option, "feed")
+end
+
+local function BuildPetView(panel, state, kind)
+    local wanted = {}
+    local options = {}
+    for _, option in ipairs(state.originalOptions or {}) do
+        if IsPetOptionInView(option, kind) then
+            wanted[option] = true
+            options[#options + 1] = option
+        end
+    end
+
+    local filtered = CreateDataProvider()
+    local rowIndex = 0
+    state.originalProvider:ForEach(function(data)
+        if data.kind then return end
+        local cols = {}
+        for _, option in ipairs(data.cols or {}) do
+            if wanted[option] then cols[#cols + 1] = option end
+        end
+        if #cols > 0 then
+            rowIndex = rowIndex + 1
+            filtered:Insert({
+                index = rowIndex,
+                cols = cols,
+                panel = panel,
+            })
+        end
+    end)
+    return {options = options, provider = filtered}
+end
+
 local function PreparePetPanel(panel)
+    local petFrame = addonTable.PlusPetFrame
+    if petFrame and petFrame.EnsureAuxiliaryFrames then
+        petFrame.EnsureAuxiliaryFrames()
+    end
+    if petFrame and petFrame.AddOptions then
+        petFrame.AddOptions(panel)
+        if petFrame.AddAuxiliaryOptions then
+            petFrame.AddAuxiliaryOptions(panel)
+        end
+        local Utils = addonTable.ActionBarOptionsUtils
+        if Utils and Utils.InitializePanel then
+            Utils.InitializePanel(panel)
+        end
+    end
     PrepareSplitFaderPanel(panel, PET_FADER_CONFIG)
+    local state = panel and panel.__gwPlusPetFaderState
+    if state then
+        state.views.general = BuildPetView(panel, state, "general")
+        state.views.happiness = BuildPetView(panel, state, "happiness")
+        state.views.feed = BuildPetView(panel, state, "feed")
+        state.views.aura = BuildPetView(panel, state, "aura")
+    end
 end
 local function ShowPetPanelView(panel, definition)
-    ShowSplitFaderPanel(panel, PET_FADER_CONFIG, definition)
+    PreparePetPanel(panel)
+    local state = panel and panel.__gwPlusPetFaderState
+    local view = state and state.views[definition.kind]
+    if not view then return end
+    panel.gwOptions = view.options
+    panel.scroll.ScrollBox:SetDataProvider(
+        view.provider, ScrollBoxConstants.RetainScrollPosition)
+    SetPanelText(panel, "宠物", definition.breadcrumb, definition.sub)
+    if GW2_ADDON.CheckDependencies then GW2_ADDON.CheckDependencies() end
 end
 local function RestorePetPanel(panel)
     RestoreSplitFaderPanel(panel, PET_FADER_CONFIG)
@@ -1639,7 +1777,10 @@ local function BuildMainMenuTab(settingsTab, settingsWindow)
         targetOfTargetExpanded = panelId == "target_of_target_general"
             or panelId == "target_of_target_fader"
         petExpanded = panelId == "pet_general"
+            or panelId == "pet_happiness"
+            or panelId == "pet_feed"
             or panelId == "pet_fader"
+            or panelId == "pet_aura"
         local frame, auraView, targetView, targetOfTargetView, petView =
             ResolvePage(panelId)
         currentFrame = frame

@@ -26,8 +26,31 @@ grep -F 'target_general = {header = "目标", breadcrumb = "综合", sub = "编�
 grep -F 'target_of_target_general = {' "$settings_file" >/dev/null
 grep -F 'target_of_target_fader = {' "$settings_file" >/dev/null
 grep -F 'pet_general = {' "$settings_file" >/dev/null
+grep -F 'pet_happiness = {' "$settings_file" >/dev/null
+grep -F 'pet_feed = {' "$settings_file" >/dev/null
 grep -F 'pet_fader = {' "$settings_file" >/dev/null
+grep -F 'pet_aura = {' "$settings_file" >/dev/null
 grep -F '"宠物", "pet_general", true, "pet"' "$settings_file" >/dev/null
+grep -F '{"综合", "pet_general"}' "$settings_file" >/dev/null
+grep -F '{"欢乐度", "pet_happiness"}' "$settings_file" >/dev/null
+grep -F '{"喂食", "pet_feed"}' "$settings_file" >/dev/null
+grep -F '{"渐隐", "pet_fader"}' "$settings_file" >/dev/null
+grep -F '{"光环", "pet_aura"}' "$settings_file" >/dev/null
+if grep -F 'pet_skill' "$settings_file" >/dev/null; then
+    exit 1
+fi
+grep -F 'GW2PlusPetHappinessEnabled' "$settings_file" >/dev/null
+grep -F 'GW2PlusPetFeedEnabled' "$settings_file" >/dev/null
+grep -F '"GwPlusPetHappiness", "PetHappiness_pos"' "Modules/Settings/HudMoverOptions.lua" >/dev/null
+grep -F '"GwPlusPetFeed", "PetFeed_pos"' "Modules/Settings/HudMoverOptions.lua" >/dev/null
+grep -F 'PET_AURAS_UNDER' "$settings_file" >/dev/null
+grep -F 'PET_Buff_Filter' "$settings_file" >/dev/null
+grep -F 'PET_Buff_Filter_advanced' "$settings_file" >/dev/null
+grep -F 'PET_Debuff_Filter' "$settings_file" >/dev/null
+grep -F 'PET_Debuff_Filter_advanced' "$settings_file" >/dev/null
+grep -F 'PetBar_pos = {' "Modules/Settings/PlusProfileDefaults.lua" >/dev/null
+grep -F 'PetHappiness_pos = {' "Modules/Settings/PlusProfileDefaults.lua" >/dev/null
+grep -F 'PetFeed_pos = {' "Modules/Settings/PlusProfileDefaults.lua" >/dev/null
 grep -F 'toggleMethod = "ToggleFaderOptions"' "$settings_file" >/dev/null
 grep -F 'includePlayerTarget = true' "$settings_file" >/dev/null
 grep -F 'preserveDynamicFlightVehicle = false' "$settings_file" >/dev/null

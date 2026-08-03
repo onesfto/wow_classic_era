@@ -5,6 +5,15 @@ if not GW or not AB then return end
 local Layout = {}
 addonTable.PlusActionBarLayout = Layout
 AB.Layout = Layout
+local PETBAR_MOVER_SETTING = "PetBar_pos"
+local PETBAR_MOVER_DEFAULT = {
+    point = "BOTTOM",
+    relativePoint = "BOTTOM",
+    xOfs = 0,
+    yOfs = 100,
+    hasMoved = false,
+}
+local petBarHolder
 local MULTIBAR_DEFAULT_COLUMNS = {
     [2] = 6,
     [3] = 6,
@@ -246,7 +255,7 @@ function Layout.PrintHotkeyDiagnostics()
     local stance = _G.GwStanceBar
     PrintTextState(notice, "姿态条快捷键", db.stanceBarHotkeyPosition,
         stance and stance.buttons and stance.buttons[1])
-    local pet = _G.GwPlayerPetFrame
+    local pet = _G.GwPlusPetBarHolder
     PrintTextState(notice, "宠物动作条快捷键", db.petBarHotkeyPosition,
         pet and pet.buttons and pet.buttons[1])
 end
@@ -255,25 +264,144 @@ function Layout.ClampGrid(buttonCount, columns, maximum)
     columns = Clamp(columns, 1, buttonCount)
     return columns, math.ceil(buttonCount / columns), buttonCount
 end
-function Layout.CalculateGrid(buttonCount, columns, size, spacing, invert)
+function Layout.CalculateGrid(buttonCount, columns, size, spacing, invert,
+                              middleGap, middleColumn)
     columns, _, buttonCount = Layout.ClampGrid(buttonCount, columns, buttonCount)
     size = tonumber(size) or 1
     spacing = tonumber(spacing) or 0
+    middleGap = math.max(tonumber(middleGap) or 0, 0)
+    middleColumn = math.max(math.floor(tonumber(middleColumn) or 6), 1)
+    local usedColumns = math.min(columns, buttonCount)
+    local useMiddleGap = middleGap > 0
+        and columns > middleColumn
+        and usedColumns > middleColumn
     local points = {}
     for slot = 1, buttonCount do
         local row = math.floor((slot - 1) / columns)
         local column = (slot - 1) % columns
+        local x = column * (size + spacing)
+        if useMiddleGap and column >= middleColumn then
+            x = x + middleGap
+        end
         points[slot] = {
             buttonIndex = invert and (buttonCount - slot + 1) or slot,
-            x = column * (size + spacing),
+            x = x,
             y = row * (size + spacing),
         }
     end
-    local usedColumns = math.min(columns, buttonCount)
     local rows = math.ceil(buttonCount / columns)
     local width = usedColumns * size + math.max(usedColumns - 1, 0) * spacing
+    if useMiddleGap then width = width + middleGap end
     local height = rows * size + math.max(rows - 1, 0) * spacing
     return points, width, height
+end
+function Layout.CalculatePetBarGrid(buttonCount, columns, size, spacing, middleGap)
+    return Layout.CalculateGrid(buttonCount, columns, size, spacing, false,
+        middleGap, 6)
+end
+local function GetPetBarMetrics(db)
+    local maximum = NUM_PET_ACTION_SLOTS or 10
+    local count = Clamp(db.petBarCount, 1, maximum)
+    local columns = Clamp(db.petBarColumns, 1, count)
+    local spacing = Clamp(db.petBarSpacing, 0, 20)
+    local size = Clamp(db.petBarSize, AB.SIZE_MIN, AB.SIZE_MAX)
+    local middleGap = Clamp(db.petBarMiddleGap, 0, 400)
+    local points, width, height = Layout.CalculatePetBarGrid(count, columns,
+        size, spacing, middleGap)
+    db.petBarCount, db.petBarColumns = count, columns
+    db.petBarSize, db.petBarSpacing = size, spacing
+    db.petBarMiddleGap = middleGap
+    return points, width, height, count, size
+end
+local function InstallPetBarNativeHook(frame)
+    if not hooksecurefunc then return end
+    local mixin = _G.GwPlayerPetFrameMixin
+    if mixin and mixin.SetActionButtonPositionAndStyle
+        and not Layout.petBarMixinNativeHooked then
+        Layout.petBarMixinNativeHooked = true
+        hooksecurefunc(mixin, "SetActionButtonPositionAndStyle", function()
+            Layout.ApplyPetBar()
+        end)
+    end
+    if not frame or not frame.SetActionButtonPositionAndStyle
+        or Layout.petBarNativeHooked then
+        return
+    end
+    Layout.petBarNativeHooked = true
+    hooksecurefunc(frame, "SetActionButtonPositionAndStyle", function()
+        Layout.ApplyPetBar()
+    end)
+end
+local function InstallPetBarButtonParentHook(button)
+    if not button or not button.SetParent or button.gwPlusPetBarParentHooked
+        or not hooksecurefunc then
+        return
+    end
+    button.gwPlusPetBarParentHooked = true
+    hooksecurefunc(button, "SetParent", function(self)
+        if not petBarHolder or self:GetParent() == petBarHolder then return end
+        if InCombatLockdown and InCombatLockdown() then return end
+        self:SetParent(petBarHolder)
+        self:ClearAllPoints()
+        self:SetPoint("TOPLEFT", petBarHolder, "TOPLEFT",
+            self.gwX or 0, self.gwY or 0)
+    end)
+end
+local function InstallPetFrameLoadHook()
+    if Layout.petFrameLoadHooked or not GW.LoadPetFrame or not hooksecurefunc then
+        return
+    end
+    Layout.petFrameLoadHooked = true
+    hooksecurefunc(GW, "LoadPetFrame", function()
+        Layout.ApplyPetBar()
+    end)
+end
+function Layout.EnsurePetBar()
+    if petBarHolder then
+        InstallPetBarNativeHook(_G.GwPlayerPetFrame)
+        return petBarHolder
+    end
+    petBarHolder = _G.GwPlusPetBarHolder
+    if petBarHolder then
+        InstallPetBarNativeHook(_G.GwPlayerPetFrame)
+        return petBarHolder
+    end
+    local registerMover = AB.RegisterMovableFrame or GW.RegisterMovableFrame
+    if not GW.settings or not AB.EnsureMoverSettings or not registerMover then
+        return
+    end
+    if not AB.EnsureMoverSettings(PETBAR_MOVER_SETTING,
+        PETBAR_MOVER_DEFAULT) then
+        return
+    end
+    petBarHolder = CreateFrame("Frame", "GwPlusPetBarHolder", UIParent,
+        "SecureHandlerStateTemplate")
+    petBarHolder:SetFrameStrata("MEDIUM")
+    local _, width, height = GetPetBarMetrics(AB.InitDB())
+    petBarHolder:SetSize(width, height)
+    registerMover(petBarHolder, "宠物动作条", PETBAR_MOVER_SETTING,
+        BINDING_HEADER_ACTIONBAR, nil, {"default"}, nil, nil, nil,
+        PETBAR_MOVER_DEFAULT)
+    petBarHolder:ClearAllPoints()
+    petBarHolder:SetPoint("TOPLEFT", petBarHolder.gwMover)
+    if hooksecurefunc then
+        hooksecurefunc(petBarHolder, "SetPoint", function(_, _, anchor)
+            if anchor ~= petBarHolder.gwMover then
+                petBarHolder:ClearAllPoints()
+                petBarHolder:SetPoint("TOPLEFT", petBarHolder.gwMover)
+            end
+        end)
+    end
+    if RegisterStateDriver then
+        RegisterStateDriver(petBarHolder, "visibility",
+            "[overridebar] hide; [vehicleui] hide; [petbattle] hide; " ..
+            "[target=pet,exists] show; hide")
+    end
+    InstallPetBarNativeHook(_G.GwPlayerPetFrame)
+    return petBarHolder
+end
+function Layout.GetPetBarFrame()
+    return petBarHolder or _G.GwPlusPetBarHolder
 end
 local originalInitDB = AB.InitDB
 local function EnsureValue(db, key, value)
@@ -306,6 +434,7 @@ local function EnsureLayoutDefaults(db)
     EnsureValue(db, "petBarColumns", 5)
     EnsureValue(db, "petBarSize", 36)
     EnsureValue(db, "petBarSpacing", 3)
+    EnsureValue(db, "petBarMiddleGap", 0)
     EnsureValue(db, "petBarShowHotkey", true)
     EnsureValue(db, "petBarHotkeyPosition", "TOPRIGHT")
     EnsureValue(db, "petBarHotkeyX", 0)
@@ -358,7 +487,7 @@ function AB.IsBarActive(barKey)
     elseif barKey == "stance" then
         frame = _G.GwStanceBar
     elseif barKey == "pet" then
-        frame = _G.GwPlusPetBarHolder or _G.GwPlayerPetFrame
+        frame = _G.GwPlusPetBarHolder
     elseif barKey == "mage" then
         frame = _G.GwPlusMageBar
     else
@@ -525,6 +654,15 @@ local function ApplyStanceCollapseButton(frame, db, barShown)
     SetStanceCollapseButtonVisual(frame,
         mode == "show" or (mode == "hover" and IsStanceBarMouseOver(frame)))
 end
+
+local function HasAllStanceButtons(frame)
+    local maxButtons = NUM_STANCE_SLOTS or 10
+    for index = 1, maxButtons do
+        if not frame.buttons[index] then return false end
+    end
+    return true
+end
+
 function Layout.ApplyStanceBar()
     if AB.QueueOutOfCombat("actionBarStanceLayout", Layout.ApplyStanceBar) then return end
     local frame = _G.GwStanceBar
@@ -541,8 +679,10 @@ function Layout.ApplyStanceBar()
         and GW.settings.StanceBar.growDirection or "UP"
     if frame.gwPlusStanceDirection ~= direction then
         -- 原生方法负责更新容器相对锚点，随后由 Plus 重新应用按钮布局。
-        if frame.PositionsAndSize then frame:PositionsAndSize() end
-        frame.gwPlusStanceDirection = direction
+        if frame.PositionsAndSize and HasAllStanceButtons(frame) then
+            frame:PositionsAndSize()
+            frame.gwPlusStanceDirection = direction
+        end
     end
     for index, button in ipairs(frame.buttons) do
         local visible = db.stanceBarShown ~= false and index <= count
@@ -586,20 +726,36 @@ function Layout.ApplyStanceBar()
     frame:SetShown(barShown)
     ApplyStanceCollapseButton(frame, db, barShown and holder == frame.container)
 end
+local stanceLayoutPending = false
+local function QueueStanceBarLayout()
+    if stanceLayoutPending then return end
+    if not C_Timer or not C_Timer.After then
+        Layout.ApplyStanceBar()
+        return
+    end
+    stanceLayoutPending = true
+    C_Timer.After(0, function()
+        stanceLayoutPending = false
+        Layout.ApplyStanceBar()
+    end)
+end
 function Layout.ApplyPetBar()
     if AB.QueueOutOfCombat("actionBarPetLayout", Layout.ApplyPetBar) then return end
+    local holder = Layout.EnsurePetBar()
+    if not holder then return false end
     local petFrame = _G.GwPlayerPetFrame
-    if not petFrame or not petFrame.buttons then return end
+    if not petFrame or not petFrame.buttons then return true end
     local db = AB.InitDB()
-    local maximum = NUM_PET_ACTION_SLOTS or 10
-    local count = Clamp(db.petBarCount, 1, maximum)
-    local columns = Clamp(db.petBarColumns, 1, count)
-    local spacing = tonumber(db.petBarSpacing) or 3
-    local size = Clamp(db.petBarSize, AB.SIZE_MIN, AB.SIZE_MAX)
-    local points = Layout.CalculateGrid(count, columns, size, spacing)
-    db.petBarSize = size
+    local points, width, height, count, size = GetPetBarMetrics(db)
+    holder.buttons = petFrame.buttons
+    holder:SetSize(width, height)
+    if holder.gwMover then holder.gwMover:SetSize(width, height) end
+    holder.gwPlusPetBarWidth, holder.gwPlusPetBarHeight = width, height
+    holder:SetShown(db.petBarShown ~= false)
     for index, button in ipairs(petFrame.buttons) do
         local visible = db.petBarShown ~= false and index <= count
+        InstallPetBarButtonParentHook(button)
+        if button:GetParent() ~= holder then button:SetParent(holder) end
         button:SetShown(visible)
         if visible then
             local point = points[index]
@@ -609,19 +765,20 @@ function Layout.ApplyPetBar()
                     GW.setActionButtonStyle(button:GetName(), false, false, true)
                 end
             end
+            button.relativeFrame = holder
+            button.point = "TOPLEFT"
+            button.relativePoint = "TOPLEFT"
+            button.gwX, button.gwY = point.x, -point.y
             button:ClearAllPoints()
-            button:SetPoint("BOTTOMLEFT", petFrame, "BOTTOMLEFT", 3 + point.x, 30 + point.y)
-            button.relativeFrame = petFrame
-            button.point = "BOTTOMLEFT"
-            button.relativePoint = "BOTTOMLEFT"
-            button.gwX = 3 + point.x
-            button.gwY = 30 + point.y
+            button:SetPoint("TOPLEFT", holder, "TOPLEFT",
+                point.x, -point.y)
             ApplySimpleHotkey(button, db.petBarShowHotkey ~= false,
                 db.petBarHotkeyPosition,
                 db.petBarHotkeyX, db.petBarHotkeyY,
                 db.petBarHotkeySize)
         end
     end
+    return true
 end
 function Layout.ApplyVisibility()
     if AB.QueueOutOfCombat("actionBarVisibility", Layout.ApplyVisibility) then return end
@@ -653,6 +810,12 @@ function Layout.RefreshAll()
 end
 function Layout.Init()
     AB.InitDB()
+    InstallPetFrameLoadHook()
+    local stance = _G.GwStanceBar
+    if stance and stance.AdjustMaxStanceButtons and not Layout.stanceHooked then
+        Layout.stanceHooked = true
+        hooksecurefunc(stance, "AdjustMaxStanceButtons", Layout.ApplyStanceBar)
+    end
     Layout.RefreshAll()
     if GW.UpdateMultibarButtons and not Layout.multibarHooked then
         Layout.multibarHooked = true
@@ -660,12 +823,7 @@ function Layout.Init()
             if not applyingMultibars then Layout.ApplyMultiBars() end
         end)
     end
-    if _G.GwStanceBar and _G.GwStanceBar.AdjustMaxStanceButtons then
-        hooksecurefunc(_G.GwStanceBar, "AdjustMaxStanceButtons", Layout.ApplyStanceBar)
-    end
-    if _G.GwPlayerPetFrame and _G.GwPlayerPetFrame.SetActionButtonPositionAndStyle then
-        hooksecurefunc(_G.GwPlayerPetFrame, "SetActionButtonPositionAndStyle", Layout.ApplyPetBar)
-    end
+    if stance then QueueStanceBarLayout() end
     if not Layout.bindingWatcher then
         Layout.bindingWatcher = CreateFrame("Frame")
         Layout.bindingWatcher:RegisterEvent("UPDATE_BINDINGS")
@@ -677,3 +835,18 @@ function Layout.Init()
         end)
     end
 end
+local stanceLayoutWatcher = CreateFrame("Frame")
+stanceLayoutWatcher:RegisterEvent("PLAYER_ENTERING_WORLD")
+stanceLayoutWatcher:RegisterEvent("UPDATE_SHAPESHIFT_FORMS")
+stanceLayoutWatcher:SetScript("OnEvent", QueueStanceBarLayout)
+local petBarLayoutWatcher = CreateFrame("Frame")
+petBarLayoutWatcher:RegisterEvent("PLAYER_LOGIN")
+petBarLayoutWatcher:RegisterEvent("PLAYER_ENTERING_WORLD")
+petBarLayoutWatcher:RegisterEvent("PET_BAR_UPDATE")
+petBarLayoutWatcher:RegisterEvent("PET_UI_UPDATE")
+petBarLayoutWatcher:RegisterEvent("PLAYER_REGEN_ENABLED")
+petBarLayoutWatcher:SetScript("OnEvent", function(self)
+    InstallPetFrameLoadHook()
+    Layout.ApplyPetBar()
+    if self.UnregisterEvent then self:UnregisterEvent("PLAYER_LOGIN") end
+end)

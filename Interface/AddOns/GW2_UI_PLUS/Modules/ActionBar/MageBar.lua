@@ -34,8 +34,8 @@ local MOVER_SETTING = "MageBar_pos"
 local MOVER_DEFAULT = {
     point = "BOTTOMRIGHT",
     relativePoint = "BOTTOMRIGHT",
-    xOfs = -420,
-    yOfs = 300,
+    xOfs = -300,
+    yOfs = 0,
     hasMoved = false,
 }
 local function GetSpellTextureCompat(spellID)
@@ -482,7 +482,9 @@ function MageBar.Init()
     ]=])
     local bar = CreateFrame("Frame", "GwPlusMageBar", UIParent)
     MageBar.bar = bar
-    GW.RegisterMovableFrame(bar, "法师动作条", MOVER_SETTING, BINDING_HEADER_ACTIONBAR, nil, {"default"})
+    AB.RegisterMovableFrame(
+        bar, "法师动作条", MOVER_SETTING, BINDING_HEADER_ACTIONBAR,
+        nil, {"default"}, nil, nil, nil, MOVER_DEFAULT)
     bar:ClearAllPoints()
     bar:SetPoint("TOPLEFT", bar.gwMover)
     hooksecurefunc(bar, "SetPoint", function(_, _, anchor)

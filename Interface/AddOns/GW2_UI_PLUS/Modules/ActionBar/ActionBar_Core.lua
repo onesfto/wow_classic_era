@@ -24,9 +24,6 @@ local defaults = {
     fadeAlpha = 0.2,
     fadeDelay = 0.5,
     keepInCombat = true,
-    keepOnTarget = false,
-    keepOnCasting = false,
-    keepOnHealth = false,
     fadeBar1 = true,
     fadeBar2 = true,
     fadeBar3 = true,
@@ -64,6 +61,7 @@ local defaults = {
     mageBarFood = false,
     mageBarWater = false,
     mageBarGem = false,
+    petBarMiddleGap = 0,
 }
 AB.defaults = defaults
 local function InitDB()
