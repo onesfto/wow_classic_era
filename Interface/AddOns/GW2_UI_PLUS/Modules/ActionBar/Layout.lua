@@ -14,6 +14,23 @@ local MULTIBAR_DEFAULT_COLUMNS = {
     [7] = 1,
     [8] = 1,
 }
+local STANCE_COLLAPSE_BUTTON_DEFAULT = "hover"
+local STANCE_COLLAPSE_BUTTON_CLICK_SCRIPT = [=[
+    local GwStanceBarContainer = self:GetFrameRef("GwStanceBarContainer")
+    if self:GetAttribute("gwPlusCollapseButtonMode") == "hide" then
+        GwStanceBarContainer:Show()
+    elseif GwStanceBarContainer:IsVisible() then
+        GwStanceBarContainer:Hide()
+    else
+        GwStanceBarContainer:Show()
+    end
+]=]
+local function NormalizeStanceCollapseButtonMode(mode)
+    if mode == "show" or mode == "hide" or mode == "hover" then
+        return mode
+    end
+    return STANCE_COLLAPSE_BUTTON_DEFAULT
+end
 local function Clamp(value, minimum, maximum)
     value = tonumber(value) or minimum
     return math.max(minimum, math.min(maximum, math.floor(value + 0.5)))
@@ -270,9 +287,14 @@ local function EnsureLayoutDefaults(db)
     local toggles = GetActionBarTogglesCompat()
     local stanceShown = not GW.settings or not GW.settings.StanceBar
         or GW.settings.StanceBar.enabled ~= false
+    local hadCollapseButtonMode = db.stanceBarCollapseButton ~= nil
     EnsureValue(db, "mainBarShown", true)
     EnsureValue(db, "stanceBarShown", stanceShown)
     EnsureValue(db, "petBarShown", true)
+    EnsureValue(db, "stanceBarCollapseButton", STANCE_COLLAPSE_BUTTON_DEFAULT)
+    if not hadCollapseButtonMode and GW.settings and GW.settings.StanceBar then
+        GW.settings.StanceBar.containerState = "open"
+    end
     EnsureValue(db, "stanceBarCount", 10)
     EnsureValue(db, "stanceBarColumns", 1)
     EnsureValue(db, "stanceBarShowHotkey", true)
@@ -447,6 +469,62 @@ local function ApplySimpleHotkey(button, show, position, x, y, size)
         ShouldShowEmptyHotkeyIndicator(button, show)
     Layout.ApplyTextPosition(button.HotKey, button, position, x, y, size, show)
 end
+local function IsStanceBarMouseOver(frame)
+    if not frame then return false end
+    local frameOver = frame.IsMouseOver and frame:IsMouseOver()
+    local container = frame.container
+    local containerOver = container and container.IsMouseOver
+        and container:IsMouseOver()
+    return frameOver or containerOver or false
+end
+local function SetStanceCollapseButtonVisual(frame, shown)
+    local alpha = shown and 1 or 0
+    local normal = frame.GetNormalTexture and frame:GetNormalTexture()
+    local highlight = frame.GetHighlightTexture and frame:GetHighlightTexture()
+    local pushed = frame.GetPushedTexture and frame:GetPushedTexture()
+    if normal then normal:SetAlpha(alpha) end
+    if highlight then highlight:SetAlpha(alpha) end
+    if pushed then pushed:SetAlpha(alpha) end
+    if frame.EnableMouse then frame:EnableMouse(true) end
+end
+local function RefreshStanceCollapseButtonVisual(frame)
+    if not frame then return end
+    local mode = NormalizeStanceCollapseButtonMode(
+        AB.InitDB().stanceBarCollapseButton)
+    SetStanceCollapseButtonVisual(frame,
+        mode == "show" or (mode == "hover" and IsStanceBarMouseOver(frame)))
+end
+local function HookStanceCollapseButton(frame)
+    if not frame or frame.gwPlusCollapseButtonHooked then return end
+    frame.gwPlusCollapseButtonHooked = true
+    local refresh = function() RefreshStanceCollapseButtonVisual(frame) end
+    if frame.HookScript then
+        frame:HookScript("OnEnter", refresh)
+        frame:HookScript("OnLeave", refresh)
+        if frame.container then
+            frame.container:HookScript("OnEnter", refresh)
+            frame.container:HookScript("OnLeave", refresh)
+        end
+    end
+end
+local function ApplyStanceCollapseButton(frame, db, barShown)
+    if not frame then return end
+    HookStanceCollapseButton(frame)
+    local mode = NormalizeStanceCollapseButtonMode(db.stanceBarCollapseButton)
+    if frame.SetAttribute and frame.gwPlusCollapseButtonMode ~= mode then
+        frame:SetAttribute("gwPlusCollapseButtonMode", mode)
+        frame:SetAttribute("_onclick", STANCE_COLLAPSE_BUTTON_CLICK_SCRIPT)
+        frame.gwPlusCollapseButtonMode = mode
+    end
+    if mode == "hide" and barShown and frame.container then
+        if GW.settings and GW.settings.StanceBar then
+            GW.settings.StanceBar.containerState = "open"
+        end
+        frame.container:Show()
+    end
+    SetStanceCollapseButtonVisual(frame,
+        mode == "show" or (mode == "hover" and IsStanceBarMouseOver(frame)))
+end
 function Layout.ApplyStanceBar()
     if AB.QueueOutOfCombat("actionBarStanceLayout", Layout.ApplyStanceBar) then return end
     local frame = _G.GwStanceBar
@@ -461,6 +539,11 @@ function Layout.ApplyStanceBar()
     local holder = count == 1 and frame or (frame.container or frame)
     local direction = GW.settings and GW.settings.StanceBar
         and GW.settings.StanceBar.growDirection or "UP"
+    if frame.gwPlusStanceDirection ~= direction then
+        -- 原生方法负责更新容器相对锚点，随后由 Plus 重新应用按钮布局。
+        if frame.PositionsAndSize then frame:PositionsAndSize() end
+        frame.gwPlusStanceDirection = direction
+    end
     for index, button in ipairs(frame.buttons) do
         local visible = db.stanceBarShown ~= false and index <= count
         button:SetShown(visible)
@@ -483,12 +566,25 @@ function Layout.ApplyStanceBar()
         end
     end
     holder:SetSize(width, height)
+    local barShown = db.stanceBarShown ~= false and count > 0
     if holder == frame.container then
-        frame.container:SetShown(frame.containerState == "open"
+        local collapseButtonMode = NormalizeStanceCollapseButtonMode(
+            db.stanceBarCollapseButton)
+        local containerShown = frame.containerState == "open"
             or not GW.settings or not GW.settings.StanceBar
-            or GW.settings.StanceBar.containerState == "open")
+            or GW.settings.StanceBar.containerState == "open"
+        if collapseButtonMode == "hide" and barShown then
+            containerShown = true
+            if GW.settings and GW.settings.StanceBar then
+                GW.settings.StanceBar.containerState = "open"
+            end
+        end
+        frame.container:SetShown(containerShown)
+    elseif frame.container then
+        frame.container:Hide()
     end
-    frame:SetShown(db.stanceBarShown ~= false and count > 0)
+    frame:SetShown(barShown)
+    ApplyStanceCollapseButton(frame, db, barShown and holder == frame.container)
 end
 function Layout.ApplyPetBar()
     if AB.QueueOutOfCombat("actionBarPetLayout", Layout.ApplyPetBar) then return end

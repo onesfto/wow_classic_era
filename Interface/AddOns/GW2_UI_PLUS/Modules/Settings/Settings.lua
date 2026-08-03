@@ -693,9 +693,34 @@ local function BuildTargetView(panel, definition)
             viewOptions[#viewOptions + 1] = option
         end
     end
+    local generalMasterOption
+    if definition.kind == "general" then
+        for _, option in ipairs(viewOptions) do
+            if option.isMasterToggle then
+                generalMasterOption = option
+                break
+            end
+        end
+    end
+    if generalMasterOption then
+        wanted[generalMasterOption] = nil
+    end
     local filtered = CreateDataProvider()
     local rowIndex = 0
-    if isFaderView and faderEnabledOption then
+    if generalMasterOption then
+        rowIndex = 1
+        filtered:Insert({
+            index = rowIndex,
+            cols = {generalMasterOption},
+            panel = panel,
+        })
+        rowIndex = rowIndex + 1
+        filtered:Insert({
+            index = rowIndex,
+            kind = "masterToggleSeparator",
+            panel = panel,
+        })
+    elseif isFaderView and faderEnabledOption then
         filtered:Insert({
             index = 1,
             cols = {faderEnabledOption},
@@ -856,6 +881,7 @@ local TARGET_OF_TARGET_FADER_CONFIG = {
     getFrame = function() return _G.GwTargetTargetUnitFrame end,
     getMixin = function() return _G.GwTargetTargetUnitFrameMixin end,
     toggleFrame = function(frame) frame:ToggleSettings() end,
+    generalEnabledOptionName = "target_TARGET_ENABLED",
     optionRenames = {
         target_TARGET_ENABLED = "启用",
     },
@@ -898,6 +924,25 @@ local PET_FADER_CONFIG = {
     includePlayerTarget = true,
     preserveDynamicFlightVehicle = false,
 }
+local function CreateMasterToggleReplacement(panel, originalOption)
+    if not panel or not originalOption
+        or not originalOption.get or not originalOption.set then
+        return
+    end
+    local option = panel:AddOption(
+        "启用", originalOption.desc, {
+            getter = originalOption.get,
+            setter = originalOption.set,
+            getDefault = originalOption.getDefault,
+            callback = originalOption.callback,
+            dependence = CopyMap(originalOption.dependence),
+            isMasterToggle = true,
+        })
+    if option then
+        option.optionName = "GW2PlusTargetTargetEnabled"
+    end
+    return option
+end
 local function PrepareSplitFaderPanel(panel, config)
     if not panel or panel[config.stateKey] then return end
     local scrollBox = panel.scroll and panel.scroll.ScrollBox
@@ -917,6 +962,22 @@ local function PrepareSplitFaderPanel(panel, config)
         originalSub = panel.sub:GetText(),
     }
     panel[config.stateKey] = state
+
+    local originalGeneralEnabledOption
+    local generalEnabledOption
+    if config.generalEnabledOptionName then
+        for _, option in ipairs(originalOptions) do
+            if option.optionName == config.generalEnabledOptionName then
+                local replacement = CreateMasterToggleReplacement(
+                    panel, option)
+                if replacement then
+                    originalGeneralEnabledOption = option
+                    generalEnabledOption = replacement
+                end
+                break
+            end
+        end
+    end
 
     local enabledOption = panel:AddOption(
         "启用", config.enabledDescription, {
@@ -998,14 +1059,32 @@ local function PrepareSplitFaderPanel(panel, config)
 
     local function BuildView(kind)
         local showFader = kind == "fader"
+        local originalGeneralMasterOption
+        if not showFader and not generalEnabledOption then
+            for _, option in ipairs(originalOptions) do
+                if not IsFaderOption(option)
+                    and option.optionType ~= "header"
+                    and option.isMasterToggle then
+                    originalGeneralMasterOption = option
+                    break
+                end
+            end
+        end
+        local generalMasterOption = generalEnabledOption
+            or originalGeneralMasterOption
+        local showGeneralMaster = not showFader and generalMasterOption
         local wanted = {}
         local options = {}
         if showFader and enabledOption then
             options[#options + 1] = enabledOption
+        elseif showGeneralMaster then
+            options[#options + 1] = generalMasterOption
         end
         for _, option in ipairs(originalOptions) do
             local isFader = IsFaderOption(option)
-            if isFader == showFader and option.optionType ~= "header" then
+            if isFader == showFader and option.optionType ~= "header"
+                and option ~= originalGeneralEnabledOption
+                and option ~= originalGeneralMasterOption then
                 wanted[option] = true
                 options[#options + 1] = option
             end
@@ -1013,7 +1092,20 @@ local function PrepareSplitFaderPanel(panel, config)
 
         local filtered = CreateDataProvider()
         local rowIndex = 0
-        if showFader and enabledOption then
+        if showGeneralMaster then
+            rowIndex = 1
+            filtered:Insert({
+                index = rowIndex,
+                cols = {generalMasterOption},
+                panel = panel,
+            })
+            rowIndex = rowIndex + 1
+            filtered:Insert({
+                index = rowIndex,
+                kind = "masterToggleSeparator",
+                panel = panel,
+            })
+        elseif showFader and enabledOption then
             rowIndex = 1
             filtered:Insert({index = rowIndex, cols = {enabledOption}, panel = panel})
             rowIndex = rowIndex + 1
@@ -1235,19 +1327,11 @@ local function PreparePlayerFaderPanel(panel)
 end
 local function BuildAuraView(panel, toggle, definition)
     local wanted = {}
-    local groupName
     local prefix = definition.group .. "."
     for _, option in ipairs(panel.__gwPlusAuraOriginalOptions) do
         local optionName = option.optionName
         if optionName
             and optionName:sub(1, #prefix) == prefix then
-            wanted[option] = true
-            groupName = groupName or option.groupHeaderName
-        end
-    end
-    for _, option in ipairs(panel.__gwPlusAuraOriginalOptions) do
-        if option.optionType == "header"
-            and option.name == groupName then
             wanted[option] = true
         end
     end
@@ -1348,6 +1432,7 @@ local function ShowPlayerAuraPanelView(panel, definition)
         SetOptionDependencies(option, dependencies)
     end
     panel.gwOptions = view.options
+    panel.__gwPlusActiveAuraView = view
     panel.scroll.ScrollBox:SetDataProvider(
         view.provider, ScrollBoxConstants.RetainScrollPosition)
     SetPanelText(
@@ -1364,6 +1449,7 @@ local function RestorePlayerAuraPanel(panel)
             option, original == false and nil or original)
     end
     panel.gwOptions = panel.__gwPlusAuraOriginalOptions
+    panel.__gwPlusActiveAuraView = nil
     panel.scroll.ScrollBox:SetDataProvider(
         panel.__gwPlusAuraOriginalProvider,
         ScrollBoxConstants.RetainScrollPosition)
@@ -1446,6 +1532,7 @@ local function BuildMainMenuTab(settingsTab, settingsWindow)
         pages.player_fader and pages.player_fader.header
             and pages.player_fader.header:GetWidth())
     PrepareTargetOfTargetPanel(pages.target_of_target)
+    PreparePetPanel(pages.player_pet)
     if pages.player_fader and pages.player_fader.breadcrumb then
         pages.player_fader.breadcrumb:SetText("渐隐")
     end
@@ -1657,6 +1744,9 @@ local function BuildMainMenuTab(settingsTab, settingsWindow)
     table.insert(settingsWindow.tabs, tab)
     settingsWindow.gwPlusMainMenuTab = tab
     tab:Hide()
+    if addonTable.BuildHudMoverOptions then
+        addonTable.BuildHudMoverOptions(settingsTab)
+    end
 end
 addonTable.BuildMainMenuTab = BuildMainMenuTab
 addonTable.CaptureFrame = CaptureFrame

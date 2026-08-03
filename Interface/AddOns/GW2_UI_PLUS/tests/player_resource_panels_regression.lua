@@ -51,6 +51,9 @@ local function NewPanel(parent)
         config.optionType = "slider"
         return AddOption(self, name, description, config)
     end
+    panel.AddGroupHeader = function(self, name)
+        return AddOption(self, name, nil, {optionType = "header"})
+    end
     panel.scripts = {}
     panel.HookScript = function(self, event, callback)
         self.scripts[event] = callback
@@ -112,7 +115,9 @@ local GW = {
     },
     Colors = {
         TextColors = {
-            LightHeader = {GetRGB = function() return 1, 1, 1 end},
+        LightHeader = {
+            GetRGB = function() return 1, 0.9450, 0.8196 end,
+        },
         },
     },
     globalSettings = {
@@ -226,8 +231,9 @@ local expected = {
     },
     gw2_plus_player_energy = {
         "PLAYER_ENERGY_MANA_TICK", "PLAYER_5SR_TIMER",
-        "PLAYER_ENERGY_MANA_TICK_HIDE_OFC", "POWERBAR_ENABLED",
-        "energyBarWidth", "energyBarHeight", "GW2PlusEnergyShowValue",
+        "PLAYER_ENERGY_MANA_TICK_HIDE_OFC", "额外能量条",
+        "POWERBAR_ENABLED", "GW2PlusEnergyShowValue", "energyBarWidth",
+        "energyBarHeight",
     },
     gw2_plus_player_resource = {
         "CLASS_POWER", "GW2PlusResourceShowValue", "CLASSPOWER_ANCHOR_MODE",
@@ -258,6 +264,7 @@ local expectedDependencies = {
     PLAYER_ENERGY_MANA_TICK = {},
     PLAYER_5SR_TIMER = {PLAYER_ENERGY_MANA_TICK = true},
     PLAYER_ENERGY_MANA_TICK_HIDE_OFC = {PLAYER_ENERGY_MANA_TICK = true},
+    ["额外能量条"] = {},
     POWERBAR_ENABLED = {},
     GW2PlusEnergyShowValue = {POWERBAR_ENABLED = true},
     energyBarWidth = {POWERBAR_ENABLED = true},
@@ -289,9 +296,22 @@ local expectedCastbarColumns = {
     castbarWidth = false,
     castbarHeight = false,
 }
+local expectedEnergyColumns = {
+    PLAYER_ENERGY_MANA_TICK = 2,
+    PLAYER_5SR_TIMER = 2,
+    PLAYER_ENERGY_MANA_TICK_HIDE_OFC = false,
+    ["额外能量条"] = false,
+    POWERBAR_ENABLED = 2,
+    energyBarWidth = false,
+    energyBarHeight = false,
+    GW2PlusEnergyShowValue = 2,
+}
 
 local castWidthOption = nil
 local castHeightOption = nil
+local energyEnabledOption = nil
+local energyWidthOption = nil
+local energyHeightOption = nil
 
 local seen = {}
 local total = 0
@@ -330,6 +350,8 @@ for panelId, expectedOptions in pairs(expected) do
             expectedColumn = expectedGlobeColumns[key]
         elseif panelId == "gw2_plus_player_castbar" then
             expectedColumn = expectedCastbarColumns[key]
+        elseif panelId == "gw2_plus_player_energy" then
+            expectedColumn = expectedEnergyColumns[key]
         end
         assert((option.gwPlusColumns or false) == expectedColumn,
             key .. " 列数错误")
@@ -338,10 +360,14 @@ for panelId, expectedOptions in pairs(expected) do
         if panelId == "gw2_plus_player_castbar" then
             if key == "castbarWidth" then castWidthOption = option end
             if key == "castbarHeight" then castHeightOption = option end
+        elseif panelId == "gw2_plus_player_energy" then
+            if key == "POWERBAR_ENABLED" then energyEnabledOption = option end
+            if key == "energyBarWidth" then energyWidthOption = option end
+            if key == "energyBarHeight" then energyHeightOption = option end
         end
     end
 end
-assert(total == 29, "玩家资源面板选项总数错误")
+assert(total == 30, "玩家资源面板选项总数错误")
 
 local globePanel = panels.gw2_plus_player_globe
 assert(globePanel.gwOptions[1].isMasterToggle == true,
@@ -356,8 +382,38 @@ assert(castWidthOption.getter() == 300,
     "施法条宽度初始化默认值不是 300")
 assert(castHeightOption.getter() == 15,
     "施法条高度初始化默认值不是 15")
+assert(energyEnabledOption.name == "启用",
+    "额外能量条开关文案不是启用")
+assert(not energyEnabledOption.isMasterToggle,
+    "额外能量条启用项错误使用主开关样式")
+assert(energyWidthOption.getDefault() == 300,
+    "额外能量条宽度默认值不是 300")
+assert(energyHeightOption.getDefault() == 15,
+    "额外能量条高度默认值不是 15")
+assert(energyWidthOption.getter() == 300,
+    "额外能量条宽度初始化默认值不是 300")
+assert(energyHeightOption.getter() == 15,
+    "额外能量条高度初始化默认值不是 15")
 
 local castbarPanel = panels.gw2_plus_player_castbar
+local energyHeaderText = {
+    r = 0, g = 0, b = 0,
+    SetTextColor = function(self, r, g, b)
+        self.r, self.g, self.b = r, g, b
+    end,
+}
+panels.gw2_plus_player_energy.gwPlusWidgets = {
+    {
+        optionType = "header",
+        title = energyHeaderText,
+        SetAlpha = Noop,
+    },
+}
+panels.gw2_plus_player_energy.scripts.OnShow()
+assert(energyHeaderText.r == 1
+        and energyHeaderText.g == 0.9450
+        and energyHeaderText.b == 0.8196,
+    "额外能量条分组标题未使用 LightHeader 颜色")
 local ordinaryButtonText = {
     r = 0, g = 0, b = 0,
     SetTextColor = function(self, r, g, b)
@@ -391,14 +447,13 @@ assert(negativeButtonText.r == 0.55 and negativeButtonText.g == 0.05
         and negativeButtonText.b == 0.05,
     "依赖刷新覆盖了恢复按钮的深红文字")
 
-local energyPanel = panels.gw2_plus_player_energy
-local widthOption = energyPanel.gwOptions[5]
-local heightOption = energyPanel.gwOptions[6]
-assert(widthOption.getter() == 313, "额外能量条宽度默认值错误")
-assert(heightOption.getter() == 14, "额外能量条高度默认值错误")
+local widthOption = energyWidthOption
+local heightOption = energyHeightOption
+assert(widthOption.getter() == 300, "额外能量条宽度默认值错误")
+assert(heightOption.getter() == 15, "额外能量条高度默认值错误")
 widthOption.setter(420)
 widthOption.callback()
-assert(powerBarSize.width == 420 and powerBarSize.height == 14,
+assert(powerBarSize.width == 420 and powerBarSize.height == 15,
     "额外能量条宽度未应用")
 heightOption.setter(22)
 heightOption.callback()

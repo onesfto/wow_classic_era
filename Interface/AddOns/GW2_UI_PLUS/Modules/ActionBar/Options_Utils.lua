@@ -312,7 +312,14 @@ function Utils.InitializePanel(panel)
         end
         SetMasterToggleSeparatorShown(row, false)
         row.gwPlusWidgets = data.widgets or {data.widget}
-        local width = data.widgets and (550 / data.columnCount) or 550
+        local gap = 0
+        local width = 550
+        if data.widgets then
+            local columnCount = data.columnCount
+            gap = panel.gwPlusColumnGap or 0
+            local totalGap = gap * (columnCount - 1)
+            width = (550 - totalGap) / columnCount
+        end
         for column, widget in ipairs(row.gwPlusWidgets) do
             widget:SetParent(row)
             widget:ClearAllPoints()
@@ -328,11 +335,13 @@ function Utils.InitializePanel(panel)
             elseif data.widgets and widget.optionType == "button" then
                 -- 原生布局为 40 高的行保留上下各 8 像素，按钮实际高度为 24。
                 widget:SetPoint("TOPLEFT", row, "TOPLEFT",
-                    8 + ((column - 1) * width), -8 - (data.topPadding or 0))
+                    8 + ((column - 1) * (width + gap)),
+                    -8 - (data.topPadding or 0))
                 widget:SetSize(width, 24)
             else
                 widget:SetPoint("TOPLEFT", row, "TOPLEFT",
-                    8 + ((column - 1) * width), -3 - (data.topPadding or 0))
+                    8 + ((column - 1) * (width + gap)),
+                    -3 - (data.topPadding or 0))
                 widget:SetSize(width, 40)
             end
             if data.widgets and widget.title then

@@ -28,6 +28,16 @@ function SimpleBar.AddSimpleBarOptions(panel, kind)
         callback = function() apply(); Utils.ApplyFader() end,
         isMasterToggle = true,
     })
+    if isStance then
+        panel:AddOptionDropdown("收纳按钮", "控制姿态条收纳按钮的显示方式。", {
+            optionsList = {"show", "hide", "hover"},
+            optionNames = {"显示", "隐藏", "悬停显示"},
+            getter = function() return db.stanceBarCollapseButton end,
+            setter = function(value) db.stanceBarCollapseButton = value end,
+            getDefault = function() return "hover" end,
+            callback = apply,
+        })
+    end
     local countOption = panel:AddOptionSlider("按钮数", nil, {
         min = 1, max = 10, step = 1,
         getter = function() return db[prefix .. "Count"] end,
@@ -139,6 +149,10 @@ function SimpleBar.AddSimpleBarOptions(panel, kind)
         db[prefix .. "HotkeyX"], db[prefix .. "HotkeyY"] = 0, 0
         db[prefix .. "HotkeySize"] = 12
         if isStance then
+            db.stanceBarCollapseButton = "hover"
+            if GW.settings.StanceBar then
+                GW.settings.StanceBar.containerState = "open"
+            end
             local stanceDefaults = Utils.NativeDefault("StanceBar", {})
             GW.settings.StanceBar.growDirection =
                 stanceDefaults.growDirection or "UP"

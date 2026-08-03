@@ -15,8 +15,8 @@ end
 
 local STATUS_DEFAULTS = {
     energyBarShowValue = true,
-    energyBarWidth = 313,
-    energyBarHeight = 14,
+    energyBarWidth = 300,
+    energyBarHeight = 15,
     resourceBarShowValue = true,
 }
 local MOVED_GENERAL_OPTION_NAMES = {
@@ -49,6 +49,9 @@ local profileHookInstalled = false
 local RefreshResourcePanels
 local InitStatusDB
 local ApplyEnergyBarSize
+local ApplyEnergyBarScale
+local GetEnergyBarSize
+local SetEnergyBarSize
 
 local function GetCastbarDefaultWidth()
     return AB and AB.defaults and AB.defaults.castbarWidth or 300
@@ -176,6 +179,7 @@ local function PrepareGeneralPanel(playerGeneral)
         grouped["PLAYER_AS_TARGET_FRAME_ALT_BACKGROUND"],
         grouped["player_CLASS_COLOR"],
         grouped["PLAYER_SHOW_PVP_INDICATOR"])
+    playerGeneral.gwPlusColumnGap = 8
     Utils.InitializePanel(playerGeneral)
     C_Timer.After(0, function()
         if playerGeneral.gwOptions then
@@ -189,7 +193,38 @@ local function ClearBarText(bar)
     if bar.label then bar.label:SetText("") end
     if bar.powerBarString then bar.powerBarString:SetText("") end
 end
+local function RemoveFromList(list, value)
+    if type(list) ~= "table" then return end
+    for index = #list, 1, -1 do
+        if list[index] == value then
+            table.remove(list, index)
+        end
+    end
+end
+ApplyEnergyBarScale = function()
+    local bar = _G.GwPlayerPowerBar
+    local function Apply()
+        if GW.settings then GW.settings.PowerBar_pos_scale = 1 end
+        if GW.globalDefault and GW.globalDefault.profile then
+            GW.globalDefault.profile.PowerBar_pos_scale = 1
+        end
+        if not bar then return end
+        if bar.SetScale then bar:SetScale(1) end
+        if bar.gwMover then
+            bar.gwMover.optionScaleable = false
+            RemoveFromList(GW.scaleableFrames, bar.gwMover)
+            RemoveFromList(GW.scaleableMainHudFrames, bar.gwMover)
+            if bar.gwMover.SetScale then bar.gwMover:SetScale(1) end
+        end
+    end
+    if bar and AB and AB.QueueOutOfCombat
+        and AB.QueueOutOfCombat("energyBarScale", Apply) then
+        return
+    end
+    Apply()
+end
 ApplyEnergyBarSize = function()
+    ApplyEnergyBarScale()
     local bar = _G.GwPlayerPowerBar
     if not bar then return end
     local status = InitStatusDB()
@@ -200,6 +235,25 @@ ApplyEnergyBarSize = function()
         bar.decay:SetSize(width, height)
     end
 end
+GetEnergyBarSize = function()
+    local status = InitStatusDB()
+    return status.energyBarWidth, status.energyBarHeight
+end
+SetEnergyBarSize = function(width, height, apply)
+    local status = InitStatusDB()
+    width = tonumber(width)
+    height = tonumber(height)
+    if width then
+        status.energyBarWidth = math.max(100, math.min(600, width))
+    end
+    if height then
+        status.energyBarHeight = math.max(1, math.min(100, height))
+    end
+    if apply ~= false then ApplyEnergyBarSize() end
+end
+addonTable.GetPlayerEnergyBarSize = GetEnergyBarSize
+addonTable.SetPlayerEnergyBarSize = SetEnergyBarSize
+addonTable.ApplyPlayerEnergyBarScale = ApplyEnergyBarScale
 local function ApplyEnergyValueVisibility()
     local show = InitStatusDB().energyBarShowValue == true
     local bars = {
@@ -336,6 +390,12 @@ local function SetWidgetEnabled(widget, enabled)
         end
         return
     end
+    if widget.optionType == "header"
+        or widget.optionType == "subHeader" then
+        widget.title:SetTextColor(
+            GW.Colors.TextColors.LightHeader:GetRGB())
+        return
+    end
     if widget.isMasterToggle then
         widget.title:SetTextColor(
             GW.Colors.TextColors.LightHeader:GetRGB())
@@ -433,6 +493,7 @@ local function CreateResourcePanel(parent, panelId, breadcrumb, sub)
     local panel = CreateFrame(
         "Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = panelId
+    panel.gwPlusColumnGap = 8
     panel.gwOptions = {}
     panel.header:SetFont(
         DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 20)
@@ -638,57 +699,19 @@ local function CreateResourcePanels(
         panel, options.energyTickerCombat,
         "仅在战斗中显示能量/法力回复提示", "能量条", nil,
         {PLAYER_ENERGY_MANA_TICK = true})
+    panel:AddGroupHeader("额外能量条")
     local energyEnabled = AddClonedOption(
-        panel, options.powerBar, "启用额外能量条",
-        "能量条", 2, nil, true)
+        panel, options.powerBar, "启用",
+        "额外能量条", nil, nil, true)
+    energyEnabled.isMasterToggle = false
     local originalEnergyCallback = energyEnabled.callback
     energyEnabled.callback = function(...)
         if originalEnergyCallback then originalEnergyCallback(...) end
         SyncAdditionalEnergyBar()
         QueueValueRefresh()
     end
-    local energyWidth = panel:AddOptionSlider(
-        "宽度", nil, {
-            min = 100,
-            max = 600,
-            step = 1,
-            decimalNumbers = 0,
-            getter = function()
-                return InitStatusDB().energyBarWidth
-            end,
-            setter = function(value)
-                InitStatusDB().energyBarWidth = value
-            end,
-            getDefault = function()
-                return STATUS_DEFAULTS.energyBarWidth
-            end,
-            callback = ApplyEnergyBarSize,
-            dependence = {POWERBAR_ENABLED = true},
-            groupHeaderName = "能量条",
-        })
-    SetOptionColumns(energyWidth, 2, "energyBarWidth")
-    local energyHeight = panel:AddOptionSlider(
-        "高度", nil, {
-            min = 1,
-            max = 100,
-            step = 1,
-            decimalNumbers = 0,
-            getter = function()
-                return InitStatusDB().energyBarHeight
-            end,
-            setter = function(value)
-                InitStatusDB().energyBarHeight = value
-            end,
-            getDefault = function()
-                return STATUS_DEFAULTS.energyBarHeight
-            end,
-            callback = ApplyEnergyBarSize,
-            dependence = {POWERBAR_ENABLED = true},
-            groupHeaderName = "能量条",
-        })
-    SetOptionColumns(energyHeight, 2, "energyBarHeight")
     local energyValue = panel:AddOption(
-        "在条上显示数值", nil, {
+        "在条上显示数字", nil, {
             getter = function()
                 return InitStatusDB().energyBarShowValue
             end,
@@ -700,9 +723,53 @@ local function CreateResourcePanels(
             end,
             callback = ApplyEnergyValueVisibility,
             dependence = {POWERBAR_ENABLED = true},
-            groupHeaderName = "能量条",
+            groupHeaderName = "额外能量条",
         })
+    SetOptionColumns(energyEnabled, 2, "POWERBAR_ENABLED")
     SetOptionColumns(energyValue, 2, "GW2PlusEnergyShowValue")
+    local energyWidth = panel:AddOptionSlider(
+        "宽度", nil, {
+            min = 100,
+            max = 600,
+            step = 1,
+            decimalNumbers = 0,
+            getter = function()
+                local width = GetEnergyBarSize()
+                return width
+            end,
+            setter = function(value)
+                SetEnergyBarSize(value, nil, false)
+            end,
+            getDefault = function()
+                return STATUS_DEFAULTS.energyBarWidth
+            end,
+            callback = ApplyEnergyBarSize,
+            dependence = {POWERBAR_ENABLED = true},
+            groupHeaderName = "额外能量条",
+        })
+    SetOptionColumns(energyWidth, nil, "energyBarWidth")
+    local energyHeight = panel:AddOptionSlider(
+        "高度", nil, {
+            min = 1,
+            max = 100,
+            step = 1,
+            decimalNumbers = 0,
+            getter = function()
+                local _, height = GetEnergyBarSize()
+                return height
+            end,
+            setter = function(value)
+                local width = GetEnergyBarSize()
+                SetEnergyBarSize(width, value, false)
+            end,
+            getDefault = function()
+                return STATUS_DEFAULTS.energyBarHeight
+            end,
+            callback = ApplyEnergyBarSize,
+            dependence = {POWERBAR_ENABLED = true},
+            groupHeaderName = "额外能量条",
+        })
+    SetOptionColumns(energyHeight, nil, "energyBarHeight")
     panel = panels.gw2_plus_player_resource
     AddClonedOption(
         panel, options.classPowerEnabled, "启用",
@@ -740,6 +807,7 @@ local function CreateResourcePanels(
     for _, currentPanel in pairs(panels) do
         local preserveColumns = currentPanel == panels.gw2_plus_player_globe
             or currentPanel == panels.gw2_plus_player_castbar
+            or currentPanel == panels.gw2_plus_player_energy
         InitializeResourcePanel(
             currentPanel, preserveColumns)
     end

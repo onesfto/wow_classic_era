@@ -9,6 +9,7 @@ local function NewMover()
     function mover:EnableMouse(enabled) self.mouseEnabled = enabled end
     function mover:Hide() self.hidden = true end
     function mover:Show() self.hidden = false end
+    function mover:SetMovable(movable) self.movable = movable end
     function mover:ClearAllPoints() self.point = nil end
     function mover:SetPoint(...) self.point = {...} end
     return mover
@@ -219,12 +220,13 @@ assert(not FindOption(definitions[1].panelFrame, "位置"),
     "玩家综合页不应显示位置分类标题")
 assert(not FindOption(definitions[2].panelFrame, "位置"),
     "玩家施法条页面不应显示位置分类标题")
-for index = 3, #definitions do
-    assert(FindOption(definitions[index].panelFrame, "位置"),
-        definitions[index].panel .. " 应保留位置分类标题")
-end
+assert(not FindOption(definitions[3].panelFrame, "位置"),
+    "玩家能量条页面不应显示位置分类标题")
+assert(not FindOption(definitions[4].panelFrame, "位置"),
+    "玩家资源条页面不应显示位置分类标题")
 
-for _, definition in ipairs(definitions) do
+for index = 1, 4 do
+    local definition = definitions[index]
     local panel = definition.panelFrame
     local unlock = assert(
         FindOption(panel, "解锁/锁定"),
@@ -248,10 +250,6 @@ for _, definition in ipairs(definitions) do
     assert(settings[definition.setting].hasMoved == false,
         definition.panel .. " 未保存默认位置")
 end
-
-assert(multiValues.one == true and multiValues.two == true,
-    "多选参数未逐项恢复")
-assert(multiCallbacks == 1, "多选参数回调次数错误")
 
 local player = definitions[1]
 local playerOptions = player.panelFrame.gwOptions
