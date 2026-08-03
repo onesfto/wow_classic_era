@@ -11,8 +11,6 @@
 ## 迁移与设置
 
 - [迁移指南](MIGRATION.md) - GW2_UI 本体函数覆盖与迁移原理
-- [迁移状态](MIGRATION_STATUS.md) - 当前功能迁移状态
-- [迁移清单](GW2_UI_MIGRATION_CHECKLIST.md) - GW2_UI 原版功能对照
 - [设置系统架构](SETTINGS_ARCHITECTURE.md) - 设置面板实现与扩展方式
 - [设置界面排版规范](SETTINGS_LAYOUT_GUIDE.md) - 设置界面布局规则
 - [设置面板清单](SETTINGS_PANELS.md) - 当前设置项总览

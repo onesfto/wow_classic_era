@@ -218,6 +218,11 @@ function AB.ApplyGlobeScale()
     end
 end
 local MOVER_OPTION_HEIGHT = 45
+local CASTBAR_MOVER_SETTING = "castingbar_pos"
+local CASTBAR_WIDTH_MIN = 100
+local CASTBAR_WIDTH_MAX = 600
+local CASTBAR_HEIGHT_MIN = 10
+local CASTBAR_HEIGHT_MAX = 100
 local function GetMoverBarIndex(mover)
     if not mover then return end
     if mover.parent == _G.MainActionBar then return 1 end
@@ -225,6 +230,17 @@ local function GetMoverBarIndex(mover)
     for index, info in pairs(AB.MULTIBARS) do
         if mover.parent == _G[info.frame] then return index end
     end
+end
+local function IsCastbarMover(mover)
+    return mover and mover.setting == CASTBAR_MOVER_SETTING
+end
+local function GetCastbarOptionValue(key)
+    local db = AB.InitDB()
+    return db[key] or AB.defaults[key]
+end
+local function ApplyCastbarOption(key, value)
+    AB.InitDB()[key] = value
+    AB.ApplyCastbarSize()
 end
 local function CreateMoverSlider(parent, label, order)
     local row = CreateFrame("Button", nil, parent)
@@ -326,6 +342,11 @@ local function SetupMoverOptionPanel()
     custom:SetPoint("TOPLEFT", options, "TOPLEFT", 0, -5)
     custom:Hide()
     options.gwPlusActionBarOptions = custom
+    local castbarCustom = CreateFrame("Frame", nil, options)
+    castbarCustom:SetSize(170, MOVER_OPTION_HEIGHT * 2)
+    castbarCustom:SetPoint("TOPLEFT", options, "TOPLEFT", 0, -5)
+    castbarCustom:Hide()
+    options.gwPlusCastbarOptions = castbarCustom
     local definitions = {
         {"size", "尺寸", AB.SIZE_MIN, AB.SIZE_MAX, 1},
         {"spacing", "间距", 0, 20, 1},
@@ -377,6 +398,67 @@ local function SetupMoverOptionPanel()
         end
         self.refreshing = false
     end
+
+    castbarCustom.rows = {}
+    local castbarDefinitions = {
+        {"castbarWidth", "宽度", CASTBAR_WIDTH_MIN, CASTBAR_WIDTH_MAX},
+        {"castbarHeight", "高度", CASTBAR_HEIGHT_MIN, CASTBAR_HEIGHT_MAX},
+    }
+    for order, definition in ipairs(castbarDefinitions) do
+        local key, label, minimum, maximum = unpack(definition)
+        local row = CreateMoverSlider(castbarCustom, label, order)
+        row.key = key
+        row.slider:SetMinMaxValues(minimum, maximum)
+        row.slider:SetValueStep(1)
+        if row.slider.SetObeyStepOnDrag then
+            row.slider:SetObeyStepOnDrag(true)
+        end
+        row.slider:SetScript("OnValueChanged", function(_, value)
+            value = math.floor(value + 0.5)
+            row.input:SetText(value)
+            if castbarCustom.refreshing or not castbarCustom.selected then
+                return
+            end
+            ApplyCastbarOption(key, value)
+        end)
+        row.input:SetScript("OnEnterPressed", function(self)
+            local value = math.max(minimum, math.min(maximum, self:GetNumber()))
+            value = math.floor(value + 0.5)
+            self:ClearFocus()
+            row.slider:SetValue(value)
+            self:SetText(value)
+        end)
+        row.input:SetScript("OnEscapePressed", function(self)
+            self:ClearFocus()
+            self:SetText(GetCastbarOptionValue(key))
+        end)
+        castbarCustom.rows[order] = row
+    end
+    function castbarCustom:Refresh()
+        self.selected = true
+        self.refreshing = true
+        for _, row in ipairs(self.rows) do
+            local value = GetCastbarOptionValue(row.key)
+            row.slider:SetValue(value)
+            row.input:SetText(value)
+        end
+        self.refreshing = false
+    end
+end
+local function SetNativeMoverResetHandler(options, mover)
+    if not options or not options.default then return end
+    local GW = _G.GW2_ADDON
+    if IsCastbarMover(mover) then
+        options.default:SetScript("OnClick", function()
+            local restore = addonTable.RestorePlayerCastbarDefaults
+            if restore and restore(AB.RefreshMoverOptionPanel) then return end
+            if GW.ResetMoverFrameToDefaultValues then
+                GW.ResetMoverFrameToDefaultValues(options.default)
+            end
+        end)
+    elseif GW.ResetMoverFrameToDefaultValues then
+        options.default:SetScript("OnClick", GW.ResetMoverFrameToDefaultValues)
+    end
 end
 function AB.RefreshMoverOptionPanel()
     local GW = _G.GW2_ADDON
@@ -386,24 +468,43 @@ function AB.RefreshMoverOptionPanel()
     local settingsFrame = container and container.moverSettingsFrame
     local options = settingsFrame and settingsFrame.options
     local custom = options and options.gwPlusActionBarOptions
-    if not custom then return end
+    local castbarCustom = options and options.gwPlusCastbarOptions
+    if not custom or not castbarCustom then return end
     local mover = settingsFrame.childMover
     local barIndex = GetMoverBarIndex(mover)
-    options.scaleSlider:SetShown(not barIndex and mover and mover.optionScaleable)
-    options.heightSlider:SetShown(not barIndex and mover and mover.optionHeight)
+    local castbar = IsCastbarMover(mover)
+    options.scaleSlider:SetShown(
+        not barIndex and not castbar and mover and mover.optionScaleable)
+    options.heightSlider:SetShown(
+        not barIndex and not castbar and mover and mover.optionHeight)
     options.movers:ClearAllPoints()
     if barIndex then
         mover.optionScaleable = false
+        SetNativeMoverResetHandler(options, mover)
         options.default:SetText("恢复默认")
         custom:Show()
+        castbarCustom:Hide()
         custom:Refresh(barIndex)
         options:SetHeight(275)
         options.movers:SetPoint("TOPLEFT", custom, "BOTTOMLEFT", 0, -5)
         container:SetHeight(385)
         if container.seperator then container.seperator:SetHeight(385) end
+    elseif castbar then
+        mover.optionScaleable = false
+        SetNativeMoverResetHandler(options, mover)
+        options.default:SetText("恢复默认")
+        custom:Hide()
+        castbarCustom:Show()
+        castbarCustom:Refresh()
+        options:SetHeight(185)
+        options.movers:SetPoint("TOPLEFT", castbarCustom, "BOTTOMLEFT", 0, -5)
+        container:SetHeight(295)
+        if container.seperator then container.seperator:SetHeight(295) end
     else
+        SetNativeMoverResetHandler(options, mover)
         options.default:SetText(RESET_TO_DEFAULT)
         custom:Hide()
+        castbarCustom:Hide()
         options:SetHeight(175)
         options.movers:SetPoint("TOPLEFT", options.heightSlider, "BOTTOMLEFT", 0, -20)
         container:SetHeight(285)

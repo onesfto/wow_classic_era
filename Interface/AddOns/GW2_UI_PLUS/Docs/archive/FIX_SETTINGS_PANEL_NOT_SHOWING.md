@@ -206,7 +206,7 @@ if not addonTable.SomeModule then return end
 
 ## 🔗 相关文档
 
-- [GW2_UI_MIGRATION_CHECKLIST.md](../GW2_UI_MIGRATION_CHECKLIST.md) - 迁移清单
+- [GW2_UI_MIGRATION_CHECKLIST.md](GW2_UI_MIGRATION_CHECKLIST.md) - 迁移清单
 - [SETTINGS_PANELS.md](../SETTINGS_PANELS.md) - 设置面板功能说明
 
 ## 📅 修复日期

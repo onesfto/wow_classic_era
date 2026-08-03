@@ -474,7 +474,7 @@ end
 
 ## 相关文档
 
-- **[SETTINGS_PANELS.md](SETTINGS_PANELS.md)** - 所有设置面板的完整选项清单
+- **[SETTINGS_PANELS.md](SETTINGS_PANELS.md)** - 设置标签和页面职责清单
 - **[API.md](API.md)** - 公共模块API接口
 - **[DEVELOPMENT.md](DEVELOPMENT.md)** - 开发规范和流程
 - **[Modules/Settings/README.md](../Modules/Settings/README.md)** - Settings 模块详细说明

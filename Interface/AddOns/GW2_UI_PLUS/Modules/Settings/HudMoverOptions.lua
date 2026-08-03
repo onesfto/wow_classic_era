@@ -130,7 +130,7 @@ local function ResetHudMover(frameName, settingName, defaultPoint)
 end
 
 local function RestorePanelDefaults(
-    panel, frameName, settingName, defaultPoint)
+    panel, frameName, settingName, defaultPoint, onComplete)
     local GW = _G.GW2_ADDON
     local options = {}
     for _, option in ipairs(panel.gwOptions or {}) do
@@ -143,6 +143,7 @@ local function RestorePanelDefaults(
         ResetHudMover(frameName, settingName, defaultPoint)
         RefreshPanel(panel)
         if GW and GW.CheckDependencies then GW.CheckDependencies() end
+        if onComplete then onComplete() end
     end
     if InCombatLockdown and InCombatLockdown() then
         if GW and GW.CombatQueue then
@@ -154,6 +155,21 @@ local function RestorePanelDefaults(
         return
     end
     Apply()
+end
+
+function addonTable.RestorePlayerCastbarDefaults(onComplete)
+    local panel = addonTable.gwPlusPlayerCastbarPanel
+    if not panel then
+        local GW = _G.GW2_ADDON
+        local tab = GW and GW.GetSettingsTabFrame
+            and GW.GetSettingsTabFrame()
+        local resources = tab and tab.gwPlusPlayerResourcePanels
+        panel = resources and resources.gw2_plus_player_castbar
+    end
+    if not panel then return false end
+    RestorePanelDefaults(
+        panel, "GwCastingBarPlayer", "castingbar_pos", nil, onComplete)
+    return true
 end
 
 RefreshPanel = function(panel)
@@ -231,6 +247,7 @@ function addonTable.BuildHudMoverOptions(settingsTab)
     local pages = tab and tab.gwPlusEmbeddedPanels
     if not pages then return false end
     local resources = tab.gwPlusPlayerResourcePanels or {}
+    addonTable.gwPlusPlayerCastbarPanel = resources.gw2_plus_player_castbar
     ApplyMinimapDefault()
     local microPanel = pages and pages.hud_microbar
     local minimapPanel = pages and pages.hud_minimap

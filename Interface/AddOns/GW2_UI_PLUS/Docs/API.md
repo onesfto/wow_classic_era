@@ -1,303 +1,119 @@
 # GW2_UI_PLUS API 文档
 
-## 模块系统
+本文档只记录模块之间实际复用的接口。`addonTable` 上的对象属于插件内部 API，不承诺为其他插件提供长期兼容的外部 API。
 
-所有模块通过 `addonTable` 导出：
+## 模块访问
 
 ```lua
 local _, addonTable = ...
-local MyModule = addonTable.ModuleName
+local Performance = addonTable.Performance
 ```
 
-## 公共工具 (Common)
+新模块通过 `addonTable` 共享对象，不创建新的全局表。文件加载顺序由 `GW2_UI_PLUS.toc` 决定。
 
-### Performance
+## Common
 
-性能优化工具模块。
+### `addonTable.Performance`
 
-#### Throttle
-
-节流器，限制函数调用频率。
+- `Throttle(key, interval, func)`：在间隔内只执行一次 `func`，返回本次是否执行。
+- `Debounce(key, delay, func)`：取消同键的待执行回调，延迟后执行最新回调。
+- `CacheGlobal(key, globalName)`：缓存 `_G[globalName]`。
+- `ClearCache()`：清空全局函数缓存。
 
 ```lua
 local Perf = addonTable.Performance
 
-Perf.Throttle("updateUI", 0.1, function()
-    -- 最多每 0.1 秒执行一次
-end)
-```
-
-**参数**:
-- `key` (string): 唯一标识
-- `interval` (number): 间隔秒数
-- `func` (function): 要执行的函数
-
-**返回**: (boolean) 是否执行了函数
-
-#### Debounce
-
-防抖器，延迟执行直到停止调用。
-
-```lua
-Perf.Debounce("search", 0.3, function()
-    -- 停止调用 0.3 秒后执行
-end)
-```
-
-**参数**:
-- `key` (string): 唯一标识
-- `delay` (number): 延迟秒数
-- `func` (function): 要执行的函数
-
-#### CacheGlobal
-
-缓存全局变量查找。
-
-```lua
+Perf.Throttle("refresh", 0.1, Refresh)
 local UnitHealth = Perf.CacheGlobal("UnitHealth", "UnitHealth")
-local health = UnitHealth("player")
 ```
 
-**参数**:
-- `key` (string): 缓存键
-- `globalName` (string): 全局变量名
-
-**返回**: 缓存的全局变量
-
-#### ClearCache
-
-清空所有缓存。
+### `addonTable.SetPanelTitle`
 
 ```lua
-Perf.ClearCache()
+addonTable.SetPanelTitle(panel, title, breadcrumb)
 ```
 
-## 动作条 (ActionBar)
+统一设置 GW2_UI 设置面板的标题和面包屑文本。`panel` 为空时直接返回。
 
-### PlusActionBar
+## 动作条接口
 
-动作条主模块。
+### `addonTable.PlusActionBar`
 
-#### InitDB
+主要供动作条、玩家资源和设置模块复用：
 
-初始化存档。
+- `InitDB()`：初始化并返回 `GW2_UI_PLUS_ActionBarSV`。
+- `QueueOutOfCombat(name, func)`：战斗中暂存需要脱战执行的操作；成功排队时返回真值。
+- `SetFontStringSize(fontString, size)`：保留字体路径与样式，只修改字号。
+- `defaults`：动作条默认配置。
+- `MULTIBARS`、`SIZE_MIN`、`SIZE_MAX`：动作条布局常量。
 
-```lua
-local AB = addonTable.PlusActionBar
-local db = AB.InitDB()
+### `addonTable.PlusFader`
+
+- `Init()`：初始化动作条渐隐。
+- `Refresh()`：根据当前配置刷新目标动作条。
+- `PrintDiagnostics()`：输出当前渐隐状态，供本模块排查问题使用。
+
+### `addonTable.ActionBarOptionsUtils`
+
+这是设置模块使用的控件工具层，不是外部插件接口。当前主要入口包括：
+
+- `CreatePanel(parent, panelId, breadcrumb, description)`
+- `CreateOptionWidget(panel, option)`
+- `InitializePanel(panel)`
+- `RefreshPanel(panel)`
+- `AddResetButton(panel, callback)`
+- `ApplyFader()`、`ApplyLayout()`
+
+新增动作条设置时，应复用这套工具，不要复制一套选项控件实现。
+
+## 皮肤接口
+
+### `addonTable.Skin`
+
+皮肤模块共享基础控件样式，包括 `SkinFrame`、`SkinButton`、`SkinFont`、`SkinCheckBox`、`SkinScrollBar` 和 `SkinDropDown`。具体参数以 `Modules/Skins/Core.lua` 为准。
+
+### `addonTable.TradeSkillSkinUtils`
+
+专业/制造面板内部工具。它负责区域显隐、控件换肤、窗口尺寸和布局辅助；其他模块不应直接依赖其中的布局常量。
+
+## 设置面板构建器
+
+设置页面构建器由 `core.lua` 和 `Modules/Settings/` 调用，例如：
+
+- `BuildGeneralPanel`
+- `BuildChatBarPanel`
+- `BuildChatWindowPanel`
+- `BuildToolbarPanel`
+- `BuildSkinsPanel`
+- `BuildWorldMapOptions`
+- `BuildMainMenuTab`
+- `BuildChatTab`
+- `BuildPartyTab`
+- `BuildComponentsTab`
+
+这些函数是加载顺序和设置窗口的内部连接点。修改名称或返回的 Frame 结构时，需要同步检查调用方。
+
+## SavedVariables
+
+插件清单当前声明的存档入口：
+
+```text
+alaGearManSV
+GW2_UI_PLUS_SV
+GW2_UI_PLUS_ChatBarSV
+GW2_UI_PLUS_ChatWindowSV
+GW2_UI_PLUS_ActionBarSV
+GW2_UI_PLUS_PlayerStatusSV
+GW2_UI_PLUS_PlayerFaderSV
+GW2_UI_PLUS_TargetFaderSV
+GW2_UI_PLUS_CooldownPulseSV
 ```
 
-**返回**: (table) 存档数据
+新增配置必须登记在 `GW2_UI_PLUS.toc`，并在对应模块初始化时补齐默认值。
 
-#### ApplyMainBarLayout
+## 变更边界
 
-应用主动作条布局。
-
-```lua
-AB.ApplyMainBarLayout()
-```
-
-#### ApplyMultiBarSizes
-
-应用多动作条尺寸。
-
-```lua
-AB.ApplyMultiBarSizes()
-```
-
-#### GetMultiBarSize
-
-获取多动作条尺寸。
-
-```lua
-local size = AB.GetMultiBarSize(2)  -- 动作条 2 的尺寸
-```
-
-**参数**:
-- `index` (number): 动作条索引 (2-8)
-
-**返回**: (number) 按钮尺寸
-
-#### SetMultiBarSize
-
-设置多动作条尺寸。
-
-```lua
-AB.SetMultiBarSize(2, 36)  -- 设置动作条 2 尺寸为 36
-```
-
-**参数**:
-- `index` (number): 动作条索引 (2-8)
-- `size` (number): 按钮尺寸
-
-#### ApplyGlobeScale
-
-应用地球仪缩放。
-
-```lua
-AB.ApplyGlobeScale()
-```
-
-#### ApplyCastbarSize
-
-应用施法条尺寸。
-
-```lua
-AB.ApplyCastbarSize()
-```
-
-### ActionBarOptionsUtils
-
-设置面板工具函数。
-
-#### RedrawSlider
-
-刷新滑块显示值。
-
-```lua
-local Utils = addonTable.ActionBarOptionsUtils
-Utils.RedrawSlider("optionName")
-```
-
-#### RefreshPanel
-
-刷新面板所有控件。
-
-```lua
-Utils.RefreshPanel(panel)
-```
-
-**参数**:
-- `panel` (frame): 面板框架
-
-#### ApplyFader
-
-应用渐隐设置。
-
-```lua
-Utils.ApplyFader()
-```
-
-#### ApplyLayout
-
-应用布局设置。
-
-```lua
-Utils.ApplyLayout()
-```
-
-## 换肤系统 (Skins)
-
-### TradeSkillSkinUtils
-
-专业/制造面板皮肤工具。
-
-#### 常量
-
-```lua
-local Utils = addonTable.TradeSkillSkinUtils
-
-local icon = Utils.ICON
-local width = Utils.PANEL_WIDTH
-local height = Utils.PANEL_HEIGHT
-```
-
-#### HideRegion
-
-隐藏区域。
-
-```lua
-Utils.HideRegion(region)
-```
-
-#### ShowRegion
-
-显示区域。
-
-```lua
-Utils.ShowRegion(region)
-```
-
-#### SkinCloseButton
-
-换肤关闭按钮。
-
-```lua
-Utils.SkinCloseButton(button, parentFrame)
-```
-
-## 渐隐系统 (Fader)
-
-### PlusFader
-
-全局渐隐模块。
-
-#### Init
-
-初始化渐隐系统。
-
-```lua
-local Fader = addonTable.PlusFader
-Fader.Init()
-```
-
-#### Refresh
-
-刷新渐隐效果。
-
-```lua
-Fader.Refresh()
-```
-
-## 事件系统
-
-模块使用标准 WoW 事件系统：
-
-```lua
-local frame = CreateFrame("Frame")
-frame:RegisterEvent("PLAYER_ENTERING_WORLD")
-frame:SetScript("OnEvent", function(self, event, ...)
-    -- 处理事件
-end)
-```
-
-## 存档系统
-
-各模块使用独立的 SavedVariables：
-
-- `GW2_UI_PLUS_SV` - 全局设置
-- `GW2_UI_PLUS_ActionBarSV` - 动作条
-- `GW2_UI_PLUS_ChatBarSV` - 频道按钮条
-- `GW2_UI_PLUS_ChatWindowSV` - 聊天窗口
-- `GW2_UI_PLUS_PlayerStatusSV` - 玩家状态
-- `GW2_UI_PLUS_CooldownPulseSV` - 技能冷却
-
-## 钩子与覆盖
-
-使用 `hooksecurefunc` 安全钩子：
-
-```lua
-hooksecurefunc("FunctionName", function(...)
-    -- 原函数执行后调用
-end)
-```
-
-避免直接覆盖全局函数，除非必要。
-
-## 性能最佳实践
-
-1. **使用节流器**: 高频更新使用 `Performance.Throttle`
-2. **缓存全局变量**: 使用 `Performance.CacheGlobal`
-3. **避免频繁创建**: 重用框架和表
-4. **延迟加载**: 按需加载模块
-5. **合理使用 OnUpdate**: 尽量使用事件驱动
-
-## 调试
-
-使用 `/console scriptErrors 1` 启用错误显示。
-
-使用 BugSack 插件捕获错误。
-
-## 更多信息
-
-查看各模块 README 了解详细信息。
+- 不直接覆盖 GW2_UI 的公共函数，优先使用其注册接口或 `hooksecurefunc`。
+- 不在多个模块复制同一份默认配置或设置控件。
+- 涉及受保护框体的操作必须遵守战斗锁定规则。
+- 修改内部接口时，同时更新调用方和本目录文档。

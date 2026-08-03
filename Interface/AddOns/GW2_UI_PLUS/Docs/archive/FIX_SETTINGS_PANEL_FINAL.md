@@ -302,9 +302,9 @@ if not addonTable.SomeModule then return end
 
 ## 🔗 相关文档
 
-- [GW2_UI_MIGRATION_CHECKLIST.md](../GW2_UI_MIGRATION_CHECKLIST.md) - 原版功能迁移清单
+- [GW2_UI_MIGRATION_CHECKLIST.md](GW2_UI_MIGRATION_CHECKLIST.md) - 原版功能迁移清单
 - [SETTINGS_PANELS.md](../SETTINGS_PANELS.md) - 设置面板功能说明
-- [MIGRATION_STATUS.md](../MIGRATION_STATUS.md) - 迁移状态对照表
+- [MIGRATION_STATUS.md](MIGRATION_STATUS.md) - 迁移状态对照表
 
 ## 📅 修复历史
 
