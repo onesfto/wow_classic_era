@@ -247,33 +247,6 @@ if not ok then
 end
 ```
 
-### 性能测试
-
-```lua
-local start = debugprofilestop()
-DoSomething()
-local elapsed = debugprofilestop() - start
-print("Time:", elapsed, "ms")
-```
-
-## 测试
-
-### 手动测试
-
-1. 重新加载界面: `/reload`
-2. 检查错误: `/bugsack show`
-3. 测试功能
-4. 检查性能
-
-### 测试清单
-
-- [ ] 功能正常工作
-- [ ] 无 Lua 错误
-- [ ] 存档正确保存/加载
-- [ ] 设置面板正常显示
-- [ ] 性能无明显影响
-- [ ] 与其他插件兼容
-
 ## 文档
 
 ### 模块 README
@@ -338,9 +311,8 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
 
 1. 更新版本号
 2. 更新 CHANGELOG
-3. 测试所有功能
-4. 创建 Git tag
-5. 打包发布
+3. 创建 Git tag
+4. 打包发布
 
 ## 常见问题
 

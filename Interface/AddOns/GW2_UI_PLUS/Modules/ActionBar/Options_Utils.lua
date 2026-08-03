@@ -292,7 +292,8 @@ function Utils.InitializePanel(panel)
         end
         local extent = (data.option.optionType == "header"
             or data.option.optionType == "subHeader"
-            or data.option.optionType == "button") and Utils.HEADER_EXTENT or 46
+            or data.option.optionType == "button"
+            or data.option.isMasterToggle) and Utils.HEADER_EXTENT or 46
         return extent + (data.topPadding or 0)
     end)
     view:SetElementInitializer("GwFrameTemplate", function(row, data)

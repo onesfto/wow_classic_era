@@ -84,6 +84,31 @@ local embeddedPanels = {
     hud_minimap = NewPanel(),
 }
 local resourcePanels = {}
+local globeValue = false
+local textCallbackCalled = false
+local textInput = {value = ""}
+function textInput:GetNumber() return 0 end
+function textInput:SetText(value) self.value = value end
+local globePanel = NewPanel({
+    {
+        name = "血球参数",
+        getDefault = function() return true end,
+        set = function(value) globeValue = value end,
+    },
+    {
+        name = "位移条技能",
+        optionType = "text",
+        getDefault = function() return nil end,
+        set = function() end,
+        callback = function(input)
+            input:GetNumber()
+            textCallbackCalled = true
+        end,
+        __gwPlusWidget = {inputFrame = {input = textInput}},
+    },
+})
+globePanel.gwPlusWidgets = {}
+resourcePanels.gw2_plus_player_globe = globePanel
 local profile = {
     MicromenuPos = {
         point = "TOPLEFT", relativePoint = "TOPLEFT",
@@ -166,12 +191,38 @@ _G.InCombatLockdown = function() return inCombat end
 _G.C_Timer = {After = Noop}
 _G.CreateFrame = function() return NewFrame() end
 
-local addon = {}
+local customRefreshCount = 0
+local addon = {
+    ActionBarOptionsUtils = {
+        InitializePanel = function(panel)
+            customRefreshCount = customRefreshCount + 1
+            panel.customRefreshCount = customRefreshCount
+        end,
+    },
+}
 assert(loadfile("Modules/Settings/HudMoverOptions.lua"))("GW2_UI_PLUS", addon)
 assert(addon.BuildHudMoverOptions({
     gwPlusEmbeddedPanels = embeddedPanels,
     gwPlusPlayerResourcePanels = resourcePanels,
 }))
+
+local globeReset = FindOption(globePanel, "恢复默认")
+assert(globeReset, "血球和贴图页面缺少恢复默认按钮")
+assert(globePanel.customRefreshCount > 0,
+    "血球和贴图页面新增按钮后覆盖了原有多栏布局")
+globeReset.callback()
+assert(globeValue == true, "血球和贴图页面未恢复页面参数")
+assert(textCallbackCalled, "血球和贴图页面文本选项回调参数错误")
+assert(textInput.value == "", "血球和贴图页面文本框未刷新")
+
+assert(not FindOption(definitions[1].panelFrame, "位置"),
+    "玩家综合页不应显示位置分类标题")
+assert(not FindOption(definitions[2].panelFrame, "位置"),
+    "玩家施法条页面不应显示位置分类标题")
+for index = 3, #definitions do
+    assert(FindOption(definitions[index].panelFrame, "位置"),
+        definitions[index].panel .. " 应保留位置分类标题")
+end
 
 for _, definition in ipairs(definitions) do
     local panel = definition.panelFrame

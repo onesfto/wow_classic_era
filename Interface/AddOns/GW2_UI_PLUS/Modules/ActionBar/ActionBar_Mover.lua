@@ -3,6 +3,7 @@ local GW = _G.GW2_ADDON
 if not GW then return end
 local AB = addonTable.PlusActionBar
 if not AB then return end
+local castbarProfileHooked = false
 function AB.EnsureMoverSettings(settingName, default)
     if not GW.settings then return false end
     if GW.globalDefault and GW.globalDefault.profile and not GW.globalDefault.profile[settingName] then
@@ -237,11 +238,42 @@ function AB.ApplyMainBarLayout()
     bar.gw_Width = barWidth
     AB.SyncMainBarMoverVisual(bar, margin, topInset, contentWidth, contentHeight)
 end
-function AB.ApplyCastbarSize()
+local function RemoveFromList(list, value)
+    if type(list) ~= "table" then return end
+    for index = #list, 1, -1 do
+        if list[index] == value then
+            table.remove(list, index)
+        end
+    end
+end
+function AB.EnforceCastbarScale()
     local castbar = _G.GwCastingBarPlayer
     if not castbar then return end
-    local width = AB.InitDB().castbarWidth or 250
-    local height = AB.InitDB().castbarHeight or 24
+    if not castbarProfileHooked and GW.globalSettings
+        and GW.globalSettings.RegisterCallback then
+        castbarProfileHooked = true
+        GW.globalSettings.RegisterCallback(
+            AB, "OnProfileChanged", AB.EnforceCastbarScale)
+    end
+    local profile = GW.globalDefault and GW.globalDefault.profile
+    if profile then profile.castingbar_pos_scale = 1 end
+    if GW.settings then GW.settings.castingbar_pos_scale = 1 end
+
+    local mover = castbar.gwMover
+    if mover then
+        mover.optionScaleable = false
+        RemoveFromList(GW.scaleableFrames, mover)
+        mover:SetScale(1)
+    end
+    castbar:SetScale(1)
+end
+function AB.ApplyCastbarSize()
+    AB.EnforceCastbarScale()
+    local castbar = _G.GwCastingBarPlayer
+    if not castbar then return end
+    local db = AB.InitDB()
+    local width = db.castbarWidth or AB.defaults.castbarWidth
+    local height = db.castbarHeight or AB.defaults.castbarHeight
     castbar:SetSize(width, height)
     castbar.progress:SetSize(width, height)
     if castbar.gwMover then
@@ -252,10 +284,6 @@ function AB.ApplyCastbarSize()
             castbar.gwMover:SetSize(width, height)
             castbar:SetPoint("CENTER", castbar.gwMover)
         end
-    end
-    castbar:SetScale(1)
-    if castbar.gwMover then
-        castbar.gwMover:SetScale(1)
     end
 end
 function AB.ApplyGlobeScale()

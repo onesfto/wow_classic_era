@@ -9,6 +9,7 @@ local MINIMAP_DEFAULT = {
 }
 
 local activeMover
+local RefreshPanel
 
 local function CopyTable(source)
     if _G.GW2_ADDON and _G.GW2_ADDON.CopyTable then
@@ -36,7 +37,15 @@ local function RestoreOptionDefault(option)
     local value = option.getDefault()
     if type(value) == "table" then value = CopyTable(value) end
     option.set(value)
-    if option.callback then option.callback(value, option.optionName) end
+    if not option.callback then return end
+    if option.optionType == "text" then
+        local widget = option.__widget or option.__gwPlusWidget
+        local input = widget and widget.inputFrame and widget.inputFrame.input
+        if input then input:SetText(value or "") end
+        if input then option.callback(input) end
+        return
+    end
+    option.callback(value, option.optionName)
 end
 
 local function SetInline(option)
@@ -132,9 +141,7 @@ local function RestorePanelDefaults(
             RestoreOptionDefault(option)
         end
         ResetHudMover(frameName, settingName, defaultPoint)
-        if GW and GW.RefreshSettingsPanel then
-            GW.RefreshSettingsPanel(panel)
-        end
+        RefreshPanel(panel)
         if GW and GW.CheckDependencies then GW.CheckDependencies() end
     end
     if InCombatLockdown and InCombatLockdown() then
@@ -149,6 +156,17 @@ local function RestorePanelDefaults(
     Apply()
 end
 
+RefreshPanel = function(panel)
+    local Utils = addonTable.ActionBarOptionsUtils
+    if panel and panel.gwPlusWidgets
+        and Utils and Utils.InitializePanel then
+        Utils.InitializePanel(panel)
+        return
+    end
+    local GW = _G.GW2_ADDON
+    if GW and GW.RefreshSettingsPanel then GW.RefreshSettingsPanel(panel) end
+end
+
 local function ApplyMinimapDefault()
     local GW = _G.GW2_ADDON
     local profile = GW and GW.globalDefault and GW.globalDefault.profile
@@ -161,10 +179,13 @@ local function ApplyMinimapDefault()
 end
 
 local function AddMoverControls(
-    panel, frameName, settingName, defaultPoint, restorePanel)
+    panel, frameName, settingName, defaultPoint, restorePanel,
+    showGroupHeader)
     if not panel or panel.gwPlusMoverControls then return end
     panel.gwPlusMoverControls = true
-    panel:AddGroupHeader("位置")
+    if showGroupHeader ~= false then
+        panel:AddGroupHeader("位置")
+    end
     local mover = SetInline(panel:AddOptionButton(
         "解锁/锁定", "解锁后可拖动组件；再次点击即可锁定。", {
             callback = function() ToggleHudMover(frameName) end,
@@ -187,8 +208,20 @@ local function AddMoverControls(
         }))
     if reset then reset.gwPlusMoverControl = true end
     SetRow(2, mover, reset)
-    local GW = _G.GW2_ADDON
-    if GW and GW.RefreshSettingsPanel then GW.RefreshSettingsPanel(panel) end
+    RefreshPanel(panel)
+end
+
+local function AddPanelRestoreControl(panel)
+    if not panel or panel.gwPlusPanelRestoreControl then return end
+    panel.gwPlusPanelRestoreControl = true
+    panel:AddOptionButton(
+        "恢复默认", "恢复当前页面的全部参数。", {
+            callback = function()
+                RestorePanelDefaults(panel)
+            end,
+            isNegativeButton = true,
+        })
+    RefreshPanel(panel)
 end
 
 function addonTable.BuildHudMoverOptions(settingsTab)
@@ -207,10 +240,10 @@ function addonTable.BuildHudMoverOptions(settingsTab)
         minimapPanel, "Minimap", "MinimapPos", MINIMAP_DEFAULT)
     AddMoverControls(
         pages.player_general,
-        "GwPlayerUnitFrame", "player_pos", nil, true)
+        "GwPlayerUnitFrame", "player_pos", nil, true, false)
     AddMoverControls(
         resources.gw2_plus_player_castbar,
-        "GwCastingBarPlayer", "castingbar_pos", nil, true)
+        "GwCastingBarPlayer", "castingbar_pos", nil, true, false)
     AddMoverControls(
         resources.gw2_plus_player_energy,
         "GwPlayerPowerBar", "PowerBar_pos", nil, true)
@@ -226,6 +259,7 @@ function addonTable.BuildHudMoverOptions(settingsTab)
     AddMoverControls(
         pages.player_pet,
         "GwPlayerPetFrame", "pet_pos", nil, true)
+    AddPanelRestoreControl(resources.gw2_plus_player_globe)
     return true
 end
 

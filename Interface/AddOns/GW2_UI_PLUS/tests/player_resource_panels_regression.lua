@@ -3,6 +3,7 @@ local registeredProfileOwner
 local registeredProfileCallback
 local refreshCounts = {}
 local initializedPanels = {}
+local scheduledTimers = {}
 
 local function Noop() end
 local function ValueOption(optionName, dependence)
@@ -28,6 +29,7 @@ local function AddOption(panel, name, _, config)
     local option = config or {}
     option.name = name
     option.optionType = option.optionType or "boolean"
+    panel.gwOptions = panel.gwOptions or {}
     panel.gwOptions[#panel.gwOptions + 1] = option
     return option
 end
@@ -36,7 +38,6 @@ local function NewPanel(parent)
     local text = {SetFont = Noop, SetTextColor = Noop, SetText = Noop}
     local panel = {
         parent = parent,
-        gwOptions = {},
         header = text,
         breadcrumb = text,
         sub = text,
@@ -50,12 +51,17 @@ local function NewPanel(parent)
         config.optionType = "slider"
         return AddOption(self, name, description, config)
     end
-    panel.HookScript = Noop
+    panel.scripts = {}
+    panel.HookScript = function(self, event, callback)
+        self.scripts[event] = callback
+    end
     panel.Hide = Noop
     return panel
 end
 
 local playerGeneral = NewPanel({})
+local hiddenPlayerOption = ValueOption("PLAYER_UNIT_HEALTH_SHORT_VALUES")
+hiddenPlayerOption.hidden = true
 playerGeneral.gwOptions = {
     ValueOption("HEALTHGLOBE_ENABLED"),
     ValueOption("POWERBAR_ENABLED"),
@@ -63,6 +69,7 @@ playerGeneral.gwOptions = {
     ValueOption("showDodgebar"),
     ValueOption("PLAYER_TRACKED_DODGEBAR_SPELL"),
     ValueOption("PLAYER_AS_TARGET_FRAME_ALT_BACKGROUND"),
+    hiddenPlayerOption,
     ValueOption("player_CLASS_COLOR"),
     ValueOption("PLAYER_SHOW_PVP_INDICATOR"),
     DropdownOption("PLAYER_UNIT_HEALTH"),
@@ -118,9 +125,9 @@ local GW = {
 }
 _G.GW2_ADDON = GW
 
-local actionBarDB = {globeScale = 1, castbarWidth = 250, castbarHeight = 24}
+local actionBarDB = {globeScale = 1}
 addonTable.PlusActionBar = {
-    defaults = {globeScale = 1},
+    defaults = {globeScale = 1, castbarWidth = 300, castbarHeight = 15},
     InitDB = function() return actionBarDB end,
     IsNormalPlayerFrameEnabled = function() return true end,
     SetNormalPlayerFrameEnabled = Noop,
@@ -146,8 +153,22 @@ _G.CreateDataProvider = function()
     return {Insert = function(self, value) self[#self + 1] = value end}
 end
 _G.ScrollBoxConstants = {RetainScrollPosition = 1}
-_G.C_Timer = {After = function(_, callback) callback() end}
+_G.C_Timer = {
+    After = function(_, callback)
+        scheduledTimers[#scheduledTimers + 1] = callback
+    end,
+}
 _G.DEFAULT_CHAT_FRAME = {AddMessage = Noop}
+
+local powerBarSize = {width = 313, height = 14}
+_G.GwPlayerPowerBar = {
+    SetSize = function(_, width, height)
+        powerBarSize.width = width
+        powerBarSize.height = height
+    end,
+    GetWidth = function() return powerBarSize.width end,
+    GetHeight = function() return powerBarSize.height end,
+}
 
 local chunk = assert(loadfile("Modules/UnitFrames/PlayerResources.lua"))
 chunk("GW2_UI_PLUS", addonTable)
@@ -157,15 +178,35 @@ local panels = assert(addonTable.PreparePlayerResourcePanel(
 
 assert(initializedPanels[1] == playerGeneral,
     "玩家综合未使用动作条多栏初始化器")
+local initialPanelInitCount = #initializedPanels
+for _, callback in ipairs(scheduledTimers) do callback() end
+assert(#initializedPanels > initialPanelInitCount,
+    "玩家综合未在设置页完成后重新使用动作条多栏初始化器")
+assert(initializedPanels[#initializedPanels] == playerGeneral,
+    "玩家综合最终没有使用动作条多栏初始化器")
 local expectedGeneralColumns = {
     GW2PlusNormalPlayerFrameEnabled = false,
     PLAYER_AS_TARGET_FRAME_ALT_BACKGROUND = 3,
     player_CLASS_COLOR = 3,
     PLAYER_SHOW_PVP_INDICATOR = 3,
-    PLAYER_UNIT_HEALTH = 2,
-    playerFrameHealthBarTexture = 2,
+    PLAYER_UNIT_HEALTH = false,
+    playerFrameHealthBarTexture = false,
     PLAYER_WIDTH = false,
 }
+local expectedGeneralOrder = {
+    "GW2PlusNormalPlayerFrameEnabled",
+    "PLAYER_AS_TARGET_FRAME_ALT_BACKGROUND",
+    "player_CLASS_COLOR",
+    "PLAYER_SHOW_PVP_INDICATOR",
+    "PLAYER_UNIT_HEALTH",
+    "playerFrameHealthBarTexture",
+    "PLAYER_WIDTH",
+}
+for index, expectedName in ipairs(expectedGeneralOrder) do
+    local option = playerGeneral.gwOptions[index]
+    assert(option and (option.optionName or option.name) == expectedName,
+        "玩家综合顺序错误: " .. expectedName)
+end
 for _, option in ipairs(playerGeneral.gwOptions) do
     local key = option.optionName or option.name
     local expectedColumn = expectedGeneralColumns[key]
@@ -176,8 +217,8 @@ end
 
 local expected = {
     gw2_plus_player_globe = {
-        "GW2PlusGlobeEnabled", "缩放", "HUD_BACKGROUND", "HUD_SPELL_SWAP",
-        "showDodgebar", "PLAYER_TRACKED_DODGEBAR_SPELL",
+        "GW2PlusGlobeEnabled", "HUD_SPELL_SWAP", "HUD_BACKGROUND",
+        "showDodgebar", "PLAYER_TRACKED_DODGEBAR_SPELL", "缩放",
     },
     gw2_plus_player_castbar = {
         "CASTINGBAR_ENABLED", "showPlayerCastBarTicks", "CASTINGBAR_DATA",
@@ -186,7 +227,7 @@ local expected = {
     gw2_plus_player_energy = {
         "PLAYER_ENERGY_MANA_TICK", "PLAYER_5SR_TIMER",
         "PLAYER_ENERGY_MANA_TICK_HIDE_OFC", "POWERBAR_ENABLED",
-        "GW2PlusEnergyShowValue",
+        "energyBarWidth", "energyBarHeight", "GW2PlusEnergyShowValue",
     },
     gw2_plus_player_resource = {
         "CLASS_POWER", "GW2PlusResourceShowValue", "CLASSPOWER_ANCHOR_MODE",
@@ -219,6 +260,8 @@ local expectedDependencies = {
     PLAYER_ENERGY_MANA_TICK_HIDE_OFC = {PLAYER_ENERGY_MANA_TICK = true},
     POWERBAR_ENABLED = {},
     GW2PlusEnergyShowValue = {POWERBAR_ENABLED = true},
+    energyBarWidth = {POWERBAR_ENABLED = true},
+    energyBarHeight = {POWERBAR_ENABLED = true},
     CLASS_POWER = {},
     GW2PlusResourceShowValue = {CLASS_POWER = true},
     CLASSPOWER_ANCHOR_MODE = {CLASS_POWER = true},
@@ -230,6 +273,25 @@ local expectedDependencies = {
     GW2PlusXpEnabled = {},
     QUEST_XP_PERCENT = {GW2PlusXpEnabled = true},
 }
+local expectedGlobeColumns = {
+    GW2PlusGlobeEnabled = false,
+    HUD_SPELL_SWAP = 2,
+    HUD_BACKGROUND = 2,
+    showDodgebar = 2,
+    PLAYER_TRACKED_DODGEBAR_SPELL = 2,
+    ["缩放"] = false,
+}
+local expectedCastbarColumns = {
+    CASTINGBAR_ENABLED = false,
+    showPlayerCastBarTicks = 3,
+    CASTINGBAR_DATA = 3,
+    PLAYER_CASTBAR_SHOW_SPELL_QUEUEWINDOW = 3,
+    castbarWidth = false,
+    castbarHeight = false,
+}
+
+local castWidthOption = nil
+local castHeightOption = nil
 
 local seen = {}
 local total = 0
@@ -263,12 +325,85 @@ for panelId, expectedOptions in pairs(expected) do
         seen[key] = panelId
         total = total + 1
         assert(option.forceNewLine == true, key .. " 未强制换行")
-        assert(option.gwPlusColumns == nil, key .. " 仍使用多列布局")
+        local expectedColumn = false
+        if panelId == "gw2_plus_player_globe" then
+            expectedColumn = expectedGlobeColumns[key]
+        elseif panelId == "gw2_plus_player_castbar" then
+            expectedColumn = expectedCastbarColumns[key]
+        end
+        assert((option.gwPlusColumns or false) == expectedColumn,
+            key .. " 列数错误")
         assert(option.groupHeaderName == nil, key .. " 仍保留重复分组标题")
         AssertDependencies(option, expectedDependencies[key])
+        if panelId == "gw2_plus_player_castbar" then
+            if key == "castbarWidth" then castWidthOption = option end
+            if key == "castbarHeight" then castHeightOption = option end
+        end
     end
 end
-assert(total == 27, "玩家资源面板选项总数错误")
+assert(total == 29, "玩家资源面板选项总数错误")
+
+local globePanel = panels.gw2_plus_player_globe
+assert(globePanel.gwOptions[1].isMasterToggle == true,
+    "血球面板启用项未使用主开关样式")
+assert(globePanel.gwOptions[5].name == "位移条技能",
+    "位移条技能文案错误")
+assert(castWidthOption.getDefault() == 300,
+    "施法条宽度默认值不是 300")
+assert(castHeightOption.getDefault() == 15,
+    "施法条高度默认值不是 15")
+assert(castWidthOption.getter() == 300,
+    "施法条宽度初始化默认值不是 300")
+assert(castHeightOption.getter() == 15,
+    "施法条高度初始化默认值不是 15")
+
+local castbarPanel = panels.gw2_plus_player_castbar
+local ordinaryButtonText = {
+    r = 0, g = 0, b = 0,
+    SetTextColor = function(self, r, g, b)
+        self.r, self.g, self.b = r, g, b
+    end,
+}
+local negativeButtonText = {
+    r = 0.55, g = 0.05, b = 0.05,
+    SetTextColor = function(self, r, g, b)
+        self.r, self.g, self.b = r, g, b
+    end,
+}
+castbarPanel.gwPlusWidgets = {
+    {
+        optionType = "button",
+        title = ordinaryButtonText,
+        SetAlpha = Noop,
+    },
+    {
+        optionType = "button",
+        title = negativeButtonText,
+        SetAlpha = Noop,
+    },
+}
+assert(castbarPanel.scripts.OnShow, "施法条面板未注册显示刷新")
+castbarPanel.scripts.OnShow()
+assert(ordinaryButtonText.r == 0 and ordinaryButtonText.g == 0
+        and ordinaryButtonText.b == 0,
+    "依赖刷新覆盖了解锁按钮的黑色文字")
+assert(negativeButtonText.r == 0.55 and negativeButtonText.g == 0.05
+        and negativeButtonText.b == 0.05,
+    "依赖刷新覆盖了恢复按钮的深红文字")
+
+local energyPanel = panels.gw2_plus_player_energy
+local widthOption = energyPanel.gwOptions[5]
+local heightOption = energyPanel.gwOptions[6]
+assert(widthOption.getter() == 313, "额外能量条宽度默认值错误")
+assert(heightOption.getter() == 14, "额外能量条高度默认值错误")
+widthOption.setter(420)
+widthOption.callback()
+assert(powerBarSize.width == 420 and powerBarSize.height == 14,
+    "额外能量条宽度未应用")
+heightOption.setter(22)
+heightOption.callback()
+assert(powerBarSize.width == 420 and powerBarSize.height == 22,
+    "额外能量条高度未应用")
 
 assert(registeredProfileOwner == panels, "配置回调 owner 不是五面板表")
 assert(type(registeredProfileCallback) == "function", "未注册配置切换回调")

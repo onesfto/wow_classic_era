@@ -1,31 +1,47 @@
 # GW2_UI_PLUS 文档中心
 
-## 📚 开发规范
+## 维护入口
 
-- **[DEV-GAME-WOW-LUA-GUIDE-GENERAL.md](DEV-GAME-WOW-LUA-GUIDE-GENERAL.md)** - 魔兽世界 Lua 插件开发通用规范（必读）
-- **[MIGRATION.md](MIGRATION.md)** - GW2_UI 本体函数覆盖与迁移指南
+- [开发指南](DEVELOPMENT.md) - 项目开发流程与模块约定
+- [WoW Lua 开发规范](DEV-GAME-WOW-LUA-GUIDE-GENERAL.md) - 插件开发通用规范
+- [API 文档](API.md) - 模块公共接口
+- [配置说明](CONFIGURATION.md) - 配置项与使用方式
+- [GW2_UI_PLUS_Early 组件说明](GW2_UI_PLUS_Early.md) - 先行加载组件
 
-## 🎮 模块文档
+## 迁移与设置
 
-### MainMenu
-- [MainMenu-MovedSettings.md](modules/MainMenu-MovedSettings.md) - 主菜单设置迁移记录
+- [迁移指南](MIGRATION.md) - GW2_UI 本体函数覆盖与迁移原理
+- [迁移状态](MIGRATION_STATUS.md) - 当前功能迁移状态
+- [迁移清单](GW2_UI_MIGRATION_CHECKLIST.md) - GW2_UI 原版功能对照
+- [设置系统架构](SETTINGS_ARCHITECTURE.md) - 设置面板实现与扩展方式
+- [设置界面排版规范](SETTINGS_LAYOUT_GUIDE.md) - 设置界面布局规则
+- [设置面板清单](SETTINGS_PANELS.md) - 当前设置项总览
 
-### Skins
-- [skins-SKIN_STANDARD.md](modules/skins-SKIN_STANDARD.md) - 换肤模块开发规范
-- [skins-MailLogger.md](modules/skins-MailLogger.md) - MailLogger 插件皮肤详解
+## 模块文档
 
-## 📖 其他文档
+模块内部 README 放在对应模块目录中：
 
-- **[GW2_UI_PLUS_Early.md](GW2_UI_PLUS_Early.md)** - `!GW2_UI_PLUS_Early` 配套先行加载组件说明
-- **[ACTIONBAR_EMPTY_SLOTS_UNRESOLVED.md](ACTIONBAR_EMPTY_SLOTS_UNRESOLVED.md)** - 动作条空槽与白色圆点异常排查记录（未解决）
+- [ActionBar](../Modules/ActionBar/README.md)
+- [ChatBar](../Modules/ChatBar/README.md)
+- [ChatWindow](../Modules/ChatWindow/README.md)
+- [Common](../Modules/Common/README.md)
+- [CooldownPulse](../Modules/CooldownPulse/README.md)
+- [Minimap](../Modules/Minimap/README.md)
+- [Settings](../Modules/Settings/README.md)
+- [Skins](../Modules/Skins/README.md)
+- [Social](../Modules/Social/README.md)
+- [Toolbar](../Modules/Toolbar/README.md)
+- [UnitFrames](../Modules/UnitFrames/README.md)
 
-根目录下的模块 README：
-- `Modules/ActionBar/README.md` - 动作条扩展
-- `Modules/ChatBar/README.md` - 频道按钮条
-- `Modules/ChatWindow/README.md` - 聊天窗口增强
-- `Modules/CooldownPulse/README.md` - 技能冷却闪烁
-- `Modules/MainMenu/README.md` - 主菜单增强
-- `Modules/Minimap/README.md` - 小地图插件收纳
-- `Modules/Toolbar/README.md` - 顶部工具条
-- `Modules/skins/README.md` - 换肤引擎
-- `Modules/social/README.md` - 社交面板重构
+模块专项说明：
+
+- [主菜单设置迁移](modules/MainMenu-MovedSettings.md)
+- [皮肤开发规范](modules/skins-SKIN_STANDARD.md)
+- [MailLogger 皮肤详解](modules/skins-MailLogger.md)
+
+## 设计与历史记录
+
+- [设计记录](design/) - 功能设计与技术决策记录
+- [历史记录](archive/) - 已完成问题修复和项目优化记录
+
+计划文档不在仓库中长期保留；实施完成后的结论应回写到对应的开发、API、配置或模块文档。

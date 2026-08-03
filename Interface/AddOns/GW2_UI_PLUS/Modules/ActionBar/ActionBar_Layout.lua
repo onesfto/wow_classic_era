@@ -172,10 +172,12 @@ function AB.ApplyMainBarLayout()
     AB.SyncMainBarMoverVisual(bar, margin, topInset, contentWidth, contentHeight)
 end
 function AB.ApplyCastbarSize()
+    AB.EnforceCastbarScale()
     local castbar = _G.GwCastingBarPlayer
     if not castbar then return end
-    local width = AB.InitDB().castbarWidth or 250
-    local height = AB.InitDB().castbarHeight or 24
+    local db = AB.InitDB()
+    local width = db.castbarWidth or AB.defaults.castbarWidth
+    local height = db.castbarHeight or AB.defaults.castbarHeight
     castbar:SetSize(width, height)
     castbar.progress:SetSize(width, height)
     if castbar.gwMover then
@@ -186,10 +188,6 @@ function AB.ApplyCastbarSize()
             castbar.gwMover:SetSize(width, height)
             castbar:SetPoint("CENTER", castbar.gwMover)
         end
-    end
-    castbar:SetScale(1)
-    if castbar.gwMover then
-        castbar.gwMover:SetScale(1)
     end
 end
 function AB.ApplyGlobeScale()

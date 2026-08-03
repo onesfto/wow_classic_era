@@ -62,16 +62,20 @@ GW2_UI_PLUS/
 ├── Locale/           本地化
 ├── Docs/             文档
 └── Modules/          功能模块
-    ├── Common/       公共工具
-    ├── ActionBar/    动作条
-    ├── ChatBar/      频道按钮条
-    ├── ChatWindow/   聊天窗口
-    ├── CooldownPulse/ 技能冷却
-    ├── MainMenu/     主菜单
-    ├── Minimap/      小地图
-    ├── Skins/        换肤
-    ├── Social/       社交面板
-    └── Toolbar/      工具条
+    ├── AddonsSettings/ 附加组件设置
+    ├── ActionBar/      动作条
+    ├── ChatBar/        频道按钮条
+    ├── ChatWindow/     聊天窗口
+    ├── Common/         公共工具
+    ├── CooldownPulse/  技能冷却
+    ├── General/        通用功能
+    ├── Minimap/        小地图
+    ├── Settings/       设置面板
+    ├── Skins/          换肤
+    ├── Social/         社交面板
+    ├── Toolbar/        工具条
+    ├── UnitFrames/     单位框体
+    └── WorldMap/       世界地图
 ```
 
 ## 开发文档

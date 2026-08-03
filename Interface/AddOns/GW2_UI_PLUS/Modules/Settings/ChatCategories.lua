@@ -118,6 +118,7 @@ end
 local function CreatePanel(GW, parent, panelId, breadcrumb, description)
     local panel = CreateFrame("Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = panelId
+    panel.gwOptions = {}
     panel.header:SetFont(DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 20)
     panel.header:SetTextColor(GW.Colors.TextColors.LightHeader:GetRGB())
     panel.header:SetText("聊天")

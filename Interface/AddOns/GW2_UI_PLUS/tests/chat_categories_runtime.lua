@@ -8,10 +8,10 @@ local function CreateTextRegion()
     }
 end
 
-local function CreatePanel(parent)
+local function CreatePanel(parent, initializeOptions)
     local panel = {
         parent = parent,
-        gwOptions = {},
+        gwOptions = initializeOptions and {} or nil,
         header = CreateTextRegion(),
         breadcrumb = CreateTextRegion(),
         sub = CreateTextRegion(),
@@ -21,6 +21,7 @@ local function CreatePanel(parent)
     function panel:Hide() self.hidden = true end
     function panel:AddGroupHeader(name)
         local option = {name = name, optionType = "header"}
+        self.gwOptions = self.gwOptions or {}
         self.gwOptions[#self.gwOptions + 1] = option
         return option
     end
@@ -28,7 +29,7 @@ local function CreatePanel(parent)
 end
 
 function CreateFrame(_, _, parent)
-    return CreatePanel(parent)
+    return CreatePanel(parent, false)
 end
 
 DEFAULT_CHAT_FRAME = {AddMessage = Noop}
@@ -124,7 +125,7 @@ local plusTargets = {
 }
 
 local parent = {}
-local nativePanel = CreatePanel(parent)
+local nativePanel = CreatePanel(parent, true)
 for optionName in pairs(nativeTargets) do
     local option = {
         name = optionName,
@@ -143,7 +144,7 @@ for optionName in pairs(nativeTargets) do
     end
 end
 
-local chatWindowPanel = CreatePanel(parent)
+local chatWindowPanel = CreatePanel(parent, true)
 for optionName in pairs(plusTargets) do
     local option = {
         name = optionName,
@@ -160,7 +161,7 @@ chatWindowPanel.gwOptions[#chatWindowPanel.gwOptions + 1] = {
     optionName = "GW2PlusChatWindow_ButtonsPosition",
     optionType = "dropdown",
 }
-local chatBarPanel = CreatePanel(parent)
+local chatBarPanel = CreatePanel(parent, true)
 
 RegisterPanel(nativePanel)
 RegisterPanel(chatWindowPanel)

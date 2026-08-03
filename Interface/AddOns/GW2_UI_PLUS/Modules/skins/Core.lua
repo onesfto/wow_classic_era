@@ -149,10 +149,6 @@ function Skin.AddTitleBar(frame, dragFrameName, icon, titleFS)
         dragFrame:Hide()
     end
 end
-function Skin.Register(addonName, func)
-    if type(addonName) ~= "string" or type(func) ~= "function" then return end
-    Skin.registry[addonName] = { func = func, done = false }
-end
 local function RunSkin(addonName)
     local entry = Skin.registry[addonName]
     if not entry or entry.done then return end
@@ -163,6 +159,14 @@ local function RunSkin(addonName)
         geterrorhandler()(("GW2_UI_PLUS Skin [%s]: %s"):format(addonName, tostring(err)))
     elseif Skin.debug then
         print(("|cffFFaa00[GW2 UI Plus]|r %s 皮肤已加载"):format(addonName))
+    end
+end
+function Skin.Register(addonName, func)
+    if type(addonName) ~= "string" or type(func) ~= "function" then return end
+    Skin.registry[addonName] = { func = func, done = false }
+    GW = GW or _G.GW2_ADDON
+    if GW and type(IsLoaded) == "function" and IsLoaded(addonName) then
+        RunSkin(addonName)
     end
 end
 local f = CreateFrame("Frame")

@@ -15,6 +15,8 @@ end
 
 local STATUS_DEFAULTS = {
     energyBarShowValue = true,
+    energyBarWidth = 313,
+    energyBarHeight = 14,
     resourceBarShowValue = true,
 }
 local MOVED_GENERAL_OPTION_NAMES = {
@@ -24,23 +26,52 @@ local MOVED_GENERAL_OPTION_NAMES = {
     showDodgebar = true,
     PLAYER_TRACKED_DODGEBAR_SPELL = true,
 }
-local GENERAL_OPTION_COLUMNS = {
-    PLAYER_AS_TARGET_FRAME_ALT_BACKGROUND = 3,
-    player_CLASS_COLOR = 3,
-    PLAYER_SHOW_PVP_INDICATOR = 3,
-    PLAYER_UNIT_HEALTH = 2,
-    playerFrameHealthBarTexture = 2,
+local GENERAL_OPTION_ORDER = {
+    "PLAYER_AS_TARGET_FRAME_ALT_BACKGROUND",
+    "player_CLASS_COLOR",
+    "PLAYER_SHOW_PVP_INDICATOR",
+    "PLAYER_UNIT_HEALTH",
+    "playerFrameHealthBarTexture",
 }
+local GENERAL_OPTION_NAMES = {}
+for _, optionName in ipairs(GENERAL_OPTION_ORDER) do
+    GENERAL_OPTION_NAMES[optionName] = true
+end
+local function SetRow(columnCount, ...)
+    for index = 1, select("#", ...) do
+        local option = select(index, ...)
+        if option then option.gwPlusColumns = columnCount end
+    end
+end
 local resourcePanels
 local hooksInstalled = false
 local profileHookInstalled = false
 local RefreshResourcePanels
-local function InitStatusDB()
+local InitStatusDB
+local ApplyEnergyBarSize
+
+local function GetCastbarDefaultWidth()
+    return AB and AB.defaults and AB.defaults.castbarWidth or 300
+end
+
+local function GetCastbarDefaultHeight()
+    return AB and AB.defaults and AB.defaults.castbarHeight or 15
+end
+
+InitStatusDB = function()
     GW2_UI_PLUS_PlayerStatusSV = GW2_UI_PLUS_PlayerStatusSV or {}
     for key, value in pairs(STATUS_DEFAULTS) do
         if GW2_UI_PLUS_PlayerStatusSV[key] == nil then
             GW2_UI_PLUS_PlayerStatusSV[key] = value
         end
+    end
+    if GW2_UI_PLUS_PlayerStatusSV.energyBarWidth < 100
+        or GW2_UI_PLUS_PlayerStatusSV.energyBarWidth > 600 then
+        GW2_UI_PLUS_PlayerStatusSV.energyBarWidth = STATUS_DEFAULTS.energyBarWidth
+    end
+    if GW2_UI_PLUS_PlayerStatusSV.energyBarHeight < 1
+        or GW2_UI_PLUS_PlayerStatusSV.energyBarHeight > 100 then
+        GW2_UI_PLUS_PlayerStatusSV.energyBarHeight = STATUS_DEFAULTS.energyBarHeight
     end
     return GW2_UI_PLUS_PlayerStatusSV
 end
@@ -92,10 +123,17 @@ end
 local function PrepareGeneralPanel(playerGeneral)
     if playerGeneral.__gwPlusGeneralPrepared then return end
     local kept = {}
+    local grouped = {}
     for _, option in ipairs(playerGeneral.gwOptions or {}) do
-        if not MOVED_GENERAL_OPTION_NAMES[option.optionName] then
+        if option.hidden then
+            if option.__widget then option.__widget:Hide() end
+        elseif not MOVED_GENERAL_OPTION_NAMES[option.optionName] then
             RemoveOptionDependency(option, "PLAYER_AS_TARGET_FRAME")
-            kept[#kept + 1] = option
+            if GENERAL_OPTION_NAMES[option.optionName] then
+                grouped[option.optionName] = option
+            else
+                kept[#kept + 1] = option
+            end
         else
             if option.__widget then
                 option.__widget:Hide()
@@ -120,20 +158,47 @@ local function PrepareGeneralPanel(playerGeneral)
                 end
             end,
             isMasterToggle = true,
-        })
+    })
     normalPlayerFrame.optionName = "GW2PlusNormalPlayerFrameEnabled"
     playerGeneral.gwOptions = {normalPlayerFrame}
+    for _, optionName in ipairs(GENERAL_OPTION_ORDER) do
+        local option = grouped[optionName]
+        if option then
+            option.gwPlusColumns = nil
+            playerGeneral.gwOptions[#playerGeneral.gwOptions + 1] = option
+        end
+    end
     for _, option in ipairs(kept) do
-        option.gwPlusColumns = GENERAL_OPTION_COLUMNS[option.optionName]
+        option.gwPlusColumns = nil
         playerGeneral.gwOptions[#playerGeneral.gwOptions + 1] = option
     end
+    SetRow(3,
+        grouped["PLAYER_AS_TARGET_FRAME_ALT_BACKGROUND"],
+        grouped["player_CLASS_COLOR"],
+        grouped["PLAYER_SHOW_PVP_INDICATOR"])
     Utils.InitializePanel(playerGeneral)
+    C_Timer.After(0, function()
+        if playerGeneral.gwOptions then
+            Utils.InitializePanel(playerGeneral)
+        end
+    end)
     playerGeneral.__gwPlusGeneralPrepared = true
 end
 local function ClearBarText(bar)
     if not bar then return end
     if bar.label then bar.label:SetText("") end
     if bar.powerBarString then bar.powerBarString:SetText("") end
+end
+ApplyEnergyBarSize = function()
+    local bar = _G.GwPlayerPowerBar
+    if not bar then return end
+    local status = InitStatusDB()
+    local width = tonumber(status.energyBarWidth) or STATUS_DEFAULTS.energyBarWidth
+    local height = tonumber(status.energyBarHeight) or STATUS_DEFAULTS.energyBarHeight
+    bar:SetSize(width, height)
+    if bar.decay then
+        bar.decay:SetSize(width, height)
+    end
 end
 local function ApplyEnergyValueVisibility()
     local show = InitStatusDB().energyBarShowValue == true
@@ -195,6 +260,7 @@ local function ApplyValueVisibility()
 end
 local function SyncAdditionalEnergyBar()
     if not GW.settings then return end
+    ApplyEnergyBarSize()
     GW.settings.PLAYER_AS_TARGET_FRAME_SHOW_RESSOURCEBAR =
         GW.settings.POWERBAR_ENABLED == true
     if _G.GwPlayerPowerBar and _G.GwPlayerPowerBar.ToggleBar then
@@ -209,6 +275,7 @@ local function SyncAdditionalEnergyBar()
 end
 local function QueueValueRefresh()
     C_Timer.After(0, function()
+        ApplyEnergyBarSize()
         ApplyValueVisibility()
         if addonTable.PlusEnergyTicker then
             addonTable.PlusEnergyTicker.Refresh()
@@ -261,6 +328,14 @@ end
 local function SetWidgetEnabled(widget, enabled)
     if not widget or not widget.title then return end
     widget:SetAlpha(enabled and 1 or 0.55)
+    if widget.optionType == "button" then
+        if enabled then
+            if widget.Enable then widget:Enable() end
+        elseif widget.Disable then
+            widget:Disable()
+        end
+        return
+    end
     if widget.isMasterToggle then
         widget.title:SetTextColor(
             GW.Colors.TextColors.LightHeader:GetRGB())
@@ -358,6 +433,7 @@ local function CreateResourcePanel(parent, panelId, breadcrumb, sub)
     local panel = CreateFrame(
         "Frame", nil, parent, "GwSettingsPanelTmpl")
     panel.panelId = panelId
+    panel.gwOptions = {}
     panel.header:SetFont(
         DAMAGE_TEXT_FONT or "Fonts\\FRIZQT__.TTF", 20)
     panel.header:SetTextColor(
@@ -374,10 +450,12 @@ local function CreateResourcePanel(parent, panelId, breadcrumb, sub)
     panel.sub:SetText(sub)
     return panel
 end
-local function InitializeResourcePanel(panel)
+local function InitializeResourcePanel(panel, preserveConfiguredColumns)
     for _, option in ipairs(panel.gwOptions or {}) do
         option.forceNewLine = true
-        option.gwPlusColumns = nil
+        if not preserveConfiguredColumns then
+            option.gwPlusColumns = nil
+        end
         option.groupHeaderName = nil
     end
     Utils.InitializePanel(panel)
@@ -416,24 +494,24 @@ local function CreateResourcePanels(
             getDefault = function() return true end,
             callback = function() GW.ShowRlPopup = true end,
             groupHeaderName = "血球和贴图",
+            isMasterToggle = true,
         })
-    SetOptionColumns(globeEnabled, 2, "GW2PlusGlobeEnabled")
+    SetOptionColumns(globeEnabled, nil, "GW2PlusGlobeEnabled")
     WrapRefreshCallback(panel, globeEnabled)
-    local globeScale = panel:AddOptionSlider(
-        "缩放", nil, {
-            min = 0.5,
-            max = 2,
-            step = 0.05,
-            decimalNumbers = 2,
-            getter = function() return AB.InitDB().globeScale end,
+    local dynamicHud = panel:AddOption(
+        "血球贴图",
+        "动态更改 HUD 背景",
+        {
+            getter = function() return GW.settings.HUD_SPELL_SWAP end,
             setter = function(value)
-                AB.InitDB().globeScale = value
+                GW.settings.HUD_SPELL_SWAP = value
             end,
-            getDefault = function() return AB.defaults.globeScale end,
-            callback = AB.ApplyGlobeScale,
-            dependence = {GW2PlusGlobeEnabled = true},
+            getDefault = function() return true end,
             groupHeaderName = "血球和贴图",
-        })
+            dependence = {GW2PlusGlobeEnabled = true},
+        }
+    )
+    SetOptionColumns(dynamicHud, 2, "HUD_SPELL_SWAP")
     local optHudBg = panel:AddOption(
         "动作条贴图",
         "在不同状态下（战斗、低血量、水中、灵魂状态等）动作条背景会改变颜色",
@@ -449,71 +527,76 @@ local function CreateResourcePanels(
         }
     )
     SetOptionColumns(optHudBg, 2, "HUD_BACKGROUND")
-    local dynamicHud = panel:AddOption(
-        "血球贴图",
-        "动态更改 HUD 背景",
-        {
-            getter = function() return GW.settings.HUD_SPELL_SWAP end,
-            setter = function(value)
-                GW.settings.HUD_SPELL_SWAP = value
-            end,
-            getDefault = function() return true end,
-            groupHeaderName = "血球和贴图",
-            dependence = {GW2PlusGlobeEnabled = true},
-        }
-    )
-    SetOptionColumns(dynamicHud, 2, "HUD_SPELL_SWAP")
     AddClonedOption(
         panel, options.dodgeBar, "显示位移条", "血球和贴图", 2,
         {GW2PlusGlobeEnabled = true}, true)
     AddClonedOption(
         panel, options.dodgeAbility, "位移条技能", "血球和贴图", 2,
         {GW2PlusGlobeEnabled = true, showDodgebar = true})
+    panel:AddOptionSlider(
+        "缩放", nil, {
+            min = 0.5,
+            max = 2,
+            step = 0.05,
+            decimalNumbers = 2,
+            getter = function() return AB.InitDB().globeScale end,
+            setter = function(value)
+                AB.InitDB().globeScale = value
+            end,
+            getDefault = function() return AB.defaults.globeScale end,
+            callback = AB.ApplyGlobeScale,
+            dependence = {GW2PlusGlobeEnabled = true},
+            groupHeaderName = "血球和贴图",
+        })
     panel = panels.gw2_plus_player_castbar
     AddClonedOption(
-        panel, options.castEnabled, "启用", "施法条", 2, nil, true)
+        panel, options.castEnabled, "启用", "施法条", nil, nil, true)
     AddClonedOption(
-        panel, options.ticks, "跳数", "施法条", 2)
+        panel, options.ticks, "跳数", "施法条", 3)
     AddClonedOption(
         panel, options.advancedCast, "高级施法条",
-        "施法条", 2, nil, true)
+        "施法条", 3, nil, true)
     AddClonedOption(
         panel, options.spellQueue, "显示法术队列窗口",
-        "施法条", 2)
+        "施法条", 3)
     local castWidth = panel:AddOptionSlider(
         "宽度", nil, {
             min = 100,
             max = 600,
             step = 1,
             decimalNumbers = 0,
-            getter = function() return AB.InitDB().castbarWidth or 250 end,
+            getter = function()
+                return AB.InitDB().castbarWidth or GetCastbarDefaultWidth()
+            end,
             setter = function(value)
                 AB.InitDB().castbarWidth = value
             end,
-            getDefault = function() return 250 end,
+            getDefault = GetCastbarDefaultWidth,
             callback = AB.ApplyCastbarSize,
             dependence = {CASTINGBAR_ENABLED = true},
             groupHeaderName = "施法条",
             forceNewLine = false,
         })
-    SetOptionColumns(castWidth, 2, "castbarWidth")
+    SetOptionColumns(castWidth, nil, "castbarWidth")
     local castHeight = panel:AddOptionSlider(
         "高度", nil, {
             min = 10,
             max = 100,
             step = 1,
             decimalNumbers = 0,
-            getter = function() return AB.InitDB().castbarHeight or 24 end,
+            getter = function()
+                return AB.InitDB().castbarHeight or GetCastbarDefaultHeight()
+            end,
             setter = function(value)
                 AB.InitDB().castbarHeight = value
             end,
-            getDefault = function() return 24 end,
+            getDefault = GetCastbarDefaultHeight,
             callback = AB.ApplyCastbarSize,
             dependence = {CASTINGBAR_ENABLED = true},
             groupHeaderName = "施法条",
             forceNewLine = false,
         })
-    SetOptionColumns(castHeight, 2, "castbarHeight")
+    SetOptionColumns(castHeight, nil, "castbarHeight")
     panel = panels.gw2_plus_player_xp
     local xpEnabled = panel:AddOption(
         "启用",
@@ -564,6 +647,46 @@ local function CreateResourcePanels(
         SyncAdditionalEnergyBar()
         QueueValueRefresh()
     end
+    local energyWidth = panel:AddOptionSlider(
+        "宽度", nil, {
+            min = 100,
+            max = 600,
+            step = 1,
+            decimalNumbers = 0,
+            getter = function()
+                return InitStatusDB().energyBarWidth
+            end,
+            setter = function(value)
+                InitStatusDB().energyBarWidth = value
+            end,
+            getDefault = function()
+                return STATUS_DEFAULTS.energyBarWidth
+            end,
+            callback = ApplyEnergyBarSize,
+            dependence = {POWERBAR_ENABLED = true},
+            groupHeaderName = "能量条",
+        })
+    SetOptionColumns(energyWidth, 2, "energyBarWidth")
+    local energyHeight = panel:AddOptionSlider(
+        "高度", nil, {
+            min = 1,
+            max = 100,
+            step = 1,
+            decimalNumbers = 0,
+            getter = function()
+                return InitStatusDB().energyBarHeight
+            end,
+            setter = function(value)
+                InitStatusDB().energyBarHeight = value
+            end,
+            getDefault = function()
+                return STATUS_DEFAULTS.energyBarHeight
+            end,
+            callback = ApplyEnergyBarSize,
+            dependence = {POWERBAR_ENABLED = true},
+            groupHeaderName = "能量条",
+        })
+    SetOptionColumns(energyHeight, 2, "energyBarHeight")
     local energyValue = panel:AddOption(
         "在条上显示数值", nil, {
             getter = function()
@@ -615,7 +738,10 @@ local function CreateResourcePanels(
         panel, options.classPowerCombat,
         "仅在战斗中显示", "资源条", nil)
     for _, currentPanel in pairs(panels) do
-        InitializeResourcePanel(currentPanel)
+        local preserveColumns = currentPanel == panels.gw2_plus_player_globe
+            or currentPanel == panels.gw2_plus_player_castbar
+        InitializeResourcePanel(
+            currentPanel, preserveColumns)
     end
     resourcePanels = panels
     RefreshResourcePanels = function()
@@ -702,6 +828,17 @@ local function PreparePlayerResourcePanel(
         generalOptions, resourceOptions, castOptions)
     if not options then return end
     InitStatusDB()
+    local actionBarDB = AB.InitDB()
+    local castbarDefaultWidth = GetCastbarDefaultWidth()
+    local castbarDefaultHeight = GetCastbarDefaultHeight()
+    if (tonumber(actionBarDB.castbarWidth) or castbarDefaultWidth) < 100
+        or (tonumber(actionBarDB.castbarWidth) or castbarDefaultWidth) > 600 then
+        actionBarDB.castbarWidth = castbarDefaultWidth
+    end
+    if (tonumber(actionBarDB.castbarHeight) or castbarDefaultHeight) < 10
+        or (tonumber(actionBarDB.castbarHeight) or castbarDefaultHeight) > 100 then
+        actionBarDB.castbarHeight = castbarDefaultHeight
+    end
     PrepareGeneralPanel(playerGeneral)
     local panels = CreateResourcePanels(
         playerGeneral, resourcePanel, castbarPanel, options)
