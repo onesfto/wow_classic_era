@@ -499,7 +499,6 @@ function PetFrame.AddOptions(panel)
         }), "GW2PlusPetFramePortraitOffsetY")
     if portraitSize then portraitSize.gwPlusColumns = 2 end
     if portraitOffsetX then portraitOffsetX.gwPlusColumns = 2 end
-    if portraitOffsetY then portraitOffsetY.gwPlusColumns = 2 end
     local width = AddOptionName(panel:AddOptionSlider("生命条宽度", nil, {
         min = 100, max = 600, step = 1,
         getter = function() return db.healthWidth end,
@@ -530,17 +529,15 @@ function PetFrame.AddOptions(panel)
         groupHeaderName = "头像与资源条",
     }), "GW2PlusPetFramePowerHeight")
 
-    local Utils = addonTable.ActionBarOptionsUtils
     local function Reset()
         PetFrame.ResetLayoutDefaults()
         PetFrame.ApplyLayout()
     end
-    if Utils and Utils.AddResetButton then
-        local reset = Utils.AddResetButton(panel, Reset)
-        if reset then reset.dependence = dependence end
-    elseif panel.AddOptionButton then
-        panel:AddOptionButton("恢复默认", nil, {
+    if panel.AddOptionButton then
+        panel:AddOptionButton("恢复本组默认",
+            "仅恢复宠物头像、生命条和能量条的设置。", {
             callback = Reset,
+            isNegativeButton = true,
             dependence = dependence,
         })
     end

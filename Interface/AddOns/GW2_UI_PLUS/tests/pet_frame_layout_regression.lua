@@ -202,7 +202,7 @@ local expectedFrameOptionNames = {
     "GW2PlusPetFramePortraitSize", "GW2PlusPetFramePortraitOffsetX",
     "GW2PlusPetFramePortraitOffsetY",
     "GW2PlusPetFrameHealthWidth", "GW2PlusPetFrameHealthHeight",
-    "GW2PlusPetFramePowerHeight", "恢复默认",
+    "GW2PlusPetFramePowerHeight", "恢复本组默认",
 }
 for index, expected in ipairs(expectedFrameOptionNames) do
     assert(frameOptionNames[index] == expected,
@@ -233,7 +233,7 @@ assert(db.portraitSize == 60 and db.portraitOffsetX == 0
         and db.portraitOffsetY == 0,
     "宠物头像设置恢复默认失败")
 for _, option in ipairs(framePanel.gwOptions) do
-    if option.optionName and option.optionName ~= "恢复默认" then
+    if option.optionName and option.optionName ~= "恢复本组默认" then
         assert(option.dependence and option.dependence.PETBAR_ENABLED == true,
             "宠物新增设置缺少 PETBAR_ENABLED 依赖: " .. option.optionName)
     end

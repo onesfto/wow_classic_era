@@ -1357,6 +1357,7 @@ local function FilterPetProviderRow(data, wanted, options, panel, index)
         if #cols == 0 then return end
         return {
             index = index,
+            option = cols[1],
             cols = cols,
             panel = panel,
         }
@@ -1415,13 +1416,24 @@ local function BuildPetView(panel, state, kind)
 
     local filtered = CreateDataProvider()
     local rowIndex = 0
+    local previousOption
     state.originalProvider:ForEach(function(data)
         local row = FilterPetProviderRow(
             data, wanted, state.originalOptions, panel, rowIndex + 1)
         if row then
+            if previousOption and previousOption.isMasterToggle
+                and not (row.option and row.option.isMasterToggle) then
+                rowIndex = rowIndex + 1
+                filtered:Insert({
+                    index = rowIndex,
+                    kind = "masterToggleSeparator",
+                    panel = panel,
+                })
+            end
             rowIndex = rowIndex + 1
             row.index = rowIndex
             filtered:Insert(row)
+            previousOption = row.option
         end
     end)
     return {options = options, provider = filtered}

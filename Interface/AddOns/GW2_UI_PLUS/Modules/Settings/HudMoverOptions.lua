@@ -623,6 +623,15 @@ end
 local function AddViewMoverControls(
     panel, view, frameName, settingName, defaultPoint, dependence)
     if not panel or not view or view.gwPlusMoverControls then return end
+    local providerKind = "native"
+    view.provider:ForEach(function(data)
+        if data.kind then return end
+        if data.widgets or data.option then
+            providerKind = "plus"
+        elseif data.cols then
+            providerKind = "native"
+        end
+    end)
     local originalOptions = panel.gwOptions
     panel.gwOptions = {}
     local mover, reset = CreateMoverControls(
@@ -630,14 +639,39 @@ local function AddViewMoverControls(
         dependence)
     panel.gwOptions = originalOptions
     if not mover or not reset then return end
+
+    local moverWidget, resetWidget
+    if providerKind == "plus" then
+        local Utils = addonTable.ActionBarOptionsUtils
+        if not Utils or not Utils.CreateOptionWidget then return end
+        moverWidget = Utils.CreateOptionWidget(panel, mover)
+        resetWidget = Utils.CreateOptionWidget(panel, reset)
+        if not moverWidget or not resetWidget then return end
+    end
+
+    local previousOption = view.options[#view.options]
     view.options[#view.options + 1] = mover
     view.options[#view.options + 1] = reset
     SetRow(2, mover, reset)
-    view.provider:Insert({
+    if previousOption and previousOption.isMasterToggle then
+        view.provider:Insert({
+            index = #view.options - 1,
+            kind = "masterToggleSeparator",
+            panel = panel,
+        })
+    end
+    local row = {
         index = #view.options,
-        cols = {mover, reset},
         panel = panel,
-    })
+    }
+    if providerKind == "plus" then
+        row.option = mover
+        row.widgets = {moverWidget, resetWidget}
+        row.columnCount = 2
+    else
+        row.cols = {mover, reset}
+    end
+    view.provider:Insert(row)
     view.gwPlusMoverControls = true
 end
 
