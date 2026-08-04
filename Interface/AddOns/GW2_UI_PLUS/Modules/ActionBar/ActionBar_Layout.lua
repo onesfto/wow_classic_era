@@ -133,7 +133,7 @@ function AB.ApplyMainBarLayout()
     local size = db.mainBarSize
     local margin = GW.settings.MAINBAR_MARGIIN or 5
     local gap = GetGlobeGap(bar)
-    local yOfs = GW.settings.XPBAR_ENABLED and 0 or -14
+    local yOfs = 0
     local count = math.max(1, math.min(12, math.floor((db.mainBarCount or 12) + 0.5)))
     local columns = math.max(1, math.min(count,
         math.floor((db.mainBarColumns or count) + 0.5)))

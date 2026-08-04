@@ -208,6 +208,73 @@
 | X | `target_pos.xOfs` | `315` |
 | Y | `target_pos.yOfs` | `-160` |
 
+## 队伍与团队
+
+以下页面中属于框体启用开关的默认值全部为关闭。其他队伍和团队参数不在本次默认值记录范围内。
+
+| 页面 | 选项 | 配置键 | 默认值 |
+|---|---|---|---:|
+| 队伍 - 小队 | 启用 | `PARTY_FRAMES` | `true`（勾选） |
+| 团队 | 启用 | `RAID_FRAMES` | `false`（不勾选） |
+| 团队 | 10 人团队启用 | `RAID10_ENABLED` | `false`（不勾选） |
+| 团队 | 25 人团队启用 | `RAID25_ENABLED` | `false`（不勾选） |
+| 团队 | 主坦克框启用 | `RAID_MAINTANK_FRAMES_ENABLED` | `false`（不勾选） |
+| 团队 | 团队宠物启用 | `RAID_PET_FRAMES` | `false`（不勾选） |
+| 团队 | 队伍样式启用 | `RAID_STYLE_PARTY` | `false`（不勾选） |
+| 团队 | 小队宠物启用 | `PARTY_PET_FRAMES_ENABLED` | `false`（不勾选） |
+
+## 目标的目标
+
+### 参数默认值
+
+| 参数 | 配置键 | 默认值 |
+|---|---|---:|
+| 启用 | `target_TARGET_ENABLED` | `true`（勾选） |
+| 施法条 | `target_TARGET_SHOW_CASTBAR` | `true`（勾选） |
+| 生命条材质 | `targettargetFrameHealthBarTexture` | `GW2_UI_2_DEFAULT` |
+| 缩放指数 | `targettarget_pos_scale` | `1` |
+| 条宽度 | `targettargetFrameHealthBarSize.width` | `100` |
+| 生命条高度 | `targettargetFrameHealthBarSize.height` | `13` |
+| 能量条高度 | `targettargetFramePowerBarSize.height` | `3` |
+
+### 位置默认值
+
+| 位置参数 | 配置字段 | 默认值 |
+|---|---|---:|
+| 屏幕锚点 | `targettarget_pos.relativePoint` | `CENTER`（中） |
+| 框体锚点 | `targettarget_pos.point` | `CENTER`（中） |
+| X | `targettarget_pos.xOfs` | `344` |
+| Y | `targettarget_pos.yOfs` | `-100` |
+
+## 微缩地图
+
+### 参数默认值
+
+| 参数 | 配置键 | 默认值 |
+|---|---|---:|
+| 启用 | `MINIMAP_ENABLED` | `true`（勾选） |
+| 小地图右下显示帧率 | `MINIMAP_FPS` | `false`（不勾选） |
+| 停用 FPS 提示 | `MINIMAP_FPS_TOOLTIP_DISABLED` | `false`（不勾选） |
+| 在小地图上显示坐标 | `MINIMAP_COORDS_TOGGLE` | `false`（不勾选） |
+| 小地图显示：时钟 | `MINIMAP_ALWAYS_SHOW_HOVER_DETAILS.CLOCK` | `false`（不勾选） |
+| 小地图显示：区域 | `MINIMAP_ALWAYS_SHOW_HOVER_DETAILS.ZONE` | `false`（不勾选） |
+| 小地图显示：坐标 | `MINIMAP_ALWAYS_SHOW_HOVER_DETAILS.COORDS` | `false`（不勾选） |
+| 小地图缩放 | `MinimapScale` | `1` |
+| 重置缩放 | `MinimapResetZoom` | `0` |
+| 小地图大小 | `MINIMAP_SIZE` | `160` |
+| 高度百分比 | `Minimap.HeightPercentage` | `100`（保持宽高比时不可用） |
+| 保持宽高比 | `Minimap.KeepSizeRatio` | `true`（勾选） |
+
+### 位置默认值
+
+| 位置参数 | 配置字段 | 默认值 |
+|---|---|---:|
+| 屏幕锚点 | `relativePoint` | `TOPRIGHT`（右上） |
+| 框体锚点 | `point` | `TOPRIGHT`（右上） |
+| X | `xOfs` | `0` |
+| Y | `yOfs` | `0` |
+| 移动器缩放指数 | `MinimapPos_scale` | `1` |
+
 ## 动作条
 
 本节记录当前确认的动作条默认值。宠物动作条的参数和位置不写入默认 Plus 配置，加载默认 Plus 配置时会保留当前宠物动作条设置。
@@ -311,7 +378,7 @@
 
 | 框体 | 屏幕锚点（`relativePoint`） | 框体锚点（`point`） | X（`xOfs`） | Y（`yOfs`） | 缩放 |
 |---|---|---|---:|---:|---:|
-| 主动作条 | `BOTTOM`（下） | `BOTTOM`（下） | `0` | `15` | `MainActionBar_pos_scale = 1` |
+| 主动作条 | `BOTTOM`（下） | `BOTTOM`（下） | `0` | `0` | `MainActionBar_pos_scale = 1` |
 | 动作条 2 | `BOTTOM`（下） | `BOTTOM`（下） | `-225` | `45` | `MultiBarBottomLeft_scale = 1` |
 | 动作条 3 | `BOTTOM`（下） | `BOTTOM`（下） | `225` | `45` | `MultiBarBottomRight_scale = 1` |
 | 动作条 4 | `TOPRIGHT`（右上） | `TOPRIGHT`（右上） | `0` | `-160` | `MultiBarRight_scale = 1` |
@@ -322,6 +389,37 @@
 | 姿态条 | `BOTTOM`（下） | `BOTTOM`（下） | `0` | `200` | `StanceBar_pos_scale = 1` |
 | 图腾条 | `BOTTOM`（下） | `BOTTOM`（下） | `0` | `230` | `TotemBar_pos_scale = 1` |
 | 法师动作条 | `BOTTOMRIGHT`（右下） | `BOTTOMRIGHT`（右下） | `-300` | `0` | `MageBar_pos_scale = 1` |
+
+以上为经验条关闭时的基础默认位置。经验条启用时，如果框体仍处于默认位置（`hasMoved ~= true`），主动作条、动作条 2、动作条 3、法师动作条的 Y 坐标分别在基础值上增加 `15`；已经手动移动过的框体不做任何处理。
+
+## 其他框体
+
+以下位置是当前确认的默认 Plus 位置。`relativePoint` 为屏幕锚点，`point` 为框体锚点。所有默认值写入后使用 `hasMoved = false`，用户手动移动后则保留手动位置。
+
+### 任务目标框参数默认值
+
+| 参数 | 配置键 | 默认值 |
+|---|---|---:|
+| 高度 | `QuestTracker_pos_height` | `600` |
+
+| 框体 | 配置键 | 屏幕锚点（`relativePoint`） | 框体锚点（`point`） | X（`xOfs`） | Y（`yOfs`） |
+|---|---|---|---|---:|---:|
+| BnetFrame | `BNToastPos` | `TOPLEFT`（左上） | `TOPLEFT`（左上） | `350` | `-26` |
+| 标记条 | `GW2PlusToolbarMarkerBarPos` | `TOP`（上） | `TOP`（上） | `0` | `0` |
+| 快捷条 | `GW2PlusToolbarQuickBarPos` | `TOP`（上） | `TOP`（上） | `0` | `-30` |
+| 任务目标 | `QuestTracker_pos` | `RIGHT`（右） | `RIGHT`（右） | `-182` | `130` |
+| 任务计时 | `QUEST_TIMERS_FRAME_POSITION` | `TOPRIGHT`（右上） | `TOPRIGHT`（右上） | `-318` | `-100` |
+| 队伍框 | `party_pos` | `CENTER`（中） | `CENTER`（中） | `435` | `40` |
+| Tooltip 框 | `GameTooltipPos` | `BOTTOMRIGHT`（右下） | `BOTTOMRIGHT`（右下） | `0` | `360` |
+| 飞行请求终止框 | `GW2PlusVehicleLeaveButton_pos` | `CENTER`（中） | `CENTER`（中） | `0` | `180` |
+| 团队框架 40 人 | `raid_pos` | `LEFT`（左） | `LEFT`（左） | `0` | `50` |
+| 团队框架 25 人 | `raid25_pos` | `LEFT`（左） | `LEFT`（左） | `0` | `50` |
+| 团队框架 10 人 | `raid10_pos` | `LEFT`（左） | `LEFT`（左） | `0` | `50` |
+| 小队网格 | `raid_party_pos` | `LEFT`（左） | `LEFT`（左） | `0` | `-32` |
+| 主坦克框 | `raidMaintank_pos` | `LEFT`（左） | `LEFT`（左） | `0` | `245` |
+| 小队宠物网格 | `party_pet_pos` | `LEFT`（左） | `LEFT`（左） | `0` | `252` |
+| 团队宠物网格 | `raid_pet_pos` | `TOPLEFT`（左上） | `TOPLEFT`（左上） | `120` | `252` |
+| 微缩地图 | `MinimapPos` | `TOPRIGHT`（右上） | `TOPRIGHT`（右上） | `0` | `0` |
 
 ## 相关实现
 

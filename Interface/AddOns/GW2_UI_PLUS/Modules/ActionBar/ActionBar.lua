@@ -48,6 +48,11 @@ local function Init()
             addonTable.PlusMageBar.Init()
         end
     end)
+    SafeRun("经验条动作条偏移", function()
+        if AB.ApplyExperienceBarMoverPositions then
+            AB.ApplyExperienceBarMoverPositions()
+        end
+    end)
     SafeRun("渐隐效果", function()
         if addonTable.PlusFader then
             addonTable.PlusFader.Init()

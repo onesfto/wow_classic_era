@@ -72,14 +72,14 @@ Toolbar.moverDefaults = {
         point = "TOP",
         relativePoint = "TOP",
         xOfs = 0,
-        yOfs = -40,
+        yOfs = -30,
         hasMoved = false,
     },
     markerBar = {
         point = "TOP",
         relativePoint = "TOP",
         xOfs = 0,
-        yOfs = -70,
+        yOfs = 0,
         hasMoved = false,
     },
     performanceBar = {

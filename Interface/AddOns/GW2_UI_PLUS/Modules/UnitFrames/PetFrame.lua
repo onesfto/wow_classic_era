@@ -5,12 +5,19 @@ addonTable.PlusPetFrame = PetFrame
 
 local DEFAULTS = {
     portraitPosition = "RIGHT",
+    portraitSize = 60,
+    portraitOffsetX = 0,
+    portraitOffsetY = 0,
     healthWidth = 230,
     healthHeight = 16,
     powerHeight = 2,
     happinessEnabled = true,
     feedEnabled = true,
 }
+local PORTRAIT_SIZE_MIN = 20
+local PORTRAIT_SIZE_MAX = 200
+local PORTRAIT_OFFSET_MIN = -200
+local PORTRAIT_OFFSET_MAX = 200
 local AUXILIARY_MOVER_DEFAULTS = {
     happiness = {
         point = "BOTTOM",
@@ -81,6 +88,12 @@ function PetFrame.InitDB()
     if not PORTRAIT_POSITION_SET[db.portraitPosition] then
         db.portraitPosition = DEFAULTS.portraitPosition
     end
+    db.portraitSize = Clamp(
+        db.portraitSize, PORTRAIT_SIZE_MIN, PORTRAIT_SIZE_MAX)
+    db.portraitOffsetX = Clamp(
+        db.portraitOffsetX, PORTRAIT_OFFSET_MIN, PORTRAIT_OFFSET_MAX)
+    db.portraitOffsetY = Clamp(
+        db.portraitOffsetY, PORTRAIT_OFFSET_MIN, PORTRAIT_OFFSET_MAX)
     db.healthWidth = Clamp(db.healthWidth, 100, 600)
     db.healthHeight = Clamp(db.healthHeight, 1, 100)
     db.powerHeight = Clamp(db.powerHeight, 1, 20)
@@ -96,27 +109,32 @@ function PetFrame.CalculateLayout(frameDB)
     local healthWidth = Clamp(frameDB.healthWidth, 100, 600)
     local healthHeight = Clamp(frameDB.healthHeight, 1, 100)
     local powerHeight = Clamp(frameDB.powerHeight, 1, 20)
-    local portraitSize = 60
+    local portraitSize = Clamp(
+        frameDB.portraitSize or DEFAULTS.portraitSize,
+        PORTRAIT_SIZE_MIN, PORTRAIT_SIZE_MAX)
+    local portraitOffsetX = Clamp(
+        frameDB.portraitOffsetX or DEFAULTS.portraitOffsetX,
+        PORTRAIT_OFFSET_MIN, PORTRAIT_OFFSET_MAX)
+    local portraitOffsetY = Clamp(
+        frameDB.portraitOffsetY or DEFAULTS.portraitOffsetY,
+        PORTRAIT_OFFSET_MIN, PORTRAIT_OFFSET_MAX)
     local bodyHeight = healthHeight + 2 + powerHeight
     local bodyWidth = healthWidth + 2
     local portraitGap = 4
-    local contentWidth, contentHeight
     local bodyX, bodyY, portraitX, portraitY
 
     if position == "TOP" then
-        contentWidth = math.max(bodyWidth, portraitSize)
+        local contentWidth = math.max(bodyWidth, portraitSize)
         bodyX = (contentWidth - bodyWidth) / 2
         portraitX = (contentWidth - portraitSize) / 2
         portraitY = 0
         bodyY = portraitY + portraitSize + portraitGap
-        contentHeight = bodyY + bodyHeight
     elseif position == "BOTTOM" then
-        contentWidth = math.max(bodyWidth, portraitSize)
+        local contentWidth = math.max(bodyWidth, portraitSize)
         bodyX = (contentWidth - bodyWidth) / 2
         bodyY = 0
         portraitX = (contentWidth - portraitSize) / 2
         portraitY = bodyY + bodyHeight + portraitGap
-        contentHeight = portraitY + portraitSize
     else
         bodyY = 0
         if position == "LEFT" then
@@ -129,15 +147,27 @@ function PetFrame.CalculateLayout(frameDB)
             bodyX, portraitX = 0, bodyWidth
         end
         portraitY = bodyY
-        if position == "HIDDEN" then
-            contentWidth = bodyX + bodyWidth
-            contentHeight = bodyY + bodyHeight
-        else
-            contentWidth = math.max(bodyX + bodyWidth,
-                portraitX + portraitSize)
-            contentHeight = math.max(bodyY + bodyHeight,
-                portraitY + portraitSize)
-        end
+    end
+
+    local contentWidth, contentHeight
+    if position == "HIDDEN" then
+        contentWidth = bodyX + bodyWidth
+        contentHeight = bodyY + bodyHeight
+    else
+        portraitX = portraitX + portraitOffsetX
+        portraitY = portraitY - portraitOffsetY
+        local minX = math.min(0, bodyX, portraitX)
+        local minY = math.min(0, bodyY, portraitY)
+        local maxX = math.max(bodyX + bodyWidth,
+            portraitX + portraitSize)
+        local maxY = math.max(bodyY + bodyHeight,
+            portraitY + portraitSize)
+        bodyX = bodyX - minX
+        bodyY = bodyY - minY
+        portraitX = portraitX - minX
+        portraitY = portraitY - minY
+        contentWidth = maxX - minX
+        contentHeight = maxY - minY
     end
 
     local bars = {
@@ -394,6 +424,9 @@ end
 function PetFrame.ResetLayoutDefaults()
     local db = PetFrame.InitDB()
     db.portraitPosition = DEFAULTS.portraitPosition
+    db.portraitSize = DEFAULTS.portraitSize
+    db.portraitOffsetX = DEFAULTS.portraitOffsetX
+    db.portraitOffsetY = DEFAULTS.portraitOffsetY
     db.healthWidth = DEFAULTS.healthWidth
     db.healthHeight = DEFAULTS.healthHeight
     db.powerHeight = DEFAULTS.powerHeight
@@ -431,6 +464,42 @@ function PetFrame.AddOptions(panel)
         groupHeaderName = "头像与资源条",
         forceNewLine = true,
     }), "GW2PlusPetFramePortraitPosition")
+    local portraitSize = AddOptionName(
+        panel:AddOptionSlider("头像尺寸", "头像的宽度和高度。", {
+            min = PORTRAIT_SIZE_MIN, max = PORTRAIT_SIZE_MAX, step = 1,
+            decimalNumbers = 0,
+            getter = function() return db.portraitSize end,
+            setter = function(value) db.portraitSize = value end,
+            getDefault = function() return DEFAULTS.portraitSize end,
+            callback = PetFrame.ApplyLayout,
+            dependence = dependence,
+            groupHeaderName = "头像与资源条",
+        }), "GW2PlusPetFramePortraitSize")
+    local portraitOffsetX = AddOptionName(
+        panel:AddOptionSlider("头像偏移 X", "正值向右移动头像。", {
+            min = PORTRAIT_OFFSET_MIN, max = PORTRAIT_OFFSET_MAX, step = 1,
+            decimalNumbers = 0,
+            getter = function() return db.portraitOffsetX end,
+            setter = function(value) db.portraitOffsetX = value end,
+            getDefault = function() return DEFAULTS.portraitOffsetX end,
+            callback = PetFrame.ApplyLayout,
+            dependence = dependence,
+            groupHeaderName = "头像与资源条",
+        }), "GW2PlusPetFramePortraitOffsetX")
+    local portraitOffsetY = AddOptionName(
+        panel:AddOptionSlider("头像偏移 Y", "正值向上移动头像。", {
+            min = PORTRAIT_OFFSET_MIN, max = PORTRAIT_OFFSET_MAX, step = 1,
+            decimalNumbers = 0,
+            getter = function() return db.portraitOffsetY end,
+            setter = function(value) db.portraitOffsetY = value end,
+            getDefault = function() return DEFAULTS.portraitOffsetY end,
+            callback = PetFrame.ApplyLayout,
+            dependence = dependence,
+            groupHeaderName = "头像与资源条",
+        }), "GW2PlusPetFramePortraitOffsetY")
+    if portraitSize then portraitSize.gwPlusColumns = 2 end
+    if portraitOffsetX then portraitOffsetX.gwPlusColumns = 2 end
+    if portraitOffsetY then portraitOffsetY.gwPlusColumns = 2 end
     local width = AddOptionName(panel:AddOptionSlider("生命条宽度", nil, {
         min = 100, max = 600, step = 1,
         getter = function() return db.healthWidth end,

@@ -50,6 +50,9 @@ assert(db.portraitPosition == "RIGHT", "宠物头像默认位置错误")
 assert(db.healthWidth == 230, "宠物生命条默认宽度错误")
 assert(db.healthHeight == 16, "宠物生命条默认高度错误")
 assert(db.powerHeight == 2, "宠物能量条默认高度错误")
+assert(db.portraitSize == 60, "宠物头像默认尺寸错误")
+assert(db.portraitOffsetX == 0 and db.portraitOffsetY == 0,
+    "宠物头像默认偏移错误")
 assert(db.happinessEnabled == true and db.feedEnabled == true,
     "宠物独立图标默认启用状态错误")
 assert(addonTable.PlusActionBar.InitDB().petBarMiddleGap == 0,
@@ -126,6 +129,37 @@ assert(wide.health.width == 310 and wide.energy.width == 310,
 assert(wide.health.height == 24 and wide.energy.height == 7,
     "资源条高度未按设置应用")
 
+local adjustedPortrait = petFrame.CalculateLayout({
+    portraitPosition = "RIGHT",
+    healthWidth = 230,
+    healthHeight = 16,
+    powerHeight = 2,
+    portraitSize = 80,
+    portraitOffsetX = 12,
+    portraitOffsetY = 9,
+})
+assert(adjustedPortrait.portrait.width == 80
+        and adjustedPortrait.portrait.height == 80,
+    "宠物头像尺寸未按设置应用")
+assert(adjustedPortrait.portrait.x == right.portrait.x + 12
+        and adjustedPortrait.portrait.y - adjustedPortrait.health.y == -9,
+    "宠物头像偏移未按 X 向右、Y 向上应用")
+
+local expandedPortrait = petFrame.CalculateLayout({
+    portraitPosition = "RIGHT",
+    healthWidth = 230,
+    healthHeight = 16,
+    powerHeight = 2,
+    portraitSize = 80,
+    portraitOffsetX = -300,
+    portraitOffsetY = 0,
+})
+assert(expandedPortrait.portrait.x >= 0
+        and expandedPortrait.portrait.x + expandedPortrait.portrait.width
+            <= expandedPortrait.contentWidth
+        and expandedPortrait.health.x >= 0,
+    "宠物头像负偏移后布局内容未保持完整")
+
 local multiRowPoints = layout.CalculatePetBarGrid(8, 7, 36, 3, 20)
 assert(multiRowPoints[7].x == 254 and multiRowPoints[8].x == 0
         and multiRowPoints[8].y == 39,
@@ -165,6 +199,8 @@ for _, option in ipairs(framePanel.gwOptions) do
 end
 local expectedFrameOptionNames = {
     "头像与资源条", "GW2PlusPetFramePortraitPosition",
+    "GW2PlusPetFramePortraitSize", "GW2PlusPetFramePortraitOffsetX",
+    "GW2PlusPetFramePortraitOffsetY",
     "GW2PlusPetFrameHealthWidth", "GW2PlusPetFrameHealthHeight",
     "GW2PlusPetFramePowerHeight", "恢复默认",
 }
@@ -178,6 +214,24 @@ assert(table.concat(portraitOption.optionsList, ",")
         and table.concat(portraitOption.optionNames, ",")
             == "中上,中下,左边,右边,隐藏",
     "宠物头像位置选项顺序错误")
+local portraitSizeOption = framePanel.gwOptions[3]
+assert(portraitSizeOption.min == 20 and portraitSizeOption.max == 200
+        and portraitSizeOption.step == 1,
+    "宠物头像尺寸范围错误")
+local portraitOffsetXOption = framePanel.gwOptions[4]
+local portraitOffsetYOption = framePanel.gwOptions[5]
+assert(portraitOffsetXOption.min == -200
+        and portraitOffsetXOption.max == 200
+        and portraitOffsetYOption.min == -200
+        and portraitOffsetYOption.max == 200,
+    "宠物头像偏移范围错误")
+db.portraitSize = 120
+db.portraitOffsetX = 40
+db.portraitOffsetY = -30
+petFrame.ResetLayoutDefaults()
+assert(db.portraitSize == 60 and db.portraitOffsetX == 0
+        and db.portraitOffsetY == 0,
+    "宠物头像设置恢复默认失败")
 for _, option in ipairs(framePanel.gwOptions) do
     if option.optionName and option.optionName ~= "恢复默认" then
         assert(option.dependence and option.dependence.PETBAR_ENABLED == true,

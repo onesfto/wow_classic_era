@@ -20,6 +20,12 @@ local ACTIONBAR_MOVER_SETTINGS = {
     {frame = "GwTotemBar", setting = "TotemBar_pos"},
     {frame = "GwPlusMageBar", setting = "MageBar_pos"},
 }
+local EXPERIENCE_BAR_MOVER_SETTINGS = {
+    {frame = "GwMultiBarBottomLeft", setting = "MultiBarBottomLeft"},
+    {frame = "GwMultiBarBottomRight", setting = "MultiBarBottomRight"},
+}
+local experienceBarProfileHooked = false
+local ApplyExperienceBarMoverPositions
 
 local function IsPlusProfileDefault()
     local defaults = addonTable.PlusProfileDefaults
@@ -44,6 +50,81 @@ local function GetConfiguredMoverDefault(settingName, fallback)
 end
 
 AB.GetMoverDefault = GetConfiguredMoverDefault
+
+local function IsSameMoverPoint(mover, point)
+    local currentPoint, _, currentRelativePoint, xOfs, yOfs = mover:GetPoint()
+    return currentPoint == point.point
+        and currentRelativePoint == point.relativePoint
+        and math.abs((xOfs or 0) - (point.xOfs or 0)) < 0.5
+        and math.abs((yOfs or 0) - (point.yOfs or 0)) < 0.5
+end
+
+local function HookExperienceBarMover(mover)
+    if mover.gwPlusExperienceBarHooked then return end
+    mover.gwPlusExperienceBarHooked = true
+    hooksecurefunc(mover, "SetPoint", function()
+        if mover.gwPlusExperienceBarApplying
+            or mover.IsMoving or GW.InMoveHudMode then
+            return
+        end
+        ApplyExperienceBarMoverPositions()
+    end)
+end
+
+ApplyExperienceBarMoverPositions = function()
+    if not IsPlusProfileDefault() then return end
+    if GW.InMoveHudMode then return end
+    if AB.QueueOutOfCombat
+        and AB.QueueOutOfCombat(
+            "experienceBarMoverPositions", ApplyExperienceBarMoverPositions) then
+        return
+    end
+
+    if not experienceBarProfileHooked and GW.globalSettings
+        and GW.globalSettings.RegisterCallback then
+        experienceBarProfileHooked = true
+        GW.globalSettings.RegisterCallback(
+            AB, "OnProfileChanged", ApplyExperienceBarMoverPositions)
+    end
+
+    for _, info in ipairs(EXPERIENCE_BAR_MOVER_SETTINGS) do
+        local frame = _G[info.frame]
+        local mover = frame and frame.gwMover
+        local default = GetConfiguredMoverDefault(info.setting)
+        if default then
+            if mover then
+                HookExperienceBarMover(mover)
+                mover.defaultPoint = GW.CopyTable(default)
+            end
+
+            local saved = rawget(GW.settings, info.setting)
+            if type(saved) ~= "table" or saved.hasMoved ~= true then
+                saved = GW.CopyTable(default)
+                saved.hasMoved = false
+                GW.settings[info.setting] = saved
+                if frame then
+                    frame.isMoved = false
+                    frame:SetAttribute("isMoved", false)
+                end
+                if mover and not IsSameMoverPoint(mover, default) then
+                    mover.gwPlusExperienceBarApplying = true
+                    mover:ClearAllPoints()
+                    mover:SetPoint(
+                        default.point, UIParent, default.relativePoint,
+                        default.xOfs, default.yOfs)
+                    mover.gwPlusExperienceBarApplying = false
+                end
+                if mover then
+                    mover.savedPoint = GW.CopyTable(saved)
+                    if GW.UpdateMatchingLayout then
+                        GW.UpdateMatchingLayout(mover, saved)
+                    end
+                end
+            end
+        end
+    end
+end
+AB.ApplyExperienceBarMoverPositions = ApplyExperienceBarMoverPositions
 
 function AB.EnsureMoverSettings(settingName, default)
     if not GW.settings then return false end
@@ -152,7 +233,7 @@ function AB.RegisterMainBarMover()
         point = "BOTTOM",
         relativePoint = "BOTTOM",
         xOfs = 0,
-        yOfs = GW.settings.XPBAR_ENABLED and 17 or 14,
+        yOfs = 0,
         hasMoved = false,
     }
     if not AB.EnsureMoverSettings(MAINBAR_MOVER_SETTING, default) then return end
@@ -272,7 +353,7 @@ function AB.ApplyMainBarLayout()
     local size = db.mainBarSize
     local margin = GW.settings.MAINBAR_MARGIIN or 5
     local gap = GetGlobeGap(bar)
-    local yOfs = GW.settings.XPBAR_ENABLED and 0 or -14
+    local yOfs = 0
     local count = math.max(1, math.min(12, math.floor((db.mainBarCount or 12) + 0.5)))
     local columns = math.max(1, math.min(count,
         math.floor((db.mainBarColumns or count) + 0.5)))

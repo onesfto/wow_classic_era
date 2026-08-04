@@ -200,6 +200,64 @@ local function RemoveWidgetFromRegistry(widget)
     end
     widget.__gwRegEntry = nil
 end
+local function RegistryText(value)
+    value = tostring(value or "")
+    return value:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):lower()
+end
+local function RegisterWidgetInRegistry(panel, widget)
+    local registry = GW2_ADDON.SettingsWidgetRegistry
+    if not registry or not widget or widget.__gwRegEntry then return end
+
+    registry.list = registry.list or {}
+    registry.byPanel = registry.byPanel or setmetatable({}, {__mode = "k"})
+    registry.byOptionName = registry.byOptionName or {}
+    local bucket = registry.byPanel[panel]
+    if not bucket then
+        registry.panelCounter = (registry.panelCounter or 0) + 1
+        bucket = {
+            entries = {},
+            panelIndex = registry.panelCounter,
+            header = panel.header and panel.header.GetText
+                and panel.header:GetText() or "",
+            panel = panel,
+        }
+        registry.byPanel[panel] = bucket
+    end
+
+    local displayName = widget.displayName or ""
+    local optionName = widget.optionName
+    local entry = {
+        widget = widget,
+        panel = panel,
+        panelIndex = bucket.panelIndex,
+        panelHeader = bucket.header,
+        panelBreadcrumb = panel.breadcrumb and panel.breadcrumb.GetText
+            and panel.breadcrumb:GetText() or "",
+        title = displayName,
+        titleNorm = RegistryText(displayName),
+        path = widget.settingsPath,
+        pathNorm = RegistryText(widget.settingsPath),
+        groupHeaderNorm = RegistryText(widget.groupHeaderName),
+        isNew = GW2_ADDON.NewSign and displayName:find(
+            GW2_ADDON.NewSign, 1, true) ~= nil,
+        type = widget.optionType,
+        optionName = optionName,
+        desc = widget.desc,
+        descNorm = RegistryText(widget.desc),
+    }
+    widget.__gwRegEntry = entry
+    registry.list[#registry.list + 1] = entry
+    bucket.entries[#bucket.entries + 1] = entry
+    entry.widgetIndex = #bucket.entries
+    if optionName then
+        local entries = registry.byOptionName[optionName]
+        if not entries then
+            entries = {}
+            registry.byOptionName[optionName] = entries
+        end
+        entries[#entries + 1] = entry
+    end
+end
 local function IsFaderOption(option, faderLabel)
     return option and (
         (option.optionType == "header" and option.name == faderLabel)
@@ -941,8 +999,7 @@ local PET_FADER_CONFIG = {
     end,
     includePlayerTarget = true,
     preserveDynamicFlightVehicle = false,
-    keepGeneralHeaders = true,
-    dependence = {PETBAR_ENABLED = true},
+    removeDependencies = {PETBAR_ENABLED = true},
 }
 local function CreateMasterToggleReplacement(panel, originalOption)
     if not panel or not originalOption
@@ -999,26 +1056,34 @@ local function PrepareSplitFaderPanel(panel, config)
         end
     end
 
-    local enabledOption = panel:AddOption(
-        "启用", config.enabledDescription, {
-            getter = config.getEnabled,
-            setter = function(value)
-                config.setEnabled(value)
-                local frame = config.getFrame()
-                if frame then
-                    if config.getEnabled() then
-                        config.toggleFrame(frame)
-                    elseif GW2_ADDON.FrameFadeDisable then
-                        GW2_ADDON.FrameFadeDisable(frame)
+    local enabledOption
+    if not config.preserveOriginal then
+        enabledOption = panel:AddOption(
+            "启用", config.enabledDescription, {
+                getter = config.getEnabled,
+                setter = function(value)
+                    config.setEnabled(value)
+                    local frame = config.getFrame()
+                    if frame then
+                        if config.getEnabled() then
+                            config.toggleFrame(frame)
+                        elseif GW2_ADDON.FrameFadeDisable then
+                            GW2_ADDON.FrameFadeDisable(frame)
+                        end
                     end
-                end
-            end,
-            getDefault = function() return true end,
-            isMasterToggle = true,
-            dependence = config.dependence,
-        })
-    if enabledOption then
-        enabledOption.optionName = config.enabledOptionName
+                end,
+                getDefault = function() return true end,
+                isMasterToggle = true,
+                dependence = config.dependence,
+            })
+        if enabledOption then
+            enabledOption.optionName = config.enabledOptionName
+            local Utils = addonTable.ActionBarOptionsUtils
+            if Utils and Utils.CreateOptionWidget then
+                local widget = Utils.CreateOptionWidget(panel, enabledOption)
+                RegisterWidgetInRegistry(panel, widget)
+            end
+        end
     end
     state.enabledOption = enabledOption
 
@@ -1032,47 +1097,61 @@ local function PrepareSplitFaderPanel(panel, config)
                     or option.name == "显隐")
     end
 
-    for _, option in ipairs(originalOptions) do
-        local renamedOption = config.optionRenames
-            and config.optionRenames[option.optionName]
-        if renamedOption then
-            option.name = renamedOption
-            if option.__widget then
-                option.__widget.displayName = renamedOption
-                option.__widget.title:SetText(renamedOption)
-            end
-        end
-        if IsFaderOption(option) then
-            option.groupHeaderName = "显隐"
-            local dependencies = CopyMap(option.dependence) or {}
-            dependencies[config.enabledOptionName] = true
-            SetOptionDependencies(option, dependencies)
-            if option.optionName == config.faderPrefix then
-                option.name = "显隐"
-                option.desc =
-                    "选择触发显隐的条件；满足任一条件时显示完整框体。"
-                local values, labels = {}, {}
-                for index, value in ipairs(option.optionsList or {}) do
-                    local keep = (config.preserveDynamicFlightVehicle
-                            or value ~= "dynamicflight")
-                        and (config.preserveDynamicFlightVehicle
-                            or value ~= "vehicle")
-                        and (config.includePlayerTarget
-                            or value ~= "playertarget")
-                    if keep then
-                        values[#values + 1] = value
-                        labels[#labels + 1] = value == "unittarget"
-                            and "目标" or option.optionsNames[index]
-                    end
-                end
-                option.optionsList = values
-                option.optionsNames = labels
+    if not config.preserveOriginal then
+        for _, option in ipairs(originalOptions) do
+            local renamedOption = config.optionRenames
+                and config.optionRenames[option.optionName]
+            if renamedOption then
+                option.name = renamedOption
                 if option.__widget then
-                    option.__widget.displayName = option.name
-                    option.__widget.desc = option.desc
-                    option.__widget.title:SetText(option.name)
-                    option.__widget.optionsList = values
-                    option.__widget.optionsNames = labels
+                    option.__widget.displayName = renamedOption
+                    option.__widget.title:SetText(renamedOption)
+                end
+            end
+            if IsFaderOption(option) then
+                option.groupHeaderName = "显隐"
+                if option.__widget then
+                    option.__widget.groupHeaderName = "显隐"
+                end
+                local dependencies = CopyMap(option.dependence) or {}
+                for dependencyName in pairs(config.removeDependencies or {}) do
+                    dependencies[dependencyName] = nil
+                end
+                dependencies[config.enabledOptionName] = true
+                SetOptionDependencies(option, dependencies)
+                if option.optionType == "header" then
+                    option.name = "显隐"
+                    if option.__widget then
+                        option.__widget.displayName = option.name
+                        option.__widget.title:SetText(option.name)
+                    end
+                elseif option.optionName == config.faderPrefix then
+                    option.name = "显隐"
+                    option.desc =
+                        "选择触发显隐的条件；满足任一条件时显示完整框体。"
+                    local values, labels = {}, {}
+                    for index, value in ipairs(option.optionsList or {}) do
+                        local keep = (config.preserveDynamicFlightVehicle
+                                or value ~= "dynamicflight")
+                            and (config.preserveDynamicFlightVehicle
+                                or value ~= "vehicle")
+                            and (config.includePlayerTarget
+                                or value ~= "playertarget")
+                        if keep then
+                            values[#values + 1] = value
+                            labels[#labels + 1] = value == "unittarget"
+                                and "目标" or option.optionsNames[index]
+                        end
+                    end
+                    option.optionsList = values
+                    option.optionsNames = labels
+                    if option.__widget then
+                        option.__widget.displayName = option.name
+                        option.__widget.desc = option.desc
+                        option.__widget.title:SetText(option.name)
+                        option.__widget.optionsList = values
+                        option.__widget.optionsNames = labels
+                    end
                 end
             end
         end
@@ -1156,7 +1235,8 @@ local function PrepareSplitFaderPanel(panel, config)
 
     state.views = {general = BuildView("general"), fader = BuildView("fader")}
     local mixin = config.getMixin()
-    if mixin and not mixin.__gwPlusFaderGuardInstalled then
+    if not config.preserveOriginal and mixin
+        and not mixin.__gwPlusFaderGuardInstalled then
         mixin.__gwPlusFaderGuardInstalled = true
         hooksecurefunc(mixin, config.toggleMethod or "ToggleSettings", function(frame)
             if not config.getEnabled() and GW2_ADDON.FrameFadeDisable then
@@ -1242,7 +1322,9 @@ end
 
 local function IsPetOptionInView(option, kind)
     if kind == "aura" then return IsPetAuraOption(option) end
-    if kind == "fader" then return IsPetFaderOption(option) end
+    if kind == "fader" then
+        return IsPetFaderOption(option) and option.optionType ~= "header"
+    end
     if kind == "happiness" or kind == "feed" then
         return IsPetAuxiliaryOption(option, kind)
     end
@@ -1250,6 +1332,75 @@ local function IsPetOptionInView(option, kind)
         and not IsPetFaderOption(option)
         and not IsPetAuxiliaryOption(option, "happiness")
         and not IsPetAuxiliaryOption(option, "feed")
+end
+
+local function FindPetOptionForWidget(options, widget)
+    if not widget then return end
+    for _, option in ipairs(options or {}) do
+        if option.__gwPlusWidget == widget or option.__widget == widget then
+            return option
+        end
+    end
+end
+
+local function FilterPetProviderRow(data, wanted, options, panel, index)
+    if data.kind then return end
+
+    -- ActionBarOptionsUtils keeps its two-column layout in widgets/options,
+    -- while native settings rows use cols. Preserve whichever shape is active
+    -- so the existing ScrollBox initializer can render the filtered view.
+    if data.cols then
+        local cols = {}
+        for _, option in ipairs(data.cols) do
+            if wanted[option] then cols[#cols + 1] = option end
+        end
+        if #cols == 0 then return end
+        return {
+            index = index,
+            cols = cols,
+            panel = panel,
+        }
+    end
+
+    if data.widgets then
+        local widgets, widgetOptions = {}, {}
+        for _, widget in ipairs(data.widgets) do
+            local option = FindPetOptionForWidget(options, widget)
+            if option and wanted[option] then
+                widgets[#widgets + 1] = widget
+                widgetOptions[#widgetOptions + 1] = option
+            end
+        end
+        if #widgets == 0 then return end
+        if #widgets == 1 then
+            return {
+                index = index,
+                option = widgetOptions[1],
+                widget = widgets[1],
+                topPadding = data.topPadding,
+                panel = panel,
+            }
+        end
+        return {
+            index = index,
+            option = widgetOptions[1],
+            widgets = widgets,
+            columnCount = #widgets,
+            topPadding = data.topPadding,
+            panel = panel,
+        }
+    end
+
+    local option = data.option
+    if option and wanted[option] then
+        return {
+            index = index,
+            option = option,
+            widget = data.widget,
+            topPadding = data.topPadding,
+            panel = panel,
+        }
+    end
 end
 
 local function BuildPetView(panel, state, kind)
@@ -1265,44 +1416,90 @@ local function BuildPetView(panel, state, kind)
     local filtered = CreateDataProvider()
     local rowIndex = 0
     state.originalProvider:ForEach(function(data)
-        if data.kind then return end
-        local cols = {}
-        for _, option in ipairs(data.cols or {}) do
-            if wanted[option] then cols[#cols + 1] = option end
-        end
-        if #cols > 0 then
+        local row = FilterPetProviderRow(
+            data, wanted, state.originalOptions, panel, rowIndex + 1)
+        if row then
             rowIndex = rowIndex + 1
-            filtered:Insert({
-                index = rowIndex,
-                cols = cols,
-                panel = panel,
-            })
+            row.index = rowIndex
+            filtered:Insert(row)
         end
     end)
     return {options = options, provider = filtered}
 end
 
+local function BuildPetFaderView(panel, state)
+    local baseView = BuildPetView(panel, state, "fader")
+    local options = {}
+    local filtered = CreateDataProvider()
+    local rowIndex = 0
+
+    if state.enabledOption then
+        options[#options + 1] = state.enabledOption
+        rowIndex = rowIndex + 1
+        local enabledWidget = state.enabledOption.__gwPlusWidget
+        if enabledWidget then
+            filtered:Insert({
+                index = rowIndex,
+                option = state.enabledOption,
+                widget = enabledWidget,
+                panel = panel,
+            })
+        else
+            filtered:Insert({
+                index = rowIndex,
+                cols = {state.enabledOption},
+                panel = panel,
+            })
+        end
+        rowIndex = rowIndex + 1
+        filtered:Insert({
+            index = rowIndex,
+            kind = "masterToggleSeparator",
+            panel = panel,
+        })
+    end
+
+    for _, option in ipairs(baseView.options) do
+        options[#options + 1] = option
+    end
+    baseView.provider:ForEach(function(data)
+        rowIndex = rowIndex + 1
+        local row = {}
+        for key, value in pairs(data) do
+            row[key] = value
+        end
+        row.index = rowIndex
+        filtered:Insert(row)
+    end)
+
+    return {options = options, provider = filtered}
+end
+
 local function PreparePetPanel(panel)
-    local petFrame = addonTable.PlusPetFrame
-    if petFrame and petFrame.EnsureAuxiliaryFrames then
-        petFrame.EnsureAuxiliaryFrames()
-    end
-    if petFrame and petFrame.AddOptions then
-        petFrame.AddOptions(panel)
-        if petFrame.AddAuxiliaryOptions then
-            petFrame.AddAuxiliaryOptions(panel)
-        end
-        local Utils = addonTable.ActionBarOptionsUtils
-        if Utils and Utils.InitializePanel then
-            Utils.InitializePanel(panel)
-        end
-    end
-    PrepareSplitFaderPanel(panel, PET_FADER_CONFIG)
     local state = panel and panel.__gwPlusPetFaderState
+    if not state then
+        local petFrame = addonTable.PlusPetFrame
+        if petFrame and petFrame.EnsureAuxiliaryFrames then
+            petFrame.EnsureAuxiliaryFrames()
+        end
+        if petFrame and petFrame.AddOptions then
+            petFrame.AddOptions(panel)
+            if petFrame.AddAuxiliaryOptions then
+                petFrame.AddAuxiliaryOptions(panel)
+            end
+            local Utils = addonTable.ActionBarOptionsUtils
+            if Utils and Utils.InitializePanel then
+                Utils.InitializePanel(panel)
+            end
+        end
+        PrepareSplitFaderPanel(panel, PET_FADER_CONFIG)
+        state = panel and panel.__gwPlusPetFaderState
+    end
     if state then
         state.views.general = BuildPetView(panel, state, "general")
         state.views.happiness = BuildPetView(panel, state, "happiness")
         state.views.feed = BuildPetView(panel, state, "feed")
+        state.views.fader = BuildPetFaderView(panel, state)
         state.views.aura = BuildPetView(panel, state, "aura")
     end
 end

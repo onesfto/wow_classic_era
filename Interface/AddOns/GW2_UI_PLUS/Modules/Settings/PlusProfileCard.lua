@@ -4,10 +4,11 @@ local CARD_GAP = 7
 local LIST_HEIGHT = 328
 local ICON_PATH =
     "Interface/AddOns/GW2_UI_PLUS/Assets/gwlogo-red.png"
+local PROFILE_FONT = UNIT_NAME_FONT or "Fonts\\FRIZQT__.TTF"
 
 local function StyleCard(card)
-    card.name:SetFont(UNIT_NAME_FONT, 14)
-    card.desc:SetFont(UNIT_NAME_FONT, 10)
+    card.name:SetFont(PROFILE_FONT, 14)
+    card.desc:SetFont(PROFILE_FONT, 10)
     card.desc:SetTextColor(0.49, 0.49, 0.49)
     card.background:SetTexCoord(0, 1, 0, 0.5)
     card.activeProfile:Hide()

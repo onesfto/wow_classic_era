@@ -277,8 +277,8 @@ local function ApplyResourceBarScale()
     local mover = classPower.gwMover
     if not mover then return end
     mover.optionScaleable = false
-    RemoveFromScaleList(GW.scaleableFrames, mover)
-    RemoveFromScaleList(GW.scaleableMainHudFrames, mover)
+    RemoveFromList(GW.scaleableFrames, mover)
+    RemoveFromList(GW.scaleableMainHudFrames, mover)
     mover:SetScale(1)
 end
 

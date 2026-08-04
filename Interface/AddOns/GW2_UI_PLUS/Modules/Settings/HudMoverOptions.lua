@@ -3,8 +3,8 @@ local _, addonTable = ...
 local MINIMAP_DEFAULT = {
     point = "TOPRIGHT",
     relativePoint = "TOPRIGHT",
-    xOfs = -5,
-    yOfs = -3,
+    xOfs = 0,
+    yOfs = 0,
     hasMoved = false,
 }
 local ENERGY_BAR_DEFAULT = {
@@ -54,6 +54,13 @@ local TARGET_FRAME_DEFAULT = {
     relativePoint = "CENTER",
     xOfs = 315,
     yOfs = -160,
+    hasMoved = false,
+}
+local TARGET_TARGET_DEFAULT = {
+    point = "CENTER",
+    relativePoint = "CENTER",
+    xOfs = 344,
+    yOfs = -100,
     hasMoved = false,
 }
 local PET_HAPPINESS_DEFAULT = {
@@ -141,6 +148,7 @@ end
 
 local PLUS_PROFILE_OPTION_ALIASES = {
     GW2PlusNormalPlayerFrameEnabled = "HEALTHGLOBE_ENABLED",
+    GW2PlusTargetTargetEnabled = "target_TARGET_ENABLED",
 }
 local PLUS_SAVED_OPTION_PATHS = {
     GW2PlusEnergyShowValue = {
@@ -689,7 +697,8 @@ function addonTable.BuildHudMoverOptions(settingsTab)
     AddMoverControls(
         microPanel, "Gw2MicroBarFrame", "MicromenuPos")
     AddMoverControls(
-        minimapPanel, "Minimap", "MinimapPos", MINIMAP_DEFAULT)
+        minimapPanel, "Minimap", "MinimapPos", MINIMAP_DEFAULT,
+        true, false)
     AddMoverControls(
         pages.player_general,
         "GwPlayerUnitFrame", "player_pos", playerDefault, true, false)
@@ -726,7 +735,8 @@ function addonTable.BuildHudMoverOptions(settingsTab)
     AddViewMoverControls(
         pages.target_of_target,
         targetTargetState and targetTargetState.views.general,
-        "GwTargetTargetUnitFrame", "targettarget_pos", nil)
+        "GwTargetTargetUnitFrame", "targettarget_pos",
+        GetPlusMoverDefault("targettarget_pos", TARGET_TARGET_DEFAULT))
     local petState = pages.player_pet
         and pages.player_pet.__gwPlusPetFaderState
     AddViewMoverControls(

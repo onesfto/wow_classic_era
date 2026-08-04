@@ -41,6 +41,12 @@ if grep -F 'pet_skill' "$settings_file" >/dev/null; then
 fi
 grep -F 'GW2PlusPetHappinessEnabled' "$settings_file" >/dev/null
 grep -F 'GW2PlusPetFeedEnabled' "$settings_file" >/dev/null
+grep -F 'GW2PlusPetFramePortraitSize' "Modules/UnitFrames/PetFrame.lua" >/dev/null
+grep -F 'GW2PlusPetFramePortraitOffsetX' "Modules/UnitFrames/PetFrame.lua" >/dev/null
+grep -F 'GW2PlusPetFramePortraitOffsetY' "Modules/UnitFrames/PetFrame.lua" >/dev/null
+grep -F 'portraitSize = 60' "Modules/Settings/PlusProfileDefaults.lua" >/dev/null
+grep -F 'portraitOffsetX = 0' "Modules/Settings/PlusProfileDefaults.lua" >/dev/null
+grep -F 'portraitOffsetY = 0' "Modules/Settings/PlusProfileDefaults.lua" >/dev/null
 grep -F '"GwPlusPetHappiness", "PetHappiness_pos"' "Modules/Settings/HudMoverOptions.lua" >/dev/null
 grep -F '"GwPlusPetFeed", "PetFeed_pos"' "Modules/Settings/HudMoverOptions.lua" >/dev/null
 grep -F 'PET_AURAS_UNDER' "$settings_file" >/dev/null
@@ -52,8 +58,17 @@ grep -F 'PetBar_pos = {' "Modules/Settings/PlusProfileDefaults.lua" >/dev/null
 grep -F 'PetHappiness_pos = {' "Modules/Settings/PlusProfileDefaults.lua" >/dev/null
 grep -F 'PetFeed_pos = {' "Modules/Settings/PlusProfileDefaults.lua" >/dev/null
 grep -F 'toggleMethod = "ToggleFaderOptions"' "$settings_file" >/dev/null
+grep -F 'enabledOptionName = "GW2PlusPetFaderEnabled"' "$settings_file" >/dev/null
+grep -F 'enabledDescription = "启用宠物框体渐隐。"' "$settings_file" >/dev/null
+grep -F 'GW2_UI_PLUS_PetFaderSV' "$settings_file" >/dev/null
 grep -F 'includePlayerTarget = true' "$settings_file" >/dev/null
 grep -F 'preserveDynamicFlightVehicle = false' "$settings_file" >/dev/null
+if grep -F 'preserveOriginal = true' "$settings_file" >/dev/null; then
+    exit 1
+fi
+if grep -F 'state.views.fader = BuildPetView(panel, state, "fader")' "$settings_file" >/dev/null; then
+    exit 1
+fi
 if grep -F 'HideEmbeddedFader(embeddedPanels.player_pet' "$hide_native_file" >/dev/null; then
     exit 1
 fi

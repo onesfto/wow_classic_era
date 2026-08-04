@@ -3,6 +3,13 @@ local _, addonTable = ...
 local PLUS_DEFAULT_SOURCE_KEY = "GW2_UI_PLUS_DEFAULT_SOURCE"
 local PLUS_DEFAULT_SOURCE = "plus"
 local IsPlusProfileDefault
+local EXPERIENCE_BAR_OFFSET = 15
+local EXPERIENCE_BAR_OFFSET_SETTINGS = {
+    MainActionBar_pos = true,
+    MultiBarBottomLeft = true,
+    MultiBarBottomRight = true,
+    MageBar_pos = true,
+}
 
 local PROFILE_DEFAULTS = {
     CASTINGBAR_ENABLED = true,
@@ -157,6 +164,171 @@ local PROFILE_DEFAULTS = {
         height = 3,
     },
 
+    PARTY_FRAMES = true,
+    RAID_FRAMES = false,
+    RAID10_ENABLED = false,
+    RAID25_ENABLED = false,
+    RAID_MAINTANK_FRAMES_ENABLED = false,
+    RAID_PET_FRAMES = false,
+    RAID_STYLE_PARTY = false,
+    PARTY_PET_FRAMES_ENABLED = false,
+
+    target_TARGET_ENABLED = true,
+    target_TARGET_SHOW_CASTBAR = true,
+    targettargetFrameHealthBarTexture = "GW2_UI_2_DEFAULT",
+    targettargetFrameHealthBarSize = {
+        width = 100,
+        height = 13,
+    },
+    targettargetFramePowerBarSize = {
+        height = 3,
+    },
+
+    MINIMAP_ENABLED = true,
+    MINIMAP_FPS = false,
+    MINIMAP_FPS_TOOLTIP_DISABLED = false,
+    MINIMAP_COORDS_TOGGLE = false,
+    MINIMAP_ALWAYS_SHOW_HOVER_DETAILS = {
+        CLOCK = false,
+        ZONE = false,
+        COORDS = false,
+    },
+    MinimapScale = 1,
+    MinimapResetZoom = 0,
+    MINIMAP_SIZE = 160,
+    Minimap = {
+        HeightPercentage = 100,
+        KeepSizeRatio = true,
+    },
+    MinimapPos_scale = 1,
+
+    targettarget_pos = {
+        point = "CENTER",
+        relativePoint = "CENTER",
+        xOfs = 344,
+        yOfs = -100,
+        hasMoved = false,
+    },
+    targettarget_pos_scale = 1,
+
+    BNToastPos = {
+        point = "TOPLEFT",
+        relativePoint = "TOPLEFT",
+        xOfs = 350,
+        yOfs = -26,
+        hasMoved = false,
+    },
+    BNToastPos_scale = 1,
+
+    GW2PlusToolbarMarkerBarPos = {
+        point = "TOP",
+        relativePoint = "TOP",
+        xOfs = 0,
+        yOfs = 0,
+        hasMoved = false,
+    },
+    GW2PlusToolbarQuickBarPos = {
+        point = "TOP",
+        relativePoint = "TOP",
+        xOfs = 0,
+        yOfs = -30,
+        hasMoved = false,
+    },
+
+    QuestTracker_pos = {
+        point = "RIGHT",
+        relativePoint = "RIGHT",
+        xOfs = -182,
+        yOfs = 130,
+        hasMoved = false,
+    },
+    QuestTracker_pos_height = 600,
+    QUEST_TIMERS_FRAME_POSITION = {
+        point = "TOPRIGHT",
+        relativePoint = "TOPRIGHT",
+        xOfs = -318,
+        yOfs = -100,
+        hasMoved = false,
+    },
+    GameTooltipPos = {
+        point = "BOTTOMRIGHT",
+        relativePoint = "BOTTOMRIGHT",
+        xOfs = 0,
+        yOfs = 360,
+        hasMoved = false,
+    },
+    GW2PlusVehicleLeaveButton_pos = {
+        point = "CENTER",
+        relativePoint = "CENTER",
+        xOfs = 0,
+        yOfs = 180,
+        hasMoved = false,
+    },
+
+    party_pos = {
+        point = "CENTER",
+        relativePoint = "CENTER",
+        xOfs = 435,
+        yOfs = 40,
+        hasMoved = false,
+    },
+    raid_pos = {
+        point = "LEFT",
+        relativePoint = "LEFT",
+        xOfs = 0,
+        yOfs = 50,
+        hasMoved = false,
+    },
+    raid25_pos = {
+        point = "LEFT",
+        relativePoint = "LEFT",
+        xOfs = 0,
+        yOfs = 50,
+        hasMoved = false,
+    },
+    raid10_pos = {
+        point = "LEFT",
+        relativePoint = "LEFT",
+        xOfs = 0,
+        yOfs = 50,
+        hasMoved = false,
+    },
+    raid_party_pos = {
+        point = "LEFT",
+        relativePoint = "LEFT",
+        xOfs = 0,
+        yOfs = -32,
+        hasMoved = false,
+    },
+    raidMaintank_pos = {
+        point = "LEFT",
+        relativePoint = "LEFT",
+        xOfs = 0,
+        yOfs = 245,
+        hasMoved = false,
+    },
+    party_pet_pos = {
+        point = "LEFT",
+        relativePoint = "LEFT",
+        xOfs = 0,
+        yOfs = 252,
+        hasMoved = false,
+    },
+    raid_pet_pos = {
+        point = "TOPLEFT",
+        relativePoint = "TOPLEFT",
+        xOfs = 120,
+        yOfs = 252,
+        hasMoved = false,
+    },
+    MinimapPos = {
+        point = "TOPRIGHT",
+        relativePoint = "TOPRIGHT",
+        xOfs = 0,
+        yOfs = 0,
+        hasMoved = false,
+    },
+
 }
 
 local ACTIONBAR_PROFILE_DEFAULTS = {
@@ -192,7 +364,7 @@ local ACTIONBAR_POSITION_DEFAULTS = {
         point = "BOTTOM",
         relativePoint = "BOTTOM",
         xOfs = 0,
-        yOfs = 15,
+        yOfs = 0,
         hasMoved = false,
     },
     MultiBarBottomLeft = {
@@ -368,6 +540,9 @@ local SAVED_VARIABLE_DEFAULTS = {
         playerDebuffAurasEnabled = true,
         petFrame = {
             portraitPosition = "RIGHT",
+            portraitSize = 60,
+            portraitOffsetX = 0,
+            portraitOffsetY = 0,
             healthWidth = 230,
             healthHeight = 16,
             powerHeight = 2,
@@ -393,6 +568,23 @@ local MOVER_DEFAULTS = {
     {frame = "GW2UIPlayerDebuffs", setting = "PlayerDebuffFrame"},
     {frame = "GwPlayerUnitFrame", setting = "player_pos"},
     {frame = "GwTargetUnitFrame", setting = "target_pos"},
+    {frame = "GwTargetTargetUnitFrame", setting = "targettarget_pos"},
+    {frame = "BNToastFrame", setting = "BNToastPos"},
+    {frame = "GwPlusToolbarMarkerBar", setting = "GW2PlusToolbarMarkerBarPos"},
+    {frame = "GwPlusToolbarQuickBar", setting = "GW2PlusToolbarQuickBarPos"},
+    {frame = "GwQuestTracker", setting = "QuestTracker_pos"},
+    {frame = "QuestTimerFrame", setting = "QUEST_TIMERS_FRAME_POSITION"},
+    {frame = "GameTooltip", setting = "GameTooltipPos"},
+    {frame = "GW2PlusVehicleLeaveButton", setting = "GW2PlusVehicleLeaveButton_pos"},
+    {frame = "GwPartyFrame1", setting = "party_pos"},
+    {frame = "GW2_Raid40GridContainer", setting = "raid_pos"},
+    {frame = "GW2_Raid25GridContainer", setting = "raid25_pos"},
+    {frame = "GW2_Raid10GridContainer", setting = "raid10_pos"},
+    {frame = "GW2_PartyGridContainer", setting = "raid_party_pos"},
+    {frame = "GW2_MaintankGridContainer", setting = "raidMaintank_pos"},
+    {frame = "GW2_PartyPetGridContainer", setting = "party_pet_pos"},
+    {frame = "GW2_RaidPetGridContainer", setting = "raid_pet_pos"},
+    {frame = "Minimap", setting = "MinimapPos"},
     {frame = "MainActionBar", setting = "MainActionBar_pos"},
     {frame = "GwMultiBarBottomLeft", setting = "MultiBarBottomLeft"},
     {frame = "GwMultiBarBottomRight", setting = "MultiBarBottomRight"},
@@ -458,7 +650,20 @@ end
 local function GetMoverDefault(setting)
     local value = ACTIONBAR_POSITION_DEFAULTS[setting]
         or PROFILE_DEFAULTS[setting]
-    return value and CopyValue(value) or nil
+    if not value then return nil end
+
+    value = CopyValue(value)
+    if setting == "MainActionBar_pos" then
+        value.xOfs = 0
+        value.yOfs = 0
+    end
+
+    local GW = _G.GW2_ADDON
+    if EXPERIENCE_BAR_OFFSET_SETTINGS[setting]
+        and GW and GW.settings and GW.settings.XPBAR_ENABLED then
+        value.yOfs = (value.yOfs or 0) + EXPERIENCE_BAR_OFFSET
+    end
+    return value
 end
 
 local function GetNativeMoverDefault(setting)
