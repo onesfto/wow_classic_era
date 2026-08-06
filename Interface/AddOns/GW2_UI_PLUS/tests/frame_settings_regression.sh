@@ -4,6 +4,7 @@ set -eu
 settings_file="Modules/Settings/Settings.lua"
 hide_native_file="Modules/Settings/HideNativeSettings.lua"
 resources_file="Modules/UnitFrames/PlayerResources.lua"
+petbar_file="../GW2_UI/Games/Shared/Units/petbar.lua"
 
 grep -F 'local function HideNativePlayerSettings(settingsTab, embeddedPanels)' "$hide_native_file" >/dev/null
 grep -F 'if data.itemData ~= playerParent and data.parent ~= playerParent then' "$hide_native_file" >/dev/null
@@ -50,6 +51,12 @@ grep -F 'portraitOffsetY = 0' "Modules/Settings/PlusProfileDefaults.lua" >/dev/n
 grep -F '"GwPlusPetHappiness", "PetHappiness_pos"' "Modules/Settings/HudMoverOptions.lua" >/dev/null
 grep -F '"GwPlusPetFeed", "PetFeed_pos"' "Modules/Settings/HudMoverOptions.lua" >/dev/null
 grep -F 'PET_AURAS_UNDER' "$settings_file" >/dev/null
+grep -F 'self.auras:SetPoint("TOPRIGHT", self.Background, "BOTTOMRIGHT", -3, 40)' "$petbar_file" >/dev/null
+grep -F 'self.auras:SetPoint("TOPRIGHT", self.powerbar, "BOTTOMRIGHT", 0, -5)' "$petbar_file" >/dev/null
+if grep -F 'self.auras:SetPoint("TOPLEFT", self.powerbar, "BOTTOMLEFT", 0, -5)' "$petbar_file" >/dev/null; then
+    echo "宠物下方光环不应继续从左下角开始排列" >&2
+    exit 1
+fi
 grep -F 'PET_Buff_Filter' "$settings_file" >/dev/null
 grep -F 'PET_Buff_Filter_advanced' "$settings_file" >/dev/null
 grep -F 'PET_Debuff_Filter' "$settings_file" >/dev/null

@@ -3,6 +3,7 @@ local _, addonTable = ...
 local PLUS_DEFAULT_SOURCE_KEY = "GW2_UI_PLUS_DEFAULT_SOURCE"
 local PLUS_DEFAULT_SOURCE = "plus"
 local IsPlusProfileDefault
+local EXPERIENCE_BAR_MAX_LEVEL = 60
 local EXPERIENCE_BAR_OFFSET = 15
 local EXPERIENCE_BAR_OFFSET_SETTINGS = {
     MainActionBar_pos = true,
@@ -11,7 +12,15 @@ local EXPERIENCE_BAR_OFFSET_SETTINGS = {
     MageBar_pos = true,
 }
 
+local function GetExperienceBarDefault(level)
+    if level == nil and UnitLevel then
+        level = UnitLevel("player")
+    end
+    return (level or 0) < EXPERIENCE_BAR_MAX_LEVEL
+end
+
 local PROFILE_DEFAULTS = {
+    XPBAR_ENABLED = true,
     CASTINGBAR_ENABLED = true,
     showPlayerCastBarTicks = true,
     CASTINGBAR_DATA = false,
@@ -539,6 +548,7 @@ local SAVED_VARIABLE_DEFAULTS = {
         playerBuffAurasEnabled = true,
         playerDebuffAurasEnabled = true,
         petFrame = {
+            portraitEnabled = true,
             portraitPosition = "RIGHT",
             portraitSize = 60,
             portraitOffsetX = 0,
@@ -548,6 +558,15 @@ local SAVED_VARIABLE_DEFAULTS = {
             powerHeight = 2,
             happinessEnabled = true,
             feedEnabled = true,
+        },
+        petFeed = {
+            buttonSize = 25,
+            useLowLevelFirst = true,
+            avoidQuestFood = true,
+            alertType = 1,
+            excludedCategories = {},
+            excludedFoods = {},
+            foodLog = {},
         },
     },
     GW2_UI_PLUS_PlayerStatusSV = {
@@ -793,6 +812,7 @@ local function Apply()
     -- 原生重置会保留当前配置名称，并删除对应的配置布局。
     GW.ResetToDefault()
     ApplyTableDefaults(GW.settings, PROFILE_DEFAULTS)
+    GW.settings.XPBAR_ENABLED = GetExperienceBarDefault()
     ApplyActionBarProfileDefaults(GW)
     GW.settings[PLUS_DEFAULT_SOURCE_KEY] = PLUS_DEFAULT_SOURCE
     ApplySavedVariableDefaults()
@@ -825,6 +845,7 @@ addonTable.PlusProfileDefaults = {
     GetActionBarDefault = GetActionBarDefault,
     GetMoverDefault = GetMoverDefault,
     GetNativeMoverDefault = GetNativeMoverDefault,
+    GetExperienceBarDefault = GetExperienceBarDefault,
     RefreshMoverDefaults = RefreshMoverDefaults,
     Apply = Apply,
     IsPlusProfileDefault = IsPlusProfileDefault,

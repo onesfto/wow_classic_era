@@ -98,7 +98,7 @@ assert(auxiliaries.happiness:IsShown() and auxiliaries.feed:IsShown(),
     "有效宠物状态下两个独立图标都应显示")
 
 local db = petFrame.InitDB()
-db.portraitPosition = "HIDDEN"
+db.portraitEnabled = false
 petFrame.UpdateAuxiliaryFrames()
 assert(auxiliaries.happiness:IsShown() and auxiliaries.feed:IsShown(),
     "隐藏头像不能隐藏独立小图标")

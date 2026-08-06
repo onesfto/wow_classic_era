@@ -3,7 +3,11 @@ local _, addonTable = ...
 local PetFrame = {}
 addonTable.PlusPetFrame = PetFrame
 
+local AUXILIARY_ICON_DEFAULT_SIZE = 25
+local HAPPINESS_SIZE_MIN = 12
+local HAPPINESS_SIZE_MAX = 64
 local DEFAULTS = {
+    portraitEnabled = true,
     portraitPosition = "RIGHT",
     portraitSize = 60,
     portraitOffsetX = 0,
@@ -12,12 +16,15 @@ local DEFAULTS = {
     healthHeight = 16,
     powerHeight = 2,
     happinessEnabled = true,
+    happinessSize = AUXILIARY_ICON_DEFAULT_SIZE,
     feedEnabled = true,
 }
 local PORTRAIT_SIZE_MIN = 20
 local PORTRAIT_SIZE_MAX = 200
-local PORTRAIT_OFFSET_MIN = -200
-local PORTRAIT_OFFSET_MAX = 200
+local PORTRAIT_OFFSET_X_MIN = -300
+local PORTRAIT_OFFSET_X_MAX = 300
+local PORTRAIT_OFFSET_Y_MIN = -100
+local PORTRAIT_OFFSET_Y_MAX = 100
 local AUXILIARY_MOVER_DEFAULTS = {
     happiness = {
         point = "BOTTOM",
@@ -41,8 +48,8 @@ local PET_HAPPINESS_SPRITE = {
     colums = 4,
     rows = 1,
 }
-local PORTRAIT_POSITIONS = {"TOP", "BOTTOM", "LEFT", "RIGHT", "HIDDEN"}
-local PORTRAIT_POSITION_NAMES = {"中上", "中下", "左边", "右边", "隐藏"}
+local PORTRAIT_POSITIONS = {"TOP", "BOTTOM", "LEFT", "RIGHT"}
+local PORTRAIT_POSITION_NAMES = {"中上", "中下", "左边", "右边"}
 local PORTRAIT_POSITION_SET = {}
 for _, position in ipairs(PORTRAIT_POSITIONS) do
     PORTRAIT_POSITION_SET[position] = true
@@ -74,6 +81,17 @@ local function SetSize(frame, width, height)
     if frame and frame.SetSize then frame:SetSize(width, height) end
 end
 
+local function SyncStatusBarSize(statusBar, width, height)
+    if not statusBar then return end
+    SetSize(statusBar, width, height)
+    if statusBar.internalBar then
+        SetSize(statusBar.internalBar, width, height)
+    end
+    if statusBar.UpdateBarSize then
+        statusBar:UpdateBarSize()
+    end
+end
+
 function PetFrame.InitDB()
     GW2_UI_PLUS_SV = type(GW2_UI_PLUS_SV) == "table"
         and GW2_UI_PLUS_SV or {}
@@ -82,22 +100,31 @@ function PetFrame.InitDB()
         db = {}
         GW2_UI_PLUS_SV.petFrame = db
     end
+    local legacyPortraitHidden = db.portraitEnabled == nil
+        and db.portraitPosition == "HIDDEN"
     for key, value in pairs(DEFAULTS) do
         if db[key] == nil then db[key] = value end
     end
+    if legacyPortraitHidden then
+        db.portraitEnabled = false
+        db.portraitPosition = DEFAULTS.portraitPosition
+    end
+    db.portraitEnabled = db.portraitEnabled ~= false
     if not PORTRAIT_POSITION_SET[db.portraitPosition] then
         db.portraitPosition = DEFAULTS.portraitPosition
     end
     db.portraitSize = Clamp(
         db.portraitSize, PORTRAIT_SIZE_MIN, PORTRAIT_SIZE_MAX)
     db.portraitOffsetX = Clamp(
-        db.portraitOffsetX, PORTRAIT_OFFSET_MIN, PORTRAIT_OFFSET_MAX)
+        db.portraitOffsetX, PORTRAIT_OFFSET_X_MIN, PORTRAIT_OFFSET_X_MAX)
     db.portraitOffsetY = Clamp(
-        db.portraitOffsetY, PORTRAIT_OFFSET_MIN, PORTRAIT_OFFSET_MAX)
+        db.portraitOffsetY, PORTRAIT_OFFSET_Y_MIN, PORTRAIT_OFFSET_Y_MAX)
     db.healthWidth = Clamp(db.healthWidth, 100, 600)
     db.healthHeight = Clamp(db.healthHeight, 1, 100)
     db.powerHeight = Clamp(db.powerHeight, 1, 20)
     db.happinessEnabled = db.happinessEnabled ~= false
+    db.happinessSize = Clamp(
+        db.happinessSize, HAPPINESS_SIZE_MIN, HAPPINESS_SIZE_MAX)
     db.feedEnabled = db.feedEnabled ~= false
     return db
 end
@@ -106,6 +133,8 @@ function PetFrame.CalculateLayout(frameDB)
     frameDB = frameDB or DEFAULTS
     local position = PORTRAIT_POSITION_SET[frameDB.portraitPosition]
         and frameDB.portraitPosition or DEFAULTS.portraitPosition
+    local portraitShown = frameDB.portraitEnabled ~= false
+        and frameDB.portraitPosition ~= "HIDDEN"
     local healthWidth = Clamp(frameDB.healthWidth, 100, 600)
     local healthHeight = Clamp(frameDB.healthHeight, 1, 100)
     local powerHeight = Clamp(frameDB.powerHeight, 1, 20)
@@ -114,61 +143,33 @@ function PetFrame.CalculateLayout(frameDB)
         PORTRAIT_SIZE_MIN, PORTRAIT_SIZE_MAX)
     local portraitOffsetX = Clamp(
         frameDB.portraitOffsetX or DEFAULTS.portraitOffsetX,
-        PORTRAIT_OFFSET_MIN, PORTRAIT_OFFSET_MAX)
+        PORTRAIT_OFFSET_X_MIN, PORTRAIT_OFFSET_X_MAX)
     local portraitOffsetY = Clamp(
         frameDB.portraitOffsetY or DEFAULTS.portraitOffsetY,
-        PORTRAIT_OFFSET_MIN, PORTRAIT_OFFSET_MAX)
+        PORTRAIT_OFFSET_Y_MIN, PORTRAIT_OFFSET_Y_MAX)
     local bodyHeight = healthHeight + 2 + powerHeight
     local bodyWidth = healthWidth + 2
     local portraitGap = 4
-    local bodyX, bodyY, portraitX, portraitY
+    local bodyX, bodyY = 0, 0
+    local portraitX, portraitY
 
     if position == "TOP" then
-        local contentWidth = math.max(bodyWidth, portraitSize)
-        bodyX = (contentWidth - bodyWidth) / 2
-        portraitX = (contentWidth - portraitSize) / 2
-        portraitY = 0
-        bodyY = portraitY + portraitSize + portraitGap
+        portraitX = (bodyWidth - portraitSize) / 2
+        portraitY = -(portraitSize + portraitGap)
     elseif position == "BOTTOM" then
-        local contentWidth = math.max(bodyWidth, portraitSize)
-        bodyX = (contentWidth - bodyWidth) / 2
-        bodyY = 0
-        portraitX = (contentWidth - portraitSize) / 2
-        portraitY = bodyY + bodyHeight + portraitGap
+        portraitX = (bodyWidth - portraitSize) / 2
+        portraitY = bodyHeight + portraitGap
+    elseif position == "LEFT" then
+        portraitX = -portraitSize
+        portraitY = (bodyHeight - portraitSize) / 2
     else
-        bodyY = 0
-        if position == "LEFT" then
-            portraitX, bodyX = 0, portraitSize
-        else
-            bodyX = 0
-            portraitX = bodyWidth
-        end
-        if position == "HIDDEN" then
-            bodyX, portraitX = 0, bodyWidth
-        end
-        portraitY = bodyY
+        portraitX = bodyWidth
+        portraitY = (bodyHeight - portraitSize) / 2
     end
 
-    local contentWidth, contentHeight
-    if position == "HIDDEN" then
-        contentWidth = bodyX + bodyWidth
-        contentHeight = bodyY + bodyHeight
-    else
-        portraitX = portraitX + portraitOffsetX
-        portraitY = portraitY - portraitOffsetY
-        local minX = math.min(0, bodyX, portraitX)
-        local minY = math.min(0, bodyY, portraitY)
-        local maxX = math.max(bodyX + bodyWidth,
-            portraitX + portraitSize)
-        local maxY = math.max(bodyY + bodyHeight,
-            portraitY + portraitSize)
-        bodyX = bodyX - minX
-        bodyY = bodyY - minY
-        portraitX = portraitX - minX
-        portraitY = portraitY - minY
-        contentWidth = maxX - minX
-        contentHeight = maxY - minY
-    end
+    portraitX = portraitX + portraitOffsetX
+    portraitY = portraitY - portraitOffsetY
+    local contentWidth, contentHeight = bodyWidth, bodyHeight
 
     local bars = {
         x = bodyX + 1,
@@ -200,7 +201,7 @@ function PetFrame.CalculateLayout(frameDB)
             height = powerHeight,
         },
         portrait = {
-            shown = position ~= "HIDDEN",
+            shown = portraitShown,
             x = portraitX,
             y = portraitY,
             width = portraitSize,
@@ -252,24 +253,58 @@ local function CreateIconFrame(name, label, setting, default, texturePath)
         return
     end
 
-    frame = CreateFrame("Frame", name, UIParent)
-    frame:SetSize(25, 25)
+    local template = name == "GwPlusPetFeed"
+        and "SecureActionButtonTemplate" or nil
+    frame = CreateFrame(name == "GwPlusPetFeed" and "Button" or "Frame",
+        name, UIParent, template)
+    frame.gwPlusProtected = name == "GwPlusPetFeed"
+    frame:SetSize(AUXILIARY_ICON_DEFAULT_SIZE, AUXILIARY_ICON_DEFAULT_SIZE)
     if frame.SetFrameStrata then frame:SetFrameStrata("MEDIUM") end
-    if frame.EnableMouse then frame:EnableMouse(false) end
+    if frame.EnableMouse then frame:EnableMouse(name == "GwPlusPetFeed") end
     frame.Background = frame:CreateTexture(nil, "ARTWORK")
     frame.Background:SetTexture(
         "Interface/AddOns/GW2_UI/textures/uistuff/gwstatusbar.png")
+    if frame.Background.SetVertexColor then
+        frame.Background:SetVertexColor(0, 0, 0, 0.8)
+    end
     if frame.Background.SetAllPoints then frame.Background:SetAllPoints(frame) end
     frame.icon = frame:CreateTexture(nil, "ARTWORK", nil, 2)
     frame.icon:SetTexture(texturePath)
-    if frame.icon.SetAllPoints then frame.icon:SetAllPoints(frame) end
+    if frame.icon.SetBlendMode then frame.icon:SetBlendMode("ADD") end
+    if frame.icon.SetSize then
+        frame.icon:SetSize(AUXILIARY_ICON_DEFAULT_SIZE,
+            AUXILIARY_ICON_DEFAULT_SIZE)
+    end
+    if frame.icon.SetPoint then
+        frame.icon:SetPoint("CENTER", frame, "CENTER", 0, 1)
+    end
 
     registerMover(frame, label, setting, "Unitframe", nil, {"default"},
         nil, nil, nil, default)
     frame:ClearAllPoints()
     frame:SetPoint("TOPLEFT", frame.gwMover)
     frame:Hide()
+    if name == "GwPlusPetFeed" and addonTable.PetFeed
+        and addonTable.PetFeed.AttachButton then
+        addonTable.PetFeed.AttachButton(frame)
+    end
     return frame
+end
+
+local function ApplyAuxiliaryFrameSize(frame, size)
+    if not frame then return end
+    if frame.gwPlusProtected and InCombatLockdown and InCombatLockdown() then
+        return
+    end
+    frame:SetSize(size, size)
+    if frame.icon and frame.icon.SetSize then
+        frame.icon:SetSize(size, size)
+        if frame.icon.ClearAllPoints then frame.icon:ClearAllPoints() end
+        if frame.icon.SetPoint then
+            frame.icon:SetPoint("CENTER", frame, "CENTER", 0, 1)
+        end
+    end
+    if frame.gwMover then frame.gwMover:SetSize(size, size) end
 end
 
 local auxiliaryFrames
@@ -284,6 +319,10 @@ function PetFrame.EnsureAuxiliaryFrames()
         AUXILIARY_MOVER_DEFAULTS.feed,
         "Interface/Icons/INV_Misc_Food_15")
     if not happiness or not feed then return end
+    ApplyAuxiliaryFrameSize(happiness, PetFrame.InitDB().happinessSize)
+    if addonTable.PetFeed and addonTable.PetFeed.InitDB then
+        ApplyAuxiliaryFrameSize(feed, addonTable.PetFeed.InitDB().buttonSize)
+    end
 
     happiness:SetScript("OnEnter", function(self)
         if not self.tooltip or not GameTooltip then return end
@@ -298,13 +337,15 @@ function PetFrame.EnsureAuxiliaryFrames()
         GameTooltip:Show()
     end)
     happiness:SetScript("OnLeave", GameTooltip_Hide)
-    feed:SetScript("OnEnter", function(self)
-        if not GameTooltip then return end
-        GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText("自动喂食（暂未实现）", 1, 1, 1)
-        GameTooltip:Show()
-    end)
-    feed:SetScript("OnLeave", GameTooltip_Hide)
+    if not (addonTable.PetFeed and addonTable.PetFeed.AttachButton) then
+        feed:SetScript("OnEnter", function(self)
+            if not GameTooltip then return end
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            GameTooltip:SetText("宠物喂食", 1, 1, 1)
+            GameTooltip:Show()
+        end)
+        feed:SetScript("OnLeave", GameTooltip_Hide)
+    end
     auxiliaryFrames = {happiness = happiness, feed = feed}
     return auxiliaryFrames
 end
@@ -350,13 +391,27 @@ function PetFrame.UpdateAuxiliaryFrames()
     local frames = PetFrame.EnsureAuxiliaryFrames()
     if not frames then return false end
     local db = PetFrame.InitDB()
+    ApplyAuxiliaryFrameSize(frames.happiness, db.happinessSize)
+    if addonTable.PetFeed and addonTable.PetFeed.InitDB then
+        ApplyAuxiliaryFrameSize(frames.feed,
+            addonTable.PetFeed.InitDB().buttonSize)
+    end
     local petAvailable = UnitExists("pet") and not IsPetBlocked()
     if not petAvailable then
         frames.happiness:Hide()
-        frames.feed:Hide()
+        if not frames.feed.gwPlusProtected
+            or not InCombatLockdown or not InCombatLockdown() then
+            frames.feed:Hide()
+        end
         return true
     end
-    frames.feed:SetShown(db.feedEnabled)
+    if not frames.feed.gwPlusProtected
+        or not InCombatLockdown or not InCombatLockdown() then
+        frames.feed:SetShown(db.feedEnabled)
+    end
+    if addonTable.PetFeed and addonTable.PetFeed.UpdateVisibility then
+        addonTable.PetFeed.UpdateVisibility(db.feedEnabled)
+    end
     UpdateHappinessFrame(frames.happiness, db)
     return true
 end
@@ -389,15 +444,21 @@ function PetFrame.ApplyLayout()
 
     SetSize(frame.Background, layout.background.width, layout.background.height)
     SetTopLeft(frame.Background, frame, layout.background.x, layout.background.y)
-    SetSize(frame.health, layout.health.width, layout.health.height)
+    SyncStatusBarSize(frame.health, layout.health.width, layout.health.height)
     SetTopLeft(frame.health, frame, layout.health.x, layout.health.y)
-    SetSize(frame.powerbar, layout.energy.width, layout.energy.height)
+    SyncStatusBarSize(frame.powerbar, layout.energy.width, layout.energy.height)
     SetTopLeft(frame.powerbar, frame, layout.energy.x, layout.energy.y)
     if frame.health and frame.health.text then
         SetSize(frame.health.text, layout.health.width, layout.health.height)
     end
     if frame.healthString and frame.healthString ~= frame.health.text then
         SetSize(frame.healthString, layout.health.width, layout.health.height)
+    end
+    if frame.UpdateHealthBar then
+        frame:UpdateHealthBar(true)
+    end
+    if frame.UpdatePowerBar then
+        frame:UpdatePowerBar(true)
     end
 
     SetSize(frame.portraitBackground, layout.portrait.width,
@@ -423,6 +484,7 @@ end
 
 function PetFrame.ResetLayoutDefaults()
     local db = PetFrame.InitDB()
+    db.portraitEnabled = DEFAULTS.portraitEnabled
     db.portraitPosition = DEFAULTS.portraitPosition
     db.portraitSize = DEFAULTS.portraitSize
     db.portraitOffsetX = DEFAULTS.portraitOffsetX
@@ -438,22 +500,103 @@ local function AddOptionName(option, name)
     return option
 end
 
-local function KeepGeneralHeader(option, dependence)
+local function SetWidgetLabelAndGroup(widget, name, groupName)
+    if not widget then return end
+    if groupName then widget.groupHeaderName = groupName end
+    if name then
+        widget.displayName = name
+        if widget.title and widget.title.SetText then
+            widget.title:SetText(name)
+        end
+    end
+end
+
+local function SetOptionLabelAndGroup(option, name, groupName)
     if not option then return end
-    option.__gwPlusKeepGeneralHeader = true
-    option.dependence = dependence
+    if name then option.name = name end
+    option.groupHeaderName = groupName
+    SetWidgetLabelAndGroup(option.__widget, name, groupName)
+    if option.__gwPlusWidget ~= option.__widget then
+        SetWidgetLabelAndGroup(option.__gwPlusWidget, name, groupName)
+    end
+end
+
+local function FindOption(options, optionName)
+    for _, option in ipairs(options or {}) do
+        if option.optionName == optionName then return option end
+    end
+end
+
+local function FindHeaderBefore(options, target)
+    local targetIndex
+    for index, option in ipairs(options or {}) do
+        if option == target then
+            targetIndex = index
+            break
+        end
+    end
+    if not targetIndex then return end
+    for index = targetIndex - 1, 1, -1 do
+        if options[index].optionType == "header" then
+            return options[index]
+        end
+    end
+end
+
+local function AppendOption(options, option)
+    if option then options[#options + 1] = option end
+end
+
+local function SetColumns(columnCount, ...)
+    local options = {}
+    for index = 1, select("#", ...) do
+        local option = select(index, ...)
+        if not option then return end
+        options[#options + 1] = option
+    end
+    for _, option in ipairs(options) do
+        option.gwPlusColumns = columnCount
+    end
 end
 
 function PetFrame.AddOptions(panel)
     if not panel or panel.__gwPlusPetLayoutOptions then return end
+    panel.gwPlusColumnGap = 8
     local dependence = {PETBAR_ENABLED = true}
     local db = PetFrame.InitDB()
-    local firstNewIndex = #(panel.gwOptions or {}) + 1
-    local header = panel:AddGroupHeader("头像与资源条", {
+    local originalOptions = {}
+    for _, option in ipairs(panel.gwOptions or {}) do
+        originalOptions[#originalOptions + 1] = option
+    end
+
+    local damageOption = FindOption(
+        originalOptions, "PET_FLOATING_COMBAT_TEXT")
+    local textureOption = FindOption(
+        originalOptions, "playerPetFrameHealthBarTexture")
+    local scaleOption = FindOption(originalOptions, "pet_pos_scale")
+    local originalSizeHeader = FindHeaderBefore(originalOptions, scaleOption)
+
+    SetOptionLabelAndGroup(damageOption, "头像框显示伤害", "头像")
+    SetOptionLabelAndGroup(textureOption, "生命条材质", "头像")
+    SetOptionLabelAndGroup(scaleOption, "缩放指数", "大小")
+
+    local avatarHeader = panel:AddGroupHeader("头像", {
         dependence = dependence,
     })
-    KeepGeneralHeader(header, dependence)
-    AddOptionName(panel:AddOptionDropdown("头像位置", nil, {
+    local portraitEnabled = AddOptionName(panel:AddOption(
+        "启用头像", "控制宠物头像是否显示。", {
+        getter = function() return db.portraitEnabled end,
+        setter = function(value)
+            db.portraitEnabled = value == true
+            PetFrame.ApplyLayout()
+        end,
+        getDefault = function() return DEFAULTS.portraitEnabled end,
+        callback = PetFrame.ApplyLayout,
+        dependence = dependence,
+        groupHeaderName = "头像",
+    }), "GW2PlusPetPortraitEnabled")
+    local portraitPosition = AddOptionName(panel:AddOptionDropdown(
+        "位置", nil, {
         optionsList = PORTRAIT_POSITIONS,
         optionNames = PORTRAIT_POSITION_NAMES,
         getter = function() return db.portraitPosition end,
@@ -461,11 +604,10 @@ function PetFrame.AddOptions(panel)
         getDefault = function() return DEFAULTS.portraitPosition end,
         callback = PetFrame.ApplyLayout,
         dependence = dependence,
-        groupHeaderName = "头像与资源条",
-        forceNewLine = true,
+        groupHeaderName = "头像",
     }), "GW2PlusPetFramePortraitPosition")
     local portraitSize = AddOptionName(
-        panel:AddOptionSlider("头像尺寸", "头像的宽度和高度。", {
+        panel:AddOptionSlider("尺寸", "头像的宽度和高度。", {
             min = PORTRAIT_SIZE_MIN, max = PORTRAIT_SIZE_MAX, step = 1,
             decimalNumbers = 0,
             getter = function() return db.portraitSize end,
@@ -473,32 +615,37 @@ function PetFrame.AddOptions(panel)
             getDefault = function() return DEFAULTS.portraitSize end,
             callback = PetFrame.ApplyLayout,
             dependence = dependence,
-            groupHeaderName = "头像与资源条",
+            groupHeaderName = "头像",
         }), "GW2PlusPetFramePortraitSize")
     local portraitOffsetX = AddOptionName(
-        panel:AddOptionSlider("头像偏移 X", "正值向右移动头像。", {
-            min = PORTRAIT_OFFSET_MIN, max = PORTRAIT_OFFSET_MAX, step = 1,
+        panel:AddOptionSlider("X 偏移", "正值向右移动头像。", {
+            min = PORTRAIT_OFFSET_X_MIN, max = PORTRAIT_OFFSET_X_MAX, step = 1,
             decimalNumbers = 0,
             getter = function() return db.portraitOffsetX end,
             setter = function(value) db.portraitOffsetX = value end,
             getDefault = function() return DEFAULTS.portraitOffsetX end,
             callback = PetFrame.ApplyLayout,
             dependence = dependence,
-            groupHeaderName = "头像与资源条",
+            groupHeaderName = "头像",
         }), "GW2PlusPetFramePortraitOffsetX")
     local portraitOffsetY = AddOptionName(
-        panel:AddOptionSlider("头像偏移 Y", "正值向上移动头像。", {
-            min = PORTRAIT_OFFSET_MIN, max = PORTRAIT_OFFSET_MAX, step = 1,
+        panel:AddOptionSlider("Y 偏移", "正值向上移动头像。", {
+            min = PORTRAIT_OFFSET_Y_MIN, max = PORTRAIT_OFFSET_Y_MAX, step = 1,
             decimalNumbers = 0,
             getter = function() return db.portraitOffsetY end,
             setter = function(value) db.portraitOffsetY = value end,
             getDefault = function() return DEFAULTS.portraitOffsetY end,
             callback = PetFrame.ApplyLayout,
             dependence = dependence,
-            groupHeaderName = "头像与资源条",
+            groupHeaderName = "头像",
         }), "GW2PlusPetFramePortraitOffsetY")
-    if portraitSize then portraitSize.gwPlusColumns = 2 end
-    if portraitOffsetX then portraitOffsetX.gwPlusColumns = 2 end
+    SetColumns(2, portraitEnabled, damageOption)
+    SetColumns(2, portraitPosition, portraitSize)
+    SetColumns(2, portraitOffsetX, portraitOffsetY)
+
+    local sizeHeader = panel:AddGroupHeader("大小", {
+        dependence = dependence,
+    })
     local width = AddOptionName(panel:AddOptionSlider("生命条宽度", nil, {
         min = 100, max = 600, step = 1,
         getter = function() return db.healthWidth end,
@@ -506,7 +653,7 @@ function PetFrame.AddOptions(panel)
         getDefault = function() return DEFAULTS.healthWidth end,
         callback = PetFrame.ApplyLayout,
         dependence = dependence,
-        groupHeaderName = "头像与资源条",
+        groupHeaderName = "大小",
     }), "GW2PlusPetFrameHealthWidth")
     local height = AddOptionName(panel:AddOptionSlider("生命条高度", nil, {
         min = 1, max = 100, step = 1,
@@ -515,50 +662,55 @@ function PetFrame.AddOptions(panel)
         getDefault = function() return DEFAULTS.healthHeight end,
         callback = PetFrame.ApplyLayout,
         dependence = dependence,
-        groupHeaderName = "头像与资源条",
+        groupHeaderName = "大小",
     }), "GW2PlusPetFrameHealthHeight")
-    if width then width.gwPlusColumns = 2 end
-    if height then height.gwPlusColumns = 2 end
-    AddOptionName(panel:AddOptionSlider("能量条高度", nil, {
+    local powerHeight = AddOptionName(panel:AddOptionSlider(
+        "能量条高度", nil, {
         min = 1, max = 20, step = 1,
         getter = function() return db.powerHeight end,
         setter = function(value) db.powerHeight = value end,
         getDefault = function() return DEFAULTS.powerHeight end,
         callback = PetFrame.ApplyLayout,
         dependence = dependence,
-        groupHeaderName = "头像与资源条",
+        groupHeaderName = "大小",
     }), "GW2PlusPetFramePowerHeight")
 
-    local function Reset()
-        PetFrame.ResetLayoutDefaults()
-        PetFrame.ApplyLayout()
-    end
-    if panel.AddOptionButton then
-        panel:AddOptionButton("恢复本组默认",
-            "仅恢复宠物头像、生命条和能量条的设置。", {
-            callback = Reset,
-            isNegativeButton = true,
-            dependence = dependence,
-        })
-    end
-    local additions = {}
-    for index = firstNewIndex, #(panel.gwOptions or {}) do
-        additions[#additions + 1] = panel.gwOptions[index]
-    end
-    for index = #(panel.gwOptions or {}), firstNewIndex, -1 do
-        table.remove(panel.gwOptions, index)
-    end
-    local insertAt = #(panel.gwOptions or {}) + 1
-    for index, option in ipairs(panel.gwOptions or {}) do
-        if option.optionType == "header"
-            and (option.name == "光环" or option.name == "Auras") then
-            insertAt = index
+    local masterOption
+    for _, option in ipairs(originalOptions) do
+        if option.optionName == "PETBAR_ENABLED"
+            or (not masterOption and option.isMasterToggle) then
+            masterOption = option
             break
         end
     end
-    for index = #additions, 1, -1 do
-        table.insert(panel.gwOptions, insertAt, additions[index])
+
+    local excluded = {}
+    for _, option in ipairs({
+        damageOption, textureOption, scaleOption, originalSizeHeader,
+    }) do
+        if option then excluded[option] = true end
     end
+    local reordered = {}
+    AppendOption(reordered, masterOption)
+    AppendOption(reordered, avatarHeader)
+    AppendOption(reordered, portraitEnabled)
+    AppendOption(reordered, damageOption)
+    AppendOption(reordered, portraitPosition)
+    AppendOption(reordered, portraitSize)
+    AppendOption(reordered, portraitOffsetX)
+    AppendOption(reordered, portraitOffsetY)
+    AppendOption(reordered, textureOption)
+    AppendOption(reordered, sizeHeader)
+    AppendOption(reordered, scaleOption)
+    AppendOption(reordered, width)
+    AppendOption(reordered, height)
+    AppendOption(reordered, powerHeight)
+    for _, option in ipairs(originalOptions) do
+        if option ~= masterOption and not excluded[option] then
+            reordered[#reordered + 1] = option
+        end
+    end
+    panel.gwOptions = reordered
     panel.__gwPlusPetLayoutOptions = true
 end
 
@@ -566,7 +718,7 @@ function PetFrame.AddAuxiliaryOptions(panel)
     if not panel or panel.__gwPlusPetAuxiliaryOptions then return end
     local dependence = {PETBAR_ENABLED = true}
     local db = PetFrame.InitDB()
-    local happiness = panel:AddOption("启用欢乐度", nil, {
+    local happiness = panel:AddOption("启用", nil, {
         getter = function() return db.happinessEnabled end,
         setter = function(value)
             db.happinessEnabled = value == true
@@ -580,7 +732,26 @@ function PetFrame.AddAuxiliaryOptions(panel)
     })
     AddOptionName(happiness, "GW2PlusPetHappinessEnabled")
 
-    local feed = panel:AddOption("启用喂食图标", nil, {
+    local happinessSize = panel:AddOptionSlider(
+        "尺寸", "欢乐度图标的宽度和高度。", {
+        min = HAPPINESS_SIZE_MIN,
+        max = HAPPINESS_SIZE_MAX,
+        step = 1,
+        decimalNumbers = 0,
+        getter = function() return db.happinessSize end,
+        setter = function(value)
+            db.happinessSize = Clamp(
+                value, HAPPINESS_SIZE_MIN, HAPPINESS_SIZE_MAX)
+            PetFrame.UpdateAuxiliaryFrames()
+        end,
+        getDefault = function() return DEFAULTS.happinessSize end,
+        callback = PetFrame.UpdateAuxiliaryFrames,
+        dependence = dependence,
+        groupHeaderName = "欢乐度",
+    })
+    AddOptionName(happinessSize, "GW2PlusPetHappinessSize")
+
+    local feed = panel:AddOption("启用", nil, {
         getter = function() return db.feedEnabled end,
         setter = function(value)
             db.feedEnabled = value == true
@@ -593,6 +764,9 @@ function PetFrame.AddAuxiliaryOptions(panel)
         isMasterToggle = true,
     })
     AddOptionName(feed, "GW2PlusPetFeedEnabled")
+    if addonTable.PetFeed and addonTable.PetFeed.AddOptions then
+        addonTable.PetFeed.AddOptions(panel, dependence)
+    end
     panel.__gwPlusPetAuxiliaryOptions = true
 end
 

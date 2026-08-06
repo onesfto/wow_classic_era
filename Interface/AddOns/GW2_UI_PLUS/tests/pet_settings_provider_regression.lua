@@ -32,6 +32,7 @@ local happinessWidget = {}
 local feedWidget = {}
 local generalWidget = {}
 local generalWidthWidget = {}
+local hiddenHealthWidget = {}
 local faderWidget = {}
 local auraWidget = {}
 
@@ -50,6 +51,10 @@ local generalWidth = {
     optionName = "GW2PlusPetFrameHealthWidth",
     __gwPlusWidget = generalWidthWidget,
 }
+local hiddenHealth = {
+    optionName = "PET_HEALTH_VALUE_RAW",
+    __gwPlusWidget = hiddenHealthWidget,
+}
 local fader = {optionName = "petFrameFader", groupHeaderName = "显隐",
     __gwPlusWidget = faderWidget}
 local aura = {optionName = "PET_Buff_Filter", groupHeaderName = "光环",
@@ -62,12 +67,15 @@ local originalProvider = NewProvider({
         widgets = {generalWidget, generalWidthWidget},
         columnCount = 2,
     },
+    {option = hiddenHealth, widget = hiddenHealthWidget},
     {option = feed, widget = feedWidget},
     {option = fader, widget = faderWidget},
     {option = aura, widget = auraWidget},
 })
 local state = {
-    originalOptions = {happiness, feed, general, generalWidth, fader, aura},
+    originalOptions = {
+        happiness, feed, general, generalWidth, hiddenHealth, fader, aura,
+    },
     originalProvider = originalProvider,
 }
 
@@ -83,6 +91,10 @@ local generalView = buildPetView({}, state, "general")
 assert(#generalView.provider.rows == 1
         and #generalView.provider.rows[1].widgets == 2,
     "two-column custom row was not preserved")
+for _, option in ipairs(generalView.options) do
+    assert(option ~= hiddenHealth,
+        "宠物综合页不应显示生命值数值选项")
+end
 
 local faderView = buildPetView({}, state, "fader")
 assert(faderView.options[1] == fader

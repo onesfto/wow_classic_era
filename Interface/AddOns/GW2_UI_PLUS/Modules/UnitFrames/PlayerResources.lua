@@ -65,6 +65,14 @@ local function GetCastbarDefaultHeight()
     return AB and AB.defaults and AB.defaults.castbarHeight or 15
 end
 
+local function GetExperienceBarDefault()
+    local defaults = addonTable.PlusProfileDefaults
+    if defaults and defaults.GetExperienceBarDefault then
+        return defaults.GetExperienceBarDefault()
+    end
+    return true
+end
+
 InitStatusDB = function()
     GW2_UI_PLUS_PlayerStatusSV = GW2_UI_PLUS_PlayerStatusSV or {}
     for key, value in pairs(STATUS_DEFAULTS) do
@@ -762,7 +770,7 @@ local function CreateResourcePanels(
                 GW.settings.XPBAR_ENABLED = value
                 GW.ShowRlPopup = true
             end,
-            getDefault = function() return true end,
+            getDefault = GetExperienceBarDefault,
             groupHeaderName = "经验槽",
             isMasterToggle = true,
         }

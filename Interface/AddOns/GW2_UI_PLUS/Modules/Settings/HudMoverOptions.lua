@@ -184,6 +184,10 @@ local function GetPlusOptionDefault(optionName)
     local defaults = addonTable.PlusProfileDefaults
     if not defaults then return nil, false end
 
+    if optionName == "XPBAR_ENABLED" then
+        return defaults.GetExperienceBarDefault(), true
+    end
+
     local profilePath = PLUS_PROFILE_OPTION_ALIASES[optionName]
         or optionName
     local value = GetPathValue(defaults.Profile, profilePath)
@@ -451,13 +455,13 @@ local function ApplyPlayerBuffScale()
     for _, info in ipairs(FIXED_SCALE_MOVERS) do
         local frame = _G[info.frame]
         if frame then
-            frame:SetScale(1)
+            if frame.SetScale then frame:SetScale(1) end
             local mover = frame.gwMover
             if mover then
                 mover.optionScaleable = false
                 RemoveFromList(GW.scaleableFrames, mover)
                 RemoveFromList(GW.scaleableMainHudFrames, mover)
-                mover:SetScale(1)
+                if mover.SetScale then mover:SetScale(1) end
             end
         end
     end
@@ -623,15 +627,17 @@ end
 local function AddViewMoverControls(
     panel, view, frameName, settingName, defaultPoint, dependence)
     if not panel or not view or view.gwPlusMoverControls then return end
-    local providerKind = "native"
-    view.provider:ForEach(function(data)
-        if data.kind then return end
-        if data.widgets or data.option then
-            providerKind = "plus"
-        elseif data.cols then
-            providerKind = "native"
-        end
-    end)
+    local providerKind = panel.gwPlusWidgets and "plus" or "native"
+    if providerKind == "native" then
+        local hasPlusRows = false
+        view.provider:ForEach(function(data)
+            if not data.kind
+                and (data.widgets or (data.option and not data.cols)) then
+                hasPlusRows = true
+            end
+        end)
+        if hasPlusRows then providerKind = "plus" end
+    end
     local originalOptions = panel.gwOptions
     panel.gwOptions = {}
     local mover, reset = CreateMoverControls(
@@ -732,7 +738,7 @@ function addonTable.BuildHudMoverOptions(settingsTab)
         microPanel, "Gw2MicroBarFrame", "MicromenuPos")
     AddMoverControls(
         minimapPanel, "Minimap", "MinimapPos", MINIMAP_DEFAULT,
-        true, false)
+        false, false)
     AddMoverControls(
         pages.player_general,
         "GwPlayerUnitFrame", "player_pos", playerDefault, true, false)

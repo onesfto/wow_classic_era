@@ -14,6 +14,7 @@ function SimpleBar.ResetPetBarLayout()
     db.petBarCount = maximum
     db.petBarColumns = math.min(5, maximum)
     db.petBarMiddleGap = 0
+    db.petBarGapPosition = "MIDDLE"
 end
 
 function SimpleBar.AddPetBarLayoutOptions(panel, apply, dependence)
@@ -58,9 +59,23 @@ function SimpleBar.AddPetBarLayoutOptions(panel, apply, dependence)
         columns.optionName = "GW2PlusPetBarColumns"
         columns.gwPlusColumns = 2
     end
-    local middleGap = Config("中间空隙", "petBarMiddleGap",
+    local gapPosition = panel:AddOptionDropdown("空隙位置", nil, {
+        optionsList = {"SIDE", "MIDDLE"},
+        optionNames = {"左右", "上下"},
+        getter = function() return db.petBarGapPosition end,
+        setter = function(value) db.petBarGapPosition = value end,
+        getDefault = function() return "MIDDLE" end,
+        callback = apply,
+        dependence = dependence,
+        groupHeaderName = groupName,
+    })
+    if gapPosition then
+        gapPosition.optionName = "GW2PlusPetBarGapPosition"
+        gapPosition.gwPlusColumns = 2
+    end
+    local middleGap = Config("空隙大小", "petBarMiddleGap",
         "GW2PlusPetBarMiddleGap", 0, 400, 0)
-    return header, size, spacing, count, columns, middleGap
+    return header, size, spacing, count, columns, gapPosition, middleGap
 end
 
 function SimpleBar.AddSimpleBarOptions(panel, kind)

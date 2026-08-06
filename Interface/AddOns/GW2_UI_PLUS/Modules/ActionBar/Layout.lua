@@ -14,6 +14,7 @@ local PETBAR_MOVER_DEFAULT = {
     hasMoved = false,
 }
 local petBarHolder
+local PETBAR_GAP_POSITION_DEFAULT = "MIDDLE"
 local MULTIBAR_DEFAULT_COLUMNS = {
     [2] = 6,
     [3] = 6,
@@ -295,9 +296,53 @@ function Layout.CalculateGrid(buttonCount, columns, size, spacing, invert,
     local height = rows * size + math.max(rows - 1, 0) * spacing
     return points, width, height
 end
-function Layout.CalculatePetBarGrid(buttonCount, columns, size, spacing, middleGap)
-    return Layout.CalculateGrid(buttonCount, columns, size, spacing, false,
-        middleGap, 6)
+function Layout.CalculatePetBarGrid(buttonCount, columns, size, spacing,
+                                    middleGap, gapPosition)
+    columns, rows, buttonCount = Layout.ClampGrid(buttonCount, columns, buttonCount)
+    size = tonumber(size) or 1
+    spacing = tonumber(spacing) or 0
+    middleGap = math.max(tonumber(middleGap) or 0, 0)
+    if gapPosition ~= "SIDE" then gapPosition = PETBAR_GAP_POSITION_DEFAULT end
+    -- “左右”只支持宠物条的 10 种固定分组，其他布局保持普通行优先排列。
+    local sideGapEnabled = gapPosition == "SIDE"
+        and ((rows == 1 and (buttonCount == 2 or buttonCount == 4
+            or buttonCount == 6 or buttonCount == 8 or buttonCount == 10))
+        or (buttonCount == columns * rows
+            and ((columns == 2 and rows >= 2 and rows <= 5)
+                or (columns == 4 and rows == 2))))
+    local horizontalGap = sideGapEnabled and middleGap or 0
+    -- “上下”支持完整对称矩形，以及两行上多下少的固定分组。
+    local verticalGapEnabled = gapPosition == "MIDDLE"
+        and buttonCount <= 10
+        and ((buttonCount == columns * rows and rows % 2 == 0)
+            or (rows == 2 and buttonCount > columns
+                and buttonCount < columns * rows))
+    local rowGap = verticalGapEnabled and middleGap or 0
+    local splitRow = rows / 2
+    local usedColumns = math.min(columns, buttonCount)
+    local splitColumn = math.ceil(usedColumns / 2)
+    local points = {}
+    for slot = 1, buttonCount do
+        local row = math.floor((slot - 1) / columns)
+        local column = (slot - 1) % columns
+        local y = row * (size + spacing)
+        if rowGap > 0 and row >= splitRow then y = y + rowGap end
+        local x = column * (size + spacing)
+        if horizontalGap > 0 and usedColumns > 1
+            and column >= splitColumn then
+            x = x + horizontalGap
+        end
+        points[slot] = {
+            buttonIndex = slot,
+            x = x,
+            y = y,
+        }
+    end
+    local width = usedColumns * size + math.max(usedColumns - 1, 0) * spacing
+        + (usedColumns > 1 and horizontalGap or 0)
+    local height = rows * size + math.max(rows - 1, 0) * spacing
+    if rowGap > 0 then height = height + rowGap end
+    return points, width, height
 end
 local function GetPetBarMetrics(db)
     local maximum = NUM_PET_ACTION_SLOTS or 10
@@ -306,11 +351,14 @@ local function GetPetBarMetrics(db)
     local spacing = Clamp(db.petBarSpacing, 0, 20)
     local size = Clamp(db.petBarSize, AB.SIZE_MIN, AB.SIZE_MAX)
     local middleGap = Clamp(db.petBarMiddleGap, 0, 400)
+    local gapPosition = db.petBarGapPosition == "SIDE" and "SIDE"
+        or PETBAR_GAP_POSITION_DEFAULT
     local points, width, height = Layout.CalculatePetBarGrid(count, columns,
-        size, spacing, middleGap)
+        size, spacing, middleGap, gapPosition)
     db.petBarCount, db.petBarColumns = count, columns
     db.petBarSize, db.petBarSpacing = size, spacing
     db.petBarMiddleGap = middleGap
+    db.petBarGapPosition = gapPosition
     return points, width, height, count, size
 end
 local function InstallPetBarNativeHook(frame)
@@ -435,6 +483,7 @@ local function EnsureLayoutDefaults(db)
     EnsureValue(db, "petBarSize", 36)
     EnsureValue(db, "petBarSpacing", 3)
     EnsureValue(db, "petBarMiddleGap", 0)
+    EnsureValue(db, "petBarGapPosition", PETBAR_GAP_POSITION_DEFAULT)
     EnsureValue(db, "petBarShowHotkey", true)
     EnsureValue(db, "petBarHotkeyPosition", "TOPRIGHT")
     EnsureValue(db, "petBarHotkeyX", 0)

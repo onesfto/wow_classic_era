@@ -149,6 +149,28 @@ for index, button in ipairs(petFrame.buttons) do
         "宠物按钮没有统一挂到独立 holder: " .. index)
 end
 
+db.petBarMiddleGap = 35
+db.petBarGapPosition = "SIDE"
+db.petBarCount = 8
+db.petBarColumns = 4
+assert(layout.ApplyPetBar(), "左右空隙布局未应用")
+assert(holder.width == 4 * 36 + 3 * 3 + 35
+        and petFrame.buttons[1].point[4] == 0
+        and petFrame.buttons[2].point[4] == 39
+        and petFrame.buttons[3].point[4] == 113
+        and petFrame.buttons[4].point[4] == 152
+        and petFrame.buttons[5].point[4] == 0
+        and petFrame.buttons[6].point[4] == 39
+        and petFrame.buttons[7].point[4] == 113
+        and petFrame.buttons[8].point[4] == 152
+        and petFrame.buttons[5].point[5] == -39,
+    "左右空隙应用时应按行填充按钮并分开左右两组")
+db.petBarMiddleGap = 0
+db.petBarGapPosition = "MIDDLE"
+db.petBarCount = 10
+db.petBarColumns = 5
+assert(layout.ApplyPetBar(), "恢复上下空隙布局失败")
+
 petFrame:SetActionButtonPositionAndStyle()
 for index, button in ipairs(petFrame.buttons) do
     assert(button:GetParent() == holder,

@@ -6,7 +6,7 @@
 ## SavedVariables: alaGearManSV, GW2_UI_PLUS_SV, GW2_UI_PLUS_ChatBarSV, GW2_UI_PLUS_ChatWindowSV, GW2_UI_PLUS_ActionBarSV, GW2_UI_PLUS_PlayerStatusSV, GW2_UI_PLUS_PlayerFaderSV, GW2_UI_PLUS_TargetFaderSV, GW2_UI_PLUS_CooldownPulseSV
 ## Notes: alaGearMan
 ## Dependencies: GW2_UI
-## OptionalDependencies: BetterBags
+## OptionalDependencies: BetterBags, GFW_FeedOMatic
 ## LoadOnDemand: 0
 ## DefaultState: enabled
 ## Author: |cff00ff00ALA|r
@@ -52,6 +52,8 @@ Modules/ActionBar/ActionBar_Mover.lua
 Modules/ActionBar/ActionBar_Layout.lua
 Modules/ActionBar/ActionBar.lua
 Modules/ActionBar/Layout.lua
+Modules/UnitFrames/PetFeedData.lua
+Modules/UnitFrames/PetFeed.lua
 Modules/UnitFrames/PetFrame.lua
 Modules/ActionBar/Equipment.lua
 Modules/ActionBar/MageBar.lua

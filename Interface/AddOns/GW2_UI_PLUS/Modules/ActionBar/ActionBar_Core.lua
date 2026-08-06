@@ -62,6 +62,7 @@ local defaults = {
     mageBarWater = false,
     mageBarGem = false,
     petBarMiddleGap = 0,
+    petBarGapPosition = "MIDDLE",
 }
 AB.defaults = defaults
 local function InitDB()

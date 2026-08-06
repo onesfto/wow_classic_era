@@ -1298,6 +1298,7 @@ local function IsPetAuxiliaryOption(option, kind)
     local groupName = option and option.groupHeaderName
     if kind == "happiness" then
         return optionName == "GW2PlusPetHappinessEnabled"
+            or optionName == "GW2PlusPetHappinessSize"
             or groupName == "欢乐度"
             or option and option.optionType == "header"
                 and option.name == "欢乐度"
@@ -1320,6 +1321,13 @@ local function IsPetFaderOption(option)
                 or option.name == "隐藏器")
 end
 
+local PET_GENERAL_HIDDEN_OPTIONS = {
+    PET_HEALTH_VALUE_RAW = true,
+    PET_HEALTH_VALUE_PERCENT = true,
+    PET_UNIT_HEALTH_SHORT_VALUES = true,
+    PET_SHOW_ABSORB_BAR = true,
+}
+
 local function IsPetOptionInView(option, kind)
     if kind == "aura" then return IsPetAuraOption(option) end
     if kind == "fader" then
@@ -1327,6 +1335,9 @@ local function IsPetOptionInView(option, kind)
     end
     if kind == "happiness" or kind == "feed" then
         return IsPetAuxiliaryOption(option, kind)
+    end
+    if PET_GENERAL_HIDDEN_OPTIONS[option and option.optionName] then
+        return false
     end
     return not IsPetAuraOption(option)
         and not IsPetFaderOption(option)
@@ -1507,13 +1518,13 @@ local function PreparePetPanel(panel)
         PrepareSplitFaderPanel(panel, PET_FADER_CONFIG)
         state = panel and panel.__gwPlusPetFaderState
     end
-    if state then
-        state.views.general = BuildPetView(panel, state, "general")
-        state.views.happiness = BuildPetView(panel, state, "happiness")
-        state.views.feed = BuildPetView(panel, state, "feed")
-        state.views.fader = BuildPetFaderView(panel, state)
-        state.views.aura = BuildPetView(panel, state, "aura")
-    end
+    if not state or state.petViewsPrepared then return end
+    state.views.general = BuildPetView(panel, state, "general")
+    state.views.happiness = BuildPetView(panel, state, "happiness")
+    state.views.feed = BuildPetView(panel, state, "feed")
+    state.views.fader = BuildPetFaderView(panel, state)
+    state.views.aura = BuildPetView(panel, state, "aura")
+    state.petViewsPrepared = true
 end
 local function ShowPetPanelView(panel, definition)
     PreparePetPanel(panel)
@@ -2086,6 +2097,13 @@ local function BuildMainMenuTab(settingsTab, settingsWindow)
         SelectPage(selectedPanelId)
     end)
     tab.callbackOnClose = RestoreCurrent
+    addonTable.OpenPetFeedSettings = function()
+        if settingsWindow.SwitchTab then
+            settingsWindow:SwitchTab(tab.name)
+        end
+        SelectPage("pet_feed")
+        if tab.Show then tab:Show() end
+    end
     settingsWindow:AddTab(MAIN_MENU_ICON, tab)
     local tabButton = settingsWindow.tabButtons[#settingsWindow.tabButtons]
     if tabButton and tabButton.icon then
