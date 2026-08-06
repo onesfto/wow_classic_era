@@ -449,7 +449,7 @@ local ExcludeButlist = {
 	"MinimapPanel",
 	"RecycleBinToggleButton",
 	"BFGPSButton",
-	"LibDBIcon10_HandyNotes_NPCs",
+	--"LibDBIcon10_HandyNotes_NPCs",
 	"ElvUI_MinimapHolder",
 	"ElvUI_MinimapClickHandler",
 	"NDuiMinimapDifficulty",

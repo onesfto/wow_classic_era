@@ -3,6 +3,7 @@ local AddonName, ns = ...
 
 local LibBG = ns.LibBG
 local L = ns.L
+local GetClassColor = ns.GetClassColor
 
 local RR = ns.RR
 local NN = ns.NN
@@ -796,7 +797,7 @@ BG.Init2(function()
                 if itemLink and GetItemID(itemLink) then
                     local name, link, quality, level, _, _, _, itemStackCount, _, Texture,
                     _, typeID, _, bindType = GetItemInfo(itemLink)
-                    if IsTrueLoot(quality, bindType, itemStackCount, typeID, itemLink) then
+                    if level and IsTrueLoot(quality, bindType, itemStackCount, typeID, itemLink) then
                         tinsert(items, AddTexture(Texture, -3) .. link .. "|cffFFFFFF(" .. level .. ")|r")
                     end
                 end
@@ -830,7 +831,9 @@ BG.Init2(function()
                             if yes then
                                 local name, link, quality, level, _, _, _, itemStackCount, _, Texture,
                                 _, typeID, _, bindType = GetItemInfo(itemLink)
-                                tinsert(items, AddTexture(Texture, -3) .. link .. "|cffFFFFFF(" .. level .. ")|r")
+                                if level then
+                                    tinsert(items, AddTexture(Texture, -3) .. link .. "|cffFFFFFF(" .. level .. ")|r")
+                                end
                             end
                         end
                         break
@@ -988,9 +991,11 @@ BG.Init2(function()
                         local money = itemID and moneyDB[itemID]
                         if money then
                             local _, _, _, level, _, _, _, _, _, texture = GetItemInfo(link)
-                            tinsert(items, format(L["%s%s|cffffffff(%s)|r |cffFFD100起拍价:%s|r"],
-                                AddTexture(texture, -3), link, level, money))
-                            tinsert(itemInfo, { itemID = itemID, link = link, money = money })
+                            if level and texture then
+                                tinsert(items, format(L["%s%s|cffffffff(%s)|r |cffFFD100起拍价:%s|r"],
+                                    AddTexture(texture, -3), link, level, money))
+                                tinsert(itemInfo, { itemID = itemID, link = link, money = money })
+                            end
                         end
                     end
                 end
@@ -1347,7 +1352,7 @@ BG.Init2(function()
                                 local name, _, quality, level, _, _, _, itemStackCount, _, Texture,
                                 _, typeID, _, bindType = GetItemInfo(link)
                                 local isHope = BG.IsHope(BG.GetLeiTingItem(GetItemID(link), FB), FB)
-                                if isHope then
+                                if isHope and level then
                                     BG.FrameLootMsg:AddMessage(BG.STC_g1(format(L["你的心愿达成啦！！！>>>>> %s(%s) <<<<<"],
                                         (AddTexture(Texture) .. link), level)))
                                     BG.PlaySound("hope")

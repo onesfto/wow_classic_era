@@ -25,6 +25,7 @@ local Update_OnEnter=ActionFun.Update_OnEnter
 local Cursor_Fun=ActionFun.Cursor_Fun
 local Update_Macro=ActionFun.Update_Macro
 local Update_Equipment=ActionFun.Update_Equipment
+local addActionButton=ActionFun.addActionButton
 ---
 local Showtiaojian,pailieName,paiNum,PailieFun,ShowHideNumFun,ShowHideEvent=unpack(ActionFun.UIdata)
 --
@@ -180,6 +181,7 @@ PIGActionBarActionEventsFrame.events={
     end,
 }
 -------
+
 local function ADD_ActionBar(barName,CFdata,anniugeshu, anniujiange)
 	local NewIndex=CFdata.index
 	local ModeFun=CFdata.Mode
@@ -229,21 +231,7 @@ local function ADD_ActionBar(barName,CFdata,anniugeshu, anniujiange)
 	end
 	-----
 	for id=1,anniugeshu do
-		local piganniu
-		piganniu = CreateFrame("CheckButton", "$parent_But"..id, Pig_bar, "ActionBarButtonTemplate")
-		piganniu:UnregisterAllEvents()
-		piganniu:SetScript("OnLoad", nil)
-		piganniu:SetScript("OnAttributeChanged", nil)
-		piganniu:SetScript("OnEvent", nil)
-		--piganniu:SetScript("OnClick", nil)
-		piganniu:SetScript("PostClick", nil)
-		piganniu:SetScript("OnDragStart", nil)
-		piganniu:SetScript("OnReceiveDrag", nil)
-		piganniu:SetScript("OnDragStop", nil)
-		piganniu:SetScript("OnEnter", nil)
-		piganniu:SetScript("OnLeave", nil)
-		piganniu:SetScript("OnShow", nil)
-		piganniu:SetScript("OnHide", nil)
+		local piganniu=addActionButton(Pig_bar,"$parent_But"..id)
 		piganniu:SetSize(ActionW, ActionW)
 		if id==1 then
 			piganniu:SetPoint("LEFT",Pig_bar.yidong,"RIGHT",2,0)

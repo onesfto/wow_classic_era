@@ -38,30 +38,8 @@ do
             [257605] = { 259908, 264926, }, -- 橙锤
         }
 
-        --[[
-        手    260496, 260499, 260509,
-        腿    260492, 260501, 260508,
-        脚    260490, 260498, 260506,
-        头    260491, 260500, 260510,
-        碗    260495, 260504, 260511,
-        腰    260494, 260503, 260512,
-        肩    260493, 260502, 260505,
-        胸    260489, 260497, 260507,
-
-        1腕
-        2腕+腰
-        3腰
-        4脚
-        5肩
-        6手
-        7头
-        8腿+头
-        9腿
-        10胸
-        ]]
-
         -- 兑换物
-        local tbl = {
+        local tbl                                    = {
             ["1"] = {
                 ["N"] = {
                     [260495] = { 257627, 255015, 257651, 257660, 256076, 255045, },
@@ -777,6 +755,57 @@ ZS              LR       SS       MS               QS                     SM    
                 end
             end
         end
+
+        local tbl = {
+            ["8"] = {
+                { 34170, 34386, },
+                { 34169, 34384, },
+                { 34167, 34382, },
+            },
+            ["9"] = {
+                { 34180, 34381, },
+            },
+            ["10"] = {
+                { 34188, 34385, },
+                { 34186, 34383, },
+            },
+            ["11"] = {
+                { 34202, 34393, },
+                { 34209, 34391, },
+                { 34195, 34392, },
+                { 34208, 34390, },
+                { 34192, 34388, },
+                { 34193, 34389, },
+            },
+            ["12"] = {
+                { 34233, 34399, },
+                { 34212, 34398, },
+                { 34211, 34397, },
+                { 34234, 34408, },
+                { 34229, 34396, },
+                { 34215, 34394, },
+                { 34216, 34395, },
+            },
+            ["13"] = {
+                { 34339, 34405, },
+                { 34342, 34406, },
+                { 34244, 34404, },
+                { 34245, 34403, },
+                { 34332, 34402, },
+                { 34243, 34401, },
+                { 34345, 34400, },
+            },
+        }
+        for boss, v in pairs(tbl) do
+            for _, vv in pairs(v) do
+                local exItemID = vv[1]
+                local itemID = vv[2]
+                BG.Loot[FB].ExchangeItems[exItemID] = { itemID }
+                BG.Loot[FB][hard]["boss" .. boss .. "other"] =
+                    BG.Loot[FB][hard]["boss" .. boss .. "other"] or {}
+                tinsert(BG.Loot[FB][hard]["boss" .. boss .. "other"], itemID)
+            end
+        end
     end
 
     -- 世界BOSS
@@ -1086,6 +1115,154 @@ do
         AddCurrency(FB, 3403, 47667, 16)
         AddCurrency(FB, 3403, 47672, 16)
         AddCurrency(FB, 3403, 47673, 16)
+    end
+
+    -- P5
+    do
+        local FB = "SWtitan"
+        AddCurrency(FB, 3403, 23572, 3)
+        AddCurrency(FB, 3403, 30183, 20)
+        AddCurrency(FB, 3403, 33509, 20)
+        AddCurrency(FB, 3403, 33508, 20)
+        AddCurrency(FB, 3403, 33510, 20)
+        AddCurrency(FB, 3403, 33506, 20)
+        AddCurrency(FB, 3403, 33507, 20)
+        AddCurrency(FB, 3403, 33810, 23)
+        AddCurrency(FB, 3403, 33501, 23)
+        AddCurrency(FB, 3403, 33517, 18)
+        AddCurrency(FB, 3403, 33279, 18)
+        AddCurrency(FB, 3403, 33516, 10)
+        AddCurrency(FB, 3403, 33513, 10)
+        AddCurrency(FB, 3403, 33512, 18)
+        AddCurrency(FB, 3403, 33514, 18)
+        AddCurrency(FB, 3403, 33515, 23)
+        AddCurrency(FB, 3403, 33522, 23)
+        AddCurrency(FB, 3403, 33524, 18)
+        AddCurrency(FB, 3403, 33519, 18)
+        AddCurrency(FB, 3403, 33518, 23)
+        AddCurrency(FB, 3403, 33523, 18)
+        AddCurrency(FB, 3403, 33520, 10)
+        AddCurrency(FB, 3403, 33528, 18)
+        AddCurrency(FB, 3403, 33527, 23)
+        AddCurrency(FB, 3403, 33280, 18)
+        AddCurrency(FB, 3403, 33529, 10)
+        AddCurrency(FB, 3403, 33535, 10)
+        AddCurrency(FB, 3403, 33965, 23)
+        AddCurrency(FB, 3403, 33970, 18)
+        AddCurrency(FB, 3403, 33532, 10)
+        AddCurrency(FB, 3403, 33534, 18)
+        AddCurrency(FB, 3403, 33386, 18)
+        AddCurrency(FB, 3403, 33530, 23)
+        AddCurrency(FB, 3403, 33531, 18)
+        AddCurrency(FB, 3403, 33536, 18)
+        AddCurrency(FB, 3403, 33537, 18)
+        AddCurrency(FB, 3403, 33540, 10)
+        AddCurrency(FB, 3403, 33538, 23)
+        AddCurrency(FB, 3403, 33222, 18)
+        AddCurrency(FB, 3403, 33539, 18)
+        AddCurrency(FB, 3403, 33578, 10)
+        AddCurrency(FB, 3403, 33580, 10)
+        AddCurrency(FB, 3403, 33566, 23)
+        AddCurrency(FB, 3403, 33582, 18)
+        AddCurrency(FB, 3403, 33577, 18)
+        AddCurrency(FB, 3403, 33287, 18)
+        AddCurrency(FB, 3403, 33552, 23)
+        AddCurrency(FB, 3403, 33557, 10)
+        AddCurrency(FB, 3403, 33974, 18)
+        AddCurrency(FB, 3403, 33973, 18)
+        AddCurrency(FB, 3403, 33559, 18)
+        AddCurrency(FB, 3403, 33972, 23)
+        AddCurrency(FB, 3403, 33579, 23)
+        AddCurrency(FB, 3403, 33583, 18)
+        AddCurrency(FB, 3403, 33588, 10)
+        AddCurrency(FB, 3403, 33584, 23)
+        AddCurrency(FB, 3403, 33586, 18)
+        AddCurrency(FB, 3403, 33585, 23)
+        AddCurrency(FB, 3403, 33587, 18)
+        AddCurrency(FB, 3403, 33589, 10)
+        AddCurrency(FB, 3403, 33593, 10)
+        AddCurrency(FB, 3403, 33333, 18)
+        AddCurrency(FB, 3403, 35324, 18)
+        AddCurrency(FB, 3403, 33304, 18)
+        AddCurrency(FB, 3403, 35321, 18)
+        AddCurrency(FB, 3403, 33484, 18)
+        AddCurrency(FB, 3403, 33325, 10)
+        AddCurrency(FB, 3403, 33296, 10)
+        AddCurrency(FB, 3403, 33832, 23)
+        AddCurrency(FB, 3403, 34050, 23)
+        AddCurrency(FB, 3403, 34049, 23)
+        AddCurrency(FB, 3403, 34163, 23)
+        AddCurrency(FB, 3403, 34162, 23)
+        AddCurrency(FB, 3403, 35326, 23)
+
+        AddCurrency(FB, 3403, 34919, 23)
+        AddCurrency(FB, 3403, 34918, 30)
+        AddCurrency(FB, 3403, 34917, 30)
+        AddCurrency(FB, 3403, 34926, 23)
+        AddCurrency(FB, 3403, 34925, 30)
+        AddCurrency(FB, 3403, 34924, 30)
+        AddCurrency(FB, 3403, 34938, 23)
+        AddCurrency(FB, 3403, 34937, 30)
+        AddCurrency(FB, 3403, 34936, 30)
+        AddCurrency(FB, 3403, 34900, 30)
+        AddCurrency(FB, 3403, 34902, 23)
+        AddCurrency(FB, 3403, 34901, 30)
+        AddCurrency(FB, 3403, 34906, 30)
+        AddCurrency(FB, 3403, 34911, 23)
+        AddCurrency(FB, 3403, 34910, 30)
+        AddCurrency(FB, 3403, 34903, 30)
+        AddCurrency(FB, 3403, 34904, 23)
+        AddCurrency(FB, 3403, 34905, 30)
+        AddCurrency(FB, 3403, 34929, 23)
+        AddCurrency(FB, 3403, 34927, 30)
+        AddCurrency(FB, 3403, 34928, 30)
+        AddCurrency(FB, 3403, 34912, 30)
+        AddCurrency(FB, 3403, 34916, 23)
+        AddCurrency(FB, 3403, 34914, 30)
+        AddCurrency(FB, 3403, 34932, 23)
+        AddCurrency(FB, 3403, 34930, 30)
+        AddCurrency(FB, 3403, 34931, 30)
+        AddCurrency(FB, 3403, 34935, 23)
+        AddCurrency(FB, 3403, 34933, 30)
+        AddCurrency(FB, 3403, 34934, 30)
+        AddCurrency(FB, 3403, 34923, 23)
+        AddCurrency(FB, 3403, 34921, 30)
+        AddCurrency(FB, 3403, 34922, 30)
+        AddCurrency(FB, 3403, 34947, 23)
+        AddCurrency(FB, 3403, 34945, 30)
+        AddCurrency(FB, 3403, 34946, 30)
+        AddCurrency(FB, 3403, 34944, 23)
+        AddCurrency(FB, 3403, 34942, 30)
+        AddCurrency(FB, 3403, 34943, 30)
+        AddCurrency(FB, 3403, 34941, 23)
+        AddCurrency(FB, 3403, 34939, 30)
+        AddCurrency(FB, 3403, 34940, 30)
+        AddCurrency(FB, 3403, 34889, 18)
+        AddCurrency(FB, 3403, 34890, 18)
+        AddCurrency(FB, 3403, 34887, 18)
+        AddCurrency(FB, 3403, 34888, 18)
+        AddCurrency(FB, 3403, 34891, 45)
+        AddCurrency(FB, 3403, 34895, 45)
+        AddCurrency(FB, 3403, 34892, 45)
+        AddCurrency(FB, 3403, 34898, 45)
+        AddCurrency(FB, 3403, 34896, 45)
+        AddCurrency(FB, 3403, 34893, 31)
+        AddCurrency(FB, 3403, 34950, 14)
+        AddCurrency(FB, 3403, 34951, 14)
+        AddCurrency(FB, 3403, 34894, 31)
+        AddCurrency(FB, 3403, 34949, 14)
+        AddCurrency(FB, 3403, 34952, 14)
+
+        -- 圣印
+        AddCurrency(FB, 3403, 42579, 16)
+        AddCurrency(FB, 3403, 42584, 16)
+        AddCurrency(FB, 3403, 42589, 16)
+        AddCurrency(FB, 3403, 42853, 16)
+        AddCurrency(FB, 3403, 42598, 16)
+        AddCurrency(FB, 3403, 42603, 16)
+        AddCurrency(FB, 3403, 42608, 16)
+        AddCurrency(FB, 3403, 42615, 16)
+        AddCurrency(FB, 3403, 42621, 16)
     end
 end
 

@@ -19,7 +19,7 @@ local function UseKeyDownUpdate(button,gn)
 	local UseKeyDown =GetCVar("ActionButtonUseKeyDown")
 	if button.gn then
 		if UseKeyDown=="0" then
-			button:RegisterForClicks("AnyUp");
+			button:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 		elseif UseKeyDown=="1" then
 			button:RegisterForClicks("LeftButtonDown", "RightButtonDown")
 		end
@@ -44,6 +44,25 @@ function ActionFun.PIGUseKeyDown(button,gn)
 	end)
 end
 addonTable.Fun.PIGUseKeyDown=ActionFun.PIGUseKeyDown
+
+function ActionFun.addActionButton(fuji,uiname)
+	local piganniu = CreateFrame("CheckButton", uiname, fuji, "ActionBarButtonTemplate")
+	piganniu:UnregisterAllEvents()
+	piganniu:SetScript("OnLoad", nil)
+	piganniu:SetScript("OnAttributeChanged", nil)
+	piganniu:SetScript("OnEvent", nil)
+	--piganniu:SetScript("OnClick", nil)
+	piganniu:SetScript("PostClick", nil)
+	piganniu:SetScript("OnDragStart", nil)
+	piganniu:SetScript("OnReceiveDrag", nil)
+	piganniu:SetScript("OnDragStop", nil)
+	piganniu:SetScript("OnEnter", nil)
+	piganniu:SetScript("OnLeave", nil)
+	piganniu:SetScript("OnShow", nil)
+	piganniu:SetScript("OnHide", nil)
+	return piganniu
+end
+
 function ActionFun.Update_Attribute(self)
 	local Type=self.Type
 	if Type then

@@ -205,7 +205,8 @@ VER 3 0000000000000372 "DEBUFF" "136172"
 /cancelaura 银色黎明委任徽章
 END
 VER 3 000000000000034E "Decursive" "INV_MISC_QUESTIONMARK"
-/script DecursiveRootTable.Dcr:Println('没有相关技能')
+/stopcasting
+/cast [@mouseover,nomod,exists] 解除诅咒;  [@mouseover,exists,mod:ctrl] 驱毒术; [@mouseover,exists,mod:shift] 解除诅咒
 END
 VER 3 0000000000000357 "Decursive" "134400"
 /stopcasting

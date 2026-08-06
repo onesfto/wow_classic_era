@@ -203,15 +203,22 @@ function BagBankfun.Zhenghe()
 	if not PIGA["BagBank"]["Zhenghe"] or BagBankfun.BagbankOK then return end
 	BagBankfun.BagbankOK=true
 	BagBankfun.qiyongzidongzhengli()
+	local BusinessInfo=PD.BusinessInfo
 	hooksecurefunc("ContainerFrame_Update", function(frame)
 		if not PIGA["BagBank"]["JunkShow"] then return end
 		local id = frame:GetID();
 		local name = frame:GetName();
 		for i=1, frame.size, 1 do
 			local itemButton = _G[name.."Item"..i];
-			local itemID, itemLink, icon, stackCount, quality=PIGGetContainerItemInfo(id,itemButton:GetID())
-			if quality and quality==0 then
-				itemButton.JunkIcon:Show();
+			if BusinessInfo.ShowSellItemList then
+				if BusinessInfo.ShowSellItemList(id,itemButton:GetID()) then
+					itemButton.JunkIcon:Show();
+				end
+			else
+				local itemID, itemLink, icon, stackCount, quality=PIGGetContainerItemInfo(id,itemButton:GetID())
+				if quality and quality==0 then
+					itemButton.JunkIcon:Show();
+				end
 			end
 		end
 	end)

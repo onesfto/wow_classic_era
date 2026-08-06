@@ -8,17 +8,6 @@ VER 3 0100000001000026 "勇" "134400"
 /cast [nostance:2] 防御姿态
 /cast 英勇打击
 /startattack
-/cancelaura 奥术光辉
-/cancelaura 精神祷言
-/cancelaura 强效治疗术
-/cancelaura 灵感
-/cancelaura 愈合
-/cancelaura 回春术
-/cancelaura 嗜血
-/cancelaura 神圣之力
-/cancelaura 信仰
-/cancelaura 利爪祝福
-/cancelaura 银色黎明委任徽章
 END
 VER 3 010000000100002A "单体" "136012"
 #showtooltip 嗜血(等级 4)

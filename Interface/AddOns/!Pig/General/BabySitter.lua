@@ -234,7 +234,7 @@ function GeneralFun.BabySitter()
 			Action_l.SeleceFoodF:PIGSetBackdrop()
 			Action_l.SeleceFoodF:Hide()
 			Action_l.SeleceFoodF:PIGClose(butW*1.2,butW*1.2)
-			Action_l.SeleceFoodF.Close:SetPoint("TOPLEFT", Action_l.SeleceFoodF, "TOPRIGHT",butW,0);
+			Action_l.SeleceFoodF.Close:SetPoint("TOPRIGHT",Action_l.SeleceFoodF,"TOPRIGHT",butW*1.2,0);
 			Action_l.SeleceFoodF.ButLsit={}
 			for i=1,butNum[1] do
 				local butx=PIGDiyBut(Action_l.SeleceFoodF,{"TOPLEFT", Action_l.SeleceFoodF, "TOPLEFT", 0, -(i-1)*butNum[3]},{butNum[3],butNum[3],nil,nil,132165})

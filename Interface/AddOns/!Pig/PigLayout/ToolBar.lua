@@ -108,22 +108,24 @@ local MenuList = {
 			butui:RegisterEvent("PLAYER_ENTERING_WORLD")
 			butui:HookScript("OnEvent", function(self)
 				self.Tooltip=self.old_Tooltip
-				self:Disable();				
-				if ( IsAllowedToUserTeleport() ) then
-					if ( IsInLFDBattlefield() ) then
-						local _, instanceType = IsInInstance();
-						if ( instanceType ~= "arena" and instanceType ~= "pvp" ) then
+				self:Disable();	
+				C_Timer.After(3,function()			
+					if ( IsAllowedToUserTeleport() ) then
+						if ( IsInLFDBattlefield() ) then
+							local _, instanceType = IsInInstance();
+							if ( instanceType ~= "arena" and instanceType ~= "pvp" ) then
+								self.Tooltip=TELEPORT_TO_DUNGEON
+								self:Enable()
+							end
+						elseif ( IsInLFGDungeon() ) then
+							self.Tooltip=TELEPORT_OUT_OF_DUNGEON
+							self:Enable()
+						else
 							self.Tooltip=TELEPORT_TO_DUNGEON
 							self:Enable()
 						end
-					elseif ( IsInLFGDungeon() ) then
-						self.Tooltip=TELEPORT_OUT_OF_DUNGEON
-						self:Enable()
-					else
-						self.Tooltip=TELEPORT_TO_DUNGEON
-						self:Enable()
 					end
-				end
+				end)
 			end);
 		end,
 		["CONVERT_TO"]=function(butui)

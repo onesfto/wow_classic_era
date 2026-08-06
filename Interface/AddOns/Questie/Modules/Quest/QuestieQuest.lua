@@ -561,8 +561,6 @@ function QuestieQuest:AcceptQuest(questId)
                 Questie.db.char.complete[30087] = true -- Xiao's Breadcrumbs Hidden Prequest
             end
 
-            AvailableQuests.RemoveQuest(questId)
-
             -- Re-accepted quest can be collapsed. Expand it. Especially dailies.
             if Questie.db.char.collapsedQuests then
                 Questie.db.char.collapsedQuests[questId] = nil
@@ -572,16 +570,17 @@ function QuestieQuest:AcceptQuest(questId)
                 Questie.db.char.AutoUntrackedQuests[questId] = nil
             end
 
-            QuestieQuest:PopulateQuestLogInfo(quest)
-            -- This needs to happen after QuestieQuest:PopulateQuestLogInfo because that is the place where quest.Objectives is generated
-            Questie:SendMessage("QC_ID_BROADCAST_QUEST_UPDATE", questId)
-            QuestieQuest:PopulateObjectiveNotes(quest)
+            -- Remove the starter/finisher frames first, then draw objective notes once the
+            -- unload coroutine has finished. This prevents the draw coroutines from racing
+            -- with the unload coroutine and leaving stale entries in questIdFrames.
+            AvailableQuests.RemoveQuest(questId, function()
+                QuestieQuest:PopulateQuestLogInfo(quest)
+                -- This needs to happen after QuestieQuest:PopulateQuestLogInfo because that is the place where quest.Objectives is generated
+                Questie:SendMessage("QC_ID_BROADCAST_QUEST_UPDATE", questId)
+                QuestieQuest:PopulateObjectiveNotes(quest)
 
-            QuestieCombatQueue:Queue(function()
-                QuestieTracker:Update()
+                AvailableQuests.CalculateAndDrawAll()
             end)
-
-            AvailableQuests.CalculateAndDrawAll()
         else
             Questie:Debug(Questie.DEBUG_INFO, "[QuestieQuest] Accepted Quest:", questId, " Warning: Quest already exists, not adding")
         end
@@ -603,7 +602,8 @@ function QuestieQuest:CompleteQuest(questId)
 
     -- Only quests that are daily quests or aren't repeatable should be marked complete,
     -- otherwise objectives for repeatable quests won't track correctly - #1433
-    Questie.db.char.complete[questId] = (not QuestieDB.IsRepeatable(questId)) or QuestieDB.IsDailyQuest(questId) or QuestieDB.IsWeeklyQuest(questId) or QuestieDB.IsMonthlyQuest(questId);
+    Questie.db.char.complete[questId] = (not QuestieDB.IsRepeatable(questId)) or QuestieDB.IsDailyQuest(questId) or QuestieDB.IsWeeklyQuest(questId) or
+        QuestieDB.IsMonthlyQuest(questId);
 
     if Expansions.Current >= Expansions.Wotlk then
         if allianceChampionMarkerQuests[questId] then
@@ -630,14 +630,14 @@ function QuestieQuest:CompleteQuest(questId)
         end
     end
 
-    AvailableQuests.RemoveQuest(questId)
     QuestieTracker:RemoveQuest(questId)
     QuestieCombatQueue:Queue(function()
         QuestieTracker:Update()
     end)
 
-    -- TODO: Should this be done first? Because CalculateAndDrawAll looks at QuestieMap.questIdFrames[QuestId] to add available
-    AvailableQuests.CalculateAndDrawAll()
+    AvailableQuests.RemoveQuest(questId, function()
+        AvailableQuests.CalculateAndDrawAll()
+    end)
 
     Questie:Debug(Questie.DEBUG_INFO, "[QuestieQuest] Completed Quest:", questId)
 end
@@ -646,7 +646,7 @@ end
 function QuestieQuest:AbandonedQuest(questId)
     if (QuestiePlayer.currentQuestlog[questId]) then
         QuestiePlayer.currentQuestlog[questId] = nil
-        AvailableQuests.RemoveQuest(questId)
+
         local quest = QuestieDB.GetQuest(questId)
 
         if quest then
@@ -679,7 +679,9 @@ function QuestieQuest:AbandonedQuest(questId)
             QuestieTracker:Update()
         end)
 
-        AvailableQuests.CalculateAndDrawAll()
+        AvailableQuests.RemoveQuest(questId, function()
+            AvailableQuests.CalculateAndDrawAll()
+        end)
 
         Questie:Debug(Questie.DEBUG_INFO, "[QuestieQuest] Abandoned Quest:", questId)
     end
@@ -696,28 +698,21 @@ function QuestieQuest:UpdateQuest(questId)
 
         local isComplete = quest:IsComplete()
 
-        if isComplete ~= 1 then
-            if QuestieQuest:ShouldShowQuestNotes(questId) then
-                QuestieQuest:UpdateObjectiveNotes(quest)
-            else
-                QuestieTooltips:RemoveQuest(questId)
-            end
-        end
-
         Questie:Debug(Questie.DEBUG_DEVELOP, "[QuestieQuest:UpdateQuest] QuestDB:IsComplete() flag is: " .. isComplete)
 
         if isComplete == 1 then
             -- Quest is complete
             Questie:Debug(Questie.DEBUG_DEVELOP, "[QuestieQuest:UpdateQuest] Quest is: Complete!")
 
+            quest.WasComplete = true
+
             -- Only remove the map icons, but keep the tooltips
             ThreadLib.ThreadCallbackInstant(function()
                 QuestieMap:UnloadQuestFrames(questId)
             end, function()
                 QuestFinisher.AddFinisher(quest)
+                Questie:SendMessage("QC_ID_BROADCAST_QUEST_UPDATE", questId)
             end)
-
-            quest.WasComplete = true
         elseif isComplete == -1 then
             -- Failed quests should be shown as available again
             Questie:Debug(Questie.DEBUG_DEVELOP, "[QuestieQuest:UpdateQuest] Quest has: Failed!")
@@ -735,14 +730,10 @@ function QuestieQuest:UpdateQuest(questId)
             if quest and (quest.WasComplete or (quest.sourceItemId > 0 and QuestieQuest:CheckQuestSourceItem(questId, false) == false)) then
                 Questie:Debug(Questie.DEBUG_DEVELOP, "[QuestieQuest:UpdateQuest] Quest was once complete or Quest Item(s) were removed. Resetting quest.")
 
-                -- Reset quest objectives
+                -- Reset quest objectives and quest flags
                 quest.Objectives = {}
-
-                -- Reset quest flags
                 quest.WasComplete = nil
                 quest.isComplete = nil
-
-                AvailableQuests.RemoveQuest(questId)
 
                 QuestieQuest:CheckQuestSourceItem(questId, true)
 
@@ -751,9 +742,12 @@ function QuestieQuest:UpdateQuest(questId)
                     Questie.db.char.collapsedQuests[questId] = nil
                 end
 
-                QuestieQuest:PopulateQuestLogInfo(quest)
-                QuestieQuest:PopulateObjectiveNotes(quest)
-                AvailableQuests.CalculateAndDrawAll()
+                AvailableQuests.RemoveQuest(questId, function()
+                    QuestieQuest:PopulateQuestLogInfo(quest)
+                    Questie:SendMessage("QC_ID_BROADCAST_QUEST_UPDATE", questId)
+                    QuestieQuest:PopulateObjectiveNotes(quest)
+                    AvailableQuests.CalculateAndDrawAll()
+                end)
             else
                 -- Sometimes objective(s) are all complete but the quest doesn't get flagged as "1". So far the only
                 -- quests I've found that does this are quests involving an item(s). Checks all objective(s) and if they
@@ -771,24 +765,30 @@ function QuestieQuest:UpdateQuest(questId)
                         Questie:Debug(Questie.DEBUG_DEVELOP,
                             "[QuestieQuest:UpdateQuest] All Quest Objective(s) are Complete! Manually setting quest to Complete!")
 
+                        quest.WasComplete = true
+                        quest.isComplete = true
+
                         -- Only remove the map icons, but keep the tooltips
                         ThreadLib.ThreadCallbackInstant(function()
                             QuestieMap:UnloadQuestFrames(questId)
                         end, function()
                             QuestFinisher.AddFinisher(quest)
+                            Questie:SendMessage("QC_ID_BROADCAST_QUEST_UPDATE", questId)
                         end)
-                        quest.WasComplete = true
-                        quest.isComplete = true
                     else
                         Questie:Debug(Questie.DEBUG_DEVELOP,
                             "[QuestieQuest:UpdateQuest] Quest Objective Status is: " ..
                             numCompleteObjectives .. ", out of: " .. #quest.Objectives .. ". No updates required.")
+
+                        -- Update objective notes only when quest is genuinely in-progress (not all objectives complete)
+                        if QuestieQuest:ShouldShowQuestNotes(questId) then
+                            QuestieQuest:UpdateObjectiveNotes(quest)
+                        end
+                        Questie:SendMessage("QC_ID_BROADCAST_QUEST_UPDATE", questId)
                     end
                 end
             end
         end
-
-        Questie:SendMessage("QC_ID_BROADCAST_QUEST_UPDATE", questId)
     end
 end
 
@@ -1030,17 +1030,25 @@ end
 -- iterate all notes, update / remove as needed
 ---@param quest Quest
 function QuestieQuest:UpdateObjectiveNotes(quest)
-    Questie:Debug(Questie.DEBUG_INFO, "[QuestieQuest] UpdateObjectiveNotes:", quest.Id)
+    Questie:Debug(Questie.DEBUG_DEVELOP, "[QuestieQuest] UpdateObjectiveNotes:", quest.Id)
     for objectiveIndex, objective in pairs(quest.Objectives) do
-        ThreadLib.ThreadInstant(function()
+        ThreadLib.ThreadCallbackInstant(function()
             QuestieQuest:PopulateObjective(quest, objectiveIndex, objective, false)
+        end, function()
+            QuestieCombatQueue:Queue(function()
+                QuestieTracker:Update()
+            end)
         end)
     end
 
     if next(quest.SpecialObjectives) then
         for _, objective in pairs(quest.SpecialObjectives) do
-            ThreadLib.ThreadInstant(function()
+            ThreadLib.ThreadCallbackInstant(function()
                 QuestieQuest:PopulateObjective(quest, 0, objective, true)
+            end, function()
+                QuestieCombatQueue:Queue(function()
+                    QuestieTracker:Update()
+                end)
             end)
         end
     end
@@ -1097,7 +1105,7 @@ end
 ---@param objective QuestObjective
 ---@param blockItemTooltips any
 function QuestieQuest:PopulateObjective(quest, objectiveIndex, objective, blockItemTooltips)
-    Questie:Debug(Questie.DEBUG_INFO, "[QuestieQuest:PopulateObjective]", objective.Description)
+    Questie:Debug(Questie.DEBUG_DEVELOP, "[QuestieQuest:PopulateObjective]", objective.Description)
 
     assert(coroutine.running(), "PopulateObjective must be called from a coroutine")
 
@@ -1445,7 +1453,6 @@ _GetIconsSortedByDistance = function(icons)
 end
 
 _DrawObjectiveWaypoints = function(objective, icon, iconPerZone)
-
     local yieldCount = 0
     for _, spawnData in pairs(objective.spawnList) do -- spawnData.Name, spawnData.Spawns
         if spawnData.Waypoints then
@@ -1589,8 +1596,9 @@ function QuestieQuest:PopulateQuestLogInfo(quest)
         -- Some quests when picked up will be flagged isComplete == 0 but the quest.Objective table or quest.SpecialObjectives table is nil. This
         -- check assumes the Quest should have been flagged questLogEngtry.isComplete == 1. We're specifically looking for a quest.triggerEnd or
         -- a quest.Finisher because this might throw an error if there is nothing to populate when we call QuestFinisher.AddFinisher().
-        AvailableQuests.RemoveQuest(quest.Id)
-        QuestFinisher.AddFinisher(quest)
+        AvailableQuests.RemoveQuest(quest.Id, function()
+            QuestFinisher.AddFinisher(quest)
+        end)
         quest.isComplete = true
     end
 end

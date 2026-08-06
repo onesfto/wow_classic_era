@@ -3,6 +3,7 @@ local AddonName, ns = ...
 
 local LibBG = ns.LibBG
 local L = ns.L
+local GetClassColor = ns.GetClassColor
 
 local Size = ns.Size
 local RGB = ns.RGB
@@ -1128,6 +1129,8 @@ BG.Init(function()
     tradeHistory.Order = tradeHistory.Order or 1
     tradeHistory.isChooseRealm = tradeHistory.isChooseRealm or 1
     EnsureCurrentCharacter()
+
+    if BiaoGe.disabledModules["TradeHistory"] then return end
 
     RoadTrade()
 end)

@@ -1,100 +1,100 @@
-VER 3 0100000000000001 "冰" "INV_Misc_QuestionMark"
+VER 3 0100000000000013 "冰" "INV_Misc_QuestionMark"
 #showtooltip [mod] 寒冰箭(等级 1); 寒冰箭
 /cast [mod] 寒冰箭(等级 1); 寒冰箭
 END
-VER 3 0100000000000002 "冰箱" "INV_Misc_QuestionMark"
+VER 3 0100000000000014 "冰箱" "INV_Misc_QuestionMark"
 #showtooltip 寒冰屏障
 /stopcasting
 /cast !寒冰屏障
 /cancelAura [mod]寒冰屏障
 END
-VER 3 0100000000000003 "冲" "INV_Misc_QuestionMark"
+VER 3 0100000000000015 "冲" "INV_Misc_QuestionMark"
 #showtooltip 火焰冲击
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
 /cast 火焰冲击
 END
-VER 3 0100000000000004 "冻" "INV_Misc_QuestionMark"
+VER 3 0100000000000016 "冻" "INV_Misc_QuestionMark"
 #showtooltip 冰霜新星
 /stopcasting
 /cancelAura 寒冰屏障
 /cast 冰霜新星
 END
-VER 3 0100000000000005 "反" "INV_Misc_QuestionMark"
+VER 3 0100000000000017 "反" "INV_Misc_QuestionMark"
 #showtooltip 法术反制
 /stopcasting
 /cast [@mouseover,harm,nodead][@focus,harm,nodead][] 法术反制
 END
-VER 3 0100000000000006 "弹" "INV_Misc_QuestionMark"
+VER 3 0100000000000018 "弹" "INV_Misc_QuestionMark"
 #showtooltip 奥术飞弹
 /cast [nochanneling:奥术飞弹] 奥术飞弹
 END
-VER 3 0100000000000007 "波" "INV_Misc_QuestionMark"
+VER 3 0100000000000019 "波" "INV_Misc_QuestionMark"
 #showtooltip 冲击波
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
 /use 燃烧
 /cast 冲击波
 END
-VER 3 0100000000000008 "火" "INV_Misc_QuestionMark"
+VER 3 010000000000001A "火" "INV_Misc_QuestionMark"
 #showtooltip 火球术
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
 /use 燃烧
 /cast 火球术
 END
-VER 3 0100000000000009 "炎" "INV_Misc_QuestionMark"
+VER 3 010000000000001B "炎" "INV_Misc_QuestionMark"
 #showtooltip 炎爆术
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
 /use 燃烧
 /cast 炎爆术
 END
-VER 3 010000000000000A "烧" "INV_Misc_QuestionMark"
+VER 3 010000000000001C "烧" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 射击; 灼烧
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
 /cast [mod:shift] 射击; 灼烧
 END
-VER 3 010000000000000B "焰" "INV_Misc_QuestionMark"
+VER 3 010000000000001D "焰" "INV_Misc_QuestionMark"
 #showtooltip 烈焰风暴
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
 /use 燃烧
 /cast 烈焰风暴
 END
-VER 3 010000000000000C "爆" "INV_Misc_QuestionMark"
+VER 3 010000000000001E "爆" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 魔爆术(等级 1); 魔爆术
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
 /cast [mod:shift] 魔爆术(等级 1); 魔爆术
 END
-VER 3 010000000000000D "盾" "INV_Misc_QuestionMark"
+VER 3 010000000000001F "盾" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 防护冰霜结界; [mod:alt] 防护火焰结界; 法力护盾
 /cast [mod:shift] 防护冰霜结界; [mod:alt] 防护火焰结界; 法力护盾
 END
-VER 3 0100000000000012 "瞬冰" "135844"
+VER 3 0100000000000020 "瞬冰" "INV_Misc_QuestionMark"
 #showtooltip
 /use 气定神闲
 /cast 寒冰箭
 END
-VER 3 010000000000000E "破邪" "INV_Misc_QuestionMark"
+VER 3 0100000000000021 "破邪" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 侦测魔法; 解除次级诅咒
 /cast [mod:shift,@mouseover,harm,nodead][mod:shift,harm,nodead] 侦测魔法
 /cast [nomod,@mouseover,help,nodead][nomod,help,nodead][nomod,@player] 解除次级诅咒
 END
-VER 3 010000000000000F "醒" "INV_Misc_QuestionMark"
+VER 3 0100000000000022 "醒" "INV_Misc_QuestionMark"
 #showtooltip 唤醒
 /equip 娅尔罗的意志
 /cast 唤醒
 END
-VER 3 0100000000000010 "雪" "INV_Misc_QuestionMark"
+VER 3 0100000000000023 "雪" "INV_Misc_QuestionMark"
 #showtooltip [mod:shift] 暴风雪(等级 1); 暴风雪
 /equip 埃提耶什，守护者的传说之杖
 /equip 厄运之指
 /cast [mod:shift] 暴风雪(等级 1); 暴风雪
 END
-VER 3 0100000000000011 "龟" "INV_Misc_QuestionMark"
+VER 3 0100000000000024 "龟" "INV_Misc_QuestionMark"
 #showtooltip 变形术(龟)
 /stopcasting
 /cast [@mouseover,harm,nodead][] 变形术(龟)

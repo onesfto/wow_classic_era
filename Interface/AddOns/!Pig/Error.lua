@@ -412,6 +412,7 @@ local function AddErrorInfo(newmsg,stack)
     end
     bencierrinfo[#bencierrinfo + 1] = entry
 end
+local nanduid=C_GameRules and C_GameRules.IsHardcoreActive and C_GameRules.IsHardcoreActive() and "H" or "N"
 function PIGerrorFun(event,msg1,msg2)
 	-- print(event)
 	-- print(msg1,msg2)
@@ -424,7 +425,8 @@ function PIGerrorFun(event,msg1,msg2)
 		HAVE_PASSED_NUM=1
 		return
 	end
-	local newmsg = "["..tocversion.."-"..VersionTXT.."] "
+
+	local newmsg = "["..tocversion.."-"..VersionTXT.."-"..nanduid.."] "
 	if event=="LUA_WARNING" then
 		newmsg = newmsg..tostring(msg1)
 		local cunzai = SaveErrorInfo(bencierrinfo, newmsg)

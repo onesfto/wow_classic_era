@@ -115,3 +115,4 @@ Modules/Skins/Myslot.lua
 Modules/Skins/MailLogger.lua
 Modules/Skins/NovaWorldBuffs.lua
 Modules/Skins/NovaWorldBuffs_zhCN.lua
+Core/FrameStrata.lua

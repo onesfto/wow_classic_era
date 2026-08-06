@@ -428,6 +428,8 @@ PD.Default = {
 		["EaseUse"]=true,
 		["Fast_Loot"]=false,
 		["Shaman_Blue"]=true,
+		["SpellQueueClass"]=false,
+		["SpellQueueTalent"]={},
 	},
 	["PigLayout"]={
 		["FontMiaobian"]="NORMAL",

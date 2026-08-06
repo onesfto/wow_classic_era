@@ -48,7 +48,53 @@ if not GW.SkinBagSearchBox then
 end
 
 --------------------------------------------------------------------------------
--- 二、ESC 键失灵
+-- 二、隐藏暴雪原生经验、声望和宠物经验条
+--------------------------------------------------------------------------------
+-- GW2_UI 只有在自己的 XPBAR_ENABLED 开启时才会调用 LoadXPBar，并由此接管
+-- StatusTrackingBarManager。Plus 的经验槽开关关闭时，暴雪原生状态条可能重新出现。
+-- 这里独立处理原生框体，不修改 Plus 自己的经验槽设置。
+
+local NATIVE_STATUS_BAR_NAMES = {
+    "StatusTrackingBarManager",
+    "MainStatusTrackingBarContainer",
+    "SecondaryStatusTrackingBarContainer",
+    "MainMenuExpBar",
+    "ReputationWatchBar",
+    "PetExperienceBar",
+    "MainMenuMaxLevelBar",
+    "MainMenuBarMaxLevelBar",
+    "MainMenuXPBarTexture",
+    "ReputationXPBarTexture",
+}
+
+local function HideNativeStatusBar(frame)
+    if not frame or frame.gwPlusNativeStatusBarHidden then return end
+    frame.gwPlusNativeStatusBarHidden = true
+
+    if frame.GwKill then
+        frame:GwKill()
+        return
+    end
+
+    if frame.UnregisterAllEvents then
+        frame:UnregisterAllEvents()
+    end
+    if frame.HookScript then
+        frame:HookScript("OnShow", function(self)
+            self:Hide()
+        end)
+    end
+    frame:Hide()
+end
+
+local function ApplyNativeStatusBarFix()
+    for _, frameName in ipairs(NATIVE_STATUS_BAR_NAMES) do
+        HideNativeStatusBar(_G[frameName])
+    end
+end
+
+--------------------------------------------------------------------------------
+-- 三、ESC 键失灵
 --------------------------------------------------------------------------------
 -- 这几个窗口为了自己处理按键会把 SetPropagateKeyboardInput 关掉，关窗时没恢复，
 -- 结果 ESC 从此被吞、打不开游戏菜单。统一在显示/隐藏时把传递打开。
@@ -92,7 +138,7 @@ local function ApplyEscFixes()
 end
 
 --------------------------------------------------------------------------------
--- 三、光环改成只有右键才能取消
+-- 四、光环改成只有右键才能取消
 --------------------------------------------------------------------------------
 -- 上游把 cancelaura 挂在 type（任意键）上，左键误点就把 buff 取消了。
 -- GwAuraTmpl_OnLoad 是全局函数（由 aurabar.xml 的 OnLoad 调用），可以直接 hook；
@@ -127,7 +173,7 @@ local function ApplyAuraRightClickFix()
 end
 
 --------------------------------------------------------------------------------
--- 四、任务追踪器里 Questie 的等级前缀重复
+-- 五、任务追踪器里 Questie 的等级前缀重复
 --------------------------------------------------------------------------------
 -- GW2_UI 自己会给任务标题加 "[60] " 这样的等级前缀，Questie 也会往 quest.title 里塞
 -- "[60R] " 之类的前缀，两个叠在一起变成 "[60] [60R] 任务名"。
@@ -163,7 +209,7 @@ local function ApplyQuestiePrefixFix()
 end
 
 --------------------------------------------------------------------------------
--- 五、按需加载窗口 /reload 后整个看不见
+-- 六、按需加载窗口 /reload 后整个看不见
 --------------------------------------------------------------------------------
 -- CreateFrameHeaderWithBody 建的窗口，开场遮罩是靠 OnShow 动画推开的。
 -- 如果窗口开着的时候 /reload，OnShow 不会触发，遮罩停在收拢状态，窗口内容全被挡住。
@@ -188,7 +234,7 @@ if origCreateFrameHeaderWithBody then
 end
 
 --------------------------------------------------------------------------------
--- 六、设置面板标题被截断
+-- 七、设置面板标题被截断
 --------------------------------------------------------------------------------
 -- 原生 GW2_UI 仍用 header:GetStringWidth() 定宽，中文字体下可能偏窄；
 -- 仅为未由 Plus 标题工具管理的原生面板补 10 像素余量。
@@ -233,7 +279,7 @@ local function ApplyPanelHeaderFix()
 end
 
 --------------------------------------------------------------------------------
--- 七、微型系统菜单提示缺失或在鼠标离开后残留
+-- 八、微型系统菜单提示缺失或在鼠标离开后残留
 --------------------------------------------------------------------------------
 -- Classic Era 的微型菜单按钮并非都在 OnLeave 时立即隐藏 GameTooltip。
 -- 只隐藏仍由当前按钮持有的提示，避免快速移到相邻按钮时误关新提示。
@@ -291,11 +337,13 @@ end
 --------------------------------------------------------------------------------
 -- Questie 前缀那条必须最早挂（要赶在第一个任务 block 创建之前），所以放在文件加载期直接跑。
 ApplyQuestiePrefixFix()
+ApplyNativeStatusBarFix()
 
 local f = CreateFrame("Frame")
 f:RegisterEvent("PLAYER_ENTERING_WORLD")
 f:SetScript("OnEvent", function(self)
     self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+    ApplyNativeStatusBarFix()
     ApplyEscFixes()
     ApplyAuraRightClickFix()
     ApplyPanelHeaderFix()

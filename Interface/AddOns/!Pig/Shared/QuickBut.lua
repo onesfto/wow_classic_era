@@ -279,7 +279,7 @@ local function addQuickBut(QuickBar,index,data)
 	end);
 	if fun then fun(But,QuickBar) end
 	if ShowGnUI then
-		But:HookScript("OnClick", function(self,button)
+		But:HookScript("OnClick", function(self,button,down)
 			if button=="LeftButton" then
 				if _G[ShowGnUI]:IsShown() then
 					_G[ShowGnUI]:Hide();
@@ -316,8 +316,8 @@ function Fun.QuickBut_Update()
 end
 PD.QuickBut=Fun.QuickBut_Update
 --创建功能开启选项+添加功能条按钮
-function Create.PIGModCheckbutton(fuF,text,Point)
-	local But = Create.PIGCheckbutton(fuF,nil,text)
+function Create.PIGModCheckbutton(fuF,text,Point,Mode)
+	local But = Create.PIGCheckbutton(fuF,nil,text,nil,nil,nil,nil,Mode)
 	But:SetPoint(unpack(Point))
 	local text1 = {L["ACTION_ADDQUICKBUT"],string.format(L["ACTION_ADDQUICKBUTTIS"],text[1])}
 	But.QKBut = Create.PIGCheckbutton(But,{"LEFT",But,"RIGHT",220,0},text1)

@@ -1,0 +1,97 @@
+
+GearMenuConfiguration = {
+["enableDragAndDrop"] = true,
+["trinketMenuSlotSize"] = 40,
+["trinketMenuShowCooldowns"] = true,
+["filterItemQuality"] = 2,
+["frames"] = {
+},
+["enableTrinketMenu"] = true,
+["lockTrinketMenuFrame"] = false,
+["enableFastPress"] = false,
+["enableFallbackToBaseItem"] = false,
+["enableSimpleTooltips"] = false,
+["lastNotifiedVersion"] = "",
+["enableTooltips"] = true,
+["enableUnequipSlot"] = true,
+["enableRuneSlots"] = true,
+["addonVersion"] = "v2.8.0",
+["gearBars"] = {
+{
+["showKeyBindings"] = true,
+["id"] = 146641,
+["slots"] = {
+{
+["type"] = {
+"INVTYPE_TRINKET",
+},
+["name"] = "slot_name_upper_trinket",
+["inventoryTypeId"] = 11,
+["simplifiedName"] = "slot_name_trinket",
+["slotId"] = 13,
+["textureId"] = 136528,
+},
+{
+["type"] = {
+"INVTYPE_TRINKET",
+},
+["name"] = "slot_name_lower_trinket",
+["inventoryTypeId"] = 11,
+["simplifiedName"] = "slot_name_trinket",
+["slotId"] = 14,
+["textureId"] = 136528,
+},
+{
+["type"] = {
+"INVTYPE_HEAD",
+},
+["name"] = "slot_name_head",
+["inventoryTypeId"] = 1,
+["slotId"] = 1,
+["textureId"] = 136516,
+},
+},
+["displayName"] = "Default GearBar",
+["isLocked"] = false,
+["position"] = {
+["posY"] = 0,
+["point"] = "CENTER",
+["posX"] = 0,
+},
+["showCooldowns"] = true,
+["orientation"] = 1,
+["changeMenuDirection"] = 1,
+["changeSlotSize"] = 40,
+["gearSlotSize"] = 40,
+},
+},
+["profiles"] = {
+["Default"] = {
+["enableDragAndDrop"] = true,
+["trinketMenuSlotSize"] = 40,
+["trinketMenuShowCooldowns"] = true,
+["filterItemQuality"] = 2,
+["frames"] = {
+},
+["enableTrinketMenu"] = true,
+["lockTrinketMenuFrame"] = false,
+["enableFastPress"] = false,
+["enableFallbackToBaseItem"] = false,
+["quickChangeRules"] = {
+},
+["enableTooltips"] = true,
+["enableUnequipSlot"] = true,
+["enableRuneSlots"] = true,
+["gearBars"] = {
+},
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 4,
+["enableSimpleTooltips"] = false,
+},
+},
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 4,
+["quickChangeRules"] = {
+},
+["firstTimeInitializationDone"] = true,
+}

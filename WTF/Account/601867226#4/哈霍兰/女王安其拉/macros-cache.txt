@@ -1,152 +1,204 @@
-VER 3 0100000000000012 " " "INV_Misc_QuestionMark"
-#showtooltip [stance:1]反击风暴;[stance:2]盾墙;[stance:3]鲁莽
-/equip [stance:2]死亡的面孔
-/施放 [stance:1]反击风暴;[stance:2]盾墙;[stance:3]鲁莽
-END
-VER 3 0100000000000001 "保护" "INV_Misc_QuestionMark"
-#showtooltip 保护祝福
-/cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead] 保护祝福
-END
-VER 3 0100000000000002 "光明" "INV_Misc_QuestionMark"
-#showtooltip 光明圣印
-/cast [nostance:1] 光明圣印
-/cast 审判
-END
-VER 3 0100000000000013 "冲锋" "INV_Misc_QuestionMark"
-#showtooltip 冲锋
-/cast 战斗姿态
-/cast 冲锋
-END
-VER 3 0100000000000014 "切换" "INV_Misc_QuestionMark"
+VER 3 010000000000001F "冲锋" "INV_Misc_QuestionMark"
 #showtooltips 
-/equipslot [nomod,noequipped:盾牌] 17 死亡的面孔
-/equipslot [nomod,equipped:盾牌] 17 饥饿之寒
-/equipslot [equipped:双手] 16 雷霆之怒，逐风者的祝福之剑
-/equipslot [equipped:双手] 17 死亡的面孔
-/equipslot [mod] 16 米奈希尔之力
+/施放 冲锋(等级 3)
+/equip 
+/施放 战斗姿态
+/cast 断筋
+/cast 撕裂(等级 7)
+/startattack
 END
-VER 3 0100000000000003 "制裁" "INV_Misc_QuestionMark"
-#showtooltip 制裁之锤
-/cast [@mouseover,harm,nodead][harm,nodead] 制裁之锤
+VER 3 0100000000000020 "剑盾" "INV_Misc_QuestionMark"
+#showtooltips 旋风斩
+/equipslot 16  雷霆之怒，逐风者的祝福之剑
+/equipslot 17  死亡的面孔
 END
-VER 3 0100000000000015 "剑盾" "135331"
-/equipslot [noequipped:双手] 16 堕落的灰烬使者
-/equipslot [equipped:双手] 16 格雷希尔，毁灭之黎明
-/equipslot [equipped:双手] 17 死亡的面孔
+VER 3 0100000000000021 "单体" "INV_Misc_QuestionMark"
+#showtooltip 英勇打击
+/startattack
+/cancelaura 银色黎明委任徽章
+/cast 血性狂暴
+/cast 英勇打击(等级 9)
+/cast 嗜血(等级 4)
+/click BCT
 END
-VER 3 0100000000000016 "副王" "135372"
-/equipslot 17 饥饿之寒
+VER 3 0100000000000022 "单旋" "INV_Misc_QuestionMark"
+#showtooltips 旋风斩
+/equipslot 16  
+/equipslot 17  
+/cast 旋风斩
+/startattack
+/click BCT
 END
-VER 3 0100000000000017 "压制" "INV_Misc_QuestionMark"
+VER 3 0100000000000023 "压制" "INV_Misc_QuestionMark"
 #showtooltip 压制
-/startattack
-/cast 战斗姿态
+/use 战斗姿态
 /cast 压制
-END
-VER 3 0100000000000018 "双手" "133502"
-/equipslot [noequipped:双手] 16 米奈希尔之力
-/equipslot [equipped:双手] 16 格雷希尔，毁灭之黎明
-/equipslot [equipped:双手] 17 饥饿之寒
-/equipslot [mod] 16 雷霆之怒，逐风者的祝福之剑
-/equipslot [mod] 17 死亡的面孔
-END
-VER 3 010000000000001A "嗜血" "INV_Misc_QuestionMark"
-#showtooltip 嗜血
-/cast  嗜血
 /startattack
 END
-VER 3 0100000000000019 "嗜血" "INV_Misc_QuestionMark"
-#showtooltip 嗜血
-/cast  嗜血
+VER 3 0100000000000024 "反击" "INV_Misc_QuestionMark"
+#showtooltip 反击风暴
 /startattack
-/cancelaura 保护祝福
-/cancelaura 拯救祝福
-/cancelaura 驱除疾病
-/cancelaura 精神祷言
-/cancelaura 奥术光辉
+/cast [nostance:1] 战斗姿态; 
+/cast 反击风暴
+END
+VER 3 0100000000000025 "嗜血" "INV_Misc_QuestionMark"
+#showtooltip 嗜血
+/startattack
+/cast 血性狂暴
+/cast 嗜血
+END
+VER 3 0100000000000026 "嘲讽" "INV_Misc_QuestionMark"
+#showtooltip 
+/cast 嘲讽
+/raid 我已嘲讽
+END
+VER 3 0100000000000027 "复仇" "INV_Misc_QuestionMark"
+#showtooltip 
+/startattack
+/cast 复仇(等级 5)
+/cast 血性狂暴
+/cast 英勇打击(等级 9)
 /cancelaura 强效拯救祝福
 END
-VER 3 010000000000001B "嘲讽" "INV_Misc_QuestionMark"
-#showtooltip [mod]挑战怒吼;[stance:1]惩戒痛击;[stance:2]嘲讽;[stance:3]猛击
+VER 3 0100000000000028 "急速" "INV_Misc_QuestionMark"
+#showtooltips 特效治疗药水
+/use 特效治疗药水
+/use 鞭根块茎
+/use 特效治疗石
+/use 超强治疗药水
+/cast
+END
+VER 3 0100000000000029 "战斗" "132333"
 /startattack
-/施放 [mod:alt] 挑战怒吼
-/施放 [nomod,stance:1]惩戒痛击;[nomod,stance:2]嘲讽;[nomod,stance:3]猛击
+/cast  战斗怒吼
+/cast
 END
-VER 3 010000000000001C "回血" "133474"
-/equipslot 16 虚妄预言者节杖
-/equipslot 17 扭曲虚空之锤
-/use [equipped:锤] 亡者之眼
-/use [equipped:锤] 钻石水瓶
-/equipslot [noequipped:双手] 16 堕落的灰烬使者
+VER 3 010000000000002A "拦截" "INV_Misc_QuestionMark"
+#showtooltips 拦截
+/施放 狂暴姿态
+/equipslot 16  
+/equipslot 17  
+/cast 血性狂暴
+/cast 拦截(等级 3)
+/cast 断筋(等级 3)
+/startattack
 END
-VER 3 0100000000000004 "圣五" "INV_Misc_QuestionMark"
-#showtooltip 圣光术(等级 5)
-/cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead] [@player]圣光术(等级 5)
+VER 3 010000000000002B "撕裂" "INV_Misc_QuestionMark"
+#showtooltip 撕裂
+/startattack
+/cast 血性狂暴
+/cast 撕裂
 END
-VER 3 0100000000000005 "圣光" "INV_Misc_QuestionMark"
-#showtooltip 圣光术
-/cast [mod:shift] 神恩术
-/cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead][@player] 圣光术
+VER 3 010000000000002C "斩杀" "INV_Misc_QuestionMark"
+#showtooltip 斩杀
+/startattack
+/cast 狂暴姿态
+/cast 斩杀
+/cast 英勇打击(等级 9)
+/cast 血性狂暴
+/click BCT
 END
-VER 3 0100000000000006 "圣击" "INV_Misc_QuestionMark"
-#showtooltip 神圣震击
-/cast [mod:shift] 神恩术
-/cast [@mouseover,help,nodead][help][@targettarget,help,nodead] 神圣震击;[@mouseover,harm,nodead][harm,nodead] 神圣震击
+VER 3 010000000000002D "旋风" "INV_Misc_QuestionMark"
+#showtooltips 旋风斩
+/equipslot 16  格雷希尔，毁灭之黎明
+/equipslot 17  饥饿之寒
+/cast 顺劈斩(等级 5)
+/cast 旋风斩
+/startattack
 END
-VER 3 0100000000000007 "圣疗" "INV_Misc_QuestionMark"
-#showtooltip 圣疗术
-/cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead] 圣疗术
+VER 3 010000000000002E "有限无敌" "INV_Misc_QuestionMark"
+#showtooltips 有限无敌药水
+/use 有限无敌药水
+/use [target=player] 高级活动假人
+/cast [target=player] 活动假人
 END
-VER 3 0100000000000008 "圣闪" "INV_Misc_QuestionMark"
-#showtooltip 圣光闪现
-/cast [mod:shift] 神恩术
-/cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead][@player] 圣光闪现
+VER 3 010000000000002F "猛击" "INV_Misc_QuestionMark"
+#showtooltip 
+/equipslot 16 米奈希尔之力
+/cast 猛击
+/startattac
 END
-VER 3 0100000000000009 "审判" "INV_Misc_QuestionMark"
-#showtooltip 审判
+VER 3 0100000000000030 "盾击" "INV_Misc_QuestionMark"
+#showtooltip 盾击(等级 3)
+/cast 防御姿态
+/equipslot 16 雷霆之怒，逐风者的祝福之剑
+/equipslot 17 死亡的面孔
+/cast 盾击(等级 3)
+END
+VER 3 0100000000000031 "盾墙" "INV_Misc_QuestionMark"
+#showtooltip 盾墙
 /stopcasting
-/cast [@mouseover,harm,nodead][harm,nodead] 审判
+/cast 防御姿态
+/equip 雷霆之怒，逐风者的祝福之剑
+/equip 死亡的面孔
+/cast 盾墙
 END
-VER 3 010000000000001D "怒气" "INV_Misc_QuestionMark"
-#showtooltip
-/use [mod]特效治疗石;强效怒气药水
+VER 3 0100000000000032 "群嘲" "INV_Misc_QuestionMark"
+#showtooltip 挑战怒吼
+/cast 挑战怒吼
+/raid 我已群嘲
 END
-VER 3 010000000000000A "愤怒" "INV_Misc_QuestionMark"
-#showtooltip 愤怒之锤
-/cast [@mouseover,harm,nodead][harm,nodead] 愤怒之锤
+VER 3 0100000000000033 "致密" "INV_Misc_QuestionMark"
+#showtooltip 斯坦索姆圣水
+/use [@player] 斯坦索姆圣水
 END
-VER 3 010000000000001E "打断" "INV_Misc_QuestionMark"
-#showtooltip [equipped:盾牌,stance:1/2]盾击;拳击
+VER 3 0100000000000034 "英勇" "INV_Misc_QuestionMark"
+#showtooltip 英勇打击
 /startattack
-/施放 [equipped:盾牌,stance:1/2]盾击;[noequipped:盾牌,stance:1/2]狂暴姿态;[stance:3]拳击
+/cast 英勇打击
 END
-VER 3 010000000000000B "无敌" "INV_Misc_QuestionMark"
-#showtooltip [mod:shift] 有限无敌药水; 圣盾术
-/cast [combat,mod:shift] 有限无敌药水
-/cast 圣盾术
+VER 3 0100000000000035 "血狂" "132277"
+/startattack
+/cast  血性狂暴
+/cast
 END
-VER 3 010000000000000C "智慧" "INV_Misc_QuestionMark"
-#showtooltip 智慧圣印
-/cast [nostance:1] 智慧圣印
-/cast 审判
+VER 3 0100000000000036 "视野" "132353"
+/console cameraDistanceMaxZoomFactor 4
 END
-VER 3 010000000000000D "清洁" "INV_Misc_QuestionMark"
-#showtooltip 清洁术
-/cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead][@player] 清洁术
+VER 3 0100000000000037 "防御" "INV_Misc_QuestionMark"
+#showtooltips 
+/施放 防御姿态
+/equipslot 16  雷霆之怒，逐风者的祝福之剑
+/equipslot 17  
+/施放 盾牌格挡
 END
-VER 3 010000000000000E "牺牲" "INV_Misc_QuestionMark"
-#showtooltip 牺牲祝福
-/cast [@mouseover,help,nodead][help][@targettarget,help,nodead] 牺牲祝福
+VER 3 0100000000000038 "顺劈" "INV_Misc_QuestionMark"
+#showtooltip 顺劈斩
+/startattack
+/cast [nostance:3] 狂暴姿态; 
+/cast 血性狂暴
+/cast 顺劈斩
+/cast 旋风斩
 END
-VER 3 010000000000000F "神涉" "INV_Misc_QuestionMark"
-#showtooltip 神圣干涉
-/cast [@mouseover,help,nodead][help][@targettarget,help,nodead] 神圣干涉
+VER 3 0100000000000039 "风王" "INV_Misc_QuestionMark"
+#showtooltips 
+/equipslot 16  雷霆之怒，逐风者的祝福之剑
+/equipslot 17  饥饿之寒
 END
-VER 3 0100000000000010 "自由" "INV_Misc_QuestionMark"
-#showtooltip 自由祝福
-/cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead][@player] 自由祝福
+VER 3 010000000000003A "饰品" "INV_Misc_QuestionMark"
+#showtooltips 
+/cast 拉姆斯登的闪电钉
+/cast 蜘蛛之吻
+/cast 虫群卫士徽章
+/cast 沙虫之毒
+/cast 生命宝石
+/cast 大地之击
+/cast 屠龙者的纹章
+/cast 钻石水瓶
+/cast 坠落星辰碎片
+/cast 沙漠掠夺者塑像
 END
-VER 3 0100000000000011 "震击" "INV_Misc_QuestionMark"
-#showtooltip 神圣震击
-/cast [mod:alt,@player][@mouseover,help,nodead][help][@targettarget,help,nodead] 神圣震击
+VER 3 010000000000003B "鲁莽" "INV_Misc_QuestionMark"
+#showtooltip 鲁莽
+/cast 鲁莽
+/cast 死亡之愿
+/cast 血性狂暴
+/cast 蜘蛛之吻
+/cast 屠龙者的纹章
+/cast 虫群卫士徽章
+/cast 钻石水瓶
+/cast 沙虫之毒
+/cast 大地之击
+/cast 拉姆斯登的闪电钉
+/cast 虫群卫士徽章
 END

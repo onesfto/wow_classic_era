@@ -3,6 +3,7 @@ local L=PD.locale
 local Data=PD.Data
 local PlayerInfo=Data.PlayerInfo
 local ClassFile_Name=Data.ClassFile_Name
+local TalentData=Data.TalentData
 ---
 local Create=PD.Create
 local PIGFrame=Create.PIGFrame
@@ -10,6 +11,7 @@ local PIGButton=Create.PIGButton
 local PIGLine=Create.PIGLine
 local PIGDownMenu=Create.PIGDownMenu
 local PIGSlider = Create.PIGSlider
+local PIGDiyTex=Create.PIGDiyTex
 local PIGCheckbutton=Create.PIGCheckbutton
 local PIGCheckbutton_R=Create.PIGCheckbutton_R
 local PIGOptionsList=Create.PIGOptionsList
@@ -196,10 +198,29 @@ function CVarsfun.Shaman_Blue()
         CUSTOM_CLASS_COLORS[k] = {r = v.r,g = v.g,b = v.b,colorStr = v.colorStr}
     end
 end
+local GetTianfuIcon=TalentData.GetTianfuIcon
+local function GetpeizhiData(classID)
+	if PIGA["CVars"]["SpellQueueTalent"][classID] then
+		return PIGA["CVars"]["SpellQueueTalent"][classID][1],PIGA["CVars"]["SpellQueueTalent"][classID]
+	else
+		return 1
+	end
+end
 function CVarsfun.Update_SpellQueueClass()
 	if PIGA["CVars"]["SpellQueueClass"] then
-		local datax=PIGA["CVars"]["SpellQueueData"]
-		local vvvv=datax and datax[PlayerInfo.ClassData.classId] or 400
+		local vvvv=400
+		local classId=PlayerInfo.ClassData.classId
+		local TalentOpenIndex=GetpeizhiData(classId)
+		if TalentOpenIndex==1 then
+			local datax=PIGA["CVars"]["SpellQueueData"]
+			vvvv=datax and datax[classId] or 400
+		elseif TalentOpenIndex==2 then
+			local tfdata=GetTianfuIcon(false,classId,"player")
+			if tfdata and tfdata[4] and tfdata[4]>0 and PIGA["CVars"]["SpellQueueTalent"][classId] then
+				vvvv=PIGA["CVars"]["SpellQueueTalent"][classId][tfdata[4]+1]
+			end
+		end
+		PIGErrorMsg(LAG_TOLERANCE..":"..vvvv)
 		SetCVar("SpellQueueWindow",vvvv)
 	end
 end
@@ -454,7 +475,7 @@ function PD.addOptions_CVars()
 		if toleranceF.wt then return end
 		toleranceF.wt = PIGFontString(toleranceF,{"TOPLEFT",toleranceF,"TOPLEFT",20,-10},"警告: 如果你不理解此功能作用，请不要随意更改此选项，保持默认值(400ms)即可");
 		toleranceF.wt:SetTextColor(1, 0, 0, 1)
-		toleranceF.SpellQueue = PIGSlider(toleranceF,{"TOPLEFT",toleranceF,"TOPLEFT",20,-30},{10,400,1,{["Right"]=REDUCED_LAG_TOLERANCE}})
+		toleranceF.SpellQueue = PIGSlider(toleranceF,{"TOPLEFT",toleranceF,"TOPLEFT",20,-26},{10,400,1,{["Right"]=REDUCED_LAG_TOLERANCE}})
 		function toleranceF.SpellQueue:PIGOnValueChange(arg1)
 			SetCVar("SpellQueueWindow",arg1)
 		end
@@ -467,7 +488,7 @@ function PD.addOptions_CVars()
 		toleranceF.wt1:SetWidth(toleranceF:GetWidth()-40)
 		toleranceF.wt1:SetJustifyH("LEFT")
 
-		toleranceF.SpellQueueClass = PIGCheckbutton(toleranceF,{"TOPLEFT",toleranceF,"TOPLEFT",20,-130},{"根据职业动态调整"})
+		toleranceF.SpellQueueClass = PIGCheckbutton(toleranceF,{"TOPLEFT",toleranceF,"TOPLEFT",20,-104},{"根据职业动态调整"})
 		toleranceF.SpellQueueClass:SetChecked(PIGA["CVars"]["SpellQueueClass"])
 		toleranceF.SpellQueueClass:SetScript("OnClick", function (self)
 		    if self:GetChecked() then
@@ -478,33 +499,31 @@ function PD.addOptions_CVars()
 		    CVarsfun.Update_SpellQueueClass()
 		    toleranceF.Update_SetUI()
 		end)
-		toleranceF.SpellQueueClassTalent = PIGCheckbutton(toleranceF,{"LEFT",toleranceF.SpellQueueClass.Text,"RIGHT",10,0},{"分天赋设置"})
-		toleranceF.SpellQueueClassTalent:SetChecked(PIGA["CVars"]["SpellQueueClassTalent"])
-		toleranceF.SpellQueueClassTalent:SetScript("OnClick", function (self)
-		    if self:GetChecked() then
-		        PIGA["CVars"]["SpellQueueClassTalent"]=true;
-		    else
-		        PIGA["CVars"]["SpellQueueClassTalent"]=false;
-		    end
-		    CVarsfun.Update_SpellQueueClass()
-		    toleranceF.Update_SetUI()
-		end)
-
 		toleranceF.butlist={}
+		local tianfuTabIcon=TalentData.tianfuTabIcon
+		local GetTalentNum=TalentData.GetTalentNum
 		local jishuxi=0
+		local tenggilist={"通用","天赋"}
+		local function SetpeizhiData(classID,index)
+			if not PIGA["CVars"]["SpellQueueTalent"][classID] then
+				PIGA["CVars"]["SpellQueueTalent"][classID]= {index,400,400,400,400}
+				return 
+			end
+			PIGA["CVars"]["SpellQueueTalent"][classID][1]=index
+		end
 		for i=1,#Data.cl_Name do
 			local classFile, cl_Name_Role, className, classID = unpack(Data.cl_Name[i])
 			if classFile then
 				local hang = CreateFrame("Frame", nil, toleranceF);
+				hang.classID=classID
 				jishuxi=jishuxi+1
 				toleranceF.butlist[jishuxi]=hang
 				hang:SetSize(20,20);
-				if jishuxi>10 then
-					hang:SetPoint("TOPLEFT",toleranceF,"TOPLEFT",340,-150-((jishuxi-11)*30));
+				if i==1 then
+					hang:SetPoint("TOPLEFT",toleranceF.SpellQueueClass,"BOTTOMLEFT",4,-8);
 				else
-					hang:SetPoint("TOPLEFT",toleranceF,"TOPLEFT",40,-150-(jishuxi*30));
+					hang:SetPoint("TOPLEFT",toleranceF.butlist[jishuxi-1],"BOTTOMLEFT",0,-8);
 				end
-				hang.classID=classID
 				hang.iconx = hang:CreateTexture()
 				hang.iconx:SetTexture("interface/glues/charactercreate/ui-charactercreate-classes.blp")
 				hang.iconx:SetSize(20,20);
@@ -515,34 +534,82 @@ function PD.addOptions_CVars()
 				hang.DQ:SetPoint("RIGHT", hang.iconx, "LEFT", -1,0);
 				hang.DQ:SetSize(20,20);
 				
-				hang.namex  = PIGFontString(hang,{"LEFT",hang.iconx,"RIGHT",2,0});
-				hang.namex:SetText(className);
-				local color = PIG_CLASS_COLORS[classFile];
-				hang.namex:SetTextColor(color.r, color.g, color.b,1);
-				hang.setvv = PIGSlider(hang,{"LEFT",hang.iconx,"RIGHT",70,0},{10,400,1})
-				function hang.setvv:PIGOnValueChange(arg1)
-					PIGA["CVars"]["SpellQueueData"]=PIGA["CVars"]["SpellQueueData"] or {}
-					if arg1==400 then
-						PIGA["CVars"]["SpellQueueData"][classID]=nil
-					else
-						PIGA["CVars"]["SpellQueueData"][classID]=arg1
-					end
+				hang.ClassTalent=PIGDownMenu(hang,{"LEFT",hang.iconx,"RIGHT",4,0},{60,22})
+				function hang.ClassTalent:PIGDownMenu_Update_But()
+					local info = {}
+					info.func = self.PIGDownMenu_SetValue
+					local setindex=GetpeizhiData(classID)
+					for iv=1,#tenggilist,1 do
+					    info.text, info.arg1 = tenggilist[iv], iv
+					    info.checked = iv==setindex
+						self:PIGDownMenu_AddButton(info)
+					end 
+				end
+				function hang.ClassTalent:PIGDownMenu_SetValue(value,arg1,arg2)
+					self:PIGDownMenu_SetText(value)
+					SetpeizhiData(classID,arg1)
 					CVarsfun.Update_SpellQueueClass()
-					toleranceF.Update_SetUI()
+				   	toleranceF.Update_SetUI()
+					PIGCloseDropDownMenus()
+				end
+				
+				hang.SliderButList={}
+				function hang:Update_SliderList()
+					local maxnum=1
+					local TalentOpenIndex=GetpeizhiData(classID)
+					hang.ClassTalent:PIGDownMenu_SetText(tenggilist[TalentOpenIndex])
+					hang.ClassTalent:SetEnabled(PIGA["CVars"]["SpellQueueClass"])
+					if TalentOpenIndex==2 then maxnum=GetTalentNum(classFile) end
+					for ix=1,maxnum do
+						if not hang.SliderButList[ix] then
+							hang.SliderButList[ix] = PIGSlider(hang,{"LEFT",hang.ClassTalent,"RIGHT",170*(ix-1)+24,0},{30,400,1},120)
+							hang.SliderButList[ix].Icon=PIGDiyTex(hang.SliderButList[ix],{"RIGHT", hang.SliderButList[ix], "LEFT", 0,0},{22,22,nil,nil,tianfuTabIcon[classFile][ix]})
+						end
+						local SliderBut=hang.SliderButList[ix]
+						function SliderBut:PIGOnValueChange(arg1)
+							if TalentOpenIndex==2 then
+								PIGA["CVars"]["SpellQueueTalent"][classID][ix+1]=arg1
+							else
+								PIGA["CVars"]["SpellQueueData"]=PIGA["CVars"]["SpellQueueData"] or {}
+								if arg1==400 then
+									PIGA["CVars"]["SpellQueueData"][classID]=nil
+								else
+									PIGA["CVars"]["SpellQueueData"][classID]=arg1
+								end
+							end
+
+							CVarsfun.Update_SpellQueueClass()
+							toleranceF.SpellQueue:PIGSetValue(GetCVar("SpellQueueWindow"))
+						end
+					end
+					for _,butx in pairs(hang.SliderButList) do
+						butx:Hide()
+						butx.Icon:Hide()
+					end
+					if TalentOpenIndex==2 then
+						for ixx=1,maxnum do
+							hang.SliderButList[ixx]:PIGSetValue(PIGA["CVars"]["SpellQueueTalent"][classID][ixx+1])
+							hang.SliderButList[ixx]:SetEnabled(PIGA["CVars"]["SpellQueueClass"])
+							hang.SliderButList[ixx]:Show()
+							hang.SliderButList[ixx].Icon:Show()
+						end
+					else
+						local datax=PIGA["CVars"]["SpellQueueData"]
+						local vvvv=datax and datax[classID] or 400
+						hang.SliderButList[1]:PIGSetValue(vvvv)
+						hang.SliderButList[1]:SetEnabled(PIGA["CVars"]["SpellQueueClass"])
+						hang.SliderButList[1]:Show()
+					end				
 				end
 			end
 		end
 		function toleranceF.Update_SetUI()
 			toleranceF.err:SetShown(PIGA["CVars"]["SpellQueueClass"])
 			toleranceF.SpellQueue:SetEnabled(not PIGA["CVars"]["SpellQueueClass"])
-			toleranceF.SpellQueueClassTalent:SetEnabled(false)
 			toleranceF.SpellQueue:PIGSetValue(GetCVar("SpellQueueWindow"))
-			local datax=PIGA["CVars"]["SpellQueueData"]
 			for index,hang in pairs(toleranceF.butlist) do
-				local vvvv=datax and datax[hang.classID] or 400
-				hang.setvv:PIGSetValue(vvvv)
-				hang.setvv:SetEnabled(PIGA["CVars"]["SpellQueueClass"]~=nil)
-				hang.DQ:SetShown(PlayerInfo.ClassData.classId==hang.classID)	
+				hang.DQ:SetShown(PlayerInfo.ClassData.classId==hang.classID)
+				hang:Update_SliderList()
 			end
 		end
 		toleranceF.Update_SetUI()
@@ -639,30 +706,41 @@ function PD.addOptions_CVars()
 		local enemyTooltip = Settings.WrapTooltipWithBinding(OPTION_TOOLTIP_UNIT_NAMEPLATES_SHOW_ENEMIES, "NAMEPLATES");
 		local friendlyTooltip = Settings.WrapTooltipWithBinding(OPTION_TOOLTIP_UNIT_NAMEPLATES_SHOW_FRIENDS, "FRIENDNAMEPLATES");
 		local xingmingList = {
-			{false,"nameplateShowAll","1","0",UNIT_NAMEPLATES_AUTOMODE,OPTION_TOOLTIP_UNIT_NAMEPLATES_AUTOMODE},
-			{false,"nameplateShowEnemies","1","0",BINDING_NAME_NAMEPLATES, enemyTooltip()},
-			{false,"nameplateShowFriendlyPlayers","1","0",BINDING_NAME_FRIENDNAMEPLATES, friendlyTooltip()},
-			{false,"nameplateShowClassColor","1","0",OPTION_TOOLTIP_UNIT_NAMEPLATES_SHOW_ENEMIES..SHOW_CLASS_COLOR, UNIT_NAMEPLATES_CLASS_COLOR_FRIENDLY_TOOLTIP},--SHOW_CLASS_COLOR
-			{false,"nameplateShowFriendlyClassColor","1","0",OPTION_TOOLTIP_UNIT_NAMEPLATES_SHOW_FRIENDS..SHOW_CLASS_COLOR, UNIT_NAMEPLATES_CLASS_COLOR_ENEMY_TOOLTIP},
-			{false,"nameplateShowOffscreen","1","0",UNIT_NAMEPLATES_SHOW_OFFSCREEN, UNIT_NAMEPLATES_SHOW_OFFSCREEN_TOOLTIP},
-			--{false,"clampTargetNameplateToScreen","1","0",TARGET..SHOW_TARGET_CASTBAR_IN_V_KEY..LOCK.."在屏幕内"},
+			{"nameplateShowAll","1","0",UNIT_NAMEPLATES_AUTOMODE,OPTION_TOOLTIP_UNIT_NAMEPLATES_AUTOMODE},
+			{"nameplateShowEnemies","1","0",BINDING_NAME_NAMEPLATES, enemyTooltip()},
+			{"nameplateShowFriendlyPlayers","1","0",BINDING_NAME_FRIENDNAMEPLATES, friendlyTooltip()},
+			{"nameplateShowClassColor","1","0",OPTION_TOOLTIP_UNIT_NAMEPLATES_SHOW_ENEMIES..SHOW_CLASS_COLOR, UNIT_NAMEPLATES_CLASS_COLOR_FRIENDLY_TOOLTIP},--SHOW_CLASS_COLOR
+			{"nameplateShowFriendlyClassColor","1","0",OPTION_TOOLTIP_UNIT_NAMEPLATES_SHOW_FRIENDS..SHOW_CLASS_COLOR, UNIT_NAMEPLATES_CLASS_COLOR_ENEMY_TOOLTIP},
+			{"nameplateShowOffscreen","1","0",UNIT_NAMEPLATES_SHOW_OFFSCREEN, UNIT_NAMEPLATES_SHOW_OFFSCREEN_TOOLTIP},
+			--{"clampTargetNameplateToScreen","1","0",TARGET..SHOW_TARGET_CASTBAR_IN_V_KEY..LOCK.."在屏幕内"},
 		}
 		for i=1,#xingmingList do
-			local CVarsCB = PIGCheckbutton_R(xingmingbanF,{xingmingList[i][5],xingmingList[i][6] or xingmingList[i][5]},true)
-			if xingmingList[i][1] then
-				ADD_tishi(CVarsCB,xingmingList[i][5],-2,0)
-			end
+			local CVarsCB = PIGCheckbutton_R(xingmingbanF,{xingmingList[i][4],xingmingList[i][5]})
 			CVarsCB:SetScript("OnClick", function (self)
 				if self:GetChecked() then
-					SetCVar(xingmingList[i][2], xingmingList[i][3])
+					SetCVar(xingmingList[i][1], xingmingList[i][2])
 				else
-					SetCVar(xingmingList[i][2], xingmingList[i][4])
-				end
-				if xingmingList[i][1] then
-					PIG_OptionsUI.RLUI:Show()
+					SetCVar(xingmingList[i][1], xingmingList[i][3])
 				end
 			end)
-			CVarsCB:SetChecked(GetCVar(xingmingList[i][2])==xingmingList[i][3]);
+			CVarsCB:SetChecked(GetCVar(xingmingList[i][1])==xingmingList[i][2]);
+		end
+		local namepList = {
+			{"nameplateSelectedAlpha",1,0,1,0.01,"选中姓名版透明度%d%%(|cff00FF00默认100)|r"},
+			{"nameplateNotSelectedAlpha",1,0,1,0.01,"非选中姓名版透明度%d%%|cff00FF00(默认50)|r"},
+			{"nameplateMinAlpha",1,0,1,0.01,"正面姓名版透明度%d%%|cff00FF00(默认100)|r"},
+			{"nameplateMaxAlphaDistance",40,1,GetCVar("nameplateMaxDistance"),1,"正面开始变淡的距离%d|cff00FF00(默认40)|r"},
+			{"nameplateMaxAlpha",1,0,1,0.01,"背后姓名版透明度%d%%|cff00FF00(默认100)|r"},
+			{"nameplateMinAlphaDistance",10,1,GetCVar("nameplateMaxDistance"),1,"背后姓名版开始变淡的距离%d|cff00FF00(默认10)|r"},
+			{"nameplateOccludedAlphaMult",1,0,1,0.01,"被遮挡姓名版透明度%d%%|cff00FF00(默认100)|r"},
+		}
+		for i=1,#namepList do
+			local CVarsSlider = PIGSlider(xingmingbanF,{"TOPLEFT",xingmingbanF,"TOPLEFT",20,-160-(i*40)},{namepList[i][3],namepList[i][4],namepList[i][5],{["Right"]=namepList[i][6]}},200)
+			CVarsSlider:PIGSetValue(GetCVar(namepList[i][1]))
+
+			function CVarsSlider:PIGOnValueChange(arg1)
+				SetCVar(namepList[i][1], arg1)
+			end
 		end
 	end);
 	--自身高亮

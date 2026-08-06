@@ -1,6 +1,7 @@
 local _, addonTable = ...;
 local GeneralFun=addonTable.GeneralFun
 ----自动对话
+local cfff = CreateFrame("Frame")
 local function duorenwuduihua()
 	--交任务
 	if PIGA['Interaction']['AutoJiaorenwu'] then
@@ -44,13 +45,12 @@ local function IsNoDialogue(npcID)
 	end
 	return false
 end
-local function Eventduihua(self,event)
+cfff:SetScript("OnEvent", function(self,event)
 	if IsShiftKeyDown() then return end
 	local targetGUID =UnitGUID("NPC")
 	if targetGUID then
 		if PIGisSecret(targetGUID) then return end
 		local unitType, _, _, _, _, npcID = strsplit("-", targetGUID)
-		--print(event,unitType,npcID)
 		if unitType and npcID and unitType=="Creature" then
 			if IsNoDialogue(tonumber(npcID)) then return end
 		end
@@ -97,23 +97,21 @@ local function Eventduihua(self,event)
 			end
 		end	
 	end
-end
-local zidongduihuaFFF = CreateFrame("Frame")
-zidongduihuaFFF:SetScript("OnEvent", Eventduihua)
+end)
 function GeneralFun.Interaction_AutoDialogue()
 	if PIGA['Interaction']['AutoDialogue'] or PIGA['Interaction']['AutoJierenwu'] or PIGA['Interaction']['AutoJiaorenwu'] then
-		zidongduihuaFFF:RegisterEvent("GOSSIP_SHOW")
-		zidongduihuaFFF:RegisterEvent("QUEST_DETAIL")--显示任务详情时
-		zidongduihuaFFF:RegisterEvent("QUEST_FINISHED")--任务框架更改
-		zidongduihuaFFF:RegisterEvent("QUEST_PROGRESS")--当玩家与 NPC 谈论任务状态并且尚未点击完成按钮时触发
-		zidongduihuaFFF:RegisterEvent("QUEST_GREETING")-- 与提供或接受多个任务（即有多个活动或可用任务）的 NPC 交谈时触发
-		zidongduihuaFFF:RegisterEvent("QUEST_COMPLETE") --任务对话框显示了奖励和完成按钮可用
+		cfff:RegisterEvent("GOSSIP_SHOW")
+		cfff:RegisterEvent("QUEST_DETAIL")--显示任务详情时
+		cfff:RegisterEvent("QUEST_FINISHED")--任务框架更改
+		cfff:RegisterEvent("QUEST_PROGRESS")--当玩家与 NPC 谈论任务状态并且尚未点击完成按钮时触发
+		cfff:RegisterEvent("QUEST_GREETING")-- 与提供或接受多个任务（即有多个活动或可用任务）的 NPC 交谈时触发
+		cfff:RegisterEvent("QUEST_COMPLETE") --任务对话框显示了奖励和完成按钮可用
 	else
-		zidongduihuaFFF:UnregisterEvent("GOSSIP_SHOW")
-		zidongduihuaFFF:UnregisterEvent("QUEST_DETAIL")
-		zidongduihuaFFF:UnregisterEvent("QUEST_FINISHED")
-		zidongduihuaFFF:UnregisterEvent("QUEST_PROGRESS")
-		zidongduihuaFFF:UnregisterEvent("QUEST_GREETING")
-		zidongduihuaFFF:UnregisterEvent("QUEST_COMPLETE") 
+		cfff:UnregisterEvent("GOSSIP_SHOW")
+		cfff:UnregisterEvent("QUEST_DETAIL")
+		cfff:UnregisterEvent("QUEST_FINISHED")
+		cfff:UnregisterEvent("QUEST_PROGRESS")
+		cfff:UnregisterEvent("QUEST_GREETING")
+		cfff:UnregisterEvent("QUEST_COMPLETE") 
 	end
 end

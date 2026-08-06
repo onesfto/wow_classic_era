@@ -1071,7 +1071,7 @@ BG.Init(function()
 
                 local t = f:CreateFontString()
                 t:SetFont(BIAOGE_TEXT_FONT, 15, "OUTLINE")
-                t:SetText(L["请给团长个评价吧！"])
+                t:SetText(L["评价仅自己可见"])
                 t:SetPoint("TOP", BG.EndPJ.new, "TOP", 0, -30)
                 t:SetTextColor(1, 1, 1)
                 t:SetWidth(300)
@@ -1505,7 +1505,7 @@ BG.Init(function()
         t:SetPoint("TOP", BG.MainFrame, "TOP", 0, -50)
         t:SetFont(BIAOGE_TEXT_FONT, 20, "OUTLINE")
         t:SetTextColor(1, 0, 0)
-        t:SetText(L["该模块已被禁用"])
+        t:SetText(L["该模块已被禁用，右下角可以启用该模块"])
 
         function BG.YYShowHide()
             if BiaoGe.YYdb.share == 1 then

@@ -192,21 +192,13 @@ for i=1,UIDROPDOWNMENU_MAXLEVELS do
 			if not self.func then return end
 			local fujilist = self:GetParent()
 			local xialaMenu = fujilist.dropdown
-			if xialaMenu.EasyMenu=="DJEasyMenu" or self.notCheckable then
-				self.Text:SetPoint("LEFT", self.TextPoint[1]+1, self.TextPoint[2]-1);
-			else
-				self.Text:SetPoint("LEFT", self.TextPoint[1]+1, self.TextPoint[2]-1);
-			end
+			self.Text:SetPoint("LEFT", self.TextPoint[1]+1, self.TextPoint[2]-1);
 		end);
 		CheckBut:HookScript("OnMouseUp", function (self)
 			if self.isTitle then return end
 			local fujilist = self:GetParent()
 			local xialaMenu = fujilist.dropdown
-			if xialaMenu.EasyMenu=="DJEasyMenu" or self.notCheckable then
-				self.Text:SetPoint("LEFT", self.TextPoint[1], self.TextPoint[2]);
-			else
-				self.Text:SetPoint("LEFT", self.TextPoint[1], self.TextPoint[2]);
-			end
+			self.Text:SetPoint("LEFT", self.TextPoint[1], self.TextPoint[2]);
 		end);
 		CheckBut:HookScript("OnEnter", function (self)
 			if self.isTitle then self.Highlight:Hide() return end
@@ -281,7 +273,7 @@ end
 function Create.PIGDownMenu(fuF,Point,SizeWH,EasyMenu,UIname,lie)
 	local DownMenu = CreateFrame("Frame", UIname, fuF,"BackdropTemplate");
 	DownMenu.EasyMenu=EasyMenu
-	if EasyMenu=="EasyMenu" or EasyMenu=="DJEasyMenu" then	
+	if EasyMenu=="EasyMenu" then	
 		DownMenu:SetAllPoints(fuF)
 		DownMenu.Button = CreateFrame("Button",nil,DownMenu, "TruncatedButtonTemplate");
 		DownMenu.Button:SetAllPoints(DownMenu)
@@ -343,7 +335,7 @@ function Create.PIGDownMenu(fuF,Point,SizeWH,EasyMenu,UIname,lie)
 			PIG_DropDown[1].showTimer = UIDROPDOWNMENU_SHOW_TIME;
 			PIG_DropDown[1].isCounting = 1;
 			PIG_DropDown[1]:ClearAllPoints();
-			if fujiFrame.EasyMenu=="EasyMenu" or fujiFrame.EasyMenu=="DJEasyMenu" then
+			if fujiFrame.EasyMenu=="EasyMenu" then
 				if Point then PIG_DropDown[1]:SetPoint(Point[1],Point[2],Point[3],Point[4],Point[5]);end
 			else
 				PIG_DropDown[1]:SetPoint("TOPLEFT",fujiFrame, "BOTTOMLEFT", 0,0);
@@ -429,10 +421,10 @@ function Create.PIGDownMenu(fuF,Point,SizeWH,EasyMenu,UIname,lie)
 			CheckBut.Check:SetTexCoord(0.0, 0.5, 0.5, 1.0);
 			CheckBut.UnCheck:SetTexCoord(0.5, 1.0, 0.5, 1.0);
 		end
-		if self.EasyMenu=="DJEasyMenu" or info.notCheckable or info.isTitle then
+		if info.notCheckable or info.isTitle then
 			CheckBut.Check:Hide();
 			CheckBut.UnCheck:Hide();
-			CheckBut.TextPoint={"LEFT", 18, 0}
+			CheckBut.TextPoint={4, 0}
 			if info.isTitle then
 				CheckBut.Text:SetTextColor(1, 0.843, 0, 1);
 			end

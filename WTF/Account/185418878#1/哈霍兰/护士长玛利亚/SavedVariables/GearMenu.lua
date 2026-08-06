@@ -8,10 +8,36 @@ GearMenuConfiguration = {
 ["enableTrinketMenu"] = false,
 ["lockTrinketMenuFrame"] = false,
 ["enableFastPress"] = false,
+["enableFallbackToBaseItem"] = false,
 ["enableSimpleTooltips"] = false,
+["lastNotifiedVersion"] = "",
 ["enableTooltips"] = true,
 ["enableUnequipSlot"] = true,
 ["enableRuneSlots"] = true,
+["profiles"] = {
+["Default"] = {
+["enableDragAndDrop"] = true,
+["trinketMenuSlotSize"] = 40,
+["trinketMenuShowCooldowns"] = true,
+["filterItemQuality"] = 2,
+["frames"] = {
+},
+["enableTrinketMenu"] = true,
+["lockTrinketMenuFrame"] = false,
+["enableFastPress"] = false,
+["enableFallbackToBaseItem"] = false,
+["quickChangeRules"] = {
+},
+["enableTooltips"] = true,
+["enableUnequipSlot"] = true,
+["enableRuneSlots"] = true,
+["gearBars"] = {
+},
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 4,
+["enableSimpleTooltips"] = false,
+},
+},
 ["gearBars"] = {
 {
 ["showKeyBindings"] = true,
@@ -40,30 +66,30 @@ GearMenuConfiguration = {
 },
 ["displayName"] = "Default GearBar",
 ["isLocked"] = false,
-["changeMenuDirection"] = 1,
+["gearSlotSize"] = 48,
 ["showCooldowns"] = true,
 ["orientation"] = 1,
-["position"] = {
-["posX"] = -472.8234252929688,
-["point"] = "RIGHT",
-["posY"] = -207.9356994628906,
-["relativePoint"] = "RIGHT",
-},
 ["changeSlotSize"] = 40,
-["gearSlotSize"] = 48,
+["position"] = {
+["relativePoint"] = "RIGHT",
+["posY"] = -207.9356994628906,
+["point"] = "RIGHT",
+["posX"] = -472.8234252929688,
+},
+["changeMenuDirection"] = 1,
 },
 },
-["quickChangeRules"] = {
-},
+["addonVersion"] = "v2.8.0",
 ["uiTheme"] = 2,
 ["trinketMenuColumns"] = 4,
 ["frames"] = {
 ["GM_TrinketMenuFrame"] = {
-["posX"] = 414.6780700683594,
-["posY"] = -32.23712158203125,
-["point"] = "LEFT",
 ["relativePoint"] = "LEFT",
+["point"] = "LEFT",
+["posY"] = -32.23712158203125,
+["posX"] = 414.6780700683594,
 },
 },
-["addonVersion"] = "v2.7.0",
+["quickChangeRules"] = {
+},
 }

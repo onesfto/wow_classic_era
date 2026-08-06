@@ -4,6 +4,7 @@ local _, ns = ...
 
 local LibBG = ns.LibBG
 local L = ns.L
+local GetClassColor = ns.GetClassColor
 
 local RR = ns.RR
 local NN = ns.NN
@@ -21,10 +22,12 @@ local pt = print
 local _, class = UnitClass("player")
 local r, g, b, cff = GetClassColor(class)
 
+local MAP_PREFIXES = {}
 local channel = "BiaoGeAIMap"
 C_ChatInfo.RegisterAddonMessagePrefix(channel)
 for i = 1, BG.addonChannelCount do
     local channelName = channel .. i
+    MAP_PREFIXES[channelName] = true
     C_ChatInfo.RegisterAddonMessagePrefix(channelName)
 end
 
@@ -85,13 +88,13 @@ BG.Init(function()
             GameTooltip:ClearLines()
             GameTooltip:AddLine(self:GetText(), 1, 1, 1, true)
             GameTooltip:AddLine(L["显示团长上次发送的站位图。"], 1, 0.82, 0, true)
-            GameTooltip:AddLine(L["快捷命令：/bgmap 或 /aimap"], 1, 0.82, 0, true)
+            GameTooltip:AddLine(L["快捷命令：/bgmap 或 /tjmap"], 1, 0.82, 0, true)
             GameTooltip:AddLine(" ", 1, 0.82, 0, true)
-            -- if BGAI then
-            --     GameTooltip:AddLine(L["团长使用教程：输入命令/ai打开BiaoGeAI插件，点击一键安排，再点击发送。"], 1, 0.82, 0, true)
-            -- else
-            --     GameTooltip:AddLine(L["团长需使用BiaoGeAI插件才能发送站位图。"], 1, 0.82, 0, true)
-            -- end
+            if TJ then
+                GameTooltip:AddLine(L["团长使用教程：输入命令/tj打开TuanJian插件，点击一键安排，再点击发送。"], 1, 0.82, 0, true)
+            else
+                GameTooltip:AddLine(L["团长需使用TuanJian插件才能发送站位图，该插件可在各大插件平台免费下载。"], 1, 0.82, 0, true)
+            end
             GameTooltip:Show()
         end)
         bt:SetScript("OnLeave", GameTooltip_Hide)
@@ -622,7 +625,7 @@ BG.Init(function()
                         end
                     end
                 end
-            elseif prefix:match(channel .. '(%d+)') then
+            elseif MAP_PREFIXES[prefix] then
                 if msg:match("^!AIMAP!") then
                     receiveStart2[sender] = true
                     wipe(receiveCodes2)

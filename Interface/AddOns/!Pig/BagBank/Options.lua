@@ -28,7 +28,7 @@ local function gengxinbeibaoshengyugeshu()
 		MainMenuBarBackpackButton.Count:SetTextColor(0, 1, 0, 1);
 	end
 end
-local function BagKongyu()
+local function BagKongyuFun()
 	if PIGA["BagBank"]["BagKongyu"] then
 		MainMenuBarBackpackButton.pigbagkongyu=true
 		SetCVar("displayFreeBagSlots", "1")
@@ -48,7 +48,7 @@ MainMenuBarBackpackButton:HookScript("OnEvent", function(self,event,arg1)
 			gengxinbeibaoshengyugeshu()
 		end
 	elseif event == "PLAYER_ENTERING_WORLD" then
-		BagKongyu()
+		BagKongyuFun()
 	end
 end)
 local GetSortBagsRightToLeft=GetSortBagsRightToLeft or C_Container and C_Container.GetSortBagsRightToLeft
@@ -158,38 +158,34 @@ function PD.addOptions_BagBank()
 		}
 		----
 		local BAG_SetList = {
-			{false,false,"显示背包剩余空间","BagKongyu",BagKongyu},
-			{true,true, "装备绑定物品提示","EquipBind",BagKongyu},
-			{true, true, "垃圾物品提示",   "JunkShow",},
-			{false,false,"战利品放入左边包",nil,        SetInsertItemsLeftToRight,GetInsertItemsLeftToRight},
-			{false,false,"反向整理",       nil,        PIGSetSortBagsRightToLeft,PIGGetSortBagsRightToLeft},
+			{false,"BagKongyu",BagKongyuFun,"显示背包剩余空间"},
+			{true, "EquipBind",nil, "装备绑定物品提示"},
+			{true, "JunkShow", nil, "自动卖出物品提示","提示售卖助手设置的自动卖出物品"},
+			{false,{SetInsertItemsLeftToRight,GetInsertItemsLeftToRight},nil,"战利品放入左边包"},
+			{false,{PIGSetSortBagsRightToLeft,PIGGetSortBagsRightToLeft},nil,"反向整理"},
 		}
 		if PIG_MaxTocversion() then
-			table.insert(BAG_SetList,{false,false,"新物品提示","NewItem"})
+			table.insert(BAG_SetList,{false,"NewItem",nil,"新物品提示"})
 		end
 		for i=1,#BAG_SetList do
-			local BagBankSet = PIGCheckbutton(BagBankF.SetListF,{"TOPLEFT",BagBankF.SetListF,"TOPLEFT",20,-(i-1)*40-20},{BAG_SetList[i][3]})
-			if BAG_SetList[i][4] then
-				BagBankSet:SetChecked(PIGA["BagBank"][BAG_SetList[i][4]])
-			end
-			if BAG_SetList[i][6] then
-				BagBankSet:SetChecked(BAG_SetList[i][6]())
+			local BagBankSet = PIGCheckbutton(BagBankF.SetListF,{"TOPLEFT",BagBankF.SetListF,"TOPLEFT",20,-(i-1)*40-20},{BAG_SetList[i][4],BAG_SetList[i][5]})
+			if type(BAG_SetList[i][2])=="string" then
+				BagBankSet:SetChecked(PIGA["BagBank"][BAG_SetList[i][2]])
+			else
+				BagBankSet:SetChecked(BAG_SetList[i][2][2]())
 			end
 			BagBankSet:SetScript("OnClick", function (self)
-				if self:GetChecked() then
-					if BAG_SetList[i][2] then
-						PIGErrorMsg("重新打开背包生效")
-					end
+				if type(BAG_SetList[i][2])=="string" then
+					PIGA["BagBank"][BAG_SetList[i][2]]=self:GetChecked()
 				else
-					if BAG_SetList[i][1] then
+					BAG_SetList[i][2][1](self:GetChecked())
+				end
+				if BAG_SetList[i][1] then
+					if self:GetChecked() then
+						PIGErrorMsg("重新打开背包生效")
+					else
 						PIG_OptionsUI.RLUI:Show()
 					end
-				end
-				if BAG_SetList[i][4] then
-					PIGA["BagBank"][BAG_SetList[i][4]]=self:GetChecked()
-				end
-				if BAG_SetList[i][5] then
-					BAG_SetList[i][5](self:GetChecked())
 				end
 			end)
 		end

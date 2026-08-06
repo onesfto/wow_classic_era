@@ -56,6 +56,7 @@ function Create.PIGSlider(fuF,Point,data,WH,UIName)--,{["Right"]="%"}
 	local WH=WH or 140
 	local SliderF = CreateFrame("Slider", UIName, fuF, "MinimalSliderWithSteppersTemplate")--"OptionsSliderTemplate"
 	SliderF:SetWidth(WH);
+	SliderF:SetHeight(24);
 	SliderF:SetPoint(Point[1],Point[2],Point[3],Point[4],Point[5]);
 	SliderF:SetObeyStepOnDrag(true);
 	PIGSetFont(SliderF.RightText)

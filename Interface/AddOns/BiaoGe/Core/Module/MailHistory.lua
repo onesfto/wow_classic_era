@@ -3,6 +3,7 @@ local AddonName, ns = ...
 
 local LibBG = ns.LibBG
 local L = ns.L
+local GetClassColor = ns.GetClassColor
 
 local Size = ns.Size
 local RGB = ns.RGB
@@ -1476,5 +1477,7 @@ BG.Init(function()
     mailHistory.isChooseRealm = mailHistory.isChooseRealm or 1
     EnsureCurrentCharacter()
 
+    if BiaoGe.disabledModules["MailHistory"] then return end
+    
     RoadMail()
 end)

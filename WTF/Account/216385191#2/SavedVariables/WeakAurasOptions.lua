@@ -42256,10 +42256,10 @@ WeakAurasOptionsSaved = {
 ["lockPositions"] = false,
 ["spellCacheAchivements"] = true,
 ["frame"] = {
-["xOffset"] = 566.6480102539062,
+["xOffset"] = 1538.353698730469,
 ["width"] = 1049.428833007813,
 ["height"] = 917.619140625,
-["yOffset"] = 1087.607177734375,
+["yOffset"] = 1143.100463867188,
 },
 ["spellCacheStrings"] = true,
 ["build"] = "68940",

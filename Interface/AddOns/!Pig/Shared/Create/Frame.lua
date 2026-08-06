@@ -239,31 +239,31 @@ function Create.PIGSetMovable(LeftUI,MovableUI,KeyDown,Per,CombatLock)
 	end)
 	MovableUI:SetClampedToScreen(true)
 end
-function Create.add_CloseUI(MODE,self,Ww,Hh,CloseUI)
+function Create.add_CloseUI(MODE,fujik,Ww,Hh,CloseUI)
 	local Ww = Ww or 22
 	local Hh = Hh or 22
-	local CloseUI=CloseUI or self
+	local CloseUI=CloseUI or fujik
 	if MODE then
-		self.Close = CreateFrame("Button",nil,self, "UIPanelCloseButton");
-		self.Close:SetSize(Ww+6,Hh+6);
-		self.Close:SetPoint("TOPRIGHT",self,"TOPRIGHT",0,0);
+		fujik.Close = CreateFrame("Button",nil,fujik, "UIPanelCloseButton");
+		fujik.Close:SetSize(Ww+6,Hh+6);
+		fujik.Close:SetPoint("TOPRIGHT",fujik,"TOPRIGHT",0,0);
 	else
-		self.Close = CreateFrame("Button",nil,self);
-		self.Close:SetHighlightTexture("interface/buttons/ui-common-mousehilight.blp")
-		self.Close:SetSize(Ww,Hh);
-		self.Close:SetPoint("TOPRIGHT",self,"TOPRIGHT",0,0);
-		self.Close.Tex = self.Close:CreateTexture(nil, "BORDER");
-		--self.Close.Tex:SetTexture("interface/common/voicechat-muted.blp");
-		self.Close.Tex:SetAtlas("common-icon-redx")
-		self.Close.Tex:SetSize(self.Close:GetWidth()-6,self.Close:GetHeight()-6);
-		self.Close.Tex:SetPoint("CENTER",0,0);
-		self.Close:HookScript("OnMouseDown", function (self)
+		fujik.Close = CreateFrame("Button",nil,fujik);
+		fujik.Close:SetHighlightTexture("interface/buttons/ui-common-mousehilight.blp")
+		fujik.Close:SetSize(Ww,Hh);
+		fujik.Close:SetPoint("TOPRIGHT",fujik,"TOPRIGHT",0,0);
+		fujik.Close.Tex = fujik.Close:CreateTexture(nil, "BORDER");
+		--fujik.Close.Tex:SetTexture("interface/common/voicechat-muted.blp");
+		fujik.Close.Tex:SetAtlas("common-icon-redx")
+		fujik.Close.Tex:SetSize(fujik.Close:GetWidth()-6,fujik.Close:GetHeight()-6);
+		fujik.Close.Tex:SetPoint("CENTER",0,0);
+		fujik.Close:HookScript("OnMouseDown", function (self)
 			self.Tex:SetPoint("CENTER",-1.5,-1.5);
 		end);
-		self.Close:HookScript("OnMouseUp", function (self)
+		fujik.Close:HookScript("OnMouseUp", function (self)
 			self.Tex:SetPoint("CENTER");
 		end);
-		self.Close:HookScript("OnClick", function (self)
+		fujik.Close:HookScript("OnClick", function (self)
 			PlaySound(SOUNDKIT.IG_CHAT_EMOTE_BUTTON);
 			CloseUI:Hide()
 		end);

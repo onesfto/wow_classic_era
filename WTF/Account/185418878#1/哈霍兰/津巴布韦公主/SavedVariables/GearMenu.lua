@@ -14,30 +14,7 @@ GearMenuConfiguration = {
 ["enableTooltips"] = true,
 ["enableUnequipSlot"] = true,
 ["enableRuneSlots"] = true,
-["profiles"] = {
-["Default"] = {
-["enableDragAndDrop"] = true,
-["trinketMenuSlotSize"] = 40,
-["trinketMenuShowCooldowns"] = true,
-["filterItemQuality"] = 2,
-["frames"] = {
-},
-["enableTrinketMenu"] = true,
-["lockTrinketMenuFrame"] = false,
-["enableFastPress"] = false,
-["enableFallbackToBaseItem"] = false,
-["quickChangeRules"] = {
-},
-["enableTooltips"] = true,
-["enableUnequipSlot"] = true,
-["enableRuneSlots"] = true,
-["gearBars"] = {
-},
-["uiTheme"] = 2,
-["trinketMenuColumns"] = 4,
-["enableSimpleTooltips"] = false,
-},
-},
+["addonVersion"] = "v2.8.0",
 ["gearBars"] = {
 {
 ["showKeyBindings"] = true,
@@ -66,30 +43,53 @@ GearMenuConfiguration = {
 },
 ["displayName"] = "Default GearBar",
 ["isLocked"] = false,
-["changeMenuDirection"] = 1,
+["gearSlotSize"] = 48,
 ["showCooldowns"] = true,
 ["orientation"] = 1,
-["position"] = {
-["posX"] = -467.4744567871094,
-["posY"] = -209.8881225585938,
-["point"] = "RIGHT",
-["relativePoint"] = "RIGHT",
-},
 ["changeSlotSize"] = 40,
-["gearSlotSize"] = 48,
+["position"] = {
+["relativePoint"] = "RIGHT",
+["point"] = "RIGHT",
+["posY"] = -209.8881225585938,
+["posX"] = -467.4744567871094,
+},
+["changeMenuDirection"] = 1,
 },
 },
-["quickChangeRules"] = {
+["frames"] = {
+["GM_TrinketMenuFrame"] = {
+["relativePoint"] = "RIGHT",
+["point"] = "RIGHT",
+["posY"] = -193.4707183837891,
+["posX"] = -294.9524841308594,
+},
 },
 ["uiTheme"] = 2,
 ["trinketMenuColumns"] = 4,
+["quickChangeRules"] = {
+},
+["profiles"] = {
+["Default"] = {
+["enableDragAndDrop"] = true,
+["trinketMenuSlotSize"] = 40,
+["trinketMenuShowCooldowns"] = true,
+["filterItemQuality"] = 2,
 ["frames"] = {
-["GM_TrinketMenuFrame"] = {
-["posX"] = -294.9524841308594,
-["posY"] = -193.4707183837891,
-["point"] = "RIGHT",
-["relativePoint"] = "RIGHT",
+},
+["enableTrinketMenu"] = true,
+["lockTrinketMenuFrame"] = false,
+["enableFastPress"] = false,
+["enableFallbackToBaseItem"] = false,
+["quickChangeRules"] = {
+},
+["enableTooltips"] = true,
+["enableUnequipSlot"] = true,
+["enableRuneSlots"] = true,
+["gearBars"] = {
+},
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 4,
+["enableSimpleTooltips"] = false,
 },
 },
-["addonVersion"] = "v2.8.0",
 }

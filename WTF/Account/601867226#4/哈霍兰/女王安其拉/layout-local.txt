@@ -41,13 +41,6 @@ X: -174
 Y: 94
 W: 853
 H: 627
-Frame: Gw2ErrorLog
-FrameLevel: 1
-Anchor: CENTER
-X: 0
-Y: 0
-W: 700
-H: 600
 Frame: GwBagFrame
 FrameLevel: 1
 Anchor: RIGHT
@@ -55,3 +48,10 @@ X: -248
 Y: 82
 W: 457
 H: 525
+Frame: Gw2ErrorLog
+FrameLevel: 1
+Anchor: CENTER
+X: 0
+Y: 0
+W: 700
+H: 600

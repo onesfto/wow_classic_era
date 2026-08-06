@@ -61,11 +61,14 @@ function Fun.Update_ItemButtonZLVranse(ly,ItemButton,data1,data2,data3)
 			if itemLink then
 				local itemID, itemType, itemSubType, itemEquipLoc, icon, classID, subClassID = PIGGetItemInfoInstant(itemLink)
 				if classID==2 or classID==4 then
-					local r, g, b = GetItemQualityColor(quality or 1);
+					quality=quality or 1
+					local r, g, b = GetItemQualityColor(quality);
 					ItemButton.ZLV:SetTextColor(r, g, b);
-					_GetTooltipLevel("bag",{data1,data2},function(ItemLevel)
-						ItemButton.ZLV:SetText(ItemLevel);
-					end)
+					if quality>0 then
+						_GetTooltipLevel("bag",{data1,data2},function(ItemLevel)
+							ItemButton.ZLV:SetText(ItemLevel);
+						end)
+					end
 				end
 			end
 		elseif ly=="L" or ly=="YC" then

@@ -4,6 +4,7 @@ BetterBagsDB = {
 ["黑龙守护者 - 哈霍兰"] = "Default",
 ["绿龙守护者 - 哈霍兰"] = "Default",
 ["灞波儿奔壹世 - 硬汉"] = "Default",
+["蓝龙守护者 - 哈霍兰"] = "Default",
 ["哈霍兰大格格 - 哈霍兰"] = "Default",
 ["德加和尚 - 哈霍兰"] = "Default",
 ["法德迦 - 哈霍兰"] = "Default",
@@ -374,14 +375,14 @@ true,
 },
 ["name"] = "A-合剂",
 },
-["A-AD"] = {
+["A-非专业"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-AD",
+["name"] = "A-非专业",
 },
 ["最近物品"] = {
 ["enabled"] = {
@@ -393,24 +394,24 @@ true,
 ["name"] = "最近物品",
 ["dynamic"] = true,
 },
-["垃圾"] = {
+["容器"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "垃圾",
+["name"] = "容器",
 ["dynamic"] = true,
 },
-["A-非专业"] = {
+["A-AD"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-非专业",
+["name"] = "A-AD",
 },
 ["装备-防御"] = {
 ["enabled"] = {
@@ -421,14 +422,14 @@ true,
 },
 ["name"] = "装备-防御",
 },
-["容器"] = {
+["垃圾"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "容器",
+["name"] = "垃圾",
 ["dynamic"] = true,
 },
 ["材料"] = {
@@ -543,9 +544,10 @@ true,
 },
 ["itemLevelColor"] = {
 ["maxItemLevelByCharacter"] = {
+["蓝龙守护者-哈霍兰"] = 2,
 ["法德迦-哈霍兰"] = 92,
 ["绿龙守护者-哈霍兰"] = 6,
-["黑龙守护者-哈霍兰"] = 56,
+["黑龙守护者-哈霍兰"] = 65,
 ["哈霍兰大格格-哈霍兰"] = 92,
 ["灞波儿奔壹世-硬汉"] = 13,
 ["德加和尚-哈霍兰"] = 92,
@@ -571,14 +573,14 @@ nil,
 ["__bankDefaultTabsFixed"] = true,
 ["positions"] = {
 {
-["y"] = -85.0859375,
-["x"] = 284.5997314453125,
-["point"] = "TOPLEFT",
+["y"] = -87.9761962890625,
+["x"] = -277.4102935791016,
+["point"] = "TOP",
 ["scale"] = 1,
 },
 [0] = {
-["y"] = -198.57568359375,
-["x"] = 241.0810546875,
+["y"] = -156.3895263671875,
+["x"] = 2.293121337890625,
 ["point"] = "TOP",
 ["scale"] = 1,
 },
@@ -691,22 +693,22 @@ nil,
 ["首饰-法系"] = {
 ["shown"] = true,
 },
-["A-AD"] = {
+["A-非专业"] = {
 ["shown"] = true,
 },
 ["最近物品"] = {
 ["shown"] = true,
 },
-["垃圾"] = {
+["容器"] = {
 ["shown"] = true,
 },
-["A-非专业"] = {
+["A-AD"] = {
 ["shown"] = true,
 },
 ["装备-防御"] = {
 ["shown"] = true,
 },
-["容器"] = {
+["垃圾"] = {
 ["shown"] = true,
 },
 ["材料"] = {
@@ -1085,14 +1087,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-非专业"] = {
+["A-AD"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-非专业",
+["name"] = "A-AD",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1129,14 +1131,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["战场"] = {
+["A-非专业"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "战场",
+["name"] = "A-非专业",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1184,14 +1186,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-AD"] = {
+["战场"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-AD",
+["name"] = "战场",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1266,6 +1268,7 @@ true,
 1,
 [0] = 3,
 },
+["theme"] = "GW2UIPlus",
 ["stacking"] = {
 {
 ["mergeUnstackable"] = false,

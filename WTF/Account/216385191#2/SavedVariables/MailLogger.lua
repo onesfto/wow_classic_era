@@ -13,7 +13,10 @@ MailLoggerDB = {
 ["LogEverything"] = false,
 ["EnableML"] = true,
 ["AltList"] = {
+["蓝龙守护者-哈霍兰"] = true,
 ["法德迦-哈霍兰"] = true,
+["绿龙守护者-哈霍兰"] = true,
+["黑龙守护者-哈霍兰"] = true,
 ["哈霍兰大格格-哈霍兰"] = true,
 ["灞波儿奔壹世-硬汉"] = true,
 ["德加和尚-哈霍兰"] = true,
@@ -1016,6 +1019,183 @@ true,
 ["Location"] = "暴风城",
 ["TargetName"] = "黑龙守护者-哈霍兰",
 ["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "有趣的小姨-哈霍兰",
+["Date"] = "2026-08-03",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 3950000,
+["Time"] = "21:39:49",
+["GiveMoney"] = 0,
+["Location"] = "诅咒之地",
+["PlayerName"] = "法德迦-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "黑龙守护者-哈霍兰",
+["Date"] = "2026-08-03",
+["Reason"] = 1,
+["Time"] = "21:59:23",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "法德迦-哈霍兰",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cff0070dd|Hitem:13000::::::::1::::::::::|h[魔法火焰之杖]|h|r",
+["Name"] = "魔法火焰之杖",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cff0070dd|Hitem:9402::::::::1::::::::::|h[尘世褶裙]|h|r",
+["Name"] = "尘世褶裙",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cff1eff00|Hitem:10386::::::312:133550720:1::::::::::|h[力量之巨神护手]|h|r",
+["Name"] = "力量之巨神护手",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cff1eff00|Hitem:10390::::::1217:628786560:1::::::::::|h[野熊之巨神肩铠]|h|r",
+["Name"] = "野熊之巨神肩铠",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cff1eff00|Hitem:12803::::::::1::::::::::|h[生命精华]|h|r",
+["Name"] = "生命精华",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cff1eff00|Hitem:15289::::::185:1905244288:1::::::::::|h[耐力之曲线长弓]|h|r",
+["Name"] = "耐力之曲线长弓",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cff1eff00|Hitem:15280::::::1805:1011059072:1::::::::::|h[奥法惩戒之巫师之手]|h|r",
+["Name"] = "奥法惩戒之巫师之手",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cffffffff|Hitem:2091::::::::1::::::::::|h[魔尘]|h|r",
+["Name"] = "魔尘",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cffffffff|Hitem:22529::::::::1::::::::::|h[蛮荒之叶]|h|r",
+["Name"] = "蛮荒之叶",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cffffffff|Hitem:8392::::::::1::::::::::|h[诅咒之地的野猪肺]|h|r",
+["Name"] = "诅咒之地的野猪肺",
+},
+},
+},
+{
+["PlayerName"] = "黑龙守护者-哈霍兰",
+["Date"] = "2026-08-03",
+["Time"] = "21:59:32",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 1,
+["ItemLink"] = "|cff1eff00|Hitem:15289::::::185:1905244288:1::::::::::|h[耐力之曲线长弓]|h|r",
+["Name"] = "耐力之曲线长弓",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cff1eff00|Hitem:10390::::::1217:628786560:1::::::::::|h[野熊之巨神肩铠]|h|r",
+["Name"] = "野熊之巨神肩铠",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cff1eff00|Hitem:10386::::::312:133550720:1::::::::::|h[力量之巨神护手]|h|r",
+["Name"] = "力量之巨神护手",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cff0070dd|Hitem:13000::::::::1::::::::::|h[魔法火焰之杖]|h|r",
+["Name"] = "魔法火焰之杖",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cff0070dd|Hitem:9402::::::::1::::::::::|h[尘世褶裙]|h|r",
+["Name"] = "尘世褶裙",
+},
+{
+["Number"] = 1,
+["ItemLink"] = "|cff1eff00|Hitem:15280::::::1805:1011059072:1::::::::::|h[奥法惩戒之巫师之手]|h|r",
+["Name"] = "奥法惩戒之巫师之手",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "哈霍兰大格格-哈霍兰",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "黑龙守护者-哈霍兰",
+["Date"] = "2026-08-03",
+["Reason"] = 1,
+["Time"] = "21:59:36",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "法德迦-哈霍兰",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 17,
+["ItemLink"] = "|cffffffff|Hitem:13931::::::::1::::::::::|h[夜鳞鱼汤]|h|r",
+["Name"] = "夜鳞鱼汤",
+},
+{
+["Number"] = 3,
+["ItemLink"] = "|cffffffff|Hitem:3825::::::::1::::::::::|h[坚韧药剂]|h|r",
+["Name"] = "坚韧药剂",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cffffffff|Hitem:13456::::::::1::::::::::|h[强效冰霜防护药水]|h|r",
+["Name"] = "强效冰霜防护药水",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cffffffff|Hitem:13459::::::::1::::::::::|h[强效暗影防护药水]|h|r",
+["Name"] = "强效暗影防护药水",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cffffffff|Hitem:20007::::::::1::::::::::|h[魔血药水]|h|r",
+["Name"] = "魔血药水",
+},
+},
+},
+{
+["TargetName"] = "Minnow-法琳娜",
+["Date"] = "2026-08-04",
+["Time"] = "19:35:10",
+["ReceiveMoney"] = 750000,
+["GiveItems"] = {
+},
+["GiveMoney"] = 0,
+["Location"] = "诅咒之地",
+["PlayerName"] = "法德迦-哈霍兰",
+["Result"] = "completed",
 ["ReceiveItems"] = {
 },
 },

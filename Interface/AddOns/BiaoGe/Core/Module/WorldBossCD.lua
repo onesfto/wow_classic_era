@@ -4,6 +4,7 @@ local AddonName, ns = ...
 
 local LibBG = ns.LibBG
 local L = ns.L
+local GetClassColor = ns.GetClassColor
 
 local Size = ns.Size
 local RGB = ns.RGB
@@ -198,7 +199,7 @@ BG.Init(function()
 
             bt:SetScript("OnMouseDown", function(self, button)
                 if button == "RightButton" and self.unit then
-                    CompactUnitFrame_OpenMenu(self)
+                    CompactUnitFrame_OpenMenu(self, self.unit)
                 else
                     BG.MainFrame:GetScript("OnMouseDown")(BG.MainFrame)
                 end

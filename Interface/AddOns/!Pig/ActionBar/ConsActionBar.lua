@@ -31,7 +31,7 @@ function ActionBarfun.addOptions_CABar()
 	CABarF.Open:SetScript("OnClick", function (self)
 		if self:GetChecked() then
 			PIGA["CABar"]["Open"]=true;
-			ActionBarfun.ConsumableActionBar()
+			ActionBarfun.CABar()
 			ActionBarfun.Update_ActionButton(true)
 		else
 			PIGA["CABar"]["Open"]=false;

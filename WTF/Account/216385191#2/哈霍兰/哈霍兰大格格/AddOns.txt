@@ -204,7 +204,7 @@ GW2_UI: enabled
 MacroToolkit: enabled
 MacroToolkitIcons: enabled
 Onesfto: enabled
-SexyMap: enabled
+SexyMap: disabled
 SimpleRaidTargetIcons: enabled
 SinStats: enabled
 SharedMedia_Rurutia: enabled

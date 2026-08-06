@@ -342,82 +342,7 @@ Create.PIGaddQuickBut(7,{
 			General.arrow:SetAtlas("UI-HUD-ActionBar-Flyout-Mouseover");
 			General.arrow:SetSize(16,8);
 		end
-		--玩具
-		local ToyList = {
-			64488,--旅店老板的女儿
-			260221,--纳鲁的拥抱
-		}
-		local ToyList_Retail = {
-			168907,--数字化全息炉石
-			162973,--冬天爷爷的炉石
-			166746,--吞火者的炉石
-			165802,--复活节的炉石
-			165802,--复活节的炉石
-			165670,--小匹德菲特的可爱炉石
-			208704,--幽邃住民的土灵炉石
-			190196,--开悟者的炉石
-			228940,--恶名丝线炉石
-			163045,--无头骑士的炉石
-			193588,--时光旅行者的炉石
-			165669,
-			184353,
-			200630,
-			172179,
-			180290,
-			209035,
-			166747,
-			188952,
-			110560,--要塞炉石
-			140192,--达拉然炉石
-			182773,
-			212337,--炉之石
-			93672,--黑暗之门	
-		}
-		local BagList = {
-			6948,--炉石
-			46874,--银色北伐军战袍
-		}
-		if PIG_MaxTocversion(110000,true) then
-			for k,v in pairs(ToyList_Retail) do
-				table.insert(ToyList,v)
-			end
-		elseif PIG_MaxTocversion(20000,true) then
-			table.insert(ToyList,184871)--黑暗之门
-			table.insert(BagList,28585)--红宝石靴子
-		else
-
-		end
-		local listall={}
-		local function BAGIsitemID(duibiID)
-			for bag=1,#bagData["bagID"] do
-				for slot=1,PIGGetContainerNumSlots(bagData["bagID"][bag]) do
-					local ItemID = PIGGetContainerItemID(bagData["bagID"][bag], slot)
-					if ItemID and ItemID==duibiID then
-						return true
-					end
-				end
-			end
-			return false
-		end
-		local function jiazaiHasToy()
-			for i=1,#ToyList do
-				local HasToy = PlayerHasToy(ToyList[i])
-				if HasToy then
-					table.insert(listall,{ToyList[i],true})
-				else
-					table.insert(listall,{ToyList[i],false})
-				end
-			end
-			for i=1,#BagList do
-				local HasToy = BAGIsitemID(BagList[i])
-				if HasToy then
-					table.insert(listall,{BagList[i],true})
-				else
-					table.insert(listall,{BagList[i],false})
-				end
-			end
-		end
-		jiazaiHasToy()
+		----------
 		local function gengxinlushiCD()
 			if General.lushiitemID then
 				local start, duration= GetItemCooldown(General.lushiitemID)
@@ -451,10 +376,7 @@ Create.PIGaddQuickBut(7,{
 				General:SetAttribute("spell2", Skill_List.top[1][2]);
 			end
 		end
-		General.lushijisuqi=0
-		UpdateIconAttribute()
 		Skill_Button_Genxin()
-		PIGUseKeyDown(General)
 		General:RegisterEvent("PLAYER_ENTERING_WORLD")
 		General:RegisterUnitEvent("UNIT_SPELLCAST_START","player");
 		General:RegisterUnitEvent("UNIT_SPELLCAST_STOP","player");
@@ -463,7 +385,7 @@ Create.PIGaddQuickBut(7,{
 			if event=="PLAYER_ENTERING_WORLD" then
 				self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 				General.lushijisuqi=0
-				UpdateIconAttribute()
+				UpdateIconAttribute(0)
 				Skill_Button_Genxin()
 			elseif event=="SPELL_UPDATE_COOLDOWN" then
 				C_Timer.After(0.01, gengxinlushiCD);
@@ -486,6 +408,19 @@ Create.PIGaddQuickBut(7,{
 		General_List:SetScale(PIGA["QuickBut"]["bili"]);
 		General_List:SetFrameLevel(33)
 		General_List:SetScale(0.8)
+		General_List.Close=PIGDiyBut(General_List,{"BOTTOM",General_List,"TOP",0,0},{26})
+		General_List.Close:HookScript("OnClick",function(self)
+			General_List:Hide();
+		end)
+		General:HookScript("OnClick",function(self,button)
+			if button == "LeftButton" and IsShiftKeyDown() then
+				if General_List:IsShown() then
+					General_List:Hide();
+				else
+					General_List:Show();
+				end
+			end
+		end)
 		hooksecurefunc(QuickButUI, "UpdateShowHide", function(self)
 			General_List:ClearAllPoints();
 			General.arrow:ClearAllPoints();
@@ -529,88 +464,146 @@ Create.PIGaddQuickBut(7,{
 				end
 			end
         end)
-		General_List:HookScript("OnShow",function(self)
-			PlaySound(SOUNDKIT.U_CHAT_SCROLL_BUTTON);
-			SetClampedTextureRotation(General.arrow,self.Angle_End);
-			for i=1,#listall do
-				if listall[i][1]==PIGA_Per["QuickBut"]["LushiID"] then
-					General_List.ButList[i].Select:Show();
-				else
-					General_List.ButList[i].Select:Hide();
-				end
-			end
-		end)
 		General_List:HookScript("OnHide",function(self)
 			PlaySound(SOUNDKIT.U_CHAT_SCROLL_BUTTON);
 			SetClampedTextureRotation(General.arrow,self.Angle_Play);
 		end)
-		General_List.Close=PIGDiyBut(General_List,{"BOTTOM",General_List,"TOP",0,0},{26})
-		General_List.Close:HookScript("OnClick",function(self)
-			General_List:Hide();
+		General_List:HookScript("OnShow",function(self)
+			PlaySound(SOUNDKIT.U_CHAT_SCROLL_BUTTON);
+			SetClampedTextureRotation(General.arrow,self.Angle_End);
+			General_List:Update_Lists()
 		end)
-		General:HookScript("OnClick",function(self,button)
-			if button == "LeftButton" and IsShiftKeyDown() then
-				if General_List:IsShown() then
-					General_List:Hide();
-				else
-					General_List:Show();
+		--玩具
+		local ToyList = {
+			64488,--旅店老板的女儿
+			260221,--纳鲁的拥抱
+		}
+		local ToyList_Retail = {
+			168907,--数字化全息炉石
+			162973,--冬天爷爷的炉石
+			166746,--吞火者的炉石
+			165802,--复活节的炉石
+			165802,--复活节的炉石
+			165670,--小匹德菲特的可爱炉石
+			208704,--幽邃住民的土灵炉石
+			190196,--开悟者的炉石
+			228940,--恶名丝线炉石
+			163045,--无头骑士的炉石
+			193588,--时光旅行者的炉石
+			165669,
+			184353,
+			200630,
+			172179,
+			180290,
+			209035,
+			166747,
+			188952,
+			110560,--要塞炉石
+			140192,--达拉然炉石
+			182773,
+			212337,--炉之石
+			93672,--黑暗之门	
+		}
+		local BagList = {
+			6948,--炉石
+			46874,--银色北伐军战袍
+		}
+		if PIG_MaxTocversion() then
+			table.insert(ToyList,184871)--黑暗之门
+			table.insert(BagList,28585)--红宝石靴子
+		else
+			for k,v in pairs(ToyList_Retail) do
+				table.insert(ToyList,v)
+			end
+		end
+		local function BAGIsitemID(duibiID)
+			for bag=1,#bagData["bagID"] do
+				for slot=1,PIGGetContainerNumSlots(bagData["bagID"][bag]) do
+					local ItemID = PIGGetContainerItemID(bagData["bagID"][bag], slot)
+					if ItemID and ItemID==duibiID then
+						return true
+					end
 				end
 			end
-		end)
+			local ItemID = GetInventoryItemID("player", 8);
+			if ItemID and ItemID==duibiID then
+				return true
+			end
+			return false
+		end
+		local function Get_Lists()
+			local datax={}
+			for i=1,#ToyList do
+				local itemicon=C_Item.GetItemIconByID(ToyList[i])
+				if itemicon and itemicon~=134400 then
+					table.insert(datax,{ToyList[i],itemicon,PlayerHasToy(ToyList[i])})
+				end
+			end
+			for i=1,#BagList do
+				local itemicon=C_Item.GetItemIconByID(BagList[i])
+				if itemicon and itemicon~=134400 then
+					table.insert(datax,{BagList[i],itemicon,BAGIsitemID(BagList[i])})
+				end
+			end
+			return datax
+		end
 		General_List.ButList={}
-		for i=1,gaoNum*kuanNum do
-			if listall[i] then
-				local butitem = CreateFrame("Button", nil, General_List)
-				General_List.ButList[i]=butitem
-				butitem:SetHighlightTexture(130839)
-				butitem:SetSize(butW, butW)
-				if i==1 then
-					butitem:SetPoint("BOTTOMLEFT",General_List,"BOTTOMLEFT",6,6);
-				else
-					local num1,num2=math.modf(i/(kuanNum))
-					if num2==0 then
-						butitem.huanhang=true
-					end
-					if General_List.ButList[i-1].huanhang then
-						butitem:SetPoint("BOTTOMLEFT",General_List.ButList[i-kuanNum],"TOPLEFT",0,6);
+		function General_List:Update_Lists()
+			local listall=Get_Lists()
+			for i=1,#listall do
+				if not General_List.ButList[i] then
+					local butitem = CreateFrame("Button", nil, General_List)
+					General_List.ButList[i]=butitem
+					butitem:SetHighlightTexture(130839)
+					butitem:SetSize(butW, butW)
+					if i==1 then
+						butitem:SetPoint("BOTTOMLEFT",General_List,"BOTTOMLEFT",6,6);
 					else
-						butitem:SetPoint("LEFT",General_List.ButList[i-1],"RIGHT",6,0);
-					end	
-				end
-				butitem.Select = butitem:CreateTexture(nil, "OVERLAY");
-				butitem.Select:SetTexture(130724);
-				butitem.Select:SetBlendMode("ADD");
-				butitem.Select:SetAllPoints(butitem)
-				butitem.Select:Hide();
-				local itemicon=C_Item.GetItemIconByID(listall[i][1])
-				butitem:SetNormalTexture(itemicon);
-				if listall[i][2] then
-					if listall[i][1]==PIGA_Per["QuickBut"]["LushiID"] then
-						butitem.Select:Show();
-					end
-				else
-					butitem:GetNormalTexture():SetDesaturated(true)
-				end
-				butitem:HookScript("OnClick", function(self)
-					if listall[i][2] then
-						if InCombatLockdown() then
-							PIGErrorMsg(ERR_NOT_IN_COMBAT)
-						else
-							PIGA_Per["QuickBut"]["LushiID"]=listall[i][1]
-							UpdateIconAttribute(listall[i][1]) General_List:Hide();
+						local num1,num2=math.modf(i/(kuanNum))
+						if num2==0 then
+							butitem.huanhang=true
 						end
+						if General_List.ButList[i-1].huanhang then
+							butitem:SetPoint("BOTTOMLEFT",General_List.ButList[i-kuanNum],"TOPLEFT",0,6);
+						else
+							butitem:SetPoint("LEFT",General_List.ButList[i-1],"RIGHT",6,0);
+						end	
 					end
-				end);
-				butitem:SetScript("OnEnter", function (self)
-					GameTooltip:ClearLines();
-					GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT",0,0);
-					GameTooltip:SetItemByID(listall[i][1])
-					GameTooltip:Show();
-				end)
-				butitem:SetScript("OnLeave", function ()
-					GameTooltip:ClearLines();
-					GameTooltip:Hide() 
-				end);
+					butitem.Select = butitem:CreateTexture(nil, "OVERLAY");
+					butitem.Select:SetTexture(130724);
+					butitem.Select:SetBlendMode("ADD");
+					butitem.Select:SetAllPoints(butitem)
+					butitem.Select:Hide();
+					butitem:HookScript("OnClick", function(self)
+						if self.notusr then
+							if InCombatLockdown() then
+								PIGErrorMsg(ERR_NOT_IN_COMBAT)
+							else
+								PIGA_Per["QuickBut"]["LushiID"]=listall[i][1]
+								UpdateIconAttribute(listall[i][1]) General_List:Hide();
+							end
+						end
+					end);
+					butitem:SetScript("OnEnter", function (self)
+						GameTooltip:ClearLines();
+						GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT",0,0);
+						GameTooltip:SetItemByID(listall[i][1])
+						GameTooltip:Show();
+					end)
+					butitem:SetScript("OnLeave", function ()
+						GameTooltip:ClearLines();
+						GameTooltip:Hide() 
+					end);
+				end
+				local butitem=General_List.ButList[i]
+				butitem:SetNormalTexture(listall[i][2]);
+				butitem:GetNormalTexture():SetDesaturated(not listall[i][3])
+				butitem.notusr=listall[i][3]
+				if listall[i][1]==PIGA_Per["QuickBut"]["LushiID"] then
+					butitem.Select:Show();
+				else
+					butitem.Select:Hide();
+				end
 			end
 		end
 	end,
@@ -873,8 +866,6 @@ Create.PIGaddQuickBut(8,{
 		Zhushou_List:HookScript("OnHide",function(self)
 			SetClampedTextureRotation(Zhushou.arrow,self.Angle_Play);
 		end)
-		PIGUseKeyDown(Zhushou)
-		Zhushou:RegisterForClicks("AnyUp");
 		Zhushou:SetAttribute("_onclick",[=[
 			if button == "RightButton" then
 				local ref=self:GetFrameRef("frame1")

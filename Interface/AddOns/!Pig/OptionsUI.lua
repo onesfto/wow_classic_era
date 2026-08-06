@@ -134,7 +134,7 @@ local function add_Options()
 	OptionsUI.RLUI:HookScript("OnShow", function ()
 		OptionsUI.UpdateVer:Hide()
 	end);
-	--OptionsUIUI.RLUI:Show()
+	--PIG_OptionsUI.RLUI:Show()
 	--右侧顶部版本
 	OptionsUI.R.top = PIGFrame(OptionsUI.R)
 	OptionsUI.R.top:SetHeight(24)

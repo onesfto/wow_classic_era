@@ -288,7 +288,7 @@ function PD.addOptions_Debug()
 		function fuFrame.FBdataID:PIGDownMenu_Update_But(level, menuList)
 			local info = {}
 			if (level or 1) == 1 then
-				local List=Fun.PIG_GetCategories(4)
+				local List=Fun.PIG_GetCategories()
 				for ix=1,#List do
 					local GroupList,GroupData=Fun.PIG_GetGroups(List[ix][1])
 					for ixx=1,#GroupList do

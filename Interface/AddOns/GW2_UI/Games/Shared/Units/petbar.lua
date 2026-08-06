@@ -189,9 +189,9 @@ function GwPlayerPetFrameMixin:ToggleAuraPosition()
 
     self.auras:ClearAllPoints()
     if self.auraPositionUnder then
-        self.auras:SetPoint("TOPLEFT", self.powerbar, "BOTTOMLEFT", 0, -5)
+        self.auras:SetPoint("TOPRIGHT", self.powerbar, "BOTTOMRIGHT", 0, -5)
     else
-        self.auras:SetPoint("TOPRIGHT", self.Background, "BOTTOMRIGHT", -3, 100)
+        self.auras:SetPoint("TOPRIGHT", self.Background, "BOTTOMRIGHT", -3, 40)
     end
 
     self.auras:ForceUpdate()

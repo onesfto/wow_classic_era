@@ -236,6 +236,7 @@ local function SetupMainButton(info)
     local popupBar = button.popupBar
     if not popupBar then
         popupBar = CreateFrame("Frame", buttonName .. "PopupBar", button, "SecureHandlerBaseTemplate")
+        popupBar:EnableMouse(true)
         popupBar:SetFrameStrata("DIALOG")
         popupBar:Raise()
         popupBar:Hide()

@@ -3,6 +3,7 @@ local AddonName, ns = ...
 
 local LibBG = ns.LibBG
 local L = ns.L
+local GetClassColor = ns.GetClassColor
 
 local RR = ns.RR
 local NN = ns.NN
@@ -609,6 +610,7 @@ BG.Init(function()
             local mainFrame = BG.TradeHistoryMainFrame
             mainFrame:Hide()
             BG.BackBiaoGe(mainFrame)
+            BG.CreateDisableButton(mainFrame, "TradeHistory")
             mainFrame:SetScript("OnShow", function()
                 BG.FrameHide(0)
                 BiaoGe.lastFrame = "TradeHistory"
@@ -637,6 +639,7 @@ BG.Init(function()
             local mainFrame = BG.MailHistoryMainFrame
             mainFrame:Hide()
             BG.BackBiaoGe(mainFrame)
+            BG.CreateDisableButton(mainFrame, "MailHistory")
             mainFrame:SetScript("OnShow", function()
                 BG.FrameHide(0)
                 BiaoGe.lastFrame = "MailHistory"
@@ -665,6 +668,7 @@ BG.Init(function()
             local mainFrame = BG.ChannelHistoryMainFrame
             mainFrame:Hide()
             BG.BackBiaoGe(mainFrame)
+            BG.CreateDisableButton(mainFrame, "ChannelHistory")
             mainFrame:SetScript("OnShow", function()
                 BG.FrameHide(0)
                 BiaoGe.lastFrame = "ChannelHistory"
@@ -722,7 +726,7 @@ BG.Init(function()
             text:SetText(BG.STC_g1(L["预设起拍价："]) ..
                 format(L["ALT+%s点击表格/背包/聊天框装备时，直接按你的预设价开拍。"], AddTexture("RIGHT")))
         end
---[=[ 
+
         -- 进组欢迎语
         if not BG.IsRetail then
             BG.WelcomeMainFrame = CreateFrame("Frame", "BiaoGeWelcomeMainFrame", BG.MainFrame)
@@ -730,6 +734,7 @@ BG.Init(function()
                 local mainFrame = BG.WelcomeMainFrame
                 mainFrame:Hide()
                 BG.BackBiaoGe(mainFrame)
+                BG.CreateDisableButton(mainFrame, "Welcome")
                 mainFrame:SetScript("OnShow", function()
                     BG.FrameHide(0)
                     BiaoGe.lastFrame = "Welcome"
@@ -752,7 +757,7 @@ BG.Init(function()
                 text:SetText(L["进组欢迎语"])
             end
         end
- ]=]
+
         -- 历史表格
         BG.HistoryMainFrame = CreateFrame("Frame", "BG.HistoryMainFrame", BG.MainFrame)
         do
@@ -901,7 +906,7 @@ BG.Init(function()
                 font:SetTextColor(RGB("00FF00"))
                 font:SetFont(BIAOGE_TEXT_FONT, 20, "OUTLINE")
                 bt:SetFontString(font)
-                bt:SetText(L["通知锁定"])
+                bt:SetText(L["锁定"])
                 bt:SetSize(font:GetWidth() + 30, font:GetHeight() + 10)
                 bt:Hide()
                 BG.ButtonMoveLock = bt
@@ -910,7 +915,7 @@ BG.Init(function()
                 text:SetFont(BIAOGE_TEXT_FONT, 12, "OUTLINE")
                 text:SetAlpha(0.8)
                 text:SetPoint("BOTTOMLEFT", bt, "BOTTOMRIGHT", 5, 0)
-                text:SetText(AddTexture("RIGHT") .. L["通知框体可还原位置"])
+                text:SetText(AddTexture("RIGHT") .. L["框体可还原位置"])
 
                 bt:SetScript("OnEnter", function(self)
                     font:SetTextColor(RGB("FFFFFF"))
@@ -937,21 +942,43 @@ BG.Init(function()
             end
 
             function BG.HideMove()
-                for k, f in pairs(BG.Movetable) do
-                    f:SetBackdropColor(0, 0, 0, 0)
-                    f:SetBackdropBorderColor(0, 0, 0, 0)
-                    f:SetMovable(false)
-                    f:EnableMouse(false)
-                    f:SetScript("OnUpdate", nil)
-                    f.name:Hide()
-                    f:Clear()
+                if not BG.boardReceiverMoveOnly then
+                    for k, f in pairs(BG.Movetable) do
+                        f:SetBackdropColor(0, 0, 0, 0)
+                        f:SetBackdropBorderColor(0, 0, 0, 0)
+                        f:SetMovable(false)
+                        f:EnableMouse(false)
+                        f:SetScript("OnUpdate", nil)
+                        f.name:Hide()
+                        f:Clear()
+                    end
                 end
+                if BG.HideBoardReceiverMovePreview then
+                    BG.HideBoardReceiverMovePreview()
+                end
+                BG.boardReceiverMoveOnly = nil
                 BG.ButtonMoveLock:Hide()
                 BG.ButtonMove:SetText(L["通知移动"])
             end
 
+            -- 进入仅显示减伤链进度条的通知移动模式。
+            function BG.MoveBoardReceiver()
+                if InCombatLockdown and InCombatLockdown() then return end
+                if BG.boardReceiverMoveOnly then
+                    BG.HideMove()
+                else
+                    BG.boardReceiverMoveOnly = true
+                    if BG.ShowBoardReceiverMovePreview then
+                        BG.ShowBoardReceiverMovePreview()
+                    end
+                    BG.ButtonMoveLock:Show()
+                    BG.MainFrame:Hide()
+                end
+                BG.PlaySound(1)
+            end
+
             function BG.Move()
-                if BG.FrameLootMsg:IsMovable() then
+                if BG.boardReceiverMoveOnly or BG.FrameLootMsg:IsMovable() then
                     BG.HideMove()
                 else
                     for k, f in pairs(BG.Movetable) do
@@ -1002,9 +1029,12 @@ BG.Init(function()
                             end
                         end)
                     end
+                    if BG.ShowBoardReceiverMovePreview then
+                        BG.ShowBoardReceiverMovePreview()
+                    end
                     BG.ButtonMoveLock:Show()
                     BG.MainFrame:Hide()
-                    BG.ButtonMove:SetText(L["通知锁定"])
+                    BG.ButtonMove:SetText(L["锁定"])
                 end
                 BG.PlaySound(1)
             end
@@ -1024,7 +1054,7 @@ BG.Init(function()
                 GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT")
                 GameTooltip:ClearLines()
                 GameTooltip:AddLine(self:GetText(), 1, 1, 1, true)
-                GameTooltip:AddLine(L["调整装备记录通知和交易通知的位置。"], 1, 0.82, 0, true)
+                GameTooltip:AddLine(L["调整装备记录通知、交易通知和减伤链进度条的位置。"], 1, 0.82, 0, true)
                 GameTooltip:AddLine(L["快捷命令：/BGM"], 1, 0.82, 0, true)
                 GameTooltip:Show()
             end)
@@ -1422,9 +1452,9 @@ BG.Init(function()
             if #BG.tabButtons == 0 then
                 if BG.IsWLK_80 then
                     -- 有团本攻略
-                    bt:SetPoint("TOPLEFT", BG.MainFrame, "BOTTOM", -330, 1)
+                    bt:SetPoint("TOPLEFT", BG.MainFrame, "BOTTOM", -380, 1)
                 else
-                    bt:SetPoint("TOPLEFT", BG.MainFrame, "BOTTOM", -430, 1)
+                    bt:SetPoint("TOPLEFT", BG.MainFrame, "BOTTOM", -480, 1)
                 end
             else
                 bt:SetPoint("LEFT", BG.tabButtons[#BG.tabButtons].button, "RIGHT", 3, 0)
@@ -2595,8 +2625,9 @@ BG.Init2(function()
             BG.ShowMap()
         end
         SLASH_BiaoGeAIMap1 = "/biaogemap"
-        SLASH_BiaoGeAIMap1 = "/bgmap"
-        SLASH_BiaoGeAIMap1 = "/biaogeaimap"
-        SLASH_BiaoGeAIMap1 = "/aimap"
+        SLASH_BiaoGeAIMap2 = "/bgmap"
+        SLASH_BiaoGeAIMap3 = "/biaogeaimap"
+        SLASH_BiaoGeAIMap4 = "/aimap"
+        SLASH_BiaoGeAIMap5 = "/tjmap"
     end
 end)

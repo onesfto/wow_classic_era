@@ -470,11 +470,13 @@ function QuickChatfun.PIGMessage()
     Get_itemF:RegisterEvent("CHAT_MSG_PARTY_LEADER")
     Get_itemF:RegisterEvent("CHAT_MSG_GUILD")
     Get_itemF:RegisterEvent("CHAT_MSG_OFFICER")
-    C_Timer.After(5, function()
-        Get_itemF:RegisterEvent("GUILD_ROSTER_UPDATE")
-        Get_itemF:RegisterEvent("CLUB_MEMBERS_UPDATED")
-        PIG_GuildRoster()
-    end)
+    if PIG_MaxTocversion(30000) then
+	    C_Timer.After(5, function()
+	        Get_itemF:RegisterEvent("GUILD_ROSTER_UPDATE")
+	        Get_itemF:RegisterEvent("CLUB_MEMBERS_UPDATED")
+	        PIG_GuildRoster()
+	    end)
+	end
     Get_itemF:SetScript("OnEvent", function(self, event, ...)
         if event == "GUILD_ROSTER_UPDATE" or event == "CLUB_MEMBERS_UPDATED" then
         	if InCombatLockdown() then return end

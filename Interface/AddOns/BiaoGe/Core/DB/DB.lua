@@ -1,20 +1,21 @@
-local AddonName, ns = ...
+local AddonName, ns                         = ...
 
-local L = ns.L
-local RGB = ns.RGB
+local L                                     = ns.L
+local RGB                                   = ns.RGB
+local GetClassColor                         = ns.GetClassColor
 
-local pt = print
+local pt                                    = print
 
-local LibBG = LibStub:GetLibrary("BiaoGe-LibUIDropDownMenu-4.0") -- 调用库菜单UI
-ns.LibBG = LibBG
+local LibBG                                 = LibStub:GetLibrary("BiaoGe-LibUIDropDownMenu-4.0") -- 调用库菜单UI
+ns.LibBG                                    = LibBG
 LibBG.UIDropDownMenu_HandleGlobalMouseEvent = function() end
 
-local realmID             = GetRealmID()
-local player              = BG.playerName
-local realmName           = BG.realmName
-local GetAddOnMetadata    = GetAddOnMetadata or C_AddOns.GetAddOnMetadata
-local IsAddOnLoaded       = IsAddOnLoaded or C_AddOns.IsAddOnLoaded
-local LoadAddOn           = LoadAddOn or C_AddOns.LoadAddOn
+local realmID                               = GetRealmID()
+local player                                = BG.playerName
+local realmName                             = BG.realmName
+local GetAddOnMetadata                      = GetAddOnMetadata or C_AddOns.GetAddOnMetadata
+local IsAddOnLoaded                         = IsAddOnLoaded or C_AddOns.IsAddOnLoaded
+local LoadAddOn                             = LoadAddOn or C_AddOns.LoadAddOn
 
 -- 全局变量
 do
@@ -233,8 +234,8 @@ do
                 { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 8, 12, 6, 7, 5, })
             AddDB("TOCtitan", mainFrameWidth, 980, 3, 17, { 0, 9, 16 }, nil, nil,
                 { 4, 4, 4, 4, 5, 2, 4, 4, 4, 4, 5, 5, 5, 5, 6, 31, 4, }, 8, 5)
-            AddDB("SWtitan", mainFrameWidth, 870, 3, 15, { 0, 7, 13 }, nil, nil,
-                { 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 6, 14, 5, })
+            AddDB("SWtitan", mainFrameWidth, 870, 3, 15, { 0, 7, 14 }, nil, nil,
+                { 3, 3, 3, 4, 5, 5, 7, 4, 4, 4, 4, 4, 5, 18, 5, },6)
         end
         if BG.IsCTM then
             AddDB("BOT", mainFrameWidth2, 830, 4, 15, { 0, 5, 10, 14 }, { "N", "H" }, nil,
@@ -1031,18 +1032,15 @@ end
 
 -- 本地配置数据库
 BG.Init(function()
-    if BiaoGe then
-        if type(BiaoGe) ~= "table" then
-            BiaoGe = {}
-        end
-    else
+    if type(BiaoGe) ~= "table" then
         BiaoGe = {}
     end
 
-    -- 清理已移除的角色查询和玩家黑名单功能遗留数据
     BiaoGe.battleNetRoles = nil
     BiaoGe.blacklist = nil
     BiaoGe.migrations = nil
+
+    BiaoGe.disabledModules = BiaoGe.disabledModules or {}
 
     -- 副本选择初始化
     -- FB1 是UI当前选择的副本
