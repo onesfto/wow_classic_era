@@ -1,4 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-    <Include file ="stancebar.xml"/>
-    <Script file="stancebar.lua"/>
-</Ui>

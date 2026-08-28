@@ -1,21 +1,21 @@
 
 PIGA_Per = {
 ["PigAction"] = {
-["Lock"] = {
-false,
-false,
-false,
-false,
-},
-["Scale"] = {
-1,
-1,
-1,
-1,
-},
 ["ActionData"] = {
 },
 ["ShowTJ"] = {
+1,
+1,
+1,
+1,
+},
+["AnniuNum"] = {
+12,
+12,
+12,
+12,
+},
+["Scale"] = {
 1,
 1,
 1,
@@ -33,11 +33,11 @@ false,
 false,
 false,
 },
-["AnniuNum"] = {
-12,
-12,
-12,
-12,
+["Lock"] = {
+false,
+false,
+false,
+false,
 },
 },
 ["AutoSellBuy"] = {
@@ -48,6 +48,8 @@ false,
 ["Save_Money"] = 10000000,
 ["Buy_List"] = {
 },
+["Take_MoneyGuild"] = 1000000,
+["Save_MoneyGuild"] = 1000000,
 ["Take_Money"] = 10000000,
 },
 ["QuickBut"] = {

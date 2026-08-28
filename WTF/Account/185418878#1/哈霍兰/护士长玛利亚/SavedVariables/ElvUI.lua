@@ -2,6 +2,9 @@
 ElvCharacterDB = {
 ["ConvertKeybindings"] = true,
 ["ChatEditHistory"] = {
+"/PULL 10",
+"/mrt",
+"/KB",
 "/s |cff1eff00|Hitem:11288::::::::10:::::::::|h[强效魔法杖]|h|r",
 "/LTP",
 "/DECURSIVE",
@@ -17,11 +20,8 @@ ElvCharacterDB = {
 "/DBM",
 "/kb",
 "/dbm",
-"/WA",
-"/团队 |cffa335ee|Hitem:18665::::::::60::::::::::|h[暗影之眼]|h|r",
-"/cw 窃魂者 看比赛了 改天科研",
 "/wa",
-"/团队 |cffa335ee|Hitem:11808::::::::60::::::::::|h[烈焰之环]|h|r",
+"/WA",
 },
 ["ChatHistoryLog"] = {
 },

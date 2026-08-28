@@ -41,19 +41,13 @@ function M:RaidMarkCanMark()
 end
 
 function M:RaidMarkUpdateKeyDown(keydown)
+	if InCombatLockdown() then return end
+
 	local marker = M.RaidMarkFrame
 	if not marker or not marker.buttons then return end
 
-	if E.hasEditMode and InCombatLockdown() then
-		return -- we cant change the attribute during combat
-	end
-
 	for _, button in next, marker.buttons do
-		if E.hasEditMode then
-			button:SetAttribute('useOnKeyDown', keydown)
-		else
-			button:RegisterForClicks(keydown and 'AnyDown' or 'AnyUp')
-		end
+		button:SetAttribute('useOnKeyDown', keydown)
 	end
 end
 
@@ -61,8 +55,7 @@ function M:RaidMarkShowIcons()
 	if not UnitExists('target') or UnitIsDead('target') then return end
 
 	local x, y = GetCursorPosition()
-	local scale = E.UIParent:GetEffectiveScale()
-	M.RaidMarkFrame:Point('CENTER', E.UIParent, 'BOTTOMLEFT', x / scale, y / scale)
+	M.RaidMarkFrame:Point('CENTER', E.UIParent, 'BOTTOMLEFT', x / E.uiscale, y / E.uiscale)
 	M.RaidMarkFrame:Show()
 end
 
@@ -107,25 +100,19 @@ do
 		for i = 1, 8 do
 			local tm = format('%s %d', TM, i)
 			local name = 'RaidMarkIconButton'..i
-			local button = CreateFrame('Button', name, marker, 'SecureActionButtonTemplate')
+			local button = CreateFrame('Button', name, marker, E.Retail and 'InsecureActionButtonTemplate' or 'SecureActionButtonTemplate')
 			button:SetScript('OnEnter', M.RaidMarkButton_OnEnter)
 			button:SetScript('OnLeave', M.RaidMarkButton_OnLeave)
 			button:SetScript('OnMouseUp', M.RaidMarkButton_MouseUp)
 
 			tinsert(marker.buttons, button)
 
-			if E.hasEditMode then
-				button:SetAttribute('type1', 'macro')
-				button:SetAttribute('type2', 'macro')
-				button:SetAttribute('macrotext1', tm)
-				button:SetAttribute('macrotext2', tm)
-				button:SetAttribute('useOnKeyDown', keydown)
-				button:RegisterForClicks('AnyDown', 'AnyUp')
-			else -- should follow RegisterClicks check but use AnyDown
-				button:SetAttribute('type', 'macro')
-				button:SetAttribute('macrotext', tm)
-				button:RegisterForClicks(keydown and 'AnyDown' or 'AnyUp')
-			end
+			button:SetAttribute('type1', 'macro')
+			button:SetAttribute('type2', 'macro')
+			button:SetAttribute('macrotext1', tm)
+			button:SetAttribute('macrotext2', tm)
+			button:SetAttribute('useOnKeyDown', keydown)
+			button:RegisterForClicks('AnyDown', 'AnyUp')
 
 			button:Size(40)
 			button:SetID(i)

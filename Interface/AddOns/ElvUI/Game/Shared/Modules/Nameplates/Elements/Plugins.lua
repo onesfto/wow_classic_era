@@ -1,6 +1,5 @@
 local E, L, V, P, G = unpack(ElvUI)
 local NP = E:GetModule('NamePlates')
-local PA = E:GetModule('PrivateAuras')
 local LSM = E.Libs.LSM
 
 local ipairs = ipairs
@@ -47,7 +46,6 @@ function NP:Update_QuestIcons(nameplate)
 		nameplate.QuestIcons:ClearAllPoints()
 		nameplate.QuestIcons:Point(E.InversePoints[db.position], nameplate, db.position, db.xOffset, db.yOffset)
 
-		local font = LSM:Fetch('font', db.font)
 		for _, object in ipairs(NP.QuestIcons.iconTypes) do
 			local icon = nameplate.QuestIcons[object]
 			icon:SetAlpha(db.hideIcon and 0 or 1)
@@ -55,7 +53,7 @@ function NP:Update_QuestIcons(nameplate)
 
 			icon.Text:ClearAllPoints()
 			icon.Text:Point('CENTER', icon, db.textPosition, db.textXOffset, db.textYOffset)
-			icon.Text:FontTemplate(font, db.fontSize, db.fontOutline)
+			icon.Text:FontTemplate(db.font, db.fontSize, db.fontOutline)
 			icon.Text:SetJustifyH('CENTER')
 
 			-- settings to send to the plugin
@@ -303,32 +301,5 @@ function NP:Update_Cutaway(nameplate)
 		end
 	elseif nameplate:IsElementEnabled('Cutaway') then
 		nameplate:DisableElement('Cutaway')
-	end
-end
-
-function NP:Construct_PrivateAuras(nameplate)
-	local element = CreateFrame('Frame', nameplate.frameName..'PrivateAuras', nameplate.RaisedElement)
-	element.owner = nameplate
-
-	return element
-end
-
-function NP:Update_PrivateAuras(nameplate, disable)
-	local element = E.Retail and nameplate.PrivateAuras
-	if not element then return end
-
-	PA:RemoveAuras(element)
-
-	local plateDB = not disable and NP:PlateDB(nameplate)
-	local db = plateDB and plateDB.privateAuras
-	element.db = db or nil
-
-	if db and db.enable then
-		element:SetFrameLevel(16)
-		element:ClearAllPoints()
-		element:Point(db.parent.invertAnchor and E.InversePoints[db.parent.point] or db.parent.anchorPoint, nameplate, db.parent.point, db.parent.offsetX, db.parent.offsetY)
-		element:Size(db.icon.size)
-
-		PA:SetupAuras(element)
 	end
 end

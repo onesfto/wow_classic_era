@@ -189,7 +189,16 @@ DBM-SpellTimers: enabled
 TalentEmuX: enabled
 ElvUI_RatioMinimapAuras: disabled
 Krowi_WorldMapButtons: enabled
+Blizzard_ObjectiveTracker: enabled
 !Swatter: disabled
 !ImprovedErrorFrame: disabled
 PatchWerk: disabled
 !PatchWerk: disabled
+!Pig_RurutiaAudio: enabled
+BGLite: enabled
+SharedMedia_Rurutia: enabled
+ChatThrottleLib: enabled
+AllTheThings: enabled
+LibAHTab: enabled
+LibSFDropDown: enabled
+tdSync: enabled

@@ -1,6 +1,6 @@
 
 ACP_Data = {
-["sorter"] = "名称",
+["sorter"] = "按名称分组",
 ["NoRecurse"] = false,
 ["NoChildren"] = true,
 ["AddonSet"] = {
@@ -8,8 +8,7 @@ ACP_Data = {
 "SpellActivationOverlay",
 "!Pig",
 "!Pig_RurutiaAudio",
-"BiaoGe",
-"BiaoGe-Rurutia",
+"BGLite",
 "DBM-Core",
 "DBM-StatusBarTimers",
 "DBM-GUI",
@@ -73,7 +72,6 @@ ACP_Data = {
 "HandyNotes_NPCs (Classic)",
 "HidingBar",
 "HidingBar_Options",
-"InboxMailBag",
 "Leatrix_Maps",
 "Leatrix_Plus",
 "LibSharedMedia-3.0",
@@ -104,6 +102,7 @@ ACP_Data = {
 "WeakAurasTemplates",
 "WhatsTraining",
 "WhisperPop",
+"InboxMailBag",
 "MeetingHorn",
 "Rurutia_Raids",
 "Rurutia",

@@ -13,16 +13,22 @@ BFWC_Filter_SavedConfigs = {
 ["bigfoot_chatframe_name"] = 1,
 ["white_to_chatframe"] = true,
 ["filter_request_to_join"] = true,
-["hide_enter_leave"] = true,
+["white_to_chatframe_color"] = {
+["a"] = 1,
+["r"] = 1,
+["hex"] = "ffffc0c0",
+["g"] = 0.753,
+["b"] = 0.753,
+},
 ["dungeons"] = {
 },
-["blacklist_enable"] = true,
+["blacklist_enable"] = false,
 ["player"] = {
 ["Player-5843-00D04D9B"] = {
 },
 ["Player-5303-1554C9B3"] = {
 },
-["Player-5376-16CCC446"] = {
+["Player-5376-154A5190"] = {
 },
 ["Player-5303-154A4CAC"] = {
 },
@@ -38,11 +44,5 @@ BFWC_Filter_SavedConfigs = {
 ["bigfoot"] = false,
 ["dlg_width"] = 900,
 ["auto_filter_by_level"] = false,
-["white_to_chatframe_color"] = {
-["a"] = 1,
-["r"] = 1,
-["hex"] = "ffffc0c0",
-["g"] = 0.753,
-["b"] = 0.753,
-},
+["hide_enter_leave"] = true,
 }

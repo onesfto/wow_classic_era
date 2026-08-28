@@ -20,6 +20,9 @@ MAILBAGDB = {
 local insert = table.insert;
 local remove = table.remove;
 
+local _, _, _, tocVersion = GetBuildInfo();
+local isTitanClient = tocVersion and tocVersion >= 38000 and tocVersion < 40000;
+
 -- Localization globals
 local L = LibStub("AceLocale-3.0"):GetLocale("InboxMailbag", true);
 
@@ -27,6 +30,12 @@ local L = LibStub("AceLocale-3.0"):GetLocale("InboxMailbag", true);
 MB_BAGNAME = L["BAGNAME"];
 MB_FRAMENAME = L["FRAMENAME"];
 MB_GROUP_STACKS = L["Group Stacks"];
+
+-- API compatibility shims (3.80.1: C_ namespace migration)
+local GetItemClassInfo = C_Item and C_Item.GetItemClassInfo or GetItemClassInfo
+local LE_ITEM_CLASS_WEAPON = LE_ITEM_CLASS_WEAPON or (Enum and Enum.ItemClass and Enum.ItemClass.Weapon) or 2
+local LE_ITEM_CLASS_ARMOR  = LE_ITEM_CLASS_ARMOR  or (Enum and Enum.ItemClass and Enum.ItemClass.Armor)  or 4
+local LE_ITEM_CLASS_GLYPH  = LE_ITEM_CLASS_GLYPH  or (Enum and Enum.ItemClass and Enum.ItemClass.Glyph)  or 16
 
 -- Drawing in localization info
 local WEAPON = GetItemClassInfo (LE_ITEM_CLASS_WEAPON)
@@ -92,7 +101,18 @@ local options = {
 	},
 };
 LibStub("AceConfig-3.0"):RegisterOptionsTable("InboxMailbag", options, {"mailbag"});
-LibStub("AceConfigDialog-3.0"):AddToBlizOptions("InboxMailbag", L["FRAMENAME"]);
+
+-- Titan Classic's ESC game menu opens the Settings panel through protected
+-- callbacks. The old AceConfigDialog-3.0 Blizzard-options bridge can taint
+-- that path, so keep slash-command configuration but skip panel registration.
+if not isTitanClient then
+	LibStub("AceConfigDialog-3.0"):AddToBlizOptions("InboxMailbag", L["FRAMENAME"]);
+end
+
+SLASH_INBOXMAILBAG_RURUTIA1 = "/imb";
+SlashCmdList["INBOXMAILBAG_RURUTIA"] = function()
+	LibStub("AceConfigDialog-3.0"):Open("InboxMailbag");
+end
 
 function InboxMailbagSearch_OnEditFocusGained(self, ...)
 	MB_SearchField = self;

@@ -106,7 +106,7 @@ local frame_metatable = {
 Private.frame_metatable = frame_metatable
 
 for k, v in next, {
-	--[[ frame:EnableElement(name, unit)
+	--[[ frame:EnableElement(name[, unit])
 	Used to activate an element for the given unit frame.
 
 	* self - unit frame for which the element should be enabled
@@ -120,7 +120,7 @@ for k, v in next, {
 		local element = elements[name]
 		if(not element or self:IsElementEnabled(name)) then return end
 
-		if(element.enable(self, unit or self.unit)) then
+		if(element.enable(self, unit or self.__unit)) then
 			activeElements[self][name] = true
 
 			if(element.update) then
@@ -129,14 +129,16 @@ for k, v in next, {
 		end
 	end,
 
-	--[[ frame:DisableElement(name)
+	--[[ frame:DisableElement(name[, unit])
 	Used to deactivate an element for the given unit frame.
 
 	* self - unit frame for which the element should be disabled
 	* name - name of the element to be disabled (string)
+	* unit - unit to be passed to the element's Disable function. Defaults to the frame's unit (string?)
 	--]]
-	DisableElement = function(self, name)
+	DisableElement = function(self, name, unit)
 		argcheck(name, 2, 'string')
+		argcheck(unit, 3, 'string', 'nil')
 
 		local enabled = self:IsElementEnabled(name)
 		if(not enabled) then return end
@@ -153,7 +155,7 @@ for k, v in next, {
 
 		activeElements[self][name] = nil
 
-		return elements[name].disable(self)
+		return elements[name].disable(self, unit or self.__unit)
 	end,
 
 	--[[ frame:IsElementEnabled(name)
@@ -219,7 +221,7 @@ for k, v in next, {
 	* event - event name to pass to the elements' update functions (string)
 	--]]
 	UpdateAllElements = function(self, event)
-		local unit = self.unit
+		local unit = self.__unit
 		if not oUF:UnitExists(unit) then return end
 
 		assert(type(event) == 'string', "Invalid argument 'event' in UpdateAllElements.")
@@ -267,13 +269,13 @@ local function updatePet(self, event, unit)
 		petUnit = unit:gsub('^(%a+)(%d+)', '%1pet%2')
 	end
 
-	if(self.unit ~= petUnit) then return end
+	if(self.__unit ~= petUnit) then return end
 
 	evalUnitAndUpdate(self, event)
 end
 
 local function updateRaid(self, event)
-	local unitGUID = UnitGUID(self.unit)
+	local unitGUID = UnitGUID(self.__unit)
 	if oUF:NotSecretValue(unitGUID) and (unitGUID and unitGUID ~= self.unitGUID) then
 		self.unitGUID = unitGUID
 
@@ -363,7 +365,7 @@ local function initObject(unit, style, styleFunc, header, ...)
 
 		-- NAME_PLATE_UNIT_ADDED fires after the frame is shown, so there's no
 		-- need to call UAE multiple times
-		if(not object.isNamePlate) then
+		if(not object.isNameplate) then
 			object:SetScript('OnShow', onShow)
 
 			-- Make Clique kinda happy
@@ -966,7 +968,7 @@ do
 				nameplate.unitFrame = CreateFrame('Button', self.prefix .. nameplate:GetName(), nameplate, oUF.isRetail and 'PingableUnitFrameTemplate' or '')
 				nameplate.unitFrame:EnableMouse(false)
 				nameplate.unitFrame:SetAllPoints()
-				nameplate.unitFrame.isNamePlate = true
+				nameplate.unitFrame.isNameplate = true
 
 				Private.UpdateUnits(nameplate.unitFrame, unit)
 

@@ -78,7 +78,7 @@ local function updateArenaPreparationElements(self, event, elementName, specID)
 			end
 
 			if(color) then
-				element:GetStatusBarTexture():SetVertexColor(color:GetRGB())
+				element:SetStatusBarColor(color:GetRGB())
 			end
 		end
 
@@ -122,7 +122,7 @@ local function updateArenaPreparation(self, event)
 		if(self.Portrait and self:IsElementEnabled('Portrait')) then
 			self.Portrait:Show()
 		end
-	elseif(event == 'PLAYER_ENTERING_WORLD' and not UnitExists(self.unit)) then
+	elseif(event == 'PLAYER_ENTERING_WORLD' and not UnitExists(self.__unit)) then
 		-- semi-recursive call for when the player zones into an arena
 		if not (oUF.isClassic or oUF.isWrath) then
 			updateArenaPreparation(self, 'ARENA_PREP_OPPONENT_SPECIALIZATIONS')
@@ -138,7 +138,7 @@ local function updateArenaPreparation(self, event)
 			self:PreUpdate(event)
 		end
 
-		local id = tonumber(self.id)
+		local id = tonumber(self.__id)
 		if(not self:IsEnabled() and GetNumArenaOpponentSpecs() < id) then
 			-- hide the object if the opponent leaves
 			self:Hide()
@@ -157,14 +157,20 @@ local function updateArenaPreparation(self, event)
 			updateArenaPreparationElements(self, event, 'Power', specID)
 
 			-- hide all other (relevant) elements (they have no effect during arena prep)
-			if(self.Auras) then self.Auras:Hide() end
-			if(self.Buffs) then self.Buffs:Hide() end
-			if(self.Debuffs) then self.Debuffs:Hide() end
+			if(self:IsElementEnabled('Auras')) then
+				if(self.Auras) then self.Auras:Hide() end
+				if(self.Buffs) then self.Buffs:Hide() end
+				if(self.Debuffs) then self.Debuffs:Hide() end
+			end
+
+			if(self.Portrait and self:IsElementEnabled('Portrait')) then
+				self.Portrait:Hide()
+			end
+
 			if(self.Castbar) then self.Castbar:Hide() end
 			if(self.CombatIndicator) then self.CombatIndicator:Hide() end
 			if(self.PartyIndicator) then self.PartyIndicator:Hide() end
 			if(self.GroupRoleIndicator) then self.GroupRoleIndicator:Hide() end
-			if(self.Portrait) then self.Portrait:Hide() end
 			if(self.PvPIndicator) then self.PvPIndicator:Hide() end
 			if(self.RaidTargetIndicator) then self.RaidTargetIndicator:Hide() end
 
@@ -183,7 +189,7 @@ end
 
 -- Handles unit specific actions.
 function oUF:HandleUnit(object, unit)
-	unit = object.unit or unit
+	unit = object.__unit or unit
 	if(unit == 'target') then
 		object:RegisterEvent('PLAYER_TARGET_CHANGED', object.UpdateAllElements, true)
 	elseif(unit == 'mouseover') then
@@ -218,7 +224,7 @@ local function createOnUpdate(timer)
 
 			if self.elapsed > timer then
 				for _, object in next, objects do
-					if object:IsVisible() and object.unit and oUF:UnitExists(object.unit) then
+					if object:IsVisible() and object.__unit and oUF:UnitExists(object.__unit) then
 						object:UpdateAllElements('OnUpdate')
 					end
 				end

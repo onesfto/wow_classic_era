@@ -39,7 +39,7 @@ end)
 
 local function AllowAura(frame, aura)
 	if oUF:NotSecretValue(aura.isNameplateOnly) and aura.isNameplateOnly then
-		return frame.isNamePlate
+		return frame.isNameplate
 	end
 
 	return true
@@ -58,6 +58,7 @@ local function ComputeAuraFlags(unit, aura)
 	aura.auraIsHarmful = not IsAuraFilteredOutByInstanceID(unit, aura.auraInstanceID, 'HARMFUL')
 	aura.auraIsHelpful = not IsAuraFilteredOutByInstanceID(unit, aura.auraInstanceID, 'HELPFUL')
 
+	-- aura.auraIsImportant = InstanceFiltered(unit, aura, 'HELPFUL|IMPORTANT', 'HARMFUL|IMPORTANT')
 	aura.auraIsCancelable = InstanceFiltered(unit, aura, 'HELPFUL|CANCELABLE', 'HARMFUL|CANCELABLE')
 	aura.auraIsCrowdControl = InstanceFiltered(unit, aura, 'HELPFUL|CROWD_CONTROL', 'HARMFUL|CROWD_CONTROL')
 	aura.auraIsBigDefensive = InstanceFiltered(unit, aura, 'HELPFUL|BIG_DEFENSIVE', 'HARMFUL|BIG_DEFENSIVE')
@@ -229,9 +230,20 @@ function oUF:ShouldSkipAuraFilter(aura, filter)
 	end
 end
 
+-- 12.1 needs a skip might as well add this for now
+function oUF:ShouldSkip(frame, unit)
+	if not unit or (frame.__unit and frame.__unit ~= unit) then
+		return true
+	end
+end
+
 -- ShouldSkipAuraUpdate by Blizzard (implemented and heavily modified by Simpy)
 function oUF:ShouldSkipAuraUpdate(frame, event, unit, updateInfo, showFunc)
-	if not unit or (frame.unit and frame.unit ~= unit) then
+	if oUF.isRetail then
+		return true -- not anymore
+	end
+
+	if not unit or (frame.__unit and frame.__unit ~= unit) then
 		return true
 	end
 

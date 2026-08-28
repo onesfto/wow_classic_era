@@ -40,7 +40,7 @@ License: MIT
 -- @class file
 -- @name LibRangeCheck-3.0
 local MAJOR_VERSION = "LibRangeCheck-3.0"
-local MINOR_VERSION = 28
+local MINOR_VERSION = 36
 
 ---@class lib
 local lib, oldminor = LibStub:NewLibrary(MAJOR_VERSION, MINOR_VERSION)
@@ -48,9 +48,15 @@ if not lib then
   return
 end
 
+local interfaceVersion = select(4, GetBuildInfo())
+
 local isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local isEra = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
+local isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local isWrath = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 local isCata = WOW_PROJECT_ID == WOW_PROJECT_CATACLYSM_CLASSIC
+local isMists = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
+local isMidnight = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and interfaceVersion >= 120000
 
 local InCombatLockdownRestriction = function(unit) return InCombatLockdown() and not UnitCanAttack("player", unit) end
 
@@ -100,7 +106,13 @@ local UnitClass = UnitClass
 local UnitRace = UnitRace
 local GetInventoryItemLink = GetInventoryItemLink
 local GetTime = GetTime
-local HandSlotId = GetInventorySlotInfo("HANDSSLOT")
+
+local HandSlotId
+if C_PaperDollInfo and C_PaperDollInfo.GetInventorySlotInfo then
+  HandSlotId = C_PaperDollInfo.GetInventorySlotInfo("HANDSSLOT")
+else
+  HandSlotId = GetInventorySlotInfo("HANDSSLOT")
+end
 local math_floor = math.floor
 local UnitIsVisible = UnitIsVisible
 
@@ -224,6 +236,7 @@ if not isRetail then
 end
 
 tinsert(HarmSpells.MAGE, 44614) -- Flurry (40 yards)
+tinsert(HarmSpells.MAGE, 11366) -- Pyroblast (40 yards)
 tinsert(HarmSpells.MAGE, 5019) -- Shoot (30 yards)
 tinsert(HarmSpells.MAGE, 118) -- Polymorph (30 yards)
 tinsert(HarmSpells.MAGE, 116) -- Frostbolt (40 yards)
@@ -247,6 +260,14 @@ tinsert(FriendSpells.PALADIN, 19750) -- Flash of Light (40 yards, level 4)
 tinsert(FriendSpells.PALADIN, 85673) -- Word of Glory (40 yards, level 7)
 tinsert(FriendSpells.PALADIN, 4987) -- Cleanse (Holy) (40 yards, level 12)
 tinsert(FriendSpells.PALADIN, 213644) -- Cleanse Toxins (Protection, Retribution) (40 yards, level 12)
+
+if isRetail or isMists then 
+  tinsert(FriendSpells.PALADIN, 53563) -- Beacon of Light (60 yards)
+end
+
+if isTBC or isMists then 
+    tinsert(FriendSpells.PALADIN, 6940) -- Blessing/Hand of Sacrifice (30 yards)
+end
 
 if not isRetail then
   tinsert(FriendSpells.PALADIN, 635) -- Holy Light (40 yards, level 1, rank 1)
@@ -2194,7 +2215,6 @@ if isEra then
       233226, -- Ancient Zandalarian Rope
     },
     [35] = {
-      996,    -- Ring of Righteous Flame (TEST)
       1258,   -- Bind On Use Test Item
       1399,   -- Magic Candle
       1402,   -- Brimstone
@@ -4055,8 +4075,9 @@ local function getCachedRange(unit, noItems, maxCacheAge)
 
   -- compose cache key out of unit guid and noItems
   local guid = UnitGUID(unit)
-  local cacheKey = guid .. (noItems and "-1" or "-0")
-  local cacheItem = rangeCache[cacheKey]
+  -- unfortunately, caching on GUID is not possible due to secrets, using unit instead
+  local cacheKey = (isMidnight and issecretvalue(guid) and unit or guid) .. (noItems and "-1" or "-0")
+  local cacheItem = rangeCache[cacheKey] or nil
 
   local currentTime = GetTime()
 
@@ -4590,16 +4611,19 @@ function lib:activate()
     local frame = CreateFrame("Frame")
     self.frame = frame
 
-    frame:RegisterEvent("LEARNED_SPELL_IN_TAB")
     frame:RegisterEvent("CHARACTER_POINTS_CHANGED")
     frame:RegisterEvent("SPELLS_CHANGED")
 
-    if isEra or isCata then
-      frame:RegisterEvent("CVAR_UPDATE")
+    if C_EventUtils and C_EventUtils.IsEventValid("LEARNED_SPELL_IN_TAB") then
+      frame:RegisterEvent("LEARNED_SPELL_IN_TAB")
     end
 
-    if isRetail or isCata then
+    if C_EventUtils and C_EventUtils.IsEventValid("PLAYER_TALENT_UPDATE") then
       frame:RegisterEvent("PLAYER_TALENT_UPDATE")
+    end
+
+    if (isEra or isTBC or isWrath or isCata) then
+      frame:RegisterEvent("CVAR_UPDATE")
     end
 
     local _, playerClass = UnitClass("player")

@@ -1,5 +1,0 @@
-11.1.5
-
-FIXES
-    - Fix evoker ebon might bar
-    - Fix party unit values

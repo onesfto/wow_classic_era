@@ -1,12 +1,11 @@
 local E, L, V, P, G = unpack(ElvUI)
 local DT = E:GetModule('DataTexts')
 
-local strjoin = strjoin
-local format = format
-
 local _G = _G
+local format = format
+local strjoin = strjoin
+
 local UnitXPMax = UnitXPMax
-local MouseIsOver = MouseIsOver
 local IsShiftKeyDown = IsShiftKeyDown
 local GetQuestLogTitle = GetQuestLogTitle
 local GetQuestLogRewardXP = GetQuestLogRewardXP
@@ -16,7 +15,7 @@ local GetQuestLogSelection = GetQuestLogSelection
 local BreakUpLargeNumbers = BreakUpLargeNumbers
 
 local C_QuestLog_GetInfo = C_QuestLog.GetInfo
-local GetNumQuestLogEntries = (C_QuestLog and C_QuestLog.GetNumQuestLogEntries) or GetNumQuestLogEntries
+local GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries or GetNumQuestLogEntries
 
 local MAX_QUESTLOG_QUESTS = min(C_QuestLog.GetMaxNumQuestsCanAccept() + (E.Retail and 10 or 0), 35) -- 20 for ERA, 25 for WotLK, 35 for Retail
 local TRACKER_HEADER_QUESTS = TRACKER_HEADER_QUESTS
@@ -89,7 +88,7 @@ local function OnEvent(panel)
 
 	panel.text:SetFormattedText(displayString, L["Quests:"], numQuests, MAX_QUESTLOG_QUESTS)
 
-	if MouseIsOver(panel) then
+	if panel:IsMouseOver() then
 		OnEnter(panel)
 	end
 end

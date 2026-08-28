@@ -1,8 +1,0 @@
---- Onesfto/Modules/GW2_UI/GW2_UI_1.15.9/Games/Classic/Immersive/Skins/Load.xml	2026-07-26 13:19:34
-+++ GW2_UI/Games/Classic/Immersive/Skins/Load.xml	2026-07-25 23:28:12
-@@ -8,4 +8,5 @@
-     <Script file="flightmap.lua"/>
-     <Script file="questLog.lua"/>
-     <Script file="questTimers.lua"/>
-+    <Script file="tradeskill.lua"/>
- </Ui>

@@ -5,6 +5,10 @@
 ---@type ns
 local ns = select(2, ...)
 
+local GetNumAddOns = C_AddOns and C_AddOns.GetNumAddOns or GetNumAddOns
+local GetAddOnInfo = C_AddOns and C_AddOns.GetAddOnInfo or GetAddOnInfo
+local IsAddOnLoadOnDemand = C_AddOns and C_AddOns.IsAddOnLoadOnDemand or IsAddOnLoadOnDemand
+
 if bit == nil and bit32 ~= nil then
     bit = bit32
 end

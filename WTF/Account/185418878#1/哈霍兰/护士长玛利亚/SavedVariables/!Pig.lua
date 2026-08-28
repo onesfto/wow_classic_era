@@ -48,6 +48,8 @@ false,
 ["Save_Money"] = 10000000,
 ["Buy_List"] = {
 },
+["Take_MoneyGuild"] = 1000000,
+["Save_MoneyGuild"] = 1000000,
 ["Take_Money"] = 10000000,
 },
 ["QuickBut"] = {

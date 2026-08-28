@@ -2,7 +2,6 @@ local E, L, V, P, G = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local NP = E:GetModule('NamePlates')
 local AB = E:GetModule('ActionBars')
-local LSM = E.Libs.LSM
 
 local format, strlower, strfind = format, strlower, strfind
 local tinsert, strsplit, strmatch = tinsert, strsplit, strmatch
@@ -18,8 +17,8 @@ local UnitIsFriend = UnitIsFriend
 
 local GetAuraDispelTypeColor = C_UnitAuras.GetAuraDispelTypeColor
 
-local UNKNOWN = UNKNOWN
 local PRIEST_COLOR = RAID_CLASS_COLORS.PRIEST
+local UNKNOWN = UNKNOWN
 
 local DebuffColors = E.Libs.Dispel:GetDebuffTypeColor()
 local DispelTypes = E.Libs.Dispel:GetMyDispelTypes()
@@ -48,7 +47,7 @@ UF.ExcludeStacks = {
 
 UF.SmartPosition = {
 	BUFFS_ON_DEBUFFS = {
-		from = 'BUFFS', to = 'Debuffs',
+		from = 'BUFFS', to = 'Debuffs', other = 'Buffs',
 		warning = format(L["This setting caused a conflicting anchor point, where '%s' would be attached to itself. Please check your anchor points. Setting '%s' to be attached to '%s'."], L["Buffs"], L["Debuffs"], L["Frame"]),
 		func = function(db, buffs, debuffs)
 			db.buffs.attachTo = 'DEBUFFS'
@@ -59,7 +58,7 @@ UF.SmartPosition = {
 		end
 	},
 	DEBUFFS_ON_BUFFS = {
-		from = 'DEBUFFS', to = 'Buffs',
+		from = 'DEBUFFS', to = 'Buffs', other = 'Debuffs',
 		warning = format(L["This setting caused a conflicting anchor point, where '%s' would be attached to itself. Please check your anchor points. Setting '%s' to be attached to '%s'."], L["Debuffs"], L["Buffs"], L["Frame"]),
 		func = function(db, buffs, debuffs)
 			db.debuffs.attachTo = 'BUFFS'
@@ -75,57 +74,78 @@ UF.SmartPosition.FLUID_BUFFS_ON_DEBUFFS = E:CopyTable({fluid = true}, UF.SmartPo
 UF.SmartPosition.FLUID_DEBUFFS_ON_BUFFS = E:CopyTable({fluid = true}, UF.SmartPosition.DEBUFFS_ON_BUFFS)
 
 function UF:Construct_Auras(frame)
-	local auras = CreateFrame('Frame', '$parentAuras', frame)
-	auras.PreSetPosition = UF.SortAuras
-	auras.PostCreateButton = UF.Construct_AuraIcon
-	auras.PostUpdateButton = UF.PostUpdateAura
-	auras.SetPosition = UF.SetPosition
-	auras.PreUpdate = UF.PreUpdateAura
-	auras.CustomFilter = UF.AuraFilter
-	auras.stacks = {}
-	auras.rows = {}
-	auras.type = 'auras'
+	if E.Retail then
+		local auras = E:Auras_Create(frame, 'Auras')
+		auras:SetFrameLevel(frame.RaisedElementParent.AuraLevel)
 
-	auras:SetFrameLevel(frame.RaisedElementParent.AuraLevel)
-	auras:SetSize(1, 1)
+		return auras
+	else
+		local auras = CreateFrame('Frame', '$parentAuras', frame)
+		auras.PreSetPosition = UF.SortAuras
+		auras.PostCreateButton = UF.Construct_AuraIcon
+		auras.PostUpdateButton = UF.PostUpdateAura
+		auras.SetPosition = UF.SetPosition
+		auras.PreUpdate = UF.PreUpdateAura
+		auras.CustomFilter = UF.AuraFilter
+		auras.stacks = {}
+		auras.rows = {}
+		auras.type = 'auras'
 
-	return auras
+		auras:SetFrameLevel(frame.RaisedElementParent.AuraLevel)
+		auras:SetSize(1, 1)
+
+		return auras
+	end
 end
 
 function UF:Construct_Buffs(frame)
-	local buffs = CreateFrame('Frame', '$parentBuffs', frame)
-	buffs.PreSetPosition = UF.SortAuras
-	buffs.PostCreateButton = UF.Construct_AuraIcon
-	buffs.PostUpdateButton = UF.PostUpdateAura
-	buffs.SetPosition = UF.SetPosition
-	buffs.PreUpdate = UF.PreUpdateAura
-	buffs.CustomFilter = UF.AuraFilter
-	buffs.stacks = {}
-	buffs.rows = {}
-	buffs.type = 'buffs'
+	if E.Retail then
+		local buffs = E:Auras_Create(frame, 'Buffs')
+		buffs:SetFrameLevel(frame.RaisedElementParent.AuraLevel)
 
-	buffs:SetFrameLevel(frame.RaisedElementParent.AuraLevel)
-	buffs:SetSize(1, 1)
+		return buffs
+	else
+		local buffs = CreateFrame('Frame', '$parentBuffs', frame)
+		buffs.PreSetPosition = UF.SortAuras
+		buffs.PostCreateButton = UF.Construct_AuraIcon
+		buffs.PostUpdateButton = UF.PostUpdateAura
+		buffs.SetPosition = UF.SetPosition
+		buffs.PreUpdate = UF.PreUpdateAura
+		buffs.CustomFilter = UF.AuraFilter
+		buffs.stacks = {}
+		buffs.rows = {}
+		buffs.type = 'buffs'
 
-	return buffs
+		buffs:SetFrameLevel(frame.RaisedElementParent.AuraLevel)
+		buffs:SetSize(1, 1)
+
+		return buffs
+	end
 end
 
 function UF:Construct_Debuffs(frame)
-	local debuffs = CreateFrame('Frame', '$parentDebuffs', frame)
-	debuffs.PreSetPosition = UF.SortAuras
-	debuffs.PostCreateButton = UF.Construct_AuraIcon
-	debuffs.PostUpdateButton = UF.PostUpdateAura
-	debuffs.SetPosition = UF.SetPosition
-	debuffs.PreUpdate = UF.PreUpdateAura
-	debuffs.CustomFilter = UF.AuraFilter
-	debuffs.stacks = {}
-	debuffs.rows = {}
-	debuffs.type = 'debuffs'
+	if E.Retail then
+		local debuffs = E:Auras_Create(frame, 'Debuffs')
+		debuffs:SetFrameLevel(frame.RaisedElementParent.AuraLevel)
 
-	debuffs:SetFrameLevel(frame.RaisedElementParent.AuraLevel)
-	debuffs:SetSize(1, 1)
+		return debuffs
+	else
+		local debuffs = CreateFrame('Frame', '$parentDebuffs', frame)
+		debuffs.PreSetPosition = UF.SortAuras
+		debuffs.PostCreateButton = UF.Construct_AuraIcon
+		debuffs.PostUpdateButton = UF.PostUpdateAura
+		debuffs.SetPosition = UF.SetPosition
+		debuffs.PreUpdate = UF.PreUpdateAura
+		debuffs.CustomFilter = UF.AuraFilter
+		debuffs.stacks = {}
+		debuffs.rows = {}
+		debuffs.type = 'debuffs'
 
-	return debuffs
+		debuffs:SetFrameLevel(frame.RaisedElementParent.AuraLevel)
+		debuffs:SetSize(1, 1)
+
+		return debuffs
+	end
 end
 
 function UF:GetAuraRow(element, row, col, width, height, spacing, anchor, inversed, middle)
@@ -251,71 +271,66 @@ function UF:Construct_AuraIcon(button)
 
 	button.Cooldown:SetAllPoints(button.Icon)
 
-	E:RegisterCooldown(button.Cooldown, 'unitframe')
-
 	local auras = button:GetParent()
 	local frame = auras:GetParent()
-	button.db = frame.db and frame.db[auras.type]
+
+	button.db = frame.db and frame.db[auras.type] or nil
+
+	E:RegisterCooldown(button.Cooldown, 'unitframe', frame.unitframeType, auras.type)
 
 	UF:UpdateAuraSettings(button)
 end
 
-function UF:UpdateFilters(button)
-	local db = button.db
+function UF:GroupFilters(frame, list)
+	local group = frame.filters
+	if not group or not list then return end
 
-	if not button.auraFilters then
-		button.auraFilters = {}
+	wipe(frame.filters) -- start over
+
+	local auras, allow, block = E.global.unitframe.aurafilters
+	for index = 1, E.filterMax do
+		local name = 'group'..index
+		local data = list[name]
+		if data and data.enable then
+			local info = frame.filters[name]
+			if not info then info = {} end
+
+			if data.useAllowlist and not allow then allow = E:Auras_GetFilter(auras, 'Whitelist') end -- might as well
+			if data.useBlocklist and not block then block = E:Auras_GetFilter(auras, 'Blacklist') end -- save some loops
+
+			info.filter = data.filter
+			info.allowList = data.useAllowlist and ((data.allowList == 'Whitelist' and allow) or E:Auras_GetFilter(auras, data.allowList)) or nil
+			info.blockList = data.useBlocklist and ((data.blockList == 'Blacklist' and block) or E:Auras_GetFilter(auras, data.blockList)) or nil
+			info.maxDuration = (data.maxDuration and data.maxDuration > 0) and data.maxDuration or nil
+
+			local candidates = {} -- setup candidates
+			candidates.includeSpellIDs = info.allowList
+			candidates.excludeSpellIDs = info.blockList
+			candidates.maxDuration = info.maxDuration
+
+			for candidate in next, E.AuraCandidates do
+				local value = data.candidates[candidate]
+				if value == 1 then -- grey is exclude
+					candidates[candidate] = false
+				else
+					candidates[candidate] = value or nil
+				end
+			end
+
+			info.candidateFilters = next(candidates) and candidates or nil
+
+			frame.filters[name] = info
+		end
 	end
+end
 
-	local isPlayer = db and db.isAuraPlayer
-	local isRaidPlayerDispellable = db and db.isAuraRaidPlayerDispellable
-	local isCrowdControl = db and db.isAuraCrowdControl
-	local isCrowdControlPlayer = db and db.isAuraCrowdControlPlayer
-	local isBigDefensive = db and db.isAuraBigDefensive
-	local isBigDefensivePlayer = db and db.isAuraBigDefensivePlayer
-	local isRaidInCombat = db and db.isAuraRaidInCombat
-	local isRaidInCombatPlayer = db and db.isAuraRaidInCombatPlayer
-	local isExternalDefensive = db and db.isAuraExternalDefensive
-	local isExternalDefensivePlayer = db and db.isAuraExternalDefensivePlayer
-	local isCancelable = db and db.isAuraCancelable
-	local isCancelablePlayer = db and db.isAuraCancelablePlayer
-	local notCancelable = db and db.notAuraCancelable
-	local notCancelablePlayer = db and db.notAuraCancelablePlayer
-	local isRaid = db and db.isAuraRaid
-	local isRaidPlayer = db and db.isAuraRaidPlayer
-	local isPermanent = db and db.isAuraPermanent
-	local isPermanentPlayer = db and db.isAuraPermanentPlayer
+function UF:FilterEnabled(db, which)
+	if not db then return end
 
-	local filters = button.auraFilters
-	local filterList = (db and db.useBlocklist) and E.global.unitframe.aurafilters
-	filters.Blocklist = filterList and filterList.Blocklist and filterList.Blocklist.spells or nil
-	filters.isPermanent = isPermanent
-	filters.isPermanentPlayer = isPermanentPlayer
-
-	filters.isPlayer = isPlayer
-	filters.isRaidPlayerDispellable = isRaidPlayerDispellable
-	filters.isCrowdControl = isCrowdControl
-	filters.isCrowdControlPlayer = isCrowdControlPlayer
-	filters.isBigDefensive = isBigDefensive
-	filters.isBigDefensivePlayer = isBigDefensivePlayer
-	filters.isRaidInCombat = isRaidInCombat
-	filters.isRaidInCombatPlayer = isRaidInCombatPlayer
-	filters.isExternalDefensive = isExternalDefensive
-	filters.isExternalDefensivePlayer = isExternalDefensivePlayer
-	filters.isCancelable = isCancelable
-	filters.isCancelablePlayer = isCancelablePlayer
-	filters.notCancelable = notCancelable
-	filters.notCancelablePlayer = notCancelablePlayer
-	filters.isRaid = isRaid
-	filters.isRaidPlayer = isRaidPlayer
-
-	button.useMidnight = db and db.useMidnight
-
-	local shared = isPlayer or isCancelable or isCancelablePlayer or notCancelable or notCancelablePlayer or isRaid or isRaidPlayer
 	if E.Retail then
-		button.noFilter = db and not (shared or isRaidPlayerDispellable or isCrowdControl or isCrowdControlPlayer or isBigDefensive or isBigDefensivePlayer or isRaidInCombat or isRaidInCombatPlayer or isExternalDefensive or isExternalDefensivePlayer)
-	else
-		button.noFilter = db and not shared
+		return db[which]
+	else -- return it back to a boolean
+		return not not db[which]
 	end
 end
 
@@ -325,7 +340,7 @@ function UF:UpdateAuraSettings(button)
 		if button.Count then
 			local point = db.countPosition or 'CENTER'
 			button.Count:SetJustifyH(strfind(point, 'RIGHT') and 'RIGHT' or 'LEFT')
-			button.Count:FontTemplate(LSM:Fetch('font', db.countFont), db.countFontSize, db.countFontOutline)
+			button.Count:FontTemplate(db.countFont, db.countFontSize, db.countFontOutline)
 			button.Count:ClearAllPoints()
 			button.Count:Point(point, db.countXOffset, db.countYOffset)
 		end
@@ -333,15 +348,13 @@ function UF:UpdateAuraSettings(button)
 		if button.Text then
 			local point = db.sourceText.position or 'TOP'
 			button.Text:SetJustifyH(strfind(point, 'RIGHT') and 'RIGHT' or 'LEFT')
-			button.Text:FontTemplate(LSM:Fetch('font', db.sourceText.font), db.sourceText.fontSize, db.sourceText.fontOutline)
+			button.Text:FontTemplate(db.sourceText.font, db.sourceText.fontSize, db.sourceText.fontOutline)
 			button.Text:ClearAllPoints()
 			button.Text:Point(point, db.sourceText.xOffset, db.sourceText.yOffset)
 		end
 	end
 
 	button.needsButtonTrim = true
-
-	UF:UpdateFilters(button)
 end
 
 function UF:EnableDisable_Auras(frame)
@@ -367,7 +380,7 @@ function UF:Configure_AllAuras(frame)
 end
 
 function UF:GetAuraElements(frame)
-	if frame.isNamePlate then
+	if frame.isNameplate then
 		return frame.Buffs_, frame.Debuffs_
 	else
 		return frame.Buffs, frame.Debuffs
@@ -375,10 +388,13 @@ function UF:GetAuraElements(frame)
 end
 
 function UF:SetSmartPosition(frame, db)
-	if frame.isNamePlate then db = NP:PlateDB(frame) end
+	if frame.isNameplate then db = NP:PlateDB(frame) end
+	if not db then return end
+
+	local buffs, debuffs = UF:GetAuraElements(frame)
+	if not buffs or not debuffs then return end
 
 	local position = db.smartAuraPosition
-	local buffs, debuffs = UF:GetAuraElements(frame)
 	local info = UF.SmartPosition[position]
 	if info then
 		local TO = db[strlower(info.to)]
@@ -412,6 +428,7 @@ function UF:Configure_Auras(frame, which)
 	local auras = frame[which]
 	local auraType = which:lower()
 	local settings = db[auraType]
+
 	auras.db = settings
 	auras.auraSort = UF.SortAuraFuncs[E.Retail and 'PLAYER' or settings.sortMethod]
 	auras.smartPosition, auras.smartFluid = UF:SetSmartPosition(frame, db)
@@ -419,41 +436,7 @@ function UF:Configure_Auras(frame, which)
 	auras.tooltipAnchor = settings.tooltipAnchorType
 	auras.tooltipAnchorX = settings.tooltipAnchorX
 	auras.tooltipAnchorY = settings.tooltipAnchorY
-
-	if settings.sizeOverride and settings.sizeOverride > 0 then
-		auras:Width(settings.perrow * settings.sizeOverride + ((settings.perrow - 1) * settings.spacing))
-	else
-		local xOffset = 0
-		if frame.USE_POWERBAR_OFFSET then
-			if frame.ORIENTATION == 'MIDDLE' then
-				if settings.attachTo ~= 'POWER' then
-					xOffset = frame.POWERBAR_OFFSET * 2
-				end -- if its middle and power we dont want an offset.
-			else
-				xOffset = frame.POWERBAR_OFFSET
-			end
-		end
-
-		auras:Width((frame.UNIT_WIDTH - UF.SPACING*2) - xOffset)
-	end
-
-	auras.spacing = settings.spacing
-	auras.num = settings.perrow * settings.numrows
-	auras.size = settings.sizeOverride ~= 0 and settings.sizeOverride or (((frame.UNIT_WIDTH - (settings.spacing * (auras.num / settings.numrows - 1)) - ((UF.thinBorders or E.twoPixelsPlease) and 0 or 2)) / auras.num) * settings.numrows)
-	auras.height = not settings.keepSizeRatio and settings.height
-	auras.forceShow = frame.forceShowAuras
-	auras.disableMouse = settings.clickThrough
 	auras.anchorPoint = settings.anchorPoint
-	auras.growthX = UF.MatchGrowthX[settings.anchorPoint] or settings.growthX
-	auras.growthY = UF.MatchGrowthY[settings.anchorPoint] or settings.growthY
-	auras.initialAnchor = UF.SideAnchor[settings.anchorPoint] and E.InversePoints[settings.anchorPoint] or (UF.GrowthPoints[settings.growthY]..UF.GrowthPoints[settings.growthX])
-	auras.filterList = UF:ConvertFilters(auras, settings.priority)
-	auras.numAuras = settings.perrow
-	auras.numRows = settings.numrows
-
-	if which == 'Auras' then -- only use this for custom
-		auras.filter = settings.filter or 'HARMFUL'
-	end
 
 	local x, y
 	if settings.attachTo == 'HEALTH' or settings.attachTo == 'POWER' then
@@ -466,24 +449,97 @@ function UF:Configure_Auras(frame, which)
 
 	auras.xOffset = x + settings.xOffset + (settings.attachTo == 'FRAME' and frame.ORIENTATION ~= 'LEFT' and frame.POWERBAR_OFFSET or 0)
 	auras.yOffset = y + settings.yOffset
+	auras.spacing = settings.spacing
+	auras.num = settings.perrow * settings.numrows
+	auras.size = settings.sizeOverride ~= 0 and settings.sizeOverride or (((frame.UNIT_WIDTH - (settings.spacing * (auras.num / settings.numrows - 1)) - ((UF.thinBorders or E.twoPixelsPlease) and 0 or 2)) / auras.num) * settings.numrows)
+	auras.height = not settings.keepSizeRatio and settings.height
+	auras.numAuras = settings.perrow
+	auras.numRows = settings.numrows
+	auras.colorByType = UF.db.colors.auraByType
+	auras.growthX = UF.MatchGrowthX[settings.anchorPoint] or settings.growthX
+	auras.growthY = UF.MatchGrowthY[settings.anchorPoint] or settings.growthY
 
-	auras:ClearAllPoints()
-	auras:Point(auras.initialAnchor, auras.attachTo, auras.anchorPoint, auras.xOffset, auras.yOffset)
+	local smartInfo = E.Retail and auras.smartFluid and UF.SmartPosition[auras.smartPosition]
+	local smartFluid = smartInfo and (smartInfo.to == which or smartInfo.other == which)
+	local growDown, growOffset = auras.growthX == 'DOWN', smartInfo and 1.5 or 1
 
-	auras:SetFrameStrata(settings.strataAndLevel and settings.strataAndLevel.useCustomStrata and settings.strataAndLevel.frameStrata or 'LOW')
-	auras:SetFrameLevel((settings.strataAndLevel and settings.strataAndLevel.useCustomLevel and settings.strataAndLevel.frameLevel) or (frame.RaisedElementParent and frame.RaisedElementParent.AuraLevel) or 1)
+	if which == 'Auras' then -- only use this for custom
+		auras.filter = settings.filter or 'HARMFUL'
+	elseif E.Retail then
+		auras.filter = (which == 'Buffs' and 'HELPFUL') or 'HARMFUL'
+	end
 
-	local index = 1
-	while auras[index] do
-		local button = auras[index]
-		if button then
-			button.db = settings
-			UF:UpdateAuraSettings(button)
-			button:SetBackdropBorderColor(unpack(E.media.unitframeBorderColor))
+	local initialAnchor = (UF.SideAnchor[settings.anchorPoint] and E.InversePoints[settings.anchorPoint]) or (UF.GrowthPoints[settings.growthY]..UF.GrowthPoints[settings.growthX])
+	if E.Retail then
+		auras:SetEnabled(settings.enable)
+
+		auras.isUnitframe = true
+		auras.auraType = auraType
+		auras.maxFrameCount = auras.num
+		auras.initialAnchor = E.CenterPoint[settings.anchorPoint] or initialAnchor
+		auras.keepSizeRatio = settings.keepSizeRatio
+		auras.sortMethod = E.AuraContainerSortMethod[settings.sortMethod]
+		auras.sortDirection = E.AuraContainerSortDirection[settings.sortDirection]
+		auras.unitframeType = frame.unitframeType
+		auras.useDesaturate = settings.desaturate
+		auras.maxDuration = (settings.maxDuration and settings.maxDuration > 0) and settings.maxDuration or nil
+		auras.countPosition, auras.countXOffset, auras.countYOffset = settings.countPosition, settings.countXOffset, settings.countYOffset
+		auras.countFont, auras.countFontSize, auras.countFontOutline = settings.countFont, settings.countFontSize, settings.countFontOutline
+		auras.paddingLeft, auras.paddingRight, auras.paddingTop, auras.paddingBottom = 0, 0, growDown and growOffset or 0, growDown and 0 or growOffset
+		auras.noMouse = settings.clickThrough
+		auras.forceShowAuras = frame.forceShowAuras
+
+		if settings.enable then
+			auras.filterLists = settings.filterLists
+
+			UF:GroupFilters(auras, settings.filterLists) -- build the groups
+
+			E:Auras_GroupUnit(auras, frame.__unit)
+			E:Auras_SetContainer(auras)
+			E:Auras_SetLineSize(auras)
+			E:Auras_UpdateButtons(auras)
+		end
+	else
+		auras.initialAnchor = initialAnchor
+
+		if settings.sizeOverride and settings.sizeOverride > 0 then
+			auras:Width(settings.perrow * settings.sizeOverride + ((settings.perrow - 1) * settings.spacing))
+		else
+			local xOffset = 0
+			if frame.USE_POWERBAR_OFFSET then
+				if frame.ORIENTATION == 'MIDDLE' then
+					if settings.attachTo ~= 'POWER' then
+						xOffset = frame.POWERBAR_OFFSET * 2
+					end -- if its middle and power we dont want an offset.
+				else
+					xOffset = frame.POWERBAR_OFFSET
+				end
+			end
+
+			auras:Width((frame.UNIT_WIDTH - UF.SPACING*2) - xOffset)
 		end
 
-		index = index + 1
+		auras.forceShow = frame.forceShowAuras
+		auras.disableMouse = settings.clickThrough
+		auras.filterList = UF:ConvertFilters(auras, settings.priority)
+
+		local index = 1
+		while auras[index] do
+			local button = auras[index]
+			if button then
+				button.db = settings
+				UF:UpdateAuraSettings(button)
+				button:SetBackdropBorderColor(unpack(E.media.unitframeBorderColor))
+			end
+
+			index = index + 1
+		end
 	end
+
+	auras:ClearAllPoints()
+	auras:Point(auras.initialAnchor, auras.attachTo, auras.anchorPoint, auras.xOffset, auras.yOffset - (smartFluid and 1 or 0))
+	auras:SetFrameStrata((settings.strataAndLevel and settings.strataAndLevel.useCustomStrata and settings.strataAndLevel.frameStrata) or 'LOW')
+	auras:SetFrameLevel((settings.strataAndLevel and settings.strataAndLevel.useCustomLevel and settings.strataAndLevel.frameLevel) or frame.RaisedElementParent.AuraLevel)
 
 	if settings.enable then
 		auras:Show()
@@ -746,57 +802,6 @@ function UF:AuraPopulate(auras, db, unit, button, name, icon, count, debuffType,
 	return myPet, otherPet, canDispel, unitIsCaster
 end
 
-function UF:VerifyFilter(button, aura)
-	local filters = button.auraFilters
-	if not filters then return true end
-
-	local player, cancel = aura.auraIsPlayer, aura.auraIsCancelable
-	local other, noCancel = not player, not cancel
-
-	local checkPermanent = (filters.isPermanentPlayer and player) or (filters.isPermanent and other)
-	local cooldown = checkPermanent and button.Cooldown
-	if cooldown and not cooldown:IsShown() then
-		return false -- block no duration auras
-	end
-
-	local list = filters.Blocklist
-	if list and E:NotSecretValue(aura.spellId) then
-		local spell = list[aura.spellId] or list[aura.name]
-		if spell and spell.enable then
-			return false
-		end
-	end
-
-	if button.noFilter then
-		return true -- no allow boxes checked
-	elseif E.Retail then
-		return (filters.isPlayer and player)
-		or (filters.isRaidPlayerDispellable and aura.auraIsRaidPlayerDispellable)
-		or (filters.isCrowdControl and aura.auraIsCrowdControl and other)
-		or (filters.isCrowdControlPlayer and aura.auraIsCrowdControl and player)
-		or (filters.isBigDefensive and aura.auraIsBigDefensive and other)
-		or (filters.isBigDefensivePlayer and aura.auraIsBigDefensive and player)
-		or (filters.isRaidInCombat and aura.auraIsRaidInCombat and other)
-		or (filters.isRaidInCombatPlayer and aura.auraIsRaidInCombat and player)
-		or (filters.isExternalDefensive and aura.auraIsExternalDefensive and other)
-		or (filters.isExternalDefensivePlayer and aura.auraIsExternalDefensive and player)
-		or (filters.isCancelable and cancel and other)
-		or (filters.isCancelablePlayer and cancel and player)
-		or (filters.notCancelable and noCancel and other)
-		or (filters.notCancelablePlayer and noCancel and player)
-		or (filters.isRaid and aura.auraIsRaid and other)
-		or (filters.isRaidPlayer and aura.auraIsRaid and player)
-	else
-		return (filters.isPlayer and player)
-		or (filters.isCancelable and cancel and other)
-		or (filters.isCancelablePlayer and cancel and player)
-		or (filters.notCancelable and noCancel and other)
-		or (filters.notCancelablePlayer and noCancel and player)
-		or (filters.isRaid and aura.auraIsRaid and other)
-		or (filters.isRaidPlayer and aura.auraIsRaid and player)
-	end
-end
-
 function UF:AuraFilter(element, unit, button, aura, name, icon, count, debuffType, duration, expiration, source, isStealable, nameplateShowPersonal, spellID, canApplyAura, isBossAura, castByPlayer, nameplateShowAll)
 	if not name then return end -- checking for an aura that is not there, pass nil to break while loop
 	local db = element.db
@@ -809,10 +814,6 @@ function UF:AuraFilter(element, unit, button, aura, name, icon, count, debuffTyp
 		button.priority = 0
 
 		return true
-	elseif E.Retail or button.useMidnight then
-		button.priority = 0
-
-		return UF:VerifyFilter(button, aura)
 	elseif UF:AuraStacks(element, db, button, name, icon, count, spellID, source, castByPlayer) then
 		return false -- stacking so dont allow it
 	end

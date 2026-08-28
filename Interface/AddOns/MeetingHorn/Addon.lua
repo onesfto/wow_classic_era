@@ -225,10 +225,3 @@ function Addon:GetEncouterDataByKey(key)
         return ns[key]
     end
 end
-
--- 自定义添加的命令
-SLASH_MEETINGHORN1 = "/mh"
-SLASH_MEETINGHORN2 = "/jjh"
-SlashCmdList["MEETINGHORN"] = function()
-    LibStub('AceAddon-3.0'):GetAddon('MeetingHorn'):Toggle()
-end

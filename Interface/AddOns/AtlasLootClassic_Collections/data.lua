@@ -24,6 +24,7 @@ local ALIL = AtlasLoot.IngameLocales
 
 local GetForVersion = AtlasLoot.ReturnForGameVersion
 
+local SOD_DIFF = data:AddDifficulty("SoD")
 local NORMAL_DIFF = data:AddDifficulty("NORMAL", nil, nil, nil, true)
 local HEROIC_DIFF = data:AddDifficulty("HEROIC", nil, nil, nil, true)
 local RAID10_DIFF = data:AddDifficulty("10RAID")
@@ -53,11 +54,14 @@ local QUEST_EXTRA_ITTYPE = data:AddExtraItemTableType("Quest")
 local PRICE_EXTRA_ITTYPE = data:AddExtraItemTableType("Price")
 local SET_EXTRA_ITTYPE = data:AddExtraItemTableType("Set")
 
+local SOD_CONTENT = data:AddContentType(AL["SoD Exclusives"], ATLASLOOT_RAID20_COLOR)
 local VENDOR_CONTENT = data:AddContentType(AL["Vendor"], ATLASLOOT_DUNGEON_COLOR)
 local SET_CONTENT = data:AddContentType(AL["Sets"], ATLASLOOT_PVP_COLOR)
 --local WORLD_BOSS_CONTENT = data:AddContentType(AL["World Bosses"], ATLASLOOT_WORLD_BOSS_COLOR)
-local COLLECTIONS_CONTENT = data:AddContentType(AL["Collections"], ATLASLOOT_COLLECTIONS_COLOR)
+local CLASSIC_CONTENT = data:AddContentType(AL["Classic"], ATLASLOOT_RAID40_COLOR)
+local COLLECTIONS_CONTENT = data:AddContentType(AL["Collections"], ATLASLOOT_PVP_COLOR)
 local WORLD_EVENT_CONTENT = data:AddContentType(AL["World Events"], ATLASLOOT_SEASONALEVENTS_COLOR)
+
 
 -- colors
 local BLUE = "|cff6666ff%s|r"
@@ -67,9 +71,1287 @@ local _RED = "|cffcc6666%s|r"
 local PURPLE = "|cff9900ff%s|r"
 --local WHIT = "|cffffffff%s|r"
 
+data["SoD Collections"] = {
+	name = AL["Tier & Sets"],
+	ContentType = SOD_CONTENT,
+	TableType = SET_ITTYPE,
+	items = {
+		{
+			name = AL["Level 60 Tier 3.5"],
+			[NORMAL_DIFF] = {
+				{ 1, 1945 }, -- Druid
+				{ 2, 1946 }, -- Druid
+				{ 3, 1947 }, -- Druid
+				{ 4, 1948 }, -- Druid
+				{ 6, 1936 }, -- Hunter
+				{ 7, 1937 }, -- Hunter
+				{ 9, 1943 }, -- Mage
+				{ 10, 1944 }, -- Mage
+				{ 12, 1949 }, -- Shaman
+				{ 13, 1950 }, -- Shaman
+				{ 14, 1951 }, -- Shaman
+				{ 15, 1952 }, -- Shaman
+				{ 16, 1940 }, -- Paladin
+				{ 17, 1941 }, -- Paladin
+				{ 18, 1942 }, -- Paladin
+				{ 19, 1963 }, -- Paladin
+				{ 21, 1938 }, -- Priest
+				{ 22, 1939 }, -- Priest
+				{ 23, 1934 }, -- Rogue
+				{ 24, 1935 }, -- Rogue
+				{ 26, 1953 }, -- Warlock
+				{ 27, 1954 }, -- Warlock
+				{ 29, 1932 }, -- Warrior
+				{ 30, 1933 }, -- Warrior		
+			},
+		},
+		{
+			name = AL["Level 60 Tier 3"],
+			[NORMAL_DIFF] = {
+				{ 1, 1904 }, -- Druid Balance
+				{ 2, 1903 }, -- Druid Feral
+				{ 3, 1902 }, -- Druid Resto
+				{ 4, 1901 }, -- Druid Tank
+				{ 6, 1899 }, -- Hunter (Ranged)
+				{ 7, 1900 }, -- Hunter (Melee)
+				{ 9, 1898 }, -- Mage (DPS)
+				{ 10, 1897 }, -- Mage (Healer)
+				{ 12, 1889 }, -- Shaman (Ele)
+				{ 13, 1888 }, -- Shaman (Enhance)
+				{ 14, 1887 }, -- Shaman (Resto)
+				{ 15, 1886 }, -- Shaman (Tank)
+				{ 16, 1896 }, -- Paladin (DPS)
+				{ 17, 1895 }, -- Paladin (Healer)
+				{ 18, 1894 }, -- Paladin (Tank)
+				{ 20, 1893 }, -- Priest (DPS)
+				{ 21, 1892 }, -- Priest (Healer)
+				{ 23, 1891 }, -- Rogue (DPS)
+				{ 24, 1890 }, -- Rogue (Tank)
+				{ 26, 1885 }, -- Warlock (DPS)
+				{ 27, 1884 }, -- Warlock (Tank)
+				{ 29, 1883 }, -- Warrior (DPS)
+				{ 30, 1882 }, -- Warrior (Tank)			
+			},
+		},
+		{	
+			name = AL["Level 60 Tier 2.5"],
+			[NORMAL_DIFF] = {
+				{ 1, 1835 }, --Balance
+				{ 2, 1836 }, --Feral
+				{ 3, 1837 }, --Tank
+				{ 4, 1838 }, --Resto
+				{ 6, 1839 }, --Ranged Hunter
+				{ 7, 1840 }, --Melee Hunter
+				{ 9, 1841 }, --Damage Mage
+				{ 10, 1842 }, --Healer Mage
+				{ 12, 1850 }, -- Healer Sham
+				{ 13, 1851 }, -- Ele Sham
+				{ 14, 1852 }, -- Tank Sham
+				{ 15, 1853 }, -- Melee Sham
+				{ 16, 1843 }, -- Holy Pally
+				{ 17, 1844 }, -- Tank Pally
+				{ 18, 1845 }, -- Ret Pally 
+				{ 20, 1846 }, -- Healer Priest
+				{ 21, 1847 }, -- DPS Priest 
+				{ 23, 1848 }, -- DPS Rogue
+				{ 24, 1849 }, -- Tank Rogue  
+				{ 26, 1854 }, -- DPS Lock
+				{ 27, 1855 }, -- Tank Lock
+				{ 29, 1856 }, -- Tank Warr
+				{ 30, 1857 }, -- Dps Warr				
+			},
+		},
+		{
+			name = AL["Ahn'Qiraj Ruins Sets"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Mage"], nil },
+				{ 2, 1860 },
+				{ 4, "INV_Box_01", nil, AL["Priest"], nil },
+				{ 5, 1862 },
+				{ 7, "INV_Box_01", nil, AL["Warlock"], nil },
+				{ 8, 1865 },
+				{ 10, "INV_Box_01", nil, AL["Druid"], nil },
+				{ 11, 1858 },
+				{ 13, "INV_Box_01", nil, AL["Rogue"], nil },
+				{ 14, 1863 },
+				{ 16, "INV_Box_01", nil, AL["Hunter"], nil },
+				{ 17, 1859 },
+				{ 19, "INV_Box_01", nil, AL["Shaman"], nil },
+				{ 20, 1864 },
+				{ 22, "INV_Box_01", nil, AL["Paladin"], nil },
+				{ 23, 1861 },
+				{ 25, "INV_Box_01", nil, AL["Warrior"], nil },
+				{ 26, 1866 },
+
+			},
+		},
+		{
+			name = AL["Level 60 Tier 2"],
+			[NORMAL_DIFF] = {
+				{ 1, 1801 }, --Balance
+				{ 2, 1803 }, --Feral
+				{ 3, 1804 }, --Tank
+				{ 4, 1802 }, --Resto
+				{ 6, 1805 }, --Ranged Hunter
+				{ 7, 1806 }, --Melee Hunter
+				{ 9, 1807 }, --Damage Mage
+				{ 10, 1808 }, --Healer Mage
+				{ 12, 1816 }, -- Healer Sham
+				{ 13, 1818 }, -- Melee Sham
+				{ 14, 1817 }, -- Ranged Sham
+				{ 15, 1819 }, -- Tank Sham
+				{ 16, 1809 }, -- Holy Pally
+				{ 17, 1810 }, -- Ret Pally
+				{ 18, 1811 }, -- Tank Pally -
+				{ 20, 1812 }, -- Healer Priest
+				{ 21, 1813 }, -- DPS Priest -
+				{ 23, 1814 }, -- DPS Rogue
+				{ 24, 1815 }, -- Tank Rogue - 
+				{ 26, 1820 }, -- DPS Lock
+				{ 27, 1821 }, -- Tank Lock
+				{ 29, 1822 }, -- Tank Warr
+				{ 30, 1823 }, -- Dps Warr				
+			},
+		},
+		{
+			name = AL["Level 60 Tier 1"],
+			[NORMAL_DIFF] = {
+				{ 1, 1698 }, --Balance
+				{ 2, 1699 }, --Feral
+				{ 3, 1701 }, --Tank
+				{ 4, 1700 }, --Resto
+				{ 6, 1702 }, --Ranged Hunter
+				{ 7, 1703 }, --Melee Hunter
+				{ 9, 1704 }, --Damage Mage
+				{ 10, 1705 }, --Healer Mage
+				{ 12, 1713 }, -- Healer Sham
+				{ 13, 1715 }, -- Melee Sham
+				{ 14, 1714 }, -- Ranged Sham
+				{ 15, 1716 }, -- Tank Sham
+				{ 16, 1706 }, -- Holy Pally
+				{ 17, 1707 }, -- Ret Pally
+				{ 18, 1708 }, -- Tank Pally
+				{ 20, 1709 }, -- Healer Priest
+				{ 21, 1710 }, -- DPS Priest
+				{ 23, 1711 }, -- DPS Rogue
+				{ 24, 1712 }, -- Tank Rogue
+				{ 26, 1717 }, -- DPS Lock
+				{ 27, 1718 }, -- Tank Lock
+				{ 29, 1719 }, -- Tank Warr
+				{ 30, 1720 }, -- Dps Warr				
+			},
+		},
+		{
+			name = AL["Zul-Gurub Sets"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Druid"], nil },
+				{ 2, 1824 },
+				{ 4, "INV_Box_01", nil, AL["Hunter"], nil },
+				{ 5, 1825 },
+				{ 7, "INV_Box_01", nil, AL["Mage"], nil },
+				{ 8, 1826 },
+				{ 10, "INV_Box_01", nil, AL["Paladin"], nil },
+				{ 11, 1827 },
+				{ 15, "INV_Box_01", nil, AL["*Click sets for details*"], nil },
+				{ 16, "INV_Box_01", nil, AL["Priest"], nil },
+				{ 17, 1828 },
+				{ 19, "INV_Box_01", nil, AL["Rogue"], nil },
+				{ 20, 1829 },
+				{ 22, "INV_Box_01", nil, AL["Shaman"], nil },
+				{ 23, 1830 },
+				{ 25, "INV_Box_01", nil, AL["Warlock"], nil },
+				{ 26, 1831 },
+				{ 28, "INV_Box_01", nil, AL["Warrior"], nil },
+				{ 29, 1832 },
+			},
+		},
+		{
+			name = AL["Level 60 Dungeon Set 0.5"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Druid"], nil },
+				{ 2, 1667 },
+				{ 4, "INV_Box_01", nil, AL["Hunter"], nil },
+				{ 5, 1669 },
+				{ 7, "INV_Box_01", nil, AL["Mage"], nil },
+				{ 8, 1671 },
+				{ 10, "INV_Box_01", nil, AL["Paladin"], nil },
+				{ 11, 1673 },
+				{ 15, "INV_Box_01", nil, AL["*Click sets for details*"], nil },
+				{ 16, "INV_Box_01", nil, AL["Priest"], nil },
+				{ 17, 1675 },
+				{ 19, "INV_Box_01", nil, AL["Rogue"], nil },
+				{ 20, 1676 },
+				{ 22, "INV_Box_01", nil, AL["Shaman"], nil },
+				{ 23, 1679 },
+				{ 25, "INV_Box_01", nil, AL["Warlock"], nil },
+				{ 26, 1681 },
+				{ 28, "INV_Box_01", nil, AL["Warrior"], nil },
+				{ 29, 1778 },
+			},
+		},
+		{
+			name = AL["Level 60 Dungeon Set 0"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Druid"], nil },
+				{ 2, 1666 },
+				{ 4, "INV_Box_01", nil, AL["Hunter"], nil },
+				{ 5, 1668 },
+				{ 7, "INV_Box_01", nil, AL["Mage"], nil },
+				{ 8, 1670 },
+				{ 10, "INV_Box_01", nil, AL["Paladin"], nil },
+				{ 11, 1672 },
+				{ 16, "INV_Box_01", nil, AL["Priest"], nil },
+				{ 17, 1674 },
+				{ 19, "INV_Box_01", nil, AL["Rogue"], nil },
+				{ 20, 1677 },
+				{ 22, "INV_Box_01", nil, AL["Shaman"], nil },
+				{ 23, 1678 },
+				{ 25, "INV_Box_01", nil, AL["Warlock"], nil },
+				{ 26, 1680 },
+				{ 28, "INV_Box_01", nil, AL["Warrior"], nil },
+				{ 29, 1682 },
+			},
+		},
+		{
+			name = AL["Level 50 Emerald Sets"],
+			[NORMAL_DIFF] = {
+				{ 1, 1652 },
+				{ 2, 1653 },
+				{ 4, 1654 },
+				{ 5, 1655 },
+				{ 6, 1656 },
+				{ 8, 1657 },
+				{ 9, 1658 },
+				{ 10, 1659 },
+				{ 12, 1660 },
+				{ 13, 1661 },
+			},
+		},
+		{
+			name = AL["Level 50 Raid"],
+			[NORMAL_DIFF] = {
+				{ 1, 1637 }, 
+				{ 2, 1638 }, 
+				{ 3, 1639 }, 
+				{ 5, 1640 }, 
+				{ 6, 1641 }, 
+				{ 7, 1642 }, 
+				{ 8, 1643 }, 
+				{ 10, 1644 }, 
+				{ 11, 1645 }, 
+				{ 12, 1646 }, 
+				{ 13, 1647 }, 
+				{ 16, 1648 }, 
+				{ 17, 1649 },
+				{ 18, 1650 },
+			},
+		},
+		{
+			name = AL["Level 40 Raid"],
+			[NORMAL_DIFF] = {
+				{ 1, 1584 },
+				{ 2, 1587 },
+				{ 3, 1588 },
+				{ 5, 1585 },
+				{ 6, 1586 },
+				{ 8, 1590 },
+				{ 9, 1591 },
+				{ 11, 1589 },
+				{ 12, 1592 },
+			},
+		},
+		{
+			name = AL["Level 25 Raid"],
+			[NORMAL_DIFF] = {
+				{ 1, 1570 }, -- Twilight Invoker's Vestments
+				{ 3, 1578 }, -- 
+				{ 4, 1579 }, -- 
+				{ 6, 1577 }, -- 
+			},
+		},
+	},
+}
+
+data["SoD Currency"] = {
+	name = AL["Currency Rewards"],
+	ContentType = SOD_CONTENT,
+	LoadDifficulty = NORMAL_DIFF,
+	TableType = NORMAL_ITTYPE,
+	gameVersion = AtlasLoot.CLASSIC_VERSION_NUM,
+	items = {
+	{
+			name = AL["Tarnished Undermine Reals P7"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Phase 7"], nil },
+				{ 2, "INV_Box_01", nil, AL["Tier 1 - 15 Reals"], nil },
+				{ 3, 227533 }, -- Incandescent Gloves
+				{ 4, 227756 }, -- Molten Scaled Gloves
+				{ 5, 227759 }, -- Scorched Core Gloves
+				{ 6, 227531 }, -- Incandescent Bindings
+				{ 7, 227750 }, -- Molten Scaled Bindings
+				{ 8, 227760 }, -- Scorched Core Bindings
+				{ 9, 227530 }, -- Incandescent Belt
+				{ 10, 227751 }, -- Molten Sccaled Belt
+				{ 11, 227761 }, -- Scorched Core Belt
+				{ 16, "INV_Box_01", nil, AL["Tier 1 - 20 Reals"], nil },
+				{ 17, 227536 }, -- Inncandescent Boots
+				{ 18, 227757 }, -- Molten Scaled Boots
+				{ 19, 227765 }, -- Scorched Core Boots
+				{ 20, 227537 }, -- Incandescent Shoulderpads
+				{ 21, 227752 }, -- Molten Scaled Shoulderpads
+				{ 22, 227762 }, -- Scorched Core Shoulderpads
+				{ 24, "INV_Box_01", nil, AL["Tier 1 - 25 Reals"], nil },
+				{ 25, 227535 },	-- Incandescent Robe
+				{ 26, 227766 },	-- Scorched Core Chest
+				{ 27, 227758 },	-- Molten Scaled Chest
+				{ 30, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 101, "INV_Box_01", nil, AL["Tier 1 - 25 Reals"], nil },
+				{ 102, 227532 }, -- Incandescent Hood
+				{ 103, 227764 }, -- Scorched Core Helm
+				{ 104, 227755 }, -- Molten Scaled Helm
+				{ 105, 227534 }, -- Incandescent Leggings
+				{ 106, 227754 }, -- Molten Scaled Leggings
+				{ 107, 227763 }, -- Scorched Core Leggings
+				{ 116, "INV_Box_01", nil, AL["Tier 2 - 35 Reals"], nil },
+				{ 117, 231724 }, -- Ancient Bindings
+				{ 118, 231715 }, -- Primeval Bindings
+				{ 119, 231707 }, -- Draconian Bindings
+				{ 120, 231729 }, -- Ancient Gloves
+				{ 121, 231720 }, -- Primeval Gloves
+				{ 122, 231712 }, -- Draconian Gloves
+				{ 123, 231730 }, -- Ancient Boots
+				{ 124, 231721 }, -- Primeval Boots
+				{ 125, 231713 }, -- Draconian Boots
+				{ 126, 231725 }, -- Ancient Belt
+				{ 127, 231716 }, -- Primeval Belt
+				{ 128, 231708 }, -- Draconian Belt
+			},
+		},
+		{
+			name = AL["Tarnished Undermine Reals P1-6"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Phase 5"], nil },
+				{ 2, 231707 }, -- Draconian Bindings
+				{ 3, 231715 }, -- Primeval Bindings
+				{ 4, 231724 }, -- Ancient Bindings
+				{ 5, 231996 }, -- Supercharged Gobmogrifier
+				{ 7, 232454 }, -- Emblem of the Wild Gods
+				{ 8, 232455 }, -- Emblem of Dishonor
+				{ 9, 232456 }, -- Emblem of the Violet Eye
+				{ 10, 232457 }, -- Emblem of the Worldcore
+				{ 12, 232390 }, -- Idol of Celestial Focus
+				{ 13, 232391 }, -- Idol of Feline Focus
+				{ 14, 232423 }, -- Idol of Nurture
+				{ 15, 232424 }, -- Idol of Cruelty
+				{ 16, 231811 }, -- Libram of Awe
+				{ 17, 232389 }, -- Libram of Plenty
+				{ 18, 232420 }, -- Libram of Wrath
+				{ 19, 232421 }, -- Libram of Avenging
+				{ 21, 232392 }, -- Totem of Relentless Thunder
+				{ 22, 232409 }, -- Totem of the Elements
+				{ 23, 232416 }, -- Totem of Astral Flow
+				{ 24, 232419 }, -- Totem of Conductive Elements
+				{ 30, "INV_Box_01", nil, AL["Phase 4 Rewards-->"], nil },
+				{ 101, 226405 }, -- Damaged Undermine Supply Crate 5
+				{ 102, 227284 }, -- Band of the Beast 50
+				{ 103, 227279 }, -- Loop of the Magister 50
+				{ 104, 227280 }, -- Craft of the Shadows 50
+				{ 105, 227282 }, -- Ring of the Dreaded Mist 50
+				{ 106, 228432 }, -- Whistle of the Beast 50
+				{ 107, 228168 }, -- Goblin Gear Grinder 50
+				{ 108, 228169 }, -- The Attitude Adjustor 50
+				{ 109, 228170 }, -- Makeshift South Sea Oar 50
+				{ 110, 228185 }, -- Broken Bottle of Goblino Noir 50
+				{ 111, 228184 }, -- Goblin Clothesline 25
+				{ 113, 228186 }, -- Abandoned Wedding Band 25
+				{ 114, 228187 }, -- Stick of the South Sea 50
+				{ 115, 228189 }, -- Gift of Gob 25
+				{ 116, 228173 }, -- Libram of the Consecrated 15
+				{ 117, 228174 }, -- Libram of the Devoted 15
+				{ 118, 228175 }, -- Libram of Holy Alacrity 15
+				{ 119, 228176 }, -- Totem of Thunder 15
+				{ 120, 228177 }, -- Totem of Raging Fire 15
+				{ 121, 228178 }, -- Totem of Earthen Vitality 15
+				{ 122, 228179 }, -- Totem of the Plains 15
+				{ 123, 228180 }, -- Idol of the Swarm 15
+				{ 124, 228181 }, -- Idol of Exsanguination (Cat) 15
+				{ 125, 228182 }, -- Idol of Exsanguination (Bear) 15
+				{ 126, 228183 }, -- Idol of the Grove 15
+				{ 128, 227990 }, -- Hand of Injustice 50
+				{ 129, 228171 }, -- Kezan Cash Carrier 25
+				{ 130, "INV_Box_01", nil, AL["Continued -->"], nil },
+				{ 201, 228121 }, -- Pattern: Leather-Reinforced Runecloth Bag 50
+				{ 202, 13518 }, -- Recipe: Flask of Petrification 50
+				{ 203, 13519 }, -- Recipe: Flask of the Titans 50
+				{ 204, 13520 }, -- Recipe: Flask of Distilled Wisdom 50
+				{ 205, 13521 }, -- Recipe: Flask of Supreme Power 50
+				{ 206, 13522 }, -- Recipe: Flask of Chromatic Resistance 50
+				{ 207, 17011 }, -- Lava Core 15
+				{ 208, 17010 }, -- Fiery Core 15
+				{ 209, 17012 }, -- Core Leather 10
+				{ 211, 220597 }, -- Drakestone of the Dream Harbinger
+				{ 212, 220598 }, -- Drakestone of the Nightmare Harbinger
+				{ 213, 220599 }, -- Drakestone of the Blood Prophet
+				{ 216, "INV_Box_01", nil, AL["Dungeon Sets:"], nil },
+				{ 217, "INV_Box_01", nil, AL["Bracers: 15 Reals"], nil },
+				{ 218, "INV_Box_01", nil, AL["Boots, Gloves: 25 Reals"], nil },
+				{ 219, "INV_Box_01", nil, AL["Shoulders, Belt: 25 Reals"], nil },
+				{ 220, "INV_Box_01", nil, AL["Helm, Chest, Legs: 50 Reals"], nil },
+			},
+		},
+		{
+			name = AL["Toys"],
+			[NORMAL_DIFF] = {
+				{ 1, 215449 }, -- World Shrinker
+				{ 2, 223160 }, -- Bargain Bush
+				{ 3, 223161 }, -- Empty Supply Crate
+				{ 4, 215437 }, -- Trogg Transfigurator 3000
+				{ 5, 220635 }, -- Atal'alarion's Enchanted Boulder
+				{ 6, 221484 }, -- Witch Doctor's Hex Stick
+				{ 7, 220638 }, -- Unorthodox Hex Stick
+				{ 8, 216494 }, -- Aragriar's Whimsical World Warper
+				{ 9, 216608 }, -- Radiant Ray Reflectors
+				{ 10, 220639 }, -- Lledra's Inanimator
+				{ 11, 220619 }, -- Atal'ai Blood Ceremony
+				{ 16, 234144 }, -- Censer of the False Prophet
+				{ 17, 234447 }, -- Bubbles' Rod of Transformation
+				{ 18, 234467 }, -- Bubbles' Rod of Dragons
+				{ 19, 234464 }, -- Bubbles' Rod of Bubbles
+				{ 20, 234142 }, -- Bottomless Noggenfogger Elixir
+				{ 21, 234143 }, -- Globe of Deception
+			},
+		},
+		{
+			name = AL["Wild Offering Rewards"],
+			[NORMAL_DIFF] = {
+				{ 1, 223194 }, -- Band of the Wilds
+				{ 2, 223195 }, -- Breadth of the Beast
+				{ 3, 223197 }, -- Defender of the Wilds
+				{ 4, 223192 }, -- Cord of the Untamed
+				{ 5, 223193 }, -- Crown of the Dreamweaver
+				{ 6, 223196 }, -- Godslayer's Greaves
+				{ 7, 221491 }, -- Shadowtooth Bag
+			},
+		},
+		{
+			name = AL["Firelands Embers"],
+			[NORMAL_DIFF] = {
+				{ 1, 7076 }, -- Essence of Earth
+				{ 2, 7080 }, -- Essence of Water
+				{ 3, 7082 }, -- Essence of Air
+				{ 4, 7078 }, -- Essence of Fire
+				{ 5, 11382 }, -- Blood of the Mountain
+			},
+		},
+	},
+}
+
+data["SoD DarkMoon Cards"] = {
+	name = AL["Darkmoon Cards"],
+	ContentType = SOD_CONTENT,
+	LoadDifficulty = NORMAL_DIFF,
+	TableType = NORMAL_ITTYPE,
+	gameVersion = AtlasLoot.CLASSIC_VERSION_NUM,
+	items = {
+		{
+			name = AL["Darkmoon Cards"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Level 50"], nil },
+				{ 2, 221272 }, -- Wilds Deck
+				{ 3, 221280 }, -- Plagues Deck
+				{ 4, 221289 }, -- Dunes Deck
+				{ 5, 221299 }, -- Nightmares Deck
+			},
+		},
+	},
+}
+
+data["SoD PvP"] = {
+	name = AL["PvP"],
+	ContentType = SOD_CONTENT,
+	LoadDifficulty = NORMAL_DIFF,
+	TableType = SET_ITTYPE,
+	gameVersion = AtlasLoot.CLASSIC_VERSION_NUM,
+	items = {
+		{ -- PVPWeapons
+			name = AL["Level 60 Rank 14 Sets"],
+			TableType = NORMAL_ITTYPE,
+			[ALLIANCE_DIFF] = {
+				{ 1, 234580 }, -- Grand Marshal's Handaxe 
+				{ 2, 234566 }, -- Grand Marshal's Sunderer
+				{ 3, 234582 }, -- Grand Marshal's Dirk
+				{ 4, 235479 }, -- Grand Marshal's Shiv
+				{ 5, 234574 }, -- Grand Marshal's Mageblade
+				{ 6, 234583 }, -- Grand Marshal's Right Hand Blade
+				{ 7, 234584 }, -- Grand Marshal's Left Hand Blade
+				{ 8, 234581 }, -- Grand Marshal's Punisher
+				{ 9, 235481 }, -- Grand Marshal's Hacker
+				{ 10, 235480 }, -- Grand Marshal's Bonecracker
+				{ 11, 234576 }, -- Grand Marshal's Warhammer
+				{ 12, 234568 }, -- Grand Marshal's Demolisher
+				{ 13, 234567 }, -- Grand Marshal's Battle Hammer
+				{ 14, 234578 }, -- Grand Marshal's Longsword
+				{ 15, 234579 }, -- Grand Marshal's Swiftblade
+				{ 16, 234565 }, -- Grand Marshal's Claymore
+				{ 17, 234569 }, -- Grand Marshal's Glaive
+				{ 18, 234570 }, -- Grand Marshal's Polearm
+				{ 19, 234571 }, -- Grand Marshal's Stave
+				{ 20, 234585 }, -- Grand Marshal's Bullseye
+				{ 21, 234586 }, -- Grand Marshal's Repeater
+				{ 22, 234587 }, -- Grand Marshal's Hand Cannon
+				{ 23, 234588 }, -- Grand Marshal's Aegis
+				{ 24, 235473 }, -- Grand Marshal's Barricade
+				{ 25, 234589 }, -- Grand Marshal's Tome of Power
+				{ 26, 234590 }, -- Grand Marshal's Tome of Restoration
+			},
+			[HORDE_DIFF] = {
+				{ 1, 234554 }, -- High Warlord's Cleaver
+				{ 2, 234543 }, -- High Warlord's Battle Axe
+				{ 3, 235476 }, -- High Warlord's Hacker
+				{ 4, 234556 }, -- High Warlord's Razor
+				{ 5, 235478 }, -- High Warlord's Razor
+				{ 6, 234550 }, -- High Warlord's Spellblade
+				{ 7, 234557 }, -- High Warlord's Right Claw
+				{ 8, 234558 }, -- High Warlord's Left Claw
+				{ 9, 234555 }, -- High Warlord's Bludgeon
+				{ 10, 234551 }, -- High Warlord's Battle Mace
+				{ 11, 235477 }, -- High Warlord's Bonecracker
+				{ 12, 234546 }, -- High Warlord's Destroyer
+				{ 13, 234545 }, -- High Warlord's Pulverizer
+				{ 14, 234552 }, -- High Warlord's Blade
+				{ 15, 234553 }, -- High Warlord's Quickblade
+				{ 16, 234542 }, -- High Warlord's Greatsword
+				{ 17, 234547 }, -- High Warlord's Pig Sticker
+				{ 18, 234548 }, -- High Warlord's Pig Poker
+				{ 19, 234549 }, -- High Warlord's War Staff
+				{ 20, 234559 }, -- High Warlord's Recurve
+				{ 21, 234560 }, -- High Warlord's Crossbow
+				{ 22, 234561 }, -- High Warlord's Street Sweeper
+				{ 23, 234562 }, -- High Warlord's Shield Wall
+				{ 24, 235474 }, -- High Warlord's Barricade
+				{ 25, 234563 }, -- High Warlord's Tome of Destruction
+				{ 26, 234563 }, -- High Warlord's Tome of Mending
+			},
+		},
+		{
+			name = AL["Level 60 Rank 12 Sets"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Alliance"], nil },
+				{ 2, 1740 }, --Mage
+				{ 3, 1741 }, --Priest caster
+				{ 4, 1742 }, --Priest healer
+				{ 5, 1746 }, --Warlock
+				{ 6, 1735 }, --Druid caster
+				{ 7, 1736 }, --Druid healer
+				{ 8, 1737 }, --Druid melee
+				{ 9, 1743 }, -- Rogue
+				{ 10, 1738 }, --Hunter melee
+				{ 11, 1739 }, --Hunter ranged
+				{ 12, 1747 }, --Warrior
+				{ 13, 1745 }, --Paladin healer
+				{ 14, 1744 }, --Paladin melee
+				{ 16, "INV_Box_01", nil, AL["Horde"], nil },
+				{ 17, 1727 }, --Mage
+				{ 18, 1728 }, --Priest caster
+				{ 19, 1729 }, --Priest healer
+				{ 20, 1734 }, --Warlock
+				{ 21, 1723 }, --Druid caster
+				{ 22, 1724 }, --Druid healer
+				{ 23, 1722 }, --Druid melee
+				{ 24, 1730 }, --Rogue
+				{ 25, 1726 }, --Hunter melee
+				{ 26, 1725 }, --Hunter ranged
+				{ 27, 1732 }, --Shaman caster
+				{ 28, 1733 }, --Shaman healer
+				{ 29, 1731 }, --Shaman melee
+				{ 30, 1721 }, --Warrior
+			},
+		},
+		{
+			name = AL["Level 60 Rank 10 Sets"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Alliance"], nil },
+				{ 2, 1767 }, --mage
+				{ 3, 1768 }, --priest
+				{ 4, 1769 }, --priest 
+				{ 5, 1774 }, --warlock
+				{ 6, 1762 }, --Druid
+				{ 7, 1763 }, --Druid
+				{ 8, 1764 }, --Druid
+				{ 9, 1770 }, -- Rogue
+				{ 10, 1765 }, --Hunter
+				{ 11, 1766 }, --Hunter
+				{ 12, 1775 }, --Warr
+				{ 13, 1776 }, --Paladin
+				{ 14, 1777 }, --Paladin
+				{ 16, "INV_Box_01", nil, AL["Horde"], nil },
+				{ 17, 1753 }, --Mage
+				{ 18, 1754 }, --priest
+				{ 19, 1755 }, --priest
+				{ 20, 1760 }, --Warlock
+				{ 21, 1748 }, --Druid
+				{ 22, 1749 }, --Druid
+				{ 23, 1750 }, --Druid
+				{ 24, 1756 }, --Rogue
+				{ 25, 1751 }, --Hunter
+				{ 26, 1752 }, --Hunter
+				{ 27, 1757 }, --shaman
+				{ 28, 1758 }, --Shaman
+				{ 29, 1759 }, --Shaman
+				{ 30, 1761 }, --Warrior
+			},
+		},
+		{
+		name = AL["Level 60 Blood Moon"],
+		TableType = NORMAL_ITTYPE,
+			[NORMAL_DIFF] = {
+				{ 1, 235144 }, -- Satchel of Blood-Caked Copper Coins
+				{ 2, 235145 }, -- Satchel of Blood-Caked Silver Coins
+				{ 3, 234145 }, -- Blood-Caked Hakkari Bijou
+				{ 5, 233728 }, -- Blood-Caked Insignia
+				{ 7, 233740 }, -- Blood-Caked Shroud
+				{ 8, 233739 }, -- Blood-Caked Drape
+				{ 9, 233738 }, -- Blood-Caked Cape
+				{ 10, 233737 }, -- Blood-Caked Cloak
+				{ 12, 233736 }, -- Blood-Caked Band
+				{ 13, 233735 }, -- Blood-Caked Loop 
+				{ 14, 233734 }, -- Blood-Caked Circle
+				{ 15, 233733 }, -- Blood-Caked Ring
+				{ 16, 233732 }, -- Blood-Caked Necklace
+				{ 17, 233731 }, -- Blood-Caked Amulet
+				{ 18, 233730 }, -- Blood-Caked Talisman
+				{ 19, 233729 }, -- Blood-Caked Choker
+				{ 21, 233781 }, -- Battle Hardened Satin Wrists
+				{ 22, 233780 }, -- Battle Hardened Satin Bracers
+				{ 23, 233783 }, -- Battle Hardened Satin Sash
+				{ 24, 233786 }, -- Battle Hardened Satin Cinch
+				{ 26, 234960 }, -- Reins of the Blood-Caked Tiger
+				{ 27, 234961 }, -- Whistle of the Blood-Caked Raptor
+			},
+		},
+		{
+		name = AL["Level 50 Blood Moon"],
+		TableType = NORMAL_ITTYPE,
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Druid"], nil },
+				{ 2, 221447 }, -- Ritualist's Bloodmoon Grimoire
+				{ 3, 221446 }, -- Ritualist's Hammer
+				{ 4, 221448 }, -- Talisman of the Corrupted Grove
+				{ 6, "INV_Box_01", nil, AL["Hunter"], nil },
+				{ 7, 221451 }, -- Bloodthirst Crossbow
+				{ 8, 221450 }, -- Gurubashi Pit Fighter's Bow
+				{ 10, "INV_Box_01", nil, AL["Mage"], nil },
+				{ 11, 221452 }, -- Bloodfocused Arcane Band
+				{ 12, 221453 }, -- Band of Boiling Blood 
+				{ 13, 221454 }, -- Glacial Blood Band
+				{ 16, "INV_Box_01", nil, AL["Paladin"], nil },
+				{ 17, 221457 }, -- Libram of Draconic Destruction
+				{ 18, 221455 }, -- Bloodlight Reverence
+				{ 19, 221456 }, -- Eclipsed Sanguine Saber
+				{ 20, 220173 }, -- Parasomnia
+				{ 22, "INV_Box_01", nil, AL["Priest"], nil },
+				{ 23, 221459 }, -- Seal of the Sacrificed
+				{ 24, 221458 }, -- Shadowy Band of Victory
+				{ 26, "INV_Box_01", nil, AL["Rogue"], nil },
+				{ 27, 221460 }, -- Gurubashi Backstabber
+				{ 28, 221462 }, -- Bloodied Sword of Speed
+				{ 30, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 101, "INV_Box_01", nil, AL["Shaman"], nil },
+				{ 102, 221464 }, -- Totem of Fiery Precision
+				{ 103, 221463 }, -- Ancestral Voodoo Doll
+				{ 104, 221465 }, -- Corrupted Smashbringer
+				{ 106, "INV_Box_01", nil, AL["Warlock"], nil },
+				{ 107, 221466 }, -- Loop of Burning Blood
+				{ 108, 221467 }, -- Eye of the Bloodmoon
+				{ 110, "INV_Box_01", nil, AL["Warrior"], nil },
+				{ 111, 221469 }, -- Headhunter's Barbed Spear
+				{ 112, 221468 }, -- Wall of Whispers
+				{ 113, 220173 }, -- Parasomnia
+			},
+		},
+		{
+		name = AL["Level 40 Blood Moon"],
+		TableType = NORMAL_ITTYPE,
+			[NORMAL_DIFF] = {
+				{ 1, 216621 }, -- Blooddrenched Drape
+				{ 2, 216620 }, -- Bloodrot Cloak
+				{ 3, 216623 }, -- Cape of Hemostasis
+				{ 4, 216622 }, -- Coagulated Cloak
+				{ 5, 216570 }, -- Reins of the Golden Sabercat
+				{ 6, 216492 }, -- Whistle of the Mottled Blood Raptor
+				{ 8, "INV_Box_01", nil, AL["Druid"], nil },
+				{ 9, 216498 }, -- Enchanted Sanguine Grimoire 
+				{ 10, 216499 }, -- Bloodbark Crusher 
+				{ 11, 216500 }, -- Bloodbonded Grove Talisman
+				{ 16, "INV_Box_01", nil, AL["Hunter"], nil },
+				{ 17, 216513 }, -- Tigerblood Talisman
+				{ 18, 216514 }, -- Sanguine Quiver
+				{ 19, 216515 }, -- Sanguine Ammo Pouch
+				{ 20, 216516 }, -- Bloodlash Bow
+				{ 22, "INV_Box_01", nil, AL["Mage"], nil },
+				{ 23, 216510 }, -- Blood Resonance Circle 
+				{ 24, 216511 }, -- Emberblood Seal 
+				{ 25, 216512 }, -- Loop of Chilled Veins 
+				{ 30, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 101, "INV_Box_01", nil, AL["Paladin"], nil },
+				{ 102, 216504 }, -- Eclipsed Bloodlight Saber 
+				{ 103, 216505 }, -- Bloodlight Crusader's Radiance 
+				{ 104, 216506 }, -- Bloodlight Avenger's Edge 
+				{ 105, 216607 }, -- Bloodlight Offering 
+				{ 107, "INV_Box_01", nil, AL["Priest"], nil },
+				{ 108, 216517 }, -- Sanguine Sanctuary 
+				{ 109, 216518 }, -- Blood Covenant Seal
+				{ 110, 216519 }, -- Sanguine Shadow Band 
+				{ 112, "INV_Box_01", nil, AL["Rogue"], nil },
+				{ 113, 216520 }, -- Bloodharvest Blade
+				{ 114, 216521 }, -- Swift Sanguine Strikers
+				{ 115, 216522 }, -- Blood Spattered Stiletto 
+				{ 116, "INV_Box_01", nil, AL["Shaman"], nil },
+				{ 117, 216501 }, -- Bloodstorm Barrier
+				{ 118, 216502 }, -- Bloodstorm War Totem 
+				{ 119, 216503 }, -- Bloodstorm Jewel 
+				{ 120, 216615 }, -- Ancestral Bloodstorm Beacon 
+				{ 122, "INV_Box_01", nil, AL["Warlock"], nil },
+				{ 123, 216507 }, -- Umbral Bloodseal
+				{ 124, 216508 }, -- Infernal Bloodcoil Band
+				{ 125, 216509 }, -- Infernal Pact Essence 
+				{ 127, "INV_Box_01", nil, AL["Warrior"], nil },
+				{ 128, 216495 }, -- Sanguine Crusher 
+				{ 129, 216496 }, -- Sanguine Skullcrusher 
+				{ 130, 216497 }, -- Exsanguinar 
+			},
+		},
+		{
+		name = AL["Level 50 PvP Sets"],
+		TableType = SET_ITTYPE,
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Horde"], nil },
+				{ 2, 1618 }, --Blood Guard's Plate
+				{ 4, 1624 },
+				{ 5, 1623 },
+				{ 6, 1622 },
+				{ 7, 1625 },
+				{ 9, 1627 },
+				{ 10, 1631 },
+				{ 11, 1629 },
+				{ 13, 1633 },
+				{ 14, 1635 },
+				{ 16, "INV_Box_01", nil, AL["Alliance"], nil },
+				{ 17, 1619 },
+				{ 18, 1620 },
+				{ 19, 1621 },
+				{ 21, 1665 },
+				{ 22, 1626 },
+				{ 24, 1628 },
+				{ 25, 1630 },
+				{ 26, 1632 },
+				{ 28, 1634 },
+				{ 29, 1636 },
+			},
+		},
+		{
+		name = AL["Level 25 PvP Gear"],
+		TableType = NORMAL_ITTYPE,
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Alliance"], nil },
+				{ 2, "f890rep5" },
+				{ 3,  211500 }, --Resilient Cloth Headband
+				{ 4,  211857 }, --Resilient Leather Mask
+				{ 5,  211856 }, --Resilient Mail Coif
+				{ 6,  211498 }, --Trainee's Sentinel Nightsaber
+				{ 8, "f890rep7" },
+				{ 9,  212580 }, --Lorekeeper's Staff
+				{ 10,  212581 }, --Outrunner's Bow
+				{ 11,  212582 }, --Protector's Sword
+				{ 12,  212583 }, --Sentinel's Blade
+				{ 13,  213087 }, --Sergeant's Cloak
+				{ 16, "INV_Box_01", nil, AL["Horde"], nil },
+				{ 17, "f889rep5" },
+				{ 18,  211500 }, --Resilient Cloth Headband
+				{ 19,  211857 }, --Resilient Leather Mask
+				{ 20,  211856 }, --Resilient Mail Coif
+				{ 21,  211499 }, --Trainee's Outrider Wolf
+				{ 23, "f889rep7" },
+				{ 24,  212584 }, --Advisor's Gnarled Staff
+				{ 25,  212585 }, --Outrider's Bow
+				{ 26,  212586 }, --Legionnaire's Sword
+				{ 27,  212587 }, --Scout's Blade
+				{ 28,  213088 }, --Sergeant's Cloak
+			},
+		},
+	},
+}
+
+data["SoD Factions"] = {
+	name = AL["Factions"],
+	ContentType = SOD_CONTENT,
+	LoadDifficulty = NORMAL_DIFF,
+	TableType = NORMAL_ITTYPE,
+	gameVersion = AtlasLoot.CLASSIC_VERSION_NUM,
+	items = {
+		{
+			name = AL["Argent Dawn"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Revered"], nil },
+				{ 2, 227888 }, -- Argent Elite Shoulders
+				{ 2,  19217 }, -- Pattern: Argent Shoulders
+				{ 3, 227818 }, -- Glowing Mantle of the Dawn
+				{ 3,  19329 }, -- Pattern: Golden Mantle of the Dawn
+				{ 4, 227817 }, -- Radiant Gloves of the Dawn
+				{ 4,  19205 }, -- Plans: Gloves of the Dawn
+				{ 5, 227859 }, -- Shimmering Dawnbringer Shoulders
+				{ 5, 12698 }, -- Plans: Dawnbringer Shoulders
+				{ 7, 227819}, -- Blessed Flame Mantle of the Dawn
+				{ 9, "INV_Box_01", nil, AL["Honored"], nil },
+				{ 10,  227816 }, -- Argent Elite Boots
+				{ 10,  19216 }, -- Pattern: Argent Boots
+				{ 11,  227815 }, -- Fine Dawn Treaders
+				{ 11,  19328 }, -- Pattern: Dawn Treaders
+				{ 12,  227814 }, -- Radiant Girdle of the Dawn
+				{ 12,  19203 }, -- Plans: Girdle of the Dawn
+			},
+		},
+		{
+			name = AL["Timbermaw Hold"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Revered"], nil },
+				{ 2, 227808 }, -- Rugged Mantle of the Timbermaw
+				{ 3, 227809 }, -- Studded Timbermaw Brawlers
+				{ 4, 227810 }, -- Dense Timbermaw Boots
+				{ 2, 19218 }, -- Pattern: Mantle of the Timbermaw
+				{ 3, 19327 }, -- Pattern: Timbermaw Brawlers
+				{ 4, 19204 }, -- Plans: Heavy Timbermaw Boots
+				{ 6, "INV_Box_01", nil, AL["Honored"], nil },
+				{ 7, 227807 }, -- Dense Timbermaw Belt
+				{ 8, 227805 }, -- Ferocity of the Timbermaw
+				{ 9, 228190 }, -- Knowledge of the Timbermaw
+				{ 7, 19202 }, -- Plans: Heavy Timbermaw Belt
+				{ 8, 19326 }, -- Pattern: Might of the Timbermaw
+				{ 9, 19215 }, -- Pattern: Wisdom of the Timbermaw
+				{ 11, "INV_Box_01", nil, AL["Friendly"], nil },
+				{ 12,  227804 }, -- Dire Warbear Woolies
+				{ 13,  227803 }, -- Dire Warbear Harness
+				{ 14,  227862 }, -- Incandescent Mooncloth Boots
+				{ 12,  15754 }, -- Pattern: Warbear Woolies
+				{ 13,  15742 }, -- Pattern: Warbear Harness
+				{ 14,  15802 }, -- Mooncloth Boots
+			},
+		},
+		{
+			name = AL["Thorium Brotherhood"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Exalted"], nil },
+				{ 2, 227842 }, -- Ebon Fist
+				{ 3, 227840 }, -- Implacable Blackguard
+				{ 2,  19210 }, -- Plans: Ebon Hand
+				{ 3,  19211 }, -- Plans: Blackguard
+				--{ 19, 227843 }, -- Reaving Nightfall (removed?)
+				{ 4, 228929 }, -- Tempered Dark Iron Boots
+				{ 5, 228924 }, -- Tempered Dark Iron Boots
+				{ 6, 228927 }, -- Tempered Dark Iron Boots
+				{ 7, 228926 }, -- Tempered Dark Iron Boots
+				{ 8, 228925 }, -- Tempered Dark Iron Boots
+				{ 9, 228928 }, -- Tempered Dark Iron Boots
+				{ 4,  20040 }, -- Plans: Dark Iron Boots
+				{ 5,  20040 }, -- Plans: Dark Iron Boots
+				{ 6,  20040 }, -- Plans: Dark Iron Boots
+				{ 7,  20040 }, -- Plans: Dark Iron Boots
+				{ 8,  20040 }, -- Plans: Dark Iron Boots
+				{ 9,  20040 }, -- Plans: Dark Iron Boots
+				{ 11, "INV_Box_01", nil, AL["Revered"], nil },
+				{ 12, 227839 }, -- Fine Flarecore Leggings
+				{ 13, 227837 }, -- Thick Corehound Belt
+				{ 14, 227834 }, -- Molten Chain Shoulders
+				{ 15, 227838 }, -- Shining Chromatic Gauntlets
+				{ 16, "INV_Box_01", nil, AL["Revered (Cont.)"], nil },
+				{ 17, 227835 }, -- Tempered Dark Iron Gauntlets
+				{ 18, 227836 }, -- Tempered Dark Iron Leggings
+				{ 19, 227832 }, -- Tempered Black Amnesty
+				{ 20, 227833 }, -- Glaive of Obsidian Fury
+				{ 12,  19220 }, -- Pattern: Flarecore Leggings
+				{ 13,  19332 }, -- Pattern: Corehound Belt
+				{ 14,  17053 }, -- Plans: Fiery Chain Shoulders
+				{ 15,  19331 }, -- Pattern: Chromatic Gauntlets
+				{ 17,  19207 }, -- Plans: Dark Iron Gauntlets
+				{ 18,  17052 }, -- Plans: Dark Iron Leggings
+				{ 19,  19208 }, -- Plans: Black Amnesty
+				{ 20,  19209 }, -- Plans: Blackfury
+				{ 22, "INV_Box_01", nil, AL["Honored"], nil },
+				{ 23, 227830 }, -- Fine Flarecore Mantle
+				{ 24, 227831 }, -- Fine Flarecore Robe
+				{ 25, 227828 }, -- Lavawalker Belt
+				{ 26, 227827 }, -- Molten Chain Girdle
+				{ 27, 227829 }, -- Hardened Black Dragonscale Boots
+				{ 28, 227824 }, -- Tempered Dark Iron Helm
+				{ 29, 227826 }, -- Dark Iron Flame Reaver
+				{ 23,  17017 }, -- Pattern: Flarecore Mantle
+				{ 24,  19219 }, -- Pattern: Flarecore Robe
+				{ 25,  19330 }, -- Pattern: Lava Belt
+				{ 26,  17049 }, -- Plans: Fiery Chain Girdle
+				{ 27,  17025 }, -- Pattern: Black Dragonscale Boots
+				{ 28,  19206 }, -- Plans: Dark Iron Helm
+				{ 29,  17059 }, -- Plans: Dark Iron Reaver
+				{ 30, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 101, "INV_Box_01", nil, AL["Honored (Cont.)"], nil },
+				{ 102, 227825 }, -- Molten Dark Iron Destroyer
+				{ 102,  17060 }, -- Plans: Dark Iron Destroyer
+				{ 104, "INV_Box_01", nil, AL["Friendly"], nil },
+				{ 105, 227823 }, -- Fine Flarecore Gloves
+				{ 106, 227821 }, -- Flamekissed Molten Helm
+				{ 107, 227822 }, -- Thick Corehound Boots
+				{ 108, 227820 }, -- Tempered Dark Iron Bracers
+				{ 105,  17018 }, -- Pattern: Flarecore Gloves
+				{ 106,  17023 }, -- Pattern: Molten Helm
+				{ 107,  17022 }, -- Pattern: Corehound Boots
+				{ 108,  17051 }, -- Plans: Dark Iron Bracers
+			},
+		},
+		{
+			name = AL["Hydraxian Waterlords"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Exalted"], nil },
+				{ 2, 227915}, -- Duke's Domain
+				{ 3, 227927}, -- Oath of the Sea
+				{ 5, "INV_Box_01", nil, AL["Revered"], nil },
+				{ 6, 228979}, -- Enchanted Sigil: Flowing Waters
+				{ 8, "INV_Box_01", nil, AL["Honored"], nil },
+				{ 9, 227923}, -- Water Treads
+				{ 10, 227926}, -- Hydraxian Coronation
+			},
+		},
+		{
+			name = AL["Emerald Wardens"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Exalted"], nil },
+				{ 2, 221442 }, -- Roar of the Guardian
+				{ 3, 220621 }, -- Nightmare Resonance Crystal
+				{ 4, 221440 }, -- Roar of the Dream
+				{ 5, 221443 }, -- Roar of the Grove
+				{ 7, "INV_Box_01", nil, AL["Revered"], nil },
+				{ 8, 221441 }, -- Warden of the Dream
+				{ 9, 220649 }, -- Merithra's Inheritence
+				{ 10, 221439 }, -- Armor of the Emerald Slumber
+				{ 12, "INV_Box_01", nil, AL["Honored (Mail)"], nil },
+				{ 13, 221391 }, --Emerald Scalemail Helmet
+				{ 14, 221390 }, --Emerald Scalemail Breastplate
+				{ 15, 221388 }, --Emerald Scalemail Leggings
+				{ 17, 221402 }, --Emerald Chain Helmet
+				{ 18, 221404 }, --Emerald Chain Breastplate
+				{ 19, 221401 }, --Emerald Chain Leggings
+				{ 20, 221397 }, --Emerald Laden Helmet
+				{ 21, 221395 }, --Emerald Laden Breastplate
+				{ 22, 221398 }, --Emerald Laden Leggings
+				{ 24, "INV_Box_01", nil, AL["Honored (Plate)"], nil },
+				{ 25, 221376 }, --Emerald Dream Helm
+				{ 26, 221380 }, --Emerald Dream Breastplate
+				{ 27, 221377 }, --Emerald Dream Legplates
+				{ 28, 221384 }, --Emerald Encrusted Helmet
+				{ 29, 221382 }, --Emerald Encrusted Battleplate
+				{ 30, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 101, "INV_Box_01", nil, AL["Honored (Plate)Cont."], nil },
+				{ 102, 221385 }, --Emerald Encrusted Legplates
+				{ 104, "INV_Box_01", nil, AL["Honored (Cloth)"], nil },
+				{ 105, 221425 }, --Emerald Enchanted Circlet
+				{ 106, 221430 }, --Emerald Enchanted Robes
+				{ 107, 221429 }, --Emerald Enchanted Pants
+				{ 108, 221437 }, --Emerald Woven Circlet
+				{ 109, 221434 }, --Emerald Woven Robes
+				{ 110, 221435 }, --Emerald Woven Pants
+				{ 112, "INV_Box_01", nil, AL["Honored (Leather)"], nil },
+				{ 113, 221408 }, --Emerald Leather Helm
+				{ 114, 221406 }, --Emerald Leather Vest
+				{ 115, 221410 }, --Emerald Leather Pants
+				{ 116, "INV_Box_01", nil, AL["Honored (Leather)Cont."], nil },
+				{ 117, 221413 }, --Emerald Dreamkeeper Helm
+				{ 118, 221417 }, --Emerald Dreamkeeper Chest
+				{ 119, 221414 }, --Emerald Dreamkeeper Pants
+				{ 120, 221422 }, --Emerald Watcher Helm
+				{ 121, 221419 }, --Emerald Watcher Vest
+				{ 122, 221423 }, --Emerald Watcher Leggings
+				{ 124, "INV_Box_01", nil, AL["Honored"], nil },
+				{ 125, 213407 }, -- Catnip
+				{ 126, 221193 }, --Emerald Ring
+				{ 127, 224006 }, --Emerald Ring
+				{ 130, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 201, "INV_Box_01", nil, AL["Friendly (Mail)"], nil },
+				{ 202, 221392 }, --Emerald Scalemail Shoudlers
+				{ 203, 221389 }, --Emerald Scalemail Gauntlets
+				{ 204, 221393 }, --Emerald Scalemail Boots
+				{ 205, 221399 }, --Emerald Laden Shoulders
+				{ 206, 221396 }, --Emerald Laden Gauntlets
+				{ 207, 221394 }, --Emerald Laden Boots
+				{ 208, 221400 }, --Emerald Chain Shoudlers
+				{ 209, 221403 }, --Emerald Chain Gauntlets
+				{ 210, 221405 }, --Emerald Chain Boots
+				{ 212, "INV_Box_01", nil, AL["Friendly (Plate)"], nil },
+				{ 213, 221386 }, --Emerald Encrusted Spaulders
+				{ 214, 221383 }, --Emerald Encrusted Handguards
+				{ 215, 221387 }, --Emerald Encrusted Plate Boots
+				{ 216, "INV_Box_01", nil, AL["Friendly (Plate)Cont."], nil },
+				{ 217, 221381 }, --Emerald Dream Pauldrons
+				{ 218, 221378 }, --Emerald Dream Gauntlets
+				{ 219, 221379 }, --Emerald Dream Sabatons
+				{ 221, "INV_Box_01", nil, AL["Friendly (Cloth)"], nil },
+				{ 222, 221431 }, --Emerald Enchanted Shoulders
+				{ 223, 221427 }, --Emerald Enchanted Gloves
+				{ 224, 221426 }, --Emerald Enchanted Boots
+				{ 225, 221432 }, --Emerald Woven Mantle
+				{ 226, 221436 }, --Emerald Woven Gloves
+				{ 227, 221438 }, --Emerald Woven Boots
+				{ 230, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 301, "INV_Box_01", nil, AL["Friendly (Leather)"], nil },
+				{ 302, 221411 }, --Emerald Leather Shoulders
+				{ 303, 221407 }, --Emerald Leather Gloves
+				{ 304, 221409 }, --Emerald Leather Sabatons
+				{ 305, 221416 }, --Emerald Dreamkeeper Shoulders
+				{ 306, 221412 }, --Emerald Dreamkeeper Gloves
+				{ 307, 221415 }, --Emerald Dreamkeeper Boots
+				{ 308, 221424 }, --Emerald Watcher Shoulders
+				{ 309, 221421 }, --Emerald Watcher Gloves
+				{ 310, 221420 }, --Emerald Watcher Boots
+				{ 312, "INV_Box_01", nil, AL["Friendly"], nil },
+				{ 313, 221369 }, -- Nightmare Siphon
+				{ 314, 221374 }, -- Anguish of the Dream
+				{ 315, 221362 }, -- Weapon Cleaning Cloth
+				{ 317, 223648 }, -- Dream Imbued Arrow
+				{ 318, 224005 }, -- Emerald Ring
+				{ 319, 224004 }, -- Emerald Ring
+				{ 330, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 401, "INV_Box_01", nil, AL["Neutral"], nil },
+				{ 402, 212568 }, -- Wolfshead Trophy
+				{ 403, 223912 }, -- Purification Potion
+				{ 404, 223913 }, -- Major Healing Potion
+				{ 405, 223914 }, -- Greater Healing Potion
+				{ 416, 221480 }, -- Spell Notes: Molten Armor
+				{ 417, 221481 }, -- 	Nihilist Epiphany
+				{ 418, 221482 }, -- 	Rune of Affliction
+				{ 419, 221483 }, -- 	Rune of Burn
+				{ 420, 221511 }, -- 	Rune of the Protector
+				{ 421, 221512 }, -- 	Rune of Alacrity
+				{ 422, 221515 }, -- 	Rune of Detonation
+				{ 423, 221517 }, -- 	Rune of Bloodshed
+				{ 424, 223288 }, -- 	Rune of the Hammer
+			},
+		},
+		{
+			name = AL["Durotar Supply and Logistics"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Exalted"], nil },
+				{ 2, 223164 }, -- Curiosity Cowl
+				{ 3, 223169 }, -- Tenacity Cap
+				{ 4, 223172 }, -- Tenacity Chain
+				{ 5, 223186 }, -- Supply Expediter
+				{ 6, 223162 }, -- Handy Courier Haversack
+				{ 7, 220639 }, -- Lledra's Inanimator
+				{ 9, "INV_Box_01", nil, AL["Revered"], nil },
+				{ 10, 217399 }, -- Recipe: Lesser Arcane Elixir
+				{ 11, 219021 }, -- Hefty Courier Pack
+				{ 12, 223161 }, -- Empty Supply Crate
+				{ 13, 219135 }, -- Curiosity Pendant
+				{ 14, 219136 }, -- Tenacity Pendant
+				{ 15, 219137 }, -- Initiative Pendant
+				{ 16, "INV_Box_01", nil, AL["Honored"], nil },
+				{ 17, 211384 }, -- Sturdy Courier Bag
+				{ 18, 210779 }, -- Plans: Mantle of the Second War
+				{ 19, 211247 }, -- Pattern: Phoenix Bindings
+				{ 20, 212230 }, -- Schematic: Soul Vessel
+				{ 21, 223160 }, -- Bargain Bush
+				{ 22, 219022 }, -- Hauler's Ring
+				{ 23, 219023 }, -- Clerk's Ring
+				{ 24, 219024 }, -- Messenger's Ring
+				{ 30, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 101, "INV_Box_01", nil, AL["Friendly"], nil },
+				{ 102, 211382 }, -- Small Courier Satchel
+				{ 103, 212588 }, -- Provisioner's Gloves
+				{ 104, 212589 }, -- Courier Treads
+				{ 105, 212590 }, -- Hoist Strap
+				{ 107, 211386 }, -- Spell Notes: Arcane Surge
+				{ 108, 211387 }, -- Rune of Beckoning Light
+				{ 109, 211392 }, -- Rune of Everlasting Affliction
+				{ 110, 211391 }, -- Rune of Healing Rain
+				{ 111, 211385 }, -- Rune of Serpent Spread
+				{ 112, 211393 }, -- Rune of Single-Minded Fury
+				{ 113, 206992 }, -- Rune of Skull Bash
+				{ 114, 211390 }, -- Rune of Teasing
+				{ 115, 205950 }, -- Tenebrous Epiphany
+			},
+		},
+		{
+			name = AL["Azeroth Commerce Authority"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Exalted"], nil },
+				{ 2, 223164 }, -- Curiosity Cowl
+				{ 3, 223169 }, -- Tenacity Cap
+				{ 4, 223172 }, -- Tenacity Chain
+				{ 5, 223186 }, -- Supply Expediter
+				{ 6, 223162 }, -- Handy Courier Haversack
+				{ 7, 220639 }, -- Lledra's Inanimator
+				{ 9, "INV_Box_01", nil, AL["Revered"], nil },
+				{ 10, 217399 }, -- Recipe: Lesser Arcane Elixir
+				{ 11, 219021 }, -- Hefty Courier Pack
+				{ 12, 223161 }, -- Empty Supply Crate
+				{ 13, 219135 }, -- Curiosity Pendant
+				{ 14, 219136 }, -- Tenacity Pendant
+				{ 15, 219137 }, -- Initiative Pendant
+				{ 16, "INV_Box_01", nil, AL["Honored"], nil },
+				{ 17, 211384 }, -- Sturdy Courier Bag
+				{ 18, 210779 }, -- Plans: Mantle of the Second War
+				{ 19, 211247 }, -- Pattern: Phoenix Bindings
+				{ 20, 212230 }, -- Schematic: Soul Vessel
+				{ 21, 223160 }, -- Bargain Bush
+				{ 22, 219022 }, -- Hauler's Ring
+				{ 23, 219023 }, -- Clerk's Ring
+				{ 24, 219024 }, -- Messenger's Ring
+				{ 30, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 101, "INV_Box_01", nil, AL["Friendly"], nil },
+				{ 102, 211382 }, -- Small Courier Satchel
+				{ 103, 212588 }, -- Provisioner's Gloves
+				{ 104, 212589 }, -- Courier Treads
+				{ 105, 212590 }, -- Hoist Strap
+				{ 107, 211386 }, -- Spell Notes: Arcane Surge
+				{ 108, 211387 }, -- Rune of Beckoning Light
+				{ 109, 211392 }, -- Rune of Everlasting Affliction
+				{ 110, 211391 }, -- Rune of Healing Rain
+				{ 111, 211385 }, -- Rune of Serpent Spread
+				{ 112, 211393 }, -- Rune of Single-Minded Fury
+				{ 113, 206992 }, -- Rune of Skull Bash
+				{ 114, 211390 }, -- Rune of Teasing
+				{ 115, 205950 }, -- Tenebrous Epiphany
+			},
+		},
+	},
+}
+
+
+data["Sod Exclusives"] = {
+	name = AL["Waylaid Supplies"],
+	ContentType = SOD_CONTENT,
+	LoadDifficulty = NORMAL_DIFF,
+	TableType = NORMAL_ITTYPE,
+	gameVersion = AtlasLoot.CLASSIC_VERSION_NUM,
+	items = {
+		{
+			name = AL["Level 50: Phase 3"],
+			[NORMAL_DIFF] = {
+				{ 1, 220927 }, -- Waylaid Supplies: Thick Hide
+				{ 2, 220926 }, --Waylaid Supplies: Rugged Leather
+				{ 3, 220925 }, --Waylaid Supplies: Thorium Bars
+				{ 4, 220924 }, --Waylaid Supplies: Truesilver Bars
+				{ 5, 220923 }, --Waylaid Supplies: Dreamfoil
+				{ 6, 220922 }, --Waylaid Supplies: Sungrass
+				{ 7, 220921 }, --Waylaid Supplies: Heavy Mageweave Bandages
+				{ 8, 220920 }, --Waylaid Supplies: Tender Wolf Steaks
+				{ 9, 220919 }, --Waylaid Supplies: Nightfin Soup
+				{ 10, 220918 }, --Waylaid Supplies: Undermine Clam Chowder
+				{ 11, 220942 }, --Waylaid Supplies: Tuxedo Shirts
+				{ 12, 220941 }, --Waylaid Supplies: Runecloth Belts
+				{ 13, 220940 }, --Waylaid Supplies: Black Mageweave Headbands
+				{ 14, 220939 }, --Waylaid Supplies: Runic Leather Bracers
+				{ 15, 220938 }, --Waylaid Supplies: Wicked Leather Bracers
+				{ 16, 220937 }, --Waylaid Supplies: Rugged Armor Kits
+				{ 17, 220936 }, --Waylaid Supplies: Truesilver Gauntlets
+				{ 18, 220935 }, --Waylaid Supplies: Thorium Belts
+				{ 19, 220934 }, --Waylaid Supplies: Mithril Coifs
+				{ 20, 220933 }, --Waylaid Supplies: Thorium Rifles
+				{ 21, 220932 }, --Waylaid Supplies: Thorium Grenades
+				{ 22, 220931 }, --Waylaid Supplies: Hi-Explosive Bombs
+				{ 23, 220930 }, --Waylaid Supplies: Major Healing Potions
+				{ 24, 220929 }, -- Waylaid Supplies: Superior Mana Potions
+				{ 25, 220928 }, -- Waylaid Supplies: Enchanted Thorium Bars
+			},
+		},
+		{
+			name = AL["Level 40: Phase 2"],
+			[NORMAL_DIFF] = {
+				{ 1, 215403 }, -- Waylaid Supplies: Deadly Scopes
+				{ 2, 215400 },
+				{ 3, 215402 },
+				{ 4, 215389 },
+				{ 5, 215391 },
+				{ 6, 215411 }, -- Waylaid Supplies: Frost Leather Cloaks
+				{ 7, 215398 },
+				{ 8, 215387 },
+				{ 9, 215420 },
+				{ 10, 215421 },
+				{ 11, 215413 },
+				{ 12, 215408 }, -- Waylaid Supplies: Frost Leather Cloaks
+				{ 13, 215392 },
+				{ 14, 215386 },
+				{ 15, 215390 },
+				{ 16, 215399 },
+				{ 17, 215395 }, -- Waylaid Supplies: Elixirs of Agility
+				{ 18, 215388 },
+				{ 19, 215393 },
+				{ 20, 215401 }, -- Waylaid Supplies: Compact Harvest Reaper Kits
+				{ 21, 215419 },
+				{ 22, 215414 },
+				{ 23, 215385 },
+				{ 24, 215417 },
+				{ 25, 215415 },
+				{ 26, 215407 },
+				{ 27, 215418 }, -- Waylaid Supplies: Spider Sausages
+				{ 28, 215404 },
+				{ 29, 215396 },
+				{ 30, "INV_Box_01", nil, AL["Continued on next page ->"], nil },
+				{ 101, 215397 },
+				{ 102, 215409 },
+				{ 103, 215416 }, -- Waylaid Supplies: White Bandit Masks
+			},
+		},
+		{
+			name = AL["Level 25: Phase 1"],
+			[NORMAL_DIFF] = {
+				{ 1, 211322 }, -- Waylaid Supplies: Minor Wizard Oil
+				{ 2, 211321 }, -- Waylaid Supplies: Lesser Magic Wands
+				{ 3, 211318 }, -- Waylaid Supplies: Minor Healing Potions
+				{ 4, 211320 }, -- Waylaid Supplies: Runed Copper Pants
+				{ 5, 211323 }, -- Waylaid Supplies: Rough Copper Bombs
+				{ 6, 211329 }, -- Waylaid Supplies: Herb Baked Eggs
+				{ 7, 211326 }, -- Waylaid Supplies: Embossed Leather Vests
+				{ 8, 211332 }, -- Waylaid Supplies: Heavy Linen Bandages
+				{ 9, 211319 }, -- Waylaid Supplies: Copper Shortswords
+				{ 10, 211330 }, -- Waylaid Supplies: Spiced Wolf Meat
+				{ 11, 211324 }, -- Waylaid Supplies: Rough Boomsticks
+				{ 12, 211327 }, -- Waylaid Supplies: Brown Linen Pants
+				{ 13, 211317 }, -- Waylaid Supplies: Silverleaf
+				{ 14, 211325 }, -- Waylaid Supplies: Handstitched Leather Belts
+				{ 15, 211328 }, -- Waylaid Supplies: Brown Linen Robes
+				{ 16, 211934 }, -- Waylaid Supplies: Healing Potions
+				{ 17, 211315 }, -- Waylaid Supplies: Light Leather
+				{ 18, 211331 }, -- Waylaid Supplies: Brilliant Smallfish
+				{ 19, 210771 }, -- Waylaid Supplies: Copper Bars
+				{ 20, 211933 }, -- Waylaid Supplies: Rough Stone
+				{ 21, 211316 }, -- Waylaid Supplies: Peacebloom
+				{ 22, 211828 }, -- Waylaid Supplies: Minor Mana Oil
+				{ 23, 211824 }, -- Waylaid Supplies: Lesser Mana Potions
+				{ 24, 211835 }, -- Waylaid Supplies: Smoked Sagefish
+				{ 25, 211829 }, -- Waylaid Supplies: Small Bronze Bombs
+				{ 26, 211822 }, -- Waylaid Supplies: Bruiseweed
+				{ 27, 211838 }, -- Waylaid Supplies: Heavy Wool Bandages
+				{ 28, 211825 }, -- Waylaid Supplies: Rough Bronze Boots
+				{ 29, 211836 }, -- Waylaid Supplies: Smoked Bear Meat
+				{ 30, "INV_Box_01", nil, AL["Continued on next page ->"], nil },
+				{ 101, 211831 }, -- Waylaid Supplies: Dark Leather Cloaks
+				{ 102, 211837 }, -- Waylaid Supplies: Goblin Deviled Clams
+				{ 103, 211820 }, -- Waylaid Supplies: Silver Bars
+				{ 104, 211821 }, -- Waylaid Supplies: Medium Leather
+				{ 105, 211833 }, -- Waylaid Supplies: Gray Woolen Shirts
+				{ 106, 211827 }, -- Waylaid Supplies: Runed Silver Rods
+				{ 107, 211819 }, -- Waylaid Supplies: Bronze Bars
+				{ 108, 211830 }, -- Waylaid Supplies: Ornate Spyglasses
+				{ 109, 211826 }, -- Waylaid Supplies: Silver Skeleton Keys
+				{ 110, 211935 }, -- Waylaid Supplies: Elixir of Firepower
+				{ 111, 211834 }, -- Waylaid Supplies: Pearl-clasped Cloaks
+				{ 112, 211823 }, -- Waylaid Supplies: Swiftthistle
+				{ 113, 211832 }, -- Waylaid Supplies: Hillman's Shoulders
+			},
+		},
+	},
+}
+
 data["TierSets"] = {
-	name = AL["Tier Sets"],
-	ContentType = SET_CONTENT,
+	name = AL["Tier & Sets"],
+	ContentType = CLASSIC_CONTENT,
 	TableType = SET_ITTYPE,
 	items = {
 		{ -- T1
@@ -132,380 +1414,9 @@ data["TierSets"] = {
 				{ 24, 528 }, -- Paladin
 			},
 		},
-		AtlasLoot:GameVersion_GE(AtlasLoot.BC_VERSION_NUM, { -- T4
-			name = format(AL["Tier %s Sets"], "4"),
-			CoinTexture = "BC",
-			[NORMAL_DIFF] = {
-				{ 1,    645 }, -- Warlock
-				{ 3,    663 }, -- Priest / Heal
-				{ 4,    664 }, -- Priest / Shadow
-				{ 6,    621 }, -- Rogue
-				{ 8,    651 }, -- Hunter
-				{ 10,    654 }, -- Warrior / Prot
-				{ 11,    655 }, -- Warrior / DD
-				{ 16,   648 }, -- Mage
-				{ 18,   638 }, -- Druid / Heal
-				{ 19,   639 }, -- Druid / Owl
-				{ 20,   640 }, -- Druid / Feral
-				{ 22,   631 }, -- Shaman / Heal
-				{ 23,   632 }, -- Shaman / Ele
-				{ 24,   633 }, -- Shaman / Enh
-				{ 26,   624 }, -- Paladin / Heal
-				{ 27,   625 }, -- Paladin / Prot
-				{ 28,   626 }, -- Paladin / DD
-			},
-		}),
-		AtlasLoot:GameVersion_GE(AtlasLoot.BC_VERSION_NUM, { -- T5
-			name = format(AL["Tier %s Sets"], "5"),
-			CoinTexture = "BC",
-			[NORMAL_DIFF] = {
-				{ 1,    646 }, -- Warlock
-				{ 3,    665 }, -- Priest / Heal
-				{ 4,    666 }, -- Priest / Shadow
-				{ 6,    622 }, -- Rogue
-				{ 8,    652 }, -- Hunter
-				{ 10,    656 }, -- Warrior / Prot
-				{ 11,    657 }, -- Warrior / DD
-				{ 16,   649 }, -- Mage
-				{ 18,   642 }, -- Druid / Heal
-				{ 19,   643 }, -- Druid / Owl
-				{ 20,   641 }, -- Druid / Feral
-				{ 22,   634 }, -- Shaman / Heal
-				{ 23,   635 }, -- Shaman / Ele
-				{ 24,   636 }, -- Shaman / Enh
-				{ 26,   627 }, -- Paladin / Heal
-				{ 27,   628 }, -- Paladin / Prot
-				{ 28,   629 }, -- Paladin / DD
-			},
-		}),
-		AtlasLoot:GameVersion_GE(AtlasLoot.BC_VERSION_NUM, {
-			name = format(AL["Tier %s Sets"], "6"),
-			CoinTexture = "BC",
-			[NORMAL_DIFF] = {
-				{ 1,    670 }, -- Warlock
-				{ 3,    675 }, -- Priest / Heal
-				{ 4,    674 }, -- Priest / Shadow
-				{ 6,    668 }, -- Rogue
-				{ 8,    669 }, -- Hunter
-				{ 10,    673 }, -- Warrior / Prot
-				{ 11,    672 }, -- Warrior / DD
-				{ 16,   671 }, -- Mage
-				{ 18,   678 }, -- Druid / Heal
-				{ 19,   677 }, -- Druid / Owl
-				{ 20,   676 }, -- Druid / Feral
-				{ 22,   683 }, -- Shaman / Heal
-				{ 23,   684 }, -- Shaman / Ele
-				{ 24,   682 }, -- Shaman / Enh
-				{ 26,   681 }, -- Paladin / Heal
-				{ 27,   679 }, -- Paladin / Prot
-				{ 28,   680 }, -- Paladin / DD
-			},
-		}),
-		AtlasLoot:GameVersion_GE(AtlasLoot.WRATH_VERSION_NUM, {
-			name = format(AL["Tier %s Sets"], "7"),
-			CoinTexture = "WRATH",
-			[RAID10_DIFF] = {
-				{ 1,    3100802 }, -- Warlock
-				{ 3,    3100804 }, -- Priest / Heal
-				{ 4,    3100805 }, -- Priest / Shadow
-				{ 6,    3100801 }, -- Rogue
-				{ 8,    3100794 }, -- Hunter
-				{ 10,   3100787 }, -- Warrior / Prot
-				{ 11,   3100788 }, -- Warrior / DD
-				{ 13,   3100793 }, -- Deathknight / Prot
-				{ 14,   3100792 }, -- Deathknight / DD
-				{ 16,   3100803 }, -- Mage
-				{ 18,   3100799 }, -- Druid / Heal
-				{ 19,   3100800 }, -- Druid / Owl
-				{ 20,   3100798 }, -- Druid / Feral
-				{ 22,   3100797 }, -- Shaman / Heal
-				{ 23,   3100796 }, -- Shaman / Ele
-				{ 24,   3100795 }, -- Shaman / Enh
-				{ 26,   3100790 }, -- Paladin / Heal
-				{ 27,   3100791 }, -- Paladin / Prot
-				{ 28,   3100789 }, -- Paladin / DD
-			},
-			[RAID25_DIFF] = {
-				{ 1,    3250802 }, -- Warlock
-				{ 3,    3250804 }, -- Priest / Heal
-				{ 4,    3250805 }, -- Priest / Shadow
-				{ 6,    3250801 }, -- Rogue
-				{ 8,    3250794 }, -- Hunter
-				{ 10,   3250787 }, -- Warrior / Prot
-				{ 11,   3250788 }, -- Warrior / DD
-				{ 13,   3250793 }, -- Deathknight / Prot
-				{ 14,   3250792 }, -- Deathknight / DD
-				{ 16,   3250803 }, -- Mage
-				{ 18,   3250799 }, -- Druid / Heal
-				{ 19,   3250800 }, -- Druid / Owl
-				{ 20,   3250798 }, -- Druid / Feral
-				{ 22,   3250797 }, -- Shaman / Heal
-				{ 23,   3250796 }, -- Shaman / Ele
-				{ 24,   3250795 }, -- Shaman / Enh
-				{ 26,   3250790 }, -- Paladin / Heal
-				{ 27,   3250791 }, -- Paladin / Prot
-				{ 28,   3250789 }, -- Paladin / DD
-			},
-		}),
-		AtlasLoot:GameVersion_GE(AtlasLoot.WRATH_VERSION_NUM, {
-			name = format(AL["Tier %s Sets"], "8"),
-			CoinTexture = "WRATH",
-			[RAID10_DIFF] = {
-				{ 1,    3100837 }, -- Warlock
-				{ 3,    3100833 }, -- Priest / Heal
-				{ 4,    3100832 }, -- Priest / Shadow
-				{ 6,    3100826 }, -- Rogue
-				{ 8,    3100838 }, -- Hunter
-				{ 10,   3100831 }, -- Warrior / Prot
-				{ 11,   3100830 }, -- Warrior / DD
-				{ 13,   3100835 }, -- Deathknight / Prot
-				{ 14,   3100834 }, -- Deathknight / DD
-				{ 16,   3100836 }, -- Mage
-				{ 18,   3100829 }, -- Druid / Heal
-				{ 19,   3100828 }, -- Druid / Owl
-				{ 20,   3100827 }, -- Druid / Feral
-				{ 22,   3100825 }, -- Shaman / Heal
-				{ 23,   3100824 }, -- Shaman / Ele
-				{ 24,   3100823 }, -- Shaman / Enh
-				{ 26,   3100822 }, -- Paladin / Heal
-				{ 27,   3100821 }, -- Paladin / Prot
-				{ 28,   3100820 }, -- Paladin / DD
-			},
-			[RAID25_DIFF] = {
-				{ 1,    3250837 }, -- Warlock
-				{ 3,    3250833 }, -- Priest / Heal
-				{ 4,    3250832 }, -- Priest / Shadow
-				{ 6,    3250826 }, -- Rogue
-				{ 8,    3250838 }, -- Hunter
-				{ 10,   3250831 }, -- Warrior / Prot
-				{ 11,   3250830 }, -- Warrior / DD
-				{ 13,   3250835 }, -- Deathknight / Prot
-				{ 14,   3250834 }, -- Deathknight / DD
-				{ 16,   3250836 }, -- Mage
-				{ 18,   3250829 }, -- Druid / Heal
-				{ 19,   3250828 }, -- Druid / Owl
-				{ 20,   3250827 }, -- Druid / Feral
-				{ 22,   3250825 }, -- Shaman / Heal
-				{ 23,   3250824 }, -- Shaman / Ele
-				{ 24,   3250823 }, -- Shaman / Enh
-				{ 26,   3250822 }, -- Paladin / Heal
-				{ 27,   3250821 }, -- Paladin / Prot
-				{ 28,   3250820 }, -- Paladin / DD
-			},
-		}),
-		AtlasLoot:GameVersion_GE(AtlasLoot.WRATH_VERSION_NUM, {
-			name = format(AL["Tier %s Sets"], "9"),
-			CoinTexture = "WRATH",
-			[NORMAL_DIFF] = AtlasLoot:GetRetByFaction(
-				{ -- horde
-					{ 1,    3000845 }, -- Warlock
-					{ 3,    3000848 }, -- Priest / Heal
-					{ 4,    3000850 }, -- Priest / Shadow
-					{ 6,    3000858 }, -- Rogue
-					{ 8,    3000860 }, -- Hunter
-					{ 10,   3000870 }, -- Warrior / Prot
-					{ 11,   3000868 }, -- Warrior / DD
-					{ 13,   3000874 }, -- Deathknight / Prot
-					{ 14,   3000872 }, -- Deathknight / DD
-					{ 16,   3000844 }, -- Mage
-					{ 18,   3000852 }, -- Druid / Heal
-					{ 19,   3000854 }, -- Druid / Owl
-					{ 20,   3000856 }, -- Druid / Feral
-					{ 22,   3000862 }, -- Shaman / Heal
-					{ 23,   3000863 }, -- Shaman / Ele
-					{ 24,   3000866 }, -- Shaman / Enh
-					{ 26,   3000876 }, -- Paladin / Heal
-					{ 27,   3000880 }, -- Paladin / Prot
-					{ 28,   3000878 }, -- Paladin / DD
-				},
-				{ -- alli
-					{ 1,    3000846 }, -- Warlock
-					{ 3,    3000847 }, -- Priest / Heal
-					{ 4,    3000849 }, -- Priest / Shadow
-					{ 6,    3000857 }, -- Rogue
-					{ 8,    3000859 }, -- Hunter
-					{ 10,   3000869 }, -- Warrior / Prot
-					{ 11,   3000867 }, -- Warrior / DD
-					{ 13,   3000873 }, -- Deathknight / Prot
-					{ 14,   3000871 }, -- Deathknight / DD
-					{ 16,   3000843 }, -- Mage
-					{ 18,   3000851 }, -- Druid / Heal
-					{ 19,   3000853 }, -- Druid / Owl
-					{ 20,   3000855 }, -- Druid / Feral
-					{ 22,   3000861 }, -- Shaman / Heal
-					{ 23,   3000864 }, -- Shaman / Ele
-					{ 24,   3000865 }, -- Shaman / Enh
-					{ 26,   3000875 }, -- Paladin / Heal
-					{ 27,   3000879 }, -- Paladin / Prot
-					{ 28,   3000877 }, -- Paladin / DD
-				}
-			),
-			[RAID25_DIFF] = AtlasLoot:GetRetByFaction(
-				{ -- horde
-					{ 1,    3250845 }, -- Warlock
-					{ 3,    3250848 }, -- Priest / Heal
-					{ 4,    3250850 }, -- Priest / Shadow
-					{ 6,    3250858 }, -- Rogue
-					{ 8,    3250860 }, -- Hunter
-					{ 10,   3250870 }, -- Warrior / Prot
-					{ 11,   3250868 }, -- Warrior / DD
-					{ 13,   3250874 }, -- Deathknight / Prot
-					{ 14,   3250872 }, -- Deathknight / DD
-					{ 16,   3250844 }, -- Mage
-					{ 18,   3250852 }, -- Druid / Heal
-					{ 19,   3250854 }, -- Druid / Owl
-					{ 20,   3250856 }, -- Druid / Feral
-					{ 22,   3250862 }, -- Shaman / Heal
-					{ 23,   3250863 }, -- Shaman / Ele
-					{ 24,   3250866 }, -- Shaman / Enh
-					{ 26,   3250876 }, -- Paladin / Heal
-					{ 27,   3250880 }, -- Paladin / Prot
-					{ 28,   3250878 }, -- Paladin / DD
-				},
-				{ -- alli
-					{ 1,    3250846 }, -- Warlock
-					{ 3,    3250847 }, -- Priest / Heal
-					{ 4,    3250849 }, -- Priest / Shadow
-					{ 6,    3250857 }, -- Rogue
-					{ 8,    3250859 }, -- Hunter
-					{ 10,   3250869 }, -- Warrior / Prot
-					{ 11,   3250867 }, -- Warrior / DD
-					{ 13,   3250873 }, -- Deathknight / Prot
-					{ 14,   3250871 }, -- Deathknight / DD
-					{ 16,   3250843 }, -- Mage
-					{ 18,   3250851 }, -- Druid / Heal
-					{ 19,   3250853 }, -- Druid / Owl
-					{ 20,   3250855 }, -- Druid / Feral
-					{ 22,   3250861 }, -- Shaman / Heal
-					{ 23,   3250864 }, -- Shaman / Ele
-					{ 24,   3250865 }, -- Shaman / Enh
-					{ 26,   3250875 }, -- Paladin / Heal
-					{ 27,   3250879 }, -- Paladin / Prot
-					{ 28,   3250877 }, -- Paladin / DD
-				}
-			),
-			[RAID25H_DIFF] = AtlasLoot:GetRetByFaction(
-				{ -- horde
-					{ 1,    3251845 }, -- Warlock
-					{ 3,    3251848 }, -- Priest / Heal
-					{ 4,    3251850 }, -- Priest / Shadow
-					{ 6,    3251858 }, -- Rogue
-					{ 8,    3251860 }, -- Hunter
-					{ 10,   3251870 }, -- Warrior / Prot
-					{ 11,   3251868 }, -- Warrior / DD
-					{ 13,   3251874 }, -- Deathknight / Prot
-					{ 14,   3251872 }, -- Deathknight / DD
-					{ 16,   3251844 }, -- Mage
-					{ 18,   3251852 }, -- Druid / Heal
-					{ 19,   3251854 }, -- Druid / Owl
-					{ 20,   3251856 }, -- Druid / Feral
-					{ 22,   3251862 }, -- Shaman / Heal
-					{ 23,   3251863 }, -- Shaman / Ele
-					{ 24,   3251866 }, -- Shaman / Enh
-					{ 26,   3251876 }, -- Paladin / Heal
-					{ 27,   3251880 }, -- Paladin / Prot
-					{ 28,   3251878 }, -- Paladin / DD
-				},
-				{ -- alli
-					{ 1,    3251846 }, -- Warlock
-					{ 3,    3251847 }, -- Priest / Heal
-					{ 4,    3251849 }, -- Priest / Shadow
-					{ 6,    3251857 }, -- Rogue
-					{ 8,    3251859 }, -- Hunter
-					{ 10,   3251869 }, -- Warrior / Prot
-					{ 11,   3251867 }, -- Warrior / DD
-					{ 13,   3251873 }, -- Deathknight / Prot
-					{ 14,   3251871 }, -- Deathknight / DD
-					{ 16,   3251843 }, -- Mage
-					{ 18,   3251851 }, -- Druid / Heal
-					{ 19,   3251853 }, -- Druid / Owl
-					{ 20,   3251855 }, -- Druid / Feral
-					{ 22,   3251861 }, -- Shaman / Heal
-					{ 23,   3251864 }, -- Shaman / Ele
-					{ 24,   3251865 }, -- Shaman / Enh
-					{ 26,   3251875 }, -- Paladin / Heal
-					{ 27,   3251879 }, -- Paladin / Prot
-					{ 28,   3251877 }, -- Paladin / DD
-				}
-			),
-		}),
-		AtlasLoot:GameVersion_GE(AtlasLoot.WRATH_VERSION_NUM, {
-			name = format(AL["Tier %s Sets"], "10"),
-			CoinTexture = "WRATH",
-			[VENDOR_DIFF] = {
-				{ 1,    3000884 }, -- Warlock
-				{ 3,    3000885 }, -- Priest / Heal
-				{ 4,    3000886 }, -- Priest / Shadow
-				{ 6,    3000890 }, -- Rogue
-				{ 8,    3000891 }, -- Hunter
-				{ 10,   3000896 }, -- Warrior / Prot
-				{ 11,   3000895 }, -- Warrior / DD
-				{ 13,   3000898 }, -- Deathknight / Prot
-				{ 14,   3000897 }, -- Deathknight / DD
-				{ 16,   3000883 }, -- Mage
-				{ 18,   3000887 }, -- Druid / Heal
-				{ 19,   3000888 }, -- Druid / Owl
-				{ 20,   3000889 }, -- Druid / Feral
-				{ 22,   3000892 }, -- Shaman / Heal
-				{ 23,   3000893 }, -- Shaman / Ele
-				{ 24,   3000894 }, -- Shaman / Enh
-				{ 26,   3000899 }, -- Paladin / Heal
-				{ 27,   3000901 }, -- Paladin / Prot
-				{ 28,   3000900 }, -- Paladin / DD
-			},
-			[T10_1_DIFF] = {
-				{ 1,    3250884 }, -- Warlock
-				{ 3,    3250885 }, -- Priest / Heal
-				{ 4,    3250886 }, -- Priest / Shadow
-				{ 6,    3250890 }, -- Rogue
-				{ 8,    3250891 }, -- Hunter
-				{ 10,   3250896 }, -- Warrior / Prot
-				{ 11,   3250895 }, -- Warrior / DD
-				{ 13,   3250898 }, -- Deathknight / Prot
-				{ 14,   3250897 }, -- Deathknight / DD
-				{ 16,   3250883 }, -- Mage
-				{ 18,   3250887 }, -- Druid / Heal
-				{ 19,   3250888 }, -- Druid / Owl
-				{ 20,   3250889 }, -- Druid / Feral
-				{ 22,   3250892 }, -- Shaman / Heal
-				{ 23,   3250893 }, -- Shaman / Ele
-				{ 24,   3250894 }, -- Shaman / Enh
-				{ 26,   3250899 }, -- Paladin / Heal
-				{ 27,   3250901 }, -- Paladin / Prot
-				{ 28,   3250900 }, -- Paladin / DD
-			},
-			[T10_2_DIFF] = {
-				{ 1,    3251884 }, -- Warlock
-				{ 3,    3251885 }, -- Priest / Heal
-				{ 4,    3251886 }, -- Priest / Shadow
-				{ 6,    3251890 }, -- Rogue
-				{ 8,    3251891 }, -- Hunter
-				{ 10,   3251896 }, -- Warrior / Prot
-				{ 11,   3251895 }, -- Warrior / DD
-				{ 13,   3251898 }, -- Deathknight / Prot
-				{ 14,   3251897 }, -- Deathknight / DD
-				{ 16,   3251883 }, -- Mage
-				{ 18,   3251887 }, -- Druid / Heal
-				{ 19,   3251888 }, -- Druid / Owl
-				{ 20,   3251889 }, -- Druid / Feral
-				{ 22,   3251892 }, -- Shaman / Heal
-				{ 23,   3251893 }, -- Shaman / Ele
-				{ 24,   3251894 }, -- Shaman / Enh
-				{ 26,   3251899 }, -- Paladin / Heal
-				{ 27,   3251901 }, -- Paladin / Prot
-				{ 28,   3251900 }, -- Paladin / DD
-			},
-		}),
-	},
-}
-
-data["DungeonSets"] = {
-	name = AL["Dungeon Sets"],
-	ContentType = SET_CONTENT,
-	TableType = SET_ITTYPE,
-	items = {
 		{ -- T0 / D1
 			name = format(AL["Dungeon Set %s"], "1"),
+			CoinTexture = "CLASSIC",
 			[NORMAL_DIFF] = {
 				{ 1, 183 }, -- Warlock
 				{ 3, 182 }, -- Priest
@@ -520,6 +1431,7 @@ data["DungeonSets"] = {
 		},
 		{ -- T0.5 / D2
 			name = format(AL["Dungeon Set %s"], "2"),
+			CoinTexture = "CLASSIC",
 			[NORMAL_DIFF] = {
 				{ 1, 518 }, -- Warlock
 				{ 3, 514 }, -- Priest
@@ -532,35 +1444,6 @@ data["DungeonSets"] = {
 				{ 24, 516 }, -- Paladin
 			},
 		},
-		AtlasLoot:GameVersion_GE(AtlasLoot.BC_VERSION_NUM, { -- T0.5 / D2
-			name = format(AL["Dungeon Set %s"], "3"),
-			[NORMAL_DIFF] = {
-				{ 1, 658 },
-				{ 2, 647 },
-				{ 3, 644 },
-				{ 4, 662 },
-				{ 6, 659 },
-				{ 7, 637 },
-				{ 8, 620 },
-				{ 16, 650 },
-				{ 17, 660 },
-				{ 18, 630 },
-				{ 20, 623 },
-				{ 21, 661 },
-				{ 22, 653 },
-			},
-		}),
-	}
-}
-
-data["ZGSets"] = {
-	name = format(AL["%s Sets"], C_Map_GetAreaInfo(1977)),
-	ContentType = SET_CONTENT,
-	LoadDifficulty = LOAD_DIFF,
-	TableType = SET_ITTYPE,
-	gameVersion = AtlasLoot.CLASSIC_VERSION_NUM,
-	ContentPhase = 4,
-	items = {
 		{
 			name = format(AL["%s Sets"], C_Map_GetAreaInfo(1977)),
 			[ALLIANCE_DIFF] = {
@@ -590,19 +1473,16 @@ data["ZGSets"] = {
 				{ 17,  462 }, -- Zanzil's Concentration
 				{ 18,  465 }, -- Prayer of the Primal
 				{ 19,  464 }, -- Overlord's Resolution
+				-- Fist weapons
+				{ 5,  261 }, -- Spirit of Eskhandar
+				-- Swords
+				{ 7,  41 }, -- Dal'Rend's Arms
+				-- Dagger / Mace
+				{ 9,  65 }, -- Spider's Kiss
+				-- Trinket
+				{ 11,  241 }, -- Shard of the Gods / 60
 			},
 		},
-	},
-}
-
-data["AQSets"] = {
-	name = format(AL["%s Sets"], C_Map_GetAreaInfo(3428)),
-	ContentType = SET_CONTENT,
-	LoadDifficulty = LOAD_DIFF,
-	TableType = SET_ITTYPE,
-	gameVersion = AtlasLoot.CLASSIC_VERSION_NUM,
-	ContentPhase = 5,
-	items = {
 		{ -- AQ20
 			name = format(AL["%s Sets"], C_Map_GetAreaInfo(3428).." 20"),
 			[ALLIANCE_DIFF] = {
@@ -639,16 +1519,6 @@ data["AQSets"] = {
 				{ 24 }, -- Paladin
 			},
 		},
-	},
-}
-
-data["MiscSets"] = {
-	name = format(AL["%s Sets"], AL["Misc"]),
-	ContentType = SET_CONTENT,
-	LoadDifficulty = LOAD_DIFF,
-	TableType = SET_ITTYPE,
-	gameVersion = AtlasLoot.CLASSIC_VERSION_NUM,
-	items = {
 		{ -- Cloth
 			name = ALIL["Cloth"],
 			[NORMAL_DIFF] = {
@@ -696,19 +1566,6 @@ data["MiscSets"] = {
 				{ 2,  124 }, -- Deathbone Guardian / 61
 				{ 3,  321 }, -- Imperial Plate / 53-61
 				{ 16,  533 }, -- Battlegear of Undead Slaying / 63
-			},
-		},
-		{ -- Misc
-			name = format(AL["%s Sets"], AL["Misc"]),
-			[NORMAL_DIFF] = {
-				-- Fist weapons
-				{ 1,  261 }, -- Spirit of Eskhandar
-				-- Swords
-				{ 3,  41 }, -- Dal'Rend's Arms
-				-- Dagger / Mace
-				{ 5,  65 }, -- Spider's Kiss
-				-- Trinket
-				{ 16,  241 }, -- Shard of the Gods / 60
 			},
 		},
 	},
@@ -1738,14 +2595,67 @@ data["AQOpening"] = {
 data["ScourgeInvasion"] = {
 	name = AL["Scourge Invasion"],
 	ContentType = WORLD_EVENT_CONTENT,
-	LoadDifficulty = NORMAL_DIFF,
-	TableType = NORMAL_ITTYPE,
 	ContentPhase = 6,
 	gameVersion = AtlasLoot.CLASSIC_VERSION_NUM,
 	CorrespondingFields = private.SCOURGE_INVASION,
 	items = {
 		{ -- ScourgeInvasionEvent1
 			name = AL["Scourge Invasion"],
+			[SOD_DIFF] = {
+				{ 1,  23123 }, -- Blessed Wizard Oil
+				{ 2,  23122 }, -- Consecrated Sharpening Stone
+				{ 3,  22999 }, -- Tabard of the Argent Dawn
+				{ 4,  22484 }, -- Necrotic Rune
+				{ 6, "INV_Box_01", nil, AL["Cloth Sets"], nil },
+				{ 7,  236724 }, -- Robe of Undead Slaying
+				{ 8,  236723 }, -- Gloves of Undead Slaying
+				{ 9,  236722 }, -- Bracers of Undead Slaying
+				{ 11,  236721 }, -- Robe of Undead Purification
+				{ 12,  236720 }, -- Gloves of Undead Purification
+				{ 13,  236719 }, -- Bracers of Undead Purification
+				{ 16, 23194 }, -- Lesser Mark of the Dawn
+				{ 17, 23195 }, -- Mark of the Dawn
+				{ 18, 23196 }, -- Greater Mark of the Dawn
+				{ 22, 236718 }, -- Robe of Undead Cleansing
+				{ 23, 236717 }, -- Gloves of Undead Cleansing
+				{ 24, 236716 }, -- Bracers of Undead Cleansing
+				{ 30, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 101, "INV_Box_01", nil, AL["Leather Sets"], nil },
+				{ 102,  236707 }, -- Tunic of Undead Slaying
+				{ 103,  236713 }, -- Handwraps of Undead Slaying
+				{ 104,  236711 }, -- Wristwraps of Undead Slaying
+				{ 106,  236727 }, -- Tunic of Undead Cleansing
+				{ 107,  236726 }, -- Handwraps of Undead Cleansing
+				{ 108,  236725 }, -- Wristwraps of Undead Cleansing
+				{ 110,  236730 }, -- Tunic of Undead Purification
+				{ 111,  236729 }, -- Handwraps of Undead Purification
+				{ 112,  236728 }, -- Wristwraps of Undead Purification
+				{ 116, "INV_Box_01", nil, AL["Mail Sets"], nil },
+				{ 117,  236709 }, -- Chestgruard of Undead Slaying
+				{ 118,  236710 }, -- Wristguards of Undead Slaying
+				{ 119,  236715 }, -- Handguards of Undead Slaying
+				{ 121,  236736 }, -- Chestguard of Undead Cleansing
+				{ 122,  236735 }, -- Handguards of Undead Cleansing
+				{ 123,  236734 }, -- Wristguards of Undead Cleansing
+				{ 125,  236739 }, -- Chestguard of Undead Warding
+				{ 126,  236738 }, -- Handguards of Undead Warding
+				{ 127,  236737 }, -- Wristguards of Undead Warding
+				{ 130, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 201, "INV_Box_01", nil, AL["Mail Sets (Continued)"], nil },
+				{ 202,  236742 }, -- Chestguard of Undead Purification
+				{ 203,  236741 }, -- Handguards of Undead Purification
+				{ 204,  236740 }, -- Wristguards of Undead Purification
+				{ 216, "INV_Box_01", nil, AL["Plate Sets"], nil },
+				{ 217,  236708 }, -- Breastplate of Undead Slaying
+				{ 218,  236714 }, -- Gauntlets of Undead Slaying
+				{ 219,  236712 }, -- Bracers of Undead Slaying
+				{ 221,  236748 }, -- Breastplate of Undead Warding
+				{ 222,  236747 }, -- Gauntlets of Undead Warding
+				{ 223,  236746 }, -- Bracers of Undead Warding
+				{ 225,  236745 }, -- Breastplate of Undead Purification
+				{ 226,  236744 }, -- Gauntlets of Undead Purification
+				{ 227,  236743 }, -- Bracers of Undead Purification
+			},
 			[NORMAL_DIFF] = {
 				{ 1,  23123 }, -- Blessed Wizard Oil
 				{ 2,  23122 }, -- Consecrated Sharpening Stone
@@ -1770,6 +2680,11 @@ data["ScourgeInvasion"] = {
 		},
 		{
 			name = C_Map_GetAreaInfo(2017).." - "..AL["Balzaphon"],
+			[SOD_DIFF] = {
+				{ 1,  238356 }, -- Waistband of Balzaphon
+				{ 2,  238355 }, -- Chains of the Lich
+				{ 3,  238357 }, -- Staff of Balzaphon
+			},
 			[NORMAL_DIFF] = {
 				{ 1,  23126 }, -- Waistband of Balzaphon
 				{ 2,  23125 }, -- Chains of the Lich
@@ -1778,6 +2693,11 @@ data["ScourgeInvasion"] = {
 		},
 		{
 			name = C_Map_GetAreaInfo(2057).." - "..AL["Lord Blackwood"],
+			[SOD_DIFF] = {
+				{ 1,  238361 }, -- Lord Blackwood's Blade
+				{ 2,  238358 }, -- Blackwood's Thigh
+				{ 3,  238360 }, -- Lord Blackwood's Buckler
+			},
 			[NORMAL_DIFF] = {
 				{ 1,  23132 }, -- Lord Blackwood's Blade
 				{ 2,  23156 }, -- Blackwood's Thigh
@@ -1786,6 +2706,11 @@ data["ScourgeInvasion"] = {
 		},
 		{
 			name = C_Map_GetAreaInfo(2557).." - "..AL["Revanchion"],
+			[SOD_DIFF] = {
+				{ 1, 238364 }, -- Cloak of Revanchion
+				{ 2, 238362 }, -- Bracers of Mending
+				{ 3, 238363 }, -- The Shadow's Grasp
+			},
 			[NORMAL_DIFF] = {
 				{ 1, 23127 }, -- Cloak of Revanchion
 				{ 2, 23129 }, -- Bracers of Mending
@@ -1794,6 +2719,11 @@ data["ScourgeInvasion"] = {
 		},
 		{
 			name = AL["Scarlet Monastery - Graveyard"].." - "..AL["Scorn"],
+			[SOD_DIFF] = {
+				{ 1, 238352 }, -- Scorn's Icy Choker
+				{ 2, 238351 }, -- The Frozen Clutch
+				{ 3, 238350 }, -- Scorn's Focal Dagger
+			},
 			[NORMAL_DIFF] = {
 				{ 1, 23169 }, -- Scorn's Icy Choker
 				{ 2, 23170 }, -- The Frozen Clutch
@@ -1802,6 +2732,10 @@ data["ScourgeInvasion"] = {
 		},
 		{
 			name = C_Map_GetAreaInfo(209).." - "..AL["Sever"],
+			[SOD_DIFF] = {
+				{ 1, 238349 }, -- Abomination Skin Leggings
+				{ 2, 238348 }, -- The Axe of Severing
+			},
 			[NORMAL_DIFF] = {
 				{ 1, 23173 }, -- Abomination Skin Leggings
 				{ 2, 23171 }, -- The Axe of Severing
@@ -1809,6 +2743,10 @@ data["ScourgeInvasion"] = {
 		},
 		{
 			name = C_Map_GetAreaInfo(722).." - "..AL["Lady Falther'ess"],
+			[SOD_DIFF] = {
+				{ 1, 238353 }, -- Mantle of Lady Falther'ess
+				{ 2, 238354 }, -- Lady Falther'ess' Finger
+			},
 			[NORMAL_DIFF] = {
 				{ 1, 23178 }, -- Mantle of Lady Falther'ess
 				{ 2, 23177 }, -- Lady Falther'ess' Finger

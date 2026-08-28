@@ -22,14 +22,26 @@ BFWC_Filter_SavedConfigs = {
 },
 ["dungeons"] = {
 },
-["blacklist_enable"] = true,
+["blacklist_enable"] = false,
 ["player"] = {
-["Player-5376-16957435"] = {
+["Player-5843-00D04D9B"] = {
+},
+["Player-5303-1554C9B3"] = {
+},
+["Player-5376-154A5190"] = {
+},
+["Player-5303-154A4CAC"] = {
+},
+["Player-5381-152D7C91"] = {
+},
+["Player-5453-0476F4B3"] = {
+},
+["Player-5453-040319F3"] = {
 },
 },
 ["remain_unchanged_msg"] = false,
 ["saved"] = true,
-["bigfoot"] = true,
+["bigfoot"] = false,
 ["dlg_width"] = 900,
 ["auto_filter_by_level"] = false,
 ["hide_enter_leave"] = true,

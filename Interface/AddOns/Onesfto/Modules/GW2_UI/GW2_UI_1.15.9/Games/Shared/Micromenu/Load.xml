@@ -1,5 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-    <Include file ="micromenu.xml"/>
-    <Script file ="notificationAnimations.lua"/>
-    <Script file ="micromenu.lua"/>
-</Ui>

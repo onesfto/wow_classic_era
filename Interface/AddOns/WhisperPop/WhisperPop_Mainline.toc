@@ -1,7 +1,7 @@
-## Interface: 110205, 110207, 120000
+## Interface: 110205, 110207, 120000, 120007
 ## Title: WhisperPop |r|cFF0099FF[密语助手]|r
 ## Author: Abin
-## Version: 1.0.5 Rurutia fix
+## Version: 1.0.5 Rurutia fix 3
 ## Notes: 密语历史管理插件，保存历史收到密语，并支持弹窗提醒。|n点击聊天框的小喇叭，对已接收的密语进行管理。|n点击齿轮，可以进行更多设置。|n简介：|cffee5885露露緹婭@Bilibili|r
 ## IconTexture: 133461
 ## X-Category: Chat/Communication

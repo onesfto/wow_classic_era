@@ -8,8 +8,6 @@ local module = {}
 local moduleName = "Controls"
 MSBTOptions[moduleName] = module
 
-local IsClassic = WOW_PROJECT_ID >= WOW_PROJECT_CLASSIC
-
 
 -------------------------------------------------------------------------------
 -- Private variables.
@@ -1771,9 +1769,7 @@ local function Colorswatch_ColorPickerOnChange(this)
 	if (not colorswatch) then return end
 
 	Colorswatch_SetColor(colorswatch, ColorPickerFrame:GetColorRGB())
-	if colorswatch.colorChangedHandler then
-		colorswatch:colorChangedHandler()
-	end
+	if (colorswatch.colorChangedHandler) then colorswatch:colorChangedHandler() end
 end
 
 
@@ -1785,9 +1781,7 @@ local function Colorswatch_ColorPickerOnCancel(previousValues)
 	if (not colorswatch) then return end
 
 	Colorswatch_SetColor(colorswatch, previousValues.r, previousValues.g, previousValues.b)
-	if colorswatch.colorChangedHandler then
-		colorswatch:colorChangedHandler()
-	end
+	if (colorswatch.colorChangedHandler) then colorswatch:colorChangedHandler() end
 end
 
 
@@ -1800,25 +1794,15 @@ local function Colorswatch_OnClick(this)
 	local tempB = this.b or 1
 
 	ColorPickerFrame.associatedColorSwatch = this
-	if IsClassic then
-		ColorPickerFrame.hasOpacity = false
-		ColorPickerFrame.opacity = 1
-		ColorPickerFrame.previousValues = {r = tempR, g = tempG, b = tempB}
-		ColorPickerFrame.func = Colorswatch_ColorPickerOnChange
-		ColorPickerFrame.cancelFunc = Colorswatch_ColorPickerOnCancel
-		ColorPickerFrame:SetColorRGB(tempR, tempG, tempB)
-		ColorPickerFrame:ClearAllPoints()
-		ColorPickerFrame:SetPoint("CENTER", this, "CENTER")
-		ColorPickerFrame:Show()
-	else
-		local info = {r = tempR, g = tempG, b = tempB}
-		info.hasOpacity = false
-		info.opacity = 1
-		info.previousValues = {r = tempR, g = tempG, b = tempB}
-		info.swatchFunc = Colorswatch_ColorPickerOnChange
-		info.cancelFunc = Colorswatch_ColorPickerOnCancel
-		ColorPickerFrame:SetupColorPickerAndShow(info)
-	end
+	ColorPickerFrame.hasOpacity = false
+	ColorPickerFrame.opacity = 1
+	ColorPickerFrame.previousValues = {r = tempR, g = tempG, b = tempB}
+	ColorPickerFrame.func = Colorswatch_ColorPickerOnChange
+	ColorPickerFrame.cancelFunc = Colorswatch_ColorPickerOnCancel
+	ColorPickerFrame:SetColorRGB(tempR, tempG, tempB)
+	ColorPickerFrame:ClearAllPoints()
+	ColorPickerFrame:SetPoint("CENTER", this, "CENTER")
+	ColorPickerFrame:Show()
 end
 
 

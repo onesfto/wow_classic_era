@@ -131,7 +131,7 @@ local function HandleAffixIcons(child)
 
 		S:HandleIcon(frame.Portrait, true)
 
-		frame.Percent:FontTemplate(E.media.normFont, 16, 'OUTLINE')
+		frame.Percent:FontTemplate(nil, 16, 'OUTLINE')
 	end
 end
 
@@ -505,8 +505,12 @@ function S:LookingForGroupFrames()
 		S:HandleButton(SearchPanel.FilterButton)
 		S:HandleButton(SearchPanel.RefreshButton)
 		S:HandleButton(SearchPanel.BackToGroupButton)
+
 		SearchPanel.RefreshButton:Size(24)
 		SearchPanel.RefreshButton.Icon:Point('CENTER')
+		SearchPanel.RefreshButton:ClearAllPoints()
+		SearchPanel.RefreshButton:Point('LEFT', SearchPanel.SearchBox, 'RIGHT', 5, 0)
+
 		S:HandleCloseButton(SearchPanel.FilterButton.ResetButton)
 
 		local AutoCompleteFrame = SearchPanel.AutoCompleteFrame
@@ -666,8 +670,8 @@ function S:Blizzard_ChallengesUI()
 	-- Mythic+ KeyStoneFrame
 	local KeyStoneFrame = _G.ChallengesKeystoneFrame
 	KeyStoneFrame:SetTemplate('Transparent')
-	KeyStoneFrame.DungeonName:FontTemplate(E.media.normFont, 26, 'OUTLINE')
-	KeyStoneFrame.TimeLimit:FontTemplate(E.media.normFont, 20, 'OUTLINE')
+	KeyStoneFrame.DungeonName:FontTemplate(nil, 26, 'OUTLINE')
+	KeyStoneFrame.TimeLimit:FontTemplate(nil, 20, 'OUTLINE')
 
 	S:HandleButton(KeyStoneFrame.StartButton)
 	S:HandleCloseButton(KeyStoneFrame.CloseButton)

@@ -1,10 +1,11 @@
 local E, L, V, P, G = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
 local NP = E:GetModule('NamePlates')
+local LSM = E.Libs.LSM
 
 local _G = _G
 local strsub, type = strsub, type
-local next, pcall, unpack = next, pcall, unpack
+local next, unpack = next, unpack
 local hooksecurefunc = hooksecurefunc
 local getmetatable = getmetatable
 local tonumber = tonumber
@@ -70,15 +71,8 @@ do
 	end
 end
 
--- 8.2 restricted frame check
-function E:SetPointsRestricted(frame)
-	if frame and not pcall(frame.GetPoint, frame) then
-		return true
-	end
-end
-
 function E:SafeGetPoint(frame)
-	if frame and frame.GetPoint and not E:SetPointsRestricted(frame) then
+	if frame and frame.GetPoint and not frame:IsAnchoringRestricted() then
 		return frame:GetPoint()
 	end
 end
@@ -233,7 +227,7 @@ local function NudgePoint(obj, xAxis, yAxis, noScale, pointValue, clearPoints)
 
 	local point, relativeTo, relativePoint, xOfs, yOfs = GrabPoint(obj, pointValue)
 
-	if clearPoints or E:SetPointsRestricted(obj) then
+	if clearPoints or obj:IsAnchoringRestricted() then
 		obj:ClearAllPoints()
 	end
 
@@ -246,7 +240,7 @@ local function PointXY(obj, xOffset, yOffset, noScale, pointValue, clearPoints)
 
 	local point, relativeTo, relativePoint, xOfs, yOfs = GrabPoint(obj, pointValue)
 
-	if clearPoints or E:SetPointsRestricted(obj) then
+	if clearPoints or obj:IsAnchoringRestricted() then
 		obj:ClearAllPoints()
 	end
 
@@ -261,7 +255,7 @@ local function SetOutside(obj, anchor, xOffset, yOffset, anchor2, noScale)
 	local x = (noScale and xOffset) or E:Scale(xOffset)
 	local y = (noScale and yOffset) or E:Scale(yOffset)
 
-	if E:SetPointsRestricted(obj) or obj:GetPoint() then
+	if obj:IsAnchoringRestricted() or obj:GetPoint() then
 		obj:ClearAllPoints()
 	end
 
@@ -278,7 +272,7 @@ local function SetInside(obj, anchor, xOffset, yOffset, anchor2, noScale)
 	local x = (noScale and xOffset) or E:Scale(xOffset)
 	local y = (noScale and yOffset) or E:Scale(yOffset)
 
-	if E:SetPointsRestricted(obj) or obj:GetPoint() then
+	if obj:IsAnchoringRestricted() or obj:GetPoint() then
 		obj:ClearAllPoints()
 	end
 
@@ -485,29 +479,31 @@ local function StripTexts(object, kill, zero)
 	StripType(STRIP_FONT, object, kill, zero)
 end
 
-local function FontTemplate(fs, font, size, style, skip)
+local function FontTemplate(fs, fontName, fontSize, fontStyle, skip)
 	if not skip then -- ignore updates from UpdateFontTemplates
-		E.texts[fs] = { font = font, fontSize = size, fontStyle = style }
+		E.texts[fs] = { fontName = fontName, fontSize = fontSize, fontStyle = fontStyle }
 	end
 
 	-- grab values from profile before conversion
-	if not style then style = E.db.general.fontStyle or P.general.fontStyle end
-	if not size then size = E.db.general.fontSize or P.general.fontSize end
-	if style == 'NONE' then style = '' end -- none isnt a real style
+	if not fontStyle then fontStyle = E.db.general.fontStyle or P.general.fontStyle end
+	if not fontSize then fontSize = E.db.general.fontSize or P.general.fontSize end
+	if fontStyle == 'NONE' then fontStyle = '' end -- none isnt a real style
 
-	local slug = E:CanFlagSlug(style)
-	if slug then style = style..'SLUG' end -- handle before shadow
+	local slug = E:CanFlagSlug(fontStyle)
+	if slug then fontStyle = fontStyle..'SLUG' end -- handle before shadow
 
-	local shadow = strsub(style, 0, 6) == 'SHADOW'
-	if shadow then style = strsub(style, 7) end -- shadow isnt a real style
+	local shadow = strsub(fontStyle, 0, 6) == 'SHADOW'
+	if shadow then fontStyle = strsub(fontStyle, 7) end -- shadow isnt a real style
 
-	if fs.SetScaleAnimationMode then
-		fs:SetScaleAnimationMode(slug and FontStringScaleAnimationMode.Vertex or FontStringScaleAnimationMode.FontSize)
+	if not fs.CanBeAccessedInContext or fs:CanBeAccessedInContext() then
+		if fs.SetScaleAnimationMode then
+			fs:SetScaleAnimationMode(slug and FontStringScaleAnimationMode.Vertex or FontStringScaleAnimationMode.FontSize)
+		end
+
+		local font = (fontName and LSM:Fetch('font', fontName)) or E.media.normFont
+		fs:SetFont(font, fontSize, fontStyle)
+		E:SetFontShadow(fs, fontStyle, shadow)
 	end
-
-	local obj = E:GenerateFontObject('ElvUI_FontTemplate', font or E.media.normFont, size, style)
-	E:SetFontShadow(obj, style, shadow)
-	fs:SetFontObject(obj)
 end
 
 local function StyleButton(button, noHover, noPushed, noChecked)

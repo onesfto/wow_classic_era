@@ -1,4 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-    <Include file ="battlegrounds.xml"/>
-    <Script file ="battlegrounds.lua"/>
-</Ui>

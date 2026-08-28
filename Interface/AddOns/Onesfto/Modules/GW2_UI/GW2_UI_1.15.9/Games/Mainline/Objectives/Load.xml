@@ -1,9 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-    <Script file ="ObjectivesItemButtonMixin.lua"/>
-    <Script file ="objectives.lua"/>
-    <Script file ="bonusObjective.lua"/>
-    <Script file ="recipeTracking.lua"/>
-    <Script file ="collectionTracking.lua"/>
-    <Script file ="monthlyActivitiesTracking.lua"/>
-    <Script file ="housingInitiative.lua"/>
-</Ui>

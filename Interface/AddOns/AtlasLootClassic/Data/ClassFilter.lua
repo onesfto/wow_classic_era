@@ -21,6 +21,38 @@ local CLASS_NAME_TO_ID = ALPrivate.CLASS_NAME_TO_ID
 local C = CLASS_BITS
 local db
 
+-- ## Compat shim for removed LE_ITEM_* globals (post-Edit Mode client update)
+-- Blizzard removed the old flat LE_ITEM_* globals from Classic clients as part
+-- of the Edit Mode / nameplate & raid frame UI update (1.15.9 / 2.5.6). The
+-- underlying data still exists in the Enum.* tables, so we backfill the old
+-- global names from those Enum tables before FILTER_DATA below is built.
+local function CamelToConstant(name)
+    -- "ItemEnhancement" -> "ITEM_ENHANCEMENT", "Quiver" -> "QUIVER"
+    return name:gsub("(%l)(%u)", "%1_%2"):upper()
+end
+
+local function BackfillEnum(enumTable, prefix)
+    if not enumTable then return end
+    for key, value in pairs(enumTable) do
+        if type(key) == "string" and type(value) == "number" then
+            local globalName = prefix .. CamelToConstant(key)
+            if _G[globalName] == nil then
+                _G[globalName] = value
+            end
+        end
+    end
+end
+
+BackfillEnum(Enum.ItemClass,                 "LE_ITEM_CLASS_")
+BackfillEnum(Enum.ItemArmorSubclass,         "LE_ITEM_ARMOR_")
+BackfillEnum(Enum.ItemWeaponSubclass,        "LE_ITEM_WEAPON_")
+BackfillEnum(Enum.ItemMiscellaneousSubclass, "LE_ITEM_MISCELLANEOUS_")
+BackfillEnum(Enum.ItemRecipeSubclass,        "LE_ITEM_RECIPE_")
+BackfillEnum(Enum.ItemGemSubclass,           "LE_ITEM_GEM_")
+BackfillEnum(Enum.ItemProjectileSubclass,    "LE_ITEM_PROJECTILE_")
+BackfillEnum(Enum.ItemQuiverSubclass,        "LE_ITEM_QUIVER_")
+BackfillEnum(Enum.ItemConsumableSubclass,    "LE_ITEM_CONSUMABLE_")
+
 -- ## Filter settings
 local FILTER_DATA = {
     -- https://wowpedia.fandom.com/wiki/Enum.InventoryType
@@ -116,7 +148,7 @@ local FILTER_DATA = {
             [LE_ITEM_WEAPON_WARGLAIVE] 	    = true, -- Warglaives
             [LE_ITEM_WEAPON_STAFF] 		    = C.DRUID + C.MAGE + C.PRIEST + C.SHAMAN + C.WARLOCK, -- Staves
             --[LE_ITEM_WEAPON_BEARCLAW] 	= true, -- Bear Claws
-            --[LE_ITEM_WEAPON_CATCLAW] 		= true, -- CatClaws 
+            --[LE_ITEM_WEAPON_CATCLAW] 		= true, -- CatClaws 
             [LE_ITEM_WEAPON_UNARMED]		= C.DRUID + C.ROGUE + C.SHAMAN + C.WARRIOR + C.HUNTER, -- Fist Weapons
             [LE_ITEM_WEAPON_GENERIC] 		= true, -- Miscellaneous
             [LE_ITEM_WEAPON_DAGGER] 		= C.DRUID + C.HUNTER + C.MAGE + C.PRIEST + C.ROGUE + C.SHAMAN + C.WARLOCK + C.WARRIOR, -- Daggers

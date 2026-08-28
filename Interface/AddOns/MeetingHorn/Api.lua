@@ -3,6 +3,9 @@ local ADDON_NAME = ...
 local ns = select(2, ...)
 local L = ns.L
 
+local GetAddOnMetadata = C_AddOns and C_AddOns.GetAddOnMetadata or GetAddOnMetadata
+local IsAddOnLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+
 ---@class MeetingHornCategoryData
 ---@field path string
 ---@field name string

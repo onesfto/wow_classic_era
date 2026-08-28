@@ -383,7 +383,6 @@ Plater.AnchorNamesByPhraseId = {
 --Plater allocate several values in memory to save performance (cpu), this may increase memory usage
 --example: intead of querying Plater.db.profile.tank it just hold a pointer to that table in the variable DB_AGGRO_TANK_COLORS, and this pointer is updated when the user changes something in the options panel
 
-	local DB_NUMBER_REGION_EAST_ASIA
 	local DB_TICK_THROTTLE
 	local DB_LERP_COLOR
 	local DB_LERP_COLOR_SPEED
@@ -1787,7 +1786,6 @@ Plater.AnchorNamesByPhraseId = {
 		DB_AURA_ALPHA = profile.aura_alpha
 		DB_AURA_SEPARATE_BUFFS = profile.buffs_on_aura2
 
-		DB_NUMBER_REGION_EAST_ASIA = Plater.db.profile.number_region == "eastasia"
 		platerInternal.ReBuildAbbreviateConfig()
 		
 		DB_TICK_THROTTLE = profile.update_throttle
@@ -2203,10 +2201,20 @@ Plater.AnchorNamesByPhraseId = {
 					--Plater.ScheduleUpdateForNameplate (plateFrame, unit)
 					
 					Plater.RunScheduledUpdate({unitId = unit}) -- do this now
-					if plateFrame.unitFrame.PlaterOnScreen then
-						Plater.CreateOrUpdateAuraContainers(plateFrame.unitFrame, unit, force)
+					if plateFrame.unitFrame.PlaterOnScreen then -- should no longer be needed
+						--Plater.CreateOrUpdateAuraContainers(plateFrame.unitFrame, unit, true)
 					end
 				end
+			elseif NAMEPLATES_ON_SCREEN_CACHE[unit] then
+				-- no nameplate anymore, hide it
+				Plater.RunFunctionForEvent ("NAME_PLATE_UNIT_REMOVED", unit)
+			end
+		end,
+
+		UNIT_CLASSIFICATION_CHANGED = function (_, unit)
+			if NAMEPLATES_ON_SCREEN_CACHE[unit] then -- this is on screen, refresh it.
+				Plater.RunFunctionForEvent ("NAME_PLATE_UNIT_REMOVED", unit)
+				Plater.RunFunctionForEvent ("NAME_PLATE_UNIT_ADDED", unit)
 			end
 		end,
 		
@@ -2222,7 +2230,7 @@ Plater.AnchorNamesByPhraseId = {
 			if (plateFrame) then
 				Plater.ScheduleUpdateForNameplate (plateFrame)
 				if plateFrame.unitFrame.PlaterOnScreen then
-					Plater.CreateOrUpdateAuraContainers(plateFrame.unitFrame, unit)
+					--Plater.CreateOrUpdateAuraContainers(plateFrame.unitFrame, unit) -- should no longer be needed
 				end
 			end
 		end,
@@ -3756,7 +3764,6 @@ Plater.AnchorNamesByPhraseId = {
 			
 			plateFrame.unitFrame.PlaterOnScreen = true
 			
-			Plater.AddToAuraUpdate(unitID, plateFrame.unitFrame)
 			-- update DBM and BigWigs nameplate auras
 			Plater.EnsureUpdateBossModAuras(plateFrame [MEMBER_GUID])
 			
@@ -3814,6 +3821,8 @@ Plater.AnchorNamesByPhraseId = {
 			plateFrame.actorType = actorType
 			unitFrame.actorType = actorType
 			unitFrame.ActorType = actorType --exposed to scripts
+
+			Plater.AddToAuraUpdate(unitID, plateFrame.unitFrame)
 			
 			--set the unit
 			unitFrame:SetUnit (unitID)
@@ -4206,7 +4215,7 @@ Plater.AnchorNamesByPhraseId = {
 		NAME_PLATE_UNIT_REMOVED = function (event, unitBarId)
 			--ViragDevTool_AddData({ctime = GetTime(), unit = unitBarId or "nil", stack = debugstack()}, "NAME_PLATE_UNIT_REMOVED - " .. (unitBarId or "nil"))
 			---@type plateframe
-			local plateFrame = C_NamePlate.GetNamePlateForUnit (unitBarId)
+			local plateFrame = C_NamePlate.GetNamePlateForUnit (unitBarId) or (NAMEPLATES_ON_SCREEN_CACHE[unitBarId] and NAMEPLATES_ON_SCREEN_CACHE[unitBarId].PlateFrame) -- we had one that requires unloading.
 			
 			Plater.RemoveFromAuraUpdate (unitBarId, plateFrame.unitFrame) -- ensure no updates
 			
@@ -4863,6 +4872,7 @@ function Plater.OnInit() --private --~oninit ~init
 		
 		Plater.EventHandlerFrame:RegisterEvent ("UNIT_FLAGS")
 		Plater.EventHandlerFrame:RegisterEvent ("UNIT_FACTION")
+		Plater.EventHandlerFrame:RegisterEvent ("UNIT_CLASSIFICATION_CHANGED")
 		
 		Plater.EventHandlerFrame:RegisterEvent ("DISPLAY_SIZE_CHANGED")
 		Plater.EventHandlerFrame:RegisterEvent ("UI_SCALE_CHANGED")
@@ -6516,7 +6526,7 @@ end
 				r, g, b, a = unpack (Plater.db.profile.tap_denied_color)
 				
 			--elseif Plater.db.profile.unit_type_coloring_enabled and (Plater.ZoneInstanceType == "party" or Plater.ZoneInstanceType == "raid") and unitFrame.isGoodAggroState then
-			elseif Plater.db.profile.unit_type_coloring_enabled and (Plater.ZoneInstanceType == "party" or Plater.ZoneInstanceType == "raid") then
+			elseif Plater.db.profile.unit_type_coloring_enabled and (Plater.ZoneInstanceType == "party" or Plater.ZoneInstanceType == "raid" or Plater.ZoneInstanceType == "scenario") then
 				local pLevel = UnitEffectiveLevel("player")
                 local uLevel = UnitEffectiveLevel(unitID)
 

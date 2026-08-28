@@ -20,6 +20,10 @@ local GetServerTime = _G.GetServerTime
 local GetItemInfoInstant = _G.GetItemInfoInstant
 local RETRIEVING_ITEM_INFO = _G["RETRIEVING_ITEM_INFO"]
 local ItemExist = _G.C_Item.DoesItemExistByID
+-- Compat shim: GetAddOnInfo was removed from Classic clients in the Edit Mode
+-- / nameplate & raid frame UI update (1.15.9 / 2.5.6); it now lives under
+-- C_AddOns. Same fix already applied in ClassFilter.lua and Loader.lua.
+local GetAddOnInfo = (_G.C_AddOns and _G.C_AddOns.GetAddOnInfo) or _G.GetAddOnInfo
 
 -- locals
 local ICONS_PATH = ALPrivate.ICONS_PATH

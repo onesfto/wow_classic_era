@@ -1,4 +1,4 @@
-## Interface: 120005, 120007
+## Interface: 120007, 120100
 ## X-Min-Interface: 80000
 ## Category: DBM
 
@@ -25,7 +25,7 @@
 ## X-DBM-Mod-MinExpansion: 1
 ## X-Curse-Project-ID: 1016966
 ## X-Wago-ID: E6gLA4K1
-## Version: r17
+## Version: r19
 
 localization.en.lua
 localization.tw.lua

@@ -6,7 +6,7 @@ local ipairs = ipairs
 local strfind = strfind
 
 local CreateFrame = CreateFrame
-local WrapString = C_StringUtil and C_StringUtil.WrapString
+local WrapString = C_StringUtil.WrapString
 local GetAuraApplicationDisplayCount = C_UnitAuras.GetAuraApplicationDisplayCount
 
 local StatusBarInterpolation = Enum.StatusBarInterpolation
@@ -62,32 +62,44 @@ function UF:AuraBars_UpdateBar(bar)
 		end
 	end
 
-	bar:SetReverseFill(not not bars.reverseFill)
+	bar:SetReverseFill(bars.reverseFill)
 	bar.spark:ClearAllPoints()
 	bar.spark:Point(bars.reverseFill and 'LEFT' or 'RIGHT', bar:GetStatusBarTexture())
 	bar.spark:Point('BOTTOM')
 	bar.spark:Point('TOP')
 
-	UF:UpdateFilters(bar)
-
 	UF:Update_FontString(bar.nameText)
 end
 
 function UF:Construct_AuraBarHeader(frame)
-	local auraBar = CreateFrame('Frame', '$parent_AuraBars', frame)
-	auraBar:SetFrameLevel(frame.RaisedElementParent.AuraBarLevel)
-	auraBar:SetSize(1, 1)
+	if E.Retail then
+		local bars = E:Auras_Create(frame, 'AuraBars')
+		bars:SetFrameLevel(frame.RaisedElementParent.AuraBarLevel)
 
-	auraBar.PreSetPosition = UF.SortAuras
-	auraBar.PostCreateBar = UF.Construct_AuraBars
-	auraBar.PostUpdateBar = UF.PostUpdateBar_AuraBars
-	auraBar.CustomFilter = UF.AuraFilter
+		return bars
+	else
+		local auraBar = CreateFrame('Frame', '$parent_AuraBars', frame)
+		auraBar:SetFrameLevel(frame.RaisedElementParent.AuraBarLevel)
+		auraBar:SetSize(1, 1)
 
-	auraBar.sparkEnabled = true
-	auraBar.initialAnchor = 'BOTTOMRIGHT'
-	auraBar.type = 'aurabar'
+		auraBar.PreSetPosition = UF.SortAuras
+		auraBar.PostCreateBar = UF.Construct_AuraBars
+		auraBar.PostUpdateBar = UF.PostUpdateBar_AuraBars
+		auraBar.CustomFilter = UF.AuraFilter
 
-	return auraBar
+		auraBar.sparkEnabled = true
+		auraBar.initialAnchor = 'BOTTOMRIGHT'
+		auraBar.type = 'aurabar'
+
+		return auraBar
+	end
+end
+
+function UF:AuraBars_UpdateFilter(bars, unit)
+	local friendly = UF:UnitIsFriendly(unit)
+	bars.filterLists = friendly and bars.friendlyFilter or bars.enemyFilter
+
+	UF:GroupFilters(bars, bars.filterLists) -- build the groups
 end
 
 function UF:Configure_AuraBars(frame)
@@ -113,19 +125,15 @@ function UF:Configure_AuraBars(frame)
 		bars.reverseFill = bars.db.reverseFill
 		bars.friendlyAuraType = db.friendlyAuraType
 		bars.enemyAuraType = db.enemyAuraType
-		bars.disableMouse = db.clickThrough
-		bars.filterList = UF:ConvertFilters(bars, db.priority)
 		bars.auraSort = UF.SortAuraFuncs[E.Retail and 'PLAYER' or db.sortMethod]
 		bars.tooltipAnchor = db.tooltipAnchorType
 		bars.tooltipAnchorX = db.tooltipAnchorX
 		bars.tooltipAnchorY = db.tooltipAnchorY
+		bars.customBackdropColor = UF.db.colors.customaurabarbackdrop and E:UpdateClassColor(UF.db.colors.aurabar_backdrop)
 
 		for _, bar in ipairs(bars) do
 			UF:AuraBars_UpdateBar(bar)
 		end
-
-		E:UpdateClassColor(UF.db.colors.auraBarBuff)
-		E:UpdateClassColor(UF.db.colors.auraBarDebuff)
 
 		if not bars.Holder then
 			local holder = CreateFrame('Frame', nil, bars)
@@ -196,8 +204,50 @@ function UF:Configure_AuraBars(frame)
 			bars.initialAnchor = 'BOTTOM'..p4
 			bars:Point(p3..p4, attachTo, p1..p4, xOffset or (right and -(BORDER * 2)) or (bars.height + UF.BORDER), yOffset)
 		end
-	elseif frame:IsElementEnabled('AuraBars') then
-		frame:DisableElement('AuraBars')
+
+		if E.Retail then
+			bars.isAuraBar = true
+			bars.size = db.height
+			bars.numAuras = db.maxBars
+			bars.maxFrameCount = db.maxBars
+			bars.lineSpacing = bars.spacing
+			bars.isTransparent = UF.db.colors.transparentAurabars -- always on for now
+			bars.invertAurabars = UF.db.colors.invertAurabars
+			bars.sortMethod = E.AuraContainerSortMethod[db.sortMethod]
+			bars.statusbarTexture = LSM:Fetch('statusbar', UF.db.statusbar)
+			bars.countPosition, bars.countXOffset, bars.countYOffset = db.countPosition, db.countXOffset, db.countYOffset
+			bars.countFont, bars.countFontSize, bars.countFontOutline = db.countFont, db.countFontSize, db.countFontOutline
+			bars.textFont, bars.textFontSize, bars.textFontOutline = UF.db.font, UF.db.fontSize, UF.db.fontOutline
+			bars.friendlyFilter = db.friendlyFilter.filterLists
+			bars.enemyFilter = db.enemyFilter.filterLists
+			bars.noMouse = db.clickThrough
+			bars.forceShowAuras = frame.forceShowAuras
+
+			UF:AuraBars_UpdateFilter(bars, frame.__unit)
+
+			E:Auras_GroupUnit(bars, frame.__unit)
+			E:Auras_SetContainer(bars)
+			E:Auras_SetLineSize(bars)
+			E:Auras_UpdateButtons(bars)
+
+			bars:SetEnabled(true)
+		else
+			bars.disableMouse = db.clickThrough
+
+			E:UpdateClassColor(UF.db.colors.auraBarBuff)
+			E:UpdateClassColor(UF.db.colors.auraBarDebuff)
+
+			bars.filterList = UF:ConvertFilters(bars, db.priority)
+		end
+	else
+		if frame:IsElementEnabled('AuraBars') then
+			frame:DisableElement('AuraBars')
+		end
+
+		if E.Retail then
+			bars:SetEnabled(false)
+		end
+
 		bars:Hide()
 	end
 end
@@ -236,12 +286,14 @@ function UF:PostUpdateBar_AuraBars(unit, bar, _, _, _, _, debuffType) -- unit, b
 		color = (isDebuff and colors.auraBarDebuff) or colors.auraBarBuff
 	end
 
+	bar.custom_backdrop = self.customBackdropColor
+
 	local text = self.db and self.db.abbrevName and spellName and E.TagFunctions.Abbrev(spellName)
 	if text then -- this is a copy from oUF we just change the text
 		if E:IsSecretValue(bar.count) then
 			if bar.aura then
 				local minCount, maxCount = 2, 999
-				local count = GetAuraApplicationDisplayCount(bar.unit, bar.aura.auraInstanceID, minCount, maxCount)
+				local count = GetAuraApplicationDisplayCount(bar.__unit, bar.aura.auraInstanceID, minCount, maxCount)
 				bar.nameText:SetFormattedText('%s%s', count and WrapString(count, '[', '] ') or '', text)
 			else
 				bar.nameText:SetText(text)
@@ -265,8 +317,6 @@ function UF:PostUpdateBar_AuraBars(unit, bar, _, _, _, _, debuffType) -- unit, b
 			UF:SetStatusBarBackdropPoints(bar, bar:GetStatusBarTexture(), bar.bg, orientation)
 		end
 	end
-
-	bar.custom_backdrop = colors.customaurabarbackdrop and colors.aurabar_backdrop
 
 	if color then
 		UF:SetStatusBarColor(bar, color.r, color.g, color.b)

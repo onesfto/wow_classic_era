@@ -2,6 +2,7 @@ local E, _, V, P, G = unpack(ElvUI)
 local C, L = unpack(E.Config)
 local A = E:GetModule('Auras')
 local PA = E:GetModule('PrivateAuras')
+local UF = E:GetModule('UnitFrames')
 local ACH = E.Libs.ACH
 
 local CopyTable = CopyTable
@@ -14,7 +15,7 @@ local SharedOptions = {
 	spacer1 = ACH:Spacer(5, 'full'),
 
 	growthDirection = ACH:Select(L["Growth Direction"], L["The direction the auras will grow and then the direction they will grow after they reach the wrap after limit."], 10, C.Values.GrowthDirection),
-	sortMethod = ACH:Select(L["Sort Method"], L["Defines how the group is sorted."], 11, { INDEX = L["Index"], TIME = L["Time"], NAME = L["Name"] }),
+	sortMethod = ACH:Select(L["Sort Method"], L["Defines how the group is sorted."], 11, { IMPORTANT = E.Retail and L["Important"] or nil, DEFENSIVE = E.Retail and L["Big Defensive"] or nil, DURATION = E.Retail and L["Duration"] or nil, PLAYER = E.Retail and L["Debuffs"] or nil, INDEX = L["Index"], TIME = L["Time"], NAME = L["Name"] }),
 	sortDir = ACH:Select(L["Sort Direction"], L["Defines the sort order of the selected sort method."], 12, { ['+'] = L["Ascending"], ['-'] = L["Descending"] }),
 	seperateOwn = ACH:Select(L["Separate"], L["Indicate whether buffs you cast yourself should be separated before or after."], 13, { [-1] = L["Other's First"], [0] = L["No Sorting"], [1] = L["Your Auras First"] }),
 
@@ -26,7 +27,7 @@ local SharedOptions = {
 	verticalSpacing = ACH:Range(L["Vertical Spacing"], nil, 25, { min = -5, max = 50, step = 1 }),
 	fadeThreshold = ACH:Range(L["Fade Threshold"], L["Threshold before the icon will fade out and back in. Set to -1 to disable."], 26, { min = -1, max = 30, step = 1 }, nil, nil, nil, nil, E.Retail),
 
-	tooltip = ACH:Group(L["Tooltip"], nil, -3),
+	tooltip = ACH:Group(L["Tooltip"], nil, -3, nil, nil, nil, nil, E.Retail),
 	statusBar = ACH:Group(L["Statusbar"], nil, -2),
 	countGroup = ACH:Group(L["Count Text"], nil, -1),
 }
@@ -73,7 +74,7 @@ do
 	local order = { None = 0, Magic = 1, Curse = 2, Disease = 3, Poison = 4, BadDispel = 12, Bleed = 13, Stealable = 14 }
 	local names = { None = L["None"], Magic = L["Magic"], Curse = L["Curse"], Disease = L["Disease"], Poison = L["Poison"], BadDispel = L["Bad Dispel"], Bleed = L["Bleed"], Stealable = L["Stealable"], Enrage = L["Enrage"] }
 	for key in next, DebuffColors do
-		if key ~= '' and key ~= 'none' then -- this is a reference to none
+		if (key ~= '' and key ~= 'none') and (not E.Retail or key ~= 'BadDispel') then -- this is a reference to none
 			Auras.args.debuffColors.args[key] = ACH:Color(names[key] or key, nil, order[key] or -1, nil, 120)
 		end
 	end
@@ -87,6 +88,14 @@ Auras.args.buffs.args.statusBar.args.barColor.get = function() local t = E.db.au
 Auras.args.buffs.args.statusBar.args.barColor.set = function(_, r, g, b) local t = E.db.auras.buffs.barColor t.r, t.g, t.b = r, g, b end
 Auras.args.buffs.args.statusBar.args.barColor.disabled = function() return not E.db.auras.buffs.barShow or (E.db.auras.buffs.barColorGradient or not E.db.auras.buffs.barShow) end
 
+Auras.args.buffs.args.midnightGroup = ACH:Group(L["Filters"], nil, 50, 'tab', nil, nil, nil, not E.Retail)
+Auras.args.buffs.args.midnightGroup.args.resetFilter = ACH:Execute(L["Reset Filter"], nil, 4, function() UF:ResetFilters_AuraGroup(E.db.auras.buffs.filterLists, P.auras.buffs.filterLists); A:UpdateHeader(A.BuffFrame) end)
+
+for index = 1, E.filterMax do
+	local name = 'group'..index
+	Auras.args.buffs.args.midnightGroup.args[name] = C:GetOptionsTable_AuraGroup(index, function() return E.db.auras.buffs.filterLists[name].enable end, function(info) return E.db.auras.buffs.filterLists[name][info[#info]] end, function(info, value) E.db.auras.buffs.filterLists[name][info[#info]] = value; A:UpdateHeader(A.BuffFrame) end, function(info) local value = E.db.auras.buffs.filterLists[name].candidates[info[#info]] if value == 1 then return nil else return value end end, function(info, value) E.db.auras.buffs.filterLists[name].candidates[info[#info]] = (value == nil and 1 or value); A:UpdateHeader(A.BuffFrame) end)
+end
+
 Auras.args.debuffs = ACH:Group(L["Debuffs"], nil, 11, nil, function(info) return E.db.auras.debuffs[info[#info]] end, function(info, value) E.db.auras.debuffs[info[#info]] = value; A:UpdateHeader(A.DebuffFrame) end, function() return not E.private.auras.debuffsHeader end)
 Auras.args.debuffs.args = CopyTable(SharedOptions)
 Auras.args.debuffs.args.size.name = function() return E.db.auras.debuffs.keepSizeRatio and L["Size"] or L["Width"] end
@@ -95,30 +104,20 @@ Auras.args.debuffs.args.statusBar.args.barColor.get = function() local t = E.db.
 Auras.args.debuffs.args.statusBar.args.barColor.set = function(_, r, g, b) local t = E.db.auras.debuffs.barColor t.r, t.g, t.b = r, g, b end
 Auras.args.debuffs.args.statusBar.args.barColor.disabled = function() return not E.db.auras.debuffs.barShow or (E.db.auras.debuffs.barColorGradient or not E.db.auras.debuffs.barShow) end
 
-Auras.args.privateAuras = ACH:Group(L["Private Auras"], nil, 12, nil, function(info) return E.db.general.privateAuras[info[#info]] end, function(info, value) E.db.general.privateAuras[info[#info]] = value; PA:Update() end, nil, not E.Retail)
-Auras.args.privateAuras.args.enable = ACH:Toggle(L["Enable"], nil, 1)
-Auras.args.privateAuras.args.countdownFrame = ACH:Toggle(L["Cooldown Spiral"], nil, 3)
-Auras.args.privateAuras.args.countdownNumbers = ACH:Toggle(L["Cooldown Numbers"], nil, 4)
-Auras.args.privateAuras.args.clickThrough = ACH:Toggle(L["Click Through"], nil, 5)
-Auras.args.privateAuras.args.borderScale = ACH:Range(L["Border Scale"], nil, 6, { min = -10, max = 10, step = 0.01 })
+Auras.args.debuffs.args.midnightGroup = ACH:Group(L["Filters"], nil, 50, 'tab', nil, nil, nil, not E.Retail)
+Auras.args.debuffs.args.midnightGroup.args.resetFilter = ACH:Execute(L["Reset Filter"], nil, 4, function() UF:ResetFilters_AuraGroup(E.db.auras.debuffs.filterLists, P.auras.debuffs.filterLists); A:UpdateHeader(A.DebuffFrame) end)
 
-Auras.args.privateAuras.args.icon = ACH:Group(L["Icon"], nil, 10, nil, function(info) return E.db.general.privateAuras.icon[info[#info]] end, function(info, value) E.db.general.privateAuras.icon[info[#info]] = value; PA:Update() end)
-Auras.args.privateAuras.args.icon.args.point = ACH:Select(L["Point"], nil, 1, { TOP = L["Top"], BOTTOM = L["Bottom"], LEFT = L["Left"], RIGHT = L["Right"] })
-Auras.args.privateAuras.args.icon.args.offset = ACH:Range(L["Offset"], nil, 2, { min = -4, max = 64, step = 1 })
-Auras.args.privateAuras.args.icon.args.amount = ACH:Range(L["Amount"], nil, 3, { min = 1, max = 5, step = 1 })
-Auras.args.privateAuras.args.icon.args.size = ACH:Range(L["Size"], nil, 4, { min = 10, max = 80, step = 1 })
-Auras.args.privateAuras.args.icon.inline = true
+for index = 1, E.filterMax do
+	local name = 'group'..index
+	Auras.args.debuffs.args.midnightGroup.args[name] = C:GetOptionsTable_AuraGroup(index, function() return E.db.auras.debuffs.filterLists[name].enable end, function(info) return E.db.auras.debuffs.filterLists[name][info[#info]] end, function(info, value) E.db.auras.debuffs.filterLists[name][info[#info]] = value; A:UpdateHeader(A.DebuffFrame) end, function(info) local value = E.db.auras.debuffs.filterLists[name].candidates[info[#info]] if value == 1 then return nil else return value end end, function(info, value) E.db.auras.debuffs.filterLists[name].candidates[info[#info]] = (value == nil and 1 or value); A:UpdateHeader(A.DebuffFrame) end)
+end
 
-Auras.args.privateAuras.args.duration = ACH:Group(L["Duration"], nil, 20, nil, function(info) return E.db.general.privateAuras.duration[info[#info]] end, function(info, value) E.db.general.privateAuras.duration[info[#info]] = value; PA:Update() end)
-Auras.args.privateAuras.args.duration.args.enable = ACH:Toggle(L["Enable"], nil, 1, nil, nil, 100)
-Auras.args.privateAuras.args.duration.args.point = ACH:Select(L["Point"], nil, 5, { TOP = L["Top"], BOTTOM = L["Bottom"], LEFT = L["Left"], RIGHT = L["Right"] })
-Auras.args.privateAuras.args.duration.args.offsetX = ACH:Range(L["X-Offset"], nil, 6, { min = -60, max = 60, step = 1 })
-Auras.args.privateAuras.args.duration.args.offsetY = ACH:Range(L["Y-Offset"], nil, 7, { min = -60, max = 60, step = 1 })
-Auras.args.privateAuras.args.duration.inline = true
-
-Auras.args.privateAuras.args.raidWarning = ACH:Group(L["Raid Warning"], nil, 30, nil, function(info) return E.db.general.privateRaidWarning[info[#info]] end, function(info, value) E.db.general.privateRaidWarning[info[#info]] = value; PA:RaidWarning_Update() end)
+Auras.args.privateAuras = ACH:Group(L["Private Auras"], nil, 12, nil, function(info) return E.db.general.privateRaidWarning[info[#info]] end, function(info, value) E.db.general.privateRaidWarning[info[#info]] = value; PA:RaidWarning_Update() end, nil, not E.Retail)
+Auras.args.privateAuras.args.raidWarning = ACH:Group(L["Raid Warning"], nil, 30)
 Auras.args.privateAuras.args.raidWarning.args.scale = ACH:Range(L["Scale"], nil, 1, { min = 0.5, max = 4, step = 0.01, bigStep = 0.1 })
 Auras.args.privateAuras.args.raidWarning.inline = true
 
 Auras.args.masqueGroup = ACH:Group(L["Masque"], nil, 13, nil, nil, nil, function() return not E.Masque or not E.private.auras.enable end)
 Auras.args.masqueGroup.args.masque = ACH:MultiSelect(L["Masque Support"], L["Allow Masque to handle the skinning of this element."], 10, { buffs = L["Buffs"], debuffs = L["Debuffs"] }, nil, nil, function(_, key) return E.private.auras.masque[key] end, function(_, key, value) E.private.auras.masque[key] = value; E.ShowPopup = true end)
+
+Auras.args.filtersGuide = C:GetOptionsTable_FiltersGuide(20)

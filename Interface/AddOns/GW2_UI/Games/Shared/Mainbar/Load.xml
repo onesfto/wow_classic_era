@@ -1,9 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-    <Script file="mainBarLayout.lua"/>
-    <Include file ="raidControl.xml"/>
-    <Script file ="raidControl.lua"/>
-    <Script file ="altPowerBar.lua"/>
-    <Script file ="totemBar.lua"/>
-    <Script file ="expBar.lua"/>
-    <Script file ="5sr.lua"/>
-</Ui>

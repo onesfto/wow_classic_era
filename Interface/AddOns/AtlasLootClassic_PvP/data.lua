@@ -22,6 +22,7 @@ local NORMAL_DIFF = data:AddDifficulty(AL["Normal"], "n", 1, nil, true)
 local ALLIANCE_DIFF
 local HORDE_DIFF
 local LOAD_DIFF
+
 if UnitFactionGroup("player") == "Horde" then
 	HORDE_DIFF = data:AddDifficulty(FACTION_HORDE, "horde", nil, 1)
 	ALLIANCE_DIFF = data:AddDifficulty(FACTION_ALLIANCE, "alliance", nil, 1)
@@ -40,6 +41,7 @@ local QUEST_EXTRA_ITTYPE = data:AddExtraItemTableType("Quest")
 local PRICE_EXTRA_ITTYPE = data:AddExtraItemTableType("Price")
 local SET_EXTRA_ITTYPE = data:AddExtraItemTableType("Set")
 
+local SOD_CONTENT = data:AddContentType(AL["SoD Exclusives"], ATLASLOOT_RAID20_COLOR)
 local PVP_CONTENT = data:AddContentType(AL["Battlegrounds"], ATLASLOOT_PVP_COLOR)
 local GENERAL_CONTENT = data:AddContentType(GENERAL, ATLASLOOT_RAID40_COLOR)
 
@@ -131,6 +133,322 @@ local PVP_RANKS = {	-- Keys
 7 - Revered
 8 - Exalted
 ]]--
+
+data["SoD PvP"] = {
+	name = AL["PvP"],
+	ContentType = SOD_CONTENT,
+	LoadDifficulty = NORMAL_DIFF,
+	TableType = SET_ITTYPE,
+	gameVersion = AtlasLoot.CLASSIC_VERSION_NUM,
+	items = {
+		{ -- PVPWeapons
+			name = AL["Level 60 Rank 14 Weapons"],
+			TableType = NORMAL_ITTYPE,
+			[ALLIANCE_DIFF] = {
+				{ 1, 234580 }, -- Grand Marshal's Handaxe 
+				{ 2, 234566 }, -- Grand Marshal's Sunderer
+				{ 3, 234582 }, -- Grand Marshal's Dirk
+				{ 4, 235479 }, -- Grand Marshal's Shiv
+				{ 5, 234574 }, -- Grand Marshal's Mageblade
+				{ 6, 234583 }, -- Grand Marshal's Right Hand Blade
+				{ 7, 234584 }, -- Grand Marshal's Left Hand Blade
+				{ 8, 234581 }, -- Grand Marshal's Punisher
+				{ 9, 235481 }, -- Grand Marshal's Hacker
+				{ 10, 235480 }, -- Grand Marshal's Bonecracker
+				{ 11, 234576 }, -- Grand Marshal's Warhammer
+				{ 12, 234568 }, -- Grand Marshal's Demolisher
+				{ 13, 234567 }, -- Grand Marshal's Battle Hammer
+				{ 14, 234578 }, -- Grand Marshal's Longsword
+				{ 15, 234579 }, -- Grand Marshal's Swiftblade
+				{ 16, 234565 }, -- Grand Marshal's Claymore
+				{ 17, 234569 }, -- Grand Marshal's Glaive
+				{ 18, 234570 }, -- Grand Marshal's Polearm
+				{ 19, 234571 }, -- Grand Marshal's Stave
+				{ 20, 234585 }, -- Grand Marshal's Bullseye
+				{ 21, 234586 }, -- Grand Marshal's Repeater
+				{ 22, 234587 }, -- Grand Marshal's Hand Cannon
+				{ 23, 234588 }, -- Grand Marshal's Aegis
+				{ 24, 235473 }, -- Grand Marshal's Barricade
+				{ 25, 234589 }, -- Grand Marshal's Tome of Power
+				{ 26, 234590 }, -- Grand Marshal's Tome of Restoration
+			},
+			[HORDE_DIFF] = {
+				{ 1, 234554 }, -- High Warlord's Cleaver
+				{ 2, 234543 }, -- High Warlord's Battle Axe
+				{ 3, 235476 }, -- High Warlord's Hacker
+				{ 4, 234556 }, -- High Warlord's Razor
+				{ 5, 235478 }, -- High Warlord's Razor
+				{ 6, 234550 }, -- High Warlord's Spellblade
+				{ 7, 234557 }, -- High Warlord's Right Claw
+				{ 8, 234558 }, -- High Warlord's Left Claw
+				{ 9, 234555 }, -- High Warlord's Bludgeon
+				{ 10, 234551 }, -- High Warlord's Battle Mace
+				{ 11, 235477 }, -- High Warlord's Bonecracker
+				{ 12, 234546 }, -- High Warlord's Destroyer
+				{ 13, 234545 }, -- High Warlord's Pulverizer
+				{ 14, 234552 }, -- High Warlord's Blade
+				{ 15, 234553 }, -- High Warlord's Quickblade
+				{ 16, 234542 }, -- High Warlord's Greatsword
+				{ 17, 234547 }, -- High Warlord's Pig Sticker
+				{ 18, 234548 }, -- High Warlord's Pig Poker
+				{ 19, 234549 }, -- High Warlord's War Staff
+				{ 20, 234559 }, -- High Warlord's Recurve
+				{ 21, 234560 }, -- High Warlord's Crossbow
+				{ 22, 234561 }, -- High Warlord's Street Sweeper
+				{ 23, 234562 }, -- High Warlord's Shield Wall
+				{ 24, 235474 }, -- High Warlord's Barricade
+				{ 25, 234563 }, -- High Warlord's Tome of Destruction
+				{ 26, 234563 }, -- High Warlord's Tome of Mending
+			},
+		},
+		{
+			name = AL["Level 60 Rank 12 Sets"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Alliance"], nil },
+				{ 2, 1740 }, --Mage
+				{ 3, 1741 }, --Priest caster
+				{ 4, 1742 }, --Priest healer
+				{ 5, 1746 }, --Warlock
+				{ 6, 1735 }, --Druid caster
+				{ 7, 1736 }, --Druid healer
+				{ 8, 1737 }, --Druid melee
+				{ 9, 1743 }, -- Rogue
+				{ 10, 1738 }, --Hunter melee
+				{ 11, 1739 }, --Hunter ranged
+				{ 12, 1747 }, --Warrior
+				{ 13, 1745 }, --Paladin healer
+				{ 14, 1744 }, --Paladin melee
+				{ 16, "INV_Box_01", nil, AL["Horde"], nil },
+				{ 17, 1727 }, --Mage
+				{ 18, 1728 }, --Priest caster
+				{ 19, 1729 }, --Priest healer
+				{ 20, 1734 }, --Warlock
+				{ 21, 1723 }, --Druid caster
+				{ 22, 1724 }, --Druid healer
+				{ 23, 1722 }, --Druid melee
+				{ 24, 1730 }, --Rogue
+				{ 25, 1726 }, --Hunter melee
+				{ 26, 1725 }, --Hunter ranged
+				{ 27, 1732 }, --Shaman caster
+				{ 28, 1733 }, --Shaman healer
+				{ 29, 1731 }, --Shaman melee
+				{ 30, 1721 }, --Warrior
+			},
+		},
+		{
+			name = AL["Level 60 Rank 10 Sets"],
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Alliance"], nil },
+				{ 2, 1767 }, --mage
+				{ 3, 1768 }, --priest
+				{ 4, 1769 }, --priest 
+				{ 5, 1774 }, --warlock
+				{ 6, 1762 }, --Druid
+				{ 7, 1763 }, --Druid
+				{ 8, 1764 }, --Druid
+				{ 9, 1770 }, -- Rogue
+				{ 10, 1765 }, --Hunter
+				{ 11, 1766 }, --Hunter
+				{ 12, 1775 }, --Warr
+				{ 13, 1776 }, --Paladin
+				{ 14, 1777 }, --Paladin
+				{ 16, "INV_Box_01", nil, AL["Horde"], nil },
+				{ 17, 1753 }, --Mage
+				{ 18, 1754 }, --priest
+				{ 19, 1755 }, --priest
+				{ 20, 1760 }, --Warlock
+				{ 21, 1748 }, --Druid
+				{ 22, 1749 }, --Druid
+				{ 23, 1750 }, --Druid
+				{ 24, 1756 }, --Rogue
+				{ 25, 1751 }, --Hunter
+				{ 26, 1752 }, --Hunter
+				{ 27, 1757 }, --shaman
+				{ 28, 1758 }, --Shaman
+				{ 29, 1759 }, --Shaman
+				{ 30, 1761 }, --Warrior
+			},
+		},
+		{
+		name = AL["Level 60 Blood Moon"],
+		TableType = NORMAL_ITTYPE,
+			[NORMAL_DIFF] = {
+				{ 1, 235144 }, -- Satchel of Blood-Caked Copper Coins
+				{ 2, 235145 }, -- Satchel of Blood-Caked Silver Coins
+				{ 3, 234145 }, -- Blood-Caked Hakkari Bijou
+				{ 5, 233728 }, -- Blood-Caked Insignia
+				{ 7, 233740 }, -- Blood-Caked Shroud
+				{ 8, 233739 }, -- Blood-Caked Drape
+				{ 9, 233738 }, -- Blood-Caked Cape
+				{ 10, 233737 }, -- Blood-Caked Cloak
+				{ 12, 233736 }, -- Blood-Caked Band
+				{ 13, 233735 }, -- Blood-Caked Loop 
+				{ 14, 233734 }, -- Blood-Caked Circle
+				{ 15, 233733 }, -- Blood-Caked Ring
+				{ 16, 233732 }, -- Blood-Caked Necklace
+				{ 17, 233731 }, -- Blood-Caked Amulet
+				{ 18, 233730 }, -- Blood-Caked Talisman
+				{ 19, 233729 }, -- Blood-Caked Choker
+				{ 21, 233781 }, -- Battle Hardened Satin Wrists
+				{ 22, 233780 }, -- Battle Hardened Satin Bracers
+				{ 23, 233783 }, -- Battle Hardened Satin Sash
+				{ 24, 233786 }, -- Battle Hardened Satin Cinch
+				{ 26, 234960 }, -- Reins of the Blood-Caked Tiger
+				{ 27, 234961 }, -- Whistle of the Blood-Caked Raptor
+			},
+		},
+		{
+		name = AL["Level 50 Blood Moon"],
+		TableType = NORMAL_ITTYPE,
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Druid"], nil },
+				{ 2, 221447 }, -- Ritualist's Bloodmoon Grimoire
+				{ 3, 221446 }, -- Ritualist's Hammer
+				{ 4, 221448 }, -- Talisman of the Corrupted Grove
+				{ 6, "INV_Box_01", nil, AL["Hunter"], nil },
+				{ 7, 221451 }, -- Bloodthirst Crossbow
+				{ 8, 221450 }, -- Gurubashi Pit Fighter's Bow
+				{ 10, "INV_Box_01", nil, AL["Mage"], nil },
+				{ 11, 221452 }, -- Bloodfocused Arcane Band
+				{ 12, 221453 }, -- Band of Boiling Blood 
+				{ 13, 221454 }, -- Glacial Blood Band
+				{ 16, "INV_Box_01", nil, AL["Paladin"], nil },
+				{ 17, 221457 }, -- Libram of Draconic Destruction
+				{ 18, 221455 }, -- Bloodlight Reverence
+				{ 19, 221456 }, -- Eclipsed Sanguine Saber
+				{ 20, 220173 }, -- Parasomnia
+				{ 22, "INV_Box_01", nil, AL["Priest"], nil },
+				{ 23, 221459 }, -- Seal of the Sacrificed
+				{ 24, 221458 }, -- Shadowy Band of Victory
+				{ 26, "INV_Box_01", nil, AL["Rogue"], nil },
+				{ 27, 221460 }, -- Gurubashi Backstabber
+				{ 28, 221462 }, -- Bloodied Sword of Speed
+				{ 30, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 101, "INV_Box_01", nil, AL["Shaman"], nil },
+				{ 102, 221464 }, -- Totem of Fiery Precision
+				{ 103, 221463 }, -- Ancestral Voodoo Doll
+				{ 104, 221465 }, -- Corrupted Smashbringer
+				{ 106, "INV_Box_01", nil, AL["Warlock"], nil },
+				{ 107, 221466 }, -- Loop of Burning Blood
+				{ 108, 221467 }, -- Eye of the Bloodmoon
+				{ 110, "INV_Box_01", nil, AL["Warrior"], nil },
+				{ 111, 221469 }, -- Headhunter's Barbed Spear
+				{ 112, 221468 }, -- Wall of Whispers
+				{ 113, 220173 }, -- Parasomnia
+			},
+		},
+		{
+		name = AL["Level 40 Blood Moon"],
+		TableType = NORMAL_ITTYPE,
+			[NORMAL_DIFF] = {
+				{ 1, 216621 }, -- Blooddrenched Drape
+				{ 2, 216620 }, -- Bloodrot Cloak
+				{ 3, 216623 }, -- Cape of Hemostasis
+				{ 4, 216622 }, -- Coagulated Cloak
+				{ 5, 216570 }, -- Reins of the Golden Sabercat
+				{ 6, 216492 }, -- Whistle of the Mottled Blood Raptor
+				{ 8, "INV_Box_01", nil, AL["Druid"], nil },
+				{ 9, 216498 }, -- Enchanted Sanguine Grimoire 
+				{ 10, 216499 }, -- Bloodbark Crusher 
+				{ 11, 216500 }, -- Bloodbonded Grove Talisman
+				{ 16, "INV_Box_01", nil, AL["Hunter"], nil },
+				{ 17, 216513 }, -- Tigerblood Talisman
+				{ 18, 216514 }, -- Sanguine Quiver
+				{ 19, 216515 }, -- Sanguine Ammo Pouch
+				{ 20, 216516 }, -- Bloodlash Bow
+				{ 22, "INV_Box_01", nil, AL["Mage"], nil },
+				{ 23, 216510 }, -- Blood Resonance Circle 
+				{ 24, 216511 }, -- Emberblood Seal 
+				{ 25, 216512 }, -- Loop of Chilled Veins 
+				{ 30, "INV_Box_01", nil, AL["Continued-->"], nil },
+				{ 101, "INV_Box_01", nil, AL["Paladin"], nil },
+				{ 102, 216504 }, -- Eclipsed Bloodlight Saber 
+				{ 103, 216505 }, -- Bloodlight Crusader's Radiance 
+				{ 104, 216506 }, -- Bloodlight Avenger's Edge 
+				{ 105, 216607 }, -- Bloodlight Offering 
+				{ 107, "INV_Box_01", nil, AL["Priest"], nil },
+				{ 108, 216517 }, -- Sanguine Sanctuary 
+				{ 109, 216518 }, -- Blood Covenant Seal
+				{ 110, 216519 }, -- Sanguine Shadow Band 
+				{ 112, "INV_Box_01", nil, AL["Rogue"], nil },
+				{ 113, 216520 }, -- Bloodharvest Blade
+				{ 114, 216521 }, -- Swift Sanguine Strikers
+				{ 115, 216522 }, -- Blood Spattered Stiletto 
+				{ 116, "INV_Box_01", nil, AL["Shaman"], nil },
+				{ 117, 216501 }, -- Bloodstorm Barrier
+				{ 118, 216502 }, -- Bloodstorm War Totem 
+				{ 119, 216503 }, -- Bloodstorm Jewel 
+				{ 120, 216615 }, -- Ancestral Bloodstorm Beacon 
+				{ 122, "INV_Box_01", nil, AL["Warlock"], nil },
+				{ 123, 216507 }, -- Umbral Bloodseal
+				{ 124, 216508 }, -- Infernal Bloodcoil Band
+				{ 125, 216509 }, -- Infernal Pact Essence 
+				{ 127, "INV_Box_01", nil, AL["Warrior"], nil },
+				{ 128, 216495 }, -- Sanguine Crusher 
+				{ 129, 216496 }, -- Sanguine Skullcrusher 
+				{ 130, 216497 }, -- Exsanguinar 
+			},
+		},
+		{
+		name = AL["Level 50 PvP Sets"],
+		TableType = SET_ITTYPE,
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Horde"], nil },
+				{ 2, 1618 }, --Blood Guard's Plate
+				{ 4, 1624 },
+				{ 5, 1623 },
+				{ 6, 1622 },
+				{ 7, 1625 },
+				{ 9, 1627 },
+				{ 10, 1631 },
+				{ 11, 1629 },
+				{ 13, 1633 },
+				{ 14, 1635 },
+				{ 16, "INV_Box_01", nil, AL["Alliance"], nil },
+				{ 17, 1619 },
+				{ 18, 1620 },
+				{ 19, 1621 },
+				{ 21, 1665 },
+				{ 22, 1626 },
+				{ 24, 1628 },
+				{ 25, 1630 },
+				{ 26, 1632 },
+				{ 28, 1634 },
+				{ 29, 1636 },
+			},
+		},
+		{
+		name = AL["Level 25 PvP Gear"],
+		TableType = NORMAL_ITTYPE,
+			[NORMAL_DIFF] = {
+				{ 1, "INV_Box_01", nil, AL["Alliance"], nil },
+				{ 2, "f890rep5" },
+				{ 3,  211500 }, --Resilient Cloth Headband
+				{ 4,  211857 }, --Resilient Leather Mask
+				{ 5,  211856 }, --Resilient Mail Coif
+				{ 6,  211498 }, --Trainee's Sentinel Nightsaber
+				{ 8, "f890rep7" },
+				{ 9,  212580 }, --Lorekeeper's Staff
+				{ 10,  212581 }, --Outrunner's Bow
+				{ 11,  212582 }, --Protector's Sword
+				{ 12,  212583 }, --Sentinel's Blade
+				{ 13,  213087 }, --Sergeant's Cloak
+				{ 16, "INV_Box_01", nil, AL["Horde"], nil },
+				{ 17, "f889rep5" },
+				{ 18,  211500 }, --Resilient Cloth Headband
+				{ 19,  211857 }, --Resilient Leather Mask
+				{ 20,  211856 }, --Resilient Mail Coif
+				{ 21,  211499 }, --Trainee's Outrider Wolf
+				{ 23, "f889rep7" },
+				{ 24,  212584 }, --Advisor's Gnarled Staff
+				{ 25,  212585 }, --Outrider's Bow
+				{ 26,  212586 }, --Legionnaire's Sword
+				{ 27,  212587 }, --Scout's Blade
+				{ 28,  213088 }, --Sergeant's Cloak
+			},
+		},
+	},
+}
 
 data["AlteracValley"] = {
 	MapID = 2597,

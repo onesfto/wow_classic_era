@@ -7,8 +7,23 @@ local str_find, str_format = string.find, string.format
 local tbl_insert, tbl_remove = table.insert, table.remove
 
 -- WoW
+-- Compat shim: these legacy globals were removed from Classic clients in the
+-- Edit Mode / nameplate & raid frame UI update (1.15.9 / 2.5.6). They now
+-- live under C_AddOns, so fall back to that namespace when the old global
+-- is missing.
 local GetAddOnMetadata = C_AddOns and C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
-local GetNumAddOns, GetAddOnInfo, IsAddOnLoaded = GetNumAddOns, GetAddOnInfo, IsAddOnLoaded
+local GetNumAddOns = C_AddOns and C_AddOns.GetNumAddOns or _G.GetNumAddOns
+local GetAddOnInfo = C_AddOns and C_AddOns.GetAddOnInfo or _G.GetAddOnInfo
+local IsAddOnLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or _G.IsAddOnLoaded
+
+local function GetAddOnEnableState(charName, addonNameOrIndex)
+    if C_AddOns and C_AddOns.GetAddOnEnableState then
+        return C_AddOns.GetAddOnEnableState(addonNameOrIndex)
+    else
+        return _G.GetAddOnEnableState(charName, addonNameOrIndex)
+    end
+end
+local LoadAddOn = C_AddOns and C_AddOns.LoadAddOn or _G.LoadAddOn
 local GetTime = GetTime
 -- ----------------------------------------------------------------------------
 -- AddOn namespace.

@@ -1,17 +1,12 @@
-local addon = _G.GFW_FeedOMatic
----@class FOM_FoodLogger
-local log = addon:NewModule("FOM_FoodLogger")
+_G['FOMFoodLogger'] = {}
+local log = _G['FOMFoodLogger']
 
 function log.get(species, itemId)
-    if _G['FOM_FoodLog'] == nil then
-        return
-    end
     local statuses = {}
     for status, items in pairs(_G['FOM_FoodLog'][species]) do
         for itemId_iter, _ in pairs(items) do
             if itemId_iter == itemId then
-                --statuses:insert(status)
-                table.insert(statuses, status)
+                statuses:insert(status)
             end
         end
     end

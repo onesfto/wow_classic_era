@@ -1,7 +1,5 @@
 @cont1nuity:
-- Implementing custom aura dispel type colors.
-- Performance improvements through aura container config caching.
-- Fixed and improved spell cache build and usage to reduce overall memory footprint.
-- Added a buff 'blizzard-like' auto-filter.
-- Several fixes for aura filters tracking/blocking.
+- Fixed the number format style not applying correctly.
+- Fixed an issue with buff filtering.
+- Relevant aura name caches are now persistent and will ignore unknown entries, saving performance while loading after initial buildup.
 

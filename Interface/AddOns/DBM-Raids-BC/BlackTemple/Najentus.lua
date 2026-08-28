@@ -7,7 +7,7 @@ else
 	mod.statTypes = "normal25"
 end
 
-mod:SetRevision("20260523022044")
+mod:SetRevision("20260709014257")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(22887)
 mod:SetEncounterID(601, 2473)
@@ -65,7 +65,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		if args:IsPlayer() then
 			yellSpine:Yell()
 		else
-			local uId = DBM:GetRaidUnitId(args.destName)
+			local uId = DBM:GetRaidUnitId(args.destName, true)
 			if self:IsTanking(uId) then--Tank got spike and it wasn't us
 				--Taunt off spiked tank
 				specWarnSpineTank:Show(args.destName)

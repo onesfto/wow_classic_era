@@ -9,6 +9,8 @@ local L = ns.L
 local AceSerializer = LibStub('AceSerializer-3.0')
 local LibDeflate = LibStub:GetLibrary("LibDeflate")
 
+local InviteUnit = C_PartyInfo and C_PartyInfo.InviteUnit or InviteUnit
+
 ---@class MeetingHornLFG
 ---@field private current MeetingHornActivity
 ---@field private activities MeetingHornActivity[]

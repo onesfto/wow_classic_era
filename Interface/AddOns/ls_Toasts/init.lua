@@ -1,3 +1,5 @@
+-- 文件职责：初始化 ls_Toasts 的版本状态、SavedVariables、配置与斜杠命令。
+-- 负责：兼容不同客户端的插件元数据 API，并启动拾取提示系统。
 local addonName, addonTable = ...
 local E, P, C, D, L = addonTable.E, addonTable.P, addonTable.C, addonTable.D, addonTable.L
 
@@ -7,9 +9,10 @@ local hooksecurefunc = _G.hooksecurefunc
 local next = _G.next
 local print = _G.print
 local tonumber = _G.tonumber
+local GetAddOnMetadataCompat = _G.C_AddOns and _G.C_AddOns.GetAddOnMetadata or _G.GetAddOnMetadata
 
 --[[ luacheck: globals
-	AlertFrame CreateFrame GetAddOnMetadata InCombatLockdown InterfaceOptions_AddCategory
+	AlertFrame CreateFrame InCombatLockdown InterfaceOptions_AddCategory
 	InterfaceOptionsFrame_Show InterfaceOptionsFramePanelContainer LibStub SlashCmdList
 
 	ITEM_QUALITY_COLORS ITEM_QUALITY1_DESC ITEM_QUALITY2_DESC ITEM_QUALITY3_DESC ITEM_QUALITY4_DESC
@@ -17,7 +20,8 @@ local tonumber = _G.tonumber
 ]]
 
 -- Mine
-E.VER = tonumber(GetAddOnMetadata(addonName, "Version"):gsub("%D", ""), nil)
+local version = GetAddOnMetadataCompat and GetAddOnMetadataCompat(addonName, "Version") or "0"
+E.VER = tonumber(version:gsub("%D", ""), nil) or 0
 
 local STRATAS = {
 	[1] = "BACKGROUND",

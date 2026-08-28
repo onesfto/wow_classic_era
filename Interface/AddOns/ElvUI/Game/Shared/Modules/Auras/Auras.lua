@@ -1,5 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
 local A = E:GetModule('Auras')
+local UF = E:GetModule('UnitFrames')
 local LSM = E.Libs.LSM
 
 local _G = _G
@@ -108,17 +109,17 @@ A.AttributeInitialConfig = [[
 	self:SetHeight(header:GetAttribute('config-height'))
 ]]
 
-function A:MasqueData(texture, highlight)
+function A:MasqueData(icon, highlight)
 	local data = E:CopyTable({}, MasqueButtonData)
 
-	data.Icon = texture
+	data.Icon = icon
 	data.Highlight = highlight
 
 	return data
 end
 
 function A:SetStatusBarColor(bar, r, g, b)
-	bar:GetStatusBarTexture():SetVertexColor(r, g, b)
+	bar:SetStatusBarColor(r, g, b)
 end
 
 function A:UpdateStatusBar(button)
@@ -211,6 +212,20 @@ function A:UpdateTexture(button) -- self here can be the header from UpdateMasqu
 	end
 end
 
+function A:Configure_Statusbar(button, bar, db)
+	local pos, iconSize = db.barPosition, db.size - (E.Border * 2)
+	local onTop, onBottom, onLeft = pos == 'TOP', pos == 'BOTTOM', pos == 'LEFT'
+	local barSpacing = db.barSpacing + (E.PixelMode and 1 or 3)
+	local barSize = db.barSize + (E.PixelMode and 0 or 2)
+	local isHorizontal = onTop or onBottom
+
+	bar:ClearAllPoints()
+	bar:Size(isHorizontal and iconSize or barSize, isHorizontal and barSize or iconSize)
+	bar:Point(E.InversePoints[pos], button, pos, isHorizontal and 0 or (onLeft and -barSpacing or barSpacing), not isHorizontal and 0 or (onTop and barSpacing or -barSpacing))
+	bar:SetOrientation(isHorizontal and 'HORIZONTAL' or 'VERTICAL')
+	bar:SetRotatesTexture(not isHorizontal)
+end
+
 function A:UpdateIcon(button, index)
 	local db = A.db[button.auraType]
 
@@ -232,7 +247,7 @@ function A:UpdateIcon(button, index)
 	if button.count then
 		button.count:ClearAllPoints()
 		button.count:Point('BOTTOMRIGHT', db.countXOffset, db.countYOffset)
-		button.count:FontTemplate(LSM:Fetch('font', db.countFont), db.countFontSize, db.countFontOutline)
+		button.count:FontTemplate(db.countFont, db.countFontSize, db.countFontOutline)
 	end
 
 	if button.statusBar then
@@ -242,18 +257,8 @@ function A:UpdateIcon(button, index)
 			E:SetSmoothing(button.statusBar, db.smoothbars)
 		end
 
-		local pos, iconSize = db.barPosition, db.size - (E.Border * 2)
-		local onTop, onBottom, onLeft = pos == 'TOP', pos == 'BOTTOM', pos == 'LEFT'
-		local barSpacing = db.barSpacing + (E.PixelMode and 1 or 3)
-		local barSize = db.barSize + (E.PixelMode and 0 or 2)
-		local isHorizontal = onTop or onBottom
-
-		button.statusBar:ClearAllPoints()
-		button.statusBar:Size(isHorizontal and iconSize or barSize, isHorizontal and barSize or iconSize)
-		button.statusBar:Point(E.InversePoints[pos], button, pos, isHorizontal and 0 or (onLeft and -barSpacing or barSpacing), not isHorizontal and 0 or (onTop and barSpacing or -barSpacing))
 		button.statusBar:SetStatusBarTexture(LSM:Fetch('statusbar', db.barTexture))
-		button.statusBar:SetOrientation(isHorizontal and 'HORIZONTAL' or 'VERTICAL')
-		button.statusBar:SetRotatesTexture(not isHorizontal)
+		A:Configure_Statusbar(button, button.statusBar, db)
 	end
 end
 
@@ -556,40 +561,95 @@ function A:UpdateHeader(header)
 	local db = A.db[header.auraType]
 	local width, height = db.size, (db.keepSizeRatio and db.size) or db.height
 
-	E:UpdateClassColor(db.barColor)
+	local minWidth, minHeight, xOffset, yOffset, wrapXOffset, wrapYOffset
 
-	header:SetAttribute('config-width', width)
-	header:SetAttribute('config-height', height)
-	header:SetAttribute('template', 'ElvUIAuraTemplate')
-	header:SetAttribute('weaponTemplate', header.filter == 'HELPFUL' and 'ElvUIAuraTemplate' or nil)
-	header:SetAttribute('separateOwn', db.seperateOwn)
-	header:SetAttribute('sortMethod', db.sortMethod)
-	header:SetAttribute('sortDirection', db.sortDir)
-	header:SetAttribute('maxWraps', db.maxWraps)
-	header:SetAttribute('wrapAfter', db.wrapAfter)
-	header:SetAttribute('point', DIRECTION_TO_POINT[db.growthDirection])
-	header:SetAttribute('initialConfigFunction', A.AttributeInitialConfig)
+	if E.Retail then
+		header.barDB = db
+		header.width = width
+		header.height = height
+		header.size = db.size
+		header.spacing = db.horizontalSpacing
+		header.lineSpacing = db.verticalSpacing
+		header.keepSizeRatio = db.keepSizeRatio
+		header.growthDirection = db.growthDirection
+		header.useStatusbar = db.barShow
+		header.barColor = db.barColor
+		header.numAuras = db.wrapAfter
+		header.maxFrameCount = db.wrapAfter * db.maxWraps
+		header.sortMethod = E.AuraContainerSortMethod[db.sortMethod]
+		header.sortDirection = E.AuraContainerSortDirection[db.sortDir]
+		header.initialAnchor = DIRECTION_TO_POINT[db.growthDirection]
+		header.barTexture = LSM:Fetch('statusbar', db.barTexture)
+		header.countPosition, header.countXOffset, header.countYOffset = 'BOTTOMRIGHT', db.countXOffset, db.countYOffset
+		header.countFont, header.countFontSize, header.countFontOutline = db.countFont, db.countFontSize, db.countFontOutline
+		header.colorEnchants = A.db.colorEnchants
+		header.colorByType = header.auraType == 'debuffs' and A.db.colorDebuffs
+		header.isTopAura = true
 
-	if IS_HORIZONTAL_GROWTH[db.growthDirection] then
-		header:SetAttribute('minWidth', ((db.wrapAfter == 1 and 0 or db.horizontalSpacing) + width) * db.wrapAfter)
-		header:SetAttribute('minHeight', (db.verticalSpacing + height) * db.maxWraps)
-		header:SetAttribute('xOffset', DIRECTION_TO_HORIZONTAL_SPACING_MULTIPLIER[db.growthDirection] * (db.horizontalSpacing + width))
-		header:SetAttribute('yOffset', 0)
-		header:SetAttribute('wrapXOffset', 0)
-		header:SetAttribute('wrapYOffset', DIRECTION_TO_VERTICAL_SPACING_MULTIPLIER[db.growthDirection] * (db.verticalSpacing + height))
+		header.useWidth = IS_HORIZONTAL_GROWTH[db.growthDirection]
+		if header.useWidth then
+			minHeight, minWidth  = height, (header.spacing + width) * db.wrapAfter
+		else
+			minWidth, minHeight  = width, (header.spacing + height) * db.wrapAfter
+		end
+
+		header:Size(minWidth, minHeight)
+		header:ClearAllPoints()
+		header:Point(header.initialAnchor, header.mover)
+
+		header.filterLists = db.filterLists
+		UF:GroupFilters(header, db.filterLists) -- build the groups
+
+		E:Auras_SetContainer(header)
+		E:Auras_SetLineSize(header)
+		E:Auras_UpdateButtons(header)
+
+		if header.hasEnchantments then
+			E:Auras_UpdateEnchantments(header)
+		end
 	else
-		header:SetAttribute('minWidth', (db.horizontalSpacing + width) * db.maxWraps)
-		header:SetAttribute('minHeight', ((db.wrapAfter == 1 and 0 or db.verticalSpacing) + height) * db.wrapAfter)
-		header:SetAttribute('xOffset', 0)
-		header:SetAttribute('yOffset', DIRECTION_TO_VERTICAL_SPACING_MULTIPLIER[db.growthDirection] * (db.verticalSpacing + height))
-		header:SetAttribute('wrapXOffset', DIRECTION_TO_HORIZONTAL_SPACING_MULTIPLIER[db.growthDirection] * (db.horizontalSpacing + width))
-		header:SetAttribute('wrapYOffset', 0)
-	end
+		E:UpdateClassColor(db.barColor)
 
-	header:ForEachChild(A.UpdateChild, db)
+		if IS_HORIZONTAL_GROWTH[db.growthDirection] then
+			minWidth = ((db.wrapAfter == 1 and 0 or db.horizontalSpacing) + width) * db.wrapAfter
+			minHeight = (db.verticalSpacing + height) * db.maxWraps
+			xOffset = DIRECTION_TO_HORIZONTAL_SPACING_MULTIPLIER[db.growthDirection] * (db.horizontalSpacing + width)
+			yOffset = 0
+			wrapXOffset = 0
+			wrapYOffset = DIRECTION_TO_VERTICAL_SPACING_MULTIPLIER[db.growthDirection] * (db.verticalSpacing + height)
+		else
+			minWidth = (db.horizontalSpacing + width) * db.maxWraps
+			minHeight = ((db.wrapAfter == 1 and 0 or db.verticalSpacing) + height) * db.wrapAfter
+			xOffset = 0
+			yOffset = DIRECTION_TO_VERTICAL_SPACING_MULTIPLIER[db.growthDirection] * (db.verticalSpacing + height)
+			wrapXOffset = DIRECTION_TO_HORIZONTAL_SPACING_MULTIPLIER[db.growthDirection] * (db.horizontalSpacing + width)
+			wrapYOffset = 0
+		end
 
-	if header.MasqueGroup then
-		A:UpdateMasque(header)
+		header:SetAttribute('config-width', width)
+		header:SetAttribute('config-height', height)
+		header:SetAttribute('template', 'ElvUIAuraTemplate')
+		header:SetAttribute('weaponTemplate', header.filter == 'HELPFUL' and 'ElvUIAuraTemplate' or nil)
+		header:SetAttribute('separateOwn', db.seperateOwn)
+		header:SetAttribute('sortMethod', db.sortMethod)
+		header:SetAttribute('sortDirection', db.sortDir)
+		header:SetAttribute('maxWraps', db.maxWraps)
+		header:SetAttribute('wrapAfter', db.wrapAfter)
+		header:SetAttribute('point', DIRECTION_TO_POINT[db.growthDirection])
+		header:SetAttribute('initialConfigFunction', A.AttributeInitialConfig)
+
+		header:SetAttribute('minWidth', minWidth)
+		header:SetAttribute('minHeight', minHeight)
+		header:SetAttribute('xOffset', xOffset)
+		header:SetAttribute('yOffset', yOffset)
+		header:SetAttribute('wrapXOffset', wrapXOffset)
+		header:SetAttribute('wrapYOffset', wrapYOffset)
+
+		header:ForEachChild(A.UpdateChild, db)
+
+		if header.MasqueGroup then
+			A:UpdateMasque(header)
+		end
 	end
 end
 
@@ -604,11 +664,20 @@ function A:LoopChildren(header, key, func, ...)
 	end
 end
 
+function A:LoopIndex(header, key, count, func, ...)
+	for index = 1, count do
+		local child = header:GetAttribute(key..index)
+		if child then
+			func(header, child, index, ...)
+		end
+	end
+end
+
 function A:ForEachChild(func, ...)
 	if not func then return end
 
 	A:LoopChildren(self, 'child', func, ...)
-	A:LoopChildren(self, 'tempEnchant', func, ...)
+	A:LoopIndex(self, 'tempEnchant', 3, func, ...)
 end
 
 function A:CreateAuraHeader(filter)
@@ -672,10 +741,6 @@ function A:Initialize()
 		if _G.DebuffFrame then
 			_G.DebuffFrame:Kill()
 		end
-
-		if E.Classic then
-			_G.TemporaryEnchantFrame:Kill()
-		end
 	end
 
 	if not E.private.auras.enable then return end
@@ -688,23 +753,60 @@ function A:Initialize()
 	local mapOffsetX = 6 + E.Border
 
 	if E.private.auras.buffsHeader then
-		A.BuffFrame = A:CreateAuraHeader('HELPFUL')
-		A:UpdateHeader(A.BuffFrame)
+		if E.Retail then
+			local buff = E:Auras_Create(E.UIParent, nil, 'ElvUIPlayerBuffs')
+			buff.auraType = 'buffs'
+			buff.unit = 'player'
+			buff.filters = {}
+
+			if MasqueGroupBuffs and E.private.auras.masque.buffs then
+				buff.MasqueGroup = MasqueGroupBuffs
+			end
+
+			E:Auras_GroupUnit(buff, 'player')
+
+			A.BuffFrame = buff
+		else
+			A.BuffFrame = A:CreateAuraHeader('HELPFUL')
+		end
 
 		A.BuffFrame:ClearAllPoints()
 		A.BuffFrame:SetPoint('TOPRIGHT', mapAnchor, 'TOPLEFT', -mapOffsetX, -mapOffsetY)
 
 		E:CreateMover(A.BuffFrame, 'BuffsMover', L["Player Buffs"], nil, nil, nil, nil, nil, 'auras,buffs')
+
+		A:UpdateHeader(A.BuffFrame)
+
+		if E.Retail then -- keep below UpdateHeader
+			E:Auras_AddEnchantments(A.BuffFrame)
+			A.BuffFrame.hasEnchantments = true
+		end
 	end
 
 	if E.private.auras.debuffsHeader then
-		A.DebuffFrame = A:CreateAuraHeader('HARMFUL')
-		A:UpdateHeader(A.DebuffFrame)
+		if E.Retail then
+			local debuff = E:Auras_Create(E.UIParent, nil, 'ElvUIPlayerDebuffs')
+			debuff.auraType = 'debuffs'
+			debuff.unit = 'player'
+			debuff.filters = {}
+
+			if MasqueGroupDebuffs and E.private.auras.masque.debuffs then
+				debuff.MasqueGroup = MasqueGroupDebuffs
+			end
+
+			E:Auras_GroupUnit(debuff, 'player')
+
+			A.DebuffFrame = debuff
+		else
+			A.DebuffFrame = A:CreateAuraHeader('HARMFUL')
+		end
 
 		A.DebuffFrame:ClearAllPoints()
 		A.DebuffFrame:SetPoint('BOTTOMRIGHT', mapAnchor, 'BOTTOMLEFT', -mapOffsetX, -mapOffsetY)
 
 		E:CreateMover(A.DebuffFrame, 'DebuffsMover', L["Player Debuffs"], nil, nil, nil, nil, nil, 'auras,debuffs')
+
+		A:UpdateHeader(A.DebuffFrame)
 	end
 end
 

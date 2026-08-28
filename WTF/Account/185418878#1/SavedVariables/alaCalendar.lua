@@ -4,34 +4,27 @@ alaCalendarSV = {
 },
 ["_GlobalRef"] = {
 ["cal"] = {
-["StaticPopupDialogs"] = 3.48086594972399e+187,
-["UnitLevel"] = 8.702589784704217e+187,
-["Mixin"] = 8.702164874310033e+187,
-["OK"] = 3.48086594972399e+187,
-["hooksecurefunc"] = 1.740432974861995e+187,
-["GameTimeFrame"] = 3.48086594972399e+187,
-["alaCalendarSV"] = 6.96173189944798e+187,
-["UIParent"] = 6.96173189944798e+187,
-["DAILY"] = 3.48086594972399e+187,
-["GameTimeFrame_UpdateTooltip"] = 1.740432974861995e+187,
-["DONE"] = 3.48086594972399e+187,
-["RESETS_IN"] = 3.48086594972399e+187,
-["UISpecialFrames"] = 5.221298924586004e+187,
-["YES"] = 3.48086594972399e+187,
-["LibStub"] = 5.221298924586004e+187,
-["SlashCmdList"] = 3.48086594972399e+187,
+["StaticPopupDialogs"] = 1.267650600228231e+30,
+["UnitLevel"] = 3.169281243075484e+30,
+["Mixin"] = 3.169126500570576e+30,
+["DAILY"] = 1.267650600228231e+30,
+["hooksecurefunc"] = 6.338253001141153e+29,
+["GameTimeFrame"] = 1.267650600228231e+30,
+["alaCalendarSV"] = 2.535301200456462e+30,
+["UIParent"] = 2.535301200456462e+30,
+["YES"] = 1.267650600228231e+30,
+["GameTimeFrame_UpdateTooltip"] = 6.338253001141153e+29,
+["DONE"] = 1.267650600228231e+30,
+["RESETS_IN"] = 1.267650600228231e+30,
+["UISpecialFrames"] = 1.901475900342342e+30,
+["OK"] = 1.267650600228231e+30,
+["LibStub"] = 1.901475900342342e+30,
+["SlashCmdList"] = 1.267650600228231e+30,
 },
 },
 ["set"] = {
 ["minimapPos"] = 215,
 ["char_list"] = {
-"Player-5376-175576B3",
-"Player-5376-1626BB3C",
-"Player-5376-16BEFC08",
-"Player-5376-16CCC446",
-"Player-5376-0E2BA70B",
-"Player-5376-03D5066C",
-"Player-5376-03E2B2A8",
 "Player-5381-152D7C91",
 "Player-5453-0476F4B3",
 "Player-5453-040319F3",
@@ -84,24 +77,24 @@ alaCalendarSV = {
 ["Onyxia's Lair"] = {
 },
 },
-["Player-5376-03E2B2A8"] = {
+["Player-5381-152D7C91"] = {
 ["Zul'Gurub"] = {
 },
-["PLAYER_LEVEL"] = 60,
+["PLAYER_LEVEL"] = 1,
 ["Temple of Ahn'Qiraj"] = {
 },
 ["Blackwing Lair"] = {
 },
-["Onyxia's Lair"] = {
-},
-["realm_name"] = "哈霍兰",
-["realm_id"] = 5376,
-["Naxxramas"] = {
-},
-["Molten Core"] = {
-},
 ["Ruins of Ahn'Qiraj"] = {
 },
+["Onyxia's Lair"] = {
+},
+["Naxxramas"] = {
+},
+["realm_id"] = 5381,
+["Molten Core"] = {
+},
+["realm_name"] = "碧玉矿洞",
 },
 ["Player-5453-0476F4B3"] = {
 ["Zul'Gurub"] = {
@@ -122,124 +115,6 @@ alaCalendarSV = {
 ["Onyxia's Lair"] = {
 },
 },
-["Player-5376-16CCC446"] = {
-["Zul'Gurub"] = {
-},
-["PLAYER_LEVEL"] = 60,
-["Temple of Ahn'Qiraj"] = {
-},
-["Blackwing Lair"] = {
-},
-["Ruins of Ahn'Qiraj"] = {
-},
-["Onyxia's Lair"] = {
-},
-["Naxxramas"] = {
-},
-["realm_id"] = 5376,
-["Molten Core"] = {
-218364411,
-1784761809,
-0,
-0,
-},
-["realm_name"] = "哈霍兰",
-},
-["Player-5376-03D5066C"] = {
-["Zul'Gurub"] = {
-},
-["PLAYER_LEVEL"] = 60,
-["Temple of Ahn'Qiraj"] = {
-},
-["Blackwing Lair"] = {
-},
-["Onyxia's Lair"] = {
-},
-["realm_name"] = "哈霍兰",
-["realm_id"] = 5376,
-["Naxxramas"] = {
-},
-["Molten Core"] = {
-},
-["Ruins of Ahn'Qiraj"] = {
-},
-},
-["Player-5376-16BEFC08"] = {
-["Zul'Gurub"] = {
-},
-["PLAYER_LEVEL"] = 1,
-["Temple of Ahn'Qiraj"] = {
-},
-["Blackwing Lair"] = {
-},
-["realm_name"] = "哈霍兰",
-["Onyxia's Lair"] = {
-},
-["realm_id"] = 5376,
-["Naxxramas"] = {
-},
-["Molten Core"] = {
-},
-["Ruins of Ahn'Qiraj"] = {
-},
-},
-["Player-5376-175576B3"] = {
-["Zul'Gurub"] = {
-},
-["PLAYER_LEVEL"] = 1,
-["Temple of Ahn'Qiraj"] = {
-},
-["Blackwing Lair"] = {
-},
-["realm_name"] = "哈霍兰",
-["Onyxia's Lair"] = {
-},
-["realm_id"] = 5376,
-["Naxxramas"] = {
-},
-["Molten Core"] = {
-},
-["Ruins of Ahn'Qiraj"] = {
-},
-},
-["Player-5381-152D7C91"] = {
-["Zul'Gurub"] = {
-},
-["PLAYER_LEVEL"] = 1,
-["Temple of Ahn'Qiraj"] = {
-},
-["Blackwing Lair"] = {
-},
-["Ruins of Ahn'Qiraj"] = {
-},
-["Onyxia's Lair"] = {
-},
-["Naxxramas"] = {
-},
-["realm_id"] = 5381,
-["Molten Core"] = {
-},
-["realm_name"] = "碧玉矿洞",
-},
-["Player-5376-0E2BA70B"] = {
-["Zul'Gurub"] = {
-},
-["PLAYER_LEVEL"] = 1,
-["Temple of Ahn'Qiraj"] = {
-},
-["Blackwing Lair"] = {
-},
-["Onyxia's Lair"] = {
-},
-["realm_name"] = "哈霍兰",
-["realm_id"] = 5376,
-["Naxxramas"] = {
-},
-["Molten Core"] = {
-},
-["Ruins of Ahn'Qiraj"] = {
-},
-},
 ["Player-5453-040319F3"] = {
 ["Zul'Gurub"] = {
 },
@@ -258,25 +133,6 @@ alaCalendarSV = {
 },
 ["Onyxia's Lair"] = {
 },
-},
-["Player-5376-1626BB3C"] = {
-["Zul'Gurub"] = {
-},
-["PLAYER_LEVEL"] = 1,
-["Temple of Ahn'Qiraj"] = {
-},
-["Blackwing Lair"] = {
-},
-["Ruins of Ahn'Qiraj"] = {
-},
-["Onyxia's Lair"] = {
-},
-["Naxxramas"] = {
-},
-["realm_id"] = 5376,
-["Molten Core"] = {
-},
-["realm_name"] = "哈霍兰",
 },
 },
 ["_version"] = 220308.01,

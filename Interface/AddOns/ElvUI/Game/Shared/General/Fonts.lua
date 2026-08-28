@@ -27,20 +27,18 @@ local FontMap = {
 	end }
 }
 
-local IgnoreSlug = {}
-if E.Retail or E.Mists or E.TBC then
-	FontMap.questtext		= { object = _G.QuestFont }
-	FontMap.questtitle		= { object = _G.QuestTitleFont }
-	FontMap.questsmall		= { object = _G.QuestFontNormalSmall }
+local IgnoreSlug = {
+	[_G.QuestFont] = E.Mists or E.TBC or E.Classic
+} -- this will break the `instantQuestText` and prevent the text from rendering correctly
 
-	-- this will break the `instantQuestText` and prevent the text from rendering correctly
-	IgnoreSlug[_G.QuestFont] = E.Mists or E.TBC -- on Mop at least
-end
+FontMap.questtext		= { object = _G.QuestFont }
+FontMap.questtitle		= { object = _G.QuestTitleFont }
+FontMap.questsmall		= { object = _G.QuestFontNormalSmall }
 
 if E.Retail then
 	FontMap.talkingtitle	= { object = _G.TalkingHeadFrame.NameFrame.Name }
 	FontMap.talkingtext		= { object = _G.TalkingHeadFrame.TextFrame.Text }
-	FontMap.objective = { objects = { _G.ObjectiveFont, _G.ObjectiveTrackerLineFont, _G.ObjectiveTrackerHeaderFont } }
+	FontMap.objective		= { objects = { _G.ObjectiveFont, _G.ObjectiveTrackerLineFont, _G.ObjectiveTrackerHeaderFont } }
 
 	for i = 12, 22 do
 		tinsert(FontMap.objective.objects, _G['ObjectiveTrackerFont'..i])
@@ -81,8 +79,7 @@ function E:SetFont(obj, font, size, style, sR, sG, sB, sA, sX, sY, r, g, b, a)
 	end
 
 	obj:SetFont(font, size, style)
-	obj:SetShadowColor(sR or 0, sG or 0, sB or 0, sA or (shadow and (style == '' and 1 or 0.6)) or 0)
-	obj:SetShadowOffset(sX or (shadow and 1) or 0, sY or (shadow and -1) or 0)
+	E:SetFontShadow(obj, style, shadow, sR, sG, sB, sA, sX, sY)
 
 	if r and g and b then
 		obj:SetTextColor(r, g, b)
@@ -93,10 +90,29 @@ function E:SetFont(obj, font, size, style, sR, sG, sB, sA, sX, sY, r, g, b, a)
 	end
 end
 
+function E:UpdateBlizzardSpecialFonts()
+	local db = E.private.general
+	local NORMAL	= E.media.normFont
+	local COMBAT	= LSM:Fetch('font', db.dmgfont)
+	local NAMEFONT	= LSM:Fetch('font', db.namefont)
+
+	-- these require a relog to take effect
+	if db.replaceBlizzFonts then _G.STANDARD_TEXT_FONT = NORMAL end
+	if db.replaceNameFont then _G.UNIT_NAME_FONT = NAMEFONT end
+	if db.replaceCombatFont then _G.DAMAGE_TEXT_FONT = COMBAT end
+	if db.replaceCombatText then -- Blizzard_CombatText
+		E:SetFont(_G.CombatTextFont, COMBAT, 120, 'SHADOW')
+	end
+end
+
 local lastFont = {}
 function E:UpdateBlizzardFonts()
 	local db = E.private.general
 	local size, style, blizz, noscale = E.db.general.fontSize, E.db.general.fontStyle, db.blizzardFontSize, db.noFontScale
+
+	-- default fonts
+	local NORMAL	= E.media.normFont
+	local NUMBER	= E.media.normFont
 
 	-- handle outlines
 	local prefix = strmatch(style, '(SHADOW)') or strmatch(style, '(MONOCHROME)') or ''
@@ -123,18 +139,6 @@ function E:UpdateBlizzardFonts()
 	local small		= size * 0.9 -- 10.8
 	local tiny		= size * 0.8 -- 9.6
 
-	-- set an invisible font for xp, honor kill, etc
-	local COMBAT		= LSM:Fetch('font', db.dmgfont)
-	local NAMEFONT		= LSM:Fetch('font', db.namefont)
-	local NORMAL		= E.media.normFont
-	local NUMBER		= E.media.normFont
-
-	if db.replaceNameFont then _G.UNIT_NAME_FONT = NAMEFONT end
-	if db.replaceCombatFont then _G.DAMAGE_TEXT_FONT = COMBAT end
-	if db.replaceCombatText then -- Blizzard_CombatText
-		E:SetFont(_G.CombatTextFont, COMBAT, 120, 'SHADOW')
-	end
-
 	if db.replaceBubbleFont then
 		local BUBBLE = LSM:Fetch('font', db.chatBubbleFont)
 		E:SetFont(_G.ChatBubbleFont, BUBBLE, db.chatBubbleFontSize, db.chatBubbleFontOutline)	-- 13
@@ -152,52 +156,9 @@ function E:UpdateBlizzardFonts()
 		E:SetFont(_G.SystemFont_LargeNamePlateFixed,	LARGE, db.nameplateLargeFontSize,	db.nameplateLargeFontOutline)	-- 20
 	end
 
-	-- advanced fonts
-	local replaceFonts = db.replaceBlizzFonts
-	if replaceFonts then
-		E:MapFont(FontMap.mailbody,					NORMAL, (blizz and 15) or unscale or big, 'NONE')
-		E:MapFont(FontMap.cooldown,					NORMAL, (blizz and 16) or unscale or big, 'SHADOW')
-		E:MapFont(FontMap.errortext,				NORMAL, (blizz and 16) or unscale or big, 'SHADOW')
-		E:MapFont(FontMap.pvpsubzone,				NORMAL, (blizz and 22) or unscale or large, outline)
-		E:MapFont(FontMap.pvpzone,					NORMAL, (blizz and 22) or unscale or large, outline)
-		E:MapFont(FontMap.worldsubzone,				NORMAL, (blizz and 24) or unscale or huge, outline)
-		E:MapFont(FontMap.worldzone,				NORMAL, (blizz and 25) or unscale or mega, outline)
-
-		if E.Retail or E.Mists or E.TBC then
-			E:MapFont(FontMap.questsmall,			NORMAL, (blizz and 12) or unscale or medium, 'NONE')
-			E:MapFont(FontMap.questtext,			NORMAL, (blizz and 13) or unscale or medium, 'NONE')
-			E:MapFont(FontMap.questtitle,			NORMAL, (blizz and 18) or unscale or big, 'NONE')
-		end
-
-		if E.Retail then
-			E:MapFont(FontMap.objective,			NORMAL, (blizz and 12) or unscale or size, 'SHADOW')
-			E:MapFont(FontMap.talkingtext,			NORMAL, (blizz and 16) or unscale or big, 'SHADOW')
-			E:MapFont(FontMap.talkingtitle,			NORMAL, (blizz and 22) or unscale or large, outline)
-		end
-	end
-
-	-- custom font settings
-	for name, data in next, FontMap do
-		local font = E.db.general.fonts[name]
-
-		if data.objects then
-			for _, object in next, data.objects do
-				E:SetFontMap(object, font, data, replaceFonts)
-			end
-		elseif data.object then
-			E:SetFontMap(data.object, font, data, replaceFonts)
-		end
-	end
-
-	-- handle replace blizzard, when needed
+	local replaceFonts = db.replaceBlizzFonts -- handle replace blizzard, when needed
 	if replaceFonts and (lastFont.font ~= NORMAL or lastFont.size ~= size or lastFont.style ~= style or lastFont.blizz ~= blizz or lastFont.noscale ~= noscale) then
-		_G.STANDARD_TEXT_FONT = NORMAL
-
-		lastFont.font = NORMAL
-		lastFont.size = size
-		lastFont.style = style
-		lastFont.blizz = blizz
-		lastFont.noscale = noscale
+		lastFont.font, lastFont.size, lastFont.style, lastFont.blizz, lastFont.noscale = NORMAL, size, style, blizz, noscale
 
 		-- Raid Warnings look blurry when animated, even without addons. This is due to a mismatch between Font Size and SetTextHeight.
 		-- RaidBossEmoteFramePrivate: The size of this cant be changed without looking blurry. We have no access to its RAID_NOTICE_MIN_HEIGHT and RAID_NOTICE_MAX_HEIGHT.
@@ -226,6 +187,30 @@ function E:UpdateBlizzardFonts()
 		E:SetFont(_G.Number18Font,							NUMBER, (blizz and 18) or unscale or big)
 		E:SetFont(_G.Number18FontWhite,						NUMBER, (blizz and 18) or unscale or big, 'SHADOW')
 		E:SetFont(_G.NumberFont_Outline_Huge,				NUMBER, (blizz and 30) or unscale or enormous, thick)
+
+		-- user scaled: numbers
+		E:SetFont(_G.UserScaledFontNumberNormalRight,			NUMBER, (blizz and 13) or unscale or medium, 'OUTLINE')
+		E:SetFont(_G.UserScaledFontNumberNormalRightRed,		NUMBER, (blizz and 13) or unscale or medium, 'OUTLINE')
+		E:SetFont(_G.UserScaledFontNumberNormalRightYellow,		NUMBER, (blizz and 13) or unscale or medium, 'OUTLINE')
+		E:SetFont(_G.UserScaledFontNumberNormalRightGray,		NUMBER, (blizz and 13) or unscale or medium, 'OUTLINE')
+		E:SetFont(_G.UserScaledFontNumberNormalRightGreen,		NUMBER, (blizz and 13) or unscale or medium, 'OUTLINE')
+
+		-- user scaled: chat
+		E:SetFont(_G.UserScaledChatFontNormal,					NORMAL, (blizz and 13) or unscale or medium)
+
+		-- user scaled: regular
+		E:SetFont(_G.UserScaledFontGameNormalSmall,				NORMAL, (blizz and 10) or unscale or small)
+		E:SetFont(_G.UserScaledFontGameDisableSmall,			NORMAL, (blizz and 10) or unscale or small)
+		E:SetFont(_G.UserScaledFontGameHighlightSmall,			NORMAL, (blizz and 10) or unscale or small)
+		E:SetFont(_G.UserScaledFontGameNormal,					NORMAL, (blizz and 12) or unscale or size)
+		E:SetFont(_G.UserScaledFontGameDisable,					NORMAL, (blizz and 12) or unscale or size)
+		E:SetFont(_G.UserScaledFontGameHighlight,				NORMAL, (blizz and 12) or unscale or size)
+		E:SetFont(_G.UserScaledFontGameHighlightRight,			NORMAL, (blizz and 12) or unscale or size)
+		E:SetFont(_G.UserScaledFontGameNormalMed2,				NORMAL, (blizz and 13) or unscale or medium)
+		E:SetFont(_G.UserScaledFontSystem15Shadow,				NORMAL, (blizz and 13) or unscale or medium, 'SHADOW')
+		E:SetFont(_G.UserScaledFontGame15Shadow,				NORMAL, (blizz and 15) or unscale or medium, 'SHADOW')
+		E:SetFont(_G.UserScaledFontGameNormalLarge,				NORMAL, (blizz and 16) or unscale or big)
+		E:SetFont(_G.UserScaledFontGameHighlightLarge,			NORMAL, (blizz and 16) or unscale or big)
 
 		-- world map fonts
 		E:SetFont(_G.SubZoneTextFont,						NORMAL, (blizz and 26) or unscale or gigantic, outline)		-- WorldMap, SubZone
@@ -265,6 +250,7 @@ function E:UpdateBlizzardFonts()
 		E:SetFont(_G.SystemFont_Shadow_Small,				NORMAL, (blizz and 10) or unscale or small, 'SHADOW')
 		E:SetFont(_G.Tooltip_Small,							NORMAL, (blizz and 10) or unscale or small)
 		E:SetFont(_G.SystemFont_Small,						NORMAL, (blizz and 10) or unscale or small)
+		E:SetFont(_G.Game11Font,							NORMAL, (blizz and 11) or unscale or small, 'SHADOW')		-- Recent Allies
 		E:SetFont(_G.SystemFont_Small2,						NORMAL, (blizz and 11) or unscale or small)					-- Quest Detail (Warband Completed)
 		E:SetFont(_G.FriendsFont_11,						NORMAL, (blizz and 11) or unscale or small, 'SHADOW')
 		E:SetFont(_G.FriendsFont_UserText,					NORMAL, (blizz and 11) or unscale or small, 'SHADOW')
@@ -292,6 +278,7 @@ function E:UpdateBlizzardFonts()
 		E:SetFont(_G.SystemFont_Med3,						NORMAL, (blizz and 14) or unscale or medium)
 		E:SetFont(_G.SystemFont_Shadow_Med2,				NORMAL, (blizz and 14) or unscale or medium, 'SHADOW')		-- Shows Order resourses on OrderHallTalentFrame
 		E:SetFont(_G.SystemFont_Shadow_Med3,				NORMAL, (blizz and 14) or unscale or medium, 'SHADOW')
+		E:SetFont(_G.System15Font_Shadow,					NORMAL, (blizz and 15) or unscale or medium, 'SHADOW')
 		E:SetFont(_G.Game15Font_Shadow,						NORMAL, (blizz and 15) or unscale or medium, 'SHADOW')		-- House Relinquish
 		E:SetFont(_G.Game15Font_o1,							NORMAL, (blizz and 15) or unscale or medium)				-- CharacterStatsPane, ItemLevelFrame
 		E:SetFont(_G.MailFont_Large,						NORMAL, (blizz and 15) or unscale or medium)				-- Mail
@@ -341,5 +328,40 @@ function E:UpdateBlizzardFonts()
 		E:SetFont(_G.Game60Font,							NORMAL, (blizz and 60) or unscale or colossal, 'OUTLINE')
 		E:SetFont(_G.Game72Font,							NORMAL, (blizz and 72) or unscale or monstrous, 'OUTLINE')
 		E:SetFont(_G.Game120Font,							NORMAL, (blizz and 120) or unscale or titanic, 'OUTLINE')
+	end
+
+	-- advanced fonts
+	if replaceFonts then
+		E:MapFont(FontMap.mailbody,				NORMAL, (blizz and 15) or unscale or big, 'NONE')
+		E:MapFont(FontMap.cooldown,				NORMAL, (blizz and 16) or unscale or big, 'SHADOW')
+		E:MapFont(FontMap.errortext,			NORMAL, (blizz and 16) or unscale or big, 'SHADOW')
+		E:MapFont(FontMap.pvpsubzone,			NORMAL, (blizz and 22) or unscale or large, outline)
+		E:MapFont(FontMap.pvpzone,				NORMAL, (blizz and 22) or unscale or large, outline)
+		E:MapFont(FontMap.worldsubzone,			NORMAL, (blizz and 24) or unscale or huge, outline)
+		E:MapFont(FontMap.worldzone,			NORMAL, (blizz and 25) or unscale or mega, outline)
+
+		-- S.QuestInfo_Display will hijack the shadows here when needed
+		E:MapFont(FontMap.questsmall,			NORMAL, (blizz and 12) or unscale or medium, 'NONE')
+		E:MapFont(FontMap.questtext,			NORMAL, (blizz and 13) or unscale or medium, 'NONE')
+		E:MapFont(FontMap.questtitle,			NORMAL, (blizz and 18) or unscale or big, 'NONE')
+
+		if E.Retail then
+			E:MapFont(FontMap.objective,		NORMAL, (blizz and 12) or unscale or size, 'SHADOW')
+			E:MapFont(FontMap.talkingtext,		NORMAL, (blizz and 16) or unscale or big, 'SHADOW')
+			E:MapFont(FontMap.talkingtitle,		NORMAL, (blizz and 22) or unscale or large, outline)
+		end
+	end
+
+	-- custom font settings
+	for name, data in next, FontMap do
+		local font = E.db.general.fonts[name]
+
+		if data.objects then
+			for _, object in next, data.objects do
+				E:SetFontMap(object, font, data, replaceFonts)
+			end
+		elseif data.object then
+			E:SetFontMap(data.object, font, data, replaceFonts)
+		end
 	end
 end

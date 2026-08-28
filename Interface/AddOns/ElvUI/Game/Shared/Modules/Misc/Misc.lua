@@ -34,7 +34,6 @@ local IsInRaid = IsInRaid
 local IsPartyLFG = IsPartyLFG
 local IsShiftKeyDown = IsShiftKeyDown
 local PlaySound = PlaySound
-local RaidNotice_AddMessage = RaidNotice_AddMessage
 local RepairAllItems = RepairAllItems
 local StaticPopup_Hide = StaticPopup_Hide
 local StaticPopupSpecial_Hide = StaticPopupSpecial_Hide
@@ -80,6 +79,14 @@ local function KillFeedback(frame)
 	local data = frame.Data
 	if data and data.RegisteredEvents then
 		wipe(data.RegisteredEvents)
+	end
+end
+
+function M:AddRaidNoticeMessage(noticeFrame, textString, colorInfo, displayTime)
+	if _G.RaidWarningUtil then
+		_G.RaidWarningUtil.AddMessage(textString, colorInfo, displayTime)
+	else
+		_G.RaidNotice_AddMessage(noticeFrame, textString, colorInfo, displayTime)
 	end
 end
 
@@ -277,7 +284,7 @@ function M:DisbandRaidGroup()
 				end
 			end
 		end
-	elseif not myIndex and UnitIsGroupLeader('player', LE_PARTY_CATEGORY_HOME) then
+	elseif UnitIsGroupLeader('player', LE_PARTY_CATEGORY_HOME) then
 		for i = MAX_PARTY_MEMBERS, 1, -1 do
 			local name = UnitName('party'..i)
 			if name then
@@ -294,7 +301,7 @@ function M:PVPMessageEnhancement(_, msg)
 
 	local _, instanceType = IsInInstance()
 	if instanceType == 'pvp' or instanceType == 'arena' then
-		RaidNotice_AddMessage(_G.RaidBossEmoteFrame, msg, _G.ChatTypeInfo.RAID_BOSS_EMOTE)
+		M:AddRaidNoticeMessage(_G.RaidBossEmoteFrame, msg, _G.ChatTypeInfo.RAID_BOSS_EMOTE)
 	end
 end
 

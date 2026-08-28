@@ -2,33 +2,43 @@ local E, L, V, P, G = unpack(ElvUI)
 
 local CopyTable = CopyTable -- Our function doesn't exist yet.
 local next = next
+local type = type
 
 P.gridSize = 64
 P.gridLineWidth = 1
 P.hideTutorial = true
 P.dbConverted = nil -- use this to let DBConversions run once per profile
 
-E.AuraDefaults = {
-	useBlocklist = false,
-	isAuraCrowdControl = false,
-	isAuraCrowdControlPlayer = false,
-	isAuraBigDefensive = false,
-	isAuraBigDefensivePlayer = false,
-	isAuraRaidInCombat = false,
-	isAuraRaidInCombatPlayer = false,
-	isAuraRaidPlayerDispellable = false,
-	isAuraExternalDefensive = false,
-	isAuraExternalDefensivePlayer = false,
-	isAuraCancelable = false,
-	isAuraCancelablePlayer = false,
-	notAuraCancelable = false,
-	notAuraCancelablePlayer = false,
-	isAuraPlayer = false,
-	isAuraRaid = false,
-	isAuraRaidPlayer = false,
-	isAuraPermanent = false,
-	isAuraPermanentPlayer = false
+E.AuraCandidates = {
+	canApplyAura = false,
+	isBossAura = false,
+	isBossOrRoleAura = false,
+	isFromPlayerOrPlayerPet = false,
+	isPriorityAura = false,
+	isRoleAura = false,
+	isStealable = false,
+	nameplateShowAll = false,
+	nameplateShowPersonal = false
 }
+
+E.AuraDefaults = {
+	enable = false,
+	maxDuration = 0,
+	filter = 'HELPFUL',
+	allowList = 'Whitelist',
+	blockList = 'Blacklist',
+	useAllowlist = false,
+	useBlocklist = false
+	-- candidates = table
+}
+
+local defaultFilterList = {}
+for index = 1, E.filterMax do
+	local info = CopyTable(E.AuraDefaults)
+	info.candidates = CopyTable(E.AuraCandidates)
+
+	defaultFilterList['group'..index] = info
+end
 
 --Core
 P.general = {
@@ -297,32 +307,6 @@ P.general = {
 	},
 	privateRaidWarning = {
 		scale = 1,
-	},
-	privateAuras = {
-		enable = true,
-		clickThrough = false,
-		countdownFrame = true,
-		countdownNumbers = false,
-		borderScale = 2,
-		icon = {
-			offset = 3,
-			point = 'LEFT',
-			amount = 2,
-			size = 32
-		},
-		duration = {
-			enable = true,
-			point = 'BOTTOM',
-			offsetX = 0,
-			offsetY = -1
-		},
-		parent = {
-			invertAnchor = true,
-			anchorPoint = 'CENTER',
-			point = 'TOP',
-			offsetX = 0,
-			offsetY = 0
-		}
 	},
 	queueStatus = {
 		enable = true,
@@ -640,7 +624,6 @@ local NP_Auras = {
 	growthX = 'RIGHT',
 	growthY = 'UP',
 	onlyShowPlayer = false,
-	useMidnight = false,
 	stackAuras = true,
 	filter = 'HELPFUL',
 	sortDirection = 'DESCENDING',
@@ -660,16 +643,15 @@ local NP_Auras = {
 	durationPosition = 'CENTER',
 	minDuration = 0,
 	maxDuration = 0,
+	priority = '',
 	tooltipAnchorType = 'ANCHOR_BOTTOMRIGHT',
 	tooltipAnchorX = 5,
 	tooltipAnchorY = -5,
 	sourceText = CopyTable(NP_AuraSourceText),
-	priority = ''
+	allowList = 'Whitelist',
+	blockList = 'Blacklist',
+	filterLists = CopyTable(defaultFilterList)
 }
-
-for key, value in next, E.AuraDefaults do
-	NP_Auras[key] = value
-end
 
 local NP_Health = {
 	enable = true,
@@ -857,14 +839,6 @@ local NP_QuestIcon = {
 	fontSize = 12
 }
 
-local NP_PrivateAuras = CopyTable(P.general.privateAuras)
-NP_PrivateAuras.enable = false
-NP_PrivateAuras.borderScale = 1
-NP_PrivateAuras.icon.size = 20
-NP_PrivateAuras.clickThrough = true
-NP_PrivateAuras.parent.point = 'BOTTOM'
-NP_PrivateAuras.duration.enable = false
-
 --NamePlate
 P.nameplates = {
 	clampToScreen = false,
@@ -875,12 +849,10 @@ P.nameplates = {
 	highlight = true,
 	loadDistance = 41,
 	lowHealthThreshold = 0.4,
-	motionType = 'STACKED',
 	nameColoredGlow = false,
 	overlapH = 0.8,
 	overlapV = 1.1,
 	classColorNames = false,
-	useBlizzardAuras = false,
 	showEnemyCombat = 'DISABLED',
 	showFriendlyCombat = 'DISABLED',
 	statusbar = 'ElvUI Norm',
@@ -1204,7 +1176,6 @@ for unit, data in next, P.nameplates.units do
 		data.power = CopyTable(NP_Power)
 		data.pvpindicator = CopyTable(NP_PvPIcon)
 		data.raidTargetIndicator = CopyTable(NP_RaidTargetIndicator)
-		data.privateAuras = CopyTable(NP_PrivateAuras)
 		data.title = CopyTable(NP_Title)
 
 		local npcFriendly = unit == 'FRIENDLY_NPC'
@@ -1218,8 +1189,6 @@ for unit, data in next, P.nameplates.units do
 		data.auras.enable = useCCDebuffs -- enemy npc and players
 
 		if useCCDebuffs then
-			data.auras.isAuraCrowdControl = true
-			data.auras.isAuraCrowdControlPlayer = true
 			data.auras.priority = 'Blacklist,CCDebuffs'
 			data.auras.anchorPoint = 'RIGHT'
 			data.auras.filter = 'HARMFUL'
@@ -1234,70 +1203,149 @@ for unit, data in next, P.nameplates.units do
 		else
 			data.pvpclassificationindicator = CopyTable(NP_PvPClassificationIndicator)
 		end
+
+		if unit == 'PLAYER' then
+			data.buffs.filterLists.group1.enable = true
+			data.buffs.filterLists.group1.filter = 'HELPFUL||BIG_DEFENSIVE||PLAYER||!EXTERNAL_DEFENSIVE'
+			data.buffs.filterLists.group2.enable = true
+			data.buffs.filterLists.group2.filter = 'HELPFUL||EXTERNAL_DEFENSIVE'
+			data.buffs.filterLists.group3.enable = true
+			data.buffs.filterLists.group3.filter = 'HELPFUL||RAID_IN_COMBAT||PLAYER||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+
+			data.debuffs.filterLists.group1.enable = true
+			data.debuffs.filterLists.group1.filter = 'HARMFUL'
+			data.debuffs.filterLists.group1.useBlocklist = true
+		elseif unit == 'FRIENDLY_PLAYER' then
+			data.buffs.filterLists.group1.enable = true
+			data.buffs.filterLists.group1.filter = 'HELPFUL||BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+			data.buffs.filterLists.group2.enable = true
+			data.buffs.filterLists.group2.filter = 'HELPFUL||EXTERNAL_DEFENSIVE'
+			data.buffs.filterLists.group3.enable = true
+			data.buffs.filterLists.group3.filter = 'HELPFUL||RAID_IN_COMBAT||PLAYER||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+
+			data.debuffs.filterLists.group1.enable = true
+			data.debuffs.filterLists.group1.filter = 'HARMFUL||RAID'
+			data.debuffs.filterLists.group1.useBlocklist = true
+
+			data.auras.filterLists.group1.enable = true
+			data.auras.filterLists.group1.filter = 'HARMFUL||CROWD_CONTROL'
+			data.auras.filterLists.group1.useBlocklist = true
+		elseif unit == 'FRIENDLY_NPC' then
+			data.buffs.filterLists.group1.enable = true
+			data.buffs.filterLists.group1.filter = 'HELPFUL||BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+			data.buffs.filterLists.group2.enable = true
+			data.buffs.filterLists.group2.filter = 'HELPFUL||EXTERNAL_DEFENSIVE'
+			data.buffs.filterLists.group3.enable = true
+			data.buffs.filterLists.group3.filter = 'HELPFUL||RAID_IN_COMBAT||PLAYER||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+
+			data.debuffs.filterLists.group1.enable = true
+			data.debuffs.filterLists.group1.filter = 'HARMFUL||RAID'
+			data.debuffs.filterLists.group1.useBlocklist = true
+		elseif unit == 'ENEMY_PLAYER' then
+			data.buffs.filterLists.group1.enable = true
+			data.buffs.filterLists.group1.filter = 'HELPFUL||BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+			data.buffs.filterLists.group2.enable = true
+			data.buffs.filterLists.group2.filter = 'HELPFUL||EXTERNAL_DEFENSIVE'
+			data.buffs.filterLists.group3.enable = true
+			data.buffs.filterLists.group3.filter = 'HELPFUL||RAID_PLAYER_DISPELLABLE||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+			data.buffs.filterLists.group4.enable = true
+			data.buffs.filterLists.group4.filter = 'HELPFUL||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE||!RAID_PLAYER_DISPELLABLE'
+			data.buffs.filterLists.group4.candidates.isStealable = true
+			data.buffs.filterLists.group4.useBlocklist = true
+
+			data.debuffs.filterLists.group1.enable = true
+			data.debuffs.filterLists.group1.filter = 'HARMFUL||PLAYER||INCLUDE_NAME_PLATE_ONLY||!CROWD_CONTROL'
+			data.debuffs.filterLists.group1.candidates.nameplateShowPersonal = true
+			data.debuffs.filterLists.group1.useBlocklist = true
+			data.debuffs.filterLists.group2.enable = true
+			data.debuffs.filterLists.group2.filter = 'HARMFUL||INCLUDE_NAME_PLATE_ONLY||!CROWD_CONTROL'
+			data.debuffs.filterLists.group2.candidates.nameplateShowAll = true
+			data.debuffs.filterLists.group2.candidates.nameplateShowPersonal = 1
+			data.debuffs.filterLists.group2.useBlocklist = true
+
+			data.auras.filterLists.group1.enable = true
+			data.auras.filterLists.group1.filter = 'HARMFUL||CROWD_CONTROL'
+			data.auras.filterLists.group1.useBlocklist = true
+		elseif unit == 'ENEMY_NPC' then
+			data.buffs.filterLists.group1.enable = true
+			data.buffs.filterLists.group1.filter = 'HELPFUL'
+			data.buffs.filterLists.group1.candidates.isBossOrRoleAura = true
+			data.buffs.filterLists.group2.enable = true
+			data.buffs.filterLists.group2.filter = 'HELPFUL||!IMPORTANT'
+			data.buffs.filterLists.group2.candidates.isStealable = true
+			data.buffs.filterLists.group2.candidates.isBossOrRoleAura = 1
+			data.buffs.filterLists.group2.useBlocklist = true
+			data.buffs.filterLists.group3.enable = true
+			data.buffs.filterLists.group3.filter = 'HELPFUL||IMPORTANT'
+			data.buffs.filterLists.group3.candidates.isBossOrRoleAura = 1
+
+			data.debuffs.filterLists.group1.enable = true
+			data.debuffs.filterLists.group1.filter = 'HARMFUL||PLAYER||INCLUDE_NAME_PLATE_ONLY||!CROWD_CONTROL'
+			data.debuffs.filterLists.group1.candidates.nameplateShowPersonal = true
+			data.debuffs.filterLists.group1.useBlocklist = true
+			data.debuffs.filterLists.group2.enable = true
+			data.debuffs.filterLists.group2.filter = 'HARMFUL||INCLUDE_NAME_PLATE_ONLY||!CROWD_CONTROL'
+			data.debuffs.filterLists.group2.candidates.nameplateShowAll = true
+			data.debuffs.filterLists.group2.candidates.nameplateShowPersonal = 1
+			data.debuffs.filterLists.group2.useBlocklist = true
+
+			data.auras.filterLists.group1.enable = true
+			data.auras.filterLists.group1.filter = 'HARMFUL||CROWD_CONTROL'
+			data.auras.filterLists.group1.useBlocklist = true
+		end
 	end
 end
 
 P.nameplates.units.PLAYER.buffs.maxDuration = 300
 P.nameplates.units.PLAYER.buffs.priority = 'Blacklist,Whitelist,blockNoDuration,Personal,NonPersonal'
+P.nameplates.units.PLAYER.castbar.yOffset = -20
 P.nameplates.units.PLAYER.debuffs.anchorPoint = 'TOPRIGHT'
 P.nameplates.units.PLAYER.debuffs.growthX = 'LEFT'
 P.nameplates.units.PLAYER.debuffs.growthY = 'UP'
-P.nameplates.units.PLAYER.debuffs.yOffset = 35
 P.nameplates.units.PLAYER.debuffs.priority = 'Blacklist,Personal,NonPersonal'
+P.nameplates.units.PLAYER.debuffs.yOffset = 35
+P.nameplates.units.PLAYER.level.enable = false
 P.nameplates.units.PLAYER.name.enable = false
 P.nameplates.units.PLAYER.name.format = '[classcolor][name]'
-P.nameplates.units.PLAYER.level.enable = false
 P.nameplates.units.PLAYER.power.enable = true
-P.nameplates.units.PLAYER.castbar.yOffset = -20
 
-P.nameplates.units.FRIENDLY_PLAYER.buffs.isAuraBigDefensive = true
-P.nameplates.units.FRIENDLY_PLAYER.buffs.isAuraRaidInCombatPlayer = true
+P.nameplates.units.FRIENDLY_PLAYER.buffs.maxDuration = 300
 P.nameplates.units.FRIENDLY_PLAYER.buffs.priority = 'Blacklist,Whitelist,blockNoDuration,Personal,TurtleBuffs'
 P.nameplates.units.FRIENDLY_PLAYER.debuffs.anchorPoint = 'TOPRIGHT'
 P.nameplates.units.FRIENDLY_PLAYER.debuffs.growthX = 'LEFT'
 P.nameplates.units.FRIENDLY_PLAYER.debuffs.growthY = 'UP'
-P.nameplates.units.FRIENDLY_PLAYER.debuffs.yOffset = 35
-P.nameplates.units.FRIENDLY_PLAYER.debuffs.isAuraRaidPlayerDispellable = true
 P.nameplates.units.FRIENDLY_PLAYER.debuffs.priority = 'Blacklist,Dispellable'
+P.nameplates.units.FRIENDLY_PLAYER.debuffs.yOffset = 35
 
-P.nameplates.units.ENEMY_PLAYER.buffs.isAuraBigDefensive = true
-P.nameplates.units.ENEMY_PLAYER.buffs.isAuraExternalDefensive = true
-P.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Blacklist,Whitelist,Dispellable,TurtleBuffs'
 P.nameplates.units.ENEMY_PLAYER.buffs.maxDuration = 300
+P.nameplates.units.ENEMY_PLAYER.buffs.priority = 'Blacklist,Whitelist,Dispellable,TurtleBuffs'
 P.nameplates.units.ENEMY_PLAYER.debuffs.anchorPoint = 'TOPRIGHT'
 P.nameplates.units.ENEMY_PLAYER.debuffs.growthX = 'LEFT'
 P.nameplates.units.ENEMY_PLAYER.debuffs.growthY = 'UP'
-P.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = 35
-P.nameplates.units.ENEMY_PLAYER.debuffs.isAuraPlayer = true
-P.nameplates.units.ENEMY_PLAYER.debuffs.isAuraCrowdControl = true
 P.nameplates.units.ENEMY_PLAYER.debuffs.priority = 'Blacklist,blockNoDuration,Personal'
+P.nameplates.units.ENEMY_PLAYER.debuffs.yOffset = 35
 P.nameplates.units.ENEMY_PLAYER.name.format = E.Retail and '[classcolor][name]' or '[classcolor][name:abbrev:long]'
 
-P.nameplates.units.FRIENDLY_NPC.buffs.isAuraExternalDefensive = true
-P.nameplates.units.FRIENDLY_NPC.buffs.isAuraExternalDefensivePlayer = true
+P.nameplates.units.FRIENDLY_NPC.buffs.maxDuration = 300
 P.nameplates.units.FRIENDLY_NPC.buffs.priority = 'Blacklist,Whitelist,blockNoDuration,Personal'
 P.nameplates.units.FRIENDLY_NPC.debuffs.anchorPoint = 'TOPRIGHT'
 P.nameplates.units.FRIENDLY_NPC.debuffs.growthX = 'LEFT'
 P.nameplates.units.FRIENDLY_NPC.debuffs.growthY = 'UP'
-P.nameplates.units.FRIENDLY_NPC.debuffs.yOffset = 35
-P.nameplates.units.FRIENDLY_NPC.debuffs.isAuraRaid = true
-P.nameplates.units.FRIENDLY_NPC.debuffs.isAuraRaidPlayer = true
 P.nameplates.units.FRIENDLY_NPC.debuffs.priority = 'Blacklist,Dispellable,blockNoDuration,CCDebuffs'
+P.nameplates.units.FRIENDLY_NPC.debuffs.yOffset = 35
 P.nameplates.units.FRIENDLY_NPC.level.format = '[difficultycolor][level][shortclassification]'
 P.nameplates.units.FRIENDLY_NPC.name.format = '[reactioncolor][name]'
 P.nameplates.units.FRIENDLY_NPC.title.format = '[npctitle]'
 
-P.nameplates.units.ENEMY_NPC.buffs.isAuraRaidPlayerDispellable = true
 P.nameplates.units.ENEMY_NPC.buffs.priority = 'Blacklist,Whitelist,Dispellable,blockNoDuration,RaidBuffsElvUI'
 P.nameplates.units.ENEMY_NPC.debuffs.anchorPoint = 'TOPRIGHT'
 P.nameplates.units.ENEMY_NPC.debuffs.growthX = 'LEFT'
 P.nameplates.units.ENEMY_NPC.debuffs.growthY = 'UP'
-P.nameplates.units.ENEMY_NPC.debuffs.yOffset = 35
-P.nameplates.units.ENEMY_NPC.debuffs.isAuraPlayer = true
 P.nameplates.units.ENEMY_NPC.debuffs.priority = 'Blacklist,blockNoDuration,Personal'
+P.nameplates.units.ENEMY_NPC.debuffs.yOffset = 35
 P.nameplates.units.ENEMY_NPC.level.format = '[difficultycolor][level][shortclassification]'
-P.nameplates.units.ENEMY_NPC.title.format = '[npctitle]'
 P.nameplates.units.ENEMY_NPC.name.format = '[reactioncolor][name]'
+P.nameplates.units.ENEMY_NPC.title.format = '[npctitle]'
 
 local TopAuras = {
 	barColor = { r = 0, g = 0.8, b = 0, a = 1 },
@@ -1328,7 +1376,10 @@ local TopAuras = {
 	smoothbars = false,
 	tooltipAnchorType = 'ANCHOR_BOTTOMLEFT',
 	tooltipAnchorX = -5,
-	tooltipAnchorY = -5
+	tooltipAnchorY = -5,
+	allowList = 'Whitelist',
+	blockList = 'Blacklist',
+	filterLists = CopyTable(defaultFilterList)
 }
 
 --Auras
@@ -1339,6 +1390,10 @@ P.auras = {
 	colorDebuffs = true,
 }
 
+P.auras.buffs.filterLists.group1.enable = true
+P.auras.buffs.filterLists.group1.filter = 'HELPFUL'
+P.auras.debuffs.filterLists.group1.enable = true
+P.auras.debuffs.filterLists.group1.filter = 'HARMFUL'
 P.auras.debuffs.maxWraps = 1
 
 --Chat
@@ -1585,7 +1640,6 @@ local UF_Auras = {
 	stackAuras = true,
 	growthX = 'RIGHT',
 	growthY = 'UP',
-	useMidnight = false,
 	durationPosition = 'CENTER',
 	enable = false,
 	numrows = 1,
@@ -1606,12 +1660,11 @@ local UF_Auras = {
 	tooltipAnchorX = 5,
 	tooltipAnchorY = -5,
 	strataAndLevel = CopyTable(UF_StrataAndLevel),
-	sourceText = CopyTable(NP_AuraSourceText)
+	sourceText = CopyTable(NP_AuraSourceText),
+	allowList = 'Whitelist',
+	blockList = 'Blacklist',
+	filterLists = CopyTable(defaultFilterList)
 }
-
-for key, value in next, E.AuraDefaults do
-	UF_Auras[key] = value
-end
 
 local UF_DebuffHighlight = {
 	enable = true,
@@ -1622,8 +1675,6 @@ local UF_AuraBars = {
 	anchorPoint = 'ABOVE',
 	attachTo = 'DEBUFFS',
 	detachedWidth = 270,
-	enemyAuraType = 'HARMFUL',
-	friendlyAuraType = 'HELPFUL',
 	height = 20,
 	maxBars = 6,
 	maxDuration = 0,
@@ -1636,16 +1687,34 @@ local UF_AuraBars = {
 	tooltipAnchorType = 'ANCHOR_BOTTOMRIGHT',
 	tooltipAnchorX = 5,
 	tooltipAnchorY = -5,
-	useMidnight = false,
 	clickThrough = false,
 	reverseFill = false,
 	abbrevName = false,
 	smoothbars = false,
+	countPosition = 'BOTTOMLEFT',
+	countFont = 'PT Sans Narrow',
+	countFontOutline = 'OUTLINE',
+	countFontSize = 14,
+	countXOffset = -12,
+	countYOffset = 2,
+	friendlyAuraType = 'HELPFUL',
+	friendlyFilter = {
+		allowList = 'Whitelist',
+		blockList = 'Blacklist',
+		filterLists = CopyTable(defaultFilterList)
+	},
+	enemyAuraType = 'HARMFUL',
+	enemyFilter = {
+		allowList = 'Whitelist',
+		blockList = 'Blacklist',
+		filterLists = CopyTable(defaultFilterList)
+	},
 }
 
-for key, value in next, E.AuraDefaults do
-	UF_AuraBars[key] = value
-end
+UF_AuraBars.friendlyFilter.filterLists.group1.filter = 'HELPFUL||PLAYER'
+UF_AuraBars.friendlyFilter.filterLists.group1.maxDuration = 300
+UF_AuraBars.enemyFilter.filterLists.group1.filter = 'HARMFUL||PLAYER'
+UF_AuraBars.enemyFilter.filterLists.group1.maxDuration = 300
 
 local UF_AuraWatch = {
 	enable = false,
@@ -2004,15 +2073,6 @@ local UF_ClassAdditional = {
 	frameLevel = 1,
 }
 
-local UF_PrivateAuras = CopyTable(P.general.privateAuras)
-UF_PrivateAuras.enable = false
-UF_PrivateAuras.borderScale = 1
-UF_PrivateAuras.icon.size = 24
-UF_PrivateAuras.clickThrough = true
-UF_PrivateAuras.parent.point = 'BOTTOM'
-UF_PrivateAuras.countdownNumbers = true
-UF_PrivateAuras.duration.enable = false
-
 --UnitFrame
 P.unitframe = {
 	statusbar = 'ElvUI Norm',
@@ -2255,8 +2315,7 @@ P.unitframe = {
 			raidicon = CopyTable(UF_RaidIcon),
 			raidRoleIcons = CopyTable(UF_RaidRoles),
 			resurrectIcon = CopyTable(UF_Ressurect),
-			strataAndLevel = CopyTable(UF_StrataAndLevel),
-			privateAuras = CopyTable(UF_PrivateAuras)
+			strataAndLevel = CopyTable(UF_StrataAndLevel)
 		},
 		target = {
 			enable = true,
@@ -2294,8 +2353,7 @@ P.unitframe = {
 			raidicon = CopyTable(UF_RaidIcon),
 			raidRoleIcons = CopyTable(UF_RaidRoles),
 			resurrectIcon = CopyTable(UF_Ressurect),
-			strataAndLevel = CopyTable(UF_StrataAndLevel),
-			privateAuras = CopyTable(UF_PrivateAuras)
+			strataAndLevel = CopyTable(UF_StrataAndLevel)
 		},
 		targettarget = {
 			enable = true,
@@ -2355,8 +2413,7 @@ P.unitframe = {
 			portrait = CopyTable(UF_Portrait),
 			power = CopyTable(UF_Power),
 			raidicon = CopyTable(UF_RaidIcon),
-			strataAndLevel = CopyTable(UF_StrataAndLevel),
-			privateAuras = CopyTable(UF_PrivateAuras)
+			strataAndLevel = CopyTable(UF_StrataAndLevel)
 		},
 		pet = {
 			enable = true,
@@ -2387,8 +2444,7 @@ P.unitframe = {
 			portrait = CopyTable(UF_Portrait),
 			power = CopyTable(UF_Power),
 			raidicon = CopyTable(UF_RaidIcon),
-			strataAndLevel = CopyTable(UF_StrataAndLevel),
-			privateAuras = CopyTable(UF_PrivateAuras)
+			strataAndLevel = CopyTable(UF_StrataAndLevel)
 		},
 		boss = {
 			enable = true,
@@ -2421,8 +2477,7 @@ P.unitframe = {
 			portrait = CopyTable(UF_Portrait),
 			power = CopyTable(UF_Power),
 			raidicon = CopyTable(UF_RaidIcon),
-			strataAndLevel = CopyTable(UF_StrataAndLevel),
-			privateAuras = CopyTable(UF_PrivateAuras)
+			strataAndLevel = CopyTable(UF_StrataAndLevel)
 		},
 		arena = {
 			enable = true,
@@ -2513,8 +2568,7 @@ P.unitframe = {
 			roleIcon = CopyTable(UF_RoleIcon),
 			summonIcon = CopyTable(UF_SummonIcon),
 			targetsGroup = CopyTable(UF_SubGroup),
-			strataAndLevel = CopyTable(UF_StrataAndLevel),
-			privateAuras = CopyTable(UF_PrivateAuras)
+			strataAndLevel = CopyTable(UF_StrataAndLevel)
 		},
 		tank = {
 			enable = true,
@@ -2543,8 +2597,7 @@ P.unitframe = {
 			raidicon = CopyTable(UF_RaidIcon),
 			rdebuffs = CopyTable(UF_RaidDebuffs),
 			targetsGroup = CopyTable(UF_SubGroup),
-			strataAndLevel = CopyTable(UF_StrataAndLevel),
-			privateAuras = CopyTable(UF_PrivateAuras)
+			strataAndLevel = CopyTable(UF_StrataAndLevel)
 		},
 	},
 }
@@ -2556,28 +2609,53 @@ P.unitframe.units.player.aurabar.enemyAuraType = 'HARMFUL'
 P.unitframe.units.player.aurabar.friendlyAuraType = 'HELPFUL'
 P.unitframe.units.player.aurabar.maxDuration = 120
 P.unitframe.units.player.aurabar.priority = 'Blacklist,blockNoDuration,Personal,RaidDebuffs'
-P.unitframe.units.player.aurabar.isAuraBigDefensive = true
-P.unitframe.units.player.aurabar.isAuraExternalDefensive = true
-P.unitframe.units.player.aurabar.isAuraExternalDefensivePlayer = true
 P.unitframe.units.player.buffs.attachTo = 'DEBUFFS'
-P.unitframe.units.player.buffs.isAuraExternalDefensive = true
-P.unitframe.units.player.buffs.isAuraExternalDefensivePlayer = true
-P.unitframe.units.player.buffs.isAuraBigDefensive = true
 P.unitframe.units.player.buffs.priority = 'Blacklist,Whitelist,blockNoDuration,Personal,NonPersonal'
+P.unitframe.units.player.castbar.latency = true
 P.unitframe.units.player.debuffs.enable = true
 P.unitframe.units.player.debuffs.priority = 'Blacklist,Personal,NonPersonal'
-P.unitframe.units.player.castbar.latency = true
 
-P.unitframe.units.player.fader.enable = false
+P.unitframe.units.player.buffs.filterLists.group1.enable = true
+P.unitframe.units.player.buffs.filterLists.group1.filter = 'HELPFUL||EXTERNAL_DEFENSIVE'
+P.unitframe.units.player.buffs.filterLists.group2.enable = true
+P.unitframe.units.player.buffs.filterLists.group2.filter = 'HELPFUL||BIG_DEFENSIVE||PLAYER||!EXTERNAL_DEFENSIVE'
+
+P.unitframe.units.player.debuffs.filterLists.group1.enable = true
+P.unitframe.units.player.debuffs.filterLists.group1.filter = 'HARMFUL||RAID'
+P.unitframe.units.player.debuffs.filterLists.group1.useBlocklist = true
+P.unitframe.units.player.debuffs.filterLists.group2.enable = true
+P.unitframe.units.player.debuffs.filterLists.group2.filter = 'HARMFUL||!RAID'
+P.unitframe.units.player.debuffs.filterLists.group2.candidates.isBossOrRoleAura = true
+P.unitframe.units.player.debuffs.filterLists.group2.candidates.isFromPlayerOrPlayerPet = 1
+P.unitframe.units.player.debuffs.filterLists.group2.useBlocklist = true
+P.unitframe.units.player.debuffs.filterLists.group3.enable = true
+P.unitframe.units.player.debuffs.filterLists.group3.filter = 'HARMFUL||!RAID'
+P.unitframe.units.player.debuffs.filterLists.group3.candidates.isPriorityAura = true
+P.unitframe.units.player.debuffs.filterLists.group3.candidates.isBossOrRoleAura = 1
+P.unitframe.units.player.debuffs.filterLists.group3.candidates.isFromPlayerOrPlayerPet = 1
+P.unitframe.units.player.debuffs.filterLists.group3.useBlocklist = true
+P.unitframe.units.player.debuffs.filterLists.group4.enable = true
+P.unitframe.units.player.debuffs.filterLists.group4.filter = 'HARMFUL||DISPELLABLE||!RAID'
+P.unitframe.units.player.debuffs.filterLists.group4.candidates.isBossOrRoleAura = 1
+P.unitframe.units.player.debuffs.filterLists.group4.candidates.isPriorityAura = 1
+P.unitframe.units.player.debuffs.filterLists.group4.useBlocklist = true
+P.unitframe.units.player.debuffs.filterLists.group5.enable = true
+P.unitframe.units.player.debuffs.filterLists.group5.filter = 'HARMFUL||!RAID||!DISPELLABLE'
+P.unitframe.units.player.debuffs.filterLists.group5.candidates.isBossOrRoleAura = 1
+P.unitframe.units.player.debuffs.filterLists.group5.candidates.isPriorityAura = 1
+P.unitframe.units.player.debuffs.filterLists.group5.candidates.isFromPlayerOrPlayerPet = 1
+P.unitframe.units.player.debuffs.filterLists.group5.useBlocklist = true
+
 P.unitframe.units.player.fader.casting = true
 P.unitframe.units.player.fader.combat = true
+P.unitframe.units.player.fader.enable = false
 P.unitframe.units.player.fader.focus = false
 P.unitframe.units.player.fader.health = true
 P.unitframe.units.player.fader.hover = true
-P.unitframe.units.player.fader.unittarget = false
 P.unitframe.units.player.fader.playertarget = true
 P.unitframe.units.player.fader.power = true
 P.unitframe.units.player.fader.range = nil
+P.unitframe.units.player.fader.unittarget = false
 P.unitframe.units.player.fader.vehicle = true
 P.unitframe.units.player.healPrediction.enable = true
 P.unitframe.units.player.health.position = 'LEFT'
@@ -2590,29 +2668,24 @@ P.unitframe.units.player.power.xOffset = -2
 
 P.unitframe.units.target.aurabar.maxDuration = 120
 P.unitframe.units.target.aurabar.priority = 'Blacklist,blockNoDuration,Personal,RaidDebuffs'
-P.unitframe.units.target.aurabar.isAuraRaid = true
-P.unitframe.units.target.aurabar.isAuraRaidPlayer = true
-P.unitframe.units.target.auras.enable = true
-P.unitframe.units.target.auras.isAuraCrowdControl = true
-P.unitframe.units.target.auras.isAuraCrowdControlPlayer = true
-P.unitframe.units.target.auras.priority = 'Blacklist,CCDebuffs'
-P.unitframe.units.target.auras.filter = 'HARMFUL'
-P.unitframe.units.target.auras.xOffset = 2
 P.unitframe.units.target.auras.anchorPoint = 'RIGHT'
-P.unitframe.units.target.auras.sizeOverride = 48
-P.unitframe.units.target.auras.perrow = 4
+P.unitframe.units.target.auras.enable = true
+P.unitframe.units.target.auras.filter = 'HARMFUL'
 P.unitframe.units.target.auras.numRows = 1
-P.unitframe.units.target.buffs.enable = true
+P.unitframe.units.target.auras.perrow = 4
+P.unitframe.units.target.auras.priority = 'Blacklist,CCDebuffs'
+P.unitframe.units.target.auras.sizeOverride = 48
+P.unitframe.units.target.auras.xOffset = 2
 P.unitframe.units.target.buffs.anchorPoint = 'TOPRIGHT'
+P.unitframe.units.target.buffs.enable = true
 P.unitframe.units.target.buffs.growthX = 'LEFT'
 P.unitframe.units.target.buffs.growthY = 'UP'
 P.unitframe.units.target.buffs.priority = 'Blacklist,Personal,NonPersonal'
-P.unitframe.units.target.debuffs.enable = true
-P.unitframe.units.target.debuffs.isAuraPlayer = true
 P.unitframe.units.target.debuffs.anchorPoint = 'TOPRIGHT'
+P.unitframe.units.target.debuffs.attachTo = 'BUFFS'
+P.unitframe.units.target.debuffs.enable = true
 P.unitframe.units.target.debuffs.growthX = 'LEFT'
 P.unitframe.units.target.debuffs.growthY = 'UP'
-P.unitframe.units.target.debuffs.attachTo = 'BUFFS'
 P.unitframe.units.target.debuffs.maxDuration = 300
 P.unitframe.units.target.debuffs.priority = 'Blacklist,Friendly:Dispellable,Personal'
 P.unitframe.units.target.healPrediction.enable = true
@@ -2620,17 +2693,46 @@ P.unitframe.units.target.health.text_format = E.Retail and '||cFF29CC00[perhp<%]
 P.unitframe.units.target.name.text_format = E.Retail and '[classcolor][name] [difficultycolor][smartlevel] [shortclassification]' or '[classcolor][name:medium] [difficultycolor][smartlevel] [shortclassification]'
 P.unitframe.units.target.power.text_format = E.Retail and '||cFF007ACC[perpp<%]||r' or '[powercolor][power:current:shortvalue]'
 
+P.unitframe.units.target.buffs.filterLists.group1.enable = true
+P.unitframe.units.target.buffs.filterLists.group1.filter = 'HELPFUL'
+P.unitframe.units.target.buffs.filterLists.group1.candidates.isBossOrRoleAura = true
+P.unitframe.units.target.buffs.filterLists.group2.enable = true
+P.unitframe.units.target.buffs.filterLists.group2.filter = 'HELPFUL||!IMPORTANT'
+P.unitframe.units.target.buffs.filterLists.group2.candidates.isStealable = true
+P.unitframe.units.target.buffs.filterLists.group2.candidates.isBossOrRoleAura = 1
+P.unitframe.units.target.buffs.filterLists.group2.useBlocklist = true
+P.unitframe.units.target.buffs.filterLists.group3.enable = true
+P.unitframe.units.target.buffs.filterLists.group3.filter = 'HELPFUL||IMPORTANT'
+P.unitframe.units.target.buffs.filterLists.group3.candidates.isBossOrRoleAura = 1
+P.unitframe.units.target.buffs.filterLists.group4.enable = true
+P.unitframe.units.target.buffs.filterLists.group4.filter = 'HELPFUL||!IMPORTANT'
+P.unitframe.units.target.buffs.filterLists.group4.candidates.isFromPlayerOrPlayerPet = true
+P.unitframe.units.target.buffs.filterLists.group4.candidates.isBossOrRoleAura = 1
+P.unitframe.units.target.buffs.filterLists.group4.candidates.isStealable = 1
+
+P.unitframe.units.target.debuffs.filterLists.group1.enable = true
+P.unitframe.units.target.debuffs.filterLists.group1.filter = 'HARMFUL||PLAYER||INCLUDE_NAME_PLATE_ONLY||!CROWD_CONTROL'
+P.unitframe.units.target.debuffs.filterLists.group1.candidates.nameplateShowPersonal = true
+P.unitframe.units.target.debuffs.filterLists.group1.useBlocklist = true
+P.unitframe.units.target.debuffs.filterLists.group2.enable = true
+P.unitframe.units.target.debuffs.filterLists.group2.filter = 'HARMFUL||INCLUDE_NAME_PLATE_ONLY||!CROWD_CONTROL'
+P.unitframe.units.target.debuffs.filterLists.group2.candidates.nameplateShowAll = true
+P.unitframe.units.target.debuffs.filterLists.group2.candidates.nameplateShowPersonal = 1
+P.unitframe.units.target.debuffs.filterLists.group2.useBlocklist = true
+
+P.unitframe.units.target.auras.filterLists.group1.enable = true
+P.unitframe.units.target.auras.filterLists.group1.filter = 'HARMFUL||CROWD_CONTROL'
+P.unitframe.units.target.auras.filterLists.group1.useBlocklist = true
+
 P.unitframe.units.targettarget.buffs.anchorPoint = 'BOTTOMLEFT'
 P.unitframe.units.targettarget.buffs.maxDuration = 300
 P.unitframe.units.targettarget.buffs.numrows = 1
 P.unitframe.units.targettarget.buffs.perrow = 7
 P.unitframe.units.targettarget.buffs.priority = 'Blacklist,Personal,Dispellable'
-P.unitframe.units.targettarget.debuffs.enable = true
-P.unitframe.units.targettarget.debuffs.isAuraRaid = true
-P.unitframe.units.targettarget.debuffs.isAuraRaidPlayer = true
 P.unitframe.units.targettarget.debuffs.anchorPoint = 'BOTTOMRIGHT'
-P.unitframe.units.targettarget.debuffs.growthX = 'LEFT'
 P.unitframe.units.targettarget.debuffs.attachTo = 'BUFFS'
+P.unitframe.units.targettarget.debuffs.enable = true
+P.unitframe.units.targettarget.debuffs.growthX = 'LEFT'
 P.unitframe.units.targettarget.debuffs.maxDuration = 300
 P.unitframe.units.targettarget.debuffs.numrows = 1
 P.unitframe.units.targettarget.debuffs.perrow = 5
@@ -2639,35 +2741,42 @@ P.unitframe.units.targettarget.infoPanel.height = 14
 P.unitframe.units.targettarget.name.text_format = E.Retail and '[classcolor][name]' or '[classcolor][name:medium]'
 P.unitframe.units.targettarget.power.text_format = ''
 
+P.unitframe.units.targettarget.buffs.filterLists.group1.enable = false
+P.unitframe.units.targettarget.buffs.filterLists.group1.filter = 'HELPFUL'
+P.unitframe.units.targettarget.buffs.filterLists.group1.useBlocklist = true
+
+P.unitframe.units.targettarget.debuffs.filterLists.group1.enable = false
+P.unitframe.units.targettarget.debuffs.filterLists.group1.filter = 'HARMFUL'
+P.unitframe.units.targettarget.debuffs.filterLists.group1.useBlocklist = true
+
 P.unitframe.units.targettargettarget = CopyTable(P.unitframe.units.targettarget)
-P.unitframe.units.targettargettarget.enable = false
 P.unitframe.units.targettargettarget.buffs.priority = 'Blacklist,Personal,NonPersonal'
 P.unitframe.units.targettargettarget.debuffs.attachTo = 'FRAME'
 P.unitframe.units.targettargettarget.debuffs.priority = 'Blacklist,Personal,NonPersonal'
+P.unitframe.units.targettargettarget.enable = false
 P.unitframe.units.targettargettarget.infoPanel.height = 12
 
-P.unitframe.units.focus.aurabar.enable = false
+P.unitframe.units.targettargettarget.buffs.filterLists.group1.enable = false
+P.unitframe.units.targettargettarget.buffs.filterLists.group1.filter = 'HELPFUL'
+P.unitframe.units.targettargettarget.buffs.filterLists.group1.useBlocklist = true
+
+P.unitframe.units.targettargettarget.debuffs.filterLists.group1.enable = false
+P.unitframe.units.targettargettarget.debuffs.filterLists.group1.filter = 'HARMFUL'
+P.unitframe.units.targettargettarget.debuffs.filterLists.group1.useBlocklist = true
+
 P.unitframe.units.focus.aurabar.detachedWidth = 190
+P.unitframe.units.focus.aurabar.enable = false
 P.unitframe.units.focus.aurabar.maxBars = 3
 P.unitframe.units.focus.aurabar.maxDuration = 120
 P.unitframe.units.focus.aurabar.priority = 'Blacklist,blockNoDuration,Personal,RaidDebuffs'
-P.unitframe.units.focus.aurabar.isAuraRaid = true
-P.unitframe.units.focus.aurabar.isAuraRaidPlayer = true
-P.unitframe.units.focus.buffs.isAuraBigDefensive = true
-P.unitframe.units.focus.buffs.isAuraExternalDefensive = true
-P.unitframe.units.focus.buffs.isAuraExternalDefensivePlayer = true
 P.unitframe.units.focus.buffs.anchorPoint = 'BOTTOMLEFT'
 P.unitframe.units.focus.buffs.maxDuration = 300
 P.unitframe.units.focus.buffs.numrows = 1
 P.unitframe.units.focus.buffs.perrow = 7
 P.unitframe.units.focus.buffs.priority = 'Blacklist,Personal,NonPersonal'
 P.unitframe.units.focus.castbar.width = 190
-P.unitframe.units.focus.debuffs.enable = true
-P.unitframe.units.focus.debuffs.isAuraPlayer = true
-P.unitframe.units.focus.debuffs.isAuraRaid = true
-P.unitframe.units.focus.debuffs.isAuraBigDefensive = true
-P.unitframe.units.focus.debuffs.isAuraExternalDefensive = true
 P.unitframe.units.focus.debuffs.anchorPoint = 'TOPRIGHT'
+P.unitframe.units.focus.debuffs.enable = true
 P.unitframe.units.focus.debuffs.growthX = 'LEFT'
 P.unitframe.units.focus.debuffs.growthY = 'UP'
 P.unitframe.units.focus.debuffs.maxDuration = 300
@@ -2678,33 +2787,71 @@ P.unitframe.units.focus.healPrediction.enable = true
 P.unitframe.units.focus.infoPanel.height = 14
 P.unitframe.units.focus.name.text_format = E.Retail and '[classcolor][name]' or '[classcolor][name:medium]'
 
+P.unitframe.units.focus.buffs.filterLists.group1.enable = true
+P.unitframe.units.focus.buffs.filterLists.group1.filter = 'HELPFUL||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.focus.buffs.filterLists.group1.candidates.isBossOrRoleAura = true
+P.unitframe.units.focus.buffs.filterLists.group2.enable = true
+P.unitframe.units.focus.buffs.filterLists.group2.filter = 'HELPFUL||!IMPORTANT||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.focus.buffs.filterLists.group2.candidates.isStealable = true
+P.unitframe.units.focus.buffs.filterLists.group2.candidates.isBossOrRoleAura = 1
+P.unitframe.units.focus.buffs.filterLists.group2.useBlocklist = true
+P.unitframe.units.focus.buffs.filterLists.group3.enable = true
+P.unitframe.units.focus.buffs.filterLists.group3.filter = 'HELPFUL||IMPORTANT||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.focus.buffs.filterLists.group3.candidates.isBossOrRoleAura = 1
+P.unitframe.units.focus.buffs.filterLists.group4.enable = true
+P.unitframe.units.focus.buffs.filterLists.group4.filter = 'HELPFUL||RAID||!IMPORTANT||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.focus.buffs.filterLists.group4.candidates.isBossOrRoleAura = 1
+P.unitframe.units.focus.buffs.filterLists.group4.candidates.isStealable = 1
+P.unitframe.units.focus.buffs.filterLists.group4.useBlocklist = true
+P.unitframe.units.focus.buffs.filterLists.group5.enable = true
+P.unitframe.units.focus.buffs.filterLists.group5.filter = 'HELPFUL||BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.focus.buffs.filterLists.group6.enable = true
+P.unitframe.units.focus.buffs.filterLists.group6.filter = 'HELPFUL||EXTERNAL_DEFENSIVE'
+
+P.unitframe.units.focus.debuffs.filterLists.group1.enable = true
+P.unitframe.units.focus.debuffs.filterLists.group1.filter = 'HARMFUL||IMPORTANT||!CROWD_CONTROL'
+P.unitframe.units.focus.debuffs.filterLists.group2.enable = true
+P.unitframe.units.focus.debuffs.filterLists.group2.filter = 'HARMFUL||RAID_PLAYER_DISPELLABLE||!CROWD_CONTROL||!IMPORTANT'
+P.unitframe.units.focus.debuffs.filterLists.group2.useBlocklist = true
+P.unitframe.units.focus.debuffs.filterLists.group3.enable = true
+P.unitframe.units.focus.debuffs.filterLists.group3.filter = 'HARMFUL||CROWD_CONTROL'
+P.unitframe.units.focus.debuffs.filterLists.group4.enable = true
+P.unitframe.units.focus.debuffs.filterLists.group4.filter = 'HARMFUL||RAID||!CROWD_CONTROL||!IMPORTANT||!RAID_PLAYER_DISPELLABLE'
+P.unitframe.units.focus.debuffs.filterLists.group4.useBlocklist = true
+P.unitframe.units.focus.debuffs.filterLists.group5.enable = true
+P.unitframe.units.focus.debuffs.filterLists.group5.filter = 'HARMFUL||!CROWD_CONTROL||!IMPORTANT||!RAID_PLAYER_DISPELLABLE||!RAID'
+P.unitframe.units.focus.debuffs.filterLists.group5.candidates.isPriorityAura = true
+P.unitframe.units.focus.debuffs.filterLists.group5.useBlocklist = true
+
 P.unitframe.units.focustarget = CopyTable(P.unitframe.units.focus)
-P.unitframe.units.focustarget.enable = false
+P.unitframe.units.focustarget.aurabar = nil
+P.unitframe.units.focustarget.buffIndicator = nil
 P.unitframe.units.focustarget.buffs.priority = 'Blacklist,Personal,NonPersonal'
-P.unitframe.units.focustarget.debuffs.enable = false
+P.unitframe.units.focustarget.castbar = nil
+P.unitframe.units.focustarget.CombatIcon = nil
+P.unitframe.units.focustarget.debuffHighlight = nil
 P.unitframe.units.focustarget.debuffs.anchorPoint = 'BOTTOMRIGHT'
+P.unitframe.units.focustarget.debuffs.enable = false
 P.unitframe.units.focustarget.debuffs.growthX = 'LEFT'
 P.unitframe.units.focustarget.debuffs.priority = 'Blacklist,Friendly:Dispellable,Personal,CCDebuffs'
+P.unitframe.units.focustarget.enable = false
 P.unitframe.units.focustarget.height = 26
 P.unitframe.units.focustarget.infoPanel.height = 12
 P.unitframe.units.focustarget.threatStyle = 'NONE'
-P.unitframe.units.focustarget.aurabar = nil
-P.unitframe.units.focustarget.castbar = nil
-P.unitframe.units.focustarget.privateAuras = nil
-P.unitframe.units.focustarget.buffIndicator = nil
-P.unitframe.units.focustarget.debuffHighlight = nil
-P.unitframe.units.focustarget.CombatIcon = nil
 
-P.unitframe.units.pet.aurabar.enable = false
+P.unitframe.units.focustarget.buffs.filterLists = CopyTable(defaultFilterList)
+P.unitframe.units.focustarget.buffs.filterLists.group1.useBlocklist = true
+
+P.unitframe.units.focustarget.debuffs.filterLists = CopyTable(defaultFilterList)
+P.unitframe.units.focustarget.debuffs.filterLists.group1.filter = 'HARMFUL'
+P.unitframe.units.focustarget.debuffs.filterLists.group1.useBlocklist = true
+
 P.unitframe.units.pet.aurabar.attachTo = 'FRAME'
-P.unitframe.units.pet.aurabar.maxDuration = 120
 P.unitframe.units.pet.aurabar.detachedWidth = 130
-P.unitframe.units.pet.aurabar.yOffset = 2
+P.unitframe.units.pet.aurabar.enable = false
+P.unitframe.units.pet.aurabar.maxDuration = 120
 P.unitframe.units.pet.aurabar.spacing = 2
-P.unitframe.units.pet.buffs.isAuraRaid = true
-P.unitframe.units.pet.buffs.isAuraRaidPlayer = true
-P.unitframe.units.pet.buffs.isAuraExternalDefensive = true
-P.unitframe.units.pet.buffs.isAuraExternalDefensivePlayer = true
+P.unitframe.units.pet.aurabar.yOffset = 2
 P.unitframe.units.pet.buffs.anchorPoint = 'BOTTOMLEFT'
 P.unitframe.units.pet.buffs.maxDuration = 300
 P.unitframe.units.pet.buffs.numrows = 1
@@ -2721,43 +2868,65 @@ P.unitframe.units.pet.health.colorHappiness = true
 P.unitframe.units.pet.infoPanel.height = 12
 P.unitframe.units.pet.name.text_format = E.Retail and '[classcolor][name]' or '[classcolor][name:medium]'
 
+P.unitframe.units.pet.buffs.filterLists.group1.enable = true
+P.unitframe.units.pet.buffs.filterLists.group1.filter = 'HELPFUL||EXTERNAL_DEFENSIVE'
+P.unitframe.units.pet.buffs.filterLists.group2.enable = true
+P.unitframe.units.pet.buffs.filterLists.group2.filter = 'HELPFUL||RAID||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.pet.buffs.filterLists.group2.useBlocklist = true
+
+P.unitframe.units.pet.debuffs.filterLists.group1.enable = true
+P.unitframe.units.pet.debuffs.filterLists.group1.filter = 'HARMFUL||IMPORTANT||!CROWD_CONTROL'
+P.unitframe.units.pet.debuffs.filterLists.group2.enable = true
+P.unitframe.units.pet.debuffs.filterLists.group2.filter = 'HARMFUL||RAID_PLAYER_DISPELLABLE||!CROWD_CONTROL||!IMPORTANT'
+P.unitframe.units.pet.debuffs.filterLists.group2.useBlocklist = true
+P.unitframe.units.pet.debuffs.filterLists.group3.enable = true
+P.unitframe.units.pet.debuffs.filterLists.group3.filter = 'HARMFUL||CROWD_CONTROL'
+P.unitframe.units.pet.debuffs.filterLists.group4.enable = true
+P.unitframe.units.pet.debuffs.filterLists.group4.filter = 'HARMFUL||RAID||!CROWD_CONTROL||!IMPORTANT||!RAID_PLAYER_DISPELLABLE'
+P.unitframe.units.pet.debuffs.filterLists.group4.useBlocklist = true
+P.unitframe.units.pet.debuffs.filterLists.group5.enable = true
+P.unitframe.units.pet.debuffs.filterLists.group5.filter = 'HARMFUL||!CROWD_CONTROL||!IMPORTANT||!RAID_PLAYER_DISPELLABLE||!RAID'
+P.unitframe.units.pet.debuffs.filterLists.group5.candidates.isPriorityAura = true
+P.unitframe.units.pet.debuffs.filterLists.group5.useBlocklist = true
+
 P.unitframe.units.pettarget = CopyTable(P.unitframe.units.pet)
-P.unitframe.units.pettarget.enable = false
+P.unitframe.units.pettarget.aurabar = nil
+P.unitframe.units.pettarget.buffIndicator = nil
 P.unitframe.units.pettarget.buffs.maxDuration = 300
 P.unitframe.units.pettarget.buffs.priority = 'Blacklist,Personal,NonPersonal'
+P.unitframe.units.pettarget.castbar = nil
+P.unitframe.units.pettarget.debuffHighlight = nil
 P.unitframe.units.pettarget.debuffs.maxDuration = 300
 P.unitframe.units.pettarget.debuffs.priority = 'Blacklist,Dispellable,RaidDebuffs'
+P.unitframe.units.pettarget.enable = false
 P.unitframe.units.pettarget.height = 26
 P.unitframe.units.pettarget.threatStyle = 'NONE'
-P.unitframe.units.pettarget.aurabar = nil
-P.unitframe.units.pettarget.castbar = nil
-P.unitframe.units.pettarget.privateAuras = nil
-P.unitframe.units.pettarget.buffIndicator = nil
-P.unitframe.units.pettarget.debuffHighlight = nil
 
-P.unitframe.units.boss.buffs.enable = true
+P.unitframe.units.pettarget.buffs.filterLists = CopyTable(defaultFilterList)
+P.unitframe.units.pettarget.buffs.filterLists.group1.useBlocklist = true
+
+P.unitframe.units.pettarget.debuffs.filterLists = CopyTable(defaultFilterList)
+P.unitframe.units.pettarget.debuffs.filterLists.group1.filter = 'HARMFUL'
+P.unitframe.units.pettarget.debuffs.filterLists.group1.useBlocklist = true
+
 P.unitframe.units.boss.buffs.anchorPoint = 'LEFT'
-P.unitframe.units.boss.buffs.isAuraRaidPlayerDispellable = true
+P.unitframe.units.boss.buffs.enable = true
 P.unitframe.units.boss.buffs.numrows = 1
 P.unitframe.units.boss.buffs.perrow = 3
 P.unitframe.units.boss.buffs.priority = 'Blacklist,Dispellable,RaidBuffsElvUI'
 P.unitframe.units.boss.buffs.sizeOverride = 22
 P.unitframe.units.boss.buffs.yOffset = 20
-P.unitframe.units.boss.privateAuras.countdownNumbers = false
-P.unitframe.units.boss.privateAuras.icon.size = 20
-P.unitframe.units.boss.privateAuras.parent.point = 'CENTER'
-P.unitframe.units.boss.castbar.width = 215
 P.unitframe.units.boss.castbar.positionsGroup = {anchorPoint = 'BOTTOM', xOffset = 0, yOffset = 0 }
-P.unitframe.units.boss.debuffs.enable = true
-P.unitframe.units.boss.debuffs.isAuraPlayer = true
+P.unitframe.units.boss.castbar.width = 215
 P.unitframe.units.boss.debuffs.anchorPoint = 'LEFT'
+P.unitframe.units.boss.debuffs.enable = true
 P.unitframe.units.boss.debuffs.numrows = 1
 P.unitframe.units.boss.debuffs.perrow = 3
 P.unitframe.units.boss.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
 P.unitframe.units.boss.debuffs.sizeOverride = 22
 P.unitframe.units.boss.debuffs.yOffset = -3
-P.unitframe.units.boss.health.text_format = E.Retail and '||cFF29CC00[perhp<%]||r' or '[healthcolor][health:current:shortvalue]'
 P.unitframe.units.boss.health.position = 'LEFT'
+P.unitframe.units.boss.health.text_format = E.Retail and '||cFF29CC00[perhp<%]||r' or '[healthcolor][health:current:shortvalue]'
 P.unitframe.units.boss.health.xOffset = 2
 P.unitframe.units.boss.infoPanel.height = 16
 P.unitframe.units.boss.name.text_format = E.Retail and '[classcolor][name]' or '[classcolor][name:medium]'
@@ -2765,69 +2934,106 @@ P.unitframe.units.boss.power.position = 'RIGHT'
 P.unitframe.units.boss.power.text_format = E.Retail and '||cFF007ACC[perpp<%]||r' or '[powercolor][power:current:shortvalue]'
 P.unitframe.units.boss.power.xOffset = -2
 
-P.unitframe.units.arena.buffs.enable = true
-P.unitframe.units.arena.buffs.isAuraBigDefensive = true
-P.unitframe.units.arena.buffs.isAuraExternalDefensive = true
-P.unitframe.units.arena.buffs.isAuraExternalDefensivePlayer = true
+P.unitframe.units.boss.buffs.filterLists.group1.enable = true
+P.unitframe.units.boss.buffs.filterLists.group1.filter = 'HELPFUL'
+P.unitframe.units.boss.buffs.filterLists.group1.candidates.isBossOrRoleAura = true
+P.unitframe.units.boss.buffs.filterLists.group2.enable = true
+P.unitframe.units.boss.buffs.filterLists.group2.filter = 'HELPFUL||!IMPORTANT'
+P.unitframe.units.boss.buffs.filterLists.group2.candidates.isStealable = true
+P.unitframe.units.boss.buffs.filterLists.group2.candidates.isBossOrRoleAura = 1
+P.unitframe.units.boss.buffs.filterLists.group2.useBlocklist = true
+P.unitframe.units.boss.buffs.filterLists.group3.enable = true
+P.unitframe.units.boss.buffs.filterLists.group3.filter = 'HELPFUL||IMPORTANT'
+P.unitframe.units.boss.buffs.filterLists.group3.candidates.isBossOrRoleAura = 1
+P.unitframe.units.boss.buffs.filterLists.group4.enable = true
+P.unitframe.units.boss.buffs.filterLists.group4.filter = 'HELPFUL||RAID_IN_COMBAT||PLAYER||!IMPORTANT'
+P.unitframe.units.boss.buffs.filterLists.group4.candidates.isBossOrRoleAura = 1
+P.unitframe.units.boss.buffs.filterLists.group4.candidates.isStealable = 1
+
+P.unitframe.units.boss.debuffs.filterLists.group1.enable = true
+P.unitframe.units.boss.debuffs.filterLists.group1.filter = 'HARMFUL||PLAYER||INCLUDE_NAME_PLATE_ONLY'
+P.unitframe.units.boss.debuffs.filterLists.group1.candidates.nameplateShowPersonal = true
+P.unitframe.units.boss.debuffs.filterLists.group1.useBlocklist = true
+P.unitframe.units.boss.debuffs.filterLists.group2.enable = true
+P.unitframe.units.boss.debuffs.filterLists.group2.filter = 'HARMFUL||INCLUDE_NAME_PLATE_ONLY'
+P.unitframe.units.boss.debuffs.filterLists.group2.candidates.nameplateShowAll = true
+P.unitframe.units.boss.debuffs.filterLists.group2.candidates.nameplateShowPersonal = 1
+P.unitframe.units.boss.debuffs.filterLists.group2.useBlocklist = true
+
 P.unitframe.units.arena.buffs.anchorPoint = 'LEFT'
-P.unitframe.units.arena.buffs.maxDuration = 300
+P.unitframe.units.arena.buffs.enable = true
 P.unitframe.units.arena.buffs.numrows = 1
 P.unitframe.units.arena.buffs.perrow = 3
 P.unitframe.units.arena.buffs.priority = 'Blacklist,Whitelist,Dispellable,TurtleBuffs'
 P.unitframe.units.arena.buffs.sizeOverride = 27
 P.unitframe.units.arena.buffs.yOffset = 16
-P.unitframe.units.arena.castbar.width = 256
 P.unitframe.units.arena.castbar.positionsGroup = {anchorPoint = 'BOTTOM', xOffset = 0, yOffset = 0 }
-P.unitframe.units.arena.debuffs.enable = true
-P.unitframe.units.arena.debuffs.isAuraCrowdControl = true
-P.unitframe.units.arena.debuffs.isAuraPlayer = true
+P.unitframe.units.arena.castbar.width = 256
 P.unitframe.units.arena.debuffs.anchorPoint = 'LEFT'
+P.unitframe.units.arena.debuffs.desaturate = false
+P.unitframe.units.arena.debuffs.enable = true
 P.unitframe.units.arena.debuffs.maxDuration = 300
 P.unitframe.units.arena.debuffs.numrows = 1
 P.unitframe.units.arena.debuffs.perrow = 3
 P.unitframe.units.arena.debuffs.priority = 'Blacklist,Personal,CCDebuffs'
 P.unitframe.units.arena.debuffs.sizeOverride = 27
 P.unitframe.units.arena.debuffs.yOffset = -16
-P.unitframe.units.arena.debuffs.desaturate = false
 P.unitframe.units.arena.healPrediction.enable = true
+P.unitframe.units.arena.health.position = 'LEFT'
 P.unitframe.units.arena.health.text_format = E.Retail and '||cFF29CC00[perhp<%]||r' or '[healthcolor][health:current:shortvalue]'
+P.unitframe.units.arena.health.xOffset = 2
 P.unitframe.units.arena.infoPanel.height = 17
 P.unitframe.units.arena.name.text_format = E.Retail and '[classcolor][name]' or '[classcolor][name:medium]'
-P.unitframe.units.arena.power.text_format = E.Retail and '||cFF007ACC[perpp<%]||r' or '[powercolor][power:current:shortvalue]'
-P.unitframe.units.arena.health.position = 'LEFT'
-P.unitframe.units.arena.health.xOffset = 2
 P.unitframe.units.arena.power.position = 'RIGHT'
+P.unitframe.units.arena.power.text_format = E.Retail and '||cFF007ACC[perpp<%]||r' or '[powercolor][power:current:shortvalue]'
 P.unitframe.units.arena.power.xOffset = -2
 
-P.unitframe.units.party.health.position = 'LEFT'
-P.unitframe.units.party.health.xOffset = 2
-P.unitframe.units.party.buffs.isAuraBigDefensive = true
-P.unitframe.units.party.buffs.isAuraBigDefensivePlayer = true
-P.unitframe.units.party.buffs.isAuraRaidInCombatPlayer = true
-P.unitframe.units.party.buffs.isAuraExternalDefensive = true
-P.unitframe.units.party.buffs.isAuraExternalDefensivePlayer = true
+P.unitframe.units.arena.buffs.filterLists.group1.enable = true
+P.unitframe.units.arena.buffs.filterLists.group1.filter = 'HELPFUL||BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.arena.buffs.filterLists.group2.enable = true
+P.unitframe.units.arena.buffs.filterLists.group2.filter = 'HELPFUL||EXTERNAL_DEFENSIVE'
+P.unitframe.units.arena.buffs.filterLists.group3.enable = true
+P.unitframe.units.arena.buffs.filterLists.group3.filter = 'HELPFUL||RAID_PLAYER_DISPELLABLE||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.arena.buffs.filterLists.group4.enable = true
+P.unitframe.units.arena.buffs.filterLists.group4.filter = 'HELPFUL||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE||!RAID_PLAYER_DISPELLABLE'
+P.unitframe.units.arena.buffs.filterLists.group4.candidates.isStealable = true
+P.unitframe.units.arena.buffs.filterLists.group4.useBlocklist = true
+P.unitframe.units.arena.buffs.filterLists.group5.enable = true
+P.unitframe.units.arena.buffs.filterLists.group5.filter = 'HELPFUL||RAID||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE||!RAID_PLAYER_DISPELLABLE'
+P.unitframe.units.arena.buffs.filterLists.group5.candidates.isStealable = 1
+P.unitframe.units.arena.buffs.filterLists.group5.useBlocklist = true
+
+P.unitframe.units.arena.debuffs.filterLists.group1.enable = true
+P.unitframe.units.arena.debuffs.filterLists.group1.filter = 'HARMFUL||PLAYER||INCLUDE_NAME_PLATE_ONLY||!CROWD_CONTROL'
+P.unitframe.units.arena.debuffs.filterLists.group1.candidates.nameplateShowPersonal = true
+P.unitframe.units.arena.debuffs.filterLists.group1.useBlocklist = true
+P.unitframe.units.arena.debuffs.filterLists.group2.enable = true
+P.unitframe.units.arena.debuffs.filterLists.group2.filter = 'HARMFUL||CROWD_CONTROL'
+P.unitframe.units.arena.debuffs.filterLists.group3.enable = true
+P.unitframe.units.arena.debuffs.filterLists.group3.filter = 'HARMFUL||INCLUDE_NAME_PLATE_ONLY||!CROWD_CONTROL'
+P.unitframe.units.arena.debuffs.filterLists.group3.candidates.nameplateShowAll = true
+P.unitframe.units.arena.debuffs.filterLists.group3.candidates.nameplateShowPersonal = 1
+P.unitframe.units.arena.debuffs.filterLists.group3.useBlocklist = true
+
+P.unitframe.units.party.buffIndicator.enable = true
 P.unitframe.units.party.buffs.anchorPoint = 'LEFT'
+P.unitframe.units.party.buffs.enable = not E.Retail
 P.unitframe.units.party.buffs.maxDuration = 300
 P.unitframe.units.party.buffs.priority = 'Blacklist,TurtleBuffs'
-P.unitframe.units.party.buffIndicator.enable = true
-P.unitframe.units.party.privateAuras.enable = true
-P.unitframe.units.party.privateAuras.countdownNumbers = false
-P.unitframe.units.party.privateAuras.icon.size = 20
-P.unitframe.units.party.privateAuras.parent.point = 'CENTER'
 P.unitframe.units.party.castbar.enable = false
-P.unitframe.units.party.castbar.width = 256
 P.unitframe.units.party.castbar.positionsGroup = {anchorPoint = 'BOTTOM', xOffset = 0, yOffset = 0 }
+P.unitframe.units.party.castbar.width = 256
 P.unitframe.units.party.CombatIcon.enable = false
-P.unitframe.units.party.debuffs.enable = true
 P.unitframe.units.party.debuffs.anchorPoint = 'RIGHT'
-P.unitframe.units.party.debuffs.useBlocklist = true
-P.unitframe.units.party.debuffs.maxDuration = 300
+P.unitframe.units.party.debuffs.enable = true
+P.unitframe.units.party.debuffs.perrow = 5
 P.unitframe.units.party.debuffs.priority = 'Blacklist,Dispellable,RaidDebuffs,CCDebuffs'
 P.unitframe.units.party.debuffs.sizeOverride = 52
-P.unitframe.units.party.debuffs.perrow = 5
 P.unitframe.units.party.health.position = 'LEFT'
-P.unitframe.units.party.health.xOffset = 2
+P.unitframe.units.party.health.position = 'LEFT'
 P.unitframe.units.party.health.text_format = E.Retail and '||cFF29CC00[perhp<%]||r' or '[healthcolor][health:current-percent:shortvalue]'
+P.unitframe.units.party.health.xOffset = 2
+P.unitframe.units.party.health.xOffset = 2
 P.unitframe.units.party.infoPanel.height = 15
 P.unitframe.units.party.name.text_format = E.Retail and '[classcolor][name] [difficultycolor][smartlevel]' or '[classcolor][name:medium] [difficultycolor][smartlevel]'
 P.unitframe.units.party.petsGroup.name.text_format = E.Retail and '[classcolor][name]' or '[classcolor][name:short]'
@@ -2835,35 +3041,56 @@ P.unitframe.units.party.power.height = 7
 P.unitframe.units.party.power.position = 'RIGHT'
 P.unitframe.units.party.power.text_format = E.Retail and '||cFF007ACC[perpp<%]||r' or '[powercolor][power:current:shortvalue]'
 P.unitframe.units.party.power.xOffset = -2
-P.unitframe.units.party.targetsGroup.name.text_format = E.Retail and '[classcolor][name] [difficultycolor][smartlevel]' or '[classcolor][name:medium] [difficultycolor][smartlevel]'
-P.unitframe.units.party.targetsGroup.enable = false
 P.unitframe.units.party.targetsGroup.buffIndicator = nil
+P.unitframe.units.party.targetsGroup.enable = false
 P.unitframe.units.party.targetsGroup.healPrediction = nil
+P.unitframe.units.party.targetsGroup.name.text_format = E.Retail and '[classcolor][name] [difficultycolor][smartlevel]' or '[classcolor][name:medium] [difficultycolor][smartlevel]'
+
+P.unitframe.units.party.buffs.filterLists.group1.enable = true
+P.unitframe.units.party.buffs.filterLists.group1.filter = 'HELPFUL||BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.party.buffs.filterLists.group2.enable = true
+P.unitframe.units.party.buffs.filterLists.group2.filter = 'HELPFUL||EXTERNAL_DEFENSIVE'
+
+P.unitframe.units.party.debuffs.filterLists.group1.enable = true
+P.unitframe.units.party.debuffs.filterLists.group1.filter = 'HARMFUL||RAID'
+P.unitframe.units.party.debuffs.filterLists.group1.useBlocklist = true
+P.unitframe.units.party.debuffs.filterLists.group2.enable = true
+P.unitframe.units.party.debuffs.filterLists.group2.filter = 'HARMFUL||!RAID'
+P.unitframe.units.party.debuffs.filterLists.group2.candidates.isBossOrRoleAura = true
+P.unitframe.units.party.debuffs.filterLists.group2.candidates.isFromPlayerOrPlayerPet = 1
+P.unitframe.units.party.debuffs.filterLists.group2.useBlocklist = true
+P.unitframe.units.party.debuffs.filterLists.group3.enable = true
+P.unitframe.units.party.debuffs.filterLists.group3.filter = 'HARMFUL||!RAID'
+P.unitframe.units.party.debuffs.filterLists.group3.candidates.isPriorityAura = true
+P.unitframe.units.party.debuffs.filterLists.group3.candidates.isBossOrRoleAura = 1
+P.unitframe.units.party.debuffs.filterLists.group3.candidates.isFromPlayerOrPlayerPet = 1
+P.unitframe.units.party.debuffs.filterLists.group3.useBlocklist = true
+P.unitframe.units.party.debuffs.filterLists.group4.enable = true
+P.unitframe.units.party.debuffs.filterLists.group4.filter = 'HARMFUL||DISPELLABLE||!RAID'
+P.unitframe.units.party.debuffs.filterLists.group4.candidates.isBossOrRoleAura = 1
+P.unitframe.units.party.debuffs.filterLists.group4.candidates.isPriorityAura = 1
+P.unitframe.units.party.debuffs.filterLists.group4.useBlocklist = true
+P.unitframe.units.party.debuffs.filterLists.group5.enable = true
+P.unitframe.units.party.debuffs.filterLists.group5.filter = 'HARMFUL||!RAID||!DISPELLABLE'
+P.unitframe.units.party.debuffs.filterLists.group5.candidates.isBossOrRoleAura = 1
+P.unitframe.units.party.debuffs.filterLists.group5.candidates.isPriorityAura = 1
+P.unitframe.units.party.debuffs.filterLists.group5.candidates.isFromPlayerOrPlayerPet = 1
+P.unitframe.units.party.debuffs.filterLists.group5.useBlocklist = true
 
 P.unitframe.units.raid1 = CopyTable(P.unitframe.units.party)
-P.unitframe.units.raid1.customName = ''
-P.unitframe.units.raid1.groupsPerRowCol = 1
-P.unitframe.units.raid1.groupBy = 'GROUP'
-P.unitframe.units.raid1.buffs.isAuraBigDefensive = true
-P.unitframe.units.raid1.buffs.isAuraBigDefensivePlayer = true
-P.unitframe.units.raid1.buffs.isAuraRaidInCombatPlayer = true
-P.unitframe.units.raid1.buffs.isAuraExternalDefensive = true
-P.unitframe.units.raid1.buffs.isAuraExternalDefensivePlayer = true
+P.unitframe.units.raid1.buffIndicator.enable = true
 P.unitframe.units.raid1.buffs.numrows = 1
 P.unitframe.units.raid1.buffs.perrow = 3
-P.unitframe.units.raid1.buffIndicator.enable = true
-P.unitframe.units.raid1.privateAuras.enable = true
-P.unitframe.units.raid1.privateAuras.countdownNumbers = false
-P.unitframe.units.raid1.privateAuras.icon.size = 18
-P.unitframe.units.raid1.privateAuras.parent.point = 'CENTER'
 P.unitframe.units.raid1.castbar = nil
 P.unitframe.units.raid1.CombatIcon.enable = false
+P.unitframe.units.raid1.customName = ''
 P.unitframe.units.raid1.debuffs.enable = false
-P.unitframe.units.raid1.debuffs.useBlocklist = true
 P.unitframe.units.raid1.debuffs.numrows = 1
 P.unitframe.units.raid1.debuffs.perrow = 3
 P.unitframe.units.raid1.debuffs.priority = 'Blacklist,Dispellable,RaidDebuffs'
 P.unitframe.units.raid1.debuffs.sizeOverride = 0
+P.unitframe.units.raid1.groupBy = 'GROUP'
+P.unitframe.units.raid1.groupsPerRowCol = 1
 P.unitframe.units.raid1.growthDirection = 'RIGHT_DOWN'
 P.unitframe.units.raid1.health.position = 'BOTTOM'
 P.unitframe.units.raid1.health.text_format = E.Retail and '||cFF29CC00[perhp<%]||r' or '[healthcolor][health:deficit:shortvalue]'
@@ -2883,33 +3110,71 @@ P.unitframe.units.raid1.targetsGroup = nil
 P.unitframe.units.raid1.visibility = E.Retail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
 P.unitframe.units.raid1.width = 80
 
+P.unitframe.units.raid1.buffs.filterLists.group1.enable = true
+P.unitframe.units.raid1.buffs.filterLists.group1.filter = 'HELPFUL||BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.raid1.buffs.filterLists.group2.enable = true
+P.unitframe.units.raid1.buffs.filterLists.group2.filter = 'HELPFUL||EXTERNAL_DEFENSIVE'
+
+P.unitframe.units.raid1.debuffs.filterLists.group1.enable = true
+P.unitframe.units.raid1.debuffs.filterLists.group1.filter = 'HARMFUL||RAID'
+P.unitframe.units.raid1.debuffs.filterLists.group1.useBlocklist = true
+P.unitframe.units.raid1.debuffs.filterLists.group2.enable = true
+P.unitframe.units.raid1.debuffs.filterLists.group2.filter = 'HARMFUL||!RAID'
+P.unitframe.units.raid1.debuffs.filterLists.group2.candidates.isBossOrRoleAura = true
+P.unitframe.units.raid1.debuffs.filterLists.group2.candidates.isFromPlayerOrPlayerPet = 1
+P.unitframe.units.raid1.debuffs.filterLists.group2.useBlocklist = true
+P.unitframe.units.raid1.debuffs.filterLists.group3.enable = true
+P.unitframe.units.raid1.debuffs.filterLists.group3.filter = 'HARMFUL||!RAID'
+P.unitframe.units.raid1.debuffs.filterLists.group3.candidates.isPriorityAura = true
+P.unitframe.units.raid1.debuffs.filterLists.group3.candidates.isBossOrRoleAura = 1
+P.unitframe.units.raid1.debuffs.filterLists.group3.candidates.isFromPlayerOrPlayerPet = 1
+P.unitframe.units.raid1.debuffs.filterLists.group3.useBlocklist = true
+P.unitframe.units.raid1.debuffs.filterLists.group4.enable = true
+P.unitframe.units.raid1.debuffs.filterLists.group4.filter = 'HARMFUL||DISPELLABLE||!RAID'
+P.unitframe.units.raid1.debuffs.filterLists.group4.candidates.isBossOrRoleAura = 1
+P.unitframe.units.raid1.debuffs.filterLists.group4.candidates.isPriorityAura = 1
+P.unitframe.units.raid1.debuffs.filterLists.group4.useBlocklist = true
+P.unitframe.units.raid1.debuffs.filterLists.group5.enable = true
+P.unitframe.units.raid1.debuffs.filterLists.group5.filter = 'HARMFUL||!RAID||!DISPELLABLE'
+P.unitframe.units.raid1.debuffs.filterLists.group5.candidates.isBossOrRoleAura = 1
+P.unitframe.units.raid1.debuffs.filterLists.group5.candidates.isPriorityAura = 1
+P.unitframe.units.raid1.debuffs.filterLists.group5.candidates.isFromPlayerOrPlayerPet = 1
+P.unitframe.units.raid1.debuffs.filterLists.group5.useBlocklist = true
+
 P.unitframe.units.raid2 = CopyTable(P.unitframe.units.raid1)
 P.unitframe.units.raid2.debuffs.anchorPoint = 'RIGHT'
 P.unitframe.units.raid2.height = 27
 P.unitframe.units.raid2.numGroups = 5
-P.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
-P.unitframe.units.raid2.rdebuffs.enable = false
 P.unitframe.units.raid2.power.enable = false
+P.unitframe.units.raid2.rdebuffs.enable = false
 P.unitframe.units.raid2.roleIcon.enable = false
+P.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
 
 P.unitframe.units.raid3 = CopyTable(P.unitframe.units.raid2)
 P.unitframe.units.raid3.numGroups = 8
 P.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
 
 P.unitframe.units.raidpet = CopyTable(P.unitframe.units.raid1)
-P.unitframe.units.raidpet.pvpclassificationindicator = nil
-P.unitframe.units.raidpet.enable = false
-P.unitframe.units.raidpet.raidWideSorting = true
 P.unitframe.units.raidpet.buffs.numrows = 1
 P.unitframe.units.raidpet.buffs.perrow = 3
 P.unitframe.units.raidpet.buffs.priority = 'Blacklist,Whitelist'
 P.unitframe.units.raidpet.debuffs.numrows = 1
 P.unitframe.units.raidpet.debuffs.perrow = 3
 P.unitframe.units.raidpet.debuffs.priority = 'Blacklist,Dispellable,RaidDebuffs'
+P.unitframe.units.raidpet.enable = false
 P.unitframe.units.raidpet.growthDirection = 'DOWN_RIGHT'
 P.unitframe.units.raidpet.height = 30
 P.unitframe.units.raidpet.numGroups = 8
+P.unitframe.units.raidpet.pvpclassificationindicator = nil
+P.unitframe.units.raidpet.raidWideSorting = true
 P.unitframe.units.raidpet.visibility = '[@raid1,exists] show; hide'
+
+P.unitframe.units.raidpet.buffs.filterLists = CopyTable(defaultFilterList)
+P.unitframe.units.raidpet.buffs.filterLists.group1.useBlocklist = true
+
+P.unitframe.units.raidpet.debuffs.filterLists = CopyTable(defaultFilterList)
+P.unitframe.units.raidpet.debuffs.filterLists.group1.filter = 'HARMFUL'
+P.unitframe.units.raidpet.debuffs.filterLists.group1.useBlocklist = true
 
 P.unitframe.units.tank.buffs.numrows = 1
 P.unitframe.units.tank.buffs.perrow = 6
@@ -2923,18 +3188,53 @@ P.unitframe.units.tank.debuffs.yOffset = 1
 P.unitframe.units.tank.name.position = 'CENTER'
 P.unitframe.units.tank.name.text_format = E.Retail and '[classcolor][name]' or '[classcolor][name:medium]'
 P.unitframe.units.tank.name.xOffset = 0
-P.unitframe.units.tank.privateAuras.enable = true
-P.unitframe.units.tank.privateAuras.countdownNumbers = false
-P.unitframe.units.tank.privateAuras.icon.size = 18
-P.unitframe.units.tank.privateAuras.parent.point = 'CENTER'
+P.unitframe.units.tank.targetsGroup.buffIndicator = nil
+P.unitframe.units.tank.targetsGroup.enable = true
+P.unitframe.units.tank.targetsGroup.healPrediction = nil
 P.unitframe.units.tank.targetsGroup.name.position = 'CENTER'
 P.unitframe.units.tank.targetsGroup.name.text_format = E.Retail and '[classcolor][name]' or '[classcolor][name:medium]'
 P.unitframe.units.tank.targetsGroup.name.xOffset = 0
-P.unitframe.units.tank.targetsGroup.enable = true
-P.unitframe.units.tank.targetsGroup.buffIndicator = nil
-P.unitframe.units.tank.targetsGroup.healPrediction = nil
 
 P.unitframe.units.assist = CopyTable(P.unitframe.units.tank)
+
+-- keep these under the copy
+P.unitframe.units.tank.buffs.filterLists.group1.enable = true
+P.unitframe.units.tank.buffs.filterLists.group1.filter = 'HELPFUL||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.tank.buffs.filterLists.group1.candidates.isBossOrRoleAura = true
+P.unitframe.units.tank.buffs.filterLists.group2.enable = true
+P.unitframe.units.tank.buffs.filterLists.group2.filter = 'HELPFUL||IMPORTANT||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.tank.buffs.filterLists.group2.candidates.isBossOrRoleAura = 1
+P.unitframe.units.tank.buffs.filterLists.group3.enable = true
+P.unitframe.units.tank.buffs.filterLists.group3.filter = 'HELPFUL||RAID||!IMPORTANT||!BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.tank.buffs.filterLists.group3.candidates.isBossOrRoleAura = 1
+P.unitframe.units.tank.buffs.filterLists.group3.useBlocklist = true
+P.unitframe.units.tank.buffs.filterLists.group4.enable = true
+P.unitframe.units.tank.buffs.filterLists.group4.filter = 'HELPFUL||BIG_DEFENSIVE||!EXTERNAL_DEFENSIVE'
+P.unitframe.units.tank.buffs.filterLists.group5.enable = true
+P.unitframe.units.tank.buffs.filterLists.group5.filter = 'HELPFUL||EXTERNAL_DEFENSIVE'
+
+P.unitframe.units.tank.debuffs.filterLists.group1.enable = true
+P.unitframe.units.tank.debuffs.filterLists.group1.filter = 'HARMFUL||IMPORTANT||!CROWD_CONTROL'
+P.unitframe.units.tank.debuffs.filterLists.group2.enable = true
+P.unitframe.units.tank.debuffs.filterLists.group2.filter = 'HARMFUL||RAID_PLAYER_DISPELLABLE||!CROWD_CONTROL||!IMPORTANT'
+P.unitframe.units.tank.debuffs.filterLists.group2.useBlocklist = true
+P.unitframe.units.tank.debuffs.filterLists.group3.enable = true
+P.unitframe.units.tank.debuffs.filterLists.group3.filter = 'HARMFUL||CROWD_CONTROL'
+P.unitframe.units.tank.debuffs.filterLists.group4.enable = true
+P.unitframe.units.tank.debuffs.filterLists.group4.filter = 'HARMFUL||RAID||!CROWD_CONTROL||!IMPORTANT||!RAID_PLAYER_DISPELLABLE'
+P.unitframe.units.tank.debuffs.filterLists.group4.useBlocklist = true
+P.unitframe.units.tank.debuffs.filterLists.group5.enable = true
+P.unitframe.units.tank.debuffs.filterLists.group5.filter = 'HARMFUL||!CROWD_CONTROL||!IMPORTANT||!RAID_PLAYER_DISPELLABLE||!RAID'
+P.unitframe.units.tank.debuffs.filterLists.group5.candidates.isPriorityAura = true
+P.unitframe.units.tank.debuffs.filterLists.group5.useBlocklist = true
+
+P.unitframe.units.assist.buffs.filterLists.group1.enable = false
+P.unitframe.units.assist.buffs.filterLists.group1.filter = 'HELPFUL'
+P.unitframe.units.assist.buffs.filterLists.group1.useBlocklist = true
+
+P.unitframe.units.assist.debuffs.filterLists.group1.enable = false
+P.unitframe.units.assist.debuffs.filterLists.group1.filter = 'HARMFUL'
+P.unitframe.units.assist.debuffs.filterLists.group1.useBlocklist = true
 
 for i, classTag in next, { 'DRUID', 'HUNTER', 'MAGE', 'PALADIN', 'PRIEST', 'ROGUE', 'SHAMAN', 'WARLOCK', 'WARRIOR', 'DEATHKNIGHT', 'MONK', 'DEMONHUNTER', 'EVOKER' } do
 	P.unitframe.units.party['CLASS'..i] = classTag
@@ -2950,81 +3250,6 @@ for i, role in next, { 'TANK', 'HEALER', 'DAMAGER' } do
 		P.unitframe.units['raid'..k]['ROLE'..i] = role
 	end
 	P.unitframe.units.raidpet['ROLE'..i] = role
-end
-
-do
-	P.cooldown = {
-		enable = true
-	}
-
-	local defaults = {
-		enable = true,
-
-		reverse = false,
-		hideBling = false,
-		hideNumbers = false,
-		altBling = false,
-		chargeText = true,
-		locText = true,
-
-		rotation = 0,
-		threshold = 0, -- seconds
-		minDuration = 1500, -- ms
-
-		colors = {
-			text = { r = 0.8, g = 0.8, b = 0.8, a = 1 },
-			edge = { r = 0, g = 0, b = 0, a = 1 },
-			edgeCharge = { r = 0.6, g = 1, b = 0, a = 1 },
-			edgeLOC = { r = 1, g = 0.2, b = 0.8, a = 1 },
-			swipe = { r = 0, g = 0, b = 0, a = 0.7 },
-			swipeCharge = { r = 0, g = 0.6, b = 1, a = 0.3 },
-			swipeLOC = { r = 1, g = 0.2, b = 0.6, a = 0.3 },
-		},
-
-		position = 'CENTER',
-		offsetX = 0,
-		offsetY = 0,
-
-		font = 'Expressway',
-		fontOutline = 'OUTLINE',
-		fontSize = 16,
-	}
-
-	local useAltBling = not E.Classic and not E.TBC and not E.Wrath
-	for _, key in next, { 'global', 'actionbar', 'auras', 'bags', 'nameplates', 'unitframe', 'aurabars', 'auraindicator', 'cdmanager', 'totemtracker', 'bossbutton', 'zonebutton', 'targetaura' } do
-		local object = CopyTable(defaults)
-
-		if key == 'global' then
-			object.fontSize = 18
-		elseif key == 'aurabars' then
-			object.position = 'RIGHT'
-			object.offsetX = -10
-		elseif key == 'auraindicator' then
-			object.reverse = true
-			object.hideNumbers = true
-			object.fontSize = 10
-		elseif key == 'auras' then
-			object.reverse = true
-			object.position = 'BOTTOM'
-			object.offsetY = -3
-		elseif key == 'unitframe' then
-			object.reverse = true
-		elseif key == 'nameplates' then
-			object.reverse = true
-		elseif key == 'actionbar' then
-			object.threshold = 300
-			object.altBling = useAltBling
-		elseif key == 'targetaura' then
-			object.threshold = 300
-
-			local color = object.colors.text
-			if color then
-				color.r, color.g, color.b = 1, 0.6, 0
-			end
-		end
-
-		P.cooldown[key] = object
-	end
 end
 
 --Actionbar
@@ -3308,6 +3533,150 @@ P.actionbar.bar5.enabled = true
 P.actionbar.bar5.buttons = 6
 P.actionbar.bar5.buttonsPerRow = 6
 
+do
+	P.cooldown = {
+		enable = true
+	}
+
+	local colors = {
+		expiring = { r = 1, g = 0.2, b = 0.2 },
+		seconds = { r = 1, g = 1, b = 0.2 },
+		minutes = { r = 1, g = 1, b = 1 },
+		hours = { r = 0.4, g = 1, b = 1 },
+		days = { r = 0.4, g = 0.4, b = 1 }
+	}
+
+	local thresholds = {
+		override = false,
+		expireThreshold = 4,
+		secondsThreshold = 11,
+		colors = CopyTable(colors)
+	}
+
+	local defaults = {
+		enable = true,
+
+		roundup = false,
+		reverse = false,
+		hideBling = false,
+		hideNumbers = false,
+		altBling = false,
+		chargeText = true,
+		locText = true,
+
+		rotation = 0,
+		threshold = 0, -- seconds, different than thresholds
+		minDuration = 1500, -- ms
+		thresholdText = CopyTable(thresholds),
+
+		colors = {
+			text = { r = 0.8, g = 0.8, b = 0.8, a = 1 },
+			edge = { r = 0, g = 0, b = 0, a = 1 },
+			edgeCharge = { r = 0.6, g = 1, b = 0, a = 1 },
+			edgeLOC = { r = 1, g = 0.2, b = 0.8, a = 1 },
+			swipe = { r = 0, g = 0, b = 0, a = 0.7 },
+			swipeCharge = { r = 0, g = 0.6, b = 1, a = 0.3 },
+			swipeLOC = { r = 1, g = 0.2, b = 0.6, a = 0.3 }
+		},
+
+		position = 'CENTER',
+		offsetX = 0,
+		offsetY = 0,
+
+		font = 'Expressway',
+		fontOutline = 'OUTLINE',
+		fontSize = 16,
+	}
+
+	local auras = { 'auras', 'buffs', 'debuffs', 'aurabar', 'buffIndicator' }
+	local function OverrideUnits(units)
+		local override = {}
+		for unit, main in next, units do
+			if unit ~= 'TARGET' then -- ignore target nameplate
+				local data = override[unit]
+				if not data then
+					data = {}
+					override[unit] = data
+				end
+
+				for _, key in next, auras do
+					if main[key] then
+						local opt = data[key]
+						if not opt then
+							opt = {}
+							data[key] = opt
+						end
+
+						opt = CopyTable(defaults)
+						opt.enable = false
+
+						data[key] = opt
+					end
+				end
+			end
+		end
+
+		return override
+	end
+
+	local function OverrideBars(db)
+		local override = {}
+		for key, data in next, db do
+			if type(data) == 'table' and data.buttons then
+				local opt = CopyTable(defaults)
+				opt.enable = false
+				opt.thresholdLoc = CopyTable(thresholds)
+				opt.thresholdCharge = CopyTable(thresholds)
+
+				override[key] = opt
+			end
+		end
+
+		return override
+	end
+
+	local useAltBling = not E.Classic and not E.TBC and not E.Wrath
+	for _, key in next, { 'global', 'actionbar', 'auras', 'bags', 'nameplates', 'unitframe', 'aurabars', 'auraindicator', 'cdmanager', 'totemtracker', 'bossbutton', 'zonebutton', 'targetaura' } do
+		local object = CopyTable(defaults)
+
+		if key == 'global' then
+			object.fontSize = 18
+		elseif key == 'aurabars' then
+			object.position = 'RIGHT'
+			object.offsetX = -10
+		elseif key == 'auraindicator' then
+			object.reverse = true
+			object.hideNumbers = true
+			object.fontSize = 10
+		elseif key == 'auras' then
+			object.reverse = true
+			object.position = 'BOTTOM'
+			object.offsetY = -3
+		elseif key == 'unitframe' then
+			object.reverse = true
+			object.override = OverrideUnits(P.unitframe.units)
+		elseif key == 'nameplates' then
+			object.reverse = true
+			object.override = OverrideUnits(P.nameplates.units)
+		elseif key == 'actionbar' then
+			object.threshold = 300
+			object.altBling = useAltBling
+			object.override = OverrideBars(P.actionbar)
+			object.thresholdLoc = CopyTable(thresholds)
+			object.thresholdCharge = CopyTable(thresholds)
+		elseif key == 'targetaura' then
+			object.threshold = 300
+
+			local color = object.colors.text
+			if color then
+				color.r, color.g, color.b = 1, 0.6, 0
+			end
+		end
+
+		P.cooldown[key] = object
+	end
+end
+
 -- This allows movers positions to be reset to whatever profile is being used
 E.LayoutMoverPositions = {
 	ALL = {
@@ -3358,7 +3727,6 @@ E.LayoutMoverPositions = {
 		ObjectiveFrameMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-163,-325',
 		PetAB = 'RIGHT,ElvUIParent,RIGHT,-4,0',
 		PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-75',
-		PrivateAurasMover = 'TOPRIGHT,ElvUI_MinimapHolder,BOTTOMLEFT,-10,-4',
 		PrivateRaidWarningMover = 'TOP,RaidBossEmoteFrame,TOP,0,0',
 		QueueStatusMover = 'BOTTOMRIGHT,ElvUI_MinimapHolder,BOTTOMRIGHT,-5,25',
 		ReputationBarMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-243',
@@ -3462,7 +3830,6 @@ E.LayoutMoverPositions = {
 		PlayerPortraitMover = 'BOTTOM,ElvUIParent,BOTTOM,-365,163',
 		PlayerPowerBarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,209',
 		PowerBarContainerMover = 'TOP,ElvUIParent,TOP,0,-46',
-		PrivateAurasMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-4,-177',
 		PrivateRaidWarningMover = 'TOP,ElvUIParent,TOP,0,-240',
 		ProfessionsMover = 'TOPRIGHT,ElvUIParent,TOPRIGHT,-3,-184',
 		PvPMover = 'TOP,ElvUIParent,TOP,0,-28',

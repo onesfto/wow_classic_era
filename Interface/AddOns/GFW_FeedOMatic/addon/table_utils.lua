@@ -1,8 +1,7 @@
 ---@type FeedOMatic
-local addonName, _ = ...
-local addon = _G.LibStub("AceAddon-3.0"):GetAddon(addonName)
+local _, addon = ...
 ---@class TableUtils
-local tableUtils = addon:NewModule("TableUtils")
+local tableUtils = addon.tableUtils
 
 -- Merge: returns the union of two tables (without repeated elements)
 function tableUtils:Merge(table1, table2)

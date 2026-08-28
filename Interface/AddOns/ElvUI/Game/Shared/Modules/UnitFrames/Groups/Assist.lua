@@ -22,15 +22,14 @@ function UF:Construct_AssistFrames()
 	self.HealthPrediction = UF:Construct_HealComm(self)
 	self.Fader = UF:Construct_Fader()
 	self.Cutaway = UF:Construct_Cutaway(self)
-	self.PrivateAuras = UF:Construct_PrivateAuras(self)
 
 	if not isChild then
-		self.Auras = UF:Construct_Auras(self)
-		self.Buffs = UF:Construct_Buffs(self)
-		self.Debuffs = UF:Construct_Debuffs(self)
 		self.AuraWatch = UF:Construct_AuraWatch(self)
 		self.RaidDebuffs = UF:Construct_RaidDebuffs(self)
 		self.AuraHighlight = UF:Construct_AuraHighlight(self)
+		self.Auras = UF:Construct_Auras(self)
+		self.Buffs = UF:Construct_Buffs(self)
+		self.Debuffs = UF:Construct_Debuffs(self)
 	end
 
 	return self

@@ -5,9 +5,6 @@
 ---@type FeedOMatic
 local _, addon = ...
 
----@type BMUtils
-local utils = _G.LibStub('BMUtils')
-
 FOM_Cooking = {};
 
 function FOM_ScanTradeSkill()
@@ -21,13 +18,14 @@ function FOM_ScanTradeSkill()
 	end
 
 	for recipeID, recipeInfo in pairs(addon.professions.currentProfession:GetRecipes()) do
-		local createdItemLink = recipeInfo["link"]
-		if createdItemLink ~= nil then
-			local difficulty = utils.difficultyNameToNum(recipeInfo["difficulty"]);
-			local _, _, id = string.find(createdItemLink, "item:(%d+)");
-			local createdItemID = tonumber(id);
 
-			local reagents = addon.professions.currentProfession:GetReagents(recipeID)
+		local difficulty = addon.utils:DifficultyToNum(recipeInfo["difficulty"]);
+
+		local createdItemLink = recipeInfo["link"]
+		local _, _, id = string.find(createdItemLink, "item:(%d+)");
+		local createdItemID = tonumber(id);
+
+		local reagents = addon.professions.currentProfession:GetReagents(recipeID)
 
 			for _, reagent in pairs(reagents) do
 				local reagentLink = reagent["reagentLink"]
@@ -40,6 +38,5 @@ function FOM_ScanTradeSkill()
 					FOM_Cooking[reagentItemID][createdItemID] = difficulty;
 				end
 			end
-		end
 	end
 end

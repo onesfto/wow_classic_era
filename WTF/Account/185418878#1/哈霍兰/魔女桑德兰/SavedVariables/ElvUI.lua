@@ -2,6 +2,7 @@
 ElvCharacterDB = {
 ["ConvertKeybindings"] = true,
 ["ChatEditHistory"] = {
+"/PULL 10",
 "/mrt",
 "/KB",
 "/s |cff1eff00|Hitem:11288::::::::10:::::::::|h[强效魔法杖]|h|r",
@@ -12,6 +13,7 @@ ElvCharacterDB = {
 "/emove",
 "/EC",
 "/BIAOGE",
+"/pig",
 "/biaoge",
 "/PIG",
 "/RL",
@@ -20,8 +22,6 @@ ElvCharacterDB = {
 "/dbm",
 "/wa",
 "/WA",
-"/pig",
-"/cw 点星辰 睡觉 还是龙虎",
 },
 ["ChatHistoryLog"] = {
 },

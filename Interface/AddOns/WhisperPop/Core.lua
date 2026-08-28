@@ -437,7 +437,9 @@ function addon:CHAT_MSG_WHISPER(...)
 	else
 		-- Spam filters only applied on incoming non-GM whispers, other cases make no sense
 		if self.db.applyFilters then
-			local filtersList = ChatFrame_GetMessageEventFilters("CHAT_MSG_WHISPER")
+			-- Classic Era 1.15.x 没有 ChatFrame_GetMessageEventFilters，运行时判空，缺失则跳过垃圾过滤
+			local getFilters = ChatFrame_GetMessageEventFilters or _G.ChatFrame_GetMessageEventFilters
+			local filtersList = getFilters and getFilters("CHAT_MSG_WHISPER")
 			if filtersList then
 				local _, func
 				for _, func in ipairs(filtersList) do

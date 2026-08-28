@@ -79,7 +79,7 @@ function UF:ClassPower_GetColor(colors, powerType)
 	local all, power = colors.classResources, colors.power
 	local mine = all and all[E.myclass]
 
-	return all, powerType ~= 'MANA' and (all[UF.ClassPowerColors[powerType]] or (mine and mine[powerType]) or mine), power[powerType] or power.MANA
+	return all, powerType ~= 'MANA' and (all[UF.ClassPowerColors[powerType]] or (mine and mine[powerType]) or mine), power[powerType] or power.MANA or FALLBACK
 end
 
 function UF:ClassPower_BarColor(bar, index, colors, powers, isRunes)
@@ -657,7 +657,7 @@ function UF:PostColorAdditionalPower(unit, color)
 		if pred and pred.enable then
 			UF:SetStatusBarColor(bar, pred.additional.r, pred.additional.g, pred.additional.b)
 		else
-			UF:SetStatusBarColor(bar, r * UF.multiplierPrediction, g * UF.multiplierPrediction, b * UF.multiplierPrediction)
+			UF:SetStatusBarColor(bar, r, g, b, nil, UF.multiplierPrediction)
 		end
 	end
 end

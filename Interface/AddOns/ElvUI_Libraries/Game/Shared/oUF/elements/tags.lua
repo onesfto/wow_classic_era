@@ -71,6 +71,7 @@ local Private = oUF.Private
 
 local validateEvent = Private.validateEvent
 local validateUnit = Private.validateUnit
+local isUnitEvent = Private.isUnitEvent
 
 local _G = _G
 local next, type, unpack = next, type, unpack
@@ -95,9 +96,9 @@ local GetSpecialization = C_SpecializationInfo.GetSpecialization or GetSpecializ
 local CreateFrame = CreateFrame
 
 local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
-local GenerateTextColorCode = C_ColorUtil and C_ColorUtil.GenerateTextColorCode
-local TruncateWhenZero = C_StringUtil and C_StringUtil.TruncateWhenZero
-local WrapString = C_StringUtil and C_StringUtil.WrapString
+local GenerateTextColorCode = C_ColorUtil.GenerateTextColorCode
+local TruncateWhenZero = C_StringUtil.TruncateWhenZero
+local WrapString = C_StringUtil.WrapString
 
 local IsInRaid = IsInRaid
 local IsResting = IsResting
@@ -127,6 +128,7 @@ local UnitPowerMissing = UnitPowerMissing
 local UnitPowerPercent = UnitPowerPercent
 local UnitPowerType = UnitPowerType
 local UnitSex = UnitSex
+local UnitRace = UnitRace
 local UnitThreatSituation = UnitThreatSituation
 
 -- GLOBALS: Hex, _TAGS, _COLORS
@@ -161,8 +163,7 @@ local tagFunctions = {
 	maxhp = UnitHealthMax,
 	maxpp = UnitPowerMax,
 	class = UnitClass,
-	faction = UnitFactionGroup,
-	race = UnitRace,
+	faction = UnitFactionGroup
 }
 
 local tagFuncs = setmetatable(tagFunctions, {
@@ -188,6 +189,13 @@ local tagFuncs = setmetatable(tagFunctions, {
 		rawset(self, key, val)
 	end,
 })
+
+tagFunctions.race = function(u)
+	local unitRace = UnitRace(u)
+	if oUF:NotSecretValue(unitRace) then
+		return unitRace
+	end
+end
 
 tagFunctions.affix = function(u)
 	local c = UnitClassification(u)
@@ -292,13 +300,15 @@ tagFunctions.holypower = function()
 end
 
 tagFunctions.leader = function(u)
-	if(UnitIsGroupLeader(u)) then
+	local isLeader = UnitIsGroupLeader(u)
+	if(oUF:NotSecretValue(isLeader) and isLeader) then
 		return 'L'
 	end
 end
 
 tagFunctions.leaderlong = function(u)
-	if(UnitIsGroupLeader(u)) then
+	local isLeader = UnitIsGroupLeader(u)
+	if(oUF:NotSecretValue(isLeader) and isLeader) then
 		return 'Leader'
 	end
 end
@@ -407,22 +417,23 @@ tagFunctions.powercolor = function(u)
 end
 
 tagFunctions.pvp = function(u)
-	if(UnitIsPVP(u)) then
-		return 'PvP'
-	end
+	local unitPVP = UnitIsPVP(u)
+	if oUF:IsSecretValue(unitPVP) or not unitPVP then return end
+
+	return 'PvP'
 end
 
 tagFunctions.raidcolor = function(u)
-	local _, class = UnitClass(u)
-	if(class) then
-		return Hex(_COLORS.class[class])
+	local _, classToken = UnitClass(u)
+	if oUF:NotSecretValue(classToken) and classToken then
+		return Hex(_COLORS.class[classToken])
 	else
 		local id = u:match('arena(%d)$')
-		if(id) then
-			local specID = GetArenaOpponentSpec(tonumber(id))
-			if(specID and specID > 0) then
-				_, _, _, _, _, class = GetSpecializationInfoByID(specID)
-				return Hex(_COLORS.class[class])
+		local specID = id and GetArenaOpponentSpec(tonumber(id))
+		if specID and specID > 0 then
+			local _, _, _, _, _, classSpec = GetSpecializationInfoByID(specID)
+			if oUF:NotSecretValue(classSpec) and classSpec then
+				return Hex(_COLORS.class[classSpec])
 			end
 		end
 	end
@@ -456,6 +467,10 @@ end
 
 tagFunctions.sex = function(u)
 	local s = UnitSex(u)
+	if oUF:IsSecretValue(s) then
+		return
+	end
+
 	if(s == 2) then
 		return 'Male'
 	elseif(s == 3) then
@@ -628,7 +643,7 @@ local function UpdateTimer(frame, elapsed)
 	local total = frame.total
 	if total >= frame.timer then
 		for fs, parent in next, frame.strings do -- isForced prevents spam in ElvUI
-			if not parent.isForced and parent:IsShown() and oUF:UnitExists(parent.unit) then
+			if not parent.isForced and parent:IsShown() and oUF:UnitExists(parent.__unit) then
 				fs:UpdateTag()
 			end
 		end
@@ -729,8 +744,8 @@ local function GetTagFunc(tagstr)
 
 		func = function(self)
 			local parent = self.parent
-			local unit = parent.unit
-			local realUnit = self.overrideUnit and parent.realUnit
+			local unit = parent.__unit
+			local realUnit = self.__overrideUnit and parent.__realUnit
 			local customArgs = parent.__customargs[self]
 
 			_ENV._FRAME = parent
@@ -772,7 +787,7 @@ local function ShouldUpdateTag(frame, event, unit)
 	if unitlessEvents[event] then
 		return true
 	elseif validateUnit(unit) and oUF:UnitExists(unit) then
-		if frame.unit == unit then
+		if frame.__unit == unit then
 			return true
 		else
 			local allowExtra = eventExtraUnits[frame]
@@ -860,7 +875,11 @@ local function RegisterEvent(frame, event, fs)
 		if not handler.eventStrings[event] then
 			handler.eventStrings[event] = {}
 
-			handler:RegisterEvent(event)
+			if isUnitEvent(event, frame.__unit) then
+				handler:RegisterUnitEvent(event, frame.__unit)
+			else
+				handler:RegisterEvent(event)
+			end
 		end
 
 		handler.eventStrings[event][fs] = true
@@ -874,6 +893,17 @@ local function RegisterEvents(frame, fs, ts)
 			for event in tagevents:gmatch('%S+') do
 				RegisterEvent(frame, event, fs)
 			end
+		end
+	end
+end
+
+function oUF:UpdateTagUnits(frame)
+	local handler = eventHandlers[frame]
+	if not handler then return end
+
+	for event in next, handler.eventStrings do
+		if isUnitEvent(event, frame.__unit) then
+			handler:RegisterUnitEvent(event, frame.__unit)
 		end
 	end
 end
@@ -948,7 +978,7 @@ local function Tag(self, fs, ts, arg1, ...)
 		self.__customargs[fs] = nil
 	end
 
-	if not self.isNamePlate then
+	if not self.isNameplate then
 		if ts:find('%[mouseover%]') then
 			self.__mousetags[fs] = true
 			fs:SetAlpha(0)
@@ -1031,12 +1061,12 @@ end
 
 oUF.Tags = {
 	Env = _ENV,
+	Vars = vars,
 	Methods = tagFuncs,
 	Events = tagEvents,
 	Spells = tagSpells,
 	SharedEvents = unitlessEvents,
 	OnUpdateThrottle = onUpdateDelay,
-	Vars = vars,
 	RefreshMethods = function(_, tag)
 		if not tag then return end
 
@@ -1065,7 +1095,7 @@ oUF.Tags = {
 			end
 		end
 	end,
-	RefreshEvents = function(self, tag)
+	RefreshEvents = function(_, tag)
 		if not tag then return end
 
 		-- if a tag's name contains magic chars, there's a chance that string.match will fail to find the match
@@ -1075,8 +1105,8 @@ oUF.Tags = {
 			if StripTag(tagstr):match(tag) then
 				for fs, ts in next, taggedFontStrings do
 					if ts == tagstr then
-						UnregisterEvents(self, fs)
-						RegisterEvents(self, fs, tagstr)
+						UnregisterEvents(fs.parent, fs)
+						RegisterEvents(fs.parent, fs, tagstr)
 					end
 				end
 			end
