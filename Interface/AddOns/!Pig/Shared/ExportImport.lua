@@ -100,31 +100,9 @@ local pairs, next, select, frexp, inf = pairs, next, select, math.frexp, math.hu
 local error = function(msg) PIGprint("|cffFF0000"..msg.."|r") end
 local versions,versionsV = "!P","02"
 local biaptou =versions..versionsV
---冒号压缩
-local rep = string.rep
-local function ColonCompressor(data)
-    if type(data) ~= "string" then
-        return data
-    end
-    local result = data
-    for count = 9, 4, -1 do
-        local colonStr = rep(":", count)
-        local marker = "#" .. count
-        result = result:gsub(colonStr, marker)
-    end
-    return result
-end
-local function ColonDecompress(data)
-    if type(data) ~= "string" then
-        return data
-    end
-    local result = data
-    result = result:gsub("#([4-9])", function(count)
-        count = tonumber(count)
-        return rep(":", count)
-    end)
-    return result
-end
+
+local ColonCompressor = Fun.ColonCompressor
+local ColonDecompress = Fun.ColonDecompress
 --序列化部分 ===============
 local function SerializeStringHelper(ch)
     local n = strbyte(ch)

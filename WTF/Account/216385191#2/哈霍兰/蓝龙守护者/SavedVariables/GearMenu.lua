@@ -15,7 +15,7 @@ GearMenuConfiguration = {
 ["enableTooltips"] = true,
 ["enableUnequipSlot"] = true,
 ["enableRuneSlots"] = true,
-["firstTimeInitializationDone"] = true,
+["addonVersion"] = "v2.8.0",
 ["gearBars"] = {
 {
 ["showKeyBindings"] = true,
@@ -53,22 +53,18 @@ GearMenuConfiguration = {
 },
 ["displayName"] = "Default GearBar",
 ["isLocked"] = false,
-["gearSlotSize"] = 40,
+["changeMenuDirection"] = 1,
 ["position"] = {
-["point"] = "CENTER",
 ["posY"] = 0,
+["point"] = "CENTER",
 ["posX"] = 0,
 },
 ["orientation"] = 1,
-["changeSlotSize"] = 40,
 ["showCooldowns"] = true,
-["changeMenuDirection"] = 1,
+["changeSlotSize"] = 40,
+["gearSlotSize"] = 40,
 },
 },
-["quickChangeRules"] = {
-},
-["uiTheme"] = 2,
-["trinketMenuColumns"] = 4,
 ["profiles"] = {
 ["Default"] = {
 ["enableDragAndDrop"] = true,
@@ -93,5 +89,9 @@ GearMenuConfiguration = {
 ["enableSimpleTooltips"] = false,
 },
 },
-["addonVersion"] = "v2.8.0",
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 4,
+["quickChangeRules"] = {
+},
+["firstTimeInitializationDone"] = true,
 }

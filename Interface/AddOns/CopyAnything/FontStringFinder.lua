@@ -1,7 +1,5 @@
+---@class CopyAnything
 local addon = select(2, ...).addon
-local L = addon.L
-
-local MouseIsOver, EnumerateFrames = MouseIsOver, EnumerateFrames
 
 ---@return boolean
 local function canAccessValueCompat(value)
@@ -31,17 +29,20 @@ end
 --
 
 ---@return string mouseoverText all text under the cursor.
-function addon:GetMouseoverText()
+function addon:GetMouseoverFontStringsText()
 	local fontStringsIter = addon:GetDirectChildFontStrings(self:IterateFrames())
 	local function mouseoverFontStringsIter()
 		local fontString = fontStringsIter()
 		while fontString do
 			local isVisible = fontString:IsVisible()
 			if canAccessValueCompat(isVisible) and isVisible then
+				-- TODO determine if the comment below is still accurate, and if so, log
+				-- errors that aren't due to daint
+
 				-- No way of knowing if the region is restricted, so just skip this one
 				-- if it is restricted or has any other error.
 				local status, isMouseOver = pcall(function()
-					return MouseIsOver(fontString)
+					return fontString:IsMouseOver()
 				end)
 				if status and canAccessValueCompat(isMouseOver) and isMouseOver then
 					return fontString
@@ -89,7 +90,7 @@ do
 					local isVisible = frame:IsVisible()
 					local isMouseOver = not isAnchoringSecretCompat(frame)
 						and not hasAnySecretAspectCompat(frame)
-						and MouseIsOver(frame)
+						and frame:IsMouseOver()
 					local parentName = parent and parent:GetName()
 					local name = frame:GetName()
 

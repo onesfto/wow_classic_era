@@ -808,14 +808,6 @@ L:SetGeneralLocalization({
 	name = "Grande veuve Faerlina"
 })
 
-L:SetWarningLocalization({
-	WarningEmbraceExpire	= "Etreinte de la veuve se dissipe dans 5 sec"
-})
-
-L:SetOptionLocalization({
-	WarningEmbraceExpire	= "Afficher une pré-annonce lorsque $spell:28732 se dissipe"
-})
-
 L:SetMiscLocalization({
 	Pull1					= "À genoux, vermisseau !",
 	Pull2					= "Vous ne pouvez pas m'échapper !",
@@ -1010,25 +1002,21 @@ L:SetGeneralLocalization({
 
 L:SetOptionLocalization({
 	TimerWave			= "Afficher un chronomètre des vagues",
-	TimerPhase2			= "Afficher un chronomètre pour la phase 2",
 	WarningWaveSoon		= "Afficher une pré-annonce pour les vagues",
 	WarningWaveSpawned	= "Afficher une annonce quand une vague est arrivée",
 	WarningRiderDown	= "Afficher une annonce quand un Cavalier meurt",
-	WarningKnightDown	= "Afficher une annonce quand un Chevalier meurt",
-	WarningPhase2		= "Afficher une annonce pour la phase 2"
+	WarningKnightDown	= "Afficher une annonce quand un Chevalier meurt"
 })
 
 L:SetTimerLocalization({
 	TimerWave			= "Vague %d/18",
-	TimerPhase2			= "Phase 2"
 })
 
 L:SetWarningLocalization({
 	WarningWaveSoon		= "Vague %d : %s dans 3 sec",
 	WarningWaveSpawned	= "Vague %d : %s arrivée",
 	WarningRiderDown	= "Cavalier mort",
-	WarningKnightDown	= "Chevalier mort",
-	WarningPhase2		= "Phase 2"
+	WarningKnightDown	= "Chevalier mort"
 })
 
 L:SetMiscLocalization({
@@ -1112,7 +1100,6 @@ L:SetGeneralLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerPhase2				= "Afficher un chronomètre pour la phase 2",
 	specwarnP2Soon 			= "Afficher une annonce spéciale 10 secondes avant le passage à la phase 2"
 })
 
@@ -1124,9 +1111,6 @@ L:SetWarningLocalization({
 	specwarnP2Soon  		= "Phase 2 dans 10 secondes"
 })
 
-L:SetTimerLocalization({
-	TimerPhase2				= "Phase 2"
-})
 -----------------
 --  Naxx Trash --
 -----------------

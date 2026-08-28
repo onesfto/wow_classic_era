@@ -11,6 +11,11 @@ local detailsFramework = DetailsFramework
 
 local GetExpansionLevel = GetExpansionLevel
 
+local IS_WOW_PROJECT_MIDNIGHT = detailsFramework.IsAddonApocalypseWow()
+--local IS_WOW_PROJECT_MIDNIGHT = detailsFramework.IsMidnightWowAPI()
+local IS_WOW_PROJECT_MIDNIGHT_API = detailsFramework.IsMidnightWowAPI()
+local IS_WOW_PROJECT_MIDNIGHT_API_WITH_AURA_CONTAINERS = C_XMLUtil and C_XMLUtil.GetTemplateInfo and C_XMLUtil.GetTemplateInfo("CustomAuraContainerTemplate") and true or false
+
 --this list of scripts are used at the Cast Colors and Names tab to previre which script the spell is using and also to select a script for the spell
 platerInternal.Scripts.DefaultCastScripts = {
 	"Cast - Small Alert [Plater]",
@@ -1589,6 +1594,41 @@ do
 					end
 				end
 				changeFontOutlineRec(Plater.db.profile)
+			end
+		end,
+	})
+
+	--#42 Midnight 12.1: adjust auto tracking.
+	tinsert (PlaterPatchLibrary, {
+		NotEssential = false,
+
+		Notes = {
+			"- Adjust aura auto-tracking options for outdated settings."
+		},
+		Func = function()
+			--disabled.
+			--if IS_WOW_PROJECT_MIDNIGHT and IS_WOW_PROJECT_MIDNIGHT_API_WITH_AURA_CONTAINERS then
+			--	if Plater.db.profile.aura_show_debuff_as_blizzard_does then
+			--		Plater.db.profile.aura_show_debuff_by_the_player = true
+			--		Plater.db.profile.aura_show_debuff_as_blizzard_does = false
+			--	end
+			--end
+		end,
+	})
+
+	--#43 Midnight 12.1: migrate "hide permanet buffs"
+	tinsert (PlaterPatchLibrary, {
+		NotEssential = false,
+
+		Notes = {
+			"- Migrate 'Hide permanent auras' option."
+		},
+		Func = function()
+			if IS_WOW_PROJECT_MIDNIGHT_API_WITH_AURA_CONTAINERS then
+				if Plater.db.profile.debuff_hide_permanent then
+					Plater.db.profile.aura_hide_permanent_buffs = true
+					Plater.db.profile.aura_hide_permanent_debuffs = true
+				end
 			end
 		end,
 	})

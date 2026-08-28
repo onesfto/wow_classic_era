@@ -14,7 +14,30 @@ GearMenuConfiguration = {
 ["enableTooltips"] = true,
 ["enableUnequipSlot"] = false,
 ["enableRuneSlots"] = true,
-["addonVersion"] = "v2.8.0",
+["profiles"] = {
+["Default"] = {
+["enableDragAndDrop"] = true,
+["trinketMenuSlotSize"] = 40,
+["trinketMenuShowCooldowns"] = true,
+["filterItemQuality"] = 2,
+["frames"] = {
+},
+["enableTrinketMenu"] = true,
+["lockTrinketMenuFrame"] = false,
+["enableFastPress"] = false,
+["enableFallbackToBaseItem"] = false,
+["quickChangeRules"] = {
+},
+["enableTooltips"] = true,
+["enableUnequipSlot"] = true,
+["enableRuneSlots"] = true,
+["gearBars"] = {
+},
+["uiTheme"] = 2,
+["trinketMenuColumns"] = 4,
+["enableSimpleTooltips"] = false,
+},
+},
 ["gearBars"] = {
 {
 ["showKeyBindings"] = true,
@@ -43,53 +66,30 @@ GearMenuConfiguration = {
 },
 ["displayName"] = "Default GearBar",
 ["isLocked"] = true,
-["changeMenuDirection"] = 1,
+["gearSlotSize"] = 40,
 ["showCooldowns"] = true,
 ["orientation"] = 1,
-["position"] = {
-["posX"] = 421.4107360839844,
-["point"] = "CENTER",
-["posY"] = -222.6348419189453,
-["relativePoint"] = "CENTER",
-},
 ["changeSlotSize"] = 40,
-["gearSlotSize"] = 40,
+["position"] = {
+["relativePoint"] = "CENTER",
+["posY"] = -222.6348419189453,
+["point"] = "CENTER",
+["posX"] = 421.4107360839844,
+},
+["changeMenuDirection"] = 1,
 },
 },
-["frames"] = {
-["GM_TrinketMenuFrame"] = {
-["relativePoint"] = "RIGHT",
-["point"] = "RIGHT",
-["posY"] = -222.5922088623047,
-["posX"] = -160.7354583740234,
-},
+["quickChangeRules"] = {
 },
 ["uiTheme"] = 2,
 ["trinketMenuColumns"] = 10,
-["quickChangeRules"] = {
-},
-["profiles"] = {
-["Default"] = {
-["enableDragAndDrop"] = true,
-["trinketMenuSlotSize"] = 40,
-["trinketMenuShowCooldowns"] = true,
-["filterItemQuality"] = 2,
 ["frames"] = {
-},
-["enableTrinketMenu"] = true,
-["lockTrinketMenuFrame"] = false,
-["enableFastPress"] = false,
-["enableFallbackToBaseItem"] = false,
-["quickChangeRules"] = {
-},
-["enableTooltips"] = true,
-["enableUnequipSlot"] = true,
-["enableRuneSlots"] = true,
-["gearBars"] = {
-},
-["uiTheme"] = 2,
-["trinketMenuColumns"] = 4,
-["enableSimpleTooltips"] = false,
+["GM_TrinketMenuFrame"] = {
+["posX"] = -160.7354583740234,
+["posY"] = -222.5922088623047,
+["point"] = "RIGHT",
+["relativePoint"] = "RIGHT",
 },
 },
+["addonVersion"] = "v2.8.0",
 }

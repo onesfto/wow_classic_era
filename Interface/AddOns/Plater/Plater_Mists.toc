@@ -10,7 +10,7 @@
 ## OptionalDeps: Masque
 ## IconTexture-blank: 982414
 ## IconTexture: Interface\AddOns\Plater\images\cast_bar
-## Version: Plater-v648-Mists
+## Version: Plater-v652-Mists
 ## X-Curse-Project-ID: 100547
 ## X-Wago-ID: kRNLep6o
 
@@ -40,6 +40,9 @@ Plater_Data.lua
 Plater_Logs.lua
 Plater_Util.lua
 Plater.lua
+
+util\abbreviate.lua
+
 Plater_ScriptHelpers.lua
 Plater_PerformanceUnits.lua
 Plater_ColorFrame.lua

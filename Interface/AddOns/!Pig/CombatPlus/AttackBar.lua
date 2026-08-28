@@ -36,6 +36,7 @@ function CombatPlusfun.AttackBar(open)
 	AttackBar.zhu=true
 	AttackBar.unit = "player";
 	AttackBar.Showshuzhi=PIGA["CombatPlus"]["AttackBar"]["Showshuzhi"]
+	AttackBar.Showfubar=PIGA["CombatPlus"]["AttackBar"]["fubar"]
 	AttackBar:SetScript("OnShow", nil)
 	AttackBar.fubar = CreateFrame("StatusBar", nil, AttackBar, "CastingBarFrameTemplate")
 	AttackBar.fubar:SetSize(195,13);
@@ -144,7 +145,14 @@ function CombatPlusfun.AttackBar(open)
 			local _,subEvent,_,sourceGUID,_,_,_,_,_,_,_,spellID,spellX,_,_,_,_,_,_,_,isOffHand= CombatLogGetCurrentEventInfo()
 			if sourceGUID ~= playerGUID then return end
 			--print(CombatLogGetCurrentEventInfo())
-			if subEvent=="SPELL_CAST_SUCCESS" then
+			if subEvent == "SPELL_DAMAGE" or subEvent == "SPELL_MISSED" then
+				if spellID==78 or spellID==284 or spellID==285 or spellID==1608 or spellID==11564 or spellID==11565 or spellID==11566 or spellID==11567 or spellID==25286
+				 or spellID==845 or spellID==7369 or spellID==11608 or spellID==11609 or spellID==20569
+				 	or spellID==2973 or spellID==14260 or spellID==14261 or spellID==14262 or spellID==14263 or spellID==14264 or spellID==14265 or spellID==14266 then
+					GetAttackSpeedTime(self)
+					self:Show()
+				end
+			elseif subEvent=="SPELL_CAST_SUCCESS" then
 				if spellID==75 or spellID==5019 then
 					GetAttackSpeedTime(self)
 					self:Show()
@@ -154,9 +162,11 @@ function CombatPlusfun.AttackBar(open)
 				if OffHand==nil then
 					OffHand=spellX
 				end
-				if OffHand then 
-					GetAttackSpeedTime(self.fubar)
-					self.fubar:Show()
+				if OffHand then
+					if self.Showfubar then  
+						GetAttackSpeedTime(self.fubar)
+						self.fubar:Show()
+					end
 				else
 					GetAttackSpeedTime(self)
 					self:Show()
@@ -195,16 +205,26 @@ function CombatPlusfun.addOptions_AttackBar()
 				Tab2_F.SetF.Showshuzhi:SetScript("OnClick", function (self)
 					if self:GetChecked() then
 						PIGA["CombatPlus"]["AttackBar"]["Showshuzhi"]=true;
-						if CombatPlusfun.AttackBarUI then
-							CombatPlusfun.AttackBarUI.Showshuzhi=true
-						end
 					else
 						PIGA["CombatPlus"]["AttackBar"]["Showshuzhi"]=false;
-						if CombatPlusfun.AttackBarUI then
-							CombatPlusfun.AttackBarUI.Showshuzhi=false
-						end
+					end
+					if CombatPlusfun.AttackBarUI then
+						CombatPlusfun.AttackBarUI.Showshuzhi=PIGA["CombatPlus"]["AttackBar"]["Showshuzhi"]
 					end
 				end);
+				Tab2_F.SetF.fubar = PIGCheckbutton_R(Tab2_F.SetF,{"启用副手"})
+				Tab2_F.SetF.fubar:SetChecked(PIGA["CombatPlus"]["AttackBar"]["fubar"]);
+				Tab2_F.SetF.fubar:SetScript("OnClick", function (self)
+					if self:GetChecked() then
+						PIGA["CombatPlus"]["AttackBar"]["fubar"]=true;
+					else
+						PIGA["CombatPlus"]["AttackBar"]["fubar"]=false;
+					end
+					if CombatPlusfun.AttackBarUI then
+						CombatPlusfun.AttackBarUI.fubar:Hide()
+						CombatPlusfun.AttackBarUI.Showfubar=PIGA["CombatPlus"]["AttackBar"]["fubar"]
+					end
+				end)
 				Tab2_F.SetF.CZBUT = PIGButton(Tab2_F.SetF,{"BOTTOMRIGHT",Tab2_F.SetF,"TOPRIGHT",-20,10},{60,22},RESET)
 				Tab2_F.SetF.CZBUT:SetScript("OnClick", function ()
 					PIGA["CombatPlus"]["AttackBar"]["Scale"]=PD.Default["CombatPlus"]["AttackBar"]["Scale"]

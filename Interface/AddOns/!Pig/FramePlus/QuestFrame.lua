@@ -75,7 +75,7 @@ function FramePlusfun.QuestSellMax()
 						if questItem and questItem.objectType == "item" then
 							local ItemLink=GetQuestItemLink(questItem.type, index)
 							if ItemLink then
-								local sellPrice= select(11, C_Item.GetItemInfo(ItemLink))
+								local sellPrice= select(11, PIGGetItemInfo(ItemLink))
 								if sellPrice and sellPrice>0 then
 									if sellPrice>self.junkGGG[2] then
 										self.junkGGG[2]=sellPrice

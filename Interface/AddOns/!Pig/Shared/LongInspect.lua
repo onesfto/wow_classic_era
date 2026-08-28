@@ -48,7 +48,7 @@ local function Update_ShowItem(itemstxt,laiyuan)
 		zbData[k]=v
 	end
 	for k,v in pairs(zbData) do
-		GetItemInfo(v)
+		PIGGetItemInfo(v)
 	end
 	C_Timer.After(0.1,function()
 		LongInspect.ZBLsit.ShowItemNum=0
@@ -68,7 +68,7 @@ local function Update_ShowPlayer(Player,lyfrome)
 	LongInspect.LevelText:SetText(LEVEL..level.." "..raceName.." "..className);
 	if not ElvUI and not NDui then
 		LongInspect.Portrait:SetTexture("interface/targetingframe/ui-classes-circles.blp")
-		local coords = CLASS_ICON_TCOORDS[classFile]
+		local coords = PIG_CLASS_ICON_TCOORDS[classFile]
 		LongInspect.Portrait:SetTexCoord(unpack(coords));
 	end
 	LongInspect.ZBLsit.level=level
@@ -112,7 +112,7 @@ local function PIG_FormatData(msgx,nameX)
 	if yxwjinfo[2] then Update_ShowItem(yxwjinfo[2],"yc") end
 end
 local function PIG_tiquMsg(msgx,nameX)
-	if LongInspect:IsShown() and LongInspect.fullnameX==nameX then
+	if LongInspect and LongInspect:IsShown() and LongInspect.fullnameX==nameX then
 		local qianzhui = msgx:sub(1, 2)
 		if qianzhui == "!P" then
 			if not msgx:match("@") then

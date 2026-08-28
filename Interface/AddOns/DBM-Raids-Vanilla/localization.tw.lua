@@ -728,14 +728,6 @@ L:SetGeneralLocalization({
 	name = "大寡婦費琳娜"
 })
 
-L:SetWarningLocalization({
-	WarningEmbraceExpire	= "寡婦之擁5秒後結束"
-})
-
-L:SetOptionLocalization({
-	WarningEmbraceExpire	= "為寡婦之擁結束顯示預先警告"
-})
-
 L:SetMiscLocalization({
 	Pull1					= "跪下求饒吧，懦夫！",
 	Pull2					= "休想從我面前逃掉！",
@@ -933,7 +925,6 @@ L:SetGeneralLocalization({
 
 L:SetOptionLocalization({
 	TimerWave			= "為下一波顯示計時器",
-	TimerPhase2			= "為第二階段顯示計時器",
 	WarningWaveSoon		= "為波數顯示預先警告",
 	WarningWaveSpawned	= "為波數出現顯示警告",
 	WarningRiderDown	= "當無情的騎兵死亡時顯示警告",
@@ -942,15 +933,13 @@ L:SetOptionLocalization({
 
 L:SetTimerLocalization({
 	TimerWave	= "第%d/18波",
-	TimerPhase2	= "第二階段"
 })
 
 L:SetWarningLocalization({
 	WarningWaveSoon		= "3秒後第%d波：%s",
 	WarningWaveSpawned	= "第%d波：%s出現了",
 	WarningRiderDown	= "騎兵已死亡",
-	WarningKnightDown	= "死亡騎士已死亡",
-	WarningPhase2		= "第二階段"
+	WarningKnightDown	= "死亡騎士已死亡"
 })
 
 L:SetMiscLocalization({
@@ -1034,7 +1023,6 @@ L:SetGeneralLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerPhase2			= "為第二階段顯示計時器",
 	specwarnP2Soon		= "為科爾蘇加德攻擊前10秒顯示特別警告"
 })
 
@@ -1044,10 +1032,6 @@ L:SetMiscLocalization({
 
 L:SetWarningLocalization({
 	specwarnP2Soon	= "10秒後科爾蘇加德開始攻擊"
-})
-
-L:SetTimerLocalization({
-	TimerPhase2	= "第二階段"
 })
 
 -----------------

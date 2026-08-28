@@ -6,31 +6,55 @@ local match = _G.string.match
 local lower= _G.string.lower
 ----
 local Fun=addonTable.Fun
-
-local GetItemInfo=GetItemInfo or C_Item and C_Item.GetItemInfo
 --------------------
 local TooltipUI = CreateFrame("GameTooltip", "PIG_TooltipUI", UIParent, "GameTooltipTemplate")
 TooltipUI:SetOwner(UIParent, "ANCHOR_NONE")
 local TooltipGetItemLevel = CreateFrame("GameTooltip", "PIG_TooltipGetItemLevel", UIParent, "GameTooltipTemplate")
 TooltipGetItemLevel:SetOwner(UIParent, "ANCHOR_NONE")
 -----------------
+local yasuo_NumberString=Fun.yasuo_NumberString
+local jieya_NumberString=Fun.jieya_NumberString
+local ColonCompressor = Fun.ColonCompressor
+local ColonDecompress = Fun.ColonDecompress
+
 local function GetItemLinkJJ(ItemLink)
     local msg = "";
     if ItemLink ~= nil then
         local ItemLink1 = ItemLink:match("\124Hitem:([%w:%-]+)\124h%[");
         if ItemLink1 then
             if ItemLink1:match("Player%-") then
-                local Player1,Player2 = ItemLink1:match("([%w:]+)Player%-([%w%-]+:)");
-            	local msgjj = Fun.yasuo_NumberString(Player1)
+                local itemtxt,Player2 = ItemLink1:match("([%w:]+)Player%-([%w%-]+:)");
+            	local msgjj = yasuo_NumberString(itemtxt)
                 msg=msgjj..":"
             else
-                msg = Fun.yasuo_NumberString(ItemLink1)
+                msg = yasuo_NumberString(ItemLink1)
             end
+            msg=ColonCompressor(msg)
+            -- local item1 = Fun.HY_ItemLinkJJ(msg)
+            -- print(item1)
+            -- local item1 = Item:CreateFromItemLink(item1)
+            -- local item2 = Item:CreateFromItemLink(ItemLink)
+            -- print(item1,item2)
         end
     else
         msg="^" 
     end
-    return msg;
+    -- if ItemLink ~= nil then
+    --     local itemID, itemType, itemSubType, itemEquipLoc, icon, classID, subclassID = PIGGetItemInfoInstant(ItemLink) 
+    --         local function GetItemCompareKey(itemString)
+    --             local parts = { strsplit(":", itemString) }
+    --             print(ItemLink,parts[10])
+    --             parts[10] = "*"
+
+    --             return table.concat(parts, ":")
+    --         end
+
+    --         local a = Fun.HY_ItemLinkJJ(msg)
+    --         local b = "item:6543::::::::60:577::1:2:6654:1691:2:9:30:28:207:::::"
+
+    --         print(GetItemCompareKey(a) == GetItemCompareKey(b))
+    -- end
+    return msg
 end
 Fun.GetItemLinkJJ=GetItemLinkJJ
 function Fun.GetEquipmTXT(kaishi,jieshu)
@@ -60,11 +84,12 @@ local function HY_ItemLinkJJ(ItemJJ)
             ItemJJ=Player1
             Player="Player-"..Player2
         end
-        local Itemhy = Fun.jieya_NumberString(ItemJJ)
+        ItemJJ=jieya_NumberString(ItemJJ)
+        ItemJJ=ColonDecompress(ItemJJ)
         if Player then
-            return "item:"..Itemhy..Player
+            return "item:"..ItemJJ..Player
         else
-            return "item:"..Itemhy
+            return "item:"..ItemJJ
         end
     end
 end
@@ -84,12 +109,21 @@ function Fun.HY_EquipmTXT(msg)
     end
     return Data
 end
+--对比
+local function GetItemCompareKey(itemString)
+    local parts = { strsplit(":", itemString) }
+    parts[10] = "*"
+    return table.concat(parts, ":")
+end
+function Fun.IsItemLinkJJSame(a,b)
+    return GetItemCompareKey(HY_ItemLinkJJ(a)) == GetItemCompareKey(HY_ItemLinkJJ(b))
+end
 ---
 local function HY_ShowItemLink(But,itemID,itemlin,New)
     if But and itemlin then
         if not New then But.zhixingnum=0 end
         local Linktxt=HY_ItemLinkJJ(itemlin)
-        local itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, sellPrice, classID, subclassID=GetItemInfo(Linktxt);
+        local itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, sellPrice, classID, subclassID=PIGGetItemInfo(Linktxt);
         if itemLink then
             if But.itemID==itemID then
                 But:ShowInfoFun(itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, sellPrice, classID, subclassID)
@@ -108,7 +142,7 @@ end
 Fun.HY_ShowItemLink=HY_ShowItemLink
 local function PIGShowItemLink(But,itemID,SetFun,New)  
     if But and itemID and SetFun then  
-        local itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, sellPrice, classID, subclassID=GetItemInfo(itemID);
+        local itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, sellPrice, classID, subclassID=PIGGetItemInfo(itemID);
         if itemLink and itemQuality and itemTexture then
             if But.itemID==itemID then
                 SetFun(itemLink,itemQuality,itemTexture,itemType,itemSubType,itemEquipLoc,classID, subclassID)

@@ -255,7 +255,7 @@ function PD.addOptions_Debug()
 		end);
 		fuFrame.GetItem = PIGButton(fuFrame,{"TOPLEFT",fuFrame,"TOPLEFT",230,-260},{100,24},ITEMS..INFO)
 		fuFrame.GetItem:SetScript("OnClick", function (self,button)
-			local itemName,itemLink = GetItemInfo(self.E:GetNumber())
+			local itemName,itemLink = PIGGetItemInfo(self.E:GetNumber())
 			if itemLink then
 				print(itemLink)
 				print(PIGGetItemInfoInstant(itemLink))
@@ -265,7 +265,7 @@ function PD.addOptions_Debug()
 					print(PIGGetItemInfoInstant(itemLink))
 				end)
 			end
-			--DevTools_Dump({GetItemInfo(self.E:GetText())})
+			--DevTools_Dump({PIGGetItemInfo(self.E:GetText())})
 			-- print(string.gsub(itemLink,"|","||"))
 			-- local itemLink=Fun.GetItemLinkJJ(itemLink)
 			-- print(itemLink)

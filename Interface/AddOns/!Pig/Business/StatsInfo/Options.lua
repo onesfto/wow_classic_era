@@ -67,7 +67,7 @@ local function StatsInfo_TradeClassLV()
 				TradeFrame.zhiye:SetPoint("TOP", TradeFrame, "TOP", 6, 18);
 				TradeFrame.dengji:SetPoint("TOP", TradeFrame, "TOP", 48, -34);
 			end
-			local IconCoord = CLASS_ICON_TCOORDS[select(2,UnitClass("NPC"))];
+			local IconCoord = PIG_CLASS_ICON_TCOORDS[select(2,UnitClass("NPC"))];
 			TradeFrame.zhiye.Icon:SetTexCoord(unpack(IconCoord));
 			local jibie = UnitLevel("NPC")
 			TradeFrame.dengji.Text:SetText(jibie)
@@ -158,7 +158,20 @@ function ADD_OffBut()
 		if _G[PD.BagBankfun.BagUIName] then add_lixianBut(_G[PD.BagBankfun.BagUIName],wwc,hhc) end
 	end
 end
+BusinessInfo.OpenTisp=addonName.."→"..SETTINGS.."→"..L["TRADE_TABNAME"].."→"..L["TRADECHARDATA_TABNAME"]
 function BusinessInfo.StatsInfo_Fun()
+	function BusinessInfo.IsBusinessOpen(gnfun,lyfui)
+		if gnfun then
+			if BusinessInfo.StatsUI:IsShown() then
+				BusinessInfo.StatsUI:Hide()
+			else
+				BusinessInfo.StatsUI:Show()
+				gnfun(lyfui)
+			end
+		else
+			PIGErrorMsg(BusinessInfo.OpenTisp)
+		end
+	end
 	StatsInfo_TradeClassLV()
 	BusinessInfo.StatsInfo_ADDUI()
 	
@@ -176,37 +189,40 @@ function BusinessInfo.StatsInfo_Fun()
 		if itemID==6948 then return end
 		wipe(tispData)
 		local playerNum=0
+		local pmuli,PData,added=Fun.GetPlayerSortData()
 		local itemjihe = PIGA["StatsInfo"]["Items"]
-		for player,data in pairs(itemjihe) do
-			local playerList={}
-			for id=1,#morenitem do
-				local leibienum=0
-				for it=1,#data[morenitem[id]] do
-					if itemID==data[morenitem[id]][it][3] then
-						leibienum=leibienum+data[morenitem[id]][it][2]
+		for i=1,#pmuli do
+			local pname=pmuli[i]
+			if PData[pname] and itemjihe[pname] then
+				local data=itemjihe[pname]
+				local playerList={}
+				for id=1,#morenitem do
+					local leibienum=0
+					for it=1,#data[morenitem[id]] do
+						if itemID==data[morenitem[id]][it][3] then
+							leibienum=leibienum+data[morenitem[id]][it][2]
+						end
+					end
+					if leibienum>0 then
+						playerNum=playerNum+leibienum
+						table.insert(playerList,{morenitemCN[id],leibienum})
 					end
 				end
-				if leibienum>0 then
-					playerNum=playerNum+leibienum
-					table.insert(playerList,{morenitemCN[id],leibienum})
-				end
-			end
-			if #playerList>0 then
-				local pxinxiinfo = PIGA["StatsInfo"]["Players"][player]
-				local _, classFile = PIGGetClassInfo(pxinxiinfo[4])
-				local color = PIG_CLASS_COLORS[classFile];
-				local ttgghh = "|c"..color.colorStr..player.."|r"
-				local Texinfo = C_Texture.GetAtlasInfo(pxinxiinfo[3])
-				if Texinfo then
-					ttgghh = "|T"..CreateIcons..":14:14:0:0:"..Texwidth..":"..Texheight..":"..(Texinfo.leftTexCoord*Texwidth+0.308)..":"..(Texinfo.rightTexCoord*Texwidth+0.5)..
-					":"..(Texinfo.topTexCoord*Texheight+0.2)..":"..(Texinfo.bottomTexCoord*Texheight+0.1).."|t "..ttgghh
-				else
-					ttgghh = "|T134400:0|t "..ttgghh
-				end
-				if player==PlayerInfo.AllName then
-					ttgghh=ttgghh.."|T"..greenTexture..":14:14:0:0:16:16:0:14:0:14|t"
-					table.insert(tispData,1,{ttgghh,playerList,playerNum})
-				else
+				if #playerList>0 then
+					local pxinxiinfo = PData[pname]
+					local _, classFile = PIGGetClassInfo(pxinxiinfo[4])
+					local color = PIG_CLASS_COLORS[classFile];
+					local ttgghh = "|c"..color.colorStr..pname.."|r"
+					local Texinfo = C_Texture.GetAtlasInfo(pxinxiinfo[3])
+					if Texinfo then
+						ttgghh = "|T"..CreateIcons..":14:14:0:0:"..Texwidth..":"..Texheight..":"..(Texinfo.leftTexCoord*Texwidth+0.308)..":"..(Texinfo.rightTexCoord*Texwidth+0.5)..
+						":"..(Texinfo.topTexCoord*Texheight+0.2)..":"..(Texinfo.bottomTexCoord*Texheight+0.1).."|t "..ttgghh
+					else
+						ttgghh = "|T134400:0|t "..ttgghh
+					end
+					if pname==PlayerInfo.AllName then
+						ttgghh=ttgghh.."|T"..greenTexture..":14:14:0:0:16:16:0:14:0:14|t"
+					end
 					table.insert(tispData,{ttgghh,playerList,playerNum})
 				end
 			end
@@ -229,7 +245,6 @@ function BusinessInfo.StatsInfo_Fun()
 			if (UnitExists("NPC")) then OpenAllBags() end
 		end
 	end);
-
 	Create.PIGaddQuickBut(9,{
 		Open=function()
 			return PIGA["QuickBut"]["Open"] and PIGA["StatsInfo"]["Open"] and PIGA["StatsInfo"]["AddBut"]

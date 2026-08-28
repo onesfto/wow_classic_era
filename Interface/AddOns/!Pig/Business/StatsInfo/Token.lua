@@ -1,19 +1,20 @@
-local addonName, addonTable = ...;
-local L=addonTable.locale
-local Fun=addonTable.Fun
-local Create=addonTable.Create
-local fmod=math.fmod
-local gsub = _G.string.gsub
-local PIGLine=Create.PIGLine
-local PIGFrame=Create.PIGFrame
-local PIGFontString=Create.PIGFontString
-local PIGOptionsList_R=Create.PIGOptionsList_R
---------
-local BusinessInfo=addonTable.BusinessInfo
-function BusinessInfo.Token(StatsInfo)
-	local fujiF,fujiTabBut=PIGOptionsList_R(StatsInfo.F,L["TRADECHARDATA_TOKENTAB"],StatsInfo.butW,"Left")
+local addonName, PD = ...;
+local BusinessInfo=PD.BusinessInfo
+function BusinessInfo.Token(StatsUI)
+	local L=PD.locale
+	local Fun=PD.Fun
+	local Create=PD.Create
+	local fmod=math.fmod
+	local gsub = _G.string.gsub
+	local PIGLine=Create.PIGLine
+	local PIGFrame=Create.PIGFrame
+	local PIGFontString=Create.PIGFontString
+	local PIGOptionsList_R=Create.PIGOptionsList_R
+	PIGA["StatsInfo"]["Token"][StatsUI.allname]=PIGA["StatsInfo"]["Token"][StatsUI.allname] or {}
+	--------
+	local fujiF,fujiTabBut=PIGOptionsList_R(StatsUI.F,CURRENCY,StatsUI.butW,"LeftH")
 	---
-	local hang_Height,hang_NUM,numButtons  = StatsInfo.hang_Height, 11, 26;
+	local hang_Height,hang_NUM,numButtons  = StatsUI.hang_Height, 11, 26;
 	fujiF.NR=PIGFrame(fujiF)
 	fujiF.NR:SetPoint("TOPLEFT",fujiF,"TOPLEFT",4,-40);
 	fujiF.NR:SetPoint("BOTTOMRIGHT",fujiF,"BOTTOMRIGHT",-4,4);
@@ -106,34 +107,23 @@ function BusinessInfo.Token(StatsInfo)
 		end
 		local cdmulu={};
 		local jibihejiV={["all"]=0,["saverall"]={},["hejitxt"]=""}
-		local PlayerData = PIGA["StatsInfo"]["Players"]
-		local PlayerSH = PIGA["StatsInfo"]["PlayerSH"]
-		if PlayerData[StatsInfo.allname] and not PlayerSH[StatsInfo.allname] then
-			local dangqianC=PlayerData[StatsInfo.allname]
-			local Money  = PIGA["StatsInfo"]["Token"][StatsInfo.allname]["Money"]
-   			jibihejiV.all=jibihejiV.all+Money
-   			local _, fuwuqiXC = strsplit("-", StatsInfo.allname, 2);
-   			if fuwuqiXC and fuwuqiXC~="" then
-				jibihejiV.saverall[fuwuqiXC]=jibihejiV.saverall[fuwuqiXC] or 0
-   				jibihejiV.saverall[fuwuqiXC]=jibihejiV.saverall[fuwuqiXC]+Money
-   			end
-   			local Tokens  = PIGA["StatsInfo"]["Token"][StatsInfo.allname]["Tokens"]
-			table.insert(cdmulu,{StatsInfo.allname,dangqianC[1],dangqianC[2],dangqianC[3],dangqianC[4],dangqianC[5],{Money,Tokens},true})
-		end
-	   	for k,v in pairs(PlayerData) do
-	   		if k~=StatsInfo.allname and PlayerData[k] and not PlayerSH[k] then
-	   			local Money  = PIGA["StatsInfo"]["Token"][k]["Money"]
-	   			local Tokens  = PIGA["StatsInfo"]["Token"][k]["Tokens"]
+		local pmuli,PData,added=Fun.GetPlayerSortData()
+		local TokenS  = PIGA["StatsInfo"]["Token"]
+	   	for i=1,#pmuli do
+			local pname=pmuli[i]
+			if PData[pname] and TokenS[pname] then
+				local pData=PData[pname]
+	   			local Money  = TokenS[pname]["Money"]
+	   			local Tokens  = TokenS[pname]["Tokens"]
 	   			jibihejiV.all=jibihejiV.all+Money
-	   			local _, fuwuqiXC = strsplit("-", k, 2);
+	   			local _, fuwuqiXC = strsplit("-", pname, 2);
 	   			if fuwuqiXC and fuwuqiXC~="" and Money>100 then
 					jibihejiV.saverall[fuwuqiXC]=jibihejiV.saverall[fuwuqiXC] or 0
 	   				jibihejiV.saverall[fuwuqiXC]=jibihejiV.saverall[fuwuqiXC]+Money
 	   			end
-	   			table.insert(cdmulu,{k,v[1],v[2],v[3],v[4],v[5],{Money,Tokens}})
-	   		end
-	   	end
-
+	   			table.insert(cdmulu,{pname,pData[1],pData[2],pData[3],pData[4],pData[5],{Money,Tokens},pname==StatsUI.allname})
+		   	end
+		end
 	   	fujiF.NR.ALLG:SetText(GetMoneyString(jibihejiV.all))
 	   	jibihejiV.hejitxt_seerver=""
 	   	for k,v in pairs(jibihejiV.saverall) do
@@ -160,7 +150,7 @@ function BusinessInfo.Token(StatsInfo)
 					end
 					hang.Race:SetAtlas(cdmulu[dangqian][4]);
 					local className, classFile, classID = PIGGetClassInfo(cdmulu[dangqian][5])
-					hang.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
+					hang.Class:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
 					hang.level:SetText(cdmulu[dangqian][6]);
 					if cdmulu[dangqian][8] then
 						hang.nameDQ:Show()
@@ -203,7 +193,7 @@ function BusinessInfo.Token(StatsInfo)
 	end
 	---
 	local function PIGGetMoney()
-		PIGA["StatsInfo"]["Token"][StatsInfo.allname]["Money"]=GetMoney()
+		PIGA["StatsInfo"]["Token"][StatsUI.allname]["Money"]=GetMoney()
 	end
 	local function GetTokenInfo()
 		local TokensInfo = {}
@@ -229,7 +219,7 @@ function BusinessInfo.Token(StatsInfo)
 				end
 			end
 		end
-		PIGA["StatsInfo"]["Token"][StatsInfo.allname]["Tokens"]=TokensInfo
+		PIGA["StatsInfo"]["Token"][StatsUI.allname]["Tokens"]=TokensInfo
 	end
 	local function jiazaiTokenInfo()
 		C_Timer.After(1,PIGGetMoney)

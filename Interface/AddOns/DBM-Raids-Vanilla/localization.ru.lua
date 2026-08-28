@@ -169,7 +169,7 @@ L:SetOptionLocalization{
 L = DBM:GetModLocalization("AQ40Trash")
 
 L:SetGeneralLocalization{
-	name = "Трэш мобы Ан'Кираж 40"
+	name = "Трэш: Ан'Кираж 40"
 }
 
 L:SetTimerLocalization{
@@ -275,7 +275,7 @@ L:SetGeneralLocalization{
 L = DBM:GetModLocalization("AQ20Trash")
 
 L:SetGeneralLocalization{
-	name = "Трэш мобы Ан'Кираж 20"
+	name = "Трэш: Ан'Кираж 20"
 }
 
 L:SetTimerLocalization{
@@ -390,7 +390,7 @@ L:SetMiscLocalization{
 L = DBM:GetModLocalization("BWLTrash")
 
 L:SetGeneralLocalization{
-	name = "Трэш мобы Логово Крыла Тьмы"
+	name = "Трэш: Логово Крыла Тьмы"
 }
 L:SetWarningLocalization{
 	WarnVulnerable		= "Уязвимость к %s"
@@ -658,7 +658,7 @@ L:SetWarningLocalization{
 L = DBM:GetModLocalization("MCTrash")
 
 L:SetGeneralLocalization{
-	name = "Трэш мобы Огненные Недра"
+	name = "Трэш: Огненные Недра"
 }
 
 -------------------
@@ -828,14 +828,6 @@ L = DBM:GetModLocalization("FaerlinaVanilla")
 
 L:SetGeneralLocalization({
 	name = "Великая вдова Фарлина"
-})
-
-L:SetWarningLocalization({
-	WarningEmbraceExpire	= "Объятие Вдовы через 5 сек."
-})
-
-L:SetOptionLocalization({
-	WarningEmbraceExpire	= "Заранее предупреждать, когда $spell:28732 исчезнет"
 })
 
 L:SetMiscLocalization({
@@ -1035,7 +1027,6 @@ L:SetGeneralLocalization({
 
 L:SetOptionLocalization({
 	TimerWave			= "Отсчет времени до следующей волны",
-	TimerPhase2			= "Отсчет времени до 2-й фазы",
 	WarningWaveSoon		= "Показывать предупреждение перед следующей волной",
 	WarningWaveSpawned	= "Показывать предупреждение для волны призыва",
 	WarningRiderDown	= "Показывать предупреждение, когда Всадник мертв",
@@ -1044,15 +1035,13 @@ L:SetOptionLocalization({
 
 L:SetTimerLocalization({
 	TimerWave	= "Волна %d/18",
-	TimerPhase2	= "2-я фаза"
 })
 
 L:SetWarningLocalization({
 	WarningWaveSoon		= "Волна %d: %s через 3 сек.",
 	WarningWaveSpawned	= "Волна %d: %s призван",
 	WarningRiderDown	= "Всадник мертв",
-	WarningKnightDown	= "Рыцарь мертв",
-	WarningPhase2		= "2-я фаза"
+	WarningKnightDown	= "Рыцарь мертв"
 })
 
 L:SetMiscLocalization({
@@ -1136,7 +1125,6 @@ L:SetGeneralLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerPhase2			= "Отсчет времени до 2-й фазы",
 	specwarnP2Soon		= "Показывать спецпредупреждение за 10 сек. до вступления Кел'Тузада в бой"
 })
 
@@ -1148,10 +1136,6 @@ L:SetWarningLocalization({
 	specwarnP2Soon	= "Кел'Тузад вступает в бой через 10 сек."
 })
 
-L:SetTimerLocalization({
-	TimerPhase2	= "2-я фаза"
-})
-
 -----------------
 --  Naxx Trash --
 -----------------
@@ -1159,7 +1143,7 @@ L:SetTimerLocalization({
 L = DBM:GetModLocalization("NaxxTrash")
 
 L:SetGeneralLocalization({
-	name = "Трэш мобы"
+	name = "Трэш: Наксрамас"
 })
 
 --------------------
@@ -1396,7 +1380,7 @@ L:SetOptionLocalization({
 L = DBM:GetModLocalization("STTrashSoD")
 
 L:SetGeneralLocalization{
-	name = "Трэш мобы Затонувший храм"
+	name = "Трэш: Затонувший храм"
 }
 
 ---------------------------
@@ -1572,7 +1556,7 @@ L:SetMiscLocalization{
 
 L = DBM:GetModLocalization("SE_Trash")
 L:SetGeneralLocalization{
-	name = "Трэш мобы Анклав Алого Ордена"
+	name = "Трэш: Анклав Алого Ордена"
 }
 
 L:SetOptionLocalization{

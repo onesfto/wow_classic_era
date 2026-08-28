@@ -24,7 +24,7 @@ function CVarsfun.Fast_Loot()
                 end
                 local inventoryItemCount = GetItemCount(itemLink);
                 if inventoryItemCount > 0 then
-                    local itemStackSize = select(8, GetItemInfo(itemLink));
+                    local itemStackSize = select(8, PIGGetItemInfo(itemLink));
                     if itemStackSize > 1 then
                         local remainingSpace = (itemStackSize - inventoryItemCount) % itemStackSize;
                         if remainingSpace >= itemQuantity then
@@ -161,7 +161,7 @@ end
 --     end
 --     local inventoryItemCount = GetItemCount(itemLink);
 --     if inventoryItemCount > 0 then
---         local itemStackSize = select(8, GetItemInfo(itemLink));
+--         local itemStackSize = select(8, PIGGetItemInfo(itemLink));
 --         if itemStackSize > 1 then
 --             local remainingSpace = (itemStackSize - inventoryItemCount) % itemStackSize;
 --             if remainingSpace >= itemQuantity then

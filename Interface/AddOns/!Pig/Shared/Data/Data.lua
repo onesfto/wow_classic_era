@@ -20,6 +20,9 @@ for k,v in pairs(PIG_CLASS_COLORS) do
 		v.colorStr = v:GenerateHexColor();
 	end
 end
+--职业图标
+PIG_CLASS_ICON_TCOORDS=CopyTable(CLASS_ICON_TCOORDS)
+
 local cl_Name_Role={
 	["WARRIOR"] = {"TANK","DAMAGER"},
 	["PALADIN"] = {"TANK", "HEALER","DAMAGER"},
@@ -272,7 +275,7 @@ Data.Tardis={["Prefix"]="!Pig_Tardis",
 	["ver"] ={0,0,8.21,8.21},
 }
 local GetMsgNum=#Data.Tardis.GetMsg
-ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL",function(self,event,arg1,...)
+ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_CHANNEL",function(self,event,arg1,...)
 	for i=1,GetMsgNum do
 		if arg1:match(Data.Tardis.GetMsg[i]) then
 			return true;

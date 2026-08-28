@@ -1,5 +1,6 @@
 local addonName, addonTable = ...;
 local format=string.format
+
 ---判断秘密值
 function PIGisSecret(value)
 	if (issecretvalue and issecretvalue(value)) or (issecrettable and issecrettable(value)) then
@@ -11,6 +12,7 @@ end
 function PIGIsHardcore()
 	return PIG_MaxTocversion(20000) and C_GameRules.IsHardcoreActive()
 end
+
 --插件版本信息
 local version, internalVersion, date, tocversion, versionType, buildType = GetBuildInfo()
 function PIG_MaxTocversion(ver,max)
@@ -62,7 +64,7 @@ function PIGGetUnitSpeed(uix,unit)
 		uix:SetText(AbbreviateNumbers(currentSpeed, NumberAbbrevOptions))
 	end
 end
----
+---插件相关
 local IsAddOnLoaded = IsAddOnLoaded or C_AddOns and C_AddOns.IsAddOnLoaded
 function PIGIsAddOnLoaded(name)
 	return IsAddOnLoaded(name)
@@ -88,6 +90,7 @@ if PIG_GetAddOnEnableState==nil then
 	end
 end
 PIGGetAddOnEnableState=PIG_GetAddOnEnableState
+
 ---
 local voiceID = C_TTSSettings.GetVoiceOptionID(0)
 function PIG_PlaySoundFile(url,index)
@@ -100,6 +103,7 @@ function PIG_PlaySoundFile(url,index)
 		PlaySoundFile(voiceTxt, "Master")
 	end
 end
+
 --公会刷新
 local GuildRoster=C_GuildInfo and C_GuildInfo.GuildRoster or GuildRoster
 function PIG_GuildRoster()
@@ -262,11 +266,11 @@ function PIGGetContainerItemInfo(bag, slot)
 	if C_Container and C_Container.GetContainerItemInfo then
 		local ItemInfo = C_Container.GetContainerItemInfo(bag, slot)
 		if ItemInfo then
-			return ItemInfo.itemID,ItemInfo.hyperlink,ItemInfo.iconFileID,ItemInfo.stackCount,ItemInfo.quality,ItemInfo.hasNoValue,ItemInfo.hasLoot,ItemInfo.isLocked,ItemInfo.isBound
+			return ItemInfo.itemID,ItemInfo.hyperlink,ItemInfo.iconFileID,ItemInfo.stackCount,ItemInfo.quality,ItemInfo.hasNoValue,ItemInfo.hasLoot,ItemInfo.isLocked,ItemInfo.isBound,ItemInfo.itemName
 		end
 	else
-		local icon, itemCount, locked, quality, readable, lootable, itemLink, isFiltered, noValue, itemID, isBound = GetContainerItemInfo(bag, slot)
-		return itemID, itemLink, icon, stackCount, quality, noValue, lootable, locked, isBound
+		local icon, itemCount, locked, quality, readable, lootable, itemLink, isFiltered, noValue, itemID, isBound, itemName = GetContainerItemInfo(bag, slot)
+		return itemID, itemLink, icon, stackCount, quality, noValue, lootable, locked, isBound, itemName
 	end
 end
 local GetContainerItemID=C_Container and C_Container.GetContainerItemID or GetContainerItemID

@@ -810,14 +810,6 @@ L:SetGeneralLocalization({
 	name = "Grã-viúva Faerlina"
 })
 
-L:SetWarningLocalization({
-	WarningEmbraceExpire	= "Abraço da Viúva se desvanece em 5 segundos"
-})
-
-L:SetOptionLocalization({
-	WarningEmbraceExpire	= "Exibir anúncio antecipado quando $spell:28732 se desvanece",
-})
-
 L:SetMiscLocalization({
 	Pull1					= "Ajoelhe-se perante a mim, verme!",
 	Pull2 					= "Vocês não podem se esconder de mim!",
@@ -1015,7 +1007,6 @@ L:SetGeneralLocalization({
 
 L:SetOptionLocalization({
 	TimerWave			= "Exibir cronômetro para a próxima onda de lacaios",
-	TimerPhase2			= "Exibir cronômetro para a fase 2",
 	WarningWaveSoon		= "Exibir anúncio antecipado para a próxima onda de lacaios",
 	WarningWaveSpawned	= "Exibir anúncio quando uma onda de lacaios começar",
 	WarningRiderDown	= "Exibir anúncio quando um Cavalgante Implacável morrer",
@@ -1024,15 +1015,13 @@ L:SetOptionLocalization({
 
 L:SetTimerLocalization({
 	TimerWave	= "Onda %d/18",
-	TimerPhase2	= "Fase 2"
 })
 
 L:SetWarningLocalization({
 	WarningWaveSoon		= "Onda %d: %s em 3 segundos",
 	WarningWaveSpawned	= "Onda %d: %s",
 	WarningRiderDown	= "Cavalgante morto",
-	WarningKnightDown	= "Cavaleiro morto",
-	WarningPhase2		= "Fase 2"
+	WarningKnightDown	= "Cavaleiro morto"
 })
 
 L:SetMiscLocalization({
@@ -1117,7 +1106,6 @@ L:SetGeneralLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerPhase2			= "Exibir cronômetro para a fase 2",
 	specwarnP2Soon		= "Exibir anúncio especial 10 segundos antes de mudar para a fase 2"
 })
 
@@ -1129,9 +1117,6 @@ L:SetWarningLocalization({
 	specwarnP2Soon	= "Fase 2 em 10 segundos"
 })
 
-L:SetTimerLocalization({
-	TimerPhase2	= "Fase 2"
-})
 -----------------
 --  Naxx Trash --
 -----------------

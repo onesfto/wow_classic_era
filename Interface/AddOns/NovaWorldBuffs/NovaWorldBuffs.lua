@@ -2330,7 +2330,7 @@ end
 
 --This doesn't use the getSpellInfo() extra chronoboon args becaus they have been known to change order in the past.
 --This is a bit more sloppy but it works.
---At a later data I should add the GetSpellInfo() version as backup so they can be recorded for new installs that haven't booned yet as this only records when booning.
+--At a later date I should add the GetSpellInfo() version as backup so they can be recorded for new installs that haven't booned yet as this only records when booning.
 local tempStoredBuffs = {};
 function NWB:storeBuffs()
 	NWB:syncBuffsWithCurrentDuration();

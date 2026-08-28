@@ -50,6 +50,8 @@ local mt = {__index = bossModPrototype}
 ---@field soloChallenge boolean?
 ---@field disableHealthCombat boolean?
 ---@field isCustomMod boolean?
+---@field lastKillTime number? Timestamp of the most recent completed combat.
+---@field lastWipeTime number? Timestamp of the most recent wiped combat.
 ---@field sendMainBossGUID boolean? Used to force enable nameplate timers for main boss
 ---@field paSounds table<number, number[]>?
 ---@field pendingPASoundsByZone table<number, table<integer, table>>?
@@ -1107,6 +1109,65 @@ do
 		self.tlCountState = nil
 	end
 
+	---Claim a currently active encounter timeline runtime event ID.
+	---
+	---Purpose:
+	---Blizzard can resend ENCOUNTER_TIMELINE_EVENT_ADDED for an event which is already
+	---active, sometimes with a changed/remaining duration. Runtime event IDs uniquely
+	---identify one timeline instance, so an active ID must be routed only once. Accepting
+	---a resend can create duplicate bars, reserve an extra TLCount, or route its remaining
+	---duration as a different ability.
+	---
+	---Lifecycle:
+	--- - TLTrackActiveEvent(eventID): call from ENCOUNTER_TIMELINE_EVENT_ADDED after
+	---   verifying C_EncounterTimeline.GetEventState(eventID) is 0. Continue routing only
+	---   when this returns true.
+	--- - TLReleaseActiveEvent(eventID): call only for terminal state 2 (finished) or 3
+	---   (canceled). Do not release on state 0/1 resume/pause transitions; the event is
+	---   still active and a subsequent ADDED remains a resend.
+	--- - TLActiveEventReset(): call at combat start and end.
+	---
+	---This is event-ID idempotency only. It deliberately does not deduplicate different
+	---event IDs that share a duration; use TLBatch* only for separately confirmed
+	---same-dispatch timer-batch behavior.
+	---@param eventID number Encounter timeline runtime event ID.
+	---@return boolean accepted True for the first active ADDED; false for a resend.
+	function bossModPrototype:TLTrackActiveEvent(eventID)
+		if not self.tlActiveEventIDs then
+			self.tlActiveEventIDs = {}
+		end
+		if self.tlActiveEventIDs[eventID] then
+			return false
+		end
+		self.tlActiveEventIDs[eventID] = true
+		return true
+	end
+
+	---Release a terminal encounter timeline event ID claimed by TLTrackActiveEvent.
+	---
+	---Only release after state 2 (finished) or state 3 (canceled). Releasing an ID on a
+	---pause/resume state transition defeats resend protection while the timeline instance
+	---is still alive.
+	---@param eventID number Encounter timeline runtime event ID.
+	---@return boolean released True when this event ID had been tracked.
+	function bossModPrototype:TLReleaseActiveEvent(eventID)
+		local activeEventIDs = self.tlActiveEventIDs
+		if not activeEventIDs or not activeEventIDs[eventID] then return false end
+		activeEventIDs[eventID] = nil
+		if not next(activeEventIDs) then
+			self.tlActiveEventIDs = nil
+		end
+		return true
+	end
+
+	---Clear active encounter timeline event IDs for this mod.
+	---
+	---Call at combat boundaries so an ID from an incomplete prior pull cannot suppress a
+	---new event. This state is independent of TLCount, TLResolve, and TLBatch helpers.
+	function bossModPrototype:TLActiveEventReset()
+		self.tlActiveEventIDs = nil
+	end
+
 	---Reset short-term resolver history used by hardcoded timeline disambiguation.
 	---Use this at encounter boundaries (combat start/end) so stale context from prior pulls
 	---cannot influence current routing decisions.
@@ -1192,6 +1253,7 @@ do
 			self.tlBatchState = {
 				latestByTimer = {},
 				timerByEvent = {},
+				pendingStarts = {},
 				initialGate = {},
 			}
 		end
@@ -1199,9 +1261,33 @@ do
 	end
 
 	local function cleanupTLBatchState(self, state)
-		if not next(state.latestByTimer) and not next(state.timerByEvent) and not next(state.initialGate) then
+		if not next(state.latestByTimer) and not next(state.timerByEvent) and not next(state.pendingStarts) and not next(state.initialGate) then
 			self.tlBatchState = nil
 		end
+	end
+
+	local function startTLBatch(self, eventID)
+		local state = self.tlBatchState
+		if not state then return end
+		local entry = state.pendingStarts[eventID]
+		if not entry then return end
+		state.pendingStarts[eventID] = nil
+		if state.latestByTimer[entry.timer] ~= eventID then
+			cleanupTLBatchState(self, state)
+			return
+		end
+		--The batch window is only the current event dispatch. Releasing it here prevents
+		--a later, legitimate overlapping timer with the same rounded duration from replacing this one.
+		state.latestByTimer[entry.timer] = nil
+		state.timerByEvent[eventID] = nil
+		local timerObj, eventType, countKey = entry.timerObj, entry.eventType, entry.countKey
+		if type(timerObj) == "function" then
+			timerObj, eventType, countKey = timerObj(self, eventID)
+		end
+		if timerObj and eventType then
+			timerObj:TLStart(entry.timerExact, eventID, self:TLCountStart(eventID, eventType, countKey))
+		end
+		cleanupTLBatchState(self, state)
 	end
 
 	---Track a timeline event as the latest entry for its rounded timer bucket.
@@ -1214,10 +1300,10 @@ do
 	---Behavior:
 	--- - Optional filter via trackedTimers set (for example {[4]=true, [6]=true}).
 	--- - If an older event exists for this timer, calls TLCountCancel(oldEventID).
+	--- - If the active event is resent with the same eventID, returns that eventID without re-registering it.
 	--- - Marks eventID as latest for this timer and records reverse lookup for cleanup.
 	---
-	---Call this from ENCOUNTER_TIMELINE_EVENT_ADDED before TLStart/TLCountStart for buckets
-	---affected by the batch bug.
+	---Prefer TLBatchStart for timers; use this lower-level helper only when no timer start is needed.
 	---@param timer number Rounded timer bucket used by module routing.
 	---@param eventID number Encounter timeline runtime eventID.
 	---@param trackedTimers table<number, boolean>? Optional timer set to limit which buckets are deduped.
@@ -1228,13 +1314,55 @@ do
 		end
 		local state = getTLBatchState(self)
 		local replacedEventID = state.latestByTimer[timer]
+		if replacedEventID == eventID then
+			return eventID
+		end
 		if replacedEventID and replacedEventID ~= eventID then
+			state.pendingStarts[replacedEventID] = nil
 			self:TLCountCancel(replacedEventID)
 			state.timerByEvent[replacedEventID] = nil
 		end
 		state.latestByTimer[timer] = eventID
 		state.timerByEvent[eventID] = timer
 		return replacedEventID
+	end
+
+	---Queue a timeline timer start until the current event dispatch has completed.
+	---
+	---Use instead of TLBatchTrackLatest + timerObj:TLStart for timer buckets where
+	---Blizzard emits duplicate rows before immediately canceling all but the last row.
+	---The core tracks only the latest row per bucket, drops superseded queued starts,
+	---and reserves a TLCount only when the surviving timer actually starts.
+	---@param timer number Rounded timer bucket used by module routing.
+	---@param timerObj any|fun(self: DBMMod, eventID: number): any, string, string? Timer object, or resolver returning timer object/event type/count key for the surviving event.
+	---@param timerExact number Raw duration passed to TLStart.
+	---@param eventID number Encounter timeline runtime eventID.
+	---@param eventType string? Module-local event type for TLCountFinish, supplied by timerObj when it is a resolver.
+	---@param countKey string? vb counter key for TLCount.
+	---@param trackedTimers table<number, boolean>? Optional timer set to limit which buckets are deduped.
+	---@return boolean queued False when this was a resend of an already queued event.
+	function bossModPrototype:TLBatchStart(timer, timerObj, timerExact, eventID, eventType, countKey, trackedTimers)
+		if trackedTimers and not trackedTimers[timer] then
+			if type(timerObj) == "function" then
+				timerObj, eventType, countKey = timerObj(self, eventID)
+			end
+			if not timerObj or not eventType then return false end
+			timerObj:TLStart(timerExact, eventID, self:TLCountStart(eventID, eventType, countKey))
+			return true
+		end
+		if self:TLBatchTrackLatest(timer, eventID, trackedTimers) == eventID then
+			return false
+		end
+		local state = getTLBatchState(self)
+		state.pendingStarts[eventID] = {
+			timer = timer,
+			timerObj = timerObj,
+			timerExact = timerExact,
+			eventType = eventType,
+			countKey = countKey,
+		}
+		self:Schedule(0, startTLBatch, self, eventID)
+		return true
 	end
 
 	---Release one timeline event from batch-tracking state.
@@ -1251,6 +1379,7 @@ do
 		if state.latestByTimer[timer] == eventID then
 			state.latestByTimer[timer] = nil
 		end
+		state.pendingStarts[eventID] = nil
 		state.timerByEvent[eventID] = nil
 		cleanupTLBatchState(self, state)
 		return timer
@@ -1290,6 +1419,7 @@ do
 	---
 	---Call at encounter boundaries (combat start/end) alongside TLCountReset.
 	function bossModPrototype:TLBatchReset()
+		self:Unschedule(startTLBatch)
 		self.tlBatchState = nil
 	end
 end
@@ -1394,7 +1524,8 @@ do
 	---@param voice VPSound voice pack media path
 	---@param voiceVersion number Required voice pack version (if not met, falls back to default special warning sounds)
 	---@param soundType number? UnitAuraSoundTrigger: 0 = added, 1 = applications increased, 2 = removed
-	local function enableAuraSound(mod, auraspellId, voice, voiceVersion, soundType)
+	---@param difficultyVoices table<number, VPSound>? voice pack media path overrides keyed by Blizzard difficulty index
+	local function enableAuraSound(mod, auraspellId, voice, voiceVersion, soundType, difficultyVoices)
 		local optionId
 		if type(auraspellId) == "table" then
 			optionId = auraspellId[1]
@@ -1415,6 +1546,10 @@ do
 		end
 		if DBM.Options.DontPlayPrivateAuraSound then return end
 		if optionId and mod.Options["PrivateAuraSound" .. optionId] then
+			local difficulty = DBM:GetCurrentDifficulty()
+			if difficulty and difficultyVoices and difficultyVoices[difficulty] then
+				voice = difficultyVoices[difficulty]
+			end
 			local mediaPath = checkValidVPSound(mod, "PrivateAuraSound", optionId, voice, voiceVersion)
 			if DBM:IsNoneValue(mediaPath) then return end--Don't register if media path is none, even if option is enabled
 			if type(auraspellId) == "table" then
@@ -1427,7 +1562,7 @@ do
 		end
 	end
 
-	---Called by DBM-Core's SecondaryLoadCheck when entering a zone.
+	---Called by Loading's SecondaryLoadCheck when entering a zone.
 	---Registers only the pending aura sounds stored for the current zone.
 	---@param mapID number
 	function bossModPrototype:RegisterZoneAuraSounds(mapID)
@@ -1435,7 +1570,7 @@ do
 		local zoneEntries = self.pendingPASoundsByZone[mapID]
 		if not zoneEntries then return end
 		for _, entry in ipairs(zoneEntries) do
-			enableAuraSound(self, entry[1], entry[2], entry[3], entry[4])
+			enableAuraSound(self, entry[1], entry[2], entry[3], entry[4], entry[5])
 		end
 	end
 
@@ -1458,7 +1593,7 @@ do
 		for _, entry in ipairs(zoneEntries) do
 			local entryOptionId = type(entry[1]) == "table" and entry[1][1] or entry[1]
 			if entryOptionId == optionId then
-				enableAuraSound(self, entry[1], entry[2], entry[3], entry[4])
+				enableAuraSound(self, entry[1], entry[2], entry[3], entry[4], entry[5])
 			end
 		end
 		return true

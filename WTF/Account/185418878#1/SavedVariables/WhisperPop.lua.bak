@@ -1,28 +1,7 @@
 
 WhisperPopDB = {
-["ignoreTags"] = 1,
-["listHeight"] = 320,
-["notifyButton"] = 1,
-["showRealm"] = 1,
-["listScale"] = 100,
-["listWidth"] = 200,
-["timeFormat"] = 2,
-["applyFilters"] = 1,
-["buttonScale"] = 100,
-["history"] = {
-{
-["class"] = "HUNTER",
-["messages"] = {
-"1[T1786028975]你走就行",
-},
-["name"] = "尼古拉斯肆爷-哈霍兰",
-},
-},
-["time"] = 1,
-["version"] = 4.3,
-["foreignOnly"] = 1,
-["save"] = 1,
 ["sound"] = 1,
+["listHeight"] = 320,
 ["positions"] = {
 ["WhisperPopFrame"] = {
 "TOPLEFT",
@@ -39,4 +18,25 @@ WhisperPopDB = {
 253,
 },
 },
+["showRealm"] = 1,
+["listWidth"] = 200,
+["save"] = 1,
+["timeFormat"] = 2,
+["time"] = 1,
+["buttonScale"] = 100,
+["history"] = {
+{
+["class"] = "HUNTER",
+["messages"] = {
+"1[T1786028975]你走就行",
+},
+["name"] = "尼古拉斯肆爷-哈霍兰",
+},
+},
+["applyFilters"] = 1,
+["version"] = 4.3,
+["foreignOnly"] = 1,
+["listScale"] = 100,
+["notifyButton"] = 1,
+["ignoreTags"] = 1,
 }

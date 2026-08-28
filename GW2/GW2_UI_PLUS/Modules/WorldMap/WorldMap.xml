@@ -1,0 +1,3 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Frame name="GwPlusWorldMapPoiPinTemplate" inherits="BaseHighlightableMapPoiPinTemplate" enableMouseClicks="true" enableMouseMotion="true" mixin="GwPlusWorldMapPoiPinMixin" virtual="true" />
+</Ui>

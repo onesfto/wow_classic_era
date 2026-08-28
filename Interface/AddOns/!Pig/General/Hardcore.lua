@@ -36,9 +36,9 @@ function GeneralFun.Hardcore()
 		if _G[UIname] then return end
 		table.insert(AudioData,{NONE,""})
 		JoinTemporaryChannel("hardcoredeaths", nil, DEFAULT_CHAT_FRAME:GetID(), 1);
-		ChatFrame_RemoveChannel(DEFAULT_CHAT_FRAME, "hardcoredeaths");
+		ChatFrameMixin.RemoveChannel(DEFAULT_CHAT_FRAME, "hardcoredeaths");
 		JoinTemporaryChannel(L["HARDCORE_SET1"], nil, DEFAULT_CHAT_FRAME:GetID(), 1);
-		ChatFrame_RemoveChannel(DEFAULT_CHAT_FRAME, L["HARDCORE_SET1"]);
+		ChatFrameMixin.RemoveChannel(DEFAULT_CHAT_FRAME, L["HARDCORE_SET1"]);
 		SetCVar("hardcoreDeathAlertType","2")
 		RaidWarningFrame:UnregisterEvent("HARDCORE_DEATHS");
 		----
@@ -443,7 +443,7 @@ function GeneralFun.Hardcore()
 							local class,race,gender = datatxt[1],datatxt[2],datatxt[3]
 							local className, classFile, classID = PIGGetClassInfo(class)
 							hang.Class.icon:SetTexture("interface/glues/charactercreate/ui-charactercreate-classes.blp")
-							hang.Class.icon:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
+							hang.Class.icon:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
 							hang.Class.icon:SetSize(hang_Height-2,hang_Height-2);
 							local color = PIG_CLASS_COLORS[classFile];
 							hang.name:SetTextColor(color.r, color.g, color.b, 1);
@@ -569,7 +569,7 @@ function GeneralFun.Hardcore()
 							local class,race,gender = datatxt[1],datatxt[2],datatxt[3]
 							local className, classFile, classID = PIGGetClassInfo(class)
 							hang.Class.icon:SetTexture("interface/glues/charactercreate/ui-charactercreate-classes.blp")
-							hang.Class.icon:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
+							hang.Class.icon:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
 							hang.Class.icon:SetSize(hang_Height-2,hang_Height-2);
 							local color = PIG_CLASS_COLORS[classFile];
 							hang.name:SetTextColor(color.r, color.g, color.b, 1);
@@ -656,6 +656,7 @@ function GeneralFun.Hardcore()
 			end
 		end
 		local function event_Script(NameMinV,NameMinSelect)
+			if InCombatLockdown() then return end
 		    if IsResting() then
 				SetCVar("UnitNameFriendlySpecialNPCName", "1");
 				SetCVar("UnitNameHostleNPC", "1");
@@ -691,7 +692,6 @@ function GeneralFun.Hardcore()
 		end
 		GeneralFun:UpdateConfig_CVars()
 		HardcoreCVarsF:HookScript("OnEvent", function(self,event)
-			if InCombatLockdown() then return end
 			C_Timer.After(0.1,event_Script)
 		end)
 	end

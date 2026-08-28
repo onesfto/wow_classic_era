@@ -389,7 +389,6 @@ L["Custom Sort"] = "Custom Sort"
 L["Custom Text Function"] = "Custom Text Function"
 L["Custom Trigger Combination"] = "Custom Trigger Combination"
 L["Custom Variables"] = "Custom Variables"
-L["Daakara"] = "Daakara"
 L["Damage"] = "Damage"
 L["Damage Shield"] = "Damage Shield"
 L["Damage Shield Missed"] = "Damage Shield Missed"
@@ -1652,6 +1651,7 @@ L["Zoom"] = "Zoom"
 L["Zoom Animation"] = "Zoom Animation"
 L["Zul'Aman"] = "Zul'Aman"
 L["Zul'Gurub"] = "Zul'Gurub"
+L["Zul'jin"] = "Zul'jin"
 
 
 -- Make missing translations available

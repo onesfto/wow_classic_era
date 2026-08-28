@@ -23,17 +23,17 @@ function Fun.Update_ItemButtonZLVranse(ly,ItemButton,data1,data2,data3)
 		if ly=="C" then
 			-- local ItemID=GetInventoryItemID(data1, data2)
 			-- if ItemID then
-			-- 	local bindType = select(14, GetItemInfo(ItemID))
+			-- 	local bindType = select(14, PIGGetItemInfo(ItemID))
 			-- 	ItemButton.EquipBind:SetShown(bindType==2)
 			-- end
 		elseif ly=="B" then
 			local itemID, itemLink, icon, stackCount, quality, noValue, lootable, locked, isBound=PIGGetContainerItemInfo(data1, data2)
 			if itemID and not isBound then
-				local bindType = select(14, GetItemInfo(itemID))
+				local bindType = select(14, PIGGetItemInfo(itemID))
 				ItemButton.EquipBind:SetShown(bindType==2)
 			end
 		elseif ly=="L" or ly=="YC" then
-			-- local bindType = select(14, GetItemInfo(data1))
+			-- local bindType = select(14, PIGGetItemInfo(data1))
 			-- ItemButton.EquipBind:SetShown(bindType==2)
 		end
 	end

@@ -1,18 +1,18 @@
-local addonName, addonTable = ...;
-local L=addonTable.locale
-local match = _G.string.match
-local Fun=addonTable.Fun
---
-local Create=addonTable.Create
-local PIGFrame=Create.PIGFrame
-local PIGFontString=Create.PIGFontString
-local PIGOptionsList_R=Create.PIGOptionsList_R
-local PIGButton=Create.PIGButton
-local PIGDiyBut=Create.PIGDiyBut
-------
-local BusinessInfo=addonTable.BusinessInfo
-function BusinessInfo.AH(StatsInfo)
-	local fujiF,fujiTabBut=PIGOptionsList_R(StatsInfo.F,L["TRADECHARDATA_AHTAB"],StatsInfo.butW,"Left")
+local addonName, PD = ...;
+local BusinessInfo=PD.BusinessInfo
+function BusinessInfo.AH(StatsUI)
+	local L=PD.locale
+	local match = _G.string.match
+	local Fun=PD.Fun
+	--
+	local Create=PD.Create
+	local PIGFrame=Create.PIGFrame
+	local PIGFontString=Create.PIGFontString
+	local PIGOptionsList_R=Create.PIGOptionsList_R
+	local PIGButton=Create.PIGButton
+	local PIGDiyBut=Create.PIGDiyBut
+	------
+	local fujiF,fujiTabBut=PIGOptionsList_R(StatsUI.F,AUCTIONS,StatsUI.butW,"LeftH")
 	local hang_Height,hang_NUM  = 23, 17;
 
 	fujiF.L=PIGFrame(fujiF)

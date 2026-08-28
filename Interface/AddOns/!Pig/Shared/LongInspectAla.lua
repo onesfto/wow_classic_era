@@ -255,7 +255,7 @@ local haiyuan_Item = {
 				local id = item:match("item:([%-0-9]+)");
 				id = tonumber(id);
 				if id ~= nil and id > 0 then
-					GetItemInfo(id);
+					PIGGetItemInfo(id);
 					DataTable[slot] = item;
 				else
 					DataTable[slot] = nil;
@@ -275,7 +275,7 @@ local haiyuan_Item = {
 				local item = DecodeItem(val[i]);
 				DataTable[start + i] = item;
 				if item ~= nil then
-					GetItemInfo(item);
+					PIGGetItemInfo(item);
 				end
 			end
 			return DataTable;

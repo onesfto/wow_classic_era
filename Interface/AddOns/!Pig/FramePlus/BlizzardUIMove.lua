@@ -25,7 +25,7 @@ local BlizzardUIList={
 	{false, nil, "WorldMapFrame", "WorldMapTitleButton", "世界地图(mini模式)"},
 	{false, nil, "TradeFrame",nil, "交易界面"},
 	{false, nil, "GameMenuFrame",nil, "ESC菜单"},
-	{false, nil, "SettingsPanel",nil, "设置选项"},
+	{true,  nil, "SettingsPanel",nil, "设置选项"},
 	{false, nil, "HelpFrame",nil, "客服支持"},
 	{false, nil, "ContainerFrameCombinedBags",{"ContainerFrameCombinedBags","TitleContainer"}, "整合背包"},
 	{false, "Blizzard_MacroUI","MacroFrame",nil,"宏命令"},
@@ -34,7 +34,7 @@ local BlizzardUIList={
 	{true,  "Blizzard_Collections","CollectionsJournal",nil,"战团/藏品"},
 	{false, "Blizzard_EncounterJournal","EncounterJournal",nil,"冒险手册"},
 	{false, "Blizzard_TradeSkillUI","TradeSkillFrame",nil,"专业"},
-	{false, "Blizzard_ProfessionsBook","ProfessionsBookFrame",nil,"专业(新版)"},
+	{true,  "Blizzard_ProfessionsBook","ProfessionsBookFrame",nil,"专业(新版)"},
 	{false, "Blizzard_Professions","ProfessionsFrame",nil,"专业(新版)"},
 	{false, "Blizzard_CraftUI","CraftFrame",nil,"附魔"},
 	{false, "Blizzard_TrainerUI","ClassTrainerFrame",nil,"训练师"},
@@ -44,8 +44,12 @@ local BlizzardUIList={
 	{false, "Blizzard_AuctionUI","AuctionFrame",nil,"拍卖行"},
 	{false, "Blizzard_AuctionHouseUI","AuctionHouseFrame",nil,"拍卖行(新版)"},
 	{false, "Blizzard_TalentUI","PlayerTalentFrame",nil,"天赋"},
-	{false, "Blizzard_PlayerSpells","PlayerSpellsFrame",nil,"天赋(新版)"},--有BUG
+	{true,  "Blizzard_PlayerSpells","PlayerSpellsFrame",nil,"天赋(新版)"},--有BUG
+	{false, "Blizzard_HousingDashboard","HousingDashboardFrame",nil,"住宅"},
 }
+if PIG_MaxTocversion(120000,true) then
+	BlizzardUIList[5][1]=true
+end
 FramePlusfun.BlizzardUIList=BlizzardUIList
 ------
 local hookedFrames = {}

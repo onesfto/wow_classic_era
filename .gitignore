@@ -44,52 +44,12 @@ Thumbs.db
 # 插件忽略列表 (Ignored AddOns)
 # ==============================================================================
 
-# 毕业装备追踪查询 (Best in Slot)
-/Interface/AddOns/BiSTracker/
-
-# 宏命令增强面板与图标库
-/Interface/AddOns/MacroToolkit/
-/Interface/AddOns/MacroToolkitIcons/
-
-
-
 # 小地图美化
 /Interface/AddOns/SexyMap/
-
-# 团队目标快速标记
-/Interface/AddOns/SimpleRaidTargetIcons/
 
 # 角色属性深入统计面板
 /Interface/AddOns/SinStats/
 
-# 对话界面美化
-/Interface/AddOns/DialogueUI/
-
-# 角色属性面板增强
-/Interface/AddOns/CharacterStatsClassic/
-
-# 萨满辅助插件
-/Interface/AddOns/aBlueShaman/
-
-# 地图标记系统
-/Interface/AddOns/HandyNotes/
-/Interface/AddOns/HandyNotes_DungeonLocations (Classic)/
-/Interface/AddOns/HandyNotes_NPCs (Classic)/
-
-# 游戏内插件管理面板
-/Interface/AddOns/ACP/
-
-# ala一键换装
-/Interface/AddOns/alaGearMan/
-
-# ala专业技能面板
-/Interface/AddOns/alaTradeSkill/
-
-# 聊天过滤
-/Interface/AddOns/CChatFilter/
-
-# 技能学习提示
-/Interface/AddOns/WhatsTraining/
 
 # Claude Code 临时文件
 .superpowers/

@@ -284,20 +284,20 @@ local function ADD_chatbut(fuF,name)
 					if PIG_IsShow_Message(name) then
 						if dataX[4] then
 							for _,chanamex in pairs(dataX[4]) do
-								ChatFrame_RemoveMessageGroup(SetChatFrame, chanamex);
+								ChatFrameMixin.RemoveMessageGroup(SetChatFrame, chanamex);
 							end
 						else
-							ChatFrame_RemoveMessageGroup(SetChatFrame, name);
+							ChatFrameMixin.RemoveMessageGroup(SetChatFrame, name);
 						end
 						PIGprint(IGNORE.._G[name]..CHANNEL..INFO);
 						self.X:Show();
 					else
 						if dataX[4] then
 							for _,chanamex in pairs(dataX[4]) do
-								ChatFrame_AddMessageGroup(SetChatFrame, chanamex);
+								ChatFrameMixin.AddMessageGroup(SetChatFrame, chanamex);
 							end
 						else
-							ChatFrame_AddMessageGroup(SetChatFrame, name);
+							ChatFrameMixin.AddMessageGroup(SetChatFrame, name);
 						end
 						PIGprint(IGNORE_REMOVE.._G[name]..CHANNEL..INFO);
 						self.X:Hide();

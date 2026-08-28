@@ -220,16 +220,21 @@ function ActionFun.Update_Count(self)
 			    end
 			end
 		elseif Type=="item" then
-			local _,dalei,xiaolei = PIGGetItemInfoInstant(SimID)
-			local CountNum = GetItemCount(SimID, false, true) or GetItemCount(SimID)
-			if dalei==BAG_FILTER_CONSUMABLES then
-				self.Count:SetText(CountNum);
-				if CountNum==0 then
-					self.Count:SetTextColor(1, 0, 0, 1);
-				end
+			local itemID = C_ToyBox.GetToyInfo(self.SimID_3)
+			if itemID then
+				
 			else
-				if CountNum>1 then
+				local _,dalei,xiaolei = PIGGetItemInfoInstant(SimID)
+				local CountNum = GetItemCount(SimID, false, true) or GetItemCount(SimID)
+				if dalei==BAG_FILTER_CONSUMABLES then
 					self.Count:SetText(CountNum);
+					if CountNum==0 then
+						self.Count:SetTextColor(1, 0, 0, 1);
+					end
+				else
+					if CountNum>1 then
+						self.Count:SetText(CountNum);
+					end
 				end
 			end
 		elseif Type=="macro" then
@@ -269,45 +274,52 @@ function ActionFun.Update_Count(self)
 		end
 	end
 end
+local cr,rg,rb=0.3, 0.3, 0.3
 function ActionFun.Update_bukeyong(self)
 	local Type=self.Type
 	if Type then
 		local SimID=self.SimID
 		if Type=="spell" then
 			if not IsPlayerSpell(SimID) then
-				self.icon:SetVertexColor(0.5, 0.5, 0.5) 
+				self.icon:SetVertexColor(cr,rg,rb) 
 				return 
 			end
 			local usable, noMana = IsUsableSpell(SimID)	
 			if not usable then
-				self.icon:SetVertexColor(0.5, 0.5, 0.5) 
+				self.icon:SetVertexColor(cr,rg,rb) 
 				return 
 			end
 		elseif Type=="item" then
-			local Ccount = GetItemCount(SimID, false, true) or GetItemCount(SimID)
-			if Ccount==0 then
-				self.icon:SetVertexColor(0.5, 0.5, 0.5);
-				return
-			end
-			local usable, noMana = IsUsableItem(SimID)
-			if not usable then 
-				self.icon:SetVertexColor(0.5, 0.5, 0.5);
-				return
+			local itemID = C_ToyBox.GetToyInfo(self.SimID_3)
+			if itemID then
+				if not PlayerHasToy(itemID) then
+					self.icon:SetVertexColor(cr,rg,rb);
+					return
+				end
+			else
+				local Ccount = GetItemCount(SimID, false, true) or GetItemCount(SimID)
+				if Ccount==0 then
+					self.icon:SetVertexColor(cr,rg,rb);
+					return
+				end
+				local usable, noMana = IsUsableItem(SimID)
+				if not usable then 
+					self.icon:SetVertexColor(cr,rg,rb);
+					return
+				end
 			end
 		elseif Type=="macro" then
 			local Name, Icon, Body = GetMacroInfo(SimID);
 			local TrimBody = strtrim(Body or "");
 			if TrimBody=="" then
-				self.icon:SetVertexColor(0.5, 0.5, 0.5);
+				self.icon:SetVertexColor(cr,rg,rb);
 				return
 			end
-			
 			local hongSpellID = GetMacroSpell(SimID)
-
 			if hongSpellID then
 				local usable, noMana = IsUsableSpell(hongSpellID)	
 				if not usable then
-					self.icon:SetVertexColor(0.5, 0.5, 0.5) 
+					self.icon:SetVertexColor(cr,rg,rb) 
 					return 
 				end
 			else
@@ -315,13 +327,13 @@ function ActionFun.Update_bukeyong(self)
 				if ItemName then
 					if Body:match("equipslot") or Body:match("equipset") then
 						-- if GetItemCount(ItemName)==0 then
-						-- 	self.icon:SetVertexColor(0.5, 0.5, 0.5);
+						-- 	self.icon:SetVertexColor(cr,rg,rb);
 						-- 	return
 						-- end
 					else
 						local usable, noMana = IsUsableItem(ItemName)
 						if not usable then 
-							self.icon:SetVertexColor(0.5, 0.5, 0.5);
+							self.icon:SetVertexColor(cr,rg,rb);
 							return
 						end
 					end
@@ -331,7 +343,7 @@ function ActionFun.Update_bukeyong(self)
 			local spellID=self.SimID_3
 			local usable, noMana = IsUsableSpell(spellID)
 			if not usable then
-				self.icon:SetVertexColor(0.5, 0.5, 0.5) 
+				self.icon:SetVertexColor(cr,rg,rb) 
 				return 
 			end
 		elseif Type=="mount" then
@@ -339,14 +351,14 @@ function ActionFun.Update_bukeyong(self)
 			if SimID==268435455 then
 				local usable, noMana = IsUsableSpell(spellID)
 				if not usable then
-					self.icon:SetVertexColor(0.5, 0.5, 0.5) 
+					self.icon:SetVertexColor(cr,rg,rb) 
 					return 
 				end
 			else	
 				local mountID = C_MountJournal.GetMountFromSpell(spellID)
 				local isUsable, useError = C_MountJournal.GetMountUsabilityByID(mountID, true)
 				if not isUsable then
-					self.icon:SetVertexColor(0.5, 0.5, 0.5) 
+					self.icon:SetVertexColor(cr,rg,rb) 
 					return 
 				end
 			end
@@ -366,9 +378,18 @@ function ActionFun.Update_State(self)
 			end
 			self:SetChecked(false)
 		elseif Type=="item" then
-			if SimID and IsCurrentItem(SimID) then
-				self:SetChecked(true)
-				return
+			local itemID = C_ToyBox.GetToyInfo(self.SimID_3)
+			if itemID then
+				local _, spellID = C_Item.GetItemSpell(itemID)
+				if spellID and IsCurrentSpell(spellID) then--进入队列
+					self:SetChecked(true)
+					return
+				end
+			else
+				if SimID and IsCurrentItem(SimID) then
+					self:SetChecked(true)
+					return
+				end
 			end	
 			self:SetChecked(false)
 		elseif Type=="macro" then
@@ -428,6 +449,12 @@ function ActionFun.Update_PostClick(self)
 			local usable, noMana = IsUsableSpell(SimID)	
 			if not usable then self:SetChecked(false) end
 		elseif Type=="item" then
+			-- if self.SimID_3 then
+			-- 	if not IsPlayerSpell(SimID) then self:SetChecked(false) end
+			-- 	local usable, noMana = IsUsableSpell(SimID)	
+			-- 	if not usable then self:SetChecked(false) end
+			-- 	return
+			-- end
 			local usable, noMana = IsUsableItem(SimID)
 			if not usable then self:SetChecked(false) end
 		elseif Type=="macro" then
@@ -567,7 +594,7 @@ local function OnEnter_Spell(Type,SimID)
 		GameTooltip:Show();
 	end
 end
-local function OnEnter_Item(Type,SimID,ItemID)
+local function OnEnter_Item(Type,SimID)
 	if SimID then
 		for Bagid=0,4,1 do
 			local numberOfSlots = PIGGetContainerNumSlots(Bagid);
@@ -610,7 +637,7 @@ function ActionFun.Update_OnEnter(self)
 	if Type then
 		local SimID=self.SimID
 		if Type=="spell" then
-			OnEnter_Spell(Type,SimID)
+			OnEnter_Spell(Type,SimID,self.SimID_3)
 		elseif Type=="item" then
 			OnEnter_Item(Type,SimID,self.SimID_3)
 		elseif Type=="companion" or Type=="mount" then
@@ -919,7 +946,7 @@ function ActionFun.Update_Macro(self,PigMacroDeleted,PigMacroCount,dataY)
 	return PigMacroDeleted,PigMacroCount
 end
 
-------
+---排序/显隐
 local Showtiaojian = {ALWAYS..SHOW,LEAVING_COMBAT..HIDE,BATTLEFIELD_JOIN..HIDE,SPELL_FAILED_BAD_IMPLICIT_TARGETS..HIDE,};
 local pailieName={"横向","竖向","6×2","2×6","4×3","3×4"};---排列方式
 local paiNum = #pailieName

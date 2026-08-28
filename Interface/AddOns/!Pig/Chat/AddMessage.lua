@@ -1,8 +1,9 @@
-local addonName, addonTable = ...;
-local L=addonTable.locale
-local Data=addonTable.Data
+local addonName, PD = ...;
+local L=PD.locale
+local Data=PD.Data
 local PlayerInfo=Data.PlayerInfo
-local Fun=addonTable.Fun
+
+local Fun=PD.Fun
 local ReplaceEmoji=Fun.ReplaceEmoji
 local _Get_GEM_EMPTY_SOCKET=Fun._Get_GEM_EMPTY_SOCKET
 local PIGGetItemLevel=Fun.PIGGetItemLevel
@@ -10,7 +11,7 @@ local FasongYCqingqiu=Fun.FasongYCqingqiu
 local GetRaceClassTXT=Fun.GetRaceClassTXT
 --------------
 local Locale=GetLocale()
-local QuickChatfun = addonTable.QuickChatfun
+local QuickChatfun = PD.QuickChatfun
 local find = _G.string.find
 local gsub = _G.string.gsub
 local match = _G.string.match
@@ -33,15 +34,15 @@ local GetItemStats=GetItemStats or C_Item and C_Item.GetItemStats
 -- function PIG_OptionsUI.Plus_chat:Plus_chat_xifu()
 -- 	if PIGA["Chat"]["Plus_chat"]==nil then PIGA["Chat"]["Plus_chat"] = true end
 -- 	if PIGA["Chat"]["Plus_chat"] then
--- 		local old_ChatFrame_SendTell=PIGSendTell
--- 		ChatFrame_SendTell=function(name, chatFrame,pig)
+-- 		local old_SendTell=PIGSendTell
+-- 		ChatFrameUtil.SendTell=function(name, chatFrame,pig)
 -- 			local name1,server2 = strsplit("-",name, 2)
 -- 			if PlayerInfo.Realm==server2 then
 -- 				name = name1
 -- 			end
 -- 			local editBox = ChatEdit_ChooseBoxForSend(chatFrame);	
 -- 			if ( editBox ~= ChatEdit_GetActiveWindow() ) then
--- 				ChatFrame_OpenChat(SLASH_WHISPER1.." "..name.." ", chatFrame);
+-- 				ChatFrameUtil.OpenChat(SLASH_WHISPER1.." "..name.." ", chatFrame);
 -- 			else
 -- 				editBox:SetText(SLASH_WHISPER1.." "..name.." ");
 -- 			end
@@ -75,11 +76,11 @@ function QuickChatfun.PIGMessage()
 	local PlayerMsgList = {}
 	local MsgPlayerLevel = {}
 	---
-	local MAX_PENDING_MSGS = 50   -- 异步待处理消息上限，防止内存泄漏
+	local MAX_PENDING_MSGS = 50 
     local pendingMsgCount = 0
-    local MAX_MSG_COUNT = 100     -- 每个频道历史消息缓存上限
-    local msgHead = {}            -- O(1) 环形缓冲区头指针
-    local msgKeys = {}            -- 环形缓冲区索引表
+    local MAX_MSG_COUNT = 100  
+    local msgHead = {} 
+    local msgKeys = {} 
     ---
 	local GUID_EXPIRE_TIME = 3
 	local CLEAN_INTERVAL = 1
@@ -94,7 +95,7 @@ function QuickChatfun.PIGMessage()
 	        end
 	    end
 	end
-	local function MsgReplaceEmoji(self, event, arg1, ...)
+	local function MsgReplace(...)
 	    local arg2, _, _, arg5, _, _, _, _, _, arg11, arg12 = ...
 	    if arg12 and arg2 then
 	        CleanExpiredGUIDs()
@@ -104,28 +105,32 @@ function QuickChatfun.PIGMessage()
 	            PlayerGUIDs[nnarew] = { GUID = arg12, time = GetTime() }
 	        end
 	    end
-	    return false, ReplaceEmoji(arg1), ...
 	end
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_BN_WHISPER", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER_INFORM", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID_LEADER", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID_WARNING", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_PARTY", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_PARTY_LEADER", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_GUILD", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_OFFICER", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_AFK", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_EMOTE", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_DND", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_COMMUNITIES_CHANNEL", MsgReplaceEmoji)
-	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", function(self, event, arg1)
-	    if arg1:match("功德值") then return true end
-	end)
+    ----
+    local function allMsgHandle(self, event, arg1, ...)
+    	if PIGisSecret(arg1) then return false, arg1, ... end
+    	if event=="CHAT_MSG_WHISPER" and arg1:match("功德值") then return true end
+    	MsgReplace(...)
+	    return false, arg1, ...
+	end
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_CHANNEL", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_SAY", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_YELL", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_WHISPER", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_BN_WHISPER", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_WHISPER_INFORM", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_RAID", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_RAID_LEADER", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_RAID_WARNING", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_PARTY", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_PARTY_LEADER", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_GUILD", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_OFFICER", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_AFK", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_EMOTE", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_DND", allMsgHandle)
+	ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_COMMUNITIES_CHANNEL", allMsgHandle)
+	
 	---
 	local JJM = L["CHAT_QUKBUTNAME"]
 	local JXname = L["CHAT_SIMPLIFYNAME"]
@@ -384,11 +389,9 @@ function QuickChatfun.PIGMessage()
 	            end
 	        end
 	    end
-	    return newText
+	    return ReplaceEmoji(newText)
 	end
-
-	---------
-    local function OutputItemMessage(text, msninfo, frame, ...)
+    local function PIGFormatMsgItem(text, msninfo, frame, ...)
 	    if pendingMsgCount >= MAX_PENDING_MSGS then
 	        msninfo(frame, PIGFormatMsg(text), ...)
 	        return
@@ -408,7 +411,6 @@ function QuickChatfun.PIGMessage()
 	    end
 
 	    local vararg = { ... }
-	    local processed = false
 	    local function TryResolve(count)
 	        if not textAllIDs[text] then return end
 	        local allReady = true
@@ -435,8 +437,14 @@ function QuickChatfun.PIGMessage()
 	    end
 	    TryResolve(0)
 	end
-    -- ===========
-    local function FormatChatMsg()
+    --
+    local oldaddfun={}
+	for i = 1, NUM_CHAT_WINDOWS do
+        if i ~= 2 and i ~= 3 then
+            oldaddfun[i]= _G["ChatFrame" .. i].AddMessage
+        end
+    end
+    local function FormatChatMsg(isbg)
         for i = 1, NUM_CHAT_WINDOWS do
             if i ~= 2 and i ~= 3 then
                 local chatFrame = _G["ChatFrame" .. i]
@@ -447,7 +455,7 @@ function QuickChatfun.PIGMessage()
                     end
                     if text and text ~= "" and text:match("|Hplayer:") then
                         if chatONOFF.ShowLinkLV and text:match("|Hitem:") then
-                            return OutputItemMessage(text, msninfo, frame, ...)
+                            return PIGFormatMsgItem(text, msninfo, frame, ...)
                         end
                         return msninfo(frame, PIGFormatMsg(text), ...)
                     end
@@ -456,8 +464,49 @@ function QuickChatfun.PIGMessage()
             end
         end
     end
-    FormatChatMsg()
-
+    FormatChatMsg(false)
+	--处理正式服战场刷屏
+	if PIG_MaxTocversion(120000,true) then
+		local BlackList = {}
+		local BlackListCount = 0
+		local function FilterBlack_Chongfu(newText, chatbox)
+		    local now = GetTime()
+		    local key = newText .. "\0" .. tostring(chatbox)
+		    local record = BlackList[key]
+		    if record and (now - record.time) <= 3 then
+		        return true
+		    end
+		    if record then
+		        record.time = now
+		    else
+		        BlackList[key] = { time = now }
+		        BlackListCount = BlackListCount + 1
+		    end
+		    if BlackListCount > 50 then
+		        local expiredKeys = {}
+		        for k, v in pairs(BlackList) do
+		            if (now - v.time) > 3 then
+		                expiredKeys[#expiredKeys + 1] = k
+		            end
+		        end
+		        for i = 1, #expiredKeys do
+		            BlackList[expiredKeys[i]] = nil
+		            BlackListCount = BlackListCount - 1
+		        end
+		    end
+		    return false
+		end
+		ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_SYSTEM", function(self, _, arg1)
+			local _, instanceType = IsInInstance();
+			if instanceType and instanceType == "pvp" then
+			    if FilterBlack_Chongfu(arg1, self) then
+			        return true
+			    end
+			end
+		    return false
+		end)
+	end
+	---============================
     Get_itemF:RegisterEvent("CHAT_MSG_WHISPER")
     Get_itemF:RegisterEvent("CHAT_MSG_WHISPER_INFORM")
     Get_itemF:RegisterEvent("CHAT_MSG_CHANNEL")
@@ -508,6 +557,7 @@ function QuickChatfun.PIGMessage()
     end)
 
 	local linkokck =PIG_MaxTocversion()
+	local BusinessInfo=PD.BusinessInfo
     hooksecurefunc("SetItemRef", function(text, link, button, chatFrame)
         if not chatONOFF.ShowZb and not chatONOFF.FastCopy then return end
         if strsub(text, 1, 11) ~= "garrmission" then return end
@@ -543,6 +593,8 @@ function QuickChatfun.PIGMessage()
             end
         elseif linktype == "-997" then
             QuickChatfun.TabButUI.Keyword.ClickShowTab("AddIgnore", playerName)
+        elseif linktype == "-996" then--邮箱记录
+        	BusinessInfo.IsBusinessOpen(BusinessInfo.ClickMailRecord)
         end
     end)
 end

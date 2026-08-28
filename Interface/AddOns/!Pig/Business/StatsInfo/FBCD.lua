@@ -44,8 +44,9 @@ local function CDNextInterval(Interval,month, day, hour, unixTime)
     local remainingTime = nextIntervalEnd - unixTime
     return remainingTime
 end
-function BusinessInfo.FBCD(StatsInfo)
-	local fujiF,fujiTabBut=PIGOptionsList_R(StatsInfo.F,L["TRADECHARDATA_FBTAB"],StatsInfo.butW,"Left")
+function BusinessInfo.FBCD(StatsUI)
+	PIGA["StatsInfo"]["FBCDRecords"][StatsUI.allname]=PIGA["StatsInfo"]["FBCDRecords"][StatsUI.allname] or {}
+	local fujiF,fujiTabBut=PIGOptionsList_R(StatsUI.F,INSTANCE,StatsUI.butW,"LeftH")
 	fujiF:Show()
 	fujiTabBut:Selected(true)
 	fujiF.CZdataBut = PIGDiyBut(fujiF,{"TOPLEFT", fujiF, "TOPLEFT", 10, -2},{17,17,nil,nil,"common-icon-undo"})
@@ -53,8 +54,8 @@ function BusinessInfo.FBCD(StatsInfo)
 	fujiF.CZdataBut:SetScript("OnClick", function (self)
 		PIGA["StatsInfo"]["FBCDRecords"]={}
 		fujiF.Get_InstancesCD()
-		StatsInfo:Hide()
-		StatsInfo:Show()
+		StatsUI:Hide()
+		StatsUI:Show()
 		PIGErrorMsg(L["TRADECHARDATA_FBCD2"])
 	end);
 	local Tooltipx = {"",L["TRADECHARDATA_FBCD3"]}
@@ -116,10 +117,10 @@ function BusinessInfo.FBCD(StatsInfo)
 		end);
 		MiniMapBut:HookScript("OnLeave", function()
 			if not PIGA["StatsInfo"]["FBCDMinibutTisp"] then return end
-			fujiF:SetParent(StatsInfo.F.Bot)
+			fujiF:SetParent(StatsUI.F.Bot)
 			fujiF:ClearAllPoints();
-			fujiF:SetPoint("TOPLEFT",StatsInfo.F.Bot,"TOPLEFT",0,0);
-			fujiF:SetPoint("BOTTOMRIGHT",StatsInfo.F.Bot,"BOTTOMRIGHT",0,0);
+			fujiF:SetPoint("TOPLEFT",StatsUI.F.Bot,"TOPLEFT",0,0);
+			fujiF:SetPoint("BOTTOMRIGHT",StatsUI.F.Bot,"BOTTOMRIGHT",0,0);
 			fujiF.tispBG:Hide()
 		end);
 	end
@@ -144,7 +145,7 @@ function BusinessInfo.FBCD(StatsInfo)
 			InstancesCDinfo[name]=InstancesCDinfo[name] or {}
 			InstancesCDinfo[name]["world"]={reset+GetServerTime(),1,1,{}}
 		end
-		PIGA["StatsInfo"]["FBCDRecords"][StatsInfo.allname]=InstancesCDinfo
+		PIGA["StatsInfo"]["FBCDRecords"][StatsUI.allname]=InstancesCDinfo
 	end
 	fujiF:HookScript("OnShow", function(self)
 		self.MinibutTisp:SetChecked(PIGA["StatsInfo"]["FBCDMinibutTisp"])
@@ -240,7 +241,7 @@ function BusinessInfo.FBCD(StatsInfo)
 							end
 							fujik.Race:SetAtlas(dataX[dangqian][5]);
 							local className, classFile, classID = PIGGetClassInfo(dataX[dangqian][6])
-							fujik.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
+							fujik.Class:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
 							fujik.name:SetText(dataX[dangqian][2].."\124cffFFD700("..dataX[dangqian][7]..")\124r");
 							local color = PIG_CLASS_COLORS[classFile];
 							fujik.name:SetTextColor(color.r, color.g, color.b, 1);
@@ -324,7 +325,7 @@ function BusinessInfo.FBCD(StatsInfo)
 		   	fujiF.raidCD:UpdateHang()
 		end
 	else
-		local hang_Height,hang_NUM,nrpianyi,nrjiange,lienum= StatsInfo.hang_Height, 11,200,60,11
+		local hang_Height,hang_NUM,nrpianyi,nrjiange,lienum= StatsUI.hang_Height, 11,200,60,11
 		local insList_DUNGEONS = {}
 		local insList_RAIDS = {}
 		local insList_WORDBOSS = {}
@@ -356,9 +357,9 @@ function BusinessInfo.FBCD(StatsInfo)
 			-- table.insert(insList_RAIDS,{"["..RAIDS.."]-"..EXPANSION_NAME1,{844,845,846,847,848,849,850,851,852}})
 			-- table.insert(insList_RAIDS,{"["..RAIDS.."]-"..EXPANSION_NAME2,wlkid})
 			-- NewTabList=NewTabList or morenRecords(wlkid)
-			local titanraid = {839,1095,848,847,1101,1102,841,1100,836}
+			local titanraid = {839,1095,848,847,1101,1102,841,1100,836,851,852}
 			table.insert(insList_RAIDS,{"["..RAIDS.."]-"..PIG_GetDifficultyInfo(244),titanraid})
-			local titanword = {118,119}--116,117,
+			local titanword = {}--116,117,118,119
 			table.insert(insList_WORDBOSS,{"["..WORLD.."BOSS]",titanword})
 			local hejirdlist={}
 			for i=1,#titanraid do
@@ -567,18 +568,15 @@ function BusinessInfo.FBCD(StatsInfo)
 			end
 			fujiF.Get_InstancesCD()
 			local cdmulu={};
-			local PlayerData = PIGA["StatsInfo"]["Players"]
-			local PlayerSH = PIGA["StatsInfo"]["PlayerSH"]
+			local pmuli,PData,added=Fun.GetPlayerSortData()
 			local InstancesCD=PIGA["StatsInfo"]["FBCDRecords"]
-			if PlayerData[StatsInfo.allname] and not PlayerSH[StatsInfo.allname] then
-				local dangqianC=PlayerData[StatsInfo.allname]
-				table.insert(cdmulu,{StatsInfo.allname,dangqianC[1],dangqianC[2],dangqianC[3],dangqianC[4],dangqianC[5],InstancesCD[StatsInfo.allname],true})
+		   	for i=1,#pmuli do
+				local pname=pmuli[i]
+				if PData[pname] then
+					local pData=PData[pname]
+					table.insert(cdmulu,{pname,pData[1],pData[2],pData[3],pData[4],pData[5],InstancesCD[pname],pname==StatsUI.allname})
+			   	end
 			end
-		   	for k,v in pairs(PlayerData) do
-		   		if k~=StatsInfo.allname and PlayerData[k] and not PlayerSH[k] then
-		   			table.insert(cdmulu,{k,v[1],v[2],v[3],v[4],v[5],InstancesCD[k]})
-		   		end
-		   	end
 			local ItemsNum = #cdmulu;
 			if ItemsNum>0 then
 			    FauxScrollFrame_Update(self, ItemsNum, hang_NUM, hang_Height);
@@ -700,7 +698,7 @@ function BusinessInfo.FBCD(StatsInfo)
 						end
 						fujik.Race:SetAtlas(cdmulu[dangqian][4]);
 						local className, classFile, classID = PIGGetClassInfo(cdmulu[dangqian][5])
-						fujik.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
+						fujik.Class:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
 						fujik.level:SetText(cdmulu[dangqian][6]);
 						if cdmulu[dangqian][8] then
 							fujik.nameDQ:Show()

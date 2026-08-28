@@ -115,6 +115,28 @@ function Private.InitializeEncounterAndZoneLists()
       }
     },
     {
+      L["Zul'Aman"],
+      {
+        { L["Akil'zon"], 1189 },
+        { L["Nalorakk"], 1190 },
+        { L["Jan'alai"], 1191 },
+        { L["Halazzi"], 1192 },
+        { L["Hex Lord Malacrass"], 1193 },
+        { L["Zul'jin"], 1194 },
+      }
+    },
+    {
+      L["The Sunwell Plateau"],
+      {
+        { L["Kalecgos"], 724 },
+        { L["Brutallus"], 725 },
+        { L["Felmyst"], 726 },
+        { L["Eredar Twins"], 727 },
+        { L["M'uru"], 728 },
+        { L["Kil'jaeden"], 729 },
+      }
+    },
+    {
       L["Vault of Archavon"],
       {
         { L["Archavon the Stone Watcher"], 772 },
@@ -410,7 +432,7 @@ Private.talentInfo = {
       136107, -- [1]
       10, -- [2]
       2, -- [3]
-      50130, -- [4]
+      50128, -- [4]
     }, -- [53]
     {
       135152, -- [1]
@@ -457,7 +479,7 @@ Private.talentInfo = {
     {
       132373, -- [1]
       9, -- [2]
-      3, -- [3]
+      4, -- [3]
       50191, -- [4]
     }, -- [61]
     {
@@ -508,9 +530,24 @@ Private.talentInfo = {
       1, -- [3]
       66192, -- [4]
     }, -- [69]
-    nil, -- [70]
-    nil, -- [71]
-    nil, -- [72]
+    {
+      342917, -- [1]
+      9, -- [2]
+      3, -- [3]
+      1314540, -- [4]
+    }, -- [70]
+    {
+      341980, -- [1]
+      10, -- [2]
+      3, -- [3]
+      1314847, -- [4]
+    }, -- [71]
+    {
+      343637, -- [1]
+      8, -- [2]
+      4, -- [3]
+      1316345, -- [4]
+    }, -- [72]
     nil, -- [73]
     nil, -- [74]
     nil, -- [75]

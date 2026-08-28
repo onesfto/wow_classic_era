@@ -41,6 +41,7 @@ local connectedRealms = {};
 local layerExpireTime = 10800;
 local isTBC = NWB.isTBC;
 local isWrath = NWB.isWrath;
+local isSOD = NWB.isSOD;
 
 function NWB:setLayerExpireTimeData()
 	layerExpireTime = NWB.layerExpireTime;
@@ -1175,13 +1176,16 @@ function NWB:createDataLayered(distribution, noLayerMap, noLogs, type, forceLaye
 			end
 			--Tubers and dragons aren't shared in layered realms anymore, trying to cut down on data.
 			--They still work as personal timers for farming, which is really all they are good for anyway.
-			--[[for k, v in pairs(NWB.tubers) do
-				--Add currently active tuber timers.
-				if (NWB.data[k] > GetServerTime() - 1500) then
-					data[k] = NWB.data[k];
+			--Enabled again for low pop SoD realms for
+			if (isSOD) then
+				for k, v in pairs(NWB.tubers) do
+					--Add currently active tuber timers.
+					if (NWB.data[k] > GetServerTime() - 1500) then
+						data[k] = NWB.data[k];
+					end
 				end
 			end
-			for k, v in pairs(NWB.dragons) do
+			--[[for k, v in pairs(NWB.dragons) do
 				--Add currently active dragon timers.
 				if (NWB.data[k] > GetServerTime() - 1500) then
 					data[k] = NWB.data[k];

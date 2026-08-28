@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("OnyxiaVanilla", "DBM-Raids-Vanilla", 7)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20260724213414")
+mod:SetRevision("20260724223445")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(10184)
 mod:SetEncounterID(1084)
@@ -182,7 +182,7 @@ function mod:OnSync(msg, arg)
 		if self:GetStage(phase, 1) then
 			self:SetStage(phase)
 			if phase % 1 == 0 then
-			warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(phase))
+				warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(phase))
 			end
 			if phase == 1.5 then
 				warnPhase2Soon:Show()

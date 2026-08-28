@@ -115,7 +115,8 @@ end
 ---@param voice VPSound|VPSound[]|number? voice pack media path(s) for zone-based aura sound registration. Tables are paired by index with voiceVersion and soundType; scalar values broadcast to every table entry. Also accepts the shorthand voiceVersion number when subType is passed as a voice string.
 ---@param voiceVersion number|number[]? required voice pack version(s); if voice pack version is below this value, falls back to default sound
 ---@param soundType number|number[]? UnitAuraSoundTrigger(s): 0 = added, 1 = applications increased, 2 = removed; defaults to 0
-function bossModPrototype:AddAuraSoundOption(auraspellId, default, groupSpellId, defaultSound, subType, voice, voiceVersion, soundType)
+---@param difficultyVoices table<number, VPSound>? voice pack media path overrides keyed by Blizzard difficulty index; voice remains the fallback
+function bossModPrototype:AddAuraSoundOption(auraspellId, default, groupSpellId, defaultSound, subType, voice, voiceVersion, soundType, difficultyVoices)
 	if type(subType) == "string" then
 		local shorthandVoiceVersion = type(voice) == "number" and voice or nil
 		voice = subType
@@ -138,10 +139,6 @@ function bossModPrototype:AddAuraSoundOption(auraspellId, default, groupSpellId,
 		default = self:GetRoleFlagValue(default)
 	end
 	self.Options["PrivateAuraSound" .. optionId] = (default == nil) or default
-	--12.0 and older check, if it's not a private aura don't add it at all
-	if DBM:GetTOC() < 120100 and C_UnitAuras and C_UnitAuras.AuraIsPrivate and not C_UnitAuras.AuraIsPrivate(optionId) then
-		return
-	end
 	--12.1 and later check, we accept any aura, if it exists
 	if not DBM:DoesSpellExist(optionId) then
 		DBM:Debug("Attempting to add aura sound failed because spell ID " .. optionId .. " does not exist. Check spell ID and try again for mod " .. self.id, 1, nil, nil, true)
@@ -162,7 +159,7 @@ function bossModPrototype:AddAuraSoundOption(auraspellId, default, groupSpellId,
 		self:GroupSpellsPA(groupSpellId or optionId, "PrivateAuraSound" .. optionId)
 --	end
 	self:SetOptionCategory("PrivateAuraSound" .. optionId, "paura", nil, nil, true)
-	-- Store for zone-based registration in SecondaryLoadCheck, keyed by exact zone IDs captured from SetZone at option registration time.
+	-- Store for zone-based registration in Loading's SecondaryLoadCheck, keyed by exact zone IDs captured from SetZone at option registration time.
 	if voice then
 		if self.zones then
 			-- C_UnitAuras accepts one voice/trigger combination per registration. To support sounds on
@@ -191,7 +188,7 @@ function bossModPrototype:AddAuraSoundOption(auraspellId, default, groupSpellId,
 					if not self.pendingPASoundsByZone then self.pendingPASoundsByZone = {} end
 					for zoneID in pairs(self.zones) do
 						self.pendingPASoundsByZone[zoneID] = self.pendingPASoundsByZone[zoneID] or {}
-						self.pendingPASoundsByZone[zoneID][#self.pendingPASoundsByZone[zoneID] + 1] = {auraspellId, pairedVoice, pairedVoiceVersion, pairedSoundType}
+						self.pendingPASoundsByZone[zoneID][#self.pendingPASoundsByZone[zoneID] + 1] = {auraspellId, pairedVoice, pairedVoiceVersion, pairedSoundType, difficultyVoices}
 					end
 				else
 					invalidRegistration = true

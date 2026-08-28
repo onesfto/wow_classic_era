@@ -327,15 +327,19 @@ function Create.PIGEnter(Parent,text,text1,text2,Xpianyi,Ypianyi,huanhang)
 	Parent:HookScript("OnEnter", function(self)
 		GameTooltip:ClearLines();
 		GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT",Xpianyi,Ypianyi);
-		GameTooltip:AddLine(text, nil, nil, nil, huanhangYN)
-		if self.TooltipFun then
-			self.TooltipFun()
+		if type(text)=="function" then
+			GameTooltip:AddLine(text(), nil, nil, nil, huanhangYN)
 		else
-			if text1 then
-				GameTooltip:AddLine(text1, nil, nil, nil, huanhangYN)
-			end
-			if text2 then
-				GameTooltip:AddLine(text2, nil, nil, nil, huanhangYN)
+			GameTooltip:AddLine(text, nil, nil, nil, huanhangYN)
+			if self.TooltipFun then
+				self.TooltipFun()
+			else
+				if text1 then
+					GameTooltip:AddLine(text1, nil, nil, nil, huanhangYN)
+				end
+				if text2 then
+					GameTooltip:AddLine(text2, nil, nil, nil, huanhangYN)
+				end
 			end
 		end
 		GameTooltip:Show();

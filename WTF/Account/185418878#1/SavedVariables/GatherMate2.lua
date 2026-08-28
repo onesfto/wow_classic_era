@@ -1,5 +1,8 @@
 
 GatherMate2DB = {
+["global"] = {
+["data_version"] = 5,
+},
 ["profileKeys"] = {
 ["德加和尚 - 哈霍兰"] = "Default",
 ["寒脊山大郡主 - 法琳娜"] = "Default",
@@ -21,23 +24,21 @@ GatherMate2DB = {
 ["女兵七十六 - 铁血II"] = "Default",
 ["联盟的奸细 - 法琳娜"] = "Default",
 ["绿龙守护者 - 哈霍兰"] = "Default",
+["暗矛部落酋长 - 哈霍兰"] = "Default",
 ["伊芙莉特 - 铁血"] = "Default",
-["露露糖 - 铁血"] = "Default",
-["小露露糖 - 铁血"] = "Default",
-["魔女桑德兰 - 哈霍兰"] = "Default",
 ["超小露露糖 - 铁血"] = "Default",
+["小露露糖 - 铁血"] = "Default",
+["法德迦 - 哈霍兰"] = "Default",
+["嘉顿女爵 - 哈霍兰"] = "Default",
 ["联盟的间谍 - 法琳娜"] = "Default",
 ["津巴布韦公主 - 哈霍兰"] = "Default",
 ["女兵七十六 - 硬汉"] = "Default",
-["暗矛部落酋长 - 哈霍兰"] = "Default",
+["巨龙守护者 - 哈霍兰"] = "Default",
 ["萨鲁法尔女王 - 铁血"] = "Default",
-["法德迦 - 哈霍兰"] = "Default",
-["嘉顿女爵 - 哈霍兰"] = "Default",
+["魔女桑德兰 - 哈霍兰"] = "Default",
+["露露糖 - 铁血"] = "Default",
 ["女兵七十六 - 铁血"] = "Default",
 ["萨鲁法尔女王 - 哈霍兰"] = "Default",
-},
-["global"] = {
-["data_version"] = 5,
 },
 ["profiles"] = {
 ["Default"] = {

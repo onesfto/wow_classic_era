@@ -816,14 +816,6 @@ L:SetGeneralLocalization({
 	name = "Gran Viuda Faerlina"
 })
 
-L:SetWarningLocalization({
-	WarningEmbraceExpire	= "Abrazo de la viuda se desvanece en 5 segundos"
-})
-
-L:SetOptionLocalization({
-	WarningEmbraceExpire	= "Mostrar anuncio anticipado para cuando $spell:28732 se desvanezca"
-})
-
 L:SetMiscLocalization({
 	Pull1					= "¡Arrodíllate ante mí, gusano!",
 	Pull2 					= "¡No puedes esconderte de mí!",
@@ -1020,7 +1012,6 @@ L:SetGeneralLocalization({
 
 L:SetOptionLocalization({
 	TimerWave			= "Mostrar temporizador para la siguiente oleada de esbirros",
-	TimerPhase2			= "Mostrar temporizador para fase 2",
 	WarningWaveSoon		= "Mostrar anuncio anticipado para la siguiente oleada de esbirros",
 	WarningWaveSpawned	= "Mostrar anuncio cuando comience una oleada de esbirros",
 	WarningRiderDown	= "Mostrar anuncio cuando muera un Jinete inflexible",
@@ -1029,15 +1020,13 @@ L:SetOptionLocalization({
 
 L:SetTimerLocalization({
 	TimerWave	= "Oleada %d/18",
-	TimerPhase2	= "Fase 2"
 })
 
 L:SetWarningLocalization({
 	WarningWaveSoon		= "Oleada %d: %s en 3 segundos",
 	WarningWaveSpawned	= "Oleada %d: %s",
 	WarningRiderDown	= "Jinete muerto",
-	WarningKnightDown	= "Caballero muerto",
-	WarningPhase2		= "Fase 2"
+	WarningKnightDown	= "Caballero muerto"
 })
 
 L:SetMiscLocalization({
@@ -1121,7 +1110,6 @@ L:SetGeneralLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerPhase2			= "Mostrar temporizador para fase 2",
 	specwarnP2Soon		= "Mostrar anuncio especial 10 segundos antes del cambio a fase 2"
 })
 
@@ -1131,10 +1119,6 @@ L:SetMiscLocalization({
 
 L:SetWarningLocalization({
 	specwarnP2Soon	= "Fase 2 en 10 segundos"
-})
-
-L:SetTimerLocalization({
-	TimerPhase2	= "Fase 2"
 })
 
 -----------------

@@ -1,23 +1,28 @@
 local addonName, addonTable = ...;
-local L=addonTable.locale
-local Fun=addonTable.Fun
-local Create=addonTable.Create
-local fmod=math.fmod
-local gsub = _G.string.gsub
-local PIGLine=Create.PIGLine
-local PIGFrame=Create.PIGFrame
-local PIGButton=Create.PIGButton
-local PIGDiyBut = Create.PIGDiyBut
-local PIGFontString=Create.PIGFontString
-local PIGOptionsList_R=Create.PIGOptionsList_R
---------
 local BusinessInfo=addonTable.BusinessInfo
-function BusinessInfo.Admin(StatsInfo,peizhiList)
-	local fujiF,fujiTabBut=PIGOptionsList_R(StatsInfo.F,L["TRADECHARDATA_ADMINTAB"],StatsInfo.butW,"Left")
+function BusinessInfo.Admin(StatsUI)
+	local L=addonTable.locale
+	local Fun=addonTable.Fun
+	local Create=addonTable.Create
+	local fmod=math.fmod
+	local gsub = _G.string.gsub
+	local PIGLine=Create.PIGLine
+	local PIGFrame=Create.PIGFrame
+	local PIGButton=Create.PIGButton
+	local PIGDiyBut = Create.PIGDiyBut
+	local PIGFontString=Create.PIGFontString
+	local PIGOptionsList_R=Create.PIGOptionsList_R
+	--------
+	local fujiF,fujiTabBut=PIGOptionsList_R(StatsUI.F,CHAT_MODERATE..CHARACTER,StatsUI.butW,"LeftH")
 	fujiF:HookScript("OnShow", function(self)
 		fujiF.Update_List();
 	end)
 	local hang_Height,hang_NUM,UIWWW  = 22.6, 20,fujiF:GetWidth()*0.5
+	fujiF.hide = PIGButton(fujiF,{"TOPLEFT", fujiF, "TOPLEFT", 260,-1},{80,20},"重置排序");
+	fujiF.hide:SetScript("OnClick", function (self)
+		PIGA["StatsInfo"]["PlayerSort"]={}
+		fujiF.Update_List()
+	end);
 	local function add_uifun()
 		if fujiF.Admin then return end
 		fujiF.Admin=PIGFrame(fujiF)
@@ -63,18 +68,16 @@ function BusinessInfo.Admin(StatsInfo,peizhiList)
 		for _,hang in pairs(fujiF.Admin_Hide.ButList) do
 			hang:Hide()
 		end
-		local cdmulu={};
-		local PlayerData = PIGA["StatsInfo"]["Players"]
-		local PlayerSH = PIGA["StatsInfo"]["PlayerSH"]	
-	   	if PlayerData[StatsInfo.allname] and not PlayerSH[StatsInfo.allname] then
-	   		local dangqianC=PlayerData[StatsInfo.allname]
-	   		table.insert(cdmulu,{StatsInfo.allname,dangqianC,true})
-	   	end
-   		for k,v in pairs(PlayerData) do
-	   		if k~=StatsInfo.allname and PlayerData[k] and not PlayerSH[k] then
-	   			table.insert(cdmulu,{k,v})
-	   		end
-	   	end
+
+	   	local cdmulu = {}
+	   	local pmuli,PData,added,Sortnum=Fun.GetPlayerSortData()
+	   	for i=1,#pmuli do
+			local pname=pmuli[i]
+			if PData[pname] then
+				local pData=PData[pname]
+		   		table.insert(cdmulu,{pname,pData,pname==StatsUI.allname})
+		   	end
+		end
 		local ItemsNum = #cdmulu;
 	    FauxScrollFrame_Update(fujiF.Admin.Scroll, ItemsNum, hang_NUM, hang_Height);
 	    local offset = FauxScrollFrame_GetOffset(fujiF.Admin.Scroll);
@@ -116,6 +119,16 @@ function BusinessInfo.Admin(StatsInfo,peizhiList)
 						local wanjianame = self:GetParent().allname
 						fujiF.caozuoshuaxin("hide",wanjianame)
 					end);
+					hang.down = PIGDiyBut(hang,{"RIGHT", hang.hide, "LEFT", -8,0},{hang_Height-2,nil,hang_Height-2,hang_Height+10,"NPE_ArrowDown"})
+					hang.down:SetScript("OnClick", function (self)
+						local wanjianame = self:GetParent().allname
+						fujiF.caozuoshuaxin("sort",wanjianame,"-")
+					end);
+					hang.up = PIGDiyBut(hang,{"RIGHT", hang.down, "LEFT", -8,0},{hang_Height-2,nil,hang_Height-2,hang_Height+10,"NPE_ArrowUp"})
+					hang.up:SetScript("OnClick", function (self)
+						local wanjianame = self:GetParent().allname
+						fujiF.caozuoshuaxin("sort",wanjianame,"+")
+					end);
 				end
 				local fujik = fujiF.Admin.ButList[id]
 				fujik:Show();
@@ -128,22 +141,30 @@ function BusinessInfo.Admin(StatsInfo,peizhiList)
 				end
 				fujik.Race:SetAtlas(cdmulu[dangqian][2][3]);
 				local className, classFile, classID = PIGGetClassInfo(cdmulu[dangqian][2][4])
-				fujik.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
+				fujik.Class:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
 				fujik.level:SetText("("..cdmulu[dangqian][2][5]..")");
 				local color = PIG_CLASS_COLORS[classFile];
 				fujik.name:SetTextColor(color.r, color.g, color.b, 1);
 				fujik.nameDQ:SetShown(cdmulu[dangqian][3])
+				fujik.up.icon:SetDesaturated(not added[cdmulu[dangqian][1]])
+				if added[cdmulu[dangqian][1]] then
+					fujik.down:SetShown(dangqian~=Sortnum)
+					fujik.up:SetShown(dangqian~=1)
+				else
+					fujik.down:SetShown(false)
+				end
 			end
 		end
 		local cdmulu={};
-	   	if PlayerSH[StatsInfo.allname] then
-	   		local dangqianC=PlayerData[StatsInfo.allname]
-	   		table.insert(cdmulu,{StatsInfo.allname,dangqianC,true})
-	   	end
-   		for k,v in pairs(PlayerData) do
-	   		if k~=StatsInfo.allname and PlayerSH[k] then
-	   			table.insert(cdmulu,{k,v})
-	   		end
+		local PlayerSH = PIGA["StatsInfo"]["PlayerSH"]
+   		for k,v in pairs(PData) do
+   			if PlayerSH[k] then
+		   		if k==StatsUI.allname then
+					table.insert(cdmulu,1,{k,v,true})
+		   		else
+		   			table.insert(cdmulu,{k,v})
+		   		end
+		   	end
 	   	end
 	   	--
 		local ItemsNum = #cdmulu;
@@ -204,7 +225,7 @@ function BusinessInfo.Admin(StatsInfo,peizhiList)
 				end
 				fujik.Race:SetAtlas(cdmulu[dangqian][2][3]);
 				local className, classFile, classID = PIGGetClassInfo(cdmulu[dangqian][2][4])
-				fujik.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
+				fujik.Class:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
 				fujik.level:SetText("("..cdmulu[dangqian][2][5]..")");
 				local color = PIG_CLASS_COLORS[classFile];
 				fujik.name:SetTextColor(color.r, color.g, color.b, 1);
@@ -212,23 +233,53 @@ function BusinessInfo.Admin(StatsInfo,peizhiList)
 			end
 		end
 	end
-	function StatsInfo:Del_DataInfo(ly,name)
+	local CZpeizhiList={
+		"FBCDRecords",
+		"SkillData",
+		"Token",
+		"Items",
+		"TradeData",
+		"MailData",
+		"Played",
+	}
+	function fujiF.caozuoshuaxin(ly,name,updo)
 		if ly=="del" then
 			PIGA["StatsInfo"]["Players"][name]=nil
 			PIGA["StatsInfo"]["PlayerSH"][name]=nil
-			for k,v in pairs(peizhiList) do
-				if v=="name" then
-					PIGA["StatsInfo"][k][name]= nil
-				end
+			local PlayerData = PIGA["StatsInfo"]["Players"]
+			local PlayerSH = PIGA["StatsInfo"]["PlayerSH"]	
+			for _,leix in pairs(CZpeizhiList) do
+				PIGA["StatsInfo"][leix][name]= nil
 			end		
 		elseif ly=="hide" then
 			PIGA["StatsInfo"]["PlayerSH"][name]=true
 		elseif ly=="show" then
 			PIGA["StatsInfo"]["PlayerSH"][name]=nil
+		elseif ly=="sort" then
+			local PlayerSort = PIGA["StatsInfo"]["PlayerSort"]
+			if updo == "+" then
+				local found = false
+			    for i, v in ipairs(PlayerSort) do
+			    	if v == name then
+			        	if i > 1 then
+				            PlayerSort[i], PlayerSort[i - 1] = PlayerSort[i - 1], PlayerSort[i] 
+				        end
+				        found = true
+				        break
+			        end
+			    end
+			    if not found then
+			        table.insert(PlayerSort, name)
+			    end
+			elseif updo == "-" then
+			    for i, v in ipairs(PlayerSort) do
+			        if v == name and i < #PlayerSort then
+			            PlayerSort[i], PlayerSort[i + 1] = PlayerSort[i + 1], PlayerSort[i]
+			            break
+			        end
+			    end
+			end
 		end
-	end
-	function fujiF.caozuoshuaxin(ly,name)
-		StatsInfo:Del_DataInfo(ly,name)
 		fujiF.Update_List();
 	end
 end

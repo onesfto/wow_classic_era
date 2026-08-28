@@ -3,7 +3,6 @@ local find = _G.string.find
 local gsub = _G.string.gsub
 local Fun=PD.Fun
 local TooltipPlusfun=PD.TooltipPlusfun
-local GetItemInfo=GetItemInfo or C_Item and C_Item.GetItemInfo
 ---------
 local Create=PD.Create
 local PIGFontString=Create.PIGFontString
@@ -65,7 +64,7 @@ function TooltipPlusfun.InfoPlus()
 			end
 		end
 		if not Newlink then return end
-		local itemStackCount,_, _, sellPrice, classID, subClassID, _, expacID = select(8, GetItemInfo(Newlink))
+		local itemStackCount,_, _, sellPrice, classID, subClassID, _, expacID = select(8, PIGGetItemInfo(Newlink))
 		ItemTooltipLevel(tooltip,Newlink,classID)
 		if PIGA["Tooltip"]["ItemMaxCount"] or PIGA["Tooltip"]["IDinfo"] then
 			local addtxt_L,addtxt_R="",""
@@ -114,7 +113,6 @@ function TooltipPlusfun.InfoPlus()
 					local lootIcon, lootName, lootQuantity, currencyID, lootQuality, locked, isQuestItem, questID, isActive, isCoin = GetLootSlotInfo(data1)
 					new_stackCount=lootQuantity or 1
 				elseif laiyuan=="Roll" then
-					
 					--new_stackCount=lootQuantity or 1
 				elseif laiyuan=="Auction" then
 					-- local name, texture, count = GetAuctionItemInfo(data1, data2);
@@ -179,11 +177,25 @@ function TooltipPlusfun.InfoPlus()
 	hooksecurefunc(GameTooltip, "SetLootRollItem", function(self, rollID)
 		ItemTooltipData(self, rollID, nil,"Roll")
 	end)
-	hooksecurefunc(GameTooltip, "SetHyperlink", function(self, link)
+	hooksecurefunc(GameTooltip, "SetInboxItem", function(self, link)
 		ItemTooltipData(GameTooltip, link, nil,"Hyperlink")
 	end)
 	hooksecurefunc(GameTooltip, "SetMerchantItem", function(self, index)
 		ItemTooltipData(self, index, nil,"Merchant")
+	end)
+	hooksecurefunc(GameTooltip, "SetAction", function(self, actionID,...)
+		if not C_ActionBar.HasAction(actionID) then return end
+		local actionType, id, subType = GetActionInfo(actionID)
+		if actionType and actionType=="item" and id then
+			ItemTooltipData(self, id, nil,"Hyperlink")
+		end
+	end)
+	--处理收藏
+	hooksecurefunc(GameTooltip, "SetToyByItemID", function(self,itemID)
+		if itemID then
+			self:AddDoubleLine("|cffd33c54ID:|r "..itemID,"")
+		end
+		self:Show()
 	end)
    	if PIG_MaxTocversion() then
    		Fun.IsAddOnLoaded("Blizzard_AuctionUI", function()
@@ -209,8 +221,8 @@ function TooltipPlusfun.InfoPlus()
 		hooksecurefunc("SetItemRef", function(link, text, button, chatFrame)
 			if link:find("^spell:") then
 				if PIGA["Tooltip"]["IDinfo"] then
-					local id = link:gsub(":0","")
 					local id = id:gsub("spell:","")
+					local id = link:gsub(":0","")
 					ItemRefTooltip:AddDoubleLine("|cffd33c54SpellID:|r "..id,"")
 					ItemRefTooltip:Show()
 				end
@@ -243,13 +255,6 @@ function TooltipPlusfun.InfoPlus()
 				self:AddDoubleLine("|cffd33c54SpellID:|r "..id,"")
 				self:Show()
 			end
-		end)
-		--处理收藏
-		hooksecurefunc(GameTooltip, "SetToyByItemID", function(self,itemID)
-			if itemID then
-				self:AddDoubleLine("|cffd33c54ID:|r "..itemID,"")
-			end
-			self:Show()
 		end)
 		--处理天赋
 		hooksecurefunc(GameTooltip, "SetTalent", function(self,talentTree,tfID,inspect,pet,Group,...)
@@ -349,6 +354,9 @@ function TooltipPlusfun.Point()
 	end
 	hooksecurefunc("GameTooltip_SetDefaultAnchor", function(tooltip, parent)
 		if not morenCF.PointOpen then return end
+		if parent and parent.auraInstanceID then
+	        return
+	    end
 		tooltip:SetOwner(parent, "ANCHOR_NONE");
 		tooltip:ClearAllPoints();
 		if morenCF.Point==1 then
@@ -371,6 +379,9 @@ end
 
 local GetItemQualityBorder=PD.Fun.GetItemQualityBorder
 local function add_ShowCompareItemIcon(TooltipF,duibiUI,retail)
+	if TooltipF~=GameTooltip and TooltipF~=ShoppingTooltip1 and TooltipF~=ShoppingTooltip2 and TooltipF~=ItemRefShoppingTooltip1 and TooltipF~=ItemRefShoppingTooltip2 then
+		return
+	end
 	if not TooltipF.pigplusicon then
 		TooltipF.pigplusBorder = TooltipF:CreateTexture(nil, "ARTWORK")
 		TooltipF.pigplusBorder:SetSize(30,30);
@@ -382,6 +393,8 @@ local function add_ShowCompareItemIcon(TooltipF,duibiUI,retail)
 			TooltipF.tisptxt:SetTextColor(0, 1, 0, 1)
 		end
 	end
+	TooltipF.pigplusBorder:Hide()
+	TooltipF.pigplusicon:Hide()
 	if retail then
 		if duibiUI then
 			TooltipF.pigplusBorder:SetPoint("BOTTOMLEFT",TooltipF,"TOPLEFT", 70, -2);
@@ -392,6 +405,8 @@ local function add_ShowCompareItemIcon(TooltipF,duibiUI,retail)
 	   	if TooltipData and TooltipData.guid or TooltipData and TooltipData.hyperlink then
 	   		TooltipF.pigplusBorder:SetAtlas(GetItemQualityBorder(C_Item.GetItemQualityByID(TooltipData.guid or TooltipData.hyperlink) or 1))
 	   		TooltipF.pigplusicon:SetTexture(C_Item.GetItemIconByID(TooltipData.guid or TooltipData.hyperlink) or 134400);
+	   		TooltipF.pigplusBorder:Show()
+			TooltipF.pigplusicon:Show()
 	   	end
 	else
 		local _, linkd = TooltipF:GetItem()
@@ -399,6 +414,8 @@ local function add_ShowCompareItemIcon(TooltipF,duibiUI,retail)
 			TooltipF.pigplusBorder:SetPoint("BOTTOMLEFT",TooltipF,"TOPLEFT", 4, -2);
 			TooltipF.pigplusBorder:SetAtlas(GetItemQualityBorder(C_Item.GetItemQualityByID(linkd) or 1))
 			TooltipF.pigplusicon:SetTexture(C_Item.GetItemIconByID(linkd) or 134400);
+			TooltipF.pigplusBorder:Show()
+			TooltipF.pigplusicon:Show()
 		end
 	end
 end
@@ -406,8 +423,8 @@ function TooltipPlusfun.CompareItemPlus()
 	if not PIGA["Tooltip"]["CompareItemPlus"] then return end
 	GameTooltip:HookScript("OnShow", function(self)
 		if self.pigplusicon then
-			self.pigplusBorder:SetTexture("")
-			self.pigplusicon:SetTexture("")
+			self.pigplusBorder:Hide()
+			self.pigplusicon:Hide()
 		end
 	end)
 	if PIG_MaxTocversion() then

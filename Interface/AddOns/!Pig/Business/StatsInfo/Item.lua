@@ -1,36 +1,35 @@
 local addonName, addonTable = ...;
-local L=addonTable.locale
-local fmod=math.fmod
-local match = _G.string.match
---
-local Create=addonTable.Create
-local PIGLine=Create.PIGLine
-local PIGFrame=Create.PIGFrame
-local PIGFontString=Create.PIGFontString
-local PIGOptionsList_R=Create.PIGOptionsList_R
-local PIGTabBut=Create.PIGTabBut
-------
-local Data=addonTable.Data
-local TalentData=Data.TalentData
-local InvSlot=Data.InvSlot
-local bagData=Data.bagData
-local Fun=addonTable.Fun
-local GetEquipmTXT=Fun.GetEquipmTXT
-local GetRuneData=Fun.GetRuneData
-local GetItemLinkJJ=Fun.GetItemLinkJJ
-local HY_ItemLinkJJ=Fun.HY_ItemLinkJJ
---------
-local GetItemInfo=GetItemInfo or C_Item and C_Item.GetItemInfo
------------
 local BusinessInfo=addonTable.BusinessInfo
-function BusinessInfo.Item(StatsInfo,peizhiList)
+function BusinessInfo.Item(StatsUI)
+	local L=addonTable.locale
+	local fmod=math.fmod
+	local match = _G.string.match
+	--
+	local Create=addonTable.Create
+	local PIGLine=Create.PIGLine
+	local PIGFrame=Create.PIGFrame
+	local PIGFontString=Create.PIGFontString
+	local PIGOptionsList_R=Create.PIGOptionsList_R
+	local PIGTabBut=Create.PIGTabBut
+	------
+	local Data=addonTable.Data
+	local TalentData=Data.TalentData
+	local InvSlot=Data.InvSlot
+	local bagData=Data.bagData
+	local Fun=addonTable.Fun
+	local GetEquipmTXT=Fun.GetEquipmTXT
+	local GetRuneData=Fun.GetRuneData
+	local GetItemLinkJJ=Fun.GetItemLinkJJ
+	local HY_ItemLinkJJ=Fun.HY_ItemLinkJJ
+	-----------
 	local itembutW=40
-	local fujiF,fujiTabBut=PIGOptionsList_R(StatsInfo.F,L["TRADECHARDATA_ITEMTAB"],StatsInfo.butW,"Left")
+	local fujiF,fujiTabBut=PIGOptionsList_R(StatsUI.F,ITEMS,StatsUI.butW,"LeftH")
 	---
+	PIGA["StatsInfo"]["Items"][StatsUI.allname]=PIGA["StatsInfo"]["Items"][StatsUI.allname] or {}
 	local morenitem={"BAG","BANK","MAIL","C","T","G","R","GUILD"}
 	for i=1,#morenitem do
-		if not PIGA["StatsInfo"]["Items"][StatsInfo.allname][morenitem[i]] then
-			PIGA["StatsInfo"]["Items"][StatsInfo.allname][morenitem[i]]={}
+		if not PIGA["StatsInfo"]["Items"][StatsUI.allname][morenitem[i]] then
+			PIGA["StatsInfo"]["Items"][StatsUI.allname][morenitem[i]]={}
 		end
 	end
 	local lixianNum,meihang=(#bagData["bankID"])*MAX_CONTAINER_ITEMS+bagData["bankmun"],20
@@ -40,7 +39,8 @@ function BusinessInfo.Item(StatsInfo,peizhiList)
 	fujiF.LF:PIGSetBackdrop(0)
 	fujiF.LF:SetPoint("TOPLEFT",fujiF,"TOPLEFT",0,0);
 	fujiF.LF:SetPoint("BOTTOMLEFT",fujiF,"BOTTOMLEFT",0,0);
-	BusinessInfo.addhangMode1("item",fujiF.LF,fujiF)
+	fujiF.Scroll_L=BusinessInfo.addhangMode1("item",fujiF.LF)
+	
 	-------
 	fujiF.RF=PIGFrame(fujiF)
 	fujiF.RF:SetPoint("TOPLEFT",fujiF.LF,"TOPRIGHT",0,0);
@@ -145,28 +145,30 @@ function BusinessInfo.Item(StatsInfo,peizhiList)
 			Fun.HY_ShowItemLink(itemBut,lixiandata[i][3],lixiandata[i][1])
 		end
 	end
-	fujiF:HookScript("OnShow", function(self)
-		fujiF:Update_List_L()
-	end)
+	function fujiF:ClickUpdateList()
+		fujiF.Scroll_L:Update_list()
+		fujiF:Update_List_R()
+	end
+
 	----
-	function StatsInfo:BagLixian()
+	function StatsUI:BagLixian()
 		if self:IsShown() then
 			self:Hide()
 		else
 			self:Show()
 			Create.Show_TabBut_R(self.F,fujiF,fujiTabBut)
-			fujiF.SelectName=StatsInfo.allname
+			fujiF.SelectName=StatsUI.allname
 			fujiF.ItemSelect="BANK"
-			fujiF:Update_List_L()
+			fujiF.Scroll_L:Update_list()
 		end
 	end
 	--------------
 	local function SAVE_C()
 		if InCombatLockdown() then return end
-		PIGA["StatsInfo"]["Items"][StatsInfo.allname]["C"] = GetEquipmTXT()
-		PIGA["StatsInfo"]["Items"][StatsInfo.allname]["T"] = TalentData.GetTianfuTXT()
-		PIGA["StatsInfo"]["Items"][StatsInfo.allname]["G"] = TalentData.GetGlyphTXT()
-		PIGA["StatsInfo"]["Items"][StatsInfo.allname]["R"] = GetRuneData()
+		PIGA["StatsInfo"]["Items"][StatsUI.allname]["C"] = GetEquipmTXT()
+		PIGA["StatsInfo"]["Items"][StatsUI.allname]["T"] = TalentData.GetTianfuTXT()
+		PIGA["StatsInfo"]["Items"][StatsUI.allname]["G"] = TalentData.GetGlyphTXT()
+		PIGA["StatsInfo"]["Items"][StatsUI.allname]["R"] = GetRuneData()
 	end
 	local function SAVE_item_data(bagID, slot,wupinshujuinfo)
 		local XitemLink,XitemCount,XitemID
@@ -184,7 +186,7 @@ function BusinessInfo.Item(StatsInfo,peizhiList)
 				SAVE_item_data(bagData["bagID"][bag], slot, wupinshujuinfo)
 			end
 		end
-		PIGA["StatsInfo"]["Items"][StatsInfo.allname]["BAG"] = wupinshujuinfo
+		PIGA["StatsInfo"]["Items"][StatsUI.allname]["BAG"] = wupinshujuinfo
 	end
 	local function SAVE_BANK()
 		if InCombatLockdown() then return end
@@ -201,7 +203,7 @@ function BusinessInfo.Item(StatsInfo,peizhiList)
 					SAVE_item_data(bagData["bankID"][f], slot,wupinshujuinfo)
 				end
 			end
-			PIGA["StatsInfo"]["Items"][StatsInfo.allname]["BANK"] = wupinshujuinfo
+			PIGA["StatsInfo"]["Items"][StatsUI.allname]["BANK"] = wupinshujuinfo
 		end
 	end
 	local function SAVE_GUILDBANK_item_data(bagID, slot,wupinshujuinfo)
@@ -225,7 +227,7 @@ function BusinessInfo.Item(StatsInfo,peizhiList)
 					end
 				end
 			end
-			PIGA["StatsInfo"]["Items"][StatsInfo.allname]["GUILD"] = wupinshujuinfo
+			PIGA["StatsInfo"]["Items"][StatsUI.allname]["GUILD"] = wupinshujuinfo
 		end
 	end
 	local function SAVE_MAIL()
@@ -243,7 +245,7 @@ function BusinessInfo.Item(StatsInfo,peizhiList)
 				end
 			end
 		end
-		PIGA["StatsInfo"]["Items"][StatsInfo.allname]["MAIL"]=mailData
+		PIGA["StatsInfo"]["Items"][StatsUI.allname]["MAIL"]=mailData
 	end
 	function MailFrame_OnShow(self)
 		self:RegisterEvent("MAIL_INBOX_UPDATE");

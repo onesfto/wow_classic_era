@@ -1,18 +1,19 @@
-local addonName, addonTable = ...;
-local L=addonTable.locale
-local Create=addonTable.Create
-local fmod=math.fmod
-local gsub = _G.string.gsub
-local PIGLine=Create.PIGLine
-local PIGFrame=Create.PIGFrame
-local PIGButton=Create.PIGButton
-local PIGCheckbutton=Create.PIGCheckbutton
-local PIGFontString=Create.PIGFontString
-local PIGOptionsList_R=Create.PIGOptionsList_R
---------
-local BusinessInfo=addonTable.BusinessInfo
-function BusinessInfo.Player(StatsInfo)
-	local fujiF,fujiTabBut=PIGOptionsList_R(StatsInfo.F,L["TRADECHARDATA_PLAYEDTAB"],StatsInfo.butW,"Left")
+local addonName, PD = ...;
+local BusinessInfo=PD.BusinessInfo
+function BusinessInfo.Player(StatsUI)
+	local L=PD.locale
+	local Create=PD.Create
+	local fmod=math.fmod
+	local gsub = _G.string.gsub
+	local PIGLine=Create.PIGLine
+	local PIGFrame=Create.PIGFrame
+	local PIGButton=Create.PIGButton
+	local PIGCheckbutton=Create.PIGCheckbutton
+	local PIGFontString=Create.PIGFontString
+	local PIGOptionsList_R=Create.PIGOptionsList_R
+	--------
+	PIGA["StatsInfo"]["Played"][StatsUI.allname]=PIGA["StatsInfo"]["Played"][StatsUI.allname] or {}
+	local fujiF,fujiTabBut=PIGOptionsList_R(StatsUI.F,GAME..L["TIME"],StatsUI.butW,"LeftH")
 	fujiF:HookScript("OnShow", function(self)
 		fujiF.Update_List();
 	end)
@@ -46,22 +47,17 @@ function BusinessInfo.Player(StatsInfo)
 		local alltimenum=0
 		local cdmulu={};
 		local PlayerData = PIGA["StatsInfo"]["Players"]
-		local PlayerSH = PIGA["StatsInfo"]["PlayerSH"]
 		local PlayedData = PIGA["StatsInfo"]["Played"]
    		for pname,_ in pairs(PlayerData) do
-   			if PlayedData[pname] and not PlayerSH[pname] then
+   			if PlayedData[pname] then
    				alltimenum=alltimenum+PlayedData[pname][1]
-		   		if pname==StatsInfo.allname then
-		   			table.insert(cdmulu,{pname,PlayerData[pname],PlayedData[pname][1],PlayedData[pname][2],true})
-		   		else
-		   			table.insert(cdmulu,{pname,PlayerData[pname],PlayedData[pname][1],PlayedData[pname][2]})
-		   		end
+		   		table.insert(cdmulu,{pname,PlayerData[pname],PlayedData[pname][1],PlayedData[pname][2],pname==StatsUI.allname})
 		   	end
 	   	end
 	   	--
 	   	local datanum=#cdmulu
 	   	if datanum==0 then return end
-	    local d, h, m, s = ChatFrame_TimeBreakDown(alltimenum);
+	    local d, h, m, s = ChatFrameUtil.TimeBreakDown(alltimenum);
 		fujiF.Player.alltimeTXT:SetText(format(TIME_PLAYED_TOTAL, format(TIME_DAYHOURMINUTESECOND, d, h, m, s)))
 	   	table.sort(cdmulu, function(a, b)
 		    local timeA = a[3] or 0
@@ -122,7 +118,7 @@ function BusinessInfo.Player(StatsInfo)
 				end
 				hang.Race:SetAtlas(cdmulu[dangqian][2][3]);
 				local className, classFile, classID = PIGGetClassInfo(cdmulu[dangqian][2][4])
-				hang.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
+				hang.Class:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
 				hang.level:SetText("("..cdmulu[dangqian][2][5]..")");
 				local color = PIG_CLASS_COLORS[classFile];
 				hang.name:SetTextColor(color.r, color.g, color.b, 1);
@@ -132,7 +128,7 @@ function BusinessInfo.Player(StatsInfo)
 					if cdmulu[dangqian][3]/jishuchuB*maxwwww>40 then
 						hang.barWWW:SetWidth(cdmulu[dangqian][3]/jishuchuB*maxwwww)
 					end
-					local d, h, m, s = ChatFrame_TimeBreakDown(cdmulu[dangqian][3]);
+					local d, h, m, s = ChatFrameUtil.TimeBreakDown(cdmulu[dangqian][3]);
 					hang.barWWW.no:SetText(GAME..TIME_LABEL.." "..format(TIME_DAYHOURMINUTESECOND, d, h, m, s))
 					hang.barWWW.no:SetTextColor(0.8, 0.8, 0.8, 1);
 					hang.barWWW:PIGSetBackdrop(1,1,{0.4, 0.8, 0.8})
@@ -145,25 +141,12 @@ function BusinessInfo.Player(StatsInfo)
 		end
 	end
 	---------
-	local oldChatFrame_DisplayTimePlayed
-	if ChatFrameUtil and ChatFrameUtil.DisplayTimePlayed then
-		oldChatFrame_DisplayTimePlayed=ChatFrameUtil.DisplayTimePlayed
-	else
-		oldChatFrame_DisplayTimePlayed=ChatFrame_DisplayTimePlayed
-	end
+	local oldChatFrame_DisplayTimePlayed=ChatFrameUtil.DisplayTimePlayed
 	local function SetBZFun(set)
 		if set=="-" then
-			if ChatFrameUtil and ChatFrameUtil.DisplayTimePlayed then
-				ChatFrameUtil.DisplayTimePlayed=function() end
-			else
-				ChatFrame_DisplayTimePlayed=function() end
-			end
+			ChatFrameUtil.DisplayTimePlayed=function() end
 		else
-			if ChatFrameUtil and ChatFrameUtil.DisplayTimePlayed then
-				ChatFrameUtil.DisplayTimePlayed=oldChatFrame_DisplayTimePlayed
-			else
-				ChatFrame_DisplayTimePlayed=oldChatFrame_DisplayTimePlayed
-			end
+			ChatFrameUtil.DisplayTimePlayed=oldChatFrame_DisplayTimePlayed
 		end
 	end
 	fujiF:RegisterEvent("PLAYER_ENTERING_WORLD");
@@ -175,7 +158,7 @@ function BusinessInfo.Player(StatsInfo)
 				RequestTimePlayed()
 			end)
 		elseif event=="TIME_PLAYED_MSG" then
-			PIGA["StatsInfo"]["Played"][StatsInfo.allname]={totalTimePlayed, timePlayedThisLevel}
+			PIGA["StatsInfo"]["Played"][StatsUI.allname]={totalTimePlayed, timePlayedThisLevel}
 			C_Timer.After(3,function()
 				SetBZFun("+")
 			end)

@@ -75,6 +75,11 @@ function PD.addOptions_Map()
 		GeneralF.CZinfo:SetScript("OnClick", function()
 			Mapfun.MiniMapBut:CZMinimapInfo()
 		end);
+		GeneralF.EntertispBox = PIGCheckbutton(GeneralF,{"TOPLEFT",GeneralF,"TOPLEFT",420,-62},{"悬浮提示收纳框"})
+		GeneralF.EntertispBox:SetScript("OnClick", function (self)
+			PIGA["Map"]["EntertispBox"]=self:GetChecked()
+			Mapfun.EntertispBox=PIGA["Map"]["EntertispBox"]
+		end)
 		-----------
 		local function clickFun(id)
 			PIGA["Map"]["MiniButShouNa_YN"]=id
@@ -182,6 +187,7 @@ function PD.addOptions_Map()
 		----
 		function GeneralF:Update_SetUI()
 			self.Minimap_but:SetChecked(PIGA["Map"]["MinimapBut"])
+			self.EntertispBox:SetChecked(PIGA["Map"]["EntertispBox"])
 			self.Minimap_but_Point:SetShown(PIGA["Map"]["MinimapBut"])
 			self.Minimap_but_Point:PIGDownMenu_SetText(mapPointList[PIGA["Map"]["MinimapPointMode"]])
 			self.CZinfo:SetShown(PIGA["Map"]["MinimapBut"] and PIGA["Map"]["MinimapPointMode"]==3)

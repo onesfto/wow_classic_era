@@ -482,8 +482,6 @@ L["Custom Trigger Combination"] = "Custom Trigger Combination"
 --[[Translation missing --]]
 L["Custom Variables"] = "Custom Variables"
 --[[Translation missing --]]
-L["Daakara"] = "Daakara"
---[[Translation missing --]]
 L["Damage"] = "Damage"
 --[[Translation missing --]]
 L["Damage Shield"] = "Damage Shield"
@@ -2903,4 +2901,6 @@ L["Zoom Animation"] = "Zoom Animation"
 L["Zul'Aman"] = "Zul'Aman"
 --[[Translation missing --]]
 L["Zul'Gurub"] = "Zul'Gurub"
+--[[Translation missing --]]
+L["Zul'jin"] = "Zul'jin"
 

@@ -573,15 +573,15 @@ nil,
 ["__bankDefaultTabsFixed"] = true,
 ["positions"] = {
 {
-["y"] = -87.9761962890625,
-["x"] = -277.4102935791016,
+["y"] = -220.4791259765625,
+["x"] = 76.93588256835938,
 ["point"] = "TOP",
 ["scale"] = 1,
 },
 [0] = {
-["y"] = -156.3895263671875,
-["x"] = 2.293121337890625,
-["point"] = "TOP",
+["y"] = 157.0562744140625,
+["x"] = -187.0123291015625,
+["point"] = "RIGHT",
 ["scale"] = 1,
 },
 },
@@ -1087,14 +1087,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-AD"] = {
+["A-非专业"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-AD",
+["name"] = "A-非专业",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1131,14 +1131,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["A-非专业"] = {
+["战场"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "A-非专业",
+["name"] = "战场",
 ["save"] = true,
 ["note"] = "",
 },
@@ -1186,14 +1186,14 @@ true,
 ["save"] = true,
 ["note"] = "",
 },
-["战场"] = {
+["A-AD"] = {
 ["enabled"] = {
 true,
 [0] = true,
 },
 ["itemList"] = {
 },
-["name"] = "战场",
+["name"] = "A-AD",
 ["save"] = true,
 ["note"] = "",
 },

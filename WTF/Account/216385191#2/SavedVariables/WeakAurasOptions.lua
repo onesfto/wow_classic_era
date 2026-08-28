@@ -2,9 +2,21 @@
 WeakAurasOptionsSaved = {
 ["magnetAlign"] = false,
 ["rebuilding"] = false,
-["spellCacheAchievements"] = true,
 ["savedSnippets"] = {
 },
+["spellCacheAchievements"] = true,
+["spellCacheStrings"] = true,
+["locale"] = "zhCN",
+["needsRebuild"] = false,
+["version"] = "5.21.9",
+["lockPositions"] = false,
+["frame"] = {
+["xOffset"] = 1348.753112792969,
+["yOffset"] = 1038.47314453125,
+["height"] = 917.619140625,
+["width"] = 1049.428833007813,
+},
+["spellCacheAchivements"] = true,
 ["spellCache"] = {
 ["制造塞雷布拉斯节杖"] = {
 ["spells"] = "21939=136235",
@@ -42250,17 +42262,5 @@ WeakAurasOptionsSaved = {
 ["spells"] = "5404=136235",
 },
 },
-["locale"] = "zhCN",
-["needsRebuild"] = false,
-["version"] = "5.21.9",
-["lockPositions"] = false,
-["spellCacheAchivements"] = true,
-["frame"] = {
-["xOffset"] = 1538.353698730469,
-["width"] = 1049.428833007813,
-["height"] = 917.619140625,
-["yOffset"] = 1143.100463867188,
-},
-["spellCacheStrings"] = true,
-["build"] = "68940",
+["build"] = "69109",
 }

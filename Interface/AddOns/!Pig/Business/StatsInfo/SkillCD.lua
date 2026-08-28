@@ -1,23 +1,24 @@
-local addonName, addonTable = ...;
-local L=addonTable.locale
-local Fun=addonTable.Fun
-local Create=addonTable.Create
-local PIGLine=Create.PIGLine
-local PIGFrame=Create.PIGFrame
-local PIGTabBut = Create.PIGTabBut
-local PIGCheckbutton=Create.PIGCheckbutton
-local PIGFontString=Create.PIGFontString
-local PIGOptionsList_R=Create.PIGOptionsList_R
---------
-local match = _G.string.match
-local Data=addonTable.Data
-local BusinessInfo=addonTable.BusinessInfo
-local disp_time=Fun.disp_time
-local GetSpellInfo=GetSpellInfo or C_Spell and C_Spell.GetSpellInfo
-local GetItemNameByID=GetItemNameByID or C_Item and C_Item.GetItemNameByID
----
-function BusinessInfo.SkillCD(StatsInfo)
-	local fujiF,fujiTabBut=PIGOptionsList_R(StatsInfo.F,L["TRADECHARDATA_SKILLTAB"],StatsInfo.butW,"Left")
+local addonName, PD = ...;
+local BusinessInfo=PD.BusinessInfo
+function BusinessInfo.SkillCD(StatsUI)
+	local Create=PD.Create
+	local PIGLine=Create.PIGLine
+	local PIGFrame=Create.PIGFrame
+	local PIGTabBut = Create.PIGTabBut
+	local PIGCheckbutton=Create.PIGCheckbutton
+	local PIGFontString=Create.PIGFontString
+	local PIGOptionsList_R=Create.PIGOptionsList_R
+	--------
+	local L=PD.locale
+	local Fun=PD.Fun
+	local match = _G.string.match
+	local Data=PD.Data
+	local disp_time=Fun.disp_time
+	local GetSpellInfo=GetSpellInfo or C_Spell and C_Spell.GetSpellInfo
+	local GetItemNameByID=GetItemNameByID or C_Item and C_Item.GetItemNameByID
+	---
+	PIGA["StatsInfo"]["SkillData"][StatsUI.allname]=PIGA["StatsInfo"]["SkillData"][StatsUI.allname] or {}
+	local fujiF,fujiTabBut=PIGOptionsList_R(StatsUI.F,TRADE_SKILLS,StatsUI.butW,"LeftH")
 	fujiF.guolvtype=1
 	local guolvname = {L["TRADECHARDATA_SKILLT1"],L["TRADECHARDATA_SKILLT2"],L["TRADECHARDATA_SKILLT3"],L["TRADECHARDATA_SKILLT4"]}
 	fujiF.guolvtypeButlist={}
@@ -132,7 +133,7 @@ function BusinessInfo.SkillCD(StatsInfo)
 	local function addCDdata(spellid, startTime, duration)
 		startTime=startTime or 0
 		duration=duration or 0
-		local SkillData=PIGA["StatsInfo"]["SkillData"][StatsInfo.allname]
+		local SkillData=PIGA["StatsInfo"]["SkillData"][StatsUI.allname]
 		for ixx=1,2 do
 			local CDspellList=SkillData[ixx] and SkillData[ixx][2]
 			if CDspellList and CDspellList[spellid] then
@@ -141,7 +142,7 @@ function BusinessInfo.SkillCD(StatsInfo)
 		end
 	end
 	local function GetBagItemCD()
-		local SkillData=PIGA["StatsInfo"]["SkillData"][StatsInfo.allname]
+		local SkillData=PIGA["StatsInfo"]["SkillData"][StatsUI.allname]
 		for Bagid=0,NUM_BAG_SLOTS,1 do
 			local numberOfSlots = PIGGetContainerNumSlots(Bagid);
 			for Slots=1,numberOfSlots,1 do
@@ -214,7 +215,7 @@ function BusinessInfo.SkillCD(StatsInfo)
 				end
 			end
 		end
-		local olddata=PIGA["StatsInfo"]["SkillData"][StatsInfo.allname]
+		local olddata=PIGA["StatsInfo"]["SkillData"][StatsUI.allname]
 		if olddata then
 			for i=1,#Skill_Learned do
 				local CDdata = Skill_Learned[i][2]
@@ -229,10 +230,10 @@ function BusinessInfo.SkillCD(StatsInfo)
 				end
 			end
 		end
-		PIGA["StatsInfo"]["SkillData"][StatsInfo.allname]=Skill_Learned	
+		PIGA["StatsInfo"]["SkillData"][StatsUI.allname]=Skill_Learned	
 	end
 	----
-	local hang_Height,hang_NUM,numButtons  = StatsInfo.hang_Height, 11, 6;
+	local hang_Height,hang_NUM,numButtons  = StatsUI.hang_Height, 11, 6;
 	fujiF.NR=PIGFrame(fujiF)
 	fujiF.NR:SetPoint("TOPLEFT",fujiF,"TOPLEFT",4,-40);
 	fujiF.NR:SetPoint("BOTTOMRIGHT",fujiF,"BOTTOMRIGHT",-4,4);
@@ -410,22 +411,17 @@ function BusinessInfo.SkillCD(StatsInfo)
 			fujik.nameDQ:Hide()
 		end
 		local cdmulu={};
-		local PlayerData = PIGA["StatsInfo"]["Players"]
-		local PlayerSH = PIGA["StatsInfo"]["PlayerSH"]
+		local pmuli,PData,added=Fun.GetPlayerSortData()
 		local SkillData=PIGA["StatsInfo"]["SkillData"]
-		if PlayerData[StatsInfo.allname] and not PlayerSH[StatsInfo.allname] then
-			local dangqianC=PlayerData[StatsInfo.allname]
-			if IsExistCD(SkillData[StatsInfo.allname]) then
-				table.insert(cdmulu,{StatsInfo.allname,dangqianC[1],dangqianC[2],dangqianC[3],dangqianC[4],dangqianC[5],SkillData[StatsInfo.allname],true})
-			end
+	   	for i=1,#pmuli do
+			local pname=pmuli[i]
+			if PData[pname] then
+				local pData=PData[pname]
+		   		if IsExistCD(SkillData[pname]) then
+		   			table.insert(cdmulu,{pname,pData[1],pData[2],pData[3],pData[4],pData[5],SkillData[pname],pname==StatsUI.allname})
+		   		end
+		   	end
 		end
-	   	for k,v in pairs(PlayerData) do
-	   		if k~=StatsInfo.allname and PlayerData[k] and not PlayerSH[k] then
-	   			if IsExistCD(SkillData[k]) then
-	   				table.insert(cdmulu,{k,v[1],v[2],v[3],v[4],v[5],SkillData[k]})
-	   			end
-	   		end
-	   	end
 		local ItemsNum = #cdmulu;
 		if ItemsNum>0 then
 		    FauxScrollFrame_Update(self, ItemsNum, hang_NUM, hang_Height);
@@ -442,7 +438,7 @@ function BusinessInfo.SkillCD(StatsInfo)
 					end
 					hang.Race:SetAtlas(cdmulu[dangqian][4]);
 					local className, classFile, classID = PIGGetClassInfo(cdmulu[dangqian][5])
-					hang.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
+					hang.Class:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
 					hang.level:SetText(cdmulu[dangqian][6]);
 					if cdmulu[dangqian][8] then
 						hang.nameDQ:Show()
@@ -507,7 +503,7 @@ function BusinessInfo.SkillCD(StatsInfo)
 			end
 		elseif event=="UNIT_SPELLCAST_SUCCEEDED" then
 			C_Timer.After(0.1,function()
-				local SkillData=PIGA["StatsInfo"]["SkillData"][StatsInfo.allname]
+				local SkillData=PIGA["StatsInfo"]["SkillData"][StatsUI.allname]
 				for ixx=1,2 do
 					local CDspellList=SkillData[ixx] and SkillData[ixx][2]
 					if CDspellList and CDspellList[arg3] then

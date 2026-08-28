@@ -518,7 +518,7 @@ function QuickChatfun.QuickBut_Jilu()
 						hang.name:SetText(PIGaccountName);
 					else
 						hang.zhiye:SetTexture("Interface/TargetingFrame/UI-Classes-Circles");
-						local coords = CLASS_ICON_TCOORDS[shuju[1][dangqian][2]]
+						local coords = PIG_CLASS_ICON_TCOORDS[shuju[1][dangqian][2]]
 						hang.zhiye:SetTexCoord(unpack(coords));
 						local name1,name2 = strsplit("-", shuju[1][dangqian][1], 2);
 						if name2 and name2 ~= PlayerInfo.Realm then

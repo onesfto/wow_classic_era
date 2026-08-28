@@ -532,7 +532,7 @@ function BagBankfun.qiyongzidongzhengli()
 			if name then
 				for class, info in pairs(CLASSES) do
 					for _, itemID in pairs(info.containers) do
-						if name == GetItemInfo(itemID) then
+						if name == PIGGetItemInfo(itemID) then
 							return class
 						end
 					end
@@ -546,7 +546,7 @@ function BagBankfun.qiyongzidongzhengli()
 		if link then
 			local _, _, itemID, enchantID, suffixID, uniqueID = strfind(link, 'item:(%d+):(%d*):%d*:%d*:%d*:%d*:(%-?%d*):(%-?%d*)')
 			itemID = tonumber(itemID)
-			local itemName, _, quality, _, _, _, _, stack, slot, _, sellPrice, classId, subClassId, bindType = GetItemInfo('item:' .. itemID)
+			local itemName, _, quality, _, _, _, _, stack, slot, _, sellPrice, classId, subClassId, bindType = PIGGetItemInfo('item:' .. itemID)
 			local charges, usable, soulbound, conjured = TooltipInfo(container, position)
 			local sortKey = {}
 

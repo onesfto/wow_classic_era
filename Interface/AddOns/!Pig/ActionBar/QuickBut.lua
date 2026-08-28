@@ -36,7 +36,6 @@ local bagData=Data.bagData
 local bagID=Data.bagData["bagID"]
 ---
 local GetMapInfo=C_Map.GetMapInfo or C_Map and C_Map.GetMapInfo
-local GetItemInfo=GetItemInfo or C_Item and C_Item.GetItemInfo
 local GetItemCount=GetItemCount or C_Item and C_Item.GetItemCount
 local GetItemIcon=GetItemIcon or C_Item and C_Item.GetItemIconByID
 local IsUsableSpell=IsUsableSpell or C_Spell and C_Spell.IsSpellUsable
@@ -351,21 +350,29 @@ Create.PIGaddQuickBut(7,{
 		 		end
 		 	end
 	 	end
+	 	local function SetAttributeItem()
+			General:SetAttribute("type1", "item");
+			General:SetAttribute("item1", General.lushiItemlink);
+			General:SetNormalTexture(GetItemIcon(General.lushiitemID))
+			gengxinlushiCD()
+		end	
 		local function UpdateIconAttribute(itemID)
 			local itemID=itemID or PIGA_Per["QuickBut"]["LushiID"]
 			local _, SpellID = PIGGetItemSpell(itemID)
-			local lushiName,Itemlink = GetItemInfo(itemID)
-			if not lushiName and General.lushijisuqi<5 then
+			local lushiName,Itemlink = PIGGetItemInfo(itemID)
+			if not lushiName and General.lushijisuqi<10 then
 				General.lushijisuqi=General.lushijisuqi+1
-				return C_Timer.After(0.2, UpdateIconAttribute);
+				return C_Timer.After(0.01, UpdateIconAttribute);
 			end
 			if lushiName and SpellID then
-				General.lushiitemID=itemID
 				General.lushiSpellID=SpellID
-				General:SetAttribute("type1", "item");
-				General:SetAttribute("item1", Itemlink);
-				General:SetNormalTexture(GetItemIcon(itemID))
-				gengxinlushiCD()
+				General.lushiitemID=itemID
+				General.lushiItemlink=Itemlink
+				if InCombatLockdown() then
+					General:RegisterEvent("PLAYER_REGEN_ENABLED")
+				else
+					SetAttributeItem()
+				end
 			end
 		end	
 		local function Skill_Button_Genxin()
@@ -385,8 +392,11 @@ Create.PIGaddQuickBut(7,{
 			if event=="PLAYER_ENTERING_WORLD" then
 				self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 				General.lushijisuqi=0
-				UpdateIconAttribute(0)
+				UpdateIconAttribute()
 				Skill_Button_Genxin()
+			elseif event=="PLAYER_REGEN_ENABLED" then
+				self:UnregisterEvent("PLAYER_REGEN_ENABLED")
+				SetAttributeItem()
 			elseif event=="SPELL_UPDATE_COOLDOWN" then
 				C_Timer.After(0.01, gengxinlushiCD);
 			else
@@ -735,27 +745,64 @@ local function GetSpellData()
 	end
 	return GetSpellData_1(datax,classId)
 end
-local ItemDataX ={18984,18986,7148,18587,18232,18660};--空间撕裂器-永望镇/安全传送器-加基森/起搏器/起搏器XL		
+local ItemDataX ={
+	7148,--起搏器
+	18587,--起搏器XL	
+	18984,--空间撕裂器-永望镇
+	18986,--安全传送器-加基森
+	--18660,--世界放大器
+};
+if PIG_MaxTocversion(20000,true) then
+	table.insert(ItemDataX,30542)--空间撕裂器 - 52区
+	table.insert(ItemDataX,30544)--超级安全传送器：托什雷的基地
+end
+if PIG_MaxTocversion(30000,true) then
+	table.insert(ItemDataX,48933)--虫洞生成器：诺森德
+end
+if PIG_MaxTocversion(50000,true) then
+	table.insert(ItemDataX,87215)--虫洞生成器：潘达利亚
+end
+if PIG_MaxTocversion(70000,true) then
+	table.insert(ItemDataX,151652)--虫洞生成器：阿古斯
+end
+if PIG_MaxTocversion(90000,true) then
+	table.insert(ItemDataX,172924)--虫洞发生器：暗影界
+end
+if PIG_MaxTocversion(110000,true) then
+	table.insert(ItemDataX,221966)--虫洞发生器：卡兹阿加
+end
+if PIG_MaxTocversion(120000,true) then
+	table.insert(ItemDataX,248485)--虫洞发生器：奎尔萨拉斯
+end
+table.insert(ItemDataX,18232)--修理机器人
 local function GetItemData(ix,funxx,Count)
-	if PIG_MaxTocversion() then
-		if ItemDataX[ix] then
-			Count=Count or 0
-			local _,itemLink = GetItemInfo(ItemDataX[ix])
-			if not itemLink and Count<100 then
-				Count=Count+1
-				C_Timer.After(0.02,function()
-		            GetItemData(ix, funxx, Count)
-		        end)
-				return
-			end
-			if itemLink then
-				funxx({"item",itemLink,ItemDataX[ix]})
-				return
-			end
+	if ItemDataX[ix] then
+		Count=Count or 0
+		local itemID = C_ToyBox.GetToyInfo(ItemDataX[ix])
+		local itemLink_1
+		if itemID then
+			local itemLink = C_ToyBox.GetToyLink(itemID)
+			itemLink_1=itemLink
+		else
+			local _,itemLink = PIGGetItemInfo(ItemDataX[ix])
+			itemLink_1=itemLink
+		end
+		if not itemLink_1 and Count<100 then
+			Count=Count+1
+			C_Timer.After(0.02,function()
+	            GetItemData(ix, funxx, Count)
+	        end)
+			return
+		end
+		if itemLink_1 then
+			funxx({"item",itemLink_1,ItemDataX[ix]})
+			return
 		end
 	end
 end
+
 local ActionID,qkuiname=400, "PIG_QuickButSpell"
+local oldtbc=PIG_MaxTocversion(30000)
 Create.PIGaddQuickBut(8,{
 	Open=function()
 		return PIGA["QuickBut"]["Open"] and PIGA["QuickBut"]["Spell"]
@@ -773,7 +820,7 @@ Create.PIGaddQuickBut(8,{
 		local FixedSpellData,extNum=GetSpellData()
 		local kuanNum=CommonNum+extNum
 		local IconTEX=Zhushou:GetNormalTexture()
-		local IconCoord = CLASS_ICON_TCOORDS[PlayerInfo.ClassData.classFile];
+		local IconCoord = PIG_CLASS_ICON_TCOORDS[PlayerInfo.ClassData.classFile];
 		if Fun.IsElvUI() or Fun.IsNDui() then
 			local left, right, top, bottom = unpack(IconCoord);
 			local left   = left+0.02;
@@ -800,7 +847,7 @@ Create.PIGaddQuickBut(8,{
 		Zhushou.start:Hide();
 		_G["BINDING_NAME_CLICK "..qkuiname..":LeftButton"]= "PIG功能条随机坐骑"
 		---内容页----
-		local Zhushou_List = CreateFrame("Frame", nil, Zhushou,"BackdropTemplate,SecureHandlerShowHideTemplate");
+		local Zhushou_List = CreateFrame("Frame", "PIG_QuickButZhushou_List", Zhushou,"BackdropTemplate,SecureHandlerShowHideTemplate");
 		Zhushou_List:SetBackdrop(Create.BackdropData)
 		Zhushou_List:SetBackdropColor(unpack(Create.BackdropColor));
 		Zhushou_List:SetBackdropBorderColor(unpack(Create.BackdropBorderColor));
@@ -877,6 +924,7 @@ Create.PIGaddQuickBut(8,{
 			end
 		]=])
 		Zhushou:SetFrameRef("frame1", Zhushou_List);
+		
 		Zhushou:HookScript("OnClick",function(self,button)
 			PlaySound(SOUNDKIT.U_CHAT_SCROLL_BUTTON);
 			if button == "LeftButton" then
@@ -901,7 +949,12 @@ Create.PIGaddQuickBut(8,{
 						PIGErrorMsg("未安装Recount/Details");
 					end
 				else
-					C_MountJournal.SummonByID(0)
+					if oldtbc then
+						--print(11111111)
+
+					else
+						C_MountJournal.SummonByID(0)
+					end
 				end
 			end
 		end)

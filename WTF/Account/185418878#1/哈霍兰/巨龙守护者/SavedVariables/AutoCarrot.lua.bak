@@ -1,0 +1,17 @@
+
+AutoCarrotDB = {
+["enabled"] = true,
+["handsLink"] = "item:16484::",
+["ridingGloves"] = true,
+["instance"] = false,
+["trinketId"] = 23041,
+["enchantHandsLink"] = "item:19143:930:",
+["swimHelm"] = true,
+["headId"] = 16478,
+["mithrilSpurs"] = true,
+["swimBelt"] = true,
+["button"] = false,
+["beltId"] = 23219,
+["buttonScale"] = 1,
+["trinketSlot1"] = false,
+}

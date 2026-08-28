@@ -1,0 +1,7 @@
+<Ui>
+	<Script file="Options.lua" />
+	<Include file="AHPlus\load.xml" />
+	<Include file="StatsInfo\load.xml" />
+	<Include file="MailPlus\load.xml" />
+	<Include file="AutoSellBuy\load.xml" />
+</Ui>

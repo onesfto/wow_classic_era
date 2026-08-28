@@ -60,14 +60,14 @@ function BusinessInfo.AutoSell()
 					if noValue==false then
 						if quality==0 then
 							if not IsFiltraLsit(FiltradataX,itemID) then
-								local sellPrice= select(11, GetItemInfo(itemID))
+								local sellPrice= select(11, PIGGetItemInfo(itemID))
 								table.insert(bagSellD,{bag, slot,itemLink,sellPrice*itemCount,false})
 							end
 						end
 						--非灰
 						for i=1,#Selldata do
 							if itemID==Selldata[i][1] then
-								local sellPrice= select(11, GetItemInfo(itemID))
+								local sellPrice= select(11, PIGGetItemInfo(itemID))
 								table.insert(bagSellD,{bag, slot,itemLink,sellPrice*itemCount,false})
 							end
 						end

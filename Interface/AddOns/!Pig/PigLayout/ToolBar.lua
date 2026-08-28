@@ -80,7 +80,7 @@ local MenuList = {
 				LFGTeleport(false);
 			end
 		end end,
-		["CONVERT_TO"]=function() if IsInRaid(LE_PARTY_CATEGORY_HOME) then PIG_ConvertToParty() elseif IsInGroup(LE_PARTY_CATEGORY_HOME) then PIG_ConvertToRaid() end end,
+		["CONVERT_TO"]=function() if PIG_MaxTocversion(120000,true) and InCombatLockdown() then PIGErrorMsg(ERR_NOT_IN_COMBAT) return end if IsInRaid(LE_PARTY_CATEGORY_HOME) then PIG_ConvertToParty() elseif IsInGroup(LE_PARTY_CATEGORY_HOME) then PIG_ConvertToRaid() end end,
 		["RESET"]=function() StaticPopup_Show("CONFIRM_RESET_INSTANCES"); end,
 		["TIME"]=function(butui,button) if button=="LeftButton" then butui:CZ_times() else TimeManagerClockButton_OnClick(TimeManagerClockButton) end end,
 		["COMBATLOG"]=function(butui,button) if button=="LeftButton" then  else butui.RClick() end end,
@@ -160,7 +160,7 @@ local MenuList = {
 			end
 			xParent:TimeShowBGFun()
 			---
-			local ChatFrame_TimeBreakDown=ChatFrame_TimeBreakDown
+			local _TimeBreakDown=ChatFrameUtil.TimeBreakDown
 			local SetFormattedText=SetFormattedText
 			local combatTime=0
 			local inInstanceTime=0
@@ -186,7 +186,7 @@ local MenuList = {
 					self.oldtime=self.oldtime+elapsed
 					if self.oldtime>1 then
 						self.oldtime=0
-						local dd, dh, dm, ds = ChatFrame_TimeBreakDown(combatTime);
+						local dd, dh, dm, ds = _TimeBreakDown(combatTime);
 						butui.Text:SetFormattedText("%02d:%02d", dm, ds);
 					end
 				end,
@@ -250,10 +250,10 @@ local MenuList = {
 						GameTooltip:AddLine("点击重置计时器")
 					end
 					if butui.inInstance then
-						local d, h, m, s = ChatFrame_TimeBreakDown(GetServerTime()-inInstanceTime);
+						local d, h, m, s = _TimeBreakDown(GetServerTime()-inInstanceTime);
 						GameTooltip:AddLine("本次进本时长: "..format("%02d时%02d分", h, m))
 					end
-					local d, h, m, s = ChatFrame_TimeBreakDown(GetServerTime()-LoginTime);
+					local d, h, m, s = _TimeBreakDown(GetServerTime()-LoginTime);
 					GameTooltip:AddLine("本次登录时长: "..format("%02d时%02d分", h, m))
 					if butui.TimerMode==1 or butui.TimerMode==3 then
 						GameTooltip:AddLine("当前时间: "..GameTime_GetLocalTime());

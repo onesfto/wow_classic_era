@@ -824,14 +824,6 @@ L:SetGeneralLocalization({
 	name = "Grand Widow Faerlina"
 })
 
-L:SetWarningLocalization({
-	WarningEmbraceExpire	= "Widow's Embrace ends in 5 seconds"
-})
-
-L:SetOptionLocalization({
-	WarningEmbraceExpire	= "Show pre-warning for Widow's Embrace fade"
-})
-
 L:SetMiscLocalization({
 	Pull1					= "Kneel before me, worm!",
 	Pull2					= "You cannot hide from me!",
@@ -1029,7 +1021,6 @@ L:SetGeneralLocalization({
 
 L:SetOptionLocalization({
 	TimerWave			= "Show timer for next wave",
-	TimerPhase2			= "Show timer for Phase 2",
 	WarningWaveSoon		= "Show pre-warning for wave",
 	WarningWaveSpawned	= "Show warning for wave spawned",
 	WarningRiderDown	= "Show warning when an Unrelenting Rider dies",
@@ -1038,15 +1029,13 @@ L:SetOptionLocalization({
 
 L:SetTimerLocalization({
 	TimerWave	= "Wave %d/18",
-	TimerPhase2	= "Phase 2"
 })
 
 L:SetWarningLocalization({
 	WarningWaveSoon		= "Wave %d: %s in 3 sec",
 	WarningWaveSpawned	= "Wave %d: %s spawned",
 	WarningRiderDown	= "Rider down",
-	WarningKnightDown	= "Knight down",
-	WarningPhase2		= "Phase 2"
+	WarningKnightDown	= "Knight down"
 })
 
 L:SetMiscLocalization({
@@ -1131,7 +1120,6 @@ L:SetGeneralLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerPhase2			= "Show timer for Phase 2",
 	specwarnP2Soon		= "Show special warning 10 seconds before Kel'Thuzad engages"
 })
 
@@ -1141,10 +1129,6 @@ L:SetMiscLocalization({
 
 L:SetWarningLocalization({
 	specwarnP2Soon	= "Kel'Thuzad engages in 10 Seconds"
-})
-
-L:SetTimerLocalization({
-	TimerPhase2	= "Phase 2"
 })
 
 -----------------

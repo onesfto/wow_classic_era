@@ -1,7 +1,7 @@
 --[[
     This file is part of Decursive.
 
-    Decursive (v 2.8.1) add-on for World of Warcraft UI
+    Decursive (v 2.8.3) add-on for World of Warcraft UI
     Copyright (C) 2006-2025 John Wellesz (Decursive AT 2072productions.com) ( http://www.2072productions.com/to/decursive.php )
 
     Decursive is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
     Decursive is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY.
 
-    This file was last updated on 2026-07-22T09:05:00Z
+    This file was last updated on 2026-08-17T20:37:56Z
 --]]
 -------------------------------------------------------------------------------
 
@@ -44,7 +44,7 @@ StaticPopupDialogs["DECURSIVE_ERROR_FRAME"] = {
     showAlert = 1,
     preferredIndex = 3,
     }; -- }}}
-T._FatalError = function (TheError) StaticPopup_Show ("DECURSIVE_ERROR_FRAME", TheError); end
+T._FatalError = function (TheError) T._StaticPopupDialogsWasShown = true; StaticPopup_Show ("DECURSIVE_ERROR_FRAME", TheError); end
 end
 -- }}}
 if not T._LoadedFiles or not T._LoadedFiles["Dcr_utils.lua"] then
@@ -1966,7 +1966,7 @@ local function GetStaticOptions ()
                                     "\n\n|cFFDDDD00 %s|r:\n   %s"..
                                     "\n\n|cFFDDDD00 %s|r:\n   %s\n\n   %s"
                                 ):format(
-                                    "2.8.1", "John Wellesz", ("2026-07-22T09:28:35Z"):sub(1,10),
+                                    "2.8.3", "John Wellesz", ("2026-08-21T18:04:56Z"):sub(1,10),
                                     L["ABOUT_NOTES"],
                                     L["ABOUT_LICENSE"],         GetAddOnMetadata("Decursive", "X-License") or 'All Rights Reserved',
                                     L["ABOUT_SHAREDLIBS"],      GetAddOnMetadata("Decursive", "X-Embeds")  or 'GetAddOnMetadata() failure',
@@ -3800,6 +3800,10 @@ end
 function D:QuickAccess (CallingObject, button) -- {{{
     --D:Debug("clicked");
 
+    if not D.Status.Enabled or InCombatLockdown() then
+        return
+    end
+
     if (not CallingObject) then
         CallingObject = "noframe";
     end
@@ -3823,6 +3827,6 @@ function D:QuickAccess (CallingObject, button) -- {{{
 end -- }}}
 
 
-T._LoadedFiles["Dcr_opt.lua"] = "2.8.1";
+T._LoadedFiles["Dcr_opt.lua"] = "2.8.3";
 
 -- Closer

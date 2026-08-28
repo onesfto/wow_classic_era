@@ -8,14 +8,14 @@ TalentEmuSV = {
 ["setmetatable"] = 104,
 },
 ["EXTERNAL"] = {
-["LibStub"] = 1195,
+["LibStub"] = 1215,
 },
 ["UI-EquipmentContainer"] = {
 ["ceil"] = 1,
 },
 ["METHOD"] = {
-["ITEM_SET_BONUS"] = 1164,
-["ITEM_SET_BONUS_GRAY"] = 1164,
+["ITEM_SET_BONUS"] = 1184,
+["ITEM_SET_BONUS_GRAY"] = 1184,
 },
 },
 ["set"] = {
@@ -28,7 +28,7 @@ TalentEmuSV = {
 ["Player-5376-1626BB3C"] = "!T12110110!E120+^+^+^+^+^+fT1:81:-+^+gT1:81:-+^+^+^+^+^+^+^+^+Bt:81:-+^+^+^",
 ["Player-5303-1763654F"] = "!T123=0114:::2!E120+^+^+^+^+ET1:8=:-+oA1:8=:-+eo:8=:-+WJ:8=:-+8B1:8=:-+Zo:8=:-+^+^+^+^+^+5B1:8=:-+^+8t3:8=:-+^+^",
 ["Player-5376-16CCC446"] = "!T124w021CWzyH5wFHx10iJ5AWvC94LbLy1E5!E120+^+QS5:1Mc:7w:-+Fc5:8w:-+RS5:1Ve:7w:-+^+NS5:1XR:7w:-+-X5:8w:-+Sc5:1Mc:7w:-+SS5:1DC:7w:-+YF5:16c:7w:-+cw4:1tc:7w:-+AJ5:8w:-+M25:8w:-+Nb5:8w:-+7c5:8w:-+Fq4:8w:-+Ec5:19b:7w:-+Xc5:8w:-+Sb5:8w:-+^",
-["Player-5376-03D5066C"] = "!T125w022ANNb33HhR71s1F5Ed33F6:0sB030t4U!E120+^+N84:1Sc:7w:-+wb5:8w:-+Q84:1Pe:7w:-+Co:8w:-+P84:1XR:7w:-+R84:8w:-+O84:1Sc:7w:-+tq4:1E7:7w:-+S84:16c:7w:-+0K5:1WC:7w:-+Jc5:8w:-+qi4:8w:-+mh2:8w:-+7c5:8w:-+ka5:8w:-+bV5:19b:7w:-+^+Vb5:8w:-+MR1:8w:-",
+["Player-5376-03D5066C"] = "!T125w022ANNb33HhR71s1F5Ed33F6:0sB030t4U!E120+^+N84:1Sc:7w:-+wb5:8w:-+Q84:1Pe:7w:-+Co:8w:-+P84:1XR:7w:-+R84:8w:-+O84:1Sc:7w:-+L84:1DC:7w:-+S84:16c:7w:-+M84:1tc:7w:-+Jc5:8w:-+qi4:8w:-+Q25:8w:-+7c5:8w:-+ka5:8w:-+bV5:19b:7w:-+^+Vb5:8w:-+MR1:8w:-",
 ["Player-5453-040319F3"] = "!T12510110!E120+^+^+^+^+p:81:9+GT1:81:9+^+o:81:9+n:81:9+^+^+^+^+^+^+^+Y:81:9+^+^+^",
 ["Player-5381-152D7C91"] = "!T12510110!E120+^+^+^+^+p:81:-+GT1:81:-+^+o:81:-+n:81:-+^+^+^+^+^+^+^+Y:81:-+^+^+^",
 ["savedTalent"] = {

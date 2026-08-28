@@ -470,13 +470,14 @@ function Create.PIGOptionsList_R(fuF,tabname,W,Mode,UIName)
 	TAB_F:Hide()
 	local ziframe = {fuF.Top:GetChildren()}
 	local newWH = {W,24}
-	if Mode=="Left" then newWH={24,W} end
+	if Mode=="Left" then newWH={24,W} elseif Mode=="LeftH" then newWH={W,32} end
 	fuF.Top.tabbut = PIGTabBut(fuF.Top,nil,{newWH[1],newWH[2]},tabname)
-	if Mode=="Left" then
+	fuF.Top.tabbut.Text:SetWidth(W-4)
+	if Mode=="Left" or Mode=="LeftH" then
 		if #ziframe==0 then
 			fuF.Top.tabbut:SetPoint("TOPRIGHT", fuF.Top, "TOPRIGHT", 1, -10);
 		else
-			fuF.Top.tabbut:SetPoint("TOP", ziframe[#ziframe], "BOTTOM", 0, -10);
+			fuF.Top.tabbut:SetPoint("TOPRIGHT", ziframe[#ziframe], "BOTTOMRIGHT", 0, -10);
 		end
 	elseif Mode=="Bot" then
 		if #ziframe==0 then

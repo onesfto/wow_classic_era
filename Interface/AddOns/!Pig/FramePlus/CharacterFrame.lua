@@ -749,7 +749,7 @@ local function add_AutoEquip(ManageEquip)
 		local id, name, textureName, count, durability, maxDurability, invType, locked, start, duration, enable, setTooltip, gem1, gem2, gem3, _;
 		if ( not bags ) then -- and (player or bank) 
 			id = GetInventoryItemID("player", slot);
-			name, _, _, _, _, _, _, _, invType, textureName = GetItemInfo(id);
+			name, _, _, _, _, _, _, _, invType, textureName = PIGGetItemInfo(id);
 			if ( textureName ) then
 				count = GetInventoryItemCount("player", slot);
 				durability, maxDurability = GetInventoryItemDurability(slot);
@@ -759,7 +759,7 @@ local function add_AutoEquip(ManageEquip)
 			gem1, gem2, gem3 = GetInventoryItemGems(slot);
 		else -- bags
 			id = PIGGetContainerItemID(bag, slot);
-			name, _, _, _, _, _, _, _, invType = GetItemInfo(id);
+			name, _, _, _, _, _, _, _, invType = PIGGetItemInfo(id);
 			local info = C_Container.GetContainerItemInfo(bag, slot);
 			local itemID, itemLink, icon, stackCount, quality, noValue, lootable, locked=PIGGetContainerItemInfo(bag, slot)
 			textureName = icon;

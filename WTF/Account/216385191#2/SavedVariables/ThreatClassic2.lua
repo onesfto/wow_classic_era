@@ -17,6 +17,9 @@ ThreatClassic2DB = {
 },
 ["profiles"] = {
 ["Default"] = {
+["bar"] = {
+["count"] = 8,
+},
 ["frame"] = {
 ["position"] = {
 nil,
@@ -25,9 +28,6 @@ nil,
 713.0260620117188,
 5.786524295806885,
 },
-},
-["bar"] = {
-["count"] = 8,
 },
 },
 ["露露缇娅"] = {

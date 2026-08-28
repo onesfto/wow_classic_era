@@ -1,7 +1,8 @@
 ## Interface: 40402
+# WOW_INTERFACE_TARGETS: cata
 ## Title: WeakAuras Options
 ## Author: The WeakAuras Team
-## Version: 5.21.9
+## Version: 5.21.11
 ## IconTexture: Interface\AddOns\WeakAuras\Media\Textures\icon.blp
 ## Notes: Options for WeakAuras
 ## Notes-esES: Opciones para WeakAuras

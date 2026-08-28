@@ -1,7 +1,7 @@
 
 MyslotSettings = {
-["allowclearonimport"] = false,
 ["minimap"] = {
 ["hide"] = false,
 },
+["allowclearonimport"] = false,
 }

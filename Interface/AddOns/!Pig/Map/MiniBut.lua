@@ -31,24 +31,30 @@ function PD.MiniMapBut_Add()
 	MiniMapBut.error:SetAlpha(0.7);
 	MiniMapBut.error:SetPoint("CENTER", 0, 0);
 	MiniMapBut.error:Hide();
-	function MiniMapBut.Showaddonstishi(self,laiyuan)
-		GameTooltip:ClearLines();
-		if laiyuan then
-			GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT",-2,16);
-		else
-			GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT",-24,0);
-		end
-		GameTooltip:AddLine("|cffFF00FF"..addonName.."|r-"..PIGGetAddOnMetadata(addonName, "Version"))
-		GameTooltip:AddLine(self.TooltipV)
-		GameTooltip:Show();
-	end	
-	MiniMapBut:SetScript("OnEnter", function(self)
-		self.Showaddonstishi(self)
-	end);
 	MiniMapBut:SetScript("OnLeave", function()
 		GameTooltip:ClearLines();
 		GameTooltip:Hide() 
 	end);
+	MiniMapBut:SetScript("OnEnter", function(self)
+		self.Update_Enter()
+	end);
+	Mapfun.EntertispBox=PIGA["Map"]["EntertispBox"]
+	function MiniMapBut.Update_Enter(laiyuan)
+		GameTooltip:ClearLines();
+		if laiyuan then
+			GameTooltip:SetOwner(laiyuan, "ANCHOR_BOTTOMLEFT",-2,16);
+		else
+			GameTooltip:SetOwner(MiniMapBut, "ANCHOR_TOPRIGHT",-24,0);
+		end
+		GameTooltip:AddLine("|cffFF00FF"..addonName.."|r-"..PIGGetAddOnMetadata(addonName, "Version"))
+		GameTooltip:AddLine(MiniMapBut.TooltipV)
+		GameTooltip:Show()
+		if Mapfun.EntertispBox then
+			MiniMapBut.Box:Show();
+			MiniMapBut.Box.xiaoshidaojishi = 1.5;
+			MiniMapBut.Box.zhengzaixianshi = true;
+		end
+	end
 	local function GetMinimapScale()
 		if MinimapCluster and MinimapCluster.GetSettingValue and Enum.EditModeMicroMenuSetting.Size then
 			local Value=MinimapCluster:GetSettingValue(Enum.EditModeMicroMenuSetting.Size)/100
@@ -191,28 +197,28 @@ function PD.MiniMapBut_Add()
 			self.Box.zhengzaixianshi = true;
 		end
 	end
-	function MiniMapBut:minimapButClickFun(button)
+	function MiniMapBut.Update_Click(button)
 		GameTooltip:Hide()
 		if button=="LeftButton" then
 			if IsControlKeyDown() then
 				PIG_BugcollectUI:Show()
-				self.error:Hide();
+				MiniMapBut.error:Hide();
 			elseif IsShiftKeyDown() then
 				ReloadUI()
 			else
 				if PIGA["Map"]["MiniButShouNa_YN"]==1 then
-					self:ClickShowSNF()
+					MiniMapBut:ClickShowSNF()
 				else
-					self:ClickShowSet()
+					MiniMapBut:ClickShowSet()
 				end
 			end
 		elseif button=="RightButton" then
-			self:ClickShowSet()
+			MiniMapBut:ClickShowSet()
 		end
 	end
 	MiniMapBut:SetScript("OnClick", function(self, button)
 		PlaySound(SOUNDKIT.IG_CHAT_EMOTE_BUTTON);
-		self:minimapButClickFun(button)
+		self.Update_Click(button)
 	end)
 	local MiniMapButYD = CreateFrame("Frame")
 	MiniMapButYD:Hide();

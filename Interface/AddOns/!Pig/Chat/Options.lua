@@ -394,14 +394,16 @@ local function RemTips_Fun()
 end
 
 --去除本地/世界防务数字频道列表
-local function GetPindaoList_F()
+local function GetPindaoList_F(war)
 	local chatpindao = {GetChatWindowMessages(1)}
 	local chatpindaoList = {}
 	for i=1,#chatpindao do
 		local Namechia =_G[chatpindao[i].."_MESSAGE"]
 		if Namechia then
-			if Namechia~=BN_WHISPER_Name and Namechia~=RAID_WARNING and Namechia~=CHAT_MSG_EMOTE then
-				table.insert(chatpindaoList,{Namechia,chatpindao[i]})
+			if Namechia~=BN_WHISPER_Name and Namechia~=CHAT_MSG_EMOTE then
+				if (Namechia==RAID_WARNING and war) or Namechia~=RAID_WARNING then
+					table.insert(chatpindaoList,{Namechia,chatpindao[i]})
+				end
 			end
 		end
 	end
@@ -540,7 +542,7 @@ YchuoquGlfff:SetScript("OnEvent", function(self,event,arg1,arg2,arg3,arg4,arg5)
 end)
 --粘连
 local function ChatFrame_ChatTypeInfo_sticky()
-	local chatpindaoList = GetPindaoList_F()
+	local chatpindaoList = GetPindaoList_F(true)
 	for i=1,#chatpindaoList do
 		local onfvv = PIGA["Chat"]["chatZhanlian"][chatpindaoList[i][2]]
 		if onfvv == 1 or onfvv == 0 then
@@ -1147,7 +1149,7 @@ function PD.addOptions_Chat()
 		if not self.zhanliantxt then
 			self.zhanliantxt = PIGFontString(self,{"TOPLEFT",self,"TOPLEFT",20,-20},L["CHAT_TABNAME3TIPS"])
 			--粘连
-			local chatpindaoList = GetPindaoList_F()
+			local chatpindaoList = GetPindaoList_F(true)
 			local PindaoListBut = {}
 			for i=1,#chatpindaoList do
 				local zhanCKbut = PIGCheckbutton(self,nil,{chatpindaoList[i][1],string.format(L["CHAT_ZLCKBTIPS"],chatpindaoList[i][1])});

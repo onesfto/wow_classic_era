@@ -391,8 +391,6 @@ L["Custom Sort"] = "自訂排序"
 L["Custom Text Function"] = "自訂文字函數"
 L["Custom Trigger Combination"] = "自訂觸發組合"
 L["Custom Variables"] = "自訂變數"
---[[Translation missing --]]
-L["Daakara"] = "Daakara"
 L["Damage"] = "傷害"
 L["Damage Shield"] = "傷害盾"
 L["Damage Shield Missed"] = "傷害盾未命中"
@@ -1707,4 +1705,6 @@ L["Zoom Animation"] = "縮放動畫"
 --[[Translation missing --]]
 L["Zul'Aman"] = "Zul'Aman"
 L["Zul'Gurub"] = "祖爾格拉布"
+--[[Translation missing --]]
+L["Zul'jin"] = "Zul'jin"
 

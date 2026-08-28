@@ -218,7 +218,7 @@ function Create.CharacterFrame(fuji,UIName,FrameLevel)
 	end
 	function frameX:Update_ShowItem_List(zbData,laiyuan)
 		for k,v in pairs(zbData) do
-			local _,itemLink = GetItemInfo(v) 
+			local _,itemLink = PIGGetItemInfo(v) 
 			if not itemLink and self.ZBLsit<5 then
 				C_Timer.After(0.1,function()
 					self.ZBLsit.ShowItemNum=self.ZBLsit.ShowItemNum+1
@@ -229,12 +229,12 @@ function Create.CharacterFrame(fuji,UIName,FrameLevel)
 		end
 		local NewzbData = {}
 		for k,v in pairs(zbData) do
-			local _,itemLink = GetItemInfo(v) 
+			local _,itemLink = PIGGetItemInfo(v) 
 			NewzbData[k]=itemLink
 		end
 		for k,v in pairs(NewzbData) do
 			local invFff = self.ItemList[k]
-			local itemName,itemLink,itemQuality,itemLevel,itemMinLevel,itemType,itemSubType,itemStackCount,itemEquipLoc,itemTexture= GetItemInfo(v)
+			local itemName,itemLink,itemQuality,itemLevel,itemMinLevel,itemType,itemSubType,itemStackCount,itemEquipLoc,itemTexture= PIGGetItemInfo(v)
 			SetItemButtonTexture(invFff, itemTexture);
 			invFff:SetScript("OnEnter", function (self)
 				GameTooltip:ClearLines();

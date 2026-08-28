@@ -1,4 +1,4 @@
-﻿## Interface: 120007
+﻿## Interface: 120100
 ## Title: !Pig
 ## Title-zhCN: !Pig
 ## Title-zhTW: !Pig
@@ -13,7 +13,7 @@
 ## AddonCompartmentFuncOnEnter: PIGCompartmentEnter
 ## AddonCompartmentFuncOnLeave: PIGCompartmentLeave
 ## Author: geligasi
-## Version: 10.67
+## Version: 10.80
 ## SavedVariables: PIGA
 ## SavedVariablesPerCharacter: PIGA_Per
 Localization\Localization.xml
@@ -26,17 +26,17 @@ OptionsUI.lua
 Ext.lua
 About.lua
 Debug.lua
-General\General.xml
-Business\Business.xml
-Chat\Chat.xml
-ActionBar\ActionBar.xml
-CombatPlus\CombatPlus.xml
-Tooltip\Tooltip.xml
-FramePlus\FramePlus.xml
-UnitFrame\UnitFrame.xml
-BagBank\BagBank.xml
-Map\Map.xml
-CVars\CVars.xml
-PigLayout\PigLayout.xml
-Config\Config.xml
+General\load.xml
+Business\load.xml
+Chat\load.xml
+ActionBar\load.xml
+CombatPlus\load.xml
+Tooltip\load.xml
+FramePlus\load.xml
+UnitFrame\load.xml
+BagBank\load.xml
+Map\load.xml
+CVars\load.xml
+PigLayout\load.xml
+Config\load.xml
 !Pig.lua

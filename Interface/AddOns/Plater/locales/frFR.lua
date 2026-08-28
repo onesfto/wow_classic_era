@@ -62,70 +62,40 @@ L["OPTIONS_AURAS_SORT_DESC"] = "Les auras sont triées par temps restant (par d�
 L["OPTIONS_AUTO_ALWAYS_SHOW_IN_ARENA_BG"] = "En Arène / CdB"
 L["OPTIONS_AUTO_ALWAYS_SHOW_IN_ARENA_BG_DESC"] = "Activez l'option « Toujours afficher les plaques de nom » lorsque vous êtes dans l'arène ou en champ de bataille."
 L["OPTIONS_AUTO_ALWAYS_SHOW_IN_DUNGEONS"] = "En donjons"
---[[Translation missing --]]
-L["OPTIONS_AUTO_ALWAYS_SHOW_IN_DUNGEONS_DESC"] = "Set 'always show nameplates' on when inside dungeons."
---[[Translation missing --]]
-L["OPTIONS_AUTO_ALWAYS_SHOW_IN_MAJOR_CITIES"] = "In Major Cities"
---[[Translation missing --]]
-L["OPTIONS_AUTO_ALWAYS_SHOW_IN_MAJOR_CITIES_DESC"] = "Set 'always show nameplates' on when inside a major city."
---[[Translation missing --]]
-L["OPTIONS_AUTO_ALWAYS_SHOW_IN_OPEN_WORLD"] = "In Open World"
---[[Translation missing --]]
-L["OPTIONS_AUTO_ALWAYS_SHOW_IN_OPEN_WORLD_DESC"] = "Set 'always show nameplates' on when at any place not listed on the other options."
---[[Translation missing --]]
-L["OPTIONS_AUTO_ALWAYS_SHOW_IN_RAID"] = "In Raid"
---[[Translation missing --]]
-L["OPTIONS_AUTO_ALWAYS_SHOW_IN_RAID_DESC"] = "Set 'always show nameplates' on when inside raids."
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_IN_ARENA_BG"] = "In Arena / BG"
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_IN_ARENA_BG_DESC"] = "Show enemy nameplates when inside arena or battleground."
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_IN_DUNGEONS"] = "In Dungeons"
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_IN_DUNGEONS_DESC"] = "Show enemy nameplates when inside dungeons."
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_IN_MAJOR_CITIES"] = "In Major Cities"
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_IN_MAJOR_CITIES_DESC"] = "Show enemy nameplates when inside a major city."
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_IN_OPEN_WORLD"] = "In Open World"
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_IN_OPEN_WORLD_DESC"] = "Show enemy nameplates when at any place not listed on the other options."
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_IN_RAID"] = "In Raid"
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_IN_RAID_DESC"] = "Show enemy nameplates when inside raids."
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_NAMEPLATES_IC"] = "Enemy Nameplates in combat"
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_NAMEPLATES_IC_DESC"] = "Automatically enable / disable enemy nameplates in combat."
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_NAMEPLATES_OOC"] = "Enemy Nameplates out of combat"
---[[Translation missing --]]
-L["OPTIONS_AUTO_ENEMY_NAMEPLATES_OOC_DESC"] = "Automatically enable / disable enemy nameplates out of combat."
---[[Translation missing --]]
-L["OPTIONS_AUTO_FRIENDLY_IN_ARENA_BG"] = "In Arena / BG"
---[[Translation missing --]]
-L["OPTIONS_AUTO_FRIENDLY_IN_ARENA_BG_DESC"] = "Show friendly nameplates when inside arena or battleground."
---[[Translation missing --]]
-L["OPTIONS_AUTO_FRIENDLY_IN_DUNGEONS"] = "In Dungeons"
---[[Translation missing --]]
-L["OPTIONS_AUTO_FRIENDLY_IN_DUNGEONS_DESC"] = "Show friendly nameplates when inside dungeons."
---[[Translation missing --]]
-L["OPTIONS_AUTO_FRIENDLY_IN_MAJOR_CITIES"] = "In Major Cities"
---[[Translation missing --]]
-L["OPTIONS_AUTO_FRIENDLY_IN_MAJOR_CITIES_DESC"] = "Show friendly nameplates when inside a major city."
---[[Translation missing --]]
-L["OPTIONS_AUTO_FRIENDLY_IN_OPEN_WORLD"] = "In Open World"
---[[Translation missing --]]
-L["OPTIONS_AUTO_FRIENDLY_IN_OPEN_WORLD_DESC"] = "Show friendly nameplates when at any place not listed on the other options."
---[[Translation missing --]]
-L["OPTIONS_AUTO_FRIENDLY_IN_RAID"] = "In Raid"
---[[Translation missing --]]
-L["OPTIONS_AUTO_FRIENDLY_IN_RAID_DESC"] = "Show friendly nameplates when inside raids."
---[[Translation missing --]]
-L["OPTIONS_AUTO_FRIENDLY_NAMEPLATES_IC"] = "Friendly Nameplates in combat"
+L["OPTIONS_AUTO_ALWAYS_SHOW_IN_DUNGEONS_DESC"] = "Activez l'option « Toujours afficher les plaques d'identification » lorsque vous êtes dans des donjons."
+L["OPTIONS_AUTO_ALWAYS_SHOW_IN_MAJOR_CITIES"] = "Dans les grandes villes"
+L["OPTIONS_AUTO_ALWAYS_SHOW_IN_MAJOR_CITIES_DESC"] = "Activez l'option « Toujours afficher les plaques signalétiques » lorsque vous vous trouvez dans une grande ville."
+L["OPTIONS_AUTO_ALWAYS_SHOW_IN_OPEN_WORLD"] = "Dans le monde ouvert"
+L["OPTIONS_AUTO_ALWAYS_SHOW_IN_OPEN_WORLD_DESC"] = [=[Activez l'option « Toujours afficher les plaques signalétiques » lorsque vous vous trouvez dans un lieu qui ne figure pas parmi les autres options.
+
+]=]
+L["OPTIONS_AUTO_ALWAYS_SHOW_IN_RAID"] = "En Raid"
+L["OPTIONS_AUTO_ALWAYS_SHOW_IN_RAID_DESC"] = "Activez l'option « Toujours afficher les plaques d'identification » lorsque vous participez à des raids."
+L["OPTIONS_AUTO_ENEMY_IN_ARENA_BG"] = "Dans l'Arène / Champ de bataille"
+L["OPTIONS_AUTO_ENEMY_IN_ARENA_BG_DESC"] = "Afficher les noms des ennemis lorsqu'on se trouve dans une arène ou sur un champ de bataille."
+L["OPTIONS_AUTO_ENEMY_IN_DUNGEONS"] = "En Donjons"
+L["OPTIONS_AUTO_ENEMY_IN_DUNGEONS_DESC"] = "Afficher les noms des ennemis à l'intérieur des donjons."
+L["OPTIONS_AUTO_ENEMY_IN_MAJOR_CITIES"] = "Dans les grandes villes"
+L["OPTIONS_AUTO_ENEMY_IN_MAJOR_CITIES_DESC"] = "Afficher les noms des ennemis lorsqu'on se trouve dans une grande ville."
+L["OPTIONS_AUTO_ENEMY_IN_OPEN_WORLD"] = "Dans le  monde ouvert"
+L["OPTIONS_AUTO_ENEMY_IN_OPEN_WORLD_DESC"] = "Afficher les noms des ennemis partout ailleurs que dans les emplacements mentionnés dans les autres options."
+L["OPTIONS_AUTO_ENEMY_IN_RAID"] = "En Raid"
+L["OPTIONS_AUTO_ENEMY_IN_RAID_DESC"] = "Afficher les noms des ennemis lors des raids."
+L["OPTIONS_AUTO_ENEMY_NAMEPLATES_IC"] = "Barres d’unités ennemies en combat"
+L["OPTIONS_AUTO_ENEMY_NAMEPLATES_IC_DESC"] = "Activer / désactiver automatiquement l'affichage des noms des ennemis pendant les combats."
+L["OPTIONS_AUTO_ENEMY_NAMEPLATES_OOC"] = "Plaques d'identification des ennemis hors combat"
+L["OPTIONS_AUTO_ENEMY_NAMEPLATES_OOC_DESC"] = "Activer / désactiver automatiquement l'affichage des noms des ennemis hors combat."
+L["OPTIONS_AUTO_FRIENDLY_IN_ARENA_BG"] = "Dans l'Arène / Champ de bataille"
+L["OPTIONS_AUTO_FRIENDLY_IN_ARENA_BG_DESC"] = "Afficher les noms d'amis à l'intérieur d'une arène ou d'un champ de bataille."
+L["OPTIONS_AUTO_FRIENDLY_IN_DUNGEONS"] = "Dans les Donjons"
+L["OPTIONS_AUTO_FRIENDLY_IN_DUNGEONS_DESC"] = "Afficher les noms des personnages amis à l'intérieur des donjons."
+L["OPTIONS_AUTO_FRIENDLY_IN_MAJOR_CITIES"] = "Dans les grandes villes"
+L["OPTIONS_AUTO_FRIENDLY_IN_MAJOR_CITIES_DESC"] = "Afficher des panneaux indicateurs conviviaux lorsque l'on se trouve dans une grande ville."
+L["OPTIONS_AUTO_FRIENDLY_IN_OPEN_WORLD"] = "En monde ouvert"
+L["OPTIONS_AUTO_FRIENDLY_IN_OPEN_WORLD_DESC"] = "Afficher les libellés conviviaux dans tous les cas non mentionnés dans les autres options."
+L["OPTIONS_AUTO_FRIENDLY_IN_RAID"] = "En Raid"
+L["OPTIONS_AUTO_FRIENDLY_IN_RAID_DESC"] = "Afficher les noms d'alliés lors des raids."
+L["OPTIONS_AUTO_FRIENDLY_NAMEPLATES_IC"] = "Plaques d'identification amies au combat"
 --[[Translation missing --]]
 L["OPTIONS_AUTO_FRIENDLY_NAMEPLATES_IC_DESC"] = "Automatically enable / disable friendly nameplates in combat."
 --[[Translation missing --]]
@@ -282,18 +252,17 @@ L["OPTIONS_MINOR_SCALE_HEIGHT"] = "Échelle de hauteur des unités mineures"
 L["OPTIONS_MINOR_SCALE_WIDTH"] = "Échelle de largeur des unités mineures"
 L["OPTIONS_MOVE_HORIZONTAL"] = "Déplacer horizontalement"
 L["OPTIONS_MOVE_VERTICAL"] = "Déplacer verticalement"
-L["OPTIONS_NAMEPLATE_HIDE_FRIENDLY_HEALTH"] = "Cacher les barres de vie de Blizzard|cFFFF7700*|r"
-L["OPTIONS_NAMEPLATE_HIDE_FRIENDLY_HEALTH_DESC"] = "Lors des donjons ou des raids, si les plaques de nom alliées sont activées, seules les plaques de nom des joueurs seront affichées. Si un module Plater est désactivé, cela affectera également ces plaques de nom.  |cFFFF7700[*]|r |cFFa0a0a0CVar, enregistré dans le profil Plater et restauré lors du chargement du profil.|r |cFFFF2200[*]|r |cFFa0a0a0A /reload peut être nécessaire pour prendre effet.|r"
-L["OPTIONS_NAMEPLATE_OFFSET"] = "Ajuster légèrement l'ensemble de la plaque de nom."
-L["OPTIONS_NAMEPLATE_SHOW_ENEMY"] = "Afficher les plaques de nom ennemies|cFFFF7700*|r"
-L["OPTIONS_NAMEPLATE_SHOW_ENEMY_DESC"] = "Affiche la plaque de nom pour les unités ennemies et neutres. |cFFFF7700[*]|r |cFFa0a0a0CVar, enregistré dans le profil Plater et restauré lors du chargement du profil.|r"
-L["OPTIONS_NAMEPLATE_SHOW_FRIENDLY"] = "Afficher les plaques de nom alliées|cFFFF7700*|r"
-L["OPTIONS_NAMEPLATE_SHOW_FRIENDLY_DESC"] = [=[Affiche la plaque de nom pour les joueurs alliés. |cFFFF7700[*]|r |cFFa0a0a0CVar, enregistré dans le profil Plater et restauré lors du chargement du profil.|r
-]=]
-L["OPTIONS_NAMEPLATES_OVERLAP"] = "Chevauchement des plaques de nom (V) |cFFFF7700*|r"
-L["OPTIONS_NAMEPLATES_OVERLAP_DESC"] = "L'espace entre chaque plaque de nom verticalement lorsque l'empilement est activé. |cFFFFFFFFPar défaut : 1.10|r |cFFFF7700[*]|r |cFFa0a0a0CVar, enregistré dans le profil Plater et restauré lors du chargement du profil.|r |cFFFFFF00Important |r : si vous rencontrez des problèmes avec ce paramètre, utilisez : |cFFFFFFFF/run SetCVar ('nameplateOverlapV', '1.6')|r"
-L["OPTIONS_NAMEPLATES_STACKING"] = "Plaques de nom empilées|cFFFF7700*|r"
-L["OPTIONS_NAMEPLATES_STACKING_DESC"] = "Si activé, les plaques de nom ne se chevaucheront pas. |cFFFF7700[*]|r |cFFa0a0a0CVar, enregistré dans le profil Plater et restauré lors du chargement du profil.|r |cFFFFFF00Important |r : pour définir la quantité d'espace entre chaque plaque de nom, consultez l'option '|cFFFFFFFFEspacement vertical des plaques de nom|r' ci-dessous. Veuillez vérifier les paramètres de l'onglet Auto pour configurer le basculement automatique de cette option."
+L["OPTIONS_NAMEPLATE_HIDE_FRIENDLY_HEALTH"] = "Masquer les barres de vie de Blizzard|cFFFF7700*|r"
+L["OPTIONS_NAMEPLATE_HIDE_FRIENDLY_HEALTH_DESC"] = "En donjon ou en raid, si l'affichage des noms des alliés est activé, seul le nom du joueur sera visible. La désactivation d'un module Plater affectera également ces noms. |cFFFF7700[*]|r |cFFa0a0a0CVar, enregistrée dans le profil Plater et restaurée lors du chargement de celui-ci.|r |cFFFF2200[*]|r |cFFa0a0a0A /reload peut être nécessaire pour que les modifications soient prises en compte.|r"
+L["OPTIONS_NAMEPLATE_OFFSET"] = "Ajustez légèrement l'ensemble de la barres d’unités."
+L["OPTIONS_NAMEPLATE_SHOW_ENEMY"] = "Afficher les barres d’unités ennemies|cFFFF7700*|r"
+L["OPTIONS_NAMEPLATE_SHOW_ENEMY_DESC"] = "Afficher les barres d’unités ennemies et neutres. |cFFFF7700[*]|r |cFFa0a0a0CVar, enregistré dans le profil Plater et restauré lors du chargement du profil.|r"
+L["OPTIONS_NAMEPLATE_SHOW_FRIENDLY"] = "Afficher les barres d’unités alliées|cFFFF7700*|r"
+L["OPTIONS_NAMEPLATE_SHOW_FRIENDLY_DESC"] = "Afficher les barres d’unités alliées.|cFFFF7700[*]|r |cFFa0a0a0CVar, enregistré dans le profil Plater et restauré lors du chargement du profil.|r"
+L["OPTIONS_NAMEPLATES_OVERLAP"] = "Chevauchement des barres d’unités (V)|cFFFF7700*|r"
+L["OPTIONS_NAMEPLATES_OVERLAP_DESC"] = "L'espace vertical entre chaque barres d'unités lorsque l'empilement est activé. |cFFFFFFFFValeur par défaut : 1,10|r |cFFFF7700[*]|r |cFFa0a0a0CVar, enregistrée dans le profil Plater et restaurée lors du chargement du profil.|r |cFFFFFF00Important |r : si vous rencontrez des problèmes avec ce paramètre, faite : |cFFFFFFFF/run SetCVar ('nameplateOverlapV', '1.6')|r"
+L["OPTIONS_NAMEPLATES_STACKING"] = "Barres d’unités empilées|cFFFF7700*|r"
+L["OPTIONS_NAMEPLATES_STACKING_DESC"] = "Si cette option est activée, les barres d'unités ne se chevaucheront pas. |cFFFF7700[*]|r |cFFa0a0a0CVar, enregistrée dans le profil Plater et restaurée lors du chargement du profil.|r |cFFFFFF00Important |r : pour définir l’espacement entre chaque plaque signalétique, consultez l’option « |cFFFFFFFFMarge verticale des plaques signalétiques|r » ci-dessous. Veuillez cocher les paramètres de l’onglet Auto pour configurer l’activation/désactivation automatique de cette option."
 L["OPTIONS_NEUTRAL"] = "Neutre"
 L["OPTIONS_NOCOMBATALPHA_AMOUNT_DESC"] = "Montant de transparence pour l'« Alpha hors combat »."
 L["OPTIONS_NOCOMBATALPHA_ENABLED"] = "Utiliser l'alpha en dehors du combat"

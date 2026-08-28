@@ -332,7 +332,7 @@ function QuickChatfun.QuickBut_Keyword()
 	local TardisGetMsg=Data.Tardis.GetMsg
 	local Show_MSG_TIMECD = 0
 	local CHANNELinfo = ChatTypeInfo["CHANNEL"];
-	local ChatFrame_ReplaceIconAndGroupExpressions=C_ChatInfo and C_ChatInfo.ReplaceIconAndGroupExpressions or ChatFrame_ReplaceIconAndGroupExpressions
+	local _ReplaceIconAndGroupExpressions=C_ChatInfo and C_ChatInfo.ReplaceIconAndGroupExpressions or ChatFrame_ReplaceIconAndGroupExpressions
 	local MsgFastCopyShowZb=QuickChatfun.MsgFastCopyShowZb
 	local RepeatMsgData={}
 	local function replaceWithColor_1(text, searchKey)
@@ -376,7 +376,7 @@ function QuickChatfun.QuickBut_Keyword()
 	end
 	local function Export_KeywordMSG(event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17)
 		local timetxt=GetServerTime()
-		local outMsg = ChatFrame_ReplaceIconAndGroupExpressions(arg1, arg17, not ChatFrame_CanChatGroupPerformExpressionExpansion("CHANNEL"));
+		local outMsg = _ReplaceIconAndGroupExpressions(arg1, arg17, not ChatFrame_CanChatGroupPerformExpressionExpansion("CHANNEL"));
 		local outMsg = ReplaceEmoji(outMsg)
 		local coloredName = _GetColoredName(event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);
 		local PlayerLink = MsgFastCopyShowZb(arg12,GetPlayerLink(arg2, ("[%s]"):format(coloredName)),true)
@@ -604,10 +604,10 @@ function QuickChatfun.QuickBut_Keyword()
 		end
 	end)
 	function QuickUI.Keyword:FilterKeysFun(setck)
-		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_CHANNEL", FilterBlack)
-		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_YELL", FilterBlack)
-		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_SAY",FilterBlack)
-		ChatFrame_RemoveMessageEventFilter("CHAT_MSG_WHISPER",FilterBlack)
+		ChatFrameUtil.RemoveMessageEventFilter("CHAT_MSG_CHANNEL", FilterBlack)
+		ChatFrameUtil.RemoveMessageEventFilter("CHAT_MSG_YELL", FilterBlack)
+		ChatFrameUtil.RemoveMessageEventFilter("CHAT_MSG_SAY",FilterBlack)
+		ChatFrameUtil.RemoveMessageEventFilter("CHAT_MSG_WHISPER",FilterBlack)
 		if PIGA["Chat"]["Filter"]["Open"] then
 			FrameUIxxx:RegisterEvent("PLAYER_ENTERING_WORLD");
 			FrameUIxxx:RegisterEvent("CHAT_MSG_SYSTEM")
@@ -617,16 +617,16 @@ function QuickChatfun.QuickBut_Keyword()
 				return 
 			end
 			if PIGA["Chat"]["Filter"]["FilterChannel"]["CHANNEL"] then
-				ChatFrame_AddMessageEventFilter("CHAT_MSG_CHANNEL", FilterBlack)
+				ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_CHANNEL", FilterBlack)
 			end
 			if PIGA["Chat"]["Filter"]["FilterChannel"]["YELL"] then
-				ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", FilterBlack)
+				ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_YELL", FilterBlack)
 			end
 			if PIGA["Chat"]["Filter"]["FilterChannel"]["SAY"] then
-				ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", FilterBlack)
+				ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_SAY", FilterBlack)
 			end
 			if PIGA["Chat"]["Filter"]["FilterChannel"]["WHISPER"] then
-				ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", FilterBlack)
+				ChatFrameUtil.AddMessageEventFilter("CHAT_MSG_WHISPER", FilterBlack)
 			end
 			if setck then PIGErrorMsg("|cff00FF00"..ENABLE.."|r"..INFO..L["CHAT_KEYWORD_NAME1"]..L["CHAT_FILTERS"]) end
 		else

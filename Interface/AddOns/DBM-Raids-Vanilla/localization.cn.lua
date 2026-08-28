@@ -727,14 +727,6 @@ L:SetGeneralLocalization({
 	name 				= "黑女巫法琳娜"
 })
 
-L:SetWarningLocalization({
-	WarningEmbraceExpire		= "黑女巫的拥抱5秒后结束"
-})
-
-L:SetOptionLocalization({
-	WarningEmbraceExpire		= "为黑女巫的拥抱结束显示提前警报"
-})
-
 L:SetMiscLocalization({
 	Pull1					= "跪下求饶吧，懦夫！",
 	Pull2					= "休想从我面前逃掉！",
@@ -886,7 +878,7 @@ L:SetMiscLocalization({
 	Yell2P2 	= "打……烂……你！",
 	Yell3P2 	= "杀……",
 	EmoteDies 	= "%s死了。",
-	--EmoteRevive = "%s is jolted back to life!"
+	EmoteRevive = "%s被猛烈的电击复活了！"
 })
 
 L:SetOptionLocalization({
@@ -932,7 +924,6 @@ L:SetGeneralLocalization({
 
 L:SetOptionLocalization({
 	TimerWave				= "为下一波小怪显示计时条",
-	TimerPhase2				= "为第二阶段显示计时条",
 	WarningWaveSoon			= "为小怪出现显示提前警报",
 	WarningWaveSpawned		= "为小怪出现显示警报",
 	WarningRiderDown		= "当冷酷的骑兵死亡时显示警报",
@@ -941,15 +932,13 @@ L:SetOptionLocalization({
 
 L:SetTimerLocalization({
 	TimerWave				= "第%d/18波",
-	TimerPhase2				= "第二阶段"
 })
 
 L:SetWarningLocalization({
 	WarningWaveSoon			= "3秒后第%d波：%s",
 	WarningWaveSpawned		= "第%d波：%s出现了",
 	WarningRiderDown		= "骑兵已死亡",
-	WarningKnightDown		= "死亡骑士已死亡",
-	WarningPhase2			= "第二阶段"
+	WarningKnightDown		= "死亡骑士已死亡"
 })
 
 L:SetMiscLocalization({
@@ -1033,7 +1022,6 @@ L:SetGeneralLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerPhase2			= "为第二阶段显示计时条",
 	specwarnP2Soon		= "为克尔苏加德攻击前10秒显示特别警报"
 })
 
@@ -1043,10 +1031,6 @@ L:SetMiscLocalization({
 
 L:SetWarningLocalization({
 	specwarnP2Soon			= "10秒后克尔苏加德开始攻击"
-})
-
-L:SetTimerLocalization({
-	TimerPhase2			= "第二阶段"
 })
 
 -----------------

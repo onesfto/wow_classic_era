@@ -200,8 +200,8 @@ function CVarsfun.Shaman_Blue()
 end
 local GetTianfuIcon=TalentData.GetTianfuIcon
 local function GetpeizhiData(classID)
-	if PIGA["CVars"]["SpellQueueTalent"][classID] then
-		return PIGA["CVars"]["SpellQueueTalent"][classID][1],PIGA["CVars"]["SpellQueueTalent"][classID]
+	if PIGA["CVars"]["SpellQueueTalent"][classID] and PIGA["CVars"]["SpellQueueTalent"][classID][1] then
+		return PIGA["CVars"]["SpellQueueTalent"][classID][1]
 	else
 		return 1
 	end
@@ -209,21 +209,39 @@ end
 function CVarsfun.Update_SpellQueueClass()
 	if PIGA["CVars"]["SpellQueueClass"] then
 		local vvvv=400
-		local classId=PlayerInfo.ClassData.classId
+		local ClassData=PlayerInfo.ClassData
+		local classId=ClassData.classId
+		local tisptxt=ClassData.className
 		local TalentOpenIndex=GetpeizhiData(classId)
 		if TalentOpenIndex==1 then
 			local datax=PIGA["CVars"]["SpellQueueData"]
 			vvvv=datax and datax[classId] or 400
 		elseif TalentOpenIndex==2 then
 			local tfdata=GetTianfuIcon(false,classId,"player")
-			if tfdata and tfdata[4] and tfdata[4]>0 and PIGA["CVars"]["SpellQueueTalent"][classId] then
+			if tfdata and tfdata[1] and tfdata[4] and tfdata[4]>0 and PIGA["CVars"]["SpellQueueTalent"][classId] then
 				vvvv=PIGA["CVars"]["SpellQueueTalent"][classId][tfdata[4]+1]
+				tisptxt=tisptxt.."-"..tfdata[1]
 			end
 		end
-		PIGErrorMsg(LAG_TOLERANCE..":"..vvvv)
+		PIGprint(LAG_TOLERANCE.."("..tisptxt.."):"..vvvv)
 		SetCVar("SpellQueueWindow",vvvv)
 	end
 end
+local SpellQueueUI = CreateFrame("Frame")
+SpellQueueUI:RegisterEvent("PLAYER_ENTERING_WORLD")
+SpellQueueUI:SetScript("OnEvent", function(self,event,arg1,arg2)
+	if event=="PLAYER_ENTERING_WORLD" then
+		SpellQueueUI:UnregisterEvent("PLAYER_ENTERING_WORLD")
+		--SpellQueueUI:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+		SpellQueueUI:RegisterEvent("PLAYER_TALENT_UPDATE")
+	else
+		if self.xxxTicker then self.xxxTicker:Cancel() end
+		self.xxxTicker=C_Timer.NewTimer(1,function()
+			CVarsfun.Update_SpellQueueClass()
+		end)
+	end
+end)
+----
 local HitIndicatorHide=false
 hooksecurefunc("CombatFeedback_OnCombatEvent", function(self)
 	if HitIndicatorHide then
@@ -527,7 +545,7 @@ function PD.addOptions_CVars()
 				hang.iconx = hang:CreateTexture()
 				hang.iconx:SetTexture("interface/glues/charactercreate/ui-charactercreate-classes.blp")
 				hang.iconx:SetSize(20,20);
-				hang.iconx:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
+				hang.iconx:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
 				hang.iconx:SetPoint("LEFT",hang,"LEFT",0,0);
 				hang.DQ = hang:CreateTexture();
 				hang.DQ:SetTexture("interface/common/indicator-green.blp")

@@ -11,10 +11,10 @@ local PIGSetFont=Create.PIGSetFont
 
 --正式服系统地图部分插件下拉列表
 function PIGCompartmentClick(addonName, buttonName, menuButtonFrame)
-    MiniMapBut.minimapButClickFun(buttonName)
+    PD.Mapfun.MiniMapBut.Update_Click(buttonName)
 end
 function PIGCompartmentEnter(addonName, menuButtonFrame)
-	MiniMapBut.Showaddonstishi(menuButtonFrame,true)	
+	PD.Mapfun.MiniMapBut.Update_Enter(menuButtonFrame,true)	
 end
 function PIGCompartmentLeave(addonName, menuButtonFrame)
 	GameTooltip:ClearLines();

@@ -308,7 +308,7 @@ local function IsdanjiaOK(fubenID,danjiaCF)
 	return false
 end
 --根据等级计算单价
-function Fun.Get_LvDanjia(lv,fubenID,danjiaCF)
+local function Get_LvDanjia(lv,fubenID,danjiaCF)
 	if lv==0 then return 0 end
 	if is_slist() then return 0 end
 	local hangD = IsdanjiaOK(fubenID,danjiaCF)
@@ -323,6 +323,17 @@ function Fun.Get_LvDanjia(lv,fubenID,danjiaCF)
 		end
 	end
 	return 0
+end
+Fun.Get_LvDanjia=Get_LvDanjia
+--计算包级总价
+function Fun.Get_BaojiDanjia(minlv,maxlv,fubenID,danjiaCF)
+	if lv==0 then return 0 end
+	if is_slist() then return 0 end
+	local allvv=0
+	for lvv = minlv+1, maxlv, 1 do
+		allvv=allvv+Get_LvDanjia(lvv,fubenID,danjiaCF)
+	end
+	return allvv
 end
 --获取所带副本级别单价文本
 function Fun.Get_LvDanjiaYC(fubenID,danjiaCF)

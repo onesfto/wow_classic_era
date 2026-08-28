@@ -13,151 +13,160 @@ function BusinessInfo.StatsInfo_ADDUI()
 	local Create=PD.Create
 	local PIGFrame=Create.PIGFrame
 	local PIGLine=Create.PIGLine
+	local PIGDiyBut=Create.PIGDiyBut
 	local PIGFontString=Create.PIGFontString
 	local PIGOptionsList_RF=Create.PIGOptionsList_RF
 	local GnName,GnUI,GnIcon,FrameLevel = unpack(BusinessInfo.StatsInfoData)
 	local Width,Height,biaotiH  = 860, 540, 21;
 	--
 	Create.PIGModbutton(GnName,GnIcon,GnUI,FrameLevel)
-	local StatsInfo=PIGFrame(UIParent,{"CENTER",UIParent,"CENTER",0,60},{Width,Height},GnUI,true)
-	StatsInfo:PIGSetBackdrop()
-	StatsInfo:PIGClose()
-	StatsInfo:PIGSetMovableNoSave()
-	StatsInfo.butW=46
-	StatsInfo.hang_Height=19
-	StatsInfo.title = PIGFontString(StatsInfo,{"TOP", StatsInfo, "TOP", 0, -3},GnName)
-	StatsInfo.F=PIGOptionsList_RF(StatsInfo,biaotiH,"Left")
+	local StatsUI=PIGFrame(UIParent,{"CENTER",UIParent,"CENTER",0,60},{Width,Height},GnUI,true)
+	StatsUI:PIGSetBackdrop()
+	StatsUI:PIGClose()
+	StatsUI:PIGSetMovableNoSave()
+	StatsUI.butW=46
+	StatsUI.hang_Height=19
+	BusinessInfo.StatsUI=StatsUI
+	StatsUI.setbut=PIGDiyBut(StatsUI,{"TOPRIGHT",StatsUI,"TOPRIGHT",-50,-1},{20,nil,nil,nil,132054})
+	StatsUI.setbut:HookScript("OnClick", function (self)
+		PD.UpdateOptionsUI()
+		Create.Show_TabBut(BusinessInfo.fuFrame,BusinessInfo.fuFrameBut)
+		Create.Show_TabBut_R(BusinessInfo.RTabFrame,BusinessInfo.Tab2_F,BusinessInfo.Tab2_But)
+	end);
+	StatsUI.title = PIGFontString(StatsUI,{"TOP", StatsUI, "TOP", 0, -3},GnName)
+	StatsUI.F=PIGOptionsList_RF(StatsUI,biaotiH,"Left")
 	--
-	StatsInfo:RegisterEvent("PLAYER_LEVEL_UP");
-	StatsInfo:HookScript("OnEvent",function (self, event)
+	StatsUI:RegisterEvent("PLAYER_LEVEL_UP");
+	StatsUI:HookScript("OnEvent",function (self, event)
 		if event=="PLAYER_LEVEL_UP" then
 			PIGA["StatsInfo"]["Players"][self.allname][5]=UnitLevel("player") or 1
 		end
 	end)
 	--
-	local peizhiList={
-		["Players"] = "must",
-		["PlayerSH"] = "none",
-		["Times"] = "none",
-		["FBCDRecords"] = "name",
-		["SkillData"] = "name",
-		["Token"] = "name",
-		["Items"] = "name",
-		["TradeData"] = "name",
-		["Played"] = "name",
-	}
-	local function Get_renwuInfo()
-		StatsInfo.allname = PlayerInfo.AllName
-		local race_icon = PIGGetRaceAtlas(PlayerInfo.RaceData.raceFile,PlayerInfo.gender)
-		local level = UnitLevel("player")
-		PIGA["StatsInfo"]["Players"][StatsInfo.allname]={PlayerInfo.englishFaction,PlayerInfo.RaceData.raceId,race_icon,PlayerInfo.ClassData.classId,level}
-		for k,v in pairs(peizhiList) do
-			if v=="name" then
-				PIGA["StatsInfo"][k][StatsInfo.allname]=PIGA["StatsInfo"][k][StatsInfo.allname] or {}
-			end
+	StatsUI.allname = PlayerInfo.AllName
+	local race_icon = PIGGetRaceAtlas(PlayerInfo.RaceData.raceFile,PlayerInfo.gender)
+	local level = UnitLevel("player")
+	PIGA["StatsInfo"]["Players"][StatsUI.allname]={PlayerInfo.englishFaction,PlayerInfo.RaceData.raceId,race_icon,PlayerInfo.ClassData.classId,level}
+	--目录左侧
+	function Fun.GetPlayerSortData(lydata)
+		local PlayerData = PIGA["StatsInfo"]["Players"]
+		local PlayerSH = PIGA["StatsInfo"]["PlayerSH"]
+		local PlayerSort = PIGA["StatsInfo"]["PlayerSort"]
+		local pmuli,added,Sortnum = {},{},0
+		for _, name in ipairs(PlayerSort) do
+		    if PlayerData[name] and not PlayerSH[name] then
+		        table.insert(pmuli, name)
+		        Sortnum=Sortnum+1
+		        added[name] = true
+		    end
 		end
+		for name, _ in pairs(PlayerData) do
+		    if not added[name] and not PlayerSH[name] then
+		       	table.insert(pmuli, name)
+		    end
+		end
+		return pmuli,PlayerData,added,Sortnum
 	end
-	Get_renwuInfo()
-	--任务目录左侧
-	function BusinessInfo.addhangMode1(ly,LF,Parent)
+	function BusinessInfo.addhangMode1(ly,LF)
+		local Parent=LF:GetParent()
 		local hang_NUM  = hang_NUM or 14
-		local hang_Height = StatsInfo.hang_Height-3
-		--LF.hang_Height=hang_Height
-		LF.Scroll = CreateFrame("ScrollFrame",nil,LF, "FauxScrollFrameTemplate");  
-		LF.Scroll:SetPoint("TOPLEFT",LF,"TOPLEFT",2,-2);
-		LF.Scroll:SetPoint("BOTTOMRIGHT",LF,"BOTTOMRIGHT",-17,2);
-		LF.Scroll.ScrollBar:SetScale(0.7)
-		LF.Scroll:SetScript("OnVerticalScroll", function(self, offset)
-		    FauxScrollFrame_OnVerticalScroll(self, offset, hang_Height, Parent.Update_List_L)
-		end)
-		LF.listbut={}
-		function LF:add_hang(id)
-			local hang = CreateFrame("Button", nil, self);
-			self.listbut[id]=hang
-			hang:SetSize(self:GetWidth()-4,hang_Height*2+4);
-			if id==1 then
-				hang:SetPoint("TOPLEFT", self, "TOPLEFT", 0, 0);
-			else
-				hang:SetPoint("TOPLEFT", self.listbut[id-1], "BOTTOMLEFT", 0, -1);
-			end
-			if id~=hang_NUM then
-				hang.line = PIGLine(hang,"BOT",0,nil,nil,{0.3,0.3,0.3,0.6})
-			end
-			hang.highlight = hang:CreateTexture(nil,"HIGHLIGHT");
-			hang.highlight:SetTexture("interface/buttons/ui-listbox-highlight2.blp");
-			hang.highlight:SetBlendMode("ADD")
-			hang.highlight:SetPoint("TOPLEFT", hang, "TOPLEFT", 2,-1);
-			hang.highlight:SetPoint("BOTTOMRIGHT", hang, "BOTTOMRIGHT", -2,1);
-			hang.highlight:SetAlpha(0.3);
-			hang.highlight1 = hang:CreateTexture();
-			hang.highlight1:SetTexture("interface/buttons/ui-listbox-highlight.blp");
-			hang.highlight1:SetDrawLayer("BORDER", -1)
-			hang.highlight1:SetPoint("TOPLEFT", hang, "TOPLEFT", 2,-1);
-			hang.highlight1:SetPoint("BOTTOMRIGHT", hang, "BOTTOMRIGHT", -2,1);
-			hang.highlight1:SetAlpha(0.8);
-			hang.highlight1:Hide();
-			hang.Faction = hang:CreateTexture();
-			hang.Faction:SetTexture("interface/glues/charactercreate/ui-charactercreate-factions.blp");
-			hang.Faction:SetPoint("TOPLEFT", hang, "TOPLEFT", 3,-2);
-			hang.Faction:SetSize(hang_Height,hang_Height);
-			hang.Race = hang:CreateTexture();
-			hang.Race:SetPoint("LEFT", hang.Faction, "RIGHT", 1,0);
-			hang.Race:SetSize(hang_Height,hang_Height);
-			hang.Class = hang:CreateTexture();
-			hang.Class:SetTexture("interface/glues/charactercreate/ui-charactercreate-classes.blp")
-			hang.Class:SetPoint("LEFT", hang.Race, "RIGHT", 1,0);
-			hang.Class:SetSize(hang_Height,hang_Height);
-			hang.level = PIGFontString(hang,{"LEFT", hang.Class, "RIGHT", 2, 0},1,"OUTLINE")
-			hang.level:SetTextColor(1,0.843,0, 1);
-			hang.nameDQ = hang:CreateTexture();
-			hang.nameDQ:SetTexture("interface/common/indicator-green.blp")
-			hang.nameDQ:SetPoint("LEFT", hang.level, "RIGHT", 1,0);
-			hang.nameDQ:SetSize(hang_Height+2,hang_Height+2);
-			if ly~="trade" then
-				hang.guanchaC = CreateFrame("Button",nil, hang);
-				hang.guanchaC:SetSize(hang_Height,hang_Height);
-				hang.guanchaC:SetPoint("TOPRIGHT", hang, "TOPRIGHT", -15,-2);
-				hang.guanchaC:SetHighlightTexture("Interface/Buttons/ButtonHilight-Square")
-				hang.guanchaC.tex = hang.guanchaC:CreateTexture();
-				hang.guanchaC.tex:SetTexture(133122)
-				hang.guanchaC.tex:SetPoint("CENTER", hang.guanchaC, "CENTER", 0,0);
-				hang.guanchaC.tex:SetSize(hang_Height,hang_Height);
-				hang.guanchaC:HookScript("OnMouseDown", function (self)
-					self.tex:SetPoint("CENTER", hang.guanchaC, "CENTER", 1.5,-1.5);
-				end);
-				hang.guanchaC:HookScript("OnMouseUp", function (self)
-					self.tex:SetPoint("CENTER", hang.guanchaC, "CENTER", 0,0);
-				end);
-				hang.guanchaC:SetScript("OnClick", function (self)
+		local hang_Height = StatsUI.hang_Height-3
+		local ScrollF = Create.PIGScrollFrame(LF,hang_Height*2+4)
+		function ScrollF.Update_Hang(hangL, elementData)
+			if not hangL.highlight then
+				hangL.highlight = hangL:CreateTexture(nil,"HIGHLIGHT");
+				hangL.highlight:SetTexture("interface/buttons/ui-listbox-highlight2.blp");
+				hangL.highlight:SetBlendMode("ADD")
+				hangL.highlight:SetPoint("TOPLEFT", hangL, "TOPLEFT", 2,-1);
+				hangL.highlight:SetPoint("BOTTOMRIGHT", hangL, "BOTTOMRIGHT", -2,1);
+				hangL.highlight:SetAlpha(0.3);
+				hangL.highlight1 = hangL:CreateTexture();
+				hangL.highlight1:SetTexture("interface/buttons/ui-listbox-highlight.blp");
+				hangL.highlight1:SetDrawLayer("BORDER", -1)
+				hangL.highlight1:SetPoint("TOPLEFT", hangL, "TOPLEFT", 2,-1);
+				hangL.highlight1:SetPoint("BOTTOMRIGHT", hangL, "BOTTOMRIGHT", -2,1);
+				hangL.highlight1:SetAlpha(0.8);
+				hangL.highlight1:Hide();
+				hangL.Faction = hangL:CreateTexture();
+				hangL.Faction:SetTexture("interface/glues/charactercreate/ui-charactercreate-factions.blp");
+				hangL.Faction:SetPoint("TOPLEFT", hangL, "TOPLEFT", 3,-2);
+				hangL.Faction:SetSize(hang_Height,hang_Height);
+				hangL.Race = hangL:CreateTexture();
+				hangL.Race:SetPoint("LEFT", hangL.Faction, "RIGHT", 1,0);
+				hangL.Race:SetSize(hang_Height,hang_Height);
+				hangL.Class = hangL:CreateTexture();
+				hangL.Class:SetTexture("interface/glues/charactercreate/ui-charactercreate-classes.blp")
+				hangL.Class:SetPoint("LEFT", hangL.Race, "RIGHT", 1,0);
+				hangL.Class:SetSize(hang_Height,hang_Height);
+				hangL.level = PIGFontString(hangL,{"LEFT", hangL.Class, "RIGHT", 2, 0},1,"OUTLINE")
+				hangL.level:SetTextColor(1,0.843,0, 1);
+				hangL.nameDQ = hangL:CreateTexture();
+				hangL.nameDQ:SetTexture("interface/common/indicator-green.blp")
+				hangL.nameDQ:SetPoint("LEFT", hangL.level, "RIGHT", 1,0);
+				hangL.nameDQ:SetSize(hang_Height+2,hang_Height+2);
+				if ly~="trade" then
+					hangL.guanchaC = CreateFrame("Button",nil, hangL);
+					hangL.guanchaC:SetSize(hang_Height,hang_Height);
+					hangL.guanchaC:SetPoint("TOPRIGHT", hangL, "TOPRIGHT", -15,-2);
+					hangL.guanchaC:SetHighlightTexture("Interface/Buttons/ButtonHilight-Square")
+					hangL.guanchaC.tex = hangL.guanchaC:CreateTexture();
+					hangL.guanchaC.tex:SetTexture(133122)
+					hangL.guanchaC.tex:SetPoint("CENTER", hangL.guanchaC, "CENTER", 0,0);
+					hangL.guanchaC.tex:SetSize(hang_Height,hang_Height);
+					hangL.guanchaC:HookScript("OnMouseDown", function (self)
+						self.tex:SetPoint("CENTER", hangL.guanchaC, "CENTER", 1.5,-1.5);
+					end);
+					hangL.guanchaC:HookScript("OnMouseUp", function (self)
+						self.tex:SetPoint("CENTER", hangL.guanchaC, "CENTER", 0,0);
+					end);
+					hangL.guanchaC:SetScript("OnClick", function (self)
+						PlaySound(SOUNDKIT.IG_CHAT_EMOTE_BUTTON);
+						Fun.lixian_chakan(hangL.allname,PIGA["StatsInfo"]["Players"][hangL.allname],PIGA["StatsInfo"]["Items"][hangL.allname])
+					end)
+				end
+				hangL.name = PIGFontString(hangL,{"TOPLEFT", hangL.Faction, "BOTTOMLEFT", 0, -1},nil,"OUTLINE")
+				hangL:SetScript("OnClick", function (self)
 					PlaySound(SOUNDKIT.IG_CHAT_EMOTE_BUTTON);
-					Fun.lixian_chakan(hang.allname,PIGA["StatsInfo"]["Players"][hang.allname],PIGA["StatsInfo"]["Items"][hang.allname])
+					Parent.SelectName=hangL.allname
+					Parent:ClickUpdateList()
 				end)
 			end
-			hang.name = PIGFontString(hang,{"TOPLEFT", hang.Faction, "BOTTOMLEFT", 0, -1},nil,"OUTLINE")
-			hang:SetScript("OnClick", function (self)
-				PlaySound(SOUNDKIT.IG_CHAT_EMOTE_BUTTON);
-				Parent.SelectName=hang.allname
-				Parent:Update_List_L()
-			end)
-			return hang
+			local idX=elementData.id
+			local dataX=elementData.data
+			hangL.highlight1:SetShown(Parent.SelectName==dataX[1])
+			if dataX[2]=="Alliance" then
+				hangL.Faction:SetTexCoord(0,0.5,0,1);
+			elseif dataX[2]=="Horde" then
+				hangL.Faction:SetTexCoord(0.5,1,0,1);
+			end
+			hangL.Race:SetAtlas(dataX[4]);
+			local className, classFile, classID = PIGGetClassInfo(dataX[5])
+			hangL.Class:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
+			hangL.level:SetText(dataX[6]);
+			hangL.name:SetText(Fun.PruningServerName(dataX[1]));
+			hangL.allname=dataX[1]
+			local color = PIG_CLASS_COLORS[classFile];
+			hangL.name:SetTextColor(color.r, color.g, color.b, 1);
+			if hangL.guanchaC then hangL.guanchaC:SetShown(not dataX[7]) end
+			hangL.nameDQ:SetShown(dataX[7])
 		end
-		function Parent:Update_List_L()
-			if not self:IsVisible() then return end
-			for _,but in pairs(LF.listbut) do
-				but:Hide()
+		function ScrollF:Update_list()
+		    local view = self.ScrollBox:GetView()
+		    if not self.dataProvider then
+		        self.dataProvider = CreateDataProvider()
+		        view:SetDataProvider(self.dataProvider)
 			end
+			self.dataProvider:Flush()
+			Parent.SelectName=Parent.SelectName or StatsUI.allname
 			local cdmulu={};
-			local PlayerData = PIGA["StatsInfo"]["Players"]
-			local PlayerSH = PIGA["StatsInfo"]["PlayerSH"]
-			if PlayerData[StatsInfo.allname] and not PlayerSH[StatsInfo.allname] then
-				local dangqianC=PlayerData[StatsInfo.allname]
-				table.insert(cdmulu,{StatsInfo.allname,dangqianC[1],dangqianC[2],dangqianC[3],dangqianC[4],dangqianC[5],true})
+		   	local pmuli,PData=Fun.GetPlayerSortData()
+			for i=1,#pmuli do
+				local pname=pmuli[i]
+				if PData[pname] then
+					local pData=PData[pname]
+			   		table.insert(cdmulu,{pname,pData[1],pData[2],pData[3],pData[4],pData[5],pname==StatsUI.allname})
+			   	end
 			end
-		   	for k,v in pairs(PlayerData) do
-		   		if k~=StatsInfo.allname and PlayerData[k] and not PlayerSH[k] then
-		   			table.insert(cdmulu,{k,v[1],v[2],v[3],v[4],v[5]})
-		   		end
-		   	end
 			-- local SyncPlayers=Data.SyncData.StatsInfo.Players
 			-- for k,v in pairs(SyncPlayers) do
 			-- 	if not PlayerData[k] then
@@ -166,51 +175,23 @@ function BusinessInfo.StatsInfo_ADDUI()
 		   	-- 	end
 			-- end	
 			local ItemsNum = #cdmulu;
-			if ItemsNum>0 then
-				self.SelectName=self.SelectName or StatsInfo.allname
-				local ScrollUI=LF.Scroll
-			    FauxScrollFrame_Update(ScrollUI, ItemsNum, hang_NUM, hang_Height);
-			    local offset = FauxScrollFrame_GetOffset(ScrollUI);
-			    for id = 1, hang_NUM do
-					local dangqian = id+offset;
-					if cdmulu[dangqian] then
-						if not LF.listbut[id] then
-							LF:add_hang(id)
-						end
-						local hang = LF.listbut[id]
-						hang:Show();
-						if self.SelectName==cdmulu[dangqian][1] then
-							hang.highlight1:Show();
-						end
-						if cdmulu[dangqian][2]=="Alliance" then
-							hang.Faction:SetTexCoord(0,0.5,0,1);
-						elseif cdmulu[dangqian][2]=="Horde" then
-							hang.Faction:SetTexCoord(0.5,1,0,1);
-						end
-						hang.Race:SetAtlas(cdmulu[dangqian][4]);
-						local className, classFile, classID = PIGGetClassInfo(cdmulu[dangqian][5])
-						hang.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
-						hang.level:SetText(cdmulu[dangqian][6]);
-						hang.name:SetText(Fun.PruningServerName(cdmulu[dangqian][1]));
-						hang.allname=cdmulu[dangqian][1]
-						local color = PIG_CLASS_COLORS[classFile];
-						hang.name:SetTextColor(color.r, color.g, color.b, 1);
-						if hang.guanchaC then hang.guanchaC:SetShown(not cdmulu[dangqian][7]) end
-						hang.nameDQ:SetShown(cdmulu[dangqian][7])
-						hang.highlight1:SetShown(self.SelectName==hang.allname)
-					end
-				end
-			end
-			Parent:Update_List_R()
+		    for i = 1,#cdmulu,1 do
+		        self.dataProvider:Insert({id=i,data=cdmulu[i]});
+		    end
 		end
+		Parent:HookScript("OnShow", function(self)
+			Parent:ClickUpdateList()
+		end)
+		return ScrollF
 	end
-	BusinessInfo.FBCD(StatsInfo,peizhiList)
-	BusinessInfo.SkillCD(StatsInfo,peizhiList)
-	BusinessInfo.Token(StatsInfo,peizhiList)
-	BusinessInfo.Item(StatsInfo,peizhiList)
-	BusinessInfo.Trade(StatsInfo,peizhiList)
-	BusinessInfo.AH(StatsInfo,peizhiList)
-	BusinessInfo.Time(StatsInfo,peizhiList)
-	BusinessInfo.Player(StatsInfo,peizhiList)
-	BusinessInfo.Admin(StatsInfo,peizhiList)
+	BusinessInfo.FBCD(StatsUI)
+	BusinessInfo.SkillCD(StatsUI)
+	BusinessInfo.Token(StatsUI)
+	BusinessInfo.Item(StatsUI)
+	BusinessInfo.Mail(StatsUI)
+	BusinessInfo.Trade(StatsUI)
+	BusinessInfo.AH(StatsUI)
+	BusinessInfo.Time(StatsUI)
+	BusinessInfo.Player(StatsUI)
+	BusinessInfo.Admin(StatsUI)
 end

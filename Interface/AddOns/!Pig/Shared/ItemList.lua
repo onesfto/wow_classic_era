@@ -56,7 +56,7 @@ local function Update_GemBut(itemLink,id,GemBut,nulltishi)
 	else
 		if GemitemLink then
 			GemBut.icon:SetDesaturated(false)
-	       	local _, _, quality, _, _, _, _, _, _, texture = GetItemInfo(GemitemLink)
+	       	local _, _, quality, _, _, _, _, _, _, texture = PIGGetItemInfo(GemitemLink)
 	       	local r, g, b = GetItemQualityColor(quality or 0)
 	       	GemBut.icon:SetTexture(texture)
 	    	GemBut:SetBackdropBorderColor(r, g, b, 1);
@@ -117,7 +117,7 @@ local function Update_EnchantInfo(EnchantBut,fumoid)
 		Newdata.ItemID=EnchantItemID[fumoid]
 		Newdata.laiyuan=""
 	end
-	local _, ItemLink, quality, _, _, _, _, _, _, texture = GetItemInfo(Newdata.ItemID)
+	local _, ItemLink, quality, _, _, _, _, _, _, texture = PIGGetItemInfo(Newdata.ItemID)
 	if ItemLink then
 		EnchantBut.icon:SetTexture(texture)
 		local r, g, b = GetItemQualityColor(quality or 0)
@@ -673,7 +673,7 @@ local function add_ItemList(fujik,miaodian,ZBLsit_C,TalentUI)
 		end
 		self.WJname:SetText(self.cName.."|cffFFFF22 ("..self.level..")|r")
 		if self.zhiye~="--" then
-			self.classes:SetTexCoord(unpack(CLASS_ICON_TCOORDS[self.zhiye]));
+			self.classes:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[self.zhiye]));
 			local color = PIG_CLASS_COLORS[self.zhiye];
 			self.WJname:SetTextColor(color.r, color.g, color.b,1);
 		end

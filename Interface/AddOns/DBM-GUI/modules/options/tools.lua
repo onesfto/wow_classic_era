@@ -81,16 +81,14 @@ if DBM:IsRetail() then
 	BrezFontDropDown:SetPoint("TOPLEFT", showBrezFrame, "TOPLEFT", isNewDropdown and 20 or 0, -40)
 	BrezFontDropDown.myheight = isNewDropdown and 25 or 20
 
-	local fontSizeSlider = area1b:CreateSlider(L.FontSize, 8, 40, 1, 180)
-	fontSizeSlider:SetPoint("TOPLEFT", BrezFontDropDown, "TOPRIGHT", 50, 0)
-	fontSizeSlider:SetValue(DBM.Options.BrezFontSize or 18)
-	fontSizeSlider.myheight = 0
-	fontSizeSlider:HookScript("OnValueChanged", function(self)
-		DBM.Options.BrezFontSize = self:GetValue()
+	local fontSizeSlider = area1b:CreateSlider(L.FontSize, 8, 40, 1, 180, DBM.Options.BrezFontSize or 18, function(value)
+		DBM.Options.BrezFontSize = value
 		if DBM.BattleRezTimer then
 			DBM.BattleRezTimer:UpdateStyle()
 		end
 	end)
+	fontSizeSlider:SetPoint("TOPLEFT", BrezFontDropDown, "TOPRIGHT", 50, 0)
+	fontSizeSlider.myheight = 0
 
 	local movemebutton = area1b:CreateButton(L.MoveMe, 100, 16)
 	movemebutton:SetPoint("TOPRIGHT", area1b.frame, "TOPRIGHT", -2, -4)
@@ -104,8 +102,16 @@ if DBM:IsRetail() then
 		end
 	end)
 
-	local area1c = DBM_GUI.CAT_TOOLS:CreateArea(L.Panel_ExtraFeatures)
+	local area1c = DBM_GUI.CAT_TOOLS:CreateArea(L.Tools_KeystoneArea)
 	area1c:CreateCheckButton(L.Tools_ShowKeystoneOnComplete, true, nil, "ShowKeystoneOnComplete")
+	local addChallengeTeleports = area1c:CreateCheckButton(L.Tools_AddChallengeTeleports or "Add teleports to Challenges UI", true, nil, "AddChallengeTeleports")
+	if addChallengeTeleports then
+		addChallengeTeleports:HookScript("OnClick", function()
+			if DBM.Keystones and DBM.Keystones.RefreshChallengesUI then
+				DBM.Keystones:RefreshChallengesUI()
+			end
+		end)
+	end
 	area1c:CreateCheckButton(L.Tools_OverrideKeystoneSlash, true, nil, "OverrideKeystoneSlash")
 end
 

@@ -5,7 +5,6 @@ local Create=PD.Create
 local PIGEnter=Create.PIGEnter
 local PIGFontString=Create.PIGFontString
 local BagBankfun=PD.BagBankfun
-local GetItemInfo=GetItemInfo or C_Item and C_Item.GetItemInfo
 ----
 local find = _G.string.find
 local sub = _G.string.sub
@@ -188,6 +187,7 @@ function BagBankfun.addfenleibagbut(fujiui)
 	local www,hhh,jiangeW = 26,26,3
 	fujiui.ButLsit={}
 	fujiui.baginfo=baginfo
+	local tishilist={}
 	for vb=1,#baginfo.id do
 		--local fameXX = _G["ContainerFrame"..vb.."PortraitButton"]
 		local fameXX = CreateFrame("Frame",nil,fujiui);
@@ -227,7 +227,16 @@ function BagBankfun.addfenleibagbut(fujiui)
 		fameXX.PortraitButton:SetAllPoints(fameXX)
 		fameXX.PortraitButton:RegisterForDrag("LeftButton")
 		local OLD_OnValueChanged=fameXX.PortraitButton:GetScript("OnEnter") or function() end
+		local InventoryID =C_Container.ContainerIDToInventoryID(fameXX.BagID)
+		if vb==1 then
+			local OLD_xutongEnter=fameXX.xitongbagF:GetScript("OnEnter")
+			tishilist[vb]=OLD_xutongEnter
+		else
+			tishilist[vb]=BagSlotButton_OnEnter
+			fameXX.PortraitButton:SetID(InventoryID)
+		end
 		fameXX.PortraitButton:SetScript("OnEnter", function (self)
+			tishilist[vb](self)
 			local BagID = self:GetParent():GetBagID()
 			if PIG_MaxTocversion() then
 				local frameID = IsBagOpen(BagID)

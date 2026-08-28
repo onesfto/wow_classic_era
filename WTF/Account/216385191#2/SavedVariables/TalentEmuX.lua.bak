@@ -8,14 +8,14 @@ TalentEmuSV = {
 ["setmetatable"] = 104,
 },
 ["EXTERNAL"] = {
-["LibStub"] = 1194,
+["LibStub"] = 1214,
 },
 ["UI-EquipmentContainer"] = {
 ["ceil"] = 1,
 },
 ["METHOD"] = {
-["ITEM_SET_BONUS"] = 1163,
-["ITEM_SET_BONUS_GRAY"] = 1163,
+["ITEM_SET_BONUS"] = 1183,
+["ITEM_SET_BONUS_GRAY"] = 1183,
 },
 },
 ["set"] = {
@@ -24,7 +24,7 @@ TalentEmuSV = {
 },
 ["var"] = {
 ["Player-5453-03FE5A8D"] = "!T125w021C9Lb33aJR71jgC6Jp8E:0hL4:08sa64cMk421!E120+^+h64:8w:9+XI:8w:9+k64:8w:9+Dc:8w:9+j64:1ZR:7w:9+l64:8w:9+O84:8w:9+f64:1HB:7w:9+n64:16c:7w:9+g64:8w:9+4f4:8w:9+uB3:8w:9+ZU4:8w:9+2-3:8w:9+Wg3:8w:9+kW4:19b:7w:9+^+x43:8w:9+^",
-["Player-5376-03E2B2A8"] = "!T123w022EI-L3:WJHG:q4=81GCoXX6:::=ZmJAua!E120+^+WT5:1Qc:7w:-+Fc5:8w:-+7b5:1Ve:7w:-+NY3:8w:-+UT5:1XR:7w:-+-X5:8w:-+Sc5:1Qc:7w:-+YT5:1DC:7w:-+hb5:1PR:7w:-+FF5:1sc:7w:-+5f5:8w:-+Kc5:8w:-+4a4:8w:-+6c5:8w:-+-c5:1xc:7w:-+xU5:18b:7w:-+^+ZY5:8w:-+^",
+["Player-5376-03E2B2A8"] = "!T123w021EI-L3:WJHG:q4=81GCoXX6:::=ZmJAua!E120+^+WT5:1Qc:7w:-+Fc5:8w:-+7b5:1Ve:7w:-+NY3:8w:-+UT5:1XR:7w:-+-X5:8w:-+Sc5:1Qc:7w:-+YT5:1DC:7w:-+hb5:1PR:7w:-+FF5:1sc:7w:-+5f5:8w:-+Kc5:8w:-+4a4:8w:-+6c5:8w:-+-c5:1xc:7w:-+xU5:18b:7w:-+^+ZY5:8w:-+^",
 ["Player-5376-16BEFC08"] = "!T12210110!E120+^+^+^+^+I2:81:-+^+^+H2:81:-+12:81:-+^+^+^+^+^+^+^+gU:81:-+^+8b:81:-+^",
 ["Player-5303-1763654F"] = "!T123=0114:::2!E120+^+^+^+^+ET1:8=:-+oA1:8=:-+eo:8=:-+WJ:8=:-+8B1:8=:-+Zo:8=:-+^+^+^+^+^+5B1:8=:-+^+8t3:8=:-+^+^",
 ["Player-5376-16CCC446"] = "!T124w021CWzyH5wFHx10iJ5AWvC94LbLy1E5!E120+^+QS5:1Mc:7w:-+Fc5:8w:-+RS5:1Ve:7w:-+^+NS5:1XR:7w:-+-X5:8w:-+Sc5:1Mc:7w:-+SS5:1DC:7w:-+YF5:16c:7w:-+cw4:1tc:7w:-+AJ5:8w:-+M25:8w:-+Nb5:8w:-+7c5:8w:-+Fq4:8w:-+Ec5:19b:7w:-+Xc5:8w:-+Sb5:8w:-+^",

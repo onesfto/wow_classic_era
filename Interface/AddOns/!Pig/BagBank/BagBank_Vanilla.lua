@@ -213,6 +213,7 @@ function BagBankfun.Zhenghe()
 			if BusinessInfo.ShowSellItemList then
 				if BusinessInfo.ShowSellItemList(id,itemButton:GetID()) then
 					itemButton.JunkIcon:Show();
+					if itemButton.ZLV then itemButton.ZLV:SetText("");end
 				end
 			else
 				local itemID, itemLink, icon, stackCount, quality=PIGGetContainerItemInfo(id,itemButton:GetID())

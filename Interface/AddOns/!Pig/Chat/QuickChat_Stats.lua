@@ -171,7 +171,7 @@ function QuickChatfun.QuickBut_Stats()
 				local race_icon = PIGGetRaceAtlas(raceFile,gender)
 				playerbut.Race:SetAtlas(race_icon);
 				local className, classFile, classId = UnitClass(unit)
-				playerbut.Class:SetTexCoord(unpack(CLASS_ICON_TCOORDS[classFile]));
+				playerbut.Class:SetTexCoord(unpack(PIG_CLASS_ICON_TCOORDS[classFile]));
 				local level = UnitLevel(unit) or "??"
 				playerbut.level:SetText("("..level..")");
 				local color = PIG_CLASS_COLORS[classFile];

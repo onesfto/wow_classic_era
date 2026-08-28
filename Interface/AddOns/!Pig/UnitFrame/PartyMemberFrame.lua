@@ -34,7 +34,7 @@ local function Update_zhiye(Party,id)
 	if IsInRaid() then return end
     local _,class = UnitClass(id)
 	if class then
-		local coords = CLASS_ICON_TCOORDS[class];
+		local coords = PIG_CLASS_ICON_TCOORDS[class];
 		Party.Icon:SetTexCoord(unpack(coords));
 		local Role = UnitGroupRolesAssigned(id)
 		Party.role.Icon:SetAtlas(PIGGetIconForRole(Role, false));
@@ -370,7 +370,11 @@ local function PartyMember_ToToT()
 	    if Party and not Party.mubiao then
 			Party.mubiao = CreateFrame("Button", "PartyMemberFrame"..id.."ToToT", Party,"SecureUnitButtonTemplate",id)
 			Party.mubiao:SetSize(100,22);
-			Party.mubiao:SetPoint("LEFT", Party.HP, "RIGHT", 4, -0);
+			if Party.HP then
+				Party.mubiao:SetPoint("LEFT", Party.HP, "RIGHT", 4, -0);
+			else
+				Party.mubiao:SetPoint("TOPLEFT", Party, "TOPRIGHT", -11, -10);
+			end
 			Party.mubiao:RegisterForClicks("AnyUp")
 			Party.mubiao:RegisterForDrag("LeftButton")
 			Party.mubiao:SetAttribute("*type1", "target")

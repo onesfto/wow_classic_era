@@ -8,6 +8,27 @@ function Plater.GetChangelogTable()
 	if (not Plater.ChangeLogTable) then
 		Plater.ChangeLogTable = {
 
+			{1787261710, "Backend Change", "Aug 21st, 2026", "Implementing custom aura dispel type colors.", "cont1nuity"},
+			{1787261710, "Backend Change", "Aug 20th, 2026", "Performance improvements through aura container config caching.", "cont1nuity"},
+			{1787261710, "Backend Change", "Aug 20th, 2026", "Fixed and improved spell cache build and usage to reduce overall memory footprint.", "cont1nuity"},
+			{1787261710, "Backend Change", "Aug 19th, 2026", "Added a buff 'blizzard-like' auto-filter.", "cont1nuity"},
+			{1787261710, "Bug Fix", "Aug 19th, 2026", "Several fixes for aura filters tracking/blocking.", "cont1nuity"},
+			
+			{1787083209, "Bug Fix", "Aug 18th, 2026", "Fix issues with manual aura tracking.", "cont1nuity"},
+			{1787083209, "Backend Change", "Aug 18th, 2026", "All aura tracking lists (whitelist, blacklist, manual tracking, buff special) now support tracking by spell name as well again.", "cont1nuity"},
+			{1787083209, "Bug Fix", "Aug 18th, 2026", "Fix issues with Designer.", "Terciob"},
+			{1787083209, "Backend Change", "Aug 17th, 2026", "Update aura config changes directly after leaving combat.", "cont1nuity"},
+			
+			{1786976256, "Bug Fix", "Aug 17th, 2026", "Several fixes on aura options, timers, filtering and auto-tracking for Midnight.", "cont1nuity"},
+			{1786976256, "Bug Fix", "Aug 17th, 2026", "Fixing caster recognition for unit type coloring.", "cont1nuity"},
+			{1786976256, "Bug Fix", "Aug 17th, 2026", "Fixing broken designer tab.", "cont1nuity"},
+			{1786976256, "Bug Fix", "Aug 13th, 2026", "Fixing class colors (and related errors) on enemy players in PvP.", "cont1nuity"},
+			
+			{1786568469, "Backend Change", "Aug 11th, 2026", "More work on auras for 12.1 with new aura containers.", "cont1nuity"},
+			{1786568469, "Bug Fix", "Aug 1st, 2026", "Some small options adjustments for classic player range tooltips.", "cont1nuity"},
+			{1786568469, "Bug Fix", "July 29th, 2026", "Fixed an issue with health percent display causing an error in classic.", "cont1nuity"},
+			{1786568469, "Bug Fix", "July 23rd, 2026", "Fixed some issues for classic titan.", "cont1nuity"},
+
 			{1780479003, "Bug Fix", "July 22nd, 2026", "Fixed some issues with blizzard font override and hiding healthbars not working in classic.", "cont1nuity"},
 			{1780479003, "Backend Change", "July 9th, 2026", "Adding base support for the new aura API in Midnight (12.1) and general adjustments for 12.1", "cont1nuity"},
 			{1780479003, "New Feature", "July 9th, 2026", "Adding 'select area scaling' options to adjust clickable area size for friendly and enemy units.", "cont1nuity"},

@@ -42,11 +42,13 @@ function Fun.disp_time(time)
 end
 --截取最后连字符-之前部分
 function Fun.PruningServerName(str)
-    local lastIndex = str:reverse():find("-")
-    if lastIndex then
-        local actualIndex = #str - lastIndex + 1
-        return str:sub(1, actualIndex - 1)
-    end
+	if PIG_MaxTocversion(30000,true) and PIG_MaxTocversion(40000) then
+	    local lastIndex = str:reverse():find("-")
+	    if lastIndex then
+	        local actualIndex = #str - lastIndex + 1
+	        return str:sub(1, actualIndex - 1)
+	    end
+	end
     return str
 end
 --插件载入时运行函数
@@ -154,7 +156,6 @@ function Fun.RGBToHex(t)
 	b = b <= 255 and b >= 0 and b or 0
 	return format("%02x%02x%02x", r, g, b)
 end
----
 
 --队伍分配方式
 local GetLootMethod=GetLootMethod or C_PartyInfo and C_PartyInfo.GetLootMethod
@@ -335,7 +336,7 @@ function Fun.GetRaceClassTXT(iconH,texW,race,sex,class,color)
 		end
 	end
 	if class then
-		local leftCoord,rightCoord,topCoord,bottomCoord = unpack(CLASS_ICON_TCOORDS[class])
+		local leftCoord,rightCoord,topCoord,bottomCoord = unpack(PIG_CLASS_ICON_TCOORDS[class])
 		local left=leftCoord*texW+9
 		local right=rightCoord*texW-9
 		local top=topCoord*texW+9
@@ -370,7 +371,33 @@ function Fun.IsAutoInviteOpen(daname)
 	end
 	return false
 end
-
+--冒号压缩=========
+local rep = string.rep
+local function ColonCompressor(data)
+    if type(data) ~= "string" then
+        return data
+    end
+    local result = data
+    for count = 9, 4, -1 do
+        local colonStr = rep(":", count)
+        local marker = "#" .. count
+        result = result:gsub(colonStr, marker)
+    end
+    return result
+end
+Fun.ColonCompressor=ColonCompressor
+local function ColonDecompress(data)
+    if type(data) ~= "string" then
+        return data
+    end
+    local result = data
+    result = result:gsub("#([4-9])", function(count)
+        count = tonumber(count)
+        return rep(":", count)
+    end)
+    return result
+end
+Fun.ColonDecompress=ColonDecompress
 --压缩数字======
 local p=PD.Create.pig64
 local pig_yasuo = {}

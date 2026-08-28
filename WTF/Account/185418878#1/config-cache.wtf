@@ -1,3 +1,4 @@
+SET cameraDistanceMaxZoomFactor "4"
 SET showTimestamps "*"
 SET cameraPitchSmoothSpeed "45"
 SET cameraZoomSpeed "20"

@@ -416,8 +416,6 @@ L["Custom Sort"] = "Свой критерий сортировки"
 L["Custom Text Function"] = "Пользовательская текстовая функция"
 L["Custom Trigger Combination"] = "Комбинация триггеров"
 L["Custom Variables"] = "Свои переменные"
---[[Translation missing --]]
-L["Daakara"] = "Daakara"
 L["Damage"] = "Урон"
 L["Damage Shield"] = "Урон от щита"
 L["Damage Shield Missed"] = "Урон от щита (промах)"
@@ -1760,4 +1758,6 @@ L["Zoom Animation"] = "Анимация масштаба"
 --[[Translation missing --]]
 L["Zul'Aman"] = "Zul'Aman"
 L["Zul'Gurub"] = "Зул'Гуруб"
+--[[Translation missing --]]
+L["Zul'jin"] = "Zul'jin"
 

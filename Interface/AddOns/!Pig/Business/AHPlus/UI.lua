@@ -2,6 +2,7 @@ local addonName, addonTable = ...;
 local L=addonTable.locale
 ---
 local Fun=addonTable.Fun
+local GetItemLinkJJ=Fun.GetItemLinkJJ
 local Create=addonTable.Create
 local PIGFrame=Create.PIGFrame
 local PIGEnter=Create.PIGEnter
@@ -10,7 +11,6 @@ local PIGCheckbutton=Create.PIGCheckbutton
 local Data=addonTable.Data
 local PlayerInfo=Data.PlayerInfo
 local BusinessInfo=addonTable.BusinessInfo
-local GetItemInfo=GetItemInfo or C_Item and C_Item.GetItemInfo
 local baocunnum = 40
 --------------
 function BusinessInfo.GetCacheDataG(name)
@@ -54,7 +54,7 @@ function BusinessInfo.ADD_Newdata(name,xianjiaV,itemLink,itemID)
 	if NewData[name] and NewData[name][2] and NewData[name][3] then
 		table.insert(NewData[name][2],{xianjiaV,GetServerTime()})
 	else
-		local itemLinkJJ = Fun.GetItemLinkJJ(itemLink)
+		local itemLinkJJ = GetItemLinkJJ(itemLink)
 		NewData[name]={itemLinkJJ,{{xianjiaV,GetServerTime()}},itemID}
 	end
 end
@@ -62,7 +62,7 @@ function BusinessInfo.SetTooltipOfflineG(tooltip,ItemInfo)
 	if PIGA["AHPlus"]["Open"] and PIGA["AHPlus"]["AHtooltip"] then
 		if not ItemInfo then return end
 		if tooltip == GameTooltip or tooltip == ItemRefTooltip then
-			local itemName,_,_,_,_,_,_,_,_,_,_,_,_,bindType= GetItemInfo(ItemInfo)
+			local itemName,_,_,_,_,_,_,_,_,_,_,_,_,bindType= PIGGetItemInfo(ItemInfo)
 			if itemName and bindType~=1 and bindType~=4 then
 				local NameData = BusinessInfo.GetCacheDataG(itemName)
 				if NameData then
@@ -77,7 +77,6 @@ function BusinessInfo.SetTooltipOfflineG(tooltip,ItemInfo)
 		end
 	end
 end
-BusinessInfo.ADD_qushiError=addonName.."→"..SETTINGS.."→"..L["TRADE_TABNAME"].."→"..L["TRADECHARDATA_TABNAME"]
 function BusinessInfo.ADD_qushi(fujiui,tishi,num)
 	local Nbaocunnum=num or baocunnum
 	local qushi=PIGFrame(fujiui)

@@ -102,7 +102,7 @@ function UnitFramefun.Mubiao()
 				if UnitIsPlayer("target") then --判断是否为玩家
 					local raceText = UnitRace("target");	
 					TargetFrame.mubiaoLX.title:SetText(raceText);
-					local IconCoord = CLASS_ICON_TCOORDS[select(2,UnitClass("target"))];
+					local IconCoord = PIG_CLASS_ICON_TCOORDS[select(2,UnitClass("target"))];
 					if IconCoord then
 						TargetFrame.ClassBut.Icon:SetTexture("Interface\\TargetingFrame\\UI-Classes-Circles");
 						TargetFrame.ClassBut.Icon:SetTexCoord(unpack(IconCoord));--切出子区域

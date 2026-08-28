@@ -801,11 +801,7 @@ function BusinessInfo.AHPlus_Vanilla()
 	---时光徽章-------------------
 	BrowseWowTokenResults.qushibut = PIGButton(BrowseWowTokenResults,{"CENTER",BrowseWowTokenResults,"CENTER",3,10},{80,24},L["TRADEAH_PRICETREND"],nil,nil,nil,nil,0,ElvUIopen)
 	BrowseWowTokenResults.qushibut:HookScript("OnClick",function(self)
-		if BusinessInfo.StatsInfoUI then
-			BusinessInfo.StatsInfoUI:TabShow(AuctionFrame)
-		else
-			PIGErrorMsg(BusinessInfo.ADD_qushiError)
-		end
+		BusinessInfo.IsBusinessOpen(BusinessInfo.TabShowTime,AuctionFrame)
 	end)
 
 	--关注------------------------
@@ -1566,7 +1562,7 @@ function BusinessInfo.AHPlus_Vanilla()
 			itemButton:ClearAllPoints();
 			local itemID, itemLink, texture, itemCount, quality, noValue, lootable, locked, isBound=PIGGetContainerItemInfo(itemButton:GetParent():GetID(), itemButton:GetID())
 			if itemID and not isBound then
-				--local sellPrice= select(11, C_Item.GetItemInfo(itemID))
+				--local sellPrice= select(11, PIGGetItemInfo(itemID))
 				SetItemButtonTexture(itemButton, texture);
 				SetItemButtonQuality(itemButton, quality, itemID);
 				SetItemButtonDesaturated(itemButton, locked);

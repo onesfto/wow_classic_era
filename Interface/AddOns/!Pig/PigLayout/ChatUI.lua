@@ -210,18 +210,18 @@ fujiF.fuF.Update_Checkbut()
 -- 	--综合
 -- 	if fujiF.Chatloot and PIGA["PigLayout"]["ChatUI"]["ShowChannel"] then
 -- 		local chatGroup1 = { "SYSTEM", "CHANNEL", "SAY", "EMOTE", "YELL", "WHISPER", "PARTY", "PARTY_LEADER", "RAID", "RAID_LEADER", "RAID_WARNING", "INSTANCE_CHAT", "INSTANCE_CHAT_LEADER", "GUILD", "OFFICER", "MONSTER_SAY", "MONSTER_YELL", "MONSTER_EMOTE", "MONSTER_WHISPER", "MONSTER_BOSS_EMOTE", "MONSTER_BOSS_WHISPER", "ERRORS", "AFK", "DND", "IGNORED", "BG_HORDE", "BG_ALLIANCE", "BG_NEUTRAL", "ACHIEVEMENT", "GUILD_ACHIEVEMENT", "BN_WHISPER", "BN_INLINE_TOAST_ALERT","TARGETICONS" }
--- 		ChatFrame_RemoveAllMessageGroups(DEFAULT_CHAT_FRAME)
+-- 		ChatFrameMixin.RemoveAllMessageGroups(DEFAULT_CHAT_FRAME)
 -- 		for _, v in ipairs(chatGroup1) do
--- 			ChatFrame_AddMessageGroup(DEFAULT_CHAT_FRAME, v)
+-- 			ChatFrameMixin.AddMessageGroup(DEFAULT_CHAT_FRAME, v)
 -- 		end
 -- 		--拾取窗口
 -- 		local chatGroup3 = { "COMBAT_XP_GAIN", "COMBAT_HONOR_GAIN", "COMBAT_FACTION_CHANGE", "SKILL", "MONEY", "LOOT", "TRADESKILLS", "OPENING", "PET_INFO", "COMBAT_MISC_INFO" }
 -- 		for id=1,NUM_CHAT_WINDOWS,1 do
 -- 			local name, __ = GetChatWindowInfo(id);
 -- 			if name==L["CHAT_LOOTFNAME"] then
--- 				ChatFrame_RemoveAllMessageGroups(_G["ChatFrame"..id])
+-- 				ChatFrameMixin.RemoveAllMessageGroups(_G["ChatFrame"..id])
 -- 				for _, v in ipairs(chatGroup3) do
--- 					ChatFrame_AddMessageGroup(_G["ChatFrame"..id], v)
+-- 					ChatFrameMixin.AddMessageGroup(_G["ChatFrame"..id], v)
 -- 				end
 -- 				break
 -- 			end

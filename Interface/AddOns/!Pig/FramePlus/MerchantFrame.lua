@@ -178,7 +178,7 @@ function FramePlusfun.Merchant()
 						_G['MerchantItem'..i..'ItemButtonIconTexture']:SetTexCoord(unpack(PIGiconqiege.TexCoords))
 					end
 					if button.link then
-						local _, _, quality = GetItemInfo(button.link)
+						local _, _, quality = PIGGetItemInfo(button.link)
 						if quality and quality > 1 then
 							local r, g, b = GetItemQualityColor(quality)
 							button:SetBackdropBorderColor(r, g, b)
@@ -197,7 +197,7 @@ function FramePlusfun.Merchant()
 					local button = _G['MerchantItem'..i..'ItemButton']
 					local name = _G['MerchantItem'..i..'Name']
 					if button.link then
-						local _, _, quality = GetItemInfo(button.link)
+						local _, _, quality = PIGGetItemInfo(button.link)
 						if quality and quality > 1 then
 							local r, g, b = GetItemQualityColor(quality)
 							name:SetTextColor(r, g, b)

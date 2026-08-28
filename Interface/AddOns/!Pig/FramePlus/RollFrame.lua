@@ -93,7 +93,7 @@ function FramePlusfun.Roll()
 			GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT");
 			GameTooltip:AddLine(self.tooltipText..PLAYER)
 			for kn,vn in pairs(self:GetParent().PlayersList[self:GetID()]) do
-				local left,right,top,bottom=unpack(CLASS_ICON_TCOORDS[vn[2]])
+				local left,right,top,bottom=unpack(PIG_CLASS_ICON_TCOORDS[vn[2]])
 				local color = PIG_CLASS_COLORS[vn[2]];
 				local left=left*Texwidth
 				local right=right*Texwidth
@@ -424,10 +424,10 @@ function FramePlusfun.Roll()
 	local dubuglists = {13262,7734,22691,11122,13262,7734,22691,11122,13262,7734,22691,11122}
 	local function RollGetDebugUIItems()
 		for i=1,#dubuglists do
-			GetItemInfo(dubuglists[i])
+			PIGGetItemInfo(dubuglists[i])
 		end
 		for i=1,#dubuglists do
-			local itemName,itemLink=GetItemInfo(dubuglists[i])
+			local itemName,itemLink=PIGGetItemInfo(dubuglists[i])
 			if not itemName  then
 				C_Timer.After(0.1,RollGetDebugUIItems)
 				return
@@ -445,7 +445,7 @@ function FramePlusfun.Roll()
 			itembut.Greed.Count:SetText(0)
 			itembut.Pass.Count:SetText(0)
 			itembut.Timer:SetValue(i*14000);
-			local itemName,itemLink,itemQuality,itemLevel,itemMinLevel,itemType,itemSubType,itemStackCount,itemEquipLoc,itemTexture,sellPrice,classID = GetItemInfo(dubuglists[i])
+			local itemName,itemLink,itemQuality,itemLevel,itemMinLevel,itemType,itemSubType,itemStackCount,itemEquipLoc,itemTexture,sellPrice,classID = PIGGetItemInfo(dubuglists[i])
 			itembut.icon.link=itemLink
 			itembut.icon.tex:SetTexture(itemTexture)
 			if classID==2 or classID==4 then

@@ -26,14 +26,14 @@ MailLoggerDB = {
 nil,
 "LEFT",
 252.6205749511719,
-109.8302307128906,
+109.8302459716797,
 },
 ["OutputFramePos"] = {
 "CENTER",
 true,
 "CENTER",
-372.7625427246094,
-146.8260803222656,
+372.7625122070313,
+146.8260955810547,
 },
 ["LogDays"] = 90,
 ["Mode"] = "ALL",
@@ -1194,6 +1194,356 @@ true,
 },
 ["GiveMoney"] = 0,
 ["Location"] = "诅咒之地",
+["PlayerName"] = "法德迦-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "法德迦-哈霍兰",
+["Date"] = "2026-08-06",
+["Reason"] = 10,
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:52:30",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "半城专用仓库-哈霍兰",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 240,
+["ItemLink"] = "|cffffffff|Hitem:8846::::::::60::::::::::|h[格罗姆之血]|h|r",
+["Name"] = "格罗姆之血",
+},
+{
+["Number"] = 80,
+["ItemLink"] = "|cffffffff|Hitem:13423::::::::60::::::::::|h[石鳞鱼油]|h|r",
+["Name"] = "石鳞鱼油",
+},
+{
+["Number"] = 8,
+["ItemLink"] = "|cff1eff00|Hitem:13468::::::::60::::::::::|h[黑莲花]|h|r",
+["Name"] = "黑莲花",
+},
+{
+["Number"] = 30,
+["ItemLink"] = "|cffffffff|Hitem:3387::::::::60::::::::::|h[有限无敌药水]|h|r",
+["Name"] = "有限无敌药水",
+},
+{
+["Number"] = 30,
+["ItemLink"] = "|cffffffff|Hitem:13456::::::::60::::::::::|h[强效冰霜防护药水]|h|r",
+["Name"] = "强效冰霜防护药水",
+},
+{
+["Number"] = 55,
+["ItemLink"] = "|cffffffff|Hitem:13452::::::::60::::::::::|h[猫鼬药剂]|h|r",
+["Name"] = "猫鼬药剂",
+},
+},
+},
+{
+["PlayerName"] = "法德迦-哈霍兰",
+["Date"] = "2026-08-06",
+["GiveItems"] = {
+{
+["Number"] = 220,
+["ItemLink"] = "|cffffffff|Hitem:8846::::::::60::::::::::|h[格罗姆之血]|h|r",
+["Name"] = "格罗姆之血",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cffffffff|Hitem:13456::::::::60::::::::::|h[强效冰霜防护药水]|h|r",
+["Name"] = "强效冰霜防护药水",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:52:46",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "黑龙守护者-哈霍兰",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "法德迦-哈霍兰",
+["Date"] = "2026-08-06",
+["GiveItems"] = {
+{
+["Number"] = 34,
+["ItemLink"] = "|cffffffff|Hitem:3387::::::::60::::::::::|h[有限无敌药水]|h|r",
+["Name"] = "有限无敌药水",
+},
+{
+["Number"] = 60,
+["ItemLink"] = "|cffffffff|Hitem:13423::::::::60::::::::::|h[石鳞鱼油]|h|r",
+["Name"] = "石鳞鱼油",
+},
+{
+["Number"] = 10,
+["ItemLink"] = "|cffffffff|Hitem:13452::::::::60::::::::::|h[猫鼬药剂]|h|r",
+["Name"] = "猫鼬药剂",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:52:49",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "黑龙守护者-哈霍兰",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "法德迦-哈霍兰",
+["Date"] = "2026-08-06",
+["GiveItems"] = {
+{
+["Number"] = 40,
+["ItemLink"] = "|cffffffff|Hitem:13452::::::::60::::::::::|h[猫鼬药剂]|h|r",
+["Name"] = "猫鼬药剂",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cffffffff|Hitem:13456::::::::60::::::::::|h[强效冰霜防护药水]|h|r",
+["Name"] = "强效冰霜防护药水",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:52:52",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "黑龙守护者-哈霍兰",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "法德迦-哈霍兰",
+["Date"] = "2026-08-06",
+["Reason"] = 5,
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:53:04",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "半城专用仓库-哈霍兰",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 105,
+["ItemLink"] = "|cffffffff|Hitem:13452::::::::60::::::::::|h[猫鼬药剂]|h|r",
+["Name"] = "猫鼬药剂",
+},
+},
+},
+{
+["PlayerName"] = "法德迦-哈霍兰",
+["Date"] = "2026-08-06",
+["GiveItems"] = {
+{
+["Number"] = 60,
+["ItemLink"] = "|cffffffff|Hitem:13452::::::::60::::::::::|h[猫鼬药剂]|h|r",
+["Name"] = "猫鼬药剂",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:53:05",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "黑龙守护者-哈霍兰",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "法德迦-哈霍兰",
+["Date"] = "2026-08-06",
+["Reason"] = 3,
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:53:14",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "半城专用仓库-哈霍兰",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 100,
+["ItemLink"] = "|cffffffff|Hitem:13452::::::::60::::::::::|h[猫鼬药剂]|h|r",
+["Name"] = "猫鼬药剂",
+},
+},
+},
+{
+["PlayerName"] = "法德迦-哈霍兰",
+["Date"] = "2026-08-06",
+["GiveItems"] = {
+{
+["Number"] = 60,
+["ItemLink"] = "|cffffffff|Hitem:13452::::::::60::::::::::|h[猫鼬药剂]|h|r",
+["Name"] = "猫鼬药剂",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:53:15",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "黑龙守护者-哈霍兰",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "法德迦-哈霍兰",
+["Date"] = "2026-08-06",
+["Reason"] = 1,
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:53:15",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "半城专用仓库-哈霍兰",
+["Result"] = "received",
+["ReceiveItems"] = {
+{
+["Number"] = 5,
+["ItemLink"] = "|cffffffff|Hitem:13452::::::::60::::::::::|h[猫鼬药剂]|h|r",
+["Name"] = "猫鼬药剂",
+},
+},
+},
+{
+["PlayerName"] = "法德迦-哈霍兰",
+["Date"] = "2026-08-06",
+["GiveItems"] = {
+{
+["Number"] = 60,
+["ItemLink"] = "|cffffffff|Hitem:13452::::::::60::::::::::|h[猫鼬药剂]|h|r",
+["Name"] = "猫鼬药剂",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:53:20",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "黑龙守护者-哈霍兰",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["PlayerName"] = "法德迦-哈霍兰",
+["Date"] = "2026-08-06",
+["GiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cffffffff|Hitem:8846::::::::60::::::::::|h[格罗姆之血]|h|r",
+["Name"] = "格罗姆之血",
+},
+{
+["Number"] = 8,
+["ItemLink"] = "|cff1eff00|Hitem:13468::::::::60::::::::::|h[黑莲花]|h|r",
+["Name"] = "黑莲花",
+},
+{
+["Number"] = 5,
+["ItemLink"] = "|cffffffff|Hitem:13456::::::::60::::::::::|h[强效冰霜防护药水]|h|r",
+["Name"] = "强效冰霜防护药水",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cffffffff|Hitem:13423::::::::60::::::::::|h[石鳞鱼油]|h|r",
+["Name"] = "石鳞鱼油",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "23:53:23",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["TargetName"] = "黑龙守护者-哈霍兰",
+["Result"] = "sent",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "巨龙守护者-哈霍兰",
+["Date"] = "2026-08-12",
+["GiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cff1eff00|Hitem:12360::::::::1::::::::::|h[奥金锭]|h|r",
+["Name"] = "奥金锭",
+},
+{
+["Number"] = 2,
+["ItemLink"] = "|cff1eff00|Hitem:12360::::::::1::::::::::|h[奥金锭]|h|r",
+["Name"] = "奥金锭",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cff1eff00|Hitem:12360::::::::1::::::::::|h[奥金锭]|h|r",
+["Name"] = "奥金锭",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cff1eff00|Hitem:12360::::::::1::::::::::|h[奥金锭]|h|r",
+["Name"] = "奥金锭",
+},
+{
+["Number"] = 20,
+["ItemLink"] = "|cff1eff00|Hitem:12360::::::::1::::::::::|h[奥金锭]|h|r",
+["Name"] = "奥金锭",
+},
+},
+["ReceiveMoney"] = 0,
+["Time"] = "17:27:41",
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["PlayerName"] = "绿龙守护者-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+},
+},
+{
+["TargetName"] = "巨龙守护者-哈霍兰",
+["Date"] = "2026-08-12",
+["Time"] = "17:30:33",
+["ReceiveMoney"] = 0,
+["GiveItems"] = {
+{
+["Number"] = 20,
+["ItemLink"] = "|cff1eff00|Hitem:12360::::::::60::::::::::|h[奥金锭]|h|r",
+["Name"] = "奥金锭",
+},
+},
+["GiveMoney"] = 0,
+["Location"] = "暴风城",
+["PlayerName"] = "法德迦-哈霍兰",
+["Result"] = "completed",
+["ReceiveItems"] = {
+{
+["Number"] = 2,
+["ItemLink"] = "|cff1eff00|Hitem:12360::::::::60::::::::::|h[奥金锭]|h|r",
+["Name"] = "奥金锭",
+},
+},
+},
+{
+["TargetName"] = "神秘的老黄-哈霍兰",
+["Date"] = "2026-08-20",
+["GiveItems"] = {
+},
+["ReceiveMoney"] = 0,
+["Time"] = "21:34:57",
+["GiveMoney"] = 200000000,
+["Location"] = "暴风城",
 ["PlayerName"] = "法德迦-哈霍兰",
 ["Result"] = "completed",
 ["ReceiveItems"] = {
